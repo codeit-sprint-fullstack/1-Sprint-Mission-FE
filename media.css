@@ -1,0 +1,137 @@
+@media screen and (max-width: 1920px) { 
+    .header_box {
+        width: 100%;
+    }
+    .banner_max_size {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width : 1255px) {
+    header {
+        width: 100%;
+        height: 70px;
+        /* height: auto; */
+        align-items: center;
+    }
+
+    .header_box,
+    .footer_box{
+        width: 100%;
+        gap: 15px;
+        /* flex-direction: column; */
+    }
+
+    .banner_max_size {
+        width: 80%;
+    }
+
+    .home_banner_img {
+        width: 800px;
+        right: 30px;
+        height: auto;
+    }
+
+    .articles_box {
+        width: auto;
+        height:auto
+    }
+
+    .article_box,
+    .article_box_2nd {
+        flex-direction: column;
+        height:auto;
+        margin-top: 64px;
+        align-items: normal;
+    }
+}
+
+@media (max-width:930px) {
+    .header_box,
+    .footer_box{
+        width: 100%;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    .nav_bar,
+    .nav_content,
+    .lopgin_but {
+        display: none;
+    }
+
+    .home_banner_img {
+        width: 100%;
+        min-width: 500px;
+        right: 0px;
+        height: auto;
+    }
+
+    .logo_img {
+        margin: auto;
+    }
+
+    .footer_box > P {
+        margin: auto;
+    }
+
+    .sns_box{
+        margin: auto;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width : 600px) {
+
+    header {
+        width: 100%;
+        height: auto;
+        align-items: center;
+    }
+
+    h1,
+    h2 {
+        text-align: center;
+    }
+
+    .banner_max_size {
+        width: 90%;
+    }
+
+    .home_banner_img {
+        width: 400px;
+        right: 0px;
+        height: auto;
+    }
+
+    .articles_box {
+        width: auto;
+        height:auto
+    }
+
+    .article_box,
+    .article_box_2nd {
+        flex-direction: column;
+        height:auto;
+        margin-top: 32px;
+        align-items: normal;
+    }
+
+    .article_img {
+        width: 90%;
+        height: auto;
+        object-fit:cover
+    }
+    
+    .article_content {
+        align-items: center;
+    }
+
+    .article_box_2nd > .article_content {
+        text-align: left;
+    }
+    
+    .go_items {
+        margin: 32px auto;
+    }
+}
