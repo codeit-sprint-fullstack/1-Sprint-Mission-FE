@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>로그인 페이지</title>
+  <title>회원가입 페이지</title>
   <link rel="shortcut icon" href="../image/판다 얼굴.png">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -16,12 +16,20 @@
       <label>이메일</label>
       <input type="email" name="email">
     </div>
+    <div class="nameBox">
+      <label>닉네임</label>
+      <input type="text" name="name">
+    </div>
     <div class="passwordBox">
       <label>비밀번호</label>
       <input type="password" name="password">
     </div>
-    <div class="loginButton">
-      <button>로그인</button>
+    <div class="checkPasswordBox">
+      <label>비밀번호 확인</label>
+      <input type="password" name="checkPassword">
+    </div>
+    <div class="joinButton">
+      <button>회원가입</button>
     </div>
     <div class="simpleLogin">
       <span class="simpleSpan">간편 로그인하기</span>
@@ -34,10 +42,10 @@
         </a>
       </div>
     </div>
-    <div class="askJoin"> <!--여기는 absolute로 바닥에 박기-->
-      판다마켓이 처음이신가요? 
-      <a class="join" href="../signup" target="_self">
-        회원가입
+    <div class="askLogin"> <!--여기는 absolute로 바닥에 박기-->
+      이미 회원이신가요? 
+      <a class="login" href="../login" target="_self">
+        로그인
       </a>
     </div>
   </div>
