@@ -1,0 +1,270 @@
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  color: #374151;
+}
+
+header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #dfdfdf;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+}
+
+.gnb {
+  align-items: center;
+  display: flex;
+  font-size: 18px;
+  font-weight: 700;
+  height: 70px;
+  justify-content: space-between;
+  margin: 0 200px;
+}
+
+nav {
+  display: flex;
+}
+
+.logo {
+  margin: 9px 32px 0 0;
+}
+
+.logo img {
+  height: 51px;
+  width: 153px;
+}
+
+.board {
+  color: #4b5563;
+  line-height: 70px;
+  text-align: center;
+  width: 109px;
+}
+
+.login {
+  background-color: #3692FF;
+  border-radius: 8px;
+  color: #ffffff;
+  cursor: pointer;
+  display: block;
+  font-weight: 600;
+  height: 42px;
+  line-height: 42px;
+  text-align: center;
+  width: 88px;
+}
+
+.visual {
+  background-color: #CFE5FF;
+  display: flex;
+  height: 540px;
+  padding: 70px 0 0 320px;
+  position: relative;
+}
+
+.visual-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+}
+
+.visual-btn {
+  background-color: #3692ff;
+  border-radius: 40px;
+  color: #ffffff;
+  cursor: pointer;
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  height: 56px;
+  line-height: 56px;
+  margin: 32px 0 0 0;
+  text-align: center;
+  width: 357px;
+}
+
+.visual img {
+  bottom: 0;
+  position: absolute;
+  right: 223px;
+  width: 996px;
+}
+
+section {
+  display: flex;
+  margin: 0 auto;
+  padding: 138px 0;
+  width: 1200px;
+}
+
+section img  {
+  width: 588px;
+}
+
+.search {
+  justify-content: flex-end;
+}
+
+.text-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 64px;
+}
+
+.text-box .tit {
+  color: #3692ff;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 0 0 12px 0;
+}
+
+.text-box .tltle {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+}
+
+.text-box .description {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28.8px;
+  padding: 24px 0 0 0;
+}
+
+.banner {
+  background-color: #CFE5FF;
+  display: flex;
+  height: 540px;
+  padding: 0 0 0 320px;
+  position: relative;
+}
+
+.banner img {
+  bottom: 0;
+  position: absolute;
+  right: 223px;
+  width: 996px;
+}
+
+.banner-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  justify-content: center;
+  z-index: 1;
+}
+
+footer {
+  background-color: #111827;
+  color: #9ca3af;
+  display: flex;
+  font-size: 16px;
+  height: 160px;
+  justify-content: space-between;
+  padding: 32px 200px 0 200px;
+}
+
+.link {
+  color: #e5e7eb;
+  display: flex;
+}
+
+.link li:first-child {
+  padding: 0 30px 0 0;
+}
+
+.icon {
+  display: flex;
+}
+
+.icon li {
+  padding: 0 0 0 12px;
+}
+
+.icon img {
+  height: 20px;
+  width: 20px;
+}
+
+@media screen and (width <= 1280px) {
+  .visual {
+    height: 360px;
+    padding: 70px 0 0 240px;
+  }
+
+  .title {
+    font-size: 36px;
+    line-height: 50.4px;
+  }
+
+  .visual-btn {
+    font-size: 18px;
+    margin: 24px 0 0 0;
+    width: 280px;
+  }
+
+  .visual img {
+    right: 200px;
+    width: 680px;
+  }
+
+  section {
+    padding: 64px 0;
+    width: 960px;
+  }
+
+  section img  {
+    width: 480px;
+  }
+
+  .text-box {
+    padding: 0 48px;
+  }
+
+  .text-box .tit {
+    font-size: 16px;
+    padding: 0 0 8px 0;
+  }
+
+  .text-box .tltle {
+    font-size: 32px;
+    line-height: 44.8px;
+  }
+
+  .text-box .description {
+    font-size: 20px;
+    line-height: 28px;
+    padding: 20px 0 0 0;
+  }
+
+  .banner {
+    height: 360px;
+    padding: 0 0 0 240px;
+  }
+
+  .banner img {
+    right: 200px;
+    width: 680px;
+  }
+
+  .banner-text {
+    font-size: 36px;
+    line-height: 50.4px;
+  }
+}
