@@ -1,12 +1,17 @@
 name: Deploy website
 
-on: [push]
-
-env:
-  BRANCH_NAME: ${{ github.ref_name }}
+on:
+    push:
+        branches:
+            - 'master'
+        paths:
+            - 'api-client/**'
+            - 'package.json'
+            - 'webclient/**'
+            - '.github/workflows/netlify-deploy.yml'
   
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Repository Checkout
