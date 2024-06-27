@@ -46,7 +46,7 @@ main {
   align-items: center;
   width: 100%;
   /*max-width 640px by main_container*/
-  max-height: 430px;
+  max-height: 664px;
   height: 100%;
   background-color: #ffffff;
   gap: 24px;
