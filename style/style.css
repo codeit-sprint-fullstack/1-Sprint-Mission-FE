@@ -17,12 +17,12 @@ body {
   display: none;
 }
 
-header {
+.main-header {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 70px;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
@@ -45,6 +45,7 @@ header {
   width: 100%;
   height: auto;
 }
+
 nav {
   display: flex;
   align-items: center;
@@ -94,10 +95,6 @@ nav ul a {
   display: flex;
   overflow: hidden;
   justify-content: center;
-}
-
-.banner-bg:nth-of-type(1) {
-  margin-top: 70px;
 }
 
 .banner-top,
@@ -262,6 +259,111 @@ footer .icons {
   width: 20px;
   height: 20px;
 }
+
+/* ------------------------login page  */
+
+.non-sticky-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 60px 0 var(--40px);
+}
+
+.non-sticky-header a img {
+  max-width: 396px;
+  min-width: 396px;
+  height: auto;
+}
+
+.login-main {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 640px;
+  min-width: 640px;
+  justify-content: center;
+  align-items: center;
+  color: var(--grey-800);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: var(--18px);
+  font-weight: 700;
+}
+
+form label {
+  padding: 0 0 1rem;
+}
+
+form input,
+form button,
+.social-login {
+  margin-bottom: var(--24px);
+}
+
+form input {
+  width: 100%;
+  border-radius: 12px;
+  padding: 1rem var(--24px);
+  background-color: var(--grey-100);
+  height: 3.5rem;
+  color: var(--grey-400);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+form button {
+  background-color: #9ca3af;
+  height: 3.5rem;
+  border-radius: 40px;
+  font-size: var(--20px);
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.social-login {
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+}
+
+.social-login ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.social-login img {
+  min-width: 42px;
+  height: auto;
+}
+
+.login-main span {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.login-main span a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: #3182f6;
+}
+
+.login-main span a:focus {
+  outline-color: #3692ff;
+}
+
+/* ---------------------------------------- */
 
 @media (max-width: 1350px) {
   .banner-top,

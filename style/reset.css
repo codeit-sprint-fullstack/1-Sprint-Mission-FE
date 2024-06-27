@@ -15,13 +15,16 @@
 :root {
   /* color */
   --main-bg-colour: #cfe5ff;
+  --secondary-color: #e6f2ff;
   --primary-colour: #3692ff;
   --dark-colour: #111827;
+
   --grey-100: #f3f4f6;
   --grey-200: #e5e7eb;
   --grey-400: #9ca3af;
   --grey-600: #4b5563;
   --grey-700: #374151;
+  --grey-800: #1f2937;
 
   /*  rem size */
   --18px: 1.125rem;
