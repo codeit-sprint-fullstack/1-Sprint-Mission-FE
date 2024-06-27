@@ -8,6 +8,7 @@
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
     <link rel="stylesheet" href="/style/loginstyle.css" />
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <title>판다마켓 로그인</title>
 </head>
 
@@ -18,18 +19,22 @@
             <label for="e-mail">이메일</label>
             <input id="e-mail" type="email" placeholder="이메일을 입력해주세요">
             <label for="pw">비밀번호</label>
-            <input id="pw" type="password" placeholder="비밀번호를 입력해주세요">
+            <div class="pwsetting">
+                <input id="pw" type="password" placeholder="비밀번호를 입력해주세요">
+                <i class="non-show"><img src="/image/eye-btn.png" class="eye-size"></i>
+                <i class="show" style="display:none;"><img src="/image/eye-show.png" class="eye-size"></i>
+            </div>
             <button class="login-btn" type="submit">로그인</button>
         </form>
         <div class="easy-login">
             <p>간편 로그인하기</p>
             <div class="sns-link">
                 <a href="https://www.google.com/">
-                    <img src="/image/google-img.png" id = "google">
+                    <img src="/image/google-img.png" id="google">
                 </a>
                 <a href="https://www.kakaocorp.com/page/">
                     <img src="/image/kakao-img.png">
-                </a> 
+                </a>
             </div>
         </div>
         <div class="signup">
@@ -37,7 +42,22 @@
         </div>
     </div>
 
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.pwsetting i').on('click', function () {
+                if ($(this).hasClass('non-show')) {
+                    $('#pw').attr('type', 'text');
+                    $(this).hide();
+                    $('.show').show();
+                } else if ($(this).hasClass('show')) {
+                    $('#pw').attr('type', 'password');
+                    $(this).hide();
+                    $('.non-show').show();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

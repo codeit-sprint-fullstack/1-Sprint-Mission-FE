@@ -47,19 +47,38 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: left;
-    align-items: left;
+    margin-top: 4rem;
+}
+
+.pwsetting {
+    position: relative;
+}
+
+.show, .non-show {
+    position: absolute;
+    right: 2.4rem;
+    top: 1.7rem;
+    left: auto;
+    cursor: pointer;
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+.eye-size {
+    width: 2.047rem;
+    height: 1.807rem;
 }
 
 .login-form label {
     margin-bottom: 1.6rem;
     color: var( --label-text-color);
-    font-size: 1.8rem;
+    font-size: 18px;
     font-weight: 700;
     line-height: 2.148rem;
     height: 2.1rem;
 }
 
-.login-form input, .login-form .login-btn {
+.login-form input, .login-form .login-btn, .easy-login {
     width: 64rem;
     height: 5.6rem;
     gap: 1rem;
@@ -85,15 +104,12 @@ body {
     line-height: 2.4rem;
     text-align: center;
     color: var(--login-btn-text);
-    width: 64rem;
-    height: 5.6rem;
 }
 
 .easy-login {
     display: flex;
     justify-content: space-between;
     background-color: var( --easy-login-back-color) ;
-    width: 64rem;
     height: 7.4rem;
     border-radius: 0.8rem;
     padding: 0 2.3rem;
@@ -131,4 +147,5 @@ body {
 
 .signup-link {
     color: var(--link-color);
+    margin-left: 0.4rem;
 }

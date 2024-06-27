@@ -47,7 +47,26 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: left;
-    align-items: left;
+    margin-top: 4rem;
+}
+
+.pwsetting, .pwsetting-check {
+    position: relative;
+}
+
+.show, .non-show, .show-check, .non-show-check {
+    position: absolute;
+    right: 2.4rem;
+    top: 1.7rem;
+    left: auto;
+    cursor: pointer;
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+.eye-size {
+    width: 2.047rem;
+    height: 1.807rem;
 }
 
 .login-form label {
@@ -131,4 +150,5 @@ body {
 
 .login-link {
     color: var(--link-color);
+    margin-left: 0.4rem;
 }
