@@ -1,0 +1,398 @@
+@import "./reset.css";
+
+html {
+    font-size : 62.5%;
+}
+
+* {
+    margin : 0px;
+    padding : 0px;
+    outline : none;
+}
+
+.root {
+    display : block;
+    position : relative;
+}
+
+header {
+    align-items : center;
+    z-index: 10;
+    position : fixed;
+    top : 0;
+    left: 0;
+    right : 0;
+    height : 7rem;
+    max-width : 192rem;
+    width : 100%;
+    margin : 0px auto;
+    display : flex;
+    flex-direction : row;
+    flex-wrap: nowrap;
+    background-color : #FFFFFF;
+    border : solid;
+    border-width : 1px;
+    border-color: #DFDFDF;
+}
+
+#homeButton {
+    margin-left : 20rem;
+    margin-right : 3.2rem;
+}
+
+#homeButtonImg {
+    object-fit : cover;
+    width : 15.3rem;
+    height : 5.1rem;
+    margin : 0px;
+    padding : 0px;
+    cursor : pointer;
+}
+
+.navi {
+    align-items : center;
+    display : flex;
+    flex-direction : row;
+    flex-wrap: wrap;
+    height : 6.9rem;
+    width : 100%;
+}
+
+.list {
+    display : flex;
+}
+
+.listItem {
+    display: flex; 
+    width : 10.9rem;
+    height : 6.9rem;
+    font-family : "Pretendard";
+    font-weight : 700;
+    font-size : 1.8rem;
+    /* line-height : 21.48px; */
+    line-height : 1.19333em;
+    color : #4B5563;
+    justify-content : center;
+    align-items: center;
+    cursor : pointer;
+}
+
+
+#loginButtonImg {
+    object-fit : cover;
+    width : 8.8rem;
+    height : 4.2rem;
+    margin : 0px;
+    padding : 0px;
+    cursor : pointer;
+}
+
+#loginButton {
+    width : 8.8rem;
+    height : 4.2rem;
+    display : flex;
+    margin-right : 20rem;
+    justify-content : center;
+    align-items: center;
+    flex-shrink : 0;
+    cursor : pointer;
+}
+
+main {
+    max-width : 192rem;
+    background-color : #CFE5FF;
+    display : block;
+    position : relative;
+    margin : 0px auto;
+    margin-top : 7rem;
+    padding : 0px;
+    overflow : hidden;
+}
+
+.main_sec0 {
+    max-width : 192rem;
+    width: 100%;
+    background-color: #CFE5FF;
+}
+
+.main_sec {
+    max-width : 192rem;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+.main_con1 {
+    margin: 0 auto;
+    max-width : 120rem;
+    height : 54rem;
+    position : relative;
+}
+
+#main_con1_grp_text_btn {
+    position : relative;
+    top : 17rem;
+    display : flex;
+    flex-direction : column;
+    justify-content : space-between;
+    align-items : flex-start;
+    width : 35.7rem;
+    height : 20rem;
+}
+
+.textStyle_h2 {
+    font-family: "Pretendard";
+    font-size: 4rem;
+    font-weight: 700;
+    /* line-height: 56px; */
+    line-height: 1.4em;
+    color: #374151;
+}
+
+.textStyle_h5 {
+    font-family: "Pretendard";
+    font-size: 2.4rem;
+    font-weight: 500;
+    /* line-height: 28.8px; */
+    line-height: 1.2em;
+    letter-spacing: 0.08em;
+    color: #374151;
+    white-space: nowrap;
+}
+
+.textStyle_h7 {
+    font-family : "Pretendard";
+    font-size : 1.8rem;
+    font-weight : 700;
+    /* line-height : 25.2px; */
+    line-height : 1.4em;
+    color : #3692FF;
+}
+
+.textStyle_letterSpace_2p {
+    letter-spacing: 0.02em;
+}
+
+.textAlignEnd {
+    text-align : end;
+}
+
+#main_con1_btn {
+    width : 35.7rem;
+    height : 5.6rem;
+    background-size : cover;
+}
+
+#main_con1_img {
+    position : relative;
+    left : 34.1rem;
+    top : -10.7rem;
+    max-width : 99.7rem;
+    height : 44.7rem;
+}
+
+.main_con2 {
+    width: 120rem;
+    height: 72rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin : 0 auto;
+}
+
+#main_con2_grp_text_img {
+    width : 95.5rem;
+    height : 44.4rem;
+}
+
+.main_con_grp {
+    display: flex;
+    flex-direction: row;
+    gap: 6.4rem;
+    align-items: center;
+}
+
+.main_con_subgrp1_text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.main_con_subgrp2_text {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+}
+
+#main_con2_grp_text {
+    width: 30.3rem;
+    height: 23.1rem;
+}
+
+.main_con2_grp_text_sub {
+    width: 30.3rem;
+    height: 19.4rem;
+}
+
+.main_con3 {
+    max-width: 120rem;
+    height: 72rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#main_con3_grp_text_img{
+    width : 96.9rem;
+    height : 44.4rem;
+}
+
+#main_con3_grp_text {
+    width : 31.7rem;
+    height : 23.1rem;
+}
+
+#main_con3_grp_text_sub {
+    width : 31.7rem;
+    height : 19.4rem;
+}
+
+.main_con4 {
+    width : 120rem;
+    height : 72rem;
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    margin : 0 auto;
+}
+
+#main_con4_grp_text_img {
+    width : 102.2rem;
+    height : 44.4rem;
+}
+
+.main_con4_img_type1 {
+    width: 58.8rem;
+    height: 44.4rem;
+    background-size: cover;
+}
+
+#main_con_blank {
+    max-width : 192rem;
+    width : 100%;
+    height : 13.8rem;
+}
+
+.main_con5 {
+    background-color: #CFE5FF;
+    max-width : 120rem;
+    height: 54rem;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    position : relative;
+}
+
+.main_con5_grp_text_img {
+    width : 120rem;
+    height : 54rem;
+    display : flex;
+    flex-direction : row;
+    justify-content : left;
+    align-items : center;
+}
+
+.main_con5_grp_text {
+    display : block;
+    width: 28.6rem;
+    height : 11.2rem;
+ }
+
+#main_con5_text {
+    white-space: nowrap;
+}
+
+#main_con5_1_img {
+    width: 100%;
+    height: 54rem;
+    align-self : flex-end;
+    padding-left : 5.5rem;
+    background-size: cover;
+    overflow: visible;
+ }
+
+footer {
+    display: block;
+    max-width : 192rem;
+    width: 100%;
+    height: 16rem;
+    background-color: #111827;
+    margin : 0 auto;
+}
+
+.footer_space {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content : center;
+ }
+
+.footer_icons_common {
+    width: 192rem;
+    height: 2rem;
+    margin-top : 3.2rem;
+    margin-left : 20rem;
+    margin-right : 20rem;
+    display: flex;
+    flex-direction: row;
+    justify-content : space-between;
+}
+
+.footer_text {
+    font-family: Pretendard;
+    font-size: 1.6rem;
+    font-weight: 400;
+    /* line-height: 19.09px; */
+    line-height : 1.193125em;
+    color: #9CA3AF;
+}
+
+#footer_title {
+    width : 11.2rem;
+    height : 1.9rem;
+}
+
+#footer_link_texts {
+    width : 15.9rem;
+    height : 1.9rem;
+    display : flex;
+    flex-direction : row;
+    flex-wrap : nowrap;
+    gap : 3rem;
+}
+
+.link_text {
+    text-decoration: none;
+    color: #9CA3AF;
+}
+
+#footer_link_icons {
+    width: 11.6rem;
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1.2rem;
+}
+
+.footer_icon {
+    height : 2rem;
+    width : 2rem;
+    background-size : cover;
+    /* cursor : pointer; */
+}
+
+body {
+    background : #CFE5FF;
+}
