@@ -260,7 +260,7 @@ footer .icons {
   height: 20px;
 }
 
-/* ------------------------login page  */
+/* ------------------------login-page  */
 
 .non-sticky-header {
   display: flex;
@@ -322,6 +322,10 @@ form button {
   font-size: var(--20px);
   font-weight: 600;
   color: #ffffff;
+}
+
+form button:focus {
+  background-color: var(--primary-colour);
 }
 
 .social-login {
