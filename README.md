@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Sprint Mission
 
 - 랜딩 페이지(index.html)
