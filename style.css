@@ -41,12 +41,8 @@ a:hover {
   height: 70px;
   width: 100%;
   max-width: 1920px;
-  background-color: #FFFFFF;
-  border-bottom: 1px solid #DFDFDF;
   display: flex;
   justify-content: space-between;
-  position: fixed;
-  z-index: 200;
 }
 .headerContainer {
   display: flex;
