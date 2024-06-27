@@ -18,34 +18,43 @@
             <div class="logo_box">
                 <a href="index.html"><img class="logo_img" src="../image/logo.png" alt="메인판다로고"></a>
             </div>
-            <div class="form_box">
-                <form>
-                    <label for="email">
-                        이메일
-                        <input type="text" name="email" id="user_id" placeholder="이메일을 입력해주세요">
-                    </label>
-                    <label for="password">
-                        비밀번호
-                        <input type="password" name="password" id="password" placeholder="이메일을 입력해주세요">
-                    </label>
-                    <button>로그인</button>
-                </form>
-            </div>
-            <div class="sns_login_box">
-                <div>
+            <div>
+                <div class="form_box">
+                    <form>
+                        <label class="email_label" for="email">
+                            <p>
+                                이메일
+                            </p>
+                            <input type="text" name="email" id="user_id" placeholder="이메일을 입력해주세요">
+                        </label>
+                        <label class="password_label" for="password" style="margin-top: 24px;">
+                            <p>
+                                비밀번호
+                            </p>
+                            <input type="password" name="password" id="password" placeholder="비밀번호 입력해주세요">
+                            <i>
+                                <img id="eye_icon" class="password_eye_icon" src="../image/btn_visibility_on_24px.png"
+                                    alt="눈아이콘">
+                            </i>
+                        </label>
+                        <button>로그인</button>
+                    </form>
+                </div>
+                <div class="sns_login_box">
                     <p>간편 로그인하기</p>
+                    <div>
+                        <a href="https://www.google.com/" target="_blank">
+                            <img class="icon" src="../image/googleicon.png" alt="구글로고">
+                        </a>
+                        <a href="https://www.kakaocorp.com/page/" target="_blank">
+                            <img class="icon" src="../image/kakaoicon.png" alt="카카오톡로고">
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <a href="https://www.google.com/" target="_blank">
-                        <img class="icon" src="../image/ic_facebook.png" alt="구글로고">
-                    </a>
-                    <a href="https://www.kakaocorp.com/page/" target="_blank">
-                        <img class="icon" src="../image/ic_facebook.png" alt="카카오톡로고">
-                    </a>
-                </div>
+                <p>판다마켓이 처음이신가요?<a href="./singup.html">회원가입</a></p>
             </div>
-            <p>판다마켓이 처음이신가요?<a href="./singup.html">회원가입</a></p>
     </main>
+    <script src="/script/stylejs.js"></script>
 </body>
 
 </html>
