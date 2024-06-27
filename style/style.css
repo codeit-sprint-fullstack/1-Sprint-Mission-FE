@@ -1,0 +1,230 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; /* 1rem = 10px로 설정 */
+}
+
+body {
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
+header {
+  width: 100%;
+  height: 7rem; /* 70px */
+}
+
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  display: flex;
+  z-index: 1;
+}
+
+.nav-text {
+  height: 6.9rem; /* 69px */
+  font-size: 1.8rem; /* 18px */
+  font-weight: 700;
+  padding-top: 3rem; /* 30px */
+  margin-left: 3.5rem; /* 35px */
+}
+
+main {
+  width: 100%;
+}
+
+.top-banners {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 120rem 1fr; /* 1200px */
+  background-color: #CFE5FF;
+}
+
+.top-banner {
+  height: 54rem; /* 540px */
+  width: 100%;
+  position: relative;
+  justify-content: center;
+  grid-column: 2;
+}
+
+.top-banner p {
+  padding-top: 17rem; /* 170px */
+}
+
+.img-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 34.1rem; /* 341px */
+  width: 99.6rem; /* 996px */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.top-img {
+  height: 44.7rem; /* 447px */
+  background-image: url('/image/Img_home_topas.png');
+}
+
+.font-style {
+  font-size: 4rem; /* 40px */
+  line-height: 5.6rem; /* 56px */
+  font-weight: 700;
+  color: #374151;
+}
+
+#go-items {
+  background-color: #3692FF;
+  color: #ffffff;
+  font-size: 2rem; /* 20px */
+  width: 35.7rem; /* 357px */
+  height: 5.6rem; /* 56px */
+  border-radius: 4rem; /* 40px */
+  border: none;
+  margin-top: 2.6rem; /* 26px */
+}
+
+#logo-img {
+  margin-top: 1.4rem; /* 14px */
+  width: 15.3rem; /* 153px */
+  height: 5.1rem; /* 51px */
+}
+
+#login-form {
+  margin-left: auto;
+  margin-right: 20rem; /* 200px */
+  margin-top: 1.4rem; /* 14px */
+}
+
+#login-btn {
+  color: #ffffff;
+  background-color: #3692FF;
+  border: none;
+  font-size: 1.6rem; /* 16px */
+  text-align: center;
+  width: 8.8rem; /* 88px */
+  height: 4.2rem; /* 42px */
+  padding: 1.2rem 2.3rem; /* 12px 23px */
+  border-radius: 0.8rem; /* 8px */
+}
+
+#logo-img, #login-btn, #go-items {
+  cursor: pointer;
+}
+
+.home-containers {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 120rem 1fr; /* 1200px */
+  grid-template-rows: auto;
+}
+
+.box {
+  height: 72rem; /* 720px */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  grid-column: 2;
+  gap: 6rem; /* 60px */
+}
+
+.item-right {
+  justify-content: right;
+  text-align: right;
+}
+
+.category {
+  color: #3692FF;
+  font-weight: 700;
+  font-size: 1.8rem; /* 18px */
+  line-height: 2.52rem; /* 25.2px */
+  margin-bottom: 1.2rem; /* 12px */
+}
+
+.details {
+  color: #374151;
+  font-weight: 500;
+  font-size: 2.4rem; /* 24px */
+  line-height: 2.88rem; /* 28.8px */
+  margin-top: 1.2rem; /* 12px */
+}
+
+.main-img {
+  width: 58.8rem; /* 588px */
+  height: 44.4rem; /* 444px */
+  border-radius: 1.2rem; /* 12px */
+}
+
+.bottom-banners {
+  display: grid;
+  grid-template-columns: 1fr 120rem 1fr; /* 1200px */
+  background-color: #CFE5FF;
+}
+
+.bottom-banner {
+  height: 54rem; /* 540px */
+  width: 192rem; /* 1920px */
+  position: relative;
+  justify-content: center;
+  grid-column: 2;
+}
+
+.bottom-banner p {
+  padding-top: 17rem; /* 170px */
+}
+
+footer {
+  width: 100%;
+}
+
+.bottom-img {
+  height: 54rem; /* 540px */
+  background-image: url('/image/Img_home_bottom.png');
+}
+
+.footer-info {
+  height: 16rem; /* 160px */
+  width: 100%;
+  background-color: #111827;
+}
+
+.footer-info-items {
+  width: 100%;
+  display: flex;
+  height: 2rem; /* 20px */
+  padding: 3.2rem 0; /* 32px 0 */
+}
+
+.footer-info-font, .footer-info-font a, .sns-img {
+  color: #E5E7EB;
+  font-weight: 400;
+  font-size: 1.6rem; /* 16px */
+  line-height: 1.909rem; /* 19.09px */
+  text-align: center;
+  margin: 0 1rem; /* 10px */
+  text-decoration: none;
+}
+
+.sns-img {
+  width: 1.7rem; /* 17px */
+  height: 1.7rem; /* 17px */
+  margin: 0 0.4rem; /* 4px */
+  cursor: pointer;
+}
+
+.margin-right {
+  margin-right: 20rem; /* 200px */
+}
+
+.margin-left {
+  margin-left: 20rem; /* 200px */
+}
