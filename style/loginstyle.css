@@ -81,7 +81,6 @@ body {
 .login-form input, .login-form .login-btn, .easy-login {
     width: 64rem;
     height: 5.6rem;
-    gap: 1rem;
 }
 
 .login-form input {
