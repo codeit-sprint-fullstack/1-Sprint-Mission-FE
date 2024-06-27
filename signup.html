@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
+  <title>Document</title>
+</head>
+<body class="container">
+  <a href="index.html">
+      <img src="img/Property 1=Variant3.png" class="panda_logo">
+  </a>
+  <form class="login_form">
+      <p class="login_str">이메일</p>
+      <input type="text" class="input_box" placeholder="이메일을 입력해주세요" type="eamil">
+      <p class="login_str">닉네임</p>
+      <input type="text" class="input_box" placeholder="닉네임을 입력해주세요">
+      <p class="login_str">비밀번호</p>
+      <input class="input_box" placeholder="비밀번호를 입력해주세요" type="password">
+      
+      <p class="login_str">비밀번호 확인</p>
+      <input class="input_box" placeholder="비밀번호를 다시 한 번 입력해주세요" type="password">
+      
+      <button class="signup_button">회원가입</button>
+      
+      <div class="login_kakao_google">
+          <p class="login_kakao_google_str">간편 로그인하기</p>
+
+          <div class="login_kakao_google_img_box">
+              <a href="https://www.google.com/" style="text-decoration:none;">
+                  <img src="img/Component 2@3x.png" class="login_kakao_google_img">
+              </a>
+
+              <a href="https://www.kakaocorp.com/page/" style="text-decoration:none;">
+                  <img src="img/Component 3@3x.png" class="login_kakao_google_img">
+              </a>
+
+          </div>
+      </div>
+      <p class="last_str">이미 회원이신가요? <a href="login.html">로그인</a></p>
+  </form>
+  
+</body>
+</html>
+
+<script>
+  $(document).ready(function(){
+    $('.login_form i').on('click',function(){
+        $('input').toggleClass('active');
+        if($('input').hasClass('active')){
+            $(this).attr('class',"fa fa-eye-slash fa-lg")
+            .prev('input').attr('type',"text");
+        }else{
+            $(this).attr('class',"fa fa-eye fa-lg")
+            .prev('input').attr('type','password');
+        }
+    });
+});
+</script>
