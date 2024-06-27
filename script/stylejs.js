@@ -13,4 +13,5 @@ const showHiddenPass = (loginpass, passEye) => {
 }
 
 showHiddenPass('password', 'eye_icon');
+showHiddenPass('password_conf_label', 'conf_eye_icon');
 
