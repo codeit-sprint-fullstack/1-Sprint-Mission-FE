@@ -22,9 +22,7 @@ h1 {
   letter-spacing: 0.02em;
   color: #374151;
 }
-a:hover {
-  cursor : pointer;
-}
+
 /* header */
 .header.bg {
   height: 70px;
