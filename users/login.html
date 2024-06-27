@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="media.css">
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <title>Login</title>
+    <title>로그인</title>
 </head>
 
 <body>
@@ -19,11 +19,15 @@
             </div>
             <div>
                 <form>
-                    <label>이메일</label>
-                    <input type="text">
-                    <label>이메일</label>
-                    <input type="text">
-                    <button></button>
+                    <label for="email">
+                        이메일
+                        <input type="text" name="email" id="user_id" placeholder="이메일을 입력해주세요">
+                    </label>
+                    <label for="password">
+                        비밀번호
+                        <input type="password" name="password" id="password" placeholder="이메일을 입력해주세요">
+                    </label>
+                    <button>로그인</button>
                 </form>
             </div>
             <div>
@@ -39,10 +43,8 @@
                     </a>
                 </div>
             </div>
+            <p>판다마켓이 처음이신가요?<a href="./singup.html">회원가입</a></p>
     </main>
-    <footer>
-
-    </footer>
 </body>
 
 </html>
