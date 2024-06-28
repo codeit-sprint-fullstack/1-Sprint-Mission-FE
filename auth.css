@@ -9,6 +9,7 @@ body {
 label {
   font-size: 18px;
   font-weight: 700;
+  margin-bottom: 16px;
 }
 .bigLogo {
   margin-top: 60px;
@@ -24,7 +25,7 @@ label {
 .signup.mainContent {
   height: 664px;
 }
-.mainContent { /*간격 설정 해야함*/
+.mainContent {
   width: 640px;
   color: #1F2937;
   display: flex;
@@ -35,13 +36,15 @@ label {
 }
 .inputBox {
   width: 100%;
-  height: 56px;
+  height: 93px;
   display: flex;
   flex-direction: column;
-  gap: 16px
+  justify-content: space-between;
+  position: relative;
 }
 .inputForm {
   height: 56px;
+  line-height: 100%;
   padding: 16px 24px;
   background-color: #F3F4F6;
   border: 1px solid #FFFFFF;
@@ -54,6 +57,13 @@ label {
   color: #9CA3AF;
   font-size: 16px;
   font-weight: 400;
+}
+.eye {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 24px;
+  bottom: 16px;
 }
 .loginButton,
 .joinButton {
