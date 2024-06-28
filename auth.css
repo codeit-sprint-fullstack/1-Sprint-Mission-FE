@@ -51,6 +51,7 @@ label {
   border-radius: 12px;
 }
 .inputForm:focus {
+  outline: none;
   border: 1px solid #3692FF;
 }
 .inputForm::placeholder {
