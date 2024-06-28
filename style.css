@@ -1,0 +1,306 @@
+@import "/reset.css";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #374151;
+  margin: 0;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a .login-button {
+  cursor: pointer;
+}
+
+a .watch-button {
+  cursor: pointer;
+}
+
+a .privacy {
+  text-decoration: none;
+}
+
+button {
+  color: #ffffff;
+  background-color: #3692FF;
+  border-style: none;
+}
+
+ul{
+  list-style-type: none;
+}
+
+h1 {
+  font-size: 18px;
+  color: #3692FF;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: 40px;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  z-index: 1;
+}
+
+.bar {
+  display: flex;
+  padding: 0 200px;
+  white-space: nowrap;
+  align-items: center;
+  height: 70px;
+}
+
+.bar-logo{
+  display: flex;
+  align-items: center;
+}
+
+.logo{
+  color: #3692FF;
+  font-size: 26px;
+  font-weight: 700;
+  margin-left: 9px;
+}
+
+.bar-list{
+  display: flex;
+  padding: 15px;
+  gap: 30px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.list-name {
+  display: flex;
+  font-size: 18px;
+}
+
+.bar-login{
+  display: flex;
+  margin-left: auto;
+}
+
+.login-button{
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-blue{       /* 창을 줄였을 때 하늘색 배경이 사라짐 */
+  background-color: #CFE5FF;
+}
+
+.first-block{
+  display: flex;
+  height: 540px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.first-container {
+  display: flex;
+}
+
+.empty-space {
+  width: 150px;
+}
+
+.first-contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.watch-button {
+  padding: 16px 124px;
+  border-radius: 40px;
+  width: 360px;
+  height: 55px;
+  font-size: 18px;
+  text-wrap: nowrap;
+  /* text-align: center; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panda-image {
+  height: 447px;
+  align-self: flex-end;
+}
+
+.main-white {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.left-image {
+  display: flex;
+  margin: 138px 0;
+  gap: 64px;
+  width: 1200px;
+  height: 444px;
+}
+
+.left-image-contents {
+  margin: 106.5px auto 106.5px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.right-image {
+  display: flex;
+  margin: 138px 0;
+  gap: 64px;
+  width: 1200px;
+  height: 444px;
+}
+
+.right-image-contents {
+  width: 317px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: right;
+  margin: 106.5px 0 106.5px auto;
+}
+
+.fifth-block {
+  display: flex;
+  height: 540px;
+  justify-content: center;
+  gap: 55px;
+  overflow: hidden;
+}
+
+.fifth-container {
+  display: flex;
+}
+
+.fifth-contents {
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.footer {
+  background-color: #111827;
+  height: 160px;
+}
+
+.footer-black {
+  display: flex;
+  justify-content: space-between;
+  padding: 32px 200px 108px;
+  white-space: nowrap;
+}
+
+.codeit{
+  color: #9ca3af;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.support{
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  gap: 30px;
+}
+
+.privacy,
+.faq {
+  color: #E5E7EB;
+}
+
+.sns {
+  display: flex;
+  gap: 12px;
+}
+
+.sns-icon {
+  display: flex;
+  width: 20px;
+  height: 20px;
+}
+
+
+
+/* @media (max-width: 1200px) and (min-width: 0) {
+  h1 {  
+    font-size: 1.5vw;
+  }
+
+  h2, .first-contents,
+  .fifth-contents {  
+    font-size: 3.3333vw;
+  }
+
+  h3 {  
+    font-size: 1.25vw;
+  }
+
+  .main-image {
+    width: 49vw;
+    height: 37vw;
+  }
+
+  .right-image, .left-image{
+    width: 100vw;
+    height:37vw;
+    gap: 5.33333vw;
+  }
+
+  .first-block, .main-blue, 
+  .fifth-block {
+    width: 100vw;
+    height: 45vw;
+  }
+
+  .watch-button {
+    font-size: 1.5vw;
+    width: 30vw;
+    height: 4.583333vw;
+  }
+
+  .panda-image {
+    width: 83vw;
+    height: 37.25vw;
+  }
+
+  .panda-trade-image {
+    width: 83vw;
+    height: 45vw;
+  }
+} */

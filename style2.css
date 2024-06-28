@@ -1,0 +1,126 @@
+* {
+  box-sizing: border-box;
+}
+
+/* 사용법: var(--blue); */
+:root {
+  --blue: #3692FF;
+  --skyblue: #E6F2FF;
+  --white: #ffffff;
+  --input: #F3F4F6;
+  --button: #9CA3AF;
+  --link: #3182F6;
+  --black: #1F2937;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  color: #1F2937;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+label {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+input {
+  width: 640px;
+  height: 56px;
+  border-radius: 12px;
+  background-color: #F3F4F6;
+  padding: 16px 24px;
+  border-style: none;
+}
+
+input:focus {
+  outline: solid #3692FF;
+}
+
+button {
+  border-radius: 40px;
+  border-style: none;
+  background-color: #9CA3AF;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 16px 124px;
+  height: 56px;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin: 60px 0 0;
+}
+
+.input-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 640px;
+  gap: 16px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pw-box {
+  position: relative;
+}
+
+.pw-show, .pw-show-repeat {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  background-color: #F3F4F6;
+  padding: 0;
+  height: 24px;
+}
+
+/* i {
+  color: #1F2937;
+} */
+
+.simple-login {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #E6F2FF;
+  border-radius: 8px;
+  height: 74px;
+  padding: 23px;
+}
+
+.simple-login-icons {
+  display: flex;
+  gap: 16px;
+}
+
+.other-case {
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  gap: 4px;
+}
+
+.other-case-link {
+  color: #3182F6;
+  text-decoration: underline;
+}
