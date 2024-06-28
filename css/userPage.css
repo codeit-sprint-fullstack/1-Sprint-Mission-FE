@@ -138,12 +138,18 @@ body {
     font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
+:root {
+    --main-text-color: #1F2937;
+    --main-input-color: #F3F4F6;
+    --main-blue-color: #3182F6;
+}
+
 p {
     font-size: 18px;
     font-weight: 700;
     line-height: 21.48px;
     text-align: left;
-    color: #1F2937;
+    color: var(--main-text-color);
 }
 
 .max_size_box {
@@ -196,13 +202,13 @@ p {
     padding: 16px 24px 16px 24px;
     border-radius: 12px;
     box-sizing: border-box;
-    background-color: #F3F4F6;
+    background-color: var(--main-input-color);
     /* border: 1px solid red; */
 }
 
 input:focus {
     outline: none;
-    border: 1px solid #3182F6;
+    border: 1px solid var(--main-blue-color);
 }
 
 .password_label {
@@ -253,7 +259,7 @@ input:focus {
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
-    color: #1F2937;
+    color: var(--main-text-color);
 }
 
 .icon {
