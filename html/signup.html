@@ -22,14 +22,14 @@
             <label for="pw">비밀번호</label>
             <div class="pwsetting">
                 <input id="pw" type="password" placeholder="비밀번호를 입력해주세요">
-                <i class="non-show"><img src="/image/eye-btn.png" class="eye-size"></i>
-                <i class="show" style="display:none;"><img src="/image/eye-show.png" class="eye-size"></i>
+                <img src="/image/eye-btn.png" class="eye-size non-show">
+                <img src="/image/eye-show.png" class="eye-size show">
             </div>
             <label for="pwcheck">비밀번호 확인</label>
             <div class="pwsetting-check">
                 <input id="pwcheck" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요">
-                <i class="non-show-check"><img src="/image/eye-btn.png" class="eye-size"></i>
-                <i class="show-check" style="display:none;"><img src="/image/eye-show.png" class="eye-size"></i>
+                <img src="/image/eye-btn.png" class="eye-size non-show-check">
+                <img src="/image/eye-show.png" class="eye-size show-check">
             </div>
             <button class="signup-btn" type="submit">회원가입</button>
         </form>
@@ -52,7 +52,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('.pwsetting i').on('click', function () {
+            $('.pwsetting img').on('click', function () {
                 if ($(this).hasClass('non-show')) {
                     $('#pw').attr('type', 'text');
                     $(this).hide();
@@ -66,7 +66,7 @@
         });
 
         $(document).ready(function () {
-            $('.pwsetting-check i').on('click', function () {
+            $('.pwsetting-check img').on('click', function () {
                 if ($(this).hasClass('non-show-check')) {
                     $('#pwcheck').attr('type', 'text');
                     $(this).hide();

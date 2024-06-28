@@ -69,6 +69,10 @@ body {
     height: 1.807rem;
 }
 
+.show {
+    display: none;
+}
+
 .login-form label {
     margin-bottom: 1.6rem;
     color: var( --label-text-color);
@@ -91,6 +95,30 @@ body {
     background-color:var(--input-back-color);
     color: var(--back-text );
     outline-color: var(--input-outline-color);
+    font-size: 1.6rem;
+}
+
+input::placeholder {
+    font-size: 1.6rem;
+  }
+
+  .pwsetting {
+    position: relative;
+}
+
+.show, .non-show {
+    position: absolute;
+    right: 2.4rem;
+    top: 1.7rem;
+    left: auto;
+    cursor: pointer;
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+.eye-size {
+    width: 2.047rem;
+    height: 1.807rem;
 }
 
 .login-btn {
