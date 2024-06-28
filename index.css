@@ -1,0 +1,10 @@
+@import 'reset.css';
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css');
+@import url('/component/nav.css');
+@import url('/component/mainCtg.css');
+@import url('/component/subCtg.css');
+@import url('/component/footer.css');
+
+* {
+  box-sizing: border-box;
+}

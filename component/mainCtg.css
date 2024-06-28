@@ -1,0 +1,114 @@
+.mainCtg {
+  height: 540px;
+  background: #cfe5ff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+}
+
+.mainCtgContainer {
+  position: relative;
+  width: 1337px;
+  height: 540px;
+}
+
+.mainCtgTextBox {
+  width: 357px;
+  height: 200px;
+  font-family: Pretendard;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  text-align: left;
+  color: #374151;
+  position: absolute;
+  top: 170px;
+  left: 5px;
+}
+
+.mainCtgTextBox div {
+  width: 295px;
+  height: 112px;
+}
+
+#mainCtgImg {
+  width: 996px;
+  height: 447px;
+  position: absolute;
+  bottom: 0px;
+  left: 370px;
+}
+
+.mainCtgBtn {
+  width: 357px;
+  height: 56px;
+  opacity: 0px;
+  border-radius: 40px;
+  background: #3692ff;
+  border: none;
+  font-family: Pretendard;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+  .mainCtg {
+    height: 28vw;
+    margin-top: 70px;
+  }
+
+  .mainCtgContainer {
+    width: 69vw;
+    height: 28vw;
+  }
+
+  .mainCtgTextBox {
+    width: 18vw;
+    height: 10vw;
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1.5em;
+    position: absolute;
+    top: 8vw;
+  }
+
+  .mainCtgTextBox div {
+    width: 20vw;
+    height: 6vh;
+  }
+
+  #mainCtgImg {
+    width: 51.8vw;
+    height: 23.2vw;
+    position: absolute;
+    bottom: 0px;
+    left: 19.2vw;
+  }
+
+  .mainCtgBtn {
+    width: 18vw;
+    height: 2.9vw;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .mainCtgBtn {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+}

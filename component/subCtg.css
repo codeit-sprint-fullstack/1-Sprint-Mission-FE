@@ -1,0 +1,281 @@
+.subCtg {
+  display: grid;
+  grid-template-columns: 600px 600px;
+  grid-template-rows: 720px 720px 720px;
+}
+
+.subCtg div {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.subCtg div.subCtgItem {
+  margin-left: 64px;
+}
+
+.subCtg div.subCtgRegister {
+  margin-left: 64px;
+}
+
+.subCtg div .subCtgTextBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.subCtgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#subCtgImg {
+  width: 588px;
+  height: 444px;
+  border-radius: 12px;
+}
+
+.subCtgTextHeader {
+  width: 72px;
+  height: 25px;
+  font-size: 18px;
+  font-family: 'Pretendard';
+  color: #3692ff;
+  font-weight: 700;
+}
+
+.subCtgTextContent {
+  width: 222px;
+  height: 112px;
+  font-family: Pretendard;
+  font-size: 39px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: left;
+  color: #374151;
+  line-height: 56px;
+}
+
+.subCtgTextFooter {
+  width: 303px;
+  height: 58px;
+  font-family: Pretendard;
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 28.8px;
+  letter-spacing: 0.08em;
+  text-align: left;
+  color: #374151;
+}
+
+.subCtgTextHeader.search {
+  width: 317px;
+  height: 25px;
+  display: flex;
+  justify-content: right;
+}
+
+.subCtgTextBox .search {
+  display: flex;
+  justify-content: right;
+  margin-left: 200px;
+}
+
+.subCtgTextContent.search {
+  width: 317px;
+  height: 112px;
+  text-align: right;
+}
+
+.subCtgTextFooter.search {
+  width: 317px;
+  height: 58px;
+  text-align: right;
+}
+
+.subCtgTextFooter div {
+  display: flex;
+  justify-content: right;
+}
+
+.subCtgTextContent.register {
+  width: 293px;
+  height: 112px;
+}
+
+.subCtgTextFooter.register {
+  width: 370px;
+  height: 58px;
+}
+
+.subCtgTextBox {
+  width: 317px;
+  height: 231px;
+}
+
+.subCtgBottom {
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #cfe5ff;
+}
+
+.subCtgBottomText {
+  width: 320px;
+  height: 112px;
+  font-family: Pretendard;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  text-align: left;
+  color: #374151;
+}
+
+.subCtgBottomContainer {
+  width: 1200px;
+  height: 700px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+
+.subCtgBottomImg {
+  background-image: url('/img/subCtg4.png');
+  background-size: cover;
+  width: 996px;
+  height: 540px;
+  position: absolute;
+  bottom: 0px;
+  left: 339px;
+}
+
+.subCtgBottomBorder {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+}
+
+/* max - 1024px */
+
+@media screen and (max-width: 1024px) {
+  .subCtg {
+    display: grid;
+    grid-template-columns: 31.25vw 31.25vw;
+    grid-template-rows: 37.5vw 37.5vw 37.5vw;
+  }
+
+  .subCtg div.subCtgItem {
+    margin-left: 3.3vw;
+  }
+
+  .subCtg div.subCtgRegister {
+    margin-left: 3.3vw;
+  }
+
+  #subCtgImg {
+    width: 30.6vw;
+    height: 23.125vw;
+    border-radius: 12px;
+  }
+
+  .subCtgTextHeader {
+    width: 10vw;
+    height: 4vw;
+    font-size: 1em;
+    font-family: 'Pretendard';
+    color: #3692ff;
+    font-weight: 700;
+  }
+
+  .subCtgTextContent {
+    width: 20vw;
+    height: 7vw;
+    font-size: 1.5em;
+    letter-spacing: 0.02em;
+    line-height: 1.5em;
+  }
+
+  .subCtgTextFooter {
+    width: 100%;
+    height: 8vw;
+    font-size: 1em;
+    line-height: 1.5em;
+    letter-spacing: 0.04em;
+  }
+
+  .subCtgTextHeader.search {
+    width: 90%;
+    height: 6vw;
+    display: flex;
+    justify-content: right;
+  }
+
+  .subCtgTextBox .search {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 90%;
+    margin-left: 0;
+  }
+
+  .subCtgTextContent.search {
+    width: 90%;
+    height: 6vw;
+    text-align: right;
+  }
+
+  .subCtgTextFooter.search {
+    width: 90%;
+    height: 6vw;
+    text-align: right;
+  }
+
+  .subCtgTextContent.register {
+    width: 293px;
+    height: 112px;
+  }
+
+  .subCtgTextFooter.register {
+    width: 293px;
+    height: 58px;
+  }
+
+  .subCtgTextBox {
+    width: 317px;
+    height: 231px;
+  }
+
+  .subCtgBottom {
+    height: 36.46vw;
+  }
+
+  .subCtgBottomText {
+    width: 320px;
+    height: 112px;
+    font-size: 1.7em;
+    font-weight: 700;
+    line-height: 1.5em;
+    text-align: left;
+  }
+
+  .subCtgBottomContainer {
+    width: 62.5vw;
+    height: 36.45vw;
+  }
+
+  .subCtgBottomImg {
+    background-image: url('/img/subCtg4.png');
+    background-size: cover;
+    width: 51.875vw;
+    height: 28.125vw;
+    position: absolute;
+    bottom: 0px;
+    left: 17.7vw;
+  }
+}

@@ -1,0 +1,106 @@
+.footer {
+  height: 160px;
+  background-color: #111827;
+  display: flex;
+  justify-content: center;
+}
+
+.footerContainer {
+  width: 100%;
+  height: inherit;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 200px;
+}
+
+.footerInfo {
+  color: #9ca3af;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.footerMenu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footerMenu li {
+  padding: 0px 15px;
+}
+
+.footerMenu a {
+  color: #e5e7eb;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.footerLinks {
+  width: 116px;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.facebook {
+  background-image: url('/img/facebook.png');
+  background-size: cover;
+  width: 18px;
+  height: 18px;
+}
+
+.twitter {
+  background-image: url('/img/twitter.png');
+  background-size: cover;
+  width: 18px;
+  height: 18px;
+}
+
+.youtube {
+  background-image: url('/img/youtube.png');
+  background-size: cover;
+  width: 18px;
+  height: 18px;
+}
+
+.instar {
+  background-image: url('/img/insta.png');
+  background-size: cover;
+  width: 18px;
+  height: 18px;
+}
+
+@media screen and (min-width: 1921px) {
+  .footerContainer {
+    width: 1920px;
+    height: inherit;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 200px;
+  }
+}
+
+/* max - 1024px --------------------------------------------------*/
+
+@media screen and (max-width: 1024px) {
+}
+
+/* max - 768px --------------------------------------------------*/
+
+@media screen and (max-width: 1023px) {
+  .footerContainer {
+    width: 100%;
+    height: inherit;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 10.4vw;
+  }
+}
+
+/* max - 400px --------------------------------------------------*/
+
+@media screen and (max-width: 400px) {
+}

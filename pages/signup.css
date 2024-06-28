@@ -1,0 +1,204 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.mainContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  background-image: url('/img/logo.png');
+  background-size: cover;
+  width: 396px;
+  height: 132px;
+  margin-top: 60px;
+}
+
+form {
+  width: 640px;
+  /* display: block; */
+  margin-top: 40px;
+}
+
+.inputBox label {
+  display: block;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21.48px;
+  text-align: left;
+}
+
+.inputBox input {
+  display: block;
+  width: 640px;
+  height: 56px;
+  padding: 16px 24px 16px 24px;
+  gap: 10px;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  border: none;
+  color: #9ca3af;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  margin-top: 16px;
+}
+
+.inputBox input:focus {
+  outline: 1px solid #3692ff;
+}
+
+.inputBox.password,
+.inputBox.userName {
+  margin-top: 24px;
+  position: relative;
+}
+
+.loginBtn {
+  width: 640px;
+  height: 56px;
+  padding: 16px 124px 16px 124px;
+  gap: 10px;
+  border-radius: 40px;
+  border: none;
+  background-color: #9ca3af;
+  color: #ffffff;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.snsLoginText {
+  width: 101px;
+  height: 24px;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: #1f2937;
+  margin-left: 23px;
+}
+
+.snsLogin {
+  width: 640px;
+  height: 74px;
+  background-color: #e6f2ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.snsLogo {
+  width: 100px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+  margin-right: 8px;
+}
+
+.google {
+  background-image: url('/img/google.png');
+  background-size: cover;
+  width: 42px;
+  height: 42px;
+  list-style: none;
+  margin-right: 16px;
+}
+
+.kakao {
+  background-image: url('/img/kakao.png');
+  background-size: cover;
+  width: 42px;
+  height: 42px;
+  list-style: none;
+  margin-right: 16px;
+}
+
+.signupText {
+  font-family: Pretendard;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 17.9px;
+  text-align: left;
+  margin-top: 24px;
+}
+
+#eye,
+#reEye {
+  display: none;
+  width: 20.47px;
+  height: 18.07px;
+  color: #4b5563;
+  border: none;
+  position: absolute;
+  right: 24px;
+  bottom: 16px;
+}
+
+/* .emailError,
+.pwError,
+.RePwError {
+  width: 100%;
+  height: 18px;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  color: #f74747;
+  padding-left: 16px;
+  margin-top: 8px;
+  display: none;
+} */
+
+.update.failure {
+  border: 1px solid red;
+}
+
+.update.failure:focus {
+  border: none;
+}
+
+.error {
+  width: 100%;
+  height: 18px;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  color: #f74747;
+  padding-left: 16px;
+  margin-top: 8px;
+  display: none;
+}
+
+.error.failure {
+  width: 100%;
+  height: 18px;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  color: #f74747;
+  padding-left: 16px;
+  margin-top: 8px;
+  display: block;
+}
