@@ -12,15 +12,16 @@ const showHiddenPass = (loginpass, passEye) => {
     })
 }
 
-//비밀번호체크
-const passwrod = document.getElementById(passwrod);
-const conf = document.getElementById(passconf);
-const confirmPassword = document.getElementById(confirm_item);
+showHiddenPass('password_first', 'eye_icon');
+showHiddenPass('password_conf_label', 'conf_eye_icon');
 
-conf.onkeyup = function () {
-    if (input.value !== conf.value) {
-        confirmPassword.style.display = '';
+const password_first = document.getElementById(password_first);
+const confirmPassword = document.getElementById(password_conf_label);
+const confirm_item = document.getElementById(confirm_item);
+
+confirmPassword.onclick = function () {
+    confirm_item.style.color = 'blue';
+    if (password_first.value !== confirmPassword.value) {
+        confirm_item.style.color = 'blue';
     }
 }
-
-showHiddenPass('password', 'eye_icon');

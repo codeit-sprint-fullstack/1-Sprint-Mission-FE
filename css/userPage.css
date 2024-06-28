@@ -275,5 +275,5 @@ p>a {
 #confirm_item {
     margin-top: 15px;
     color: red;
-    display: none;
+    /* display: none; */
 }
