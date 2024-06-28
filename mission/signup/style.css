@@ -3,6 +3,17 @@
     box-sizing: border-box;
 }
 
+:root {
+    --label_ft: #1F2937;
+    --input_box_bg: #F3F4F6;
+    --input_box_ft-signup_box_bg: #9CA3AF;
+    --input_box_focus: #3692FF;
+    --signup_box_ft: #ffffff;
+    --simple_login_bg: #E6F2FF;
+    --simple_login-login_ft: #1F2937;
+    --login_a_ft: #3182F6;
+}
+
 .header_contaner {
     width: 100%;
     height: 12rem;
@@ -34,7 +45,7 @@ form {
 .label_font {
     font-size: 1.125rem;
     font-weight: 700;
-    color: #1F2937;
+    color: var(--label_ft);
 }
 
 .input_box {
@@ -42,18 +53,18 @@ form {
     height: 3.5rem;
     border: 0;
     border-radius: 0.75rem;
-    background-color: #F3F4F6;
+    background-color: var(--input_box_bg);
     padding: 1rem 1.5rem;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
     font-size: 1rem;
     font-weight: 400;
-    color: #9CA3AF;
+    color: var(--input_box_ft-signup_box_bg);
 }
 
 .input_box:focus {
     outline: none;
-    border: 1px solid #3692FF;
+    border: 1px solid var(--input_box_focus);
 }
 
 .signup_box {
@@ -61,12 +72,12 @@ form {
     height: 3.5rem;
     border: none;
     border-radius: 2.5rem;
-    background-color: #9CA3AF;
+    background-color: var(--input_box_ft-signup_box_bg);
     padding: 1rem 7.75rem;
     margin: 1.5rem 0;
     font-size: 1.25rem;
     font-weight: 600;
-    color: #FFFFFF;
+    color: var(--signup_box_ft);
     cursor: pointer;
 }
 
@@ -74,7 +85,7 @@ form {
     width: 40rem;
     height: 4.625rem;
     border-radius: 0.5rem;
-    background-color: #E6F2FF;
+    background-color: var(--simple_login_bg);
     padding: 0 1.4375rem;
     margin: 1.5rem 0;
     display: flex;
@@ -83,7 +94,7 @@ form {
     align-items: center;
     font-size: 1rem;
     font-weight: 500;
-    color: #1F2937;
+    color: var(--simple_login-login_ft);
 }
 
 .simple_login_box {
@@ -114,9 +125,9 @@ form {
     align-items: center;
     font-size: 0.9375rem;
     font-weight: 500;
-    color: #1F2937;
+    color: var(--simple_login-login_ft);
 }
 
 .login a {
-    color: #3182F6;
+    color: var(--login_a_ft);
 }
