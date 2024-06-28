@@ -51,14 +51,20 @@
           placeholder="이메일을 입력해주세요"
         />
 
-        <label for="userpw"> 비밀번호 </label>
-        <input
-          type="password"
-          name="userpw"
-          id="userpw"
-          placeholder="비밀번호를 입력해주세요"
-        />
-
+        <div class="userpw-input">
+          <label for="userpw"> 비밀번호 </label>
+          <input
+            type="password"
+            name="userpw"
+            id="userpw"
+            placeholder="비밀번호를 입력해주세요"
+          />
+          <img
+            class="eye-off"
+            src="../img/btn_visibility_off_24px.svg"
+            alt="비밀보호 안보이는 눈 아이콘"
+          />
+        </div>
         <button type="submit" id="login" name="login">로그인</button>
       </form>
 
