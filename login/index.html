@@ -3,8 +3,55 @@
     <head>
         <title>login</title>
         <meta charset="utf-8">
+        <link rel="stylesheet"
+              as="style"
+              crossorigin
+              href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css">
+        <link rel="stylesheet" href="../css/reset.css">
+        <link rel="stylesheet" href="../css/style_login.css">
     </head>
     <body>
-
+        <div class = "root">
+            <main>
+                <section id="main_sec_grp_logo_input_btn">
+                    <a href="/" target="_self">
+                        <img id ="btn_logo_loginpage" src="../Images/logo_loginpage.svg" alt="홈페이지 링크"> 
+                    </a>
+                    <div id="main_sec_grp_input_btn_simple_signup">
+                        <div id="main_sec_grp_input_btn">
+                            <div id="main_sec_grp_input">
+                                <div class="main_sec_input_email_pw">
+                                    <label for="login_email">이메일</label>
+                                    <input type="email" id ="login_email" class="login_input" name="email" placeholder="이메일을 입력해주세요">
+                                </div>
+                                <div class="main_sec_input_email_pw">
+                                    <label for="login_pw">비밀번호</label>
+                                    <input type="password" id="login_pw" class="login_input" name="pw" placeholder="비밀번호를 입력해주세요">
+                                </div>
+                            </div>
+                            <a herf ="/login">
+                                <img id="btn_login" src="../Images/btn_login_large.svg" alt="로그인 버튼">
+                            </a>
+                        </div>
+                        <div id="main_sec_grp_simple_login">
+                            <a id="main_sec_simple_login_text">간편 로그인하기</a>
+                            <div id="main_sec_grp_icon">
+                                <a href="https://www.google.com/">
+                                    <img src="../Images/icon_google.svg" alt="구글 간편 로그인">
+                                </a>
+                                <a href="https://www.kakaocorp.com/page/">
+                                    <img src="../Images/icon_kakao.svg" alt="구글 간편 로그인">
+                                </a>
+                            </div>
+                        </div>
+                        <div id="main_sec_grp_signup">
+                            <a>판다마켓이 처음이신가요? </a>
+                            <a href="/signup" style="color: #3182F6">회원가입</a>
+                        </div>
+                        
+                    </div>
+                </section>
+            </main>
+        </div>
     </body>
 </html>
