@@ -35,7 +35,7 @@ header {
   font-size: 1.8rem; /* 18px */
   font-weight: 700;
   padding-top: 3rem; /* 30px */
-  margin-left: 3.5rem; /* 35px */
+  margin-right: 3.5rem; /* 35px */
 }
 
 main {
@@ -97,6 +97,7 @@ main {
   margin-top: 1.4rem; /* 14px */
   width: 15.3rem; /* 153px */
   height: 5.1rem; /* 51px */
+  margin-right: 3.5rem;
 }
 
 #login-form {
