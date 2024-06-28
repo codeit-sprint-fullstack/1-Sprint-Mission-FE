@@ -1,6 +1,11 @@
 html{
   font-size: 62.5%;
 }
+
+:root{
+  --str-color:#1F2937;
+  --input_box-color:#F3F4F6;
+}
 *{
   margin:0;
   padding: 0;
@@ -113,7 +118,7 @@ input{
   font-weight: 500;
   font-size: 15px;
   line-height: 17.9px;
-  color:#1F2937;
+  color:var(--str-color);
 }
 
 
@@ -140,13 +145,14 @@ input{
   width: 616px;
   height: 56px;
   border-radius: 12px;
-  background-color: #F3F4F6;
+  background-color:var(--input_box-color);
   border:none;
   padding-left: 24px;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
 }
+
 .input_box2::placeholder{
   color: #9CA3AF;
   font-weight: 400;
