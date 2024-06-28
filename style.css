@@ -46,6 +46,14 @@ header {
 }
 .header_logoAndMenus {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+}
+.header_Menu_Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .header_Menu1 {
   display: flex;
