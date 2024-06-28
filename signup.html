@@ -5,9 +5,42 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="signup.css">
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
+  <link rel="stylesheet" href="reset.css" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
   <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function(){
+        $('.pass_form .close_pw').on('click', function(){
+            $('#ps_input').attr('type', 'text');
+            $(this).hide();
+            $('.pass_form .open_ps').show();
+        });
+
+        $('.pass_form .open_ps').on('click', function(){
+            $('#ps_input').attr('type', 'password');
+            $(this).hide();
+            $('.pass_form .close_pw').show();
+        });
+    });
+    $(document).ready(function(){
+        $('.pass_form2 .close_pw2').on('click', function(){
+            $('#ps_input2').attr('type', 'text');
+            $(this).hide();
+            $('.pass_form2 .open_ps2').show();
+        });
+
+        $('.pass_form2 .open_ps2').on('click', function(){
+            $('#ps_input2').attr('type', 'password');
+            $(this).hide();
+            $('.pass_form2 .close_pw2').show();
+        });
+    });
+
+
+
+
+</script>
 </head>
 <body class="container">
   <a href="index.html">
@@ -19,10 +52,25 @@
       <p class="login_str">닉네임</p>
       <input type="text" class="input_box" placeholder="닉네임을 입력해주세요">
       <p class="login_str">비밀번호</p>
-      <input class="input_box" placeholder="비밀번호를 입력해주세요" type="password">
+      <div class="pass_form">
+        <input type="password" id="ps_input" class="input_box" placeholder="비밀번호를 입력해주세요">
+        <i class="close_pw">
+            <img src="img/btn_visibility_on_24px.png" class="eye_img">
+        </i>
+        <i class="open_ps" style="display: none;">
+            <img src="img/eye.png" class="eye_img">
+        </i>
+    </div>
       
-      <p class="login_str">비밀번호 확인</p>
-      <input class="input_box" placeholder="비밀번호를 다시 한 번 입력해주세요" type="password">
+      <p class="login_str">비밀번호 확인</p><div class="pass_form2">
+        <input type="password" id="ps_input2" class="input_box2" placeholder="비밀번호를 다시 한 번 입력해주세요">
+        <i class="close_pw2">
+            <img src="img/btn_visibility_on_24px.png" class="eye_img2">
+        </i>
+        <i class="open_ps2" style="display: none;">
+            <img src="img/eye.png" class="eye_img2">
+        </i>
+    </div>
       
       <button class="signup_button">회원가입</button>
       
@@ -45,18 +93,3 @@
   
 </body>
 </html>
-
-<script>
-  $(document).ready(function(){
-    $('.login_form i').on('click',function(){
-        $('input').toggleClass('active');
-        if($('input').hasClass('active')){
-            $(this).attr('class',"fa fa-eye-slash fa-lg")
-            .prev('input').attr('type',"text");
-        }else{
-            $(this).attr('class',"fa fa-eye fa-lg")
-            .prev('input').attr('type','password');
-        }
-    });
-});
-</script>

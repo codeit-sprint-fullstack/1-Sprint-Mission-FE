@@ -9,6 +9,11 @@
   align-items: center;
 }
 
+input{
+  margin-bottom: 24px;
+  margin-top: 24px;
+}
+
 .panda_logo{
   margin-top: 60px;
   width: 396px;
@@ -20,7 +25,17 @@
   align-items: center;
   width: 640px;
   height: 430px;
-  gap: 24px;
+}
+.pass_form{
+  width: 100%;
+}
+.login_ps{
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight:700;
+  font-size:18px;
+  line-height: 21.48px;
+  align-self: flex-start;
+  color: #1F2937;
 }
 .login_str{
   font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -30,14 +45,16 @@
   align-self: flex-start;
   color: #1F2937;
 }
+
 .input_box{
   align-self: flex-start;
-  width: 100%;
+  width: 614px;
   height: 56px;
   border-radius: 12px;
   background-color: #F3F4F6;
   border:none;
   padding-left: 24px;
+
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -75,6 +92,8 @@
   height: 74px;
   display: flex;
   align-items: center;
+  margin-top: 24px;
+  margin-bottom: 24px;
 }
 .login_kakao_google_str{
   font-weight: 500;
@@ -102,4 +121,14 @@
   font-weight: 500;
   font-size: 15px;
   line-height: 17.9px;
+}
+
+#ps_input{
+  position: relative;
+}
+.eye_img{
+  width: 24px;
+  position: absolute;
+  margin-left: -50.26px;
+  margin-top:43px;
 }

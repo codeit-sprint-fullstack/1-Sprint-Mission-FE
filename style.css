@@ -25,9 +25,10 @@ header{
 
 }
 .main_container{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1200px 1fr;
+    overflow: hidden;
     width: 100%;
-    flex-direction: row;
     align-items: end;
     justify-content: center;
     background-color: #CFE5FF;
@@ -152,8 +153,9 @@ header{
 }
 
 .f_container{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1200px 1fr;
+    overflow: hidden;
     align-items: center;
     justify-content: center;
     background-color: #CFE5FF;
@@ -167,7 +169,7 @@ header{
     font-weight: 700;
     white-space: nowrap;
     position: relative;
-    margin-left:360px
+    margin-left:280px
 }
 
 .f_logo{
@@ -220,5 +222,5 @@ header{
     margin-left: auto;
 }
 #last_img{
-    margin-right: 297px;
+    margin-right: 202px;
 }
