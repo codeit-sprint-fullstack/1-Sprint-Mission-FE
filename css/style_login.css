@@ -5,15 +5,19 @@ html {
 }
 
 * {
-    margin : 0px;
-    padding : 0px;
-    outline : none;
+    margin: 0px;
+    padding: 0px;
+    outline: none;
+    font-family: "Pretendard";
+}
+
+*::placeholder {
+    font-family: "Pretendard";
 }
 
 .root {
     display : block;
     position : relative;
-    font-family : "Pretendard";
 }
 
 main {
@@ -134,4 +138,8 @@ a#main_sec_simple_login_text {
     line-height: 1.19333em;
     color: #1F2937;
     align-self: center;
+}
+
+a.linktext {
+    color: #3182F6;
 }
