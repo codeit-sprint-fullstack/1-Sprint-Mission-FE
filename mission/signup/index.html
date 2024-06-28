@@ -16,11 +16,15 @@
     </header>
     <main>
         <form>
-            <label for="login_email" class="label_font">이메일</label>
-            <input id="login_email" class="input_box" name="user_email" placeholder="이메일을 입력해주세요" required>
-            <label for="login_password" class="label_font">비밀번호</label>
-            <input id="login_password" class="input_box" name="user_password" type="password" placeholder="비밀번호를 입력해주세요" required>
-            <button class="login_box">로그인</button>
+            <label for="signup_email" class="label_font">이메일</label>
+            <input id="signup_email" class="input_box" name="user_email" placeholder="이메일을 입력해주세요" required>
+            <label for="user_name" class="label_font">닉네임</label>
+            <input id="user_name" class="input_box" name="user_name" placeholder="닉네임을 입력해주세요" required>
+            <label for="signup_password" class="label_font">비밀번호</label>
+            <input id="signup_password" class="input_box" name="user_password" type="password" placeholder="비밀번호를 입력해주세요" required>
+            <label for="signup_password_check" class="label_font">비밀번호 확인</label>
+            <input id="signup_password_check" class="input_box" name="user_password" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요" required>
+            <button class="signup_box">회원가입</button>
         </form>
         <div class="simple_login">
             <p>간편 로그인하기</p>
@@ -34,9 +38,9 @@
             </div>
         </div>
     </main>
-    <footer class="signup">
-        <p>판다마켓은 처음이신가요?</p>
-        <a href="/signup/">회원가입</a>
+    <footer class="login">
+        <p>이미 회원이신가요?</p>
+        <a href="/login/">로그인</a>
     </footer>
 </body>
 </html>
