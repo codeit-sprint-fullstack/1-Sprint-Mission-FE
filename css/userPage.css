@@ -161,6 +161,12 @@ p {
     justify-content: center;
 }
 
+@media screen and (max-width : 700px) {
+    .max_size_box {
+        width: 90%;
+    }
+}
+
 .max_size_box>label {
     font-size: 18px;
     font-weight: 700;
@@ -187,6 +193,19 @@ p {
 .logo_img {
     width: 396px;
     height: 132px;
+}
+
+@media screen and (max-width : 480px) {
+    .logo_box>a {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .logo_img {
+        width: 90%;
+        height: auto;
+    }
 }
 
 .form_box {
