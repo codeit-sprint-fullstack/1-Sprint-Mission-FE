@@ -1,0 +1,138 @@
+@import "./reset.css";
+
+html {
+    font-size : 62.5%;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    outline: none;
+    font-family: "Pretendard";
+}
+
+*::placeholder {
+    font-family: "Pretendard";
+}
+
+.root {
+    display: block;
+    position: relative;
+}
+
+main {
+    margin-top : 6rem;    
+}
+
+#main_sec_grp_logo_input_btn {
+    max-width: 64rem;
+    width: 64rem;
+    height: 83.6rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+}
+
+#btn_logo_loginpage {
+    width : 39.6rem;
+    height : 13.2rem;
+}
+
+#main_sec_grp_input_btn_simple_signup {
+    width : 64rem;
+    height : 66.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#main_sec_grp_input_btn {
+    width: 64rem;
+    height: 52.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#main_sec_grp_input {
+    width : 64rem;
+    height : 44.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main_sec_input_email_pw {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 9.3rem;
+    font-size : 1.8rem;
+    font-weight : 700;
+    line-height : 1.19333em;
+    color : #1F2937;
+}
+
+.login_input {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #9CA3AF;
+    height: 5.6rem;
+    border-radius: 0.75em;
+    background-color: #F3F4F6;
+    border: none;
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+}
+
+.login_input:focus {
+    border: 0.1rem;
+    border-style: solid;
+    border-color: #3692FF;
+}
+
+
+#main_sec_grp_simple_login {
+    width: 64rem;
+    height: 7.4rem;
+    font-size: 1.6rem;
+    background-color: #E6F2FF;
+    border-radius: 0.5em;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items : center;
+
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.5em;
+    color: #1F2937;
+}
+
+a#main_sec_simple_login_text {
+    margin-left : 2.3rem;
+}
+
+#main_sec_grp_icon {
+    width: 10rem;
+    height: 4.2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 2.3rem;
+}
+
+#main_sec_grp_signup {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.19333em;
+    color: #1F2937;
+    align-self: center;
+}
+
+a.linktext {
+    color: #3182F6;
+}
