@@ -1,0 +1,97 @@
+@import "../reset.css";
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Pretendard;
+}
+label {
+  font-size: 18px;
+  font-weight: 700;
+  
+}
+.mainContent { /*간격 설정 해야함*/
+  width: 640px;
+  height: 430px;
+  color: #1F2937;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 24px;
+  position: relative;
+}
+.bigLogo {
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+.bigLogoImg {
+  width: 396px;
+  height: 132px;
+}
+.inputBox {
+  width: 100%;
+  height: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px
+}
+.inputForm {
+  padding: 16px 24px;
+  background-color: #F3F4F6;
+  border: 1px solid #FFFFFF;
+  border-radius: 12px;
+}
+.inputForm::placeholder {
+  color: #9CA3AF;
+  font-size: 16px;
+  font-weight: 400;
+}
+.loginButton {
+  display: block;
+  height: 56px;
+  background-color: #9CA3AF;
+  border: 1px solid #FFFFFF;
+  border-radius: 40px;
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: 600;
+}
+.simpleLogin {
+  height: 74px;
+  background-color: #E6F2FF;
+  display: flex;
+  border-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+}
+.simpleLink>a {
+  text-decoration: none;
+}
+.simpleLink a>img {
+  width: 42px;
+  height: 42px;
+}
+.simpleSpan {
+  margin-left: 23px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.simpleLink {
+  margin-right: 23px;
+}
+a>.google {
+  margin-right: 16px;
+}
+.askJoin {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.askJoin>.join {
+  display: block;
+  margin-left: 4px;
+}

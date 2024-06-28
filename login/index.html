@@ -6,23 +6,22 @@
   <title>로그인 페이지</title>
   <link rel="shortcut icon" href="../image/판다 얼굴.png">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 </head>
 <body>
   <a class="bigLogo" href="../" target="_self">
     <img class="bigLogoImg" src="../image/판다마켓로고.png" alt="로고이미지">
   </a>
   <div class="mainContent">
-    <div class="emailBox">
+    <div class="email inputBox">
       <label>이메일</label>
-      <input type="email" name="email">
+      <input class="email inputForm" type="email" name="email" placeholder="이메일을 입력해주세요">
     </div>
-    <div class="passwordBox">
+    <div class="password inputBox">
       <label>비밀번호</label>
-      <input type="password" name="password">
+      <input class="password inputForm" type="password" name="password" placeholder="비밀번호를 입력해주세요">
     </div>
-    <div class="loginButton">
-      <button>로그인</button>
-    </div>
+    <button class="loginButton">로그인</button>
     <div class="simpleLogin">
       <span class="simpleSpan">간편 로그인하기</span>
       <div class="simpleLink">
@@ -34,8 +33,8 @@
         </a>
       </div>
     </div>
-    <div class="askJoin"> <!--여기는 absolute로 바닥에 박기-->
-      판다마켓이 처음이신가요? 
+    <div class="askJoin">
+      <p>판다마켓이 처음이신가요?</p>
       <a class="join" href="../signup" target="_self">
         회원가입
       </a>
