@@ -59,7 +59,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 21px;
+  font-size: 1.125rem;
 
   padding-top: 24px;
   padding-bottom: 24px;
@@ -71,7 +71,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 21px;
+  font-size: 1.125rem;
 
   padding-top: 24px;
   padding-bottom: 24px;
