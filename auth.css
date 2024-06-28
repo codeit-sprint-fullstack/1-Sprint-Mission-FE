@@ -65,6 +65,9 @@ label {
   right: 24px;
   bottom: 16px;
 }
+.slashed.eye {
+  display: none;
+}
 .loginButton,
 .joinButton {
   display: block;
