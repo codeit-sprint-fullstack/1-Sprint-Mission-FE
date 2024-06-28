@@ -1,23 +1,14 @@
 
-body {
-    color: #374151;
-    font-family: "Pretendard", sans-serif;
-}
-
-a {
-    text-decoration: none;
-    color: #4B5563;
-}
-
-
 header {
     height: 70px;
     display: flex;
     align-items: center;
     padding: 0 200px;
+    flex-direction: row;
     justify-content: space-between;
-
 }
+
+
 
 #left-logo-box {
     min-width: 182px;
@@ -37,7 +28,6 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 #right-button-box {
@@ -54,5 +44,15 @@ header {
     padding: 12px 23px;
     background-color: #3692ff;
     color: #ffffff;
+}
 
+
+
+.top-board {
+    width: 106px;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
