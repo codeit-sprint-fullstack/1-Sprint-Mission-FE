@@ -97,9 +97,9 @@ body {
     outline-color: var(--input-outline-color);
     font-size: 1.6rem;
 }
-
+ 
 input::placeholder {
-    font-size: 1.6rem;
+    font-size: 1.6rem;      
   }
 
   .pwsetting {
