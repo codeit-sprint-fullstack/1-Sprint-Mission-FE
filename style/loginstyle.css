@@ -3,7 +3,7 @@
   }
 
   :root {
-    --label-text-color : #1F2937;
+    --text-color : #1F2937;
     --link-color:#3182F6;
     --back-text :#9CA3AF;
     --input-back-color:#F3F4F6 ;
@@ -75,7 +75,7 @@ body {
 
 .login-form label {
     margin-bottom: 1.6rem;
-    color: var( --label-text-color);
+    color: var( --text-color);
     font-size: 18px;
     font-weight: 700;
     line-height: 2.148rem;
@@ -93,13 +93,14 @@ body {
     border: none;
     padding: 1.6rem 2.4rem;
     background-color:var(--input-back-color);
-    color: var(--back-text );
+    color:var(--text-color);
     outline-color: var(--input-outline-color);
     font-size: 1.6rem;
 }
  
 input::placeholder {
-    font-size: 1.6rem;      
+    font-size: 1.6rem; 
+    color: var(--back-text);
   }
 
   .pwsetting {
