@@ -270,17 +270,14 @@ footer .icons {
 }
 
 .non-sticky-header a img {
-  max-width: 396px;
-  min-width: 396px;
+  width: 396px;
   height: auto;
 }
 
 .login-main {
-  margin: auto;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  max-width: 640px;
-  min-width: 640px;
   justify-content: center;
   align-items: center;
   color: var(--grey-800);
@@ -289,9 +286,14 @@ footer .icons {
 form {
   display: flex;
   flex-direction: column;
-  width: 100%;
+
   font-size: var(--18px);
   font-weight: 700;
+}
+
+form,
+.social-login {
+  width: clamp(640px, 640px, 640px);
 }
 
 form label {
@@ -333,7 +335,6 @@ form button:focus {
 }
 
 .social-login {
-  width: 100%;
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -358,7 +359,7 @@ form button:focus {
 
 .login-main span {
   font-weight: 500;
-  font-size: 15px;
+  font-size: var(--15px);
 }
 
 .login-main span a {
@@ -492,9 +493,13 @@ form button:focus {
     margin: 2rem var(--24px);
     /* padding: 2rem var(--24px); */
   }
-}
 
-/* ----------------------login---------- */
+  /* ----------------------login---------- */
+
+  .non-sticky-header {
+    margin: 48px 0 40px;
+  }
+}
 
 @media only screen and (min-width: 375px) and (max-width: 767px) {
   .desktop {
@@ -603,5 +608,29 @@ form button:focus {
 
   .footer-container p {
     order: 3;
+  }
+  /* ------------------------login-- */
+  .non-sticky-header {
+    margin: 24px 0;
+  }
+  .login-main {
+    padding: 0 16px;
+  }
+
+  form,
+  .social-login {
+    width: clamp(344px, 100%, 400px);
+  }
+
+  .non-sticky-header a img {
+    width: 198px;
+  }
+
+  form label {
+    font-size: var(--14px);
+  }
+
+  .eye-off {
+    margin-top: 3.4rem;
   }
 }
