@@ -271,3 +271,9 @@ input:focus {
 p>a {
     color: #3182F6;
 }
+
+#confirm_item {
+    margin-top: 15px;
+    color: red;
+    display: none;
+}
