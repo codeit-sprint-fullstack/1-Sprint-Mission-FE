@@ -1,4 +1,9 @@
-function clickEye(passwordInput, eye, slashedEye) {
+function clickEye(myPasswordBox, myPasswordForm) {
+  const passwordBox = document.querySelector(myPasswordBox);
+  const passwordInput = document.querySelector(myPasswordForm);
+  const eye = passwordBox.querySelector(".eye");
+  const slashedEye = passwordBox.querySelector(".slashed.eye");
+
   eye.addEventListener("click", function() {
     if(passwordInput.type === "password") {
       passwordInput.type = "text";
@@ -23,16 +28,5 @@ function clickEye(passwordInput, eye, slashedEye) {
   });
 }
 
-const passwordBox = document.querySelector(".password.inputBox");
-const passwordInput = document.querySelector(".password.inputForm");
-const eye = passwordBox.querySelector(".eye");
-const slashedEye = passwordBox.querySelector(".slashed.eye");
-
-clickEye(passwordInput, eye, slashedEye);
-
-const passwordBox2 = document.querySelector(".check.password.inputBox");
-const passwordInput2 = document.querySelector(".check.password.inputForm");
-const eye2 = passwordBox2.querySelector(".eye");
-const slashedEye2 = passwordBox2.querySelector(".slashed.eye");
-
-clickEye(passwordInput2, eye2, slashedEye2);
+clickEye(".password.inputBox", ".password.inputForm");
+clickEye(".check.password.inputBox", ".check.password.inputForm");
