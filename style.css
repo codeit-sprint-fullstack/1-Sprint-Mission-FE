@@ -1,0 +1,57 @@
+@import "reset.css";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Pretendard, sans-serif;
+}
+
+.root {
+  height: 3608px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 200px;
+}
+
+.nav {
+  position: absolute;
+  left: 385px;
+}
+
+.nav1, .nav2 {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21.48px;
+  text-decoration: none;
+}
+
+.nav1 {
+  padding: 24px 16px 24px 15px;
+}
+
+.nav2 {
+  padding: 24px 23px;
+}
+
+.login {
+  border: none;
+  width: 88px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: #3692FF;    
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #ffffff;
+}
