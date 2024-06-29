@@ -13,6 +13,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 header {
@@ -34,6 +35,7 @@ header {
   font-size: 18px;
   line-height: 21.48px;
   text-decoration: none;
+  color: #4B5563;
 }
 
 .nav1 {
@@ -54,4 +56,68 @@ header {
   font-size: 16px;
   line-height: 19.09px;
   color: #ffffff;
+  cursor: pointer;
+}
+
+main {
+  height: 3378px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.top_banner {
+  background-image: url("./imgs/Img_home_top.png");
+  background-repeat: no-repeat;
+  background-size: 996px 447px;
+  background-position: 76% bottom;
+  height: 540px;
+  width: 100%;
+  background-color: #CFE5FF;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  padding-left: 360px;
+  padding-right: 223px;
+}
+
+.top_banner .container {
+  width: 357px;
+  height: 200px;
+  position: relative;
+  bottom: 170px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.top_banner .message {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
+  color: #374151;
+}
+
+.top_banner .button {
+  width: 357px;
+  height: 56px;
+  border: none;
+  border-radius: 40px;
+  background-color: #3692FF;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+section {
+  border: 1px solid red;
+  height: 720px;
+  width: 100%;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
 }
