@@ -103,12 +103,10 @@ main {
 }
 
 main .body{
-  border: 1px solid red;
   height: 2298px;
 }
 
 section {
-  border: 1px solid blue;
   display: flex;
   align-items: center;
   gap: 64px;
@@ -243,7 +241,40 @@ section {
   font-size: 40px;
   line-height: 56px;
   color: #374151;
-  
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 200px 108px 200px;
+  background-color: #111827;
+}
+
+footer .codeit_2024{
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.08px;
+  color: #9CA3AF;
+}
+
+footer .privacy{
+  display: flex;
+  gap: 30px;
+}
+
+.privacy a {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #E5E7EB;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+footer .social {
+  display: flex;
+  gap: 12px;
 }
 
 
