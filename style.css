@@ -63,7 +63,7 @@ main {
 .top_banner {
   background-image: url("./imgs/Img_home_top.png");
   background-repeat: no-repeat;
-  background-size: 996px 447px;
+  background-size: 50%;
   background-position: 76% bottom;
   height: 540px;
   background-color: #CFE5FF;
@@ -234,7 +234,7 @@ section {
 .bottom_banner {
   background-color: #CFE5FF;
   background-image: url("./imgs/Img_home_bottom.png");
-  background-size: 996px 540px;
+  background-size: 50%;
   background-repeat: no-repeat;
   background-position: 76% bottom;
   padding-left: 360px;
