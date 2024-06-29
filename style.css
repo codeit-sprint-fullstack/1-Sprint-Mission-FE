@@ -106,6 +106,8 @@ main {
 
 main .body{
   height: 2298px;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 section {
@@ -116,13 +118,9 @@ section {
   padding: 138px 0;
 }
 
-.section1, .section3 {
-  padding-left: 360px;
-}
-
 .section2 {
-  padding-left: 591px;
-  text-align: right;
+  display: flex;
+  justify-content: end;
 }
 
 .section1_messages {
@@ -164,6 +162,7 @@ section {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  text-align: right;
 }
 
 .search {
