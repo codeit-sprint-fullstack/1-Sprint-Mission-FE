@@ -63,25 +63,22 @@ main {
 .top_banner {
   background-image: url("./imgs/Img_home_top.png");
   background-repeat: no-repeat;
-  background-size: 50%;
+  background-size: 52%;
   background-position: 76% bottom;
   height: 540px;
   background-color: #CFE5FF;
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  padding-left: 360px;
-  padding-right: 223px;
 }
 
-.top_banner .container {
-  width: 357px;
+.top_banner .message_container {
   height: 200px;
-  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
+
 
 .top_banner .message {
   font-weight: 700;
@@ -115,6 +112,9 @@ section {
   align-items: center;
   gap: 64px;
   height: 720px;
+}
+
+.section1, .section2, .section3{
   padding: 138px 0;
 }
 
