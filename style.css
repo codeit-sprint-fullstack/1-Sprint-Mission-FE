@@ -67,6 +67,8 @@ main {
   background-position: 76% bottom;
   height: 540px;
   background-color: #CFE5FF;
+  display: flex;
+  align-items: center;
 }
 
 .top_banner .message_container {
@@ -107,14 +109,11 @@ main .body{
   max-width: 1200px;
 }
 
-section {
+section.section1, .section2, .section3 {
   display: flex;
   align-items: center;
   gap: 64px;
   height: 720px;
-}
-
-.section1, .section2, .section3{
   padding: 138px 0;
 }
 
@@ -231,17 +230,24 @@ section {
 }
 
 .bottom_banner {
+  height: 540px;
   background-color: #CFE5FF;
   background-image: url("./imgs/Img_home_bottom.png");
   background-size: 50%;
   background-repeat: no-repeat;
   background-position: 76% bottom;
-  padding-left: 360px;
-  padding-right: 223px;
   font-weight: 700;
   font-size: 40px;
   line-height: 56px;
   color: #374151;
+  display: flex;
+  align-items: center;
+}
+
+.bottom_banner .message_container{
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 footer {
