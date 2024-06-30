@@ -171,18 +171,18 @@ h1 {
   width: 50%;
   height: 444px;
 }
-.hotItemContentContainer {
+.hotItemContentContainer,
+.searchContentContainer, 
+.registerContentContainer {
   width: 45%;
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
-.hotItemContentP,
-.searchContentP,
-.registerContentP {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+.hotItemContent,
+.searchContent,
+.registerContent {
+  margin-top: 12px;
+  margin-bottom: 24px;
 }
 .hotItemContentDescription,
 .searchContentDescription,
@@ -198,18 +198,7 @@ h1 {
   justify-content: flex-end;
 }
 .searchContentContainer {
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
   text-align: right;
-}
-/* register */
-.registerContentContainer {
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
 }
 /* banner */
 .bannerSection {
