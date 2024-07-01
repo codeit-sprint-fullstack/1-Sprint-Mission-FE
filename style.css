@@ -8,6 +8,22 @@ body {
   font-family: Pretendard, sans-serif;
 }
 
+:root {
+  --white-color: #ffffff;
+  --nav-color: #4B5563;
+  --like-blue-color: #3692FF;
+  --bg-color: #CFE5FF;
+  --msg-color: #374151;
+  --privacy-color: #E5E7EB;
+  --like-navy-color: #111827;
+  --like-gray-color: #9CA3AF;
+  --simple-login-color: #E6F2FF;
+  --login-sigup-msg-color: #1F2937;
+  --login-sigup-select-color: #3182F6;
+  --input-color: #F3F4F6;
+}
+
+
 header {
   height: 70px;
   display: flex;
@@ -29,7 +45,7 @@ header {
   font-size: 18px;
   line-height: 21.48px;
   text-decoration: none;
-  color: #4B5563;
+  color: var(--nav-color);
 }
 
 .nav1 {
@@ -45,11 +61,11 @@ header {
   width: 88px;
   height: 42px;
   border-radius: 8px;
-  background-color: #3692FF;    
+  background-color: var(--like-blue-color);    
   font-weight: 600;
   font-size: 16px;
   line-height: 19.09px;
-  color: #ffffff;
+  color: var(--white-color);
   cursor: pointer;
 }
 
@@ -66,7 +82,7 @@ main {
   background-size: 52%;
   background-position: 76% bottom;
   height: 540px;
-  background-color: #CFE5FF;
+  background-color: var(--bg-color);
   display: flex;
   align-items: center;
 }
@@ -86,7 +102,7 @@ main {
   font-weight: 700;
   font-size: 40px;
   line-height: 56px;
-  color: #374151;
+  color: var(--msg-color);
 }
 
 .top_banner .button {
@@ -94,12 +110,12 @@ main {
   height: 56px;
   border: none;
   border-radius: 40px;
-  background-color: #3692FF;
+  background-color: var(--like-blue-color);
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
-  color: #ffffff;
+  color: var(--white-color);
   cursor: pointer;
 }
 
@@ -132,7 +148,7 @@ section.section1, .section2, .section3 {
   font-weight: 700;
   font-size: 18px;
   line-height: 25.2px;
-  color: #3692FF;
+  color: var(--like-blue-color);
 }
 
 .section1 .message_box {
@@ -146,7 +162,7 @@ section.section1, .section2, .section3 {
   font-size: 40px;
   line-height: 56px;
   letter-spacing: 2%;
-  color: #374151;        
+  color: var(--msg-color);        
 }
 
 .section1 .message_bottom {
@@ -154,7 +170,7 @@ section.section1, .section2, .section3 {
   font-size: 24px;
   line-height: 28.8px;
   letter-spacing: 8%;
-  color: #374151;
+  color: var(--msg-color);
 }
 
 .section2_messages {
@@ -168,7 +184,7 @@ section.section1, .section2, .section3 {
   font-weight: 700;
   font-size: 18px;
   line-height: 25.2px;
-  color: #3692FF;
+  color: var(--like-blue-color);
 }
 
 .section2 .message_box {
@@ -182,7 +198,7 @@ section.section1, .section2, .section3 {
   font-size: 40px;
   line-height: 56px;
   letter-spacing: 2%;
-  color: #374151;        
+  color: var(--msg-color);        
 }
 
 .section2 .message_bottom {
@@ -190,7 +206,7 @@ section.section1, .section2, .section3 {
   font-size: 24px;
   line-height: 28.8px;
   letter-spacing: 8%;
-  color: #374151;
+  color: var(--msg-color);
 }
 
 
@@ -204,7 +220,7 @@ section.section1, .section2, .section3 {
   font-weight: 700;
   font-size: 18px;
   line-height: 25.2px;
-  color: #3692FF;
+  color: var(--like-blue-color);
 }
 
 .section3 .message_box {
@@ -218,7 +234,7 @@ section.section1, .section2, .section3 {
   font-size: 40px;
   line-height: 56px;
   letter-spacing: 2%;
-  color: #374151;        
+  color: var(--msg-color);        
 }
 
 .section3 .message_bottom {
@@ -226,12 +242,12 @@ section.section1, .section2, .section3 {
   font-size: 24px;
   line-height: 28.8px;
   letter-spacing: 8%;
-  color: #374151;
+  color: var(--msg-color);
 }
 
 .bottom_banner {
   height: 540px;
-  background-color: #CFE5FF;
+  background-color: var(--bg-color);
   background-image: url("./imgs/Img_home_bottom.png");
   background-size: 50%;
   background-repeat: no-repeat;
@@ -239,7 +255,7 @@ section.section1, .section2, .section3 {
   font-weight: 700;
   font-size: 40px;
   line-height: 56px;
-  color: #374151;
+  color: var(--msg-color);
   display: flex;
   align-items: center;
 }
@@ -255,14 +271,14 @@ footer {
   align-items: center;
   justify-content: space-between;
   padding: 32px 200px 108px 200px;
-  background-color: #111827;
+  background-color: var(--like-navy-color);
 }
 
 footer .codeit_2024{
   font-weight: 400;
   font-size: 16px;
   line-height: 19.08px;
-  color: #9CA3AF;
+  color: var(--like-gray-color);
 }
 
 footer .privacy{
@@ -274,7 +290,7 @@ footer .privacy{
   font-weight: 400;
   font-size: 16px;
   line-height: 19.09px;
-  color: #E5E7EB;
+  color: var(--privacy-color);
   text-decoration: none;
   cursor: pointer;
 }
@@ -292,7 +308,7 @@ footer .social {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #9CA3AF;
+  color: var(--like-gray-color);
 }
 
 .password_container {
@@ -310,7 +326,7 @@ footer .social {
   height: 74px;
   border-radius: 8px;
   padding: 0 23px;
-  background-color: #E6F2FF;
+  background-color: var(--simple-login-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -321,7 +337,7 @@ footer .social {
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  color: #1F2937;
+  color: var(--login-sigup-msg-color);
 }
 
 .login_method {
@@ -334,11 +350,11 @@ footer .social {
   font-weight: 500;
   font-size: 15px;
   line-height: 17.9px;
-  color: #1F2937;
+  color: var(--login-sigup-msg-color);;
 }
 
 .select_status a{
-  color: #3182F6;
+  color: var(--login-sigup-select-color);
 }
 
 
@@ -366,7 +382,7 @@ footer .social {
   font-weight: 700;
   font-size: 18px;
   line-height: 21.48px;
-  color: #1F2937;
+  color: var(--login-sigup-msg-color);;
 }
 
 .login_form input{
@@ -376,9 +392,9 @@ footer .social {
   padding: 16px 24px;
   border-radius: 12px;
   border: none;
-  background-color: #F3F4F6;
+  background-color: var(--input-color);
   width: 100%;
-  outline-color: #3692FF;
+  outline-color: var(--);
 }
 
 .login_form button {
@@ -386,11 +402,11 @@ footer .social {
   height: 56px;
   border: none;
   border-radius: 40px;
-  background-color: #9CA3AF;
+  background-color: var(--like-gray-color);
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  color: #ffffff;
+  color: var(--white-color);
   cursor: pointer;
 }
 
@@ -418,7 +434,7 @@ footer .social {
   font-weight: 700;
   font-size: 18px;
   line-height: 21.48px;
-  color: #1F2937;
+  color: var(--login-sigup-msg-color);;
 }
 
 .signup_form input{
@@ -428,9 +444,9 @@ footer .social {
   padding: 16px 24px;
   border-radius: 12px;
   border: none;
-  background-color: #F3F4F6;
+  background-color: var(--input-color);
   width: 100%;
-  outline-color: #3692FF;
+  outline-color: var(--);
 }
 
 .signup_form button {
@@ -438,10 +454,10 @@ footer .social {
   height: 56px;
   border: none;
   border-radius: 40px;
-  background-color: #9CA3AF;
+  background-color: var(--like-gray-color);
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  color: #ffffff;
+  color: var(--white-color);
   cursor: pointer;
 }
