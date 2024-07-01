@@ -1,11 +1,26 @@
-@import "/reset.css";
+/* @import "/reset.css"; */
 
 * {
   box-sizing: border-box;
 }
 
+:root {
+  --blue: #3692FF;
+  --skyblue: #E6F2FF;
+  --white: #ffffff;
+  --input: #F3F4F6;
+  --button: #9CA3AF;
+  --link: #3182F6;
+  --black: #1F2937;
+  --font-color: #374151;
+  --image-background: #CFE5FF;
+  --footer-background: #111827;
+  --codeit: #9ca3af;
+  --footer-font: #E5E7EB;
+}
+
 body {
-  color: #374151;
+  color: var(--font-color);
   margin: 0;
 }
 
@@ -27,8 +42,8 @@ a .privacy {
 }
 
 button {
-  color: #ffffff;
-  background-color: #3692FF;
+  color: var(--white);
+  background-color: var(--blue);
   border-style: none;
 }
 
@@ -38,7 +53,7 @@ ul{
 
 h1 {
   font-size: 18px;
-  color: #3692FF;
+  color: var(--blue);
   margin-top: 0;
   margin-bottom: 12px;
 }
@@ -59,7 +74,7 @@ h3 {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--white);
   z-index: 1;
 }
 
@@ -77,7 +92,7 @@ h3 {
 }
 
 .logo{
-  color: #3692FF;
+  color: var(--blue);
   font-size: 26px;
   font-weight: 700;
   margin-left: 9px;
@@ -111,7 +126,7 @@ h3 {
 }
 
 .main-blue{       /* 창을 줄였을 때 하늘색 배경이 사라짐 */
-  background-color: #CFE5FF;
+  background-color: var(--image-background);
 }
 
 .first-block{
@@ -215,7 +230,7 @@ h3 {
 }
 
 .footer {
-  background-color: #111827;
+  background-color: var(--footer-background);
   height: 160px;
 }
 
@@ -227,7 +242,7 @@ h3 {
 }
 
 .codeit{
-  color: #9ca3af;
+  color: var(--codeit);
   font-size: 16px;
   font-weight: 400;
 }
@@ -241,7 +256,7 @@ h3 {
 
 .privacy,
 .faq {
-  color: #E5E7EB;
+  color: var(--footer-font);
 }
 
 .sns {
