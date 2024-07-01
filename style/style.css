@@ -160,7 +160,6 @@ h3 {
   height: 55px;
   font-size: 18px;
   text-wrap: nowrap;
-  /* text-align: center; */
   display: flex;
   align-items: center;
   justify-content: center;
