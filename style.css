@@ -774,7 +774,7 @@
   }
   .footer_wrapper {
     width: 100%;
-    max-width: 375px;
+    min-width: 375px;
     height: 100%;
     display: flex;
     flex-direction: column;
