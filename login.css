@@ -1,4 +1,4 @@
-*{
+html{
   margin:0;
   padding: 0;
   font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -133,4 +133,7 @@ input{
   position: absolute;
   margin-left: -50.26px;
   margin-top:43px;
+}
+.link_str{
+  color: #3182F6;
 }
