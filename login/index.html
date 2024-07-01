@@ -9,8 +9,10 @@
               href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css">
         <link rel="stylesheet" href="../css/reset.css">
         <link rel="stylesheet" href="../css/style_login.css">
+        
     </head>
     <body>
+        
         <div class = "root">
             <main>
                 <section id="main_sec_grp_logo_input_btn">
@@ -19,16 +21,19 @@
                     </a>
                     <div id="main_sec_grp_input_btn_simple_signup">
                         <div id="main_sec_grp_input_btn">
-                            <div id="main_sec_grp_input">
+                            <form id="main_sec_grp_input">
                                 <div class="main_sec_input_email_pw">
                                     <label for="login_email">이메일</label>
                                     <input type="email" id ="login_email" class="login_input" name="email" placeholder="이메일을 입력해주세요">
                                 </div>
                                 <div class="main_sec_input_email_pw">
                                     <label for="login_pw">비밀번호</label>
-                                    <input type="password" id="login_pw" class="login_input" name="pw" placeholder="비밀번호를 입력해주세요">
+                                    <div class="grp_pw_btn">
+                                        <input type="password" id="login_pw" class="login_input" name="pw" placeholder="비밀번호를 입력해주세요">
+                                        <img id="login_pw_show_img" src="../Images/btn_visibility_on.svg" onclick="pwVisibiltyOnOff()">
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                             <a herf ="/login">
                                 <img id="btn_login" src="../Images/btn_login_large.svg" alt="로그인 버튼">
                             </a>
@@ -52,5 +57,6 @@
                 </section>
             </main>
         </div>
+        <script src="../js/login.js"></script>
     </body>
 </html>
