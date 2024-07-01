@@ -2,7 +2,7 @@
 
 body {
   min-width: 1200px;
-  background-color: #CFE5FF;
+  background-color: var(--backBlue);
   font-family: Pretendard;
   display: flex;
   flex-direction: column;
@@ -12,14 +12,14 @@ h2 {
   font-size: 18px;
   font-weight: 700;
   line-height: 25px;
-  color: #3692FF;
+  color: var(--mainBlue);
 }
 h1 {
   font-size: 40px;
   font-weight: 700;
   line-height: 56px;
   letter-spacing: 0.02em;
-  color: #374151;
+  color: var(--mainFontBlack);
 }
 
 /* header */
@@ -31,8 +31,8 @@ h1 {
   position: sticky;
   top: 0;
   z-index: 200;
-  background-color: #FFFFFF;
-  border-bottom: 1px solid #DFDFDF;
+  background-color: var(--backWhite);
+  border-bottom: 1px solid var(--borderGray);
 }
 .headerFixed {
   height: 70px;
@@ -60,7 +60,7 @@ h1 {
 .nav {
   font-size: 18px;
   font-weight: 700;
-  color: #4B5563;
+  color: var(--fontDarkGray);
   width: 50%;
   text-align: center;
   line-height: 69px;
@@ -68,14 +68,14 @@ h1 {
 .logInContainer {
   margin: 14px 200px 14px 0;
   padding: 12px 23px;
-  background-color: #3692FF;
-  border: 1px solid #3692FF;
+  background-color: var(--mainBlue);
+  border: 1px solid var(--mainBlue);
   border-radius: 8px;
 }
 .logIn {
   font-size: 16px;
   font-weight: 600;
-  color: #FFFFFF;
+  color: var(--backWhite);
   text-decoration: none;
 }
 /* title */
@@ -83,7 +83,7 @@ h1 {
   height: 540px;
   width: 100%;
   max-width: 1920px;
-  background-color: #CFE5FF;
+  background-color: var(--backBlue);
   position: relative;
   display: flex;
   align-items: center;
@@ -107,7 +107,7 @@ h1 {
   width: 357px;
   height: 56px;
   padding: 16px 124px;
-  background-color: #3692FF;
+  background-color: var(--mainBlue);
   border-radius: 40px;
   position: absolute;
   bottom: 0;
@@ -115,7 +115,7 @@ h1 {
 .titleButton {
   font-size: 20px;
   font-weight: 600;
-  color: #FFFFFF;
+  color: var(--backWhite);
   text-decoration: none;
 }
 .bannerImg,
@@ -133,7 +133,7 @@ h1 {
   width: 100%;
   max-width: 1920px;
   height: 2298px;
-  background-color: #FFFFFF;
+  background-color: var(--backWhite);
   display: flex;
   justify-content: center;
   position: relative;
@@ -191,7 +191,7 @@ h1 {
   font-weight: 500;
   line-height: 120%;
   letter-spacing: 0.08em;
-  color: #374151;
+  color: var(--mainFontBlack);
 }
 /* search */
 .searchContainer {
@@ -205,7 +205,7 @@ h1 {
   width: 100%;
   max-width: 1920px;
   height: 540px;
-  background-color: #CFE5FF;
+  background-color: var(--backBlue);
   position: relative;
   overflow-x: hidden;
 }
@@ -233,7 +233,7 @@ h1 {
 .footer.section {
   width: 100%; 
   height: 160px;
-  background-color: #111827;
+  background-color: var(--footColor);
   display: flex;
   justify-content: center;
 }
@@ -243,7 +243,7 @@ h1 {
   margin: 32px 200px;
   font-size: 16px;
   font-weight: 400;
-  color: #9CA3AF;
+  color: var(--fontGray);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -255,7 +255,7 @@ h1 {
 }
 .footerPolicy,
 .footerFaq{
-  color: #E5E7Eb;
+  color: var(--fontCoolGray);
   text-decoration: none;
 }
 .facebook,

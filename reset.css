@@ -8,6 +8,20 @@
 a:hover {
   cursor : pointer;
 }
+:root {
+	--backWhite : #FFFFFF;
+	--backBlue: #CFE5FF;
+	--mainBlue: #3692FF;
+	--mainFontBlack: #374151;
+	--fontDarkGray: #4B5563;
+	--fontGray: #9CA3AF;
+	--fontCoolGray: #E5E7EB;
+	--footColor: #111827;
+	--inputBack: #F3F4F6;
+	--loginFontBlack: #1F2937;
+	--simpleLoginColor: #E6F2FF;
+	--linkBlue: #3182F6;
+}
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
