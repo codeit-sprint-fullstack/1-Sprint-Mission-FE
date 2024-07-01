@@ -4,10 +4,10 @@ const login_pw_show_img = document.getElementById("login_pw_show_img");
 login_pw_show_img.addEventListener("click", function() {
     if (login_pw.type == "password") {
         login_pw.type = "text";
-        login_pw_show_img.src = "../Images/btn_visiblity_on.svg"
+        login_pw_show_img.src = "../Images/btn_visibility_off.svg"
     } else {
         login_pw.type = "password";
-        login_pw_show_img.src = "../Images/btn_visiblity_off.svg"
+        login_pw_show_img.src = "../Images/btn_visibility_on.svg"
     }
 });
 
@@ -16,9 +16,9 @@ const login_pw_check_show_img = document.getElementById("login_pw_check_show_img
 login_pw_check_show_img.addEventListener("click", function() {
     if (login_pw_check.type == "password") {
         login_pw_check.type = "text";
-        login_pw_check_show_img.src = "../Images/btn_visiblity_on.svg"
+        login_pw_check_show_img.src = "../Images/btn_visibility_off.svg"
     } else {
         login_pw_check.type = "password";
-        login_pw_check_show_img.src = "../Images/btn_visiblity_off.svg"
+        login_pw_check_show_img.src = "../Images/btn_visibility_on.svg"
     }
 });
