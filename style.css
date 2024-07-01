@@ -285,3 +285,54 @@ footer .social {
 }
 
 
+/*-------*/
+/* login */
+/*-------*/
+
+.login_container {
+  height: 1080px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.login_form {
+  max-width: 640px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login_form label {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21.48px;
+  color: #1F2937;
+}
+
+.login_form input{
+  margin-top: 16px;
+  margin-bottom: 24px;
+  height: 56px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: none;
+  background-color: #F3F4F6;
+  width: 100%;
+  outline-color: #3692FF;
+}
+
+.login_form button {
+  margin-bottom: 24px;
+  height: 56px;
+  border: none;
+  border-radius: 40px;
+  background-color: #9CA3AF;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #ffffff;
+  cursor: pointer;
+}
