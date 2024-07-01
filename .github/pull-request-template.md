@@ -64,17 +64,11 @@
 **로그인 페이지, 회원가입 페이지 공통**
 - [x] 비밀번호, 비밀번호 확인 input 요소 오른쪽에 비밀번호를 확인할 수 있는 눈 모양 아이콘을 추가합니다.
 
-## 주요 변경사항
-
--
--
-
 ## 스크린샷
 
-![image](이미지url)
+![image](/image/index_html.png)
+![image](/image/login_html.png)
+![image](/image/signup_html.png)
 
 ## 멘토에게
-
-- 
--
 - 셀프 코드 리뷰를 통해 질문 이어가겠습니다.
