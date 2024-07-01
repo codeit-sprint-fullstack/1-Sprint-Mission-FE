@@ -18,91 +18,75 @@ html {
 .root {
     display : block;
     position : relative;
-}
 
-main {
-    margin-top : 6rem;    
+    --gray-chateau-color : #9CA3AF;
+    --athens-color : #F3F4F6;
+    --dodger-blue-color : #3692FF;
+    --solitude-color : #E6F2FF;
+    --ebony-clay-color : #1F2937; 
+    --dodger-blue2-color :#3182F6;
 }
 
 #main_sec_grp_logo_input_btn {
     max-width: 64rem;
     width: 64rem;
-    height: 60.2rem;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4rem;
+    margin-top : 6rem; 
+    margin-bottom : 4rem;
 }
 
-#btn_logo_loginpage {
+#btn_logo {
     width : 39.6rem;
     height : 13.2rem;
 }
 
 #main_sec_grp_input_btn_simple_signup {
-    width : 64rem;
-    height : 43rem;
+    max-width : 64rem;
+    width : 100%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-}
-
-#main_sec_grp_input_btn {
-    width: 64rem;
-    height: 29rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-#main_sec_grp_input {
-    width : 64rem;
-    height : 21rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    gap : 2.4rem;
 }
 
 .main_sec_input_email_pw {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 9.3rem;
+    gap : 1.6rem;
     font-size : 1.8rem;
     font-weight : 700;
     line-height : 1.19333em;
-    color : #1F2937;
+    color : var(--ebony-clay-color);
 }
 
 .login_input {
+    max-width: 64rem;
+    width : 100%;
     font-size: 1.6rem;
     font-weight: 400;
-    color: #9CA3AF;
+    color: var(--gray-chateau-color);
     height: 5.6rem;
     border-radius: 0.75em;
-    background-color: #F3F4F6;
+    background-color: var(--athens-color);
     border: none;
-    padding-left: 2.4rem;
-    padding-right: 2.4rem;
+    text-indent: 2.4rem ;
 }
 
 .login_input:focus {
     border: 0.1rem;
     border-style: solid;
-    border-color: #3692FF;
-}
-
-#login_email {
-
+    border-color: var(--dodger-blue-color);
 }
 
 #login_pw {
-    max-width: 64rem;
-    width : 100%;
+    /* naming */
 }
 
-.grp_pw_btn {
+.grp_pw_input_btn {
     width : 64rem;
     height : 5.6rem;
     display : flex;
@@ -110,11 +94,11 @@ main {
     position : relative;
 }
 
-#login_pw_show_img {
+.visible_icon {
     position : absolute;
     top : 50%;
     transform: translateY(-50%);
-    object-fit : fill;
+    object-fit : cover;
     right : 2.4rem;
     width : 2.4rem;
     height : 2.4rem;
@@ -127,7 +111,7 @@ main {
     width: 64rem;
     height: 7.4rem;
     font-size: 1.6rem;
-    background-color: #E6F2FF;
+    background-color: var(--solitude-color);
     border-radius: 0.5em;
 
     display: flex;
@@ -138,7 +122,7 @@ main {
     font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.5em;
-    color: #1F2937;
+    color: var(--ebony-clay-color);
 }
 
 a#main_sec_simple_login_text {
@@ -154,14 +138,19 @@ a#main_sec_simple_login_text {
     margin-right: 2.3rem;
 }
 
+.icon_frame {
+    width : 4.2rem;
+    height: 4.2rem;
+}
+
 #main_sec_grp_signup {
     font-size: 1.5rem;
     font-weight: 500;
     line-height: 1.19333em;
-    color: #1F2937;
+    color: var(--ebony-clay-color);
     align-self: center;
 }
 
 a.linktext {
-    color: #3182F6;
+    color: var(--dodger-blue2-color);
 }

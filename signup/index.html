@@ -8,65 +8,60 @@
           crossorigin
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css">
     <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/style_signup.css">
+    <link rel="stylesheet" href="../css/style_login_signup.css">
 </head>
     <body>
         <div class="root">
+            <header id="main_sec_grp_logo_input_btn">
+                <a href="/" target="_self">
+                    <img id="btn_logo" src="../Images/logo_loginpage.svg" alt="홈페이지 링크">
+                </a>
+            </header>
             <main>
-                <section id="main_sec_grp_logo_input_btn">
-                    <a href="/" target="_self">
-                        <img id="btn_logo_loginpage" src="../Images/logo_loginpage.svg" alt="홈페이지 링크">
+                <form id = "main_sec_grp_input_btn_simple_signup">
+                    <div class="main_sec_input_email_pw">
+                        <label for="login_email">이메일</label>
+                        <input type="email" id="login_email" class="login_input" name="email" placeholder="이메일을 입력해주세요">
+                    </div>
+                    <div class="main_sec_input_email_pw">
+                        <label for="login_nickname">닉네임</label>
+                        <input type="text" id="login_nickname" class="login_input" name="nickname" placeholder="닉네임을 입력해주세요">
+                    </div>
+                    <div class="main_sec_input_email_pw">
+                        <label for="login_pw">비밀번호</label>
+                        <div class="grp_pw_input_btn">
+                            <input type="password" id="login_pw" class="login_input" name="pw" placeholder="비밀번호를 입력해주세요">
+                            <img id="login_pw_show_img" class = "visible_icon" src="../Images/btn_visibility_on.svg" onclick="pwVisibiltyOnOff()">
+                        </div>
+                    </div>
+                    <div class="main_sec_input_email_pw">
+                        <label for = "login_pw_check">비밀번호 확인</label>
+                        <div class = "grp_pw_input_btn">
+                            <input type="password" id = "login_pw_check" class = "login_input" name="pw_check" placeholder="비밀번호를 다시 한 번 입력해주세요">
+                            <img id = "login_pw_check_show_img" class = "visible_icon" src = "../Images/btn_visibility_on.svg">
+                        </div>
+                    </div>
+                    <a herf="/login">
+                        <img id = "btn_login" src = "../Images/btn_signup_large.svg" alt="로그인 버튼">
                     </a>
-                    <div id="main_sec_grp_input_btn_simple_signup">
-                        <div id="main_sec_grp_input_btn">
-                            <form id="main_sec_grp_input">
-                                <div class="main_sec_input_email_pw">
-                                    <label for="login_email">이메일</label>
-                                    <input type="email" id="login_email" class="login_input" name="email" placeholder="이메일을 입력해주세요">
-                                </div>
-                                <div class="main_sec_input_email_pw">
-                                    <label for="login_nickname">닉네임</label>
-                                    <input type="text" id="login_nickname" class="login_input" name="nickname" placeholder="닉네임을 입력해주세요">
-                                </div>
-                                <div class="main_sec_input_email_pw">
-                                    <label for="login_pw">비밀번호</label>
-                                    <div class="grp_pw_btn">
-                                        <input type="password" id="login_pw" class="login_input" name="pw" placeholder="비밀번호를 입력해주세요">
-                                        <img id="login_pw_show_img" src="../Images/btn_visibility_on.svg" onclick="pwVisibiltyOnOff()">
-                                    </div>
-                                </div>
-                                <div class="main_sec_input_email_pw">
-                                    <label for="login_pw_check">비밀번호 확인</label>
-                                    <div class="grp_pw_btn">
-                                        <input type="password" id="login_pw_check" class="login_input" name="pw_check" placeholder="비밀번호를 다시 한 번 입력해주세요">
-                                        <img id="login_pw_check_show_img" src="../Images/btn_visibility_on.svg">
-                                    </div>
-                                </div>
-                            </form>
-                            <a herf="/login">
-                                <img id="btn_login" src="../Images/btn_signup_large.svg" alt="로그인 버튼">
+                    <div id = "main_sec_grp_simple_login">
+                        <a id = "main_sec_simple_login_text">간편 로그인하기</a>
+                        <div id = "main_sec_grp_icon">
+                            <a href="https://www.google.com/">
+                                <img class = "icon_frame" src = "../Images/icon_google.svg" alt="구글 간편 로그인">
+                            </a>
+                            <a href="https://www.kakaocorp.com/page/">
+                                <img class = "icon_frame" src = "../Images/icon_kakao.svg" alt="카카오 간편 로그인">
                             </a>
                         </div>
-                        <div id="main_sec_grp_simple_login">
-                            <a id="main_sec_simple_login_text">간편 로그인하기</a>
-                            <div id="main_sec_grp_icon">
-                                <a href="https://www.google.com/">
-                                    <img src="../Images/icon_google.svg" alt="구글 간편 로그인">
-                                </a>
-                                <a href="https://www.kakaocorp.com/page/">
-                                    <img src="../Images/icon_kakao.svg" alt="구글 간편 로그인">
-                                </a>
-                            </div>
-                        </div>
-                        <div id="main_sec_grp_signup">
-                            <a>이미 회원이신가요? </a>
-                            <a href="/login" class="linktext">로그인</a>
-                        </div>
-
                     </div>
-                </section>
+                    <div id="main_sec_grp_signup">
+                        <a>이미 회원이신가요? </a>
+                        <a href = "/login" class="linktext">로그인</a>
+                    </div>
+                </form>
             </main>
         </div>
-        <script src="../js/signup.js"></script>
+        <script src="../js/login_signup.js"></script>
     </body>
 </html>

@@ -14,14 +14,16 @@ html {
     display : block;
     position : relative;
     
-    --header-border-color : #DFDFDF;
-    --header-list-item-color : #4B5563;
-    --main-frame1-color : #CFE5FF;
-    --main-frame2-color : #FFFFFF;
-    --main-text1-color : #374151;
-    --main-text2-color : #3692FF;
-    --footer-frame-color : #111827;
-    --footrt-text-color : #9CA3AF;
+    /* to name color, used
+    https://chir.ag/projects/name-that-color/#6195ED */
+    --alto-color : #DFDFDF;
+    --river-bed-color : #4B5563;
+    --onahau-color : #CFE5FF;
+    --white-color : #FFFFFF;
+    --oxford-blue-color : #374151;
+    --dodger-blue-color : #3692FF;
+    --ebony-color : #111827;
+    --gray-chateau-color : #9CA3AF;
 }
 
 header {
@@ -38,10 +40,10 @@ header {
     display : flex;
     flex-direction : row;
     flex-wrap: nowrap;
-    background-color : var(--main-frame2-color);
+    background-color : var(--white-color);
     border : solid;
     border-width : 1px;
-    border-color: var(--header-border-color);
+    border-color: var(--alto-color);
 }
 
 #header_btn_home {
@@ -80,7 +82,7 @@ header {
     font-size : 1.8rem;
     /* line-height : 21.48px; */
     line-height : 1.19333em;
-    color : var(--header-list-item-color);
+    color : var(--river-bed-color);
     justify-content : center;
     align-items: center;
     cursor : pointer;
@@ -124,11 +126,11 @@ main {
 }
 
 .background_color_frame1 {
-    background-color: var(--main-frame1-color);
+    background-color: var(--onahau-color);
 }
 
 .background_color_frame2 {
-    background-color: var(--main-frame2-color);
+    background-color: var(--white-color);
 }
 
 /* ===== content1 css ===== */
@@ -156,7 +158,7 @@ main {
     font-weight: 700;
     /* line-height: 56px; */
     line-height: 1.4em;
-    color: var(--main-text1-color);
+    color: var(--oxford-blue-color);
 }
 
 .textStyle_h5 {
@@ -166,7 +168,7 @@ main {
     /* line-height: 28.8px; */
     line-height: 1.2em;
     letter-spacing: 0.08em;
-    color: var(--main-text1-color);
+    color: var(--oxford-blue-color);
     white-space: nowrap;
 }
 
@@ -176,7 +178,7 @@ main {
     font-weight : 700;
     /* line-height : 25.2px; */
     line-height : 1.4em;
-    color : var(--main-text2-color);
+    color : var(--dodger-blue-color);
 }
 
 .textStyle_letterSpace_2p {
@@ -344,7 +346,7 @@ footer {
     max-width : 192rem;
     width: 100%;
     height: 16rem;
-    background-color: var(--footer-frame-color);
+    background-color: var(--ebony-color);
     margin : 0 auto;
 }
 
@@ -372,7 +374,7 @@ footer {
     font-weight: 400;
     /* line-height: 19.09px; */
     line-height : 1.193125em;
-    color: var(--footrt-text-color);
+    color: var(--gray-chateau-color);
 }
 
 #footer_title {
@@ -391,7 +393,7 @@ footer {
 
 .link_text {
     text-decoration: none;
-    color: var(--footrt-text-color);
+    color: var(--gray-chateau-color);
 }
 
 #footer_link_icons {
