@@ -19,7 +19,7 @@
                     </a>
                     <div id="main_sec_grp_input_btn_simple_signup">
                         <div id="main_sec_grp_input_btn">
-                            <div id="main_sec_grp_input">
+                            <form id="main_sec_grp_input">
                                 <div class="main_sec_input_email_pw">
                                     <label for="login_email">이메일</label>
                                     <input type="email" id="login_email" class="login_input" name="email" placeholder="이메일을 입력해주세요">
@@ -30,13 +30,19 @@
                                 </div>
                                 <div class="main_sec_input_email_pw">
                                     <label for="login_pw">비밀번호</label>
-                                    <input type="password" id="login_pw" class="login_input" name="pw" placeholder="비밀번호를 입력해주세요">
+                                    <div class="grp_pw_btn">
+                                        <input type="password" id="login_pw" class="login_input" name="pw" placeholder="비밀번호를 입력해주세요">
+                                        <img id="login_pw_show_img" src="../Images/btn_visiblity_off.svg" onclick="pwVisibiltyOnOff()">
+                                    </div>
                                 </div>
                                 <div class="main_sec_input_email_pw">
                                     <label for="login_pw_check">비밀번호 확인</label>
-                                    <input type="password" id="login_pw_check" class="login_input" name="pw_check" placeholder="비밀번호를 다시 한 번 입력해주세요">
+                                    <div class="grp_pw_btn">
+                                        <input type="password" id="login_pw_check" class="login_input" name="pw_check" placeholder="비밀번호를 다시 한 번 입력해주세요">
+                                        <img id="login_pw_check_show_img" src="../Images/btn_visiblity_off.svg">
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                             <a herf="/login">
                                 <img id="btn_login" src="../Images/btn_signup_large.svg" alt="로그인 버튼">
                             </a>
@@ -61,5 +67,6 @@
                 </section>
             </main>
         </div>
+        <script src="../js/signup.js"></script>
     </body>
 </html>

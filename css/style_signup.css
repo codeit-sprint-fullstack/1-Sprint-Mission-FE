@@ -93,6 +93,49 @@ main {
     border-color: #3692FF;
 }
 
+#login_pw {
+    max-width: 64rem;
+    width : 100%;
+}
+
+.grp_pw_btn {
+    width : 64rem;
+    height : 5.6rem;
+    display : flex;
+    flex-direction : row;
+    position : relative;
+}
+
+#login_pw_show_img {
+    position : absolute;
+    top : 50%;
+    transform: translateY(-50%);
+    object-fit : fill;
+    right : 2.4rem;
+    width : 2.4rem;
+    height : 2.4rem;
+    cursor: pointer;
+    top : 50%;
+    border : none;
+}
+
+#login_pw_check {
+    max-width: 64rem;
+    width : 100%;
+}
+
+#login_pw_check_show_img {
+    position : absolute;
+    top : 50%;
+    transform: translateY(-50%);
+    object-fit : fill;
+    right : 2.4rem;
+    width : 2.4rem;
+    height : 2.4rem;
+    cursor: pointer;
+    top : 50%;
+    border : none;
+}
 
 #main_sec_grp_simple_login {
     width: 64rem;
