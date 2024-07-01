@@ -51,12 +51,70 @@ main {
   background-color: #ffffff;
   gap: 24px;
 }
+.panda_logo {
+  width: 396px;
+  height: auto;
+}
+@media (min-width: 357px) and (max-width: 767px) {
+  .main_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+
+    width: 100%;
+    max-width: 344px;
+
+    margin: 0px 0px;
+    padding-top: 24px;
+    box-sizing: border-box;
+  }
+  .panda_logo {
+    width: 198px;
+    height: auto;
+  }
+}
 
 .inputAndLabel {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 16px;
+}
+.email_label {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+.password_label {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+.nickname_label {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+.password_comfirm_label {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+@media (min-width: 357px) and (max-width: 767px) {
+  .email_label {
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+  .password_label {
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+  .nickname_label {
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+  .password_comfirm_label {
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
 }
 .login_input {
   width: 100%;
