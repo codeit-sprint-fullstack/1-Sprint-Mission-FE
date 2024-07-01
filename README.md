@@ -6,4 +6,4 @@
 
 **링크**
 
-![보러가기] (https://6681fffcfc8ca0c790714e1d--joyful-kataifi-e6bfb4.netlify.app/)
+![보러가기](https://6681fffcfc8ca0c790714e1d--joyful-kataifi-e6bfb4.netlify.app/)
