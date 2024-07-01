@@ -106,7 +106,7 @@ form {
     border-radius: 0.5rem;
     background-color: var(--simple_login_bg);
     padding: 0 1.4375rem;
-    margin: 1.5rem 0;
+    margin-bottom: 1.5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
