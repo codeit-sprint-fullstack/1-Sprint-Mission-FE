@@ -5,6 +5,12 @@
 @import url('/component/subCtg.css');
 @import url('/component/footer.css');
 
+:root {
+  --button--color: #3692ff;
+  --text--color: #374151;
+  --input--color: #9ca3af;
+}
+
 * {
   box-sizing: border-box;
 }

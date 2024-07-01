@@ -1,3 +1,7 @@
+:root {
+  --subCtgTextHeader--color: #3692ff;
+}
+
 .subCtg {
   display: grid;
   grid-template-columns: 600px 600px;
@@ -42,7 +46,7 @@
   height: 25px;
   font-size: 18px;
   font-family: 'Pretendard';
-  color: #3692ff;
+  color: var(--subCtgTextHeader--color);
   font-weight: 700;
 }
 
@@ -54,7 +58,7 @@
   font-weight: 700;
   letter-spacing: 0.02em;
   text-align: left;
-  color: #374151;
+  color: var(--text--color);
   line-height: 56px;
 }
 
@@ -67,7 +71,7 @@
   line-height: 28.8px;
   letter-spacing: 0.08em;
   text-align: left;
-  color: #374151;
+  color: var(--text--color);
 }
 
 .subCtgTextHeader.search {
@@ -131,7 +135,7 @@
   font-weight: 700;
   line-height: 56px;
   text-align: left;
-  color: #374151;
+  color: var(--text--color);
 }
 
 .subCtgBottomContainer {
@@ -189,7 +193,6 @@
     height: 4vw;
     font-size: 1em;
     font-family: 'Pretendard';
-    color: #3692ff;
     font-weight: 700;
   }
 

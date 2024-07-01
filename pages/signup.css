@@ -1,5 +1,14 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css');
 
+:root {
+  --error--color: #f74747;
+}
+
+:focus-visible {
+  border: none;
+  outline: none;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -48,7 +57,7 @@ form {
   border-radius: 12px;
   background-color: #f3f4f6;
   border: none;
-  color: #9ca3af;
+  color: var(--input--color);
   font-family: Pretendard;
   font-size: 16px;
   font-weight: 400;
@@ -170,7 +179,7 @@ form {
 } */
 
 .update.failure {
-  border: 1px solid red;
+  border: 1px solid var(--error--color);
 }
 
 .update.failure:focus {
@@ -184,7 +193,7 @@ form {
   font-size: 15px;
   font-weight: 600;
   text-align: left;
-  color: #f74747;
+  color: var(--error--color);
   padding-left: 16px;
   margin-top: 8px;
   display: none;
@@ -197,7 +206,7 @@ form {
   font-size: 15px;
   font-weight: 600;
   text-align: left;
-  color: #f74747;
+  color: var(--error--color);
   padding-left: 16px;
   margin-top: 8px;
   display: block;

@@ -44,7 +44,7 @@ a {
 .loginBtn {
   width: 88px;
   height: 42px;
-  background: #3692ff;
+  background: var(--button--color);
   border: none;
   border-radius: 8px;
   font-family: Pretendard;

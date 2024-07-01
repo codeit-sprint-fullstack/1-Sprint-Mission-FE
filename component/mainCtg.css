@@ -22,7 +22,7 @@
   font-weight: 700;
   line-height: 56px;
   text-align: left;
-  color: #374151;
+  color: var(--text--color);
   position: absolute;
   top: 170px;
   left: 5px;
@@ -46,7 +46,7 @@
   height: 56px;
   opacity: 0px;
   border-radius: 40px;
-  background: #3692ff;
+  background: var(--button--color);
   border: none;
   font-family: Pretendard;
   color: #ffffff;

@@ -48,7 +48,7 @@ form {
   border-radius: 12px;
   background-color: #f3f4f6;
   border: none;
-  color: #9ca3af;
+  color: var(--input--color);
   font-family: Pretendard;
   font-size: 16px;
   font-weight: 400;
