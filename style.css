@@ -9,6 +9,9 @@
 }
 
 @media (min-width: 1200px) {
+  .pc_invisible {
+    display: none;
+  }
   body {
     display: flex;
     flex-direction: column;
@@ -56,6 +59,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .panda_logo_text {
+    cursor: pointer;
+    width: 103px;
+    height: auto;
   }
   .header_Menu1 {
     display: flex;
@@ -136,6 +144,20 @@
     height: 200px;
 
     font-size: 40px;
+    font-weight: 700;
+  }
+  .page_1_text {
+    font-size: 2.5rem;
+    gap: 16px;
+    white-space: nowrap;
+    line-height: 56px;
+    font-weight: 700;
+  }
+  .page_5_text {
+    font-size: 2rem;
+    gap: 16px;
+    white-space: nowrap;
+    line-height: 44.8px;
     font-weight: 700;
   }
   .main_page_panda {
@@ -218,16 +240,17 @@
     width: 100%;
     max-width: 1920px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
   .footer_container {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    margin-left: 200px;
-    margin-right: 200px;
+    padding-left: 200px;
+    padding-right: 200px;
     padding-top: 32px;
-    padding-bottom: 108px;
+
     box-sizing: border-box;
   }
   .icon {
@@ -237,6 +260,11 @@
   .icon_item {
     width: 20px;
     height: 20px;
+  }
+  .codeit_sign {
+    font-size: 16px;
+    font-weight: 400;
+    color: #9ca3af;
   }
 }
 @media (min-width: 768px) and (max-width: 1199px) {
@@ -281,12 +309,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 32px;
+    gap: 20px;
   }
   .header_Menu_Container {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .panda_logo_text {
+    cursor: pointer;
+    width: 103px;
+    height: auto;
   }
   .header_Menu1 {
     display: flex;
@@ -320,7 +353,7 @@
     margin-top: 70px;
     box-sizing: border-box;
   }
-  .tablet {
+  .tablet_invisible {
     display: none;
   }
   .main_page {
@@ -387,6 +420,21 @@
     font-size: 40px;
     font-weight: 700;
   }
+  .page_1_text {
+    font-size: 2.5rem;
+    gap: 16px;
+    white-space: nowrap;
+    line-height: 56px;
+    font-weight: 700;
+  }
+  .page_5_text {
+    font-size: 2rem;
+    gap: 16px;
+    white-space: nowrap;
+    line-height: 44.8px;
+    font-weight: 700;
+    text-align: center;
+  }
   .main_page_panda {
     width: 996px;
     height: auto;
@@ -401,7 +449,7 @@
     gap: 16px;
     flex-direction: column;
     justify-content: start;
-    align-items: start;
+    align-items: center;
   }
   .main_card.reverse {
     flex-direction: column;
@@ -460,16 +508,16 @@
     width: 100%;
     max-width: 1920px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
   .footer_container {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    margin-left: 24px;
-    margin-right: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
     padding-top: 32px;
-    padding-bottom: 108px;
     box-sizing: border-box;
   }
   .icon {
@@ -480,8 +528,13 @@
     width: 20px;
     height: 20px;
   }
+  .codeit_sign {
+    font-size: 16px;
+    font-weight: 400;
+    color: #9ca3af;
+  }
 }
-@media (max-width: 375px) {
+@media (min-width: 375px) and (max-width: 767px) {
   body {
     display: flex;
     flex-direction: column;
@@ -504,14 +557,14 @@
 
     width: 100%;
     height: 100%;
-    max-width: 1920px;
+    max-width: 767px;
   }
   .header_container {
     width: 100%;
     height: 100%;
 
-    margin-left: 200px;
-    margin-right: 200px;
+    padding-left: 16px;
+    padding-right: 16px;
     box-sizing: border-box;
 
     display: flex;
@@ -521,38 +574,36 @@
   }
   .header_logoAndMenus {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
-    gap: 32px;
+    gap: 16px;
   }
   .header_Menu_Container {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 8px;
   }
-  .header_Menu1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.125rem;
+  .panda_logo_text {
+    cursor: pointer;
+    width: 81px;
+    height: auto;
+  }
 
-    padding-top: 24px;
-    padding-bottom: 24px;
-    padding-left: 15px;
-    padding-right: 16px;
-    box-sizing: border-box;
+  .header_Menu1 {
+    font-size: 1rem;
+    width: 75px;
   }
   .header_Menu2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.125rem;
-
-    padding-top: 24px;
-    padding-bottom: 24px;
-    padding-left: 23px;
-    padding-right: 23px;
-    box-sizing: border-box;
+    font-size: 1rem;
+  }
+  .panda_logo_text.mobile {
+    cursor: pointer;
+    width: 103px;
+    height: auto;
+  }
+  .mobile_invisible {
+    display: none;
   }
   main {
     display: flex;
@@ -562,6 +613,7 @@
     margin-top: 70px;
     box-sizing: border-box;
   }
+
   .main_page {
     display: flex;
     width: 100%;
@@ -576,61 +628,104 @@
     background-color: #cfe5ff;
   }
   .main_wrapper {
-    max-width: 1920px;
+    max-width: 767px;
     width: 100%;
     height: 540px;
-
     display: flex;
     justify-content: center;
     overflow-x: hidden;
   }
   .main_wrapper.card {
-    height: 720px;
+    height: 437px;
   }
   .main_container {
-    max-width: 1320px;
+    max-width: 375px;
     width: 100%;
     height: 100%;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
-    position: relative;
+    justify-content: space-between;
+
+    padding-top: 48px;
+    box-sizing: border-box;
+
     /* overflow-x: hidden; */
+  }
+  .main_container.page_1 {
+    gap: 49px;
+  }
+
+  .main_container.card {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    padding-right: 16px;
+    padding-left: 16px;
+
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+  }
+  .main_container.page_5 {
+    padding-top: 90px;
+    box-sizing: border-box;
   }
 
   .main_page_textAndBtnArea {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    gap: 32px;
+    justify-content: start;
+    align-items: center;
+    gap: 16px;
 
-    width: 357px;
-    height: 200px;
+    width: auto;
+    height: 162px;
 
     font-size: 40px;
     font-weight: 700;
   }
+  .page_1_text {
+    font-size: 2rem;
+    gap: 16px;
+    white-space: nowrap;
+    line-height: 44.8px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .page_5_text {
+    font-size: 2rem;
+    gap: 16px;
+    white-space: nowrap;
+    line-height: 44.8px;
+    font-weight: 700;
+    text-align: center;
+  }
   .main_page_panda {
-    width: 996px;
+    width: 626px;
     height: auto;
-
-    align-self: self-end;
-    /* position: absolute;
-    left: 25%; */
+  }
+  .main_page_panda.page_5 {
+    width: 498px;
+    height: auto;
   }
 
   .main_card {
-    max-height: 444px;
     width: 100%;
-    height: 60%;
+    height: 100%;
     display: flex;
+    gap: 16px;
+    flex-direction: column;
     justify-content: start;
     align-items: center;
   }
   .main_card.reverse {
-    flex-direction: row-reverse;
-    justify-content: end;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .main_card_image {
+    width: 343px;
+    height: auto;
   }
 
   .card_text {
@@ -638,19 +733,35 @@
     flex-direction: column;
     justify-content: center;
     align-items: start;
-    gap: 12px;
-
-    padding-left: 64px;
-    padding-right: 0px;
+    gap: 4px;
+    width: 100%;
     box-sizing: border-box;
-    width: 380px;
-    height: 100%;
   }
   .card_text.reverse {
-    padding-right: 64px;
-    padding-left: 0px;
     align-items: end;
     text-align: end;
+  }
+  .card_text_h1 {
+    color: #000000;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 33.6px;
+    white-space: nowrap;
+  }
+  .card_text_h2 {
+    color: #374151;
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+    padding-top: 8px;
+    box-sizing: border-box;
+    line-height: 19.2px;
+  }
+  .card_text_h3 {
+    color: #3692ff;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 22.4px;
   }
   footer {
     width: 100%;
@@ -663,18 +774,33 @@
   }
   .footer_wrapper {
     width: 100%;
-    max-width: 1920px;
+    max-width: 375px;
+    height: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
   }
   .footer_container {
     display: flex;
     width: 100%;
+
     justify-content: space-between;
-    margin-left: 200px;
-    margin-right: 200px;
+    padding-left: 16px;
+    padding-right: 16px;
     padding-top: 32px;
-    padding-bottom: 108px;
+
+    box-sizing: border-box;
+  }
+  .footer_container.pc_invisible.tablet_invisible {
+    display: flex;
+    width: 100%;
+
+    justify-content: space-between;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 25px;
+    padding-bottom: 0px;
     box-sizing: border-box;
   }
   .icon {
@@ -684,5 +810,11 @@
   .icon_item {
     width: 20px;
     height: 20px;
+  }
+  .codeit_sign {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.09px;
+    color: #9ca3af;
   }
 }

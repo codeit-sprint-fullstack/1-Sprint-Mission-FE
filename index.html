@@ -20,13 +20,17 @@
                 justify-content: center;
                 align-items: center;
                 cursor: pointer;
-                width: 153px;
-                height: 51px;
+                gap: 9px;
               "
-              ><img
-                style="cursor: pointer; width: 153px; height: 51px"
-                class="panda_logo"
-                src="/main/asset/pandalogo.png"
+            >
+              <img
+                style="cursor: pointer; width: 40px; height: auto"
+                class="panda_logo mobile_invisible"
+                src="/main/asset/panda_face.png"
+                alt="" />
+              <img
+                class="panda_logo_text"
+                src="/main/asset/pandalogo_text.png"
                 alt=""
             /></a>
             <div class="header_Menu_Container">
@@ -56,18 +60,10 @@
         <div class="main_wrapper">
           <div class="main_container page_1">
             <div class="main_page_textAndBtnArea">
-              <h1
-                style="
-                  font-size: 2.5rem;
-                  gap: 16px;
-                  white-space: nowrap;
-                  line-height: 56px;
-                  font-weight: 700;
-                "
-              >
+              <h1 class="page_1_text">
                 <span>일상의</span>
                 <span> 모든</span>
-                <span> 물건을<br class="tablet" /></span>
+                <span> 물건을<br class="tablet_invisible" /></span>
                 <span>거래해</span>
                 <span> 보세요</span>
               </h1>
@@ -91,7 +87,7 @@
       <div class="main_page page_2">
         <dic class="main_wrapper card">
           <div class="main_container card">
-            <div class="main_card card">
+            <div class="main_card">
               <img
                 class="main_card_image"
                 src="/main/asset/usePanda.png"
@@ -102,7 +98,9 @@
 
                 <h1 class="card_text_h1">
                   <span>인기</span>
-                  <span> 상품을<br class="tablet" /></span>
+                  <span>
+                    상품을<br class="tablet_invisible mobile_invisible"
+                  /></span>
                   <span>확인해</span><span> 보세요</span>
                 </h1>
 
@@ -134,7 +132,9 @@
 
                 <h1 class="card_text_h1">
                   <span>구매를</span>
-                  <span> 원하는<br class="tablet" /></span>
+                  <span>
+                    원하는<br class="tablet_invisible mobile_invisible"
+                  /></span>
                   <span>상품을</span>
                   <span> 검색하세요</span>
                 </h1>
@@ -165,7 +165,9 @@
                 <h3 class="card_text_h3">Register</h3>
                 <h1 class="card_text_h1">
                   <span>판매를</span>
-                  <span> 원하는<br class="tablet" /></span>
+                  <span>
+                    원하는<br class="tablet_invisible mobile_invisible"
+                  /></span>
                   <span>상품을</span>
                   <span> 등록하세요</span>
                 </h1>
@@ -188,14 +190,7 @@
         <div class="main_wrapper page_5">
           <div class="main_container page_5">
             <div class="main_page_textAndBtnArea">
-              <h1
-                style="
-                  font-size: 2.5rem;
-                  gap: 16px;
-                  white-space: nowrap;
-                  line-height: 56px;
-                "
-              >
+              <h1 class="page_5_text">
                 <span>믿을</span>
                 <span> 수</span>
                 <span> 있는<br /></span>
@@ -205,7 +200,7 @@
               </h1>
             </div>
             <img
-              class="main_page_panda"
+              class="main_page_panda page_5"
               src="/main/asset/trustPanda.png"
               alt=""
             />
@@ -215,23 +210,21 @@
     </main>
     <footer>
       <div class="footer_wrapper">
-        <span class="footer_container">
-          <span style="font-size: 16px; font-weight: 400; color: #9ca3af"
-            >©codeit - 2024</span
-          >
-          <span style="display: flex; gap: 30px">
+        <div class="footer_container">
+          <span class="codeit_sign mobile_invisible">©codeit - 2024</span>
+          <div style="display: flex; gap: 30px">
             <a
               href="./privacy"
               style="
                 color: #e5e7eb;
 
-                font-size: 16px;
+                font-size: 1rem;
                 font-weight: 400;
                 line-height: 19.09px;
                 text-align: center;
                 cursor: pointer;
               "
-              >Privacy Policy</a
+              ><span>Privacy Policy</span></a
             >
             <a
               href="./faq"
@@ -244,9 +237,9 @@
                 text-align: center;
                 cursor: pointer;
               "
-              >FAQ</a
+              ><span>FAQ</span></a
             >
-          </span>
+          </div>
           <div class="icon">
             <a href="https://www.facebook.com/" target="_blank"
               ><img
@@ -277,7 +270,10 @@
                 alt=""
             /></a>
           </div>
-        </span>
+        </div>
+        <div class="footer_container tablet_invisible pc_invisible">
+          <span class="codeit_sign">©codeit - 2024</span>
+        </div>
       </div>
     </footer>
   </body>
