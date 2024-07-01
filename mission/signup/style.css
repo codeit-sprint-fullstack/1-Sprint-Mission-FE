@@ -56,7 +56,6 @@ form {
     background-color: var(--input_box_bg);
     padding: 1rem 1.5rem;
     margin-top: 1rem;
-    margin-bottom: 1.5rem;
     font-size: 1rem;
     font-weight: 400;
     color: var(--input_box_ft-signup_box_bg);
@@ -67,6 +66,26 @@ form {
     border: 1px solid var(--input_box_focus);
 }
 
+#signup_email {
+    margin-bottom: 1.5rem;
+}
+
+#user_name {
+    margin-bottom: 1.5rem;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 37rem;
+    bottom: 2.5rem;
+}
+
 .signup_box {
     width: 40rem;
     height: 3.5rem;
@@ -74,7 +93,7 @@ form {
     border-radius: 2.5rem;
     background-color: var(--input_box_ft-signup_box_bg);
     padding: 1rem 7.75rem;
-    margin: 1.5rem 0;
+    margin-bottom: 1.5rem;
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--signup_box_ft);
