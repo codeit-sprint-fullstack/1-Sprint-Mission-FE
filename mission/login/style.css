@@ -70,6 +70,7 @@ form {
     margin-bottom: 1.5rem;
 }
 
+
 .password-toggle-icon {
     width: 24px;
     height: 24px;
@@ -95,6 +96,7 @@ form {
     margin-bottom: 1.5rem;
     cursor: pointer;
 }
+
 
 .simple_login {
     width: 40rem;
