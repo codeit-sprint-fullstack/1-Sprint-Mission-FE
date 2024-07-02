@@ -4,7 +4,6 @@ html {
 	font-size: 62.5%;
 }
 body {
-  min-width: 120rem;
   background-color: var(--backBlue);
   font-family: Pretendard;
   display: flex;
@@ -81,6 +80,11 @@ h1 {
   color: var(--backWhite);
   text-decoration: none;
 }
+.title.section, 
+.mainSection,
+.bannerSection {
+  min-width: 120rem;
+}
 /* title */
 .title.section {
   height: 54rem;
@@ -101,6 +105,7 @@ h1 {
   left: 50%;
   transform: translate(-50%, 0); 
   gap: 3.2rem;
+  z-index: 3;
 }
 .titleContent {
   position: absolute;
@@ -126,7 +131,7 @@ h1 {
   width: 99.6rem;
   position: absolute;
   bottom : 0;
-  left: 36%;
+  right: -6rem;
 }
 .titleImg {
   height: 44.7rem;
