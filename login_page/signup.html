@@ -2,9 +2,9 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>판다마켓-로그인</title>
+        <title>판다마켓-회원가입</title>
         <link rel="stylesheet" href="./style_login/globe_login.css" />
-        <link rel="stylesheet" href="./style_login/body_login.css" />
+        <link rel="stylesheet" href="./style_login/sign_up_style.css" />
         <link 
             rel="stylesheet"
             as="style"
@@ -25,13 +25,21 @@
                     <input type="email" placeholder="이메일을 입력해주세요">
                 </article>
                 <article class="enter-box">
+                    <label>닉네임</label>
+                    <input type="text" placeholder="닉네임을 입력해주세요">
+                </article>
+                <article class="enter-box">
                     <label>비밀번호</label>
                     <input type="password" placeholder="비밀번호를 입력해주세요">
+                </article>
+                <article class="enter-box">
+                    <label>비밀번호 확인</label>
+                    <input type="password" placeholder="비밀번호를 다시 한 번 입력해주세요">
                 </article>
             </section>
 
             <section id="login-button-section">
-                <button type="button" onclick="location.href='../'">로그인</button>
+                <button type="button" onclick="location.href='../'">회원가입</button>
             </section>
 
             <section id="easy-social-login">
@@ -47,8 +55,8 @@
             </section>
         </main>
         <footer>
-            <span>판다마켓이 처음이신가요?</span>
-            <a href="./signup.html">회원가입</a>
+            <span>이미 회원이신가요?</span>
+            <a href="../login_page/login.html">로그인</a>
         </footer>
     </body>
 </html>
