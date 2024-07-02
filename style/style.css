@@ -566,7 +566,7 @@ form button:focus {
     padding: 2rem 0;
     flex-wrap: nowrap;
     flex-direction: column;
-    width: fit-content;
+    /* width: fit-content; */
     align-items: flex-start;
   }
 
@@ -581,6 +581,7 @@ form button:focus {
 
   .card img {
     min-width: 343px;
+    max-width: fit-content;
   }
 
   .card-texts span,
