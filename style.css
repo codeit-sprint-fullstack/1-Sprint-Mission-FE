@@ -1,7 +1,10 @@
 @import "./reset.css";
 
+html {
+	font-size: 62.5%;
+}
 body {
-  min-width: 1200px;
+  min-width: 120rem;
   background-color: var(--backBlue);
   font-family: Pretendard;
   display: flex;
@@ -9,22 +12,22 @@ body {
   align-items: center;
 }
 h2 {
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 700;
-  line-height: 25px;
+  line-height: 2.5rem;
   color: var(--mainBlue);
 }
 h1 {
-  font-size: 40px;
+  font-size: 4rem;
   font-weight: 700;
-  line-height: 56px;
+  line-height: 5.6rem;
   letter-spacing: 0.02em;
   color: var(--mainFontBlack);
 }
 
 /* header */
 .header.bg {
-  height: 70px;
+  height: 7rem;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -35,9 +38,9 @@ h1 {
   border-bottom: 1px solid var(--borderGray);
 }
 .headerFixed {
-  height: 70px;
+  height: 7rem;
   width: 100%;
-  max-width: 1920px;
+  max-width: 192rem;
   display: flex;
   justify-content: space-between;
 }
@@ -46,43 +49,43 @@ h1 {
   flex-direction: row;
 }
 .logoImg {
-  width: 153px;
-  height: 51px;
-  margin: 10px 32px 9px 200px
+  width: 15.3rem;
+  height: 5.1rem;
+  margin: 1rem 3.2rem 0.9rem 20rem;
 }
 .navContainer {
-  width: 218px;
-  height: 69px;
-  font-size: 18px;
+  width: 21.8rem;
+  height: 6.9rem;
+  font-size: 1.8rem;
   display: flex;
   align-items: center;
 }
 .nav {
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--fontDarkGray);
   width: 50%;
   text-align: center;
-  line-height: 69px;
+  line-height: 6.9rem;
 }
 .logInContainer {
-  margin: 14px 200px 14px 0;
-  padding: 12px 23px;
+  margin: 1.4rem 20rem 1.4rem 0;
+  padding: 1.2rem 2.3rem;
   background-color: var(--mainBlue);
   border: 1px solid var(--mainBlue);
-  border-radius: 8px;
+  border-radius: 0.8rem;
 }
 .logIn {
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 600;
   color: var(--backWhite);
   text-decoration: none;
 }
 /* title */
 .title.section {
-  height: 540px;
+  height: 54rem;
   width: 100%;
-  max-width: 1920px;
+  max-width: 192rem;
   background-color: var(--backBlue);
   position: relative;
   display: flex;
@@ -90,49 +93,49 @@ h1 {
   overflow-x: hidden;
 }
 .titleContainer {
-  width: 1200px;
-  height: 200px;
+  width: 120rem;
+  height: 20rem;
   display: flex;
   align-items: center;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0); 
-  gap: 32px;
+  gap: 3.2rem;
 }
 .titleContent {
   position: absolute;
   top: 0;
 }
 .titleButtonContainer {
-  width: 357px;
-  height: 56px;
-  padding: 16px 124px;
+  width: 35.7rem;
+  height: 5.6rem;
+  padding: 1.6rem 12.4rem;
   background-color: var(--mainBlue);
-  border-radius: 40px;
+  border-radius: 4rem;
   position: absolute;
   bottom: 0;
 }
 .titleButton {
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 600;
   color: var(--backWhite);
   text-decoration: none;
 }
 .bannerImg,
 .titleImg {
-  width: 996px;
+  width: 99.6rem;
   position: absolute;
   bottom : 0;
   left: 36%;
 }
 .titleImg {
-  height: 447px;
+  height: 44.7rem;
 }
 /* main */
 .mainSection {
   width: 100%;
-  max-width: 1920px;
-  height: 2298px;
+  max-width: 192rem;
+  height: 229.8rem;
   background-color: var(--backWhite);
   display: flex;
   justify-content: center;
@@ -140,8 +143,8 @@ h1 {
   width: 100%;
 }
 .mainContainer {
-  width: 1200px;
-  height: 2160px;
+  width: 120rem;
+  height: 216rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -154,13 +157,13 @@ h1 {
 .hotItem.section,
 .search.section,
 .register.section {
-  height: 720px;
+  height: 72rem;
 }
 .hotItemContainer,
 .searchContainer,
 .registerContainer {
   width: 100%;
-  height: 444px;
+  height: 44.4rem;
   display: flex;
   align-items: center;
   gap: 5%;
@@ -169,7 +172,7 @@ h1 {
 .searchImg,
 .registerImg {
   width: 50%;
-  height: 444px;
+  height: 44.4rem;
 }
 .hotItemContentContainer,
 .searchContentContainer, 
@@ -181,13 +184,13 @@ h1 {
 .hotItemContent,
 .searchContent,
 .registerContent {
-  margin-top: 12px;
-  margin-bottom: 24px;
+  margin-top: 1.2rem;
+  margin-bottom: 2.4rem;
 }
 .hotItemContentDescription,
 .searchContentDescription,
 .registerContentDescription {
-  font-size: 24px;
+  font-size: 2.4rem;
   font-weight: 500;
   line-height: 120%;
   letter-spacing: 0.08em;
@@ -203,16 +206,16 @@ h1 {
 /* banner */
 .bannerSection {
   width: 100%;
-  max-width: 1920px;
-  height: 540px;
+  max-width: 192rem;
+  height: 54rem;
   background-color: var(--backBlue);
   position: relative;
   overflow-x: hidden;
 }
 .bannerContainer {
   width: 100%;
-  max-width: 1200px;
-  height: 540px;
+  max-width: 120rem;
+  height: 54rem;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
@@ -223,7 +226,7 @@ h1 {
   align-items: center;
 }
 .bannerImg {
-  height: 540px;
+  height: 54rem;
 }
 .bannerContent {
   width: 100%;
@@ -232,16 +235,16 @@ h1 {
 /* footer */
 .footer.section {
   width: 100%; 
-  height: 160px;
+  height: 16rem;
   background-color: var(--footColor);
   display: flex;
   justify-content: center;
 }
 .footerContainer {
-  max-width: 1520px;
+  max-width: 152rem;
   width: 100%;
-  margin: 32px 200px;
-  font-size: 16px;
+  margin: 3.2rem 20rem;
+  font-size: 1.6rem;
   font-weight: 400;
   color: var(--fontGray);
   display: flex;
@@ -251,7 +254,7 @@ h1 {
 .footerPnF {
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: 3rem;
 }
 .footerPolicy,
 .footerFaq{
@@ -262,10 +265,10 @@ h1 {
 .youtube,
 .twitter,
 .instagram {
-  width: 20px;
-  height: 20px;
+  width: 2rem;
+  height: 2rem;
 }
 .footerSns {
   display: flex;
-  gap: 12px;
+  gap: 1.2rem;
 }

@@ -1,5 +1,8 @@
 @import "./reset.css";
 
+html {
+	font-size: 62.5%;
+}
 body {
   display: flex;
   flex-direction: column;
@@ -7,48 +10,48 @@ body {
   font-family: Pretendard;
 }
 label {
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: 1.6rem;
 }
 .bigLogo {
-  margin-top: 60px;
-  margin-bottom: 40px;
+  margin-top: 6rem;
+  margin-bottom: 4rem;
 }
 .bigLogoImg {
-  width: 396px;
-  height: 132px;
+  width: 39.6rem;
+  height: 13.2rem;
 }
 .login.mainContent {
-  height: 430px;
+  height: 43rem;
 }
 .signup.mainContent {
-  height: 664px;
+  height: 66.4rem;
 }
 .mainContent {
-  width: 640px;
+  width: 64rem;
   color: var(--loginFontBlack);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 24px;
+  gap: 2.4rem;
   position: relative;
 }
 .inputBox {
   width: 100%;
-  height: 93px;
+  height: 9.3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
 }
 .inputForm {
-  height: 56px;
+  height: 5.6rem;
   line-height: 100%;
-  padding: 16px 24px;
+  padding: 1.6rem 2.4rem;
   background-color: var(--inputBack);
   border: 1px solid var(--backWhite);
-  border-radius: 12px;
+  border-radius: 1.2rem;
 }
 .inputForm:focus {
   outline: none;
@@ -57,15 +60,15 @@ label {
 .inputForm::placeholder {
   color: var(--fontGray);
   font-family: Pretendard;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 400;
 }
 .eye {
-  width: 24px;
-  height: 24px;
+  width: 2.4rem;
+  height: 2.4rem;
   position: absolute;
-  right: 24px;
-  bottom: 16px;
+  right: 2.4rem;
+  bottom: 1.6rem;
 }
 .slashed.eye {
   display: none;
@@ -73,19 +76,19 @@ label {
 .loginButton,
 .joinButton {
   display: block;
-  height: 56px;
+  height: 5.6rem;
   background-color: var(--fontGray);
   border: 1px solid var(--backWhite);
-  border-radius: 40px;
+  border-radius: 4rem;
   color: var(--backWhite);
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 600;
 }
 .simpleLogin {
-  height: 74px;
+  height: 7.4rem;
   background-color: var(--simpleLoginColor);
   display: flex;
-  border-radius: 8px;
+  border-radius: 0.8rem;
   justify-content: space-between;
   align-items: center;
 }
@@ -93,28 +96,29 @@ label {
   text-decoration: none;
 }
 .simpleLink a>img {
-  width: 42px;
-  height: 42px;
+  width: 4.2rem;
+  height: 4.2rem;
 }
 .simpleSpan {
-  margin-left: 23px;
-  font-size: 16px;
+  margin-left: 2.3rem;
+  font-size: 1.6rem;
   font-weight: 500;
 }
 .simpleLink {
-  margin-right: 23px;
+  margin-right: 2.3rem;
 }
 a>.google {
-  margin-right: 16px;
+  margin-right: 1.6rem;
 }
 .askJoin, 
 .askLogin {
   display: flex;
   justify-content: center;
+  font-size: 1.5rem;
 }
 .askJoin>.join,
 .askLogin>.login {
   display: block;
   color: var(--linkBlue);
-  margin-left: 4px;
+  margin-left: 0.4rem;
 }
