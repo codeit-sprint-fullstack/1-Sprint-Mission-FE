@@ -21,6 +21,7 @@ body {
   --login-sigup-msg-color: #1F2937;
   --login-sigup-select-color: #3182F6;
   --input-color: #F3F4F6;
+  --focusin-color: #3692FF;
 }
 
 
@@ -395,7 +396,7 @@ footer .social {
   border: none;
   background-color: var(--input-color);
   width: 100%;
-  outline-color: var(--);
+  outline-color: var(--focusin-color);
 }
 
 .login_form button {
@@ -447,7 +448,7 @@ footer .social {
   border: none;
   background-color: var(--input-color);
   width: 100%;
-  outline-color: var(--);
+  outline-color: var(--focusin-color);
 }
 
 .signup_form button {
