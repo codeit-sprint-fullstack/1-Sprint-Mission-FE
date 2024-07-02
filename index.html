@@ -3,18 +3,22 @@
     <head>
         <meta charset="UTF-8" />
         <title>판다마켓</title>
-        <link rel="stylesheet" href="./style/glober_style.css" />   
-        <link rel="stylesheet" href="./style/header_style.css" />
-        <link rel="stylesheet" href="./style/banner_style.css" />
-        <link rel="stylesheet" href="./style/footer_style.css" />
-        <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+        <link rel="stylesheet" href="./main/style_main/glober_style.css" />   
+        <link rel="stylesheet" href="./main/style_main/header_style.css" />
+        <link rel="stylesheet" href="./main/style_main/banner_style.css" />
+        <link rel="stylesheet" href="./main/style_main/footer_style.css" />
+        <link 
+        rel="stylesheet"
+        as="style"
+        crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+        />
     </head>
 
     <body>
         <header>
             <div id="left-logo-box">            
                 <a href="./">
-                <img src="./images/panda_market_logo.svg" width="153">
+                <img src="main/images_main/panda_market_logo.svg" width="153">
                 </a>
             </div>
             <div id="board-list-box">
@@ -22,91 +26,87 @@
                 <a href="pre_owned.html" class="top-board">중고마켓</a>
             </div>
             <div id="right-button-box">
-                <a href="./login.html" class="top-etc-button">로그인</a>
+                <a href="./login_page/login.html" class="top-etc-button">로그인</a>
             </div>
         </header>
         <main>
-            <section id="key-banner" class="background-banner-set">
-                <article class="top-bottom-banner-box">
-                    <div class="top-string-box">
-                        <h2 class="key-sring">
-                            <span>일상의 모든 물건을</span>
-                            <span>거래해보세요</span>
-                        </h2>
-                        <div id="goto-lookin-item">
-                            <a href="./items.html" style="color: #ffffff;">구경하러 가기</a>
-                        </div>
+
+            <section id="section-top-bottom" class="banner-box-set">
+                <div class="top-bottom-string-box">
+                    <h2 class="key-sring">
+                        <span>일상의 모든 물건을</span>
+                        <span>거래해보세요</span>
+                    </h2>
+                    <div id="goto-lookin-item">
+                        <a href="./items.html" style="color: #ffffff;">구경하러 가기</a>
                     </div>
-                    <div class="top-bottom-image" style="top: 46.5px;">
-                        <img src="/images/banner/Img_home_top.svg"/>
-                    </div>
-                    
+                </div>
+                <div class="img-underline">
+                    <img src="main/images_main/banner/Img_home_top.svg" width="998">
+                </div>
+            </section>
+
+            <section id="section-main" class="banner-box-set">
+                <img src="main/images_main/banner/Img_home_01.svg" width="590">
+                <article class="banner-string-box">
+                    <h1 class="banner-header-string">
+                        <span>Hot item</span>
+                    </h2>
+                    <h2 class="key-sring" >
+                        <span>인기 상품을</span>
+                        <span>확인해 보세요</span>
+                    </h2>
+                    <h3 class="description-sring">
+                        <span>가장 HOT한 중고거래 물품을</span>
+                        <span>판다 마켓에서 확인해 보세요</span>
+                    </h3>
                 </article>
             </section>
-            <section class="background-banner-set">
-                <article class="selling-point-banner-box">
-                    <img src="./images/banner/Img_home_01.svg" width="580">
-                    <div class="banner-string-box">
-                        <h1 class="banner-header-string">
-                            <span>Hot item</span>
-                        </h2>
-                        <h2 class="key-sring" >
-                            <span>인기 상품을</span>
-                            <span>확인해 보세요</span>
-                        </h2>
-                        <h3 class="description-sring" style="width: 330px;">
-                            <span>가장 HOT한 중고거래 물품을</span>
-                            <span>판다 마켓에서 확인해 보세요</span>
-                        </h3>
-                    </div>
+
+            <section id="section-main" class="banner-box-set">
+                <article class="banner-string-box right-align">
+                    <h1 class="banner-header-string">
+                        <span>Search</span>
+                    </h2>
+                    <h2 class="key-sring" >
+                        <span>구매를 원하는</span>
+                        <span>상품을 검색하세요</span>
+                    </h2>
+                    <h3 class="description-sring">
+                        <span>구매하고 싶은 물품은 검색해서</span> 
+                        <span>쉽게 찾아보세요</span>
+                    </h3>
                 </article>
+                <img src="main/images_main/banner/Img_home_02.svg" width="590">
             </section>
-            <section class="background-banner-set">
-                <article class="selling-point-banner-box">
-                    <div id="right-align" class="banner-string-box">
-                        <h1 class="banner-header-string">
-                            <span>Search</span>
-                        </h2>
-                        <h2 class="key-sring" >
-                            <span>구매를 원하는</span>
-                            <span>상품을 검색하세요</span>
-                        </h2>
-                        <h3 class="description-sring">
-                            <span>구매하고 싶은 물품은 검색해서</span> 
-                            <span>쉽게 찾아보세요</span>
-                        </h3>
-                    </div>
-                    <img src="./images/banner/Img_home_02.svg" width="580">
-                </article>
+
+            <section id="section-main" class="banner-box-set">
+                <img src="main/images_main/banner/Img_home_03.svg" width="590">
+                <article class="banner-string-box">
+                    <h1 class="banner-header-string">
+                        <span>Register</span>
+                    </h2>
+                    <h2 class="key-sring">
+                        <span>판매를 원하는</span>
+                        <span>상품을 등록하세요</span>
+                    </h2>
+                    <h3 class="description-sring">
+                        <span>어떤 물건이든 판매하고 싶은 상품을</span>
+                        <span>쉽게 등록하세요</span>
+                    </h3>
+                </article>  
             </section>
-            <section class="background-banner-set">
-                <article class="selling-point-banner-box">
-                    <img src="./images/banner/Img_home_03.svg" width="580">
-                    <div class="banner-string-box">
-                        <h1 class="banner-header-string">
-                            <span>Register</span>
-                        </h2>
-                        <h2 class="key-sring">
-                            <span>판매를 원하는</span>
-                            <span>상품을 등록하세요</span>
-                        </h2>
-                        <h3 class="description-sring">
-                            <span>어떤 물건이든 판매하고 싶은 상품을</span>
-                            <span>쉽게 등록하세요</span>
-                        </h3>
-                    </div>
-                </article>
-            </section>
-            <section id="key-banner" class="background-banner-set">
-                <div class="top-bottom-banner-box" >
+
+            <section id="section-top-bottom" class="banner-box-set">
+                <div class="top-bottom-string-box">
                     <h2 class="key-sring">
                         <span>믿을 수 있는</span>
                         <span>판다마켓 중고거래</span>
                     </h2>
                 </div>
-                <div class="top-bottom-image">
-                    <img src="/images/banner/Img_home_bottom.svg" />
-                </div>
+                <article id="bottom-img" class="img-underline">
+                    <img src="main/images_main/banner/Img_home_bottom.svg" width="996"/>
+                </article>
             </section>
         </main>
         <footer>
@@ -119,35 +119,18 @@
             </article>
             <article id="goto-social-icon-box">
                 <a href="https://www.facebook.com/" target="_blank">
-                    <img src="./images/icon/ic_facebook.svg" />
+                    <img src="./main/images_main/icon/ic_facebook.svg" />
                 </a>
                 <a href="https://www.x.com/" target="_blank">
-                    <img src="./images/icon/ic_twitter.svg" />
+                    <img src="./main/images_main/icon/ic_twitter.svg" />
                 </a>
                 <a href="https://www.youtube.com/" target="_blank">
-                    <img src="./images/icon/ic_youtube.svg" />
+                    <img src="./main/images_main/icon/ic_youtube.svg" />
                 </a>
                 <a href="https://www.instagram.com/" target="_blank">
-                    <img src="./images/icon/ic_instagram.svg" />
+                    <img src="./main/images_main/icon/ic_instagram.svg" />
                 </a>
             </article>
     </footer>
     </body>
 </html>
-
-<!-- <div style="display: flex; flex-direction: column;">
-    <h1>
-        <span>일상의 모든 물건을</span>
-        <span>거래해보세요</span>
-    </h1>
-    <a href="./" id="goto-lookin-item">구경하러 가기</a>
-</div> -->
-
-
-                <!-- <div id="key-string-box">
-                    <h1 style="">
-                        <span>일상의 모든 물건을</span>
-                        <span>거래해보세요</span>
-                    </h1>
-                    <a href="./" id="goto-lookin-item">구경하러 가기</a>        
-                </div>
