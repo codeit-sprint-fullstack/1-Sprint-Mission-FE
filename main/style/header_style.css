@@ -4,6 +4,8 @@ header {
     align-items: center;
     padding: 0 200px;
     justify-content: space-between;
+    word-break: keep-all;
+    white-space: nowrap;
 
 }
 
