@@ -23,6 +23,9 @@
         const passwordInput = event.target.previousElementSibling;
         const isPasswordVisible = passwordInput.type === "text";
         passwordInput.type = isPasswordVisible ? "password" : "text";
+        event.target.src = isPasswordVisible ? "./imgs/btn_visibility_off.png" : "./imgs/btn_visibility_on.png";
+        event.target.width = 24;
+        evnet.target.height = 24;
       }
 
       document.addEventListener('DOMContentLoaded', function() {
