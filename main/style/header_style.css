@@ -25,6 +25,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    word-break: keep-all;
 
 }
 
@@ -33,6 +34,8 @@ header {
     display: inline-flex;
     align-items: center;
     justify-content: flex-end;
+    word-break: keep-all;
+    white-space: nowrap;
 }
 
 .top-etc-button {

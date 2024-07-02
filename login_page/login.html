@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <title>판다마켓-로그인</title>
         <link rel="stylesheet" href="./style_login/globe_login.css" />
+        <link rel="stylesheet" href="./style_login/body_login.css" />
         <link 
             rel="stylesheet"
             as="style"
@@ -20,31 +21,27 @@
         <main>
             <section id="main-enter-box">
                 <article class="enter-box">
-                    <h1>이메일</h1>
-                    <div id="id" class="input-string">
-                        <span >이메일을 입력해주세요</span>
-                    </div>
+                    <label>이메일</label>
+                    <input type="email" placeholder="이메일을 입력해주세요">
                 </article>
                 <article class="enter-box">
-                    <h1>비밀번호</h1>
-                    <div id="pw" class="input-string">
-                        <span >비밀번호를 입력해주세요</span>
-                    </div>
+                    <label>비밀번호</label>
+                    <input type="password" placeholder="비밀번호를 입력해주세요">
                 </article>
             </section>
 
-            <section id="login-button">
-                <a href="./login.html" id="login-string">로그인</a>
+            <section id="login-button-section">
+                <button type="button">로그인</button>
             </section>
 
             <section id="easy-social-login">
                 <span>간편 로그인하기</span>
                 <article id="social-icon">
-                    <a href="">
-                        <img src="./image_login/kakao_icon.svg" class="middle_img">
+                    <a href="https://www.google.com/">
+                        <img src= "./image_login/google_icon.svg">
                     </a>
-                    <a href="">
-                        <img src="./image_login/google_icon.svg">
+                    <a href="https://www.kakaocorp.com/page/">
+                        <img src="./image_login/kakao_icon.svg">
                     </a>
                 </article>
             </section>

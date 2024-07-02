@@ -2,15 +2,12 @@
     font-family: "Pretendard", sans-serif;
 }
 
-
-
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: #1F2937;
-    padding: 0px 640px;
 }
 
 header {
@@ -18,20 +15,9 @@ header {
     box-sizing: border-box;
 }
 
-h1 {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 0;
-}
-
 main {
     width: 100%;
-}
-
-.middle_img {
-    display: flex;
-    align-items: center;
+    max-width: 640px;
 }
 
 footer {
@@ -42,8 +28,48 @@ footer {
     justify-content: space-between;
 }
 
+label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21px;
+}
+
+input {
+    padding: 16px 24px;
+    border-radius: 12px;
+    background-color: #F3F4F6;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    border: none;
+}
+input::placeholder {
+    color: #9CA3AF;
+}
+
+input:focus {
+    outline-color: #3692FF;
+}
+
+button {
+    width: 100%;
+    margin: 24px 0px;
+    padding: 16px 124px; 
+    border-radius: 40px;
+    background-color:#9CA3AF;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    color: #FFFFFF;
+    border: none;
+}
+
+
 #main-enter-box {
-    height: 210px;
+    height: 215px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -54,35 +80,13 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-size: 18px;
+
 }
 
-.input-string {
-    padding: 16px 24px;
-    border-radius: 12px;
-    background-color: #F3F4F6;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    color: #9CA3AF;
+#login-button-section {
     display: flex;
-}
-
-
-#login-button {
-    margin: 24px 0px;
-    padding: 16px 0px;
-    border-radius: 40px;
-    background-color:#9CA3AF;
-    text-align: center;
-}
-
-#login-string {
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 24px;
-    color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
 }
 
 #easy-social-login {
@@ -97,7 +101,6 @@ footer {
     line-height: 24px;
 }
 
-
 #social-icon {
     width: 100px;
     display: flex;
@@ -105,8 +108,31 @@ footer {
     justify-content: space-between;
 }
 
+#social-icon > a {
+    display: flex;
+    align-items: center;
+}
 
 
+/* #login-string {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    color: #FFFFFF;
+} */
+
+
+/* .input-string {
+    padding: 16px 24px;
+    border-radius: 12px;
+    background-color: #F3F4F6;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #9CA3AF;
+    display: flex;
+} */
 
 
 
