@@ -1,0 +1,129 @@
+body {
+  font-size: 1.5rem;
+}
+
+input {
+  padding: 12px 20px;
+}
+
+@media screen and (max-width: 576px) {
+  .page > a > img {
+    width: 30%;
+  }
+  .login_box > input {
+    width: 30%;
+  }
+}
+
+.page_background {
+  width: 100%;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  width: 640px;
+  height: 0.3rem;
+  margin-top: 50px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.page > a > img {
+  margin-top: 5rem;
+  margin-bottom: 4rem;
+}
+
+.login_box {
+  margin: 0;
+}
+
+.member_info > p {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 1.6rem;
+}
+
+.member_info > input {
+  width: 640px;
+  height: 5.6rem;
+  border-radius: 12px;
+  border: none;
+  background-color: var(--input-background-color);
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.member_info > input::placeholder {
+  color: var(--input-text-color);
+}
+
+.member_info > input:focus {
+  border: var(--input-forcus);
+}
+
+.input_password {
+  position: relative;
+}
+
+.input_password .eyes {
+  position: absolute;
+  top: 32px;
+  bottom: 16px;
+  right: 16px;
+  margin: auto 2px;
+  height: 30px;
+  font-size: 2.2rem;
+  color: var(--input-forcus-eye);
+}
+
+input:focus > .eyes {
+  display: none;
+}
+.login_box > button {
+  width: 640px;
+  height: 56px;
+  background-color: var(--btn-background-color);
+  border-radius: 40px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--white);
+  border: none;
+  margin-bottom: 24px;
+}
+
+.login_simple {
+  display: flex;
+  background-color: var(--login_simple-background-color);
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  width: 640px;
+  height: 74px;
+  padding: 0 24px;
+  border-radius: 8px;
+}
+
+.login_simple > p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.sns_login {
+  display: flex;
+  gap: 16px;
+  width: 100px;
+  height: 42px;
+  margin: 0;
+  justify-content: space-between;
+}
+
+.login_signup {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 24px;
+}
