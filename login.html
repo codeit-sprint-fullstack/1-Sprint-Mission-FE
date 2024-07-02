@@ -18,6 +18,20 @@
 
       gtag('config', 'G-62B62XEJ27');
     </script>
+    <script>
+      function togglePasswordVisibility(event) {
+        const passwordInput = event.target.previousElementSibling;
+        const isPasswordVisible = passwordInput.type === "text";
+        passwordInput.type = isPasswordVisible ? "password" : "text";
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const toggleIcons = document.querySelectorAll('.visible-off-icon');
+        toggleIcons.forEach(icon => {
+          icon.addEventListener('click', togglePasswordVisibility);
+        });
+      });
+    </script>
   </head>
   <body>
     <div class="login_container">
