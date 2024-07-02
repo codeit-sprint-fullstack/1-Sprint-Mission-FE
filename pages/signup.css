@@ -4,11 +4,6 @@
   --error--color: #f74747;
 }
 
-:focus-visible {
-  border: none;
-  outline: none;
-}
-
 * {
   box-sizing: border-box;
 }

@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>판다마켓</title>
     <link rel="stylesheet" href="login.css" />
+    <script src="inputFunction.js" defer></script>
   </head>
   <body>
     <div class="mainContainer">
       <a href="/"><div class="logo"></div></a>
-      <form action="">
+      <form action="" class="loginForm">
         <div class="inputBox email">
           <label for="email">이메일</label>
           <input
@@ -22,11 +23,15 @@
         <div class="inputBox password">
           <label for="password">비밀번호</label>
           <input
-            type="text"
+            type="password"
             id="password"
             name="password"
             placeholder="비밀번호를 입력해주세요."
           />
+          <div id="" class="eyeToggle">
+            <span id="eye" tabindex="1"></span>
+            <span id="eyeSlash" tabindex="1"></span>
+          </div>
         </div>
         <button class="loginBtn">로그인</button>
       </form>
