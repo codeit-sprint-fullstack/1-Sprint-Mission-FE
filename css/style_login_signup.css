@@ -67,6 +67,11 @@ html {
 }
 
 .login_input {
+    &:focus {
+        border: 0.1rem;
+        border-style: solid;
+        border-color: var(--blue-color);
+    }
     max-width: 64rem;
     width : 100%;
     font-size: 1.6rem;
@@ -79,11 +84,6 @@ html {
     text-indent: 2.4rem ;
 }
 
-.login_input:focus {
-    border: 0.1rem;
-    border-style: solid;
-    border-color: var(--blue-color);
-}
 
 #login_pw {
     /* naming */
@@ -133,7 +133,7 @@ html {
     color: var(--gray800-color);
 }
 
-a#main_sec_simple_login_text {
+#main_sec_simple_login_text {
     margin-left : 2.3rem;
 }
 
@@ -159,6 +159,6 @@ a#main_sec_simple_login_text {
     align-self: center;
 }
 
-a.linktext {
+.linktext {
     color: var(--dodger-blue2-color);
 }
