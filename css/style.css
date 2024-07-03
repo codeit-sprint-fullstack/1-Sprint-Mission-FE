@@ -125,25 +125,38 @@ main {
     width: 100%;
 }
 
-.background_color_frame1 {
+.height540 {
+    height : 54rem;
+}
+
+.height720 {
+    height : 72rem;
+}
+
+.height138 {
+    height : 13.8rem;;
+}
+
+.background_color_onahau {
     background-color: var(--onahau-color);
 }
 
-.background_color_frame2 {
+.background_color_white {
     background-color: var(--white-color);
 }
 
 /* ===== content1 css ===== */
-#main_content1 {    
+.main_content_frame {    
     max-width : 120rem;
-    height : 54rem;
     margin: 0 auto;
-    position : relative;
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    height : 100%;    
 }
 
 #main_content1_grp_text_btn {
     position : relative;
-    top : 17rem;
     display : flex;
     flex-direction : column;
     justify-content : space-between;
@@ -159,6 +172,7 @@ main {
     /* line-height: 56px; */
     line-height: 1.4em;
     color: var(--oxford-blue-color);
+    margin-bottom : 2.4rem;
 }
 
 .textStyle_h5 {
@@ -179,6 +193,7 @@ main {
     /* line-height : 25.2px; */
     line-height : 1.4em;
     color : var(--dodger-blue-color);
+    margin-bottom : 1.2rem;
 }
 
 .textStyle_letterSpace_2p {
@@ -196,28 +211,18 @@ main {
 }
 
 #main_content1_img {
-    position : relative;
-    left : 34.1rem;
-    top : -10.7rem;
     max-width : 99.7rem;
     height : 44.7rem;
+    align-self : end;
+    margin-left : -1.7rem;
 }
 
 /* ===== content2 css ===== */
-#main_content2 {
-    /* naming */
-}
-
-.main_content {
-    width: 120rem;
-    height: 72rem;
-    margin : 0 auto;
-}
-
 .flex_justify_left {
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 6.4rem;
 }
 
 .flex_justify_right {
@@ -225,18 +230,12 @@ main {
     flex-direction: row;
     align-items: center;
     justify-content: right;
+    gap: 6.4rem;
 }
 
 #main_content2_grp_text_img {
     width : 95.5rem;
     height : 44.4rem;
-}
-
-.main_content_grp_frame {
-    display: flex;
-    flex-direction: row;
-    gap: 6.4rem;
-    align-items: center;
 }
 
 .main_content_img {
@@ -245,83 +244,31 @@ main {
     background-size: cover;
 }
 
-.flex_column_gap12px {
+.flex_column {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
-}
-
-.flex_column_gap24px {
-    display: flex;
-    flex-direction: column;
-    gap: 2.4rem;
-}
-
-#main_content2_grp_text {
-    width: 30.3rem;
-    height: 23.1rem;
-}
-
-.main_content2_grp_text_sub {
-    width: 30.3rem;
-    height: 19.4rem;
+    
 }
 
 /* ===== content3 css ===== */
-#main_content3 {
-    /* naming */
-}
-
 #main_content3_grp_text_img{
     width : 96.9rem;
     height : 44.4rem;
 }
 
-#main_content3_grp_text {
-    width : 31.7rem;
-    height : 23.1rem;
-}
-
-#main_content3_grp_text_sub {
-    width : 31.7rem;
-    height : 19.4rem;
-}
-
 /* ===== content4 css ===== */
-#main_content4 {
-    /* naming */
-}
-
 #main_con4_grp_text_img {
     width : 102.2rem;
     height : 44.4rem;
 }
 
-
-
+/* ===== blank ===== */
 #main_con_blank {
     max-width : 192rem;
-    width : 100%;
-    height : 13.8rem;
+    width : 100%;    
 }
 
 /* ===== content5 css ===== */
-#main_content5 {    
-    max-width : 120rem;
-    height : 54rem;
-    margin: 0 auto;
-    position : relative;
-}
-
-.main_content5_grp_text_img {
-    width : 120rem;
-    height : 54rem;
-    display : flex;
-    flex-direction : row;
-    justify-content : left;
-    align-items : center;
-}
-
 .main_content5_grp_text {
     display : block;
     width: 28.6rem;
@@ -330,15 +277,13 @@ main {
 
 #main_content5_text {
     white-space: nowrap;
-}
+} 
 
 #main_content5_1_img {
-    width: 100%;
+    max-width : 99.6rem;
     height: 54rem;
-    align-self : flex-end;
-    padding-left : 5.5rem;
-    background-size: cover;
-    overflow: visible;
+    align-self : end;
+    margin-left : 5.5rem;
  }
 
 footer {
@@ -377,14 +322,7 @@ footer {
     color: var(--gray-chateau-color);
 }
 
-#footer_title {
-    width : 11.2rem;
-    height : 1.9rem;
-}
-
 #footer_link_texts {
-    width : 15.9rem;
-    height : 1.9rem;
     display : flex;
     flex-direction : row;
     flex-wrap : nowrap;
@@ -397,8 +335,6 @@ footer {
 }
 
 #footer_link_icons {
-    width: 11.6rem;
-    height: 2rem;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
