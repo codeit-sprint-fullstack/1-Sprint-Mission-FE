@@ -19,11 +19,14 @@ html {
     display : block;
     position : relative;
 
-    --gray-chateau-color : #9CA3AF;
-    --athens-color : #F3F4F6;
-    --dodger-blue-color : #3692FF;
+    --gray800-color : #1F2937; 
+    --gray400-color : #9CA3AF;
+    --gray100-color : #F3F4F6;
+    --blue-color : #3692FF;
+
+    /* to name color, use
+    https://chir.ag/projects/name-that-color/#6195ED */
     --solitude-color : #E6F2FF;
-    --ebony-clay-color : #1F2937; 
     --dodger-blue2-color :#3182F6;
 }
 
@@ -60,26 +63,27 @@ html {
     font-size : 1.8rem;
     font-weight : 700;
     line-height : 1.19333em;
-    color : var(--ebony-clay-color);
+    color : var(--gray800-color);
 }
 
 .login_input {
     &:focus {
         border: 0.1rem;
         border-style: solid;
-        border-color: var(--dodger-blue-color);
+        border-color: var(--blue-color);
     }
     max-width: 64rem;
     width : 100%;
     font-size: 1.6rem;
     font-weight: 400;
-    color: var(--gray-chateau-color);
+    color: var(--gray400-color);
     height: 5.6rem;
     border-radius: 0.75em;
-    background-color: var(--athens-color);
+    background-color: var(--gray100-color);
     border: none;
     text-indent: 2.4rem ;
 }
+
 
 #login_pw {
     /* naming */
@@ -106,6 +110,11 @@ html {
     border : none;
 }
 
+#btn_login {
+    width : 64rem;
+    height : 5.6rem;
+}
+
 #main_sec_grp_simple_login {
     width: 64rem;
     height: 7.4rem;
@@ -121,10 +130,10 @@ html {
     font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.5em;
-    color: var(--ebony-clay-color);
+    color: var(--gray800-color);
 }
 
-a#main_sec_simple_login_text {
+#main_sec_simple_login_text {
     margin-left : 2.3rem;
 }
 
@@ -146,10 +155,10 @@ a#main_sec_simple_login_text {
     font-size: 1.5rem;
     font-weight: 500;
     line-height: 1.19333em;
-    color: var(--ebony-clay-color);
+    color: var(--gray800-color);
     align-self: center;
 }
 
-a.linktext {
+.linktext {
     color: var(--dodger-blue2-color);
 }
