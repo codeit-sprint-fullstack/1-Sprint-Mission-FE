@@ -13,18 +13,6 @@ html {
 .root {
     display : block;
     position : relative;
-    
-    --gray900-color : #111827;
-    --gray700-color : #374151;
-    --gray600-color : #4B5563;
-    --gray400-color : #9CA3AF;
-    --blue-color : #3692FF;
-
-    /* to name color, use
-    https://chir.ag/projects/name-that-color/#6195ED */
-    --alto-color : #DFDFDF;
-    --onahau-color : #CFE5FF;
-    --white-color : #FFFFFF;    
 }
 
 header {
@@ -172,12 +160,9 @@ main {
     font-weight: 700;
     /* line-height: 56px; */
     line-height: 1.4em;
-<<<<<<< HEAD
     color: var(--gray700-color);
-=======
-    color: var(--oxford-blue-color);
     margin-bottom : 2.4rem;
->>>>>>> optimization
+
 }
 
 .textStyle_h5 {
@@ -197,12 +182,8 @@ main {
     font-weight : 700;
     /* line-height : 25.2px; */
     line-height : 1.4em;
-<<<<<<< HEAD
     color : var(--blue-color);
-=======
-    color : var(--dodger-blue-color);
     margin-bottom : 1.2rem;
->>>>>>> optimization
 }
 
 .textStyle_letterSpace_2p {
@@ -357,6 +338,18 @@ footer {
     /* cursor : pointer; */
 }
 
-body {
-    background : var(--main-frame1color);
+body {    
+    --gray900-color : #111827;
+    --gray700-color : #374151;
+    --gray600-color : #4B5563;
+    --gray400-color : #9CA3AF;
+    --blue-color : #3692FF;
+
+    /* to name color, use
+    https://chir.ag/projects/name-that-color/#6195ED */
+    --alto-color : #DFDFDF;
+    --onahau-color : #CFE5FF;
+    --white-color : #FFFFFF; 
+
+    background-color : var(--onahau-color);
 }
