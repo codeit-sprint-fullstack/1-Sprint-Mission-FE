@@ -13,17 +13,6 @@ html {
 .root {
     display : block;
     position : relative;
-    
-    /* to name color, used
-    https://chir.ag/projects/name-that-color/#6195ED */
-    --alto-color : #DFDFDF;
-    --river-bed-color : #4B5563;
-    --onahau-color : #CFE5FF;
-    --white-color : #FFFFFF;
-    --oxford-blue-color : #374151;
-    --dodger-blue-color : #3692FF;
-    --ebony-color : #111827;
-    --gray-chateau-color : #9CA3AF;
 }
 
 header {
@@ -82,7 +71,7 @@ header {
     font-size : 1.8rem;
     /* line-height : 21.48px; */
     line-height : 1.19333em;
-    color : var(--river-bed-color);
+    color : var(--gray600-color);
     justify-content : center;
     align-items: center;
     cursor : pointer;
@@ -171,8 +160,9 @@ main {
     font-weight: 700;
     /* line-height: 56px; */
     line-height: 1.4em;
-    color: var(--oxford-blue-color);
+    color: var(--gray700-color);
     margin-bottom : 2.4rem;
+
 }
 
 .textStyle_h5 {
@@ -182,7 +172,7 @@ main {
     /* line-height: 28.8px; */
     line-height: 1.2em;
     letter-spacing: 0.08em;
-    color: var(--oxford-blue-color);
+    color: var(--gray700-color);
     white-space: nowrap;
 }
 
@@ -192,7 +182,7 @@ main {
     font-weight : 700;
     /* line-height : 25.2px; */
     line-height : 1.4em;
-    color : var(--dodger-blue-color);
+    color : var(--blue-color);
     margin-bottom : 1.2rem;
 }
 
@@ -291,7 +281,7 @@ footer {
     max-width : 192rem;
     width: 100%;
     height: 16rem;
-    background-color: var(--ebony-color);
+    background-color: var(--gray900-color);
     margin : 0 auto;
 }
 
@@ -319,7 +309,7 @@ footer {
     font-weight: 400;
     /* line-height: 19.09px; */
     line-height : 1.193125em;
-    color: var(--gray-chateau-color);
+    color: var(--gray400-color);
 }
 
 #footer_link_texts {
@@ -331,7 +321,7 @@ footer {
 
 .link_text {
     text-decoration: none;
-    color: var(--gray-chateau-color);
+    color: var(--gray400-color);
 }
 
 #footer_link_icons {
@@ -348,6 +338,18 @@ footer {
     /* cursor : pointer; */
 }
 
-body {
-    background : var(--main-frame1color);
+body {    
+    --gray900-color : #111827;
+    --gray700-color : #374151;
+    --gray600-color : #4B5563;
+    --gray400-color : #9CA3AF;
+    --blue-color : #3692FF;
+
+    /* to name color, use
+    https://chir.ag/projects/name-that-color/#6195ED */
+    --alto-color : #DFDFDF;
+    --onahau-color : #CFE5FF;
+    --white-color : #FFFFFF; 
+
+    background-color : var(--onahau-color);
 }
