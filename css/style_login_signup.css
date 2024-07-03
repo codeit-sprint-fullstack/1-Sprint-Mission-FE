@@ -67,6 +67,11 @@ html {
 }
 
 .login_input {
+    &:focus {
+        border: 0.1rem;
+        border-style: solid;
+        border-color: var(--dodger-blue-color);
+    }
     max-width: 64rem;
     width : 100%;
     font-size: 1.6rem;
@@ -79,12 +84,15 @@ html {
     text-indent: 2.4rem ;
 }
 
+<<<<<<< HEAD
 .login_input:focus {
     border: 0.1rem;
     border-style: solid;
     border-color: var(--blue-color);
 }
 
+=======
+>>>>>>> optimization
 #login_pw {
     /* naming */
 }
