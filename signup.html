@@ -14,14 +14,20 @@
     <img src="img/판다마켓.png" class="login_img_2">
   </a>
   <form>
-    <label for="user-email">이메일</label>
-    <input id="user-email" placeholder="이메일을 입력해주세요">
-    <label for="user-nickname">닉네임</label>
-    <input id="user-nickname" placeholder="닉네임을 입력해주세요">
-    <label for="password">비밀번호</label>
-    <input id="password" placeholder="비밀번호를 입력해주세요" type="password">
-    <label for="password">비밀번호 확인</label>
-    <input id="password" placeholder="비밀번호를 다시 한 번 입력해주세요" type="password">
+    <label for="user_email">이메일</label>
+    <input id="user_email" placeholder="이메일을 입력해주세요">
+    <label for="user_nickname">닉네임</label>
+    <input id="user_nickname" placeholder="닉네임을 입력해주세요">
+    <div class="password2">
+      <label for="password">비밀번호</label>
+      <input id="password" placeholder="비밀번호를 입력해주세요" type="password">
+      <img src="img/eyeclose.png" id="pass_icon"> 
+    </div>
+    <div class="password2">
+      <label for="password_check">비밀번호 확인</label>
+      <input id="password_check" placeholder="비밀번호를 다시 한 번 입력해주세요" type="password">
+      <img src="img/eyeclose.png" id="check_icon">
+    </div>
     <button>회원가입</button>
     <div class="convenience"> 
       <div class="convenience_text">간편 로그인하기</div>
@@ -32,5 +38,6 @@
     </div>
     <div class="signup">이미 회원이신가요? <a href="login.html" class="signup_button">로그인</a></div>
   </form>
+  <script src="index.js"></script>
 </body>
 </html>

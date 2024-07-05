@@ -25,7 +25,7 @@ a:hober {
 }
 
 
-body {
+main {
   overflow-x: hidden;
 }
 
@@ -312,6 +312,24 @@ input {
   font-family: Pretendard, sans-serif;
 }
 
+
+.password1 {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+.password2 {
+  position: relative;
+}
+#pass_icon,
+#check_icon {
+  position: absolute;
+  top:53px;
+  right:24px;
+  width:24px;
+  cursor:pointer;
+}
+
 input:focus {
   outline-color: var(--brand-blue);
 }
@@ -545,7 +563,7 @@ button {
   .headline2_pic,
   .headline3_pic,
   .headline4_pic {
-    max-width: 100%;
+    max-width: 400px;
     width: 100%;
     height: auto;
     margin:0 0 8px;
@@ -561,6 +579,7 @@ button {
   .headline4_text {
     height: auto;
     width: 100%; 
+    max-width: 400px;
     margin: 0;
   }
 
