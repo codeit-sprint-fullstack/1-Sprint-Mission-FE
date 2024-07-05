@@ -59,33 +59,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('.pwsetting img').on('click', function () {
-                if ($(this).hasClass('non-show')) {
-                    $('#pw').attr('type', 'text');
-                    $(this).hide();
-                    $('.show').show();
-                } else if ($(this).hasClass('show')) {
-                    $('#pw').attr('type', 'password');
-                    $(this).hide();
-                    $('.non-show').show();
-                }
-            });
-        });
 
-        $(document).ready(function () {
-            $('.pwsetting-check img').on('click', function () {
-                if ($(this).hasClass('non-show-check')) {
-                    $('#pwcheck').attr('type', 'text');
-                    $(this).hide();
-                    $('.show-check').show();
-                } else if ($(this).hasClass('show-check')) {
-                    $('#pwcheck').attr('type', 'password');
-                    $(this).hide();
-                    $('.non-show-check').show();
-                }
-            });
-        });
     </script>
 </body>
 </html>
