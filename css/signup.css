@@ -25,31 +25,30 @@ input {
   margin: 0;
 }
 
-.signup_info > p {
-  font-size: 18px;
-  font-weight: 700;
-  text-align: left;
-  margin-bottom: 16px;
-}
+.signup_info {
+  & p {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+  & input {
+    width: 640px;
+    height: 56px;
+    border-radius: 12px;
+    border: none;
+    background-color: var(--input-background-color);
 
-.signup_info > input {
-  width: 640px;
-  height: 56px;
-  border-radius: 12px;
-  border: none;
-  background-color: var(--input-background-color);
-
-  font-size: 16px;
-  font-weight: 400;
-  margin-bottom: 24px;
-}
-
-.signup_info > input::placeholder {
-  color: var(--input-text-color);
-}
-
-.signup_info > input:focus {
-  border: var(--input-focus);
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 24px;
+  }
+  & input::placeholder {
+    color: var(--input-text-color);
+  }
+  & input:focus {
+    border: var(--input-focus);
+  }
 }
 
 .signup_password {
