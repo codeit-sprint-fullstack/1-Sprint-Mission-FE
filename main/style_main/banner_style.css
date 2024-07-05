@@ -1,6 +1,6 @@
 #section-top-bottom {
-    background-color: #CFE5FF;
     height: 540px;
+    background-color: #CFE5FF;
 }
 
 #section-main {
@@ -8,51 +8,42 @@
 }
 
 .banner-box-set {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#bottom-bg-img {
-    display: flex;
-    align-items: flex-end;
-    position: relative;
-    left: 80px;
-    object-fit: scale-down;    
-}
-
-#top-bg-img {
-    height: 100%;
-    display: flex;
-    align-items: flex-end;
-    object-fit: none;    
-}
-
-.fixed-banner-size {
-    width: 1200px;
-    height: 100%;
-    display: flex;
+    min-width: 1200px;
     flex-direction: row;
-    justify-content: space-around;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .top-bottom-string-box {
     display: flex;
+    padding: 0px 30px;
     flex-direction: column;
     justify-content: center;
-    overflow: visible;
     position: relative;
     left: 15px;
 }
 
+#goto-lookin-item > a {
+    width: 360px;
+    height: 60px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 40px;
+    background-color: #3692ff;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .banner-string-box {
-    padding: 0px 50px auto 0px;
+    padding: 0px 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-weight: 700;
-
 }
 
 .right-align {
@@ -66,29 +57,35 @@
 
 .key-sring {
     font-size: 40px;
-    line-height: 56px;
+    padding: 30px 0px;
     display: flex;
     flex-direction: column;
-
 }
+
 
 .description-sring {
     font-size: 24px;
     font-weight: 500;
-    line-height: 28.8px;
     display: flex;
     flex-direction: column;
+}
+
+
+#top-bg-img {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
     overflow: hidden;
 }
 
-#goto-lookin-item {
-    width: 360px;
-    height: 60px;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 40px;
-    background-color: #3692ff;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
+#bottom-bg-img {
+    padding-left: 80px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
 }
+
+
+
+
+
