@@ -6,7 +6,7 @@ input {
   width: 100%;
 }
 
-.sigup_page {
+.signup_page {
   display: flex;
   flex-direction: column;
   width: 640px;
@@ -15,12 +15,12 @@ input {
   margin: 0 auto;
 }
 
-.sigup_page > a > img {
+.signup_page > a > img {
   margin-top: 50px;
   margin-bottom: 40px;
 }
 
-.siginup_box {
+.signup_box {
   height: 664px;
   margin: 0;
 }
@@ -49,7 +49,7 @@ input {
 }
 
 .signup_info > input:focus {
-  border: var(--input-forcus);
+  border: var(--input-focus);
 }
 
 .signup_password {
@@ -64,10 +64,10 @@ input {
   margin: auto 2px;
   height: 30px;
   font-size: 22px;
-  color: var(--input-forcus-eye);
+  color: var(--input-focus-eye);
 }
 
-.siginup_box > button {
+.signup_box > button {
   width: 640px;
   height: 56px;
   background-color: var(--btn-background-color);
