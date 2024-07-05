@@ -39,7 +39,6 @@
 
       gtag('config', 'G-WC2LGS3PNS');
     </script>
-    s
 
     <title>판다마켓</title>
     <link rel="icon" href="../img/favicon.svg" />
@@ -57,7 +56,7 @@
     </header>
 
     <main class="login-main">
-      <form action="signup">
+      <form id="signup-form">
         <label for="useremail"> 이메일 </label>
         <input
           type="email"
@@ -79,28 +78,30 @@
           <input
             type="password"
             name="userpw"
+            class="userpw"
             id="userpw"
             placeholder="비밀번호를 입력해주세요"
           />
           <img
-            class="eye-off"
+            class="eye-icon"
             src="../img/btn_visibility_off_24px.svg"
-            alt="비밀보호 안보이는 눈 아이콘"
+            alt=""
           />
         </div>
 
         <div class="userpw-input">
-          <label for="userpw"> 비밀번호 확인 </label>
+          <label for="checkpw"> 비밀번호 확인 </label>
           <input
             type="password"
-            name="userpw"
-            id="userpw"
+            name="checkpw"
+            class="userpw"
+            id="checkpw"
             placeholder="비밀번호를 입력해주세요"
           />
           <img
-            class="eye-off"
+            class="eye-icon"
             src="../img/btn_visibility_off_24px.svg"
-            alt="비밀보호 안보이는 눈 아이콘"
+            alt=""
           />
         </div>
         <button type="submit" id="signup" name="signup">회원가입</button>
@@ -123,5 +124,6 @@
       </div>
       <span>이미 회원이신가요? <a href="../login/">로그인</a></span>
     </main>
+    <script type="module" src="../js/signup.js"></script>
   </body>
 </html>

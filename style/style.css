@@ -370,6 +370,7 @@ form button:focus {
 
 .login-main span a:focus {
   outline-color: #3692ff;
+  /* margin-bottom: 100px; */
 }
 
 .userpw-input {
@@ -378,7 +379,7 @@ form button:focus {
   position: relative;
 }
 
-.eye-off {
+.eye-icon {
   position: absolute;
   top: 0;
   right: 0;
