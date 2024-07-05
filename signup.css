@@ -1,3 +1,13 @@
+:root {
+  --input-color: #F3F4F6;
+  --gray400-color: #9CA3AF;
+  --gray800-color: #1F2937;
+  --blue-color: #3692ff;
+  --blue2-color: #3182F6;
+  --white-color: #ffffff;
+  --background-color: #E6F2FF;
+}
+
 @font-face {
   font-family: 'Pretendard-Regular';
   src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -39,10 +49,10 @@ label {
 }
 
 input {
-  background-color: #F3F4F6;
+  background-color: var(--input-color);
   border: none;
   border-radius: 12px;
-  color: #9CA3AF;
+  color: var(--gray400-color);
   font-size: 16px;
   height: 56px;
   margin: 0 0 24px;
@@ -50,14 +60,14 @@ input {
 }
 
 input:focus {
-  border: 1px solid #3692ff;
+  border: 1px solid var(--blue-color);
 }
 
 button {
-  background-color: #9CA3AF;
+  background-color: var(--gray400-color);
   border: none;
   border-radius: 40px;
-  color: #ffffff;
+  color: var(--white-color);
   cursor: pointer;
   font-size: 20px;
   font-weight: 600;
@@ -65,11 +75,22 @@ button {
   width: 640px;
 }
 
+.password, .password-repeat {
+  position: relative;
+}
+
+.password-image {
+  position: absolute;
+  bottom: 42px;
+  right: 24px;
+  width: 24px;
+}
+
 .sns-login {
   align-items: center;
-  background-color: #E6F2FF;
+  background-color: var(--background-color);
   border-radius: 8px;
-  color: #1F2937;
+  color: var(--gray800-color);
   display: flex;
   font-size: 16px;
   font-weight: 500;
@@ -96,6 +117,6 @@ button {
 }
 
 .login-us {
-  color: #3182F6;
+  color: var(--blue2-color);
   text-decoration: underline;
 }

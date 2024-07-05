@@ -6,6 +6,15 @@
   <title>로그인</title>
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="login.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7F0PR29DX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-E7F0PR29DX');
+  </script>
 </head>
 <body>
   <header>
@@ -21,6 +30,7 @@
         <div class="password">
           <label for="password">비밀번호</label>
           <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
+          <img src="images/password.png" class="password-image">
         </div>
         <button>로그인</button>
       </form>
