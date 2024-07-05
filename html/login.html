@@ -28,10 +28,10 @@
             <label for="pw">비밀번호</label>
             <div class="pwsetting">
                 <input id="pw" type="password" placeholder="비밀번호를 입력해주세요">
-                <img src="/image/eye-btn.png" class="eye-size non-show">
+                <img src="/image/eye-btn.png" class="eye-size non-show" >
                 <img src="/image/eye-show.png" class="eye-size show">
             </div>
-            <button class="login-btn" type="submit">로그인</button>
+            <button class="login-btn" id="login-btn" type="button">로그인</button>
         </form>
         <div class="easy-login">
             <p>간편 로그인하기</p>
@@ -48,22 +48,7 @@
             <p>판다마켓이 처음이신가요? <a href="/html/signup.html" class="signup-link">회원가입</a></p>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.pwsetting img').on('click', function () {
-                if ($(this).hasClass('non-show')) {
-                    $('#pw').attr('type', 'text');
-                    $(this).hide();
-                    $('.show').show();
-                } else if ($(this).hasClass('show')) {
-                    $('#pw').attr('type', 'password');
-                    $(this).hide();
-                    $('.non-show').show();
-                }
-            });
-        });
-    </script>
+    <script src="../index.js" type="module"></script>
 </body>
 
 </html>
