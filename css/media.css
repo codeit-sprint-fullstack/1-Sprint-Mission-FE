@@ -88,7 +88,7 @@
 
     .nav_bar {
         margin-left: 8px;
-        gap: 15px;
+        gap: 8px;
     }
 
     .nav_content {
@@ -96,11 +96,18 @@
         font-weight: 700;
         line-height: 19.09px;
         text-align: center;
+        width: 70px;
     }
 
     .header_box,
     .footer_box {
         width: 100%;
+        gap: 8px;
+    }
+
+    .footer_box {
+        flex-direction: column;
+        justify-content: center;
     }
 
     .home_banner_max_size {
@@ -132,18 +139,18 @@
         text-align: center;
     }
 
-    .footer_box>p {
+    /* .footer_box>p {
         margin-left: 16px;
     }
 
     .sns_box {
         margin-right: 16px;
-    }
+    } */
 
     .logo_img {
         width: 81px;
         height: 40px;
-        /* background-image: url('../image/mb_logo.png'); */
+        content: url('../image/mb_logo.png');
         margin-left: 16px;
     }
 
