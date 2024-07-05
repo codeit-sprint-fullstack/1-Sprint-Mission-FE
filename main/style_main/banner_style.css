@@ -47,22 +47,15 @@
 }
 
 .banner-string-box {
-    /* margin: 0px 64px; */
-    /* padding: 64px;
-    width: auto; */
-    /* width: 45%; */
-    /* width: 540px; */
     padding: 0px 50px auto 0px;
-    /* padding: 45px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-weight: 700;
+
 }
 
 .right-align {
-    /* display: flex; */
-    /* justify-content: flex-end; */
     text-align: right;
 }
 
@@ -76,6 +69,7 @@
     line-height: 56px;
     display: flex;
     flex-direction: column;
+
 }
 
 .description-sring {
@@ -84,6 +78,7 @@
     line-height: 28.8px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 #goto-lookin-item {

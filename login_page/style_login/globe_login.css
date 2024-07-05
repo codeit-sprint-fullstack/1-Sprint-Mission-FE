@@ -69,7 +69,6 @@ button {
     right: 15px;
 }
 
-
 input::placeholder {
     color: var(--keycolor-gray);
 }
