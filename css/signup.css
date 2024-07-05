@@ -26,6 +26,7 @@ input {
 }
 
 .signup_info {
+  margin-bottom: 24px;
   & p {
     font-size: 18px;
     font-weight: 700;
@@ -38,10 +39,8 @@ input {
     border-radius: 12px;
     border: none;
     background-color: var(--input-background-color);
-
     font-size: 16px;
     font-weight: 400;
-    margin-bottom: 24px;
   }
   & input::placeholder {
     color: var(--input-text-color);
@@ -50,6 +49,9 @@ input {
     border: var(--input-focus);
   }
 }
+.signup_nickname {
+  margin-bottom: 24px;
+}
 
 .signup_password {
   position: relative;
@@ -57,10 +59,9 @@ input {
 
 .signup_password i {
   position: absolute;
-  top: 32px;
-  bottom: 9px;
+  margin-top: 20px;
+  align-items: center;
   right: 16px;
-  margin: auto 2px;
   height: 30px;
   font-size: 22px;
   color: var(--input-focus-eye);
@@ -83,4 +84,13 @@ input {
   display: flex;
   justify-content: center;
   gap: 4px;
+}
+
+.error-text {
+  color: #f74747;
+  text-align: left;
+  width: 600;
+  font-size: 15px;
+  margin-left: 16px;
+  margin-top: 8px;
 }

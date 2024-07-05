@@ -37,51 +37,45 @@ input {
 .login_box {
   margin: 0;
 }
-
-.member_info > p {
-  font-size: 1.8rem;
-  font-weight: 700;
-  text-align: left;
-  margin-bottom: 1.6rem;
-}
-
-.member_info > input {
-  width: 640px;
-  height: 5.6rem;
-  border-radius: 12px;
-  border: none;
-  background-color: var(--input-background-color);
-  font-size: 1.6rem;
-  font-weight: 400;
+.member_info {
   margin-bottom: 24px;
-}
-
-.member_info > input::placeholder {
-  color: var(--input-text-color);
-}
-
-.member_info > input:focus {
-  border: var(--input-forcus);
+  & p {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 1.6rem;
+  }
+  & input {
+    width: 640px;
+    height: 5.6rem;
+    border-radius: 12px;
+    border: none;
+    background-color: var(--input-background-color);
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+  & input::placeholder {
+    color: var(--input-text-color);
+  }
+  & input:focus {
+    border: var(--input-focus);
+  }
 }
 
 .input_password {
   position: relative;
 }
 
-.input_password .eyes {
+.input_password i {
   position: absolute;
-  top: 32px;
-  bottom: 16px;
+  margin-top: 20px;
+  align-items: center;
   right: 16px;
-  margin: auto 2px;
   height: 30px;
-  font-size: 2.2rem;
+  font-size: 22px;
   color: var(--input-focus-eye);
 }
 
-input:focus > .eyes {
-  display: none;
-}
 .login_box > button {
   width: 640px;
   height: 56px;

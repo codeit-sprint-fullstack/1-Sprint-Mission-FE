@@ -1,7 +1,7 @@
 
 
-const mPassword = document.querySelector('.m_password');
-const showPw = document.querySelector('#show_pw');
+const mPassword = document.querySelector('.login_m_password');
+const showPw = document.querySelector('#login_show_pw');
 
 showPw.addEventListener("click", function () {
   if (mPassword.type === "password") {
@@ -17,25 +17,11 @@ showPw.addEventListener("click", function () {
 
 
 
-const mPasswordSecond = document.querySelector('.m_password_second');
-const showPwSecond = document.querySelector('#show_pw_second');
-
-showPwSecond.addEventListener("click", function () {
-  if (mPasswordSecond.type === "password") {
-    mPasswordSecond.type = "text";
-    showPwSecond.classList.remove("fa-eye-slash");
-    showPwSecond.classList.add("fa-eye");
-  } else {
-    mPasswordSecond.type = "password";
-    showPwSecond.classList.remove("fa-eye");
-    showPwSecond.classList.add("fa-eye-slash");
-  }
-});
 
 
-const userEmail = document.querySelector('#signup_user_email')
-const emailMsg1 = document.querySelector("#signup_emailMsg1")
-const emailMsg2 = document.querySelector("#signup_emailMsg2")
+const userEmail = document.querySelector('#login_user_email')
+const emailMsg1 = document.querySelector("#login_emailMsg1")
+const emailMsg2 = document.querySelector("#login_emailMsg2")
 
 
 userEmail.addEventListener("blur", function () {
@@ -58,9 +44,9 @@ userEmail.addEventListener("blur", function () {
 
 });
 
-const userPassword = document.querySelector('#signup_user_password')
-const pswdMsg1 = document.querySelector("#signup_pswdMsg1")
-const pswdMsg2 = document.querySelector("#signup_pswdMsg2")
+const userPassword = document.querySelector('#login_user_password')
+const pswdMsg1 = document.querySelector("#login_pswdMsg1")
+const pswdMsg2 = document.querySelector("#login_pswdMsg2")
 
 
 userPassword.addEventListener("blur", function () {
@@ -68,6 +54,7 @@ userPassword.addEventListener("blur", function () {
     pswdMsg1.style.display = "block";
     userPassword.style.border = '1px solid #F74747';
     pswdMsg2.style.display = "none";
+
   } else {
     pswdMsg1.style.display = "none";
     userPassword.style.border = 'none';
@@ -78,21 +65,6 @@ userPassword.addEventListener("blur", function () {
       pswdMsg2.style.display = "none";
       userPassword.style.border = 'none';
     }
-  }
-
-});
-
-const userPassword2 = document.querySelector('#signup_user_password2')
-const pswdMsg3 = document.querySelector("#signup_pswdMsg3")
-
-
-userPassword2.addEventListener("blur", function () {
-  if (userPassword.value !== userPassword2.value) {
-    pswdMsg3.style.display = "block";
-    userPassword2.style.border = '1px solid #F74747';
-  } else {
-    pswdMsg3.style.display = "none";
-    userPassword2.style.border = 'none';
   }
 
 });

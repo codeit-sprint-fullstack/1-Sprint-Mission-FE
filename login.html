@@ -34,18 +34,39 @@
               <input
                 type="email"
                 name="userid"
-                placeholder="이메일을 입력해주세요"
+                id="login_user_email"
+                placeholder="이메일을 입력해 주세요"
               />
+              <div
+                class="error-text"
+                id="login_emailMsg1"
+                style="display: none"
+              >
+                이메일을 입력하세요
+              </div>
+              <div
+                class="error-text"
+                id="login_emailMsg2"
+                style="display: none"
+              >
+                잘못된 이메일 형식입니다
+              </div>
             </div>
             <div class="input_password member_info">
               <p>비밀번호</p>
               <input
                 type="password"
                 name="password"
+                class="login_m_password"
+                id="login_user_password"
                 placeholder="비밀번호를 입력해주세요"
               />
-              <div id="icon" class="eyes">
-                <i id="icon" class="fa-regular fa-eye-slash"></i>
+              <i id="login_show_pw" class="fa-regular fa-eye-slash"></i>
+              <div class="error-text" id="login_pswdMsg1" style="display: none">
+                비밀번호를 입력해주세요
+              </div>
+              <div class="error-text" id="login_pswdMsg2" style="display: none">
+                비밀번호를 8자 이상 입력해 주세요
               </div>
             </div>
           </div>
@@ -72,5 +93,6 @@
       src="https://kit.fontawesome.com/f7b1c4a12a.js"
       crossorigin="anonymous"
     ></script>
+    <script src="./js/login.js"></script>
   </body>
 </html>
