@@ -155,42 +155,27 @@ main {
   z-index: 150;
 }
 /* hotItem */
-.hotItem.section,
-.search.section,
-.register.section {
-  height: 72rem;
-}
-.hotItemContainer,
-.searchContainer,
-.registerContainer {
+.mainContainer .container {
   width: 100%;
   height: 44.4rem;
   display: flex;
   align-items: center;
   gap: 5%;
 }
-.hotItemImg,
-.searchImg,
-.registerImg {
+.container .img {
   width: 50%;
   height: 44.4rem;
 }
-.hotItemContentContainer,
-.searchContentContainer, 
-.registerContentContainer {
+.contentContainer {
   width: 45%;
   display: flex;
   flex-direction: column;
 }
-.hotItemContent,
-.searchContent,
-.registerContent {
+.container .content {
   margin-top: 1.2rem;
   margin-bottom: 2.4rem;
 }
-.hotItemContentDescription,
-.searchContentDescription,
-.registerContentDescription {
+.contentDescription {
   font-size: 2.4rem;
   font-weight: 500;
   line-height: 120%;
@@ -201,7 +186,7 @@ main {
 .searchContainer {
   justify-content: flex-end;
 }
-.searchContentContainer {
+.search .contentContainer {
   text-align: right;
 }
 /* banner */
