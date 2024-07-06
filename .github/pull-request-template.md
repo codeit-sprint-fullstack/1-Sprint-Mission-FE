@@ -110,10 +110,10 @@
 
 ## 스크린샷
 
-![image](./page_img/index.pmg)
-![image](./page_img/login.pmg)
-![image](./page_img/signup.pmg)
-![image](./page_img/g_analytics.pmg)
+![image](../page_img/index.png)
+![image](../page_img/login.png)
+![image](../page_img/signup.png)
+![image](../page_img/g_analytics.png)
 
 ## 멘토에게
 
