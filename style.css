@@ -186,7 +186,7 @@ main {
 .searchContainer {
   justify-content: flex-end;
 }
-.search .contentContainer {
+.search.contentContainer {
   text-align: right;
 }
 /* banner */
