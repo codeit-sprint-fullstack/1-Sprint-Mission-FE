@@ -23,17 +23,16 @@ label {
   height: 13.2rem;
 }
 .login.mainContent {
-  height: 43rem;
+  height: 48.2rem;
 }
 .signup.mainContent {
-  height: 66.4rem;
+  height: 74.2rem;
 }
 .mainContent {
   width: 64rem;
   color: var(--loginFontBlack);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 2.4rem;
   position: relative;
 }
@@ -42,7 +41,6 @@ label {
   height: 11.9rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   position: relative;
 }
 .inputForm {
@@ -52,8 +50,10 @@ label {
   background-color: var(--inputBack);
   border: 1px solid var(--backWhite);
   border-radius: 1.2rem;
+  outline: none;
 }
 .errorMessage {
+  display: none;
   height: 2.6rem;
   padding-top: 0.8rem;
   padding-left: 1.6rem;
@@ -61,11 +61,11 @@ label {
   color: var(--errorRed);
 }
 .inputForm:focus {
-  outline: none;
   border: 1px solid var(--mainBlue);
 }
 .inputForm.error {
   border: 1px solid var(--errorRed);
+  display: none;
 }
 .inputForm::placeholder {
   color: var(--fontGray);
@@ -78,7 +78,7 @@ label {
   height: 2.4rem;
   position: absolute;
   right: 2.4rem;
-  bottom: 4.2rem;
+  top: 5.1rem;
 }
 .slashed.eye {
   display: none;
