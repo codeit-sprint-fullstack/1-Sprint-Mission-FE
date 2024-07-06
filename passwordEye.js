@@ -4,7 +4,7 @@ function clickEye(myPasswordBox, myPasswordForm) {
   const eye = passwordBox.querySelector(".eye");
   const slashedEye = passwordBox.querySelector(".slashed.eye");
 
-  eye.addEventListener("click", function() {
+  eye.addEventListener("click", () => {
     if(passwordInput.type === "password") {
       passwordInput.type = "text";
       eye.style.display = "none"
@@ -15,7 +15,7 @@ function clickEye(myPasswordBox, myPasswordForm) {
       slashedEye.style.display = "none"
     }
   });
-  slashedEye.addEventListener("click", function() {
+  slashedEye.addEventListener("click", () => {
     if(passwordInput.type === "password") {
       passwordInput.type = "text";
       eye.style.display = "none"
