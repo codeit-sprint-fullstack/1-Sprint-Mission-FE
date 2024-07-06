@@ -75,7 +75,6 @@ label {
 }
 .loginButton,
 .joinButton {
-  display: block;
   height: 5.6rem;
   background-color: var(--fontGray);
   border: 1px solid var(--backWhite);
