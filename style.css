@@ -247,10 +247,7 @@ footer {
   color: var(--fontCoolGray);
   text-decoration: none;
 }
-.facebook,
-.youtube,
-.twitter,
-.instagram {
+.socialIcon {
   width: 2rem;
   height: 2rem;
 }
