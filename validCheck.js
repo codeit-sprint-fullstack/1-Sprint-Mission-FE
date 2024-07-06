@@ -17,6 +17,8 @@ email.addEventListener('focusout',() => {
 
 const password = document.getElementById('password');
 const passwordError = document.querySelector('.password.errorMessage');
+const checkPassword = document.getElementById('checkPassword');
+const checkPasswordError = document.querySelector('.checkPassword.errorMessage');
 
 password.addEventListener('focusout', () => {
   if(!password.value){
@@ -29,5 +31,22 @@ password.addEventListener('focusout', () => {
     password.classList.remove('error');
     passwordError.textContent = '';
   }
+  /* 확인 칸에 입력값이 있을 때*/
+  if(checkPassword.value && (password.value === checkPassword.value)){
+    checkPassword.classList.remove('error');
+    checkPasswordError.textContent = '';
+  }
 });
 
+checkPassword.addEventListener('focusout', () => {
+  if(!checkPassword.value){
+    checkPassword.classList.add('error');
+    checkPasswordError.textContent = '비밀번호를 입력해주세요.';
+  } else if(checkPassword.value !== password.value) {
+    checkPassword.classList.add('error');
+    checkPasswordError.textContent = '비밀번호가 일치하지 않습니다.';
+  } else {
+    checkPassword.classList.remove('error');
+    checkPasswordError.textContent = '';
+  }
+});
