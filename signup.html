@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DH5XSKZSK4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-DH5XSKZSK4');
+    </script>
+    <link rel="stylesheet" href="./css/signup.css"/>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <link rel="icon" href="./img/face.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8"/>
+    <title>판다마켓</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      // Check javascript has loaded
+      $(document).ready(function(){
+
+      // Click event of the showPassword button
+      $('#showPassword').on('click', function(){
+
+        // Get the password field
+        var passwordField = $('#pw');
+
+        // Get the current type of the password field will be password or text
+        var passwordFieldType = passwordField.attr('type');
+
+        // Check to see if the type is a password field
+        if(passwordFieldType == 'password')
+        {
+            // Change the password field to text
+            passwordField.attr('type', 'text');
+
+            // Change the image on the show password button to Hide
+            $("#showPassword").css({"background-image":"url('./img/eye_checkX.png')"});
+
+          
+        } else {
+            // If the password field type is not a password field then set it to password
+            passwordField.attr('type', 'password');
+
+            // Change the image of the show password button to Show
+            $("#showPassword").css({"background-image":"url('./img/eye_check.png')"});
+        }
+      });
+      });
+
+      $(document).ready(function(){
+      $('#showPassword2').on('click', function(){
+        var passwordField = $('#pwCheck');
+        var passwordFieldType = passwordField.attr('type');
+        if(passwordFieldType == 'password')
+        {
+            passwordField.attr('type', 'text');
+            $("#showPassword2").css({"background-image":"url('./img/eye_checkX.png')"});
+        } else {
+            passwordField.attr('type', 'password');
+            $("#showPassword2").css({"background-image":"url('./img/eye_check.png')"});
+        }
+      });
+      });
+    </script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="navi">
+        <a href="./" class="logo">
+          <img src="./img/logo.png">
+        </a>
+      </div>
+    </header>
+    <main>
+      <form>
+        <div class="signupBox">
+          <div class="signup">
+            <div class="inputSignup">
+              <div>
+                <label for="email">이메일</label>
+                <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요"/>
+              </div>
+              <div>
+                <label for="nickname">닉네임</label>
+                <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력해주세요"/>
+              </div>
+              <div class="pw_box">
+                <label for="pw">비밀번호</label>
+                <input type="password" id="pw" name="pw" placeholder="비밀번호를 입력해주세요"/>
+                <input type="button" id="showPassword" class="showPwbutton" />
+              </div>
+              <div class="pw_box">
+                <label for="pwCheck">비밀번호 확인</label>
+                <input type="password" id="pwCheck" name="pwCheck" placeholder="비밀번호를 다시 한 번 입력해주세요"/>
+                <input type="button" id="showPassword2" class="showPwbutton" />
+              </div>
+            </div>
+            <button class="signup_btn">
+              회원가입
+            </button>
+          </div>
+          <div class="easyLogin">
+            <div>
+              간편 로그인하기
+            </div>
+            <div class="gotoEasyLogin">
+              <a href="https://www.google.com/%E2%80%9D" target="_blank"><img src="./img/ic_google.png"> </a>
+              <a href="https://www.kakaocorp.com/page/%E2%80%9D" target="_blank"><img src="./img/ic_kakao.png"> </a>
+            </div>
+          </div>
+          <div class="gotoLogin">
+            이미 회원이신가요?
+            <a href="./login.html">로그인</a>
+          </div>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
