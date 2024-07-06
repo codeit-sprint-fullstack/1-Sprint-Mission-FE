@@ -13,23 +13,33 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6H1WLY6MSW"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'G-6H1WLY6MSW');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6H1WLY6MSW');
 </script>
+
 <body>
     <div class="containers">
         <img id="logo-img" src="/image/logo.svg" onclick="location.href='/index.html'">
         <form class="login-form">
             <label for="e-mail">이메일</label>
-            <input id="e-mail" type="email" placeholder="이메일을 입력해주세요">
+            <div class="input-margin-style">
+                <input id="e-mail" type="email" placeholder="이메일을 입력해주세요">
+                <p id ="email-check" class="form-input-check">이메일을 입력해주세요</p>
+            </div>
             <label for="pw">비밀번호</label>
-            <div class="pwsetting">
-                <input id="pw" type="password" placeholder="비밀번호를 입력해주세요">
-                <img src="/image/eye-btn.png" class="eye-size non-show" >
-                <img src="/image/eye-show.png" class="eye-size show">
+            <div class="input-margin-style">
+                <div class="pwsetting">
+                    <input id="pw" type="password" placeholder="비밀번호를 입력해주세요">
+                    <img src="/image/eye-btn.png" class="eye-size non-show">
+                    <img src="/image/eye-show.png" class="eye-size show">
+                    <p id="password-check" class="form-input-check">비밀번호를 입력해주세요</p>
+                </div>
             </div>
             <button class="login-btn" id="login-btn" type="button">로그인</button>
         </form>
@@ -48,7 +58,14 @@
             <p>판다마켓이 처음이신가요? <a href="/html/signup.html" class="signup-link">회원가입</a></p>
         </div>
     </div>
-    <script src="../index.js" type="module"></script>
+    <div id="overlay" class="overlay"></div>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <p id="popup-message"></p>
+            <button class="close-btn" id="popup-close-btn">확인</button>
+        </div>
+    </div>
+    <script src="../js/login.js"></script>
 </body>
 
 </html>
