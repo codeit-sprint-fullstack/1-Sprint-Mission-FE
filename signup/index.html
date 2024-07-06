@@ -57,29 +57,36 @@
 
     <main class="login-main">
       <form id="signup-form">
-        <label for="useremail"> 이메일 </label>
-        <input
-          type="email"
-          id="useremail"
-          name="useremail"
-          placeholder="이메일을 입력해주세요"
-        />
+        <div class="email-field">
+          <label for="user-email"> 이메일 </label>
+          <input
+            type="email"
+            id="user-email"
+            name="user-email"
+            class="input email"
+            placeholder="이메일을 입력해주세요"
+          />
+          <span class="error-msg"></span>
+        </div>
 
-        <label for="nickname">닉네임</label>
-        <input
-          type="text"
-          id="nickname"
-          name="nickname"
-          placeholder="닉네임을 입력해주세요"
-        />
-
-        <div class="userpw-input">
+        <div class="name-field">
+          <label for="name">닉네임</label>
+          <input
+            type="text"
+            id="name"
+            class="input name"
+            name="name"
+            placeholder="닉네임을 입력해주세요"
+          />
+          <span class="error-msg"></span>
+        </div>
+        <div class="pw-field">
           <label for="userpw"> 비밀번호 </label>
           <input
             type="password"
-            name="userpw"
-            class="userpw"
-            id="userpw"
+            name="pw"
+            class="input pw"
+            id="pw"
             placeholder="비밀번호를 입력해주세요"
           />
           <img
@@ -87,15 +94,16 @@
             src="../img/btn_visibility_off_24px.svg"
             alt=""
           />
+          <span class="error-msg"></span>
         </div>
 
-        <div class="userpw-input">
-          <label for="checkpw"> 비밀번호 확인 </label>
+        <div class="confirm-pw-field">
+          <label for="confirm-pw"> 비밀번호 확인 </label>
           <input
             type="password"
-            name="checkpw"
-            class="userpw"
-            id="checkpw"
+            name="confirm-pw"
+            class="input confirm-pw"
+            id="confirm-pw"
             placeholder="비밀번호를 입력해주세요"
           />
           <img
@@ -103,6 +111,7 @@
             src="../img/btn_visibility_off_24px.svg"
             alt=""
           />
+          <span class="error-msg"></span>
         </div>
         <button type="submit" id="signup" name="signup">회원가입</button>
       </form>
@@ -124,6 +133,6 @@
       </div>
       <span>이미 회원이신가요? <a href="../login/">로그인</a></span>
     </main>
-    <script type="module" src="../js/signup.js"></script>
+    <script type="module" src="../js/main.js"></script>
   </body>
 </html>
