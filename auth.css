@@ -91,20 +91,20 @@ label {
   justify-content: space-between;
   align-items: center;
 }
-.simpleLink>a {
-  text-decoration: none;
-}
-.simpleLink a>img {
-  width: 4.2rem;
-  height: 4.2rem;
+.simpleLink {
+  margin-right: 2.3rem;
+  >a {
+    text-decoration: none;
+    >img {
+      width: 4.2rem;
+      height: 4.2rem;
+    }
+  }
 }
 .simpleSpan {
   margin-left: 2.3rem;
   font-size: 1.6rem;
   font-weight: 500;
-}
-.simpleLink {
-  margin-right: 2.3rem;
 }
 a>.google {
   margin-right: 1.6rem;
