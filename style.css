@@ -162,7 +162,7 @@ main {
   align-items: center;
   gap: 5%;
 }
-.container .img {
+.container>img {
   width: 50%;
   height: 44.4rem;
 }
