@@ -23,6 +23,7 @@ button:hover {
 	--loginFontBlack: #1F2937;
 	--simpleLoginColor: #E6F2FF;
 	--linkBlue: #3182F6;
+	--errorRed: #F74747;
 }
 
 html, body, div, span, applet, object, iframe,

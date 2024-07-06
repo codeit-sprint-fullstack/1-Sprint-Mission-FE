@@ -39,7 +39,7 @@ label {
 }
 .inputBox {
   width: 100%;
-  height: 9.3rem;
+  height: 11.9rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -53,9 +53,19 @@ label {
   border: 1px solid var(--backWhite);
   border-radius: 1.2rem;
 }
+.errorMessage {
+  height: 2.6rem;
+  padding-top: 0.8rem;
+  padding-left: 1.6rem;
+  font-size: 1.5rem;
+  color: var(--errorRed);
+}
 .inputForm:focus {
   outline: none;
-  border: 1px solid #3692FF;
+  border: 1px solid var(--mainBlue);
+}
+.inputForm.error {
+  border: 1px solid var(--errorRed);
 }
 .inputForm::placeholder {
   color: var(--fontGray);
@@ -68,7 +78,7 @@ label {
   height: 2.4rem;
   position: absolute;
   right: 2.4rem;
-  bottom: 1.6rem;
+  bottom: 4.2rem;
 }
 .slashed.eye {
   display: none;
