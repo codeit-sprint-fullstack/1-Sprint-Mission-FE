@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 a:hover,
-button {
+button:hover {
   cursor : pointer;
 }
 :root {
