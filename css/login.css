@@ -1,0 +1,302 @@
+@import './reset.css';
+
+html {
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  --bodyC:#f3f4f6;
+  --focusC:#3692FF;
+  --loginbtnC: #ffffff;
+  --loginbtn_backC: #9ca3af;
+  --easyLoginC:#e6f2ff;
+  --gotoSignupC : #3182F6;
+}
+
+/* 1903px * 919px */
+/* 1vmin = 9.19px */
+
+.navi {
+  margin-top: 6.529vh;
+}
+
+.logo img {
+  width: 20.65vw;
+  height: 14.365vh;
+}
+
+.loginBox {
+  width: 33.6311vw;
+  height: 46.79vh;
+  margin-top: 4.244vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.login {
+  height: 31.556vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inputLogin {
+  height: 22.851vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inputLogin div {
+  height: 10.12vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inputLogin label {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.inputLogin input {
+  height: 2.612vh;
+  border-radius: 1.305vmin;
+  padding: 1.741vh 1.2612vw;
+  border: none;
+  background-color: var(--bodyC);
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.inputLogin input:focus {
+  outline: 1px solid var(--focusC);
+}
+
+.pw_box{
+  position: relative;
+}
+
+.inputLogin input.button:focus {
+  outline: none;
+}
+
+.showPwbutton {
+  position: absolute;
+  width: 1.2612vw;
+  height: 2.612vh;
+  top: 5.767vh;
+  right: 0;
+  /* top: 53px;
+  right: 24px; */
+  background-image : url('../img/eye_check.png');
+  background-repeat: no-repeat;
+  background-size: 1.2612vw 2.612vh;
+  border: none;
+}
+
+.login_btn {
+  height: 6.094vh;
+  /* border-radius: 40px; */
+  border-radius: 4.35vmin;
+  border: none;
+  padding: 1.741vh 6.516vw;
+  background-color: var(--loginbtn_backC);
+  color: var(--loginbtnC);
+  font-size: 2.0rem;
+  font-weight: 600;
+}
+
+.easyLogin {
+  height: 8.052vh;
+  border-radius: 0.87vmin;
+  border: none;
+  background-color: var(--easyLoginC);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 0 1.2616vw;
+}
+
+.gotoEasyLogin {
+  width: 5.307vw;
+  height: 4.57vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.easyLogin img {
+  width: 2.207vw;
+  height: 4.57vh;
+}
+
+.gotoSingup {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.gotoSingup a {
+  color : var(--gotoSignupC);
+}
+
+/* 모바일 */
+/* 375*812 */
+/* 1vmin = 3.75 */
+@media all and (min-width:375px) and (max-width:767px){ 
+  .navi {
+    margin-top: 2.956vh;
+  }
+  
+  .logo img {
+    width: 52.8000vw;
+    height: 8.128vh;
+  }
+  
+  .loginBox {
+    width: 91.7333vw;
+    height: 48.153vh;
+    margin-top: 2.956vh;
+  }
+  
+  .login {
+    height: 30.788vh;
+  }
+  
+  .inputLogin {
+    height: 21.921vh;
+  }
+  
+  .inputLogin div {
+    height: 9.975vh;
+  }
+  
+  .inputLogin label {
+    font-size: 1.4rem;
+  }
+  
+  .inputLogin input {
+    height: 2.956vh;
+    /* border-radius: 12px; */
+    border-radius: 3.2vmin;
+    padding: 1.97vh 6.400vw;
+  }
+  
+  .inputLogin input:focus {
+    outline: 0.26vmin solid #3692FF;
+  }
+  
+  .showPwbutton {
+    width: 6.4vw;
+    height: 2.956vh;
+    top: 5.049vh;
+    background-size: 6.4vw 2.956vh;
+  }
+  
+  .login_btn {
+    height: 6.897vh;
+    border-radius: 10.6667vmin;
+    padding: 1.97vh 33.0667vw;
+  }
+  
+  .easyLogin {
+    height: 9.113vh;
+    border-radius: 2.133vmin;
+    padding: 0 6.4vw;
+  }
+  
+  .gotoEasyLogin {
+    width: 26.933vw;
+    height: 5.172vh;
+  }
+  
+  .easyLogin img {
+    width: 11.2vw;
+    height: 5.172vh;
+  }
+
+}
+
+/* 태블릿 */
+/* 744 * 1133 */
+/* 768 *  1170*/
+@media all and (min-width:768px) and (max-width:1199px){ 
+  .navi {
+    margin-top: 48px;
+  }
+  
+  .logo img {
+    width: 53.226vw;
+    height: 11.65vh;
+  }
+  
+  .loginBox {
+    width: 86.022vw;
+    height: 37.952vh;
+    margin-top: 3.53vh;
+  }
+  
+  .login {
+    height: 25.596vh;
+  }
+  
+  .inputLogin {
+    height: 18.535vh;
+  }
+  
+  .inputLogin div {
+    height: 8.208vh;
+  }
+  
+  .inputLogin input {
+    height: 2.118vh;
+    border-radius: 1.612vmin;
+    padding: 1.412vh 3.226vw;
+  }
+  
+  .inputLogin input:focus {
+    outline: 0.134vmin solid #3692FF;
+  }
+  
+  .showPwbutton {
+    width: 3.226vw;
+    height: 2.118vh;
+    top: 4.678vh;
+    background-size: 3.226vw 2.118vh;
+  }
+  
+  .login_btn {
+    height: 4.943vh;
+    border-radius: 5.376vmin;
+    padding: 1.412vh 16.667vw;
+  }
+  
+  .easyLogin {
+    height: 6.531vh;
+    border-radius: 1.075vmin;
+    padding: 0 3.226vw;
+  }
+  
+  .gotoEasyLogin {
+    width:13.575vw;
+    height: 3.707vh;
+  }
+  
+  .easyLogin img {
+    width: 5.645vw;
+    height: 3.707vh;
+  }
+}
+
