@@ -47,4 +47,23 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         document.getElementById('emailerror').hidden = true;
     }
 });
+
+/* 닉네임 input에서 focus out할 때 */
+document.getElementById('name').addEventListener('focusout', function(event) {
+    const nameRegex = /^[가-힣]+$/; // 닉네임은 한글로만 작성 가능
+    const name = event.target;
+  
+    if (name.value === '') { // 닉네임 값이 없을 경우
+        name.classList.add('error');
+        document.getElementById('nameerror').innerHTML = '닉네임을 입력해주세요.';
+        document.getElementById('nameerror').hidden = false;
+    } else if(!nameRegex.test(name.value)){ // 닉네임 값이 형식에 맞지 않는 경우
+      name.classList.add('error');
+      document.getElementById('nameerror').innerHTML = '닉네임은 한글로만 작성해주세요.';
+      document.getElementById('nameerror').hidden = false;
+    }else{
+      name.classList.remove('error');
+      document.getElementById('nameerror').hidden = true;
+    }
+  });
      
