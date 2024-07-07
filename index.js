@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
       errorMessage.style.color = 'red';
       errorMessage.style.alignSelf = 'flex-start';
       errorMessage.style.marginBottom = '24px';
+      errorMessage.style.marginLeft = '16px';
     } else {
       errorMessage.textContent = '';
     }
@@ -47,4 +48,22 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+// 비밀번호 8자리 이상 체크
+document.addEventListener('DOMContentLoaded', function() {
+  var passwordInput = document.getElementById('ps_input');
+  var errorMessage = document.getElementById('pw_error_message');
+
+  passwordInput.addEventListener('input', function() {
+    var password = passwordInput.value;
+    if(password.length <= 8) {
+      errorMessage.textContent = '비밀번호를 8자 이상 입력해주세요';
+      errorMessage.style.color = 'red';
+      errorMessage.style.alignSelf = 'flex-start';
+      errorMessage.style.marginBottom = '24px';
+      errorMessage.style.marginLeft = '16px';
+    }else{
+      errorMessage.textContent = '';
+    }
+  });
+})
 
