@@ -16,7 +16,7 @@ let emailValid = false;
 let passwordValid = false;
 let checkPasswordValid = false;
 let nickNameValid = false;
-
+/*버튼 비활성화*/
 function loginButtonStatus(){
   (emailValid && passwordValid) ?
     loginButton.disabled = false : loginButton.disabled = true;
@@ -25,7 +25,6 @@ function joinButtonStatus(){
   (emailValid && passwordValid && checkPasswordValid && nickNameValid) ?
     joinButton.disabled = false : joinButton.disabled = true;
 }
-
 /*이메일 검사*/
 email.addEventListener('focusout',() => {
   if(!email.value){
