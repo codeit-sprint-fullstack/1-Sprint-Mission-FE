@@ -76,3 +76,26 @@
       }
     });
 
+    /* input에 유효한 값 입력시, 로그인 버튼 활성화 */
+    function validateEmail(email){ // 입력값 변경 시, 이메일 유효성 검사 수행 
+      const emailRegex = /^\S+@\S+\.\S+$/;
+      return emailRegex.test(email);
+    }
+
+    function validatePassword(password) { // 입력값 변경 시, 비밀번호 유효성 검사 수행 
+      const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])/;
+      return passwordRegex.test(password);
+    }
+
+    function validateForm() {
+      const email = document.getElementById('email');
+      const password = document.getElementById('password');
+      const submit = document.getElementById('button');
+
+      if(!validateEmail(email.value) || !validatePassword(password.value)) { // input값이 유효한지 확인
+          submit.disabled = true; // 로그인 버튼 비활성화
+      } else {
+          submit.disabled = false; // 로그인 버튼 활성화
+      }
+    }
+
