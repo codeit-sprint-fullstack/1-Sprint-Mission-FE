@@ -7,26 +7,9 @@
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>Document</title>
-    <script>
-        $(document).ready(function(){
-            $('.pass_form .close_pw').on('click', function(){
-                $('#ps_input').attr('type', 'text');
-                $(this).hide();
-                $('.pass_form .open_ps').show();
-            });
-
-            $('.pass_form .open_ps').on('click', function(){
-                $('#ps_input').attr('type', 'password');
-                $(this).hide();
-                $('.pass_form .close_pw').show();
-            });
-        });
-
-
-
-
-    </script>
+    <script src="index.js"></script>
+    <title>판다마켓</title>
+    
 </head>
 <body class="container">
     <a href="index.html">
@@ -35,7 +18,8 @@
 
     <div class="login_form">
         <p class="login_str">이메일</p>
-        <input type="text" class="input_box" placeholder="이메일을 입력해주세요" type="eamil">
+        <input id="email_input" class="input_box" placeholder="이메일을 입력해주세요" type="email">
+        <div class="error" id="error_message"></div>
         <label class="login_ps">비밀번호</label>
         <div class="pass_form">
             <input type="password" id="ps_input" class="input_box" placeholder="비밀번호를 입력해주세요">
@@ -46,6 +30,7 @@
                 <img src="img/eye.png" class="eye_img">
             </i>
         </div>
+        <div class="error" id="pw_error_message"></div>
         
         
         <button class="login_button">로그인</button>
