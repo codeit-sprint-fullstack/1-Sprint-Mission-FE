@@ -91,4 +91,25 @@ document.getElementById('password').addEventListener('focusout', function(event)
         document.getElementById('passworderror').hidden = true;
     }
   });
-     
+
+/* 비밀번호 확인 input에서 focus out할 때 */
+document.getElementById('passwordmaza').addEventListener('focusout', function(event) {
+    const password = document.getElementById('password').value;
+    const passwordconfirm = event.target.value;
+    const ckpassword = event.target;
+    
+    if (passwordconfirm.value === '') { // 비밀번호 확인 값이 없을 경우
+        passwordmaza.classList.add('error');
+        document.getElementById('password_maza_error').innerHTML = '비밀번호를 다시 입력해주세요.';
+        document.getElementById('password_maza_error').hidden = false;
+    } else if(!checkpassword(password,passwordconfirm)){ // 비밀번호가 맞지 않는 경우
+        passwordmaza.classList.add('error');
+        document.getElementById('password_maza_error').innerHTML = '비밀번호가 맞지 않습니다.';
+        document.getElementById('password_maza_error').hidden = false;
+    }else {
+        passwordmaza.classList.remove('error');
+        document.getElementById('password_maza_error').hidden = true;
+    }
+    });
+
+    
