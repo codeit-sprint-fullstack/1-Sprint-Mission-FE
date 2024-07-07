@@ -50,3 +50,29 @@
         document.getElementById('emailerror').hidden = true;
       }
     });
+
+    /* 비밀번호 input에서 focus out할 때 */
+     document.getElementById('password').addEventListener('focusout', function(event) {
+      const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])/; //.{8,}
+
+      var password = event.target;
+
+      if (password.value === '') { // 비밀번호 값이 없을 경우
+          password.classList.add('error');
+          document.getElementById('passworderror').innerHTML = '비밀번호를 입력해주세요.';
+          document.getElementById('passworderror').hidden = false;
+      } else if(!passwordRegex.test(password.value)){ // 비밀번호가 형식에 맞지 않는 경우
+        password.classList.add('error');
+        document.getElementById('passworderror').innerHTML = '잘못된 비밀번호 형식입니다.';
+        document.getElementById('passworderror').hidden = false;
+      }else if(password.value.length < 8){ // 비밀번호 값이 8자 미만일 경우
+        password.classList.add('error');
+        document.getElementById('passworderror').innerHTML = '비밀번호를 8자 이상 입력해주세요.';
+        document.getElementById('passworderror').hidden = false;
+      }
+      else {
+          password.classList.remove('error');
+          document.getElementById('passworderror').hidden = true;
+      }
+    });
+
