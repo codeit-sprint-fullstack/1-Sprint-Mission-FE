@@ -13,49 +13,75 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6H1WLY6MSW"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'G-6H1WLY6MSW');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6H1WLY6MSW');
 </script>
+
 <body>
     <div class="containers">
         <img id="logo-img" src="/image/logo.svg" onclick="location.href='/index.html'">
         <form class="login-form">
             <label for="e-mail">이메일</label>
-            <input id="e-mail" type="email" placeholder="이메일을 입력해주세요">
+            <div class="input-margin-style">
+                <input id="e-mail" type="email" placeholder="이메일을 입력해주세요">
+                <p id="email-check" class="form-input-check">이메일을 입력해주세요</p>
+            </div>
             <label for="nickname">닉네임</label>
-            <input id="nickname" type="text" placeholder="닉네임을 입력해주세요">
+            <div class="input-margin-style">
+                <input id="nickname" type="text" placeholder="닉네임을 입력해주세요">
+            </div>
             <label for="pw">비밀번호</label>
-            <div class="pwsetting">
-                <input id="pw" type="password" placeholder="비밀번호를 입력해주세요">
-                <img src="/image/eye-btn.png" class="eye-size non-show">
-                <img src="/image/eye-show.png" class="eye-size show">
+            <div class="input-margin-style">
+                <div class="pwsetting">
+                    <input id="pw" type="password" placeholder="비밀번호를 입력해주세요">
+                    <img src="/image/eye-btn.png" class="eye-size non-show">
+                    <img src="/image/eye-show.png" class="eye-size show">
+                    <p id="password-check" class="form-input-check">비밀번호를 입력해주세요</p>
+                </div>
             </div>
-            <label for="pwcheck">비밀번호 확인</label>
-            <div class="pwsetting-check">
-                <input id="pwcheck" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요">
-                <img src="/image/eye-btn.png" class="eye-size non-show-check">
-                <img src="/image/eye-show.png" class="eye-size show-check">
+            <label for="pwcheckagain">비밀번호 확인</label>
+            <div class="input-margin-style">
+                <div class="pwsetting-check">
+                    <input id="pwcheckagain" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요">
+                    <img src="/image/eye-btn.png" class="eye-size non-show-check">
+                    <img src="/image/eye-show.png" class="eye-size show-check">
+                    <p id="password-check-again" class="form-input-check">비밀번호가 일치하지 않습니다.</p>
+                </div>
             </div>
+
+
             <button class="signup-btn" id="signup-btn" type="button">회원가입</button>
         </form>
         <div class="easy-login">
-            <p>간편 로그인하기</p> 
+            <p>간편 로그인하기</p>
             <div class="sns-link">
                 <a href="https://www.google.com/">
-                    <img src="/image/google-img.png" id = "google">
+                    <img src="/image/google-img.png" id="google">
                 </a>
                 <a href="https://www.kakaocorp.com/page/">
                     <img src="/image/kakao-img.png">
-                </a> 
+                </a>
             </div>
         </div>
         <div class="login">
             <p>이미 회원이신가요? <a href="/html/login.html" class="login-link">로그인</a></p>
         </div>
     </div>
-    <script src="../js/signup.js" type="module"></script>
+    <div id="overlay" class="overlay"></div>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <p id="popup-message"></p>
+            <button class="close-btn" id="popup-close-btn">확인</button>
+        </div>
+    </div>
+    <script src="../js/signup.js"></script>
+    <script src="../common/login_signup.js"></script>
 </body>
+
 </html>

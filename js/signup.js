@@ -24,33 +24,12 @@ const USER_DATA = [{
     },
 ];
 
-
-// 회원가입 pw 확인
-document.addEventListener('DOMContentLoaded', function () {
-    let eyeBtns = document.querySelectorAll('.pwsetting img');
-
-    eyeBtns.forEach(function (btn) {
-        let pwInput = document.getElementById('pw');
-        btn.addEventListener('click', function () {
-            if (btn.classList.contains('non-show')) {
-                pwInput.type = 'text';
-                btn.style.display = 'none';
-                document.querySelector('.show').style.display = 'inline-block';
-            } else if (btn.classList.contains('show')) {
-                pwInput.type = 'password';
-                btn.style.display = 'none';
-                document.querySelector('.non-show').style.display = 'inline-block';
-            }
-        });
-    });
-});
-
-//회원가입 check-pw 확인
+//회원가입 check-pw 보기
 document.addEventListener('DOMContentLoaded', function () {
     let eyeBtns = document.querySelectorAll('.pwsetting-check img');
 
     eyeBtns.forEach(function (btn) {
-        let pwInput = document.getElementById('pwcheck');
+        let pwInput = document.getElementById('pwcheckagain');
         btn.addEventListener('click', function () {
             if (btn.classList.contains('non-show-check')) {
                 pwInput.type = 'text';
@@ -73,6 +52,10 @@ document.addEventListener('DOMContentLoaded', function () {
         let emailInput = document.getElementById('e-mail');
         let email = emailInput.value;
         let joinSuccess = false; // 사용 중인 이메일이 아닐때
+        const popup = document.getElementById('popup');
+        const popupMessage = document.getElementById('popup-message');
+        const popupCloseBtn = document.getElementById('popup-close-btn');
+        const overlay = document.getElementById('overlay');
 
         for (let i = 0; i < USER_DATA.length; i++) {
             if (email === USER_DATA[i].email) {
@@ -82,9 +65,54 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (joinSuccess) {
-            alert('사용 중인 이메일입니다.');
+            popupMessage.textContent = '사용 중인 이메일입니다.';
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
         } else {
             window.location.href = '../html/login.html';
         }
+        popupCloseBtn.addEventListener('click', function () {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
     });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    let email = document.getElementById('e-mail');
+    let password = document.getElementById('pw');
+    let signupBtn = document.getElementById('signup-btn');
+    let passwordcheckagain = document.getElementById('pwcheckagain');
+    let passwordcheckmsg = document.getElementById('password-check-again');
+    let nickname = document.getElementById('nickname');
+
+    //회원가입 버튼 활성화
+    function signupBtnColor() {
+        if (email.value.includes('@') && email.value.includes('.com') && (password.value.length >= 8) && nickname.value && (password.value===passwordcheckagain.value)) {
+            signupBtn.style.cursor = 'pointer';
+            signupBtn.style.pointerEvents = 'auto';
+            signupBtn.style.backgroundColor = '#3692FF';
+        } else {
+            signupBtn.style.backgroundColor = '#9CA3AF';
+            signupBtn.style.cursor = 'not-allowed';
+            signupBtn.style.pointerEvents = 'none';
+        }
+    }
+
+    //비밀번호 일치 유효성 검사
+    function passwordCheckAgain() {
+        if (password.value != passwordcheckagain.value) {
+            passwordcheckmsg.style.display = 'flex';
+            passwordcheckagain.style.border = '1px solid #F74747';
+        } else {
+            passwordcheckmsg.style.display = 'none';
+            passwordcheckagain.style.border = 'none';
+        }
+    }
+
+    passwordcheckagain.addEventListener('blur', passwordCheckAgain);
+    email.addEventListener('input', signupBtnColor);
+    password.addEventListener('input', signupBtnColor);
+    nickname.addEventListener('input', signupBtnColor);
+    passwordcheckagain.addEventListener('input', signupBtnColor);
 });

@@ -1,21 +1,23 @@
 * {
     box-sizing: border-box;
-  }
+}
 
-  :root {
-    --text-color : #1F2937;
-    --link-color:#3182F6;
-    --back-text :#9CA3AF;
-    --input-back-color:#F3F4F6 ;
-    --input-outline-color:#3692ff;
-    --signup-btn-text:#ffffff;
-    --login-text-color: #1F2937 ;
-    --easy-login-back-color:#E6F2FF;
-  }
-  
-  html {
-    font-size: 62.5%; /* 1rem = 10px로 설정 */
-  }
+:root {
+    --text-color: #1F2937;
+    --link-color: #3182F6;
+    --back-text: #9CA3AF;
+    --input-back-color: #F3F4F6;
+    --input-outline-color: #3692ff;
+    --signup-btn-text: #ffffff;
+    --login-text-color: #1F2937;
+    --easy-login-back-color: #E6F2FF;
+    --email-input-check-color: #F74747;
+}
+
+html {
+    font-size: 62.5%;
+    /* 1rem = 10px로 설정 */
+}
 
 body {
     font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -26,7 +28,9 @@ body {
     overflow-x: hidden;
 }
 
-#logo-img, .signup-btn, .easy-login img {
+#logo-img,
+.signup-btn,
+.easy-login img {
     cursor: pointer;
 }
 
@@ -59,32 +63,49 @@ body {
     height: 2.1rem;
 }
 
-.login-form input, .login-form .login-btn {
+.login-form input,
+.login-form .login-btn {
     width: 64rem;
     height: 5.6rem;
 }
 
 .login-form input {
-    margin-bottom: 2.4rem;
     border-radius: 1.2rem;
     border: none;
     padding: 1.6rem 2.4rem;
-    background-color:var(--input-back-color);
+    background-color: var(--input-back-color);
     color: var(--text-color);
     outline-color: var(--input-outline-color);
     font-size: 1.6rem;
 }
 
+.input-margin-style {
+    margin-bottom: 2.4rem;
+}
+
+#email-check, #password-check, #password-check-again {
+    display: none;
+    color: var(--email-input-check-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 0.8rem;
+    margin-left: 1.6rem;
+}
+
 input::placeholder {
     font-size: 1.6rem;
     color: var(--back-text);
-  }
+}
 
-  .pwsetting, .pwsetting-check {
+.pwsetting,
+.pwsetting-check {
     position: relative;
 }
 
-.show, .non-show, .show-check, .non-show-check {
+.show,
+.non-show,
+.show-check,
+.non-show-check {
     position: absolute;
     right: 2.4rem;
     top: 1.7rem;
@@ -99,7 +120,8 @@ input::placeholder {
     height: 1.807rem;
 }
 
-.show, .show-check {
+.show,
+.show-check {
     display: none;
 }
 
@@ -115,12 +137,14 @@ input::placeholder {
     color: var(--signup-btn-text);
     width: 64rem;
     height: 5.6rem;
+    cursor: not-allowed; 
+    pointer-events: none; 
 }
 
 .easy-login {
     display: flex;
     justify-content: space-between;
-    background-color:var(--easy-login-back-color) ;
+    background-color: var(--easy-login-back-color);
     width: 64rem;
     height: 7.4rem;
     border-radius: 0.8rem;
@@ -129,7 +153,7 @@ input::placeholder {
     margin: 2.4rem 0;
 }
 
-.easy-login p{
+.easy-login p {
     width: 10.1rem;
     height: 2.4rem;
     font-size: 1.6rem;
@@ -161,4 +185,57 @@ input::placeholder {
 .login-link {
     color: var(--link-color);
     margin-left: 0.4rem;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+}
+
+.popup {
+    display: none;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    background: var(--signup-btn-text);
+    border-radius: 0.8rem;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    width: 54rem;
+    height: 25rem;
+}
+
+#popup-message {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 108px;
+    align-items: center;
+    text-align: center;
+}
+
+.close-btn {
+    background-color: var( --input-outline-color);
+    color: var(--signup-btn-text);
+    border: none;
+    position: fixed;
+    border-radius: 8px;
+    padding: 12px 23px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 12rem;
+    height: 4.8rem;
+    right: 28px;
+    bottom: 28px;
 }
