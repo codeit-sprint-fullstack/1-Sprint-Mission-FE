@@ -1,6 +1,6 @@
-import USER_DATA from "./USER_DATA";
+import USER_DATA from "./USER_DATA.js";
 
-const loginForm = document.querySelector('form.login');
+const loginForm = document.querySelector('.login.mainContent');
 
 function userLogin(email, password){
   return USER_DATA.some(user => (user.email === email) && (user.password === password));
@@ -9,11 +9,11 @@ function userLogin(email, password){
 loginForm.addEventListener('submit', event => {
   event.preventDefault();
 
-  const email = document.getElementById('email');
-  const password = document.getElementById('password');
+  const email = loginForm.getElementById('email');
+  const password = loginForm.getElementById('password');
 
   if(userLogin(email.value, password.value)){
-    alert('로그인 성공');
+    location.href = '/items';
   } else {
     alert('비밀번호가 일치하지 않습니다.');
   }
