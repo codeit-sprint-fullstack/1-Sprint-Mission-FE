@@ -3,24 +3,9 @@ import { form } from './var.js';
 const emailRegex =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const pwRegex =
-  /^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,14}$/;
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,14}$/;
 
 const nameRegex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{3,20}$/;
-
-//when input.value is empty
-function emptyInput(e, errorMsg) {
-  const input = e.target;
-  const error = input.parentElement.querySelector('.error-msg');
-  const value = input.value.trim();
-
-  if (value === '') {
-    error.textContent = errorMsg;
-    input.classList.add('error');
-    errorDisplay(input);
-  } else {
-    resetError(input);
-  }
-}
 
 //remove .error class on input tag
 function resetError(input) {
@@ -34,6 +19,32 @@ function resetError(input) {
 function errorDisplay(input) {
   const errorMsg = input.parentElement.querySelector('.error-msg');
   errorMsg.style.display = input.classList.contains('error') ? 'flex' : 'none';
+}
+
+//when input.value is empty
+function emptyInput(e) {
+  const input = e.target;
+  const errTexts = {
+    email: '이메일을 입력하세요.',
+    name: '닉네임을 입력하세요.',
+    pw: '비밀번호를 입력하세요.',
+    'confirm-pw': '비밀번호를 입력하세요.',
+  };
+
+  const error = input.parentElement.querySelector('.error-msg');
+  const value = input.value.trim();
+
+  if (value === '') {
+    const field = input.classList[1];
+    const errMsg = errTexts[field];
+    error.textContent = errMsg;
+    input.classList.add('error');
+    errorDisplay(input);
+    return false;
+  } else {
+    resetError(input);
+    return true;
+  }
 }
 
 //when input.value is not empty
@@ -71,7 +82,7 @@ function validateFormat(e) {
       } else if (!pwRegex.test(value)) {
         input.classList.add('error');
         error.textContent =
-          '비밀번호는 영문 대소문자, 숫자, 특수문자(@ $ ! % * # ? & 중 하나)를 포함해야 합니다.';
+          '비밀번호는 영문 대소문자, 숫자, 특수문자(@ $ ! % * # ? &) 각 1자씩를 포함해야 합니다.';
         errorDisplay(input);
       } else {
         resetError(input);
@@ -82,21 +93,33 @@ function validateFormat(e) {
   }
 }
 
-const submitBtn = form.querySelector('button');
-
-function formValidity(input) {
+//form validation
+function formValidity() {
   let allValid = true;
-
-  if (input.classList.contains('error') || input.value.trim() === '') {
-    allValid = false;
-  }
-  submitBtn.disabled = !allValid;
+  form.querySelectorAll('input').forEach((input) => {
+    if (input.classList.contains('error') || input.value.trim() === '') {
+      allValid = false;
+    }
+  });
+  return allValid;
 }
 
+//button status
+const submitBtn = form.querySelector('button');
 function buttonStatus() {
+  submitBtn.disabled = !formValidity();
   if (!submitBtn.disabled) {
     submitBtn.style.backgroundColor = 'var(--primary-colour)';
+  } else {
+    submitBtn.style.backgroundColor = '';
   }
 }
 
-export { emptyInput, resetError, validateFormat, formValidity, buttonStatus };
+export {
+  emptyInput,
+  resetError,
+  validateFormat,
+  formValidity,
+  buttonStatus,
+  submitBtn,
+};
