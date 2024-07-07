@@ -12,24 +12,41 @@
 <body>
     <header class = "pandamarket_logo">
         <a href="index.html"><img class="pandalog_img" src="images/판다마켓_로고.png"></a>
+
+        <style>
+            .error {
+                border: 5px solid red;
+            }
+
+            .error-message {
+                color: red;
+            }
+        </style>
+
     </header>
 
     <main>
         <div class="form_box">
-            <form>
+            <form id="loginForm">
                 <label for="email">이메일</label>
-                <input id="email" name="email" type="email" placeholder="이메일을 입력해주세요">
+                <input id="email" name="email" type="text" placeholder="이메일을 입력해주세요">
 
+                <span id="emailerror" class="error-message" hidden></span><br>
+                
                 <label for="password">비밀번호</label>
                 <div class="ps_confirm">
-                    <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
+                 <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
+                 <span id="passworderror" class="error-message" hidden></span><br>
+
                     <div class="eyes">
                         <img class="eyss_img" src="images/비밀번호눈.png" style="height: 24px; width:24px;"></img>
                     </div>
                 </div>
 
-                <button type="button" onclick="location.href='signup.html' ">로그인</button></a>
+                <button id='button' type="submit" disabled>로그인</button></a>
             </form>
+
+            <div id="message"></div>
 
             <div class="easy_login_box">
                 <div class="easy_text">
@@ -51,7 +68,6 @@
     </main>
 </body>
 
-
-
+<script src="validation.js"></script>
 
 </html>
