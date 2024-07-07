@@ -14,7 +14,7 @@
 - 환경에 관심이 많아 불필요한 쓰레기 배출을 줄이고 싶은 사람
 
 ### 🐼 사이트
-https://sprint-1-2-sohee.netlify.app/
+https://sprint-mission-sohee.netlify.app/
 
 ### ⏰ 개발 기간
 
