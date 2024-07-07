@@ -18,12 +18,12 @@ let checkPasswordValid = false;
 let nickNameValid = false;
 /*버튼 비활성화*/
 function loginButtonStatus(){
-  console.log(`emailValid: ${emailValid}, passwordValid: ${passwordValid}`);//
+  console.log(`emailValid: ${emailValid}, passwordValid: ${passwordValid}`);
   if(emailValid && passwordValid) loginButton.disabled = false;
   else loginButton.disabled = true;
 }
 function joinButtonStatus(){
-  console.log(`emailValid: ${emailValid}, passwordValid: ${passwordValid}, checkPasswordValid: ${checkPasswordValid}, nickNameValid: ${nickNameValid}`);//
+  console.log(`emailValid: ${emailValid}, passwordValid: ${passwordValid}, checkPasswordValid: ${checkPasswordValid}, nickNameValid: ${nickNameValid}`);
   if(emailValid && passwordValid && checkPasswordValid && nickNameValid)
     joinButton.disabled = false;
   else joinButton.disabled = true;
@@ -62,11 +62,11 @@ password.addEventListener('focusout', () => {
     passwordValid = true;
   }
   /* 확인 칸에 입력값이 있을 때*/
-  if(checkPassword.value && (password.value === checkPassword.value)){
-    checkPassword.classList.remove('error');
-    checkPasswordError.textContent = '';
-    checkPasswordValid = true;
-  }
+  // if(checkPassword.value && (password.value === checkPassword.value)){
+  //   checkPassword.classList.remove('error');
+  //   checkPasswordError.textContent = '';
+  //   checkPasswordValid = true;
+  // }
   loginButtonStatus();
   joinButtonStatus();
 });
