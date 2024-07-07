@@ -23,24 +23,28 @@ $(document).ready(function(){
 
 //<input class="input_box" placeholder="이메일을 입력해주세요" type="eamil">
 //<div class="error" id="error_message"></div>
-$(document).ready(function() {
-  $('#email_input').on('input', function() {
-      var email = $(this).val();
-      var errorMessage = $('#error_message');
+//이메일 유효성 검사
+document.addEventListener('DOMContentLoaded', function() {
+  var emailInput = document.getElementById('email_input');
+  var errorMessage = document.getElementById('error_message');
 
-      if (!isValidEmail(email)) {
-          errorMessage.text('이메일 형식이 일치하지 않습니다.');
-          errorMessage.css('color', 'red');
-          errorMessage.css('align-self', 'flex-start');
-          errorMessage.css('margin-bottom', '24px');
-      } else {
-          errorMessage.text('');
-      }
+  emailInput.addEventListener('input', function() {
+    var email = emailInput.value;
+
+    if (!isValidEmail(email)) {
+      errorMessage.textContent = '이메일 형식이 일치하지 않습니다.';
+      errorMessage.style.color = 'red';
+      errorMessage.style.alignSelf = 'flex-start';
+      errorMessage.style.marginBottom = '24px';
+    } else {
+      errorMessage.textContent = '';
+    }
   });
 
   function isValidEmail(email) {
-      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   }
 });
+
 
