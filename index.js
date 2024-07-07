@@ -1,30 +1,27 @@
-const USER_DATA = [
-  { email: 'codeit1@codeit.com', password: "codeit101!" },
-  { email: 'codeit2@codeit.com', password: "codeit202!" },
-  { email: 'codeit3@codeit.com', password: "codeit303!" },
-  { email: 'codeit4@codeit.com', password: "codeit404!" },
-  { email: 'codeit5@codeit.com', password: "codeit505!" },
-  { email: 'codeit6@codeit.com', password: "codeit606!" },
-];
-// 비밀번호 숨기기 기능
-$(document).ready(function(){
-  $('.pass_form .close_pw').on('click', function(){
-      $('#ps_input').attr('type', 'text');
-      $(this).hide();
-      $('.pass_form .open_ps').show();
-  });
-
-  $('.pass_form .open_ps').on('click', function(){
-      $('#ps_input').attr('type', 'password');
-      $(this).hide();
-      $('.pass_form .close_pw').show();
-  });
-});
-
-//<input class="input_box" placeholder="이메일을 입력해주세요" type="eamil">
-//<div class="error" id="error_message"></div>
-//이메일 유효성 검사
 document.addEventListener('DOMContentLoaded', function() {
+  const USER_DATA = [
+    { email: 'codeit1@codeit.com', password: "codeit101!" },
+    { email: 'codeit2@codeit.com', password: "codeit202!" },
+    { email: 'codeit3@codeit.com', password: "codeit303!" },
+    { email: 'codeit4@codeit.com', password: "codeit404!" },
+    { email: 'codeit5@codeit.com', password: "codeit505!" },
+    { email: 'codeit6@codeit.com', password: "codeit606!" },
+  ];
+
+  // 비밀번호 숨기기 기능
+  $('.pass_form .close_pw').on('click', function() {
+    $('#ps_input').attr('type', 'text');
+    $(this).hide();
+    $('.pass_form .open_ps').show();
+  });
+
+  $('.pass_form .open_ps').on('click', function() {
+    $('#ps_input').attr('type', 'password');
+    $(this).hide();
+    $('.pass_form .close_pw').show();
+  });
+
+  // 이메일 유효성 검사
   var emailInput = document.getElementById('email_input');
   var errorMessage = document.getElementById('error_message');
 
@@ -37,8 +34,10 @@ document.addEventListener('DOMContentLoaded', function() {
       errorMessage.style.alignSelf = 'flex-start';
       errorMessage.style.marginBottom = '24px';
       errorMessage.style.marginLeft = '16px';
+      emailInput.style.boxShadow = '0 0 0 2px red';
     } else {
       errorMessage.textContent = '';
+      emailInput.style.boxShadow = '0 0 0 2px blue';
     }
   });
 
@@ -46,24 +45,51 @@ document.addEventListener('DOMContentLoaded', function() {
     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
-});
 
-// 비밀번호 8자리 이상 체크
-document.addEventListener('DOMContentLoaded', function() {
+  // 비밀번호 8자리 이상 체크
   var passwordInput = document.getElementById('ps_input');
-  var errorMessage = document.getElementById('pw_error_message');
+  var pwErrorMessage = document.getElementById('pw_error_message');
 
   passwordInput.addEventListener('input', function() {
     var password = passwordInput.value;
-    if(password.length <= 8) {
-      errorMessage.textContent = '비밀번호를 8자 이상 입력해주세요';
-      errorMessage.style.color = 'red';
-      errorMessage.style.alignSelf = 'flex-start';
-      errorMessage.style.marginBottom = '24px';
-      errorMessage.style.marginLeft = '16px';
-    }else{
-      errorMessage.textContent = '';
+
+    if (password.length < 8) {
+      pwErrorMessage.textContent = '비밀번호를 8자 이상 입력해주세요';
+      pwErrorMessage.style.color = 'red';
+      pwErrorMessage.style.alignSelf = 'flex-start';
+      pwErrorMessage.style.marginBottom = '24px';
+      pwErrorMessage.style.marginLeft = '16px';
+      passwordInput.style.boxShadow = '0 0 0 2px red';
+    } else {
+      pwErrorMessage.textContent = '';
+      passwordInput.style.boxShadow = '0 0 0 2px blue';
     }
   });
-})
 
+  // 이메일, 비밀번호 검사
+  var loginButton = document.querySelector('.login_button');
+
+  emailInput.addEventListener('input', function() {
+    var email = emailInput.value;
+    var password = passwordInput.value;
+
+    if (email !== '' && isValidEmail(email) && password !== '' && password.length >= 8) {
+      loginButton.style.backgroundColor = '#3692FF';
+    } else {
+      loginButton.style.backgroundColor = '#9CA3AF';
+    }
+  });
+
+  passwordInput.addEventListener('input', function() {
+    var email = emailInput.value;
+    var password = passwordInput.value;
+
+    if (email !== '' && isValidEmail(email) && password !== '' && password.length >= 8) {
+      loginButton.style.backgroundColor = '#3692FF';
+    } else {
+      loginButton.style.backgroundColor = '#9CA3AF';
+    }
+  });
+
+  //로그인 버튼 눌렀을때 객체 내에서 유효성 체크
+});
