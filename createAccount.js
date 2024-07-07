@@ -112,4 +112,9 @@ document.getElementById('passwordmaza').addEventListener('focusout', function(ev
     }
     });
 
+/* 비밀번호와 확인시 비밀번호가 맞는지 확인 함수 */
+function checkpassword(password, passwordconfirm){
+    return password === passwordconfirm;
+  }
+
     
