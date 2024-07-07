@@ -358,7 +358,7 @@ form .error-msg {
 }
 
 form button {
-  background-color: #9ca3af;
+  background-color: var(--grey-400);
   height: 3.5rem;
   border-radius: 40px;
   font-size: var(--20px);
@@ -366,9 +366,9 @@ form button {
   color: #ffffff;
 }
 
-form button:focus {
+/* form button:focus {
   background-color: var(--primary-colour);
-}
+} */
 
 .social-login {
   padding: 1rem 2rem;
@@ -377,7 +377,7 @@ form button:focus {
   align-items: center;
   font-size: 1rem;
   font-weight: 500;
-  background-color: var(--secondary-color);
+  background-color: var(--secondary-colour);
   border-radius: 8px;
 }
 
