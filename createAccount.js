@@ -117,4 +117,24 @@ function checkpassword(password, passwordconfirm){
     return password === passwordconfirm;
   }
 
+function validateEmail(email){ // 입력값 변경 시, 이메일 유효성 검사 수행 
+const emailRegex = /^\S+@\S+\.\S+$/;
+return emailRegex.test(email);
+}
+
+function validatename(name) { // 입력값 변경 시, 닉네임 유효성 검사 수행 
+const nameRegex = /^[가-힣]+$/; // 닉네임은 한글로만 작성 가능
+return nameRegex.test(name);
+}
+
+function validatePassword(password) { // 입력값 변경 시, 비밀번호 유효성 검사 수행 
+const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])/; 
+return passwordRegex.test(password);
+}
+
+function validatePassword(passwordconfirm) { // 입력값 변경 시, 비밀번호확인 유효성 검사 수행 
+const passwordRegex = checkpassword(password, passwordconfirm);
+return passwordRegex;
+}
+
     
