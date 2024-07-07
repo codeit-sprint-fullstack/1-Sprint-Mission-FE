@@ -137,4 +137,26 @@ const passwordRegex = checkpassword(password, passwordconfirm);
 return passwordRegex;
 }
 
-    
+/* 회원가입 버튼 활성화 함수*/
+function validateForm() {
+const email = document.getElementById('email');
+const name = document.getElementById('name');
+const password = document.getElementById('password');
+const passwordconfirm = document.getElementById('passwordmaza');
+
+const submit = document.getElementById('button');
+
+if(!validateEmail(email.value) || !validatename(name.value) || !validatePassword(password.value) ){ // input값이 유효한지 확인  || !validatePasswordconfirm(passwordmaza.value)
+    submit.disabled = true; // 회원가입 버튼 비활성화
+} else {
+    submit.disabled = false; // 회원가입 버튼 활성화
+}
+}
+
+/* 회원가입 버튼 활성화 이벤트*/
+document.getElementById('email').addEventListener('input', validateForm);
+document.getElementById('name').addEventListener('input', validateForm);
+document.getElementById('password').addEventListener('input', validateForm);
+document.getElementById('passwordmaza').addEventListener('input', validateForm);
+
+
