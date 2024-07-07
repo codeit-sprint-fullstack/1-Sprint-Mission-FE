@@ -9,7 +9,7 @@ function userSignup(email){
 signupForm.addEventListener('submit', event => {
   event.preventDefault();
 
-  const email = signupForm.getElementById('email');
+  const email = document.getElementById('email');
 
   if(userSignup(email.value)){
     alert('사용 중인 이메일입니다');

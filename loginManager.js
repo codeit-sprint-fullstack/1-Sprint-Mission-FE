@@ -9,8 +9,8 @@ function userLogin(email, password){
 loginForm.addEventListener('submit', event => {
   event.preventDefault();
 
-  const email = loginForm.getElementById('email');
-  const password = loginForm.getElementById('password');
+  const email = document.getElementById('email');
+  const password = document.getElementById('password');
 
   if(userLogin(email.value, password.value)){
     location.href = '/items';
@@ -18,5 +18,3 @@ loginForm.addEventListener('submit', event => {
     alert('비밀번호가 일치하지 않습니다.');
   }
 });
-
-console.log(USER_DATA);

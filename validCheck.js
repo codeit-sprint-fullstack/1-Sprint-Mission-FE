@@ -18,12 +18,13 @@ let checkPasswordValid = false;
 let nickNameValid = false;
 /*버튼 비활성화*/
 function loginButtonStatus(){
-  (emailValid && passwordValid) ?
-    loginButton.disabled = false : loginButton.disabled = true;
+  if(emailValid && passwordValid) loginButton.disabled = false;
+  else loginButton.disabled = true;
 }
 function joinButtonStatus(){
-  (emailValid && passwordValid && checkPasswordValid && nickNameValid) ?
-    joinButton.disabled = false : joinButton.disabled = true;
+  if(emailValid && passwordValid && checkPasswordValid && nickNameValid)
+    joinButton.disabled = false;
+  else joinButton.disabled = true;
 }
 /*이메일 검사*/
 email.addEventListener('focusout',() => {
