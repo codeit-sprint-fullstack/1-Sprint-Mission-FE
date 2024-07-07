@@ -139,18 +139,19 @@ return passwordRegex;
 
 /* 회원가입 버튼 활성화 함수*/
 function validateForm() {
-const email = document.getElementById('email');
-const name = document.getElementById('name');
-const password = document.getElementById('password');
-const passwordconfirm = document.getElementById('passwordmaza');
+  const email = document.getElementById('email').value;
+  const name = document.getElementById('name').value;
+  const password = document.getElementById('password').value;
+  const passwordconfirm = document.getElementById('passwordmaza').value;
 
-const submit = document.getElementById('button');
-
-if(!validateEmail(email.value) || !validatename(name.value) || !validatePassword(password.value) ){ // input값이 유효한지 확인  || !validatePasswordconfirm(passwordmaza.value)
-    submit.disabled = true; // 회원가입 버튼 비활성화
-} else {
-    submit.disabled = false; // 회원가입 버튼 활성화
-}
+  const submit = document.getElementById('button');
+  
+// input값이 유효한지 확인
+if(!validateEmail(email) || !validatename(name) || !validatePassword(password) || !checkpassword(password,passwordconfirm)){ 
+      submit.disabled = true; // 회원가입 버튼 비활성화
+  } else {
+      submit.disabled = false; // 회원가입 버튼 활성화
+  }
 }
 
 /* 회원가입 버튼 활성화 이벤트*/
