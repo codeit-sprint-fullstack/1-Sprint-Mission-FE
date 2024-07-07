@@ -98,4 +98,8 @@
           submit.disabled = false; // 로그인 버튼 활성화
       }
     }
+    /* 로그인 버튼 활성화 이벤트 */
+    document.getElementById('email').addEventListener('input', validateForm);
+    document.getElementById('password').addEventListener('input', validateForm);
+
 
