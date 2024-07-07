@@ -132,7 +132,7 @@ const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])/;
 return passwordRegex.test(password);
 }
 
-function validatePassword(passwordconfirm) { // 입력값 변경 시, 비밀번호확인 유효성 검사 수행 
+function validatePasswordconfirm(passwordconfirm) { // 입력값 변경 시, 비밀번호확인 유효성 검사 수행 
 const passwordRegex = checkpassword(password, passwordconfirm);
 return passwordRegex;
 }
