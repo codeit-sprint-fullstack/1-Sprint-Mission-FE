@@ -17,7 +17,7 @@
       const password = document.getElementById('password').value;
   
       /* 데이터베이스에서 이메일을 이용해서 가입되어있는지 찾는다 */ 
-      let foundUser = USER_DATA.find( function founduser(user){ 
+      const foundUser = USER_DATA.find( function founduser(user){ 
         return user.email === email; 
       });
   
@@ -55,7 +55,7 @@
      document.getElementById('password').addEventListener('focusout', function(event) {
       const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])/; //.{8,}
 
-      var password = event.target;
+      const password = event.target;
 
       if (password.value === '') { // 비밀번호 값이 없을 경우
           password.classList.add('error');
