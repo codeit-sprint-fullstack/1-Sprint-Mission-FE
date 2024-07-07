@@ -1,7 +1,18 @@
-
-
 const mPassword = document.querySelector('.m_password');
 const showPw = document.querySelector('#show_pw');
+const mPasswordSecond = document.querySelector('.m_password_second');
+const showPwSecond = document.querySelector('#show_pw_second');
+const userEmail = document.querySelector('#signup_user_email')
+const emailMsg1 = document.querySelector("#signup_emailMsg1")
+const emailMsg2 = document.querySelector("#signup_emailMsg2")
+const userPassword = document.querySelector('#signup_user_password')
+const pswdMsg1 = document.querySelector("#signup_pswdMsg1")
+const pswdMsg2 = document.querySelector("#signup_pswdMsg2")
+const userPassword2 = document.querySelector('#signup_user_password2')
+const pswdMsg3 = document.querySelector("#signup_pswdMsg3")
+const signupBtn = document.querySelector('#signup_btn');
+const userNickname = document.querySelector('#signup_user_nickname');
+
 
 showPw.addEventListener("click", function () {
   if (mPassword.type === "password") {
@@ -16,10 +27,6 @@ showPw.addEventListener("click", function () {
 });
 
 
-
-const mPasswordSecond = document.querySelector('.m_password_second');
-const showPwSecond = document.querySelector('#show_pw_second');
-
 showPwSecond.addEventListener("click", function () {
   if (mPasswordSecond.type === "password") {
     mPasswordSecond.type = "text";
@@ -31,11 +38,6 @@ showPwSecond.addEventListener("click", function () {
     showPwSecond.classList.add("fa-eye-slash");
   }
 });
-
-
-const userEmail = document.querySelector('#signup_user_email')
-const emailMsg1 = document.querySelector("#signup_emailMsg1")
-const emailMsg2 = document.querySelector("#signup_emailMsg2")
 
 
 userEmail.addEventListener("blur", function () {
@@ -55,12 +57,11 @@ userEmail.addEventListener("blur", function () {
       userEmail.style.border = 'none';
     }
   }
-
 });
 
-const userPassword = document.querySelector('#signup_user_password')
-const pswdMsg1 = document.querySelector("#signup_pswdMsg1")
-const pswdMsg2 = document.querySelector("#signup_pswdMsg2")
+userEmail.addEventListener("click", function () {
+  userEmail.style.border = 'none';
+});
 
 
 userPassword.addEventListener("blur", function () {
@@ -79,11 +80,11 @@ userPassword.addEventListener("blur", function () {
       userPassword.style.border = 'none';
     }
   }
-
 });
 
-const userPassword2 = document.querySelector('#signup_user_password2')
-const pswdMsg3 = document.querySelector("#signup_pswdMsg3")
+userPassword.addEventListener("click", function () {
+  userPassword.style.border = 'none';
+});
 
 
 userPassword2.addEventListener("blur", function () {
@@ -94,5 +95,36 @@ userPassword2.addEventListener("blur", function () {
     pswdMsg3.style.display = "none";
     userPassword2.style.border = 'none';
   }
-
 });
+
+userPassword2.addEventListener("click", function () {
+  userPassword2.style.border = 'none';
+});
+
+
+function 페이지이동() {
+  window.location.href = '../login.html'
+}
+
+signupBtn.addEventListener("click", function () {
+  if (userEmail.value !== "" && userPassword.value !== "" && userPassword2.value !== "" && userNickname.value !== "" && emailMsg1.style.display === "none" && emailMsg2.style.display === "none" && pswdMsg1.style.display === "none" && pswdMsg2.style.display === "none" && pswdMsg3.style.display === "none") {
+    for (let i = 0; i < USER_DATA.length; i++) {
+      if (userEmail.value === USER_DATA[i].email) {
+        alert("사용 중인 이메일입니다.")
+        break;
+      }
+      else {
+        페이지이동();
+      }
+    }
+  }
+})
+
+const USER_DATA = [
+  { email: 'codeit1@codeit.com', password: "codeit101!" },
+  { email: 'codeit2@codeit.com', password: "codeit202!" },
+  { email: 'codeit3@codeit.com', password: "codeit303!" },
+  { email: 'codeit4@codeit.com', password: "codeit404!" },
+  { email: 'codeit5@codeit.com', password: "codeit505!" },
+  { email: 'codeit6@codeit.com', password: "codeit606!" },
+];

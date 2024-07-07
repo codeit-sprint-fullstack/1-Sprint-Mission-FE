@@ -76,7 +76,7 @@ input {
   color: var(--input-focus-eye);
 }
 
-.login_box > button {
+#login_btn {
   width: 640px;
   height: 56px;
   background-color: var(--btn-background-color);
