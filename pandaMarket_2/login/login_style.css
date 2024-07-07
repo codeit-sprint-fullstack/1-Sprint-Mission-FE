@@ -1,0 +1,169 @@
+@import "../reset.css";
+
+* {
+  box-sizing: border-box;
+  font-family: Pretendard;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+:root {
+  --white: #FFFFFF;
+  --blue: #3692FF;
+  --signUpBlue: #3182F6;
+  --backBlue: #CFE5FF;
+  --lightBlue: #E6F2FF;
+  --borderGray: #DFDFDF;
+  --gray50: #F9FAFB;
+  --gray100: #F3F4F6;
+  --gray200: #E5E7EB;
+  --gray400: #9CA3AF;
+  --gray500: #6B7280;
+  --gray600: #4B5563;
+  --gray700: #374151;
+  --gray800: #1F2937;
+  --gray900: #111827;
+}
+
+body {
+  background-color: var(--white);
+}
+
+
+
+.login-header-logo {
+  display: flex;
+  justify-content: center;
+  max-width: 70rem;
+  min-width: 45.6rem;
+  width: 100%;
+  margin: 6rem auto 4rem;
+}
+
+
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  max-width: 70rem;
+  min-width: 45.6rem;
+  width: 100%;
+  height: 43rem;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.input-user-info,
+.input-password-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.552rem;
+  height: 9.3rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.148rem;
+  color: var(--gray800);
+}
+
+.input-password-info {
+  position: relative;
+}
+
+#userEmail,
+#userPassword {
+  height: 5.6rem;
+  padding: 1.6rem 2.4rem;
+  border: none;
+  border-radius: 1.2rem;
+  background-color: var(--gray100);
+}
+
+#variantEye {
+  position: absolute;
+  right: 2.4rem;
+  bottom: 1.6rem;
+  width: 2.4rem;
+  cursor: pointer;
+}
+
+input:focus {
+  outline: 1px solid var(--blue);
+}
+
+input::placeholder {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  color: var(--gray400);
+}
+
+
+
+.submit-btn {
+  width: 100%;
+  height: 5.6rem;
+  border-radius: 4rem;
+  padding: 1.6rem 12.4rem;
+  border: none;
+  background-color: var(--gray400);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  color: var(--white);
+  text-align: center;
+}
+
+
+
+.third-party-auth {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 7.4rem;
+  padding: 0 2.3rem;
+  border-radius: 0.8rem;
+  background-color: var(--lightBlue);
+}
+
+.third-party-login {
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 2.4rem;
+  color: var(--gray800);
+}
+
+.third-party-icons {
+  display: flex;
+  justify-content: space-between;
+  width: 10rem;
+  height: 4.2rem;
+}
+
+.third-party-icon {
+  width: 4.2rem;
+}
+
+
+
+.signup-link {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  gap: 0.4rem;
+  width: 21rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.79rem;
+}
+
+.signup-link p {
+  color: var(--gray800);
+}
+
+.signup-link a {
+  color: var(--signUpBlue);
+}

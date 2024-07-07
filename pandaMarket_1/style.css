@@ -1,0 +1,282 @@
+@import "./reset.css";
+
+* {
+  box-sizing: border-box;
+  font-family: Pretendard;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+:root {
+  --white: #FFFFFF;
+  --blue: #3692FF;
+  --signUpBlue: #3182F6;
+  --backBlue: #CFE5FF;
+  --lightBlue: #E6F2FF;
+  --borderGray: #DFDFDF;
+  --gray50: #F9FAFB;
+  --gray100: #F3F4F6;
+  --gray200: #E5E7EB;
+  --gray400: #9CA3AF;
+  --gray500: #6B7280;
+  --gray600: #4B5563;
+  --gray700: #374151;
+  --gray800: #1F2937;
+  --gray900: #111827;
+}
+
+body {
+  background-color: var(--white);
+}
+
+
+
+
+
+.market-header-background {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  min-width: 90rem;
+  height: 7rem;
+  background-color: var(--white);
+  border-bottom: 0.1rem solid var(--borderGray);
+  overflow-x: hidden;
+  z-index: 1;
+}
+
+#marketHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  max-width: 192rem;
+  width: 100%;
+  height: 7rem;
+  padding: 0 20rem;
+  border-bottom: 0.1rem solid var(--borderGray);
+}
+
+.market-logo-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3.2rem;
+}
+
+.market-nav {
+  display: flex;
+  align-items: center;
+  width: 21.8rem;
+}
+
+.market-nav-list {
+  width: 10.9rem;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.148rem;
+  color: var(--gray600);
+}
+
+#marketLoginBtn {
+  width: 8.8rem;
+  height: 4.2rem;
+  border-radius: 0.8rem;
+  padding: 1.15rem 2.3rem;
+  background-color: var(--blue);
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.909rem;
+  color: var(--white);
+  text-decoration: none;
+}
+
+
+
+
+
+.banner-background {
+  background-color: var(--backBlue);
+  width: 100%;
+  min-width: 90rem;
+  margin-top: 7rem; 
+  overflow-x: hidden;
+}
+
+.banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 120rem;
+  width: 100%;
+  height: 54rem;
+}
+
+.banner-theme{
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+.heading {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 5.6rem;
+  color: var(--gray700);
+  letter-spacing: 0.0024rem;
+}
+
+#showItemsBtn {
+  width: 35.7rem;
+  height: 5.6rem;
+  border-radius: 4rem;
+  padding: 1.6rem 12.4rem;
+  background-color: var(--blue);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+  color: var(--white);
+  text-decoration: none;
+}
+
+#bannerTopPanda {
+  position: relative;
+  left: -1.6rem;
+  align-self: flex-end;
+}
+
+
+
+
+
+#contentsBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  min-width: 90rem;
+}
+
+.hot-item-content,
+.search-item-content,
+.register-item-content {
+  display: flex;
+  align-items: center;
+  max-width: 120rem;
+  width: 100%;
+  height: 72rem;
+  gap: 6.4rem;
+}
+
+.content-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.content-subtitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.52rem;
+  color: var(--blue);
+}
+
+.content-desc {
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 2.88rem;
+  letter-spacing: 0.1817rem;
+  color: var(--gray700);
+  margin-top: 1.2rem;
+}
+
+#rightAlign {
+  justify-content: flex-end;
+}
+
+.textRightAlign {
+  text-align: right;
+}
+
+
+
+
+
+#bottomMargin {
+  width: 100%;
+  height: 6.8rem;
+}
+
+#bottomImgAlign {
+  position: relative;
+}
+
+#bannerBottomPanda {
+  position: absolute;
+  right: -13.7rem;
+}
+
+
+
+
+
+.footer-background {
+  background-color: var(--gray900);
+  width: 100%;
+  min-width: 90rem;
+  overflow-x: hidden;
+}
+
+#marketFooter {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 192rem;
+  width: 100%;
+  height: 16rem;
+  padding: 3.2rem 20rem 10.8rem;
+}
+
+#companyInfo {
+  width: 11.2rem;
+  height: 1.9rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.909rem;
+  color: var(--gray400);
+}
+
+.footer-item {
+  display: flex;
+  justify-content: space-between;
+  width: 15.9rem;
+  height: 1.9rem;
+  gap: 3rem;
+}
+
+.footer-item a {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.909rem;
+  color: var(--gray200);
+  text-decoration: none;
+}
+
+#sns {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+
+.sns-icon {
+  width: 2rem;
+  color: var(--white);
+}
