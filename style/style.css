@@ -337,7 +337,8 @@ form .error-msg {
   flex-direction: column;
 }
 .pw-field,
-.confirm-pw-field {
+.confirm-pw-field,
+.name-field {
   display: flex;
   flex-direction: column;
   position: relative;
