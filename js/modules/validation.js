@@ -13,7 +13,7 @@ const cPwField = form.querySelector('.confirm-pw-field');
 const pwInput = document.querySelector('#pw');
 const confirmPwInput = document.querySelector('#confirm-pw');
 const nameField = form.querySelector('.name-field');
-const userName = nameField.querySelector('#name');
+const userName = document.querySelector('#name');
 
 function emptyInput(field, errorText) {
   const input = form.querySelector(`.${field}`);
