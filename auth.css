@@ -90,9 +90,9 @@ label {
   color: var(--backWhite);
   font-size: 2rem;
   font-weight: 600;
-}
-.disabled {
-  opacity: 0.5;
+  .disabled {
+    opacity: 0.5;
+  }
 }
 .simpleLogin {
   height: 7.4rem;
