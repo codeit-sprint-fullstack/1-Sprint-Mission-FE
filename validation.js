@@ -30,3 +30,23 @@
         window.location.replace('/items'); // 로그인 성공시, 페이지 이동
       }
     });
+    
+    /* 이메일 input에서 focus out할 때 */
+     document.getElementById('email').addEventListener('focusout', function(event) {
+      const emailRegex = /^\S+@\S+\.\S+$/; // 유효한 이메일 양식
+
+      const email = event.target;
+    
+      if (email.value === '') { // 이메일 값이 없을 경우
+        email.classList.add('error');
+        document.getElementById('emailerror').innerHTML = '이메일을 입력해주세요.';
+        document.getElementById('emailerror').hidden = false;
+      }else if(!emailRegex.test(email.value)){ // 입력한 이메일이 형식에 맞지않는 경우
+      email.classList.add('error');
+      document.getElementById('emailerror').innerHTML = '잘못된 이메일 형식입니다.';
+      document.getElementById('emailerror').hidden = false;
+      }else{
+        email.classList.remove('error');
+        document.getElementById('emailerror').hidden = true;
+      }
+    });
