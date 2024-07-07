@@ -28,5 +28,5 @@ function clickEye(myPasswordBox, myPasswordForm) {
   });
 }
 
-clickEye(".password.inputBox", "#password.inputForm");
-clickEye(".checkPassword.inputBox", "#checkPassword.inputForm");
+clickEye(".password.inputBox", "#password");
+clickEye(".checkPassword.inputBox", "#checkPassword");
