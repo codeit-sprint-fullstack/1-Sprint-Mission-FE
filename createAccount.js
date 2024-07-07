@@ -16,7 +16,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     const email = document.getElementById('email').value;
 
     /* 데이터베이스에서 이메일을 이용해서 사용자를 찾는다 */ 
-    let foundUser = USER_DATA.find(function founduser(user){ 
+    const foundUser = USER_DATA.find(function founduser(user){ 
       return user.email === email; 
     });
 
@@ -30,9 +30,9 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
 
   /* 이메일 input에서 focus out할 때 */
  document.getElementById('email').addEventListener('focusout', function emailFocusout(event) {
-    var emailRegex = /^\S+@\S+\.\S+$/; // 유효한 이메일 양식
+    const emailRegex = /^\S+@\S+\.\S+$/; // 유효한 이메일 양식
 
-    var email = event.target;
+    const email = event.target;
     
     if (email.value === '') { // 이메일 값이 없을 경우
         email.classList.add('error');
@@ -71,7 +71,7 @@ document.getElementById('name').addEventListener('focusout', function(event) {
 document.getElementById('password').addEventListener('focusout', function(event) {
     const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])/;
   
-    var password = event.target;
+    const password = event.target;
   
     if (password.value === '') { // 비밀번호 값이 없을 경우
         password.classList.add('error');
@@ -112,52 +112,52 @@ document.getElementById('passwordmaza').addEventListener('focusout', function(ev
     }
     });
 
-/* 비밀번호와 확인시 비밀번호가 맞는지 확인 함수 */
-function checkpassword(password, passwordconfirm){
-    return password === passwordconfirm;
+  /* 비밀번호와 확인시 비밀번호가 맞는지 확인 함수 */
+  function checkpassword(password, passwordconfirm){
+      return password === passwordconfirm;
+    }
+
+  function validateEmail(email){ // 입력값 변경 시, 이메일 유효성 검사 수행 
+  const emailRegex = /^\S+@\S+\.\S+$/;
+  return emailRegex.test(email);
   }
 
-function validateEmail(email){ // 입력값 변경 시, 이메일 유효성 검사 수행 
-const emailRegex = /^\S+@\S+\.\S+$/;
-return emailRegex.test(email);
-}
+  function validatename(name) { // 입력값 변경 시, 닉네임 유효성 검사 수행 
+  const nameRegex = /^[가-힣]+$/; // 닉네임은 한글로만 작성 가능
+  return nameRegex.test(name);
+  }
 
-function validatename(name) { // 입력값 변경 시, 닉네임 유효성 검사 수행 
-const nameRegex = /^[가-힣]+$/; // 닉네임은 한글로만 작성 가능
-return nameRegex.test(name);
-}
+  function validatePassword(password) { // 입력값 변경 시, 비밀번호 유효성 검사 수행 
+  const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])/; 
+  return passwordRegex.test(password);
+  }
 
-function validatePassword(password) { // 입력값 변경 시, 비밀번호 유효성 검사 수행 
-const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])/; 
-return passwordRegex.test(password);
-}
+  function validatePasswordconfirm(passwordconfirm) { // 입력값 변경 시, 비밀번호확인 유효성 검사 수행 
+  const passwordRegex = checkpassword(password, passwordconfirm);
+  return passwordRegex;
+  }
 
-function validatePasswordconfirm(passwordconfirm) { // 입력값 변경 시, 비밀번호확인 유효성 검사 수행 
-const passwordRegex = checkpassword(password, passwordconfirm);
-return passwordRegex;
-}
-
-/* 회원가입 버튼 활성화 함수*/
-function validateForm() {
+  /* 회원가입 버튼 활성화 함수*/
+  function validateForm() {
   const email = document.getElementById('email').value;
   const name = document.getElementById('name').value;
   const password = document.getElementById('password').value;
   const passwordconfirm = document.getElementById('passwordmaza').value;
 
   const submit = document.getElementById('button');
-  
-// input값이 유효한지 확인
-if(!validateEmail(email) || !validatename(name) || !validatePassword(password) || !checkpassword(password,passwordconfirm)){ 
+
+  // input값이 유효한지 확인
+  if(!validateEmail(email) || !validatename(name) || !validatePassword(password) || !checkpassword(password,passwordconfirm)){ 
       submit.disabled = true; // 회원가입 버튼 비활성화
   } else {
       submit.disabled = false; // 회원가입 버튼 활성화
   }
-}
+  }
 
-/* 회원가입 버튼 활성화 이벤트*/
-document.getElementById('email').addEventListener('input', validateForm);
-document.getElementById('name').addEventListener('input', validateForm);
-document.getElementById('password').addEventListener('input', validateForm);
-document.getElementById('passwordmaza').addEventListener('input', validateForm);
+  /* 회원가입 버튼 활성화 이벤트*/
+  document.getElementById('email').addEventListener('input', validateForm);
+  document.getElementById('name').addEventListener('input', validateForm);
+  document.getElementById('password').addEventListener('input', validateForm);
+  document.getElementById('passwordmaza').addEventListener('input', validateForm);
 
 
