@@ -79,6 +79,17 @@ userPassword.addEventListener("blur", function () {
       pswdMsg2.style.display = "none";
       userPassword.style.border = 'none';
     }
+    if (userPassword2.value === "") {
+      pswdMsg3.style.display = "none";
+      userPassword2.style.border = 'none';
+    }
+    else if (userPassword.value !== userPassword2.value) {
+      pswdMsg3.style.display = "block";
+      userPassword2.style.border = '1px solid #F74747';
+    } else {
+      pswdMsg3.style.display = "none";
+      userPassword2.style.border = 'none';
+    }
   }
 });
 
