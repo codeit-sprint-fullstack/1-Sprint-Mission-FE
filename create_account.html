@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>판다마켓 회원가입</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class = "pandamarket_logo">
+        <a href="index.html"><img class="pandalog_img" src="images/판다마켓_로고.png"></a>
+    </header>
+
+    <main>
+        <div class="form_box">
+            <form>
+                <label for="email">이메일</label>
+                <input id="email" name="email" type="email" placeholder="이메일을 입력해주세요">
+
+                <label for="name">닉네임</label>
+                <input id="name" name="name" type="name" placeholder="닉네임을 입력해주세요">
+                
+                <label for="password">비밀번호</label>
+                <div class="ps_confirm">
+                    <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
+                    <div class="eyes">
+                        <img class="eyss_img" src="images/비밀번호눈.png" style="height: 24px; width:24px;"></img>
+                    </div>
+                </div>
+               
+                <label for="password_maza">비밀번호 확인</label>
+                <div class="ps_confirm">
+                    <input id="password_maza" name="password" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요">
+                    <div class="eyes">
+                        <img class="eyss_img" src="images/비밀번호눈.png" style="height: 24px; width:24px;"></img>
+                    </div>
+                </div>
+
+                <button type="button" onclick="location.href='create_account.html' ">회원가입</button></a>
+            </form>
+
+            <div class="easy_login_box">
+                <div class="easy_text">
+                    간편 로그인하기
+                </div>
+
+                <div class="sns">
+                    <a href="https://www.google.com/" target="google"><img style="width:42px; height:42px;" src="images/google.png" alt="구글"></a>
+                    <a href="https://www.kakaocorp.com/page/" target="kakaotalk"><img style="width:42px; height:42px;" src="images/kakaotalk.png" alt="카카오톡"></a>
+                </div>
+            </div>
+
+                <div class="first_ingayo">
+                    이미 회원이신가요? 
+                    <a href="panda_login.html" style="color:#3182F6;"> 로그인</a>
+                </div>
+            
+        </div>
+    </main>
+</body>
+
+
+
+
+</html>
