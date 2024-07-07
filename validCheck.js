@@ -18,10 +18,12 @@ let checkPasswordValid = false;
 let nickNameValid = false;
 /*버튼 비활성화*/
 function loginButtonStatus(){
+  console.log(`emailValid: ${emailValid}, passwordValid: ${passwordValid}`);//
   if(emailValid && passwordValid) loginButton.disabled = false;
   else loginButton.disabled = true;
 }
 function joinButtonStatus(){
+  console.log(`emailValid: ${emailValid}, passwordValid: ${passwordValid}, checkPasswordValid: ${checkPasswordValid}, nickNameValid: ${nickNameValid}`);//
   if(emailValid && passwordValid && checkPasswordValid && nickNameValid)
     joinButton.disabled = false;
   else joinButton.disabled = true;
