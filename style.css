@@ -352,6 +352,18 @@ footer {
   .small.logoImg {
     display: block;
   }
+  .navContainer {
+    width: 13.5rem;
+  }
+  .nav {
+    font-size: 1.6rem;
+  }
+  .nav.fir {
+    width: 53%;
+  }
+  .nav.sec {
+    width: 47%;
+  }
   .title {
     height: 54rem;
   }
