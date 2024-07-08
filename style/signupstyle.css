@@ -179,7 +179,6 @@ input::placeholder {
     line-height: 1.79rem;
     font-weight: 500;
     color: var(--login-text-color);
-    margin-bottom: 2.4rem;
 }
 
 .login-link {
@@ -238,4 +237,72 @@ input::placeholder {
     height: 4.8rem;
     right: 28px;
     bottom: 28px;
+}
+
+@media (max-width:768px) {
+    #logo-img {
+        width: 19.8rem;
+        height: 6.6rem;
+        margin-top: 2.4rem;
+    }
+
+    .containers {
+        width: 100%;
+        padding: 0 16px;
+    }
+
+    .login-form {
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .pwsetting {
+        position: none;
+    }
+
+    .show,
+    .non-show {
+        position: relative;
+        right: 5.4rem;
+        top: 0.8rem;
+    }
+
+    .login-form label {
+        margin-bottom: 0.8rem;
+        font-size: 14px;
+        line-height: 1.671em;
+        height: 1.7rem;
+    }
+
+    .login-form input,
+    .login-form .signup-btn,
+    .easy-login {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .input-margin-style {
+        margin-bottom: 1.6rem;
+    }
+
+    .easy-login {
+        padding: 0 2.4rem;
+        margin: 2.4rem 1.6rem;
+    }
+
+    .popup-content {
+        width: 32.7rem;
+        height: 22rem;
+    }
+
+    #popup-message {
+        margin-top: 81px;
+    }
+
+    .close-btn {
+        padding: 12px 0;
+        font-size: 16px;
+        bottom: 23px;
+        right: 103px;
+    }
 }
