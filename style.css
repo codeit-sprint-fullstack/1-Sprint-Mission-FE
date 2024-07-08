@@ -423,5 +423,20 @@ footer {
   }
   .footerContainer {
     margin: 3.2rem 1.6rem;
+    flex-wrap: wrap;
+  }
+  .footerCorp:nth-child(1) {
+    order: 3; 
+    flex-basis: 50%;
+  }
+  .footerPnF:nth-child(2) {
+    order: 1; 
+    flex-basis: 50%;
+  }
+  .footerSns:nth-child(3) {
+    order: 2; 
+    flex-basis: 50%;
+    display: flex;
+    justify-content: end;
   }
 }
