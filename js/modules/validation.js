@@ -1,4 +1,11 @@
-import { emailInput, form, pwInput } from './var.js';
+import {
+  emailInput,
+  form,
+  pwInput,
+  modal,
+  modalMsg,
+  confirmPwInput,
+} from './var.js';
 import { USER_DATA } from './userData.js';
 
 const emailRegex =
@@ -142,10 +149,8 @@ function buttonStatus() {
 
 // login validation
 function validateLogIn() {
-  const modal = document.querySelector('#overlay');
-  const errMsg = document.querySelector('#modal span');
   let logIn = false;
-  USER_DATA.forEach((user) => {
+  USER_DATA.some((user) => {
     if (
       emailInput.value.trim() === user.email &&
       pwInput.value.trim() === user.password
@@ -158,7 +163,42 @@ function validateLogIn() {
     window.location.href = '../items';
   } else {
     modal.classList.remove('modal-hidden');
-    errMsg.textContent = '없는 이메일, 또는 비밀번호가 일치하지 않습니다.';
+    modalMsg.textContent = '없는 이메일, 또는 비밀번호가 일치하지 않습니다.';
+  }
+}
+
+function confirmPw() {
+  const error = confirmPwInput.parentElement.querySelector('.error-msg');
+  if (confirmPwInput.value.trim() !== '') {
+    if (pwInput.value.trim() !== confirmPwInput.value.trim()) {
+      confirmPwInput.classList.add('error');
+      error.textContent = '입력한 비밀번호와 일치하지 않습니다.';
+      errorDisplay(confirmPwInput);
+      return false;
+    } else {
+      resetError(confirmPwInput);
+      return true;
+    }
+  }
+}
+
+//signup validation
+function validateSignUp() {
+  let signUp = false;
+  USER_DATA.some((user) => {
+    if (emailInput.value.trim() === user.email) {
+      signUp = true;
+    }
+  });
+
+  if (signUp) {
+    modal.classList.remove('modal-hidden');
+    modalMsg.textContent = '사용 중인 이메일입니다.';
+    modalMsg.classList.add('fail');
+  } else {
+    modal.classList.remove('modal-hidden');
+    modalMsg.textContent = '회원가입이 성공적으로 되었습니다.';
+    modalMsg.classList.add('success');
   }
 }
 
@@ -171,4 +211,6 @@ export {
   buttonStatus,
   submitBtn,
   validateLogIn,
+  validateSignUp,
+  confirmPw,
 };

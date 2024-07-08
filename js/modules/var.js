@@ -8,5 +8,16 @@ const confirmPwInput = document.querySelector('#confirm-pw');
 const nameField = form.querySelector('.name-field');
 const nameInput = document.querySelector('#name');
 const submitBtn = form.querySelector('button');
-
-export { form, emailInput, pwInput, emailField };
+const modal = document.querySelector('#overlay');
+const modalMsg = document.querySelector('#modal span');
+const modalBtn = modal.querySelector('.modal-button');
+export {
+  form,
+  emailInput,
+  pwInput,
+  emailField,
+  modal,
+  modalMsg,
+  modalBtn,
+  confirmPwInput,
+};

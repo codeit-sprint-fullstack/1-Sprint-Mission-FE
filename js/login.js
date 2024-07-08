@@ -1,5 +1,5 @@
 import { eyeIconToggle } from './modules/eyeIcon.js';
-import { form } from './modules/var.js';
+import { form, modal, modalBtn } from './modules/var.js';
 // import { USER_DATA } from './modules/userData.js';
 import {
   emptyInput,
@@ -7,6 +7,7 @@ import {
   logInFormat,
   buttonStatus,
   validateLogIn,
+  confirmPw,
 } from './modules/validation.js';
 
 eyeIconToggle();
@@ -27,8 +28,6 @@ form.querySelectorAll('input').forEach((input) => {
       resetError(input);
       buttonStatus();
     });
-  } else {
-    console.log('no input');
   }
 });
 
@@ -38,9 +37,6 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   validateLogIn();
 });
-
-const modal = document.querySelector('#overlay');
-const modalBtn = modal.querySelector('.modal-button');
 
 modalBtn.addEventListener('click', () => {
   modal.classList.add('modal-hidden');
