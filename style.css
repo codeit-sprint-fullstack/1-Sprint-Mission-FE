@@ -255,3 +255,27 @@ footer {
   display: flex;
   gap: 1.2rem;
 }
+@media (max-width: 1199px) {
+  .title {
+    height: 77.1rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+  }
+  .titleContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: auto;
+    transform: none;
+    margin: 9.4rem auto;
+  }
+  .titleContent,
+  .titleButtonContainer {
+    position: relative;
+  }
+  .bannerImg,
+  .titleImg {
+    position: relative;
+  }
+}
