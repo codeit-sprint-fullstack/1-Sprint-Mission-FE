@@ -20,7 +20,7 @@ h2 {
 h1 {
   font-size: 4rem;
   font-weight: 700;
-  line-height: 5.6rem;
+  line-height: 140%;
   letter-spacing: 0.02em;
   color: var(--mainFontBlack);
 }
@@ -271,6 +271,7 @@ footer {
     left: auto;
     transform: none;
     margin: 9.4rem auto;
+    gap: 2.4rem;
   }
   .titleContent,
   .titleButtonContainer {
@@ -284,7 +285,7 @@ footer {
     position: relative;
     right: 0;
   }
-  .main {
+  main {
     height: 231.4rem;
   }
   .mainContainer {
@@ -294,6 +295,7 @@ footer {
   .mainContainer .container {
     height: 67.8rem;
     flex-direction: column;
+    gap: 0;
   }
   .mainContainer .container.second {
     flex-direction: column-reverse;
@@ -305,18 +307,26 @@ footer {
   .contentContainer {
     margin-top: 1.6rem;
     width: 69.6rem;
-  }
-  .contentContainer>.content{
-    margin-top: 0.8rem;
-    margin-bottom: 1.6rem; 
-    br {
-      display: none;
+    h1 {
+      font-size: 3.2rem;
     }
+    .content {
+      margin-top: 0.8rem;
+      margin-bottom: 1.6rem; 
+      br {
+        display: none;
+      }
+    }
+  }
+  .contentDescription {
+    font-size: 1.8rem;
+    line-height: 120%;
   }
   .banner {
     height: 77.1rem;
-    overflow: hidden;
     flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
   }
   .bannerContainer{
     width: 74.4rem;
@@ -330,11 +340,23 @@ footer {
     width: 100%;
     text-align: center;
   }
+  .footerContainer {
+    margin: 3.2rem 2.4rem;
+  }
 }
 @media (max-width: 767px){
   .headerFixed {
-    max-width: 192rem;
-
+    padding: 0 1.6rem;
+  }
+  .title {
+    height: 54rem;
+  }
+  .titleContainer {
+    margin: 4.8rem auto;
+    gap: 1.6rem;
+    h1 {
+      font-size: 3.2rem;
+    }
   }
   .titleContent {
     text-align: center;
@@ -342,11 +364,43 @@ footer {
       display: block;
     }
   }
-  .titleContainer {
-    margin: 4.8rem auto;
+  .titleImg {
+    width: 62.6rem;
+    height: 28.1rem;
   }
-  .contentContainer>.content{
-    margin-top: 0.4rem;
-    margin-bottom: 0.8rem; 
+  .bannerImg {
+    width: 49.8rem;
+    height: 27rem;
+  }
+  main {
+    height: 132.6rem;
+  }
+  .mainContainer {
+    width: 37.5rem;
+    height: 131.1rem;
+  }
+  .mainContainer .container {
+    height: 37.3rem;
+  }
+  .container>img {
+    width: 34.3rem;
+    height: 25.9rem;
+  }
+  .contentContainer {
+    margin-top: 0.8rem;
+    width: 34.3rem;
+    h1 {
+      font-size: 2.4rem;
+    }
+    .content {
+      margin-top: 0.4rem;
+      margin-bottom: 0.8rem; 
+    }
+  }
+  .banner {
+    height: 54rem;
+  }
+  .footerContainer {
+    margin: 3.2rem 1.6rem;
   }
 }
