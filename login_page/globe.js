@@ -17,14 +17,14 @@ const checkEmail = function(e) {
         const messageSpan = document.createElement('span');
         messageSpan.classList.add('show-instant-message');
         messageSpan.textContent = message;
-        enterBox.appendChild(messageSpan);
+        emailBox.appendChild(messageSpan);
     };
 
     if (!emailInput.value) {
         showMessage('이메일을 입력해주세요');
     } else {
         if (errorMessage) {
-            pwInputSelector.classList.toggle('input-error-outline');
+            emailInput.classList.toggle('input-error-outline');
             errorMessage.remove();
         }
         if (!checkInput(emailInput.value)) {
@@ -34,5 +34,5 @@ const checkEmail = function(e) {
 };
 
 
-emailInput.addEventListener('focusin', checkEmail)
+emailInput.addEventListener('focusout', checkEmail)
 

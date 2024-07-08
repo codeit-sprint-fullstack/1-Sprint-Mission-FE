@@ -97,4 +97,5 @@ input:focus {
 
 .input-error-outline {
     outline-color: var(--keycolor-red);
+    border: var(--keycolor-red);
 }
