@@ -20,44 +20,48 @@
             </div>
             <div>
                 <div class="form_box">
-                    <form>
+                    <form id="form">
                         <label class="email_label" for="email">
                             <p>
                                 이메일
                             </p>
-                            <input type="text" name="email" id="user_id" placeholder="이메일을 입력해주세요" required>
+                            <input type="text" name="email" id="user_id" placeholder="이메일을 입력해주세요" required
+                                data-content="email">
                         </label>
+                        <p class="err hide"></p>
                         <label class="name_label" for="name_label" style="margin-top: 24px;">
                             <p>
                                 닉네임
                             </p>
-                            <input type="text" name="name_label" id="name_label" placeholder="닉네임 입력해주세요" required>
+                            <input type="text" name="name_label" id="name_label" placeholder="닉네임 입력해주세요" required
+                                data-content="name">
                         </label>
+                        <p class="err hide"></p>
                         <label class="password_label" for="password" style="margin-top: 24px;">
                             <p>
                                 비밀번호
                             </p>
                             <input type="password" name="password" id="password_first" placeholder="비밀번호 입력해주세요"
-                                required>
+                                required data-content="pwd">
                             <i>
                                 <img id="eye_icon" class="password_eye_icon" src="../image/btn_visibility_on_24px.png"
                                     alt="눈아이콘">
                             </i>
                         </label>
-                        <p class="hide hidestyle" id="password_item">비밀번호는 영문, 순자, 특수문자를 포함한 8자리 이상입니다.</p>
+                        <p class="err hide"></p>
                         <label class="password_label" for="password_conf_label" style="margin-top: 24px;">
                             <p>
                                 비밀번호 확인
                             </p>
                             <input type="password" name="password_conf_label" id="password_conf_label"
-                                placeholder="비밀번호를 다시 한 번 입력해주세요" required>
+                                placeholder="비밀번호를 다시 한 번 입력해주세요" required data-content="pwdconfirm">
                             <i>
                                 <img id="conf_eye_icon" class="password_eye_icon"
                                     src="../image/btn_visibility_on_24px.png" alt="눈아이콘">
                             </i>
                         </label>
-                        <p class="hide hidestyle" id="confirm_pass_item">비밀번호가 일치하지 않습니다.</p>
-                        <button type="submit" id="signup_button">회원가입</button>
+                        <p class="err hide"></p>
+                        <button type="submit" id="submit_btn">회원가입</button>
                     </form>
                 </div>
                 <div class="sns_login_box">
