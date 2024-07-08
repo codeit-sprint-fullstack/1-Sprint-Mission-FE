@@ -33,6 +33,7 @@ form.querySelectorAll('input').forEach((input) => {
 
 buttonStatus();
 
+
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   validateLogIn();

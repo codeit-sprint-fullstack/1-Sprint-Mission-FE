@@ -167,6 +167,7 @@ function validateLogIn() {
   }
 }
 
+//confirm password
 function confirmPw() {
   const error = confirmPwInput.parentElement.querySelector('.error-msg');
   if (confirmPwInput.value.trim() !== '') {
