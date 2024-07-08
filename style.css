@@ -252,13 +252,20 @@ footer {
   gap: 1.2rem;
 }
 @media (max-width: 1199px) {
+  body {
+    min-width: 76.8rem;
+  }
+  .headerFixed {
+    padding: 0 2.4rem;
+  }
   .title {
     height: 77.1rem;
     flex-direction: column;
     justify-content: space-between;
-    overflow-y: hidden;
+    overflow: hidden;
   }
   .titleContainer {
+    width: 74.4rem;
     flex-direction: column;
     position: relative;
     left: auto;
@@ -281,6 +288,7 @@ footer {
     height: 231.4rem;
   }
   .mainContainer {
+    width: 74.4rem;
     height: 227.4rem;
   }
   .mainContainer .container {
@@ -307,10 +315,11 @@ footer {
   }
   .banner {
     height: 77.1rem;
-    overflow-y: hidden;
+    overflow: hidden;
     flex-direction: column;
   }
   .bannerContainer{
+    width: 74.4rem;
     position: relative;
     align-items: center;
     left: auto;
