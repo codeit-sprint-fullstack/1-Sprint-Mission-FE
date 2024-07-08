@@ -33,7 +33,7 @@ html {
 
 #main_sec_grp_logo_input_btn {
     max-width: 64rem;
-    width: 64rem;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -59,11 +59,11 @@ html {
 .main_sec_input_email_pw {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    /* gap : 1.6rem; */
+    /* justify-content: space-between; */
+    gap : 1.6rem;
     font-size : 1.8rem;
     font-weight : 700;
-    line-height : 1.19333em;
+    line-height : 1.16666em;
     color : var(--gray800-color);
 }
 
@@ -76,7 +76,7 @@ html {
     font-size: 1.6rem;
     font-weight: 400;
     
-    height : 5.6rem;
+    height : 5.4rem;
     border-radius: 0.75em;
     background-color: var(--gray100-color);
     border : 0.1rem;
@@ -89,16 +89,8 @@ html {
     border-color : var(--red-color);
 }
 
-.main_sec_input_email_pw > label{
-    margin-bottom : 1.6rem;
-}
-
-#login_pw {
-    /* naming */
-}
-
 .grp_pw_input_btn {
-    width : 64rem;
+    max-width : 64rem;
     height : 5.6rem;
     display : flex;
     flex-direction : row;
@@ -119,7 +111,7 @@ html {
 }
 
 .btn_base {
-    width : 64rem;
+    max-width : 64rem;
     height : 5.6rem;
     background-color : var(--gray400-color);
     border : none;
@@ -140,7 +132,7 @@ html {
 }
 
 #main_sec_grp_simple_login {
-    width: 64rem;
+    max-width: 64rem;
     height: 7.4rem;
     font-size: 1.6rem;
     background-color: var(--solitude-color);
@@ -242,4 +234,62 @@ html {
 
     font-family: "Pretendard";
     font-size: 1.6rem;
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+    #main_sec_grp_logo_input_btn {
+        margin-top : 4.8rem; 
+    }
+
+    #main_sec_grp_input_btn_simple_signup.signup {
+        gap : 1.6rem;
+    }
+
+    #btn_signup.signup {
+        margin-top : 0.8rem;
+        margin-bottom : 0.8rem;
+    }
+
+    #main_sec_grp_simple_login.signup {
+        margin-bottom : 0.8rem;
+    }
+}
+
+
+@media only screen and (min-width: 375px) and (max-width: 767px) {
+    #main_sec_grp_logo_input_btn {
+        max-width: 34.4rem;
+        margin-top : 2.4rem; 
+        margin-bottom : 2.44rem;
+    }
+
+    #btn_logo {
+        width : 19.8rem;
+        height : 6.6rem;
+    }
+
+    .btn_base.signup {
+        font-size : 1.6rem;
+    }
+
+    #main_sec_grp_input_btn_simple_signup {
+        max-width : 34.4rem;
+        gap : 1.6rem;
+    }
+
+    .main_sec_input_email_pw {
+        gap : 0.8rem;
+        font-size : 1.4rem;
+    }
+
+    #main_sec_grp_simple_login 
+    {
+        margin-top : 0.8rem;
+        margin-bottom : 0.8rem;
+    }
+
+    #main_sec_grp_simple_login {
+        height: 7.5rem;
+    }
 }
