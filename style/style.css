@@ -567,9 +567,4 @@ footer {
     margin: 0 11px;
     cursor: pointer;
   }
-
-  .footer-info-items:nth-child(1), .footer-info-items:nth-child(2) {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-  }
 }
