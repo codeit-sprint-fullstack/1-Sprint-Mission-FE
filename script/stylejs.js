@@ -28,10 +28,39 @@ const hideCheck = document.getElementsByClassName('meg');
 const form = document.querySelector('#form');
 const submit_btn = document.querySelector('#submit_btn');
 
+// form.addEventListener('focusout', (e) => {
+//     const inputEl = e.target;
+//     switch (e.target.dataset.content) {
+//         case 'email':
+//             // emailRegex(e);
+//             renderValidation(inputEl, );
+//             break;
+//         case 'name':
+//             nameRegex(e);
+//             break;
+//         case 'pwd':
+//             passwordRegex(e);
+//             break;
+//         case 'pwdconfirm':
+//             passwordConfirmRegex(e, password_first);
+//             break;
+//     }
+//     if (inputDisabledBtn(hideCheck, inputCheck)) {
+//         submit_btn.disabled = false;
+//         submit_btn.style.backgroundColor = '#3692FF';
+//     } else {
+//         submit_btn.disabled = true;
+//         submit_btn.style.backgroundColor = '#9CA3AF';
+//     }
+// })
+
 form.addEventListener('focusout', (e) => {
-    switch (e.target.dataset.content) {
+    const inputEl = e.target;
+    const elType = input.dataset.content;
+    switch (inputEl.dataset.content) {
         case 'email':
-            emailRegex(e);
+            // emailRegex(e);
+            renderValidation(inputEl, elType);
             break;
         case 'name':
             nameRegex(e);
@@ -63,8 +92,6 @@ submit_btn.addEventListener('click', (e) => {
     const submit = USER_DATA.find((user) => {
         return user.email === userId.value;
     });
-    console.log(USER_DATA);
-    console.log(submit);
     switch (e.target.dataset.content) {
         case 'login':
             if (submit) {

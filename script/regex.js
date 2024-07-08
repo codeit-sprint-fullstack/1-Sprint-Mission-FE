@@ -22,6 +22,70 @@ export function emailRegex(e) {
     }
 }
 
+export function checkFormat(text, type) {
+    switch (type) {
+        case 'email':
+            if (text.length === 0) {
+                return {
+                    errorMessage: '이메일을 입력해주세요.'
+                }
+            } else if (!email_regex.test(e.target.value)) {
+                return {
+                    errorMessage: "잘못된 이메일 형식입니다."
+                }
+            } else {
+                return {
+                    errorMessage: undefined
+                }
+            }
+            break;
+        case 'name':
+
+            break;
+        case 'pwd':
+
+            break;
+        case 'pwd_confirm':
+
+            break;
+    }
+
+    if (text) {
+        return {
+            errorMessage: "잘못된 이메일 형식입니다."
+        }
+    } else if (!email_regex.test(e.target.value)) {
+        return {
+            errorMessage: "잘못된 이메일 형식입니다."
+        }
+    } else {
+        return {
+            errorMessage: undefined
+        }
+    }
+}
+
+export function renderValidation(inputEl, type) {
+    //메시지 표시 요소
+    const errorTextEl = inputEl.parentElement.querySelector(".err");
+
+    //type별 유효성검사
+    const validationError = checkFormat(inputEl.value, type);
+
+    if (validationError.errorMessage) {
+        errorTextEl.textContent = validationError.errorMessage;
+        // Red Label
+        errorTextEl.classList.remove('hide');
+        errorTextEl.classList.add("meg");
+        inputEl.style.borderStyle = 'solid';
+        inputEl.style.borderColor = '#F74747';
+    } else {
+        errorTextEl.classList.add('hide');
+        errorTextEl.classList.remove('meg');
+        inputEl.style.borderStyle = 'none';
+    }
+}
+
 export function nameRegex(e) {
     const err = e.target.parentElement.nextElementSibling;
 

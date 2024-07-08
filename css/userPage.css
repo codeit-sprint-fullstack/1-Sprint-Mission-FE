@@ -153,6 +153,7 @@ p {
 }
 
 .max_size_box {
+    min-width: 400px;
     margin: auto;
     width: 640px;
     height: auto;
@@ -190,7 +191,7 @@ p {
     height: auto;
 }
 
-.logo_img {
+.user_logo_img {
     width: 396px;
     height: 132px;
 }
@@ -202,7 +203,7 @@ p {
         justify-content: center;
     }
 
-    .logo_img {
+    .user_logo_img {
         width: 90%;
         height: auto;
     }
@@ -240,8 +241,11 @@ input:focus {
 }
 
 .password_label {
-    position: relative;
     margin-top: 24px;
+}
+
+.password_label>i {
+    position: relative;
 }
 
 .password_eye_icon {
@@ -250,7 +254,7 @@ input:focus {
     width: 24px;
     height: 24px;
     right: 24px;
-    bottom: 16px;
+    bottom: -3px;
 }
 
 .form_box button {

@@ -27,7 +27,7 @@
     <main>
         <div class="max_size_box">
             <div class="logo_box">
-                <a href="../index.html"><img class="logo_img" src="../image/logo.png" alt="메인판다로고."></a>
+                <a href="../index.html"><img class="user_logo_img" src="../image/logo.png" alt="메인판다로고."></a>
             </div>
             <div>
                 <div class="form_box">
@@ -38,16 +38,16 @@
                             </p>
                             <input type="text" name="email" id="user_id" placeholder="이메일을 입력해주세요" required
                                 data-content="email">
+                            <p class="err hide"></p>
                         </label>
-                        <p class="err hide"></p>
                         <label class="name_label" for="name_label" style="margin-top: 24px;">
                             <p>
                                 닉네임
                             </p>
                             <input type="text" name="name_label" id="name_label" placeholder="닉네임 입력해주세요" required
                                 data-content="name">
+                            <p class="err hide"></p>
                         </label>
-                        <p class="err hide"></p>
                         <label class="password_label" for="password" style="margin-top: 24px;">
                             <p>
                                 비밀번호
@@ -58,8 +58,9 @@
                                 <img id="eye_icon" class="password_eye_icon" src="../image/btn_visibility_on_24px.png"
                                     alt="눈아이콘">
                             </i>
+                            <p class="err hide"></p>
                         </label>
-                        <p class="err hide"></p>
+
                         <label class="password_label" for="password_conf_label" style="margin-top: 24px;">
                             <p>
                                 비밀번호 확인
@@ -70,10 +71,10 @@
                                 <img id="conf_eye_icon" class="password_eye_icon"
                                     src="../image/btn_visibility_on_24px.png" alt="눈아이콘">
                             </i>
+                            <p class="err hide"></p>
                         </label>
-                        <p class="err hide"></p>
                     </form>
-                    <button type="submit" id="submit_btn" data-content="signup">회원가입</button>
+                    <button type="submit" id="submit_btn" data-content="signup" disabled>회원가입</button>
                 </div>
                 <div class="sns_login_box">
                     <p>간편 로그인하기</p>

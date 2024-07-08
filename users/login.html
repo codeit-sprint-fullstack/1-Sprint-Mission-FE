@@ -27,7 +27,7 @@
     <main>
         <div class="max_size_box">
             <div class="logo_box">
-                <a href="../index.html"><img class="logo_img" src="../image/logo.png" alt="메인판다로고"></a>
+                <a href="../index.html"><img class="user_logo_img" src="../image/logo.png" alt="메인판다로고"></a>
             </div>
             <div>
                 <div class="form_box">
@@ -38,8 +38,9 @@
                             </p>
                             <input type="text" class="input" name="email" id="user_id" placeholder="이메일을 입력해주세요"
                                 required data-content="email">
+                            <p class="err hide"></p>
                         </label>
-                        <p class="err hide"></p>
+
                         <label class="password_label" for="password" style="margin-top: 24px;">
                             <p>
                                 비밀번호
@@ -50,9 +51,8 @@
                                 <img id="eye_icon" class="password_eye_icon" src="../image/btn_visibility_on_24px.png"
                                     alt="눈아이콘">
                             </i>
+                            <p class="err">비밀번호를 입력해주세요.</p>
                         </label>
-                        <p class="err hide">비밀번호를 입력해주세요.</p>
-                        <!-- <button id="submit_btn" disabled>로그인</button> -->
                     </form>
                     <button id="submit_btn" type="submit" disabled data-content="login">로그인</button>
                 </div>
