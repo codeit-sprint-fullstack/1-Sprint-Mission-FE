@@ -585,13 +585,58 @@ button {
     margin-top: 32px;
   }
   .headline5_text {
-  font-size: 32px;
-  line-height: 44.8px;
-  margin: 90px 0;
+    font-size: 32px;
+    line-height: 44.8px;
+    margin: 90px 0;
   }
 
   .headline5_pic {
     width: 498px;
+  }
+
+
+  .login_logo {
+    display:flex;
+    justify-content: center;
+    gap:11.12px;
+    height: 66px;
+  }
+  
+  .login_img_1 {
+    width: 51.76px;
+    height: 51.94px;
+    position: relative;
+    top: 6.49px;
+    border-radius: 14.47px;
+  }
+  
+  .login_img_2 {
+    width: 133.29px;
+    height: auto;
+    position: static;
+    margin:0;
+    padding: 15px 0 14px;
+  }
+
+  form {
+    max-width: 400px;
+    padding: 24px 16px 0;
+    margin: 0 auto;
+  }
+
+  label {
+    font-size: 14px;
+    line-height: 16.71px;
+    color: var(--grey-800);
+  }
+
+  input {
+    margin: 8px 0 16px;
+  }
+
+  .pass_icon,
+  .check_icon {
+    top: 41px;
   }
 }
 
