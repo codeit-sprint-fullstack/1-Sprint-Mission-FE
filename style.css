@@ -126,7 +126,7 @@ h1 {
   width: 99.6rem;
   position: absolute;
   bottom : 0;
-  right: -6rem;
+  right: 0;
 }
 .titleImg {
   height: 44.7rem;
@@ -323,6 +323,10 @@ footer {
   }
 }
 @media (max-width: 767px){
+  .headerFixed {
+    max-width: 192rem;
+
+  }
   .titleContent {
     text-align: center;
     br {
