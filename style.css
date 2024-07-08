@@ -133,18 +133,13 @@ h1 {
   height: 44.7rem;
 }
 /* main */
-body {
-  /* min-width: 74.4rem; */
-}
 main {
   width: 100%;
-  max-width: 192rem;
   height: 229.8rem;
   background-color: var(--backWhite);
   display: flex;
   justify-content: center;
   position: relative;
-  width: 100%;
 }
 .mainContainer {
   width: 120rem;
@@ -262,6 +257,7 @@ footer {
   .title {
     height: 77.1rem;
     flex-direction: column;
+    justify-content: space-between;
     overflow-y: hidden;
   }
   .titleContainer {
@@ -326,5 +322,20 @@ footer {
   .bannerContent {
     width: 100%;
     text-align: center;
+  }
+}
+@media (max-width: 767px){
+  .titleContent {
+    text-align: center;
+    br {
+      display: block;
+    }
+  }
+  .titleContainer {
+    margin: 4.8rem auto;
+  }
+  .contentContainer>.content{
+    margin-top: 0.4rem;
+    margin-bottom: 0.8rem; 
   }
 }
