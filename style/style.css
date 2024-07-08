@@ -26,16 +26,16 @@ header {
   z-index: 1;
 }
 
-.navbar #logo-img2{
+.navbar #logo-img2 {
   display: none;
 }
 
 .nav-text {
   height: 69px;
-  font-size:  18px ;
+  font-size: 18px;
   font-weight: 700;
-  padding-top:  30px ;
-  margin-right:  35px ;
+  padding-top: 30px;
+  margin-right: 35px;
 }
 
 main {
@@ -45,7 +45,7 @@ main {
 .top-banners {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1200px 1fr; 
+  grid-template-columns: 1fr 1200px 1fr;
   background-color: #CFE5FF;
 }
 
@@ -64,8 +64,8 @@ main {
 .img-wrap {
   position: absolute;
   bottom: 0;
-  left:  341px;
-  width: 996px ;
+  left: 341px;
+  width: 996px;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -86,23 +86,23 @@ main {
   background-color: #3692FF;
   color: #ffffff;
   font-size: 20px;
-  width:  357px;
-  height:  56px ;
-  border-radius:  40px;
+  width: 357px;
+  height: 56px;
+  border-radius: 40px;
   border: none;
-  margin-top: 26px ;
+  margin-top: 26px;
 }
 
 #logo-img {
   margin-top: 14px;
-  width:  153px;
-  height: 51px ;
+  width: 153px;
+  height: 51px;
   margin-right: 35px;
 }
 
 #login-form {
   margin-left: auto;
-  margin-top:14px;
+  margin-top: 14px;
 }
 
 #login-btn {
@@ -112,19 +112,21 @@ main {
   font-size: 16px;
   text-align: center;
   width: 88px;
-  height: 42px ;
-  padding:  12px 23px;
-  border-radius: 8px ;
+  height: 42px;
+  padding: 12px 23px;
+  border-radius: 8px;
 }
 
-#logo-img, #login-btn, #go-items {
+#logo-img,
+#login-btn,
+#go-items {
   cursor: pointer;
 }
 
 .home-containers {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1200px 1fr; 
+  grid-template-columns: 1fr 1200px 1fr;
   grid-template-rows: auto;
 }
 
@@ -134,7 +136,7 @@ main {
   flex-direction: row;
   align-items: center;
   grid-column: 2;
-  gap:  60px;
+  gap: 60px;
 }
 
 .item-right {
@@ -145,15 +147,15 @@ main {
 .category {
   color: #3692FF;
   font-weight: 700;
-  font-size: 18px ;
+  font-size: 18px;
   line-height: 25.2px;
-  margin-bottom: 12px ;
+  margin-bottom: 12px;
 }
 
 .details {
   color: #374151;
   font-weight: 500;
-  font-size:24px ;
+  font-size: 24px;
   line-height: 28.8px;
   margin-top: 12px;
 }
@@ -161,17 +163,17 @@ main {
 .main-img {
   width: 588px;
   height: 444px;
-  border-radius:  12px ;
+  border-radius: 12px;
 }
 
 .bottom-banners {
   display: grid;
-  grid-template-columns: 1fr 1200px 1fr; 
+  grid-template-columns: 1fr 1200px 1fr;
   background-color: #CFE5FF;
 }
 
 .bottom-banner {
-  height: 540px ;
+  height: 540px;
   width: 100%;
   position: relative;
   justify-content: center;
@@ -187,7 +189,7 @@ footer {
 }
 
 .bottom-img {
-  height: 540px ;
+  height: 540px;
   background-image: url('/image/Img_home_bottom.png');
 }
 
@@ -200,39 +202,52 @@ footer {
 .footer-info-items {
   width: 100%;
   display: flex;
-  height: 20px ;
-  padding:  32px 0;
+  height: 20px;
+  padding: 32px 0;
+  justify-content: space-between;
 }
 
-.footer-info-font, .footer-info-font a, .sns-img {
+.footer-info-font,
+.footer-info-font a,
+.sns-img {
   color: #E5E7EB;
   font-weight: 400;
   font-size: 16px;
-  line-height: 9.09px ;
+  line-height: 9.09px;
   text-align: center;
-  margin: 0 10px ;
+  margin: 0 10px;
   text-decoration: none;
 }
 
+.info-box {
+  display: flex;
+  width: 100%;
+}
+
+.footer-info-font {
+  margin-right: auto;
+}
+
 .sns-img {
-  width:  17px ;
-  height: 17px ;
+  width: 17px;
+  height: 17px;
   margin: 0 4px;
   cursor: pointer;
 }
 
 .margin-right {
-  margin-right: 200px ;
+  margin-right: 200px;
 }
 
 .margin-left {
   margin-left: 200px;
 }
 
-@media (max-width: 1200px) {
-  .navbar #logo-img2{
+@media (max-width: 1199px) {
+  .navbar #logo-img2 {
     display: none;
   }
+
   .top-banners {
     width: 100%;
     display: flex;
@@ -282,7 +297,8 @@ footer {
     right: 50%;
     left: 50%;
     transform: translate(-50%, 0%);
-    width: 100%; /* 이미지의 최대 너비 설정 */
+    width: 100%;
+    /* 이미지의 최대 너비 설정 */
   }
 
   .top-img {
@@ -311,7 +327,7 @@ footer {
     flex-direction: column;
     gap: 16px;
     align-items: normal;
-    margin-top:40px;
+    margin-top: 40px;
     margin-left: 24px;
     margin-right: 24px;
   }
@@ -329,7 +345,7 @@ footer {
     font-weight: 700;
     font-size: 18px;
     line-height: 25.2px;
-    margin-bottom: 8px ;
+    margin-bottom: 8px;
   }
 
   .details {
@@ -375,24 +391,24 @@ footer {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .navbar #logo-img {
     display: none;
   }
 
   .navbar #logo-img2 {
     display: unset;
-    width : 81px;
+    width: 81px;
     height: 40px;
     margin: 15px 16px;
   }
 
   .nav-text {
     height: 69px;
-    font-size:  16px ;
-    padding-top:  28px ;
-    margin-right:  8px ;
-  }  
+    font-size: 16px;
+    padding-top: 28px;
+    margin-right: 8px;
+  }
 
   .top-banners {
     width: 100%;
@@ -440,14 +456,15 @@ footer {
     background-position: center;
     justify-content: center;
     align-items: center;
-    width: 100%; /* 이미지의 최대 너비 설정 */
+    width: 100%;
+    /* 이미지의 최대 너비 설정 */
   }
 
   .top-img {
     height: 281px;
     background-image: url('/image/Img_home_topas.png');
     margin-bottom: 100px;
-    bottom:75px;
+    bottom: 75px;
   }
 
   .margin-right {
@@ -471,8 +488,8 @@ footer {
     width: 100%;
     flex-direction: column;
     align-items: normal;
-   padding: 32px 16px;
-   margin:0 0;
+    padding: 32px 16px;
+    margin: 0 0;
   }
 
   .box:nth-child(2) {
@@ -486,9 +503,9 @@ footer {
   .category {
     color: #3692FF;
     font-weight: 700;
-    font-size: 16px; 
+    font-size: 16px;
     line-height: 25.2px;
-    margin-bottom: 4px ;
+    margin-bottom: 4px;
   }
 
   .details {
@@ -522,7 +539,7 @@ footer {
     text-align: center;
   }
 
-  .bottom-img{
+  .bottom-img {
     width: 498px;
     height: 270px;
     bottom: 22px;
@@ -543,28 +560,44 @@ footer {
     font-weight: 700;
     color: #374151;
   }
-  
+
   .footer-info-items {
     width: 100%;
     display: flex;
     height: auto;
-    padding:  32px 0;
+    padding: 32px 0;
+    margin-left: 16px;
   }
-  
-  .footer-info-font, .footer-info-font a, .sns-img {
+
+  .footer-info-font,
+  .footer-info-font a,
+  .sns-img {
     color: #E5E7EB;
     font-weight: 400;
     font-size: 16px;
-    line-height: 9.09px ;
+    line-height: 9.09px;
     text-align: center;
-    margin: 0 10px ;
+    margin: 0 16px;
     text-decoration: none;
   }
-  
+
   .sns-img {
-    width:  18px ;
-    height: 18px ;
-    margin: 0 11px;
+    width: 18px;
+    height: 18px;
+    margin: 0 12px;
     cursor: pointer;
+  }
+
+  .footer-info-font a {
+    margin-left: 0;
+  }
+
+  .info-box {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    gap: 25px;
+    align-items: flex-start;
+    margin-left: -16px;
   }
 }

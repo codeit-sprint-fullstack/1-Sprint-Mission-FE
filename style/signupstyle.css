@@ -239,7 +239,7 @@ input::placeholder {
     bottom: 28px;
 }
 
-@media (max-width:768px) {
+@media (max-width:767px) {
     #logo-img {
         width: 19.8rem;
         height: 6.6rem;
