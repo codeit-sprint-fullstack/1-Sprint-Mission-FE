@@ -80,7 +80,7 @@ main {
 }
 
 .top-banner {
-  background-image: url("./imgs/Img_home-top.png");
+  background-image: url("./imgs/Img_home_top.png");
   background-repeat: no-repeat;
   background-size: 52%;
   background-position: 76% bottom;
@@ -320,8 +320,8 @@ footer .social {
 
 .visibility-icon {
   position: absolute;
-  top: 58%;
-  right: 24px;
+  top: 54px;
+  right: 20px;
   cursor: pointer;
 }
 
@@ -369,27 +369,26 @@ footer .social {
   color:var(--like-red-color);
 }
 
-.email-input, 
-.password-input,
-.signup-container input{
+.login-form .input,
+.signup-form .input{
+  width: 100%;
   margin-top: 16px;
   height: 56px;
   padding: 16px 24px;
   border-radius: 12px;
   border: none;
   background-color: var(--input-color);
-  width: 100%;
   outline-color: var(--focusin-color);
 }
 
 .err-line {
+  width: 100%;
   margin-top: 16px;
   height: 56px;
   padding: 16px 24px;
   border-radius: 12px;
   border: 1px solid var(--like-red-color);
   background-color: var(--input-color);
-  width: 100%;
   outline-color: var(--focusin-color);
 }
 
