@@ -316,16 +316,12 @@ input {
 }
 
 
-.password1 {
-  display: inline-block;
-  position: relative;
-  width: 100%;
-}
-.password2 {
+.pw {
   position: relative;
 }
-#pass_icon,
-#check_icon {
+
+.pass_icon,
+.check_icon{
   position: absolute;
   top:53px;
   right:24px;
@@ -349,6 +345,7 @@ button {
   width: 100%;
   border-radius: 2.5rem;
   font-family: Pretendard, sans-serif;
+  cursor:pointer;
 }
 
 .convenience {
