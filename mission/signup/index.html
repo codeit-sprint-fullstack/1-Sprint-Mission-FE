@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="reset.css">
+    <link href="style.css" media="screen and (min-width: 768px)" rel="stylesheet">
+    <link href="mobile_style.css" media="screen and (min-width: 375px) and (max-width: 767.9px)" rel="stylesheet">
     <title>판다마켓</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VG7LVLRM26"></script>
     <script>
@@ -17,41 +18,43 @@
     </script>
 </head>
 <body>
-    <header class="header_contaner">
-        <a href="/">
-            <div class="img_logo"></div>
-        </a>
-    </header>
-    <main>
-        <form>
-            <label for="signup_email" class="label_font">이메일</label>
-            <input id="signup_email" class="input_box" name="user_email" placeholder="이메일을 입력해주세요" required>
-            <label for="user_name" class="label_font">닉네임</label>
-            <input id="user_name" class="input_box" name="user_name" placeholder="닉네임을 입력해주세요" required>
-            <label for="signup_password" class="label_font">비밀번호</label>
-            <input id="signup_password" class="input_box" name="user_password" type="password" placeholder="비밀번호를 입력해주세요" required>
-            <span class="password-toggle-icon icon"><i class="fa-sharp fa-regular fa-eye"></i></span>
-            <label for="signup_password_check" class="label_font">비밀번호 확인</label>
-            <input id="signup_password_check" class="input_box" name="user_password" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요" required>
-            <span class="password-toggle-icon_check icon"><i class="fa-sharp fa-regular fa-eye"></i></span>
-            <button class="signup_box">회원가입</button>
-        </form>
-        <div class="simple_login">
-            <p>간편 로그인하기</p>
-            <div class="simple_login_box">
-                <a href="https://www.google.com/">
-                    <img class="google" src="img/Component 2.png">
-                </a>
-                <a href="https://www.kakaocorp.com/page/">
-                    <img class="kakao" src="img/Component 3.png">
-                </a>
+    <div class="contaner">
+        <header class="header_contaner">
+            <a href="/">
+                <div class="img_logo"></div>
+            </a>
+        </header>
+        <div class="main">
+            <form>
+                <label for="signup_email" class="label_font">이메일</label>
+                <input id="signup_email" class="input_box" name="user_email" placeholder="이메일을 입력해주세요" required>
+                <label for="user_name" class="label_font">닉네임</label>
+                <input id="user_name" class="input_box" name="user_name" placeholder="닉네임을 입력해주세요" required>
+                <label for="signup_password" class="label_font">비밀번호</label>
+                <input id="signup_password" class="input_box" name="user_password" type="password" placeholder="비밀번호를 입력해주세요" required>
+                <span class="password-toggle-icon icon"><i class="fa-sharp fa-regular fa-eye"></i></span>
+                <label for="signup_password_check" class="label_font">비밀번호 확인</label>
+                <input id="signup_password_check" class="input_box" name="user_password" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요" required>
+                <span class="password-toggle-icon_check icon"><i class="fa-sharp fa-regular fa-eye"></i></span>
+                <button class="signup_box">회원가입</button>
+            </form>
+            <div class="simple_login">
+                <p>간편 로그인하기</p>
+                <div class="simple_login_box">
+                    <a href="https://www.google.com/">
+                        <img class="google" src="img/Component 2.png">
+                    </a>
+                    <a href="https://www.kakaocorp.com/page/">
+                        <img class="kakao" src="img/Component 3.png">
+                    </a>
+                </div>
             </div>
         </div>
-    </main>
-    <footer class="login">
-        <p>이미 회원이신가요?</p>
-        <a href="/login/">로그인</a>
-    </footer>
+        <div class="login">
+            <p>이미 회원이신가요?</p>
+            <a href="/login/">로그인</a>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

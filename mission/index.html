@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="reset.css">
+    <link href="pc_style.css" media="screen and (min-width: 1200px)" rel="stylesheet">
+    <link href="tablet_style.css" media="screen and (min-width: 768px) and (max-width:1199.9px)" rel="stylesheet">
+    <link href="mobile_style.css" media="screen and (min-width: 375px) and (max-width: 767.9px)" rel="stylesheet">
     <title>"판다마켓"</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VG7LVLRM26"></script>
     <script>
@@ -20,7 +22,7 @@
     <header>
         <div class="nav">
             <a class="logo" href="./">
-                <img src="img/Group 19.png">
+                <div class="img_logo"></div>
             </a>
             <div class="menu">
                 <div class="notice-board">자유게시판</div>
@@ -33,9 +35,11 @@
     </header>
     <main>
         <div class="banner">
-            <div class="banner-text">
-                일상의 모든 물건을<br>
-                거래해 보세요.
+            <div class="banner-text-box">
+                <div class="banner-text">
+                    일상의 모든 물건을
+                    거래해 보세요
+                </div>
                 <div class="banner-buten">
                     <a class="tour" href="/item/">구경하러 가기</a>
                 </div>
@@ -44,11 +48,12 @@
         </div>
         <div class="frame">
             <div class="hot-item-box">
-                <img src="img/Img_home_01.png">
-                <div class="hot-item-word">
+                <div class="Img_home_01"></div>
+                <div class="hot-item-word-box">
                     <p class="word1">Hot item</p>
-                    <p class="word2">인기 상품을<br>
-                        확인해 보세요
+                    <p class="word2 hot-item-word">
+                        인기 상품을
+                        확인해보세요
                     </p>
                     <p class="word3">
                         가장 HOT한 중고거래 물품을<br>
@@ -58,31 +63,30 @@
             </div>
         </div>
         <div class="frame">
-            
             <div class="search-box">
-                <div class="search-word">
+                <div class="search-word-box">
                     <p class="word1">Search</p>
-                    <p class="word2">
-                        구매를 원하는<br>
-                        상품을 검색하세요
-                    </p>
+                    <div class="word2 search-word">
+                        <p>구매를 원하는</p>
+                        <p>상품을 검색하세요</p>
+                    </div>
                     <p class="word3">
                         구매하고 싶은 물품은 검색해서<br>
                         쉽게 찾아보세요
                     </p>
                 </div>
-                <img src="img/Img_home_02.png">
+                <div class="Img_home_02"></div>
             </div>
         </div>
         <div class="frame">
             <div class="register-box">
-                <img src="img/Img_home_03.png">
-                <div class="register-word">
+                <div class="Img_home_03"></div>
+                <div class="register-word-box">
                     <p class="word1">Register</p>
-                    <p class="word2">
-                        판매를 원하는<br>
-                        상품을 등록하세요
-                    </p>
+                    <div class="word2 register-word">
+                        <p>판매를 원하는</p> 
+                        <p>상품을 등록하세요</p>
+                    </div>
                     <p class="word3">
                         어떤 물건이든 판매하고 싶은 상품을<br>
                         쉽게 등록하세요
@@ -97,29 +101,32 @@
                 믿을 수 있는<br>
                 판다마켓 중고거래
             </div>
-            <img class="footer-img" src="img/Img_home_bottom.png">
+            <div class="Img_home_bottom"></div>
         </div>
         <div class="bottom-frame">
             <div class="bottom-box">
-                ©codeit - 2024
-                <div class="qna">
-                    <a class="qna-word" href="/privacy/">Privacy Policy</a>
-                    <a class="qna-word" href="/faq/">FAQ</a>
+                <div class="mobile">©codeit - 2024</div>
+                <div class="link_box">
+                    <div class="qna">
+                        <a class="qna-word" href="/privacy/">Privacy Policy</a>
+                        <a class="qna-word" href="/faq/">FAQ</a>
+                    </div>
+                    <div class="icon">
+                        <a href="https://www.facebook.com/" target="_blank">
+                            <img src="img/ic_facebook.png">
+                        </a>
+                        <a href="https://x.com/" target="_blank">
+                            <img src="img/ic_twitter.png">
+                        </a>
+                        <a href="https://www.youtube.com/" target="_blank">
+                            <img src="img/ic_youtube.png">
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank">
+                            <img src="img/ic_instagram.png">
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <a href="https://www.facebook.com/" target="_blank">
-                        <img src="img/ic_facebook.png">
-                    </a>
-                    <a href="https://x.com/" target="_blank">
-                        <img src="img/ic_twitter.png">
-                    </a>
-                    <a href="https://www.youtube.com/" target="_blank">
-                        <img src="img/ic_youtube.png">
-                    </a>
-                    <a href="https://www.instagram.com/" target="_blank">
-                        <img src="img/ic_instagram.png">
-                    </a>
-                </div>
+                
             </div>
         </div>
     </footer>

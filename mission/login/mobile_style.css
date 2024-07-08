@@ -14,24 +14,36 @@
     --signup_a: #3182F6;
 }
 
-.header_contaner {
-    width: 100%;
-    height: 12rem;
+body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: end;
+}
+
+.contaner {
+    max-width: 400px;
+    min-width: 344px;
+    width: 100%;
+    height: auto;
+    margin: 24px 16px;
+}
+
+.header_contaner {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .img_logo {
-    width: 24.75rem;
-    height: 8.25rem;
+    width: 198px;
+    height: 66px;
     background-image: url(img/logo.png);
     background-size: cover;
 }
 
 .main {
-    margin-top: 2.5rem;
     display: flex;
     flex-direction:column;
     align-items: center;
@@ -40,24 +52,31 @@
 form {
     display: flex;
     flex-direction: column;
+    min-width: 343px;
+    max-width: 400px;
+    width: 100%;
+    position: relative;
 }
 
 .label_font {
-    font-size: 1.125rem;
+    font-size: 14px;
     font-weight: 700;
+    line-height: 16.71px;
     color: var(--label_ft);
 }
 
 .input_box {
-    width: 40rem;
-    height: 3.5rem;
-    padding: 1rem 1.5rem;
-    margin-top: 1rem;
-    border-radius: 0.75rem;
+    width: 100%;
+    height: 56px;
+    padding: 16px 24px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    border-radius: 12px;
     background-color: var(--input_box_bg);
     border: 0;
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: 400;
+    line-height: 24px;
     color: var(--input_box_ft-login_box_bg);
 }
 
@@ -66,11 +85,6 @@ form {
     border: 1px solid var(--input_box_focus);
 }
 
-#login_email {
-    margin-bottom: 1.5rem;
-}
-
-
 .password-toggle-icon {
     width: 24px;
     height: 24px;
@@ -78,45 +92,47 @@ form {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    position: relative;
-    left: 37rem;
-    bottom: 2.5rem;
+    position: absolute;
+    bottom: 112px;
+    right: 24px;
+    
 }
 
 .login_box {
-    font-size: 1.25rem;
+    font-size: 20px;
     font-weight: 600;
+    line-height: 24px;
     color: var(--login_box_ft);
     background-color: var(--input_box_ft-login_box_bg);
-    border-radius: 2.5rem;
+    border-radius: 40px;
     border: none;
-    width: 40rem;
-    height: 3.5rem;
-    padding: 1rem 7.75rem;
-    margin-bottom: 1.5rem;
+    width: 100%;
+    height: 56px;
+    padding: 16px 124px;
+    margin-bottom: 24px;
     cursor: pointer;
 }
 
-
 .simple_login {
-    width: 40rem;
-    height: 4.625rem;
-    border-radius: 0.5rem;
-    padding: 0 1.4375rem;
-    margin-bottom: 1.5rem;
+    width: 100%;
+    height: 74px;
+    border-radius: 8px;
+    padding: 0 24px;
+    margin-bottom: 24px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     background-color: var(--simple_login_bg);
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: 500;
+    line-height: 24px;
     color: var(--simple_login-signup_ft);
 }
 
 .simple_login_box {
-    width: 6.25rem;
-    height: 2.625rem;
+    width: 100px;
+    height: 42px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -124,23 +140,23 @@ form {
 }
 
 .google {
-    width: 2.625rem;
-    height: 2.625rem;
+    width: 42px;
+    height: 42px;
 }
 
 .kakao {
-    width: 2.625rem;
-    height: 2.625rem;
+    width: 42px;
+    height: 42px;
 }
 
 .signup {
     width: 100%;
-    height: 1.125rem;
+    height: 18px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    font-size: 0.9375rem;
+    font-size: 15px;
     font-weight: 500;
     color: var(--simple_login-signup_ft);
 }
