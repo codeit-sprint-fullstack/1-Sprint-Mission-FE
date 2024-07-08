@@ -47,10 +47,16 @@ h1 {
   display: flex;
   flex-direction: row;
 }
-.logoImg {
+.big.logoImg {
   width: 15.3rem;
   height: 5.1rem;
   margin: 1rem 3.2rem 0.9rem 0;
+}
+.small.logoImg {
+  display: none;
+  width: 8.1rem;
+  height: 4rem;
+  margin: 1.5rem 1.6rem 1.5rem 0;
 }
 .navContainer {
   width: 21.8rem;
@@ -243,6 +249,9 @@ footer {
   .headerFixed {
     padding: 0 2.4rem;
   }
+  .big.logoImg {
+    margin: 1rem 2.0rem 0.9rem 0;
+  }
   .title {
     height: 77.1rem;
     flex-direction: column;
@@ -333,6 +342,12 @@ footer {
 @media (max-width: 767px){
   .headerFixed {
     padding: 0 1.6rem;
+  }
+  .big.logoImg {
+    display: none;
+  }
+  .small.logoImg {
+    display: block;
   }
   .title {
     height: 54rem;
