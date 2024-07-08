@@ -340,6 +340,9 @@ footer {
   }
 }
 @media (max-width: 767px){
+  body {
+    min-width: 37.5rem;
+  }
   .headerFixed {
     padding: 0 1.6rem;
   }
@@ -353,6 +356,7 @@ footer {
     height: 54rem;
   }
   .titleContainer {
+    width: 37.5rem;
     margin: 4.8rem auto;
     gap: 1.6rem;
     h1 {
@@ -377,8 +381,7 @@ footer {
     height: 132.6rem;
   }
   .mainContainer {
-    width: 100%;
-    min-width: 37.5rem;
+    width: 37.5rem;
     height: 131.1rem;
   }
   .mainContainer .container {
@@ -402,6 +405,9 @@ footer {
   }
   .banner {
     height: 54rem;
+  }
+  .bannerContainer{
+    width: 37.5rem;
   }
   .footerContainer {
     margin: 3.2rem 1.6rem;
