@@ -1,6 +1,8 @@
 const visibilityIcon = document.querySelector(".visibility-icon");
-const userEmail = document.querySelector(".email-container");
+
 const loginForm = document.querySelector('.login-form');
+const userEmail = document.querySelector(".email-container");
+
 
 // Function for password visualization
 const passwordVisibility = (e) => {
@@ -21,25 +23,33 @@ const showError = (inputTag, msg) => {
   const isErrorMsg = inputTag.lastElementChild.tagName === 'P';
   // Error 메시지가 존재한다면 메시지 변경
   if (isErrorMsg) {
+    inputTag.children[1].classList.remove('email-input');
+    inputTag.children[1].classList.add('err-line');
+    
     inputTag.lastElementChild.textContent = msg;
   // Error 메시지가 존재하지 않는다면 p tag 생성 후 메시지 추가
   } else {
+    inputTag.children[1].classList.remove('email-input');
+    inputTag.children[1].classList.add('err-line');
+
     const errorMsg = document.createElement('p');
-    errorMsg.classList.toggle('err-msg');
+    errorMsg.classList.add('err-msg');
     errorMsg.textContent = msg;
     inputTag.append(errorMsg);
   }
 }
 
 const hidenError = (inputTag) => {
-  inputTag.lastElementChild.textContent = '';
-  
+  inputTag.children[1].classList.remove('err-line');
+  inputTag.children[1].classList.add('email-input');
+  inputTag.lastElementChild.textContent = ''; 
 }
+
 
 userEmail.children[1].addEventListener('blur', (e)=>{
   const emailValue = e.target.value;
   
-  const emailRegEx = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+  const emailRegEx = /^[A-Za-z0-9-\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
   const validEmail = emailRegEx.test(emailValue);
 
   if (!emailValue) {

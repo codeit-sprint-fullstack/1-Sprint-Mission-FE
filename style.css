@@ -8,11 +8,6 @@ body {
   font-family: Pretendard, sans-serif;
 }
 
-.no-drag {
-  -webkit-user-drag: none; /* Chrome, Safari, Opera */
-  user-select: none; /* Standard */
-}
-
 :root {
   --white-color: #ffffff;
   --nav-color: #4B5563;
@@ -27,7 +22,7 @@ body {
   --login-sigup-select-color: #3182F6;
   --input-color: #F3F4F6;
   --focusin-color: #3692FF;
-  --like-red: #F74747;
+  --like-red-color: #F74747;
 }
 
 
@@ -85,7 +80,7 @@ main {
 }
 
 .top-banner {
-  background-image: url("./imgs/Img_home_top.png");
+  background-image: url("./imgs/Img_home-top.png");
   background-repeat: no-repeat;
   background-size: 52%;
   background-position: 76% bottom;
@@ -371,7 +366,31 @@ footer .social {
   font-weight: 600;
   font-size: 15px;
   line-height: 17.9px;
-  color:var(--like-red);
+  color:var(--like-red-color);
+}
+
+.email-input, 
+.password-input,
+.signup-container input{
+  margin-top: 16px;
+  height: 56px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: none;
+  background-color: var(--input-color);
+  width: 100%;
+  outline-color: var(--focusin-color);
+}
+
+.err-line {
+  margin-top: 16px;
+  height: 56px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: 1px solid var(--like-red-color);
+  background-color: var(--input-color);
+  width: 100%;
+  outline-color: var(--focusin-color);
 }
 
 /*-------*/
@@ -394,25 +413,19 @@ footer .social {
   flex-direction: column;
 }
 
+.email-container, .password-container{
+  margin-bottom: 24px;
+}
 
-.login_form label {
+
+.login-form label {
   font-weight: 700;
   font-size: 18px;
   line-height: 21.48px;
   color: var(--login-sigup-msg-color);;
 }
-
-.login-form input{
-  margin-top: 16px;
-  height: 56px;
-  padding: 16px 24px;
-  border-radius: 12px;
-  border: none;
-  background-color: var(--input-color);
-  width: 100%;
-  outline-color: var(--focusin-color);
-}
-
+    
+  
 .login-form button {
   margin-bottom: 24px;
   height: 56px;
@@ -426,9 +439,9 @@ footer .social {
   cursor: pointer;
 }
 
-/*-------*/
+/*---------*/
 /* sign-up */
-/*-------*/
+/*---------*/
 
 .signup-container {
   height: 1080px;
@@ -453,17 +466,6 @@ footer .social {
   color: var(--login-sigup-msg-color);;
 }
 
-.signup-form input{
-  margin-top: 16px;
-  margin-bottom: 24px;
-  height: 56px;
-  padding: 16px 24px;
-  border-radius: 12px;
-  border: none;
-  background-color: var(--input-color);
-  width: 100%;
-  outline-color: var(--focusin-color);
-}
 
 .signup-form button {
   margin-bottom: 24px;

@@ -18,27 +18,10 @@
 
       gtag('config', 'G-62B62XEJ27');
     </script>
-    <script>
-      function togglePasswordVisibility(event) {
-        const passwordInput = event.target.previousElementSibling;
-        const isPasswordVisible = passwordInput.type === "text";
-        passwordInput.type = isPasswordVisible ? "password" : "text";
-        event.target.src = isPasswordVisible ? "./imgs/btn_visibility_off.png" : "./imgs/btn_visibility_on.png";
-        event.target.width = 24;
-        evnet.target.height = 24;
-      }
-
-      document.addEventListener('DOMContentLoaded', function() {
-        const toggleIcons = document.querySelectorAll('.visible-off-icon');
-        toggleIcons.forEach(icon => {
-          icon.addEventListener('click', togglePasswordVisibility);
-        });
-      });
-    </script>
   </head>
   <body>
     <div class="signup-container">
-      <a href="/"><img class="no-drag" src="./imgs/Group_19.png" alt="logo" width="396" height="132"></a>
+      <a href="/"><img src="./imgs/Group_19.png" alt="logo" width="396" height="132"></a>
       <form class="signup-form">
         <label for="user-email">이메일</label>
         <input type="text" id="user-email" name="email" placeholder="이메일을 입력해주세요">
@@ -47,12 +30,12 @@
         <div class="password-container">
           <label for="password">비밀번호</label>
           <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요">
-          <img src="./imgs/btn_visibility_off.png" alt="visible off" class="visible-off-icon no-drag" width="24" height="24">
+          <img class="visibility-icon no-drag" src="./imgs/btn_visibility_off.png" alt="visible off" width="24" height="24">
         </div>
         <div class="password-container">
           <label for="repeat-password">비밀번호 확인</label>
           <input type="password" id="repeat-password" name="repeat-password" placeholder="비밀번호를 다시 한 번 입력해주세요">
-          <img src="./imgs/btn_visibility_off.png" alt="visible off" class="visible-off-icon no-drag" width="24" height="24">
+          <img class="visibility-icon" src="./imgs/btn_visibility_off.png" alt="visible off" width="24" height="24">
         </div>
         <button>회원가입</button>
         <div class="simple-login">
@@ -64,6 +47,7 @@
         </div>
         <p class="select-status">이미 회원이신가요? <a href="/login.html">로그인</a></p>
       </form>
+      <script src="./index.js"></script>
     </div>
   </body>
 </html>              
