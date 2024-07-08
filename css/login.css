@@ -20,178 +20,6 @@ input:-webkit-autofill {
   }
 }
 
-@media screen and (max-width: 767px) and (min-width: 375px) {
-  .page_background {
-    width: 100%;
-  }
-
-  .page {
-    margin-left: 16px;
-    margin-right: 16px;
-  }
-
-  .page > a > img {
-    margin-top: 24px;
-    margin-bottom: 24px;
-    width: 198px;
-    height: 66px;
-  }
-
-  .login_box {
-    margin: 0;
-  }
-  .member_info {
-    margin-bottom: 24px;
-    & p {
-      font-size: 1.8rem;
-      font-weight: 700;
-      text-align: left;
-      margin-bottom: 1.6rem;
-    }
-    & input {
-      width: 640px;
-      height: 5.6rem;
-      border-radius: 12px;
-      border: none;
-      background-color: var(--input-background-color);
-      font-size: 1.6rem;
-      font-weight: 400;
-    }
-    & input::placeholder {
-      color: var(--input-text-color);
-    }
-    & input:focus {
-      border: var(--input-focus);
-    }
-  }
-
-  .input_password {
-    position: relative;
-  }
-
-  .input_password i {
-    position: absolute;
-    margin-top: 20px;
-    align-items: center;
-    right: 16px;
-    height: 30px;
-    font-size: 22px;
-    color: var(--input-focus-eye);
-  }
-
-  #login_btn {
-    width: 640px;
-    height: 56px;
-    background-color: var(--btn-background-color);
-    border-radius: 40px;
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--white);
-    border: none;
-    margin-bottom: 24px;
-  }
-
-  .login_simple {
-    display: flex;
-    background-color: var(--login_simple-background-color);
-    align-items: center;
-    text-align: center;
-    justify-content: space-between;
-    width: 640px;
-    height: 74px;
-    padding: 0 24px;
-    border-radius: 8px;
-  }
-
-  .login_simple > p {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 500;
-  }
-
-  .sns_login {
-    display: flex;
-    gap: 16px;
-    width: 100px;
-    height: 42px;
-    margin: 0;
-    justify-content: space-between;
-  }
-
-  .login_signup {
-    display: flex;
-    justify-content: center;
-    gap: 4px;
-    margin-top: 24px;
-    margin-bottom: 20px;
-  }
-
-  .alert_overlay {
-    position: absolute;
-    z-index: 99;
-    height: 100vh;
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
-    font-size: 33px;
-    font-weight: 30px;
-    background-color: rgba(0, 0, 0, 0.3);
-    top: 0;
-  }
-
-  .dialog {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .dialog__inner {
-    background-color: #ffffff;
-    width: 540px;
-    height: 250px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 18px;
-  }
-
-  .dialog__inner > p {
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    font-size: 16px;
-    width: 500;
-    margin-top: 108px;
-  }
-
-  .dialog__btn__wrap {
-    display: flex;
-    justify-content: right;
-    margin-right: 28px;
-    margin-bottom: 28px;
-  }
-
-  .dialog__btn__wrap > button {
-    width: 120px;
-    height: 48px;
-    background-color: #3692ff;
-    border: 0px;
-    border-radius: 8px;
-    margin-top: 51px;
-  }
-
-  #ok {
-    color: #ffffff;
-    font-size: 16px;
-    width: 600;
-  }
-
-  .alert {
-    margin-top: 80px;
-  }
-}
-
 .page_background {
   width: 100%;
 }
@@ -362,4 +190,51 @@ input:-webkit-autofill {
 
 .alert {
   margin-top: 80px;
+}
+
+@media screen and (max-width: 767px) and (min-width: 375px) {
+  .page_background {
+    width: 100%;
+  }
+
+  .page {
+    display: flex;
+    flex-direction: column;
+    width: 344px;
+    margin-top: 50px;
+    margin-left: 16px;
+    margin-right: 16px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .page > a > img {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    width: 198px;
+    height: 66px;
+  }
+
+  .login_box {
+    margin: 0;
+  }
+  .member_info {
+    margin-bottom: 24px;
+    & p {
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-align: left;
+      margin-bottom: 1.6rem;
+    }
+    & input {
+      width: 100%;
+    }
+  }
+  #login_btn {
+    width: 100%;
+  }
+
+  .login_simple {
+    width: 100%;
+  }
 }
