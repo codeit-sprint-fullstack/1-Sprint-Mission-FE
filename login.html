@@ -16,10 +16,14 @@
   <form>
     <label for="user-email">이메일</label>
     <input id="user-email" placeholder="이메일을 입력해주세요">
+    <div class="failure-message hide">이메일을 입력해주세요.</div>
+    <div class="failure-message2 hide">잘못된 이메일 형식입니다.</div>
     <div class="pw">
       <label for="password">비밀번호</label>
       <input class="password" placeholder="비밀번호를 입력해주세요" type="password">
       <img src="img/eyeclose.png" class="pass_icon">
+      <div class="failure-message3 hide">비밀번호를 입력해주세요.</div>
+      <div class="failure-message4 hide">비밀번호를 8자 이상 입력해주세요.</div>
     </div>
     <button>로그인</button>
     <div class="convenience"> 

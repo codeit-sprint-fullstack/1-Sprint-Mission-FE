@@ -288,7 +288,7 @@ footer {
 
 form {
   margin: 2.5rem auto;
-  height: 26.875rem;
+  height: auto;
   width: 40rem;
 }
 
@@ -301,12 +301,12 @@ label {
 
 input {
   border-radius: 0.75rem;
-  border: none;
-  color: var(--grey-400);
+  border:none;
+  color: black;
   display: block;
   font-size: 1rem;
   font-weight: 400;
-  margin: 1rem 0 1.5rem;
+  margin: 1rem 0 0.5rem;
   padding: 1rem 1.5rem;
   width: 100%;
   height: 3.5rem;
@@ -315,9 +315,11 @@ input {
   font-family: Pretendard, sans-serif;
 }
 
+input::placeholder {color:var(--grey-400);}
 
 .pw {
   position: relative;
+  margin-top: 1.5rem;
 }
 
 .pass_icon,
@@ -329,9 +331,7 @@ input {
   cursor:pointer;
 }
 
-input:focus {
-  outline-color: var(--brand-blue);
-}
+
 
 button {
   background-color: var(--grey-400);
@@ -340,7 +340,7 @@ button {
   display: block;
   font-size: 1.25rem;
   font-weight: 600;
-  margin: 0 0 1.5rem;
+  margin: 1.5rem 0 1.5rem;
   padding: 1rem 7.75rem;
   width: 100%;
   border-radius: 2.5rem;
@@ -640,3 +640,30 @@ button {
   }
 }
 
+.hide {
+  display: none;
+  }
+
+.valid-value {
+  outline: 1px solid var(--brand-blue); 
+}
+
+.invalid-value {
+  outline: 1px solid var(--error-red);
+}
+
+.failure-message,
+.failure-message2,
+.failure-message3,
+.failure-message4 {
+  font-size: 15px;
+  line-height: 17.9px;
+  color: var(--error-red);
+  font-weight: 600;
+  padding: 0 16px;
+}
+
+
+input:focus {
+  outline: 1px solid var(--brand-blue);
+}
