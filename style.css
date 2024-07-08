@@ -228,17 +228,20 @@ footer {
   height: 10rem;
   padding: 2rem 12.5rem 109px;
   background-color: var(--grey-900);
-  text-align: center;
+  width:100%
+}
+
+.footer_container {
   display: flex;
   justify-content: space-between;
   max-width: 120rem;
   margin: 0 auto;
 }
 
-.footer_1 {
+.footer1 {
   color: var(--grey-200);
 }
-.footer_2 {
+.footer2 {
   display: flex;
   justify-content: center;
   gap:2.25rem;
@@ -248,7 +251,7 @@ footer {
   font-weight: 400;
   color: var(--grey-200);
 }
-.footer_3 {
+.footer3 {
   display: flex;
   gap: 0.75rem;
   justify-content: space-between;
@@ -563,8 +566,7 @@ button {
   .headline2_pic,
   .headline3_pic,
   .headline4_pic {
-    max-width: 400px;
-    width: 100%;
+    max-width: 100%;
     height: auto;
     margin:0 0 8px;
   }
@@ -577,9 +579,8 @@ button {
   .headline2_text,
   .headline3_text,
   .headline4_text {
-    height: auto;
-    width: 100%; 
-    max-width: 400px;
+    height: auto; 
+    max-width: 100%;
     margin: 0;
   }
 
