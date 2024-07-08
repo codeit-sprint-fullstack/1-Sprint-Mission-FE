@@ -33,6 +33,7 @@ label {
   color: var(--loginFontBlack);
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2.4rem;
   position: relative;
 }
@@ -83,6 +84,7 @@ label {
 }
 .loginButton,
 .joinButton {
+  width: 100%;
   height: 5.6rem;
   background-color: var(--fontGray);
   border: 1px solid var(--backWhite);
@@ -96,6 +98,7 @@ label {
   opacity: 0.5;
 }
 .simpleLogin {
+  width: 100%;
   height: 7.4rem;
   background-color: var(--simpleLoginColor);
   display: flex;
@@ -132,4 +135,55 @@ a>.google {
   display: block;
   color: var(--linkBlue);
   margin-left: 0.4rem;
+}
+
+@media (max-width: 1199px) {
+  .bigLogo {
+    margin-top: 4.8rem;
+  }
+}
+
+@media (max-width: 767px) {
+  label {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+  .bigLogo {
+    margin-top: 2.4rem auto;
+  }
+  .bigLogoImg {
+    width: 19.8rem;
+    height: 6.6rem;
+  }
+  .login.mainContent {
+    height: 44.3rem;
+  }
+  .signup.mainContent {
+    height: 66.3rem;
+  }
+  .mainContent {
+    width: 34.4rem;
+    gap: 1.6rem;
+  }
+  .inputBox {
+    width: 100%;
+    height: 10.7rem;
+  }
+  .eye {
+    top: 3.8rem;
+  }
+  .loginButton,
+  .joinButton {
+    width: 30rem;
+  }
+  .simpleLogin {
+    height: 7.5rem;
+    justify-content: space-between;
+  }
+  .simpleSpan {
+    margin-left: 2.4rem;
+  }
+  .simpleLink {
+    margin-right: 1.6rem;
+  }
 }
