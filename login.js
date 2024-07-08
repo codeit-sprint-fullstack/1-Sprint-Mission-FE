@@ -1,5 +1,6 @@
-const visibilityIcon = document.querySelector(".visibility_icon");
-const userEmailInput = document.querySelector("")
+const visibilityIcon = document.querySelector(".visibility-icon");
+const userEmail = document.querySelector(".email-container");
+const loginForm = document.querySelector('.login-form');
 
 // Function for password visualization
 const passwordVisibility = (e) => {
@@ -13,3 +14,44 @@ const passwordVisibility = (e) => {
 
 visibilityIcon.addEventListener('click', passwordVisibility);
 
+
+// Function for validation of user's email and password
+const showError = (inputTag, msg) => {
+  // 입력 tag의 마지막 자식요소가 p 태그라면 error 메시지 존재  
+  const isErrorMsg = inputTag.lastElementChild.tagName === 'P';
+  // Error 메시지가 존재한다면 메시지 변경
+  if (isErrorMsg) {
+    inputTag.lastElementChild.textContent = msg;
+  // Error 메시지가 존재하지 않는다면 p tag 생성 후 메시지 추가
+  } else {
+    const errorMsg = document.createElement('p');
+    errorMsg.classList.toggle('err-msg');
+    errorMsg.textContent = msg;
+    inputTag.append(errorMsg);
+  }
+}
+
+const hidenError = (inputTag) => {
+  inputTag.lastElementChild.textContent = '';
+  
+}
+
+userEmail.children[1].addEventListener('blur', (e)=>{
+  const emailValue = e.target.value;
+  
+  const emailRegEx = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+  const validEmail = emailRegEx.test(emailValue);
+
+  if (!emailValue) {
+    showError(userEmail, '이메일을 입력해주세요.');
+  } else if (!validEmail) {
+    showError(userEmail, '잘못된 이메일 형식입니다.');
+  } else {
+    hidenError(userEmail);
+  }
+});
+
+// Function to prevent submission when press enter key
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+})
