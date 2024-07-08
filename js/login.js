@@ -1,6 +1,6 @@
 import { eyeIconToggle } from './modules/eyeIcon.js';
 import { form } from './modules/var.js';
-
+import { USER_DATA } from './modules/userData.js';
 import {
   emptyInput,
   resetError,
@@ -8,6 +8,7 @@ import {
   formValidity,
   buttonStatus,
   submitBtn,
+  validateLogin,
 } from './modules/validation.js';
 
 eyeIconToggle();
@@ -16,18 +17,32 @@ eyeIconToggle();
 
 form.querySelectorAll('input').forEach((input) => {
   if (input) {
-    input.addEventListener('focusout', (e) => {
+    input.addEventListener('blur', (e) => {
       emptyInput(e);
       validateFormat(e);
       buttonStatus();
     });
-    input.addEventListener('focus', () => {
+    input.addEventListener('focusin', () => {
       resetError(input);
     });
     input.addEventListener('input', () => {
       resetError(input);
-      validateFormat(e);
       buttonStatus();
     });
   }
+});
+
+buttonStatus();
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  validateLogin();
+});
+
+const modal = document.querySelector('#overlay');
+const modalBtn = modal.querySelector('.modal-button');
+
+modalBtn.addEventListener('click', () => {
+  modal.classList.add('modal-hidden');
+  window.location.href = './';
 });

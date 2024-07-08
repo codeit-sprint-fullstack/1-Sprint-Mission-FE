@@ -1,9 +1,9 @@
-import { form } from './var.js';
+import { emailInput, form, pwInput } from './var.js';
+import { USER_DATA } from './userData.js';
 
 const emailRegex =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-const pwRegex =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,14}$/;
+const pwRegex = /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,14}$/;
 
 const nameRegex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{3,20}$/;
 
@@ -82,7 +82,7 @@ function validateFormat(e) {
       } else if (!pwRegex.test(value)) {
         input.classList.add('error');
         error.textContent =
-          '비밀번호는 영문 대소문자, 숫자, 특수문자(@ $ ! % * # ? &) 각 1자씩를 포함해야 합니다.';
+          '비밀번호는 영문, 숫자, 특수문자(@ $ ! % * # ? &) 으로 조합해야 합니다.';
         errorDisplay(input);
       } else {
         resetError(input);
@@ -115,6 +115,27 @@ function buttonStatus() {
   }
 }
 
+function validateLogin() {
+  const modal = document.querySelector('#overlay');
+  const errMsg = document.querySelector('#modal span');
+  let logIn = false;
+  USER_DATA.forEach((user) => {
+    if (
+      emailInput.value.trim() === user.email &&
+      pwInput.value.trim() === user.password
+    ) {
+      logIn = true;
+      return;
+    }
+  });
+  if (logIn) {
+    window.location.href = '../items';
+  } else {
+    modal.classList.remove('modal-hidden');
+    errMsg.textContent = '없는 이메일, 또는 비밀번호가 일치하지 않습니다.';
+  }
+}
+
 export {
   emptyInput,
   resetError,
@@ -122,4 +143,5 @@ export {
   formValidity,
   buttonStatus,
   submitBtn,
+  validateLogin,
 };

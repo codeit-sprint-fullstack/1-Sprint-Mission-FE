@@ -81,7 +81,7 @@
           <span class="error-msg"></span>
         </div>
         <div class="pw-field">
-          <label for="userpw"> 비밀번호 </label>
+          <label for="pw"> 비밀번호 </label>
           <input
             type="password"
             name="pw"
@@ -133,11 +133,11 @@
       </div>
       <span>이미 회원이신가요? <a href="../login/">로그인</a></span>
     </main>
-    <div class="overlay modal-hidden">
+    <div id="overlay" class="modal-hidden">
       <div id="modal">
         <div class="modal-content">
-          <span>비밀번호가 일치하지 않습니다.</span>
-          <button>확인</button>
+          <span></span>
+          <button class="modal-button">확인</button>
         </div>
       </div>
     </div>
