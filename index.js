@@ -13,9 +13,6 @@ function showHide () {
  }
 }
 
-
-
-
 const checkIcon = document.getElementById('check_icon')
 const passwordCheck = document.getElementById('password_check')
 
