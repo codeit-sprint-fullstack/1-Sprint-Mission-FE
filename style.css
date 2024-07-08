@@ -133,6 +133,9 @@ h1 {
   height: 44.7rem;
 }
 /* main */
+body {
+  /* min-width: 74.4rem; */
+}
 main {
   width: 100%;
   max-width: 192rem;
@@ -195,17 +198,17 @@ main {
   max-width: 192rem;
   height: 54rem;
   background-color: var(--backBlue);
+  display: flex;
+  align-items: center;
   position: relative;
   overflow-x: hidden;
 }
 .bannerContainer {
-  width: 100%;
-  max-width: 120rem;
-  height: 54rem;
+  width: 120rem;
+  height: 11.2rem;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
-  bottom: 0;
   z-index: 100;
   display: flex;
   flex-direction: column;
@@ -258,12 +261,10 @@ footer {
 @media (max-width: 1199px) {
   .title {
     height: 77.1rem;
-    display: flex;
     flex-direction: column;
     overflow-y: hidden;
   }
   .titleContainer {
-    display: flex;
     flex-direction: column;
     position: relative;
     left: auto;
@@ -274,8 +275,56 @@ footer {
   .titleButtonContainer {
     position: relative;
   }
+  .titleContent br {
+    display: none;
+  }
   .bannerImg,
   .titleImg {
     position: relative;
+    right: 0;
+  }
+  .main {
+    height: 231.4rem;
+  }
+  .mainContainer {
+    height: 227.4rem;
+  }
+  .mainContainer .container {
+    height: 67.8rem;
+    flex-direction: column;
+  }
+  .mainContainer .container.second {
+    flex-direction: column-reverse;
+  }
+  .container>img {
+    width: 69.6rem;
+    height: 52.4rem;
+  }
+  .contentContainer {
+    margin-top: 1.6rem;
+    width: 69.6rem;
+  }
+  .contentContainer>.content{
+    margin-top: 0.8rem;
+    margin-bottom: 1.6rem; 
+    br {
+      display: none;
+    }
+  }
+  .banner {
+    height: 77.1rem;
+    overflow-y: hidden;
+    flex-direction: column;
+  }
+  .bannerContainer{
+    position: relative;
+    align-items: center;
+    left: auto;
+    transform: none;
+    margin: 6rem auto;
+  }
+  .bannerContent {
+    width: 100%;
+    text-align: center;
   }
 }
