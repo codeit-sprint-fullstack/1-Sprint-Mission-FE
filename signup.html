@@ -22,8 +22,8 @@
     gtag("config", "G-953ZVVDGF3");
   </script>
   <body>
-    <div class="signup_background">
-      <div class="signup_page">
+    <div class="signup_background page_background">
+      <form class="signup_page">
         <a href="./">
           <img src="./img/login_img/logo.png" />
         </a>
@@ -33,22 +33,14 @@
               <p>이메일</p>
               <input
                 type="email"
-                id="signup_user_email"
+                id="user_email"
                 name="signup_user_email"
                 placeholder="이메일을 입력해주세요"
               />
-              <div
-                class="error-text"
-                id="signup_emailMsg1"
-                style="display: none"
-              >
+              <div class="error-text" id="emailMsg1" style="display: none">
                 이메일을 입력하세요
               </div>
-              <div
-                class="error-text"
-                id="signup_emailMsg2"
-                style="display: none"
-              >
+              <div class="error-text" id="emailMsg2" style="display: none">
                 잘못된 이메일 형식입니다
               </div>
             </div>
@@ -57,7 +49,7 @@
               <p>닉네임</p>
               <input
                 type="text"
-                id="signup_user_nickname"
+                id="user_nickname"
                 name="usernickname"
                 placeholder="닉네임을 입력해주세요"
               />
@@ -68,22 +60,14 @@
                 type="password"
                 name="password"
                 class="m_password"
-                id="signup_user_password"
+                id="user_password"
                 placeholder="비밀번호를 입력해주세요"
               />
               <i id="show_pw" class="fa-regular fa-eye-slash"></i>
-              <div
-                class="error-text"
-                id="signup_pswdMsg1"
-                style="display: none"
-              >
+              <div class="error-text" id="pswdMsg1" style="display: none">
                 비밀번호를 입력해주세요
               </div>
-              <div
-                class="error-text"
-                id="signup_pswdMsg2"
-                style="display: none"
-              >
+              <div class="error-text" id="pswdMsg2" style="display: none">
                 비밀번호를 8자 이상 입력해 주세요
               </div>
             </div>
@@ -94,15 +78,11 @@
                 type="password"
                 name="password"
                 class="m_password_second"
-                id="signup_user_password2"
+                id="user_password2"
                 placeholder="비밀번호를 입력해주세요"
               />
               <i id="show_pw_second" class="fa-regular fa-eye-slash"></i>
-              <div
-                class="error-text"
-                id="signup_pswdMsg3"
-                style="display: none"
-              >
+              <div class="error-text" id="pswdMsg3" style="display: none">
                 비밀번호가 일치하지 않습니다.
               </div>
             </div>
@@ -124,12 +104,24 @@
             <a href="./login.html" style="color: #3182f6">로그인</a>
           </div>
         </div>
+      </form>
+    </div>
+
+    <div class="alert_overlay" style="display: none">
+      <div class="dialog">
+        <div class="dialog__inner">
+          <p>사용 중인 이메일입니다.</p>
+          <div class="dialog__btn__wrap">
+            <button id="ok">확인</button>
+          </div>
+        </div>
       </div>
     </div>
     <script
       src="https://kit.fontawesome.com/f7b1c4a12a.js"
       crossorigin="anonymous"
     ></script>
-    <script src="./js/signup.js"></script>
+    <script src="./js/login_signup.js" type="module"></script>
+    <script src="./js/signup.js" type="module"></script>
   </body>
 </html>

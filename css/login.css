@@ -6,25 +6,40 @@ input {
   padding: 12px 20px;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 1199px) and (min-width: 768px) {
   .page > a > img {
-    width: 30%;
+    width: 396px;
   }
   .login_box > input {
     width: 30%;
   }
 }
 
+@media screen and (max-width: 767px) and (min-width: 375px) {
+  .page {
+    display: flex;
+    flex-direction: column;
+    width: 344px;
+    margin-top: 24px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .page > a > img {
+    width: 198px;
+    margin-bottom: 24px;
+  }
+  .login_box > input {
+  }
+}
+
 .page_background {
   width: 100%;
-  height: auto;
 }
 
 .page {
   display: flex;
   flex-direction: column;
   width: 640px;
-  height: 0.3rem;
   margin-top: 50px;
   text-align: center;
   margin: 0 auto;
@@ -121,4 +136,70 @@ input {
   justify-content: center;
   gap: 4px;
   margin-top: 24px;
+  margin-bottom: 20px;
+}
+
+.alert_overlay {
+  position: absolute;
+  z-index: 99;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  font-size: 33px;
+  font-weight: 30px;
+  background-color: rgba(0, 0, 0, 0.3);
+  top: 0;
+}
+
+.dialog {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog__inner {
+  background-color: #ffffff;
+  width: 540px;
+  height: 250px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 18px;
+}
+
+.dialog__inner > p {
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  font-size: 16px;
+  width: 500;
+  margin-top: 108px;
+}
+
+.dialog__btn__wrap {
+  display: flex;
+  justify-content: right;
+  margin-right: 28px;
+  margin-bottom: 28px;
+}
+
+.dialog__btn__wrap > button {
+  width: 120px;
+  height: 48px;
+  background-color: #3692ff;
+  border: 0px;
+  border-radius: 8px;
+  margin-top: 51px;
+}
+
+#ok {
+  color: #ffffff;
+  font-size: 16px;
+  width: 600;
+}
+
+.alert {
+  margin-top: 80px;
 }

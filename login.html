@@ -23,7 +23,7 @@
   </script>
   <body>
     <div class="input_background page_background">
-      <div class="inpt_page page">
+      <form class="inpt_page page">
         <a href="./">
           <img src="./img/login_img/logo.png" />
         </a>
@@ -34,21 +34,13 @@
               <input
                 type="email"
                 name="userid"
-                id="login_user_email"
+                id="user_email"
                 placeholder="이메일을 입력해 주세요"
               />
-              <div
-                class="error-text"
-                id="login_emailMsg1"
-                style="display: none"
-              >
+              <div class="error-text" id="emailMsg1" style="display: none">
                 이메일을 입력하세요
               </div>
-              <div
-                class="error-text"
-                id="login_emailMsg2"
-                style="display: none"
-              >
+              <div class="error-text" id="emailMsg2" style="display: none">
                 잘못된 이메일 형식입니다
               </div>
             </div>
@@ -57,15 +49,15 @@
               <input
                 type="password"
                 name="password"
-                class="login_m_password"
-                id="login_user_password"
+                class="m_password"
+                id="user_password"
                 placeholder="비밀번호를 입력해주세요"
               />
-              <i id="login_show_pw" class="fa-regular fa-eye-slash"></i>
-              <div class="error-text" id="login_pswdMsg1" style="display: none">
+              <i id="show_pw" class="fa-regular fa-eye-slash"></i>
+              <div class="error-text" id="pswdMsg1" style="display: none">
                 비밀번호를 입력해주세요
               </div>
-              <div class="error-text" id="login_pswdMsg2" style="display: none">
+              <div class="error-text" id="pswdMsg2" style="display: none">
                 비밀번호를 8자 이상 입력해 주세요
               </div>
             </div>
@@ -87,13 +79,24 @@
             <a href="./signup.html" style="color: #3182f6">회원가입</a>
           </div>
         </div>
+      </form>
+    </div>
+
+    <div class="alert_overlay" style="display: none">
+      <div class="dialog">
+        <div class="dialog__inner">
+          <p>비밀번호가 일치하지 않습니다.</p>
+          <div class="dialog__btn__wrap">
+            <button id="ok">확인</button>
+          </div>
+        </div>
       </div>
     </div>
     <script
       src="https://kit.fontawesome.com/f7b1c4a12a.js"
       crossorigin="anonymous"
     ></script>
+    <script src="./js/login_signup.js" type="module"></script>
     <script src="./js/login.js" type="module"></script>
-    <script src="database/database.js" type="module"></script>
   </body>
 </html>

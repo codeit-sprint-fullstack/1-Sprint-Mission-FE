@@ -21,7 +21,6 @@ input {
 }
 
 .signup_box {
-  height: 664px;
   margin: 0;
 }
 
@@ -84,6 +83,7 @@ input {
   display: flex;
   justify-content: center;
   gap: 4px;
+  margin-bottom: 20px;
 }
 
 .error-text {
