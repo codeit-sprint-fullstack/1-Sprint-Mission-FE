@@ -303,7 +303,6 @@ footer {
 
   .top-img {
     height: 447px;
-    background-image: url('/image/Img_home_topas.png');
   }
 
   .margin-right {
@@ -462,7 +461,6 @@ footer {
 
   .top-img {
     height: 281px;
-    background-image: url('/image/Img_home_topas.png');
     margin-bottom: 100px;
     bottom: 75px;
   }
@@ -540,7 +538,6 @@ footer {
   }
 
   .bottom-img {
-    width: 498px;
     height: 270px;
     bottom: 22px;
   }
