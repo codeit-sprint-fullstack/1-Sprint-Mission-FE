@@ -7,12 +7,23 @@
     <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="../css/userPage.css">
     <link rel="stylesheet" href="../css/media.css">
+    <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <title>로그인</title>
 </head>
 
 <body>
+    <div id="modal-container">
+        <div id="modal">
+            <p>
+                비밀번호가 일치하지 않습니다.
+            </p>
+            <button id="close">
+                확인
+            </button>
+        </div>
+    </div>
     <main>
         <div class="max_size_box">
             <div class="logo_box">
@@ -20,26 +31,30 @@
             </div>
             <div>
                 <div class="form_box">
-                    <form>
+                    <form id="form">
                         <label class="email_label" for="email">
                             <p>
                                 이메일
                             </p>
-                            <input type="text" name="email" id="user_id" placeholder="이메일을 입력해주세요" required>
+                            <input type="text" class="input" name="email" id="user_id" placeholder="이메일을 입력해주세요"
+                                required data-content="email">
                         </label>
+                        <p class="err hide"></p>
                         <label class="password_label" for="password" style="margin-top: 24px;">
                             <p>
                                 비밀번호
                             </p>
-                            <input type="password" name="password_first" id="password_first" placeholder="비밀번호 입력해주세요"
-                                required>
+                            <input type="password" class="input" name="password_first" id="password_first"
+                                placeholder="비밀번호 입력해주세요" required data-content="pwd">
                             <i>
                                 <img id="eye_icon" class="password_eye_icon" src="../image/btn_visibility_on_24px.png"
                                     alt="눈아이콘">
                             </i>
                         </label>
-                        <button type="submit">로그인</button>
+                        <p class="err hide">비밀번호를 입력해주세요.</p>
+                        <!-- <button id="submit_btn" disabled>로그인</button> -->
                     </form>
+                    <button id="submit_btn" type="submit" disabled data-content="login">로그인</button>
                 </div>
                 <div class="sns_login_box">
                     <p>간편 로그인하기</p>
@@ -55,7 +70,7 @@
                 <p>판다마켓이 처음이신가요?<a href="./singup.html">회원가입</a></p>
             </div>
     </main>
-    <script src="/script/stylejs.js"></script>
+    <script type="module" src="/script/stylejs.js"></script>
 </body>
 
 </html>
