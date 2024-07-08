@@ -90,7 +90,6 @@ h1 {
   position: relative;
   display: flex;
   align-items: center;
-  overflow-x: hidden;
 }
 .titleContainer {
   width: 120rem;
@@ -196,7 +195,6 @@ main {
   display: flex;
   align-items: center;
   position: relative;
-  overflow-x: hidden;
 }
 .bannerContainer {
   width: 120rem;
