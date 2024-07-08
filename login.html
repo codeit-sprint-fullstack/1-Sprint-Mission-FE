@@ -18,23 +18,6 @@
 
       gtag('config', 'G-62B62XEJ27');
     </script>
-    <script>
-      function togglePasswordVisibility(event) {
-        const passwordInput = event.target.previousElementSibling;
-        const isPasswordVisible = passwordInput.type === "text";
-        passwordInput.type = isPasswordVisible ? "password" : "text";
-        event.target.src = isPasswordVisible ? "./imgs/btn_visibility_off.png" : "./imgs/btn_visibility_on.png";
-        event.target.width = 24;
-        evnet.target.height = 24;
-      }
-
-      document.addEventListener('DOMContentLoaded', function() {
-        const toggleIcons = document.querySelectorAll('.visible-off-icon');
-        toggleIcons.forEach(icon => {
-          icon.addEventListener('click', togglePasswordVisibility);
-        });
-      });
-    </script>
   </head>
   <body>
     <div class="login-container">
@@ -45,7 +28,7 @@
         <div class="password-container">
           <label for="password">비밀번호</label>
           <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요.">
-          <img src="./imgs/btn_visibility_off.png" alt="visible off" class="visible-off-icon no-drag" width="24" height="24">
+          <img class="visibility_icon no-drag" src="./imgs/btn_visibility_off.png" alt="visible off"  width="24" height="24">
         </div>
         <button>로그인</button>
         <div class="simple-login">
@@ -57,6 +40,7 @@
         </div>
         <p class="select-status">판다마켓이 처음이신가요? <a href="/signup.html">회원가입</a></p>
       </form>
+      <script src="./login.js"></script>
     </div>
   </body>
 </html>
