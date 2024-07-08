@@ -7,8 +7,8 @@
               as="style"
               crossorigin
               href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css">
-        <link rel="stylesheet" href="../css/reset.css">
-        <link rel="stylesheet" href="../css/style_login_signup.css">
+        <link rel="stylesheet" href="/css/reset.css">
+        <link rel="stylesheet" href="/css/style_login_signup.css">
         <!-- Google tag (gtag.js) -->
         <script async src= "https://www.googletagmanager.com/gtag/js?id=G-YHP2ZKC2SQ"></script>
         <script>
@@ -20,46 +20,49 @@
         </script>
     </head>
     <body>
-        <div class = "root">
-            <header id="main_sec_grp_logo_input_btn">
-                <a href="/" target="_self">
-                    <img id ="btn_logo" src="../Images/logo_loginpage.svg" alt="홈페이지 링크"> 
-                </a>
-            </header>
-            <main>
-                <form id="main_sec_grp_input_btn_simple_signup">
-                    <div class="main_sec_input_email_pw">
-                        <label for="login_email">이메일</label>
-                        <input type="email" id = "login_email" class = "login_input" name = "email" placeholder = "이메일을 입력해주세요">
+        <header id="main_sec_grp_logo_input_btn">
+            <a href="/" target="_self">
+                <img id ="btn_logo" src="/Images/logo_loginpage.svg" alt="홈페이지 링크"> 
+            </a>
+        </header>
+        <main>
+            <form id="main_sec_grp_input_btn_simple_signup">
+                <div class="main_sec_input_email_pw">
+                    <label for="login_email">이메일</label>
+                    <input type="email" id = "login_email" class = "login_input" name = "email" placeholder = "이메일을 입력해주세요" required>
+                </div>
+                <div class="main_sec_input_email_pw">
+                    <label for="login_pw">비밀번호</label>
+                    <div class="grp_pw_input_btn">
+                        <input type="password" id = "login_pw" class = "login_input" name = "pw" placeholder="비밀번호를 입력해주세요">
+                        <img id="login_pw_show_img" class = "visible_icon" src="/Images/btn_visibility_on.svg">
                     </div>
-                    <div class="main_sec_input_email_pw">
-                        <label for="login_pw">비밀번호</label>
-                        <div class="grp_pw_input_btn">
-                            <input type="password" id = "login_pw" class = "login_input" name = "pw" placeholder="비밀번호를 입력해주세요">
-                            <img id="login_pw_show_img" class = "visible_icon" src="../Images/btn_visibility_on.svg" onclick = "pwVisibiltyOnOff()">
-                        </div>
+                </div>
+                <button id = "btn_login" class="btn_base" type="button">
+                    로그인
+                </button>
+                <div id="main_sec_grp_simple_login">
+                    <a id="main_sec_simple_login_text">간편 로그인하기</a>
+                    <div id="main_sec_grp_icon">
+                        <a href="https://www.google.com/">
+                            <img class = "icon_frame" src = "/Images/icon_google.svg" alt = "구글 간편 로그인">
+                        </a>
+                        <a href="https://www.kakaocorp.com/page/">
+                            <img class = "icon_frame" src = "/Images/icon_kakao.svg" alt = "카카오 간편 로그인">
+                        </a>
                     </div>
-                    <a herf ="/login">
-                        <img id="btn_login" src="../Images/btn_login_large.svg" alt="로그인 버튼">
-                    </a>
-                    <div id="main_sec_grp_simple_login">
-                        <a id="main_sec_simple_login_text">간편 로그인하기</a>
-                        <div id="main_sec_grp_icon">
-                            <a href="https://www.google.com/">
-                                <img class = "icon_frame" src = "../Images/icon_google.svg" alt = "구글 간편 로그인">
-                            </a>
-                            <a href="https://www.kakaocorp.com/page/">
-                                <img class = "icon_frame" src = "../Images/icon_kakao.svg" alt = "카카오 간편 로그인">
-                            </a>
-                        </div>
-                    </div>
-                    <div id="main_sec_grp_signup">
-                        <a>판다마켓이 처음이신가요? </a>
-                        <a href="/signup" class="linktext">회원가입</a>
-                    </div>                        
-                </form>
-            </main>
-        </div>
-        <script src="../js/login_signup.js"></script>
+                </div>
+                <div id="main_sec_grp_signup">
+                    <a>판다마켓이 처음이신가요? </a>
+                    <a href="/signup" class="linktext">회원가입</a>
+                </div>
+            </form>
+            
+        </main>
+        <dialog class = 'dialog_warn'>
+            <a id = 'dialog_text' class = 'login_dialog_text'></a>
+            <button id = 'btn_dialog'>확인</button>
+        </dialog>
+        <script type="module" src="/js/pages/login.js"></script>
     </body>
 </html>

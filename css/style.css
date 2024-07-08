@@ -10,9 +10,20 @@ html {
     outline : none;
 }
 
-.root {
-    display : block;
-    position : relative;
+:root {
+    --gray900-color : #111827;
+    --gray700-color : #374151;
+    --gray600-color : #4B5563;
+    --gray400-color : #9CA3AF;
+    --blue-color : #3692FF;
+
+    /* to name color, use
+    https://chir.ag/projects/name-that-color/#6195ED */
+    --alto-color : #DFDFDF;
+    --onahau-color : #CFE5FF;
+    --white-color : #FFFFFF; 
+
+    background-color : var(--onahau-color);
 }
 
 header {
@@ -339,17 +350,5 @@ footer {
 }
 
 body {    
-    --gray900-color : #111827;
-    --gray700-color : #374151;
-    --gray600-color : #4B5563;
-    --gray400-color : #9CA3AF;
-    --blue-color : #3692FF;
 
-    /* to name color, use
-    https://chir.ag/projects/name-that-color/#6195ED */
-    --alto-color : #DFDFDF;
-    --onahau-color : #CFE5FF;
-    --white-color : #FFFFFF; 
-
-    background-color : var(--onahau-color);
 }

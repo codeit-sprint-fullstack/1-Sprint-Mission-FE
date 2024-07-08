@@ -13,21 +13,22 @@ html {
 
 *::placeholder {
     font-family: "Pretendard";
+    color : var(--gray400-color);
 }
 
-.root {
-    display : block;
-    position : relative;
-
+:root {
     --gray800-color : #1F2937; 
     --gray400-color : #9CA3AF;
     --gray100-color : #F3F4F6;
     --blue-color : #3692FF;
+    --red-color : #F74747;
 
     /* to name color, use
     https://chir.ag/projects/name-that-color/#6195ED */
     --solitude-color : #E6F2FF;
-    --dodger-blue2-color :#3182F6;
+    --dodger-blue2-color : #3182F6;
+    --denim-color : #1967D6;
+    --white-color : #FFFFFF;
 }
 
 #main_sec_grp_logo_input_btn {
@@ -59,7 +60,7 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap : 1.6rem;
+    /* gap : 1.6rem; */
     font-size : 1.8rem;
     font-weight : 700;
     line-height : 1.19333em;
@@ -68,22 +69,29 @@ html {
 
 .login_input {
     &:focus {
-        border: 0.1rem;
-        border-style: solid;
         border-color: var(--blue-color);
-    }
-    max-width: 64rem;
+    };
+    max-width: 63.8rem;
     width : 100%;
     font-size: 1.6rem;
     font-weight: 400;
-    color: var(--gray400-color);
-    height: 5.6rem;
+    
+    height : 5.6rem;
     border-radius: 0.75em;
     background-color: var(--gray100-color);
-    border: none;
+    border : 0.1rem;
+    border-style: solid;
+    border-color : var(--gray100-color);
     text-indent: 2.4rem ;
 }
 
+.red_border {
+    border-color : var(--red-color);
+}
+
+.main_sec_input_email_pw > label{
+    margin-bottom : 1.6rem;
+}
 
 #login_pw {
     /* naming */
@@ -110,9 +118,25 @@ html {
     border : none;
 }
 
-#btn_login {
+.btn_base {
     width : 64rem;
     height : 5.6rem;
+    background-color : var(--gray400-color);
+    border : none;
+    border-radius: 4rem;
+    font-family : "Pretendard";
+    font-size : 2rem;
+    font-weight : 600;
+    line-height : 1.2em;
+    color : var(--white-color);
+}
+
+.btn_active_style{
+    &:hover{
+        background-color : var(--denim-color);
+    }
+    background-color : var(--blue-color);
+    cursor : pointer;
 }
 
 #main_sec_grp_simple_login {
@@ -161,4 +185,61 @@ html {
 
 .linktext {
     color: var(--dodger-blue2-color);
+}
+
+.warning_text {
+    font-size : 1.5rem;
+    font-weight : 600;
+    line-height : 1.19333em;
+    color : var(--red-color);
+    padding-left : 1.6rem;
+    margin-top : 0.8rem;    
+}
+
+.hidden {
+    visibility: hidden;
+    height : 0rem;
+}
+
+.dialog_warn {
+    width : 54rem;
+    height : 25rem;
+    border : none;
+    border-radius: 0.5em;
+    margin : auto;
+}
+
+#dialog_text {
+    height : 1.9rem;
+    font-weight: 500;
+    color : var(--gray800-color);
+    position : relative;
+    top : 10.8rem;
+    font-family: "Pretendard";
+    font-size: 1.6rem;
+}
+
+#dialog_text.login_dialog_text {
+    left : 17.4rem;
+}
+
+#dialog_text.signup_dialog_text {
+    left : 19.5rem;
+}
+
+#btn_dialog {
+    width : 12rem;
+    height : 4.8rem;
+    background : var(--blue-color);
+    border : none;
+    border-radius : 0.5em;
+
+    font-weight : 600;
+    color : var(--white-color);
+    position : absolute;
+    bottom : 2.8rem;
+    right : 2.8rem;
+
+    font-family: "Pretendard";
+    font-size: 1.6rem;
 }
