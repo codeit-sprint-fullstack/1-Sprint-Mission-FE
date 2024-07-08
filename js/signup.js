@@ -89,18 +89,21 @@ userPassword2.addEventListener("click", function () {
 
 
 function 페이지이동() {
-  location.href = '../login.html'
+  window.location.href = './login.html'
 }
 
-signupBtn.addEventListener("click", function () {
+signupBtn.addEventListener("click", function (event) {
   if (userEmail.value !== "" && userPassword.value !== "" && userPassword2.value !== "" && userNickname.value !== "" && emailMsg1.style.display === "none" && emailMsg2.style.display === "none" && pswdMsg1.style.display === "none" && pswdMsg2.style.display === "none" && pswdMsg3.style.display === "none") {
     for (let i = 0; i < userData.length; i++) {
       if (userEmail.value === userData[i].email) {
         showDialog(event)
         break;
-      }
-      else {
-        페이지이동();
+      } else {
+        if (i === userData.length - 1) {
+          페이지이동()
+          break;
+        }
+
       }
     }
   }
