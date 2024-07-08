@@ -2,16 +2,20 @@ import { USER_DATA, emailRegex, nameRegex, passwordRegex, passwordConfirmRegex, 
 
 //아이콘 비밀번호 표시
 const showHiddenPass = (loginpass, passEye) => {
-    const input = document.getElementById(loginpass);
-    const eye = document.getElementById(passEye);
+    try {
+        const input = document.getElementById(loginpass);
+        const eye = document.getElementById(passEye);
 
-    eye.addEventListener('click', () => {
-        if (input.type === 'password') {
-            input.type = 'text';
-        } else {
-            input.type = 'password';
-        }
-    })
+        eye.addEventListener('click', () => {
+            if (input.type === 'password') {
+                input.type = 'text';
+            } else {
+                input.type = 'password';
+            }
+        })
+    } catch (e) {
+        console.log(e);
+    }
 }
 showHiddenPass('password_first', 'eye_icon');
 showHiddenPass('password_conf_label', 'conf_eye_icon');
@@ -45,5 +49,60 @@ form.addEventListener('focusout', (e) => {
     } else {
         submit_btn.disabled = true;
         submit_btn.style.backgroundColor = '#9CA3AF';
+    }
+})
+
+
+//로그인, 회원가입 submit event
+
+const modalContainer = document.querySelector('#modal-container');
+const modalPopup = document.querySelector('#modal');
+const close = document.querySelector('#close');
+
+submit_btn.addEventListener('click', (e) => {
+    const submit = USER_DATA.find((user) => {
+        return user.email === userId.value;
+    });
+    console.log(USER_DATA);
+    console.log(submit);
+    switch (e.target.dataset.content) {
+        case 'login':
+            if (submit) {
+                if (submit.password === password_first.value) {
+                    location.href = '../../nav/items.html';
+                } else {
+                    modalContainer.classList.add('show');
+                    modalPopup.firstElementChild.textContent = '비밀번호가 일치하지 않습니다.';
+                }
+            } else {
+                modalContainer.classList.add('show');
+                modalPopup.firstElementChild.textContent = '등록된 사용자가 아닙니다.';
+            }
+            break;
+        case 'signup':
+            if (submit) {
+                modalContainer.classList.add('show');
+                modalPopup.firstElementChild.textContent = '사용 중인 이메일입니다';
+            } else {
+                try {
+                    USER_DATA.push({ email: userId.value, password: password_first.value });
+                    console.log(USER_DATA);
+                    modalContainer.classList.add('show');
+                    modalPopup.firstElementChild.textContent = '회원가입이 정상적으로 완료 되었습니다.';
+                    modalPopup.lastElementChild.classList.add('btn_ok');
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            break;
+    }
+});
+
+close.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn_ok')) {
+        modalContainer.classList.remove('show');
+        location.href = '../../users/login.html';
+    } else {
+        modalContainer.classList.remove('show');
     }
 })

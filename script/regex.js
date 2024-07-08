@@ -105,4 +105,5 @@ export const USER_DATA = [
     { email: 'codeit4@codeit.com', password: "codeit404!" },
     { email: 'codeit5@codeit.com', password: "codeit505!" },
     { email: 'codeit6@codeit.com', password: "codeit606!" },
+    { email: 'owootak@naver.com', password: "qwer!@#$1234" },
 ];

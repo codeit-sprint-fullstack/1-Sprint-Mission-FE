@@ -7,12 +7,23 @@
     <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="../css/userPage.css">
     <link rel="stylesheet" href="../css/media.css">
+    <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <title>로그인</title>
 </head>
 
 <body>
+    <div id="modal-container">
+        <div id="modal">
+            <p>
+                비밀번호가 일치하지 않습니다.
+            </p>
+            <button id="close">
+                확인
+            </button>
+        </div>
+    </div>
     <main>
         <div class="max_size_box">
             <div class="logo_box">
@@ -61,8 +72,8 @@
                             </i>
                         </label>
                         <p class="err hide"></p>
-                        <button type="submit" id="submit_btn">회원가입</button>
                     </form>
+                    <button type="submit" id="submit_btn" data-content="signup">회원가입</button>
                 </div>
                 <div class="sns_login_box">
                     <p>간편 로그인하기</p>
