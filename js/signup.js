@@ -1,14 +1,11 @@
 import { eyeIconToggle } from './modules/eyeIcon.js';
 import { form } from './modules/var.js';
-import { USER_DATA } from './modules/userData.js';
+// import { USER_DATA } from './modules/userData.js';
 import {
   emptyInput,
   resetError,
-  validateFormat,
-  formValidity,
   buttonStatus,
-  submitBtn,
-  validateLogin,
+  signUpFormat,
 } from './modules/validation.js';
 
 eyeIconToggle();
@@ -17,12 +14,12 @@ eyeIconToggle();
 
 form.querySelectorAll('input').forEach((input) => {
   if (input) {
-    input.addEventListener('blur', (e) => {
+    input.addEventListener('focusout', (e) => {
       emptyInput(e);
-      validateFormat(e);
+      signUpFormat(e);
       buttonStatus();
     });
-    input.addEventListener('focusin', () => {
+    input.addEventListener('focus', () => {
       resetError(input);
     });
     input.addEventListener('input', () => {

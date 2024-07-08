@@ -9,16 +9,16 @@ const nameRegex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{3,20}$/;
 
 //remove .error class on input tag
 function resetError(input) {
-  const error = input.parentElement.querySelector('.error-msg');
+  const errorMsg = input.parentElement.querySelector('.error-msg');
   input.classList.remove('error');
-  error.textContent = '';
-  error.style.display = 'none';
+  errorMsg.textContent = '';
+  errorMsg.style.display = 'none';
 }
 
 //diplay error msg visible
 function errorDisplay(input) {
-  const error = input.parentElement.querySelector('.error-msg');
-  error.style.display = input.classList.contains('error') ? 'flex' : 'none';
+  const errorMsg = input.parentElement.querySelector('.error-msg');
+  errorMsg.style.display = input.classList.contains('error') ? 'flex' : 'none';
 }
 
 //when input.value is empty
@@ -30,6 +30,7 @@ function emptyInput(e) {
     pw: '비밀번호를 입력하세요.',
     'confirm-pw': '비밀번호를 입력하세요.',
   };
+
   const error = input.parentElement.querySelector('.error-msg');
   const value = input.value.trim();
 
@@ -37,43 +38,17 @@ function emptyInput(e) {
     const field = input.classList[1];
     const errMsg = errTexts[field];
     error.textContent = errMsg;
-
     input.classList.add('error');
     errorDisplay(input);
-    // return false;
+    return false;
   } else {
     resetError(input);
     return true;
   }
 }
 
-//validate login format when value is not empty
-function logInFormat(e) {
-  const input = e.target;
-  const error = input.parentElement.querySelector('.error-msg');
-  const value = input.value.trim();
-
-  if (value !== '') {
-    if (input.classList.contains('email') && !emailRegex.test(value)) {
-      input.classList.add('error');
-      error.textContent = '잘못된 이메일 형식입니다.';
-      errorDisplay(input);
-    } else if (input.classList.contains('pw')) {
-      if (value.length < 8) {
-        input.classList.add('error');
-        error.textContent = '비밀번호를 8자 이상 입력해주세요.';
-        errorDisplay(input);
-      } else {
-        resetError(input);
-      }
-    } else {
-      resetError(input);
-    }
-  }
-}
-
-//validate signup format when value is not empty
-function signUpFormat(e) {
+//when input.value is not empty
+function validateFormat(e) {
   const input = e.target;
   const error = input.parentElement.querySelector('.error-msg');
   const value = input.value.trim();
@@ -140,7 +115,6 @@ function buttonStatus() {
   }
 }
 
-// login validation
 function validateLogIn() {
   const modal = document.querySelector('#overlay');
   const errMsg = document.querySelector('#modal span');
@@ -165,8 +139,7 @@ function validateLogIn() {
 export {
   emptyInput,
   resetError,
-  logInFormat,
-  signUpFormat,
+  validateFormat,
   formValidity,
   buttonStatus,
   submitBtn,
