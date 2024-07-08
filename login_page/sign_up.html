@@ -23,26 +23,30 @@
             <section id="enter-box-for-signup">
                 <article class="enter-box">
                     <label>이메일</label>
-                    <input type="email" placeholder="이메일을 입력해주세요">
+                    <input id="input-sign-up-id" type="email" placeholder="이메일을 입력해주세요">
+                    <span id="id-enter-error" class="toggle-erorr-message"></span>
                      </div>
                 </article>
                 <article class="enter-box">
                     <label>닉네임</label>
-                    <input type="text" placeholder="닉네임을 입력해주세요">
+                    <input id="input-sign-up-nickname"type="text" placeholder="닉네임을 입력해주세요">
+                    <span id="nickname-error" class="toggle-erorr-message"></span>
                 </article>
                 <article class="enter-box">
                     <label>비밀번호</label>
                     <div class="password-box">
-                        <input type="password" placeholder="비밀번호를 입력해주세요">
+                        <input id="input-sign-up-pw" type="password" placeholder="비밀번호를 입력해주세요">
                         <img src="./public_images/btn_visibility_action.svg" class=eye-img width="24">
                     </div>
+                    <span id="pw-enter-error" class="toggle-erorr-message"></span>
                 </article>
                 <article class="enter-box">
                     <label>비밀번호 확인</label>
                     <div class="password-box">
-                        <input type="password" placeholder="비밀번호를 다시 한 번 입력해주세요" class="visible-on-off-btn">
+                        <input id="input-sign-up-pw-correct" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요" class="visible-on-off-btn">
                         <img src="./public_images/btn_visibility_action.svg" class=eye-img width="24">
                     </div>
+                    <span id="not-correct-pw-error" class="toggle-erorr-message"></span>
                 </article>
             </section>
 

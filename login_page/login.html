@@ -22,22 +22,21 @@
             <section id="main-enter-box">
                 <article class="enter-box">
                     <label>이메일</label>
-                    <input id="id" type="email" placeholder="이메일을 입력해주세요">
+                    <input id="input-id" type="email" placeholder="이메일을 입력해주세요">
+                    <span id="id-enter-error" class="toggle-erorr-message"></span>
                 </article>
                 <article class="enter-box">
                     <label>비밀번호</label>
                         <div class="password-box">
-                            <input id="pw" type="password" placeholder="비밀번호를 입력해주세요">
+                            <input id="input-pw" type="password" placeholder="비밀번호를 입력해주세요">
                             <img src="./public_images/btn_visibility_action.svg" class=eye-img width="24">
                         </div>
-
+                        <span id="pw-enter-error" class="toggle-erorr-message"></span>
                 </article>
             </section>
-
             <section id="login-button-section">
-                <button type="button" onclick="location.href='../'">로그인</button>
+                <button id="login-btn" type="button" onclick="location.href='../'">로그인</button>
             </section>
-
             <section id="easy-social-login">
                 <span>간편 로그인하기</span>
                 <article id="social-icon">
