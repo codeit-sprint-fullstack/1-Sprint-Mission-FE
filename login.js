@@ -59,6 +59,9 @@ const handlePasswordValidation = (e) => {
 
 const handleFormSubmit = (e) => {
   e.preventDefault();
+  if (!loginButton.disabled) {
+    window.location.href = './items.html';
+  }
 }
 
 
