@@ -165,6 +165,7 @@ a>.google {
   }
   .mainContent {
     width: 100%;
+    max-width: 40rem;
     min-width: 37.5rem;
     padding: 0 1.6rem;
     gap: 1.6rem;
