@@ -4,6 +4,8 @@ html {
 	font-size: 62.5%;
 }
 body {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -162,7 +164,9 @@ a>.google {
     height: 66.3rem;
   }
   .mainContent {
-    width: 34.4rem;
+    width: 100%;
+    min-width: 37.5rem;
+    padding: 0 1.6rem;
     gap: 1.6rem;
   }
   .inputBox {
@@ -174,7 +178,7 @@ a>.google {
   }
   .loginButton,
   .joinButton {
-    width: 30rem;
+    width: 70%;
   }
   .simpleLogin {
     height: 7.5rem;
