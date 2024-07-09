@@ -167,3 +167,66 @@ input::placeholder {
 
     gap: 4px;
 }
+
+/* 에러 메시지 모달로 구현 */
+.modal {
+    display: none; /* 숨겨져있음 */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #000000B2;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.09px;
+
+    border-radius: 8px;
+    margin: auto;
+    display: flex;
+    background-color: white;
+    color: #1F2937;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 540px;
+    height: 250px;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#confirm{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #3692FF;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 120px;
+    height: 48px;
+    text-align: center;
+    line-height: 28px;
+    }

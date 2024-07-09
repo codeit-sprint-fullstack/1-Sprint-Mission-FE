@@ -9,6 +9,25 @@
     { email: 'codeit6@codeit.com', password: "codeit606!" },
     ];
 
+    /* 모달로 에러 메시지 구현 */
+    var modal = document.getElementById("myModal");
+    var confirmBtn = document.getElementById("confirm"); // 확인 버튼
+
+    confirmBtn.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none"; // 화면표시 안됨
+      }
+    }
+    
+    function showModal(message) {
+        document.getElementById('message').innerText = message;
+        modal.style.display = "flex"; // 모달 창 표시
+    }
+
     /* 데이터베이스에 있는 이메일/비밀번호인지 확인(가입되어 있는지) */
     document.getElementById('loginForm').addEventListener('submit', function(event) {
       event.preventDefault();
@@ -22,15 +41,17 @@
       });
   
       if (!foundUser) { // 이메일로 사용자를 못 찾는 경우
-        alert("가입되지 않은 이메일입니다.");
+        showModal("가입되지 않은 이메일입니다.");
       } else if (foundUser.password !== password) { // 이메일은 존재하지만, 비밀번호가 틀린 경우
-        alert("비밀번호가 일치하지않습니다.");
+        showModal("비밀번호가 일치하지않습니다.");
       } else {
-        alert("로그인에 성공했습니다!");
+        showModal("로그인에 성공했습니다!");
+        setTimeout(function(){
+            modal.style.display = "none";
         window.location.replace('/items'); // 로그인 성공시, 페이지 이동
-      }
+      }, 2000)}
     });
-    
+
     /* 이메일 input에서 focus out할 때 */
      document.getElementById('email').addEventListener('focusout', function(event) {
       const emailRegex = /^\S+@\S+\.\S+$/; // 유효한 이메일 양식
