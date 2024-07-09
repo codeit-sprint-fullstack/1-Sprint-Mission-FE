@@ -67,5 +67,5 @@ btn_signup.addEventListener("click", () => {
         }
     
         window.open("/login", "_self");
-    }    
+    }
 });

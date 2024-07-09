@@ -30,7 +30,7 @@ function set_email_warn(email_sec_el, warn
         email_warn = warn;
         let login_email_invalid_message = document.createElement('a');
         login_email_invalid_message.classList.add("warning_text");   
-        login_email_invalid_message.textContent = "잘못된 이메일입니다.";
+        login_email_invalid_message.textContent = "잘못된 이메일 형식입니다.";
         email_sec_el.append(login_email_invalid_message);        
 
         email_el.classList.toggle("red_border", true);

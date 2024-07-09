@@ -47,6 +47,8 @@ btn_wrong_pw_dialog.addEventListener("click", () => dialog_warn.close());
 btn_login.addEventListener("click", () => {
     if(btn_login.classList.contains("btn_active_style"))
     {
+        let email = false;
+
         USER_DATA.forEach(el => {
             if(el.email === login_email.value)
             {
@@ -54,13 +56,23 @@ btn_login.addEventListener("click", () => {
                 {
                     window.open("/items", "_self");
                 }
-                // 비밀번호가 일치하지 않습니다.
-                dialog_text.textContent = "비밀번호가 일치하지 않습니다.";
-                dialog_warn.showModal();
+                else
+                {
+                    email = true;
+                }
             }
         });
-        dialog_text.textContent = "등록되지 않은 이메일입니다.";
-        dialog_warn.showModal();        
+
+        if(email)
+        {
+            // 비밀번호가 일치하지 않습니다.
+            dialog_text.textContent = "비밀번호가 일치하지 않습니다.";
+            dialog_warn.showModal();
+        }
+        else
+        {
+            dialog_text.textContent = "등록되지 않은 이메일입니다.";
+            dialog_warn.showModal(); 
+        }  
     }
 });
-
