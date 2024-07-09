@@ -313,7 +313,8 @@ footer .social {
   color: var(--like-gray-color);
 }
 
-.password-container {
+.password-container,
+.password-repeat-container{
   position: relative;
 }
 
@@ -368,6 +369,13 @@ footer .social {
   color:var(--like-red-color);
 }
 
+.email-container, 
+.password-container,
+.nickname-container,
+.password-repeat-container{
+  margin-bottom: 24px;
+}
+
 .login-form .input,
 .signup-form .input{
   width: 100%;
@@ -391,7 +399,8 @@ footer .social {
   outline-color: var(--like-blue-color);
 }
 
-.login-form #button {
+.login-form #button,
+.signup-form #button {
   margin-bottom: 24px;
   height: 56px;
   border: none;
@@ -408,6 +417,16 @@ footer .social {
   background-color: var(--like-blue-color);
   cursor: pointer;
 }
+
+
+.login-form label,
+.signup-form label {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21.48px;
+  color: var(--login-sigup-msg-color);;
+}
+
 
 /*-------*/
 /* login */
@@ -429,20 +448,6 @@ footer .social {
   flex-direction: column;
 }
 
-.email-container, .password-container{
-  margin-bottom: 24px;
-}
-
-
-.login-form label {
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 21.48px;
-  color: var(--login-sigup-msg-color);;
-}
-    
-  
-
 
 /*---------*/
 /* sign-up */
@@ -462,13 +467,6 @@ footer .social {
   width: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.signup-form label {
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 21.48px;
-  color: var(--login-sigup-msg-color);;
 }
 
 

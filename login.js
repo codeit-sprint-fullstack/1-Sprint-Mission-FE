@@ -1,4 +1,4 @@
-import { validateEmail, validatePassword, showError, hideError } from "./validate.js";
+import { validateEmail, validatePassword, showError, hideError } from "./modules/validate.js";
 
 const visibilityIcon = document.querySelector(".visibility-icon");
 const loginForm = document.querySelector('.login-form');
