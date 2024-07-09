@@ -9,6 +9,12 @@
   <title>로그인</title>
 </head>
 <body>
+  <div id="modalContainer" class="hidden">
+    <div id="modalContent">
+      <p id>비밀번호가 일치하지 않습니다.</p>
+      <button id="modalCloseButton">확인</button>
+    </div>
+  </div>
   <a href="index.html" class="login_logo">
     <img src="img/판다 얼굴.png" class="login_img_1">
     <img src="img/판다마켓.png" class="login_img_2">
@@ -25,7 +31,7 @@
       <div class="failure-message3 hide">비밀번호를 입력해주세요.</div>
       <div class="failure-message4 hide">비밀번호를 8자 이상 입력해주세요.</div>
     </div>
-    <button class=login_btn disabled>로그인</button>
+    <button type="button" class="login_btn" disabled>로그인</button>
     <div class="convenience"> 
       <div class="convenience_text">간편 로그인하기</div>
       <div class="convenience_img">
