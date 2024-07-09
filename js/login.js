@@ -1,4 +1,4 @@
-import { emailForm, userData, showDialog, okCLick, userEmailBorder, pswShow } from './login_signup.js';
+import { emailForm, userData, showDialog, okCLick, userEmailBorder, pswShow, showDialog2 } from './login_signup.js';
 
 const showPw = document.querySelector('#show_pw');
 const userEmail = document.querySelector('#user_email')
@@ -51,13 +51,19 @@ function 페이지이동() {
 
 loginBtn.addEventListener("click", function () {
   for (let i = 0; i < userData.length; i++) {
-    if (userEmail.value === userData[i].email && userPassword.value === userData[i].password) {
-      페이지이동();
-      break;
+    if (userEmail.value === userData[i].email) {
+      if (userPassword.value === userData[i].password) {
+        페이지이동();
+        break;
+      } else {
+        showDialog();
+        break;
+      }
     }
     else {
       if (i === userData.length - 1) {
-        showDialog(event)
+        // diallogOpen();
+        showDialog2();
         break;
       }
     }
@@ -65,6 +71,27 @@ loginBtn.addEventListener("click", function () {
 }
 )
 
-
-
 ok.addEventListener("click", okCLick);
+
+// const dialog = document.querySelector('dialog');
+
+
+// function diallogOpen() {
+//   dialog.showModal();
+//   showDialog()
+// }
+
+// const dialog = document.querySelector('dialog');
+
+// const openButton = document.querySelector('button.open')
+
+// openButton.addEventListener('click', () => {
+//   dialog.showModal();
+// })
+
+// const closeButton = document.querySelector('button.close')
+
+// closeButton.addEventListener('click', () => {
+//   dialog.close();
+// })
+

@@ -1,4 +1,4 @@
-export { emailForm, USER_DATA as userData, showDialog, okCLick, pswShow, userEmailBorder }
+export { emailForm, USER_DATA as userData, showDialog, okCLick, pswShow, userEmailBorder, showDialog2 }
 
 const mPassword = document.querySelector('.m_password');
 const showPw = document.querySelector('#show_pw');
@@ -7,6 +7,9 @@ const emailMsg1 = document.querySelector("#emailMsg1")
 const emailMsg2 = document.querySelector("#emailMsg2")
 const alertOverlay = document.querySelector('.alert_overlay');
 const page = document.querySelector('.page_background')
+const dialog = document.querySelector('dialog')
+const dialogInner = document.querySelector('.dialog__inner')
+const dialogInnerText = document.querySelector('#dialog__inner_text')
 
 function pswShow() {
   if (mPassword.type === "password") {
@@ -23,7 +26,7 @@ function pswShow() {
 
 
 function emailForm() {
-  let emailText = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+  let emailText = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
   if (userEmail.value === "") {
     emailMsg1.style.display = "block";
     userEmail.style.border = '1px solid #F74747';
@@ -59,10 +62,15 @@ const USER_DATA = [
 
 function showDialog(event) {
   alertOverlay.style.display = 'block';
-  page.classList.add("alert");
+  dialogInnerText.textContent = '비밀번호가 일치하지 않습니다.';
+  event.preventDefault();
+}
+function showDialog2(event) {
+  alertOverlay.style.display = 'block';
+  dialogInnerText.textContent = '이메일이 일치하지 않습니다.';
   event.preventDefault();
 }
 function okCLick() {
   alertOverlay.style.display = 'none';
-  page.classList.remove("alert");
 };
+
