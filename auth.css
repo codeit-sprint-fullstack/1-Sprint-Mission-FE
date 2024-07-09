@@ -138,6 +138,33 @@ a>.google {
   color: var(--linkBlue);
   margin-left: 0.4rem;
 }
+/* modal */
+.modal {
+  width: 54rem;
+  height: 25rem;
+  background-color: var(--backWhite);
+  color: var(--loginFontBlack);
+  font-size: 1.6rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.8rem;
+  position: relative;
+}
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+.dialog button{
+  width: 12rem;
+  height: 4.8rem;
+  background-color: var(--mainBlue);
+  color: var(--backWhite);
+  font-weight: 600;
+  border: none;
+  border-radius: 0.8rem;
+  position: absolute;
+  bottom: 2.8rem;
+  right: 2.8rem;
+}
 
 @media (max-width: 1199px) {
   .bigLogo {
