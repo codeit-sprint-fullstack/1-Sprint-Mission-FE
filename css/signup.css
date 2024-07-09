@@ -103,7 +103,9 @@ input {
   .signup_page {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
   }
 
   .signup_page > a > img {
@@ -114,8 +116,6 @@ input {
   }
 
   .signup_box {
-    margin: 0;
-    max-width: 400px;
     margin-left: 24px;
     margin-right: 24px;
   }
@@ -144,7 +144,8 @@ input {
       border: var(--input-focus);
     }
   }
-  .signup_nickname {
+
+.signup_nickname {
     margin-bottom: 8px;
   }
 
@@ -190,4 +191,8 @@ input {
     margin-left: 16px;
     margin-top: 8px;
   }
+
+  .alert_background {
+    min-height: 800px;
+  } */
 }
