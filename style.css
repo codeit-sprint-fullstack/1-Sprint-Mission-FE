@@ -345,7 +345,6 @@ button {
   width: 100%;
   border-radius: 2.5rem;
   font-family: Pretendard, sans-serif;
-  cursor:pointer;
 }
 
 .convenience {
@@ -388,6 +387,36 @@ button {
 .signup_button {
   text-decoration: underline;
   color:  #3182F6
+}
+
+.hide {
+  display: none;
+  }
+
+.valid-value,
+.blue-border {
+  outline: 1px solid var(--brand-blue); 
+}
+
+.invalid-value {
+  outline: 1px solid var(--error-red);
+}
+
+.failure-message,
+.failure-message2,
+.failure-message3,
+.failure-message4 {
+  font-size: 15px;
+  line-height: 17.9px;
+  color: var(--error-red);
+  font-weight: 600;
+  padding: 0 16px;
+}
+
+
+.loginBtn_activate {
+  background-color: var(--brand-blue);
+  cursor: pointer;
 }
 
 @media(max-width: 1199px) {
@@ -631,39 +660,22 @@ button {
   }
 
   input {
-    margin: 8px 0 16px;
+    margin: 8px 0;
   }
 
   .pass_icon,
   .check_icon {
     top: 41px;
   }
-}
 
-.hide {
-  display: none;
+  .pw {
+    margin-top: 16px;
   }
 
-.valid-value {
-  outline: 1px solid var(--brand-blue); 
-}
-
-.invalid-value {
-  outline: 1px solid var(--error-red);
-}
-
-.failure-message,
-.failure-message2,
-.failure-message3,
-.failure-message4 {
-  font-size: 15px;
-  line-height: 17.9px;
-  color: var(--error-red);
-  font-weight: 600;
-  padding: 0 16px;
+  button {
+    margin: 16px 0 24px;
+  }
 }
 
 
-input:focus {
-  outline: 1px solid var(--brand-blue);
-}
+
