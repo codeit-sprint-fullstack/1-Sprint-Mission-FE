@@ -22,6 +22,7 @@ body {
   --login-sigup-select-color: #3182F6;
   --input-color: #F3F4F6;
   --like-red-color: #F74747;
+  --overlay-color: #FCFCFC;
 }
 
 
@@ -467,4 +468,57 @@ footer .social {
   width: 100%;
   display: flex;
   flex-direction: column;
+}
+
+
+/*------------*/
+/* aleter box */
+/*----------- */
+.alertBox {
+  background-color: var(--white-color);
+  width: 540px;
+  height: 250px;
+  border-radius: 8px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(login-sigup-msg-color);
+}
+
+.alertBox p {
+  width: 192px;
+  height: 19px;
+  position: relative;
+  top: 108px;
+  left: 174px;
+}
+
+.confirm {
+  background-color: var(--like-blue-color);
+  border-radius: 8px;
+  border: none;
+  width: 120px;
+  height: 48px;
+  position: relative;
+  top: 155px;
+  left: 392px;
+  padding: 12px 23px;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9998;
 }

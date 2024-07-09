@@ -1,4 +1,6 @@
 import { validateEmail, validatePassword, showError, hideError } from "./modules/validate.js";
+import { USER_DATA } from "./modules/userData.js";
+import { createAlertBox } from "./modules/alert.js";
 
 const visibilityIcon = document.querySelector(".visibility-icon");
 const loginForm = document.querySelector('.login-form');
@@ -15,6 +17,23 @@ const passwordVisibility = (e) => {
   e.target.width = 24;
   e.target.height = 24;
 }
+
+
+// Function to verify that the database contains user information
+const checkLogin = (email, password) => {
+  const user = USER_DATA.find(user => user.email === email);
+
+  if (user) {
+    if (user.password === password) {
+      return 'success';
+    } else {
+      return 'wrong_password';
+    }
+  } else {
+    return 'email_not_found';
+  }
+}
+
 
 // Function to check if the login button should be enabled or disabled
 const checkLoginButtonStatus = () => {
@@ -57,13 +76,24 @@ const handlePasswordValidation = (e) => {
   checkLoginButtonStatus();
 }
 
+
 const handleFormSubmit = (e) => {
   e.preventDefault();
-  if (!loginButton.disabled) {
+
+  const emailValue = userEmailContainer.children[1].value;
+  const passwordValue = userPasswordContainer.children[1].value;
+
+  const loginResult = checkLogin(emailValue, passwordValue);
+
+
+  if (!loginButton.disabled && loginResult === 'success') {
     window.location.href = './items.html';
+  } else if (loginResult === 'wrong_password') {
+    createAlertBox('비밀번호가 일치하지 않습니다.');
+  } else if (loginResult === 'email_not_found') {
+    createAlertBox('비밀번호가 일치하지 않습니다.');
   }
 }
-
 
 loginForm.addEventListener('submit', handleFormSubmit);
 visibilityIcon.addEventListener('click', passwordVisibility);
