@@ -1,12 +1,9 @@
-
-
 #corperation-box {
     color: #9CA3AF;
 }
 
 #policy-faq-box {
     width: 160px;
-
     display: flex;
     justify-content: space-between;
 }
