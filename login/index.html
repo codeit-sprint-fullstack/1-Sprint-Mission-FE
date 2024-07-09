@@ -60,7 +60,11 @@
       <button>확인</button>
     </form>
   </dialog>
-  <script src="../passwordEye.js"></script>
+  <!-- password eye toggle -->
+  <script type="module">
+    import { clickEye } from '../passwordEye.js';
+    clickEye(".password.inputBox", "#password");
+  </script>
   <script src="./loginValidCheck.js"></script>
   <script type="module" src="./loginManager.js"></script>
 </body>
