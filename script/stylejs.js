@@ -1,4 +1,4 @@
-import { USER_DATA, emailRegex, nameRegex, passwordRegex, passwordConfirmRegex, inputDisabledBtn } from './regex.js';
+import { USER_DATA, inputDisabledBtn, renderValidation } from './regex.js';
 
 //아이콘 비밀번호 표시
 const showHiddenPass = (loginpass, passEye) => {
@@ -56,22 +56,15 @@ const submit_btn = document.querySelector('#submit_btn');
 
 form.addEventListener('focusout', (e) => {
     const inputEl = e.target;
-    const elType = input.dataset.content;
-    switch (inputEl.dataset.content) {
-        case 'email':
-            // emailRegex(e);
-            renderValidation(inputEl, elType);
-            break;
-        case 'name':
-            nameRegex(e);
-            break;
-        case 'pwd':
-            passwordRegex(e);
-            break;
-        case 'pwdconfirm':
-            passwordConfirmRegex(e, password_first);
-            break;
+    const elType = inputEl.dataset.content;
+    
+    if(elType === 'pwdconfirm') {
+        renderValidation(inputEl, elType, password_first.value)
+    } else {
+        renderValidation(inputEl, elType)   
     }
+    
+
     if (inputDisabledBtn(hideCheck, inputCheck)) {
         submit_btn.disabled = false;
         submit_btn.style.backgroundColor = '#3692FF';
