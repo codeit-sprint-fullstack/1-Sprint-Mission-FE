@@ -1,4 +1,4 @@
-import USER_DATA from "./USER_DATA.js";
+import USER_DATA from "../USER_DATA.js";
 
 const loginForm = document.querySelector('.login.mainContent');
 
