@@ -28,32 +28,6 @@ const hideCheck = document.getElementsByClassName('meg');
 const form = document.querySelector('#form');
 const submit_btn = document.querySelector('#submit_btn');
 
-// form.addEventListener('focusout', (e) => {
-//     const inputEl = e.target;
-//     switch (e.target.dataset.content) {
-//         case 'email':
-//             // emailRegex(e);
-//             renderValidation(inputEl, );
-//             break;
-//         case 'name':
-//             nameRegex(e);
-//             break;
-//         case 'pwd':
-//             passwordRegex(e);
-//             break;
-//         case 'pwdconfirm':
-//             passwordConfirmRegex(e, password_first);
-//             break;
-//     }
-//     if (inputDisabledBtn(hideCheck, inputCheck)) {
-//         submit_btn.disabled = false;
-//         submit_btn.style.backgroundColor = '#3692FF';
-//     } else {
-//         submit_btn.disabled = true;
-//         submit_btn.style.backgroundColor = '#9CA3AF';
-//     }
-// })
-
 form.addEventListener('focusout', (e) => {
     const inputEl = e.target;
     const elType = inputEl.dataset.content;
@@ -74,12 +48,11 @@ form.addEventListener('focusout', (e) => {
     }
 })
 
-
 //로그인, 회원가입 submit event
-
 const modalContainer = document.querySelector('#modal-container');
 const modalPopup = document.querySelector('#modal');
 const close = document.querySelector('#close');
+const alertMeg = document.querySelector('alert_meg');
 
 submit_btn.addEventListener('click', (e) => {
     const submit = USER_DATA.find((user) => {
@@ -92,23 +65,22 @@ submit_btn.addEventListener('click', (e) => {
                     location.href = '../../nav/items.html';
                 } else {
                     modalContainer.classList.add('show');
-                    modalPopup.firstElementChild.textContent = '비밀번호가 일치하지 않습니다.';
+                    alertMeg.textContent = '비밀번호가 일치하지 않습니다.';
                 }
             } else {
                 modalContainer.classList.add('show');
-                modalPopup.firstElementChild.textContent = '등록된 사용자가 아닙니다.';
+                alertMeg.textContent = '등록된 사용자가 아닙니다.';
             }
             break;
         case 'signup':
             if (submit) {
                 modalContainer.classList.add('show');
-                modalPopup.firstElementChild.textContent = '사용 중인 이메일입니다';
+                alertMeg.textContent = '사용 중인 이메일입니다';
             } else {
                 try {
                     USER_DATA.push({ email: userId.value, password: password_first.value });
-                    console.log(USER_DATA);
                     modalContainer.classList.add('show');
-                    modalPopup.firstElementChild.textContent = '회원가입이 정상적으로 완료 되었습니다.';
+                    alertMeg.textContent = '회원가입이 정상적으로 완료 되었습니다.';
                     modalPopup.lastElementChild.classList.add('btn_ok');
                 } catch (e) {
                     console.log(e);

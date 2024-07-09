@@ -1,7 +1,7 @@
 const pwdRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 const email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
 
-export function checkFormat(value, type, confirm) {
+function checkFormat(value, type, confirm) {
     let errorMessage = ''
     switch (type) {
         case 'email':
