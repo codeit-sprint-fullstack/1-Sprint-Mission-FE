@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>판다마켓-로그인</title>
         <link rel="stylesheet" href="./style_login/globe_login.css" />
         <link rel="stylesheet" href="./style_login/body_login.css" />
@@ -15,28 +16,29 @@
     <body>
         <header>
             <a href="../index.html">
-                <img src="./images_login/main_logo.svg" width="400">
+                <img src="./images_login/main_logo.svg" >
             </a> 
         </header>
         <main>
-            <section id="main-enter-box">
-                <article class="enter-box">
+            <section>
+                <article id='email-enter-box' class="enter-box">
                     <label>이메일</label>
-                    <input id="input-id" type="email" placeholder="이메일을 입력해주세요">
-                    <span id="id-enter-error" class="toggle-erorr-message"></span>
+                    <input id="id" type="email" placeholder="이메일을 입력해주세요">
+                    <span class="toggle-erorr-message"></span>
                 </article>
-                <article class="enter-box">
+                <article id='pw-enter-box' class="enter-box">
                     <label>비밀번호</label>
                         <div class="password-box">
-                            <input id="input-pw" type="password" placeholder="비밀번호를 입력해주세요">
+                            <input id="pw" type="password" placeholder="비밀번호를 입력해주세요">
                             <img src="./public_images/btn_visibility_action.svg" class=eye-img width="24">
                         </div>
-                        <span id="pw-enter-error" class="toggle-erorr-message"></span>
+                        <span class="toggle-erorr-message"></span>
                 </article>
             </section>
             <section id="login-button-section">
-                <button id="login-btn" type="button" onclick="location.href='../'">로그인</button>
+                <button id="login-btn" type="button" >로그인</button>
             </section>
+
             <section id="easy-social-login">
                 <span>간편 로그인하기</span>
                 <article id="social-icon">
@@ -49,10 +51,13 @@
                 </article>
             </section>
         </main>
+
         <footer>
             <span>판다마켓이 처음이신가요?</span>
-            <a href="./signup.html">회원가입</a>
+            <a href="./sign_up.html">회원가입</a>
         </footer>
-        <script src="login.js"></script>
+
+        <script type='module' src="globe.js"></script>
+        <script type='module' src="login.js"></script>
     </body>
 </html>

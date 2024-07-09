@@ -6,6 +6,7 @@
 
 body {
     font-family: "Pretendard", sans-serif;
+    font-size: 1rem;
     color: #374151;
     word-break: keep-all;
     white-space: nowrap;

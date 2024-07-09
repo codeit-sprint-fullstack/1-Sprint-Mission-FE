@@ -1,5 +1,6 @@
 * {
-    font-family: "Pretendard", sans-serif;
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
 
@@ -12,6 +13,8 @@
 }
 
 body {
+    font-size: 16px;
+    font-family: "Pretendard", sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,30 +22,71 @@ body {
     color: #1F2937;
 }
 
+button {
+    font-size: 1.25rem;
+    width: 100%;
+    padding: 16px 124px; 
+    border-radius: 40px;
+    background-color: var(--keycolor-gray);
+    font-weight: 600;
+    line-height: 24px;
+    color: white;
+    border: none;
+}
+
 header {
     padding-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 640px;
+}
 
+header > a > img {
+    max-width: 100%;
 }
 
 main {
     width: 100%;
-    max-width: 640px;
+    max-width: 640px; 
+}
+
+@media (min-width: 375px) and (max-width: 767px) {
+    main {
+        padding: 0px 16px;
+        max-width: 400px;
+    }
+    header {
+        padding: 24px 0px;
+        max-width: 200px;
+    }
 }
 
 footer {
-    font-size: 15px;
+    font-size: 0.9rem;
     line-height: 18px;
     font-weight: 500;
     padding: 24px 0px;
     justify-content: space-between;
 }
 
+label {
+    font-size: 1.125rem;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-weight: 700;
+    line-height: 21px;
+}
+
+
 input {
+    font-size: 1rem;
     width: 100%;
     padding: 16px 24px;
     border-radius: 12px;
     background-color: var(--keycolor-white-gray);
-    font-size: 16px;
     font-weight: 400;
     line-height: 24px;
     border: 1px solid;
@@ -84,5 +128,30 @@ input:focus {
     padding-left: 25px;
     padding-top: 5px;
     color: var(--keycolor-red);
-    /* display: none; */
+}
+
+#easy-social-login {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 23px;
+    margin-top: 24px;
+    border-radius: 8px;
+    background-color: var(--keycolor-bright-blue);
+    font-weight: 500;
+    line-height: 24px;
+}
+
+#social-icon {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#social-icon > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

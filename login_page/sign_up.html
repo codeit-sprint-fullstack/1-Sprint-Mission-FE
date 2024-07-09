@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>판다마켓-회원가입</title>
         <link rel="stylesheet" href="./style_login/globe_login.css" />
         <link rel="stylesheet" href="./style_login/body_login.css" />
@@ -20,38 +21,38 @@
             </a> 
         </header>
         <main>
-            <section id="enter-box-for-signup">
-                <article class="enter-box">
+            <section>
+                <article id='email-enter-box' class="enter-box">
                     <label>이메일</label>
-                    <input id="input-sign-up-id" type="email" placeholder="이메일을 입력해주세요">
-                    <span id="id-enter-error" class="toggle-erorr-message"></span>
+                    <input id="id" type="email" placeholder="이메일을 입력해주세요">
+                    <span class="toggle-erorr-message"></span>
                      </div>
                 </article>
-                <article class="enter-box">
+                <article id='nickname-enter-box' class="enter-box">
                     <label>닉네임</label>
-                    <input id="input-sign-up-nickname"type="text" placeholder="닉네임을 입력해주세요">
-                    <span id="nickname-error" class="toggle-erorr-message"></span>
+                    <input id="nickname" type="text" placeholder="닉네임을 입력해주세요">
+                    <span class="toggle-erorr-message"></span>
                 </article>
-                <article class="enter-box">
+                <article id='pw-enter-box' class="enter-box">
                     <label>비밀번호</label>
                     <div class="password-box">
-                        <input id="input-sign-up-pw" type="password" placeholder="비밀번호를 입력해주세요">
+                        <input id="pw" type="password" placeholder="비밀번호를 입력해주세요">
                         <img src="./public_images/btn_visibility_action.svg" class=eye-img width="24">
                     </div>
-                    <span id="pw-enter-error" class="toggle-erorr-message"></span>
+                    <span class="toggle-erorr-message"></span>
                 </article>
-                <article class="enter-box">
+                <article id='pw-test-enter-box' class="enter-box">
                     <label>비밀번호 확인</label>
                     <div class="password-box">
-                        <input id="input-sign-up-pw-correct" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요" class="visible-on-off-btn">
+                        <input id="pw-test" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요" class="visible-on-off-btn">
                         <img src="./public_images/btn_visibility_action.svg" class=eye-img width="24">
                     </div>
-                    <span id="not-correct-pw-error" class="toggle-erorr-message"></span>
+                    <span class="toggle-erorr-message"></span>
                 </article>
             </section>
 
-            <section id="login-button-section">
-                <button type="button" onclick="location.href='../'">회원가입</button>
+            <section id="sign-up-button-section">
+                <button id="sign-up-button" type="button" onclick="location.href='../'">회원가입</button>
             </section>
 
             <section id="easy-social-login">
@@ -70,5 +71,7 @@
             <span>이미 회원이신가요?</span>
             <a href="../login_page/login.html">로그인</a>
         </footer>
+        <script type="module" src="globe.js"></script>
+        <script type="module" src="sign_up.js"></script>
     </body>
 </html>

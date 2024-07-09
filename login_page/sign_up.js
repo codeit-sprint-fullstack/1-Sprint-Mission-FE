@@ -1,73 +1,50 @@
-const emailBox = document.querySelectorAll('.enter-box')[0];
-const emailInput = emailBox.querySelector('#input-sign-up-id');
+import { lengthTest, emailTest, pwTest, compareFunc } from './globe.js';
+import { checkValueForBtn, checkModule } from './globe.js';
 
-const nickNameBox = document.querySelectorAll('.enter-box')[1];
-const nickNameInput = pwBox.querySelector('#input-sign-up-nickname');
+const emailEenterBox = document.querySelector('#email-enter-box');
+const emailInput2 = emailEenterBox.querySelector('#id');
 
-const pwBox = document.querySelectorAll('.enter-box')[2];
-const pwlInput = pwBox.querySelector('#input-sign-up-pw');
+const nicknameBox = document.querySelector('#nickname-enter-box');
+const nicknameInput = nicknameBox.querySelector('#nickname');
 
-const correctPwBox = document.querySelectorAll('.enter-box')[3];
-const correctPwBoxInput = pwBox.querySelector('#input-sign-up-pw-correct');
+const pwEnterBox = document.querySelector('#pw-enter-box');
+const pwlInput = pwEnterBox.querySelector('#pw');
 
-const loginBtn = document.querySelector('#login-btn')
+const pwTestEnterBox = document.querySelector('#pw-test-enter-box');
+const pwTestInput = pwTestEnterBox.querySelector('#pw-test');
 
-const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const isItEmail = (Stringvalue) => re.test(String(Stringvalue).toLowerCase());
+const signUpBtn = document.querySelector('#sign-up-button')
+
+const checkEmail = e => {
+    checkModule(e, emailEenterBox, emailInput2);
+    checkValueForBtn(signUpBtn, emailInput2, pwlInput, pwTestInput, nicknameInput)
+}
+
+const checkNickname = e => {
+    checkModule(e, nicknameBox, nicknameInput);
+    checkValueForBtn(signUpBtn, emailInput2, pwlInput, pwTestInput, nicknameInput)
+}
+
+const checkPassword = e => {
+    checkModule(e, pwEnterBox, pwlInput);
+    checkValueForBtn(signUpBtn, emailInput2, pwlInput, pwTestInput, nicknameInput)
+}
+
+const checkComparePassword = e => {
+    checkModule(e, pwTestEnterBox, pwTestInput, pwlInput);
+    checkValueForBtn(signUpBtn, emailInput2, pwlInput, pwTestInput, nicknameInput)
+}
+
+const test = e => {
+    console.log('실행됨')
+}
 
 
-// const checkLogin = e => {
-//     if(emailInput.value && pwlInput.value) {
-//         if (isItEmail(emailInput.value) && pwlInput.value.length >= 8) {
-//             loginBtn.style.backgroundColor = '#3692FF';
-//         }
-//         else {
-//             loginBtn.style.backgroundColor = '#9CA3AF';
-//         }
-//     }
-//     console.log('로그인 검사 실행됨')
+emailInput2.addEventListener('focusout', test) // 테스트
 
-// }
-
-// const checkEmail = function(e) {
-//     const errorMessage = emailBox.querySelector('span');
-
-//     if (!emailInput.value) {
-//         emailInput.style.borderColor = '#F74747';
-//         errorMessage.textContent = '이메일을 입력해주세요';
-//         errorMessage.style.display = 'inline';
-//     } else if (!isItEmail(emailInput.value)) {
-//         emailInput.style.borderColor = '#F74747';
-//         errorMessage.textContent = '잘못된 이메일 형식입니다.'
-//         errorMessage.style.display = 'inline'
-//     } else {
-//         emailInput.style.borderColor = '#FFFFFF';
-//         errorMessage.style.display = 'none'
-
-//     }
-//     console.log('이메일 체크 실행됨')
-//     checkLogin()
-// }
-
-// const checkPassword = e => {
-//     const errorMessage = pwBox.querySelector('span');
-
-//     if (!pwlInput.value) {
-//         pwlInput.style.borderColor = '#F74747';
-//         errorMessage.textContent = '비밀번호를 입력해주세요';
-//         errorMessage.style.display = 'inline';
-//     } else if (pwlInput.value.length < 8) {
-//         pwlInput.style.borderColor = '#F74747';
-//         errorMessage.textContent = '비밀번호를 8자 이상 입력해주세요.'
-//         errorMessage.style.display = 'inline'
-//     } else {
-//         pwlInput.style.borderColor = '#FFFFFF';
-//         errorMessage.style.display = 'none'
-//     }
-//     console.log('비밀번호 체크 실행됨')
-//     checkLogin()
-// }
-
-emailInput.addEventListener('focusout', checkEmail)
+emailInput2.addEventListener('focusout', checkEmail)
+nicknameInput.addEventListener('focusout', checkNickname)
 pwlInput.addEventListener('focusout', checkPassword)
+pwTestInput.addEventListener('focusout', checkComparePassword)
+
 
