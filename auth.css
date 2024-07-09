@@ -152,7 +152,7 @@ a>.google {
     font-weight: 500;
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 45%;
     transform: translate(-50%, -50%);
   }
 }
@@ -223,5 +223,17 @@ a>.google {
   }
   .simpleLink {
     margin-right: 1.6rem;
+  }
+  .modal {
+    width: 32.7rem;
+    height: 22rem;
+    .modalContent {
+      font-size: 1.8rem;
+    }
+  }
+  .dialog button{
+    bottom: 2.3rem;
+    left: 50%;
+    transform: translate(-50%, 0);
   }
 }
