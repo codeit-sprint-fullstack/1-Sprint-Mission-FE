@@ -9,7 +9,6 @@ export function eyeIconToggle() {
       const pwType =
         pwInput.getAttribute('type') === 'password' ? 'text' : 'password';
       pwInput.setAttribute('type', pwType);
-      console.log(pwType);
       eyeIcon.src =
         pwType === 'password'
           ? '../img/btn_visibility_off_24px.svg'
