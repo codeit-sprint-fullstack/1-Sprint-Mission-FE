@@ -14,7 +14,8 @@ signupForm.addEventListener('submit', event => {
   const email = document.getElementById('email');
 
   if(userSignup(email.value)){
-    // alert('사용 중인 이메일입니다');
+    const modalContent = modal.querySelector('.modalContent');
+    modalContent.textContent ='사용 중인 이메일입니다';
     modal.showModal();
   } else {
     location.href = '/login';

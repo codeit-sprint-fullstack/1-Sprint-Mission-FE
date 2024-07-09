@@ -17,7 +17,8 @@ loginForm.addEventListener('submit', event => {
   if(userLogin(email.value, password.value)){
     location.href = '/items';
   } else {
-    // alert('비밀번호가 일치하지 않습니다.');
+    const modalContent = modal.querySelector('.modalContent');
+    modalContent.textContent ='비밀번호가 일치하지 않습니다.';
     modal.showModal();
   }
 });

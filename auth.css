@@ -143,12 +143,18 @@ a>.google {
   width: 54rem;
   height: 25rem;
   background-color: var(--backWhite);
-  color: var(--loginFontBlack);
-  font-size: 1.6rem;
-  font-weight: 500;
   border: none;
   border-radius: 0.8rem;
   position: relative;
+  .modalContent {
+    color: var(--loginFontBlack);
+    font-size: 1.6rem;
+    font-weight: 500;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 .modal::backdrop {
   background: rgba(0, 0, 0, 0.5);
