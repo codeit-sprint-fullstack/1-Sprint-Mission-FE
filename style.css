@@ -468,17 +468,3 @@ footer .social {
   display: flex;
   flex-direction: column;
 }
-
-
-.signup-form button {
-  margin-bottom: 24px;
-  height: 56px;
-  border: none;
-  border-radius: 40px;
-  background-color: var(--like-gray-color);
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  color: var(--white-color);
-  cursor: pointer;
-}

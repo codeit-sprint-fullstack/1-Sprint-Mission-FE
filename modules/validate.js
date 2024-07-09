@@ -1,6 +1,7 @@
 // Functions for validating user login information
 export const validateEmail = (email) => {
-  const emailRegEx = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+  const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(?!co$)[a-zA-Z]{2,}$/;
+  
   return emailRegEx.test(email);
 }
 

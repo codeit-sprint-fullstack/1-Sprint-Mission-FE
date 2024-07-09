@@ -9,8 +9,8 @@ const loginButton = document.querySelector("#button");
 // Function for password visualization
 const passwordVisibility = (e) => {
   const passwordInput = e.target.previousElementSibling;
-  const passwordType = passwordInput.type === "text";
-  passwordInput.type = passwordType ? "password" : "text";
+  const isTextType = passwordInput.type === "text";
+  passwordInput.type = isTextType ? "password" : "text";
   e.target.src = passwordType ? "./imgs/btn_visibility_off.png" : "./imgs/btn_visibility_on.png";
   e.target.width = 24;
   e.target.height = 24;
@@ -38,7 +38,7 @@ const handleEmailValidation = (e) => {
   if (!emailValue) {
     showError(userEmailContainer, '이메일을 입력해주세요.');
   } else if (!validateEmail(emailValue)) {
-    showError(userEmailContainer, '잘못된 이메일 형식입니다.')
+    showError(userEmailContainer, '잘못된 이메일 형식입니다.');
   } else {
     hideError(userEmailContainer);
   }
