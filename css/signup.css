@@ -76,7 +76,6 @@ input {
   color: var(--white);
   border: none;
   margin-bottom: 24px;
-  margin-top: 24px;
 }
 
 .signup_login {
@@ -84,12 +83,13 @@ input {
   justify-content: center;
   gap: 4px;
   margin-bottom: 20px;
+  margin-top: 24px;
 }
 
 .error-text {
   color: #f74747;
   text-align: left;
-  width: 600;
+  font-weight: 600;
   font-size: 15px;
   margin-left: 16px;
   margin-top: 8px;
@@ -101,11 +101,7 @@ input {
   }
 
   .signup_page {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
     max-width: 400px;
-    margin: 0 auto;
   }
 
   .signup_page > a > img {
@@ -124,56 +120,21 @@ input {
     margin-bottom: 16px;
     & p {
       font-size: 1.4rem;
-      font-weight: 700;
-      text-align: left;
       margin-bottom: 8px;
     }
     & input {
       width: 100%;
-      height: 56px;
-      border-radius: 12px;
-      border: none;
-      background-color: var(--input-background-color);
-      font-size: 1.6rem;
-      font-weight: 400;
-    }
-    & input::placeholder {
-      color: var(--input-text-color);
-    }
-    & input:focus {
-      border: var(--input-focus);
     }
   }
 
-.signup_nickname {
+  .signup_nickname {
     margin-bottom: 8px;
-  }
-
-  .signup_password {
-    position: relative;
-  }
-
-  .signup_password i {
-    position: absolute;
-    margin-top: 20px;
-    align-items: center;
-    right: 16px;
-    height: 30px;
-    font-size: 22px;
-    color: var(--input-focus-eye);
   }
 
   .signup_box > button {
     width: 100%;
-    height: 56px;
-    background-color: var(--btn-background-color);
-    border-radius: 40px;
     font-size: 1.6rem;
-    font-weight: 600;
-    color: var(--white);
-    border: none;
-    margin-bottom: 16px;
-    margin-top: 16px;
+    margin-top: 8px;
   }
 
   .signup_login {
@@ -181,18 +142,6 @@ input {
     justify-content: center;
     gap: 4px;
     margin-bottom: 20px;
+    margin-top: 24px;
   }
-
-  .error-text {
-    color: #f74747;
-    text-align: left;
-    width: 600;
-    font-size: 1.5rem;
-    margin-left: 16px;
-    margin-top: 8px;
-  }
-
-  .alert_background {
-    min-height: 800px;
-  } */
 }
