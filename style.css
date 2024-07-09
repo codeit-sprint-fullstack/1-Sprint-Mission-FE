@@ -21,7 +21,6 @@ body {
   --login-sigup-msg-color: #1F2937;
   --login-sigup-select-color: #3182F6;
   --input-color: #F3F4F6;
-  --focusin-color: #3692FF;
   --like-red-color: #F74747;
 }
 
@@ -378,7 +377,7 @@ footer .social {
   border-radius: 12px;
   border: none;
   background-color: var(--input-color);
-  outline-color: var(--focusin-color);
+  outline-color: var(--like-blue-color);
 }
 
 .err-line {
@@ -389,7 +388,25 @@ footer .social {
   border-radius: 12px;
   border: 1px solid var(--like-red-color);
   background-color: var(--input-color);
-  outline-color: var(--focusin-color);
+  outline-color: var(--like-blue-color);
+}
+
+.login-form #button {
+  margin-bottom: 24px;
+  height: 56px;
+  border: none;
+  border-radius: 40px;
+  background-color: var(--like-gray-color);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--white-color);
+  cursor: not-allowed;
+}
+
+#button.enabled {
+  background-color: var(--like-blue-color);
+  cursor: pointer;
 }
 
 /*-------*/
@@ -425,18 +442,7 @@ footer .social {
 }
     
   
-.login-form button {
-  margin-bottom: 24px;
-  height: 56px;
-  border: none;
-  border-radius: 40px;
-  background-color: var(--like-gray-color);
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  color: var(--white-color);
-  cursor: pointer;
-}
+
 
 /*---------*/
 /* sign-up */
