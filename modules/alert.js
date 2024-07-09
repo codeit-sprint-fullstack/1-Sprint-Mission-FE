@@ -1,4 +1,9 @@
 export const createAlertBox = (msg) => {
+
+  if (document.querySelector('.alertBox')) {
+    return;
+  }
+
   const alertBox = document.createElement('div');
   const overlayBox = document.createElement('div');
   
@@ -14,5 +19,5 @@ export const createAlertBox = (msg) => {
   confirmButton.addEventListener('click', () => {
     document.body.removeChild(alertBox);
     document.body.removeChild(overlayBox);
-  })
+  });
 }

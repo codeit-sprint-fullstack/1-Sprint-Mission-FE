@@ -85,7 +85,6 @@ const handleFormSubmit = (e) => {
 
   const loginResult = checkLogin(emailValue, passwordValue);
 
-
   if (!loginButton.disabled && loginResult === 'success') {
     window.location.href = './items.html';
   } else if (loginResult === 'wrong_password') {
