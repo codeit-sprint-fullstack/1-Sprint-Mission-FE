@@ -52,9 +52,10 @@ form.addEventListener('focusout', (e) => {
 const modalContainer = document.querySelector('#modal-container');
 const modalPopup = document.querySelector('#modal');
 const close = document.querySelector('#close');
-const alertMeg = document.querySelector('alert_meg');
+const alertMeg = document.querySelector('.alert_meg');
 
 submit_btn.addEventListener('click', (e) => {
+    e.preventDefault();
     const submit = USER_DATA.find((user) => {
         return user.email === userId.value;
     });
