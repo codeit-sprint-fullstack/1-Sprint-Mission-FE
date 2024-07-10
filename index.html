@@ -57,10 +57,18 @@
     <div class="nav_background">
       <div class="nav_main">
         <div class="nav_title">
-          <img
-            onClick="location.href='./'"
-            src="./img/index_img/Group 19.png"
-          />
+          <picture>
+            <source
+              srcset="./img/index_img/logo(1).png"
+              media="(max-width: 473px)"
+            />
+            <img
+              class="nav_logo"
+              onClick="location.href='./'"
+              src="./img/index_img/Group 19.png"
+            />
+          </picture>
+
           <span>자유게시판</span>
           <span>중고마켓</span>
         </div>
@@ -86,7 +94,7 @@
           <div class="home_main_content_text">
             <p class="service-title">Hot item</p>
             <p class="main-title">
-              인기 상품을 <br class="break-m" />확인해 보세요
+              인기 상품을 <br class="break-m2" />확인해 보세요
             </p>
             <p class="service-desc">
               가장 HOT한 중고거래 물품을<br />판다 마켓에서 확인해 보세요
@@ -101,7 +109,7 @@
           <div class="home_main_content_text home_main_text_reverse">
             <p class="service-title">Search</p>
             <p class="main-title">
-              구매를 원하는 <br class="break-m" />상품을 검색하세요
+              구매를 원하는 <br class="break-m2" />상품을 검색하세요
             </p>
             <p class="service-desc">
               구매하고 싶은 물품은 검색해서<br />쉽게 찾아보세요
@@ -116,7 +124,7 @@
           <div class="home_main_content_text">
             <p class="service-title">Register</p>
             <p class="main-title">
-              판매를 원하는<br class="break-m" />
+              판매를 원하는<br class="break-m2" />
               상품을 등록하세요
             </p>
             <p class="service-desc">
@@ -126,7 +134,7 @@
         </div>
       </div>
 
-      <div class="info_space"></div>
+      <div class="info_space" style="display: none"></div>
 
       <div class="last_title">
         <p>믿을 수 있는<br />판다마켓 중고거래</p>
@@ -140,6 +148,8 @@
         </div>
       </div>
       <div class="background_info_main"></div>
+      <div class="background_info_second"></div>
+      <div class="background_info_third"></div>
       <div class="background_info_last">
         <div class="background_info_last_img">
           <img src="./img/index_img/Img_home_bottom.png" />
