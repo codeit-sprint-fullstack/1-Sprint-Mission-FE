@@ -236,15 +236,19 @@ footer {
   justify-content: space-between;
   max-width: 120rem;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .footer1 {
-  color: var(--grey-200);
+  color: var(--grey-400);
+  font-weight: 400;
+  margin-bottom: 24px;
 }
 .footer2 {
   display: flex;
   justify-content: center;
   gap:2.25rem;
+  margin-bottom: 24px;
 }
 .policy,
 .faq {
@@ -755,7 +759,6 @@ button {
 
   p {
     margin-top: 45px;
-    font-size: 18px;
   }
 }
 
