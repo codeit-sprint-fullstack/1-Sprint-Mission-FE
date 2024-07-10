@@ -1,3 +1,4 @@
+import { initPasswordToggle, initEmailValidation, initPasswordValidation } from '../common/login_signup.js';
 const USER_DATA = [{
         email: 'codeit1@codeit.com',
         password: "codeit101!"
@@ -23,6 +24,19 @@ const USER_DATA = [{
         password: "codeit606!"
     },
 ];
+
+//비밀번호보기, email유효성, password유효성
+document.addEventListener('DOMContentLoaded', function () {
+    initPasswordToggle();
+
+    let email = document.getElementById('e-mail');
+    let emailcheck = document.getElementById('email-check');
+    initEmailValidation(email, emailcheck);
+
+    let password = document.getElementById('pw');
+    let passwordmsg = document.getElementById('password-check');
+    initPasswordValidation(password, passwordmsg);
+});
 
 //user 유효성 검사
 document.addEventListener('DOMContentLoaded', function () {

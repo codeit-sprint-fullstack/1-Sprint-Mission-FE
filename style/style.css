@@ -31,10 +31,9 @@ header {
 }
 
 .nav-text {
-  height: 69px;
   font-size: 18px;
   font-weight: 700;
-  padding-top: 30px;
+  padding-top: 24px;
   margin-right: 35px;
 }
 
@@ -90,11 +89,11 @@ main {
   height: 56px;
   border-radius: 40px;
   border: none;
-  margin-top: 26px;
+  margin-top: 32px;
 }
 
 #logo-img {
-  margin-top: 14px;
+  margin-top: 10px;
   width: 153px;
   height: 51px;
   margin-right: 35px;
@@ -228,9 +227,9 @@ footer {
 }
 
 .sns-img {
-  width: 17px;
-  height: 17px;
-  margin: 0 4px;
+  width: 18px;
+  height: 18px;
+  margin: 0 6px;
   cursor: pointer;
 }
 
@@ -243,29 +242,18 @@ footer {
 }
 
 @media (max-width: 1199px) {
-  .navbar #logo-img2 {
-    display: none;
-  }
-
   .top-banners {
-    width: 100%;
     display: flex;
-    background-color: #CFE5FF;
     flex-direction: column;
   }
 
   .top-banner {
     height: 771px;
-    width: 100%;
-    position: relative;
     text-align: center;
   }
 
   .top-banner p {
     padding-top: 94px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
   }
 
   .top-banner br {
@@ -273,13 +261,6 @@ footer {
   }
 
   #go-items {
-    background-color: #3692FF;
-    color: #ffffff;
-    font-size: 20px;
-    width: 357px;
-    height: 56px;
-    border-radius: 40px;
-    border: none;
     margin-top: 24px;
     margin-bottom: 94px;
   }
@@ -287,21 +268,12 @@ footer {
   .img-wrap {
     position: relative;
     display: flex;
-    max-width: 996px;
-    background-repeat: no-repeat;
-    background-size: cover;
+    width: 996px;
     background-position: center;
     justify-content: center;
     align-items: center;
-    right: 50%;
     left: 50%;
     transform: translate(-50%, 0%);
-    width: 100%;
-    /* 이미지의 최대 너비 설정 */
-  }
-
-  .top-img {
-    height: 447px;
   }
 
   .margin-right {
@@ -313,15 +285,12 @@ footer {
   }
 
   .home-containers {
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
   .box {
-    height: 720px;
-    display: flex;
     flex-direction: column;
     gap: 16px;
     align-items: normal;
@@ -339,40 +308,25 @@ footer {
   }
 
   .category {
-    color: #3692FF;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 25.2px;
     margin-bottom: 8px;
   }
 
   .details {
-    color: #374151;
-    font-weight: 500;
     font-size: 18px;
-    line-height: 28.8px;
     margin-top: 16px;
   }
 
   .main-img {
-    width: 588px;
-    height: 444px;
-    display: flex;
-    border-radius: 12px;
+    border-radius: 14.2px;
   }
 
   .bottom-banners {
     display: flex;
-    background-color: #CFE5FF;
     flex-direction: column;
   }
 
   .bottom-banner {
     height: 771px;
-    width: 100%;
-    position: relative;
-    align-items: center;
-    justify-content: center;
     text-align: center;
   }
 
@@ -384,8 +338,6 @@ footer {
   .box .font-style {
     font-size: 32px;
     line-height: 44.8px;
-    font-weight: 700;
-    color: #374151;
   }
 }
 
@@ -397,36 +349,22 @@ footer {
   .navbar #logo-img2 {
     display: unset;
     width: 81px;
-    height: 40px;
-    margin: 15px 16px;
+    height: 27px;
+    margin: 20px 16px;
   }
 
   .nav-text {
-    height: 69px;
     font-size: 16px;
-    padding-top: 28px;
+    padding-top: 25px;
     margin-right: 8px;
-  }
-
-  .top-banners {
-    width: 100%;
-    display: flex;
-    background-color: #CFE5FF;
-    flex-direction: column;
   }
 
   .top-banner {
     height: 540px;
-    width: 100%;
-    position: relative;
-    text-align: center;
   }
 
   .top-banner p {
     padding-top: 48px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
   }
 
   .top-banner br {
@@ -434,34 +372,17 @@ footer {
   }
 
   #go-items {
-    background-color: #3692FF;
-    color: #ffffff;
-    font-size: 20px;
-    width: 357px;
-    height: 56px;
-    border-radius: 40px;
-    border: none;
-    margin-top: 24px;
-    margin-bottom: 94px;
-  }
+    max-width: 357px;
+    width: 100%;
+  } 
 
   .img-wrap {
-    position: relative;
-    display: flex;
-    max-width: 626.12px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    /* 이미지의 최대 너비 설정 */
+    width: 626.12px;
   }
 
   .top-img {
     height: 281px;
-    margin-bottom: 100px;
-    bottom: 75px;
+    bottom: 53px;
   }
 
   .margin-right {
@@ -472,42 +393,21 @@ footer {
     margin-left: 16px;
   }
 
-  .home-containers {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
   .box {
     height: 100%;
-    display: flex;
     width: 100%;
-    flex-direction: column;
-    align-items: normal;
     padding: 32px 16px;
     margin: 0 0;
-  }
-
-  .box:nth-child(2) {
-    flex-direction: column-reverse;
-  }
-
-  .box .font-style br {
-    display: none;
+    gap:8px;
   }
 
   .category {
-    color: #3692FF;
-    font-weight: 700;
     font-size: 16px;
-    line-height: 25.2px;
+    line-height: 22.4px;
     margin-bottom: 4px;
   }
 
   .details {
-    color: #374151;
-    font-weight: 500;
     font-size: 16px;
     line-height: 28.8px;
     margin-top: 8px;
@@ -516,29 +416,20 @@ footer {
   .main-img {
     width: 100%;
     height: 100%;
-    display: flex;
-    border-radius: 12px;
+    border-radius: 7.02px;
   }
 
   .bottom-banners {
-    display: flex;
-    background-color: #CFE5FF;
-    flex-direction: column;
-    margin-top: 56px;
+    margin-top: 32px;
   }
 
   .bottom-banner {
     height: 540px;
     width: 100%;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
   }
 
   .bottom-img {
     height: 270px;
-    bottom: 22px;
   }
 
   .bottom-banner p {
@@ -548,49 +439,21 @@ footer {
 
   .font-style {
     font-size: 32px;
+    line-height: 44.8px;
   }
 
   .box .font-style {
     font-size: 24px;
-    line-height: 44.8px;
-    font-weight: 700;
-    color: #374151;
+    line-height: 33.6px;
   }
 
   .footer-info-items {
-    width: 100%;
-    display: flex;
     height: auto;
     padding: 32px 0;
   }
 
-  .footer-info-font,
-  .footer-info-font a,
-  .sns-img {
-    color: #E5E7EB;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 9.09px;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  .sns-img {
-    width: 18px;
-    height: 18px;
-    margin: 0 12px;
-    cursor: pointer;
-  }
-
-  .footer-info-font a {
-    margin-left: 0;
-  }
-
   .info-box {
-    display: flex;
     flex-direction: column-reverse;
-    width: 100%;
     gap: 25px;
-    align-items: flex-start;
   }
 }

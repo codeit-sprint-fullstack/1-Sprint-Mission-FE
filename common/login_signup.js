@@ -1,5 +1,4 @@
-//비밀번호 보기
-document.addEventListener('DOMContentLoaded', function () {
+export function initPasswordToggle() {
     let eyeBtns = document.querySelectorAll('.pwsetting img');
 
     eyeBtns.forEach(function (btn) {
@@ -16,16 +15,10 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-});
+}
 
-
-document.addEventListener('DOMContentLoaded', function () {
-    let email = document.getElementById('e-mail');
-    let password = document.getElementById('pw');
-    let emailcheck = document.getElementById('email-check');
-    let passwordmsg = document.getElementById('password-check');
-
-    //이메일 유효성 검사
+// 이메일 유효성 검사 기능
+export function initEmailValidation(email, emailcheck) {
     function einputFocusOut() {
         if (!email.value) {
             emailcheck.style.display = 'flex';
@@ -42,7 +35,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    //비밀번호 유효성 검사
+    function einputFocusIn() {
+        emailcheck.style.display = 'none';
+    }
+
+    email.addEventListener('blur', einputFocusOut);
+    email.addEventListener('focus', einputFocusIn);
+}
+
+// 비밀번호 유효성 검사 기능
+export function initPasswordValidation(password, passwordmsg) {
     function pinputFocusOut() {
         if (!password.value) {
             passwordmsg.style.display = 'flex';
@@ -58,18 +60,11 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     }
-     //이메일 focus out
-     function einputFocusIn() {
-        emailcheck.style.display = 'none';
-    }
 
-    //비밀번호 focus out
     function pinputFocusIn() {
-        passwordcheck.style.display = 'none';
+        passwordmsg.style.display = 'none';
     }
 
-    email.addEventListener('blur', einputFocusOut);
     password.addEventListener('blur', pinputFocusOut);
-    email.addEventListener('focus', einputFocusIn);
     password.addEventListener('focus', pinputFocusIn);
-});
+}
