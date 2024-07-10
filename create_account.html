@@ -3,15 +3,23 @@
 
 <head>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>판다마켓 회원가입</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mediaquery_login.css">
 </head>
 
 <body>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+          <p id="message"></p>
+          <button id="confirm">확인</button> 
+        </div>
+      </div>
+
     <header class = "pandamarket_logo">
-        <a href="index.html"><img class="pandalog_img" src="images/판다마켓_로고.png"></a>
+     <a href="index.html"><img class="pandalog_img" src="images/판다마켓_로고.png"></a>
 
         <style>
             .error {
@@ -22,38 +30,35 @@
                 color: red;
             }
         </style>
-
     </header>
-
-    <main>
-
+        
         <div id="myModal" class="modal">
             <div class="modal-content">
-              <p id="message"></p>
-              <button id="confirm">확인</button> 
+            <p id="message"></p>
+            <button id="confirm">확인</button> 
             </div>
-          </div>
-          
+        </div>
+
         <div class="form_box">
             <form id="loginForm">
                 <label for="email">이메일</label>
-                <input id="email" name="email" type="email" placeholder="이메일을 입력해주세요">
+                <input id="email" name="email" type="text" placeholder="이메일을 입력해주세요">
                 <span id="emailerror" class="error-message" hidden></span><br>
 
                 <label for="name">닉네임</label>
                 <input id="name" name="name" type="name" placeholder="닉네임을 입력해주세요">
                 <span id="nameerror" class="error-message" hidden></span><br>
-
+                
                 <label for="password">비밀번호</label>
                 <div class="ps_confirm">
-                    <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
-                    <span id="passworderror" class="error-message" hidden></span><br>
+                 <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
+                 <span id="passworderror" class="error-message" hidden></span><br>
 
                     <div class="eyes">
                         <img class="eyss_img" src="images/비밀번호눈.png" style="height: 24px; width:24px;"></img>
                     </div>
                 </div>
-               
+
                 <label for="password_maza">비밀번호 확인</label>
                 <div class="ps_confirm">
                     <input id="passwordmaza" name="password" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요">
@@ -67,6 +72,8 @@
                 <button id='button' type="submit" disabled>회원가입</button></a>
             </form>
 
+            <div id="message"></div>
+
             <div class="easy_login_box">
                 <div class="easy_text">
                     간편 로그인하기
@@ -79,14 +86,14 @@
             </div>
 
                 <div class="first_ingayo">
-                    이미 회원이신가요? 
-                    <a href="panda_login.html" style="color:#3182F6;"> 로그인</a>
+                    이미 회원이신가요?
+                    <a href="create_account.html" style="color:#3182F6;"> 로그인</a>
                 </div>
             
         </div>
-    </main>
 </body>
 
-<script src="createAccount.js"></script>
+<script src="validation.js"></script>
+<!-- <script src="viewport_width.js"></script> -->
 
 </html>
