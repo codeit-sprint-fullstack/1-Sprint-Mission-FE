@@ -263,6 +263,10 @@ article {
     height: 444px;
 }
 
+.bottom {
+    margin-top: 138px;
+}
+
 /* -------- footer -------- */
 .footer {
     width: 100%;

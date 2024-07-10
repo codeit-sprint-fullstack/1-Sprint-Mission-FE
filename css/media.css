@@ -39,6 +39,10 @@
         margin-right: 24px;
     }
 
+    .banner {
+        height: 771px;
+    }
+
     .banner_max_size {
         width: 100%;
         align-items: normal;
@@ -70,21 +74,42 @@
     .article_box_2nd {
         flex-direction: column;
         height: auto;
-        margin-top: 64px;
+        margin: 40px 0;
         align-items: normal;
+        gap :16px;
+        /* padding: 0 24px; */
+    }
+
+    .article_content > p {
+        font-size: 18px;
+        line-height: 25.2px;
     }
 
     .article_content {
         padding: 0 24px;
     }
 
+    .article_content >h1 {
+        font-size: 32px;
+        line-height: 44.8px;
+    }
+
     .article_content >h1 > br {
         display: none;
+    }
+
+    .article_content >h2 {
+        font-size: 18px;
+    line-height: 21.6px;
     }
 
     .article_img {
         width: 100%;
         height: auto;
+    }
+
+    .bottom {
+        margin-top: 40px;
     }
 }
 
@@ -114,6 +139,10 @@
         justify-content: center;
     }
 
+    .banner {
+        height: 540px;
+    }
+
     .home_banner_max_size {
         width: 100%;
         margin: 0px 24px;
@@ -123,9 +152,8 @@
         text-align: center;
     }
 
-    .banner_content>h1>br {
+    .banner_content > h1 >br {
         display: block;
-
     }
 
     .home_banner_img {
@@ -143,14 +171,6 @@
         text-align: center;
     }
 
-    /* .footer_box>p {
-        margin-left: 16px;
-    }
-
-    .sns_box {
-        margin-right: 16px;
-    } */
-
     .logo_img {
         width: 81px;
         height: 40px;
@@ -162,11 +182,34 @@
         margin-right: 16px;
     }
 
+    .article_box,
+    .article_box_2nd {
+        margin: 32px 0;
+        gap :8px;
+    }
+
     .article_content {
         padding: 0 16px;
     }
 
-    .article_content>h1>br{
-        display:block;
+    .article_content > p {
+        font-size: 16px;
+        line-height: 22.4px;
+    }
+
+    .article_content >h1 {
+        margin-top: 4px;
+        font-size: 24px;
+        line-height: 33.6px;
+    }
+
+    .article_content >h2 {
+        margin-top: 8px;
+        font-size: 16px;
+        line-height: 19.2px;
+    }
+
+    .bottom {
+        margin-top: 32px;
     }
 }
