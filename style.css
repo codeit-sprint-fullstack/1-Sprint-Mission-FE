@@ -384,7 +384,7 @@ button {
   margin: 1.5rem 0;
 }
 
-.signup_button {
+.already-member {
   text-decoration: underline;
   color:  #3182F6
 }
@@ -405,7 +405,8 @@ button {
 .failure-message,
 .failure-message2,
 .failure-message3,
-.failure-message4 {
+.failure-message4,
+.failure-message5 {
   font-size: 15px;
   line-height: 17.9px;
   color: var(--error-red);
@@ -414,7 +415,8 @@ button {
 }
 
 
-.loginBtn_activate {
+.loginBtn_activate,
+.signupBtn_activate {
   background-color: var(--brand-blue);
   cursor: pointer;
 }
@@ -753,6 +755,7 @@ button {
 
   p {
     margin-top: 45px;
+    font-size: 18px;
   }
 }
 

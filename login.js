@@ -3,13 +3,13 @@ const password = document.querySelector('.password');
 const passIcon = document.querySelector('.pass_icon');
 
 function showHide(b,a) {
-   if (b.type === 'password') {
-   b.setAttribute('type','text');
-   a.setAttribute('src', 'img/eyeopen.png');
-   } else {
-   b.setAttribute('type', 'password');
-   a.setAttribute('src', 'img/eyeclose.png');
- }
+  if (b.type === 'password') {
+    b.setAttribute('type','text');
+    a.setAttribute('src', 'img/eyeopen.png');
+  } else {
+    b.setAttribute('type', 'password');
+    a.setAttribute('src', 'img/eyeclose.png');
+  }
 };
 
 passIcon.addEventListener('click', () => {showHide(password,passIcon)})
@@ -36,11 +36,6 @@ userEmail.addEventListener('focusout', () => {
   }
 );
 
-// 이메일 포커스
-userEmail.addEventListener('focusin', () => {
-  input.classList.add('blue-border');
-})
-
 userEmail.addEventListener('keyup', () => {
   if (pattern.test(userEmail.value)) {
       failureMessage.classList.add('hide');
@@ -49,7 +44,11 @@ userEmail.addEventListener('keyup', () => {
       userEmail.classList.add('valid-value');
     }
 });
- 
+
+// 이메일 포커스
+userEmail.addEventListener('focusin', () => {
+  input.classList.add('blue-border');
+})
 
 // 비밀버호 유효성 검사
 const failureMessageThree = document.querySelector('.failure-message3');
@@ -102,8 +101,7 @@ function btnActivate() {
   }
 }
 
-
-// 유저 데이터 베이스
+// 유저 데이터 베이스, 모달
 const USER_DATA = [
   { email: 'codeit1@codeit.com', password: 'codeit101!' },
   { email: 'codeit2@codeit.com', password: 'codeit202!' },
@@ -112,7 +110,6 @@ const USER_DATA = [
   { email: 'codeit5@codeit.com', password: 'codeit505!' },
   { email: 'codeit6@codeit.com', password: 'codeit606!' },
 ];
-
 
 const modalCloseButton = document.getElementById('modalCloseButton');
 const modal = document.getElementById('modalContainer');
