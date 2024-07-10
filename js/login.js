@@ -29,7 +29,7 @@ loginBtn.addEventListener("mouseover", function () {
   }
 });
 
-function 페이지이동() {
+function itemPage() {
   window.location.href = './item.html'
 }
 
@@ -37,7 +37,7 @@ loginBtn.addEventListener("click", function () {
   for (let i = 0; i < userData.length; i++) {
     if (userEmail.value === userData[i].email) {
       if (userPassword.value === userData[i].password) {
-        페이지이동();
+        itemPage();
         break;
       } else {
         showDialog();

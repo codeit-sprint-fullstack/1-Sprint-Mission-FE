@@ -75,7 +75,7 @@ userPassword2.addEventListener("click", function () {
 });
 
 
-function 페이지이동() {
+function loginPage() {
   window.location.href = './login.html'
 }
 
@@ -87,7 +87,7 @@ signupBtn.addEventListener("click", function (event) {
         break;
       } else {
         if (i === userData.length - 1) {
-          페이지이동()
+          loginPage()
           break;
         }
 
