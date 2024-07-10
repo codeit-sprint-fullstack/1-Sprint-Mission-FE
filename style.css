@@ -1,3 +1,53 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*  */
+
+
+html{
+    font-family: Pretendard;
+}
+
 * {
     box-sizing: border-box;
   }
@@ -5,22 +55,23 @@
 /* 색상 변수로 사용*/
 :root {
     --maincolor : #1F2937;
-  }
-
-* {
-    box-sizing: border-box;
-  }
-
-/* 판다마켓 로고*/
-.pandalog_img{
-    margin-top: 60px;
-    margin-bottom: 40px;
-    width: 396px;
-    height: 132px;
 }
 
-.pandalog_img{
-    margin:60px 0 40px 0;
+/* 판다마켓 로고*/
+
+.pandamarket_logo{
+    margin:60px auto 40px auto;
+    height: auto;
+    max-width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pandalog_img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* 메인 */
@@ -29,38 +80,26 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin:0 640px;
-    width:640px;
 
-     font-family: Pretendard;
+    margin:0; /* margin: 0 auto */
+    padding: 0;
+    min-width: 375px;
 }
 
 
 /* 폼 */
+
 .form_box{
-    display: flex;
-    flex-direction: column;
-
-    height:640px;
-    
-    gap:24px;  
-}
-
-.form_size{
+    margin: 0 auto;
     width: 640px;
-    height: 290px;
-    gap: 24px;
-    opacity: 0px;
 }
 
-
-form{
-    width:640px;
-}
+/* .loginForm{
+    width: 100%;
+} */
 
 label{
-    margin-bottom:14px;
-    var(--maincolor);
+    color:var(--maincolor);
     display: block;
     
     font-size: 18px;
@@ -70,17 +109,18 @@ label{
 }
 
 input{
-    padding:16px 50px 16px 24px;
-    width:100%;
+    position: relative;
+    padding: 16px 24px;
+    width: 100%;
     height: 56px;
+    margin: 24px 0;
 
     text-align:left;
-    border-block: none;
+    border: none;
     border-radius: 12px;
     border:none;
     font-size:16px; 
 
-    margin-bottom:14px;
     
     background: #F3F4F6;
 }
@@ -93,13 +133,9 @@ input{
 
 .eyes {
     position: absolute;
-    width:24px;
-    height:24px;
-    
-    top: 16px;
-    bottom: 0;
-    right:0;
-    left: 600px;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
   }
 
 /* 인풋 테두리 색*/
@@ -111,14 +147,12 @@ input::placeholder {
   }
 
   button{
-    background: #9CA3AF;
+    background: #3692FF;
     padding: 16px 124px;
     border-radius: 40px;
     width: 100%;
-    border-radius: 40px;
+    margin-bottom : 24px;
 
-    margin-top:10px;
-    
     font-size: 20px;
     font-weight: 600;
     line-height: 24px;
@@ -131,17 +165,18 @@ input::placeholder {
 
 /* 간편 로그인*/
 .easy_login_box{
+    margin:0 0 24px 0;
     height:74px;
  
     background: #E6F2FF;
 
-    padding: 23px;
+    padding: 25px 23px;
 
     display:flex;
     justify-content: space-between;
     align-items:center;
     
-    var(--maincolor);
+    color: var(--maincolor);
         
     font-size: 16px;
     font-weight: 500;
@@ -163,10 +198,11 @@ input::placeholder {
     font-weight: 500;
     line-height: 17.9px;
     text-align: left;
-    var(--maincolor);
+    color: var(--maincolor);
 
     gap: 4px;
 }
+
 
 /* 에러 메시지 모달로 구현 */
 .modal {
@@ -230,3 +266,8 @@ input::placeholder {
     text-align: center;
     line-height: 28px;
     }
+
+/* .error-message{
+    display: flex;
+    justify-content: center;
+} */
