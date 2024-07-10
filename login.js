@@ -13,7 +13,7 @@ const passwordVisibility = (e) => {
   const passwordInput = e.target.previousElementSibling;
   const isTextType = passwordInput.type === "text";
   passwordInput.type = isTextType ? "password" : "text";
-  e.target.src = passwordType ? "./imgs/btn_visibility_off.png" : "./imgs/btn_visibility_on.png";
+  e.target.src = isTextType ? "./imgs/btn_visibility_off.png" : "./imgs/btn_visibility_on.png";
   e.target.width = 24;
   e.target.height = 24;
 }

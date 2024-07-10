@@ -1,4 +1,6 @@
 import {validateEmail, validatePassword, showError, hideError} from "./modules/validate.js";
+import { USER_DATA } from "./modules/userData.js";
+import { createAlertBox } from "./modules/alert.js";
 
 const visibilityIcon = document.querySelectorAll(".visibility_icon");
 
@@ -8,7 +10,7 @@ const userPasswordContainer = document.querySelector(".password_container");
 const userPasswordRepeatContainer = document.querySelector(".password_repeat_container");
 const signupButton = document.querySelector("#button");
 
-
+// Function for password visualization
 const passwordVisibility = (e) => {
   const passwordInput = e.target.previousElementSibling;
   const isTextType = passwordInput.type === "text";
@@ -18,6 +20,19 @@ const passwordVisibility = (e) => {
   e.target.height = 24;
 }
 
+// Function to check ID availability when signing up for membership
+const checkSignup = (email) => {
+  const user = USER_DATA.find(user => user.email === email);
+
+  if (user) {
+    return 'alreadyExisted';
+  } else {
+    return 'success';
+  }
+}
+
+
+// Function to check if the signup button should be enabled or disabled
 const checktSignupButtonStatus = () => {
   const emailValue = userEmailContainer.children[1].value;
   const passwordValue = userPasswordContainer.children[1].value;
@@ -80,8 +95,15 @@ const handlePasswordRepeatValidation = (e) => {
 
 const handleFormSubmit = (e) => {
   e.preventDefault();
-  if (!signupButton.disabled) {
+
+  const emailValue = userEmailContainer.children[1].value;
+
+  const signupResult = checkSignup(emailValue);
+
+  if (!signupButton.disabled && signupResult === 'success') {
     window.location.href = './login.html';
+  } else {
+    createAlertBox('사용 중인 이메일입니다.');
   }
 }
 
