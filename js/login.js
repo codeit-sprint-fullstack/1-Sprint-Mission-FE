@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (loginSuccess) {
-            window.location.href = '../html/items.html';
+            window.location.href = '/items';
         } else {
             popupMessage.textContent = '비밀번호가 일치하지 않습니다.';
             popup.style.display = 'block';

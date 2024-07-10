@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
             popup.style.display = 'block';
             overlay.style.display = 'block';
         } else {
-            window.location.href = '../html/login.html';
+            window.location.href = '/login';
         }
 
         // 팝업 닫기
