@@ -102,10 +102,7 @@ input::placeholder {
     position: relative;
 }
 
-.pw-show,
-.pw-non-show,
-.pw-show-check,
-.pw-non-show-check {
+.eye-btn {
     position: absolute;
     right: 2.4rem;
     top: 1.6rem;
@@ -115,13 +112,8 @@ input::placeholder {
     height: 2.4rem;
 }
 
-.eye-size {
-    width: 2.4rem;
-    height: 2.4rem;
-}
-
-.pw-show,
-.pw-show-check {
+.hide,
+.hide-check {
     display: none;
 }
 

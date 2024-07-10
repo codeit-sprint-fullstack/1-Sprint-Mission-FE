@@ -33,14 +33,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function passwordToggleHandler() {
         eyeBtns.forEach(btn => {
             btn.addEventListener('click', function () {
-                if (btn.classList.contains('pw-non-show-check')) {
+                if (btn.classList.contains('show-check')) {
                     passwordCheckAgainInput.type = 'text';
                     btn.style.display = 'none';
-                    document.querySelector('.pw-show-check').style.display = 'inline-block';
-                } else if (btn.classList.contains('pw-show-check')) {
+                    document.querySelector('.hide-check').style.display = 'inline-block';
+                } else if (btn.classList.contains('hide-check')) {
                     passwordCheckAgainInput.type = 'password';
                     btn.style.display = 'none';
-                    document.querySelector('.pw-non-show-check').style.display = 'inline-block';
+                    document.querySelector('.show-check').style.display = 'inline-block';
                 }
             });
         });
