@@ -5,6 +5,7 @@ export const emailTest = (email) => {
 export const lengthTest = text => text.length > 0;
 export const pwTest = pw => pw.length >= 8;
 export const compareFunc = (pw, pw2) => pw === pw2
+
 export const checkValueForBtn = (targetBtn, id, pw, pwCompare, nickname) => {
     if (id && pw && !pwCompare && !nickname) {
         if (emailTest(id.value) && pwTest(pw.value)) {
@@ -22,7 +23,6 @@ export const checkValueForBtn = (targetBtn, id, pw, pwCompare, nickname) => {
             targetBtn.style.backgroundColor = '#9CA3AF';
         }
     }
-    
 }
 
 export const checkModule = function (e, enterBox, input, compareinput) {
@@ -85,6 +85,7 @@ export const checkModule = function (e, enterBox, input, compareinput) {
                 input.style.borderColor = '#FFFFFF';
                 message.textContent = ''
             }
+            console.log('닉네임 체크 실행됨')
             break;
     }
 }

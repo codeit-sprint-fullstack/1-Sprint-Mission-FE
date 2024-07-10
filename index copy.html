@@ -4,11 +4,11 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>판다마켓</title>
-        <link rel="stylesheet" href="./main/style_main/glober_style.css"/>   
-        <link rel="stylesheet" href="./main/style_main/header_style.css"/>
-        <link rel="stylesheet" href="./main/style_main/banner_style.css"/>
-        <link rel="stylesheet" href="./main/style_main/footer_style.css"/>
-        <link rel="stylesheet" href="./main/style_main/reset.css"/>
+        <link rel="stylesheet" href="./main/style_main/glober_style.css" />   
+        <link rel="stylesheet" href="./main/style_main/header_style.css" />
+        <link rel="stylesheet" href="./main/style_main/banner_style.css" />
+        <link rel="stylesheet" href="./main/style_main/footer_style.css" />
+        <link rel="stylesheet" href="./main/style_main/reset.css" />
         <link 
         rel="stylesheet"
         as="style"
@@ -18,59 +18,37 @@
 
     <body>
         <header>
-            <section class="left-container">
+            <article id="left-logo-box">            
                 <a href="./">
-                    <img src="./main/images_main/panda_market_logo.svg" width="153">
+                <img src="./main/images_main/panda_market_logo.svg" width="153">
                 </a>
-                <article class="board-list-box">
-                    <a href="freenote.html" >자유게시판</a>
-                    <a href="pre_owned.html" >중고마켓</a>
-                </article>
+            </article>
+            <section id="board-list-box">
+                <a href="freenote.html" class="top-board">자유게시판</a>
+                <a href="pre_owned.html" class="top-board">중고마켓</a>
             </section>
-            <section class="right-container">
+            <article id="right-header-box">
                 <a href="./login_page/login.html">로그인</a>
-            </section>
+            </article>
         </header>
 
         <main>
-            <section class="top-bottom-section">
-                <section class="content-container">
-                    <article class="top-bottom-string-box">
-                        <h1 class="key-sring">
-                            <span>일상의 모든 물건을</span>
-                            <span>거래해보세요</span>
-                        </h1>
-                        <div id="goto-lookin-item">
-                            <a href="./items.html">구경하러 가기</a>
-                        </div>
-                    </article>
-                    <article class="top-bg-img">
-                        <img src="main/images_main/banner/Img_home_top.svg" >
-                    </article>
-                </section>
+            <section id="section-top-bottom" class="banner-box-set">
+                <div class="top-bottom-string-box">
+                    <h2 class="key-sring">
+                        <span>일상의 모든 물건을</span>
+                        <span>거래해보세요</span>
+                    </h2>
+                    <div id="goto-lookin-item">
+                        <a href="./items.html">구경하러 가기</a>
+                    </div>
+                </div>
+                <div id="top-bg-img">
+                    <img src="main/images_main/banner/Img_home_top.svg" width="998">
+                </div>
             </section>
-        </main>
 
-
-        <!-- <main>
-            <section class="top-bottom-section">
-                <section class="content-container">
-                    <div class="top-bottom-string-box">
-                        <h2 class="key-sring">
-                            <span>일상의 모든 물건을</span>
-                            <span>거래해보세요</span>
-                        </h2>
-                        <div id="goto-lookin-item">
-                            <a href="./items.html">구경하러 가기</a>
-                        </div>
-                    </div>
-                    <div id="top-bg-img">
-                        <img src="main/images_main/banner/Img_home_top.svg" width="998">
-                    </div>
-                </section>
-            </section> -->
-
-            <!-- <section class="main-section">
+            <section class="main-section">
                 <article class="section-main-box-set">
                     <img src="main/images_main/banner/Img_home_01.svg" width="590">
                     <div class="banner-string-box">
@@ -137,10 +115,9 @@
                 <div id="bottom-bg-img">
                     <img src="main/images_main/banner/Img_home_bottom.svg" width="996"/>
                 </div>
-            </section> -->
-
+            </article>
         </main>
-        <!-- <footer>
+        <footer>
             <article id="corperation-box">
                 <span>©codeit - 2024</span>
             </article>
@@ -162,6 +139,6 @@
                     <img src="./main/images_main/icon/ic_instagram.svg" />
                 </a>
             </article>
-        </footer> -->
+        </footer>
     </body>
 </html>
