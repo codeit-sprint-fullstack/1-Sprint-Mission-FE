@@ -78,6 +78,10 @@
         padding: 0 24px;
     }
 
+    .article_content >h1 > br {
+        display: none;
+    }
+
     .article_img {
         width: 100%;
         height: auto;
@@ -160,5 +164,9 @@
 
     .article_content {
         padding: 0 16px;
+    }
+
+    .article_content>h1>br{
+        display:block;
     }
 }
