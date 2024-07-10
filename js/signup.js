@@ -1,4 +1,4 @@
-import { emailForm, userData, showDialog, okCLick, pswShow, userEmailBorder } from './login_signup.js';
+import { userData, emailForm, showDialog, okCLick, pswShow, pwShowSecond, userEmailBorder } from './login_signup.js';
 
 const showPw = document.querySelector('#show_pw');
 const mPassword = document.querySelector('.m_password');
@@ -19,20 +19,7 @@ const ok = document.querySelector("#ok")
 
 showPw.addEventListener("click", pswShow)
 
-
-
-showPwSecond.addEventListener("click", function () {
-  if (mPasswordSecond.type === "password") {
-    mPasswordSecond.type = "text";
-    showPwSecond.classList.remove("fa-eye-slash");
-    showPwSecond.classList.add("fa-eye");
-  } else {
-    mPasswordSecond.type = "password";
-    showPwSecond.classList.remove("fa-eye");
-    showPwSecond.classList.add("fa-eye-slash");
-  }
-});
-
+showPwSecond.addEventListener("click", pwShowSecond);
 
 userEmail.addEventListener("blur", emailForm);
 

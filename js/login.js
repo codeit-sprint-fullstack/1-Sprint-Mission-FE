@@ -1,4 +1,4 @@
-import { emailForm, userData, showDialog, okCLick, userEmailBorder, pswShow, showDialog2 } from './login_signup.js';
+import { emailForm, userData, showDialog, okCLick, userEmailBorder, pswShow, pswEmg, showDialog2 } from './login_signup.js';
 
 const showPw = document.querySelector('#show_pw');
 const userEmail = document.querySelector('#user_email')
@@ -18,23 +18,7 @@ userEmail.addEventListener("blur", emailForm);
 
 userEmail.addEventListener("click", userEmailBorder);
 
-userPassword.addEventListener("blur", function () {
-  if (userPassword.value === "") {
-    pswdMsg1.style.display = "block";
-    userPassword.style.border = '1px solid #F74747';
-    pswdMsg2.style.display = "none";
-  } else {
-    pswdMsg1.style.display = "none";
-    userPassword.style.border = 'none';
-    if (userPassword.value.length < 8) {
-      pswdMsg2.style.display = "block";
-      userPassword.style.border = '1px solid #F74747';
-    } else {
-      pswdMsg2.style.display = "none";
-      userPassword.style.border = 'none';
-    }
-  }
-});
+userPassword.addEventListener("blur", pswEmg);
 
 loginBtn.addEventListener("mouseover", function () {
   if (!(userEmail.value && userPassword.value && emailMsg1.style.display === 'none' && emailMsg2.style.display === 'none' && pswdMsg1.style.display === 'none' && pswdMsg2.style.display === 'none')) {
@@ -72,26 +56,3 @@ loginBtn.addEventListener("click", function () {
 )
 
 ok.addEventListener("click", okCLick);
-
-// const dialog = document.querySelector('dialog');
-
-
-// function diallogOpen() {
-//   dialog.showModal();
-//   showDialog()
-// }
-
-// const dialog = document.querySelector('dialog');
-
-// const openButton = document.querySelector('button.open')
-
-// openButton.addEventListener('click', () => {
-//   dialog.showModal();
-// })
-
-// const closeButton = document.querySelector('button.close')
-
-// closeButton.addEventListener('click', () => {
-//   dialog.close();
-// })
-
