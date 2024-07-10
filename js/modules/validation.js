@@ -5,6 +5,7 @@ import {
   modal,
   modalMsg,
   confirmPwInput,
+  submitBtn,
 } from './var.js';
 import { USER_DATA } from './userData.js';
 
@@ -137,7 +138,6 @@ function formValidity() {
 }
 
 //button status
-const submitBtn = form.querySelector('button');
 function buttonStatus() {
   submitBtn.disabled = !formValidity();
   if (!submitBtn.disabled) {

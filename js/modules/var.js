@@ -20,4 +20,5 @@ export {
   modalMsg,
   modalBtn,
   confirmPwInput,
+  submitBtn,
 };

@@ -1,4 +1,4 @@
-@import 'reset.css';
+@import 'global.css';
 
 body {
   font-family: 'Pretendard Variable', Pretendard, -apple-system,
@@ -260,204 +260,6 @@ footer .icons {
   height: 20px;
 }
 
-/* ------------------------login-page  */
-
-.non-sticky-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 60px 0 var(--40px);
-}
-
-.non-sticky-header a img {
-  width: 396px;
-  height: auto;
-}
-
-.login-main {
-  margin: 0 auto 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: var(--grey-800);
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  font-size: var(--18px);
-  font-weight: 700;
-}
-
-form,
-.social-login {
-  width: clamp(640px, 640px, 640px);
-}
-
-form label {
-  padding: 0 0 1rem;
-}
-
-form input,
-form button,
-.social-login {
-  margin-bottom: var(--24px);
-}
-
-form input {
-  width: 100%;
-  border-radius: 12px;
-  padding: 1rem var(--24px);
-  background-color: var(--grey-100);
-  height: 3.5rem;
-  color: var(--grey-800);
-  font-size: 1rem;
-  font-weight: 400;
-}
-
-form input:focus {
-  outline: 1px solid var(--primary-colour);
-}
-
-form input.error {
-  outline: 1px solid var(--color-error);
-}
-
-form .error-msg {
-  font-size: var(--15px);
-  font-weight: 600;
-  transform: translate(1rem, -1rem);
-  color: var(--color-error);
-  display: none;
-}
-
-.email-field {
-  display: flex;
-  flex-direction: column;
-}
-.pw-field,
-.confirm-pw-field,
-.name-field {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.eye-icon {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 3.75rem var(--24px) 0 0;
-  width: var(--24px);
-  height: auto;
-}
-
-::placeholder {
-  color: var(--grey-400);
-}
-
-form button {
-  background-color: var(--grey-400);
-  height: 3.5rem;
-  border-radius: 40px;
-  font-size: var(--20px);
-  font-weight: 600;
-  color: #ffffff;
-}
-
-.social-login {
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: 500;
-  background-color: var(--secondary-colour);
-  border-radius: 8px;
-}
-
-.social-login ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-
-.social-login img {
-  min-width: 42px;
-  height: auto;
-}
-
-.login-main span {
-  font-weight: 500;
-  font-size: var(--15px);
-}
-
-.login-main span a {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  color: #3182f6;
-}
-
-/* --------------------------------modal */
-
-#overlay {
-  width: 100%;
-  height: 100%;
-  background-color: #000000b2;
-  /* opacity: 0.7%; */
-  z-index: 99;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#modal {
-  width: 540px;
-  height: 240px;
-  align-items: center;
-  border-radius: 8px;
-  background-color: #ffffff;
-  display: flex;
-  justify-content: center;
-}
-.modal-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 28px;
-  width: 100%;
-  align-self: flex-end;
-}
-#modal button {
-  background-color: var(--primary-colour);
-  color: #ffffff;
-  width: 120px;
-  height: 48px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  align-self: flex-end;
-  margin-bottom: 0;
-}
-#modal span {
-  font-size: 1rem;
-  font-weight: 500;
-  align-self: center;
-  padding-bottom: 47px;
-  color: var(--grey-800);
-  text-align: center;
-}
-
-#overlay.modal-hidden {
-  display: none;
-}
-
 @media (max-width: 1350px) {
   .banner-top,
   .banner-bottom {
@@ -497,8 +299,6 @@ form button {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1199px) {
-  /* 주어진 figma는 744px wide */
-
   #wrapper {
     padding: 0 var(--24px) var(--40px);
   }
@@ -562,15 +362,9 @@ form button {
     margin: 2rem var(--24px);
     /* padding: 2rem var(--24px); */
   }
-
-  /* ----------------------login---------- */
-
-  .non-sticky-header {
-    margin: 48px 0 40px;
-  }
 }
 
-@media only screen and (min-width: 375px) and (max-width: 767px) {
+@media only screen and (max-width: 767px) {
   .desktop {
     display: none;
   }
@@ -635,7 +429,6 @@ form button {
     padding: 2rem 0;
     flex-wrap: nowrap;
     flex-direction: column;
-    /* width: fit-content; */
     align-items: flex-start;
   }
 
@@ -678,40 +471,5 @@ form button {
 
   .footer-container p {
     order: 3;
-  }
-  /* ------------------------login-- */
-  .non-sticky-header {
-    margin: 24px 0;
-  }
-  .login-main {
-    padding: 0 16px;
-  }
-
-  form,
-  .social-login {
-    width: clamp(344px, 100%, 400px);
-  }
-
-  .non-sticky-header a img {
-    width: 198px;
-  }
-
-  form label {
-    font-size: var(--14px);
-  }
-
-  .eye-icon {
-    margin-top: 3.4rem;
-  }
-  /* -------------------------modal */
-  #modal {
-    width: 327px;
-    height: 220px;
-  }
-  .modal-content {
-    margin: 23px;
-  }
-  #modal button {
-    align-self: center;
   }
 }
