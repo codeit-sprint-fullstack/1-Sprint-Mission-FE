@@ -344,8 +344,8 @@ footer {
     /* cursor : pointer; */
 }
 
-/* ===== Tablet: 768px 이상 ~ 1199px 이하 ===== */
-@media (min-width : 768px) and (max-width : 1199px) {
+/* ===== Tablet - width : 744px ~ 1199px ===== */
+@media (min-width : 744px) and (max-width : 1199px) {
     /* 판다마켓 로고 왼쪽 여백 24px */
     #header_btn_home {
         margin-left: 2.4rem;
@@ -475,8 +475,8 @@ footer {
     }
 }
 
-/* ===== Mobile: 375px 이상 ~ 767px 이하 ====== */
-@media (min-width : 375px) and (max-width : 767px) {
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width : 375px) and (max-width : 743px) {
     /* 판다마켓 로고 왼쪽 여백 16px */
     #header_btn_home {
         margin-left: 1.6rem;
