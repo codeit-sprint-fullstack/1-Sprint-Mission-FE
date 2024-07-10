@@ -1,0 +1,151 @@
+/*Discrive by TradeOffEgoist*/
+@font-face {
+  font-family: "KCC-Hanbit";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/KCC-Hanbit.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  font-family: "KCC-Hanbit";
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.main_wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1920px;
+}
+
+.main_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+
+  width: 100%;
+  max-width: 640px;
+
+  margin: 0px 0px;
+  padding-top: 60px;
+  box-sizing: border-box;
+}
+.panda_logo {
+  width: 396px;
+  height: auto;
+}
+
+@media (min-width: 357px) and (max-width: 767px) {
+  .main_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+
+    width: 100%;
+    max-width: 344px;
+
+    margin: 0px 0px;
+    padding-top: 24px;
+    box-sizing: border-box;
+  }
+  .panda_logo {
+    width: 198px;
+    height: auto;
+  }
+}
+
+.login_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  /*max-width 640px by main_container*/
+  max-height: 430px;
+  height: 100%;
+  background-color: #ffffff;
+  gap: 24px;
+}
+
+.inputAndLabel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+}
+.email_label {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+.password_label {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+@media (min-width: 357px) and (max-width: 767px) {
+  .email_label {
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+  .password_label {
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+}
+.login_input {
+  width: 100%;
+  height: 56px;
+  padding: 16px 24px;
+  margin: 0px 0px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  border: 0px;
+  background-color: #f3f4f6;
+
+  font-size: 0.9rem;
+}
+
+.login_input:focus {
+  border: 1px solid;
+  border-color: #3692ff;
+  outline: none;
+}
+.login_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 56px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+
+  background-color: #9ca3af;
+  border-radius: 40px;
+  border: none;
+}
+
+.easyLogin_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 74px;
+  background-color: #e6f2ff;
+  padding: 0px 23px;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+.icon_container {
+  display: flex;
+  gap: 16px;
+}

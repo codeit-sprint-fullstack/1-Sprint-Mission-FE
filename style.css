@@ -1,0 +1,820 @@
+/*discribe by TradeOffEgoist*/
+
+@font-face {
+  font-family: "KCC-Hanbit";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/KCC-Hanbit.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media (min-width: 1200px) {
+  .pc_invisible {
+    display: none;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "KCC-Hanbit";
+  }
+  header {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+  }
+  .header_wrapper {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+    max-width: 1920px;
+  }
+  .header_container {
+    width: 100%;
+    height: 100%;
+
+    margin-left: 200px;
+    margin-right: 200px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header_logoAndMenus {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+  }
+  .header_Menu_Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .panda_logo_text {
+    cursor: pointer;
+    width: 103px;
+    height: auto;
+  }
+  .header_Menu1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.125rem;
+
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 15px;
+    padding-right: 16px;
+    box-sizing: border-box;
+  }
+  .header_Menu2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.125rem;
+
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 23px;
+    padding-right: 23px;
+    box-sizing: border-box;
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 70px;
+    box-sizing: border-box;
+  }
+  .main_page {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+  }
+  .main_page.page_1 {
+    background-color: #cfe5ff;
+  }
+  .main_page.page_5 {
+    background-color: #cfe5ff;
+  }
+  .main_wrapper {
+    max-width: 1920px;
+    width: 100%;
+    height: 540px;
+
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+  }
+  .main_wrapper.card {
+    height: 720px;
+  }
+  .main_container {
+    max-width: 1320px;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* overflow-x: hidden; */
+  }
+
+  .main_page_textAndBtnArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 32px;
+
+    width: 357px;
+    height: 200px;
+
+    font-size: 40px;
+    font-weight: 700;
+  }
+  .page_1_text {
+    font-size: 2.5rem;
+    gap: 16px;
+    white-space: nowrap;
+    line-height: 56px;
+    font-weight: 700;
+  }
+  .page_5_text {
+    font-size: 2rem;
+    gap: 16px;
+    white-space: nowrap;
+    line-height: 44.8px;
+    font-weight: 700;
+  }
+  .main_page_panda {
+    width: 996px;
+    height: auto;
+
+    align-self: self-end;
+    /* position: absolute;
+    left: 25%; */
+  }
+
+  .main_card {
+    max-height: 444px;
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+  .main_card.reverse {
+    flex-direction: row-reverse;
+    justify-content: end;
+  }
+
+  .main_card_image {
+    width: 588px;
+    height: auto;
+  }
+
+  .card_text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 12px;
+
+    padding-left: 64px;
+    padding-right: 0px;
+    box-sizing: border-box;
+    width: 380px;
+    height: 100%;
+  }
+  .card_text.reverse {
+    padding-right: 64px;
+    padding-left: 0px;
+    align-items: end;
+    text-align: end;
+  }
+  .card_text_h1 {
+    color: #000000;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 56px;
+    white-space: nowrap;
+  }
+  .card_text_h2 {
+    color: #374151;
+    font-size: 1.5rem;
+    font-weight: 500;
+    white-space: nowrap;
+    padding-top: 12px;
+    box-sizing: border-box;
+    line-height: 28.8px;
+  }
+  .card_text_h3 {
+    color: #3692ff;
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+  footer {
+    width: 100%;
+    height: 160px;
+    background-color: #111827;
+    box-sizing: border-box;
+    justify-content: center;
+
+    display: flex;
+  }
+  .footer_wrapper {
+    width: 100%;
+    max-width: 1920px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer_container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-top: 32px;
+
+    box-sizing: border-box;
+  }
+  .icon {
+    display: flex;
+    gap: 12px;
+  }
+  .icon_item {
+    width: 20px;
+    height: 20px;
+  }
+  .codeit_sign {
+    font-size: 16px;
+    font-weight: 400;
+    color: #9ca3af;
+  }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "KCC-Hanbit";
+  }
+  header {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+  }
+  .header_wrapper {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+    max-width: 1199px;
+  }
+  .header_container {
+    width: 100%;
+    height: 100%;
+
+    margin-left: 24px;
+    margin-right: 24px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header_logoAndMenus {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+  .header_Menu_Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .panda_logo_text {
+    cursor: pointer;
+    width: 103px;
+    height: auto;
+  }
+  .header_Menu1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.125rem;
+
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 15px;
+    padding-right: 16px;
+    box-sizing: border-box;
+  }
+  .header_Menu2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.125rem;
+
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 23px;
+    padding-right: 23px;
+    box-sizing: border-box;
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 70px;
+    box-sizing: border-box;
+  }
+  .tablet_invisible {
+    display: none;
+  }
+  .main_page {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+  }
+  .main_page.page_1 {
+    background-color: #cfe5ff;
+  }
+  .main_page.page_5 {
+    background-color: #cfe5ff;
+  }
+  .main_wrapper {
+    max-width: 1199px;
+    width: 100%;
+    height: 771px;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+  }
+  .main_wrapper.card {
+    height: 758px;
+  }
+  .main_container {
+    max-width: 744px;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-top: 94px;
+    box-sizing: border-box;
+
+    /* overflow-x: hidden; */
+  }
+
+  .main_container.card {
+    padding-top: 40px;
+    padding-bottom: 16px;
+    box-sizing: border-box;
+    height: 100%;
+  }
+  .main_container.page_5 {
+    padding-top: 60px;
+    box-sizing: border-box;
+  }
+
+  .main_page_textAndBtnArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+
+    width: 357px;
+    height: 200px;
+
+    font-size: 40px;
+    font-weight: 700;
+  }
+  .page_1_text {
+    font-size: 2.5rem;
+    gap: 16px;
+    white-space: nowrap;
+    line-height: 56px;
+    font-weight: 700;
+  }
+  .page_5_text {
+    font-size: 2rem;
+    gap: 16px;
+    white-space: nowrap;
+    line-height: 44.8px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .main_page_panda {
+    width: 996px;
+    height: auto;
+  }
+
+  .main_card {
+    max-width: 696px;
+    max-height: 678px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+  .main_card.reverse {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .main_card_image {
+    width: 696px;
+    height: auto;
+  }
+
+  .card_text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .card_text.reverse {
+    align-items: end;
+    text-align: end;
+  }
+  .card_text_h1 {
+    color: #000000;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 44.8px;
+    white-space: nowrap;
+  }
+  .card_text_h2 {
+    color: #374151;
+    font-size: 1.125rem;
+    font-weight: 500;
+    white-space: nowrap;
+    padding-top: 12px;
+    box-sizing: border-box;
+    line-height: 21.6px;
+  }
+  .card_text_h3 {
+    color: #3692ff;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 25.2px;
+  }
+  footer {
+    width: 100%;
+    height: 160px;
+    background-color: #111827;
+    box-sizing: border-box;
+    justify-content: center;
+
+    display: flex;
+  }
+  .footer_wrapper {
+    width: 100%;
+    max-width: 1920px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer_container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 32px;
+    box-sizing: border-box;
+  }
+  .icon {
+    display: flex;
+    gap: 12px;
+  }
+  .icon_item {
+    width: 20px;
+    height: 20px;
+  }
+  .codeit_sign {
+    font-size: 16px;
+    font-weight: 400;
+    color: #9ca3af;
+  }
+}
+@media (min-width: 375px) and (max-width: 767px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "KCC-Hanbit";
+  }
+  header {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+  }
+  .header_wrapper {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+    max-width: 767px;
+  }
+  .header_container {
+    width: 100%;
+    height: 100%;
+
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header_logoAndMenus {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 16px;
+  }
+  .header_Menu_Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+  .panda_logo_text {
+    cursor: pointer;
+    width: 81px;
+    height: auto;
+  }
+
+  .header_Menu1 {
+    font-size: 1rem;
+    width: 75px;
+  }
+  .header_Menu2 {
+    font-size: 1rem;
+  }
+  .panda_logo_text.mobile {
+    cursor: pointer;
+    width: 103px;
+    height: auto;
+  }
+  .mobile_invisible {
+    display: none;
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 70px;
+    box-sizing: border-box;
+  }
+
+  .main_page {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+  }
+  .main_page.page_1 {
+    background-color: #cfe5ff;
+  }
+  .main_page.page_5 {
+    background-color: #cfe5ff;
+  }
+  .main_wrapper {
+    max-width: 767px;
+    width: 100%;
+    height: 540px;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+  }
+  .main_wrapper.card {
+    height: 437px;
+  }
+  .main_container {
+    max-width: 375px;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-top: 48px;
+    box-sizing: border-box;
+
+    /* overflow-x: hidden; */
+  }
+  .main_container.page_1 {
+    gap: 49px;
+  }
+
+  .main_container.card {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    padding-right: 16px;
+    padding-left: 16px;
+
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+  }
+  .main_container.page_5 {
+    padding-top: 90px;
+    box-sizing: border-box;
+  }
+
+  .main_page_textAndBtnArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 16px;
+
+    width: auto;
+    height: 162px;
+
+    font-size: 40px;
+    font-weight: 700;
+  }
+  .page_1_text {
+    font-size: 2rem;
+    gap: 16px;
+    white-space: nowrap;
+    line-height: 44.8px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .page_5_text {
+    font-size: 2rem;
+    gap: 16px;
+    white-space: nowrap;
+    line-height: 44.8px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .main_page_panda {
+    width: 626px;
+    height: auto;
+  }
+  .main_page_panda.page_5 {
+    width: 498px;
+    height: auto;
+  }
+
+  .main_card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+  .main_card.reverse {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .main_card_image {
+    width: 343px;
+    height: auto;
+  }
+
+  .card_text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .card_text.reverse {
+    align-items: end;
+    text-align: end;
+  }
+  .card_text_h1 {
+    color: #000000;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 33.6px;
+    white-space: nowrap;
+  }
+  .card_text_h2 {
+    color: #374151;
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+    padding-top: 8px;
+    box-sizing: border-box;
+    line-height: 19.2px;
+  }
+  .card_text_h3 {
+    color: #3692ff;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 22.4px;
+  }
+  footer {
+    width: 100%;
+    height: 160px;
+    background-color: #111827;
+    box-sizing: border-box;
+    justify-content: center;
+
+    display: flex;
+  }
+  .footer_wrapper {
+    width: 100%;
+    min-width: 375px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+  }
+  .footer_container {
+    display: flex;
+    width: 100%;
+
+    justify-content: space-between;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 32px;
+
+    box-sizing: border-box;
+  }
+  .footer_container.pc_invisible.tablet_invisible {
+    display: flex;
+    width: 100%;
+
+    justify-content: space-between;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 25px;
+    padding-bottom: 0px;
+    box-sizing: border-box;
+  }
+  .icon {
+    display: flex;
+    gap: 12px;
+  }
+  .icon_item {
+    width: 20px;
+    height: 20px;
+  }
+  .codeit_sign {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.09px;
+    color: #9ca3af;
+  }
+}
