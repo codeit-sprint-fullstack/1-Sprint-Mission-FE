@@ -1,0 +1,59 @@
+/* Mobile Styles */
+@media only screen and (min-width: 375px) and (max-width:767px) {
+    .pandamarket_logo {
+      width: 198px;
+      height: 66px;
+      /* display: flex;
+      justify-content: center;
+      align-items: center; */
+      margin: 16px auto;
+    }
+    
+    .form_box{
+        width: 90%;
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 0 10px;
+    }
+    
+    .button {
+        padding: 12px auto;
+        font-size: 16px;
+    }
+    
+    .easy_login_box {
+        padding: 12px;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 768px) and (max-width:1199px) {
+    .pandamarket_logo {
+        width: 70%; 
+    }
+
+    .form_box{
+        margin:auto 52px;
+    }
+
+    .loginForm input{
+        width: 60%;
+    }
+
+    .modal-content {
+        width: 70%;
+    }
+}
+
+/* PC Styles */
+@media only screen and (min-width: 1200px) {
+    .pandamarket_logo {
+        width: 50%;
+    }
+
+}
