@@ -3,6 +3,13 @@
   <head>
     <title>판다마켓</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 카카오톡 미리보기 -->
+    <meta property="og:title" content="판다마켓">
+    <meta property="og:description" content="일상에서 모든 물건을 거래해보세요">
+    <meta property="og:url" content="https://pandamk.netlify.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="공유시 보여질 이미지 경로">
     <link
       rel="stylesheet"
       as="style"
@@ -22,17 +29,14 @@
   </head>
   <body>
     <header>
-      <a href="/">
-        <img class="logo no-drag" src="./imgs/Group_19.png" alt="판다마켓로고" width="153" height="51">
-      </a>
+      <img class="logo no-drag" src="./imgs/Group_19.png" onclick="location.href='/'" alt="판다마켓로고" width="153" height="51">
       <div class="nav">
         <a class="nav1" href="#">자유게시판</a> 
         <a class="nav2" href="#">중고마켓</a>
       </div>
-      <a href="/login.html"><button class="login">로그인</button></a>
+      <button class="login" onclick="location.href='./login.html'">로그인</button>
     </header>
 
-    
     <main>
       <section class="top-banner">
         <div class="message-container">
@@ -40,7 +44,7 @@
             일상의 모든 물건을<br>
             거래해 보세요
           </p>
-          <a href="/items.html"><button class="button">구경하러 가기</button></a>
+          <button class="button" onclick="location.href='./items.html'">구경하러 가기</button>
         </div>
       </section> 
 

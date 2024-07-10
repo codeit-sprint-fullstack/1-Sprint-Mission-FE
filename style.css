@@ -38,6 +38,10 @@ header {
   background-color: var(--white-color);
 }
 
+.logo {
+  cursor: pointer;
+}
+
 .nav {
   position: absolute;
   left: 385px;
