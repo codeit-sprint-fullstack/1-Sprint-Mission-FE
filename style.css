@@ -241,7 +241,7 @@ footer {
 }
 @media (max-width: 1199px) {
   body {
-    min-width: 76.8rem;
+    min-width: 74.4rem;
   }
   .headerFixed {
     padding: 0 2.4rem;
@@ -336,7 +336,7 @@ footer {
     margin: 3.2rem 2.4rem;
   }
 }
-@media (max-width: 767px){
+@media (max-width: 743px){
   body {
     min-width: 37.5rem;
   }
