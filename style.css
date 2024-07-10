@@ -104,7 +104,6 @@ h1 {
   height: 20rem;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0); 
@@ -141,7 +140,6 @@ main {
   background-color: var(--backWhite);
   display: flex;
   justify-content: center;
-  /* position: relative; */
 }
 .mainContainer {
   width: 120rem;
@@ -149,9 +147,6 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0); */
   z-index: 150; 
 }
 /* content */
@@ -288,14 +283,14 @@ footer {
   .mainContainer {
     width: 74.4rem;
     height: 227.4rem;
-  }
-  .mainContainer .container {
-    height: 67.8rem;
-    flex-direction: column;
-    gap: 0;
-  }
-  .mainContainer .container.second {
-    flex-direction: column-reverse;
+    .container {
+      height: 67.8rem;
+      flex-direction: column;
+      gap: 0;
+    }
+    .container:nth-child(2) {
+      flex-direction: column-reverse;
+    }
   }
   .container>img {
     width: 69.6rem;
@@ -359,12 +354,12 @@ footer {
   }
   .nav {
     font-size: 1.6rem;
-  }
-  .nav.fir {
-    width: 53%;
-  }
-  .nav.sec {
-    width: 47%;
+    &.fir {
+      width: 53%;
+    }
+    &.sec {
+      width: 47%;
+    }
   }
   .title {
     height: 54rem;
@@ -398,10 +393,10 @@ footer {
   .mainContainer {
     width: 100%;
     height: auto;
-  }
-  .mainContainer .container {
-    height: 100%;
-    padding: 3.2rem 1.6rem;
+    .container {
+      height: 100%;
+      padding: 3.2rem 1.6rem;
+    }
   }
   .container>img {
     width: 100%;
