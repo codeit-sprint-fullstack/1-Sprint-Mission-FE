@@ -1,17 +1,17 @@
 export function initPasswordToggle() {
-    let eyeBtns = document.querySelectorAll('.pwsetting img');
+    const eyeBtns = document.querySelectorAll('.pwsetting img');
 
     eyeBtns.forEach(function (btn) {
         let pwInput = document.getElementById('pw');
         btn.addEventListener('click', function () {
-            if (btn.classList.contains('non-show')) {
+            if (btn.classList.contains('pw-non-show')) {
                 pwInput.type = 'text';
                 btn.style.display = 'none';
-                document.querySelector('.show').style.display = 'inline-block';
-            } else if (btn.classList.contains('show')) {
+                document.querySelector('.pw-show').style.display = 'inline-block';
+            } else if (btn.classList.contains('pw-show')) {
                 pwInput.type = 'password';
                 btn.style.display = 'none';
-                document.querySelector('.non-show').style.display = 'inline-block';
+                document.querySelector('.pw-non-show').style.display = 'inline-block';
             }
         });
     });

@@ -430,6 +430,7 @@ footer {
 
   .bottom-img {
     height: 270px;
+    bottom: -1px;
   }
 
   .bottom-banner p {

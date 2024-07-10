@@ -58,8 +58,8 @@ body {
     position: relative;
 }
 
-.show,
-.non-show {
+.pw-show,
+.pw-non-show {
     position: absolute;
     right: 2.4rem;
     top: 1.7rem;
@@ -74,7 +74,7 @@ body {
     height: 2.4rem;
 }
 
-.show {
+.pw-show {
     display: none;
 }
 
