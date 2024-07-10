@@ -239,7 +239,7 @@ html {
 }
 
 /* Tablet: 768px 이상 ~ 1199px 이하 */
-@media only screen and (min-width: 768px) and (max-width: 1199px) {
+@media (min-width: 768px) and (max-width: 1199px) {
     #main_sec_grp_logo_input_btn {
         margin-top : 4.8rem; 
     }
@@ -259,7 +259,7 @@ html {
 }
 
 /* Mobile: 375px 이상 ~ 767px 이하 */
-@media only screen and (min-width: 375px) and (max-width: 767px) {
+@media (min-width: 375px) and (max-width: 767px) {
     #main_sec_grp_logo_input_btn {
         max-width: 34.1rem;
         margin-top : 2.4rem; 

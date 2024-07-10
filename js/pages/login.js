@@ -41,7 +41,9 @@ login_pw_show_img.addEventListener("click", () => {
     toggle_visible_icon(login_pw, login_pw_show_img);
 });
 
-btn_wrong_pw_dialog.addEventListener("click", () => dialog_warn.close());
+btn_wrong_pw_dialog.addEventListener("click", () => 
+    dialog_warn.close()
+);
 
 // 
 btn_login.addEventListener("click", () => {
@@ -67,12 +69,12 @@ btn_login.addEventListener("click", () => {
         {
             // 비밀번호가 일치하지 않습니다.
             dialog_text.textContent = "비밀번호가 일치하지 않습니다.";
-            dialog_warn.showModal();
         }
         else
         {
             dialog_text.textContent = "등록되지 않은 이메일입니다.";
-            dialog_warn.showModal(); 
-        }  
+        }
+        
+        dialog_warn.showModal();
     }
 });
