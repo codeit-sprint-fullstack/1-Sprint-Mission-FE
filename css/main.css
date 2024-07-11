@@ -58,11 +58,11 @@
   border: 0px;
   border-radius: 8px;
   cursor: pointer;
-}
 
-.nav_button > p {
-  font-size: 1.6rem;
-  font-weight: 600;
+  & p {
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
 }
 
 .title.main_page {
@@ -137,26 +137,26 @@
 .home_main_content_text {
   margin-top: 106px;
   margin-left: 64px;
-}
 
-.home_main_content_text .service-title {
-  color: #3692ff;
-  font-size: 1.8rem;
-  font-weight: 700;
-}
+  & .service-title {
+    color: #3692ff;
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
 
-.home_main_content_text .main-title {
-  margin-top: 12px;
-  color: #374151;
-  font-size: 40px;
-  font-weight: 700;
-}
+  & .main-title {
+    margin-top: 12px;
+    color: #374151;
+    font-size: 40px;
+    font-weight: 700;
+  }
 
-.home_main_content_text .service-desc {
-  margin-top: 24px;
-  color: #374151;
-  font-size: 2.4rem;
-  font-weight: 500;
+  & .service-desc {
+    margin-top: 24px;
+    color: #374151;
+    font-size: 2.4rem;
+    font-weight: 500;
+  }
 }
 
 .home_main_reverse_in {
@@ -267,10 +267,10 @@
   .home_main_top {
     height: 770px;
     text-align: center;
-  }
 
-  .home_main_top > p {
-    margin-top: 140px;
+    &p {
+      margin-top: 140px;
+    }
   }
 
   br.break-m {
@@ -287,10 +287,10 @@
 
   .background_home_img {
     height: 771px;
-  }
 
-  .background_home_img > img {
-    padding-left: 0;
+    & img {
+      padding-left: 0;
+    }
   }
 
   /* <------- 흰색 메인 정보 -------> */
@@ -390,10 +390,10 @@
 
   .background_home_img {
     height: 771px;
-  }
 
-  .background_home_img > img {
-    padding-left: 0;
+    & img {
+      padding-left: 0;
+    }
   }
 
   /* <------- 흰색 메인 정보 -------> */
@@ -410,10 +410,10 @@
     padding: 0;
     display: block;
     width: 100%;
-  }
 
-  .home_main_content > img {
-    width: 100%;
+    & img {
+      width: 100%;
+    }
   }
 
   .home_main_content_text {
