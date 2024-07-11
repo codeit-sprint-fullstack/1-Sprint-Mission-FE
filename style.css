@@ -153,7 +153,7 @@ main .body{
   gap: 12px;
 }
 
-.hot-item {
+.badge {
   font-weight: 700;
   font-size: 18px;
   line-height: 25.2px;
@@ -189,13 +189,6 @@ main .body{
   text-align: right;
 }
 
-.search {
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 25.2px;
-  color: var(--like-blue-color);
-}
-
 .section2 .message-box {
   display: flex;
   flex-direction: column;
@@ -223,13 +216,6 @@ main .body{
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-
-.registor {
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 25.2px;
-  color: var(--like-blue-color);
 }
 
 .section3 .message-box {
@@ -261,9 +247,6 @@ main .body{
   background-size: 996px 540px;
   background-repeat: no-repeat;
   background-position: 76% bottom;
-  font-weight: 700;
-  font-size: 40px;
-  line-height: 56px;
   color: var(--msg-color);
   display: flex;
   align-items: center;
@@ -273,6 +256,9 @@ main .body{
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
 }
 
 footer {
@@ -440,7 +426,6 @@ footer .social {
 /*-------*/
 
 .login-container {
-  height: 1080px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -461,7 +446,6 @@ footer .social {
 /*---------*/
 
 .signup-container {
-  height: 1080px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -529,8 +513,8 @@ footer .social {
   z-index: 9998;
 }
 
-/* Randing-Page Tablet */
-@media (min-width:768px) and (max-width: 1199px) {
+/* Landing-Page Tablet */
+@media (min-width:744px) and (max-width: 1199px) {
   header {
     padding: 0 24px;
   }
@@ -577,6 +561,14 @@ footer .social {
     gap: 16px
   }
 
+  .section1 .message-top,
+  .section2 .message-top,
+  .section3 .message-top {
+    width: 100%;
+    font-size: 32px;
+    line-height: 44.8px;
+  }
+
   .section1 .message-bottom,
   .section2 .message-bottom,
   .section3 .message-bottom {
@@ -592,26 +584,11 @@ footer .social {
     padding: 40px 24px;
   } 
 
-  .section1 .message-top {
-    width: 335px;
-    font-size: 32px;
-    line-height: 44.8px;
-  }
-
   .section2 {
     height: 757px;
     padding: 40px 24px;
     flex-direction: column-reverse;
     gap: 16px;
-  }
-
-  .section2 .message-top {
-    width: 420px;
-    font-size: 32px;
-    line-height: 44.8px;
-    text-align: right;
-    position: relative;
-    left: 276px;
   }
 
   .section3 {
@@ -621,12 +598,6 @@ footer .social {
     gap: 16px;
     padding: 40px 24px 80px;
   } 
-
-  .section3 .message-top {
-    width: 420px;
-    font-size: 32px;
-    line-height: 44.8px;
-  }
 
   .bottom-banner {
     height: 771px;
@@ -642,5 +613,138 @@ footer .social {
 
   footer {
     padding: 32px 24px 108px;
+  }
+}
+
+/* Landing-Page Mobile */
+@media (min-width: 375px) and (max-width: 743px) {
+  header {
+    padding: 0 16px;
+  }
+
+  header img {
+    content: url('imgs/panda_mobile_log.png');
+    width: 81px;
+    height: 27px;
+  }
+
+  .nav {
+    position: absolute;
+    left: 113px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .nav1, .nav2 {
+    padding: 25px  0;
+    font-size: 16px;
+    line-height: 19.09px;
+  }
+
+  .top-banner {
+    background-position: bottom;
+    background-size: 170% auto;
+    height: 540px;
+    display: inline;
+  }
+
+  .top-banner .message-container {
+    gap: 16px;
+    align-items: center;
+    position: relative;
+    top: 48px;
+  }
+
+  .top-banner .message {
+    width: 236px;
+    font-size: 32px;
+    line-height: 44.8px;
+    text-align: center;
+  }
+
+  .badge {
+    font-size: 16px;
+    line-height: 22.4px;
+  }
+
+  .section1-img,
+  .section2-img,
+  .section3-img{
+    width: 100%;
+    height: auto;
+    flex: 1;
+  }
+
+  .section1-messages,
+  .section2-messages,
+  .section3-messages{
+    width: calc(100% - 32px);
+    gap: 4px;
+  }
+
+  .section1 .message-box,
+  .section2 .message-box,
+  .section3 .message-box {
+    gap: 8px;
+  }
+
+  .section1 .message-top,
+  .section2 .message-top,
+  .section3 .message-top {
+    width: 100%;
+    font-size: 24px;
+    line-height: 33.6px;
+  }
+ 
+  .section1 .message-bottom,
+  .section2 .message-bottom,
+  .section3 .message-bottom {
+    font-size: 16px;
+    line-height: 19.2px;
+  }
+
+  .section1 {
+    height: auto;
+    flex-direction: column;
+    justify-content: start;
+    gap: 8px;
+    padding: 32px 16px;
+  }
+  
+  .section2 {
+    height: auto;
+    flex-direction: column-reverse;
+    justify-content: start;
+    padding: 32px 16px;
+    gap: 8px;
+  }
+
+  .section3 {
+    height: auto;
+    flex-direction: column;
+    justify-content: start;
+    gap: 8px;
+    padding: 24px 16px 56px;
+  } 
+
+  .bottom-banner {
+    height: 540px;
+    background-position: bottom;
+    background-size: 135% auto;
+    display: inline;
+    text-align: center;
+  }
+
+  .bottom-banner .message-container {
+    position: relative;
+    top: 60px;
+    font-size: 32px;
+    line-height: 44.8px;
+  }
+
+  footer {
+    padding: 32px 16px 65px;
+    gap: 24px;
+    flex-flow: wrap;
   }
 }
