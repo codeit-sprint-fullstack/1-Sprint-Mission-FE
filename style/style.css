@@ -1,8 +1,10 @@
-/* @import "/reset.css"; */
-
 * {
   box-sizing: border-box;
 }
+
+/* button과 input은 글꼴이 body와 다른 것을 인지 */
+/* 상속되지 않는 것을 알게 됐다. */
+input, select, textarea, button{font-family:inherit;}
 
 :root {
   --blue: #3692FF;
@@ -55,18 +57,20 @@ h1 {
   font-size: 18px;
   color: var(--blue);
   margin-top: 0;
-  margin-bottom: 12px;
+  margin-bottom: 0;
 }
 
 h2 {
   font-size: 40px;
-  margin-top: 0;
-  margin-bottom: 12px;
+  margin-top: 12px;
+  margin-bottom: 24px;
 }
 
 h3 {
   font-size: 24px;
   font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .header {
@@ -96,6 +100,8 @@ h3 {
   font-size: 26px;
   font-weight: 700;
   margin-left: 9px;
+  height: 35px;
+  line-height: 34.6px;
 }
 
 .bar-list{
@@ -123,6 +129,8 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 88px;
+  height: 42px;
 }
 
 .main-blue{       /* 창을 줄였을 때 하늘색 배경이 사라짐 */
@@ -140,7 +148,7 @@ h3 {
   display: flex;
 }
 
-.empty-space {
+.empty-space, .fifth-empty-space {
   width: 150px;
 }
 
@@ -200,7 +208,6 @@ h3 {
 }
 
 .right-image-contents {
-  width: 317px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -231,6 +238,9 @@ h3 {
 .footer {
   background-color: var(--footer-background);
   height: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .footer-black {
@@ -269,52 +279,254 @@ h3 {
   height: 20px;
 }
 
+.mobile-codeit {
+  display: none;
+}
 
-
-/* @media (max-width: 1200px) and (min-width: 0) {
-  h1 {  
-    font-size: 1.5vw;
+/* Tablet view */
+@media (min-width: 744px) and (max-width : 1199px){
+  h2 {
+    font-size: 32px;
+    margin-top: 8px;
+    margin-bottom: 16px;
   }
 
-  h2, .first-contents,
-  .fifth-contents {  
-    font-size: 3.3333vw;
+  h2 br {
+    display : none;
+    /* 좀 더 괜찮은 방법, 더 성숙한 방법
+    display: inline-block;
+    content: " ";
+    padding: 0 2px; */
   }
 
-  h3 {  
-    font-size: 1.25vw;
+  h3 {
+    font-size: 18px;
+  }
+  
+  .bar {
+    padding: 0 24px;
   }
 
-  .main-image {
-    width: 49vw;
-    height: 37vw;
+  .first-block {
+    height: 771px;
+    flex-direction: column;
+    align-items: center;
+    gap:94px;
   }
 
-  .right-image, .left-image{
-    width: 100vw;
-    height:37vw;
-    gap: 5.33333vw;
+  .first-container {
+    flex-direction: column;
   }
 
-  .first-block, .main-blue, 
-  .fifth-block {
-    width: 100vw;
-    height: 45vw;
+  .empty-space {
+    height: 94px;
   }
 
-  .watch-button {
-    font-size: 1.5vw;
-    width: 30vw;
-    height: 4.583333vw;
+  .first-contents {
+    align-items: center;
   }
 
+  .first-contents br {
+    display : none;
+  }
+  
   .panda-image {
-    width: 83vw;
-    height: 37.25vw;
+    align-self: center;
   }
 
-  .panda-trade-image {
-    width: 83vw;
-    height: 45vw;
+  .left-image {
+    flex-direction: column;
+    gap: 16px;
+    margin: 40px auto; /* 24px */
+    width: 696px;
+    height: 678px;
   }
-} */
+
+  .left-image-contents {
+    margin: 0 auto 0 0;
+    height: 138px;
+  }
+
+  .right-image {
+    flex-direction: column-reverse;
+    gap: 16px;
+    margin: 40px auto; /* 24px */
+    width: 696px;
+    height: 678px;
+  }
+
+  .right-image-contents {
+    margin: 0 0 0 auto;
+    height: 138px;
+  }
+
+  .fifth-block {
+    height: 771px;
+    flex-direction: column;
+    align-items: center;
+    gap: 59px;
+  }
+
+  .fifth-container {
+    flex-direction: column;
+  }
+
+  .fifth-empty-space {
+    height: 60px;
+  }
+
+  .fifth-contents {
+    line-height: 56px;
+    text-align: center;
+  }
+
+  .footer-black {
+    padding: 32px 24px 108px;
+  }
+}
+
+
+/* Mobile view */
+@media (max-width: 743px) {
+
+  h1 {
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    line-height: 33.6px;
+  }
+
+  h2 br {
+    display : none;
+    /* 좀 더 괜찮은 방법, 더 성숙한 방법
+    display: inline-block;
+    content: " ";
+    padding: 0 2px; */
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  .list-name {
+    font-size: 16px;
+    line-height: 19px;
+  }
+  
+  .bar {
+    padding: 0 16px;
+  }
+
+  .panda-logo-image {
+    display: none;
+  }
+
+  .logo {
+    font-size: 20.2px;
+    margin-left: 0;
+    /* line-height: 27.27px; */
+  }
+
+  .first-block {
+    height: 540px;
+    flex-direction: column;
+    align-items: center;
+    gap: 49px;
+  }
+
+  .first-container {
+    flex-direction: column;
+  }
+
+  .first-contents {
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    font-size: 32px;
+    line-height: 44.8px;
+    margin-top: 48px;
+  }
+  
+  .panda-image {
+    align-self: center;
+    width: 626px;
+    height: 281px;
+  }
+
+  /*  */
+  .left-image {
+    flex-direction: column;
+    gap: 16px;
+    /* margin: 40px auto; 24px */
+    margin: 0;
+    padding: 32px 16px;
+    width: 100%;
+    height: auto;
+  }
+
+  .left-image-contents {
+    margin: 0 auto 0 0;
+    height: 138px;
+  }
+
+  .right-image {
+    flex-direction: column-reverse;
+    gap: 16px;
+    /* margin: 40px auto; 24px */
+    margin: 0;
+    padding: 32px 16px;
+    width: 100%;
+    height: auto;
+  }
+
+  .right-image-contents {
+    margin: 0 0 0 auto;
+    height: 138px;
+  }
+
+  .fifth-block {
+    height: 540px;
+    flex-direction: column;
+    align-items: center;
+    gap: 90px;
+  }
+
+  .fifth-container {
+    flex-direction: column;
+  }
+
+  .fifth-empty-space {
+    height: 90px;
+  }
+
+  .fifth-contents {
+    font-size: 32px;
+    line-height: 44.8px;
+    text-align: center;
+  }
+
+  .pandas-trade-image {
+    width: 498px;
+    height: 270px;
+  }
+
+  .footer-black {
+    padding: 32px 24px 0;
+  }
+
+  .codeit {
+    display: none;
+  }
+
+  .mobile-codeit {
+    display: block;
+    color: var(--codeit);
+    font-size: 16px;
+    font-weight: 400;
+    align-self: center;
+  }
+}
