@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>판다마켓-로그인</title>
+        <link rel="stylesheet" href="./style_login/globe_login.css" />
+        <link rel="stylesheet" href="./style_login/body_login.css" />
+        <link 
+            rel="stylesheet"
+            as="style"
+            crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+            />
+    </head>
+
+    <body>
+        <header>
+            <a href="../index.html">
+                <img src="./images_login/main_logo.svg" width="400">
+            </a> 
+        </header>
+        <main>
+            <section id="main-enter-box">
+                <article class="enter-box">
+                    <label>이메일</label>
+                    <input id="id" type="email" placeholder="이메일을 입력해주세요">
+                </article>
+                <article class="enter-box">
+                    <label>비밀번호</label>
+                        <div class="password-box">
+                            <input id="pw" type="password" placeholder="비밀번호를 입력해주세요">
+                            <img src="./public_images/btn_visibility_action.svg" class=eye-img width="24">
+                        </div>
+
+                </article>
+            </section>
+
+            <section id="login-button-section">
+                <button type="button" onclick="location.href='../'">로그인</button>
+            </section>
+
+            <section id="easy-social-login">
+                <span>간편 로그인하기</span>
+                <article id="social-icon">
+                    <a href="https://www.google.com/">
+                        <img src= "./images_login/google_icon.svg">
+                    </a>
+                    <a href="https://www.kakaocorp.com/page/">
+                        <img src="./images_login/kakao_icon.svg">
+                    </a>
+                </article>
+            </section>
+        </main>
+        <footer>
+            <span>판다마켓이 처음이신가요?</span>
+            <a href="./signup.html">회원가입</a>
+        </footer>
+        <script src="globe.js"></script>
+    </body>
+</html>

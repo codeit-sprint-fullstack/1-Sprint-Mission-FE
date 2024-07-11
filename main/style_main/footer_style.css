@@ -1,0 +1,23 @@
+
+
+#corperation-box {
+    color: #9CA3AF;
+}
+
+#policy-faq-box {
+    width: 160px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.policy-faq-string {
+    color: #E5E7EB;
+}
+
+
+#goto-social-icon-box {
+    width: 116px;
+    display: flex;
+    justify-content: space-between;
+}

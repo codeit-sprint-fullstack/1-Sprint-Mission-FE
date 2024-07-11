@@ -1,0 +1,11 @@
+
+#enter-box-for-signup {
+    height: 440px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.show-instant-message {
+    color: var(--keycolor-white-gray)
+    }

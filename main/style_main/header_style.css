@@ -1,0 +1,35 @@
+
+#left-logo-box {
+    min-width: 182px;
+}
+
+#board-list-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.top-board {
+    min-width: 120px;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#right-header-box {
+    min-width: 90px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#right-header-box > a {
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 12px 23px;
+    background-color: #3692ff;
+    color: #ffffff;
+}
