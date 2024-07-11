@@ -1,0 +1,263 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background: #f8f8f8;
+  font-family: 'Pretendard', sans-serif;
+  width: 1920px;
+  position: relative;
+}
+.header {
+  margin: 0;
+  border: 0px, 0px, 1px, 0px;
+  background-color: #ffffff;
+  height: 70px;
+  position: fixed;
+  inset:0;
+  z-index: 2;
+}
+.container {
+  display: flex;
+  align-items: center; 
+  margin:0 200px
+}
+#logo {
+  margin-right: 32px; 
+  display: flex;
+  align-items: center;
+}
+.menu {
+  font-size: 16px;
+  font-weight: 700;
+  color:#4B5563;
+  display: flex;
+  margin-right: auto; 
+}
+#freeboard-button {
+  margin: 0 16px 0 0; 
+  line-height: 42px;
+  width: 109px; 
+  height: 69px;
+  display: flex;
+  align-items: center;
+}
+#market-button {
+  margin:0 23px 0 0; 
+  line-height: 42px; 
+  width: 109px;
+  height: 69px;
+  display: flex;
+  align-items: center;
+}
+.login-button {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 8px;
+  background-color: #3692FF;
+  width: 88px;
+  height: 42px;
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  margin: 0; 
+  text-decoration: none;
+}
+
+.banner{
+  background-color: #cfe5ff;
+  width: 100%;
+  height: 540px;
+  margin-top: 70px;
+  overflow: hidden;
+  object-fit: none;
+}
+
+.banner-content {
+  display: inline;
+  margin:0;
+}
+
+.market-intro {
+  width: 357px;
+  height: 200px;
+  gap: 32px;
+  top:170px;
+  left:360px;
+  margin-top: 170px;
+  margin-left:360px;
+}
+
+.intro-word {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #374151;
+  display: flex;
+  flex-direction: column;
+  gap:32px;
+}
+
+.go-market {
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  color:#ffffff;
+  text-align: center;
+  padding:16px, 124px, 16px, 124px;
+  background-color: #3692FF;
+  border-radius: 40px;
+  width: 357px;
+  height: 56px;
+  gap:10px
+}
+
+#home-top { 
+  background-size: 996px 447px;
+  position: absolute;
+  top: 93px;
+  left: 701px;
+}
+
+.home-content {
+  width: 1200px;
+  margin: 0 auto; /* 가로 중앙 정렬 */
+}
+
+.content-frame {
+  border: 1px;
+  border-color: #ffffff;
+  margin: 0 auto;
+}
+
+
+.blue-word {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 25.2px;
+  color:#3692FF;
+}
+
+.bold-word {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+}
+
+.skiny-word {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28.8px;
+}
+
+.section-1 {
+  height: 720;
+}
+
+.content-box {
+  display: flex;
+  margin: 138px 0 0 0;
+}
+
+.content-box-reverse {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 138px;
+  text-align: right;
+  margin: 138px 0 0 0;
+}
+
+.hot-item {
+  margin-top: 106.5px;
+}
+
+.search {
+  margin-top: 106.5px;
+}
+
+.register {
+  margin-top: 106.5px;
+}
+
+#home-1{
+  margin-right: 64px;
+}
+
+#home-2 {
+  margin-left:64px;
+}
+
+#home-3 {
+  margin-right: 64px;
+}
+
+.home-bottom-img {
+  width: 849px;
+  height: 540px;
+  
+}
+
+.bold-word-bottom{
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  display: flex;
+  align-items: center;
+  margin: 214px 0 214px 0
+}
+
+.section-4 {
+  width: 100%;
+}
+
+.background {
+  position: absolute;
+  bottom:0;
+  right: 0;
+  left: 0;
+  width: 100%; /* 전체 뷰포트 너비 */
+  height: 680px;
+  background-color: #cfe5ff;
+  z-index: -1; /* 배경 요소가 기존 콘텐츠 뒤에 오도록 설정 */
+}
+
+.content-box-bottom {
+  text-align: right;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  margin-top: 138px;
+}
+
+.footer {
+  width: 1920px;
+  height: 160px;
+  background-color: #111827;
+  padding: 32px 200px;
+  position: relative;
+  margin: 0 auto;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-font {
+  margin-right: 20px;
+  color:#E5E7EB; 
+}
+
+.footer a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #fff; 
+}
+
+.footer img {
+  height: 24px;
+  margin-left: 10px;
+}
