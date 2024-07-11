@@ -40,6 +40,7 @@ const test = e => {
 }
 
 
+emailInput2.addEventListener('focusout', test) // 테스트
 
 emailInput2.addEventListener('focusout', checkEmail)
 nicknameInput.addEventListener('focusout', checkNickname)

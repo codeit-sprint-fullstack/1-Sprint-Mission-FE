@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 * {
     margin: 0;
@@ -7,6 +12,7 @@
 
 body {
     font-family: "Pretendard", sans-serif;
+    font-size: 1rem;
     color: #374151;
     word-break: keep-all;
     white-space: nowrap;
@@ -16,8 +22,12 @@ body {
 }
 
 
-/* footer {
-    padding: 0px 10px;
+
+main {
+    padding-top: 70px;
+}
+
+footer {
     height: 160px;
     background-color: #111827;
     display: flex;
