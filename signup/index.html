@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style/reset.css" />
+    <link rel="stylesheet" href="/common/reset.css" />
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
-    <link rel="stylesheet" href="/style/signupstyle.css" />
+    <link rel="stylesheet" href="/common_css/global.css"/>
+    <link rel="stylesheet" href="/common_css/login_signup.css"/>
     <title>판다마켓 회원가입</title>
 </head>
 <!-- Google tag (gtag.js) -->
@@ -26,7 +27,7 @@
 <body>
     <div class="containers">
         <img id="logo-img" src="/image/logo.svg" onclick="location.href='../'">
-        <form class="login-form">
+        <form class="signup-form">
             <label for="e-mail">이메일</label>
             <div class="input-margin-style">
                 <input id="e-mail" type="email" placeholder="이메일을 입력해주세요">
@@ -80,7 +81,7 @@
             <button class="close-btn" id="popup-close-btn">확인</button>
         </div>
     </div>
-    <script src="../js/signup.js" type="module"></script>
+    <script src="./signup.js" type="module"></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-import { initPasswordToggle, initEmailValidation, initPasswordValidation } from '../common/login_signup.js';
+import { initPasswordToggle, initEmailValidation, initPasswordValidation } from '../common_js/login_signup.js';
 
 const USER_DATA = [
     { email: 'codeit1@codeit.com', password: "codeit101!" },

@@ -1,35 +1,17 @@
-* {
-    box-sizing: border-box;
-}
-
 :root {
     --text-color: #1F2937;
     --link-color: #3182F6;
     --back-text: #9CA3AF;
     --input-back-color: #F3F4F6;
     --input-outline-color: #3692ff;
-    --login-btn-text: #ffffff;
-    --signup-text-color: #1F2937;
     --easy-login-back-color: #E6F2FF;
     --email-input-check-color: #F74747;
-}
-
-html {
-    font-size: 62.5%;
-    /* 1rem = 10px로 설정 */
-}
-
-body {
-    font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    flex-shrink: 0;
-    white-space: nowrap;
-    overflow-x: hidden;
+    --btn-text: #ffffff;
 }
 
 #logo-img,
 .login-btn,
+.signup-btn,
 .easy-login img {
     cursor: pointer;
 }
@@ -47,6 +29,7 @@ body {
     flex-direction: column;
 }
 
+.signup-form,
 .login-form {
     display: flex;
     flex-direction: column;
@@ -54,28 +37,11 @@ body {
     margin-top: 4rem;
 }
 
-.pwsetting {
-    position: relative;
-}
-
-.eye-btn {
-    position: absolute;
-    right: 2.4rem;
-    top: 1.7rem;
-    left: auto;
-    cursor: pointer;
-    width: 2.4rem;
-    height: 2.4rem;
-}
-
-.hide {
-    display: none;
-}
-
+.signup-form label ,
 .login-form label {
     margin-bottom: 1.6rem;
     color: var(--text-color);
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: 700;
     line-height: 2.148rem;
     height: 2.1rem;
@@ -83,12 +49,14 @@ body {
 
 .login-form input,
 .login-form .login-btn,
-.easy-login {
+.signup-form .signup-btn,
+.signup-form input, .easy-login {
     width: 64rem;
     height: 5.6rem;
 }
 
-.login-form input {
+.login-form input,
+.signup-form input {
     border-radius: 1.2rem;
     border: none;
     padding: 1.6rem 2.4rem;
@@ -103,7 +71,8 @@ body {
 }
 
 #email-check,
-#password-check {
+#password-check,
+#password-check-again {
     display: none;
     color: var(--email-input-check-color);
     font-size: 1.5rem;
@@ -117,15 +86,36 @@ input::placeholder {
     color: var(--back-text);
 }
 
+.eye-btn {
+    position: absolute;
+    right: 2.4rem;
+    top: 1.7rem;
+    left: auto;
+    cursor: pointer;
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+.hide,
+.hide-check {
+    display: none;
+}
+
+.pwsetting,
+.pwsetting-check {
+    position: relative;
+}
+
+.signup-btn,
 .login-btn {
     background-color: var(--back-text);
+    color: var(--btn-text);
     border: none;
     border-radius: 4rem;
     font-size: 2rem;
     font-weight: 600;
     line-height: 2.4rem;
     text-align: center;
-    color: var(--login-btn-text);
     cursor: not-allowed;
     pointer-events: none;
 }
@@ -162,14 +152,13 @@ input::placeholder {
     text-decoration: none;
 }
 
-.signup {
+.signup, .login {
     font-size: 1.5rem;
     line-height: 1.79rem;
     font-weight: 500;
-    color: var(--signup-text-color);
 }
 
-.signup-link {
+.signup-link, .login-link {
     color: var(--link-color);
     margin-left: 0.4rem;
 }
@@ -195,12 +184,12 @@ input::placeholder {
     position: fixed;
     left: 50%;
     top: 50%;
-    background: var(--login-btn-text);
     border-radius: 0.8rem;
     z-index: 1000;
     transform: translate(-50%, -50%);
     width: 54rem;
     height: 25rem;
+    background: var(--btn-text);
 }
 
 #popup-message {
@@ -214,7 +203,6 @@ input::placeholder {
 
 .close-btn {
     background-color: var(--input-outline-color);
-    color: var(--login-btn-text);
     border: none;
     position: fixed;
     border-radius: 8px;
@@ -225,6 +213,7 @@ input::placeholder {
     height: 4.8rem;
     right: 28px;
     bottom: 28px;
+    color: var(--btn-text);
 }
 
 @media (max-width: 767px) {
@@ -239,7 +228,8 @@ input::placeholder {
         padding: 0 16px;
     }
 
-    .login-form {
+    .login-form,
+    .signup-form {
         max-width: 400px;
         width: 100%;
     }
@@ -248,7 +238,8 @@ input::placeholder {
         position: none;
     }
 
-    .login-form label {
+    .login-form label,
+    .signup-form label {
         margin-bottom: 0.8rem;
         font-size: 14px;
         line-height: 1.671em;
@@ -257,7 +248,8 @@ input::placeholder {
 
     .login-form input,
     .login-form .login-btn,
-    .easy-login {
+    .signup-form .signup-btn,
+    .signup-form input, .easy-login {
         width: 100%;
         max-width: 400px;
     }
