@@ -78,7 +78,7 @@ main {
   width: 100%;
 }
 
-.top_banner {
+.top-banner {
   background-image: url("./imgs/Img_home_top.png");
   background-repeat: no-repeat;
   background-size: 52%;
@@ -89,7 +89,7 @@ main {
   align-items: center;
 }
 
-.top_banner .message_container {
+.top-banner .message-container {
   height: 200px;
   max-width: 1200px;
   margin: 0 auto;
@@ -100,14 +100,14 @@ main {
 }
 
 
-.top_banner .message {
+.top-banner .message {
   font-weight: 700;
   font-size: 40px;
   line-height: 56px;
   color: var(--msg-color);
 }
 
-.top_banner .button {
+.top-banner .button {
   width: 357px;
   height: 56px;
   border: none;
@@ -140,26 +140,26 @@ section.section1, .section2, .section3 {
   justify-content: end;
 }
 
-.section1_messages {
+.section1-messages {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.hot_item {
+.hot-item {
   font-weight: 700;
   font-size: 18px;
   line-height: 25.2px;
   color: var(--like-blue-color);
 }
 
-.section1 .message_box {
+.section1 .message-box {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.section1 .message_top {
+.section1 .message-top {
   font-weight: 700;
   font-size: 40px;
   line-height: 56px;
@@ -167,7 +167,7 @@ section.section1, .section2, .section3 {
   color: var(--msg-color);        
 }
 
-.section1 .message_bottom {
+.section1 .message-bottom {
   font-weight: 500;
   font-size: 24px;
   line-height: 28.8px;
@@ -175,7 +175,7 @@ section.section1, .section2, .section3 {
   color: var(--msg-color);
 }
 
-.section2_messages {
+.section2-messages {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -189,13 +189,13 @@ section.section1, .section2, .section3 {
   color: var(--like-blue-color);
 }
 
-.section2 .message_box {
+.section2 .message-box {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.section2 .message_top {
+.section2 .message-top {
   font-weight: 700;
   font-size: 40px;
   line-height: 56px;
@@ -203,7 +203,7 @@ section.section1, .section2, .section3 {
   color: var(--msg-color);        
 }
 
-.section2 .message_bottom {
+.section2 .message-bottom {
   font-weight: 500;
   font-size: 24px;
   line-height: 28.8px;
@@ -212,7 +212,7 @@ section.section1, .section2, .section3 {
 }
 
 
-.section3_messages {
+.section3-messages {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -225,13 +225,13 @@ section.section1, .section2, .section3 {
   color: var(--like-blue-color);
 }
 
-.section3 .message_box {
+.section3 .message-box {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.section3 .message_top {
+.section3 .message-top {
   font-weight: 700;
   font-size: 40px;
   line-height: 56px;
@@ -239,7 +239,7 @@ section.section1, .section2, .section3 {
   color: var(--msg-color);        
 }
 
-.section3 .message_bottom {
+.section3 .message-bottom {
   font-weight: 500;
   font-size: 24px;
   line-height: 28.8px;
@@ -247,7 +247,7 @@ section.section1, .section2, .section3 {
   color: var(--msg-color);
 }
 
-.bottom_banner {
+.bottom-banner {
   height: 540px;
   background-color: var(--bg-color);
   background-image: url("./imgs/Img_home_bottom.png");
@@ -262,7 +262,7 @@ section.section1, .section2, .section3 {
   align-items: center;
 }
 
-.bottom_banner .message_container{
+.bottom-banner .message-container{
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
@@ -276,7 +276,7 @@ footer {
   background-color: var(--like-navy-color);
 }
 
-footer .codeit_2024{
+footer .codeit-2024{
   font-weight: 400;
   font-size: 16px;
   line-height: 19.08px;
@@ -313,7 +313,7 @@ footer .social {
   color: var(--like-gray-color);
 }
 
-.password_container {
+.password-container {
   position: relative;
 }
 
@@ -324,7 +324,7 @@ footer .social {
   cursor: pointer;
 }
 
-.simple_login {
+.simple-login {
   height: 74px;
   border-radius: 8px;
   padding: 0 23px;
@@ -335,19 +335,19 @@ footer .social {
   margin-bottom: 24px;
 } 
 
-.simple_login p{
+.simple-login p{
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   color: var(--login-sigup-msg-color);
 }
 
-.login_method {
+.login-method {
   display: flex;
   gap: 16px;
 }
 
-.select_status {
+.select-status {
   text-align: center;
   font-weight: 500;
   font-size: 15px;
@@ -355,7 +355,7 @@ footer .social {
   color: var(--login-sigup-msg-color);;
 }
 
-.select_status a{
+.select-status a{
   color: var(--login-sigup-select-color);
 }
 
@@ -364,7 +364,7 @@ footer .social {
 /* login */
 /*-------*/
 
-.login_container {
+.login-container {
   height: 1080px;
   display: flex;
   flex-direction: column;
@@ -373,21 +373,21 @@ footer .social {
   margin-top: 60px;
 }
 
-.login_form {
+.login-form {
   max-width: 640px;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.login_form label {
+.login-form label {
   font-weight: 700;
   font-size: 18px;
   line-height: 21.48px;
   color: var(--login-sigup-msg-color);;
 }
 
-.login_form input{
+.login-form input{
   margin-top: 16px;
   margin-bottom: 24px;
   height: 56px;
@@ -399,7 +399,7 @@ footer .social {
   outline-color: var(--focusin-color);
 }
 
-.login_form button {
+.login-form button {
   margin-bottom: 24px;
   height: 56px;
   border: none;
@@ -416,7 +416,7 @@ footer .social {
 /* sign-up */
 /*-------*/
 
-.signup_container {
+.signup-container {
   height: 1080px;
   display: flex;
   flex-direction: column;
@@ -425,21 +425,21 @@ footer .social {
   margin-top: 60px;
 }
 
-.signup_form {
+.signup-form {
   max-width: 640px;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.signup_form label {
+.signup-form label {
   font-weight: 700;
   font-size: 18px;
   line-height: 21.48px;
   color: var(--login-sigup-msg-color);;
 }
 
-.signup_form input{
+.signup-form input{
   margin-top: 16px;
   margin-bottom: 24px;
   height: 56px;
@@ -451,7 +451,7 @@ footer .social {
   outline-color: var(--focusin-color);
 }
 
-.signup_form button {
+.signup-form button {
   margin-bottom: 24px;
   height: 56px;
   border: none;
