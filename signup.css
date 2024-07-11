@@ -15,10 +15,6 @@
   font-style: normal;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 header {
   margin: 0 auto;
   width: 640px;
