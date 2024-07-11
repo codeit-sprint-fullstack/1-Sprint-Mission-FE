@@ -1,0 +1,118 @@
+:root {
+  --input-color: #F3F4F6;
+  --gray400-color: #9CA3AF;
+  --gray800-color: #1F2937;
+  --blue-color: #3692ff;
+  --blue2-color: #3182F6;
+  --white-color: #ffffff;
+  --background-color: #E6F2FF;
+}
+
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+header {
+  margin: 0 auto;
+  width: 640px;
+}
+
+.logo img {
+  padding: 60px 0 40px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 396px;
+}
+
+.wrap {
+  margin: 0 auto;
+  width: 640px;
+}
+
+.email, .nickname, .password, .password-repeat {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 16px;
+}
+
+input {
+  background-color: var(--input-color);
+  border: none;
+  border-radius: 12px;
+  color: var(--gray400-color);
+  font-size: 16px;
+  height: 56px;
+  margin: 0 0 24px;
+  padding: 16px 24px;
+}
+
+input:focus {
+  border: 1px solid var(--blue-color);
+}
+
+button {
+  background-color: var(--gray400-color);
+  border: none;
+  border-radius: 40px;
+  color: var(--white-color);
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  height: 56px;
+  width: 640px;
+}
+
+.password, .password-repeat {
+  position: relative;
+}
+
+.password-image {
+  position: absolute;
+  bottom: 42px;
+  right: 24px;
+  width: 24px;
+}
+
+.sns-login {
+  align-items: center;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  color: var(--gray800-color);
+  display: flex;
+  font-size: 16px;
+  font-weight: 500;
+  height: 74px;
+  justify-content: space-between;
+  margin: 24px 0;
+  padding: 25px 0 25px 23px;
+}
+
+.sns {
+  display: flex;
+  padding: 16px 23px 16px 0;
+}
+
+.sns img {
+  padding: 0 0 0 16px;
+  width: 42px;
+}
+
+.login {
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.login-us {
+  color: var(--blue2-color);
+  text-decoration: underline;
+}

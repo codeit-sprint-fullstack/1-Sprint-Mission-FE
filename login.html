@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="login.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7F0PR29DX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-E7F0PR29DX');
+  </script>
+</head>
+<body>
+  <header>
+    <a href="/" class="logo"><img src=images/logo.png alt="판다마켓 로고"></a>
+  </header>
+  <main>
+    <div class="wrap">
+      <form>
+        <div class="email">
+          <label for="email">이메일</label>
+          <input id="email" name="email" type="email" placeholder="이메일을 입력해주세요">
+        </div>
+        <div class="password">
+          <label for="password">비밀번호</label>
+          <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
+          <img src="images/password.png" class="password-image">
+        </div>
+        <button>로그인</button>
+      </form>
+      <div class="sns-login">
+        <p>간편 로그인하기</p>
+        <ul class="sns">
+          <li><a href="https://www.google.com/"><img src="images/ico-google.png"></a></li>
+          <li><a href="https://www.kakaocorp.com/page/"><img src="images/ico-kakaotalk.png"></a></li>
+        </ul>
+      </div>
+      <div class="join">
+        <p>판다마켓이 처음이신가요? <span class="join-us"><a href="/signup">회원가입</a></span></p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
