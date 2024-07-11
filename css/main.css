@@ -272,6 +272,8 @@
   .home_main_top {
     height: 770px;
     text-align: center;
+    margin-left: 16px;
+    margin-right: 16px;
   }
 
   .home_main_top > p {
@@ -369,7 +371,7 @@
   }
 
   .home_main_text_reverse {
-    margin-right: 64px;
+    margin-right: 0;
   }
 
   .info_space {
@@ -475,6 +477,8 @@
     height: auto;
     margin-top: 32px;
     margin-bottom: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .home_main_reverse {
@@ -482,6 +486,8 @@
     display: block;
     justify-content: center;
     height: auto;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .home_main_content {
@@ -535,10 +541,6 @@
 
   .home_main_reverse_in > img {
     order: 2;
-  }
-
-  .home_main_text_reverse {
-    margin-right: 64px;
   }
 
   .info_space {
@@ -634,6 +636,12 @@
     width: 498;
     height: 270px;
     align-self: flex-end;
+  }
+}
+
+@media screen and (max-width: 473px) {
+  .nav_title > picture > img {
+    margin-top: 5px;
   }
 }
 
