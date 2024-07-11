@@ -5,17 +5,12 @@ const mPasswordSecond = document.querySelector('.m_password_second');
 const showPw = document.querySelector('#show_pw');
 const showPwSecond = document.querySelector('#show_pw_second');
 const userPassword = document.querySelector('#user_password')
-const userPassword2 = document.querySelector('#user_password2');
 const pswdMsg1 = document.querySelector("#pswdMsg1")
 const pswdMsg2 = document.querySelector("#pswdMsg2")
-const pswdMsg3 = document.querySelector("#pswdMsg3")
 const userEmail = document.querySelector('#user_email')
 const emailMsg1 = document.querySelector("#emailMsg1")
 const emailMsg2 = document.querySelector("#emailMsg2")
 const alertOverlay = document.querySelector('.alert_overlay');
-const page = document.querySelector('.page_background')
-const dialog = document.querySelector('dialog')
-const dialogInner = document.querySelector('.dialog__inner')
 const dialogInnerText = document.querySelector('#dialog__inner_text')
 
 const USER_DATA = [
@@ -89,13 +84,9 @@ function pswEmg() {
   }
 }
 
-
-
 function userEmailBorder() {
   userEmail.style.border = 'none';
 };
-
-
 
 function showDialog(event) {
   alertOverlay.style.display = 'block';

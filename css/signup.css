@@ -26,12 +26,14 @@ input {
 
 .signup_info {
   margin-bottom: 24px;
+
   & p {
     font-size: 18px;
     font-weight: 700;
     text-align: left;
     margin-bottom: 16px;
   }
+
   & input {
     width: 640px;
     height: 56px;
@@ -41,13 +43,16 @@ input {
     font-size: 16px;
     font-weight: 400;
   }
+
   & input::placeholder {
     color: var(--input-text-color);
   }
+
   & input:focus {
     border: var(--input-focus);
   }
 }
+
 .signup_nickname {
   margin-bottom: 24px;
 }
@@ -95,7 +100,7 @@ input {
   margin-top: 8px;
 }
 
-@media screen and (max-width: 767px) and (min-width: 375px) {
+@media screen and (max-width: 767px) {
   .signup_background {
     width: 100%;
   }
@@ -118,10 +123,12 @@ input {
 
   .signup_info {
     margin-bottom: 16px;
+
     & p {
       font-size: 1.4rem;
       margin-bottom: 8px;
     }
+
     & input {
       width: 100%;
     }

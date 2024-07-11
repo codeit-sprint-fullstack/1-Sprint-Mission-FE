@@ -10,15 +10,15 @@ const pswdMsg2 = document.querySelector("#pswdMsg2")
 const loginBtn = document.querySelector('#login_btn');
 const ok = document.querySelector("#ok")
 
-
 showPw.addEventListener("click", pswShow)
-
 
 userEmail.addEventListener("blur", emailForm);
 
 userEmail.addEventListener("click", userEmailBorder);
 
 userPassword.addEventListener("blur", pswEmg);
+
+ok.addEventListener("click", okCLick);
 
 loginBtn.addEventListener("mouseover", function () {
   if (!(userEmail.value && userPassword.value && emailMsg1.style.display === 'none' && emailMsg2.style.display === 'none' && pswdMsg1.style.display === 'none' && pswdMsg2.style.display === 'none')) {
@@ -46,7 +46,6 @@ loginBtn.addEventListener("click", function () {
     }
     else {
       if (i === userData.length - 1) {
-        // diallogOpen();
         showDialog2();
         break;
       }
@@ -55,4 +54,4 @@ loginBtn.addEventListener("click", function () {
 }
 )
 
-ok.addEventListener("click", okCLick);
+

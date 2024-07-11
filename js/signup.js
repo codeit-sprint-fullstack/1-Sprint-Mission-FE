@@ -1,8 +1,6 @@
 import { userData, emailForm, showDialog, okCLick, pswShow, pwShowSecond, userEmailBorder } from './login_signup.js';
 
 const showPw = document.querySelector('#show_pw');
-const mPassword = document.querySelector('.m_password');
-const mPasswordSecond = document.querySelector('.m_password_second');
 const showPwSecond = document.querySelector('#show_pw_second');
 const userEmail = document.querySelector('#user_email')
 const emailMsg1 = document.querySelector("#emailMsg1")
@@ -25,6 +23,7 @@ userEmail.addEventListener("blur", emailForm);
 
 userEmail.addEventListener("click", userEmailBorder);
 
+ok.addEventListener("click", okCLick);
 
 userPassword.addEventListener("blur", function () {
   if (userPassword.value === "") {
@@ -59,7 +58,6 @@ userPassword.addEventListener("click", function () {
   userPassword.style.border = 'none';
 });
 
-
 userPassword2.addEventListener("blur", function () {
   if (userPassword.value !== userPassword2.value) {
     pswdMsg3.style.display = "block";
@@ -69,11 +67,9 @@ userPassword2.addEventListener("blur", function () {
     userPassword2.style.border = 'none';
   }
 });
-
 userPassword2.addEventListener("click", function () {
   userPassword2.style.border = 'none';
 });
-
 
 function loginPage() {
   window.location.href = './login.html'
@@ -98,4 +94,4 @@ signupBtn.addEventListener("click", function (event) {
 
 
 
-ok.addEventListener("click", okCLick);
+

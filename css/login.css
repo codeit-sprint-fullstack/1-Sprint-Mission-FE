@@ -35,12 +35,14 @@ input:-webkit-autofill {
 
 .member_info {
   margin-bottom: 24px;
+
   & p {
     font-size: 1.8rem;
     font-weight: 700;
     text-align: left;
     margin-bottom: 1.6rem;
   }
+
   & input {
     width: 640px;
     height: 5.6rem;
@@ -50,9 +52,11 @@ input:-webkit-autofill {
     font-size: 1.6rem;
     font-weight: 400;
   }
+
   & input::placeholder {
     color: var(--input-text-color);
   }
+
   & input:focus {
     border: var(--input-focus);
   }
@@ -60,6 +64,7 @@ input:-webkit-autofill {
 
 .input_password {
   position: relative;
+
   & i {
     position: absolute;
     margin-top: 20px;
@@ -93,6 +98,7 @@ input:-webkit-autofill {
   height: 74px;
   padding: 0 24px;
   border-radius: 8px;
+
   & p {
     margin: 0;
     font-size: 1.6rem;
@@ -185,7 +191,7 @@ input:-webkit-autofill {
   font-weight: 600;
 }
 
-@media screen and (max-width: 767px) and (min-width: 375px) {
+@media screen and (max-width: 767px) {
   .page_background {
     width: 100%;
   }
@@ -213,6 +219,7 @@ input:-webkit-autofill {
       text-align: left;
       margin-bottom: 8px;
     }
+
     & input {
       width: 100%;
       height: 56px;
