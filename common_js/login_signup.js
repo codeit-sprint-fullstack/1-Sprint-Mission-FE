@@ -1,4 +1,4 @@
-export function initPasswordToggle() {
+export function initPasswordToggle() { // 비밀번호 보기
     let eyeBtns = document.querySelectorAll('.pwsetting img');
 
     eyeBtns.forEach(function (btn) {
@@ -7,11 +7,13 @@ export function initPasswordToggle() {
             if (btn.classList.contains('show')) {
                 pwInput.type = 'text';
                 btn.style.display = 'none';
-                document.querySelector('.hide').style.display = 'inline-block';
+                // display: none 설정을 unset으로 변경
+                document.querySelector('.hide').style.display = 'unset';
             } else if (btn.classList.contains('hide')) {
                 pwInput.type = 'password';
                 btn.style.display = 'none';
-                document.querySelector('.show').style.display = 'inline-block';
+                // display: none 설정을 unset으로 변경
+                document.querySelector('.show').style.display = 'unset';
             }
         });
     });
@@ -19,12 +21,13 @@ export function initPasswordToggle() {
 
 // 이메일 유효성 검사 기능
 export function initEmailValidation(email, emailcheck) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.com$/;
     function einputFocusOut() {
         if (!email.value) {
             emailcheck.style.display = 'flex';
             email.style.border = '1px solid #F74747';
         } else {
-            if (email.value.includes('@') && email.value.includes('.com')) {
+            if (emailPattern.test(email.value)) {
                 emailcheck.style.display = 'none';
                 email.style.border = 'none';
             } else {

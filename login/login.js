@@ -27,12 +27,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //사용자 유효성 검사
     function checkUserValidity() {
-        const email = emailInput.value;
-        const password = passwordInput.value;
         let loginSuccess = false;
 
         for (let i = 0; i < USER_DATA.length; i++) {
-            if (email === USER_DATA[i].email && password === USER_DATA[i].password) {
+            if (emailInput.value === USER_DATA[i].email && passwordInput.value === USER_DATA[i].password) {
                 loginSuccess = true;
                 break;
             }
@@ -55,7 +53,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 로그인 버튼 활성/비활성
     function updateLoginBtnState() {
-        if (emailInput.value.includes('@') && emailInput.value.includes('.com') && passwordInput.value.length >= 8) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.com$/;
+        if (emailPattern.test(emailInput.value) && passwordInput.value.length >= 8) {
             loginBtn.style.cursor = 'pointer';
             loginBtn.style.pointerEvents = 'auto';
             loginBtn.style.backgroundColor = '#3692FF';

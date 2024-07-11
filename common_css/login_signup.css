@@ -104,6 +104,7 @@ input::placeholder {
 .pwsetting,
 .pwsetting-check {
     position: relative;
+    display: inline-block;
 }
 
 .signup-btn,

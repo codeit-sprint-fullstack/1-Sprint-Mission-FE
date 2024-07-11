@@ -36,11 +36,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (btn.classList.contains('show-check')) {
                     passwordCheckAgainInput.type = 'text';
                     btn.style.display = 'none';
-                    document.querySelector('.hide-check').style.display = 'inline-block';
+                    // display: none 설정을 unset으로 변경
+                    document.querySelector('.hide-check').style.display = 'unset';
                 } else if (btn.classList.contains('hide-check')) {
                     passwordCheckAgainInput.type = 'password';
                     btn.style.display = 'none';
-                    document.querySelector('.show-check').style.display = 'inline-block';
+                    // display: none 설정을 unset으로 변경
+                    document.querySelector('.show-check').style.display = 'unset';
                 }
             });
         });
@@ -48,11 +50,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 사용자 중복 체크
     function checkEmailDuplicate() {
-        let email = emailInput.value;
         let joinSuccess = false;
 
         for (let i = 0; i < USER_DATA.length; i++) {
-            if (email === USER_DATA[i].email) {
+            if (emailInput.value === USER_DATA[i].email) {
                 joinSuccess = true;
                 break;
             }
@@ -75,9 +76,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 회원가입 버튼 활성/비활성
     function validateSignupBtn() {
-        if (
-            emailInput.value.includes('@') && 
-            emailInput.value.includes('.com') && 
+        const emailPattern = /^[^\s@]+@[^\s@]+\.com$/;
+        if ( // @, .com, 8자 이상, 닉네임 입력, 비밀번호 일치
+            emailPattern.test(emailInput.value) && 
             passwordInput.value.length >= 8 && 
             nicknameInput.value && 
             passwordInput.value === passwordCheckAgainInput.value
