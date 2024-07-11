@@ -8,6 +8,11 @@ body {
   font-family: Pretendard, sans-serif;
 }
 
+.no-drag {
+  -webkit-user-drag: none; /* Chrome, Safari, Opera */
+  user-select: none; /* Standard */
+}
+
 :root {
   --white-color: #ffffff;
   --nav-color: #4B5563;
