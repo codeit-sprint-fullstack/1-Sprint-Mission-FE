@@ -772,7 +772,7 @@ footer .social {
     line-height: 16.71px;
   }
 
-  .login-form .input
+  .login-form .input,
   .signup-form .input {
     margin-top: 8px;
     flex: 1;
@@ -788,6 +788,11 @@ footer .social {
   .err-line {
     margin-top: 8px;
   }
+
+  .password-container,
+  .password-repeat-container{
+  position: relative;
+}
 
   .visibility-icon {
     top: 40px;

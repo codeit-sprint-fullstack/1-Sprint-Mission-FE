@@ -2,12 +2,12 @@ import {validateEmail, validatePassword, showError, hideError} from "./modules/v
 import { USER_DATA } from "./modules/userData.js";
 import { createAlertBox } from "./modules/alert.js";
 
-const visibilityIcon = document.querySelectorAll(".visibility_icon");
+const visibilityIcon = document.querySelectorAll(".visibility-icon");
 
-const signupForm = document.querySelector(".signup_container");
-const userEmailContainer = document.querySelector(".email_container");
-const userPasswordContainer = document.querySelector(".password_container");
-const userPasswordRepeatContainer = document.querySelector(".password_repeat_container");
+const signupForm = document.querySelector(".signup-container");
+const userEmailContainer = document.querySelector(".email-container");
+const userPasswordContainer = document.querySelector(".password-container");
+const userPasswordRepeatContainer = document.querySelector(".password-repeat-container");
 const signupButton = document.querySelector("#button");
 
 // Function for password visualization
@@ -38,8 +38,8 @@ const checktSignupButtonStatus = () => {
   const passwordValue = userPasswordContainer.children[1].value;
   const passwordRepeatValue = userPasswordRepeatContainer.children[1].value;
 
-  const emailErrorMsg = userEmailContainer.querySelector(".err_msg");
-  const passwordErrorMsg = userPasswordContainer.querySelector(".err_msg");
+  const emailErrorMsg = userEmailContainer.querySelector(".err-msg");
+  const passwordErrorMsg = userPasswordContainer.querySelector(".err-msg");
   const passwordRepeatErrorMsg = userPasswordRepeatContainer.querySelector(".err.msg");
 
   if (emailErrorMsg || passwordErrorMsg || passwordRepeatErrorMsg) {
