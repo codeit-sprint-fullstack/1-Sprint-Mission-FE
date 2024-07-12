@@ -1,0 +1,241 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --text-color: #1F2937;
+    --link-color: #3182F6;
+    --back-text: #9CA3AF;
+    --input-back-color: #F3F4F6;
+    --input-outline-color: #3692ff;
+    --signup-btn-text: #ffffff;
+    --login-text-color: #1F2937;
+    --easy-login-back-color: #E6F2FF;
+    --email-input-check-color: #F74747;
+}
+
+html {
+    font-size: 62.5%;
+    /* 1rem = 10px로 설정 */
+}
+
+body {
+    font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+
+#logo-img,
+.signup-btn,
+.easy-login img {
+    cursor: pointer;
+}
+
+#logo-img {
+    width: 39.6rem;
+    height: 13.2rem;
+    margin-top: 6rem;
+}
+
+.containers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-top: 4rem;
+}
+
+.login-form label {
+    margin-bottom: 1.6rem;
+    color: var(--text-color);
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2.148rem;
+    height: 2.1rem;
+}
+
+.login-form input,
+.login-form .login-btn {
+    width: 64rem;
+    height: 5.6rem;
+}
+
+.login-form input {
+    border-radius: 1.2rem;
+    border: none;
+    padding: 1.6rem 2.4rem;
+    background-color: var(--input-back-color);
+    color: var(--text-color);
+    outline-color: var(--input-outline-color);
+    font-size: 1.6rem;
+}
+
+.input-margin-style {
+    margin-bottom: 2.4rem;
+}
+
+#email-check, #password-check, #password-check-again {
+    display: none;
+    color: var(--email-input-check-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 0.8rem;
+    margin-left: 1.6rem;
+}
+
+input::placeholder {
+    font-size: 1.6rem;
+    color: var(--back-text);
+}
+
+.pwsetting,
+.pwsetting-check {
+    position: relative;
+}
+
+.show,
+.non-show,
+.show-check,
+.non-show-check {
+    position: absolute;
+    right: 2.4rem;
+    top: 1.7rem;
+    left: auto;
+    cursor: pointer;
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+.eye-size {
+    width: 2.047rem;
+    height: 1.807rem;
+}
+
+.show,
+.show-check {
+    display: none;
+}
+
+.signup-btn {
+    background-color: var(--back-text);
+    border: none;
+    border-radius: 4rem;
+    padding: 1.6rem 12.4rem;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 2.4rem;
+    text-align: center;
+    color: var(--signup-btn-text);
+    width: 64rem;
+    height: 5.6rem;
+    cursor: not-allowed; 
+    pointer-events: none; 
+}
+
+.easy-login {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--easy-login-back-color);
+    width: 64rem;
+    height: 7.4rem;
+    border-radius: 0.8rem;
+    padding: 0 2.3rem;
+    align-items: center;
+    margin: 2.4rem 0;
+}
+
+.easy-login p {
+    width: 10.1rem;
+    height: 2.4rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 2.4rem;
+}
+
+.easy-login img {
+    width: 4.2rem;
+    height: 4.2rem;
+}
+
+#google {
+    margin-right: 1.6rem;
+}
+
+.sns-link a {
+    text-decoration: none;
+}
+
+.login {
+    font-size: 1.5rem;
+    line-height: 1.79rem;
+    font-weight: 500;
+    color: var(--login-text-color);
+    margin-bottom: 2.4rem;
+}
+
+.login-link {
+    color: var(--link-color);
+    margin-left: 0.4rem;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+}
+
+.popup {
+    display: none;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    background: var(--signup-btn-text);
+    border-radius: 0.8rem;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    width: 54rem;
+    height: 25rem;
+}
+
+#popup-message {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 108px;
+    align-items: center;
+    text-align: center;
+}
+
+.close-btn {
+    background-color: var( --input-outline-color);
+    color: var(--signup-btn-text);
+    border: none;
+    position: fixed;
+    border-radius: 8px;
+    padding: 12px 23px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 12rem;
+    height: 4.8rem;
+    right: 28px;
+    bottom: 28px;
+}
