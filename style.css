@@ -472,7 +472,7 @@ footer .social {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -130%);
+  transform: translate(-50%, -90%);
   z-index: 9999;
   font-weight: 500;
   font-size: 16px;
@@ -799,7 +799,6 @@ footer .social {
   .alertBox {
     width: 327px;
     height: 220px;
-    transform: translate(-50%, -165%);
   }
 
   .alertBox p {
