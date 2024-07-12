@@ -469,31 +469,32 @@ footer .social {
   width: 540px;
   height: 250px;
   border-radius: 8px;
-  position: fixed;
+  position: relative;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -130%);
   z-index: 9999;
   font-weight: 500;
   font-size: 16px;
-  color: var(login-sigup-msg-color);
 }
 
 .alertBox p {
-  width: 192px;
-  height: 19px;
-  position: relative;
+  position: absolute;
   top: 108px;
   left: 174px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: var(--login-sigup-msg-color);
 }
 
-.confirm {
+.alertBox .confirm {
   background-color: var(--like-blue-color);
   border-radius: 8px;
   border: none;
   width: 120px;
   height: 48px;
-  position: relative;
+  position: absolute;
   top: 155px;
   left: 392px;
   padding: 12px 23px;
@@ -797,5 +798,22 @@ footer .social {
   .visibility-icon {
     top: 40px;
     right: 15px;
+  }
+
+  .alertBox {
+    width: 327px;
+    height: 220px;
+  }
+
+  .alertBox p {
+    width: 327px;
+    height: 220px;
+    top: 81px;
+    left: 67px;
+  }
+
+  .alertBox .confirm {
+    top: 149px;
+    left: 104px;
   }
 }
