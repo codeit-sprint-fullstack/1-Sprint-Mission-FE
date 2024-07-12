@@ -469,23 +469,23 @@ footer .social {
   width: 540px;
   height: 250px;
   border-radius: 8px;
-  position: relative;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -130%);
   z-index: 9999;
   font-weight: 500;
   font-size: 16px;
+  text-align: center;
 }
 
 .alertBox p {
-  position: absolute;
-  top: 108px;
-  left: 174px;
   font-weight: 500;
   font-size: 16px;
   line-height: 19.09px;
   color: var(--login-sigup-msg-color);
+  position: relative;
+  top: 108px;
 }
 
 .alertBox .confirm {
@@ -494,14 +494,14 @@ footer .social {
   border: none;
   width: 120px;
   height: 48px;
-  position: absolute;
-  top: 155px;
-  left: 392px;
   padding: 12px 23px;
   font-weight: 600;
   font-size: 16px;
   color: var(--white-color);
   cursor: pointer;
+  position: relative;
+  top: 155px;
+  left: 182px;
 }
 
 .overlay {
@@ -790,10 +790,6 @@ footer .social {
     margin-top: 8px;
   }
 
-  .password-container,
-  .password-repeat-container{
-  position: relative;
-}
 
   .visibility-icon {
     top: 40px;
@@ -803,17 +799,15 @@ footer .social {
   .alertBox {
     width: 327px;
     height: 220px;
+    transform: translate(-50%, -165%);
   }
 
   .alertBox p {
-    width: 327px;
-    height: 220px;
     top: 81px;
-    left: 67px;
   }
 
   .alertBox .confirm {
-    top: 149px;
-    left: 104px;
+    top: 130px;
+    left: 0;
   }
 }
