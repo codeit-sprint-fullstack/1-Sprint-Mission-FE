@@ -747,4 +747,50 @@ footer .social {
     gap: 24px;
     flex-flow: wrap;
   }
+
+  /* login & signup mobile */
+  .login-container,
+  .signup-container {
+    gap: 24px;
+    margin: 24px 16px;
+  }
+
+  .login-form,
+  .signup-form {
+    max-width: 400px;
+  }
+
+  .login-container .logo,
+  .signup-container .logo {
+    width: 198px;
+    height: 66px;
+  }
+
+  .login-form label,
+  .signup-form label {
+    font-size: 14px;
+    line-height: 16.71px;
+  }
+
+  .login-form .input
+  .signup-form .input {
+    margin-top: 8px;
+    flex: 1;
+  }
+
+  .email-container,
+  .password-container,
+  .nickname-container,
+  .password-repeat-container {
+    margin-bottom: 16px;
+  }
+
+  .err-line {
+    margin-top: 8px;
+  }
+
+  .visibility-icon {
+    top: 40px;
+    right: 15px;
+  }
 }
