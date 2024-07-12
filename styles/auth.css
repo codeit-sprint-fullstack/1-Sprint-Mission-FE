@@ -1,6 +1,14 @@
 .auth-container {
   max-width: 640px;
   margin: 0 auto;
+  
+}
+
+button.pill-button {
+  display: block; 
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
 .logo-home-button-wrapper {

@@ -87,13 +87,13 @@ footer {
   font-size: 16px;
 }
 
-#footerMenu {
+#footer-menu {
   display: flex;
   gap: 30px;
   color: var(--gray-200);
 }
 
-#socialMedia {
+#social-media {
   display: flex;
   gap: 12px;
 }
@@ -117,6 +117,7 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  
 }
  
 */
@@ -139,4 +140,6 @@ h1 {
   font-weight: 700;
   border-radius: 999px;
   padding: 16px 124px;
+  
+  
 }
