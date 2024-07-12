@@ -33,13 +33,13 @@ const toggle_icon_check = () => {
     if (user_password_check.type === "password") {
 
         user_password_check.type = "text";
-        togglePassword_check.classList.remove("fa-eye");
-        togglePassword_check.classList.add("fa-eye-slash");
+        togglePassword_check.classList.remove("fa-eye-slash");
+        togglePassword_check.classList.add("fa-eye");
 
     } else {
         user_password_check.type = "password";
-        togglePassword_check.classList.remove("fa-eye-slash");
-        togglePassword_check.classList.add("fa-eye");
+        togglePassword_check.classList.remove("fa-eye");
+        togglePassword_check.classList.add("fa-eye-slash");
     }
 }
 
