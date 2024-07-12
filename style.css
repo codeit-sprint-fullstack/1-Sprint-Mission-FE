@@ -1,0 +1,470 @@
+@import "reset.css";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Pretendard, sans-serif;
+}
+
+.no-drag {
+  -webkit-user-drag: none; /* Chrome, Safari, Opera */
+  user-select: none; /* Standard */
+}
+
+:root {
+  --white-color: #ffffff;
+  --nav-color: #4B5563;
+  --like-blue-color: #3692FF;
+  --bg-color: #CFE5FF;
+  --msg-color: #374151;
+  --privacy-color: #E5E7EB;
+  --like-navy-color: #111827;
+  --like-gray-color: #9CA3AF;
+  --simple-login-color: #E6F2FF;
+  --login-sigup-msg-color: #1F2937;
+  --login-sigup-select-color: #3182F6;
+  --input-color: #F3F4F6;
+  --focusin-color: #3692FF;
+}
+
+
+header {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 200px;
+  position: sticky;
+  top: 0;
+  background-color: var(--white-color);
+}
+
+.nav {
+  position: absolute;
+  left: 385px;
+}
+
+.nav1, .nav2 {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21.48px;
+  text-decoration: none;
+  color: var(--nav-color);
+}
+
+.nav1 {
+  padding: 24px 16px 24px 15px;
+}
+
+.nav2 {
+  padding: 24px 23px;
+}
+
+.login {
+  border: none;
+  width: 88px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: var(--like-blue-color);    
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+main {
+  height: 3378px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.top-banner {
+  background-image: url("./imgs/Img_home_top.png");
+  background-repeat: no-repeat;
+  background-size: 52%;
+  background-position: 76% bottom;
+  height: 540px;
+  background-color: var(--bg-color);
+  display: flex;
+  align-items: center;
+}
+
+.top-banner .message-container {
+  height: 200px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+
+.top-banner .message {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
+  color: var(--msg-color);
+}
+
+.top-banner .button {
+  width: 357px;
+  height: 56px;
+  border: none;
+  border-radius: 40px;
+  background-color: var(--like-blue-color);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+main .body{
+  height: 2298px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+section.section1, .section2, .section3 {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  height: 720px;
+  padding: 138px 0;
+}
+
+.section2 {
+  display: flex;
+  justify-content: end;
+}
+
+.section1-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hot-item {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25.2px;
+  color: var(--like-blue-color);
+}
+
+.section1 .message-box {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section1 .message-top {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
+  letter-spacing: 2%;
+  color: var(--msg-color);        
+}
+
+.section1 .message-bottom {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28.8px;
+  letter-spacing: 8%;
+  color: var(--msg-color);
+}
+
+.section2-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: right;
+}
+
+.search {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25.2px;
+  color: var(--like-blue-color);
+}
+
+.section2 .message-box {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section2 .message-top {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
+  letter-spacing: 2%;
+  color: var(--msg-color);        
+}
+
+.section2 .message-bottom {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28.8px;
+  letter-spacing: 8%;
+  color: var(--msg-color);
+}
+
+
+.section3-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.registor {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25.2px;
+  color: var(--like-blue-color);
+}
+
+.section3 .message-box {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section3 .message-top {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
+  letter-spacing: 2%;
+  color: var(--msg-color);        
+}
+
+.section3 .message-bottom {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28.8px;
+  letter-spacing: 8%;
+  color: var(--msg-color);
+}
+
+.bottom-banner {
+  height: 540px;
+  background-color: var(--bg-color);
+  background-image: url("./imgs/Img_home_bottom.png");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: 76% bottom;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
+  color: var(--msg-color);
+  display: flex;
+  align-items: center;
+}
+
+.bottom-banner .message-container{
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 200px 108px 200px;
+  background-color: var(--like-navy-color);
+}
+
+footer .codeit-2024{
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.08px;
+  color: var(--like-gray-color);
+}
+
+footer .privacy{
+  display: flex;
+  gap: 30px;
+}
+
+.privacy a {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: var(--privacy-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+footer .social {
+  display: flex;
+  gap: 12px;
+}
+
+/*------------------------------------*/
+/* common elements for login, sign-up */
+/*------------------------------------*/
+
+::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--like-gray-color);
+}
+
+.password-container {
+  position: relative;
+}
+
+.visible-off-icon {
+  position: absolute;
+  top: 45%;
+  right: 24px;
+  cursor: pointer;
+}
+
+.simple-login {
+  height: 74px;
+  border-radius: 8px;
+  padding: 0 23px;
+  background-color: var(--simple-login-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+} 
+
+.simple-login p{
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--login-sigup-msg-color);
+}
+
+.login-method {
+  display: flex;
+  gap: 16px;
+}
+
+.select-status {
+  text-align: center;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 17.9px;
+  color: var(--login-sigup-msg-color);;
+}
+
+.select-status a{
+  color: var(--login-sigup-select-color);
+}
+
+
+/*-------*/
+/* login */
+/*-------*/
+
+.login-container {
+  height: 1080px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.login-form {
+  max-width: 640px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21.48px;
+  color: var(--login-sigup-msg-color);;
+}
+
+.login-form input{
+  margin-top: 16px;
+  margin-bottom: 24px;
+  height: 56px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: none;
+  background-color: var(--input-color);
+  width: 100%;
+  outline-color: var(--focusin-color);
+}
+
+.login-form button {
+  margin-bottom: 24px;
+  height: 56px;
+  border: none;
+  border-radius: 40px;
+  background-color: var(--like-gray-color);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+/*-------*/
+/* sign-up */
+/*-------*/
+
+.signup-container {
+  height: 1080px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.signup-form {
+  max-width: 640px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form label {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21.48px;
+  color: var(--login-sigup-msg-color);;
+}
+
+.signup-form input{
+  margin-top: 16px;
+  margin-bottom: 24px;
+  height: 56px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: none;
+  background-color: var(--input-color);
+  width: 100%;
+  outline-color: var(--focusin-color);
+}
+
+.signup-form button {
+  margin-bottom: 24px;
+  height: 56px;
+  border: none;
+  border-radius: 40px;
+  background-color: var(--like-gray-color);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--white-color);
+  cursor: pointer;
+}
