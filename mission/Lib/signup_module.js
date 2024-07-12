@@ -17,13 +17,13 @@ const toggle_icon = () => {
     if (user_password.type === "password") {
 
       user_password.type = "text";
-      togglePassword.classList.remove("fa-eye");
-      togglePassword.classList.add("fa-eye-slash");
+      togglePassword.classList.remove("fa-eye-slash");
+      togglePassword.classList.add("fa-eye");
 
     } else {
       user_password.type = "password";
-      togglePassword.classList.remove("fa-eye-slash");
-      togglePassword.classList.add("fa-eye");
+      togglePassword.classList.remove("fa-eye");
+      togglePassword.classList.add("fa-eye-slash");
     }
 }
 
