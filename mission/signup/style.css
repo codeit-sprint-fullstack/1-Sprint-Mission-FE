@@ -1,0 +1,152 @@
+* {
+    font-family: Pretendard;
+    box-sizing: border-box;
+}
+
+:root {
+    --label_ft: #1F2937;
+    --input_box_bg: #F3F4F6;
+    --input_box_ft-signup_box_bg: #9CA3AF;
+    --input_box_focus: #3692FF;
+    --signup_box_ft: #ffffff;
+    --simple_login_bg: #E6F2FF;
+    --simple_login-login_ft: #1F2937;
+    --login_a_ft: #3182F6;
+}
+
+.header_contaner {
+    width: 100%;
+    height: 12rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: end;
+}
+
+.img_logo {
+    width: 24.75rem;
+    height: 8.25rem;
+    background-image: url(img/logo.png);
+    background-size: cover;
+}
+
+.main {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.label_font {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--label_ft);
+}
+
+.input_box {
+    width: 40rem;
+    height: 3.5rem;
+    border: 0;
+    border-radius: 0.75rem;
+    background-color: var(--input_box_bg);
+    padding: 1rem 1.5rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--input_box_ft-signup_box_bg);
+}
+
+.input_box:focus {
+    outline: none;
+    border: 1px solid var(--input_box_focus);
+}
+
+#signup_email {
+    margin-bottom: 1.5rem;
+}
+
+#user_name {
+    margin-bottom: 1.5rem;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 37rem;
+    bottom: 2.5rem;
+}
+
+.signup_box {
+    width: 40rem;
+    height: 3.5rem;
+    border: none;
+    border-radius: 2.5rem;
+    background-color: var(--input_box_ft-signup_box_bg);
+    padding: 1rem 7.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--signup_box_ft);
+    cursor: pointer;
+}
+
+.simple_login {
+    width: 40rem;
+    height: 4.625rem;
+    border-radius: 0.5rem;
+    background-color: var(--simple_login_bg);
+    padding: 0 1.4375rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--simple_login-login_ft);
+}
+
+.simple_login_box {
+    width: 6.25rem;
+    height: 2.625rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.google {
+    width: 2.625rem;
+    height: 2.625rem;
+}
+
+.kakao {
+    width: 2.625rem;
+    height: 2.625rem;
+}
+
+.login {
+    width: 100%;
+    height: 1.125rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--simple_login-login_ft);
+}
+
+.login a {
+    color: var(--login_a_ft);
+}
