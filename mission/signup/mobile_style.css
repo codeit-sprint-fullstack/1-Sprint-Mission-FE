@@ -4,7 +4,6 @@
 }
 
 :root {
-    --label_ft: #1F2937;
     --input_box_bg: #F3F4F6;
     --input_box_ft-signup_box_bg: #9CA3AF;
     --input_box_focus: #3692FF;
@@ -14,15 +13,15 @@
     --login_a_ft: #3182F6;
 }
 
-body {
+html {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.contaner {
-    min-width: 344px;
+body {
     max-width: 400px;
+    min-width: 344px;
     width: 100%;
     height: auto;
     margin: 24px 16px;
@@ -43,26 +42,31 @@ body {
     background-size: cover;
 }
 
-main {
+.main {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 form {
+    max-width: 400px;
+    min-width: 343px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    min-width: 343px;
-    max-width: 400px;
-    width: 100%;
     position: relative;
 }
 
 .label_font {
+    margin-top: 16px;
     font-size: 14px;
     font-weight: 700;
     line-height: 16.71px;
-    color: var(--label_ft);
+    color: var(--simple_login-login_ft);
+}
+
+#email_ft {
+    margin-top: 0;
 }
 
 .input_box {
@@ -70,10 +74,9 @@ form {
     height: 56px;
     border: 0;
     border-radius: 12px;
-    background-color: var(--input_box_bg);
     padding: 16px 24px;
     margin-top: 8px;
-    margin-bottom: 16px;
+    background-color: var(--input_box_bg);
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
@@ -85,19 +88,29 @@ form {
     border: 1px solid var(--input_box_focus);
 }
 
-.password-toggle-icon {
-    width: 24px;
-    height: 24px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    bottom: 208px;
-    right: 24px;
+/* js */
+.input_less {
+    outline: none;
+    border: 1px solid #F74747;
+}
+/* js */
+.add_ms {
+    margin: 8px 16px 0;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 17.9px;
+    color: #F74747;
 }
 
-.password-toggle-icon_check {
+.icon_box {
+    position: relative;
+}
+
+.icon_box_check {
+    position: relative;
+}
+
+.icon {
     width: 24px;
     height: 24px;
     display: flex;
@@ -105,9 +118,9 @@ form {
     justify-content: center;
     align-items: center;
     position: absolute;
-    bottom: 112px;
+    bottom: 16px;
     right: 24px;
-   
+    cursor: pointer;
 }
 
 .signup_box {
@@ -115,15 +128,28 @@ form {
     height: 56px;
     border: none;
     border-radius: 40px;
-    background-color: var(--input_box_ft-signup_box_bg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-top: 16px;
     margin-bottom: 24px;
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;
     color: var(--signup_box_ft);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup_box_no_activate {
+    background-color: var(--input_box_ft-signup_box_bg);
+} 
+
+.signup_box:focus {
+    outline: none;
+}
+
+/* js */
+.signup_box_activate {
+    background-color: #3692FF;
     cursor: pointer;
 }
 
@@ -131,17 +157,17 @@ form {
     width: 100%;
     height: 74px;
     border-radius: 8px;
-    background-color: var(--simple_login_bg);
     padding: 0 24px;
-    margin-bottom: 25px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    margin-bottom: 24px;
+    background-color: var(--simple_login_bg);
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
     color: var(--simple_login-login_ft);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .simple_login_box {
@@ -166,16 +192,77 @@ form {
 .login {
     width: 100%;
     height: 18px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     font-size: 15px;
     font-weight: 500;
     line-height: 17.9px;
     color: var(--simple_login-login_ft);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .login a {
     color: var(--login_a_ft);
+}
+
+/* js */
+.modal {
+    width: 100%;
+    height: 100%;
+    background-color: #000000B2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.modal_none {
+    display: none;
+}
+
+.modal_body {
+    max-width: 400px;
+    min-width: 327px;
+    width: 100%;
+    height: 220px;
+    border-radius: 8px;
+    margin: 0 24px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal_massage {
+    margin-top: 81px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.09px;
+    color: #1F2937;
+}
+
+.modal_button {
+    width: 120px;
+    height: 48px;
+    border-radius: 8px;
+    border: 0;
+    margin-bottom: 23px;
+    background-color: #3692FF;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.09px;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.modal_button:focus {
+    outline: none;
 }

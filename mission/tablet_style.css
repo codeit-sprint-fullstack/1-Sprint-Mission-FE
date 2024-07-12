@@ -10,7 +10,7 @@ header {
     z-index: 9999;
 }
 
-.nav {
+.navigation {
     width: 100%;
     height: 70px;
     background-color: #FFFFFF;
@@ -27,17 +27,17 @@ header {
 .img_logo {
     width: 153px;
     height: 51px;
-    background-image: url(img/Group\ 19.png);
+    background-image: url(img/Panda_logo.png);
     background-size: cover;
 }
 
 .menu{
     width: 100%;
     height: 70px;
+    margin-left: 20px;
     background-color: #FFFFFF;
     display: flex;
     flex-direction: row;
-    margin-left: 20px;
 }
 
 .notice-board {
@@ -58,21 +58,21 @@ header {
     width: 88px;
     height: 42px;
     border-radius: 8px;
+    margin-right: 24px;
     background-color:#3692FF;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-right: 24px;
     flex-shrink: 0;
 }
 
 .login {
-    color: #FFFFFF;
     font-size: 16px;
     font-weight: 600;
     line-height: 19.09px;
     text-decoration: none;
+    color: #FFFFFF;
 }
 
 .banner{
@@ -109,26 +109,26 @@ header {
     width: 357px;
     height: 56px;
     border-radius: 40px;
+    margin-left: 82px;
     background-color: #3692FF;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-left: 82px;
 }
 
 .tour {
     font-size: 20px;
     font-weight: 600;
-    color: #FFFFFF;
     line-height: 24px;
     text-decoration: none;
+    color: #FFFFFF;
 }
 
 .img-banner {
     width: 996px;
     height: 447px;
-    background-image: url(img/Img_home_top.png);
+    background-image: url(img/banner.png);
     background-size: cover;
 }
 
@@ -153,7 +153,7 @@ header {
 .Img_home_01 {
     width: 696px;
     height: 524px;
-    background-image: url(img/Img_home_01.png);
+    background-image: url(img/Img_hot_item.png);
     background-size: cover;
 }
 
@@ -176,19 +176,19 @@ header {
 }
 
 .word2 {
+    margin-top: 8px;
     font-size: 32px;
     font-weight: 700;
     line-height: 44.8px;
     color: #374151;
-    margin-top: 8px;
 }
 
 .word3 {
+    margin-top: 16px;
     font-size: 18px;
     font-weight: 500;
     line-height: 21.6px;
     color: #374151;
-    margin-top: 16px;
 }
 
 
@@ -204,15 +204,15 @@ header {
 .Img_home_02 {
     width: 696px;
     height: 524px;
-    background-image: url(img/Img_home_02.png);
+    background-image: url(img/Img_search.png);
     background-size: cover;
 }
 
 .search-word-box {
     width: 420px;
     height: 138px;
-    text-align: right;
     margin-top: 16px;
+    text-align: right;
 }
 
 .search-word {
@@ -235,7 +235,7 @@ header {
 .Img_home_03 {
     width: 696px;
     height: 524px;
-    background-image: url(img/Img_home_03.png);
+    background-image: url(img/Img_register.png);
     background-size: cover;
 }
 
@@ -256,30 +256,30 @@ header {
 .footer-frame{
     width: 100%;
     height: 771px;
+    margin-top: 40px;
     background-color: #CFE5FF;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-top: 40px;
     overflow: hidden;
 }
 
 .footer-word {
     width: 286px;
     height: 112px;
+    margin-top: 60px;
     font-size: 40px;
     font-weight: 700;
     line-height: 56px;
     color: #374151;
     text-align: center;
-    margin-top: 60px;
 }
 
 .Img_home_bottom {
     width: 996px;
     height: 540px;
-    background-image: url(img/Img_home_bottom.png);
+    background-image: url(img/Panda_bottom.png);
     background-size: cover;
 }
 
@@ -295,6 +295,9 @@ header {
 .bottom-box {
     width: 100%;
     height: 20px;
+    padding-left: 24px;
+    padding-right: 24px;
+    margin-top: 32px;
     font-size: 16px;
     font-weight: 400;
     line-height: 19.09px;
@@ -302,9 +305,6 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-left: 24px;
-    padding-right: 24px;
-    margin-top: 32px;
 }
 
 .mobile {

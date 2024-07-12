@@ -1,24 +1,27 @@
-const passwordField = document.getElementById("login_password");
-// document.getElementById는 JavaScript에서 DOM(Document Object Model)을 사용하여 HTML 요소를 가져오는 메서드로 id가 "login_password"에 해당하는 단일 HTML 요소를 반환
-const togglePassword = document.querySelector(".password-toggle-icon i");
-// document.querySelector는 주어진 CSS 선택자에 해당하는 첫 번째 문서 객체 모델(DOM) 요소를 반환하는 JavaScript 메서드로 password-toggle-icon i에 해당하는 <i> 요소를 가져온다.
+import { user_email, user_password, login_button, modal_button, togglePassword } from "../Lib/login_module.js";
+import {login, activat, error_email, error_keydown_email, error_password, error_keydown_password, focus_doing, modal_close, toggle_icon} from '../Lib/login_module.js'
 
-togglePassword.addEventListener("click", function () {
-  //togglePassword 요소에 클릭 이벤트 리스너를 추가합니다. 사용자가 아이콘을 클릭할 때마다 함수가 실행
-  if (passwordField.type === "password") {
-    //passwordField의 타입이 password일 때
-    passwordField.type = "text";
-    //passwordField의 타입을 text로 재지정
-    togglePassword.classList.remove("fa-eye");
-    //togglePassword 아이콘의 클래스에서 "fa-eye" 클래스를 제거
-    togglePassword.classList.add("fa-eye-slash");
-    //togglePassword 아이콘의 클래스에 "fa-eye-slash" 클래스 추가
-  } else {
-    passwordField.type = "password";
-    // 그외 조건에 맞는게 없으면 passwordField의 타입을 password로 재지정
-    togglePassword.classList.remove("fa-eye-slash");
-    //togglePassword 아이콘의 클래스에서 "fa-eye-slash" 클래스를 제거
-    togglePassword.classList.add("fa-eye");
-    //togglePassword 아이콘의 클래스에 "fa-eye" 클래스 추가
-  }
-});
+// password 토글
+togglePassword.addEventListener('click', toggle_icon);
+
+// error 메세지
+user_email.addEventListener('focusout', error_email);
+user_email.addEventListener('keyup', error_keydown_email);
+user_password.addEventListener('focusout', error_password);
+user_password.addEventListener('keyup', error_keydown_password);
+
+// enter로 focus 이동
+user_email.addEventListener('keyup', focus_doing);
+user_password.addEventListener('keyup', focus_doing);
+
+// 로그인 버튼 활성화
+user_email.addEventListener('focusout', activat);
+user_email.addEventListener('keyup', activat);
+user_password.addEventListener('focusout', activat);
+user_password.addEventListener('keyup', activat)
+
+// 로그인
+login_button.addEventListener('click', login);
+
+// 모달창 닫기
+modal_button.addEventListener('click', modal_close);
