@@ -187,6 +187,11 @@ input{
 }
 
 @media (max-width: 761px) {
+  .panda_logo{
+    margin-top: 60px;
+    width: 198px;
+    height: 66px;
+  }
   .login_form{
     width: 344px;
     margin-bottom: 184px;
