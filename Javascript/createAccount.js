@@ -154,8 +154,9 @@ function validatename(name) { // 입력값 변경 시, 닉네임 유효성 검�
 
 function validatePassword(password) { // 입력값 변경 시, 비밀번호 유효성 검사 수행 
   const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])/; 
-  return passwordRegex.test(password);
+  return passwordRegex.test(password); 
 }
+
 
 function validatePasswordconfirm(passwordconfirm) { // 입력값 변경 시, 비밀번호확인 유효성 검사 수행 
   const passwordRegex = checkpassword(password, passwordconfirm);
