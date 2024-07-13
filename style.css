@@ -41,6 +41,7 @@ main {
   position: relative;
   justify-content: center;
   grid-column: 2;
+  overflow: hidden;
 }
 
 .top-banner p {
@@ -164,6 +165,7 @@ main {
   position: relative;
   justify-content: center;
   grid-column: 2;
+  overflow: hidden;
 }
 
 .bottom-banner p {
@@ -237,7 +239,6 @@ footer {
   .top-banner {
     height: 771px;
     text-align: center;
-    overflow: hidden;
   }
 
   .top-banner p {
@@ -316,7 +317,6 @@ footer {
   .bottom-banner {
     height: 771px;
     text-align: center;
-    overflow: hidden;
   }
 
   .bottom-banner p {
