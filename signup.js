@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var email = emailInput.value;
     var validUser = USER_DATA.find(user => user.email === email);
 
-    if (validUser) {
+    if (!validUser) {
       window.location.href = "login.html";
     } else {
       customAlert.style.display = 'flex';
