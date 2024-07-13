@@ -1,0 +1,172 @@
+@media screen and (min-width: 1200px) {
+    .headerbox{
+        padding: 0 200px;
+    }
+    .pandalogo_nav{
+        gap:32px;
+    }
+
+    .article_box, .article_box2 {
+      margin: 10% auto; /* Adjust margins for smaller screens */
+    }
+  
+    .box_img {
+      max-height: 100%; /* Ensure images scale with their container */
+      width: auto;
+      height: auto;
+      max-width: 100%;
+    }
+
+    main img{
+        width: auto;
+        height: auto;
+      }
+  }
+
+/* Tablet */
+@media only screen and (min-width: 744px) and (max-width: 1199px) {
+    .headerbox{
+        padding: 0 24px;
+    }
+    .pandalogo_nav{
+        gap:32px;
+    }
+    article{
+        padding: 40px 24px;
+    }
+    .article_box, .article_box2 {
+        display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .article_box{
+    display: flex;
+    flex-direction: column;
+    }
+
+    .article_box2{
+    display: flex;
+    flex-direction: column-reverse;
+    }
+
+    .banner{
+      position: relative;
+    }
+
+    #banner_mungu br{
+        display: none;
+      }
+    
+    .item-text {
+        margin-right: 0.3em; /* '물건을'과 '거래해보세요' 사이의 한칸 띄움 */
+    }
+    
+    .button{
+        margin-top:-20px;
+    }
+    
+    #box_text{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        top:50px;
+        font-size: 20px;
+    }
+
+    #banner_img{
+        background-position: bottom center;
+        background-size: contain;
+    }
+
+    #last_img{
+        background-position: bottom center;
+        background-size: contain;
+    }
+
+    .banner{
+        background-position: 50% bottom;
+        background-size: 50%;
+    }
+
+    main img{
+        width: auto;
+        height: auto;
+    }
+}
+
+
+/* Mobile */
+@media only screen and (min-width: 375px) and (max-width: 743px) {
+    .headerbox{
+        padding: 0 16px;
+    }
+
+    .pandalogo_nav{
+        gap:5px;
+    }
+    .article_box, .article_box2 {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    align-items: center;
+    justify-content: center;
+    max-width: 400px; 
+    }
+
+    .article_box2{
+    flex-direction: column-reverse;
+    }
+
+    .banner{
+    position: relative;
+    }
+
+    #box_text{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    top:50px;
+    font-size: 12px;
+    }
+
+    .box_img {
+        width: calc(100% - 64px);
+        max-width: 100%;
+        height: auto;
+        margin-left: 32px;
+        margin-right: 32px;
+      }
+
+    .button{
+    margin-top:-20px;
+    }
+
+    #banner_img{
+        background-position: bottom center;
+        background-size: contain;
+    }
+
+    #last_img{
+        background-position: bottom center;
+        background-size: contain;
+    }
+
+    .banner{
+        background-position: 50% bottom;
+        background-size: 50%;
+    }
+
+    /* h2{
+        white-space: nowrap;
+    }
+    h2 br{
+        display: none;
+    } */
+
+    .box1_mungu1,
+    .box2_mungu1{
+      font-size: 16px; /* Example font size */
+      line-height: 1.4; /* Adjust line height if needed */
+    }
+}
