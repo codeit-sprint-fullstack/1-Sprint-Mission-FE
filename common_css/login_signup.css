@@ -217,7 +217,7 @@ input::placeholder {
     color: var(--btn-text);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 743px) {
     #logo-img {
         width: 19.8rem;
         height: 6.6rem;

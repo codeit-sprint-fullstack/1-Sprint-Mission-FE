@@ -328,7 +328,7 @@ footer {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 743px) {
   .navbar #logo-img {
     display: none;
   }
