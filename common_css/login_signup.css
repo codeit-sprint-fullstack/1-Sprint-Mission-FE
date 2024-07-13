@@ -229,12 +229,6 @@ input::placeholder {
         padding: 0 16px;
     }
 
-    .login-form,
-    .signup-form {
-        max-width: 400px;
-        width: 100%;
-    }
-
     .pwsetting {
         position: none;
     }
@@ -248,10 +242,11 @@ input::placeholder {
     }
 
     .login-form input,
-    .login-form .login-btn,
-    .signup-form .signup-btn,
-    .signup-form input, .easy-login {
-        width: 100%;
+    .login-form, .login-form .login-btn,
+    .signup-form, .signup-form .signup-btn,
+    .signup-form input, .easy-login,
+    .pwsetting, .pwsetting-check{
+        width:100%;
         max-width: 400px;
     }
 
