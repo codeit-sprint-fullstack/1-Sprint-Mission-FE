@@ -213,7 +213,6 @@ input{
 @media (max-width: 761px) {
   .signup_from{
     width: 344px;
-    align-items: flex-start;
   }
   .input_box{
     box-sizing: border-box;
