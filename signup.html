@@ -7,63 +7,36 @@
   <link rel="stylesheet" href="reset.css" />
   <link rel="stylesheet" href="signup.css">
   
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
-  <title>Document</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    $(document).ready(function(){
-        $('.pass_form .close_pw').on('click', function(){
-            $('#ps_input').attr('type', 'text');
-            $(this).hide();
-            $('.pass_form .open_ps').show();
-        });
-
-        $('.pass_form .open_ps').on('click', function(){
-            $('#ps_input').attr('type', 'password');
-            $(this).hide();
-            $('.pass_form .close_pw').show();
-        });
-    });
-    $(document).ready(function(){
-        $('.pass_form2 .close_pw2').on('click', function(){
-            $('#ps_input2').attr('type', 'text');
-            $(this).hide();
-            $('.pass_form2 .open_ps2').show();
-        });
-
-        $('.pass_form2 .open_ps2').on('click', function(){
-            $('#ps_input2').attr('type', 'password');
-            $(this).hide();
-            $('.pass_form2 .close_pw2').show();
-        });
-    });
-
-
-
-
-</script>
+  
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
+  <title>판다마켓</title>
+  
 </head>
 <body class="container">
   <a href="index.html">
       <img src="img/Property 1=Variant3.svg" class="panda_logo">
   </a>
-  <form class="login_form">
-      <p class="login_str">이메일</p>
-      <input type="text" class="input_box" placeholder="이메일을 입력해주세요" type="eamil">
-      <p class="login_str">닉네임</p>
-      <input type="text" class="input_box" placeholder="닉네임을 입력해주세요">
-      <p class="login_str">비밀번호</p>
+  <form class="signup_from">
+      <p class="signup_str">이메일</p>
+      <input id="email_input" class="input_box" placeholder="이메일을 입력해주세요" type="eamil">
+      <div class="error" id="error_message"></div>
+      <p class="signup_str">닉네임</p>
+      <input id="name_input" type="text" class="input_box" placeholder="닉네임을 입력해주세요">
+      <div class="error" id="name_error_message"></div>
+      <p class="signup_str">비밀번호</p>
       <div class="pass_form">
-        <input type="password" id="ps_input" class="input_box" placeholder="비밀번호를 입력해주세요">
+        <input id="ps_input" type="password" id="ps_input" class="input_box" placeholder="비밀번호를 입력해주세요">
         <i class="close_pw">
             <img src="img/btn_visibility_on_24px.png" class="eye_img">
         </i>
         <i class="open_ps" style="display: none;">
             <img src="img/eye.png" class="eye_img">
         </i>
+        <div class="error" id="pw_error_message"></div>
     </div>
       
-      <p class="login_str">비밀번호 확인</p><div class="pass_form2">
+      <p class="signup_str">비밀번호 확인</p><div class="pass_form2">
         <input type="password" id="ps_input2" class="input_box2" placeholder="비밀번호를 다시 한 번 입력해주세요">
         <i class="close_pw2">
             <img src="img/btn_visibility_on_24px.png" class="eye_img2">
@@ -71,10 +44,16 @@
         <i class="open_ps2" style="display: none;">
             <img src="img/eye.png" class="eye_img2">
         </i>
+        <div class="error" id="pw_error_message2"></div>
     </div>
       
-      <button class="signup_button">회원가입</button>
-      
+      <button class="signup_button" type="button">회원가입</button>
+      <div class="custom-alert" id="customAlert">
+        <div class="alert-content">
+          <p>사용 중인 이메일입니다.</p>
+          <button id="alertButton">확인</button>
+        </div>
+      </div>
       <div class="login_kakao_google">
           <p class="login_kakao_google_str">간편 로그인하기</p>
 
@@ -91,6 +70,6 @@
       </div>
       <p class="last_str">이미 회원이신가요? <a href="login.html" class="link_str">로그인</a></p>
   </form>
-  
+  <script src="signup.js"></script>
 </body>
 </html>
