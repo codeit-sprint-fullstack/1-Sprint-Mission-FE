@@ -1,4 +1,6 @@
 
+   // import USER_DATA from "/javascript/USER_DATA";
+   
    /* 이메일/비밀번호 데이터 베이스 */
    const USER_DATA = [
     { email: 'codeit1@codeit.com', password: "codeit101!" },
