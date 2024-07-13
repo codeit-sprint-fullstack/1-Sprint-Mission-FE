@@ -461,6 +461,8 @@ header{
     .main_grid{
         display: flex;
         flex-direction: column;
+        margin-left:24px;
+        margin-right: 24px;
     }
     .main_str{
         justify-content: center;
@@ -501,7 +503,7 @@ header{
     }
     .f_logo{
         height: 270px;
-        width: 498px;
+        width: 100%;
         overflow: hidden;
         margin-top: 0px;
     }
@@ -551,7 +553,7 @@ header{
     
     
     #h_str_r{
-        position: absolute;
+        position: relative;
         margin-right: 0px;
         width: 100%;
         text-align: right;
