@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="index.js"></script>
+    
     <title>판다마켓</title>
     
 </head>
@@ -33,7 +33,13 @@
         <div class="error" id="pw_error_message"></div>
         
         
-        <button class="login_button">로그인</button>
+        <button class="login_button" type="button">로그인</button>
+        <div class="custom-alert" id="customAlert">
+            <div class="alert-content">
+              <p>비밀번호가 일치하지 않습니다.</p>
+              <button id="alertButton">확인</button>
+            </div>
+          </div>
         <div class="login_kakao_google">
             <p class="login_kakao_google_str">간편 로그인하기</p>
 
@@ -50,6 +56,6 @@
         </div>
         <p class="last_str">판다마켓이 처음이신가요? <a href="signup.html" class="link_str">회원가입</a></p>
     </div>
-    
+    <script src="index.js"></script>
 </body>
 </html>
