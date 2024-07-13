@@ -84,6 +84,7 @@ header{
 .s_title{
     margin-right: 39px;
     color: #4B5563;
+    white-space: nowrap;
     
 }
 #login{
@@ -424,6 +425,7 @@ header{
         font-size: 16px;
         font-weight: 700;
         line-height: 19.09px;
+        white-space: nowrap;
     }
 
     #login {
