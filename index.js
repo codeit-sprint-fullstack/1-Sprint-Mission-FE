@@ -21,6 +21,18 @@ document.addEventListener('DOMContentLoaded', function() {
     $('.pass_form .close_pw').show();
   });
 
+  $('.pass_form2 .close_pw2').on('click', function() {
+    $('#ps_input2').attr('type', 'text');
+    $(this).hide();
+    $('.pass_form2 .open_ps2').show();
+  });
+
+  $('.pass_form2 .open_ps2').on('click', function() {
+    $('#ps_input2').attr('type', 'password');
+    $(this).hide();
+    $('.pass_form2 .close_pw2').show();
+  });
+
   // 이메일 유효성 검사
   var emailInput = document.getElementById('email_input');
   var errorMessage = document.getElementById('error_message');
@@ -79,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
       loginButton.style.backgroundColor = '#9CA3AF';
     }
   });
-
   passwordInput.addEventListener('input', function() {
     var email = emailInput.value;
     var password = passwordInput.value;
@@ -90,6 +101,30 @@ document.addEventListener('DOMContentLoaded', function() {
       loginButton.style.backgroundColor = '#9CA3AF';
     }
   });
+  
 
   //로그인 버튼 눌렀을때 객체 내에서 유효성 체크
+  loginButton.addEventListener('click', function() {
+    var customAlert = document.getElementById('customAlert');
+    var email = emailInput.value;
+    var password = passwordInput.value;
+    var validUser = USER_DATA.find(user => user.email === email && user.password === password);
+
+    if (validUser) {
+      window.location.href = "item.html";
+    } else {
+      customAlert.style.display = 'flex';
+    }
+    document.getElementById('alertButton').addEventListener('click', function() {
+      var customAlert = document.getElementById('customAlert');
+      customAlert.style.display = 'none';
+    });
+    
+  });
+  
+
 });
+
+
+// 로그인 버튼 활성화 시켜야하고
+// 미디어 쿼리 해줘야함
