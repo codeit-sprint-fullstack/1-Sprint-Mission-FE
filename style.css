@@ -237,7 +237,7 @@ footer {
   .top-banner {
     height: 771px;
     text-align: center;
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
   .top-banner p {
@@ -316,7 +316,7 @@ footer {
   .bottom-banner {
     height: 771px;
     text-align: center;
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
   .bottom-banner p {
