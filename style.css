@@ -33,6 +33,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 1200px 1fr;
   background-color: #CFE5FF;
+  overflow: hidden;
 }
 
 .top-banner {
@@ -41,7 +42,6 @@ main {
   position: relative;
   justify-content: center;
   grid-column: 2;
-  overflow: hidden;
 }
 
 .top-banner p {
@@ -157,6 +157,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 1200px 1fr;
   background-color: #CFE5FF;
+  overflow: hidden;
 }
 
 .bottom-banner {
@@ -165,7 +166,6 @@ main {
   position: relative;
   justify-content: center;
   grid-column: 2;
-  overflow: hidden;
 }
 
 .bottom-banner p {
