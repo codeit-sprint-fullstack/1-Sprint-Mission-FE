@@ -137,3 +137,95 @@ input{
 .link_str{
   color: #3182F6;
 }
+.custom-alert {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  justify-content: center;
+  align-items: center;
+}
+
+.alert-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex; /* Ensure it's a flex container */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 540px;
+  height: 250px;
+  position: relative;
+}
+
+.alert-content p {
+  margin: 20px 0;
+  font-size:16px;
+  font-weight: 500px;
+  line-height: 19.09px;
+  color: #333236;
+}
+#alertButton{
+  width: 120px;
+  height: 48px;
+  border-radius: 8px;
+  background-color: #3182F6;
+  border:none;
+  position: absolute;
+  right: 28px;
+  bottom: 28px;
+  padding: 12px 23px 12px 23px;
+  font-size: 16px;
+  font-weight: 600px;
+  color: white;
+
+  
+}
+
+@media (max-width: 761px) {
+  .login_form{
+    width: 344px;
+    margin-bottom: 184px;
+    margin-top:40px
+  }
+  .input_box{
+    width: 100%;
+    box-sizing: border-box;
+
+  }
+  .login_button{
+    width: 100%;
+  }
+
+  .alert-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex; /* Ensure it's a flex container */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 327px;
+    height: 220px;
+    position: relative;
+  }
+  #alertButton{
+    width: 120px;
+    height: 48px;
+    border-radius: 8px;
+    background-color: #3182F6;
+    border:none;
+    position: absolute;
+    right: auto;
+    bottom: 20px;
+    padding: 12px 23px 12px 23px;
+    font-size: 16px;
+    font-weight: 600px;
+    color: white;
+
+  }
+}
