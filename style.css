@@ -417,7 +417,7 @@ header{
 
 }
 
-@media (max-width: 761px) {
+@media (max-width: 743px) {
     .container {
         flex-direction: row;
     }
