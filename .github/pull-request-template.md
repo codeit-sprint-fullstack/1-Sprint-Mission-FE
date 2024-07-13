@@ -104,14 +104,9 @@
     - [x] Input 에 유효한 값을 입력하면 ‘로그인' 버튼이 활성화 됩니다.
     - [x] 활성화된 ‘로그인’ 버튼을 누르면 “/items” 로 이동합니다
 
-const USER_DATA = [
-    { email: 'codeit1@codeit.com', password: "codeit101!" },
-    { email: 'codeit2@codeit.com', password: "codeit202!" },
-    { email: 'codeit3@codeit.com', password: "codeit303!" },
-    { email: 'codeit4@codeit.com', password: "codeit404!" },
-    { email: 'codeit5@codeit.com', password: "codeit505!" },
-    { email: 'codeit6@codeit.com', password: "codeit606!" },
-];
+    - [x]  
+      - ![image](/img/data.png)
+
 - 로그인 페이지
 
   - [x] 이메일과 비밀번호를 입력하고 로그인 버튼을 누른 후, 다음 조건을 참조하여 로그인 성공 여부를 alert 메시지로 출력합니다.
@@ -152,6 +147,9 @@ const USER_DATA = [
 ## 스크린샷
   ![image](/img/views.png)
   ![image](/img/main_page.png)
+  ![image](/img/inputerror.png)
+  ![image](/img/loginerror.png)
+
 
 ## 멘토님에게
   - HTML, CSS 다 만들어놓고 수정해야 하는 상황이 오면 그 부분에 접근하기가 쉽지 않은데 꿀팁이 있을까요? 
