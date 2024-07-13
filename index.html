@@ -3,88 +3,149 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>판다마켓 - 세상의 모든 중고 거래</title>
+
+    <meta
+      name="description"
+      content="세상의 모든 중고를 거래하는 판다마켓입니다. 모든 중고를 쉽고 빠르고 안전하게 판매할 수 있습니다. 지금 바로 이용하세요!"
+    />
+    <meta name="keywords" content="중고거래, 중고사이트, 세컨핸즈, 할인" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="🐼 판다마켓 - 세상의 모든 중고 거래" />
+    <meta
+      name="twitter:description"
+      content="세상의 모든 중고를 거래하는 판다마켓입니다. 모든 중고를 쉽고 빠르고 안전하게 판매할 수 있습니다. 지금 바로 이용하세요!"
+    />
+    <meta name="twitter:site" content="@" />
+    <meta name="twitter:creator" content="@" />
+    <meta name="twitter:image" content="" />
+
+    <!-- Open Graph general (Facebook, Pinterest)-->
+    <meta property="og:title" content="🐼 판다마켓 - 세상의 모든 중고 거래" />
+    <meta
+      property="og:description"
+      content="세상의 모든 중고를 거래하는 판다마켓입니다. 모든 중고를 쉽고 빠르고 안전하게 판매할 수 있습니다. 지금 바로 이용하세요!"
+    />
+    <meta property="og:url" content="https://pandamarket1018.netlify.app" />
+    <meta property="og:site_name" content="pandamarket1018.netlify.app" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="" />
+
+    <!-- Emoji SVG favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐼</text></svg>"
+    />
+
+    <!-- https://realfavicongenerator.net -->
+
+    <!-- CSS -->
     <title>판다마켓</title>
     <link rel="stylesheet" href="index.css" />
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLHPKJHJTK"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZLHPKJHJTK"
+    ></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
 
-    gtag('config', 'G-ZLHPKJHJTK');
+      gtag('config', 'G-ZLHPKJHJTK');
     </script>
   </head>
   <body>
     <nav>
-      <div class="logoBox">
-        <a href="/"><img id="logo" src="/img/logo.png" /></a>
-      </div>
+      <a href="/"><div class="logo"></div></a>
       <ul class="navBarMenu">
         <li><a href="">자유게시판</a></li>
         <li><a href="">중고마켓</a></li>
       </ul>
-      <div>
-        <a href="/pages/login.html"><button class="loginBtn">로그인</button></a>
-      </div>
+      <a href="/pages/login.html"><button class="loginBtn">로그인</button></a>
     </nav>
     <main>
-    <div class="mainCtg">
-      <div class="mainCtgContainer">
-        <div class="mainCtgTextBox">
-          <div class="mainCtgText">일상의 모든 물건을<br />거래해 보세요</div>
-          <button class="mainCtgBtn" onclick="location.href=('/items')">
-            구경하러 가기
-          </button>
-        </div>
-        <img id="mainCtgImg" src="/img/mainCtgImage.png" />
-      </div>
-    </div>
-    <div class="subCtgContainer">
-      <div class="subCtg">
-        <div><img id="subCtgImg" src="/img/subCtg1.png" /></div>
-        <div class="subCtgItem">
-          <div class="subCtgTextBox">
-            <div class="subCtgTextHeader">Hot item</div>
-            <div class="subCtgTextContent">인기 상품을<br />확인해 보세요</div>
-            <div class="subCtgTextFooter">
-              가장 HOT한 중고거래 물품을<br />판다 마켓에서 확인해 보세요
+      <div class="mainCtg">
+        <div class="mainCtgContainer">
+          <div class="mainCtgTextBox">
+            <div class="mainCtgText">일상의 모든 물건을<br />거래해 보세요</div>
+            <div class="mainCtgTextMobile">
+              일상의 모든 물건을 거래해 보세요
             </div>
-          </div>
-        </div>
-        <div class="subCtgSearch subCtgTextBoxSearch">
-          <div class="subCtgTextBox search">
-            <div class="subCtgTextHeader search">Search</div>
-            <div class="subCtgTextContent search">
-              구매를 원하는<br />상품을 검색하세요
-            </div>
-            <div class="subCtgTextFooter search">
-              구매하고 싶은 물품은검색해서<br />쉽게 찾아보세요
-            </div>
-          </div>
-        </div>
-        <div><img id="subCtgImg" src="/img/subCtg2.png" /></div>
-        <div><img id="subCtgImg" src="/img/subCtg3.png" /></div>
-        <div class="subCtgRegister">
-          <div class="subCtgTextBox">
-            <div class="subCtgTextHeader register">Register</div>
-            <div class="subCtgTextContent register">
-              판매를 원하는<br />상품을 등록하세요
-            </div>
-            <div class="subCtgTextFooter register">
-              어떤 물건이든 판매하고 싶은 상품을<br />쉽게 등록하세요
-            </div>
+            <button class="mainCtgBtn" onclick="location.href=('/items')">
+              구경하러 가기
+            </button>
           </div>
         </div>
       </div>
-    </div>
-    <div class="subCtgBottom">
-      <div class="subCtgBottomContainer">
-        <div class="subCtgBottomText">믿을 수 있는<br />판다마켓 중고거래</div>
-        <div class="subCtgBottomImg"></div>
-        <div class="subCtgBottomBorder"></div>
+      <div class="subCtgContainer">
+        <div class="subCtg">
+          <div class="subCtgImgHot">
+            <img id="subCtgImg" src="/img/subCtg1.png" />
+          </div>
+          <div class="subCtgItem subCtgItemBox">
+            <div class="subCtgTextBox">
+              <div class="subCtgTextHeader">Hot item</div>
+              <div class="subCtgTextContent">인기 상품을 확인해 보세요</div>
+              <div class="subCtgTextFooter">
+                가장 HOT한 중고거래 물품을<br />판다 마켓에서 확인해 보세요
+              </div>
+            </div>
+          </div>
+          <div class="subCtgSearch subCtgSearchBox">
+            <div class="subCtgTextBox search">
+              <div class="subCtgTextHeader search">Search</div>
+              <div class="subCtgTextContent search">
+                구매를 원하는<br />상품을 검색하세요
+              </div>
+              <div id="subCtgTextSearchMobile">
+                구매를 원하는 상품을 검색하세요
+              </div>
+              <div class="subCtgTextFooter search">
+                구매하고 싶은 물품은검색해서<br />쉽게 찾아보세요
+              </div>
+            </div>
+          </div>
+          <div class="subCtgImgSearch">
+            <img id="subCtgImg" src="/img/subCtg2.png" />
+          </div>
+          <div class="subCtgImgRegister">
+            <img id="subCtgImg" src="/img/subCtg3.png" />
+          </div>
+          <div class="subCtgRegister">
+            <div class="subCtgTextBox">
+              <div class="subCtgTextHeader register">Register</div>
+              <div class="subCtgTextContent register">
+                판매를 원하는<br />상품을 등록하세요
+              </div>
+              <div id="subCtgTextRegisterMobile">
+                판매를 원하는 상품을 등록하세요
+              </div>
+              <div class="subCtgTextFooter register">
+                어떤 물건이든 판매하고 싶은 상품을<br />쉽게 등록하세요
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+      <div class="subCtgBottom">
+        <div class="subCtgBottomContainer">
+          <div class="subCtgBottomText">
+            믿을 수 있는<br />판다마켓 중고거래
+          </div>
+          <div class="subCtgBottomImg"></div>
+          <div class="subCtgBottomBorder"></div>
+        </div>
+      </div>
+    </main>
     <footer>
       <div class="footerContainer">
         <div class="footerInfo">©codeit - 2024</div>
@@ -104,7 +165,26 @@
           ></a>
         </ul>
       </div>
-    </main>
+      <div class="footerContainerMobile">
+        <ul class="footerMenu">
+          <div class="policyFaq">
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/faq" class="faq">FAQ</a></li>
+          </div>
+          <ul class="footerLinks">
+            <a href="https://www.facebook.com" target="_blank"
+              ><li class="facebook"></li></a
+            ><a href="https://www.twitter.com" target="_blank"
+              ><li class="twitter"></li></a
+            ><a href="https://www.youtube.com" target="_blank"
+              ><li class="youtube"></li></a
+            ><a href="https://www.instagram.com" target="_blank"
+              ><li class="instar"></li
+            ></a>
+          </ul>
+        </ul>
+        <div class="footerInfo mobile">©codeit - 2024</div>
+      </div>
     </footer>
   </body>
 </html>
