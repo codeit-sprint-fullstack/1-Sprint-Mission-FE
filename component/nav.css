@@ -1,21 +1,23 @@
 nav {
   width: 100%;
   height: 70px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 0px 200px;
   position: fixed;
   top: 0px;
   z-index: 999;
   background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-#logo {
+.logo {
   width: 153px;
   height: 51px;
   margin-top: 10px;
   margin-bottom: 9px;
+  background-image: url('/img/logo.png');
+  background-size: cover;
 }
 
 .navBarMenu {
@@ -28,17 +30,17 @@ nav {
 .navBarMenu li {
   width: 109px;
   height: 69px;
-  font-family: Pretendard;
-  font-size: 18px;
-  font-weight: 700;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-a {
+.navBarMenu li > a {
   text-decoration: none;
   color: #4b5563;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .loginBtn {
@@ -78,9 +80,70 @@ a {
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (min-width: 768px) and (max-width: 1199px) {
   nav {
     width: 100vw;
-    padding: 0px 10.4vw;
+    padding: 0px 24px;
+  }
+
+  .loginBtn {
+    margin-right: 6px;
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width: 767px) {
+  nav {
+    width: 100vw;
+    padding: 0px 16px;
+  }
+
+  .navBarMenu {
+    width: 100%;
+    margin-left: 20px;
+  }
+
+  .navBarMenu :first-child {
+    height: 69px;
+    font-size: 15px;
+    width: 69px;
+    height: 69px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navBarMenu :nth-child(2) {
+    width: 69px;
+    height: 69px;
+    font-size: 15px;
+  }
+
+  .loginBtn {
+    margin-right: 6px;
+  }
+
+  .logo {
+    width: 81px;
+    height: 40px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-image: url('/img/smLogo.png');
+    background-size: cover;
+  }
+
+  .navBarMenu li {
+    width: 109px;
+    height: 69px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navBarMenu li > a {
+    text-decoration: none;
+    color: #4b5563;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 700;
   }
 }
