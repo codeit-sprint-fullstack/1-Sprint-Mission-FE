@@ -1,3 +1,5 @@
+/*154~229 추가 됐습니다.*/
+
 @import "../styles/reset.css";
 
 * {
@@ -147,6 +149,8 @@ button {
   color:  #3182F6
 }
 
+/*자바스크립트 활용을 위한 스타일 추가 됐습니다.*/
+
 .hide {
   display: none;
   }
@@ -223,6 +227,8 @@ button {
 #modalContainer.hidden {
   display: none;
 }
+
+/*미디어 쿼리는 3주차 과정이지만 새로 추가된 부분은 283 부터입니다*/
 
 @media(max-width: 743px) {
   .login_logo {

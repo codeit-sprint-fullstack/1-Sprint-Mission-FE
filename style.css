@@ -1,3 +1,6 @@
+/*style, login/style, signup/style 이렇게 세 가지로 나눴습니다
+이 파일은 242,249,260,475줄 footer_container 그리드 추가 됐습니다.*/
+
 @import "styles/reset.css";
 
 * {
