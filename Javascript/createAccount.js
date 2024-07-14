@@ -1,34 +1,26 @@
 /* 회원가입 페이지 */
+import { validateEmail,validatePassword,validatename } from "./vaildate_function.mjs";
+import USER_DATA from "./USER_DATA.mjs";
 
-/* 이메일/비밀번호 데이터 베이스 */
-const USER_DATA = [
-  { email: 'codeit1@codeit.com', password: "codeit101!" },
-  { email: 'codeit2@codeit.com', password: "codeit202!" },
-  { email: 'codeit3@codeit.com', password: "codeit303!" },
-  { email: 'codeit4@codeit.com', password: "codeit404!" },
-  { email: 'codeit5@codeit.com', password: "codeit505!" },
-  { email: 'codeit6@codeit.com', password: "codeit606!" },
-  ];
    
+/* 모달로 에러 메시지 구현 */
+var modal = document.getElementById("myModal");
+var confirmBtn = document.getElementById("confirm"); // 확인 버튼
 
-  /* 모달로 에러 메시지 구현 */
-  var modal = document.getElementById("myModal");
-  var confirmBtn = document.getElementById("confirm"); // 확인 버튼
+confirmBtn.onclick = function() {
+  modal.style.display = "none";
+}
 
-  confirmBtn.onclick = function() {
-    modal.style.display = "none";
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none"; // 화면표시 안됨
   }
+}
 
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none"; // 화면표시 안됨
-    }
-  }
-  
-  function showModal(message) {
-      document.getElementById('message').innerText = message;
-      modal.style.display = "flex"; // 모달 창 표시
-  }
+function showModal(message) {
+    document.getElementById('message').innerText = message;
+    modal.style.display = "flex"; // 모달 창 표시
+}
 
 /* 데이터베이스에 있는 이메일/비밀번호 인지 확인 */
 document.getElementById('loginForm').addEventListener('submit', function(event) {
@@ -141,22 +133,6 @@ document.getElementById('passwordmaza').addEventListener('focusout', function(ev
 function checkpassword(password, passwordconfirm){
   return password === passwordconfirm;
 }
-
-function validateEmail(email){ // 입력값 변경 시, 이메일 유효성 검사 수행 
-  const emailRegex = /^\S+@\S+\.\S+$/;
-  return emailRegex.test(email);
-}
-
-function validatename(name) { // 입력값 변경 시, 닉네임 유효성 검사 수행 
-  const nameRegex = /^[가-힣]+$/; // 닉네임은 한글로만 작성 가능
-  return nameRegex.test(name);
-}
-
-function validatePassword(password) { // 입력값 변경 시, 비밀번호 유효성 검사 수행 
-  const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])/; 
-  return passwordRegex.test(password); 
-}
-
 
 function validatePasswordconfirm(passwordconfirm) { // 입력값 변경 시, 비밀번호확인 유효성 검사 수행 
   const passwordRegex = checkpassword(password, passwordconfirm);
