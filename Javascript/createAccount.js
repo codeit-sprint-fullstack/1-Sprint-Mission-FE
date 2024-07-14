@@ -1,7 +1,6 @@
 /* 회원가입 페이지 */
 import { validateEmail,validatePassword,validatename } from "./vaildate_function.mjs";
 import USER_DATA from "./USER_DATA.mjs";
-
    
 /* 모달로 에러 메시지 구현 */
 let modal = document.getElementById("myModal");
