@@ -31,7 +31,6 @@ main {
 
 .left-align {
     justify-content: flex-start;
-    text-align: right;
 }
 
 
@@ -72,10 +71,14 @@ main {
     text-align: center;
 }
 
+.content-container > img {
+    width: 590px;
+}
+
+
 .no-padding-text-box {
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .exist-padding-text-box {
@@ -83,7 +86,6 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
 }
 
 .header-string {
@@ -110,24 +112,68 @@ main {
     .top-bottom {
         height: 770px;
     }
+
+    .middle-key {
+        height: 770px;
+    }
+
+    .banner-section {
+        width: 100%;
+    }
+
     .content-container {
+        max-width: 768px;
         min-width: 768px;
+        padding: 40px 24px;
+        height: 100%;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
+    }
+
+    .top-banner,
+    .bottom-banner {
+        width: auto;
+        padding: 0px;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .right-align {
+        align-items: flex-end;
+    }
+
+    .content-container > img {
+        width: 100%;
     }
     
     .top-bg-img-box,  
     .bottom-bg-img-box {
+        max-height: 450px;
         left: 0px;
+        overflow: hidden;
     }
-    
+
+    .exist-padding-text-box {
+        padding: 16px 0px 0px 0px;
+    }
+
+    .no-padding-text-box {
+        align-items: center;
+    }
+
+    .header-string,
+    .description-sring {
+        font-size: 1.125rem;
+    }
+
     .key-sring {
-        font-size: 2.5rem;
-        padding: 24px 0px;
+        font-size: 2rem;
+        padding: 8px 0px 16px 0px;
         display: flex;
         flex-direction: row;
     }
+
 
 
 
