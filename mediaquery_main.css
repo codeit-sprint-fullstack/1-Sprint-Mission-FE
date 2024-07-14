@@ -1,6 +1,9 @@
-@media screen and (max-width: 1200px) { 
+@media screen and (min-width: 1200px) { 
+    .headerbox{
+        padding: 0 200px;
+    }
     .article_box{
-        margin: 138px auto;
+        margin: 138px auto;        
     }
     .article_box2{
         margin: 138px auto;
