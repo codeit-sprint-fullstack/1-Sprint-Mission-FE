@@ -55,6 +55,18 @@ button.pill-button {
   align-items: center;
 }
 
+.input-item input.error {
+  border: 1px solid red;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  display: none;
+}
+
+
 .password-toggle-button {
   position: absolute;
   right: 24px;
@@ -91,4 +103,19 @@ button.pill-button {
   color: #3182f6;
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 추가 */
+/* Tablet */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .auth-container {
+    padding: 0 20px; /* auth 컨테이너 패딩 추가 */
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) and (min-width: 375px) {
+  .auth-container {
+    padding: 0 15px; /* auth 컨테이너 패딩 추가 */
+  }
 }
