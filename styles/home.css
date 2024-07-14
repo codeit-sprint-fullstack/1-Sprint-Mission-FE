@@ -80,3 +80,39 @@
   letter-spacing: 0.08em;
   margin-top: 24px;
 }
+
+/* 반응형 디자인을 위한 미디어 쿼리 추가 */
+/* Tablet */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .banner {
+    height: 400px;
+    background-position: center bottom; /* 배너 높이 및 배경 위치 변경 */
+  }
+  
+  .feature {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 0; /* 피처 레이아웃 및 패딩 변경 */
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) and (min-width: 375px) {
+  .banner {
+    height: 300px;
+    background-position: center bottom;
+    background-size: cover; /* 배너 높이 및 배경 크기 변경 */
+  }
+  
+  .feature {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 0; /* 피처 레이아웃 및 패딩 변경 */
+  }
+  
+  .feature img {
+    width: calc(100% - 32px); /* 이미지 크기 변경: 좌우 여백 32px 제외 */
+  }
+}
+
+
