@@ -1,71 +1,43 @@
-@media screen and (min-width: 1200px) {
-    .headerbox{
-        padding: 0 200px;
+@media screen and (max-width: 1200px) { 
+    .article_box{
+        margin: 138px auto;
     }
-    .pandalogo_nav{
-        gap:32px;
-    }
-
-    .article_box, .article_box2 {
-      margin: 10% auto; /* Adjust margins for smaller screens */
-    }
-  
-    .box_img {
-      max-height: 100%; /* Ensure images scale with their container */
-      width: auto;
-      height: auto;
-      max-width: 100%;
+    .article_box2{
+        margin: 138px auto;
     }
 
-    main img{
-        width: auto;
-        height: auto;
-      }
-  }
+}
 
-/* Tablet */
-@media only screen and (min-width: 744px) and (max-width: 1199px) {
+@media only screen and/*(min-width: 744px) and*/ (max-width: 1199px) {
     .headerbox{
         padding: 0 24px;
     }
-    .pandalogo_nav{
-        gap:32px;
-    }
-    article{
-        padding: 40px 24px;
-    }
-    .article_box, .article_box2 {
-        display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+
     .article_box{
-    display: flex;
-    flex-direction: column;
+        flex-direction: column;
+        padding: 40px 24px;
+        margin:0%;
     }
 
     .article_box2{
-    display: flex;
-    flex-direction: column-reverse;
+        flex-direction: column-reverse;
     }
 
     .banner{
-      position: relative;
+        position: relative;
     }
-
+  
     #banner_mungu br{
-        display: none;
-      }
-    
+          display: none;
+    }
+      
     .item-text {
-        margin-right: 0.3em; /* '물건을'과 '거래해보세요' 사이의 한칸 띄움 */
+          margin-right: 0.3em; /* '물건을'과 '거래해보세요' 사이의 한칸 띄움 */
     }
-    
+      
     .button{
-        margin-top:-20px;
+          margin-top:-20px;
     }
-    
     #box_text{
         position: absolute;
         display: flex;
@@ -89,11 +61,6 @@
         background-position: 50% bottom;
         background-size: 50%;
     }
-
-    main img{
-        width: auto;
-        height: auto;
-    }
 }
 
 
@@ -103,70 +70,44 @@
         padding: 0 16px;
     }
 
-    .pandalogo_nav{
-        gap:5px;
+    main{
+        font-size: 12px;
     }
-    .article_box, .article_box2 {
-    flex-direction: column; /* Stack items vertically on smaller screens */
-    align-items: center;
-    justify-content: center;
-    max-width: 400px; 
+    /* 이미지 가득 채우기 */
+    main img{
+        width: calc(100% - 32px);
+        max-width: 100%;
+        height: auto; 
+    }
+
+    .article_box{
+        flex-direction: column;
+        padding: 32px 16px;
+        margin:0%;
     }
 
     .article_box2{
-    flex-direction: column-reverse;
+        flex-direction: column-reverse;
     }
 
-    .banner{
-    position: relative;
+    .box1_mungu1 br{
+        display: none;
+    }
+
+    .box2_mungu1 br{
+        display: none;
+    }
+
+    .item-text {
+        margin-right: 0.3em; /* '상품을' 뒤 한칸 띄움 */
     }
 
     #box_text{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    top:50px;
-    font-size: 12px;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        top:50px;
     }
 
-    .box_img {
-        width: calc(100% - 64px);
-        max-width: 100%;
-        height: auto;
-        margin-left: 32px;
-        margin-right: 32px;
-      }
-
-    .button{
-    margin-top:-20px;
-    }
-
-    #banner_img{
-        background-position: bottom center;
-        background-size: contain;
-    }
-
-    #last_img{
-        background-position: bottom center;
-        background-size: contain;
-    }
-
-    .banner{
-        background-position: 50% bottom;
-        background-size: 50%;
-    }
-
-    /* h2{
-        white-space: nowrap;
-    }
-    h2 br{
-        display: none;
-    } */
-
-    .box1_mungu1,
-    .box2_mungu1{
-      font-size: 16px; /* Example font size */
-      line-height: 1.4; /* Adjust line height if needed */
-    }
 }
