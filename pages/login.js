@@ -1,4 +1,4 @@
-import { input, inputPw, button, buttonType } from '../component/mould.js';
+import { input, inputPw, button, buttonType } from '../component/template.js';
 import * as handler from '../component/inputHandler.js';
 
 const form = document.querySelector('#form');

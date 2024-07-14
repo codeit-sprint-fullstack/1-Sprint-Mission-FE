@@ -280,3 +280,74 @@ div.err {
   background-color: rgba(0, 0, 0, 0.8);
   display: none;
 }
+
+@media screen and (min-width: 375px) and (max-width: 768px) {
+  .logo {
+    width: 198px;
+    height: 66px;
+    margin-top: 24px;
+  }
+
+  form {
+    width: 91.467vw;
+    max-width: 400px;
+    margin-top: 24px;
+  }
+
+  .inputBox label {
+    font-size: 14px;
+  }
+
+  .inputBox input {
+    width: 91.467vw;
+    max-width: 400px;
+  }
+
+  .inputBox.password,
+  .inputBox.userName,
+  .inputBox.rePassword {
+    margin-top: 16px;
+  }
+
+  .btn {
+    width: 91.467vw;
+    max-width: 400px;
+  }
+
+  div.err {
+    width: 91.467vw;
+    max-width: 400px;
+    padding-left: 15px;
+  }
+
+  .snsLogin {
+    width: 91.467vw;
+    max-width: 400px;
+  }
+
+  /* 중복 이메일 모달 */
+
+  .modal {
+    width: 327px;
+    height: 220px;
+  }
+
+  .modalBtn {
+    top: 149px;
+    left: 104px;
+    position: absolute;
+  }
+
+  /* 회원가입 완료 모달 */
+
+  .signupCompleteModal {
+    width: 327px;
+    height: 220px;
+  }
+
+  .signupCompleteBtn {
+    top: 149px;
+    left: 104px;
+    position: absolute;
+  }
+}
