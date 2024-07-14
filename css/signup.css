@@ -17,9 +17,12 @@
   height: 132px;
 } */
 
+/* 1920 * 1324 변경필요 */
+
 .signupBox {
   width: 33.631VW;
-  height: 72.252vh;
+  /* height: 72.252vh; */
+  gap: 24px;
   margin-top: 4.244vh;
   display: flex;
   flex-direction: column;
@@ -27,34 +30,45 @@
 }
 
 .signup {
-  height: 57.018vh;
+  /* height: 57.018vh; */
+  gap: 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .inputSignup {
-  height: 48.313vh;
+  /* height: 48.313vh; */
+  gap: 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .inputSignup div {
-  height: 10.12vh;
+  /* height: 10.12vh; */
+  gap: 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
+.inputSignup span {
+  margin-top : -8px; 
+  color: red; 
+  font-size : 1.5rem; 
+  font-weight : 600;
+}
+
 .inputSignup label {
   font-size: 1.8rem;
   font-weight: 700;
+  color: black;
 }
 
 .inputSignup input {
   height: 2.612vh;
-  border-radius: 1.305px;
+  border-radius: 1.305vmin;
   padding: 1.741vh 1.261vw;
   border: none;
   background-color: #f3f4f6;
@@ -70,7 +84,7 @@
   position: relative;
 }
 
-.inputSignup input.button:focus {
+.inputSignup input.showPwbutton:focus {
   outline: none;
 }
 
@@ -79,14 +93,14 @@
   width: 1.261vw;
   height: 2.612vh;
   top: 5.767vh;
-  right: 0;
+  right: 24px;
   background-image : url('../img/eye_check.png');
   background-repeat: no-repeat;
   background-size:1.261vw 2.612vh ;
   border: none;
 }
 
-.signup_btn {
+#signup_btn {
   height: 6.094vh;
   border-radius: 4.352vmin;
   border: none;
@@ -111,7 +125,7 @@
 }
 
 .gotoEasyLogin {
-  width: 5.307vw;
+  gap : 16px;
   height: 4.57vh;
   display: flex;
   align-items: center;
@@ -119,8 +133,8 @@
 }
 
 .easyLogin img {
-  width: 2.207vw;
-  height: 4.57vh;
+  width: 42px;
+  height: 42px
 }
 
 .gotoLogin {
@@ -169,13 +183,14 @@
   }
   
   .showPwbutton {
+    right: 6.4vw;
     width: 6.400vw;
     height: 2.956vh;
     top: 5.049vh;
     background-size: 6.400vw 2.956vh;
   }
   
-  .signup_btn {
+  #signup_btn {
     height: 6.897vh;
     border-radius: 10.6vmin;
     padding: 1.97vh 33.067vw;
@@ -189,12 +204,6 @@
   }
   
   .gotoEasyLogin {
-    width: 26.933vw;
-    height: 5.172vh;
-  }
-  
-  .easyLogin img {
-    width: 11.2vw;
     height: 5.172vh;
   }
 }
@@ -205,21 +214,23 @@
 @media all and (min-width:768px) and (max-width:1199px){ 
   .signupBox {
     width: 86.022VW;
-    height: 56.487vh;
+    /* height: 56.487vh; */
+    gap : 2.118vh;
     margin-top: 2.118vh;
   }
   
   .signup {
-    height: 44.131vh;
-    row-gap: 2.118vh;
+    /* height: 44.131vh; */
+    gap: 2.118vh;
   }
   
   .inputSignup {
-    row-gap: 1.412vh;
+    gap: 1.412vh;
   }
   
   .inputSignup div {
-    height: 8.208vh;
+    /* height: 8.208vh; */
+    gap: 1.412vh;
   }
   
   .inputSignup input {
@@ -229,13 +240,14 @@
   }
   
   .showPwbutton {
+    right: 3.2258vw;
     width: 3.226vw;
     height: 2.118vh;
     top: 4.678vh;
-    background-size: 3.226vw 2.118vh;
+    background-size: 3vw 2.118vh;
   }
   
-  .signup_btn {
+  #signup_btn {
     height: 4.943vh;
     border-radius: 5.376vmin;
     padding: 1.412vh 16.667vw;
@@ -248,12 +260,6 @@
   }
   
   .gotoEasyLogin {
-    width: 13.575vw;
-    height: 3.707vh;
-  }
-  
-  .easyLogin img {
-    width: 5.645vw;
     height: 3.707vh;
   }
 }

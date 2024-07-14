@@ -148,8 +148,10 @@ main{
 }
 
 .card_de img {
-  width: 28.542vw;
-  height: 48.313vh;
+  /* width: 28.542vw;
+  height: 48.313vh; */
+  width: 588px;
+  height: 444px;
 }
 
 .card .sec {
@@ -342,17 +344,17 @@ footer {
     width: 100%;
     height: 42.129vh;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .right {
-      position: absolute;
-      left: -32vw;
       height: 42.129vh;
-      width: 166.961vw;
+      width: 100%;
       margin: 0;
     }
-
   }
-
+  
   .card {
     width: 100%;
     height: 198.801vh;
@@ -439,12 +441,13 @@ footer {
     width: 100%; 
     height: 40.48vh;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .right {
-      position: absolute;
-      left: -16.267vw;
-      height: 40.48vh;
-      width: 132.8vw;
+      height: 42.129vh;
+      width: 100%;
       margin: 0;
     }
   }
@@ -454,24 +457,20 @@ footer {
     padding: 4.798vh 4.267vw;
   }
 
-  .foot>:nth-child(3) {
+  .foot>:nth-child(1) {
     order: 1;
-  }
-
-  .foot>:nth-child(2) {
-    order: -1;
   }
 
   .foot {
     height: 63px;
     margin: 0;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: wrap;
+    gap: 3.598vh;
   }
 
   .f_left {
     color: #9CA3AF;
-    /* font-size: 1.6rem; */
     font-size: 4.26vmin;
     font-weight: 400;
   }
@@ -498,8 +497,6 @@ footer {
     width: 5.333vw;
     height: 2.999vh;
   }
-
-  /* 1vmin = 3.75px*/
 }
 
 /* 태블릿 */
@@ -572,10 +569,6 @@ footer {
     justify-content: space-between;
   }
 
-  /* .sen p{
-    margin: 2.33px;
-  } */
-
   .itemhome_btn {
     position: absolute;
     margin-top: 80px;
@@ -592,15 +585,15 @@ footer {
     width: 100%;
     height: 43.652vh;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .right {
-      position: absolute;
-      left: -16.4063vw;
       height: 43.652vh;
-      width: 129.6875vw;
+      width: 100%;
       margin: 0;
     }
-
   }
   
   .card {
@@ -627,6 +620,8 @@ footer {
   }
 
   .card_de img {
+    /* width: 696px;
+    height: 524px; */
     width: 696px;
     height: 524px;
     border-radius: 16PX;
@@ -687,12 +682,13 @@ footer {
     width: 100%; 
     height: 52.734vh;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .right {
-      position: absolute;
-      left: -16.4063vw;
       height: 52.734vh;
-      width: 129.6875vw;
+      width: 100%;
       margin: 0;
     }
   }

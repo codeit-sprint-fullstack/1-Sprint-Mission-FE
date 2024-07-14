@@ -32,9 +32,42 @@ body {
   height: 14.365vh;
 }
 
+.dialog_alert {
+  position: relative;
+  width: 540px;
+  height: 250px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.6rem;
+  padding: 0;
+}
+.d_alert {
+  position: absolute;
+  width: 192px;
+  height: 19px;
+  font-weight: 500;
+  color: #1F2937;
+  top:108px;
+  left: 174px;
+}
+
+.confirm {
+  position: absolute;
+  background-color: #3692FF;
+  border: none;
+  width: 120px;
+  height: 48px;
+  top: 174px;
+  left: 392px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 600;
+} 
+
 .loginBox {
   width: 33.6311vw;
-  height: 46.79vh;
+  /* height: 46.79vh; */
+  gap: 2.612vh;
   margin-top: 4.244vh;
   display: flex;
   flex-direction: column;
@@ -42,29 +75,40 @@ body {
 }
 
 .login {
-  height: 31.556vh;
+  /* height: 31.556vh; */
+  gap: 2.612vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .inputLogin {
-  height: 22.851vh;
+  /* height: 22.851vh; */
+  gap: 2.612vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .inputLogin div {
-  height: 10.12vh;
+  /* height: 10.12vh; */
+  gap: 1.741vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
+.inputLogin span {
+  margin-top : -8px; 
+  color: red; 
+  font-size : 1.5rem; 
+  font-weight : 600;
+}
+
 .inputLogin label {
   font-size: 1.8rem;
   font-weight: 700;
+  color: black;
 }
 
 .inputLogin input {
@@ -85,25 +129,24 @@ body {
   position: relative;
 }
 
-.inputLogin input.button:focus {
+.inputLogin input.showPwbutton:focus {
   outline: none;
 }
 
 .showPwbutton {
   position: absolute;
-  width: 1.2612vw;
-  height: 2.612vh;
-  top: 5.767vh;
-  right: 0;
-  /* top: 53px;
-  right: 24px; */
+  width: 24px;
+  height: 24px;
+  top: 50%;
+  right: 24px;
+  /* top: 53px;*/
   background-image : url('../img/eye_check.png');
   background-repeat: no-repeat;
-  background-size: 1.2612vw 2.612vh;
+  background-size: 24px;
   border: none;
 }
 
-.login_btn {
+#login_btn {
   height: 6.094vh;
   /* border-radius: 40px; */
   border-radius: 4.35vmin;
@@ -129,7 +172,7 @@ body {
 }
 
 .gotoEasyLogin {
-  width: 5.307vw;
+  gap : 16px;
   height: 4.57vh;
   display: flex;
   align-items: center;
@@ -137,8 +180,10 @@ body {
 }
 
 .easyLogin img {
-  width: 2.207vw;
-  height: 4.57vh;
+  /* width: 2.207vw;
+  height: 4.57vh; */
+  width: 42px;
+  height: 42px;
 }
 
 .gotoSingup {
@@ -161,26 +206,32 @@ body {
   }
   
   .logo img {
+    max-width: 400px;
     width: 52.8000vw;
     height: 8.128vh;
   }
   
   .loginBox {
+    max-width: 400px;
     width: 91.7333vw;
-    height: 48.153vh;
+    /* height: 48.153vh; */
+    gap: 3.598vh;
     margin-top: 2.956vh;
   }
   
   .login {
-    height: 30.788vh;
+    /* height: 30.788vh; */
+    gap: 3.598vh;
   }
   
   .inputLogin {
-    height: 21.921vh;
+    /* height: 21.921vh; */
+    gap: 3.598vh;
   }
   
   .inputLogin div {
-    height: 9.975vh;
+    /* height: 9.975vh; */
+    gap: 2.399vh;
   }
   
   .inputLogin label {
@@ -199,16 +250,14 @@ body {
   }
   
   .showPwbutton {
-    width: 6.4vw;
-    height: 2.956vh;
-    top: 5.049vh;
-    background-size: 6.4vw 2.956vh;
+    right: 6.4vw;
   }
   
-  .login_btn {
+  #login_btn {
+    max-width: 400px;
     height: 6.897vh;
     border-radius: 10.6667vmin;
-    padding: 1.97vh 33.0667vw;
+    /* padding: 1.97vh 33.0667vw; */
   }
   
   .easyLogin {
@@ -218,12 +267,6 @@ body {
   }
   
   .gotoEasyLogin {
-    width: 26.933vw;
-    height: 5.172vh;
-  }
-  
-  .easyLogin img {
-    width: 11.2vw;
     height: 5.172vh;
   }
 
@@ -244,20 +287,24 @@ body {
   
   .loginBox {
     width: 86.022vw;
-    height: 37.952vh;
+    /* height: 37.952vh; */
+    gap : 2.118vh;
     margin-top: 3.53vh;
   }
   
   .login {
-    height: 25.596vh;
+    /* height: 25.596vh; */
+    gap : 2.118vh
   }
   
   .inputLogin {
-    height: 18.535vh;
+    /* height: 18.535vh; */
+    gap : 2.118vh
   }
   
   .inputLogin div {
-    height: 8.208vh;
+    /* height: 8.208vh; */
+    gap: 1.412vh;
   }
   
   .inputLogin input {
@@ -271,13 +318,10 @@ body {
   }
   
   .showPwbutton {
-    width: 3.226vw;
-    height: 2.118vh;
-    top: 4.678vh;
-    background-size: 3.226vw 2.118vh;
+    right: 3.2258vw;
   }
   
-  .login_btn {
+  #login_btn {
     height: 4.943vh;
     border-radius: 5.376vmin;
     padding: 1.412vh 16.667vw;
@@ -290,13 +334,8 @@ body {
   }
   
   .gotoEasyLogin {
-    width:13.575vw;
     height: 3.707vh;
   }
-  
-  .easyLogin img {
-    width: 5.645vw;
-    height: 3.707vh;
-  }
+
 }
 
