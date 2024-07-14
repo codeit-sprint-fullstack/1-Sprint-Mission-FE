@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const loginForm = document.querySelector('#login-form');
   const signupForm = document.querySelector('#signup-form');
 
-  const USER_DATA = [ // 주신 사용자 데이터 // 데이터베이스 역할을 할 사용자 데이터
+  const USER_DATA = [ 
     { email: 'codeit1@codeit.com', password: 'codeit101!' },
     { email: 'codeit2@codeit.com', password: 'codeit202!' },
     { email: 'codeit3@codeit.com', password: 'codeit303!' },
@@ -13,12 +13,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (loginForm) {
     loginForm.addEventListener('submit', function (event) {
-      event.preventDefault(); // 기본 폼 제출 동작 방지
+      event.preventDefault(); 
 
       const email = loginForm.querySelector('#email').value;
       const password = loginForm.querySelector('#password').value;
 
-      // 사용자 데이터베이스에서 이메일을 찾음
+      
       const user = USER_DATA.find(user => user.email === email);
 
       if (!user) {
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
       } else if (user.password !== password) {
         alert('비밀번호가 일치하지 않습니다.');
       } else {
-        window.location.href = '/items'; // 비밀번호가 일치하면 /items로 이동
+        window.location.href = '/items'; 
       }
     });
   }
