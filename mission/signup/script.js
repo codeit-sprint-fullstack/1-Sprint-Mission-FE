@@ -1,40 +1,96 @@
-import {user_email, user_name, user_password, user_password_check, signup_button, modal_button, togglePassword, togglePassword_check} from "../Lib/signup_module.js"
-import {error_email, error_password, error_password_check} from "../Lib/signup_module.js"
-import {error_keydown_email, error_keydown_password, error_keydown_password_check} from "../Lib/signup_module.js"
-import {focus_doing, error_name, error_keydown_name, activat, signup, modal_close, toggle_icon, toggle_icon_check} from "../Lib/signup_module.js"
+import * as snp from '../Lib/public.js'
+
+const user_email = document.querySelector('#signup_email');
+const user_name = document.querySelector('#user_name');
+const user_password = document.querySelector('#signup_password');
+const togglePassword = document.querySelector(".password-toggle-icon i");
+const user_password_check = document.querySelector('#signup_password_check');
+const togglePassword_check = document.querySelector(".password-toggle-icon_check i");
+const signup_button = document.querySelector('.signup_box');
+const modal_button = document.querySelector('.modal_button');
+
 
 // password 토글 
-togglePassword.addEventListener('click', toggle_icon);
-togglePassword_check.addEventListener('click', toggle_icon_check);
+togglePassword.addEventListener('click', () => {
+    snp.toggle_icon(user_password, togglePassword);
+});
+togglePassword_check.addEventListener('click', () => {
+    snp.toggle_icon_check(user_password_check, togglePassword_check);
+});
 
 // error 메세지
-user_email.addEventListener('focusout', error_email);
-user_email.addEventListener('keyup', error_keydown_email);
-user_name.addEventListener('focusout', error_name);
-user_name.addEventListener('keyup', error_keydown_name);
-user_password.addEventListener('focusout', error_password);
-user_password.addEventListener('keyup', error_keydown_password);
-user_password_check.addEventListener('focusout', error_password_check);
-user_password_check.addEventListener('keyup', error_keydown_password_check);
+user_email.addEventListener('focusout', () => 
+    {snp.error_email(user_email);
+});
+user_email.addEventListener('keyup', () => {
+    snp.error_keydown_email(user_email);
+});
+user_name.addEventListener('focusout', () => {
+    snp.error_name(user_name);
+});
+user_name.addEventListener('keyup', () => {
+    snp.error_keydown_name(user_name);
+});
+user_password.addEventListener('focusout', () => {
+    snp.error_password(user_password);
+});
+user_password.addEventListener('keyup', () => {
+    snp.error_keydown_password(user_password);
+});
+user_password_check.addEventListener('focusout', () => {
+    snp.error_password_check(user_password_check, user_password);
+});
+user_password_check.addEventListener('keyup', () => {
+    snp.error_keydown_password_check(user_password_check, user_password);
+});
 
 // enter로 focus 이동
-user_email.addEventListener('keyup', focus_doing);
-user_name.addEventListener('keyup', focus_doing);
-user_password.addEventListener('keyup', focus_doing);
-user_password_check.addEventListener('keyup', focus_doing);
+user_email.addEventListener('keyup', (e) => {
+    snp.signup_focus_doing(e, user_email, user_name, user_password, user_password_check, signup_button);
+});
+user_name.addEventListener('keyup', (e) => {
+    snp.signup_focus_doing(e, user_email, user_name, user_password, user_password_check, signup_button);
+});
+user_password.addEventListener('keyup', (e) => {
+    snp.signup_focus_doing(e, user_email, user_name, user_password, user_password_check, signup_button);
+});
+user_password_check.addEventListener('keyup', (e) => {
+    snp.signup_focus_doing(e, user_email, user_name, user_password, user_password_check, signup_button);
+});
 
-// 로그인 버튼 활성화
-user_email.addEventListener('focusout', activat);
-user_email.addEventListener('keyup', activat);
-user_name.addEventListener('focusout', activat);
-user_name.addEventListener('keyup', activat);
-user_password.addEventListener('focusout', activat);
-user_password.addEventListener('keyup', activat);
-user_password_check.addEventListener('focusout', activat);
-user_password_check.addEventListener('keyup', activat);
+// 회원가입 버튼 활성화
+const [box, box_activate, box_no_activate] = ['signup_box', 'signup_box_activate', 'signup_box_no_activate'];
 
-// 로그인
-signup_button.addEventListener('click', signup);
+user_email.addEventListener('focusout', () => 
+    {snp.signup_activat(box, box_activate, box_no_activate, user_email, user_name, user_password, user_password_check);
+});
+user_email.addEventListener('keyup', () => 
+    {snp.signup_activat(box, box_activate, box_no_activate, user_email, user_name, user_password, user_password_check);
+});
+user_name.addEventListener('focusout', () => 
+    {snp.signup_activat(box, box_activate, box_no_activate, user_email, user_name, user_password, user_password_check);
+});
+user_name.addEventListener('keyup', () => 
+    {snp.signup_activat(box, box_activate, box_no_activate, user_email, user_name, user_password, user_password_check);
+});
+user_password.addEventListener('focusout', () => 
+    {snp.signup_activat(box, box_activate, box_no_activate, user_email, user_name, user_password, user_password_check);
+});
+user_password.addEventListener('keyup', () => 
+    {snp.signup_activat(box, box_activate, box_no_activate, user_email, user_name, user_password, user_password_check);
+});
+user_password_check.addEventListener('focusout', () => 
+    {snp.signup_activat(box, box_activate, box_no_activate, user_email, user_name, user_password, user_password_check);
+});
+user_password_check.addEventListener('keyup', () => 
+    {snp.signup_activat(box, box_activate, box_no_activate, user_email, user_name, user_password, user_password_check);
+});
+
+// 회원가입
+signup_button.addEventListener('click', () => {
+    snp.signup(user_email, user_password, signup_button);
+});
 
 // 모달창 닫기
-modal_button.addEventListener('click', modal_close);
+modal_button.addEventListener('click', snp.modal_close);
+
