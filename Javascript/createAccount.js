@@ -4,8 +4,8 @@ import USER_DATA from "./USER_DATA.mjs";
 
    
 /* 모달로 에러 메시지 구현 */
-var modal = document.getElementById("myModal");
-var confirmBtn = document.getElementById("confirm"); // 확인 버튼
+let modal = document.getElementById("myModal");
+let confirmBtn = document.getElementById("confirm"); // 확인 버튼
 
 confirmBtn.onclick = function() {
   modal.style.display = "none";
