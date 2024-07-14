@@ -1,15 +1,6 @@
 
-   // import USER_DATA from "/javascript/USER_DATA";
-   
-   /* 이메일/비밀번호 데이터 베이스 */
-   const USER_DATA = [
-    { email: 'codeit1@codeit.com', password: "codeit101!" },
-    { email: 'codeit2@codeit.com', password: "codeit202!" },
-    { email: 'codeit3@codeit.com', password: "codeit303!" },
-    { email: 'codeit4@codeit.com', password: "codeit404!" },
-    { email: 'codeit5@codeit.com', password: "codeit505!" },
-    { email: 'codeit6@codeit.com', password: "codeit606!" },
-    ];
+    import { validateEmail,validatePassword,validatename } from "./vaildate_function.mjs";
+    import USER_DATA from "./USER_DATA.mjs";
 
     /* 모달로 에러 메시지 구현 */
     var modal = document.getElementById("myModal");
@@ -98,17 +89,6 @@
           document.getElementById('passworderror').hidden = true;
       }
     });
-
-    /* input에 유효한 값 입력시, 로그인 버튼 활성화 */
-    function validateEmail(email){ // 입력값 변경 시, 이메일 유효성 검사 수행 
-      const emailRegex = /^\S+@\S+\.\S+$/;
-      return emailRegex.test(email);
-    }
-
-    function validatePassword(password) { // 입력값 변경 시, 비밀번호 유효성 검사 수행 
-      const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])/;
-      return passwordRegex.test(password);
-    }
 
     function validateForm() {
       const email = document.getElementById('email');
