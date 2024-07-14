@@ -53,6 +53,7 @@
     />
 
     <!-- Google tag (gtag.js) -->
+    <script src="/env.js"></script>
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-WC2LGS3PNS"
@@ -64,10 +65,11 @@
       }
       gtag('js', new Date());
 
-      gtag('config', 'G-WC2LGS3PNS');
+      gtag('config', window.env.GA_TAG_ID);
     </script>
 
     <title>로그인</title>
+
     <link rel="icon" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/style/auth.css" />
     <link
@@ -129,6 +131,8 @@
       </div>
       <span>판다마켓이 처음이신가요? <a href="/signup">회원가입</a></span>
     </main>
+
+    <!-- Modal, mission 3 -->
     <div id="overlay" class="modal-hidden">
       <div id="modal">
         <div class="modal-content">

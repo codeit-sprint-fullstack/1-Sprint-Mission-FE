@@ -14,6 +14,8 @@
     />
     <meta name="author" content="임송이" />
 
+    <!-- mission 3 심화요구사항 open graph tags -->
+
     <!-- open graph  -->
     <!-- common meta tags-->
     <meta property="og:title" content="일상에서 모든 물건을 거래해보세요." />
@@ -53,6 +55,7 @@
     />
 
     <!-- Google tag (gtag.js) -->
+    <script src="/env.js"></script>
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-WC2LGS3PNS"
@@ -64,7 +67,7 @@
       }
       gtag('js', new Date());
 
-      gtag('config', 'G-WC2LGS3PNS');
+      gtag('config', window.env.GA_TAG_ID);
     </script>
 
     <title>판다마켓</title>

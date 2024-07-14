@@ -1,3 +1,5 @@
+//mission 3
+
 import { eyeIconToggle } from './modules/eyeIcon.js';
 import { form, modal, modalBtn } from './modules/var.js';
 // import { USER_DATA } from './modules/userData.js';
@@ -32,7 +34,6 @@ form.querySelectorAll('input').forEach((input) => {
 });
 
 buttonStatus();
-
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();

@@ -1,3 +1,5 @@
+//mission 3
+
 const form = document.querySelector('form');
 const emailField = form.querySelector('.email-field');
 const emailInput = emailField.querySelector('#user-email');

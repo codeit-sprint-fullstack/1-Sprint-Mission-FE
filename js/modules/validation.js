@@ -1,3 +1,5 @@
+// mission 3
+
 import {
   emailInput,
   form,
@@ -54,6 +56,14 @@ function emptyInput(e) {
     return true;
   }
 }
+
+// 이벤트등록을 forEach로 하면서, function에서 e.target으로 인풋을 잡았는데요.
+// 저는 이게 코드를 덜 쓴다고 생각해서 했는데, 오히려 모든 functoin들이 이어지는?
+// 의존하는 것 같이 되는것 같아서..
+// 차라리 그냥 쿼리로 인풋 요소잡아서 하는게 더 효율적이였을까요?
+// 원래는 기능을 한번에 묶어서 validation 했어서 e.target으로 인풋 잡아도 괜찮았는데,
+// 나누니까 오히려 호출할때 꼭 e를 argument는 받아와야지만 기능하는 function들이 된거 같아서요.
+// (제가 어렴풋이만 아니까 설명이 잘안되네욤;;)
 
 //validate login format when value is not empty
 function logInFormat(e) {
