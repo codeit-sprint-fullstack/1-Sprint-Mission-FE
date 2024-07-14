@@ -1,6 +1,7 @@
 /* 회원가입 페이지 */
 import { validateEmail,validatePassword,validatename } from "./vaildate_function.mjs";
 import USER_DATA from "./USER_DATA.mjs";
+import showModal from "./showModal.mjs";
    
 /* 모달로 에러 메시지 구현 */
 let modal = document.getElementById("myModal");
@@ -14,11 +15,6 @@ window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none"; // 화면표시 안됨
   }
-}
-
-function showModal(message) {
-    document.getElementById('message').innerText = message;
-    modal.style.display = "flex"; // 모달 창 표시
 }
 
 /* 데이터베이스에 있는 이메일/비밀번호 인지 확인 */
