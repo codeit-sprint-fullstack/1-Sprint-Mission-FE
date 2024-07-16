@@ -1,10 +1,10 @@
-  import * as valid from "./validation_signup.js";
-  import { USER_DATA } from "./data.js";
+  import * as valid from "/script/validation_signup.js";
+  import { USER_DATA } from "/script/data.js";
 
   document.addEventListener("DOMContentLoaded", () => {
     const emailInput = document.getElementById("email");
     const nicknameInput = document.getElementById("nickname");
-    const passwordInput = document.getElementById("nassword");
+    const passwordInput = document.getElementById("password");
     const passwordConInput = document.getElementById("password_con");
     const loginButton = document.querySelector(".login_button");
     const modal = document.getElementById("customModal");
@@ -104,9 +104,9 @@
       passwordInput.setAttribute("type", type);
 
       if (type === "password") {
-          toggleImage.src = "../TheEye.png";
+          toggleImage.src = "/images/TheEye.png";
       } else {
-          toggleImage.src = "../TheEyeOpen.png";
+          toggleImage.src = "/images/TheEyeOpen.png";
       }
   }
 
@@ -122,8 +122,8 @@
       passwordInputCon.setAttribute("type", type);
 
       if (type === "password") {
-          toggleImageCon.src = "../TheEye.png";
+          toggleImageCon.src = "/images/TheEye.png";
       } else {
-          toggleImageCon.src = "../TheEyeOpen.png";
+          toggleImageCon.src = "/images/TheEyeOpen.png";
       }
   }

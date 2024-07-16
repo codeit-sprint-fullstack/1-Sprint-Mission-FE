@@ -1,9 +1,9 @@
-  import { USER_DATA } from "./data.js";
+  import { USER_DATA } from "/script/data.js";
 
   document.getElementById("email").addEventListener("input", ValidMail);
-  document.getElementById("eassword").addEventListener("input", ValidPassword);
+  document.getElementById("password").addEventListener("input", ValidPassword);
   document
-    .getElementById("Password_con")
+    .getElementById("password_con")
     .addEventListener("input", ValidPasswordConfirm);
   document
     .querySelector(".login_button")
@@ -67,10 +67,10 @@
     const passwordConInput = document.getElementById("password_con");
     const passwordConErrorMessage =
       passwordConInput.parentNode.querySelector("span");
-    if (!passwordConErrorMessage === passwordInput) {
-      passwordConErrorMessage =
+    if (!passwordConInput === passwordInput) {
+      passwordConInput =
         createErrorMessage("비밀번호가 일치하지 않습니다");
-      passwordConInput.parentNode.appendChild(passwordErrorMessage);
+      passwordConInput.parentNode.appendChild(passwordConErrorMessage);
     } else if (passwordConInput.value.trim() === "") {
       passwordConErrorMessage.style.display = "none";
       passwordConInput.style.border = "none";
@@ -87,8 +87,8 @@
 
   export function InputValid() {
     const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("eassword");
-    const passwordConInput = document.getElementById("eassword_con");
+    const passwordInput = document.getElementById("password");
+    const passwordConInput = document.getElementById("password_con");
     const nicknameInput = document.getElementById("nickname");
     const loginButton = document.querySelector(".login_button");
 

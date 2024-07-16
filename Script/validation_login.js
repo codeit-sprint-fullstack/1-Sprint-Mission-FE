@@ -1,4 +1,4 @@
-  import { USER_DATA } from "./data.js";
+  import { USER_DATA } from "/script/data.js";
 
     document.getElementById("email").addEventListener("input", ValidMail);
     document.getElementById("password").addEventListener("input", ValidPassword);
