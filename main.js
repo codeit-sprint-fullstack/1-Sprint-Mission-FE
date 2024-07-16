@@ -55,4 +55,4 @@ const newProduct = {
 //patchArticle(13, newArticle);
 
 //게시글 삭제
-//deleteArticle(17);
+//deleteArticle(56);
