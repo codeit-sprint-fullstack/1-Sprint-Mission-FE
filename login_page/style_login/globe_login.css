@@ -1,5 +1,6 @@
 * {
-    font-family: "Pretendard", sans-serif;
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
 
@@ -12,6 +13,8 @@
 }
 
 body {
+    font-size: 16px;
+    font-family: "Pretendard", sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,18 +22,48 @@ body {
     color: #1F2937;
 }
 
+button {
+    font-size: 1.25rem;
+    width: 100%;
+    padding: 16px 124px; 
+    border-radius: 40px;
+    background-color: var(--keycolor-gray);
+    font-weight: 600;
+    line-height: 24px;
+    color: white;
+    border: none;
+}
+
 header {
     padding-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 640px;
+}
 
+header > a > img {
+    max-width: 100%;
 }
 
 main {
     width: 100%;
-    max-width: 640px;
+    max-width: 640px; 
+}
+
+@media (min-width: 375px) and (max-width: 767px) {
+    main {
+        padding: 0px 16px;
+        max-width: 400px;
+    }
+    header {
+        padding: 24px 0px;
+        max-width: 200px;
+    }
 }
 
 footer {
-    font-size: 15px;
+    font-size: 0.9rem;
     line-height: 18px;
     font-weight: 500;
     padding: 24px 0px;
@@ -38,25 +71,34 @@ footer {
 }
 
 label {
+    font-size: 1.125rem;
+    margin-bottom: 16px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: 18px;
     font-weight: 700;
     line-height: 21px;
 }
 
-button {
+
+input {
+    font-size: 1rem;
     width: 100%;
-    margin: 24px 0px;
-    padding: 16px 124px; 
-    border-radius: 40px;
-    background-color: var(--keycolor-gray);
-    font-size: 20px;
-    font-weight: 600;
+    padding: 16px 24px;
+    border-radius: 12px;
+    background-color: var(--keycolor-white-gray);
+    font-weight: 400;
     line-height: 24px;
-    color: white;
-    border: none;
+    border: 1px solid;
+    border-color: #ffffff;
+}
+
+input::placeholder {
+    color: var(--keycolor-gray);
+}
+
+input:focus {
+    outline-color: var(--keycolor-blue);
 }
 
 .password-box {
@@ -70,31 +112,46 @@ button {
     right: 15px;
 }
 
-input::placeholder {
-    color: var(--keycolor-gray);
-}
-
-input:focus {
-    outline-color: var(--keycolor-blue);
-}
-
 .password-box > input {
     padding-right: 50px;
 }
 
-.button-enable-login {
+.enter-box {
     width: 100%;
-    margin: 24px 0px;
-    padding: 16px 124px; 
-    border-radius: 40px;
-    background-color: var(--keycolor-gray);
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 24px;
-    color: white;
-    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 12px 0px;
+}
+.toggle-erorr-message {
+    padding: 5px 25px;
+    padding-left: 25px;
+    padding-top: 5px;
+    color: var(--keycolor-red);
 }
 
-.input-error-outline {
-    outline-color: var(--keycolor-red);
+#easy-social-login {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 23px;
+    margin-top: 24px;
+    border-radius: 8px;
+    background-color: var(--keycolor-bright-blue);
+    font-weight: 500;
+    line-height: 24px;
+}
+
+#social-icon {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#social-icon > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -3,3 +3,22 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+button {
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+  }
+
+  body {
+    color: #374151;
+    word-break: keep-all;
+    font-family: "Pretendard", sans-serif;
+  }
+
+  a {
+    text-decoration: none;
+    color: #374151;
+  }
