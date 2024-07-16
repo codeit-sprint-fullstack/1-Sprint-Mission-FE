@@ -48,3 +48,11 @@ export async function patchArticle(articleId, updatedContent){
       .then(checkStatus)
       .catch(error => console.error(error));
   }
+
+export async function deleteArticle(articleId){
+const response = await fetch(`https://sprint-mission-api.vercel.app/articles/${articleId}`, {
+    method: 'DELETE',
+    })
+    .then(checkStatus)
+    .catch(error => console.error(error));
+}
