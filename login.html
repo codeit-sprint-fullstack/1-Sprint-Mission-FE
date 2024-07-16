@@ -1,99 +1,86 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DH5XSKZSK4"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'G-DH5XSKZSK4');
-    </script>
-    <link rel="stylesheet" href="./css/login.css"/>
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-    <link rel="icon" href="./img/face.png">
-    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8"/>
-    <title>판다마켓</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-      // Check javascript has loaded
-      $(document).ready(function(){
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DH5XSKZSK4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-DH5XSKZSK4');
+  </script>
+  <link rel="stylesheet" href="./css/login.css" />
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="icon" href="./img/face.png">
+  <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <meta property="'og:title" content="판다마켓"/>
+  <meta property="og:description" content="일상에서 모든 물건을 거래해보세요"/>
+  <meta property="og:url" content="https://codeit-sprint-git.netlify.app"/>
+  <meta property="og:image" content="./img/face.png"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <title>판다마켓</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
 
-      // Click event of the showPassword button
-      $('#showPassword').on('click', function(){
-
-        // Get the password field
-        var passwordField = $('#pw');
-
-        // Get the current type of the password field will be password or text
-        var passwordFieldType = passwordField.attr('type');
-
-        // Check to see if the type is a password field
-        if(passwordFieldType == 'password')
-        {
-            // Change the password field to text
-            passwordField.attr('type', 'text');
-
-            // Change the image on the show password button to Hide
-            $("#showPassword").css({"background-image":"url('./img/eye_checkX.png')"});
-
-          
-        } else {
-            // If the password field type is not a password field then set it to password
-            passwordField.attr('type', 'password');
-
-            // Change the image of the show password button to Show
-            $("#showPassword").css({"background-image":"url('./img/eye_check.png')"});
-        }
-      });
-      });
-    </script>
-  </head>
-  <body>
-    <header class="header">
-      <div class="navi">
-        <a href="./" class="logo">
-          <img src="./img/logo.png">
-        </a>
-      </div>
-    </header>
-    <main>
-      <form>
-        <div class="loginBox">
-          <div class="login">
-            <div class="inputLogin">
-              <div>
-                <label for="email">이메일</label>
-                <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요"/>
-              </div>
-              <div class="pw_box">
-                <label for="pw">비밀번호</label>
-                <input type="password" id="pw" name="pw" placeholder="비밀번호를 입력해주세요"/>
-                <input type="button" id="showPassword" class="showPwbutton" />
-              </div>
+<body>
+  <dialog id="dialog_pw" class="dialog_alert">
+    <form method="dialog">
+      <p class="d_alert"> 비밀번호가 일치하지 않습니다. </p>
+      <button class="confirm">확인</button>
+    </form>
+  </dialog>
+  <dialog id="dialog_user" class="dialog_alert">
+    <form method="dialog">
+      <p class="d_alert"> 회원정보가 일치하지 않습니다. </p>
+      <button class="confirm">확인</button>
+    </form>
+  </dialog>
+  <header class="header">
+    <div class="navi">
+      <a href="./" class="logo">
+        <img src="./img/logo.png">
+      </a>
+    </div>
+  </header>
+  <main>
+    <form>
+      <div class="loginBox">
+        <div class="login">
+          <div class="inputLogin">
+            <div class="email_box">
+              <label for="email">이메일</label>
+              <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" field="이메일" />
             </div>
-            <button class="login_btn">
-              로그인
-            </button>
-          </div>
-          <div class="easyLogin">
-            <div>
-              간편 로그인하기
-            </div>
-            <div class="gotoEasyLogin">
-              <a href="https://www.google.com/%E2%80%9D" target="_blank"><img src="./img/ic_google.png"> </a>
-              <a href="https://www.kakaocorp.com/page/%E2%80%9D" target="_blank"><img src="./img/ic_kakao.png"> </a>
+            <div class="pw_box">
+              <label for="pw">비밀번호</label>
+              <input type="password" id="pw" name="pw" autoComplete="off" placeholder="비밀번호를 입력해주세요" field="비밀번호" />
+              <button type="button" id="showPassword" class="showPwbutton"></button>
             </div>
           </div>
-          <div class="gotoSingup">
-            판다마켓이 처음이신가요? 
-            <a href="./signup.html">회원가입</a>
+          <button type="button" id="login_btn" disabled>
+            로그인
+          </button>
+        </div>
+        <div class="easyLogin">
+          <div>
+            간편 로그인하기
+          </div>
+          <div class="gotoEasyLogin">
+            <a href="https://www.google.com/%E2%80%9D" target="_blank"><img src="./img/ic_google.png"> </a>
+            <a href="https://www.kakaocorp.com/page/%E2%80%9D" target="_blank"><img src="./img/ic_kakao.png"> </a>
           </div>
         </div>
-      </form>
-    </main>
-  </body>
+        <div class="gotoSingup">
+          판다마켓이 처음이신가요?
+          <a href="./signup.html">회원가입</a>
+        </div>
+      </div>
+    </form>
+  </main>
+  <script type="module" src="./js/login.js"></script>
+</body>
+
 </html>
