@@ -17,7 +17,10 @@ export function getArticleList(page = 1, pageSize = 100, keyword) {
             }
             return response.json();
         })
-        .then(data => console.log(data))
+        .then(data => {
+            console.log('성공');
+            console.log(data);
+        })
         .catch(error => console.error(`GET Error fetching article list:`, error));
 }
 
@@ -30,8 +33,11 @@ export function getArticle(id) {
             }
             return response.json();
         })
-        .then(data => console.log(data))
-        .catch(error => console.error(`GET Signle Error fetching article:`, error));
+        .then(data => {
+            console.log('성공');
+            console.log(data);
+        })
+        .catch(() => console.error('게시글을 찾을 수 없음'));
 }
 
 //post a new article
@@ -53,8 +59,11 @@ export function postArticle(title, content, image) {
             }
             return response.json();
         })
-        .then(data => console.log(data))
-        .catch(error=> console.error('Error posting article:', error));
+        .then(data => {
+            console.log('성공');
+            console.log(data);
+        })
+        .catch(() => console.error('유효성 검사 오류'));
 }
 
 // // Patch an article
@@ -73,8 +82,11 @@ export function patchArticle(id, updates) {
             }
             return response.json();
         })
-        .then(data => console.log(data))
-        .catch(error => console.error('Error updating article:', error));
+        .then(data => {
+            console.log('성공');
+            console.log(data);
+        })
+        .catch(() => console.error('게시글을 찾을 수 없음'));
 }
 
 //Delete an article
@@ -86,7 +98,10 @@ export function deleteArticle(id) {
             if (!response.ok) {
                 throw new Error(`DELETE Error: ${response.statusText}`);
             }
-            then(data => console.log(data))
         })
-        .catch(error => console.error('Error deleting article:', error));
+        .then(data => {
+            console.log('성공적으로 삭제됨');
+            console.log(data);
+        })
+        .catch(() => console.error('게시글을 찾을 수 없음'));
 }

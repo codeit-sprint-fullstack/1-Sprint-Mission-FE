@@ -8,6 +8,7 @@ export async function getProductList(page=1, pageSize=100, keyword) {
         const response = await axios.get(baseUrl, {
             params: { page, pageSize, keyword }
         });
+        console.log('성공');
         console.log(response.data);
     }catch(error) {
         console.error('Get ProductList Error',error);
@@ -18,9 +19,10 @@ export async function getProductList(page=1, pageSize=100, keyword) {
 export async function getProduct(id) {
     try {
         const response = await axios.get(`${baseUrl}/${id}`);
+        console.log('성공');
         console.log(response.data);
     }catch(error) {
-        console.error('Get Product Error', error);
+        console.error('상품을 찾을 수 없음');
     }
 }
 
@@ -35,8 +37,9 @@ export async function postProduct(name,  description, price, tags, images) {
             images
         });
         console.log(response.data);
+        console.log('성공');
     }catch(error) {
-        console.error('Post Product Error', error);
+        console.error('유효성 검사 오류');
     }
 }
 
@@ -44,9 +47,10 @@ export async function postProduct(name,  description, price, tags, images) {
 export async function patchProduct(id, updates) {
     try {
         const response = await axios.patch(`${baseUrl}/${id}`, updates);
+        console.log('성공');
         console.log(response.data);
     } catch (error) {
-        console.error('Error updating product:', error);
+        console.error('상품을 찾을 수 없음');
     }
 }
 
@@ -54,8 +58,9 @@ export async function patchProduct(id, updates) {
 export async function deleteProduct(id) {
     try {
         const response = await axios.delete(`${baseUrl}/${id}`);
+        console.log('성공적으로 삭제됨');
         console.log(response.data);
     } catch (error) {
-        console.error('Error deleting product:', error);
+        console.error('상품을 찾을 수 없음');
     }
 }
