@@ -16,3 +16,10 @@ export async function checkStatus(res) {// 요청 성공적으로 처리했을 �
         .then((checkStatus))
         .catch(error => console.error(error));
 }
+
+export async function getArticle(articleId){
+    const response = await fetch(`https://sprint-mission-api.vercel.app/articles/${articleId}`)
+    .then(checkStatus)
+    .catch(error => console.error(error)
+  );
+}
