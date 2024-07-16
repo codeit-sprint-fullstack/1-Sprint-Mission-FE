@@ -5,56 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>판다마켓</title>
     <link rel="stylesheet" href="signup.css" />
-    <script src="inputFunction.js" defer></script>
+    <script src="signup.js" type="module" defer></script>
   </head>
   <body>
     <div class="mainContainer">
       <a href="/"><div class="logo"></div></a>
-      <form action="" id="form">
-        <div class="inputBox email">
-          <label for="email">이메일</label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            placeholder="이메일을 입력해주세요."
-            class="update"
-          />
-        </div>
-        <div class="error">잘못된 이메일 형식입니다.</div>
-        <div class="inputBox userName">
-          <label for="userName">닉네임</label>
-          <input
-            type="text"
-            id="userName"
-            name="userName"
-            placeholder="닉네임을 입력해주세요."
-          />
-        </div>
-        <div class="inputBox password">
-          <label for="password">비밀번호</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="비밀번호를 입력해주세요."
-          />
-          <img id="eye" src="/img/eye.png" style="display: none" />
-        </div>
-        <div class="error">비밀번호를 8자 이상 입력해주세요.</div>
-        <div class="inputBox password">
-          <label for="rePassword">비밀번호 확인</label>
-          <input
-            type="password"
-            id="rePassword"
-            name="rePassword"
-            placeholder="비밀번호를 다시 한 번 입력해주세요."
-          />
-          <img id="reEye" src="/img/eye.png" />
-        </div>
-        <div class="error">비밀번호가 일치하지 않습니다.</div>
-        <button class="loginBtn" onclick="eyeEvent">회원가입</button>
-      </form>
+      <form id="form" onsubmit="return false;"></form>
       <div class="snsLogin">
         <div class="snsLoginText">간편 로그인하기</div>
         <div>
@@ -69,6 +25,18 @@
       </div>
       <div class="signupText">
         이미 회원이신가요?<a href="/pages/login.html">로그인</a>
+      </div>
+    </div>
+    <div class="modalBox">
+      <div class="modal">
+        <span>사용 중인 이메일 입니다.</span>
+        <button class="modalBtn">확인</button>
+      </div>
+    </div>
+    <div class="signupComplete">
+      <div class="signupCompleteModal">
+        <span>회원가입 완료</span>
+        <button class="signupCompleteBtn">확인</button>
       </div>
     </div>
   </body>

@@ -1,0 +1,233 @@
+.mainCtg {
+  height: 540px;
+  background: #cfe5ff;
+  background-image: url('/img/mainCtgImage.png');
+  background-position: 80% bottom;
+  background-size: 55%;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+}
+
+.mainCtgContainer {
+  position: relative;
+  width: 1337px;
+  height: 540px;
+}
+
+.mainCtgTextBox {
+  width: 357px;
+  height: 200px;
+  font-family: Pretendard;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  text-align: left;
+  color: var(--text--color);
+  position: absolute;
+  top: 170px;
+  left: 5px;
+}
+
+.mainCtgTextMobile {
+  display: none;
+}
+
+.mainCtgTextBox div {
+  width: 295px;
+  height: 112px;
+}
+
+#mainCtgImg {
+  width: 996px;
+  height: 447px;
+  position: absolute;
+  bottom: 0px;
+  left: 370px;
+}
+
+.mainCtgBtn {
+  width: 357px;
+  height: 56px;
+  opacity: 0px;
+  border-radius: 40px;
+  background: var(--button--color);
+  border: none;
+  font-family: Pretendard;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+}
+
+/* @media screen and (max-width: 1200px) {
+  .mainCtg {
+    height: 28vw;
+    margin-top: 70px;
+  }
+
+  .mainCtgContainer {
+    width: 69vw;
+    height: 28vw;
+  }
+
+  .mainCtgTextBox {
+    width: 18vw;
+    height: 10vw;
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1.5em;
+    position: absolute;
+    top: 8vw;
+  }
+
+  .mainCtgTextBox div {
+    width: 20vw;
+    height: 6vh;
+  }
+
+  #mainCtgImg {
+    width: 51.8vw;
+    height: 23.2vw;
+    position: absolute;
+    bottom: 0px;
+    left: 19.2vw;
+  }
+
+  .mainCtgBtn {
+    width: 18vw;
+    height: 2.9vw;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+  }
+} */
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .mainCtg {
+    background-position: 50% bottom;
+    background-size: 996px;
+    height: 771px;
+  }
+
+  .mainCtgTextBox div {
+    width: 420px;
+    height: 50px;
+  }
+
+  .mainCtgContainer {
+    width: 100%;
+    height: 771px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mainCtgTextBox {
+    width: 500px;
+    height: 136px;
+    top: 94px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    left: 0px;
+  }
+
+  .mainCtgText {
+    display: none;
+    width: 500px;
+    height: 112px;
+    font-family: Pretendard;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 56px;
+    line-height: 44.8px;
+    text-align: center;
+    color: var(--text--color);
+  }
+
+  .mainCtgTextMobile {
+    display: flex;
+    width: 500px;
+    height: 112px;
+    font-family: Pretendard;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 56px;
+    line-height: 44.8px;
+    text-align: center;
+    color: var(--text--color);
+  }
+
+  .mainCtgBtn {
+    width: 357px;
+    height: 56px;
+    border-radius: 40px;
+    background: var(--button--color);
+    border: none;
+    font-family: Pretendard;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width: 768px) {
+  .mainCtg {
+    background-position: 50% bottom;
+    background-size: 626.12px;
+  }
+
+  .mainCtgContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mainCtgTextBox {
+    width: 500px;
+    height: 162px;
+    font-family: Pretendard;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 56px;
+    line-height: 44.8px;
+    text-align: center;
+    color: var(--text--color);
+    top: 48px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    left: 0px;
+  }
+
+  .mainCtgText {
+    width: 500px;
+    height: 112px;
+  }
+
+  .mainCtgBtn {
+    width: 357px;
+    height: 56px;
+    border-radius: 40px;
+    background: var(--button--color);
+    border: none;
+    font-family: Pretendard;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+  }
+}
