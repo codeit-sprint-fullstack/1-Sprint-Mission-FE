@@ -66,11 +66,10 @@ export function patchArticle(id, updates) {
         },
         body: JSON.stringify(updates)
     })
-        .then(response => {
+        .then(async response => {
             if (!response.ok) {
-                return response.json().then(errorInfo => {
-                    throw new Error(`PATCH Error: ${response.statusText}, Details: ${JSON.stringify(errorInfo)}`);
-                });
+                const errorInfo = await response.json();
+                throw new Error(`PATCH Error: ${response.statusText}, Details: ${JSON.stringify(errorInfo)}`);
             }
             return response.json();
         })
