@@ -3,9 +3,9 @@ import * as ProductService from './services/ProductService.mjs';
 import * as ArticleService from './services/ArticleService.mjs';
 
 ArticleService.getArticleList(1, 100, '후기');
-ArticleService.getArticle(9);
+ArticleService.getArticle(53);
 ArticleService.postArticle('New Post', 'New Post Content', 'String');
-ArticleService.patchArticle(42, { content: 'Good' });
+ArticleService.patchArticle(53, { content: 'Good' });
 ArticleService.deleteArticle(43);
 
 ProductService.getProductList(1, 10, '애플');
