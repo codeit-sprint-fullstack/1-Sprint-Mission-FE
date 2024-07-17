@@ -12,10 +12,8 @@ const emailError = document.querySelector('.email-error-message');
 const passwordInput = document.getElementById('password');
 const passwordError = document.querySelector('.password-error-message');
 const passwordRepeatInput = document.getElementById('password-repeat');
-const passwordRepeatError = document.querySelector('.password-repeat-error-message');
-const loginButton = document.querySelector('.login-button');
-const signupButton = document.querySelector('.signup-button');
-const loginForm = document.querySelector('.login-form');
+const passwordRepeatError = document.querySelector('.password-repeat-error-message')
+const signupButton = document.querySelector('.signup-button')
 const signupForm = document.querySelector('.signup-form');
 const bg = document.querySelector('.bg');
 const modalButton = document.querySelector('.modal-button');
@@ -43,15 +41,8 @@ function updateButtonState() {
   const isPasswordValid = passwordInput.value.trim() !== '' && passwordInput.value.trim().length >= 8;
   const isPasswordRepeatValid = passwordRepeatInput ? (passwordRepeatInput.value.trim() !== '' && passwordRepeatInput.value.trim() === passwordInput.value.trim()) : true;
 
-  if (loginButton) {
-    loginButton.disabled = !(isEmailValid && isPasswordValid);
-    loginButton.classList.toggle('disabled', loginButton.disabled);
-  }
-
-  if (signupButton) {
-    signupButton.disabled = !(isEmailValid && isPasswordValid && isPasswordRepeatValid);
-    signupButton.classList.toggle('disabled', signupButton.disabled);
-  }
+  signupButton.disabled = !(isEmailValid && isPasswordValid && isPasswordRepeatValid);
+  signupButton.classList.toggle('disabled', signupButton.disabled);
 }
 
 function validateEmail() {
@@ -100,43 +91,22 @@ function validatePasswordRepeat() {
 
 emailInput.addEventListener('focusout', validateEmail);
 passwordInput.addEventListener('focusout', validatePassword);
-if (passwordRepeatInput) {
-  passwordRepeatInput.addEventListener('focusout', validatePasswordRepeat);
-}
+passwordRepeatInput.addEventListener('focusout', validatePasswordRepeat);
 modalButton.addEventListener('click', function() {
   bg.style.display = 'none';
 });
 
-if (loginForm) {
-  loginForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-    const user = USER_DATA.find(user => user.email === email);
-    if (user) {
-      if (user.password === password) {
-        window.location.href = '/items.html';
-      } else {
-        bg.style.display = 'block';
-      }
-    } else {
-      bg.style.display = 'block';
-    }
-  });
-}
 
-if (signupForm) {
-  signupForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    const email = emailInput.value.trim();
-    const user = USER_DATA.find(user => user.email === email);
-    if (user) {
-      bg.style.display = 'block';
-    } else {
-      USER_DATA.push({ email, password: passwordInput.value.trim() });
-      window.location.href = '/login.html';
-    }
-  });
-}
+signupForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+  const email = emailInput.value.trim();
+  const user = USER_DATA.find(user => user.email === email);
+  if (user) {
+    bg.style.display = 'block';
+  } else {
+    USER_DATA.push({ email, password: passwordInput.value.trim() });
+    window.location.href = '/login.html';
+  }
+});
 
 updateButtonState();
