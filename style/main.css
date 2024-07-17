@@ -167,22 +167,21 @@ nav ul a {
 .card {
   display: flex;
   align-items: center;
+  flex-direction: row;
   gap: 64px;
   flex-wrap: wrap;
   padding: 138px 0;
 }
 
 .card img {
-  max-width: 588px;
-  width: 100%;
+  width: 588px;
   height: auto;
 }
 
 .card-texts {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
-  min-width: 300px;
+  max-width: 303px;
   width: 100%;
 }
 
@@ -298,7 +297,7 @@ footer .icons {
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1199px) {
+@media only screen and (min-width: 744px) and (max-width: 1199px) {
   #wrapper {
     padding: 0 var(--24px) var(--40px);
   }
@@ -364,13 +363,15 @@ footer .icons {
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 743px) {
   .desktop {
     display: none;
   }
 
   #wrapper {
     padding: 0 1rem 2rem;
+    margin: 0;
+    width: 100%;
   }
 
   .mobile {
@@ -424,12 +425,13 @@ footer .icons {
   }
 
   .card {
-    margin: 0 auto;
+    /* margin: 0 auto; */
     gap: 1rem;
     padding: 2rem 0;
     flex-wrap: nowrap;
     flex-direction: column;
     align-items: flex-start;
+    width: 100%;
   }
 
   .search.card {
@@ -443,7 +445,7 @@ footer .icons {
 
   .card img {
     min-width: 343px;
-    max-width: fit-content;
+    width: 100%;
   }
 
   .card-texts span,
@@ -468,7 +470,10 @@ footer .icons {
     margin-right: 1rem;
     gap: 24px;
   }
+}
 
+/* footer order change  when it's wrapped*/
+@media only screen and (max-width: 465px) {
   .footer-container p {
     order: 3;
   }
