@@ -22,17 +22,19 @@
   </header>
   <main>
     <div class="wrap">
-      <form>
+      <form class="login-form">
         <div class="email">
           <label for="email">이메일</label>
           <input id="email" name="email" type="email" placeholder="이메일을 입력해주세요">
+          <p class="email-error-message">잘못된 이메일 형식입니다.</p>
         </div>
         <div class="password">
           <label for="password">비밀번호</label>
           <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
           <img src="images/password.png" class="password-image">
+          <p class="password-error-message">비밀번호를 8자 이상 입력해주세요</p>
         </div>
-        <button>로그인</button>
+        <button class="login-button">로그인</button>
       </form>
       <div class="sns-login">
         <p>간편 로그인하기</p>
@@ -42,9 +44,16 @@
         </ul>
       </div>
       <div class="join">
-        <p>판다마켓이 처음이신가요? <span class="join-us"><a href="/signup">회원가입</a></span></p>
+        <p>판다마켓이 처음이신가요? <span class="join-us"><a href="/signup.html">회원가입</a></span></p>
       </div>
     </div>
   </main>
+  <div class="bg">
+    <div class="modal">
+      <p class="alert">비밀번호가 일치하지 않습니다.</p>
+      <button class="modal-button">확인</button>
+    </div>
+  </div>
+  <script src="login.js "></script>
 </body>
 </html>
