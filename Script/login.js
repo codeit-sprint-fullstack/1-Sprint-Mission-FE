@@ -1,4 +1,4 @@
-import * as valid from "/script/validation_login.js";
+import * as valid from "/script/validationLogin.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("email");

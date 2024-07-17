@@ -1,4 +1,4 @@
-  import * as valid from "/script/validation_signup.js";
+  import * as valid from "/script/validationSignup.js";
   import { USER_DATA } from "/script/data.js";
 
   document.addEventListener("DOMContentLoaded", () => {
