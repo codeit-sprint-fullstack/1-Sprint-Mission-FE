@@ -1,7 +1,10 @@
-import { USER_DATA } from "./data.js";
+  import { USER_DATA } from "/script/data.js";
 
   document.getElementById("email").addEventListener("input", ValidMail);
   document.getElementById("password").addEventListener("input", ValidPassword);
+  document
+    .getElementById("password_con")
+    .addEventListener("input", ValidPasswordConfirm);
   document
     .querySelector(".login_button")
     .addEventListener("click", function (event) {
@@ -9,7 +12,7 @@ import { USER_DATA } from "./data.js";
       const password = document.getElementById("password").value.trim();
       ValueChecker(email, password, event);
     });
-  
+
   export function ValidMail() {
     const emailInput = document.getElementById("email");
     const emailErrorMessage = emailInput.parentNode.querySelector("span");
@@ -20,7 +23,7 @@ import { USER_DATA } from "./data.js";
     const emailLen = emailInput.value.trim();
     const emailRegex = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     const email_confirm = emailRegex.test(emailLen);
-  
+
     if (emailLen === "") {
       emailErrorMessage.style.display = "none";
       emailInput.style.border = "none";
@@ -34,7 +37,7 @@ import { USER_DATA } from "./data.js";
     }
     InputValid();
   }
-  
+
   export function ValidPassword() {
     const passwordInput = document.getElementById("password");
     const passwordErrorMessage = passwordInput.parentNode.querySelector("span");
@@ -44,7 +47,7 @@ import { USER_DATA } from "./data.js";
       );
       passwordInput.parentNode.appendChild(passwordErrorMessage);
     }
-  
+
     if (passwordInput.value.trim() === "") {
       passwordErrorMessage.style.display = "none";
       passwordInput.style.border = "none";
@@ -59,22 +62,52 @@ import { USER_DATA } from "./data.js";
     InputValid();
   }
 
+  export function ValidPasswordConfirm() {
+    const passwordInput = document.getElementById("password");
+    const passwordConInput = document.getElementById("password_con");
+    const passwordConErrorMessage =
+      passwordConInput.parentNode.querySelector("span");
+    if (!passwordConInput === passwordInput) {
+      passwordConInput =
+        createErrorMessage("비밀번호가 일치하지 않습니다");
+      passwordConInput.parentNode.appendChild(passwordConErrorMessage);
+    } else if (passwordConInput.value.trim() === "") {
+      passwordConErrorMessage.style.display = "none";
+      passwordConInput.style.border = "none";
+    } else if (passwordInput.value.trim() === passwordConInput.value.trim()) {
+      passwordConErrorMessage.style.display = "none";
+      passwordConInput.style.border = "none";
+    } else {
+      passwordConErrorMessage.style.display = "block";
+      passwordConInput.style.border = "1px solid #F74747";
+      passwordConInput.style.borderRadius = "12px";
+    }
+    InputValid();
+  }
 
   export function InputValid() {
     const emailInput = document.getElementById("email");
     const passwordInput = document.getElementById("password");
+    const passwordConInput = document.getElementById("password_con");
+    const nicknameInput = document.getElementById("nickname");
     const loginButton = document.querySelector(".login_button");
-  
+
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
+    const confirmPassword = passwordConInput.value.trim();
+    const nickname = nicknameInput.value.trim();
 
     const confirmedEmail =
       /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email);
     const confirmedPassword = password.length >= 8;
-  
+    const confirmedConfirmPassword = password === confirmPassword;
+    const confirmedNickname = nickname.length > 0;
+
     if (
       confirmedEmail &&
-      confirmedPassword
+      confirmedPassword &&
+      confirmedConfirmPassword &&
+      confirmedNickname
     ) {
       loginButton.style.backgroundColor = "#3692FF";
       loginButton.style.border = "none";
@@ -87,12 +120,12 @@ import { USER_DATA } from "./data.js";
       loginButton.disabled = true;
     }
   }
-  
+
   export function ValueChecker(email, password, event) {
     const userData = USER_DATA.find(
       (user) => user.email === email && user.password === password
     );
-  
+
     if (!userData) {
       event.preventDefault();
       showModal("비밀번호가 일치하지 않습니다");
@@ -100,7 +133,7 @@ import { USER_DATA } from "./data.js";
       window.location.href = "../items.html";
     }
   }
-  
+
   export function createErrorMessage(message) {
     const errorMessage = document.createElement("span");
     errorMessage.textContent = message;
@@ -112,15 +145,14 @@ import { USER_DATA } from "./data.js";
     errorMessage.style.display = "none";
     return errorMessage;
   }
-  
+
   const showModal = (message) => {
     const modal = document.getElementById("customModal");
     const modalMessage = document.getElementById("modalMessage");
     modalMessage.textContent = message;
     modal.style.display = "flex";
   };
-  
+
   document.getElementById("closeModalBtn").addEventListener("click", () => {
     document.getElementById("customModal").style.display = "none";
   });
-  

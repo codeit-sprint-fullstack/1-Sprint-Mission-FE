@@ -1,4 +1,4 @@
-@import "./reset.css";
+@import "/reset.css";
 
 * {
   box-sizing: border-box;
@@ -632,7 +632,6 @@ side {
     flex-direction: column;
     gap: 16px;
   }
-
 
 
 }
