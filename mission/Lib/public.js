@@ -1,5 +1,3 @@
-import { USER_DATA } from "./user_data.js";
-
 // 이메일 확인 변수
 const email_text =  /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 
@@ -117,7 +115,7 @@ export const toggle_icon = (user_password, togglePassword) => {
 }
 
 // 모달창 버튼 포커스
-const modal_focus = (modal_button) => modal_button.focus()
+export const modal_focus = (modal_button) => modal_button.focus()
 
 // 모달창 닫기
 export const modal_close = () => {

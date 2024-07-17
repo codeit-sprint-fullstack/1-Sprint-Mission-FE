@@ -1,3 +1,4 @@
+import { USER_DATA } from "/Lib/user_data.js";
 import * as lgn from "/Lib/public.js"
 
 const user_email = document.querySelector('#login_email'); 
@@ -23,7 +24,7 @@ const login = () => {
 
         } else {
             modal.className = 'modal';
-            setTimeout(() => {modal_focus(modal_button)}, 100);
+            setTimeout(() => {lgn.modal_focus(modal_button)}, 100);
         }
     }
 }

@@ -1,3 +1,4 @@
+import { USER_DATA } from "/Lib/user_data.js";
 import * as snp from '../Lib/public.js'
 
 const user_email = document.querySelector('#signup_email');
@@ -21,7 +22,7 @@ const signup = () => {
         if (USER_DATA.find((e) => e.email === user_email.value)) {
 
             modal.className = 'modal';
-            setTimeout(() => {modal_focus(modal_button)}, 100);
+            setTimeout(() => {snp.modal_focus(modal_button)}, 100);
 
         } else {
             const new_data = {};
