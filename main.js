@@ -1,5 +1,5 @@
-import { getProductList, getProduct, createProduct, patchProduct, deleteProduct } from "./ProductService.js";
-import { checkStatus, getArticle, getArticleList, createArticle,patchArticle,deleteArticle } from "./ArticleService.js";
+import { getProductList, getProduct, createProduct, patchProduct, deleteProduct } from "./product-service.js";
+import { checkStatus, getArticle, getArticleList, createArticle,patchArticle,deleteArticle } from "./article-service.js";
 
 
 const newProduct = {
