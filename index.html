@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>판다마켓</title>
+        <meta charset= "utf-8">
+        <meta property = "og:title" content = "판다마켓">
+        <meta property = "og:url" content = "https://sprint-leejinwoo.netlify.app">
+        <meta property = "og:description" content = "일상에서 모든 물건을 거래해보세요">
+        <meta property = "og:image" content = "https://sprint-leejinwoo.netlify.app/Images/preview.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel= "stylesheet"
+              as= "style"
+              crossorigin
+              href= "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css">
+        <link rel= "stylesheet" href= "/css/reset.css">
+        <link rel= "stylesheet" href= "/css/global.css">
+        <link rel= "stylesheet" href= "/css/style.css">
+        <!-- Google tag (gtag.js) -->
+        <script async src= "https://www.googletagmanager.com/gtag/js?id=G-YHP2ZKC2SQ"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-YHP2ZKC2SQ');
+        </script>
+    </head>    
+    <body">
+        <div class = "root">
+            <header>
+                <a id = "header_btn_home" href = "/" target= "_self">
+                    <span>
+                        <img id = "header_img_btn_home" src = "/Images/btn_home.svg" alt = "홈 버튼">
+                    </span>
+                </a>
+                <nav class = "home_navi">
+                    <ul class = "home_list">
+                        <li class = "home_list_item">
+                            <a>자유게시판</a>
+                        </li>
+                        <li class = "home_list_item">
+                            <a>중고마켓</a>
+                        </li>
+                    </ul>
+                </nav>
+                <a id = "btn_login" href= "/login" target= "_self" >
+                    <span>
+                        <img id = "img_btn_login" src = "/Images/btn_login.svg" alt = "로그인 버튼">    
+                    </span>
+                </a>
+            </header>
+            <main>
+                <section class = "home_sec_frame height_hero background_color_onahau">
+                    <div class = "main_content_frame">
+                        <div id = "main_hero_grp_text_btn">
+                            <span class = "text_style_hero_title" id = "main_hero_banner_text">
+                                일상의 모든 물건을 <br>거래해 보세요
+                            </span>
+                            <a href = "/items" target= "_self">
+                                <img id = "main_hero_btn" src = "/Images/btn_show_item_active.svg" alt = "구경하러 가기">
+                            </a>
+                        </div>
+                        <img src = "/Images/Img_home_top.svg" id = "main_hero_img">
+                    </div>
+                </section>
+                <section class = "home_sec_frame height_article background_color_white">
+                    <article class = "main_content_frame article_flex_l">
+                        <img class = "main_content_img" src = "/Images/Img_home_01.svg" alt = "핫 상품">
+                        <div class = "article_text">
+                            <a class= "text_style_article_label">
+                                Hot item
+                            </a>
+                            <a class = "text_style_article_title">
+                                인기 상품을 <br>확인해 보세요
+                            </a>
+                            <a class = "text_style_article_text">
+                                가장 HOT한 중고거래 물품을<br>
+                                판다 마켓에서 확인해 보세요
+                            </a>
+                        </div>
+                    </article>
+                </section>
+                <section class = "home_sec_frame height_article background_color_white">
+                    <article class = "main_content_frame article_flex_r">
+                        <img class = "main_content_img" src = "/Images/Img_home_02.svg" alt = "검색 그림">
+                        <div class = "article_text">
+                            <a class= "text_style_article_label textAlignEnd">
+                                Search
+                            </a>
+                            <a class = "text_style_article_title textAlignEnd">
+                                구매를 원하는<br> 상품을 검색하세요
+                            </a>
+                            <a class = "text_style_article_text textAlignEnd">
+                                구매하고 싶은 물품은 검색해서<br>
+                                쉽게 찾아보세요
+                            </a>
+                        </div>
+                        
+                    </article>
+                </section>
+                <section  class = "home_sec_frame height_article background_color_white">
+                    <article class = "main_content_frame article_flex_l">
+                        <img class = "main_content_img" src = "/Images/Img_home_03.svg" alt = "등록 그림">
+                        <div class = "article_text">
+                            <a class = "text_style_article_label">
+                                Register
+                            </a>
+                            <a class = "text_style_article_title">
+                                판매를 원하는 <br>상품을 등록하세요
+                            </a>
+                            <a class = "text_style_article_text">
+                                어떤 물건이든 판매하고 싶은 상품을<br>
+                                쉽게 등록하세요
+                            </a>
+                        </div>
+                    </article>
+                </section>
+                <section class = "home_sec_frame height_blank background_color_white">
+                </section>
+                <section class = "home_sec_frame height_hero background_color_onahau">
+                    <div class = "main_content_frame">
+                        <div class = "main_bottom_banner">
+                            <div class = "text_style_hero_title" id = "main_bottom_banner_text">
+                                믿을 수 있는 <br>
+                                판다마켓 중고거래
+                            </div>
+                        </div>
+                        <img id = "main_bottom_banner_img" src = "/Images/Img_home_bottom.svg" alt = "바닥 그림">
+                    </div>
+                </section>
+            </main>
+            <footer>
+                <div class = "footer_space">
+                    <div class = "footer_icons_common">
+                        <div id = "company" class = "footer_text">
+                            <a>
+                                ©codeit - 2024
+                            </a>
+                        </div>
+                        <div id = "footer_link_texts" class = "footer_text">
+                            <a href = "/privacy" target = "_self" class = "link_text">
+                                Privacy Policy
+                            </a>
+                            <a href = "/faq" target = "_self" class = "link_text">
+                                FAQ
+                            </a>
+                        </div>
+                        <div id = "footer_link_icons">
+                            <a href = "https://www.facebook.com/" target = "_blank">
+                                <img class = "footer_icon" src= "/Images/ic_facebook.svg" alt = "페이스북 링크">
+                            </a>
+                            <a href = "https://x.com/" target = "_blank">
+                                <img class = "footer_icon" src = "/Images/ic_twitter.svg" alt = "엑스 링크">
+                            </a>
+                            <a href = "https://www.youtube.com/" target = "_blank">
+                                <img class = "footer_icon" src = "/Images/ic_youtube.svg" alt = "유튜브 링크">
+                            </a>
+                            <a href = "https://www.instagram.com/" target = "_blank">
+                                <img class = "footer_icon" src = "/Images/ic_instagram.svg" alt = "인스타그램 링크">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>
