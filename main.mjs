@@ -3,7 +3,7 @@ import * as ProductService from './services/ProductService.mjs';
 import * as ArticleService from './services/ArticleService.mjs';
 
 ArticleService.getArticleList(1, 100, '후기');
-ArticleService.getArticle(53);
+ArticleService.getArticle(10);
 ArticleService.postArticle('New Post', 'New Post Content', 'String');
 ArticleService.patchArticle(53, { content: 'Good' });
 ArticleService.deleteArticle(43);

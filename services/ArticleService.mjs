@@ -1,7 +1,7 @@
 const baseUrl = 'https://sprint-mission-api.vercel.app/articles';
 
-// Get articles page,page size = default
-export function getArticleList(page = 1, pageSize = 100, keyword) {
+// Get articles 
+export function getArticleList(page, pageSize, keyword) {
     const url = new URL(baseUrl);
     const params = {
         page,
@@ -13,7 +13,7 @@ export function getArticleList(page = 1, pageSize = 100, keyword) {
     fetch(url)
         .then(response => {
             if (!response.ok) {
-                throw new Error(`GET Error: ${response.statusText}`);
+                throw new Error(`GET Error: ${response.status}`);
             }
             return response.json();
         })
@@ -29,7 +29,7 @@ export function getArticle(id) {
     fetch(`${baseUrl}/${id}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error(`GET Single Error: ${response.statusText}`);
+                throw new Error(`GET Single Error: ${response.status}`);
             }
             return response.json();
         })
