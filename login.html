@@ -3,11 +3,13 @@
   <head>
     <title>로그인</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link
       rel="stylesheet"
       as="style"
       crossorigin
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css">
+      <link rel="icon" href="./imgs/favicon.ico">
     <link rel="stylesheet" href="style.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-62B62XEJ27"></script>
@@ -18,45 +20,31 @@
 
       gtag('config', 'G-62B62XEJ27');
     </script>
-    <script>
-      function togglePasswordVisibility(event) {
-        const passwordInput = event.target.previousElementSibling;
-        const isPasswordVisible = passwordInput.type === "text";
-        passwordInput.type = isPasswordVisible ? "password" : "text";
-        event.target.src = isPasswordVisible ? "./imgs/btn_visibility_off.png" : "./imgs/btn_visibility_on.png";
-        event.target.width = 24;
-        evnet.target.height = 24;
-      }
-
-      document.addEventListener('DOMContentLoaded', function() {
-        const toggleIcons = document.querySelectorAll('.visible-off-icon');
-        toggleIcons.forEach(icon => {
-          icon.addEventListener('click', togglePasswordVisibility);
-        });
-      });
-    </script>
   </head>
   <body>
     <div class="login-container">
-      <a href="/"><img class="no-drag" src="./imgs/Group_19.png" alt="logo" width="396" height="132"></a>
+      <img class="logo no-drag" src="./imgs/Group_19.png" onclick="location.href='/'" alt="logo" width="396" height="132">
       <form class="login-form">
-        <label for="user-email">이메일</label>
-        <input type="text" id="user-email" name="email" placeholder="이메일을 입력해주세요.">
+        <div class="email-container">
+          <label for="user-email">이메일</label>
+          <input class="input" type="text" id="user-email" name="email" placeholder="이메일을 입력해주세요.">
+        </div>
         <div class="password-container">
           <label for="password">비밀번호</label>
-          <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요.">
-          <img src="./imgs/btn_visibility_off.png" alt="visible off" class="visible-off-icon no-drag" width="24" height="24">
+          <input class="input" type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요.">
+          <img class="visibility-icon" src="./imgs/btn_visibility_off.png" alt="visible off"  width="24" height="24">
         </div>
-        <button>로그인</button>
+        <button id="button" disabled>로그인</button>
         <div class="simple-login">
-          <p>간편로그인</p>
+          <p>간편 로그인하기</p>
           <div class="login-method">
-            <a href="http://www.google.com"><img class="no-drag" src="./imgs/google.png" alt="google" width="42" height="42"></a>
-            <a href="http://www.kakaocorp.com/page/"><img class="no-drag" src="./imgs/kakao.png" alt="kakao" width="42" height="42"></a>
+            <a href="http://www.google.com"><img src="./imgs/google.png" alt="google" width="42" height="42"></a>
+            <a href="http://www.kakaocorp.com/page/"><img src="./imgs/kakao.png" alt="kakao" width="42" height="42"></a>
           </div>
         </div>
         <p class="select-status">판다마켓이 처음이신가요? <a href="/signup.html">회원가입</a></p>
       </form>
+      <script type="module" src="./login.js"></script>
     </div>
   </body>
 </html>

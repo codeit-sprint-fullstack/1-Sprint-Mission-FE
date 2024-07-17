@@ -3,11 +3,25 @@
   <head>
     <title>판다마켓</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="판다마켓">
+    <meta property="og:description" content="일상에서 모든 물건을 거래해보세요">
+    <meta property="og:url" content="https://pandamk.netlify.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://pandamk.netlify.app/imgs/panda_market_logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="트위터 카드 타입(요약정보, 사진, 비디오)" /> 
+    <meta name="twitter:title" content="판다마켓" /> 
+    <meta name="twitter:description" content="일상에서 모든 물건을 거래해보세요" /> 
+    <meta name="twitter:image" content="https://pandamk.netlify.app/imgs/panda_market_logo.png" />
+    <meta name="twitter:url" content="https://pandamk.netlify.app/">
     <link
       rel="stylesheet"
       as="style"
       crossorigin
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css">
+    <link rel="icon" href="./imgs/favicon.ico">
     <link rel="stylesheet" href="style.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-62B62XEJ27"></script>
@@ -21,40 +35,35 @@
   </head>
   <body>
     <header>
-      <a href="/">
-        <img class="logo no-drag" src="./imgs/Group_19.png" alt="판다마켓로고" width="153" height="51">
-      </a>
+      <img class="logo no-drag" src="./imgs/Group_19.png" onclick="location.href='/'" alt="판다마켓로고" width="153" height="51">
       <div class="nav">
         <a class="nav1" href="#">자유게시판</a> 
         <a class="nav2" href="#">중고마켓</a>
       </div>
-      <a href="/login.html"><button class="login">로그인</button></a>
+      <button class="login" onclick="location.href='./login.html'">로그인</button>
     </header>
 
-    
     <main>
       <section class="top-banner">
         <div class="message-container">
           <p class="message">
-            일상의 모든 물건을<br>
-            거래해 보세요
+            일상의 모든 물건을 거래해 보세요
           </p>
-          <a href="/items.html"><button class="button">구경하러 가기</button></a>
+          <button class="button" onclick="location.href='./items.html'">구경하러 가기</button>
         </div>
       </section> 
 
       <div class="body">
         <section class="section1">
-          <img class="sectoin1-img no-drag" src="./imgs/Img_home_01.png" alt="인기상품" width="50%">
+          <img class="section1-img no-drag" src="./imgs/Img_home_01.png" alt="인기상품" width="588" height="444">
           <div class="section1-messages">
-            <p class="hot-item">Hot item</p>
+            <p class="badge">Hot item</p>
             <div class="message-box">
               <p class="message-top">
-                인기 상품을<br>
-                확인해 보세요
+                인기 상품을 확인해 보세요
               </p>
               <p class="message-bottom">
-                가장 HOT한 중고거래 물픔을<br>
+                가장 HOT한 중고거래 물품을<br>
                 판다 마켓에서 확인해 보세요
               </p>
             </div>
@@ -64,11 +73,10 @@
         
         <section class="section2">
           <div class="section2-messages">
-            <p class="search">Search</p>
+            <p class="badge">Search</p>
             <div class="message-box">
               <p class="message-top">
-                구매를 원하는<br>
-                상품을 검색하세요
+                구매를 원하는 상품을 검색하세요
               </p>
               <p class="message-bottom">
                 구매하고 싶은 물품은 검색해서<br>
@@ -76,17 +84,16 @@
               </p>
             </div>      
           </div>
-          <img class="section2-img no-drag" src="./imgs/Img_home_02.png" alt="검색" width="50%">
+          <img class="section2-img no-drag" src="./imgs/Img_home_02.png" alt="검색" width="588" height="444">
         </section>
   
         <section class="section3">
-          <img class="sectoin3-img no-drag" src="./imgs/Img_home_03.png" alt="판매" width="50%"> 
+          <img class="section3-img no-drag" src="./imgs/Img_home_03.png" alt="판매" width="588" height="444"> 
           <div class="section3-messages">
-            <p class="registor">Registor</p>
+            <p class="badge">Registor</p>
             <div class="message-box">
               <p class="message-top">
-                판매를 원하는<br>
-                상품을 등록하세요
+                판매를 원하는 상품을 등록하세요
               </p>
               <p class="message-bottom">
                 어떤 물건이든 판매하고 싶은 상품을<br>
@@ -118,5 +125,6 @@
         <a href="http://www.youtube.com" target="_blank"><img class="no-drag" src="./imgs/ic_youtube.png" alt="youtube" width="20" height="20"></a>
       </div>               
     </footer>
+    <script type="module" src="index.js"></script>
   </body>
 </html>
