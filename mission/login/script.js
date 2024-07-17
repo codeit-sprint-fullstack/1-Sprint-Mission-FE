@@ -6,6 +6,7 @@ const user_password = document.querySelector('#login_password');
 const togglePassword = document.querySelector(".password-toggle-icon i");
 const login_button = document.querySelector('.login_box');
 const modal_button = document.querySelector('.modal_button');
+const email_text =  /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 
 // ----------------------------------------------------------
 

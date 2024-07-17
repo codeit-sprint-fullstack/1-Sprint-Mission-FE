@@ -9,6 +9,7 @@ const user_password_check = document.querySelector('#signup_password_check');
 const togglePassword_check = document.querySelector(".password-toggle-icon_check i");
 const signup_button = document.querySelector('.signup_box');
 const modal_button = document.querySelector('.modal_button');
+const email_text =  /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 
 // -----------------------------------------------------------
 
@@ -143,7 +144,7 @@ const toggle_icon_check = () => {
     }
 }
 
-// signup page enter key의 focus 이동
+// enter key의 focus 이동
 const signup_focus_doing = (e) => {
 
     if (e.key === 'Enter' && document.activeElement === user_email) {
