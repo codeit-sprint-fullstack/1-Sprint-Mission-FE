@@ -24,7 +24,7 @@ function joinButtonStatus(){
   else joinButton.disabled = true;
 }
 /*이메일 검사*/
-email.addEventListener('keypress',() => {
+email.addEventListener('input',() => {
   if(!email.value){
     email.classList.add('error');
     emailError.textContent = '이메일을 입력해주세요.';
@@ -41,7 +41,7 @@ email.addEventListener('keypress',() => {
   joinButtonStatus();
 });
 /*비밀번호 검사*/
-password.addEventListener('keypress', () => {
+password.addEventListener('input', () => {
   if(!password.value){
     password.classList.add('error');
     passwordError.textContent = '비밀번호를 입력해주세요.';
@@ -64,7 +64,7 @@ password.addEventListener('keypress', () => {
   joinButtonStatus();
 });
 /*비밀번호 확인*/
-checkPassword.addEventListener('keypress', () => {
+checkPassword.addEventListener('input', () => {
   if(!checkPassword.value){
     checkPassword.classList.add('error');
     checkPasswordError.textContent = '비밀번호를 입력해주세요.';
@@ -81,7 +81,7 @@ checkPassword.addEventListener('keypress', () => {
   joinButtonStatus();
 });
 /*닉네임 확인*/
-nickName.addEventListener('keypress', () => {
+nickName.addEventListener('input', () => {
   if(!nickName.value){
     nickName.classList.add('error');
     nickNameError.textContent = '닉네임을 입력해주세요.';

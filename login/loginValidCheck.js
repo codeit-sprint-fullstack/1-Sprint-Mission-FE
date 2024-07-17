@@ -18,7 +18,7 @@ function loginButtonStatus(){
 }
 
 /*이메일 검사*/
-email.addEventListener('keypress',() => {
+email.addEventListener('input',() => {
   if(!email.value){
     email.classList.add('error');
     emailError.textContent = '이메일을 입력해주세요.';
@@ -35,7 +35,7 @@ email.addEventListener('keypress',() => {
   loginButtonStatus();
 });
 /*비밀번호 검사*/
-password.addEventListener('keypress', () => {
+password.addEventListener('input', () => {
   if(!password.value){
     password.classList.add('error');
     passwordError.textContent = '비밀번호를 입력해주세요.';
