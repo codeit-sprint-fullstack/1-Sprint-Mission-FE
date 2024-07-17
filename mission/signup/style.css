@@ -1,13 +1,3 @@
-:root {
-    --input_box_bg: #F3F4F6;
-    --input_box_ft-signup_box_bg: #9CA3AF;
-    --input_box_focus: #3692FF;
-    --signup_box_ft: #ffffff;
-    --simple_login_bg: #E6F2FF;
-    --simple_login-login_ft: #1F2937;
-    --login_a_ft: #3182F6;
-}
-
 .header_contaner {
     height: 192px;
     align-items: end;
