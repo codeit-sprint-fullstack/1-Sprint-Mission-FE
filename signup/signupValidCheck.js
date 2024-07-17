@@ -18,7 +18,6 @@ let nickNameValid = false;
 
 /*버튼 비활성화*/
 function joinButtonStatus(){
-  console.log(`emailValid: ${emailValid}, passwordValid: ${passwordValid}, checkPasswordValid: ${checkPasswordValid}, nickNameValid: ${nickNameValid}`);
   if(emailValid && passwordValid && checkPasswordValid && nickNameValid)
     joinButton.disabled = false;
   else joinButton.disabled = true;

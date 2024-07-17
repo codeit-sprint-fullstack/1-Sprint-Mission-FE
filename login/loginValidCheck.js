@@ -12,7 +12,6 @@ let passwordValid = false;
 
 /*버튼 비활성화*/
 function loginButtonStatus(){
-  console.log(`emailValid: ${emailValid}, passwordValid: ${passwordValid}`);
   if(emailValid && passwordValid) loginButton.disabled = false;
   else loginButton.disabled = true;
 }
