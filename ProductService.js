@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 export async function getProductList(page, pageSize, keyword) {
     const URL = `https://sprint-mission-api.vercel.app/products?page=${page}&pageSize=${pageSize}&keyword=${keyword}`;
     try {
@@ -18,12 +19,12 @@ export async function getProduct(id) {
         const response = await axios.get(URL);
         const data = response.data;
         return console.log('상품 정보를 가져왔습니다.',data);
-    }catch (error) {
-    console.error(`Error: ${error}`);
-    throw error;
+    } catch (error) {
+        console.error(`Error: ${error}`);
+        throw error;
     }
 }
-
+.
 export async function createProduct(product) {
     const URL = 'https://sprint-mission-api.vercel.app/products';
 
@@ -47,16 +48,16 @@ export async function createProduct(product) {
 
 export async function patchProduct(id, updatedProduct) {
     const URL = `https://sprint-mission-api.vercel.app/products/${id}`;
-
+  
     try {
-        const response = await axios.patch(URL, updatedProduct);
-        const data = response.data;
-        return console.log('상품 업데이트가 완료되었습니다.',data);
+      const response = await axios.patch(URL, updatedProduct);
+      const data = response.data;
+      return console.log('상품 업데이트가 완료되었습니다.',data);
     } catch (error) {
       console.error(`Error : ${error}`);
       throw error;
     }
-}
+  }
 
 export async function deleteProduct(id) {
     const URL = `https://sprint-mission-api.vercel.app/products/${id}`;
