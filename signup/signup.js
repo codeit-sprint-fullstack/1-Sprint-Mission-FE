@@ -1,4 +1,4 @@
-import { initPasswordToggle, initEmailValidation, initPasswordValidation } from '../common_js/login_signup.js';
+import {initPasswordToggle, initEmailValidation, initPasswordValidation} from '../common_js/login_signup.js';
 
 const USER_DATA = [
     { email: 'codeit1@codeit.com', password: "codeit101!" },
@@ -6,7 +6,7 @@ const USER_DATA = [
     { email: 'codeit3@codeit.com', password: "codeit303!" },
     { email: 'codeit4@codeit.com', password: "codeit404!" },
     { email: 'codeit5@codeit.com', password: "codeit505!" },
-    { email: 'codeit6@codeit.com', password: "codeit606!" },
+    { email: 'codeit6@codeit.com', password: "codeit606!" }
 ];
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -66,21 +66,21 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             window.location.href = '/login';
         }
-
-        // 팝업 닫기
-        popupCloseBtn.addEventListener('click', function () {
-            popup.style.display = 'none';
-            overlay.style.display = 'none';
-        });
     }
+
+    // 팝업 닫기
+    popupCloseBtn.addEventListener('click', function () {
+        popup.style.display = 'none';
+        overlay.style.display = 'none';
+    });
 
     // 회원가입 버튼 활성/비활성
     function validateSignupBtn() {
         const emailPattern = /^[^\s@]+@[^\s@]+\.com$/;
         if ( // @, .com, 8자 이상, 닉네임 입력, 비밀번호 일치
-            emailPattern.test(emailInput.value) && 
-            passwordInput.value.length >= 8 && 
-            nicknameInput.value && 
+            emailPattern.test(emailInput.value) &&
+            passwordInput.value.length >= 8 &&
+            nicknameInput.value &&
             passwordInput.value === passwordCheckAgainInput.value
         ) {
             signupBtn.style.cursor = 'pointer';

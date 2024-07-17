@@ -43,13 +43,13 @@ document.addEventListener('DOMContentLoaded', function () {
             popup.style.display = 'block';
             overlay.style.display = 'block';
         }
-
-        // 팝업 닫기
-        popupCloseBtn.addEventListener('click', function () {
-            popup.style.display = 'none';
-            overlay.style.display = 'none';
-        });
     }
+
+    // 팝업 닫기
+    popupCloseBtn.addEventListener('click', function () {
+        popup.style.display = 'none';
+        overlay.style.display = 'none';
+    });
 
     // 로그인 버튼 활성/비활성
     function updateLoginBtnState() {

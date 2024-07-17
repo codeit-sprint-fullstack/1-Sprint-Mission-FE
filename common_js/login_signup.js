@@ -22,19 +22,18 @@ export function initPasswordToggle() { // 비밀번호 보기
 // 이메일 유효성 검사 기능
 export function initEmailValidation(email, emailcheck) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.com$/;
+
     function einputFocusOut() {
         if (!email.value) {
             emailcheck.style.display = 'flex';
             email.style.border = '1px solid #F74747';
+        } else if (emailPattern.test(email.value)) {
+            emailcheck.style.display = 'none';
+            email.style.border = 'none';
         } else {
-            if (emailPattern.test(email.value)) {
-                emailcheck.style.display = 'none';
-                email.style.border = 'none';
-            } else {
-                emailcheck.style.display = 'flex';
-                emailcheck.textContent = '잘못된 이메일 형식입니다.';
-                email.style.border = '1px solid #F74747';
-            }
+            emailcheck.style.display = 'flex';
+            emailcheck.textContent = '잘못된 이메일 형식입니다.';
+            email.style.border = '1px solid #F74747';
         }
     }
 
@@ -52,16 +51,15 @@ export function initPasswordValidation(password, passwordmsg) {
         if (!password.value) {
             passwordmsg.style.display = 'flex';
             password.style.border = '1px solid #F74747';
+        } else if (password.value.length < 8) {
+            passwordmsg.style.display = 'flex';
+            passwordmsg.textContent = '비밀번호를 8자 이상 입력해주세요.';
+            password.style.border = '1px solid #F74747';
         } else {
-            if (password.value.length < 8) {
-                passwordmsg.style.display = 'flex';
-                passwordmsg.textContent = '비밀번호를 8자 이상 입력해주세요.';
-                password.style.border = '1px solid #F74747';
-            } else {
-                password.style.border = 'none';
-                passwordmsg.style.display = 'none';
-            }
+            password.style.border = 'none';
+            passwordmsg.style.display = 'none';
         }
+
     }
 
     function pinputFocusIn() {
