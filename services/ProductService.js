@@ -3,7 +3,7 @@ import axios from 'axios';
 const baseUrl = 'https://sprint-mission-api.vercel.app/products';
 
 // Get products List
-export async function getProductList(page, pageSize, keyword) {
+export async function getProductList(keyword, page=1, pageSize=100) {
     try {
         const response = await axios.get(baseUrl, {
             params: { page, pageSize, keyword }
