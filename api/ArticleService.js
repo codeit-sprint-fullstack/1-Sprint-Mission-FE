@@ -1,9 +1,9 @@
 const baseUrl = 'https://sprint-mission-api.vercel.app/articles';
 
-export async function getArticleList(params = {}) {
+export function getArticleList(params = {}) {
   const { page = 1, pageSize = 10, keyword = '' } = params;
 
-  const res = await fetch(
+  const res = fetch(
     `${baseUrl}?page=${page}&pageSize=${pageSize}&keyword=${keyword}`,
     {
       method: 'GET',
@@ -25,8 +25,8 @@ export async function getArticleList(params = {}) {
     );
 }
 
-export async function getArticle(articleId) {
-  const res = await fetch(`${baseUrl}/${articleId}`, {
+export function getArticle(articleId) {
+  const res = fetch(`${baseUrl}/${articleId}`, {
     method: 'GET',
   })
     .then((res) => {
@@ -45,10 +45,8 @@ export async function getArticle(articleId) {
     );
 }
 
-export async function createArticle(articleUploadData) {
-  // const { title, content, image } = articleUploadData;
-
-  const res = await fetch(`${baseUrl}/`, {
+export function createArticle(articleUploadData) {
+  const res = fetch(`${baseUrl}/`, {
     method: 'POST',
     body: JSON.stringify(articleUploadData),
     headers: {
@@ -71,8 +69,8 @@ export async function createArticle(articleUploadData) {
     );
 }
 
-export async function patchArticle(articleId, articleUpdateData) {
-  const res = await fetch(`${baseUrl}/${articleId}`, {
+export function patchArticle(articleId, articleUpdateData) {
+  const res = fetch(`${baseUrl}/${articleId}`, {
     method: 'PATCH',
     body: JSON.stringify(articleUpdateData),
     headers: {
@@ -95,8 +93,8 @@ export async function patchArticle(articleId, articleUpdateData) {
     );
 }
 
-export async function deleteArticle(articleId) {
-  const res = await fetch(`${baseUrl}/${articleId}`, {
+export function deleteArticle(articleId) {
+  const res = fetch(`${baseUrl}/${articleId}`, {
     method: 'DELETE',
     headers: {
       'content-type': 'application/json',
