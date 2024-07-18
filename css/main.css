@@ -42,6 +42,10 @@
   margin-left: 170px;
 }
 
+.nav_title > picture > img {
+  cursor: pointer;
+}
+
 .nav_login {
   margin-top: 14px;
   margin-right: 200px;
@@ -101,6 +105,8 @@
   border-radius: 40px;
   margin-top: 32px;
   cursor: pointer;
+  position: relative;
+  z-index: 100;
 
   & p {
     font-size: 2rem;
