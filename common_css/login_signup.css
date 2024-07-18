@@ -1,34 +1,16 @@
-* {
-    box-sizing: border-box;
-}
-
 :root {
     --text-color: #1F2937;
     --link-color: #3182F6;
     --back-text: #9CA3AF;
     --input-back-color: #F3F4F6;
     --input-outline-color: #3692ff;
-    --signup-btn-text: #ffffff;
-    --login-text-color: #1F2937;
     --easy-login-back-color: #E6F2FF;
     --email-input-check-color: #F74747;
-}
-
-html {
-    font-size: 62.5%;
-    /* 1rem = 10px로 설정 */
-}
-
-body {
-    font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    flex-shrink: 0;
-    white-space: nowrap;
-    overflow-x: hidden;
+    --btn-text: #ffffff;
 }
 
 #logo-img,
+.login-btn,
 .signup-btn,
 .easy-login img {
     cursor: pointer;
@@ -47,13 +29,15 @@ body {
     flex-direction: column;
 }
 
+.signup-form,
 .login-form {
     display: flex;
     flex-direction: column;
-    justify-content: left;
+    justify-content: center;
     margin-top: 4rem;
 }
 
+.signup-form label ,
 .login-form label {
     margin-bottom: 1.6rem;
     color: var(--text-color);
@@ -64,12 +48,15 @@ body {
 }
 
 .login-form input,
-.login-form .login-btn {
+.login-form .login-btn,
+.signup-form .signup-btn,
+.signup-form input, .easy-login {
     width: 64rem;
     height: 5.6rem;
 }
 
-.login-form input {
+.login-form input,
+.signup-form input {
     border-radius: 1.2rem;
     border: none;
     padding: 1.6rem 2.4rem;
@@ -83,7 +70,9 @@ body {
     margin-bottom: 2.4rem;
 }
 
-#email-check, #password-check, #password-check-again {
+#email-check,
+#password-check,
+#password-check-again {
     display: none;
     color: var(--email-input-check-color);
     font-size: 1.5rem;
@@ -97,15 +86,7 @@ input::placeholder {
     color: var(--back-text);
 }
 
-.pwsetting,
-.pwsetting-check {
-    position: relative;
-}
-
-.show,
-.non-show,
-.show-check,
-.non-show-check {
+.eye-btn {
     position: absolute;
     right: 2.4rem;
     top: 1.7rem;
@@ -115,37 +96,35 @@ input::placeholder {
     height: 2.4rem;
 }
 
-.eye-size {
-    width: 2.047rem;
-    height: 1.807rem;
-}
-
-.show,
-.show-check {
+.hide,
+.hide-check {
     display: none;
 }
 
-.signup-btn {
+.pwsetting,
+.pwsetting-check {
+    position: relative;
+    display: inline-block;
+}
+
+.signup-btn,
+.login-btn {
     background-color: var(--back-text);
+    color: var(--btn-text);
     border: none;
     border-radius: 4rem;
-    padding: 1.6rem 12.4rem;
     font-size: 2rem;
     font-weight: 600;
     line-height: 2.4rem;
     text-align: center;
-    color: var(--signup-btn-text);
-    width: 64rem;
-    height: 5.6rem;
-    cursor: not-allowed; 
-    pointer-events: none; 
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 .easy-login {
     display: flex;
     justify-content: space-between;
     background-color: var(--easy-login-back-color);
-    width: 64rem;
     height: 7.4rem;
     border-radius: 0.8rem;
     padding: 0 2.3rem;
@@ -174,15 +153,13 @@ input::placeholder {
     text-decoration: none;
 }
 
-.login {
+.signup, .login {
     font-size: 1.5rem;
     line-height: 1.79rem;
     font-weight: 500;
-    color: var(--login-text-color);
-    margin-bottom: 2.4rem;
 }
 
-.login-link {
+.signup-link, .login-link {
     color: var(--link-color);
     margin-left: 0.4rem;
 }
@@ -208,12 +185,12 @@ input::placeholder {
     position: fixed;
     left: 50%;
     top: 50%;
-    background: var(--signup-btn-text);
     border-radius: 0.8rem;
     z-index: 1000;
     transform: translate(-50%, -50%);
     width: 54rem;
     height: 25rem;
+    background: var(--btn-text);
 }
 
 #popup-message {
@@ -226,11 +203,10 @@ input::placeholder {
 }
 
 .close-btn {
-    background-color: var( --input-outline-color);
-    color: var(--signup-btn-text);
+    background-color: var(--input-outline-color);
     border: none;
     position: fixed;
-    border-radius: 8px;
+    border-radius: 0.8rem;
     padding: 12px 23px;
     cursor: pointer;
     font-size: 16px;
@@ -238,4 +214,64 @@ input::placeholder {
     height: 4.8rem;
     right: 28px;
     bottom: 28px;
+    color: var(--btn-text);
+}
+
+@media (max-width: 743px) {
+    #logo-img {
+        width: 19.8rem;
+        height: 6.6rem;
+        margin-top: 2.4rem;
+    }
+
+    .containers {
+        width: 100%;
+        padding: 0 16px;
+    }
+
+    .pwsetting {
+        position: none;
+    }
+
+    .login-form label,
+    .signup-form label {
+        margin-bottom: 0.8rem;
+        font-size: 14px;
+        line-height: 1.671em;
+        height: 1.7rem;
+    }
+
+    .login-form input,
+    .login-form, .login-form .login-btn,
+    .signup-form, .signup-form .signup-btn,
+    .signup-form input, .easy-login,
+    .pwsetting, .pwsetting-check{
+        width:100%;
+        max-width: 400px;
+    }
+
+    .input-margin-style {
+        margin-bottom: 1.6rem;
+    }
+
+    .easy-login {
+        padding: 0 2.4rem;
+        margin: 2.4rem 1.6rem;
+    }
+
+    .popup-content {
+        width: 32.7rem;
+        height: 22rem;
+    }
+
+    #popup-message {
+        margin-top: 81px;
+    }
+
+    .close-btn {
+        padding: 12px 0;
+        font-size: 16px;
+        bottom: 23px;
+        right: 103px;
+    }
 }

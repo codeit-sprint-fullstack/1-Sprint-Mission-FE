@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style/reset.css" />
+    <link rel="stylesheet" href="/common/reset.css" />
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
-    <link rel="stylesheet" href="/style/loginstyle.css" />
-    <title>판다마켓 로그인</title>
+    <link rel="stylesheet" href="/common_css/global.css"/>
+    <link rel="stylesheet" href="/common_css/login_signup.css"/>
+    <title>판다마켓 회원가입</title>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6H1WLY6MSW"></script>
@@ -25,23 +26,38 @@
 
 <body>
     <div class="containers">
-        <img id="logo-img" src="/image/logo.svg" onclick="location.href='/index.html'">
-        <form class="login-form">
+        <img id="logo-img" src="/image/logo.svg" onclick="location.href='../'">
+        <form class="signup-form">
             <label for="e-mail">이메일</label>
             <div class="input-margin-style">
                 <input id="e-mail" type="email" placeholder="이메일을 입력해주세요">
-                <p id ="email-check" class="form-input-check">이메일을 입력해주세요</p>
+                <p id="email-check" class="form-input-check">이메일을 입력해주세요</p>
+            </div>
+            <label for="nickname">닉네임</label>
+            <div class="input-margin-style">
+                <input id="nickname" type="text" placeholder="닉네임을 입력해주세요">
             </div>
             <label for="pw">비밀번호</label>
             <div class="input-margin-style">
                 <div class="pwsetting">
                     <input id="pw" type="password" placeholder="비밀번호를 입력해주세요">
-                    <img src="/image/eye-btn.png" class="eye-size non-show">
-                    <img src="/image/eye-show.png" class="eye-size show">
+                    <img src="/image/eye-btn.png" class="eye-btn show">
+                    <img src="/image/eye-show.png" class="eye-btn hide">
                     <p id="password-check" class="form-input-check">비밀번호를 입력해주세요</p>
                 </div>
             </div>
-            <button class="login-btn" id="login-btn" type="button">로그인</button>
+            <label for="pwcheckagain">비밀번호 확인</label>
+            <div class="input-margin-style">
+                <div class="pwsetting-check">
+                    <input id="pwcheckagain" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요">
+                    <img src="/image/eye-btn.png" class="eye-btn show-check">
+                    <img src="/image/eye-show.png" class="eye-btn hide-check">
+                    <p id="password-check-again" class="form-input-check">비밀번호가 일치하지 않습니다.</p>
+                </div>
+            </div>
+
+
+            <button class="signup-btn" id="signup-btn" type="button">회원가입</button>
         </form>
         <div class="easy-login">
             <p>간편 로그인하기</p>
@@ -54,8 +70,8 @@
                 </a>
             </div>
         </div>
-        <div class="signup">
-            <p>판다마켓이 처음이신가요? <a href="/html/signup.html" class="signup-link">회원가입</a></p>
+        <div class="login">
+            <p>이미 회원이신가요? <a href="/login" class="login-link">로그인</a></p>
         </div>
     </div>
     <div id="overlay" class="overlay"></div>
@@ -65,8 +81,7 @@
             <button class="close-btn" id="popup-close-btn">확인</button>
         </div>
     </div>
-    <script src="../js/login.js"></script>
-    <script src="../common/login_signup.js"></script>
+    <script src="./signup.js" type="module"></script>
 </body>
 
 </html>

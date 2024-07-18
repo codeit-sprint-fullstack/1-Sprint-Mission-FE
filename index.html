@@ -11,13 +11,22 @@
   <meta property="og:title" content="판다마켓">
   <meta property="og:description" content="일상에서 모든 물건을 거래해보세요">
   <meta property="og:url" content="https://joyful-kataifi-e6bfb4.netlify.app/">
-  <meta property="og:image" content="/image/Img_home_topas.png"> <!-- 실제 이미지 URL로 대체 -->
+  <meta property="og:image" content="https://joyful-kataifi-e6bfb4.netlify.app/image/Img_home_topas.png"> <!-- 실제 이미지 URL로 대체 -->
   <meta property="og:type" content="website">
 
-  <link rel="stylesheet" href="/style/reset.css" />
+  <!-- 트위터 -->
+  <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="판다마켓">
+<meta name="twitter:description" content="일상에서 모든 물건을 거래해보세요">
+<meta name="twitter:url" content="https://joyful-kataifi-e6bfb4.netlify.app/">
+<meta name="twitter:image" content="https://joyful-kataifi-e6bfb4.netlify.app/image/Img_home_topas.png">
+
+
+  <link rel="stylesheet" href="/common_css/reset.css" />
   <link rel="stylesheet" as="style" crossorigin
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
-  <link rel="stylesheet" href="/style/style.css" />
+  <link rel="stylesheet" href="/common_css/global.css" />
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6H1WLY6MSW"></script>
@@ -36,10 +45,11 @@
   <header>
     <nav class="navbar">
       <img id="logo-img" class="margin-left" src="/image/logo.svg" onclick="location.href='/'">
+      <img id="logo-img2" class="margin-left" src="/image/non_ic_logo.svg" onclick="location.href='/'">
       <a class="nav-text">자유게시판</a>
       <a class="nav-text">중고마켓</a>
-      <form id="login-form" class="margin-right">
-        <button id="login-btn" onclick="location.href='html/login.html'" type="button">로그인</button>
+      <form id="login-form">
+        <button id="login-btn" class="margin-right" onclick="location.href='/login'" type="button">로그인</button>
       </form>
     </nav>
   </header>
@@ -48,40 +58,42 @@
     <div class="top-banners">
       <div class="top-banner">
         <p class="font-style">일상의 모든 물건을<br> 거래해 보세요</p>
-        <button id="go-items" onclick="location.href='html/items.html'">구경하러가기</button>
+        <button id="go-items" onclick="location.href='/items'">구경하러가기</button>
         <div class="img-wrap top-img"></div>
       </div>
     </div>
     <div class="home-containers">
       <div class="box">
         <img class="main-img" src="/image/Img_home_01.png">
-        <div class="category">Hot item</div>
-        <div class="font-style">인기 상품을<br>확인해보세요</div>
-        <div class="details">
-          가장 HOT한 중고거래 물품을<br>
-          판다 마켓에서 확인해 보세요
+        <div>
+          <div class="category">Hot item</div>
+          <div class="font-style">인기 상품을<br>확인해보세요</div>
+          <div class="details">
+            가장 HOT한 중고거래 물품을<br>
+            판다 마켓에서 확인해 보세요
+          </div>
         </div>
       </div>
-      <div class="right-box">
-        <div class="box item-right">
-          <div>
-            <div class="category">Search</div>
-            <div class="font-style">구매를 원하는<br>상품을 검색하세요</div>
-            <div class="details">
-              구매하고 싶은 물품은 검색해서<br>
-              쉽게 찾아보세요
-            </div>
+      <div class="box item-right">
+        <div>
+          <div class="category">Search</div>
+          <div class="font-style">구매를 원하는<br>상품을 검색하세요</div>
+          <div class="details">
+            구매하고 싶은 물품은 검색해서<br>
+            쉽게 찾아보세요
           </div>
-          <img class="main-img" src="/image/Img_home_02.png">
         </div>
+        <img class="main-img" src="/image/Img_home_02.png">
       </div>
       <div class="box">
         <img class="main-img" src="/image/Img_home_03.png">
-        <div class="category">Register</div>
-        <div class="font-style">판매를 원하는<br>상품을 등록하세요</div>
-        <div class="details">
-          어떤 물건이든 판매하고 싶은 상품을<br>
-          쉽게 등록하세요
+        <div>
+          <div class="category">Register</div>
+          <div class="font-style">판매를 원하는<br>상품을 등록하세요</div>
+          <div class="details">
+            어떤 물건이든 판매하고 싶은 상품을<br>
+            쉽게 등록하세요
+          </div>
         </div>
       </div>
     </div>
@@ -96,10 +108,12 @@
     </div>
     <div class="footer-info">
       <div class="footer-info-items">
-        <div class="footer-info-font margin-left" style="color: #9CA3AF;">@codeit-2024</div>
-        <div class="footer-info-font" style="margin-left: auto; margin-right: auto;">
-          <a href="html/privacy.html">Privacy Police</a>
-          <a href="html/faq.html" style="margin-left: 30px;">FAQ</a>
+        <div class="info-box margin-left">
+          <div class="footer-info-font" style="color: #9CA3AF;">@codeit-2024</div>
+          <div class="footer-info-font">
+            <a href="/privacy">Privacy Police</a>
+            <a href="/faq" style="margin-left: 30px;">FAQ</a>
+          </div>
         </div>
         <div class="margin-right">
           <img class="sns-img" src="/image/ic_facebook.png" onclick="window.open('https://www.facebook.com/')">
