@@ -15,10 +15,8 @@ export async function addProducts(name, description, price, tags, images) { //íŒ
 export async function getProducts(article_id){
   try{
     const getRes = await axios.get(`http://sprint-mission-api.vercel.app/products/${article_id}`)
-  // console.log(getRes.data)
-    .then((res) => {
-      console.log(res.data)
-    })
+    console.log(getRes.data)
+    
 
   }
   catch(e){
