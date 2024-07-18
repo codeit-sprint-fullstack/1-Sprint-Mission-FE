@@ -1,4 +1,4 @@
-// Importing Api
+// Importing Api Services
 import * as ProductService from './services/ProductService.js';
 import * as ArticleService from './services/ArticleService.js';
 
