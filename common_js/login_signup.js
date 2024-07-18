@@ -69,3 +69,11 @@ export function initPasswordValidation(password, passwordmsg) {
     password.addEventListener('blur', pinputFocusOut);
     password.addEventListener('focus', pinputFocusIn);
 }
+
+export function hidePopup() {
+    const popupCloseBtn = document.getElementById('popup-close-btn');
+    popupCloseBtn.addEventListener('click', function () {
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+    });
+}
