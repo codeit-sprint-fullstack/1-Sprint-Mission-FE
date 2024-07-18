@@ -18,26 +18,26 @@
   </script>
 </head>
 <body>
-  <a class="bigLogo" href="../" target="_self">
-    <img class="bigLogoImg" src="../image/판다마켓로고.png" alt="로고이미지">
+  <a class="big-logo" href="../" target="_self">
+    <img class="big-logo-img" src="../image/판다마켓로고.png" alt="로고이미지">
   </a>
-  <form class="login mainContent">
-    <div class="email inputBox">
+  <form class="login main-content">
+    <div class="email input-box">
       <label for="email">이메일</label>
-      <input id="email" class="inputForm" type="email" name="email" placeholder="이메일을 입력해주세요">
-      <span class="email errorMessage"></span>
+      <input id="email" class="input-form" type="email" name="email" placeholder="이메일을 입력해주세요">
+      <span class="email error-message"></span>
     </div>
-    <div class="password inputBox">
+    <div class="password input-box">
       <label for="password">비밀번호</label>
-      <input id="password" class="inputForm" type="password" name="password" placeholder="비밀번호를 입력해주세요">
-      <span class="password errorMessage"></span>
+      <input id="password" class="input-form" type="password" name="password" placeholder="비밀번호를 입력해주세요">
+      <span class="password error-message"></span>
       <img class="eye" src="../image/btn_visibility_on.svg" alt="텍스트 보기"></img>
       <img class="slashed eye" src="../image/btn_visibility_off_24px.svg" alt="텍스트 가리기" ></img>
     </div>
-    <button class="loginButton" type="submit" disabled>로그인</button>
-    <div class="simpleLogin">
-      <span class="simpleSpan">간편 로그인하기</span>
-      <div class="simpleLink">
+    <button class="login-button" type="submit" disabled>로그인</button>
+    <div class="simple-login">
+      <span class="simple-span">간편 로그인하기</span>
+      <div class="simple-link">
         <a href="https://www.google.com/" target="_self">
           <img class="google" src="../image/ic_google.png" alt="구글">
         </a>
@@ -46,7 +46,7 @@
         </a>
       </div>
     </div>
-    <div class="askJoin">
+    <div class="ask-join">
       판다마켓이 처음이신가요?
       <a class="join" href="../signup" target="_self">
         회원가입
@@ -55,7 +55,7 @@
   </form>
   <!-- modal -->
   <dialog class="modal"> 
-    <span class="modalContent"></span>
+    <span class="modal-content"></span>
     <form class="dialog">
       <button>확인</button>
     </form>
@@ -63,7 +63,7 @@
   <!-- password eye toggle -->
   <script type="module">
     import { clickEye } from '../passwordEye.js';
-    clickEye(".password.inputBox", "#password");
+    clickEye(".password.input-box", "#password");
   </script>
   <script src="./loginValidCheck.js"></script>
   <script type="module" src="./loginManager.js"></script>

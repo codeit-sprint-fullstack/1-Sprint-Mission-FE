@@ -1,15 +1,15 @@
 const email = document.getElementById('email');
-const emailError = document.querySelector('.email.errorMessage');
+const emailError = document.querySelector('.email.error-message');
 const emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
 const password = document.getElementById('password');
-const passwordError = document.querySelector('.password.errorMessage');
+const passwordError = document.querySelector('.password.error-message');
 const checkPassword = document.getElementById('checkPassword');
-const checkPasswordError = document.querySelector('.checkPassword.errorMessage');
+const checkPasswordError = document.querySelector('.check-password.error-message');
 const nickName = document.getElementById('name');
-const nickNameError = document.querySelector('.name.errorMessage');
+const nickNameError = document.querySelector('.name.error-message');
 
-const joinButton = document.querySelector('.joinButton');
+const joinButton = document.querySelector('.join-button');
 
 let emailValid = false;
 let passwordValid = false;

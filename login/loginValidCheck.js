@@ -1,11 +1,11 @@
 const email = document.getElementById('email');
-const emailError = document.querySelector('.email.errorMessage');
+const emailError = document.querySelector('.email.error-message');
 const emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
 const password = document.getElementById('password');
-const passwordError = document.querySelector('.password.errorMessage');
+const passwordError = document.querySelector('.password.error-message');
 
-const loginButton = document.querySelector('.loginButton');
+const loginButton = document.querySelector('.login-button');
 
 let emailValid = false;
 let passwordValid = false;
@@ -51,4 +51,3 @@ password.addEventListener('input', () => {
   
   loginButtonStatus();
 });
-

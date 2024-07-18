@@ -16,21 +16,21 @@ label {
   font-weight: 700;
   margin-bottom: 1.6rem;
 }
-.bigLogo {
+.big-logo {
   margin-top: 6rem;
   margin-bottom: 4rem;
 }
-.bigLogoImg {
+.big-logo-img {
   width: 39.6rem;
   height: 13.2rem;
 }
-.login.mainContent {
+.login.main-content {
   height: 48.2rem;
 }
-.signup.mainContent {
+.signup.main-content {
   height: 74.2rem;
 }
-.mainContent {
+.main-content {
   width: 64rem;
   color: var(--loginFontBlack);
   display: flex;
@@ -39,14 +39,14 @@ label {
   gap: 2.4rem;
   position: relative;
 }
-.inputBox {
+.input-box {
   width: 100%;
   height: 11.9rem;
   display: flex;
   flex-direction: column;
   position: relative;
 }
-.inputForm {
+.input-form {
   height: 5.6rem;
   line-height: 100%;
   padding: 1.6rem 2.4rem;
@@ -55,20 +55,20 @@ label {
   border-radius: 1.2rem;
   outline: none;
 }
-.errorMessage {
+.error-message {
   height: 2.6rem;
   padding-top: 0.8rem;
   padding-left: 1.6rem;
   font-size: 1.5rem;
   color: var(--errorRed);
 }
-.inputForm:focus {
+.input-form:focus {
   border: 1px solid var(--mainBlue);
 }
-.inputForm.error {
+.input-form.error {
   border: 1px solid var(--errorRed);
 }
-.inputForm::placeholder {
+.input-form::placeholder {
   color: var(--fontGray);
   font-family: Pretendard;
   font-size: 1.6rem;
@@ -84,8 +84,8 @@ label {
 .slashed.eye {
   display: none;
 }
-.loginButton,
-.joinButton {
+.login-button,
+.join-button {
   width: 100%;
   height: 5.6rem;
   background-color: var(--fontGray);
@@ -95,11 +95,11 @@ label {
   font-size: 2rem;
   font-weight: 600;
 }
-.loginButton:disabled,
-.joinButton:disabled {
+.login-button:disabled,
+.join-button:disabled {
   opacity: 0.5;
 }
-.simpleLogin {
+.simple-login {
   width: 100%;
   height: 7.4rem;
   background-color: var(--simpleLoginColor);
@@ -108,7 +108,7 @@ label {
   justify-content: space-between;
   align-items: center;
 }
-.simpleLink {
+.simple-link {
   margin-right: 2.3rem;
   >a {
     text-decoration: none;
@@ -118,7 +118,7 @@ label {
     }
   }
 }
-.simpleSpan {
+.simple-span {
   margin-left: 2.3rem;
   font-size: 1.6rem;
   font-weight: 500;
@@ -126,14 +126,14 @@ label {
 a>.google {
   margin-right: 1.6rem;
 }
-.askJoin, 
-.askLogin {
+.ask-join, 
+.ask-login {
   display: flex;
   justify-content: center;
   font-size: 1.5rem;
 }
-.askJoin>.join,
-.askLogin>.login {
+.ask-join>.join,
+.ask-login>.login {
   display: block;
   color: var(--linkBlue);
   margin-left: 0.4rem;
@@ -146,7 +146,7 @@ a>.google {
   border: none;
   border-radius: 0.8rem;
   position: relative;
-  .modalContent {
+  .modal-content {
     color: var(--loginFontBlack);
     font-size: 1.6rem;
     font-weight: 500;
@@ -173,7 +173,7 @@ a>.google {
 }
 
 @media (max-width: 1199px) {
-  .bigLogo {
+  .big-logo {
     margin-top: 4.8rem;
   }
 }
@@ -183,51 +183,51 @@ a>.google {
     font-size: 1.4rem;
     margin-bottom: 0.8rem;
   }
-  .bigLogo {
+  .big-logo {
     margin-top: 2.4rem auto;
   }
-  .bigLogoImg {
+  .big-logo-img {
     width: 19.8rem;
     height: 6.6rem;
   }
-  .login.mainContent {
+  .login.main-content {
     height: 44.3rem;
   }
-  .signup.mainContent {
+  .signup.main-content {
     height: 66.3rem;
   }
-  .mainContent {
+  .main-content {
     width: 100%;
     max-width: 40rem;
     min-width: 37.5rem;
     padding: 0 1.6rem;
     gap: 1.6rem;
   }
-  .inputBox {
+  .input-box {
     width: 100%;
     height: 10.7rem;
   }
   .eye {
     top: 3.8rem;
   }
-  .loginButton,
-  .joinButton {
+  .login-button,
+  .join-button {
     width: 70%;
   }
-  .simpleLogin {
+  .simple-login {
     height: 7.5rem;
     justify-content: space-between;
   }
-  .simpleSpan {
+  .simple-span {
     margin-left: 2.4rem;
   }
-  .simpleLink {
+  .simple-link {
     margin-right: 1.6rem;
   }
   .modal {
     width: 32.7rem;
     height: 22rem;
-    .modalContent {
+    .modal-content {
       font-size: 1.8rem;
     }
   }

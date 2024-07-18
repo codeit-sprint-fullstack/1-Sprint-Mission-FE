@@ -1,6 +1,6 @@
 import USER_DATA from "../USER_DATA.js";
 
-const loginForm = document.querySelector('.login.mainContent');
+const loginForm = document.querySelector('.login.main-content');
 
 const modal = document.querySelector(".modal");
 
@@ -17,7 +17,7 @@ loginForm.addEventListener('submit', event => {
   if(userLogin(email.value, password.value)){
     location.href = '/items';
   } else {
-    const modalContent = modal.querySelector('.modalContent');
+    const modalContent = modal.querySelector('.modal-content');
     modalContent.textContent ='비밀번호가 일치하지 않습니다.';
     modal.showModal();
   }

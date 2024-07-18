@@ -1,6 +1,6 @@
 import USER_DATA from "../USER_DATA.js";
 
-const signupForm = document.querySelector('.signup.mainContent');
+const signupForm = document.querySelector('.signup.main-content');
 
 const modal = document.querySelector(".modal");
 
@@ -14,8 +14,8 @@ signupForm.addEventListener('submit', event => {
   const email = document.getElementById('email');
 
   if(userSignup(email.value)){
-    const modalContent = modal.querySelector('.modalContent');
-    modalContent.textContent ='사용 중인 이메일입니다';
+    const modalContent = modal.querySelector('.modal-content');
+    modalContent.textContent = '사용 중인 이메일입니다';
     modal.showModal();
   } else {
     location.href = '/login';
