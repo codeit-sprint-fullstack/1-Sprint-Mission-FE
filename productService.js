@@ -24,7 +24,7 @@ export async function getProduct(id) {
         throw error;
     }
 }
-.
+
 export async function createProduct(product) {
     const URL = 'https://sprint-mission-api.vercel.app/products';
 
