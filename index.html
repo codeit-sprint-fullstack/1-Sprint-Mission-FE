@@ -49,9 +49,9 @@
     function gtag() {
       dataLayer.push(arguments);
     }
-    gtag("js", new Date());
+    gtag('js', new Date());
 
-    gtag("config", "G-953ZVVDGF3");
+    gtag('config', 'G-953ZVVDGF3');
   </script>
   <body>
     <div class="nav_background">
@@ -59,12 +59,12 @@
         <div class="nav_title">
           <picture>
             <source
-              srcset="./img/index_img/logo.png"
+              srcset="./img/index_img/logo_2.png"
               media="(max-width: 473px)"
             />
             <img
               onClick="location.href='./'"
-              src="./img/index_img/Group 19.png"
+              src="./img/index_img/logo_1.png"
             />
           </picture>
           <span>자유게시판</span>
@@ -81,9 +81,13 @@
     <div class="title main_page">
       <div class="home_main_top">
         <p>일상의 모든 물건을 <br class="break-m" />거래해 보세요</p>
-        <a href="/items">
-          <button class="home_main_top_btn"><p>구경하러 가기</p></button>
-        </a>
+        <button
+          type="button"
+          onClick="location.href='./items.html'"
+          class="home_main_top_btn"
+        >
+          <p>구경하러 가기</p>
+        </button>
       </div>
       <div class="background_home_img">
         <img src="./img/index_img/Img_home_top (2).png" />
