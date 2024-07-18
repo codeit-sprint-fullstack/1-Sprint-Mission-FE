@@ -22,5 +22,5 @@
 
 ### 🎈 기획 및 설계
 
-- 미션 4 API 명세 (아래)
+- 미션 4 API 명세 참고
 	https://sprint-mission-api.vercel.app/docs/
