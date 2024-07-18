@@ -101,7 +101,6 @@ export function deleteArticle(id) {
         })
         .then(data => {
             console.log('성공적으로 삭제됨');
-            console.log(data);
         })
         .catch(() => console.error('게시글을 찾을 수 없음'));
 }
