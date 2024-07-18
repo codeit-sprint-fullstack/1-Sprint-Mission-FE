@@ -1,5 +1,5 @@
 html {
-    font-family: Pretendard;
+    font-family: Pretendard, sans-serif;
 }
 
 header {
@@ -10,7 +10,7 @@ header {
     z-index: 9999;
 }
 
-.nav {
+.navigation {
     width: 100%;
     height: 70px;
     background-color: #FFFFFF;
@@ -20,8 +20,11 @@ header {
     align-items: center;
 }
 
-.logo {
-    margin-left: 200px;
+.img_logo {
+    width: 153px;
+    height: 51px;
+    background-image: url(/img/Panda_logo.png);
+    background-size: cover;
 }
 
 .menu{
@@ -30,7 +33,6 @@ header {
     background-color: #FFFFFF;
     display: flex;
     flex-direction: row;
-    margin-left: 32px;
 }
 
 .notice-board {
@@ -39,6 +41,8 @@ header {
     background-color: #FFFFFF;
     font-size: 18px;
     font-weight: 700;
+    line-height: 21.48px;
+    color: #4B5563;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -54,16 +58,15 @@ header {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-right: 200px;
     flex-shrink: 0;
 }
 
 .login {
-    color: #FFFFFF;
     font-size: 16px;
     font-weight: 600;
     line-height: 19.09px;
     text-decoration: none;
+    color: #FFFFFF;
 }
 
 .banner{
@@ -71,15 +74,14 @@ header {
     height: 540px;
     background-color: #CFE5FF;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     overflow: hidden;
 }
 
-.banner-text{
+.banner-text-box{
     width: 357px;
-    height: 200px;
     font-size: 40px;
     font-weight: 700;
     line-height: 56px;
@@ -87,8 +89,6 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
-    left: 92.5px;
 }
 
 .banner-buten {
@@ -105,22 +105,20 @@ header {
 .tour {
     font-size: 20px;
     font-weight: 600;
-    color: #FFFFFF;
+    line-height: 24px;
     text-decoration: none;
+    color: #FFFFFF;
 }
 
 .img-banner {
     width: 996px;
     height: 447px;
-    background-image: url(img/Img_home_top.png);
-    position: relative;
-    left: 76.5px;
-    margin-top: 93px;
+    background-image: url(img/banner.png);
+    background-size: cover;
 }
 
 .frame {
     width: 100%;
-    height: 720px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -129,20 +127,16 @@ header {
 }
 
 .hot-item-box {
-    width: 955px;
-    height: 444px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    position: relative;
-    right: 122.5px;
 }
 
-.hot-item-word{
-    width: 303px;
-    height: 231px;
+.Img_home_01 {
+    background-image: url(img/Img_hot_item.png);
+    background-size: cover;
 }
+
 
 .word1 {
     font-size: 18px;
@@ -152,52 +146,51 @@ header {
 }
 
 .word2 {
-    font-size: 40px;
     font-weight: 700;
-    line-height: 56px;
     color: #374151;
-    margin-top: 12px;
 }
 
 .word3 {
-    font-size: 24px;
     font-weight: 500;
-    line-height: 28.8px;
     color: #374151;
-    margin-top: 24px;
 }
 
 .search-box {
-    width: 969px;
-    height: 444px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
     justify-content: space-between;
-    align-items: center;
-    position: relative;
-    left: 115.5px;
+    align-items: end;
 }
 
-.search-word {
-    width: 317px;
-    height: 231px;
+.search-word-box {
     text-align: right;
 }
 
-.register-box {
-    width: 1022px;
-    height: 444px;
+.search-word {
     display: flex;
     flex-direction: row;
+    justify-content: end;
+}
+
+.Img_home_02 {
+    background-image: url(img/Img_search.png);
+    background-size: cover;
+}
+
+.register-box {
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    position: relative;
-    right: 89px;
+}
+
+.Img_home_03 {
+    background-image: url(img/Img_register.png);
+    background-size: cover;
 }
 
 .register-word {
-    width: 370px;
-    height: 231px;
+    display: flex;
+    flex-direction: row;
 }
 
 .footer-frame{
@@ -205,36 +198,27 @@ header {
     height: 540px;
     background-color: #CFE5FF;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    margin-top: 138px;
     overflow: hidden;
 }
 
-.footer-box {
-    width: 1200px;
-    height: 540px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
 .footer-word {
-    width: 341px;
     height: 112px;
     font-size: 40px;
     font-weight: 700;
     line-height: 56px;
+    text-align: center;
     color: #374151;
-    flex-shrink: 0;
-    position: relative;
-    left: 68.5px;
 }
 
-.footer-img {
-    position: relative;
-    left: 68.5px;
+.Img_home_bottom {
+    width: 996px;
+    height: 540px;
+    background-image: url(img/Panda_bottom.png);
+    background-size: cover;
+
 }
 
 .bottom-frame {
@@ -249,13 +233,25 @@ header {
 .bottom-box {
     width: 100%;
     height: 20px;
+    margin-top: 32px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.09px;
     color: #9CA3AF;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-left: 104px;
-    padding-right: 104px;
-    margin-top: 32px;
+}
+
+.mobile {
+    width: 112px;
+    height: 19px;
+}
+
+.link_box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .qna {
@@ -267,9 +263,14 @@ header {
 }
 
 .qna-word {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19.09px;
     text-decoration: none;
     color: #E5E7EB;
+}
+
+.icon {
+    width: 116px;
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

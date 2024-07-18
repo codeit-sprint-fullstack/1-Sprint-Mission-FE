@@ -1,24 +1,93 @@
-const passwordField = document.getElementById("login_password");
-// document.getElementById는 JavaScript에서 DOM(Document Object Model)을 사용하여 HTML 요소를 가져오는 메서드로 id가 "login_password"에 해당하는 단일 HTML 요소를 반환
-const togglePassword = document.querySelector(".password-toggle-icon i");
-// document.querySelector는 주어진 CSS 선택자에 해당하는 첫 번째 문서 객체 모델(DOM) 요소를 반환하는 JavaScript 메서드로 password-toggle-icon i에 해당하는 <i> 요소를 가져온다.
+import { USER_DATA } from "/Lib/user_data.js";
+import * as lgn from "/Lib/public.js"
 
-togglePassword.addEventListener("click", function () {
-  //togglePassword 요소에 클릭 이벤트 리스너를 추가합니다. 사용자가 아이콘을 클릭할 때마다 함수가 실행
-  if (passwordField.type === "password") {
-    //passwordField의 타입이 password일 때
-    passwordField.type = "text";
-    //passwordField의 타입을 text로 재지정
-    togglePassword.classList.remove("fa-eye");
-    //togglePassword 아이콘의 클래스에서 "fa-eye" 클래스를 제거
-    togglePassword.classList.add("fa-eye-slash");
-    //togglePassword 아이콘의 클래스에 "fa-eye-slash" 클래스 추가
-  } else {
-    passwordField.type = "password";
-    // 그외 조건에 맞는게 없으면 passwordField의 타입을 password로 재지정
-    togglePassword.classList.remove("fa-eye-slash");
-    //togglePassword 아이콘의 클래스에서 "fa-eye-slash" 클래스를 제거
-    togglePassword.classList.add("fa-eye");
-    //togglePassword 아이콘의 클래스에 "fa-eye" 클래스 추가
-  }
+const user_email = document.querySelector('#login_email'); 
+const user_password = document.querySelector('#login_password');
+const togglePassword = document.querySelector(".password-toggle-icon i");
+const login_button = document.querySelector('.login_box');
+const modal_button = document.querySelector('.modal_button');
+const email_text =  /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+
+// ----------------------------------------------------------
+
+// 로그인
+const login = () => {
+
+    const login_button_list = Array.from(login_button.classList);
+    const modal = document.querySelector('.modal_none');
+    const modal_button = document.querySelector('.modal_button');
+
+    if (login_button_list.find((e) => e === 'login_box_activate')) {
+
+        if (USER_DATA.find((n) => n.email === user_email.value && n.password === user_password.value)) {
+
+            window.location.href = '/items';
+
+        } else {
+            modal.className = 'modal';
+            setTimeout(() => {lgn.modal_focus(modal_button)}, 100);
+        }
+    }
+}
+
+// 로그인 버튼 활성화
+const login_activat = () => {
+
+    if (user_password.value.length >= 8 && email_text.test(user_email.value) === true ) {
+        login_button.className = 'login_box';
+        login_button.classList.add('login_box_activate');
+
+    } else {
+        login_button.className = 'login_box';
+        login_button.classList.add('login_box_no_activate');
+    }
+}
+
+// login page enter key의 focus 이동
+const login_focus_doing = (e) => {
+    if (e.key === 'Enter' && document.activeElement === user_email) {
+        user_password.focus();
+
+    } else if (e.key === 'Enter' && document.activeElement === user_password) {
+        login_button.focus();
+        setTimeout(login, 100);
+    }
+}
+
+
+// ----------------------------------------------------------
+
+// password 토글 
+togglePassword.addEventListener('click', () => {
+    lgn.toggle_icon(user_password, togglePassword);
 });
+
+// error 메세지
+user_email.addEventListener('focusout', () => 
+    {lgn.error_email(user_email);
+});
+user_email.addEventListener('keyup', () => {
+    lgn.error_keydown_email(user_email);
+});
+user_password.addEventListener('focusout', () => {
+    lgn.error_password(user_password);
+});
+user_password.addEventListener('keyup', () => {
+    lgn.error_keydown_password(user_password);
+});
+
+// // enter로 focus 이동
+user_email.addEventListener('keyup', login_focus_doing);
+user_password.addEventListener('keyup', login_focus_doing);
+
+// // 로그인 버튼 활성화
+user_email.addEventListener('focusout', login_activat);
+user_email.addEventListener('keyup', login_activat);
+user_password.addEventListener('focusout', login_activat);
+user_password.addEventListener('keyup', login_activat);
+
+// // 로그인
+login_button.addEventListener('click', login);
+
+// // 모달창 닫기
+modal_button.addEventListener('click', lgn.modal_close);
