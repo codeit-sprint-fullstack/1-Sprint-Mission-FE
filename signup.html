@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="reset.css" />
+  <link rel="stylesheet" href="signup.css">
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
+  <title>판다마켓</title>
+  
+</head>
+<body class="container">
+  <a href="index.html">
+      <img src="img/Property 1=Variant3.svg" class="panda_logo">
+  </a>
+  <form class="signup_from">
+      <p class="signup_str">이메일</p>
+      <input id="email_input" class="input_box" placeholder="이메일을 입력해주세요" type="eamil">
+      <div class="error" id="error_message"></div>
+      <p class="signup_str">닉네임</p>
+      <input id="name_input" type="text" class="input_box" placeholder="닉네임을 입력해주세요">
+      <div class="error" id="name_error_message"></div>
+      <p class="signup_str">비밀번호</p>
+      <div class="pass_form">
+        <input id="ps_input" type="password" id="ps_input" class="input_box" placeholder="비밀번호를 입력해주세요">
+        <i class="close_pw">
+            <img src="img/btn_visibility_on_24px.png" class="eye_img">
+        </i>
+        <i class="open_ps" style="display: none;">
+            <img src="img/eye.png" class="eye_img">
+        </i>
+        <div class="error" id="pw_error_message"></div>
+    </div>
+      
+      <p class="signup_str">비밀번호 확인</p><div class="pass_form2">
+        <input type="password" id="ps_input2" class="input_box2" placeholder="비밀번호를 다시 한 번 입력해주세요">
+        <i class="close_pw2">
+            <img src="img/btn_visibility_on_24px.png" class="eye_img2">
+        </i>
+        <i class="open_ps2" style="display: none;">
+            <img src="img/eye.png" class="eye_img2">
+        </i>
+        <div class="error" id="pw_error_message2"></div>
+    </div>
+      
+      <button class="signup_button" type="button">회원가입</button>
+      <div class="custom-alert" id="customAlert">
+        <div class="alert-content">
+          <p>사용 중인 이메일입니다.</p>
+          <button id="alertButton">확인</button>
+        </div>
+      </div>
+      <div class="login_kakao_google">
+          <p class="login_kakao_google_str">간편 로그인하기</p>
+
+          <div class="login_kakao_google_img_box">
+              <a href="https://www.google.com/" style="text-decoration:none;">
+                  <img src="img/Component 2@3x.png" class="login_kakao_google_img">
+              </a>
+
+              <a href="https://www.kakaocorp.com/page/" style="text-decoration:none;">
+                  <img src="img/Component 3@3x.png" class="login_kakao_google_img">
+              </a>
+
+          </div>
+      </div>
+      <p class="last_str">이미 회원이신가요? <a href="login.html" class="link_str">로그인</a></p>
+  </form>
+  <script src="signup.js"></script>
+</body>
+</html>

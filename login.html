@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <title>판다마켓</title>
+    
+</head>
+<body class="container">
+    <a href="index.html">
+        <img src="img/Property 1=Variant3.svg" class="panda_logo">
+    </a>
+
+    <div class="login_form">
+        <p class="login_str">이메일</p>
+        <input id="email_input" class="input_box" placeholder="이메일을 입력해주세요" type="email">
+        <div class="error" id="error_message"></div>
+        <label class="login_ps">비밀번호</label>
+        <div class="pass_form">
+            <input type="password" id="ps_input" class="input_box" placeholder="비밀번호를 입력해주세요">
+            <i class="close_pw">
+                <img src="img/btn_visibility_on_24px.png" class="eye_img">
+            </i>
+            <i class="open_ps" style="display: none;">
+                <img src="img/eye.png" class="eye_img">
+            </i>
+        </div>
+        <div class="error" id="pw_error_message"></div>
+        
+        
+        <button class="login_button" type="button">로그인</button>
+        <div class="custom-alert" id="customAlert">
+            <div class="alert-content">
+              <p>비밀번호가 일치하지 않습니다.</p>
+              <button id="alertButton">확인</button>
+            </div>
+          </div>
+        <div class="login_kakao_google">
+            <p class="login_kakao_google_str">간편 로그인하기</p>
+
+            <div class="login_kakao_google_img_box">
+                <a href="https://www.google.com/" style="text-decoration:none;">
+                    <img src="img/Component 2@3x.png" class="login_kakao_google_img">
+                </a>
+
+                <a href="https://www.kakaocorp.com/page/" style="text-decoration:none;">
+                    <img src="img/Component 3@3x.png" class="login_kakao_google_img">
+                </a>
+
+            </div>
+        </div>
+        <p class="last_str">판다마켓이 처음이신가요? <a href="signup.html" class="link_str">회원가입</a></p>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
