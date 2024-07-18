@@ -4,7 +4,7 @@ const emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-
 
 const password = document.getElementById('password');
 const passwordError = document.querySelector('.password.error-message');
-const checkPassword = document.getElementById('checkPassword');
+const checkPassword = document.getElementById('check-password');
 const checkPasswordError = document.querySelector('.check-password.error-message');
 const nickName = document.getElementById('name');
 const nickNameError = document.querySelector('.name.error-message');
