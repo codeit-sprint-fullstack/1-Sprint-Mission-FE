@@ -1,0 +1,116 @@
+@media screen and (min-width: 1200px) { 
+    .headerbox{
+        padding: 0 200px;
+    }
+    .article_box{
+        margin: 138px auto;        
+    }
+    .article_box2{
+        margin: 138px auto;
+    }
+
+}
+
+@media only screen and/*(min-width: 744px) and*/ (max-width: 1199px) {
+    .headerbox{
+        padding: 0 24px;
+    }
+
+    .article_box{
+        flex-direction: column;
+        padding: 40px 24px;
+        margin:0%;
+    }
+
+    .article_box2{
+        flex-direction: column-reverse;
+    }
+
+    .banner{
+        position: relative;
+    }
+  
+    #banner_mungu br{
+          display: none;
+    }
+      
+    .item-text {
+          margin-right: 0.3em; /* '물건을'과 '거래해보세요' 사이의 한칸 띄움 */
+    }
+      
+    .button{
+          margin-top:-20px;
+    }
+    #box_text{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        top:50px;
+        font-size: 20px;
+    }
+
+    #banner_img{
+        background-position: bottom center;
+        background-size: contain;
+    }
+
+    #last_img{
+        background-position: bottom center;
+        background-size: contain;
+    }
+
+    .banner{
+        background-position: 50% bottom;
+        background-size: 50%;
+    }
+}
+
+
+/* Mobile */
+@media only screen and (min-width: 375px) and (max-width: 743px) {
+    .headerbox{
+        padding: 0 16px;
+    }
+
+    main{
+        font-size: 12px;
+    }
+    /* 이미지 가득 채우기 */
+    main img{
+        width: calc(100% - 32px);
+        max-width: 100%;
+        height: auto; 
+    }
+
+    .article_box{
+        flex-direction: column;
+        padding: 32px 16px;
+        margin:0%;
+    }
+
+    .article_box2{
+        flex-direction: column-reverse;
+    }
+
+    .box1_mungu1 br{
+        display: none;
+    }
+
+    .box2_mungu1 br{
+        display: none;
+    }
+
+    .item-text {
+        margin-right: 0.3em; /* '상품을' 뒤 한칸 띄움 */
+    }
+
+    #box_text{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        top:50px;
+    }
+
+}
