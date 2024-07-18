@@ -1,0 +1,239 @@
+@import "./reset.css";
+
+html {
+	font-size: 62.5%;
+}
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Pretendard;
+}
+label {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.6rem;
+}
+.big-logo {
+  margin-top: 6rem;
+  margin-bottom: 4rem;
+}
+.big-logo-img {
+  width: 39.6rem;
+  height: 13.2rem;
+}
+.login.main-content {
+  height: 48.2rem;
+}
+.signup.main-content {
+  height: 74.2rem;
+}
+.main-content {
+  width: 64rem;
+  color: var(--loginFontBlack);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.4rem;
+  position: relative;
+}
+.input-box {
+  width: 100%;
+  height: 11.9rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.input-form {
+  height: 5.6rem;
+  line-height: 100%;
+  padding: 1.6rem 2.4rem;
+  background-color: var(--inputBack);
+  border: 1px solid var(--backWhite);
+  border-radius: 1.2rem;
+  outline: none;
+}
+.error-message {
+  height: 2.6rem;
+  padding-top: 0.8rem;
+  padding-left: 1.6rem;
+  font-size: 1.5rem;
+  color: var(--errorRed);
+}
+.input-form:focus {
+  border: 1px solid var(--mainBlue);
+}
+.input-form.error {
+  border: 1px solid var(--errorRed);
+}
+.input-form::placeholder {
+  color: var(--fontGray);
+  font-family: Pretendard;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.eye {
+  width: 2.4rem;
+  height: 2.4rem;
+  position: absolute;
+  right: 2.4rem;
+  top: 5.1rem;
+}
+.slashed.eye {
+  display: none;
+}
+.login-button,
+.join-button {
+  width: 100%;
+  height: 5.6rem;
+  background-color: var(--fontGray);
+  border: 1px solid var(--backWhite);
+  border-radius: 4rem;
+  color: var(--backWhite);
+  font-size: 2rem;
+  font-weight: 600;
+}
+.login-button:disabled,
+.join-button:disabled {
+  opacity: 0.5;
+}
+.simple-login {
+  width: 100%;
+  height: 7.4rem;
+  background-color: var(--simpleLoginColor);
+  display: flex;
+  border-radius: 0.8rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.simple-link {
+  margin-right: 2.3rem;
+  >a {
+    text-decoration: none;
+    >img {
+      width: 4.2rem;
+      height: 4.2rem;
+    }
+  }
+}
+.simple-span {
+  margin-left: 2.3rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+a>.google {
+  margin-right: 1.6rem;
+}
+.ask-join, 
+.ask-login {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+.ask-join>.join,
+.ask-login>.login {
+  display: block;
+  color: var(--linkBlue);
+  margin-left: 0.4rem;
+}
+/* modal */
+.modal {
+  width: 54rem;
+  height: 25rem;
+  background-color: var(--backWhite);
+  border: none;
+  border-radius: 0.8rem;
+  position: relative;
+  .modal-content {
+    color: var(--loginFontBlack);
+    font-size: 1.6rem;
+    font-weight: 500;
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+  }
+}
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+.dialog button{
+  width: 12rem;
+  height: 4.8rem;
+  background-color: var(--mainBlue);
+  color: var(--backWhite);
+  font-weight: 600;
+  border: none;
+  border-radius: 0.8rem;
+  position: absolute;
+  bottom: 2.8rem;
+  right: 2.8rem;
+}
+
+@media (max-width: 1199px) {
+  .big-logo {
+    margin-top: 4.8rem;
+  }
+}
+
+@media (max-width: 743px) {
+  label {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+  .big-logo {
+    margin-top: 2.4rem auto;
+  }
+  .big-logo-img {
+    width: 19.8rem;
+    height: 6.6rem;
+  }
+  .login.main-content {
+    height: 44.3rem;
+  }
+  .signup.main-content {
+    height: 66.3rem;
+  }
+  .main-content {
+    width: 100%;
+    max-width: 40rem;
+    min-width: 37.5rem;
+    padding: 0 1.6rem;
+    gap: 1.6rem;
+  }
+  .input-box {
+    width: 100%;
+    height: 10.7rem;
+  }
+  .eye {
+    top: 3.8rem;
+  }
+  .login-button,
+  .join-button {
+    width: 70%;
+  }
+  .simple-login {
+    height: 7.5rem;
+    justify-content: space-between;
+  }
+  .simple-span {
+    margin-left: 2.4rem;
+  }
+  .simple-link {
+    margin-right: 1.6rem;
+  }
+  .modal {
+    width: 32.7rem;
+    height: 22rem;
+    .modal-content {
+      font-size: 1.8rem;
+    }
+  }
+  .dialog button{
+    bottom: 2.3rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}

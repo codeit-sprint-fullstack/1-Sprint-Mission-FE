@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인 페이지</title>
+  <link rel="shortcut icon" href="../image/판다 얼굴.png">
+  <link rel="stylesheet" href="../auth.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C1PM7LWSG7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-C1PM7LWSG7');
+  </script>
+</head>
+<body>
+  <a class="big-logo" href="../" target="_self">
+    <img class="big-logo-img" src="../image/판다마켓로고.png" alt="로고이미지">
+  </a>
+  <form class="login main-content">
+    <div class="email input-box">
+      <label for="email">이메일</label>
+      <input id="email" class="input-form" type="email" name="email" placeholder="이메일을 입력해주세요">
+      <span class="email error-message"></span>
+    </div>
+    <div class="password input-box">
+      <label for="password">비밀번호</label>
+      <input id="password" class="input-form" type="password" name="password" placeholder="비밀번호를 입력해주세요">
+      <span class="password error-message"></span>
+      <img class="eye" src="../image/btn_visibility_on.svg" alt="텍스트 보기"></img>
+      <img class="slashed eye" src="../image/btn_visibility_off_24px.svg" alt="텍스트 가리기" ></img>
+    </div>
+    <button class="login-button" type="submit" disabled>로그인</button>
+    <div class="simple-login">
+      <span class="simple-span">간편 로그인하기</span>
+      <div class="simple-link">
+        <a href="https://www.google.com/" target="_self">
+          <img class="google" src="../image/ic_google.png" alt="구글">
+        </a>
+        <a href="https://www.kakaocorp.com/page/" target="_self">
+          <img class="kakao" src="../image/ic_kakaotalk.png" alt="카카오톡">
+        </a>
+      </div>
+    </div>
+    <div class="ask-join">
+      판다마켓이 처음이신가요?
+      <a class="join" href="../signup" target="_self">
+        회원가입
+      </a>
+    </div>
+  </form>
+  <!-- modal -->
+  <dialog class="modal"> 
+    <span class="modal-content"></span>
+    <form class="dialog">
+      <button>확인</button>
+    </form>
+  </dialog>
+  <!-- password eye toggle -->
+  <script type="module">
+    import { clickEye } from '../passwordEye.js';
+    clickEye(".password.input-box", "#password");
+  </script>
+  <script src="./loginValidCheck.js"></script>
+  <script type="module" src="./loginManager.js"></script>
+</body>
+</html>
