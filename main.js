@@ -26,7 +26,7 @@ const newProduct = {
 /* ----------ProductService.js 파일 함수 동작 확인----------- */
 
 // 특정 상품 정보 가져오기
-getProduct(5);
+//getProduct(5);
 
 //상품 목록 가져오기
 //getProductList(1, 1, '의자');
