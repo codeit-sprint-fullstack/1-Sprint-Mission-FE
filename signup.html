@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>판다마켓</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="shortcut icon" href="./img/index_img/web_logo.png" />
+  </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-953ZVVDGF3"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-953ZVVDGF3");
+  </script>
+  <body>
+    <div class="signup_background page_background">
+      <div class="signup_page">
+        <a href="./">
+          <img src="./img/login_img/logo.png" />
+        </a>
+        <div class="signup_box box">
+          <div class="input_box">
+            <div class="signup_email signup_info">
+              <p>이메일</p>
+              <input
+                type="email"
+                id="user_email"
+                name="signup_user_email"
+                placeholder="이메일을 입력해주세요"
+              />
+              <div class="error-text" id="emailMsg1" style="display: none">
+                이메일을 입력하세요
+              </div>
+              <div class="error-text" id="emailMsg2" style="display: none">
+                잘못된 이메일 형식입니다
+              </div>
+            </div>
+
+            <div class="signup_nickname signup_info">
+              <p>닉네임</p>
+              <input
+                type="text"
+                id="user_nickname"
+                name="usernickname"
+                placeholder="닉네임을 입력해주세요"
+              />
+            </div>
+
+            <div class="signup_password signup_info">
+              <p>비밀번호</p>
+              <input
+                type="password"
+                name="password"
+                class="m_password"
+                id="user_password"
+                placeholder="비밀번호를 입력해주세요"
+              />
+              <i id="show_pw" class="fa-regular fa-eye-slash"></i>
+              <div class="error-text" id="pswdMsg1" style="display: none">
+                비밀번호를 입력해주세요
+              </div>
+              <div class="error-text" id="pswdMsg2" style="display: none">
+                비밀번호를 8자 이상 입력해 주세요
+              </div>
+            </div>
+
+            <div class="signup_password signup_info">
+              <p>비밀번호 확인</p>
+              <input
+                type="password"
+                name="password"
+                class="m_password_second"
+                id="user_password2"
+                placeholder="비밀번호를 입력해주세요"
+              />
+              <i id="show_pw_second" class="fa-regular fa-eye-slash"></i>
+              <div class="error-text" id="pswdMsg3" style="display: none">
+                비밀번호가 일치하지 않습니다.
+              </div>
+            </div>
+          </div>
+
+          <button id="signup_btn">회원가입</button>
+
+          <div class="login_simple">
+            <p>간편 로그인하기</p>
+            <div class="sns_login">
+              <a href="https://www.google.com/">
+                <img src="./img/login_img/Component 2.png"
+              /></a>
+              <a href="https://www.kakaocorp.com/page/">
+                <img src="./img/login_img/Component 3.png"
+              /></a>
+            </div>
+          </div>
+
+          <div class="signup_login">
+            <p>이미 회원이신가요?</p>
+            <a href="./login.html" style="color: #3182f6">로그인</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert_overlay alert_background" style="display: none">
+      <div class="dialog">
+        <div class="dialog__inner">
+          <p>사용 중인 이메일입니다.</p>
+          <div class="dialog__btn__wrap">
+            <button id="ok">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/f7b1c4a12a.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/login_signup.js" type="module"></script>
+    <script src="./js/signup.js" type="module"></script>
+  </body>
+</html>

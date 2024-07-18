@@ -1,0 +1,87 @@
+input {
+  padding: 12px 20px;
+}
+
+.signup_background {
+  width: 100%;
+}
+
+.sigup_page {
+  display: flex;
+  flex-direction: column;
+  width: 640px;
+  margin-top: 50px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.sigup_page > a > img {
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+.siginup_box {
+  height: 664px;
+  margin: 0;
+}
+
+.signup_info > p {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.signup_info > input {
+  width: 640px;
+  height: 56px;
+  border-radius: 12px;
+  border: none;
+  background-color: var(--input-background-color);
+
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.signup_info > input::placeholder {
+  color: var(--input-text-color);
+}
+
+.signup_info > input:focus {
+  border: var(--input-forcus);
+}
+
+.signup_password {
+  position: relative;
+}
+
+.signup_password i {
+  position: absolute;
+  top: 32px;
+  bottom: 9px;
+  right: 16px;
+  margin: auto 2px;
+  height: 30px;
+  font-size: 22px;
+  color: var(--input-forcus-eye);
+}
+
+.siginup_box > button {
+  width: 640px;
+  height: 56px;
+  background-color: var(--btn-background-color);
+  border-radius: 40px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--white);
+  border: none;
+  margin-bottom: 24px;
+  margin-top: 24px;
+}
+
+.signup_login {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
