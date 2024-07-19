@@ -4,11 +4,11 @@
 
 ### 랜딩페이지
 
-- [x] React와 같은 UI 라이브러리를 사용하지 않고 진행합니다.
+- [ ] React와 같은 UI 라이브러리를 사용하지 않고 진행합니다.
 
-- [x] PC사이즈만 고려해 주어진 디자인으로 구현합니다.
-- [x] HTML, CSS 파일을 [Netlify](https://www.netlify.com/)로 배포해 주세요. (참고: https://www.codeit.kr/learn/5309)
-- [x] 랜딩 페이지의 url path를 루트(`/`)로 설정합니다.
+- [ ] PC사이즈만 고려해 주어진 디자인으로 구현합니다.
+- [ ] HTML, CSS 파일을 [Netlify](https://www.netlify.com/)로 배포해 주세요. (참고: https://www.codeit.kr/learn/5309)
+- [ ] 랜딩 페이지의 url path를 루트(`/`)로 설정합니다.
 - [x] title을 "판다마켓"로 설정합니다.
 - [x] "판다마켓" 로고 클릭 시 루트 페이지(`/`)로 이동합니다.
 - [x] '로그인' 버튼 클릭 시 로그인 페이지(`/login`)로 이동합니다.(모두 빈 페이지)
