@@ -26,11 +26,11 @@
   --gray-100: #e8ebed;
   --gray-50: #f7f7f8;
 
-
   /* Primary color */
   --blue: #3692ff;
 
   /* Layout dimensions */
+
   --header-height: 70px;
 
 }
@@ -40,6 +40,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 
 a {
   text-decoration: none;
@@ -166,6 +167,7 @@ h1 {
   justify-content: center;
 
 }
+
 .button:hover {
   background-color: #1967d6;
 }

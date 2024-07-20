@@ -65,7 +65,6 @@
   align-items: center;
 }
 
-
 .error-message {
   color: #f74747;
   font-weight: 600;
@@ -75,7 +74,6 @@
   display: none;
   padding-left: 16px;
 }
-
 
 .password-toggle-button {
   position: absolute;
@@ -115,6 +113,7 @@
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+
 /* [심화 요구사항] Tablet styles */
 
 @media (min-width: 744px) {
