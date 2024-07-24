@@ -3,6 +3,7 @@ import "../css/reset.css";
 import "../css/app.css";
 import ProductList from "./productLsit.js";
 import Search from "./search.js";
+import Paging from "./paging.js";
 import { useState, useEffect } from "react";
 import * as api from "../api.js";
 
@@ -64,6 +65,7 @@ function App() {
           <Search order={params.order} onChange={onChange} />
           <ProductList items={items} favorite={false} />
         </div>
+        <Paging onChange={onChange} pageNum={params.page} />
       </main>
     </div>
   );
