@@ -51,7 +51,7 @@ select::-ms-expand {
   width: 130px;
   border-radius: 12px;
   padding-right: 20px; /* 화살표 아이콘 공간 확보 */
-  background: url("./image/ic_arrow_down.svg") calc(100% - 20px) center
+  background: url("../image/ic_arrow_down.svg") calc(100% - 20px) center
     no-repeat;
   background-size: 24px;
   outline: none;

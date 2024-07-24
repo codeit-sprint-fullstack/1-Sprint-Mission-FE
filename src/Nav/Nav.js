@@ -1,5 +1,5 @@
-import profileIc from "./image/ic_profile.svg";
-import logoImg from "./image/img_logo.svg";
+import profileIc from "../image/ic_profile.svg";
+import logoImg from "../image/img_logo.svg";
 import "./Nav.css";
 
 export function CreateNav() {

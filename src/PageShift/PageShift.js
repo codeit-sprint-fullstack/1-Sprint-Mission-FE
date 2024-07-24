@@ -1,10 +1,10 @@
-import leftBtn from "./image/btn_left.svg";
-import rightBtn from "./image/btn_right.svg";
-import page1 from "./image/Page-1.svg";
-import page2 from "./image/Page-2.svg";
-import page3 from "./image/Page-3.svg";
-import page4 from "./image/Page-4.svg";
-import page5 from "./image/Page-5.svg";
+import leftBtn from "../image/btn_left.svg";
+import rightBtn from "../image/btn_right.svg";
+import page1 from "../image/Page-1.svg";
+import page2 from "../image/Page-2.svg";
+import page3 from "../image/Page-3.svg";
+import page4 from "../image/Page-4.svg";
+import page5 from "../image/Page-5.svg";
 import "./PageShift.css";
 
 export function Shift() {

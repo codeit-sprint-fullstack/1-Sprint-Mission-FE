@@ -1,8 +1,8 @@
 import React from "react";
-import { CreateNav } from "./Nav";
-import { BestList } from "./best";
-import { SellList } from "./Sell";
-import { Shift } from "./PageShift";
+import { CreateNav } from "./Nav/Nav";
+import { BestList } from "./Best/best";
+import { SellList } from "./Sell/Sell";
+import { Shift } from "./PageShift/PageShift";
 import "./App.css";
 
 const App = () => {

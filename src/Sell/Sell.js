@@ -1,4 +1,4 @@
-import { useFetchProducts } from "./Product";
+import { useFetchProducts } from "../Product/Product";
 import { useState } from "react";
 import "./Sell.css";
 

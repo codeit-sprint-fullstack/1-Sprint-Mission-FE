@@ -1,4 +1,4 @@
-import { useFetchProducts } from "./Product";
+import { useFetchProducts } from "../Product/Product";
 import "./Best.css";
 
 export function BestList() {
