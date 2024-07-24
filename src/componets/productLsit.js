@@ -3,11 +3,12 @@ import ic_heart from "../image/ic_heart.png";
 
 function Product({ itemValues, favorite }) {
   const { images, name, price, favoriteCount } = itemValues;
+  const numFormat = price.toLocaleString();
   return (
     <div className={favorite ? "favorite_product_item" : "product_item"}>
       <img className="nomal" src={images} alt="상품이미지"></img>
       <p className="name">{name}</p>
-      <p className="price">{`${price}원`}</p>
+      <p className="price">{`${numFormat}원`}</p>
       <div className="favorite_container">
         <img className="favorite_icon" src={ic_heart} alt="좋아요이미지"></img>
         <p className="favorite_count">{favoriteCount}</p>

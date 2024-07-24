@@ -22,6 +22,7 @@ function App() {
   const onChange = (name, value) => {
     setParams((prev) => ({
       ...prev,
+      page: 1,
       [name]: value,
     }));
   };
