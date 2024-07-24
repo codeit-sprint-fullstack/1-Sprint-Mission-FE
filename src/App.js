@@ -15,7 +15,6 @@ const App = () => {
         <BestList />
         <SellList />
       </main>
-      <Shift />
     </>
   );
 };

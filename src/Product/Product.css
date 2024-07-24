@@ -1,6 +1,5 @@
 .best {
   grid-row: 1;
-  grid-column: span 1;
   grid-column: 2;
 }
 

@@ -2,17 +2,29 @@
   width: 100%;
   display: flex;
   flex-direction: row;
+  margin-bottom: 24px;
+  align-items: center;
+}
+
+.searchBar p {
+  margin-top: 5px;
+  width: 113px;
+  height: 32px;
 }
 
 .inputSearch {
   width: 325px;
   height: 42px;
   border-radius: 12px;
-  padding: 9px 20px;
-  background-color: #f3f4f6;
+  padding: 9px 20px 9px 40px;
   border: none;
   margin-left: auto;
   outline: none;
+  background: url("../image/ic_search.svg") calc(16px) center no-repeat;
+  background-size: 24px;
+  background-color: #f3f4f6;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .inputSearch::placeholder {

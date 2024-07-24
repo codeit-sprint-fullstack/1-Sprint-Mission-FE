@@ -7,9 +7,9 @@ export function BestList() {
     pageSize: 4,
   });
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("ko-KR").format(price);
+  };
 
   return (
     <div className="best">
@@ -26,7 +26,9 @@ export function BestList() {
                 alt={item.name || "Product image"}
               />
               <p className="itemName">{item.name || "No name"}</p>
-              <p className="itemPrice">{item.price || "No price"} 원</p>
+              <p className="itemPrice">
+                {item.price ? `${formatPrice(item.price)} 원` : "No price"}
+              </p>
               <p className="itemFavoriteCnt">
                 ♡ {item.favoriteCount || "No likes"}
               </p>

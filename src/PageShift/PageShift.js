@@ -1,22 +1,37 @@
-import leftBtn from "../image/btn_left.svg";
-import rightBtn from "../image/btn_right.svg";
-import page1 from "../image/Page-1.svg";
-import page2 from "../image/Page-2.svg";
-import page3 from "../image/Page-3.svg";
-import page4 from "../image/Page-4.svg";
-import page5 from "../image/Page-5.svg";
+import React from "react";
 import "./PageShift.css";
 
-export function Shift() {
+export function Shift({ currentPage, onPageChange, totalPages }) {
+  const handlePageChange = (page) => {
+    if (page < 1 || page > totalPages) return;
+    onPageChange(page);
+  };
+
   return (
-    <div className="shiftBtn">
-      <img className="shiftImg" src={rightBtn} alt="rightBtn" />
-      <img className="shiftImg" src={page1} alt="page1" />
-      <img className="shiftImg" src={page2} alt="page2" />
-      <img className="shiftImg" src={page3} alt="lpage3" />
-      <img className="shiftImg" src={page4} alt="page4" />
-      <img className="shiftImg" src={page5} alt="page5" />
-      <img className="shiftImg" src={leftBtn} alt="leftBtn" />
+    <div className="btnContainer">
+      <button
+        className="shiftBtn"
+        onClick={() => handlePageChange(currentPage - 1)}
+        disabled={currentPage <= 1}
+      >
+        &lt;
+      </button>
+      {Array.from({ length: totalPages }, (_, i) => (
+        <button
+          key={i + 1}
+          className={`shiftBtn ${currentPage === i + 1 ? "active" : ""}`}
+          onClick={() => handlePageChange(i + 1)}
+        >
+          {i + 1}
+        </button>
+      ))}
+      <button
+        className="shiftBtn"
+        onClick={() => handlePageChange(currentPage + 1)}
+        disabled={currentPage >= totalPages}
+      >
+        &gt;
+      </button>
     </div>
   );
 }

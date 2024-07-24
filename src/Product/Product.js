@@ -5,20 +5,24 @@ import "./Product.css";
 export function useFetchProducts(params) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [totalCount, setTotalCount] = useState(0); // 전체 데이터 수 상태 추가
+  const [totalPages, setTotalPages] = useState(0); // 총 페이지 수 상태 추가
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchProducts = async () => {
       try {
         const response = await axios.get(
           "https://panda-market-api.vercel.app/products",
           { params }
         );
         const data = response.data.list || [];
-        if (Array.isArray(data)) {
-          setProducts(data);
-        } else {
-          console.error("Response data is not an array:", data);
-        }
+        const totalItems = response.data.totalCount; // 응답 데이터에서 totalCount 가져오기
+
+        const pageSize = params.pageSize || 10;
+
+        setProducts(data);
+        setTotalCount(totalItems);
+        setTotalPages(Math.ceil(totalItems / pageSize)); // 총 페이지 수 계산
       } catch (error) {
         console.error("Error fetching data", error);
       } finally {
@@ -26,8 +30,8 @@ export function useFetchProducts(params) {
       }
     };
 
-    fetchData();
+    fetchProducts();
   }, [params]);
 
-  return { products, loading };
+  return { products, loading, totalCount, totalPages };
 }

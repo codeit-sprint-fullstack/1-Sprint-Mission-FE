@@ -1,23 +1,31 @@
-import { useFetchProducts } from "../Product/Product";
 import { useState } from "react";
+import { useFetchProducts } from "../Product/Product";
+import { Shift } from "../PageShift/PageShift";
 import "./Sell.css";
 
 export function SellList() {
-  const [sortOrder, setSortOrder] = useState("recent"); // 초기 정렬 기준
-  const { products, loading } = useFetchProducts({
+  const [sortOrder, setSortOrder] = useState("recent");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const { products, loading, totalPages } = useFetchProducts({
     orderBy: sortOrder,
+    page: currentPage,
+    pageSize: 10,
   });
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("ko-KR").format(price);
+  };
+
   const handleSortChange = (event) => {
-    setSortOrder(event.target.value); // 드롭다운에서 선택된 값으로 상태 업데이트
+    setSortOrder(event.target.value);
+    setCurrentPage(1); // 정렬 기준 변경 시 페이지를 1로 초기화
   };
 
   return (
     <div className="sell">
       <div className="searchBar">
-        <p className="fontStyle" style={{ marginTop: 5 }}>
-          판매 중인 상품
-        </p>
+        <p className="fontStyle">판매 중인 상품</p>
         <input
           className="inputSearch"
           type="text"
@@ -36,7 +44,9 @@ export function SellList() {
         </div>
       </div>
       <div className="sellProductList">
-        {products.length === 0 ? (
+        {loading ? (
+          <p>Loading...</p>
+        ) : products.length === 0 ? (
           <p>No products available</p>
         ) : (
           products.map((item) => (
@@ -47,7 +57,9 @@ export function SellList() {
                 alt={item.name || "Product image"}
               />
               <p className="itemName">{item.name || "No name"}</p>
-              <p className="itemPrice">{item.price || "No price"} 원</p>
+              <p className="itemPrice">
+                {item.price ? `${formatPrice(item.price)} 원` : "No price"}
+              </p>
               <p className="itemFavoriteCnt">
                 ♡ {item.favoriteCount || "No likes"}
               </p>
@@ -55,6 +67,11 @@ export function SellList() {
           ))
         )}
       </div>
+      <Shift
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+        totalPages={totalPages}
+      />
     </div>
   );
 }
