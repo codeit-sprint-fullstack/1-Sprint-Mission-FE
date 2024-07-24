@@ -1,0 +1,27 @@
+/* select::-ms-expand {
+  display: none;
+} */
+
+.custom-dropdown select {
+  -o-appearance: none;
+  appearance: none; /* 기본 화살표 제거 */
+  -moz-appearance: none; /* 파이어폭스 기본 화살표 제거 */
+  -webkit-appearance: none; /* 사파리 기본 화살표 제거 */
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 130px;
+  border-radius: 12px;
+  padding-right: 20px; /* 화살표 아이콘 공간 확보 */
+  background: url("./image/ic_arrow_down.svg") calc(100% - 20px) center
+    no-repeat;
+  background-size: 24px;
+  outline: none;
+}
+
+/* .customOption {
+  font-size: 16px;
+  font-weight: 400;
+} */
