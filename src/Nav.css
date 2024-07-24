@@ -27,6 +27,7 @@ header {
   width: 153px;
   height: 51px;
   margin-right: 47px;
+  cursor: pointer;
 }
 
 #profileIc {

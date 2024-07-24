@@ -4,7 +4,6 @@ main {
   grid-template-columns: 1fr 1200px 1fr;
   grid-template-rows: 378px 740px;
   align-items: start;
-  background-color: #fcfcfc;
 }
 
 .fontStyle {
@@ -12,21 +11,6 @@ main {
   font-size: 20px;
   color: #111827;
   grid-column: 2;
-}
-
-.bestProductList {
-  margin-top: 16px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-
-.sellProductList {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: auto;
-  gap: 24px;
-  margin-top: 24px;
 }
 
 .itemName {
@@ -45,32 +29,4 @@ main {
   font-size: 12px;
   font-weight: 500;
   color: #4b5563;
-}
-
-.searchBar {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-}
-
-.inputSearch {
-  width: 325px;
-  height: 42px;
-  border-radius: 12px;
-  padding: 9px 20px;
-  background-color: #f3f4f6;
-  border: none;
-  margin-left: auto;
-}
-
-.btnSearch {
-  width: 133px;
-  height: 42px;
-  border-radius: 8px;
-  background-color: #3692ff;
-  border: none;
-  color: #f3f4f6;
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0 12px;
 }
