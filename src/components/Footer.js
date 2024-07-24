@@ -3,53 +3,48 @@ import "../assets/styles/footer.css";
 export function Footer() {
   return (
     <footer>
-      <div className="footer_space">
-        <div className="footer_icons_common">
-          <div id="company" className="footer_text">
-            <a>©codeit - 2024</a>
-          </div>
-          <div id="footer_link_texts" className="footer_text">
-            <a href="/privacy" target="_self" className="link_text">
-              Privacy Policy
-            </a>
-            <a href="/faq" target="_self" className="link_text">
-              FAQ
-            </a>
-          </div>
-          <div id="footer_link_icons">
-            <a
-              href="https://www.facebook.com/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                className="footer_icon"
-                id="facebook-icon"
-                alt="페이스북 링크"
-              />
-            </a>
-            <a href="https://x.com/" target="_blank" rel="noreferrer">
-              <img className="footer_icon" id="twitter-icon" alt="엑스 링크" />
-            </a>
-            <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">
-              <img
-                className="footer_icon"
-                id="youtube-icon"
-                alt="유튜브 링크"
-              />
-            </a>
-            <a
-              href="https://www.instagram.com/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                className="footer_icon"
-                id="instagram-icon"
-                alt="인스타그램 링크"
-              />
-            </a>
-          </div>
+      <div className="footer__block">
+        <div className="Text-lg Regular footer__text-extra footer__text-extra--mobile">
+          ©codeit - 2024
+        </div>
+        <div className="Text-lg Regular footer__text-extra footer__link-texts">
+          <a href="/privacy" target="_self" className="footer__link-text">
+            Privacy Policy
+          </a>
+          <a href="/faq" target="_self" className="footer__link-text">
+            FAQ
+          </a>
+        </div>
+        <div className="footer__link-icons">
+          <a
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              className="footer__link-icon footer__facebook-icon"
+              alt="페이스북 링크"
+            />
+          </a>
+          <a href="https://x.com/" target="_blank" rel="noreferrer">
+            <img className="footer__link-icon footer__twitter-icon" alt="엑스 링크" />
+          </a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">
+            <img
+              className="footer__link-icon footer__youtube-icon"
+              alt="유튜브 링크"
+            />
+          </a>
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              className="footer__link-icon footer__instagram-icon"
+              alt="인스타그램 링크"
+            />
+          </a>
         </div>
       </div>
     </footer>
