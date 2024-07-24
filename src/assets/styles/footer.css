@@ -1,0 +1,106 @@
+/* ===== footer ===== */
+footer {
+  display: block;
+  max-width: 192rem;
+  width: 100%;
+  height: 16rem;
+  background-color: var(--gray900-color);
+  margin: 0 auto;
+}
+
+.footer_space {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer_icons_common {
+  width: 192rem;
+  height: 2rem;
+  margin-top: 3.2rem;
+  margin-left: 20rem;
+  margin-right: 20rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footer_text {
+  font-family: "Pretendard";
+  font-size: 1.6rem;
+  font-weight: 400;
+  /* line-height: 19.09px; */
+  line-height: 1.193125em;
+  color: var(--gray400-color);
+}
+
+#footer_link_texts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 3rem;
+}
+
+.link_text {
+  text-decoration: none;
+  color: var(--gray400-color);
+}
+
+#footer_link_icons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 1.2rem;
+}
+
+.footer_icon {
+  height: 2rem;
+  width: 2rem;
+  background-size: cover;
+  /* cursor : pointer; */
+}
+
+#facebook-icon {
+    content: url(../images/ic_facebook.svg);
+}
+
+#twitter-icon {
+    content: url(../images/ic_twitter.svg);
+}
+
+#youtube-icon {
+    content: url(../images/ic_youtube.svg);
+}
+
+#instagram-icon {
+    content: url(../images/ic_instagram.svg);
+}
+
+
+
+/* ===== Tablet - width : 744px ~ 1199px ===== */
+@media (min-width: 744px) and (max-width: 1199px) {
+  /* foot 좌우 여백 24px */
+  .footer_icons_common {
+    margin-left: 2.4rem;
+    margin-right: 2.4rem;
+  }
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  /* ===== footer ====+ */
+  /* foot 좌우 여백 16px */
+  .footer_icons_common {
+    flex-wrap: wrap-reverse;
+    gap: 2.4rem;
+    margin-top: 7.6rem;
+    margin-left: 1.6rem;
+    margin-right: 1.6rem;
+  }
+
+  #company {
+    flex-basis: 100%;
+  }
+}
