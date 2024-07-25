@@ -5,7 +5,7 @@ import "../styles/Navigation.css";
 
 function Navigation() {
   return (
-    <nav id="nav-bar">
+    <nav className="nav-bar">
       <div className="nav-left">
         <img className="logo" src={logo} alt="Home Logo" />
         <div className="menu Text-2lg Bold">

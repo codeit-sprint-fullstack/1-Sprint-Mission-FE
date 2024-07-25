@@ -17,3 +17,7 @@
 .sale-product {
   margin-bottom: 4rem;
 }
+.sale-product-footer {
+  margin: 0 auto;
+  height: 30rem; /* 임시 */
+}

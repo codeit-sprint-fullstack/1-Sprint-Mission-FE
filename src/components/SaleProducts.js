@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getItems } from "../api.js";
 import Product from "./Product.js";
+import Footer from "./Footer.js";
 import "../styles/SaleProducts.css";
 
 function SaleProducts() {
@@ -36,6 +37,9 @@ function SaleProducts() {
             className="sale-product"
           />
         ))}
+      </div>
+      <div className="sale-product-footer">
+        <Footer />
       </div>
     </>
   );
