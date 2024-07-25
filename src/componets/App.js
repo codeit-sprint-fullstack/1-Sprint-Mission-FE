@@ -2,7 +2,7 @@ import Header from "./header.js";
 import "../css/reset.css";
 import "../css/app.css";
 import ProductList from "./productLsit.js";
-import Search from "./search.js";
+import Search, { MobileSearch } from "./search.js";
 import Paging from "./paging.js";
 import useWindowSize from "../hooks/resize.js";
 import { useState, useEffect } from "react";
@@ -24,11 +24,13 @@ function App() {
   const [bestParams, setBestParams] = useState(bestProductsQuery);
   const [bestItems, setBestItems] = useState([]);
   const [items, setItems] = useState([]);
+  const [view, setView] = useState("Desktop");
 
   const dataPaging = (view) => {
     console.log(view);
     switch (view) {
       case "Desktop":
+        setView("Desktop");
         setParams((prev) => ({
           ...prev,
           pagesize: 10,
@@ -39,6 +41,7 @@ function App() {
         }));
         break;
       case "isTablet":
+        setView("isTablet");
         setParams((prev) => ({
           ...prev,
           pagesize: 6,
@@ -49,6 +52,7 @@ function App() {
         }));
         break;
       case "isMobile":
+        setView("isMobile");
         setParams((prev) => ({
           ...prev,
           pagesize: 4,
@@ -103,7 +107,16 @@ function App() {
           <ProductList items={bestItems} favorite={true} />
         </div>
         <div className="products_container">
-          <Search order={params.order} onChange={onChange} />
+          {view === "isMobile" ? (
+            <MobileSearch
+              view={view}
+              order={params.order}
+              onChange={onChange}
+            />
+          ) : (
+            <Search view={view} order={params.order} onChange={onChange} />
+          )}
+
           <ProductList items={items} favorite={false} />
         </div>
         <Paging onChange={onChange} pageNum={params.page} />

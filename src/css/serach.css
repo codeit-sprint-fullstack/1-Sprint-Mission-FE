@@ -6,11 +6,27 @@
   justify-content: space-between;
   margin-bottom: 24px;
 }
+@media screen and (max-width: 773px) {
+  .serach_container {
+    height: 92px;
+    flex-direction: column;
+  }
+}
+
+.first_block {
+  justify-content: space-between;
+  display: flex;
+}
 
 .serach_query_container {
   display: flex;
+  justify-content: flex-end;
   gap: 12px;
   text-align: center;
+  position: relative;
+}
+
+.input_and_icon {
   position: relative;
 }
 
@@ -23,7 +39,7 @@
   height: 24px;
 }
 
-.serach_query_container > input {
+.keyword {
   box-sizing: border-box;
   width: 325px;
   height: 42px;
@@ -48,6 +64,11 @@
   position: relative;
 }
 
+.mobile_search {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-end; */
+}
 .order_drop_btn {
   text-align: left;
   width: 130px;

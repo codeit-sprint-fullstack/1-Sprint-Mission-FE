@@ -32,6 +32,13 @@
   }
 }
 
+@media screen and (max-width: 773px) {
+  .Products {
+    gap: 0 8px;
+    width: 344px;
+  }
+}
+
 .favorite_product_item {
   display: flex;
   flex-direction: column;
