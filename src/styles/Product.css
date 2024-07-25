@@ -1,0 +1,29 @@
+.product {
+  width: 28.2rem;
+  height: 37.8rem;
+  display: flex;
+  flex-direction: column;
+}
+.product-image {
+  width: 28.2rem;
+  height: 28.2rem;
+  border-radius: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+.description,
+.price {
+  margin-bottom: 0.6rem;
+  color: var(--gray800);
+}
+.favorites {
+  display: flex;
+  align-items: center;
+}
+.favorite-heart {
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-right: 0.4rem;
+}
+.favorite-count {
+  color: var(--gray600);
+}

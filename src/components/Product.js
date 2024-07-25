@@ -1,6 +1,7 @@
 import React from "react";
 import heartFullImage from "../images/favoriteFullHeart-small.png";
 import heartEmptyImage from "../images/favoriteEmptyHeart-small.png";
+import "../styles/Product.css";
 
 const Product = ({ product }) => {
   return (
@@ -10,15 +11,15 @@ const Product = ({ product }) => {
         src={product.images}
         alt={product.description}
       />
-      <p className="description">{product.description}</p>
-      <p className="price">{product.price}원</p>
+      <p className="description Text-md Medium">{product.description}</p>
+      <p className="price Text-lg Bold">{product.price}원</p>
       <div className="favorites">
         <img
           className="favorite-heart"
           src={heartEmptyImage}
           alt="favorite heart"
         />
-        <p className="favorite">{product.favorite}</p>
+        <p className="favorite-count Text-xs Medium">{product.favoriteCount}</p>
       </div>
     </div>
   );

@@ -1,0 +1,10 @@
+.best-product-title {
+  margin-top: 2.4rem;
+  margin-bottom: 1.6rem;
+  color: var(--gray900);
+}
+.best-products {
+  display: flex;
+  gap: 2.4rem;
+  margin-bottom: 4rem;
+}

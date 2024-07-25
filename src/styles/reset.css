@@ -150,10 +150,29 @@ table {
 html {
   font-size: 62.5%;
 }
+.Text-xs {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
+.Text-md {
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+}
+.Text-lg {
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+}
 .Text-2lg {
   font-size: 1.8rem;
   line-height: 2.6rem;
 }
+.Text-xl {
+  font-size: 2rem;
+  line-height: 3.2rem;
+}
 .Bold {
   font-weight: 700;
+}
+.Medium {
+  font-weight: 500;
 }
