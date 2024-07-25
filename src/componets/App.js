@@ -2,7 +2,7 @@ import Header from "./header.js";
 import "../css/reset.css";
 import "../css/app.css";
 import ProductList from "./productLsit.js";
-import Search, { MobileSearch } from "./search.js";
+import Search from "./search.js";
 import Paging from "./paging.js";
 import useWindowSize from "../hooks/resize.js";
 import { useState, useEffect } from "react";
@@ -80,16 +80,11 @@ function App() {
           <ProductList items={bestItems} favorite={true} />
         </div>
         <div className="products_container">
-          {view === "isMobile" ? (
-            <MobileSearch
-              view={view}
-              order={params.order}
-              onChange={onChange}
-            />
-          ) : (
-            <Search view={view} order={params.order} onChange={onChange} />
-          )}
-
+          <Search
+            isMobile={view === "isMobile" ? true : false}
+            order={params.order}
+            onChange={onChange}
+          />
           <ProductList items={items} favorite={false} />
         </div>
         <Paging onChange={onChange} pageNum={params.page} />

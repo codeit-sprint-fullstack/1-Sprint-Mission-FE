@@ -50,7 +50,7 @@ function DropDownBox({ onOrderChange, order, isMobile = false }) {
   );
 }
 
-function Serach({ onChange, order }) {
+function Search({ onChange, order, isMobile = false }) {
   const onOrderChange = (e) => {
     console.log(e.target);
     const name = [e.target.name];
@@ -59,55 +59,41 @@ function Serach({ onChange, order }) {
     onChange(name, value);
   };
 
-  return (
-    <div className="serach_container">
-      <h2>판매 중인 상품</h2>
-      <div className="serach_query_container">
-        <div>
-          <img className="ic_search" alt="돋보기아이콘" src={ic_search}></img>
-          <input
-            className="keyword"
-            placeholder="검색할 상품을 입력해주세요"
-          ></input>
-        </div>
-        <button className="add_product_btn">상품 등록하기</button>
-        <DropDownBox onOrderChange={onOrderChange} order={order} />
-      </div>
-    </div>
-  );
-}
-
-export function MobileSearch({ onChange, order }) {
-  const onOrderChange = (e) => {
-    console.log(e.target);
-    const name = [e.target.name];
-    const value = [e.target.value];
-    console.log(name, value);
-    onChange(name, value);
+  const handleKeywordChange = (e) => {
+    e.preventDefault();
+    onChange(e.target.name, e.target.value);
   };
 
   return (
     <div className="serach_container">
       <div className="first_block">
         <h2>판매 중인 상품</h2>
-        <button className="add_product_btn">상품 등록하기</button>
+        {isMobile ? (
+          <button className="add_product_btn">상품 등록하기</button>
+        ) : null}
       </div>
       <div className="serach_query_container">
         <div className="input_and_icon">
           <img className="ic_search" alt="돋보기아이콘" src={ic_search}></img>
-          <input
-            className="keyword"
-            placeholder="검색할 상품을 입력해주세요"
-          ></input>
+          <form onSubmit={handleKeywordChange}>
+            <input
+              name="keyword"
+              className="keyword"
+              placeholder="검색할 상품을 입력해주세요"
+            ></input>
+          </form>
         </div>
+        {isMobile ? null : (
+          <button className="add_product_btn">상품 등록하기</button>
+        )}
         <DropDownBox
           onOrderChange={onOrderChange}
           order={order}
-          isMobile={true}
+          isMobile={isMobile}
         />
       </div>
     </div>
   );
 }
 
-export default Serach;
+export default Search;
