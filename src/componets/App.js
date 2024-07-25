@@ -25,6 +25,7 @@ function App() {
   const [bestItems, setBestItems] = useState([]);
   const [items, setItems] = useState([]);
   const [view, setView] = useState("Desktop");
+  const [totalDataCount, setTotalDataCount] = useState(0);
 
   const onChange = (name, value) => {
     setParams((prev) => ({
@@ -48,8 +49,9 @@ function App() {
 
   const loadProducts = async (query) => {
     try {
-      const { list } = await api.getProducts(query);
+      const { list, totalCount } = await api.getProducts(query);
       setItems(list);
+      setTotalDataCount(totalCount);
     } catch (e) {
       console.log(e.message);
     }
@@ -57,8 +59,9 @@ function App() {
 
   const loadBestProducts = async () => {
     try {
-      const { list } = await api.getProducts(bestParams);
+      const { list, totalCount } = await api.getProducts(bestParams);
       setBestItems(list);
+      setTotalDataCount(totalCount);
     } catch (e) {
       console.log(e.message);
     }
@@ -87,7 +90,12 @@ function App() {
           />
           <ProductList items={items} favorite={false} />
         </div>
-        <Paging onChange={onChange} pageNum={params.page} />
+        <Paging
+          onChange={onChange}
+          pageNum={params.page}
+          paseSize={params.pagesize}
+          totalCount={totalDataCount}
+        />
       </main>
     </div>
   );
