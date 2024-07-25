@@ -3,9 +3,9 @@ import heartFullImage from "../images/favoriteFullHeart-small.png";
 import heartEmptyImage from "../images/favoriteEmptyHeart-small.png";
 import "../styles/Product.css";
 
-const Product = ({ product }) => {
+const Product = ({ product, className }) => {
   return (
-    <div className="product">
+    <div className={`${className}`}>
       <img
         className="product-image"
         src={product.images}

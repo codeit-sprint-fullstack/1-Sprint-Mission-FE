@@ -11,7 +11,7 @@ function BestProducts() {
   useEffect(() => {
     const getProducts = async () => {
       const data = await getItems(1, PAGE_SIZE, order);
-      setProducts(data);
+      setProducts(data.list);
     };
 
     getProducts();
@@ -22,7 +22,11 @@ function BestProducts() {
       <h2 className="best-product-title Text-xl Bold">베스트 상품</h2>
       <div className="best-products">
         {products.map((product) => (
-          <Product key={product.id} product={product} />
+          <Product
+            key={product.id}
+            product={product}
+            className={"best-product"}
+          />
         ))}
       </div>
     </>
