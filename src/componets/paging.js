@@ -48,13 +48,13 @@ function Paging({ onChange, pageNum, totalCount, paseSize }) {
   return (
     <div className="paging_box">
       <button onClick={prevBtn}>
-        <img src={arrowLeft}></img>
+        <img src={arrowLeft} alt="이전 화살표"></img>
       </button>
       {pagingNum.map((e) => (
         <MidPagingBtn pageNum={pageNum} onChange={onChange} key={e} num={e} />
       ))}
       <button onClick={nextBtn}>
-        <img src={arrowRigth}></img>
+        <img src={arrowRigth} alt="이전 화살표"></img>
       </button>
     </div>
   );

@@ -3,6 +3,7 @@
   justify-content: center;
   gap: 4px;
   margin-top: 42px;
+  margin-bottom: 42px;
 }
 
 .paging_box > button {
