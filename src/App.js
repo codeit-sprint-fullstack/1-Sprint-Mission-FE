@@ -1,12 +1,14 @@
 import React from "react";
+import Navigation from "./components/Navigation";
+import BestProducts from "./components/BestProducts";
+import SaleProducts from "./components/SaleProducts";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Welcome to My React App</h1>
-        <p>This is a simple React application.</p>
-      </header>
+    <div>
+      <Navigation />
+      <BestProducts />
+      <SaleProducts />
     </div>
   );
 }
