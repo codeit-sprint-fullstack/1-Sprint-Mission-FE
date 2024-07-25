@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = "https://sprint-mission-api.vercel.app/Products";
+const apiUrl = "https://panda-market-api.vercel.app/products";
 const headers = {
   "Content-Type": "application/json",
 };
@@ -9,10 +9,11 @@ const headers = {
  * @param {number} page 몇번째 페이지로 할것이냐?
  * @param {number} pageSize 한페이지에 몇개의 제품이 나오게 할 것인가?
  * @param {string} keyword 키워드
+ * @param {string} orderBy 정렬순
  */
-export async function getProductList({ page = 1, pageSize = 10, keyword }) {
+export async function getProductList({ page = 1, pageSize = 10, keyword, orderBy = "recent" }) {
   try {
-    const url = `${apiUrl}?page=${page}&pageSize=${pageSize}&keyword=${keyword}`;
+    const url = `${apiUrl}?page=${page}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}`;
 
     const response = await fetch(url, {
       headers: headers,
@@ -69,11 +70,11 @@ export async function createProduct({ title, content, image }) {
  * @param {string} content 수정할 제품의 내용을 넣자
  * @param {Array} image 수정할 제품의 이미지를 배열로 넣자
  */
-export async function patchProduct({ ID, title, content, image }) {
+export async function patchProduct({ ID, name, description, images }) {
   if (!ID) throw new Error("No ID founded");
   const url = `${apiUrl}/${ID}`;
   try {
-    const response = await axios.patch(url, { title, content, image });
+    const response = await axios.patch(url, { name, description, images });
     console.log(response.data);
     return response.data;
   } catch (error) {
