@@ -1,7 +1,7 @@
 import arrowLeft from "../image/arrow_left.png";
 import arrowRigth from "../image/arrow_right.png";
 import "../css/paging.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function MidPagingBtn({ num, onChange, pageNum }) {
   const handlePage = (e) => {
