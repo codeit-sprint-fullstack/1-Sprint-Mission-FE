@@ -6,11 +6,12 @@ import "../styles/BestProducts.css";
 function BestProducts() {
   const [products, setProducts] = useState([]);
   const [order, setOrder] = useState("favorite");
+  const PAGE_SIZE = 4;
 
   useEffect(() => {
     const getProducts = async () => {
-      const data = await getItems(order);
-      setProducts(data.slice(0, 4));
+      const data = await getItems(1, PAGE_SIZE, order);
+      setProducts(data);
     };
 
     getProducts();
