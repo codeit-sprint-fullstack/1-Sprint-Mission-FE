@@ -3,16 +3,16 @@ import * as Product from "./ProductService.mjs";
 
 // get ArticleList
 
-try {
-  const articles = await Article.getArticleList({
-    page: 1,
-    pageSize: 10,
-    keyword: "",
-  });
-  console.log("게시글 목록:", articles);
-} catch (error) {
-  console.error("게시글 목록 조회 실패:", error.message);
-}
+// try {
+//   const articles = await Article.getArticleList({
+//     page: 1,
+//     pageSize: 10,
+//     keyword: "",
+//   });
+//   console.log("게시글 목록:", articles);
+// } catch (error) {
+//   console.error("게시글 목록 조회 실패:", error.message);
+// }
 
 // get Article
 
@@ -59,20 +59,19 @@ try {
 //   console.error("게시글 삭제 실패:", error.message);
 // }
 
-
-
 // get ProductList
 
-try {
-  const Products = await Product.getProductList({
-    page: 1,
-    pageSize: 10,
-    keyword: "",
-  });
-  console.log("제품 목록:", Products);
-} catch (error) {
-  console.error("제품 목록 조회 실패:", error.message);
-}
+// try {
+//   const Products = await Product.getProductList({
+//     page: 1,
+//     pageSize: 10,
+//     keyword: "",
+//     orderBy: "favorite",
+//   });
+//   console.log("제품 목록:", Products);
+// } catch (error) {
+//   console.error("제품 목록 조회 실패:", error.message);
+// }
 
 // get Product
 
@@ -98,17 +97,19 @@ try {
 
 // patch Product
 
-// try {
-//   const updatedProduct = await Product.patchProduct({
-//     ID: 123,
-//     title: "",
-//     content: "",
-//     image: [""],
-//   });
-//   console.log("제품 수정 완료:", updatedProduct);
-// } catch (error) {
-//   console.error("제품 수정 실패:", error.message);
-// }
+try {
+  const updatedProduct = await Product.patchProduct({
+    ID: 84,
+    name: "MacBook Pro 13",
+    description: "Good for You!",
+    images: [
+      "https://img.danawa.com/prod_img/500000/585/217/img/11217585_1.jpg?_v=20210330164445",
+    ],
+  });
+  console.log("제품 수정 완료:", updatedProduct);
+} catch (error) {
+  console.error("제품 수정 실패:", error.message);
+}
 
 // delete Product
 
