@@ -51,6 +51,8 @@ function DropDownBox({ onOrderChange, order, isMobile = false }) {
 }
 
 function Search({ onChange, order, isMobile = false }) {
+  const [keyword, setKeyword] = useState();
+
   const onOrderChange = (e) => {
     console.log(e.target);
     const name = [e.target.name];
@@ -59,9 +61,13 @@ function Search({ onChange, order, isMobile = false }) {
     onChange(name, value);
   };
 
-  const handleKeywordChange = (e) => {
+  const handleKeyword = (e) => {
+    setKeyword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    onChange(e.target.name, e.target.value);
+    onChange("keyword", keyword);
   };
 
   return (
@@ -75,8 +81,9 @@ function Search({ onChange, order, isMobile = false }) {
       <div className="serach_query_container">
         <div className="input_and_icon">
           <img className="ic_search" alt="돋보기아이콘" src={ic_search}></img>
-          <form onSubmit={handleKeywordChange}>
+          <form onSubmit={handleSubmit}>
             <input
+              onChange={handleKeyword}
               name="keyword"
               className="keyword"
               placeholder="검색할 상품을 입력해주세요"
