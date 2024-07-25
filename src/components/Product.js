@@ -18,7 +18,7 @@ const Product = ({ product }) => {
           src={heartEmptyImage}
           alt="favorite heart"
         />
-        <p className="favorite">좋아요: {product.favorite}</p>
+        <p className="favorite">{product.favorite}</p>
       </div>
     </div>
   );

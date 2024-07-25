@@ -1,9 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getItems } from "../api.js";
+import Product from "./Product.js";
 
 function BestProducts() {
-  const [products, setproducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [order, setOrder] = useState("favorite");
 
-  return <div>베스트 상품</div>;
+  useEffect(() => {
+    const getProducts = async () => {
+      const data = await getItems(order);
+      setProducts(data);
+    };
+
+    getProducts();
+  }, [order]);
+
+  return (
+    <div>
+      {products.map((product) => (
+        <Product key={product.id} product={product} />
+      ))}
+    </div>
+  );
 }
 
 export default BestProducts;
