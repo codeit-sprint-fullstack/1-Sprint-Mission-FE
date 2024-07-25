@@ -19,6 +19,7 @@ function Main(){
   const [width, setWidth] = useState(window.innerWidth);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [bestItemsPerPage , setBestItemsPerPage] = useState(4);
+  const [keyword, setKeyword] = useState('');
 
   useEffect(() => {
     const handleResize = () => {
@@ -50,8 +51,6 @@ function Main(){
     } else {
       setBestItemsPerPage(4); // 데스크탑 뷰
     }
-    console.log(bestItemsPerPage)
-    console.log(width)
   }, [width]);  // width가 변경될 때마다 itemsPerPage 업데이트
   
 
@@ -65,14 +64,13 @@ function Main(){
     };
 
     fetchData();
-  }, []);
+  }, [currentPage,itemsPerPage]);
 
   useEffect(() => {
     setTotalPages(Math.ceil(totalCount / itemsPerPage)); 
   }, [totalCount]); 
 
   const changePage = (newPage) => {
-    console.log(newPage);
     setCurrentPage(newPage);
     if (newPage >= 1 && newPage <= totalPages) {
       setCurrentPage(newPage);
@@ -136,8 +134,29 @@ function Main(){
     setSelectedOption(event.target.value);
   }
 
-
   
+  const handleinputChange = (event) => {
+    setKeyword(event.target.value);
+  }
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      console.log(keyword);
+      
+        const getRes = async () => {
+          const getRes = await axios.get("https://panda-market-api.vercel.app/products/",{
+            params: {
+              keyword:keyword
+            }
+          })
+          setvalueOption(getRes.data)
+        }
+        getRes()
+        
+    }
+  }
+
+
 
   
   return(
@@ -157,7 +176,7 @@ function Main(){
       <div id="sell_container">
         <a id="sell_title">판매 중인 상품</a>
           <a id ="sell_item">
-            <input id="sell_item_input" placeholder="검색할 상품을 입력해주세요" ></input>
+            <input onChange={handleinputChange} onKeyDown={handleKeyPress} id="sell_item_input" placeholder="검색할 상품을 입력해주세요" ></input>
             <img id="sell_item_img" src={search_icon}></img>
           </a>
           <button className='sell_item_btn'>상품 등록하기</button>
