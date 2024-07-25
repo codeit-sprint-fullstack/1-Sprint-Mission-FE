@@ -1,0 +1,246 @@
+#main{
+  display: grid;
+  grid-template-columns: 1fr 1200px 1fr;
+  margin-top:24px;
+}
+
+#main_title{
+  grid-column: 2;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+#best_item{
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 24px;
+}
+#sell_container{
+  grid-column: 2;
+  margin-top:40px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 11px;
+}
+#sell_title{
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+}
+.item{
+  display: flex;
+  flex-direction: column;
+}
+
+.item_img{
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.item_name{
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+.item_price{
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+.item_favoriteCount{
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+#sell_item{
+  position: relative;
+  margin-left:auto;
+  margin-right: 12px;
+}
+#sell_item_input{
+  position: relative;
+  width: 325px;
+  height: 42px;
+  border-radius:12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  padding-left: 44px;
+  border:0;
+  background-color: rgba(243,244,246,1);
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+#sell_item_input::placeholder{
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: rgba(156,163,175,1);
+  
+}
+#sell_item_img{
+  position: absolute;
+  left:16px;
+  top:12px;
+}
+
+
+
+.sell_item_btn{
+  background-color:rgba(54,146,255,1);
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  width: 133px;
+  height: 42px;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 600;
+  color:white;
+  border:0px;
+  margin-right: 12px;
+}
+#serch_item_list{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap:24px;
+}
+
+#item_list{
+  width: 130px;
+  height: 42px;
+  border-radius: 12px;
+  border:0px;
+  background-color: rgba(255,255,255,1);
+  text-align: left;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.serch_item{
+  grid-column: 2;
+}
+.footer{
+  margin-top:43px;
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+}
+.page_btn{
+  border-style: double;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  border-color:rgba(229,231,235,1);
+  background-color: rgba(255,255,255,1);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+  color:black;
+}
+
+.page_btn_selected {
+  background-color: rgba(47,128,237,1);  /* 선택된 버튼의 배경색 */
+  color: #000;
+}
+
+
+@media (max-width: 1199px) {
+  #header_logo_img{
+    margin-left:24px
+  }
+  #header_my_img{
+    margin-right: 24px
+  }
+  #main{
+    display: grid;
+    grid-template-columns: 1fr 696px 1fr;
+    margin-top:24px;
+  }
+
+  #best_item{
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  #serch_item_list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:16px;
+  }
+  #sell_item_input{
+    width: 242px;
+    box-sizing: border-box;
+  }
+
+
+}
+
+@media (max-width: 743px) {
+
+  #main{
+    display: grid;
+    grid-template-columns: 1fr 344px 1fr;
+    margin-top:24px;
+  }
+
+  #best_item{
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  #serch_item_list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:8px;
+  }
+  #sell_container{
+    display: inline;
+  }
+  #sell_item_input{
+    width: 288px;
+    box-sizing: border-box;
+    top:30px
+  }
+  #sell_item_img{
+    top:27px
+  }
+  .sell_item_btn{
+    position: relative;
+    width: 133px;
+    bottom: 80px;
+    left: 200px;
+  }
+  #item_list{
+    width: 42px;
+    height: 42px;
+    position: relative;
+    left:150px;
+    bottom: 11px;
+
+  }
+
+  #header_logo_img{
+    margin-left:16px
+  }
+  #header_my_img{
+    margin-right: 16px
+  }
+  #hader_str{
+    font-size: 16px;
+  }
+
+
+}
