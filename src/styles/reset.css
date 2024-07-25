@@ -173,6 +173,9 @@ html {
 .Bold {
   font-weight: 700;
 }
+.Regular {
+  font-weight: 600;
+}
 .Medium {
   font-weight: 500;
 }
