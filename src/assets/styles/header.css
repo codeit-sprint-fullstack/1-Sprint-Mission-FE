@@ -1,13 +1,3 @@
-:root {
-  /* to name color, use
-      https://chir.ag/projects/name-that-color/#6195ED */
-  --alto-color: #dfdfdf;
-  --onahau-color: #cfe5ff;
-  --white-color: #ffffff;
-
-  background-color: var(--onahau-color);
-}
-
 /* ===== header(GNB) ===== */
 header {
   align-items: center;

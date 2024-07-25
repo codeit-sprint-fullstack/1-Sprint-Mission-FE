@@ -10,12 +10,8 @@ export function Header() {
       </a>
       <nav className="header__navi">
         <ul className="header__list">
-          <li className="Text-2lg Bold header__list-item">
-            자유게시판
-          </li>
-          <li className="Text-2lg Bold header__list-item">
-            중고마켓
-          </li>
+          <li className="Text-2lg Bold header__list-item">자유게시판</li>
+          <li className="Text-2lg Bold header__list-item">중고마켓</li>
         </ul>
       </nav>
       <a className="header__btn-login-frame" href="/login" target="_self">

@@ -17,6 +17,12 @@ html {
   --blue200-color: #1967d6;
   --blue300-color: #1251aa;
   --red-color: #f74747;
+
+  /* to name color, use
+  https://chir.ag/projects/name-that-color/#6195ED */
+  --alto-color: #dfdfdf;
+  --onahau-color: #cfe5ff;
+  --white-color: #ffffff;
 }
 
 .Bold {

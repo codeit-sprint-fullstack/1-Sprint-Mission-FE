@@ -7,27 +7,6 @@ export function SecondhandMarket() {
     <>
       <Header />
       <MarketBody />
-      <div>
-        <a>test1</a>
-      </div>
-      <div>
-        <a>test2</a>
-      </div>
-      <div>
-        <a>test3</a>
-      </div>
-      <div>
-        <a>test4</a>
-      </div>
-      <div>
-        <a>test5</a>
-      </div>
-      <div>
-        <a>test6</a>
-      </div>
-      <div>
-        <a>test7</a>
-      </div>
       <Footer />
     </>
   );

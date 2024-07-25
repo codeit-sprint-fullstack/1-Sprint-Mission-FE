@@ -6,7 +6,9 @@ import SecondhandMarket from "./pages/SecondhandMarket";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <SecondhandMarket />
-  </React.StrictMode>
+  <>
+    <React.StrictMode>
+      <SecondhandMarket />
+    </React.StrictMode>
+  </>
 );

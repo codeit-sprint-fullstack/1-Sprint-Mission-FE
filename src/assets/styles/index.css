@@ -15,7 +15,7 @@ html {
   --onahau-color: #cfe5ff;
   --white-color: #ffffff;
 
-  background-color: var(--onahau-color);
+  background-color: var(--white-color);
 }
 
 /* ===== header(GNB) ===== */

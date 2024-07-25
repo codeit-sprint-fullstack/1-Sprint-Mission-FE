@@ -16,18 +16,17 @@ export function Footer() {
           </a>
         </div>
         <div className="footer__link-icons">
-          <a
-            href="https://www.facebook.com/"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
             <img
               className="footer__link-icon footer__facebook-icon"
               alt="페이스북 링크"
             />
           </a>
           <a href="https://x.com/" target="_blank" rel="noreferrer">
-            <img className="footer__link-icon footer__twitter-icon" alt="엑스 링크" />
+            <img
+              className="footer__link-icon footer__twitter-icon"
+              alt="엑스 링크"
+            />
           </a>
           <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">
             <img
@@ -35,11 +34,7 @@ export function Footer() {
               alt="유튜브 링크"
             />
           </a>
-          <a
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
             <img
               className="footer__link-icon footer__instagram-icon"
               alt="인스타그램 링크"
