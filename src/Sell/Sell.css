@@ -1,16 +1,24 @@
+/* 모바일 드롭다운 숨기기 */
+.mobile-custom-dropdown {
+  display: none;
+}
+
+/* 모바일 검색바 숨기기 */
 .mobileSearchBar {
   display: none;
 }
 
+/* 검색바 스타일 */
 .searchBar {
   width: 100%;
   display: flex;
   flex-direction: row;
-  margin-bottom: 24px;
-  align-items: center;
+  bottom: 24px;
+  align-items: flex-start;
   position: relative; /* 자식 요소의 절대 위치를 기준으로 설정 */
   grid-column: 2;
   grid-row: 2;
+  top: 40px;
 }
 
 .searchBar p {
@@ -65,7 +73,6 @@
   font-size: 16px;
   font-weight: 400;
   width: 100%;
-  border-radius: 12px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -74,42 +81,37 @@
   background-repeat: no-repeat;
   background-position: 90px;
   background-size: 24px;
-}
-
-.custom-dropdown__arrow {
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid #000;
-  margin-left: 10px;
+  border-radius: 12px;
 }
 
 .custom-dropdown__options {
   top: calc(100% + 8px);
   left: 0;
-  background-color: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
   width: 100%;
   max-height: 200px;
   z-index: 1000;
-}
-
-.custom-dropdown__options--open {
   display: block;
+  position: relative;
+  margin-top: 8px;
+  border-radius: 12px;
 }
 
-.custom-dropdown__options li {
-  padding: 10px;
+.custom-dropdown__options :first-child {
+  border-radius: 12px 12px 0 0;
+}
+
+.custom-dropdown__options :last-child {
+  border-radius: 0 0 12px 12px;
+}
+
+.option {
+  width: 130px;
+  height: 42px;
+  border-radius: 12px;
+  text-align: center;
+  padding-top: 9px;
   cursor: pointer;
-  list-style: none;
-}
-
-.custom-dropdown__options li:last-child {
-  margin-bottom: 0;
-}
-
-.custom-dropdown__options li:hover {
-  background-color: #f0f0f0;
+  border: 1px solid #e5e7eb;
 }
 
 .sellProductList {
@@ -117,7 +119,6 @@
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: auto;
   gap: 24px;
-  margin-top: 24px;
   position: relative;
 }
 
@@ -140,6 +141,11 @@
   .searchBar {
     display: none;
   }
+
+  .mobile-custom-dropdown {
+    display: inline-block;
+  }
+
   .sellProductList {
     grid-template-columns: repeat(2, 1fr); /* Tablet layout */
     gap: 16px;
@@ -147,38 +153,70 @@
   }
 
   .mobileSearchBar {
+    width: 100%;
     display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    position: relative; /* 자식 요소의 절대 위치를 기준으로 설정 */
+    grid-column: 2;
+    grid-row: 2;
+    top: 24px;
+  }
+
+  .mobileBar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
     margin-bottom: 8px;
-    height: auto;
   }
 
-  .mobileSearchBar p {
-    align-self: center;
-  }
-
-  .mobileSearchBar button {
-    margin-left: auto;
-    margin-right: 0;
+  .btnSearch {
+    margin: 0;
   }
 
   .mobileSearchBar input {
-    width: 288px;
-    margin-right: auto;
     margin-left: 0;
+    margin-right: auto;
+    width: 288px;
   }
 
-  .dropdown-button {
-    width: 42px;
-    background-image: url("../image/ic_sort.svg");
-    background-repeat: no-repeat;
-    background-position: center;
+  .custom-dropdown {
+    display: inline-block;
+    width: auto;
   }
 
-  .dropdown-text {
+  .custom-dropdown span {
     display: none;
   }
 
-  .dropdown-content {
+  .custom-dropdown__selected {
+    width: 42px;
+    background-image: url("../image/ic_sort.svg");
+    background-position: center;
+    height: 42px;
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  .custom-dropdown__options {
+    top: calc(100% + 8px);
+    left: 0;
+    width: 130px;
+    max-height: 200px;
+    z-index: 1000;
+    display: block;
+    position: relative;
     margin-top: 4px;
+    border-radius: 12px;
+  }
+
+  .option {
+    width: 130px;
+    height: 42px;
+    border-radius: 12px;
+    text-align: center;
+    padding-top: 9px;
+    cursor: pointer;
+    border: 1px solid #e5e7eb;
   }
 }

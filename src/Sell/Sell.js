@@ -8,9 +8,11 @@ export function SellList() {
   const [sortOrder, setSortOrder] = useState("recent");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(getPageSize(window.innerWidth));
+  const [keyword, setKeyword] = useState(""); // 검색어 상태 추가
+  const [searchKeyword, setSearchKeyword] = useState(""); // 실제 검색에 사용될 키워드 상태 추가
 
   function getPageSize(width) {
-    if (width < 375) return 4; // Mobile
+    if (width < 743) return 4; // Mobile
     if (width < 1199) return 6; // Tablet
     return 10; // Desktop
   }
@@ -29,6 +31,7 @@ export function SellList() {
     orderBy: sortOrder,
     page: currentPage,
     pageSize: pageSize,
+    keyword: searchKeyword,
   });
 
   const formatPrice = (price) => {
@@ -40,6 +43,21 @@ export function SellList() {
     setCurrentPage(1); // 정렬 기준 변경 시 페이지를 1로 초기화
   };
 
+  const handleKeywordChange = (event) => {
+    setKeyword(event.target.value); // 검색어 상태 업데이트
+  };
+
+  const handleKeywordSearch = () => {
+    setSearchKeyword(keyword); // 실제 검색에 사용될 키워드 업데이트
+    setCurrentPage(1); // 검색어 변경 시 페이지를 1로 초기화
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleKeywordSearch();
+    }
+  };
+
   return (
     <>
       <div className="searchBar">
@@ -48,12 +66,39 @@ export function SellList() {
           className="inputSearch"
           type="text"
           placeholder="검색할 상품을 입력해주세요"
+          value={keyword} // 검색어 상태 바인딩
+          onChange={handleKeywordChange} // 검색어 변경 핸들러 추가
+          onKeyDown={handleKeyDown} // 엔터키 입력 핸들러
         />
-        <button className="btnSearch">상품 등록하기</button>
+        <button className="btnSearch" onClick={handleKeywordSearch}>
+          상품 등록하기
+        </button>
         <CustomDropdown
           selectedOption={sortOrder}
           onOptionChange={handleSortChange}
         />
+      </div>
+      <div className="mobileSearchBar">
+        <div className="mobileBar">
+          <p className="fontStyle">판매 중인 상품</p>
+          <button className="btnSearch" onClick={handleKeywordSearch}>
+            상품 등록하기
+          </button>
+        </div>
+        <div className="mobileBar">
+          <input
+            className="inputSearch"
+            type="text"
+            placeholder="검색할 상품을 입력해주세요"
+            value={keyword} // 검색어 상태 바인딩
+            onChange={handleKeywordChange} // 검색어 변경 핸들러 추가
+            onKeyDown={handleKeyDown} // 엔터키 입력 핸들러
+          />
+          <CustomDropdown
+            selectedOption={sortOrder}
+            onOptionChange={handleSortChange}
+          />
+        </div>
       </div>
 
       <div className="sell">
@@ -90,3 +135,5 @@ export function SellList() {
     </>
   );
 }
+
+export default SellList;

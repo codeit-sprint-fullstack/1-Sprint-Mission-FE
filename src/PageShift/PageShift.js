@@ -7,13 +7,15 @@ export function Shift({ currentPage, onPageChange, totalPages }) {
   const pagesPerGroup = 5; // 한 그룹당 페이지 수
 
   // 실제 페이지 변경 처리 함수
-  const handlePageChange = (page) => {
+  const handlePageChange = (page, event) => {
+    event.preventDefault();
     if (page < 1 || page > totalPages) return;
     onPageChange(page);
   };
 
   // 페이지 그룹 변경 처리 함수
-  const handleGroupChange = (direction) => {
+  const handleGroupChange = (direction, event) => {
+    event.preventDefault();
     if (direction === "next" && (pageGroup + 1) * pagesPerGroup < totalPages) {
       setPageGroup(pageGroup + 1);
     } else if (direction === "prev" && pageGroup > 0) {
@@ -31,7 +33,7 @@ export function Shift({ currentPage, onPageChange, totalPages }) {
     <div className="btnContainer">
       <button
         className="shiftBtn"
-        onClick={() => handleGroupChange("prev")}
+        onClick={(e) => handleGroupChange("prev", e)}
         disabled={pageGroup === 0}
       >
         &lt;
@@ -41,7 +43,7 @@ export function Shift({ currentPage, onPageChange, totalPages }) {
         <button
           key={page}
           className={`shiftBtn ${currentPage === page ? "active" : ""}`}
-          onClick={() => handlePageChange(page)}
+          onClick={(e) => handlePageChange(page, e)}
         >
           {page}
         </button>
@@ -49,7 +51,7 @@ export function Shift({ currentPage, onPageChange, totalPages }) {
 
       <button
         className="shiftBtn"
-        onClick={() => handleGroupChange("next")}
+        onClick={(e) => handleGroupChange("next", e)}
         disabled={(pageGroup + 1) * pagesPerGroup >= totalPages}
       >
         &gt;
