@@ -1,8 +1,27 @@
 import { debounce } from "lodash";
-import { useState, useEffect } from "react";
-import { useMediaQuery } from "react-responsive";
+import { useEffect } from "react";
 
-const useWindowSize = (onChange) => {
+const useWindowSize = (onChange, viewChange, onBestChange) => {
+  const dataPaging = (view) => {
+    switch (view) {
+      case "Desktop":
+        viewChange("Desktop");
+        onChange("pagesize", 10);
+        onBestChange("pagesize", 4);
+        break;
+      case "isTablet":
+        viewChange("isTablet");
+        onChange("pagesize", 6);
+        onBestChange("pagesize", 2);
+        break;
+      case "isMobile":
+        viewChange("isMobile");
+        onChange("pagesize", 4);
+        onBestChange("pagesize", 1);
+        break;
+    }
+  };
+
   let view;
   const handleResize = debounce(() => {
     if (window.innerWidth > 1200) {
@@ -12,7 +31,7 @@ const useWindowSize = (onChange) => {
     } else if (window.innerWidth <= 774) {
       view = "isMobile";
     }
-    onChange(view);
+    dataPaging(view);
   }, 200);
 
   useEffect(() => {

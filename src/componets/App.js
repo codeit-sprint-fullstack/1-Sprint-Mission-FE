@@ -26,51 +26,24 @@ function App() {
   const [items, setItems] = useState([]);
   const [view, setView] = useState("Desktop");
 
-  const dataPaging = (view) => {
-    console.log(view);
-    switch (view) {
-      case "Desktop":
-        setView("Desktop");
-        setParams((prev) => ({
-          ...prev,
-          pagesize: 10,
-        }));
-        setBestParams((prev) => ({
-          ...prev,
-          pagesize: 4,
-        }));
-        break;
-      case "isTablet":
-        setView("isTablet");
-        setParams((prev) => ({
-          ...prev,
-          pagesize: 6,
-        }));
-        setBestParams((prev) => ({
-          ...prev,
-          pagesize: 2,
-        }));
-        break;
-      case "isMobile":
-        setView("isMobile");
-        setParams((prev) => ({
-          ...prev,
-          pagesize: 4,
-        }));
-        setBestParams((prev) => ({
-          ...prev,
-          pagesize: 1,
-        }));
-        break;
-    }
-  };
-
   const onChange = (name, value) => {
     setParams((prev) => ({
       ...prev,
       page: 1,
       [name]: value,
     }));
+  };
+
+  const onBestChange = (name, value) => {
+    setBestParams((prev) => ({
+      ...prev,
+      page: 1,
+      [name]: value,
+    }));
+  };
+
+  const viewChange = (retView) => {
+    setView(retView);
   };
 
   const loadProducts = async (query) => {
@@ -91,7 +64,7 @@ function App() {
     }
   };
 
-  useWindowSize(dataPaging);
+  useWindowSize(onChange, viewChange, onBestChange);
 
   useEffect(() => {
     loadBestProducts();

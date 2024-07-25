@@ -4,7 +4,7 @@ import ic_search from "../image/ic_search.png";
 import ic_arrow_down from "../image/ic_arrow_down.png";
 import ic_sort from "../image/ic_sort.png";
 
-function DropDownBox({ onOrderChange, order, isMobile }) {
+function DropDownBox({ onOrderChange, order, isMobile = false }) {
   const [dropView, setDropView] = useState(false);
   const viewDropbox = () => {
     setDropView((e) => !e);
