@@ -1,10 +1,28 @@
+import { useEffect, useState } from "react";
 import { useFetchProducts } from "../Product/Product";
 import "./Best.css";
 
 export function BestList() {
+  const [pageSize, setPageSize] = useState(getPageSize(window.innerWidth));
+  function getPageSize(width) {
+    if (width < 743) return 1; // Mobile
+    if (width < 1199) return 2; // Tablet
+    return 4; // Desktop
+  }
+
+  useEffect(() => {
+    function handleResize() {
+      setPageSize(getPageSize(window.innerWidth));
+    }
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const { products, loading } = useFetchProducts({
     orderBy: "favorite",
-    pageSize: 4,
+    pageSize: pageSize,
   });
 
   const formatPrice = (price) => {

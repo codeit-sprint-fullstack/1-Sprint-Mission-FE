@@ -4,3 +4,24 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
+
+@media (max-width: 1199px) {
+  .bestProductList {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .bestProductItem {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 743px) {
+  .bestProductList {
+    grid-template-columns: 1fr;
+  }
+  .bestProductItem {
+    width: 100%;
+    height: 100%;
+    justify-self: center;
+  }
+}

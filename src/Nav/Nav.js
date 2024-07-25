@@ -1,5 +1,6 @@
 import profileIc from "../image/ic_profile.svg";
 import logoImg from "../image/img_logo.svg";
+import logo from "../image/logo.svg";
 import "./Nav.css";
 
 export function CreateNav() {
@@ -10,6 +11,13 @@ export function CreateNav() {
         className="margin-left"
         src={logoImg}
         alt="logoImg"
+        onClick={() => (window.location.href = "/")}
+      ></img>
+      <img
+        id="logo"
+        className="margin-left"
+        src={logo}
+        alt="logo"
         onClick={() => (window.location.href = "/")}
       ></img>
       <a className="nav-text">자유게시판</a>

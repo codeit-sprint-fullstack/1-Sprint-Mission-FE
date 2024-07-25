@@ -20,3 +20,29 @@
   height: 221px;
   border-radius: 16px;
 }
+
+@media (max-width: 1199px) {
+  .bestProduct {
+    width: 343px;
+    height: 343px;
+    border-radius: 19px;
+  }
+}
+
+@media (max-width: 743px) {
+  .bestProduct {
+    width: 100%;
+    height: auto;
+    border-radius: 19px;
+  }
+
+  .sellProduct {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  .sell {
+    margin-top: 24px;
+  }
+}

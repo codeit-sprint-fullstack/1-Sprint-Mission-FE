@@ -1,9 +1,16 @@
+.mobileSearchBar {
+  display: none;
+}
+
 .searchBar {
   width: 100%;
   display: flex;
   flex-direction: row;
   margin-bottom: 24px;
   align-items: center;
+  position: relative; /* 자식 요소의 절대 위치를 기준으로 설정 */
+  grid-column: 2;
+  grid-row: 2;
 }
 
 .searchBar p {
@@ -46,34 +53,64 @@
   cursor: pointer;
 }
 
-select::-ms-expand {
-  display: none;
+.custom-dropdown {
+  display: inline-block;
+  width: 130px;
 }
 
-.custom-dropdown select {
-  -o-appearance: none;
-  appearance: none; /* 기본 화살표 제거 */
-  -moz-appearance: none; /* 파이어폭스 기본 화살표 제거 */
-  -webkit-appearance: none; /* 사파리 기본 화살표 제거 */
+.custom-dropdown__selected {
   background-color: white;
   border: 1px solid #e5e7eb;
   padding: 12px 20px;
   font-size: 16px;
   font-weight: 400;
-  width: 130px;
+  width: 100%;
   border-radius: 12px;
-  padding-right: 20px; /* 화살표 아이콘 공간 확보 */
-  background: url("../image/ic_arrow_down.svg") calc(100% - 20px) center
-    no-repeat;
-  background-size: 24px;
-  outline: none;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url("../image/ic_arrow_down.svg");
+  background-repeat: no-repeat;
+  background-position: 90px;
+  background-size: 24px;
 }
 
-/* .customOption {
-  font-size: 16px;
-  font-weight: 400;
-} */
+.custom-dropdown__arrow {
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #000;
+  margin-left: 10px;
+}
+
+.custom-dropdown__options {
+  top: calc(100% + 8px);
+  left: 0;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  width: 100%;
+  max-height: 200px;
+  z-index: 1000;
+}
+
+.custom-dropdown__options--open {
+  display: block;
+}
+
+.custom-dropdown__options li {
+  padding: 10px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.custom-dropdown__options li:last-child {
+  margin-bottom: 0;
+}
+
+.custom-dropdown__options li:hover {
+  background-color: #f0f0f0;
+}
 
 .sellProductList {
   display: grid;
@@ -81,4 +118,67 @@ select::-ms-expand {
   grid-template-rows: auto;
   gap: 24px;
   margin-top: 24px;
+  position: relative;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1199px) {
+  .sellProductList {
+    grid-template-columns: repeat(3, 1fr); /* Tablet layout */
+    gap: 16px;
+  }
+  .inputSearch {
+    width: 242px;
+  }
+  .sellProductItem {
+    justify-self: center;
+  }
+}
+
+/* 모바일 크기 */
+@media (max-width: 743px) {
+  .searchBar {
+    display: none;
+  }
+  .sellProductList {
+    grid-template-columns: repeat(2, 1fr); /* Tablet layout */
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .mobileSearchBar {
+    display: flex;
+    margin-bottom: 8px;
+    height: auto;
+  }
+
+  .mobileSearchBar p {
+    align-self: center;
+  }
+
+  .mobileSearchBar button {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .mobileSearchBar input {
+    width: 288px;
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  .dropdown-button {
+    width: 42px;
+    background-image: url("../image/ic_sort.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .dropdown-text {
+    display: none;
+  }
+
+  .dropdown-content {
+    margin-top: 4px;
+  }
 }

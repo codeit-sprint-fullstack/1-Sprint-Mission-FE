@@ -30,3 +30,15 @@ main {
   font-weight: 500;
   color: #4b5563;
 }
+
+@media (max-width: 1199px) {
+  main {
+    grid-template-columns: 1fr 696px 1fr;
+  }
+}
+
+@media (max-width: 743px) {
+  main {
+    grid-template-columns: 16px 1fr 16px;
+  }
+}
