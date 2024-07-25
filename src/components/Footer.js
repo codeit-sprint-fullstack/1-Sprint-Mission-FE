@@ -8,19 +8,49 @@ function Footer({ currentPage, totalPage, onChangePage }) {
   const handleNextPage = () => {
     if (currentPage < totalPage) onChangePage(currentPage + 1);
   };
-  const handlePage = (page) => {
-    onChangePage(page);
+
+  const makeNumberButton = () => {
+    const pageNumbers = [];
+    let startPage = currentPage - 2 > 0 ? currentPage - 2 : 1;
+    let endPage = startPage + 4 > totalPage ? totalPage : startPage + 4;
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(
+        <button
+          className={`page-button ${
+            currentPage === i ? "on" : ""
+          } Text-lg Regular`}
+          key={i}
+          onClick={() => onChangePage(i)}
+        >
+          {i}
+        </button>
+      );
+    }
+    return pageNumbers;
   };
 
   return (
     <div className="footer">
-      <button className="page-button Text-lg Regular">&lt;</button>
-      <button className="page-button Text-lg Regular">1</button>
-      <button className="page-button Text-lg Regular">2</button>
-      <button className="page-button Text-lg Regular">3</button>
-      <button className="page-button Text-lg Regular">4</button>
-      <button className="page-button Text-lg Regular">5</button>
-      <button className="page-button Text-lg Regular">&gt;</button>
+      <button
+        className={`page-button ${
+          currentPage === 1 ? "disabled" : ""
+        } Text-lg Regular`}
+        onClick={handlePrevPage}
+        disabled={currentPage === 1}
+      >
+        &lt;
+      </button>
+      {makeNumberButton()}
+      <button
+        className={`page-button ${
+          currentPage === totalPage ? "disabled" : ""
+        } Text-lg Regular`}
+        onClick={handleNextPage}
+        disabled={currentPage === totalPage}
+      >
+        &gt;
+      </button>
     </div>
   );
 }

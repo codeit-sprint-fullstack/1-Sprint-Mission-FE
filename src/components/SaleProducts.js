@@ -8,16 +8,24 @@ function SaleProducts() {
   const [products, setProducts] = useState([]);
   const [order, setOrder] = useState("recent");
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
+
   const PAGE_SIZE = 10;
 
   useEffect(() => {
     const getProducts = async () => {
-      const data = await getItems(1, PAGE_SIZE, order);
+      const data = await getItems(currentPage, PAGE_SIZE, order);
       setProducts(data.list);
+      setTotalPage(Math.ceil(data.totalCount / PAGE_SIZE));
     };
 
     getProducts();
-  }, [order]);
+  }, [order, currentPage]);
+
+  const handleChangePage = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <>
@@ -39,7 +47,11 @@ function SaleProducts() {
         ))}
       </div>
       <div className="sale-product-footer">
-        <Footer />
+        <Footer
+          currentPage={currentPage}
+          totalPages={totalPage}
+          onChangePage={handleChangePage}
+        />
       </div>
     </>
   );
