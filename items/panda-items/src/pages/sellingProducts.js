@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import * as Product from "../API/ProductService.mjs";
 import PaginationBtn from "./paginationButtons";
 import ProductManagement from "./productManagement";
-import ProductManagementSmall from "./productManagementSmall"
+import ProductManagementSmall from "./productManagementSmall";
 import useViewportSize from "../hooks/useViewportSize";
 import ProductCard from "../components/ProductCard";
 import "../assets/styles/App.css";
