@@ -4,20 +4,62 @@ import "../css/app.css";
 import ProductList from "./productLsit.js";
 import Search from "./search.js";
 import Paging from "./paging.js";
+import useWindowSize from "../hooks/resize.js";
 import { useState, useEffect } from "react";
 import * as api from "../api.js";
 
 function App() {
   const ProductsQuery = {
     order: "recent",
-    keyword: "",
     page: 1,
     pagesize: 10,
   };
 
+  const bestProductsQuery = {
+    order: "favorite",
+    pagesize: 4,
+  };
+
   const [params, setParams] = useState(ProductsQuery);
+  const [bestParams, setBestParams] = useState(bestProductsQuery);
   const [bestItems, setBestItems] = useState([]);
   const [items, setItems] = useState([]);
+
+  const dataPaging = (view) => {
+    console.log(view);
+    switch (view) {
+      case "Desktop":
+        setParams((prev) => ({
+          ...prev,
+          pagesize: 10,
+        }));
+        setBestParams((prev) => ({
+          ...prev,
+          pagesize: 4,
+        }));
+        break;
+      case "isTablet":
+        setParams((prev) => ({
+          ...prev,
+          pagesize: 6,
+        }));
+        setBestParams((prev) => ({
+          ...prev,
+          pagesize: 2,
+        }));
+        break;
+      case "isMobile":
+        setParams((prev) => ({
+          ...prev,
+          pagesize: 4,
+        }));
+        setBestParams((prev) => ({
+          ...prev,
+          pagesize: 1,
+        }));
+        break;
+    }
+  };
 
   const onChange = (name, value) => {
     setParams((prev) => ({
@@ -38,16 +80,14 @@ function App() {
 
   const loadBestProducts = async () => {
     try {
-      const { list } = await api.getProducts({
-        ...ProductsQuery,
-        order: "favorite",
-        pagesize: 4,
-      });
+      const { list } = await api.getProducts(bestParams);
       setBestItems(list);
     } catch (e) {
       console.log(e.message);
     }
   };
+
+  useWindowSize(dataPaging);
 
   useEffect(() => {
     loadBestProducts();
