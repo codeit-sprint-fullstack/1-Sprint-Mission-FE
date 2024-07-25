@@ -49,7 +49,7 @@ function SaleProducts() {
       <div className="sale-product-footer">
         <Footer
           currentPage={currentPage}
-          totalPages={totalPage}
+          totalPage={totalPage}
           onChangePage={handleChangePage}
         />
       </div>
