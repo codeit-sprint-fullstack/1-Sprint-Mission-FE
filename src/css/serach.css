@@ -6,12 +6,6 @@
   justify-content: space-between;
   margin-bottom: 24px;
 }
-@media screen and (max-width: 773px) {
-  .serach_container {
-    height: 92px;
-    flex-direction: column;
-  }
-}
 
 .first_block {
   justify-content: space-between;
@@ -118,4 +112,20 @@
 .lastdrop {
   border-radius: 0 0 12px 12px;
   border: 1px solid #e5e7eb;
+}
+
+@media screen and (max-width: 773px) {
+  .serach_container {
+    height: 92px;
+    flex-direction: column;
+  }
+
+  .order_drop_btn {
+    width: 42px;
+  }
+
+  .ic_arrow_down {
+    position: absolute;
+    right: 9px;
+  }
 }

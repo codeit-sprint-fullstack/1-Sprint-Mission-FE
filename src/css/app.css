@@ -24,6 +24,7 @@ header {
 main {
   margin: auto;
   width: 1200px;
+  min-width: 376px;
 }
 
 @media screen and (max-width: 1920px) {

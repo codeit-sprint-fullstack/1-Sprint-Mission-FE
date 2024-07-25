@@ -2,8 +2,9 @@ import { useState } from "react";
 import "../css/serach.css";
 import ic_search from "../image/ic_search.png";
 import ic_arrow_down from "../image/ic_arrow_down.png";
+import ic_sort from "../image/ic_sort.png";
 
-function DropDownBox({ onOrderChange, order }) {
+function DropDownBox({ onOrderChange, order, isMobile }) {
   const [dropView, setDropView] = useState(false);
   const viewDropbox = () => {
     setDropView((e) => !e);
@@ -16,10 +17,12 @@ function DropDownBox({ onOrderChange, order }) {
   return (
     <div>
       <div className="serach_order_container" onClick={viewDropbox}>
-        <button className="order_drop_btn">{dropDownBox[order]}</button>
+        <button className="order_drop_btn">
+          {isMobile ? null : dropDownBox[order]}
+        </button>
         <img
           className="ic_arrow_down"
-          src={ic_arrow_down}
+          src={isMobile ? ic_sort : ic_arrow_down}
           alt="드롭다운아이콘"
         ></img>
       </div>
@@ -97,7 +100,11 @@ export function MobileSearch({ onChange, order }) {
             placeholder="검색할 상품을 입력해주세요"
           ></input>
         </div>
-        <DropDownBox onOrderChange={onOrderChange} order={order} />
+        <DropDownBox
+          onOrderChange={onOrderChange}
+          order={order}
+          isMobile={true}
+        />
       </div>
     </div>
   );
