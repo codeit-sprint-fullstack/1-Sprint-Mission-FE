@@ -8,20 +8,20 @@ import './reset.css'
 
 
 function Main(){
-  const [items, setItems] = useState({ list:[]}) //getAPI
-  const [searchItem, setSearchItem] = useState({list:[]}) //get API
-  const [ValueItem, setValueItem] = useState({list:[]}) //get API
+  const [items, setItems] = useState({ list:[]}) //getAPI list가 내용이라 list만 가지고옴
+  const [searchItem, setSearchItem] = useState({list:[]}) //get API list가 내용이라 list만 가지고옴
+  const [ValueItem, setValueItem] = useState({list:[]}) //get API list가 내용이라 list만 가지고옴
   const [selectedOption, setSelectedOption] = useState('최신순'); // 셀렉트 초기값
-  const [valueOption, setvalueOption] = useState(items)
-  const [totalCount, setTotalCount] = useState(0);  
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0); 
-  const [width, setWidth] = useState(window.innerWidth);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [bestItemsPerPage , setBestItemsPerPage] = useState(4);
-  const [keyword, setKeyword] = useState('');
+  const [valueOption, setvalueOption] = useState(items) // 출력 할 내용
+  const [totalCount, setTotalCount] = useState(0);   // API에 totalCount(데이터 수량) API에서 결과를 보여줌
+  const [currentPage, setCurrentPage] = useState(1); // API page번호 
+  const [totalPages, setTotalPages] = useState(0); // 버튼수량 계산용도
+  const [width, setWidth] = useState(window.innerWidth); // 너비 사이즈
+  const [itemsPerPage, setItemsPerPage] = useState(10); // 상품 기본값 10 화면 너비기준으로 바로 변경됨.
+  const [bestItemsPerPage , setBestItemsPerPage] = useState(4); // 베스트상품 기본값 4 화면 너비기준으로 바로 변경됨.
+  const [keyword, setKeyword] = useState(''); // 찾을 키워드
 
-  useEffect(() => {
+  useEffect(() => { // 화면 너비를 계산
     const handleResize = () => {
       setWidth(window.innerWidth);
     };
@@ -33,7 +33,7 @@ function Main(){
     };
   }, []);
 
-  useEffect(() => {
+  useEffect(() => { // 너비 기준으로 ItemperPage의 값 변경(상품수량)
     if (width <= 743) {
       setItemsPerPage(4);  // 모바일 뷰
     } else if (width <= 1199) {
@@ -43,7 +43,7 @@ function Main(){
     }
   }, [width]);  // width가 변경될 때마다 itemsPerPage 업데이트
 
-  useEffect(() => {
+  useEffect(() => { // 너비 기준으로 setBestItemsPerPage의 값 변경(베스트상품수량)
     if (width <= 743) {
       setBestItemsPerPage(1);  // 모바일 뷰
     } else if (width <= 1199) {
@@ -54,23 +54,23 @@ function Main(){
   }, [width]);  // width가 변경될 때마다 itemsPerPage 업데이트
   
 
-  useEffect(() => {
+  useEffect(() => { // get API를 통해서 상품을 가지고오고
     const fetchData = async () => {
       const response = await axios.get("https://panda-market-api.vercel.app/products/", {
         params: { pageSize: itemsPerPage ,
         page: currentPage}
       });
-      setTotalCount(response.data.totalCount);  
+      setTotalCount(response.data.totalCount);//data.totalCount를 통해 값을 저장 이부분은 없어도 상관 없을거 같음 다른곳에서 setTotalCount한번 더 써주면 끝...?
     };
 
     fetchData();
   }, [currentPage,itemsPerPage,width]);
 
-  useEffect(() => {
+  useEffect(() => { //토탈 페이지수 계산 버튼 만들때 사용
     setTotalPages(Math.ceil(totalCount / itemsPerPage)); 
   }, [totalCount,width]); 
 
-  const changePage = (newPage) => {
+  const changePage = (newPage) => { // 버튼클릭이벤트때 사용 
     setCurrentPage(newPage);
     if (newPage >= 1 && newPage <= totalPages) {
       setCurrentPage(newPage);
@@ -80,7 +80,7 @@ function Main(){
   
 
 
-  useEffect(() => {
+  useEffect(() => { // 정렬기준이 최신순, 좋아요순 으로 데이터 변경
     if(selectedOption === '최신순'){
       setvalueOption(searchItem)
     }else{
@@ -89,7 +89,7 @@ function Main(){
   },[selectedOption, searchItem, ValueItem, currentPage,width]);
   
 
-  useEffect(() => { 
+  useEffect(() => {  // 베스트상품 API를 통해 상품을 가짐
     const getRes = async () => {
       const getRes = await axios.get("https://panda-market-api.vercel.app/products/",{
         params: {
@@ -102,7 +102,7 @@ function Main(){
     getRes()
   }, [bestItemsPerPage,width]);
 
-  useEffect(() => {
+  useEffect(() => { // 정렬 기준
     const getRes = async () => {
       const getRes = await axios.get("https://panda-market-api.vercel.app/products/",{
         params: {
@@ -116,7 +116,7 @@ function Main(){
     getRes()
   }, [currentPage, itemsPerPage,width,selectedOption,width]);
 
-  useEffect(() => {
+  useEffect(() => { // 정렬 기준
     const getRes = async () => {
       const getRes = await axios.get("https://panda-market-api.vercel.app/products/",{
         params: {
@@ -132,11 +132,11 @@ function Main(){
 
 
   
-  const handleinputChange = (event) => {
+  const handleinputChange = (event) => { // 인풋에 입력된 벨류값을 전달 onChange를 사용하지 않으면 실시간 처리를 못함.
     setKeyword(event.target.value);
   }
 
-  const handleKeyPress = (event) => {
+  const handleKeyPress = (event) => { //Enter키 기준으로 keyWord에 입력된 내용으로 다시 API호출
     if (event.key === 'Enter') {
       console.log(keyword);
       
@@ -159,7 +159,7 @@ function Main(){
 
 
 
-  
+  // 여기부터 (Select, opstion) 말고, 버튼을 통해서 구현
   document.addEventListener('DOMContentLoaded', (event) => {
     const dropdownButton = document.getElementById('dropdownButton');
     const dropdownContent = document.getElementById('dropdownContent');
@@ -183,10 +183,6 @@ function Main(){
     });
 });
 
-// function handleSelectChange(value) {
-//     console.log("Selected value:", value);
-//     // You can add more logic here to handle the selection change
-// }
 
 
 
@@ -204,7 +200,7 @@ function Main(){
       <a id="main_title">베스트 상품</a>
 
       <div id="best_item">
-        {items.list.map((item, index) => ( // 여기에서 items.list.map 사용
+        {items.list.map((item, index) => ( 
           <div className='item' key={index}>
             <img className ="item_img" src={item.images} alt="Header" />
             <a className='item_name'>{item.name}</a>
