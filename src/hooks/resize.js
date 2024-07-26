@@ -1,21 +1,19 @@
 import { debounce } from "lodash";
 import { useEffect } from "react";
 
-const useWindowSize = (onChange, viewChange, onBestChange, view) => {
+const useWindowSize = (onChange, onBestChange, view) => {
+  console.log("리사이즈인");
   const dataPaging = (nextView) => {
     switch (nextView) {
       case "Desktop":
-        viewChange("Desktop");
         onChange({ pagesize: 10, page: 1 });
         onBestChange("pagesize", 4);
         break;
       case "isTablet":
-        viewChange("isTablet");
         onChange({ pagesize: 6, page: 1 });
         onBestChange("pagesize", 2);
         break;
       case "isMobile":
-        viewChange("isMobile");
         onChange({ pagesize: 4, page: 1 });
         onBestChange("pagesize", 1);
         break;
@@ -31,6 +29,7 @@ const useWindowSize = (onChange, viewChange, onBestChange, view) => {
     } else if (window.innerWidth <= 774) {
       checkView = "isMobile";
     }
+    if (view === checkView) return;
     dataPaging(checkView);
   }, 200);
 

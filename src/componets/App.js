@@ -48,10 +48,6 @@ function App() {
     }));
   };
 
-  const viewChange = (retView) => {
-    setView(retView);
-  };
-
   const loadProducts = async (query) => {
     try {
       const { list, totalCount } = await api.getProducts(query);
@@ -72,9 +68,10 @@ function App() {
     }
   };
 
-  useWindowSize(onObjectChange, viewChange, onBestChange, view);
+  useWindowSize(onObjectChange, onBestChange, view);
 
   useEffect(() => {
+    console.log("렌더완료");
     loadBestProducts(bestParams);
     loadProducts(params);
   }, [params]);
