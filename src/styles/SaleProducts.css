@@ -79,7 +79,6 @@
   height: 8.4rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
   position: absolute;
   top: 5rem;
@@ -89,6 +88,17 @@
   background-color: var(--white);
   color: var(--gray800);
   z-index: 50;
+  .recent,
+  .favorite {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+  }
+  .recent {
+    border-bottom: 1px solid var(--gray200);
+  }
 }
 .modal-option {
   &:hover {
