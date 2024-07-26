@@ -12,6 +12,9 @@
 .logo {
   width: 15.3rem;
   height: 5.1rem;
+  &:hover {
+    cursor: pointer;
+  }
 }
 .menu {
   margin-left: 3.2rem;
@@ -25,4 +28,7 @@
 .icon {
   width: 4rem;
   height: 4rem;
+  &:hover {
+    cursor: pointer;
+  }
 }
