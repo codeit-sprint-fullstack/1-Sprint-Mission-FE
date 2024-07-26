@@ -24,6 +24,9 @@
 .menu-content {
   padding: 0 1.5rem;
   color: var(--gray600);
+  &:hover {
+    cursor: pointer;
+  }
 }
 .icon {
   width: 4rem;
