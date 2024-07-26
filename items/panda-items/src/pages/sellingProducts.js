@@ -102,7 +102,7 @@ function SellingMarketPlace() {
           <ProductCard
             key={product.id}
             product={product}
-            className="productCardImage"
+            className="product-card-image"
           />
         ))}
       </div>

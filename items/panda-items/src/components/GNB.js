@@ -6,15 +6,15 @@ import userLogo from "../assets/images/userBasicLogo.png";
 
 function GNB() {
   return (
-    <div className="Header">
-      <div className="Header-Wrapper">
-        <div className="Header-Logo">
+    <div className="header">
+      <div className="header-wrapper">
+        <div className="header-logo">
           <img src={bannerLogo} alt="Header_Logo"></img>
         </div>
-        <div className="Header-Logo2">
+        <div className="header-logo2">
           <img src={bannerLogo2} alt=""></img>
         </div>
-        <div className="Header-Text">
+        <div className="header-text">
           <div>자유게시판</div>
           <div>중고마켓</div>
         </div>

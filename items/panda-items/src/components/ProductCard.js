@@ -5,15 +5,11 @@ import "../assets/styles/App.css";
 function ProductCard({ product, className }) {
   return (
     <div>
-      <img
-        src={product.images}
-        alt={product.name}
-        className={className}
-      />
-      <h2 className="productTitle">{product.name}</h2>
-      <p className="productPrice">{product.price} 원</p>
+      <img src={product.images} alt={product.name} className={className} />
+      <h2 className="product-title">{product.name}</h2>
+      <p className="product-price">{product.price} 원</p>
       <span
-        className="productFavorite"
+        className="product-favorite"
         style={{ alignItems: "center", display: "flex", gap: "4px" }}
       >
         <img src={heartIcon} alt="Heart_Icon"></img>

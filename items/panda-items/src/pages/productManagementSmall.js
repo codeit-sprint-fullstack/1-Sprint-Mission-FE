@@ -19,16 +19,13 @@ function ProductManagement({
   return (
     <div className="product-management">
       <div className="pm-container-small">
-        <div className="sectionTitle">판매중인 상품</div>
+        <div className="section-title">판매중인 상품</div>
 
-        <button className="productPatchButton" onClick={onSearch}>
+        <button className="product-patch-button" onClick={onSearch}>
           상품 등록하기
         </button>
       </div>
-      <div
-        className="pm-container-small"
-        style={{ gap: "8px"}}
-      >
+      <div className="pm-container-small" style={{ gap: "8px" }}>
         <KeywordSearch
           keyword={keyword}
           onSearch={handleSearch}
