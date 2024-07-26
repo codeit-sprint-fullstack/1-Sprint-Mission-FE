@@ -5,6 +5,7 @@ import Footer from "./Footer.js";
 import "../styles/SaleProducts.css";
 import searchIcon from "../images/searchIcon.png";
 import arrowDownIcon from "../images/arrowDownIcon.png";
+import useResize from "../hooks/useResize.js";
 
 function SaleProducts() {
   const [products, setProducts] = useState([]);
@@ -17,17 +18,17 @@ function SaleProducts() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const PAGE_SIZE = 10;
+  const pageSize = useResize(4, 6, 10);
 
   useEffect(() => {
     const getProducts = async () => {
-      const data = await getItems(currentPage, PAGE_SIZE, order, keyword);
+      const data = await getItems(currentPage, pageSize, order, keyword);
       setProducts(data.list);
-      setTotalPage(Math.ceil(data.totalCount / PAGE_SIZE));
+      setTotalPage(Math.ceil(data.totalCount / pageSize));
     };
 
     getProducts();
-  }, [order, currentPage, keyword]);
+  }, [order, currentPage, keyword, pageSize]);
 
   const handleChangePage = (page) => {
     setCurrentPage(page);

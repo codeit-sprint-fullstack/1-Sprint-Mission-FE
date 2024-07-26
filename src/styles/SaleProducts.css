@@ -17,6 +17,7 @@
 }
 .sale-product {
   margin-bottom: 4rem;
+  flex-basis: 18%; /* 1줄에 5개씩 */
 }
 .sale-product-footer {
   margin: 0 auto;
@@ -103,5 +104,15 @@
 .modal-option {
   &:hover {
     cursor: pointer;
+  }
+}
+@media (max-width: 1199px) {
+  .sale-product {
+    flex-basis: 32%; /* 1줄에 3개씩 */
+  }
+}
+@media (max-width: 743px) {
+  .sale-product {
+    flex-basis: 48%; /* 1줄에 2개씩 */
   }
 }

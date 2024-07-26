@@ -18,10 +18,10 @@ function useResize(mobileSize, tabletSize, desktopSize) {
 
     handleResize();
 
-    window.onresize = handleResize;
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.onresize = null;
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
