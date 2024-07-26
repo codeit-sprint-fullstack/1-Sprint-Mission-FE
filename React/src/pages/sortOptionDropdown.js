@@ -28,7 +28,7 @@ function SortingOptionBox({ onChange, selectedOption, setCurrentPage }) {
         />
       </li>
       {isOpen && (
-        <ul className="dropdown-menu">
+        <ul className={`dropdown-menu ${isOpen ? "show" : ""}`}>
           <li onClick={() => selectOption("recent")}>최신순</li>
           <li onClick={() => selectOption("favorite")}>좋아요순</li>
         </ul>

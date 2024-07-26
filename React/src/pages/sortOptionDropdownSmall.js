@@ -18,13 +18,10 @@ function SortingOptionBoxSmall({ onChange, setCurrentPage }) {
   return (
     <div className="dropdown">
       <li className="dropdown-toggle small" onClick={toggleDropdown}>
-        <img
-          src={arrow}
-          alt="arrow"
-        />
+        <img src={arrow} alt="arrow" />
       </li>
       {isOpen && (
-        <ul className="dropdown-menu-small">
+        <ul className={`dropdown-menu-small ${isOpen ? "show" : ""}`}>
           <li onClick={() => selectOption("recent")}>최신순</li>
           <li onClick={() => selectOption("favorite")}>좋아요순</li>
         </ul>
