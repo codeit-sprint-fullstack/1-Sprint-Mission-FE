@@ -11,7 +11,6 @@ const useWindowSize = (onChange, viewChange, onBestChange, view) => {
         break;
       case "isTablet":
         viewChange("isTablet");
-        // onChange("pagesize", 6);
         onChange({ pagesize: 6, page: 1 });
         onBestChange("pagesize", 2);
         break;

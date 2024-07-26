@@ -75,8 +75,6 @@ function App() {
   useWindowSize(onObjectChange, viewChange, onBestChange, view);
 
   useEffect(() => {
-    console.log(bestParams);
-    console.log(params);
     loadBestProducts(bestParams);
     loadProducts(params);
   }, [params]);

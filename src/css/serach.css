@@ -129,4 +129,8 @@
     position: absolute;
     right: 9px;
   }
+
+  .dropbox_list {
+    right: 0;
+  }
 }
