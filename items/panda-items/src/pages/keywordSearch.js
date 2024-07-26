@@ -13,7 +13,7 @@ function KeywordSearch({ keyword, onSearch }) {
   return (
     <input
       placeholder="검색할 상품을 입력해주세요"
-      className="searchInput"
+      className="search-input"
       value={localKeyword}
       onChange={(e) => setLocalKeyword(e.target.value)}
       onKeyDown={handleKeyDown}

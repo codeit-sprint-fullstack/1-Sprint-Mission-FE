@@ -58,14 +58,14 @@ function BestMarketPlace() {
   }
 
   return (
-    <div>
-      <div className="hotSectionTitle">베스트 상품</div>
+    <div className="best-selling-market-container">
+      <div className="hot-section-title">베스트 상품</div>
       <div className="best-selling-market-display">
         {products.map((product) => (
           <ProductCard
             key={product.id}
             product={product}
-            className="bestProductCardImage"
+            className="best-product-card-image"
           />
         ))}
       </div>
