@@ -12,7 +12,9 @@ const Product = ({ product, className }) => {
         alt={product.description}
       />
       <p className="description Text-md Medium">{product.description}</p>
-      <p className="price Text-lg Bold">{product.price}원</p>
+      <p className="price Text-lg Bold">
+        {product.price.toLocaleString("en-US")}원
+      </p>
       <div className="favorites">
         <img
           className="favorite-heart"
