@@ -1,8 +1,35 @@
-.searchInput {
+*::placeholder {
+  font-family: "Pretendard";
+  color: var(--gray400-color);
+}
+
+.input-frame {
+  position: relative;
+}
+
+.input-search {
   width: 32.5rem;
   height: 4.2rem;
+  box-sizing: border-box;
+  border: 0.1rem solid;
+  border-color: var(--gray100-color);
+  background-color: var(--gray100-color);
   /* border-radius : 12px; */
-  border-radius: 1.2em;
+  border-radius: 0.75em;
+  /* font-size : 16px */
   /* padding: 9px, 20px, 9px, 16px; */
-  /* padding: 0.9em 2em 0.9em 1.6em; */
+  padding: 0.0625em 1.25em 0.0625em 2.75em;
+  outline-color: var(--blue100-color);
+}
+
+.img-input-search {
+  width: 2.4rem;
+  height: 2.4rem;
+  content: url(../images/ic_search.svg);
+  border: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1.6rem;
+  object-fit: cover;
 }

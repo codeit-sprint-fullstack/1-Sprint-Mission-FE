@@ -1,4 +1,14 @@
-.product-sortDropList {
+.dropdown-product-sort {
+  width: 13rem;
+  height: 4.2rem;
+  border: solid 1px;
+  border-radius: 1.2em;
+  /* padding : 12px, 20px, 12px, 20px; */
+  /* padding : 1.2em 2em 1.2em 2em; */
+  border-color: var(--gray200-color);
+}
+
+.dropdown-product-sort-item {
   position: relative;
   width: 13rem;
   height: 4.2rem;

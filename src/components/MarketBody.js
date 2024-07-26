@@ -5,7 +5,7 @@ import no_image from "../assets/images/no_image.svg";
 import { isImageUrl, isImageFileText, isImageLoaded } from "../utils/utils";
 import Input from "./Input";
 import Button from "./Button";
-import DropList from "./DropList";
+import DropDown from "./DropDown";
 import Pagination from "./Pagination";
 
 const PRODUCT_API_ADDRESS = "https://panda-market-api.vercel.app";
@@ -20,9 +20,9 @@ const instance = axios.create({
 const PATH = "/products";
 
 // index 0 : 좋아요순 1 : 최신순
-let bestProductOrder = 0;
-let productOrder = 1;
-const ORDER_BY = ["favorite", "recent"];
+const ORDER_BY_RECENT = 0;
+const ORDER_BY_FAVORITE = 1;
+const ORDER_BY = ["recent", "favorite"];
 
 // index 0 : PC 1 : TABLET 2 : MOBILE
 let device = 0;
@@ -53,6 +53,8 @@ function Product({ img, imgClass, title, price, favorite }) {
   //     }
   // }, [img]);
 
+  const priceText = price.toLocaleString("en-US") + "원";
+
   useEffect(() => {
     let isMounted = true;
     const image = new Image();
@@ -81,14 +83,16 @@ function Product({ img, imgClass, title, price, favorite }) {
       <div className={imgClass}>
         <img className="product__img" src={validImg} alt="상품 이미지" />
       </div>
-      <div className="margin-top16 Text-md Medium">{title}</div>
-      <div className="margin-top6 Text-md Bold">{price}</div>
-      <div>
-        <Button
-          className="favoriteButton"
-          onClick={handleFavoriteButtonClick}
-        />
-        <a className="margin-top6 Text-xs-line-height18 Medium">{favorite}</a>
+      <div className="flex-col justify-space-between product__text">
+        <div className="Text-md Medium">{title}</div>
+        <div className="Text-lg Bold">{priceText}</div>
+        <div className="flex-row">
+          <Button
+            className="favoriteButton"
+            onClick={handleFavoriteButtonClick}
+          />
+          <a className="margin-left4 Text-xs-line-height18 Medium">{favorite}</a>
+        </div>
       </div>
     </>
   );
@@ -96,7 +100,7 @@ function Product({ img, imgClass, title, price, favorite }) {
 
 function Products({ device }) {
   const [products, setProducts] = useState([]);
-  const [dropList, setDropList] = useState(false);
+
   const [pageArray, setPageArray] = useState([]);
 
   let totalCount = 0;
@@ -107,15 +111,15 @@ function Products({ device }) {
 
   const sortByRecent = () => {
     console.log("최신순");
-    getProducts(1, "RECENT");
+    getProducts(1, ORDER_BY_RECENT);
   };
 
   const sortByFavorite = () => {
     console.log("좋아요순");
-    getProducts(1, "FAVORITE");
+    getProducts(1, 1);
   };
 
-  const productSortDropList = [
+  const productSortDropItems = [
     { id: 0, label: "최신순", func: sortByRecent },
     { id: 1, label: "좋아요순", func: sortByFavorite },
   ];
@@ -155,29 +159,20 @@ function Products({ device }) {
 
   return (
     <div className="main__section-products">
-      <div>
+      <div className="flex-row justify-space-between">
         <a className="Text-xl Bold">판매 중인 상품</a>
-        <Input className="searchInput Text-lg Regular" />
-        <Button
-          className="registrationButton"
-          onClick={handleRegistrationButtonClick}
-        />
-        <ul
-          className="Text-lg Regular main__sortDropList"
-          onClick={() => setDropList(!dropList)}
-        >
-          최신순
-          {dropList && (
-            <DropList
-              className="product-sortDropList"
-              items={productSortDropList}
-            />
-          )}
-        </ul>
+        <div className="grid main__section-tools">
+          <Input inputClassName="Text-lg Regular input-search" imgClassName ="img-input-search">검색할 상품을 입력해주세요</Input>
+          <Button
+            className="registrationButton"
+            onClick={handleRegistrationButtonClick}
+          />
+          <DropDown dropItems={productSortDropItems} >{productSortDropItems[0].label}</DropDown>
+        </div>
       </div>
       <div className="main__products-frame">
         {products.map((item) => (
-          <article key={item.id} className="main__product-article">
+          <article key={item.id} className="flex-col main__product-article">
             <Product
               img={item.images[0]}
               imgClass="product__img-frame"
@@ -225,7 +220,7 @@ function BestProducts({ device, order }) {
       <div className="Text-xl Bold">베스트 상품</div>
       <div className="main__best-products-frame">
         {bestProducts.map((item) => (
-          <article key={item.id} className="main__best-product-article">
+          <article key={item.id} className="flex-col justify-space-between main__best-product-article">
             <Product
               img={item.images[0]}
               imgClass="product-best__img-frame"
@@ -243,8 +238,8 @@ function BestProducts({ device, order }) {
 export function MarketBody() {
   return (
     <main className="main-frame">
-      <BestProducts device={device} order={bestProductOrder} />
-      <Products device={device} order={productOrder} />
+      <BestProducts device={device} order={ORDER_BY_FAVORITE} />
+      <Products device={device} order={ORDER_BY_RECENT} />
     </main>
   );
 }

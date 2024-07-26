@@ -2,7 +2,7 @@ import "../assets/styles/Pagination.css";
 
 export function Pagination({ className, pageArray, recentPage, onClick }) {
   const maxButtonNumber = pageArray.length > 5 ? 5 : pageArray.length;
-  console.log("pageArray");
+  // console.log("pageArray");
   const leftButtonClass = className + " leftButton";
   const rightButtonClass = className + " rightButton";
 
@@ -17,7 +17,7 @@ export function Pagination({ className, pageArray, recentPage, onClick }) {
   const nextPageNum =
     tempPageNum > pageArray.length ? pageArray.length : tempPageNum;
   const rightPageButtonClick = () => onClick(nextPageNum);
-  console.log(pageArray);
+  // console.log(pageArray);
 
   return (
     <>

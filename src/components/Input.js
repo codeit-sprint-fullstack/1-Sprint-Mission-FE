@@ -1,10 +1,12 @@
 import "../assets/styles/input.css";
 
-export function Input({ className, defaultText }) {
+export function Input({ inputClassName, imgClassName, children }) {
+
   return (
-    <>
-      <input className={className}>{defaultText}</input>
-    </>
+    <div className="flex-row input-frame">
+      <input className={inputClassName} placeholder={children}></input>
+      <img className={imgClassName}/>
+    </div>
   );
 }
 

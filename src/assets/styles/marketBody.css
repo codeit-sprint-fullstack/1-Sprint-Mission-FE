@@ -38,6 +38,11 @@
   border-radius: 1.6em;
 }
 
+.product__text {
+  width: 100%;
+  height: 8rem;
+}
+
 .main__section-best-products {
   margin-top: 9.4rem;
 }
@@ -46,16 +51,12 @@
   margin-top: 4rem;
 }
 
-.main__sortDropList {
-  width: 13rem;
-  height: 4.2rem;
-  border: solid 1px;
-  border-radius: 1.2em;
-  /* padding : 12px, 20px, 12px, 20px; */
-  /* padding : 1.2em 2em 1.2em 2em; */
-  border-color: var(--gray200-color);
-  text-align: center;
+.main__section-tools {
+  grid-template-columns : 32.5rem 13.3rem 13rem;
+  gap : 1.2rem;
 }
+
+
 
 .main__best-products-frame {
   margin-top: 1.6rem;
@@ -80,12 +81,4 @@
 .main__product-article {
   width: 22.1rem;
   height: 31.7rem;
-}
-
-.margin-top16 {
-  margin-top: 1.6rem;
-}
-
-.margin-top6 {
-  margin-top: 0.6rem;
 }
