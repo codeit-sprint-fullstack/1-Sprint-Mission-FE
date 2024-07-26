@@ -115,7 +115,7 @@
   border: 1px solid #e5e7eb;
 }
 
-@media screen and (max-width: 773px) {
+@media screen and (max-width: 774px) {
   .serach_container {
     height: 92px;
     flex-direction: column;

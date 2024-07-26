@@ -117,6 +117,7 @@
   }
 
   .Products {
+    height: 560px;
     gap: 0 8px;
     width: 344px;
   }

@@ -24,14 +24,6 @@ function Paging({ onChange, pageNum, totalCount, paseSize }) {
   // const [pagingNum, setPagingNum] = useState(defaultNum);
   const [pagingNum, setPagingNum] = useState([]);
 
-  const makeArrNum = () => {
-    console.log(totalCount, paseSize);
-    const num = Math.ceil(totalCount / paseSize);
-    const keyboard = Array.from({ length: num }, (v, i) => i + 1);
-    console.log(keyboard);
-    setPagingNum(keyboard);
-  };
-
   const moreData = (last) => {
     return totalCount - last * paseSize > 0 ? true : false;
   };
@@ -54,9 +46,15 @@ function Paging({ onChange, pageNum, totalCount, paseSize }) {
     setPagingNum(arr);
   };
 
+  const makeArrNum = () => {
+    const num = Math.ceil(totalCount / paseSize);
+    const keyboard = Array.from({ length: num }, (v, i) => i + 1);
+    setPagingNum(keyboard);
+  };
+
   useEffect(() => {
     makeArrNum();
-  }, [paseSize, totalCount]);
+  }, [totalCount, paseSize]);
 
   return (
     <div className="paging_box">

@@ -48,12 +48,15 @@ function App() {
     }));
   };
 
+  const onChangeView = (value) => {
+    setView(value);
+  };
+
   const loadProducts = async (query) => {
     try {
       const { list, totalCount } = await api.getProducts(query);
       setItems(list);
       setTotalDataCount(totalCount);
-      console.log(totalDataCount);
     } catch (e) {
       console.log(e.message);
     }
@@ -69,17 +72,16 @@ function App() {
     }
   };
 
-  useWindowSize(onObjectChange, onBestChange, view);
+  useWindowSize(onObjectChange, onBestChange, onChangeView);
 
   useEffect(() => {
-    console.log("렌더완료");
     loadBestProducts(bestParams);
     loadProducts(params);
-  }, [params]);
+  }, [params, bestParams]);
 
   return (
     <div className="App">
-      <Header></Header>
+      <Header isMobile={view === "isMobile" ? true : false} />
       <main>
         <div className="products_container">
           <h2>베스트 상품</h2>

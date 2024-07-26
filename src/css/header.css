@@ -13,13 +13,9 @@ a {
 }
 
 .logo_img {
+  width: 153px;
+  height: 51px;
   margin-left: 200px;
-}
-
-@media screen and (max-width: 1200px) {
-  .logo_img {
-    margin-left: 24px;
-  }
 }
 
 .nav_bar {
@@ -40,4 +36,22 @@ a {
 
 .nav_content:hover {
   transform: scale(1.2);
+}
+
+@media screen and (max-width: 1200px) {
+  .logo_img {
+    margin-left: 24px;
+  }
+}
+
+@media screen and (max-width: 773px) {
+  .logo_img {
+    width: 81px;
+    height: 40px;
+  }
+
+  .nav_bar {
+    gap: 8px;
+    margin-left: 8px;
+  }
 }
