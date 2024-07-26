@@ -84,8 +84,8 @@ function Product({ img, imgClass, title, price, favorite }) {
         <img className="product__img" src={validImg} alt="상품 이미지" />
       </div>
       <div className="flex-col justify-space-between product__text">
-        <div className="Text-md Medium">{title}</div>
-        <div className="Text-lg Bold">{priceText}</div>
+        <div className="Text-md Medium text-overflow-ellipsis">{title}</div>
+        <div className="Text-lg Bold text-overflow-ellipsis">{priceText}</div>
         <div className="flex-row">
           <Button
             className="favoriteButton"
@@ -262,6 +262,21 @@ function BestProducts({ device, order }) {
 }
 
 export function MarketBody() {
+  const [device, setDevice] = useState(0);
+
+  window.addEventListener("resize", (e) => {
+    if (375 <= window.innerWidth && window.innerWidth < 744) {
+      /* ===== Mobile-width : 375px ~ 743px ====== */
+      setDevice(2);
+    } else if (744 <= window.innerWidth && window.innerWidth < 1200) {
+      /* ===== Tablet - width : 744px ~ 1199px ===== */
+      setDevice(1);
+    } else {
+      /* ===== PC - width : 1200px ~ ===== */
+      setDevice(0);
+    }
+  });
+
   return (
     <main className="main-frame">
       <BestProducts device={device} order={ORDER_BY_FAVORITE} />
