@@ -4,6 +4,7 @@ import Product from "./Product.js";
 import Footer from "./Footer.js";
 import "../styles/SaleProducts.css";
 import searchIcon from "../images/searchIcon.png";
+import arrowDownIcon from "../images/arrowDownIcon.png";
 
 function SaleProducts() {
   const [products, setProducts] = useState([]);
@@ -13,6 +14,8 @@ function SaleProducts() {
   const [totalPage, setTotalPage] = useState(1);
 
   const [keyword, setKeyword] = useState("");
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const PAGE_SIZE = 10;
 
@@ -35,6 +38,12 @@ function SaleProducts() {
     setCurrentPage(1);
   };
 
+  const handleChangeOrder = (order) => {
+    setOrder(order);
+    setCurrentPage(1);
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <div className="sale-product-nav">
@@ -48,8 +57,34 @@ function SaleProducts() {
             onChange={handleSearch}
           />
           <img src={searchIcon} alt="search icon" className="search-icon" />
-          <div>상품등록하기</div>
-          <div>정렬선택하기</div>
+          <div className="enroll-product Text-lg Semibold">상품등록하기</div>
+          <div
+            className="order-select Text-lg Regular"
+            onClick={() => setIsModalOpen(!isModalOpen)}
+          >
+            {order === "recent" ? "최신순" : "좋아요순"}
+            <img
+              src={arrowDownIcon}
+              alt="arrowDownIcon"
+              className="arrow-icon"
+            />
+          </div>
+          {isModalOpen && (
+            <div className="order-modal Text-lg Regular">
+              <div
+                className="modal-option recent"
+                onClick={() => handleChangeOrder("recent")}
+              >
+                최신순
+              </div>
+              <div
+                className="modal-option favorite"
+                onClick={() => handleChangeOrder("favorite")}
+              >
+                좋아요순
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <div className="sale-products">
