@@ -1,0 +1,17 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 47px;
+}
+
+nav ul {
+  display: flex;
+  font-weight: 700;
+  font-size: var(--18px);
+  justify-content: center;
+  align-items: center;
+  gap: 39px;
+  flex-shrink: 0;
+  color: var(--grey-600);
+}
