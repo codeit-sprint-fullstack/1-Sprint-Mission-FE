@@ -23,6 +23,7 @@ html {
   --alto-color: #dfdfdf;
   --onahau-color: #cfe5ff;
   --white-color: #ffffff;
+  --royal-blue-color: #2f80ed;
 }
 
 .Bold {
@@ -123,10 +124,14 @@ html {
   justify-content: center;
 }
 
+.grid {
+  display: grid;
+}
+
 .margin-left4 {
   margin-left: 0.4rem;
 }
 
-.grid {
-  display : grid;
+.margin-top43 {
+  margin-top: 4rem;
 }

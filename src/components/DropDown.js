@@ -15,9 +15,9 @@ function DropDownItems({ className, items }) {
         }
 
         return (
-          <button key={item.id} className={liClass} onClick={() => item.func()}>
+          <li key={item.id} className={liClass} onClick={() => item.func()}>
             {item.label}
-          </button>
+          </li>
         );
       })}
     </>

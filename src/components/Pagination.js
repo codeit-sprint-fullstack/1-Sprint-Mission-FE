@@ -1,10 +1,9 @@
 import "../assets/styles/Pagination.css";
 
-export function Pagination({ className, pageArray, recentPage, onClick }) {
+export function Pagination({ className, pageArray, recentPage, onClick, activePage}) {
   const maxButtonNumber = pageArray.length > 5 ? 5 : pageArray.length;
   // console.log("pageArray");
-  const leftButtonClass = className + " leftButton";
-  const rightButtonClass = className + " rightButton";
+  const pageButtonClass = className + " Text-lg Semibold"
 
   const tempIndex = recentPage - Math.floor(maxButtonNumber / 2);
   const startIndex = tempIndex > -1 ? tempIndex : 0;
@@ -20,21 +19,27 @@ export function Pagination({ className, pageArray, recentPage, onClick }) {
   // console.log(pageArray);
 
   return (
-    <>
-      <button className={leftButtonClass} onClick={leftPageButtonClick} />
+    <div className = "flex-row margin-top43 pagination-frame">
+      <button className={className} onClick={leftPageButtonClick}>
+        <img src = {require('../assets/images/arrow_left_gray600.svg').default} alt="left"/> 
+      </button>
       {pageArray
         .filter(
           (item) => startIndex < item.index < startIndex + maxButtonNumber
         )
         .map((item) => {
+          let tempClass = recentPage === item ? pageButtonClass + " recentPage" : pageButtonClass;
+
           return (
-            <button className={className} onClick={() => onClick(item)}>
+            <button className={tempClass} onClick={() => onClick(item)}>
               {item}
             </button>
           );
         })}
-      <button className={rightButtonClass} onClick={rightPageButtonClick} />
-    </>
+      <button className={className} onClick={rightPageButtonClick}>
+        <img src = {require('../assets/images/arrow_right_gray600.svg').default} alt="right"/>
+      </button>
+    </div>
   );
 }
 

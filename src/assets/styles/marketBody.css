@@ -52,11 +52,9 @@
 }
 
 .main__section-tools {
-  grid-template-columns : 32.5rem 13.3rem 13rem;
-  gap : 1.2rem;
+  grid-template-columns: 32.5rem 13.3rem 13rem;
+  gap: 1.2rem;
 }
-
-
 
 .main__best-products-frame {
   margin-top: 1.6rem;

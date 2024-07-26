@@ -1,8 +1,24 @@
+.pagination-frame {
+  height : 4rem;
+  align-items: center;
+  justify-content: center;
+  gap : 0.4rem;
+}
+
 .main__products-pagination {
   width: 4rem;
   height: 4rem;
   /* border-radius : 40px; */
-  border-radius: 4em;
+  border-radius: 100%;
+  box-shadow: none;
+  border : 0.1rem solid;
   border-color: var(--gray200-color);
   background-color: var(--white-color);
+  color : var(--gray500-color);
+}
+
+.recentPage {
+  border-color: var(--royal-blue-color);
+  background-color: var(--royal-blue-color);
+  color : var(--white-color);
 }

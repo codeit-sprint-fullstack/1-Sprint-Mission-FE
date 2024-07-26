@@ -100,8 +100,8 @@ function Product({ img, imgClass, title, price, favorite }) {
 
 function Products({ device }) {
   const [products, setProducts] = useState([]);
-
   const [pageArray, setPageArray] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   let totalCount = 0;
 
@@ -124,17 +124,26 @@ function Products({ device }) {
     { id: 1, label: "좋아요순", func: sortByFavorite },
   ];
 
-  const pageMove = (pageNum) => {
+  const handleInputChange = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  const handleInputEnter = () => {
+    getProducts(1, 0, searchText);
+  };
+
+  const handlePageMove = (pageNum) => {
     console.log("click : " + pageNum);
     recentPage = pageNum;
     getProducts(pageNum, "FAVORITE");
   };
 
-  function getProducts(page = 1, order = 1) {
+  function getProducts(page = 1, order = 0, search = "") {
     const params = {
       page: page,
       pageSize: PAGE_SIZE[device],
       orderBy: ORDER_BY[order],
+      keyword : search
     };
 
     instance
@@ -162,7 +171,7 @@ function Products({ device }) {
       <div className="flex-row justify-space-between">
         <a className="Text-xl Bold">판매 중인 상품</a>
         <div className="grid main__section-tools">
-          <Input inputClassName="Text-lg Regular input-search" imgClassName ="img-input-search">검색할 상품을 입력해주세요</Input>
+          <Input onChange={handleInputChange} onEnter ={handleInputEnter} inputClassName="Text-lg Regular input-search" imgClassName ="img-input-search">검색할 상품을 입력해주세요</Input>
           <Button
             className="registrationButton"
             onClick={handleRegistrationButtonClick}
@@ -172,7 +181,7 @@ function Products({ device }) {
       </div>
       <div className="main__products-frame">
         {products.map((item) => (
-          <article key={item.id} className="flex-col main__product-article">
+          <article key={item.id} className="flex-col justify-space-between main__product-article">
             <Product
               img={item.images[0]}
               imgClass="product__img-frame"
@@ -188,7 +197,7 @@ function Products({ device }) {
           className="main__products-pagination"
           pageArray={pageArray}
           recentPage={recentPage}
-          onClick={pageMove}
+          onClick={handlePageMove}
         />
       </div>
     </div>
