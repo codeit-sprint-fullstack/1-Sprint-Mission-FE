@@ -91,7 +91,9 @@ function Product({ img, imgClass, title, price, favorite }) {
             className="favoriteButton"
             onClick={handleFavoriteButtonClick}
           />
-          <a className="margin-left4 Text-xs-line-height18 Medium">{favorite}</a>
+          <a className="margin-left4 Text-xs-line-height18 Medium">
+            {favorite}
+          </a>
         </div>
       </div>
     </>
@@ -143,7 +145,7 @@ function Products({ device }) {
       page: page,
       pageSize: PAGE_SIZE[device],
       orderBy: ORDER_BY[order],
-      keyword : search
+      keyword: search,
     };
 
     instance
@@ -171,17 +173,29 @@ function Products({ device }) {
       <div className="flex-row justify-space-between">
         <a className="Text-xl Bold">판매 중인 상품</a>
         <div className="grid main__section-tools">
-          <Input onChange={handleInputChange} onEnter ={handleInputEnter} inputClassName="Text-lg Regular input-search" imgClassName ="img-input-search">검색할 상품을 입력해주세요</Input>
+          <Input
+            onChange={handleInputChange}
+            onEnter={handleInputEnter}
+            inputClassName="Text-lg Regular input-search"
+            imgClassName="img-input-search"
+          >
+            검색할 상품을 입력해주세요
+          </Input>
           <Button
             className="registrationButton"
             onClick={handleRegistrationButtonClick}
           />
-          <DropDown dropItems={productSortDropItems} >{productSortDropItems[0].label}</DropDown>
+          <DropDown dropItems={productSortDropItems}>
+            {productSortDropItems[0].label}
+          </DropDown>
         </div>
       </div>
       <div className="main__products-frame">
         {products.map((item) => (
-          <article key={item.id} className="flex-col justify-space-between main__product-article">
+          <article
+            key={item.id}
+            className="flex-col justify-space-between main__product-article"
+          >
             <Product
               img={item.images[0]}
               imgClass="product__img-frame"
@@ -229,7 +243,10 @@ function BestProducts({ device, order }) {
       <div className="Text-xl Bold">베스트 상품</div>
       <div className="main__best-products-frame">
         {bestProducts.map((item) => (
-          <article key={item.id} className="flex-col justify-space-between main__best-product-article">
+          <article
+            key={item.id}
+            className="flex-col justify-space-between main__best-product-article"
+          >
             <Product
               img={item.images[0]}
               imgClass="product-best__img-frame"

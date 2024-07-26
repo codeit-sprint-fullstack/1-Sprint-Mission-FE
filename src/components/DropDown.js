@@ -24,8 +24,7 @@ function DropDownItems({ className, items }) {
   );
 }
 
-export function DropDown({dropItems})
-{
+export function DropDown({ dropItems }) {
   const [dropList, setDropList] = useState(false);
 
   return (
