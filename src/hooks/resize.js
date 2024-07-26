@@ -1,41 +1,43 @@
 import { debounce } from "lodash";
 import { useEffect } from "react";
 
-const useWindowSize = (onChange, viewChange, onBestChange) => {
-  const dataPaging = (view) => {
-    switch (view) {
+const useWindowSize = (onChange, viewChange, onBestChange, view) => {
+  const dataPaging = (nextView) => {
+    switch (nextView) {
       case "Desktop":
         viewChange("Desktop");
-        onChange("pagesize", 10);
+        onChange({ pagesize: 10, page: 1 });
         onBestChange("pagesize", 4);
         break;
       case "isTablet":
         viewChange("isTablet");
-        onChange("pagesize", 6);
+        // onChange("pagesize", 6);
+        onChange({ pagesize: 6, page: 1 });
         onBestChange("pagesize", 2);
         break;
       case "isMobile":
         viewChange("isMobile");
-        onChange("pagesize", 4);
+        onChange({ pagesize: 4, page: 1 });
         onBestChange("pagesize", 1);
         break;
     }
   };
 
-  let view;
   const handleResize = debounce(() => {
-    if (window.innerWidth > 1200) {
-      view = "Desktop";
-    } else if (window.innerWidth <= 1200 && window.innerWidth > 774) {
-      view = "isTablet";
+    let checkView;
+    if (window.innerWidth >= 1200) {
+      checkView = "Desktop";
+    } else if (window.innerWidth < 1200 && window.innerWidth > 774) {
+      checkView = "isTablet";
     } else if (window.innerWidth <= 774) {
-      view = "isMobile";
+      checkView = "isMobile";
     }
-    dataPaging(view);
+    dataPaging(checkView);
   }, 200);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
+    handleResize();
     return () => {
       window.removeEventListener("resize", handleResize);
     };

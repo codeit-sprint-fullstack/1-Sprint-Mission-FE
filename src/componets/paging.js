@@ -1,7 +1,7 @@
 import arrowLeft from "../image/arrow_left.png";
 import arrowRigth from "../image/arrow_right.png";
 import "../css/paging.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function MidPagingBtn({ num, onChange, pageNum }) {
   const handlePage = (e) => {
@@ -44,6 +44,10 @@ function Paging({ onChange, pageNum, totalCount, paseSize }) {
     arr.push(newcount);
     setPagingNum(arr);
   };
+
+  useEffect(() => {
+    setPagingNum(defaultNum);
+  }, [paseSize]);
 
   return (
     <div className="paging_box">

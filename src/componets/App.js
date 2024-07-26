@@ -24,21 +24,26 @@ function App() {
   const [bestParams, setBestParams] = useState(bestProductsQuery);
   const [bestItems, setBestItems] = useState([]);
   const [items, setItems] = useState([]);
-  const [view, setView] = useState("Desktop");
+  const [view, setView] = useState();
   const [totalDataCount, setTotalDataCount] = useState(0);
 
   const onChange = (name, value) => {
     setParams((prev) => ({
       ...prev,
-      page: 1,
       [name]: value,
+    }));
+  };
+
+  const onObjectChange = (obj) => {
+    setParams((prev) => ({
+      ...prev,
+      ...obj,
     }));
   };
 
   const onBestChange = (name, value) => {
     setBestParams((prev) => ({
       ...prev,
-      page: 1,
       [name]: value,
     }));
   };
@@ -57,7 +62,7 @@ function App() {
     }
   };
 
-  const loadBestProducts = async () => {
+  const loadBestProducts = async (bestParams) => {
     try {
       const { list, totalCount } = await api.getProducts(bestParams);
       setBestItems(list);
@@ -67,10 +72,12 @@ function App() {
     }
   };
 
-  useWindowSize(onChange, viewChange, onBestChange);
+  useWindowSize(onObjectChange, viewChange, onBestChange, view);
 
   useEffect(() => {
-    loadBestProducts();
+    console.log(bestParams);
+    console.log(params);
+    loadBestProducts(bestParams);
     loadProducts(params);
   }, [params]);
 
