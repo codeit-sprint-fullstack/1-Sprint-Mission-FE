@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 
-function useResize() {
-  const [pageSize, setPageSize] = useState(4);
+function useResize(mobileSize, tabletSize, desktopSize) {
+  const [pageSize, setPageSize] = useState(desktopSize);
 
   function getPageSize() {
     if (window.innerWidth < 744) {
-      return 1;
+      return mobileSize;
     } else if (window.innerWidth < 1200) {
-      return 2;
-    } else return 4;
+      return tabletSize;
+    } else return desktopSize;
   }
 
   useEffect(() => {
