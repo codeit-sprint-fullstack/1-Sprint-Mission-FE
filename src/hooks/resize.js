@@ -2,7 +2,6 @@ import { debounce } from "lodash";
 import { useEffect } from "react";
 
 const useWindowSize = (onChange, onBestChange, view) => {
-  console.log("리사이즈인");
   const dataPaging = (nextView) => {
     switch (nextView) {
       case "Desktop":
@@ -31,7 +30,7 @@ const useWindowSize = (onChange, onBestChange, view) => {
     }
     if (view === checkView) return;
     dataPaging(checkView);
-  }, 200);
+  }, 300);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);

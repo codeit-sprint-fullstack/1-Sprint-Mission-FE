@@ -53,6 +53,7 @@ function App() {
       const { list, totalCount } = await api.getProducts(query);
       setItems(list);
       setTotalDataCount(totalCount);
+      console.log(totalDataCount);
     } catch (e) {
       console.log(e.message);
     }
