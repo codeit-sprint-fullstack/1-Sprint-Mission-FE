@@ -1,0 +1,76 @@
+.product-card {
+    text-align: left;
+    border: none;
+    padding: 10px;
+}
+
+.product-image {
+    width: 221px;
+    height: 221px;
+    border-radius: 8px;
+    object-fit: cover; /* 이미지를 고정된 크기에 맞게 자르기 */
+}
+
+.best-product-image {
+    width: 282px;
+    height: 282px;
+}
+
+.product-card h3 {
+    margin: 10px 0;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #1F2937;
+}
+
+.product-card p.price {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 26px;
+    color: #1F2937;
+}
+
+.product-card .favorite {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.product-card .favorite img {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+.product-card .favorite span {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    color: #4B5563;
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+    .product-card {
+    width: auto;
+    }
+}
+
+/* Tablet */
+@media (min-width: 744px) and (max-width: 1199px) {
+    .product-card {
+    width: auto;
+    }
+}
+
+/* Mobile */
+@media (min-width: 375px) and (max-width: 743px) {
+    .product-card {
+    width: auto;
+    }
+}
+
