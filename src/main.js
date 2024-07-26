@@ -64,11 +64,11 @@ function Main(){
     };
 
     fetchData();
-  }, [currentPage,itemsPerPage]);
+  }, [currentPage,itemsPerPage,width]);
 
   useEffect(() => {
     setTotalPages(Math.ceil(totalCount / itemsPerPage)); 
-  }, [totalCount]); 
+  }, [totalCount,width]); 
 
   const changePage = (newPage) => {
     setCurrentPage(newPage);
@@ -86,7 +86,7 @@ function Main(){
     }else{
       setvalueOption(ValueItem)
     }
-  },[selectedOption, searchItem, ValueItem, currentPage]);
+  },[selectedOption, searchItem, ValueItem, currentPage,width]);
   
 
   useEffect(() => { 
@@ -100,7 +100,7 @@ function Main(){
       setItems(getRes.data)
     }
     getRes()
-  }, [bestItemsPerPage]);
+  }, [bestItemsPerPage,width]);
 
   useEffect(() => {
     const getRes = async () => {
@@ -114,7 +114,7 @@ function Main(){
       setValueItem(getRes.data)
     }
     getRes()
-  }, [currentPage, itemsPerPage,width]);
+  }, [currentPage, itemsPerPage,width,selectedOption,width]);
 
   useEffect(() => {
     const getRes = async () => {
@@ -128,11 +128,8 @@ function Main(){
       setSearchItem(getRes.data)
     }
     getRes()
-  }, [currentPage, itemsPerPage,width]);
+  }, [currentPage, itemsPerPage,width,selectedOption]);
 
-  function handleSelectChange(event){
-    setSelectedOption(event.target.value);
-  }
 
   
   const handleinputChange = (event) => {
@@ -155,6 +152,49 @@ function Main(){
         
     }
   }
+
+
+
+
+
+
+
+  
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const dropdownButton = document.getElementById('dropdownButton');
+    const dropdownContent = document.getElementById('dropdownContent');
+
+    dropdownButton.addEventListener('click', () => {
+        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', (event) => {
+            dropdownButton.textContent = event.target.textContent;
+            dropdownContent.style.display = 'none';
+            setSelectedOption(event.target.dataset.value);
+        });
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!event.target.closest('.dropdown')) {
+            dropdownContent.style.display = 'none';
+        }
+    });
+});
+
+// function handleSelectChange(value) {
+//     console.log("Selected value:", value);
+//     // You can add more logic here to handle the selection change
+// }
+
+
+
+
+
+
+
+
 
 
 
@@ -181,10 +221,18 @@ function Main(){
           </a>
           <button className='sell_item_btn'>상품 등록하기</button>
           
-            <select name="item" id="item_list" onChange={handleSelectChange}>
+            {/* <select name="item" id="item_list" onChange={handleSelectChange}>
               <option value="최신순">최신순</option>
               <option value="좋아요순">좋아요순</option>
-            </select>
+            </select> */}
+
+            <div className="dropdown">
+                <button className="dropdown-button" id="dropdownButton">최신순</button>
+                <div className="dropdown-content" id="dropdownContent">
+                    <div className="dropdown-item" data-value="최신순">최신순</div>
+                    <div className="dropdown-item" data-value="좋아요순">좋아요순</div>
+                </div>
+            </div>
 
         
       </div>

@@ -5,7 +5,10 @@ import './header.css'
 function Headers(){
   return(
     <div id="header">
-      <img id="header_logo_img" alt="" src={Header_logo}></img>
+      <a href="https://extraordinary-lily-d8e584.netlify.app/">
+        <img id="header_logo_img" alt="" src={Header_logo}></img>
+      </a>
+      
       
       <div id="header_str">
         <p>자유게시판</p>
