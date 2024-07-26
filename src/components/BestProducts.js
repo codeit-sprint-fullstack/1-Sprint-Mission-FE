@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { getItems } from "../api.js";
 import Product from "./Product.js";
+import useResize from "../hooks/useResize.js";
 import "../styles/BestProducts.css";
 
 function BestProducts() {
   const [products, setProducts] = useState([]);
-  const [order, setOrder] = useState("favorite");
-  const PAGE_SIZE = 4;
+  const pageSize = useResize();
 
   useEffect(() => {
     const getProducts = async () => {
-      const data = await getItems(1, PAGE_SIZE, order);
+      const data = await getItems(1, pageSize);
       setProducts(data.list);
     };
 
     getProducts();
-  }, [order]);
+  }, [pageSize]);
 
   return (
     <>
