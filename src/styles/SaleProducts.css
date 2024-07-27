@@ -4,6 +4,10 @@
   margin-top: 4rem;
   margin-bottom: 2.4rem;
 }
+.sale-product-title {
+  white-space: nowrap;
+  margin-right: 46.8rem;
+}
 .nav-options {
   display: flex;
   align-items: center;
@@ -42,7 +46,7 @@
   width: 2.4rem;
   height: 2.5rem;
   position: absolute;
-  left: 1.6rem;
+  right: 56.6rem;
 }
 .enroll-product {
   width: 13.3rem;
@@ -111,9 +115,31 @@
   .sale-product {
     flex-basis: 31%; /* 1줄에 3개씩 */
   }
+  .sale-product-title {
+    margin-right: 9.5rem;
+  }
+  .search-product {
+    width: 24.2rem;
+  }
+  .search-icon {
+    right: 48.9rem;
+  }
 }
 @media (max-width: 743px) {
   .sale-product {
     flex-basis: 46%; /* 1줄에 2개씩 */
+  }
+  .nav-options {
+    flex-wrap: wrap;
+  }
+  .search-product {
+    width: 28.8rem;
+    order: 3;
+  }
+  .order-select {
+    order: 4;
+  }
+  .search-icon {
+    right: 30.4rem;
   }
 }

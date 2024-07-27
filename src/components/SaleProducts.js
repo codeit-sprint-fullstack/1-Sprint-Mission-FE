@@ -48,8 +48,8 @@ function SaleProducts() {
   return (
     <>
       <div className="sale-product-nav">
-        <h2 className="sale-product-title Text-xl Bold">판매중인 상품</h2>
         <div className="nav-options">
+          <h2 className="sale-product-title Text-xl Bold">판매중인 상품</h2>
           <input
             className="search-product"
             type="text"
