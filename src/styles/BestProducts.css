@@ -5,6 +5,7 @@
 }
 .best-products {
   display: flex;
+  justify-content: space-between;
   gap: 2.4rem;
   margin-bottom: 8rem;
 }

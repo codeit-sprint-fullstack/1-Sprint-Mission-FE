@@ -8,6 +8,16 @@ body {
   z-index: 100;
 }
 .main-body {
-  width: 1200px;
+  width: 120rem;
   margin: 0 auto;
+}
+@media (max-width: 1199px) {
+  .main-body {
+    width: 74.4rem;
+  }
+}
+@media (max-width: 743px) {
+  .main-body {
+    width: 37.5rem;
+  }
 }

@@ -35,3 +35,16 @@
     cursor: pointer;
   }
 }
+@media (max-width: 1199px) {
+  .nav-bar {
+    padding: 0 2.4rem;
+  }
+  .menu {
+    margin-left: 2rem;
+  }
+}
+@media (max-width: 743px) {
+  .nav-bar {
+    padding: 0 1.6rem;
+  }
+}

@@ -40,3 +40,25 @@
 .favorite-count {
   color: var(--gray600);
 }
+@media (max-width: 1199px) {
+  .best-product {
+    width: 34.3rem;
+    height: 43.4rem;
+    .product-image {
+      width: 34.3rem;
+      height: 34.3rem;
+    }
+  }
+}
+@media (max-width: 743px) {
+  .sale-product {
+    width: 16.8rem;
+    height: 26.4rem;
+    display: flex;
+    flex-direction: column;
+    .product-image {
+      width: 16.8rem;
+      height: 16.8rem;
+    }
+  }
+}

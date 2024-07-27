@@ -12,6 +12,7 @@
 }
 .sale-products {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 2.4rem;
 }
@@ -108,11 +109,11 @@
 }
 @media (max-width: 1199px) {
   .sale-product {
-    flex-basis: 32%; /* 1줄에 3개씩 */
+    flex-basis: 31%; /* 1줄에 3개씩 */
   }
 }
 @media (max-width: 743px) {
   .sale-product {
-    flex-basis: 48%; /* 1줄에 2개씩 */
+    flex-basis: 46%; /* 1줄에 2개씩 */
   }
 }
