@@ -56,25 +56,23 @@ function Product({ img, imgClass, title, price, favorite }) {
   const priceText = price.toLocaleString("en-US") + "원";
 
   useEffect(() => {
-    let isMounted = true;
     const image = new Image();
 
-    image.onload = () => {
-      if (isMounted) {
-        setValidImg(img);
-      }
+    const handleImgLoad = () => {
+      setValidImg(img);
+    };
+    const handleImgError = () => {
+      setValidImg(no_image);
     };
 
-    image.onerror = () => {
-      if (isMounted) {
-        setValidImg(no_image);
-      }
-    };
+    image.addEventListener("load", handleImgLoad);
+    image.addEventListener("Error", handleImgError);
 
     image.src = img;
 
     return () => {
-      isMounted = false;
+      image.removeEventListener("load", handleImgLoad);
+      image.removeEventListener("Error", handleImgError);
     };
   }, [img]);
 
