@@ -5,7 +5,13 @@ import no_image from "../assets/images/no_image.svg";
 import { isImageUrl, isImageFileText, isImageLoaded } from "../utils/utils";
 import Input from "./Input";
 import Button from "./Button";
-import DropDown from "./DropDown";
+// import DropDown from "./DropDown";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "./DropDown";
 import Pagination from "./Pagination";
 
 const PRODUCT_API_ADDRESS = "https://panda-market-api.vercel.app";
@@ -183,9 +189,18 @@ function Products({ device }) {
             className="registrationButton"
             onClick={handleRegistrationButtonClick}
           />
-          <DropDown dropItems={productSortDropItems}>
+          {
+            /* <DropDown dropItems={productSortDropItems}>
             {productSortDropItems[0].label}
-          </DropDown>
+          </DropDown> */
+            <Dropdown>
+              <DropdownToggle>최신순</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem onClick={sortByRecent}>최신순</DropdownItem>
+                <DropdownItem onClick={sortByFavorite}>좋아요순</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          }
         </div>
       </div>
       <div className="main__products-frame">
