@@ -14,6 +14,11 @@ main {
 
 h1 {
   font-size: 20px;
+  line-height: 32px;
+}
+
+ul {
+  list-style: none;
 }
 
 .main-container {
@@ -22,4 +27,5 @@ h1 {
   gap: 40px;
   width: 1200px;
   height: 1206px;
+  margin-top: 24px;
 }

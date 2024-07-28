@@ -1,0 +1,73 @@
+h1 {
+  margin-right: auto;
+}
+
+.OnSale-list {
+  display: grid;
+  gap: 40px 24px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.OnSaleItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.OnSaleItem-img {
+  width: 221px;
+  height: 221px;
+  border-radius: 16px;
+  margin-bottom: 10px;
+}
+
+.like {
+  display: flex;
+  gap: 4px;
+}
+
+.OnSaleHeader {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.searchBox {
+  position: relative;
+}
+
+.postProduct {
+  width: 133px;
+  height: 42px;
+  border-radius: 8px;
+  border-style: none;
+  padding: 12px 23px;
+  background-color: #3692ff;
+  color: #f3f4f6;
+  font-weight: 600;
+  font-size: 16px;
+  text-wrap: nowrap;
+}
+
+#searchIcon {
+  background-color: #f3f4f6;
+  position: absolute;
+  top: 13px;
+  left: 20px;
+}
+
+#inputSearch {
+  width: 325px;
+  height: 42px;
+  border-radius: 12px;
+  border-style: none;
+  padding: 9px 20px 9px 44px;
+  background-color: #f3f4f6;
+}
+
+#inputSearch::placeholder {
+  font-size: 16px;
+}

@@ -1,0 +1,27 @@
+.Best-title {
+  margin-bottom: 16px;
+}
+
+
+.Best-list {
+  display: grid;
+  gap: 0 24px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.BestItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.BestItem-img {
+  width: 282px;
+  height: 282px;
+  border-radius: 16px;
+}
+
+.like {
+  display: flex;
+  gap: 4px;
+}
