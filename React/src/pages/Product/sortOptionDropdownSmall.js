@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../assets/styles/App.css";
-import arrow from "../assets/images/ic_sort.png";
+import "assets/styles/App.css";
+import arrow from "assets/images/ic_sort.png";
 
 function SortingOptionBoxSmall({ onChange, setCurrentPage }) {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,8 +1,8 @@
-import * as Product from "../API/ProductService.mjs";
+import * as Product from "API/ProductService.mjs";
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import useViewportSize from "../hooks/useViewportSize";
-import ProductCard from "../components/ProductCard";
-import "../assets/styles/App.css";
+import useViewportSize from "hooks/useViewportSize";
+import ProductCard from "components/ProductCard";
+import "assets/styles/App.css";
 
 function BestMarketPlace() {
   const [products, setProducts] = useState([]);

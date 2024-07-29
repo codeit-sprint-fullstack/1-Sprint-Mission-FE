@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../assets/styles/App.css";
+import "assets/styles/App.css";
 
 function KeywordSearch({ keyword, onSearch }) {
   const [localKeyword, setLocalKeyword] = useState(keyword);
