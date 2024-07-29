@@ -1,0 +1,36 @@
+.show-line {
+  border: 1px solid skyblue;
+}
+
+.ProductList {
+  width: 100%;
+  padding: 24px 360px 141px 360px;
+}
+
+.BestProduct-container
+{
+  max-width: 1920px;
+  margin: auto;
+}
+.BestProduct-Title {
+  margin-bottom: 16px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  color: #111827;
+}
+.BestProduct-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 24px;
+}
+.BestProduct-item img { 
+  width: 100%;
+  display: block;
+}
+.BestProduct-content {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
