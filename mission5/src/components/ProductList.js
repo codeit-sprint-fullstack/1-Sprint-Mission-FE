@@ -54,15 +54,16 @@ function ProductList({items, setOrderBy, setPageSize}) {
           </div>
         </div>
 
-        <div className='OnSaleProduct-container showline'>
+        <div className='OnSaleProduct-container'>
           <div className='OnSaleProduct-nav'>
             <h3 className='OnSaleProduct-title'>판매 중인 상품</h3>
-            <div className='OnSaleProduct-search'>
-              <input type='search' placeholder='검색할 상품을 입력해주세요.'/>
-              <button>상품 등록하기</button>
+            <div className='OnSaleProduct-search-upload'>
+              <input className='OnSaleProduct-search' type='search' placeholder='🔍︎ 검색할 상품을 입력해주세요.'/>
+              <button className='OnSaleProduct-upload'>상품 등록하기</button>
             </div>
             <SelectBox select={select} show={show} onSelect={handleSelect} onOption={handleOption}/>
-          </div>  
+          </div>
+          <div className=''></div>  
         </div>
 
     </div>

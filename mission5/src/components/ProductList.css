@@ -52,7 +52,7 @@
   justify-content: center;
   align-items: center;
 }
-.OnSaleProduct-search {
+.OnSaleProduct-search-upload {
   height: 100%;
   display: flex;
   justify-content: right;
@@ -60,10 +60,27 @@
   margin-right: 12px;
   gap: 12px;
 }
-.OnSaleProduct-search input {
+.OnSaleProduct-search {
   width: 325px;
+  padding: 9px 0 9px 16px;
+  background-color: #F3F4F6;
+  border: none;
+  border-radius: 12px;
 }
-.OnSaleProduct-search button {
+.OnSaleProduct-search::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #9CA3AF;
+}
+.OnSaleProduct-upload {
   padding: 8px 23px;
+  border: none;
+  border-radius: 8px;
+  background-color: #3692FF;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  color: #F3F4F6;
 }
 
