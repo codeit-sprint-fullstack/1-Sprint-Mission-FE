@@ -2,7 +2,7 @@
   white-space: nowrap;
   margin-right: 46.8rem;
 }
-.nav-options {
+.sale-product-options {
   margin-top: 4rem;
   margin-bottom: 2.4rem;
   display: flex;
@@ -135,7 +135,7 @@
   .sale-product-title {
     margin-right: 12rem;
   }
-  .nav-options {
+  .sale-product-options {
     flex-wrap: wrap;
   }
   .search-product {

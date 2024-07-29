@@ -9,3 +9,8 @@
   gap: 2.4rem;
   margin-bottom: 8rem;
 }
+@media (max-width: 743px) {
+  .best-products {
+    justify-content: center;
+  }
+}
