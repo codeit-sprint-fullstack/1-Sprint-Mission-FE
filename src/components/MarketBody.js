@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "../assets/styles/marketBody.css";
 import no_image from "../assets/images/no_image.svg";
-import { isImageUrl, isImageFileText, isImageLoaded } from "../utils/utils";
+// import { isImageUrl, isImageFileText, isImageLoaded } from "../utils/utils";
 import Input from "./Input";
 import Button from "./Button";
 import { deviceContext } from "../pages/SecondhandMarket";
@@ -11,7 +11,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-} from "./DropDown";
+} from "./Dropdown";
 import Pagination from "./Pagination";
 
 const PRODUCT_API_ADDRESS = "https://panda-market-api.vercel.app";
@@ -140,7 +140,7 @@ function Products() {
     getProducts(pageNum, "FAVORITE");
   };
 
-  function getProducts(page = 1, order = 0, search = "") {
+  function getProducts(page = 1, order = ORDER_BY_RECENT, search = "") {
     const params = {
       page: page,
       pageSize: PAGE_SIZE[device],
@@ -224,7 +224,7 @@ function Products() {
   );
 }
 
-function BestProducts({ order }) {
+function BestProducts() {
   const [bestProducts, setBestProducts] = useState([]);
 
   let device = useContext(deviceContext);
@@ -233,7 +233,7 @@ function BestProducts({ order }) {
     const params = {
       page: 1,
       pageSize: BEST_PAGE_SIZE[device],
-      orderBy: ORDER_BY[order],
+      orderBy: ORDER_BY[ORDER_BY_FAVORITE],
     };
 
     instance
@@ -270,25 +270,13 @@ function BestProducts({ order }) {
 }
 
 export function MarketBody() {
-  const [device, setDevice] = useState(0);
-
-  window.addEventListener("resize", (e) => {
-    if (375 <= window.innerWidth && window.innerWidth < 744) {
-      /* ===== Mobile-width : 375px ~ 743px ====== */
-      setDevice(2);
-    } else if (744 <= window.innerWidth && window.innerWidth < 1200) {
-      /* ===== Tablet - width : 744px ~ 1199px ===== */
-      setDevice(1);
-    } else {
-      /* ===== PC - width : 1200px ~ ===== */
-      setDevice(0);
-    }
-  });
+  const initDevice = useContext(deviceContext);
+  const [device, setDevice] = useState(initDevice);
 
   return (
     <main className="main-frame">
-      <BestProducts device={device} order={ORDER_BY_FAVORITE} />
-      <Products device={device} order={ORDER_BY_RECENT} />
+      <BestProducts />
+      <Products />
     </main>
   );
 }
