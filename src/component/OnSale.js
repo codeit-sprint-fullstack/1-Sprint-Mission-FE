@@ -5,10 +5,10 @@ import searchIcon from "../image/searchIcon.png";
 import DropDown from "./OnSaleDropDown";
 import Pagination from "./Pagination";
 
-function OnSaleItem({ item }) {
+function OnSaleItem({ item = {}}) {
   const thousandPrice = item.price
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    ? item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    : '0';
 
   return (
     <div className="OnSaleItem">
@@ -27,6 +27,7 @@ function OnSale() {
   const [orderBy, setOrderBy] = useState("recent");
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
+  const [userInput, setUserInput] = useState('');
   const totalPages = 5;
 
   // 정렬 세팅
@@ -40,6 +41,13 @@ function OnSale() {
     const { list } = await getProducts(options);
     setItems(list);
   };
+
+  // 검색 기능
+  const handleSearch = (e) => {
+    setUserInput(e.target.value.toLowerCase());
+  }
+
+  const filterItems = sortedItems.filter((item) => item.name.toLowerCase().includes(userInput));
 
   const handlePageChange = (pageNum) => {
     setPage(pageNum);
@@ -56,7 +64,7 @@ function OnSale() {
         <h1>판매 중인 상품</h1>
         <div className="searchBox">
           <img id="searchIcon" src={searchIcon} alt="searchIcon" />
-          <input id="inputSearch" placeholder="검색할 상품을 입력해주세요" />
+          <input id="inputSearch" placeholder="검색할 상품을 입력해주세요" onChange={handleSearch} />
         </div>
         <button className="postProduct">상품 등록하기</button>
         <DropDown
@@ -65,13 +73,13 @@ function OnSale() {
         />
       </div>
       <ul className="OnSale-list">
-        {sortedItems.map((item) => {
-          return (
-            <li key={item.id}>
-              <OnSaleItem item={item} />
-            </li>
-          );
-        })}
+        {(userInput ? filterItems : sortedItems).map((item) => {
+            return (
+              <li key={item.id}>
+                <OnSaleItem item={item} />
+              </li>
+            );
+          })}
       </ul>
       <Pagination
         currentPage={page}
