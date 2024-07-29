@@ -28,6 +28,7 @@ function OnSale() {
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
   const [userInput, setUserInput] = useState('');
+  const [pageSize, setPageSize] = useState(10);
   const totalPages = 5;
 
   // 정렬 세팅
@@ -42,6 +43,23 @@ function OnSale() {
     setItems(list);
   };
 
+  // 반응형 웹에 따른 항목 수 변경
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width <= 743) {
+        setPageSize(4);   // mobile view
+      } else if (width <= 1199) {
+        setPageSize(6);   // tablet view
+      } else {
+        setPageSize(10);  // desktop view
+      }
+    }  
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // 검색 기능
   const handleSearch = (e) => {
     setUserInput(e.target.value.toLowerCase());
@@ -49,14 +67,15 @@ function OnSale() {
 
   const filterItems = sortedItems.filter((item) => item.name.toLowerCase().includes(userInput));
 
+  // 페이지 변경
   const handlePageChange = (pageNum) => {
     setPage(pageNum);
-    handleLoad({ orderBy, page: pageNum, pageSize: 10 });
+    handleLoad({ orderBy, page: pageNum, pageSize });
   };
 
   useEffect(() => {
-    handleLoad({ orderBy, page, pageSize: 10 });
-  }, [orderBy, page]);
+    handleLoad({ orderBy, page, pageSize });
+  }, [orderBy, page, pageSize]);
 
   return (
     <div>
@@ -67,6 +86,10 @@ function OnSale() {
           <input id="inputSearch" placeholder="검색할 상품을 입력해주세요" onChange={handleSearch} />
         </div>
         <button className="postProduct">상품 등록하기</button>
+        <div className="mobileSearchBox">
+          <img id="searchIcon" src={searchIcon} alt="searchIcon" />
+          <input id="inputSearch" placeholder="검색할 상품을 입력해주세요" onChange={handleSearch} />
+        </div>
         <DropDown
           selectRecent={handleNewestClick}
           selectFavorite={handleBestClick}

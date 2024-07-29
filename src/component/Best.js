@@ -22,6 +22,24 @@ function BestItem({ item }) {
 
 function Best() {
   const [items, setItems] = useState([]);
+  const [pageSize, setPageSize] = useState(4);
+
+  // 반응형 웹에 따른 항목 수 변경
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width <= 743) {
+        setPageSize(1);   // mobile view
+      } else if (width <= 1199) {
+        setPageSize(2);   // tablet view
+      } else {
+        setPageSize(4);  // desktop view
+      }
+    }  
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const sortedItems = items.toSorted(
     (a, b) => b.favoriteCount - a.favoriteCount
@@ -33,8 +51,8 @@ function Best() {
   };
 
   useEffect(() => {
-    handleLoad({ orderBy: "favorite", page: 1, pageSize: 4 });
-  }, []);
+    handleLoad({ orderBy: "favorite", page: 1, pageSize });
+  }, [pageSize]);
 
   return (
     <div>

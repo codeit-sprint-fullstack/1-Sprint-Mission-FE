@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./OnSaleDropDown.css";
 import dropDownIcon from "../image/dropDownArrow.png";
+import mobileDropDownIcon from "../image/mobileDropDown.png"
 
 const DropDown = ({ selectRecent, selectFavorite }) => {
   const [dropDown, setDropDown] = useState(false);
@@ -24,6 +25,7 @@ const DropDown = ({ selectRecent, selectFavorite }) => {
       <button className="DropDownButton" onClick={toggleDropDown}>
         <span>{selectOrder}</span>
         <img className="dropDownIcon" src={dropDownIcon} alt="dropDownIcon" />
+        <img className="mobileDropDownIcon" src={mobileDropDownIcon} alt="mobileDropDownIcon" />
       </button>
       {dropDown && (
         <div className="DropDownList">

@@ -1,5 +1,6 @@
 h1 {
   margin-right: auto;
+  text-wrap: nowrap;
 }
 
 .OnSale-list {
@@ -52,6 +53,10 @@ h1 {
   text-wrap: nowrap;
 }
 
+.mobileSearchBox {
+  display: none;
+}
+
 #searchIcon {
   background-color: #f3f4f6;
   position: absolute;
@@ -70,4 +75,67 @@ h1 {
 
 #inputSearch::placeholder {
   font-size: 16px;
+  color: #9CA3AF;
+}
+
+/* Tablet view */
+@media (min-width: 744px) and (max-width: 1199px){
+  .OnSale-list {
+    display: grid;
+    gap: 40px 16px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  #inputSearch {
+    width: 242px;
+    height: 42px;
+    border-radius: 12px;
+    border-style: none;
+    padding: 9px 20px 9px 44px;
+    background-color: #f3f4f6;
+  
+  }
+}
+/* Mobile view */
+@media (max-width: 743px){
+  
+  .OnSale-list {
+    display: grid;
+    gap: 32px 8px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .OnSaleItem-img {
+    width: 168px;
+    height: 168px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+
+  .OnSaleHeader {
+    display: grid;
+    grid-template-columns: 1fr 91px 42px;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 8px 0;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .searchBox {
+    display: none;
+  }
+
+  .mobileSearchBox {
+    display: block;
+    position: relative;
+    grid-column: 1/3;
+
+  }
+
+  #inputSearch {
+    display: block;
+    width: 288px;
+  }
 }

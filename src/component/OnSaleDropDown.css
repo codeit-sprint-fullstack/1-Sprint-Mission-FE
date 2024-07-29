@@ -21,6 +21,11 @@ a {
   border: 1px solid #E5E7EB;
   border-radius: 12px;
   cursor: pointer;
+  text-wrap: nowrap;
+}
+
+.mobileDropDownIcon {
+  display: none;
 }
 
 .DropDownList {
@@ -47,4 +52,31 @@ a {
   border-bottom: 1px solid #E5E7EB;
   width: 100%;
   text-align: center;
+}
+
+/* Mobile view */
+@media (max-width: 743px) {
+  .DropDownButton {
+    display: block;
+    padding: 0 8px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    cursor: pointer;
+    text-wrap: nowrap;
+  }
+
+  .DropDownList {
+    width: 130px;
+    right: 1px;   /* ? */
+  }
+
+  span, .dropDownIcon {
+    display: none;
+  }
+  
+  .mobileDropDownIcon {
+    display: block;
+  }
 }
