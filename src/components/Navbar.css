@@ -67,3 +67,30 @@
     }
 }
 
+@media (min-width: 375px) and (max-width: 743px) {
+    .navbar {
+        padding: 0 40px; /* 패딩 조정 */
+    }
+
+    .panda {
+        position: relative;
+        left: -20px; /* 왼쪽으로 더 붙이기 */
+        margin-right: 20px; /* 오른쪽 간격 조정 */
+    }
+
+    .nav-links {
+        justify-content: flex-start; /* 왼쪽 정렬 */
+        padding-top: 5px;
+        font-size: 16px;
+    }
+
+    .nav-links a {
+        margin-right: 20px; /* 링크 간격 조정 */
+    }
+
+    .profile {
+        margin-left: auto;
+        margin-right: 0; /* 오른쪽으로 확 붙이기 */
+    }
+}
+
