@@ -8,7 +8,7 @@ function ProductCard({ product }) {
       <img src={imgUrl} alt={product.name} className='card-image' />
       <div className='card-text'>
         <h3>{product.name}</h3>
-        <p>{product.price}</p>
+        <p>{product.price.toLocaleString()}원</p>
         <div className='favorite-container'>
           <img src={heartIcon} alt='Favorite icon' />
           <span>{product.favoriteCount}</span>
