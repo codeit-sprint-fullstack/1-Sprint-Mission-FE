@@ -138,7 +138,7 @@
 
   .sellProductList {
     grid-template-columns: repeat(2, 1fr); /* Tablet layout */
-    gap: 16px;
+    gap: 8px;
   }
 
   .mobileSearchBar {
