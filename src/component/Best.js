@@ -3,11 +3,15 @@ import "./Best.css";
 import { getProducts } from "../api";
 
 function BestItem({ item }) {
+  const thousandPrice = item.price
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
   return (
     <div className="BestItem">
       <img className="BestItem-img" src={item.images} alt={item.name} />
       <p>{item.name}</p>
-      <h1>{item.price}원</h1>
+      <h1>{thousandPrice}원</h1>
       <div className="like">
         <p>♡</p>
         <p>{item.favoriteCount}</p>
@@ -19,15 +23,17 @@ function BestItem({ item }) {
 function Best() {
   const [items, setItems] = useState([]);
 
-  const sortedItems = items.toSorted((a, b) => b.favoriteCount - a.favoriteCount);
+  const sortedItems = items.toSorted(
+    (a, b) => b.favoriteCount - a.favoriteCount
+  );
 
   const handleLoad = async (options) => {
     const { list } = await getProducts(options);
     setItems(list);
-  }
-  
+  };
+
   useEffect(() => {
-    handleLoad({ orderBy: 'favorite', page: 1, pageSize: 4 });
+    handleLoad({ orderBy: "favorite", page: 1, pageSize: 4 });
   }, []);
 
   return (

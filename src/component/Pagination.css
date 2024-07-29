@@ -1,4 +1,4 @@
-.page button{
+.page button {
   width: 40px;
   height: 40px;
   border-radius: 40px;
@@ -7,6 +7,14 @@
   font-weight: 600;
   line-height: 26px;
   color: #6B7280;
+  line-height: 26px;
+  cursor: pointer;
+}
+
+.page button.active{
+  color: #F9FAFB;
+  background-color: #2F80ED;
+  border-style: none;
 }
 
 .page-container {

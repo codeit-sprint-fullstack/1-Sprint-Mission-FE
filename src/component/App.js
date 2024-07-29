@@ -16,9 +16,6 @@ function App() {
           <OnSale />
         </div>
       </main>
-      <footer>
-        <Pagination />
-      </footer>
     </>
   );
 }
