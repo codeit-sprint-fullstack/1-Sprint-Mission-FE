@@ -1,18 +1,21 @@
-.show-line {
+.showline {
   border: 1px solid skyblue;
 }
+
+
 
 .ProductList {
   width: 100%;
   padding: 24px 360px 141px 360px;
 }
 
-.BestProduct-container
-{
+
+
+.BestProduct-container {
   max-width: 1920px;
   margin: auto;
 }
-.BestProduct-Title {
+.BestProduct-title {
   margin-bottom: 16px;
   font-weight: 700;
   font-size: 20px;
@@ -34,3 +37,33 @@
   flex-direction: column;
   gap: 6px;
 }
+
+
+
+
+
+.OnSaleProduct-container {
+  max-width: 1920px;
+  margin: 40px auto 43px auto;
+}
+.OnSaleProduct-nav {
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.OnSaleProduct-search {
+  height: 100%;
+  display: flex;
+  justify-content: right;
+  flex-grow: 1;
+  margin-right: 12px;
+  gap: 12px;
+}
+.OnSaleProduct-search input {
+  width: 325px;
+}
+.OnSaleProduct-search button {
+  padding: 8px 23px;
+}
+

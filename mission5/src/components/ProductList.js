@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import './ProductList.css';
+import SelectBox from './SelectBox';
 
 function ProductBest({item, setOrderBy, setPageSize}) {
   const ORDER = 'favorite';
@@ -18,11 +20,27 @@ function ProductBest({item, setOrderBy, setPageSize}) {
 }
 
 function ProductList({items, setOrderBy, setPageSize}) {
+  const [select, setSelect] = useState('최신순');
+  const [show, setShow] = useState(null);
+
+  const handleOption = (option) => {
+    setSelect(option);
+    setShow(false);
+  }
+
+  const handleSelect = () => {
+    if (show) {
+      setShow(false);
+    } else {
+      setShow(true);
+    }
+  }
+
   return (
     <div className='ProductList'>
      
         <div className='BestProduct-container'>
-          <h3 className='BestProduct-Title'>베스트 상품</h3>
+          <h3 className='BestProduct-title'>베스트 상품</h3>
           <div className='BestProduct-items'>
             {items.map((item) => {
                 return (
@@ -36,9 +54,17 @@ function ProductList({items, setOrderBy, setPageSize}) {
           </div>
         </div>
 
-        <div className='OnSaleProduct-container'>
-          
+        <div className='OnSaleProduct-container showline'>
+          <div className='OnSaleProduct-nav'>
+            <h3 className='OnSaleProduct-title'>판매 중인 상품</h3>
+            <div className='OnSaleProduct-search'>
+              <input type='search' placeholder='검색할 상품을 입력해주세요.'/>
+              <button>상품 등록하기</button>
+            </div>
+            <SelectBox select={select} show={show} onSelect={handleSelect} onOption={handleOption}/>
+          </div>  
         </div>
+
     </div>
   );
 }
