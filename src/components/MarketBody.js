@@ -118,12 +118,12 @@ function Products() {
 
   const sortByRecent = () => {
     console.log("최신순");
-    getProducts(1, ORDER_BY_RECENT);
+    getProducts(1, ORDER_BY_RECENT, searchText);
   };
 
   const sortByFavorite = () => {
     console.log("좋아요순");
-    getProducts(1, ORDER_BY_FAVORITE);
+    getProducts(1, ORDER_BY_FAVORITE, searchText);
   };
 
   const handleInputChange = (e) => {
@@ -131,7 +131,7 @@ function Products() {
   };
 
   const handleInputEnter = () => {
-    getProducts(1, 0, searchText);
+    getProducts(1, ORDER_BY_RECENT, searchText);
   };
 
   const handlePageMove = (pageNum) => {
