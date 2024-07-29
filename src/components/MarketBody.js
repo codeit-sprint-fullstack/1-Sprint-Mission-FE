@@ -26,6 +26,7 @@ const instance = axios.create({
 const PATH = "/products";
 
 // index 0 : 좋아요순 1 : 최신순
+let recentOrder = 0;
 const ORDER_BY_RECENT = 0;
 const ORDER_BY_FAVORITE = 1;
 const ORDER_BY = ["recent", "favorite"];
@@ -117,13 +118,15 @@ function Products() {
   };
 
   const sortByRecent = () => {
-    console.log("최신순");
-    getProducts(1, ORDER_BY_RECENT, searchText);
+    // console.log("최신순");
+    getProducts(recentPage, ORDER_BY_RECENT, searchText);
+    recentOrder = ORDER_BY_RECENT;
   };
 
   const sortByFavorite = () => {
-    console.log("좋아요순");
-    getProducts(1, ORDER_BY_FAVORITE, searchText);
+    // console.log("좋아요순");
+    getProducts(recentPage, ORDER_BY_FAVORITE, searchText);
+    recentOrder = ORDER_BY_FAVORITE;
   };
 
   const handleInputChange = (e) => {
@@ -135,9 +138,9 @@ function Products() {
   };
 
   const handlePageMove = (pageNum) => {
-    console.log("click : " + pageNum);
+    // console.log("click : " + pageNum);
     recentPage = pageNum;
-    getProducts(pageNum, "FAVORITE");
+    getProducts(pageNum, recentOrder);
   };
 
   function getProducts(page = 1, order = ORDER_BY_RECENT, search = "") {

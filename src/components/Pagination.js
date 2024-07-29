@@ -50,7 +50,11 @@ export function Pagination({ className, pageArray, recentPage, onClick }) {
             : pageButtonClass;
 
         return (
-          <button className={tempClass} onClick={() => onClick(item)}>
+          <button
+            key={item}
+            className={tempClass}
+            onClick={() => onClick(item)}
+          >
             {item}
           </button>
         );
