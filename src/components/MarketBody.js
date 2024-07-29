@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "../assets/styles/marketBody.css";
 import no_image from "../assets/images/no_image.svg";
 import { isImageUrl, isImageFileText, isImageLoaded } from "../utils/utils";
 import Input from "./Input";
 import Button from "./Button";
-// import DropDown from "./DropDown";
+import { deviceContext } from "../pages/SecondhandMarket";
 import {
   Dropdown,
   DropdownToggle,
@@ -31,7 +31,7 @@ const ORDER_BY_FAVORITE = 1;
 const ORDER_BY = ["recent", "favorite"];
 
 // index 0 : PC 1 : TABLET 2 : MOBILE
-let device = 0;
+// let device = 0;
 const PAGE_SIZE = [10, 6, 4];
 const BEST_PAGE_SIZE = [4, 2, 1];
 
@@ -104,11 +104,12 @@ function Product({ img, imgClass, title, price, favorite }) {
   );
 }
 
-function Products({ device }) {
+function Products() {
   const [products, setProducts] = useState([]);
   const [pageArray, setPageArray] = useState([]);
   const [searchText, setSearchText] = useState("");
 
+  let device = useContext(deviceContext);
   let totalCount = 0;
 
   const handleRegistrationButtonClick = () => {
@@ -122,13 +123,8 @@ function Products({ device }) {
 
   const sortByFavorite = () => {
     console.log("좋아요순");
-    getProducts(1, 1);
+    getProducts(1, ORDER_BY_FAVORITE);
   };
-
-  const productSortDropItems = [
-    { id: 0, label: "최신순", func: sortByRecent },
-    { id: 1, label: "좋아요순", func: sortByFavorite },
-  ];
 
   const handleInputChange = (e) => {
     setSearchText(e.target.value);
@@ -190,9 +186,6 @@ function Products({ device }) {
             onClick={handleRegistrationButtonClick}
           />
           {
-            /* <DropDown dropItems={productSortDropItems}>
-            {productSortDropItems[0].label}
-          </DropDown> */
             <Dropdown>
               <DropdownToggle>최신순</DropdownToggle>
               <DropdownMenu>
@@ -231,8 +224,10 @@ function Products({ device }) {
   );
 }
 
-function BestProducts({ device, order }) {
+function BestProducts({ order }) {
   const [bestProducts, setBestProducts] = useState([]);
+
+  let device = useContext(deviceContext);
 
   function getBestProdudts() {
     const params = {

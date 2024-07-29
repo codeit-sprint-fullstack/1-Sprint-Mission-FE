@@ -1,49 +1,8 @@
-/* .dropdown-product-sort {
-  width: 13rem;
-  height: 4.2rem;
-  border: solid 1px;
-  border-radius: 1.2em;
-  padding : 12px, 20px, 12px, 20px;
-  padding : 1.2em 2em 1.2em 2em;
-  padding: 0em 0em 0em 0em;
-  border-color: var(--gray200-color);
-
-  justify-content: space-around;
-  align-items: center;
-}
-
-.dropdown-product-sort-item {
-  position: relative;
-  width: 13rem;
-  height: 4.2rem;
-  padding-top: 0.9rem;
-  padding-bottom: 0.7rem;
-
-  border: solid 1px;
-  border-color: var(--gray200-color);
-  text-align: center;
-  background-color: var(--white-color);
-  z-index: 99;
-  border-top: none;
-}
-
-.firstDropItem {
-  margin-top: 2rem;
-  border-radius: 1.2em 1.2em 0em 0em;
-
-  border-top: solid 1px;
-  border-color: var(--gray200-color);
-}
-
-.lastDropItem {
-  border-radius: 0em 0em 1.2em 1.2em;
-} */
-
 .dropdown {
   width: 13rem;
   height: 4.2rem;
   border: solid 1px;
-  border-radius: 0.6em;
+  border-radius: 0.75em;
   border-color: var(--gray200-color);
   text-align: center;
   background-color: var(--white-color);
@@ -56,15 +15,15 @@
   width: 13rem;
   height: 8.2rem;
   border: solid 1px;
-  border-radius: 1.2em;
+  border-radius: 0.75em;
   border-color: var(--gray200-color);
   text-align: center;
   background-color: var(--white-color);
   justify-content: space-between;
 
-  position: absolute;
-  top: 54%; /* temp value */
-  z-index: 8; /* temp value */
+  position: relative;
+  top: 0.8rem;
+  z-index: 8;
 }
 
 .dropdownItem {
