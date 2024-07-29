@@ -25,7 +25,6 @@ const useMediaType = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  console.log(mediaType);
 
   return mediaType;
 };

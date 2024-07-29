@@ -5,9 +5,8 @@ import MobileArrow from '../img/mobile_arrow.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
-function Dropdown({ onOrderChange }) {
+function Dropdown({ onOrderChange, sortOption }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [sortOption, setSortOption] = useState('recent');
 
   const click = () => {
     setIsOpen((prevState) => !prevState);
@@ -15,7 +14,6 @@ function Dropdown({ onOrderChange }) {
 
   const handleSortChange = (orderBy) => {
     onOrderChange(orderBy);
-    setSortOption(orderBy);
   };
 
   return (

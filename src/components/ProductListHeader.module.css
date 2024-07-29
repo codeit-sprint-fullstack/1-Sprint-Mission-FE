@@ -10,10 +10,6 @@ body {
   color: #111827;
 }
 
-.list {
-  display: flex;
-  margin: 120px auto 226px;
-}
 
 .productHeader {
   display: flex;
@@ -74,10 +70,6 @@ body {
   }
 }
 @media screen and (max-width: 773px) {
-  .container {
-    margin-left: 16px;
-    margin-right: 16px;
-  }
 
   .productHeader {
     display: grid;
