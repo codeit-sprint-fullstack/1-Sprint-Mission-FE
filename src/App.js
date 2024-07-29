@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Items from './pages/Items';
+import ProductPage from './pages/ProductPage';
 import { TempForums, TempHome } from './pages/TempPages';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/forums' element={<TempForums />} />
-        <Route path='/' element={<Items />} />
+        <Route path='/' element={<ProductPage />} />
         <Route path='/home' element={<TempHome />} />
       </Routes>
     </BrowserRouter>
