@@ -4,6 +4,7 @@ import Product from "./Product.js";
 import Footer from "./Footer.js";
 import "../styles/SaleProducts.css";
 import searchIcon from "../images/searchIcon.png";
+import sortIcon from "../images/sortIcon.png";
 import arrowDownIcon from "../images/arrowDownIcon.png";
 import useResize from "../hooks/useResize.js";
 
@@ -69,6 +70,12 @@ function SaleProducts() {
               alt="arrowDownIcon"
               className="arrow-icon"
             />
+          </div>
+          <div
+            className="order-select mobile-size"
+            onClick={() => setIsModalOpen(!isModalOpen)}
+          >
+            <img src={sortIcon} alt="sortIcon" className="sort-icon" />
           </div>
           {isModalOpen && (
             <div className="order-modal Text-lg Regular">

@@ -73,6 +73,9 @@
     cursor: pointer;
   }
 }
+.order-select.mobile-size {
+  display: none;
+}
 .arrow-icon {
   width: 2.4rem;
   height: 2.4rem;
@@ -129,17 +132,35 @@
   .sale-product {
     flex-basis: 46%; /* 1줄에 2개씩 */
   }
+  .sale-product-title {
+    margin-right: 12rem;
+  }
   .nav-options {
     flex-wrap: wrap;
   }
   .search-product {
     width: 28.8rem;
     order: 3;
+    margin-right: 3.2rem;
   }
   .order-select {
+    display: none;
+  }
+  .order-select.mobile-size {
+    display: flex;
+    justify-content: center;
+    width: 4.2rem;
     order: 4;
   }
+  .order-modal {
+    top: 10rem;
+  }
   .search-icon {
-    right: 30.4rem;
+    left: 2rem;
+    bottom: 0.9rem;
+  }
+  .sort-icon {
+    width: 2.4rem;
+    height: 2.4rem;
   }
 }
