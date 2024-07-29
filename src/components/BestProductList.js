@@ -1,10 +1,9 @@
-import ProductCard from './ProductCard';
-import './ProductList.css';
 import { useState, useEffect } from 'react';
 import { getProducts } from '../services/api';
-import searchIcon from '../assets/ic_search.svg';
+import ProductCard from './ProductCard';
+import './ProductList.css';
 
-export default function ProductList({ className }) {
+export default function BestProducts({ className }) {
   const [products, setProducts] = useState([]);
 
   const classNames = `ProductList ${className}`;
@@ -28,21 +27,13 @@ export default function ProductList({ className }) {
   };
 
   useEffect(() => {
-    handleLoad({ orderBy: 'recent', pageSize: 10 });
+    handleLoad({ orderBy: 'favorite', pageSize: 4 });
   }, []);
 
   return (
     <>
-      <div className='recent-products-top-bar'>
-        <h2>판매중인 상품</h2>
-        <div className='search-container'>
-          <img src={searchIcon} alt='search icon' className='search-icon' />
-          <input placeholder='검색할 상품을 입력해주세요' name='search' />
-          <button className='search-button' type='submit'>
-            상품 검색하기
-          </button>
-        </div>
-      </div>
+      <h2>베스트 상품</h2>
+
       <ul className={classNames}>
         {products.map((product) => {
           return (
