@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../assets/styles/App.css";
-import arrow from "../assets/images/upsideArrow.png";
+import "assets/styles/App.css";
+import arrow from "assets/images/upsideArrow.png";
 
 function SortingOptionBox({ onChange, selectedOption, setCurrentPage }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +20,7 @@ function SortingOptionBox({ onChange, selectedOption, setCurrentPage }) {
   return (
     <div className="dropdown">
       <li className="dropdown-toggle" onClick={toggleDropdown}>
-        {innerText}{" "}
+        {innerText}
         <img
           className={`arrow ${isOpen ? "up" : ""}`}
           src={arrow}

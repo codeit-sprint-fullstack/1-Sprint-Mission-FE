@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import SellingMarketplace from "./pages/sellingProducts";
-import BestMarketPlace from "./pages/bestSellingProducts";
+import SellingMarketplace from "./pages/Product/sellingProducts";
+import BestMarketPlace from "./pages/Product/bestSellingProducts";
 import GNB from "./components/GNB";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -1,6 +1,6 @@
 import React from "react";
-import "../assets/styles/App.css";
-import SortingOptionBoxSmall from "./sortOptionDropdownSmall";
+import "assets/styles/App.css";
+import SortingOptionBox from "./sortOptionDropdown";
 import KeywordSearch from "./keywordSearch";
 
 function ProductManagement({
@@ -18,20 +18,13 @@ function ProductManagement({
 
   return (
     <div className="product-management">
-      <div className="pm-container-small">
-        <div className="section-title">판매중인 상품</div>
-
+      <div className="section-title">판매중인 상품</div>
+      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        <KeywordSearch keyword={keyword} onSearch={handleSearch} />
         <button className="product-patch-button" onClick={onSearch}>
           상품 등록하기
         </button>
-      </div>
-      <div className="pm-container-small" style={{ gap: "8px" }}>
-        <KeywordSearch
-          keyword={keyword}
-          onSearch={handleSearch}
-          style={{ order: "0" }}
-        />
-        <SortingOptionBoxSmall
+        <SortingOptionBox
           selectedOption={sortOption}
           onChange={setSortOption}
           setCurrentPage={setCurrentPage}

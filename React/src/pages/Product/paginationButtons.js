@@ -1,6 +1,6 @@
 import React from "react";
-import "../assets/styles/App.css";
-import arrow from "../assets/images/arrow.png";
+import "assets/styles/App.css";
+import arrow from "assets/images/arrow.png";
 
 function PaginationBtn({
   currentPage,
