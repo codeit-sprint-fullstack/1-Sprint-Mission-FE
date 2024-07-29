@@ -2,7 +2,7 @@ import './SelectBox.css';
 import { useState } from 'react';
 
 function SelectBox({setOrderBy}) {
-  const [btnName, setbtnName] = useState('최신순');
+  const [btnName, setbtnName] = useState('-');
   const [show, setShow] = useState(null);
 
   const handleOptionClick = (option) => {
@@ -24,6 +24,7 @@ function SelectBox({setOrderBy}) {
       {show && <div className='select-options'>
         <button className='base-style' onClick={() => {handleOptionClick('최신순'); setOrderBy('recent');}}>최신순</button>
         <button className='base-style' onClick={() => {handleOptionClick('좋아요순'); setOrderBy('favorite');}}>좋아요순</button>
+        <button className='base-style' onClick={() => {handleOptionClick(''); setOrderBy('');}}>--</button>
       </div>}  
     </div>
   );

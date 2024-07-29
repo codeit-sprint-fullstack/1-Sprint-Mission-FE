@@ -1,4 +1,4 @@
-export async function getProducts({page, pageSize, orderBy}) {
+export async function getProducts({page, pageSize, orderBy, keyword}) {
   const query = new URLSearchParams({
     page: page.toString(),
     pageSize: pageSize.toString(),
@@ -6,6 +6,9 @@ export async function getProducts({page, pageSize, orderBy}) {
   
   if (orderBy) {
     query.append('orderBy', orderBy);
+  }
+  if (keyword) {
+    query.append('keyword', keyword);
   }
 
   const response = await fetch(`https://panda-market-api.vercel.app/products?${query.toString()}`);

@@ -42,11 +42,13 @@ function ProductBest() {
 
 
 function ProductOnSale() {
-  const pageSize = 10;
   const page = 1;
-
+  const pageSize = 10;
+  
   const [items, setItems] = useState([]);
   const [orderBy, setOrderBy] = useState('');
+  const [keyword, setKeyword] = useState('');
+  
   const sortedItems = items.sort((a, b) => (b[orderBy] - a[orderBy]));
 
   const handleLoad = async (options) => {
@@ -54,9 +56,14 @@ function ProductOnSale() {
     setItems(list);
   } 
 
+  const handleChange = (e) => {
+    const searchItem = e.target.value;
+    setKeyword(searchItem);
+  }
+
   useEffect(() => {
-    handleLoad({page, pageSize, orderBy});
-  }, [orderBy]);
+    handleLoad({page, pageSize, orderBy, keyword});
+  }, [orderBy, keyword]);
 
 
   return (
@@ -64,7 +71,12 @@ function ProductOnSale() {
       <div className='OnSaleProduct-nav'>
         <h3 className='OnSaleProduct-title'>판매 중인 상품</h3>
         <div className='OnSaleProduct-search-upload'>
-          <input className='OnSaleProduct-search' type='search' placeholder='🔍︎ 검색할 상품을 입력해주세요.'/>
+          <input 
+            className='OnSaleProduct-search' 
+            type='search' 
+            placeholder='🔍︎ 검색할 상품을 입력해주세요.' 
+            onChange={handleChange}
+          />
           <button className='OnSaleProduct-upload'>상품 등록하기</button>
         </div>
         <SelectBox setOrderBy={setOrderBy}/>
@@ -90,8 +102,6 @@ function ProductOnSale() {
 
 
 function ProductList() {
-  
-
   return (
     <div className='ProductList'>
       <ProductBest />
