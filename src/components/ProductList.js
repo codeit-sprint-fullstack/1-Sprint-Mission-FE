@@ -2,10 +2,13 @@ import ProductCard from './ProductCard';
 import './ProductList.css';
 import { useState, useEffect } from 'react';
 import { getProducts } from '../services/api';
-import searchIcon from '../assets/ic_search.svg';
+import SearchBar from './SearchBar';
+import DropDown from './DropDown';
 
 export default function ProductList({ className }) {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState([]);
+  const [sortOrder, setSortOrder] = useState('recent');
 
   const classNames = `ProductList ${className}`;
 
@@ -27,21 +30,25 @@ export default function ProductList({ className }) {
     }
   };
 
+  const handleSearch = () => {
+    handleLoad({ keyword: search });
+  };
+
   useEffect(() => {
-    handleLoad({ orderBy: 'recent', pageSize: 10 });
-  }, []);
+    handleLoad({ orderBy: sortOrder, pageSize: 10 });
+  }, [sortOrder]);
 
   return (
     <>
-      <div className='recent-products-top-bar'>
+      <div className='top-bar'>
         <h2>판매중인 상품</h2>
-        <div className='search-container'>
-          <img src={searchIcon} alt='search icon' className='search-icon' />
-          <input placeholder='검색할 상품을 입력해주세요' name='search' />
-          <button className='search-button' type='submit'>
-            상품 검색하기
-          </button>
-        </div>
+        <SearchBar
+          search={search}
+          setSearch={setSearch}
+          onClick={handleSearch}
+        />
+
+        <DropDown setSortOrder={setSortOrder} sortOrder={sortOrder} />
       </div>
       <ul className={classNames}>
         {products.map((product) => {

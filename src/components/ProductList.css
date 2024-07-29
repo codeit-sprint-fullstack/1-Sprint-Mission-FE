@@ -1,3 +1,10 @@
+.top-bar {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px;
+}
+
 .ProductList {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
