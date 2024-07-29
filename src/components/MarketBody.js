@@ -30,6 +30,7 @@ let recentOrder = 0;
 const ORDER_BY_RECENT = 0;
 const ORDER_BY_FAVORITE = 1;
 const ORDER_BY = ["recent", "favorite"];
+const ORDER_TEXT = ["최신순", "좋아요순"];
 
 // index 0 : PC 1 : TABLET 2 : MOBILE
 // let device = 0;
@@ -190,10 +191,14 @@ function Products() {
           />
           {
             <Dropdown>
-              <DropdownToggle>최신순</DropdownToggle>
+              <DropdownToggle>{ORDER_TEXT[recentOrder]}</DropdownToggle>
               <DropdownMenu>
-                <DropdownItem onClick={sortByRecent}>최신순</DropdownItem>
-                <DropdownItem onClick={sortByFavorite}>좋아요순</DropdownItem>
+                <DropdownItem onClick={sortByRecent}>
+                  {ORDER_TEXT[0]}
+                </DropdownItem>
+                <DropdownItem onClick={sortByFavorite}>
+                  {ORDER_TEXT[1]}
+                </DropdownItem>
               </DropdownMenu>
             </Dropdown>
           }
