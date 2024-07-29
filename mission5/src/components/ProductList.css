@@ -37,6 +37,23 @@
   flex-direction: column;
   gap: 6px;
 }
+.BestProduct-content .description {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #1F2937;
+}
+.BestProduct-content .price {
+  font-weight: 700px;
+  font-size: 16px;
+  line-height: 26px;
+}
+.BestProduct-content .favoriteCount {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: 18px;
+}
 
 
 
@@ -51,6 +68,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 42px;
+}
+.OnSaleProduct-title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  color: #111827;
 }
 .OnSaleProduct-search-upload {
   height: 100%;
@@ -84,3 +108,38 @@
   color: #F3F4F6;
 }
 
+
+
+
+.OnSaleProduct-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 24px;
+}
+.OnSaleProduct-item img { 
+  width: 100%;
+  display: block;
+}
+.OnSaleProduct-content {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.OnSaleProduct-content .description {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #1F2937;
+}
+.OnSaleProduct-content .price {
+  font-weight: 700px;
+  font-size: 16px;
+  line-height: 26px;
+}
+.OnSaleProduct-content .favoriteCount {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: 18px;
+}

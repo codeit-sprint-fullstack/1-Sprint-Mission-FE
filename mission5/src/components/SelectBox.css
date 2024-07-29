@@ -1,6 +1,7 @@
 .SelectBox {
   width: 130px;
   height: 42px;
+  z-index: 10;
 }
 .base-style {
   border: 1px solid #E5E7EB;
@@ -25,4 +26,8 @@
 }
 .select-options button {
   height: 40px;
+}
+.select-options button:hover {
+  background-color: #3692FF;
+  color: #E5E7EB;
 }
