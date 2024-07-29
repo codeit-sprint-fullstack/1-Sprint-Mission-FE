@@ -24,6 +24,7 @@
     display: flex;
     align-items: center;
     flex-grow: 1;
+    padding-top: 5px;
 }
 
 .nav-links a {
@@ -39,3 +40,30 @@
 .board-link {
     margin-right: 25px;
 }
+
+/* 태블릿 버전 */
+@media (min-width: 744px) and (max-width: 1199px) {
+    .navbar {
+        padding: 0 40px; /* 패딩 조정 */
+    }
+
+    .panda {
+        margin-left: 0; /* 왼쪽으로 더 붙이기 */
+        margin-right: 20px; /* 오른쪽 간격 조정 */
+    }
+
+    .nav-links {
+        justify-content: flex-start; /* 왼쪽 정렬 */
+        padding-top: 5px;
+    }
+
+    .nav-links a {
+        margin-right: 20px; /* 링크 간격 조정 */
+    }
+
+    .profile {
+        margin-left: auto;
+        margin-right: 0; /* 오른쪽으로 확 붙이기 */
+    }
+}
+
