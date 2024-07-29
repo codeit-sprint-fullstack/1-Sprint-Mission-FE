@@ -1,14 +1,10 @@
-.sale-product-nav {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 4rem;
-  margin-bottom: 2.4rem;
-}
 .sale-product-title {
   white-space: nowrap;
   margin-right: 46.8rem;
 }
 .nav-options {
+  margin-top: 4rem;
+  margin-bottom: 2.4rem;
   display: flex;
   align-items: center;
   position: relative;
@@ -35,6 +31,10 @@
   border: none;
   border-radius: 1.2rem;
   text-indent: 4.4rem;
+  &:focus {
+    outline: none;
+    border: 1px solid var(--primary100);
+  }
 }
 .search-product::placeholder {
   font-family: Pretendard;
@@ -139,9 +139,9 @@
     flex-wrap: wrap;
   }
   .search-product {
-    width: 28.8rem;
+    width: 31rem;
     order: 3;
-    margin-right: 3.2rem;
+    margin-right: 1rem;
   }
   .order-select {
     display: none;

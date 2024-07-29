@@ -48,52 +48,46 @@ function SaleProducts() {
 
   return (
     <>
-      <div className="sale-product-nav">
-        <div className="nav-options">
-          <h2 className="sale-product-title Text-xl Bold">판매중인 상품</h2>
-          <input
-            className="search-product"
-            type="text"
-            placeholder="검색할 상품을 입력해주세요"
-            value={keyword}
-            onChange={handleSearch}
-          />
-          <img src={searchIcon} alt="search icon" className="search-icon" />
-          <div className="enroll-product Text-lg Semibold">상품등록하기</div>
-          <div
-            className="order-select Text-lg Regular"
-            onClick={() => setIsModalOpen(!isModalOpen)}
-          >
-            {order === "recent" ? "최신순" : "좋아요순"}
-            <img
-              src={arrowDownIcon}
-              alt="arrowDownIcon"
-              className="arrow-icon"
-            />
-          </div>
-          <div
-            className="order-select mobile-size"
-            onClick={() => setIsModalOpen(!isModalOpen)}
-          >
-            <img src={sortIcon} alt="sortIcon" className="sort-icon" />
-          </div>
-          {isModalOpen && (
-            <div className="order-modal Text-lg Regular">
-              <div
-                className="modal-option recent"
-                onClick={() => handleChangeOrder("recent")}
-              >
-                최신순
-              </div>
-              <div
-                className="modal-option favorite"
-                onClick={() => handleChangeOrder("favorite")}
-              >
-                좋아요순
-              </div>
-            </div>
-          )}
+      <div className="nav-options">
+        <h2 className="sale-product-title Text-xl Bold">판매중인 상품</h2>
+        <input
+          className="search-product"
+          type="text"
+          placeholder="검색할 상품을 입력해주세요"
+          value={keyword}
+          onChange={handleSearch}
+        />
+        <img src={searchIcon} alt="search icon" className="search-icon" />
+        <div className="enroll-product Text-lg Semibold">상품 등록하기</div>
+        <div
+          className="order-select Text-lg Regular"
+          onClick={() => setIsModalOpen(!isModalOpen)}
+        >
+          {order === "recent" ? "최신순" : "좋아요순"}
+          <img src={arrowDownIcon} alt="arrowDownIcon" className="arrow-icon" />
         </div>
+        <div
+          className="order-select mobile-size"
+          onClick={() => setIsModalOpen(!isModalOpen)}
+        >
+          <img src={sortIcon} alt="sortIcon" className="sort-icon" />
+        </div>
+        {isModalOpen && (
+          <div className="order-modal Text-lg Regular">
+            <div
+              className="modal-option recent"
+              onClick={() => handleChangeOrder("recent")}
+            >
+              최신순
+            </div>
+            <div
+              className="modal-option favorite"
+              onClick={() => handleChangeOrder("favorite")}
+            >
+              좋아요순
+            </div>
+          </div>
+        )}
       </div>
       <div className="sale-products">
         {products.map((product) => (
