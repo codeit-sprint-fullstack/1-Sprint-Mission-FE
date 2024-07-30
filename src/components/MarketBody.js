@@ -108,7 +108,7 @@ function Product({ img, imgClass, title, price, favorite }) {
 
 function Products() {
   const [products, setProducts] = useState([]);
-  const [pageArray, setPageArray] = useState([]);
+  const [maxPageNum, setMaxPageNum] = useState(0);
   const [searchText, setSearchText] = useState("");
 
   let device = useContext(deviceContext);
@@ -119,13 +119,11 @@ function Products() {
   };
 
   const sortByRecent = () => {
-    // console.log("최신순");
     getProducts(recentPage, ORDER_BY_RECENT, searchText);
     recentOrder = ORDER_BY_RECENT;
   };
 
   const sortByFavorite = () => {
-    // console.log("좋아요순");
     getProducts(recentPage, ORDER_BY_FAVORITE, searchText);
     recentOrder = ORDER_BY_FAVORITE;
   };
@@ -139,7 +137,6 @@ function Products() {
   };
 
   const handlePageMove = (pageNum) => {
-    // console.log("click : " + pageNum);
     recentPage = pageNum;
     getProducts(pageNum, recentOrder);
   };
@@ -157,13 +154,7 @@ function Products() {
       .then((res) => {
         setProducts(res.data.list);
         totalCount = res.data.totalCount;
-        const maxPageNum = Math.ceil(totalCount / PAGE_SIZE[device]);
-
-        const newPageArray = [];
-        for (let i = 1; i <= maxPageNum; i++) {
-          newPageArray.push(i);
-        }
-        setPageArray(newPageArray);
+        setMaxPageNum(Math.ceil(totalCount / PAGE_SIZE[device]));
       })
       .catch((err) => console.log(err.name));
   }
@@ -223,7 +214,7 @@ function Products() {
       <div>
         <Pagination
           className="main__products-pagination"
-          pageArray={pageArray}
+          maxPageNum={maxPageNum}
           recentPage={recentPage}
           onClick={handlePageMove}
         />
@@ -278,9 +269,6 @@ function BestProducts() {
 }
 
 export function MarketBody() {
-  const initDevice = useContext(deviceContext);
-  const [device, setDevice] = useState(initDevice);
-
   return (
     <main className="main-frame">
       <BestProducts />

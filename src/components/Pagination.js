@@ -2,11 +2,10 @@ import "../assets/styles/Pagination.css";
 
 const SHOW_MAX_PAGINATION = 5;
 
-export function Pagination({ className, pageArray, recentPage, onClick }) {
+export function Pagination({ className, maxPageNum, recentPage, onClick }) {
+  console.log("Pagination : " + maxPageNum);
   const maxButtonNumber =
-    pageArray.length > SHOW_MAX_PAGINATION
-      ? SHOW_MAX_PAGINATION
-      : pageArray.length;
+    maxPageNum > SHOW_MAX_PAGINATION ? SHOW_MAX_PAGINATION : maxPageNum;
   const pageButtonClass = className + " Text-lg Semibold";
 
   const startPage = () => {
@@ -15,15 +14,16 @@ export function Pagination({ className, pageArray, recentPage, onClick }) {
 
     tempShowedFirstPage = tempShowedFirstPage > 0 ? tempShowedFirstPage : 1;
     tempShowedFirstPage =
-      tempShowedLastPage > pageArray.length
-        ? pageArray.length - maxButtonNumber + 1
+      tempShowedLastPage > maxPageNum
+        ? maxPageNum - maxButtonNumber + 1
         : tempShowedFirstPage;
     return tempShowedFirstPage;
   };
 
+  const page = startPage();
   const showPageArray = [];
   for (let i = 0; i < maxButtonNumber; i++) {
-    showPageArray.push(startPage() + i);
+    showPageArray.push(page + i);
   }
 
   let tempPageNum = recentPage - 1;
@@ -31,8 +31,7 @@ export function Pagination({ className, pageArray, recentPage, onClick }) {
   const leftPageButtonClick = () => onClick(prePageNum);
 
   tempPageNum = recentPage + 1;
-  const nextPageNum =
-    tempPageNum > pageArray.length ? pageArray.length : tempPageNum;
+  const nextPageNum = tempPageNum > maxPageNum ? maxPageNum : tempPageNum;
   const rightPageButtonClick = () => onClick(nextPageNum);
 
   return (
@@ -40,7 +39,7 @@ export function Pagination({ className, pageArray, recentPage, onClick }) {
       <button className={className} onClick={leftPageButtonClick}>
         <img
           src={require("../assets/images/arrow_left_gray600.svg").default}
-          alt="left"
+          alt="previous page"
         />
       </button>
       {showPageArray.map((item) => {
@@ -62,7 +61,7 @@ export function Pagination({ className, pageArray, recentPage, onClick }) {
       <button className={className} onClick={rightPageButtonClick}>
         <img
           src={require("../assets/images/arrow_right_gray600.svg").default}
-          alt="right"
+          alt="next page"
         />
       </button>
     </div>
