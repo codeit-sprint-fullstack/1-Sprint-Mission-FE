@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { getProducts } from '../services/api';
-import ProductCard from './ProductCard';
 import './ProductList.css';
+import ProductList from './ProductList';
 
 export default function BestProducts({ className }) {
   const [products, setProducts] = useState([]);
-
-  const classNames = `ProductList ${className}`;
 
   const handleLoad = async (options) => {
     try {
@@ -31,18 +29,10 @@ export default function BestProducts({ className }) {
   }, []);
 
   return (
-    <>
+    <section>
       <h2>베스트 상품</h2>
 
-      <ul className={classNames}>
-        {products.map((product) => {
-          return (
-            <li key={product.id}>
-              <ProductCard product={product} />
-            </li>
-          );
-        })}
-      </ul>
-    </>
+      <ProductList className={className} products={products} />
+    </section>
   );
 }
