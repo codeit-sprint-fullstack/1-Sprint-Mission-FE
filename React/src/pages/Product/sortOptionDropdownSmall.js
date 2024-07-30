@@ -11,7 +11,7 @@ const SortingOptionBoxSmall = React.memo(
       return (
         sortingOptions.find(
           (option) => option.value === sortingOptions[0]?.value
-        )?.value || "Select Option"
+        )?.value || "정렬기준 없음"
       );
     }, [sortingOptions]);
 

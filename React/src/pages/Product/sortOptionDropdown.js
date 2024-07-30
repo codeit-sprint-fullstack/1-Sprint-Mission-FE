@@ -17,7 +17,7 @@ const SortingOptionBox = React.memo(
     const innerText = useMemo(() => {
       return (
         sortingOptions.find((option) => option.value === currentOption)
-          ?.label || "정렬 기준 없음"
+          ?.label || "정렬기준 없음"
       );
     }, [currentOption, sortingOptions]);
 
