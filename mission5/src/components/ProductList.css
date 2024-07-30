@@ -107,10 +107,6 @@
   line-height: 26px;
   color: #F3F4F6;
 }
-
-
-
-
 .OnSaleProduct-items {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;

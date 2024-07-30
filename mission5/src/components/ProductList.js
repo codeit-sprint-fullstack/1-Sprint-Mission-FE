@@ -3,16 +3,34 @@ import './ProductList.css';
 import SelectBox from './SelectBox';
 import { getProducts } from '../api';
 
+function Pagination() {
+  return (
+    <div className='Pagination'>
+      <button className='pagination-prev'></button>
+      <button className='pagination-next'></button>
+    </div>
+  );
+}
+
 function ProductBest() {
   const page = 1;
   const pageSize = 4;
+  const orderBy = 'favorite';
 
   const [items, setItems] = useState([]);
-  const [orderBy, setOrderBy] = useState('favorite');
+  const [isLoadingError, setIsLoadingError] = useState(null);
   
   const handleLoad = async (options) => {
-    const { list } = await getProducts(options);
-    setItems(list);
+    let result;
+    try {
+      setIsLoadingError(null);
+      result = await getProducts(options);
+      const { list } = result;
+      setItems(list);
+    } catch (error) {
+      setIsLoadingError(error);
+      return null;
+    }
   } 
 
   useEffect(() => {
@@ -36,6 +54,7 @@ function ProductBest() {
             );
           })}
       </div>
+      {isLoadingError?.message && <span>{isLoadingError.message}</span>}
     </div>
   );
 }
@@ -46,15 +65,31 @@ function ProductOnSale() {
   const pageSize = 10;
   
   const [items, setItems] = useState([]);
-  const [orderBy, setOrderBy] = useState('');
+  const [order, setOrder] = useState('');
   const [keyword, setKeyword] = useState('');
-  
-  const sortedItems = items.sort((a, b) => (b[orderBy] - a[orderBy]));
+  const [isLoadingError, setIsLoadingError] = useState(null);
 
   const handleLoad = async (options) => {
-    const { list } = await getProducts(options);
-    setItems(list);
-  } 
+    let result;
+    try {
+      setIsLoadingError(null);
+      result = await getProducts(options);
+      const { list } = result;
+      if (order === 'like') {
+        const sorted = [...list].sort((a, b) => b.favoriteCount - a.favoriteCount);
+        setItems(sorted);
+      } else if (order === 'latest') {
+        const sorted = [...list].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setItems(sorted);
+      } else {
+        setItems(list);
+      }
+      
+    } catch (error) {
+      setIsLoadingError(error);
+      return;
+    }
+  }
 
   const handleChange = (e) => {
     const searchItem = e.target.value;
@@ -62,8 +97,8 @@ function ProductOnSale() {
   }
 
   useEffect(() => {
-    handleLoad({page, pageSize, orderBy, keyword});
-  }, [orderBy, keyword]);
+    handleLoad({page, pageSize, keyword});
+  }, [order, keyword]);
 
 
   return (
@@ -79,10 +114,11 @@ function ProductOnSale() {
           />
           <button className='OnSaleProduct-upload'>상품 등록하기</button>
         </div>
-        <SelectBox setOrderBy={setOrderBy}/>
+        <SelectBox setOrder={setOrder}/>
       </div>
+      
       <div className='OnSaleProduct-items'>
-        {sortedItems.map((item) => {
+        {items.map((item) => {
           return (
             <div className='OnSaleProduct-item '>
               <img src={item.images} alt={item.name} />
@@ -94,11 +130,12 @@ function ProductOnSale() {
             </div>
           );
         })}
-      </div>  
+      </div>
+      
+      {isLoadingError?.message && <span>{isLoadingError.message}</span>}
     </div>
   );
 }
-
 
 
 function ProductList() {
@@ -106,6 +143,7 @@ function ProductList() {
     <div className='ProductList'>
       <ProductBest />
       <ProductOnSale />
+
     </div>
   );
 }
