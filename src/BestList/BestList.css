@@ -1,3 +1,14 @@
+.best {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.bestProduct {
+  width: 282px;
+  height: 282px;
+  border-radius: 16px;
+}
+
 .bestProductList {
   margin-top: 16px;
   display: grid;
@@ -6,6 +17,12 @@
 }
 
 @media (max-width: 1199px) {
+  .bestProduct {
+    width: 343px;
+    height: 343px;
+    border-radius: 19px;
+  }
+
   .bestProductList {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
@@ -16,6 +33,11 @@
 }
 
 @media (max-width: 743px) {
+  .bestProduct {
+    width: 100%;
+    height: auto;
+  }
+
   .bestProductList {
     grid-template-columns: 1fr;
   }

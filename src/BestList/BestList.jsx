@@ -8,7 +8,7 @@ export function BestList() {
   const deviceType = useDeviceType();
 
   // Product.js에서 API GET (favorite 기준 정렬)
-  const { products, loading } = useFetchProducts({
+  const { products } = useFetchProducts({
     orderBy: "favorite",
     pageSize: deviceType === "mobile" ? 1 : deviceType === "tablet" ? 2 : 4,
   });

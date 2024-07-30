@@ -108,6 +108,18 @@
   background-color: #ffffff;
 }
 
+.sell {
+  grid-row: 2;
+  grid-column: 2;
+  margin-top: 106px;
+}
+
+.sellProduct {
+  width: 221px;
+  height: 221px;
+  border-radius: 16px;
+}
+
 .sellProductList {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -191,6 +203,16 @@
 
   .custom-dropdown__options {
     margin-top: 4px;
+  }
+
+  .sellProduct {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  .sell {
+    margin-top: 132px;
   }
 
   .sellProductItem {

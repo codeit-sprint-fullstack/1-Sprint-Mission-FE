@@ -15,10 +15,10 @@ export function SellList() {
   const [searchKeyword, setSearchKeyword] = useState("");
   const deviceType = useDeviceType();
 
-  const { products, loading, totalPages } = useFetchProducts({
+  const { products, totalPages } = useFetchProducts({
     orderBy: sortOrder,
-    page: currentPage,
     pageSize: deviceType === "mobile" ? 4 : deviceType === "tablet" ? 6 : 10,
+    page: currentPage,
     keyword: searchKeyword,
   });
 
