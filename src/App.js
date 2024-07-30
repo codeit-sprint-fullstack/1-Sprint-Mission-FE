@@ -11,9 +11,7 @@ const App = () => {
         <NavBar />
       </header>
       <main>
-        {/* 베스트 상품 */}
         <BestList />
-        {/* 검색 바와 판매 중인 상품 */}
         <SellList />
       </main>
     </>

@@ -3,27 +3,27 @@ import axios from "axios";
 import "./useFetchProducts.css";
 
 export function useFetchProducts(params) {
-  const baseUrl = "https://panda-market-api.vercel.app/products"; // API 주소
-  const [products, setProducts] = useState([]); // 상품
-  const [loading, setLoading] = useState(true); // 로딩 상태
-  const [totalCount, setTotalCount] = useState(0); // 상품 수
-  const [totalPages, setTotalPages] = useState(0); // 페이지 수
+  const baseUrl = "https://panda-market-api.vercel.app/products";
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [totalCount, setTotalCount] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
         const response = await axios.get(baseUrl, { params }); // 파라미터 기준으로 상품 가져오기
-        const data = response.data.list || []; // 데이터 리스트 저장
-        const totalItems = response.data.totalCount || 0; // 상품 수 저장
+        const data = response.data.list || [];
+        const totalItems = response.data.totalCount || 0;
 
         setProducts(data);
         setTotalCount(totalItems);
-        setTotalPages(Math.ceil(totalItems / params.pageSize)); // 숫자 올림해서 표시
+        setTotalPages(Math.ceil(totalItems / params.pageSize));
       } catch (error) {
         console.error("Error fetching data", error);
       } finally {
-        setLoading(false); // 작업이 끝나거나 오류가 나면 로딩 상태 false
+        setLoading(false);
       }
     };
 

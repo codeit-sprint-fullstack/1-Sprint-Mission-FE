@@ -5,11 +5,11 @@ import CustomDropdown from "./CustomDropdown";
 import "./SellList.css";
 
 export function SellList() {
-  const [sortOrder, setSortOrder] = useState("recent"); // 정렬 상태 추가(기본: 최신순)
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-  const [pageSize, setPageSize] = useState(getPageSize(window.innerWidth)); // 브라우저 사이즈
-  const [keyword, setKeyword] = useState(""); // 검색어 상태 추가
-  const [searchKeyword, setSearchKeyword] = useState(""); // 실제 검색에 사용될 키워드 상태 추가
+  const [sortOrder, setSortOrder] = useState("recent");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(getPageSize(window.innerWidth));
+  const [keyword, setKeyword] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState("");
 
   function getPageSize(width) {
     if (width < 743) return 4; // Mobile
@@ -35,27 +35,24 @@ export function SellList() {
     keyword: searchKeyword,
   });
 
-  // 가격 천단위 포맷
   const formatPrice = (price) => {
     return new Intl.NumberFormat("ko-KR").format(price);
   };
 
-  // 정렬 기준 바꾸기
   const handleSortChange = (value) => {
     setSortOrder(value);
-    setCurrentPage(1); // 정렬 기준 변경 시 페이지를 1로 초기화
+    setCurrentPage(1);
   };
 
   const handleKeywordChange = (event) => {
-    setKeyword(event.target.value); // 검색어 상태 업데이트
+    setKeyword(event.target.value);
   };
 
   const handleKeywordSearch = () => {
-    setSearchKeyword(keyword); // 실제 검색에 사용될 키워드 업데이트
-    setCurrentPage(1); // 검색어 변경 시 페이지를 1로 초기화
+    setSearchKeyword(keyword);
+    setCurrentPage(1);
   };
 
-  // 엔터 입력
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleKeywordSearch();
@@ -71,12 +68,12 @@ export function SellList() {
           className="inputSearch"
           type="text"
           placeholder="검색할 상품을 입력해주세요"
-          value={keyword} // 검색어 상태 바인딩
-          onChange={handleKeywordChange} // 검색어 변경 핸들러 추가
-          onKeyDown={handleKeyDown} // 엔터키 입력 핸들러
+          value={keyword}
+          onChange={handleKeywordChange}
+          onKeyDown={handleKeyDown}
         />
         <button className="btnAdd">상품 등록하기</button>
-        <CustomDropdown //Custom Select
+        <CustomDropdown
           selectedOption={sortOrder}
           onOptionChange={handleSortChange}
         />
@@ -93,9 +90,9 @@ export function SellList() {
             className="inputSearch"
             type="text"
             placeholder="검색할 상품을 입력해주세요"
-            value={keyword} // 검색어 상태 바인딩
-            onChange={handleKeywordChange} // 검색어 변경 핸들러 추가
-            onKeyDown={handleKeyDown} // 엔터키 입력 핸들러
+            value={keyword}
+            onChange={handleKeywordChange}
+            onKeyDown={handleKeyDown}
           />
           <CustomDropdown
             selectedOption={sortOrder}
