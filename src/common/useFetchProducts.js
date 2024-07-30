@@ -13,7 +13,7 @@ export function useFetchProducts({ orderBy, pageSize, page, keyword }) {
       setLoading(true);
       try {
         const params = { orderBy, pageSize, page, keyword };
-        const response = await axios.get(baseUrl, { params }); // 파라미터 기준으로 상품 가져오기
+        const response = await axios.get(baseUrl, { params });
         const data = response.data.list || [];
         const totalItems = response.data.totalCount || 0;
 
@@ -28,7 +28,7 @@ export function useFetchProducts({ orderBy, pageSize, page, keyword }) {
     };
 
     fetchProducts();
-  }, [orderBy, page, pageSize, keyword]); // 필요한 의존성만 추가
+  }, [orderBy, page, pageSize, keyword]);
 
   return { products, loading, totalCount, totalPages };
 }

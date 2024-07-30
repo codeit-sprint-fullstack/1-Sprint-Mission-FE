@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useFetchProducts } from "../Product/useFetchProducts";
+import { useFetchProducts } from "../common/useFetchProducts";
 import { formatPrice } from "../common/Util";
 import { useDeviceType } from "../common/usePageSize";
 import "./BestList.css";

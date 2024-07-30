@@ -1,38 +1,48 @@
-import React, { useState } from "react";
+// Pagination.js
+import React from "react";
 import "./Pagination.css";
 
-export function Shift({ currentPage, onPageChange, totalPages }) {
-  const [pageGroup, setPageGroup] = useState(0);
+export function Pagination({ currentPage, onPageChange, totalPages }) {
   const pagesPerGroup = 5;
+  const currentGroup = Math.floor((currentPage - 1) / pagesPerGroup);
+  const currentGroupPages = Array.from(
+    {
+      length: Math.min(
+        pagesPerGroup,
+        totalPages - currentGroup * pagesPerGroup
+      ),
+    },
+    (_, i) => currentGroup * pagesPerGroup + i + 1
+  );
+
+  console.log("Pagination rendered", currentGroupPages);
 
   const handlePageChange = (page, event) => {
-    event.preventDefault(); // 기본 이벤트 동작 방지
+    event.preventDefault();
     if (page < 1 || page > totalPages) return;
     onPageChange(page);
   };
 
-  // 페이지 그룹 변경 처리 함수
-  const handleGroupChange = (direction, event) => {
-    event.preventDefault(); // 기본 이벤트 동작 방지
-    if (direction === "next" && (pageGroup + 1) * pagesPerGroup < totalPages) {
-      setPageGroup(pageGroup + 1);
-    } else if (direction === "prev" && pageGroup > 0) {
-      setPageGroup(pageGroup - 1);
+  const handleNextPage = (event) => {
+    event.preventDefault();
+    if (currentPage < totalPages) {
+      onPageChange(currentPage + 1);
     }
   };
 
-  // 현재 페이지 그룹 계산
-  const currentGroupPages = Array.from(
-    { length: Math.min(pagesPerGroup, totalPages - pageGroup * pagesPerGroup) },
-    (_, i) => pageGroup * pagesPerGroup + i + 1 // 페이지 번호 생성
-  );
+  const handlePrevPage = (event) => {
+    event.preventDefault();
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1);
+    }
+  };
 
   return (
     <div className="btnContainer">
       <button
         className="shiftBtn"
-        onClick={(e) => handleGroupChange("prev", e)}
-        disabled={pageGroup === 0}
+        onClick={handlePrevPage}
+        disabled={currentPage === 1}
       >
         &lt;
       </button>
@@ -40,7 +50,7 @@ export function Shift({ currentPage, onPageChange, totalPages }) {
       {currentGroupPages.map((page) => (
         <button
           key={page}
-          className={`shiftBtn ${currentPage === page && "active"}`}
+          className={`shiftBtn ${currentPage === page ? "active" : ""}`}
           onClick={(e) => handlePageChange(page, e)}
         >
           {page}
@@ -49,11 +59,13 @@ export function Shift({ currentPage, onPageChange, totalPages }) {
 
       <button
         className="shiftBtn"
-        onClick={(e) => handleGroupChange("next", e)}
-        disabled={(pageGroup + 1) * pagesPerGroup >= totalPages}
+        onClick={handleNextPage}
+        disabled={currentPage === totalPages}
       >
         &gt;
       </button>
     </div>
   );
 }
+
+export default React.memo(Pagination);

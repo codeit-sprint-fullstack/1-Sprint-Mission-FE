@@ -1,7 +1,7 @@
 // SellList.js
-import React, { useState, useEffect } from "react";
-import { useFetchProducts } from "../Product/useFetchProducts";
-import { Shift } from "../Pagination/Pagination";
+import React, { useState } from "react";
+import { useFetchProducts } from "../common/useFetchProducts";
+import Pagination from "../Pagination/Pagination";
 import { formatPrice } from "../common/Util";
 import { useDeviceType } from "../common/usePageSize";
 import { DesktopSearchBar } from "./DesktopSearchBar";
@@ -15,27 +15,34 @@ export function SellList() {
   const [searchKeyword, setSearchKeyword] = useState("");
   const deviceType = useDeviceType();
 
-  const { products, totalPages } = useFetchProducts({
+  console.log("SellList rendered");
+
+  // useFetchProducts 훅을 사용하여 데이터 가져오기
+  const { products, totalPages, loading } = useFetchProducts({
     orderBy: sortOrder,
     pageSize: deviceType === "mobile" ? 4 : deviceType === "tablet" ? 6 : 10,
     page: currentPage,
     keyword: searchKeyword,
   });
 
+  // 정렬 기준 변경 핸들러
   const handleSortChange = (value) => {
     setSortOrder(value);
     setCurrentPage(1);
   };
 
+  // 검색 키워드 변경 핸들러
   const handleKeywordChange = (event) => {
     setKeyword(event.target.value);
   };
 
+  // 검색 실행 핸들러
   const handleKeywordSearch = () => {
     setSearchKeyword(keyword);
     setCurrentPage(1);
   };
 
+  // 검색 엔터키 이벤트 핸들러
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleKeywordSearch();
@@ -62,10 +69,11 @@ export function SellList() {
         />
       )}
 
-      {/* 판매 중인 상품 리스트 */}
       <div className="sell">
         <div className="sellProductList">
-          {products.length === 0 ? (
+          {loading ? (
+            <p>Loading...</p>
+          ) : products.length === 0 ? (
             <p>No products available</p>
           ) : (
             products.map((item) => (
@@ -84,7 +92,7 @@ export function SellList() {
             ))
           )}
         </div>
-        <Shift
+        <Pagination
           currentPage={currentPage}
           onPageChange={setCurrentPage}
           totalPages={totalPages}
