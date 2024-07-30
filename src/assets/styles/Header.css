@@ -1,0 +1,131 @@
+/* 1vmin = 9.19px */
+header {
+  height: 7.508vh;
+  width: 100%;
+  border-bottom: 0.109vh solid #dfdfdf;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: #FFFFFF;
+}
+
+a {  
+  text-decoration-line: none;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+.navi {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin-left: 200px;
+}
+
+.logo > img {
+  width: 7.9688vw; 
+  height: 5.55vh;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  width: 218px;
+  margin-left: 1.6667vw;
+}
+
+.menu > a {
+  width: 109px;
+  color: #4B5563;
+  font-size: 1.8rem;
+  font-weight: 700;
+  white-space:nowrap;
+}
+
+.user {
+  margin-right: 200px;
+}
+
+/* 모바일 */
+@media all and (min-width:375px) and (max-width:767px){ 
+  .logo_img {
+    display: none;
+  }
+  .-face_img {
+    display: block;
+  }
+
+  .logo > img {
+    width: 21.6vw;
+    height: 5.997vh;
+  }
+
+  .logo {
+    margin-left: 16px;
+  }
+
+  .menu {
+    width: 135px;
+    margin-left: 4.2667vw;
+  }
+  
+  .menu > a {
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  .menu > a.board {
+    width: 18.4vw
+  }
+
+  .menu > a.market {
+    width: 15.4667vw
+  }
+
+  .user {
+    margin-right: 16px;
+  }
+
+}
+
+/* 태블릿 */
+@media all and (min-width:767.1px) and (max-width:1199px){ 
+  .logo_img {
+    display: block;
+  }
+  .-face_img {
+    display: none;
+  }
+
+  .logo {
+    margin-left: 24px;
+  }
+
+  .logo > img {
+    width: 19.922vw; 
+    height: 4.98vh;
+  }
+
+  .menu {
+    width: 218px;
+    margin-left: 4.167vw;
+  }
+  
+  .menu > a {
+    width: 109px;
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+
+  .user {
+    margin-right: 24px;
+  }
+}
