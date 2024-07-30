@@ -3,8 +3,9 @@ import { getProducts } from '../services/api';
 import './ProductList.css';
 import ProductList from './ProductList';
 
-export default function BestProducts({ className }) {
+export default function BestProducts({ className, tabletSize, mobileSize }) {
   const [products, setProducts] = useState([]);
+  const [pageSize, setPageSize] = useState(0);
 
   const handleLoad = async (options) => {
     try {
@@ -25,13 +26,18 @@ export default function BestProducts({ className }) {
   };
 
   useEffect(() => {
-    handleLoad({ orderBy: 'favorite', pageSize: 4 });
-  }, []);
+    if (mobileSize) setPageSize(1);
+    else if (tabletSize) setPageSize(2);
+    else setPageSize(4);
+  }, [tabletSize, mobileSize]);
+
+  useEffect(() => {
+    handleLoad({ orderBy: 'favorite', pageSize });
+  }, [pageSize]);
 
   return (
     <section>
       <h2>베스트 상품</h2>
-
       <ProductList className={className} products={products} />
     </section>
   );

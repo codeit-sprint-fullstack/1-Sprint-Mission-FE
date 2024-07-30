@@ -4,10 +4,21 @@ import SearchBar from './SearchBar';
 import DropDown from './DropDown';
 import ProductList from './ProductList';
 
-export default function ProductSection({ className }) {
+export default function ProductSection({ className, tabletSize, mobileSize }) {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState([]);
-  const [sortOrder, setSortOrder] = useState('recent');
+  const [orderBy, setOrderBy] = useState('recent');
+  const [pageSize, setPageSize] = useState(0);
+
+  useEffect(() => {
+    if (mobileSize) {
+      setPageSize(4);
+    } else if (tabletSize) {
+      setPageSize(6);
+    } else {
+      setPageSize(10);
+    }
+  }, [mobileSize, tabletSize]);
 
   const handleLoad = async (options) => {
     try {
@@ -32,8 +43,8 @@ export default function ProductSection({ className }) {
   };
 
   useEffect(() => {
-    handleLoad({ orderBy: sortOrder, pageSize: 10 });
-  }, [sortOrder]);
+    handleLoad({ orderBy, pageSize });
+  }, [orderBy, pageSize]);
 
   return (
     <section>
@@ -44,7 +55,7 @@ export default function ProductSection({ className }) {
           setSearch={setSearch}
           onClick={handleSearch}
         />
-        <DropDown setSortOrder={setSortOrder} sortOrder={sortOrder} />
+        <DropDown orderBy={orderBy} setOrderBy={setOrderBy} />
       </div>
       <ProductList products={products} className={className} />
     </section>
