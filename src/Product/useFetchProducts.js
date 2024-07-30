@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "./Product.css";
+import "./useFetchProducts.css";
 
 export function useFetchProducts(params) {
   const baseUrl = "https://panda-market-api.vercel.app/products"; // API 주소

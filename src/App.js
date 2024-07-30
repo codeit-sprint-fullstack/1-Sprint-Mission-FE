@@ -1,15 +1,14 @@
 import React from "react";
-import { CreateNav } from "./Nav/Nav";
-import { BestList } from "./Best/best";
-import { SellList } from "./Sell/Sell";
+import { NavBar } from "./NavBar/NavBar";
+import { BestList } from "./BestList/BestList";
+import { SellList } from "./Sell/SellList";
 import "./App.css";
 
 const App = () => {
   return (
     <>
       <header>
-        {/* 헤더 네비 바 생성 */}
-        <CreateNav />
+        <NavBar />
       </header>
       <main>
         {/* 베스트 상품 */}

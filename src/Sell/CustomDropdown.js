@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Sell.css"; // CSS 파일을 따로 관리\
+import "./SellList.css"; // CSS 파일을 따로 관리\
 
 export const CustomDropdown = ({ selectedOption, onOptionChange }) => {
   const [isOpen, setIsOpen] = useState(false); // 버튼 클릭 여부

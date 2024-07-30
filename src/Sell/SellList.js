@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useFetchProducts } from "../Product/Product";
-import { Shift } from "../PageShift/PageShift";
+import { useFetchProducts } from "../Product/useFetchProducts";
+import { Shift } from "../Pagination/Pagination";
 import CustomDropdown from "./CustomDropdown";
-import "./Sell.css";
+import "./SellList.css";
 
 export function SellList() {
   const [sortOrder, setSortOrder] = useState("recent"); // 정렬 상태 추가(기본: 최신순)

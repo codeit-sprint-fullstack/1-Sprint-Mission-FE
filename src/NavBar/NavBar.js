@@ -1,9 +1,9 @@
-import profileIc from "../image/ic_profile.svg";
+import profileIcon from "../image/ic_profile.svg";
 import logoImg from "../image/img_logo.svg";
 import logo from "../image/logo.svg";
-import "./Nav.css";
+import "./NavBar.css";
 
-export function CreateNav() {
+export function NavBar() {
   return (
     <nav className="navbar">
       <img
@@ -25,7 +25,7 @@ export function CreateNav() {
       <img
         id="profileIc"
         className="margin-right"
-        src={profileIc}
+        src={profileIcon}
         alt="profileIc"
       ></img>
     </nav>

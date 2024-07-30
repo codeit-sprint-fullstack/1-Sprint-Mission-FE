@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./PageShift.css";
+import "./Pagination.css";
 
 export function Shift({ currentPage, onPageChange, totalPages }) {
   // 페이지 그룹을 관리하기 위한 state 추가

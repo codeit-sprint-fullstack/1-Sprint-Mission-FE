@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useFetchProducts } from "../Product/Product";
-import "./Best.css";
+import { useFetchProducts } from "../Product/useFetchProducts";
+import "./BestList.css";
 
 export function BestList() {
   const [pageSize, setPageSize] = useState(getPageSize(window.innerWidth));
