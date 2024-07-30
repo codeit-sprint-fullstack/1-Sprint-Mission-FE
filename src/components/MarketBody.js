@@ -5,7 +5,7 @@ import no_image from "../assets/images/no_image.svg";
 // import { isImageUrl, isImageFileText, isImageLoaded } from "../utils/utils";
 import SearchProducts from "./SearchProducts";
 import Button from "./Button";
-import { deviceContext } from "../pages/SecondhandMarket";
+import { deviceContext } from "../App";
 import {
   Dropdown,
   DropdownToggle,
@@ -26,14 +26,17 @@ const instance = axios.create({
 const PATH = "/products";
 
 // index 0 : 좋아요순 1 : 최신순
-let recentOrder = 0;
 const ORDER_BY_RECENT = 0;
 const ORDER_BY_FAVORITE = 1;
 const ORDER_BY = ["recent", "favorite"];
 const ORDER_TEXT = ["최신순", "좋아요순"];
 
+let recentOrder = ORDER_BY_RECENT;
+
 // index 0 : PC 1 : TABLET 2 : MOBILE
-// let device = 0;
+const PC = 0;
+const TABLET = 1;
+const MOBILE = 2;
 const PAGE_SIZE = [10, 6, 4];
 const BEST_PAGE_SIZE = [4, 2, 1];
 
@@ -114,6 +117,7 @@ function Products() {
   let device = useContext(deviceContext);
   let totalCount = 0;
 
+  console.log("Products : " + device);
   const handleRegistrationButtonClick = () => {
     alert("상품 등록 : 로그인이 필요합니다");
   };
@@ -142,6 +146,7 @@ function Products() {
   };
 
   function getProducts(page = 1, order = ORDER_BY_RECENT, search = "") {
+    console.log("Products2 : " + device);
     const params = {
       page: page,
       pageSize: PAGE_SIZE[device],
@@ -165,35 +170,36 @@ function Products() {
 
   return (
     <div className="main__section-products">
-      <div className="flex-row justify-space-between">
+      <div className="main__products-tools">
         <a className="Text-xl Bold">판매 중인 상품</a>
-        <div className="grid main__section-tools">
-          <SearchProducts
-            onChange={handleInputChange}
-            onSubmit={handleSubmit}
-            inputClassName="Text-lg Regular search__input"
-            imgClassName="search__img"
-          >
-            검색할 상품을 입력해주세요
-          </SearchProducts>
-          <Button
-            className="registrationButton"
-            onClick={handleRegistrationButtonClick}
-          />
-          {
-            <Dropdown>
-              <DropdownToggle>{ORDER_TEXT[recentOrder]}</DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem onClick={sortByRecent}>
-                  {ORDER_TEXT[0]}
-                </DropdownItem>
-                <DropdownItem onClick={sortByFavorite}>
-                  {ORDER_TEXT[1]}
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          }
-        </div>
+        {/* <div className="grid main__section-tools"> */}
+        <SearchProducts
+          searchClassName="main__tools-search"
+          onChange={handleInputChange}
+          onSubmit={handleSubmit}
+          inputClassName="Text-lg Regular search__input"
+          imgClassName="search__img"
+        >
+          검색할 상품을 입력해주세요
+        </SearchProducts>
+        <Button
+          className="registrationButton main__tools-button"
+          onClick={handleRegistrationButtonClick}
+        />
+        {
+          <Dropdown dropdwonClass="main__tools-dropdown">
+            <DropdownToggle>{ORDER_TEXT[recentOrder]}</DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem onClick={sortByRecent}>
+                {ORDER_TEXT[ORDER_BY_RECENT]}
+              </DropdownItem>
+              <DropdownItem onClick={sortByFavorite}>
+                {ORDER_TEXT[ORDER_BY_FAVORITE]}
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        }
+        {/* </div> */}
       </div>
       <div className="main__products-frame">
         {products.map((item) => (

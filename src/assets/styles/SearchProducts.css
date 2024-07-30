@@ -34,3 +34,21 @@
   left: 1.6rem;
   object-fit: cover;
 }
+
+/* ===== Tablet - width : 744px ~ 1199px ===== */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .search__input {
+    width: 24.2rem;
+  }
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .search__input {
+    width: 28.8rem;
+  }
+
+  .main__tools-search {
+    grid-area: s1;
+  }
+}

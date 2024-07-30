@@ -1,24 +1,27 @@
 import { useState, useEffect } from "react";
 
 function useCheckWidth() {
-  // index 0 : PC 1 : TABLET 2 : MOBILE
-  const [device, setDevice] = useState(0);
-
-  const handleResize = () => {
+  const getDeviceType = () => {
     if (375 <= window.innerWidth && window.innerWidth < 744) {
       /* ===== Mobile-width : 375px ~ 743px ====== */
-      setDevice(2);
+      return 2;
     } else if (744 <= window.innerWidth && window.innerWidth < 1200) {
       /* ===== Tablet - width : 744px ~ 1199px ===== */
-      setDevice(1);
+      return 1;
     } else {
       /* ===== PC - width : 1200px ~ ===== */
-      setDevice(0);
+      return 0;
     }
   };
 
+  const [device, setDevice] = useState(getDeviceType);
+
+  const handleResize = () => {
+    setDevice(getDeviceType());
+  };
+
   useEffect(() => {
-    handleResize();
+    setDevice(handleResize());
     window.addEventListener("resize", handleResize);
 
     return () => {

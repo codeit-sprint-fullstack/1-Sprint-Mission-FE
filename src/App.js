@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import SecondhandMarket from "./pages/SecondhandMarket";
+import "./App.css";
+import { createContext } from "react";
+import useCheckWidth from "./components/hooks/useCheckWidth";
+
+export const deviceContext = createContext();
 
 function App() {
+  const [device] = useCheckWidth();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SecondhandMarket />} />
+          <Route path="*" element={<h1>Not Found</h1>} />
+        </Routes>
+      </BrowserRouter> */}
+      <deviceContext.Provider value={device}>
+        <SecondhandMarket />
+      </deviceContext.Provider>
+    </>
   );
 }
 

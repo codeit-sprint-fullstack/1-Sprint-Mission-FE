@@ -32,3 +32,15 @@
   margin-top: 0.9rem;
   margin-bottom: 0.7rem;
 }
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .main__tools-dropdown {
+    grid-area: d1;
+  }
+
+  .dropdownToggle {
+    width: 4.2rem;
+    background: url(../images/btn_sort_small.svg) no-repeat;
+  }
+}

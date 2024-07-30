@@ -1,6 +1,7 @@
 import "../assets/styles/SearchProducts.css";
 
 export function SearchProducts({
+  searchClassName,
   onChange,
   onSubmit,
   inputClassName,
@@ -14,8 +15,10 @@ export function SearchProducts({
     onSubmit(e);
   };
 
+  const searchClass = `flex-row search-frame ${searchClassName}`;
+
   return (
-    <form className="flex-row search-frame" onSubmit={submit}>
+    <form className={searchClass} onSubmit={submit}>
       <input
         onChange={inputChange}
         className={inputClassName}

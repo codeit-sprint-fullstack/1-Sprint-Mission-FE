@@ -1,5 +1,7 @@
 import { useState, createContext, useContext } from "react";
+import "../";
 import "../assets/styles/dropDown.css";
+import { deviceContext } from "../App";
 
 const DropdownContext = createContext();
 
@@ -28,6 +30,7 @@ export function DropdownItem({ onClick, children }) {
 }
 
 export function DropdownToggle({ children }) {
+  const device = useContext(deviceContext);
   const { toggleDropdown } = useContext(DropdownContext);
 
   const dropdownClass = `Text-lg Regular dropdownToggle`;
@@ -35,13 +38,13 @@ export function DropdownToggle({ children }) {
   return (
     <>
       <button className={dropdownClass} onClick={toggleDropdown}>
-        {children}
+        {device === 2 || children}
       </button>
     </>
   );
 }
 
-export function Dropdown({ children }) {
+export function Dropdown({ dropdwonClass, children }) {
   const [isOpened, setIsOpened] = useState(false);
 
   const toggleDropdown = () => {
@@ -51,7 +54,7 @@ export function Dropdown({ children }) {
 
   return (
     <DropdownContext.Provider value={{ isOpened, setIsOpened, toggleDropdown }}>
-      <div>{children}</div>
+      <div className={dropdwonClass}>{children}</div>
     </DropdownContext.Provider>
   );
 }

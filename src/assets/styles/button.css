@@ -11,3 +11,10 @@
   border: none;
   background: url(../images/btn_registration.svg) no-repeat center;
 }
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .main__tools-button {
+    grid-area: b1;
+  }
+}
