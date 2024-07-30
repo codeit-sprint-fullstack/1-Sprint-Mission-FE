@@ -12,14 +12,14 @@ export function NavBar() {
         src={logoImg}
         alt="logoImg"
         onClick={() => (window.location.href = "/")}
-      ></img>
+      />
       <img
         id="logo"
         className="margin-left"
         src={logo}
         alt="logo"
         onClick={() => (window.location.href = "/")}
-      ></img>
+      />
       <a className="nav-text">자유게시판</a>
       <a className="nav-text">중고마켓</a>
       <img
@@ -27,7 +27,7 @@ export function NavBar() {
         className="margin-right"
         src={profileIcon}
         alt="profileIc"
-      ></img>
+      />
     </nav>
   );
 }
