@@ -1,6 +1,6 @@
 import React from "react";
 import "assets/styles/App.css";
-import SortingOptionBoxSmall from "./sortOptionDropdownSmall";
+import SortingOptionBoxSmall from "components/sortOptionDropdownSmall";
 import KeywordSearch from "./keywordSearch";
 
 function ProductManagement({
