@@ -3,14 +3,18 @@ import './ProductList.css';
 import SelectBox from './SelectBox';
 import { getProducts } from '../api';
 
-function Pagination() {
+
+function ProductList() {
   return (
-    <div className='Pagination'>
-      <button className='pagination-prev'></button>
-      <button className='pagination-next'></button>
+    <div className='ProductList'>
+      <ProductBest />
+      <ProductOnSale />
     </div>
   );
 }
+
+
+
 
 function ProductBest() {
   const page = 1;
@@ -42,17 +46,17 @@ function ProductBest() {
       <h3 className='BestProduct-title'>베스트 상품</h3>
       <div className='BestProduct-items'>
         {items.map((item) => {
-            return (
-              <div className='BestProduct-item '>
-                <img src={item.images} alt={item.name} />
-                <div className='BestProduct-content '>
-                  <div className='title'>{item.name}</div>
-                  <div className='price'>{(item.price).toLocaleString()}원</div>
-                  <div className='favoriteCount'><span> ♡ </span>{item.favoriteCount}</div>
-                </div>
+          return (
+            <div className='BestProduct-item '>
+              <img src={item.images} alt={item.name} />
+              <div className='BestProduct-content '>
+                <div className='title'>{item.name}</div>
+                <div className='price'>{(item.price).toLocaleString()}원</div>
+                <div className='favoriteCount'><span> ♡ </span>{item.favoriteCount}</div>
               </div>
-            );
-          })}
+            </div>
+          );
+        })}
       </div>
       {isLoadingError?.message && <span>{isLoadingError.message}</span>}
     </div>
@@ -60,21 +64,27 @@ function ProductBest() {
 }
 
 
+
+
 function ProductOnSale() {
-  const page = 1;
-  const pageSize = 10;
-  
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState('');
+  const [page, setPage] = useState(1);
   const [keyword, setKeyword] = useState('');
   const [isLoadingError, setIsLoadingError] = useState(null);
+  const [totalCount, setTotalCount] = useState(0);
+
+  const pageSize = 10;
+
+  console.log(page);
 
   const handleLoad = async (options) => {
     let result;
     try {
       setIsLoadingError(null);
       result = await getProducts(options);
-      const { list } = result;
+      const { list, totalCount } = result;
+      setTotalCount(totalCount)
       if (order === 'like') {
         const sorted = [...list].sort((a, b) => b.favoriteCount - a.favoriteCount);
         setItems(sorted);
@@ -98,7 +108,7 @@ function ProductOnSale() {
 
   useEffect(() => {
     handleLoad({page, pageSize, keyword});
-  }, [order, keyword]);
+  }, [order, keyword, page]);
 
 
   return (
@@ -131,21 +141,54 @@ function ProductOnSale() {
           );
         })}
       </div>
-      
+      <Pagination totalCount={totalCount} page={page} setPage={setPage}/>
       {isLoadingError?.message && <span>{isLoadingError.message}</span>}
     </div>
   );
 }
 
 
-function ProductList() {
-  return (
-    <div className='ProductList'>
-      <ProductBest />
-      <ProductOnSale />
 
+
+function Pagination({totalCount, page, setPage}) {
+  const maxVisibleButtons = 5;
+  const halfVisible = Math.floor(maxVisibleButtons / 2);
+  const prev = '<';
+  const next = '>';
+  
+  const totalPage = Math.ceil(totalCount / 10);
+  const pageNumArr = Array.from({length: totalPage}, (_, i) => i + 1);
+  const startPage = Math.max(1, Math.min(page - halfVisible, totalPage - maxVisibleButtons + 1));
+  const endPage = Math.min(totalPage, startPage + maxVisibleButtons - 1);
+
+  const handlePrevClick = () => {
+    setPage((prevPage) => Math.max(prevPage-1, 1))
+  }
+
+  const handleNextClick = () => {
+    setPage((nextPage) => Math.min(nextPage+1, totalPage))
+  }
+
+  const handlePageClick = (num) => {
+    setPage(num);
+  };
+  
+
+  return (
+    <div className='Pagination'>
+      <button className='pagination-prev' onClick={handlePrevClick}>{prev}</button>
+      {pageNumArr.slice(startPage - 1, endPage).map((num) => {
+        return (
+          <button key={num} 
+          className={`pagination-num ${page === num ? 'active': ''}`} 
+          onClick={() => {handlePageClick(num)}}>{num}</button>
+        );
+      })}
+      <button className='pagination-next' onClick={handleNextClick}>{next}</button>
     </div>
   );
 }
+
+
 
 export default ProductList;

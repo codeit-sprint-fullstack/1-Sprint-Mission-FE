@@ -61,7 +61,7 @@
 
 .OnSaleProduct-container {
   max-width: 1920px;
-  margin: 40px auto 43px auto;
+  margin: 40px auto;
 }
 .OnSaleProduct-nav {
   height: 42px;
@@ -111,6 +111,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 24px;
+  margin-bottom: 43px;
 }
 .OnSaleProduct-item img { 
   width: 100%;
@@ -138,4 +139,36 @@
   font-size: 12px;
   line-height: 18px;
   color: 18px;
+}
+
+
+
+.Pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+.pagination-prev,
+.pagination-num,
+.pagination-next {
+  padding: 7px 16px;
+  border: 1px solid #E5E7EB;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  color: #6B7280;
+  cursor: pointer;
+}
+.pagination-prev:hover,
+.pagination-num:hover,
+.pagination-next:hover {
+  background-color: #2F80ED;
+  border: none;
+  color: #F9FAFB;
+}
+.pagination-num.active {
+  background-color: #007bff;
+  color: white;
 }
