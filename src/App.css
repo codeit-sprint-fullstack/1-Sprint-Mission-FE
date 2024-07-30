@@ -1,0 +1,109 @@
+body {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1920px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  align-items: center;
+  border-bottom: solid 1px #dfdfdf;
+}
+.duv {
+  display: flex;
+  align-items: center;
+}
+.login {
+  width: 40px;
+  height: 40px;
+}
+.header > img {
+  margin-right: 200px;
+}
+
+.logo {
+  margin-left: 200px;
+}
+
+.first {
+  padding-left: 47px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #4b5563;
+}
+
+.link {
+  text-decoration-line: none;
+  font-size: 18px;
+  font-weight: 700;
+  color: #4b5563;
+  padding-left: 15px;
+}
+
+.bestImg {
+  padding-left: 360px;
+  padding-right: 360px;
+}
+
+.bestImg > p {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.form {
+  margin: 0 360px 43px 360px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form_div {
+  display: flex;
+}
+
+.form_div > input {
+  position: relative;
+  width: 325px;
+  height: 42px;
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 12px;
+  padding-left: 44px;
+  color: #9ca3af;
+  margin-right: 15px;
+  margin-top: 20px;
+}
+
+.input_icon {
+  position: absolute;
+  color: #9ca3af;
+  z-index: 1;
+  padding-left: 18px;
+  margin-top: 34px;
+}
+
+.form_div > button {
+  background-color: #3692ff;
+  border: none;
+  width: 133px;
+  height: 42px;
+  border-radius: 8px;
+  color: #f3f4f6;
+  font-size: 16px;
+  font-weight: 600;
+  margin-right: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.more {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 58px;
+  margin-left: 960px;
+}

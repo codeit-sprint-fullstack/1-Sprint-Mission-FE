@@ -1,0 +1,38 @@
+body {
+  color: #1f2937;
+}
+
+.listImg {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 24px 360px 43px 360px;
+}
+
+.product-item .img {
+  width: 221px;
+  height: 221px;
+  border-radius: 16px;
+  margin-top: 24px;
+  margin-right: 24px;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 16px;
+  margin-bottom: 6px;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.favorite {
+  font-size: 12px;
+  font-weight: 500;
+  color: #4b5563;
+  margin-top: 6px;
+  margin-bottom: 40px;
+}
