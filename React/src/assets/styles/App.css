@@ -343,7 +343,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
 }
 
 .container {
@@ -388,7 +387,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    max-width: 51re
+    max-width: 51rem
   }
 
   .header-text {
@@ -488,7 +487,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    width: 100%;
+    width: 22rem;
     max-width: 28.4375rem;
     margin-top: 0;
     margin-bottom: 1.5rem;

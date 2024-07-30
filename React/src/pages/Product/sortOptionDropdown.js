@@ -1,40 +1,75 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import "assets/styles/App.css";
 import arrow from "assets/images/upsideArrow.png";
 
-function SortingOptionBox({ onChange, selectedOption, setCurrentPage }) {
-  const [isOpen, setIsOpen] = useState(false);
+const SortingOptionBox = React.memo(
+  ({ onChange, selectedOption, setCurrentPage, sortingOptions }) => {
+    const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+    const currentOption = useMemo(() => {
+      return (
+        sortingOptions.find((option) => option.value === selectedOption)
+          ?.value ||
+        (sortingOptions[0]?.value ?? "Select Option")
+      );
+    }, [selectedOption, sortingOptions]);
 
-  const selectOption = (option) => {
-    onChange(option);
-    setIsOpen(false);
-    setCurrentPage(1);
-  };
+    const innerText = useMemo(() => {
+      return (
+        sortingOptions.find((option) => option.value === currentOption)
+          ?.label || "정렬 기준 없음"
+      );
+    }, [currentOption, sortingOptions]);
 
-  const innerText = selectedOption === "recent" ? "최신순" : "좋아요순";
+    const toggleDropdown = useCallback(() => {
+      setIsOpen((prevIsOpen) => !prevIsOpen);
+    }, []);
 
-  return (
-    <div className="dropdown">
-      <li className="dropdown-toggle" onClick={toggleDropdown}>
-        {innerText}
-        <img
-          className={`arrow ${isOpen ? "up" : ""}`}
-          src={arrow}
-          alt="arrow"
-        />
-      </li>
-      {isOpen && (
-        <ul className={`dropdown-menu ${isOpen ? "show" : ""}`}>
-          <li onClick={() => selectOption("recent")}>최신순</li>
-          <li onClick={() => selectOption("favorite")}>좋아요순</li>
-        </ul>
-      )}
-    </div>
-  );
-}
+    const selectOption = useCallback(
+      (option) => {
+        onChange(option);
+        setIsOpen(false);
+        setCurrentPage(1);
+      },
+      [onChange, setCurrentPage]
+    );
+
+    return (
+      <div className="dropdown">
+        <li
+          className="dropdown-toggle"
+          onClick={toggleDropdown}
+          role="button"
+          aria-haspopup="listbox"
+          aria-expanded={isOpen}
+        >
+          {innerText}
+          <img
+            className={`arrow ${isOpen ? "up" : ""}`}
+            src={arrow}
+            alt="arrow"
+          />
+        </li>
+        {isOpen && (
+          <ul
+            className={`dropdown-menu ${isOpen ? "show" : ""}`}
+            role="listbox"
+          >
+            {sortingOptions.map((option) => (
+              <li
+                key={option.value}
+                onClick={() => selectOption(option.value)}
+                role="option"
+                aria-selected={option.value === currentOption}
+              >
+                {option.label}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    );
+  }
+);
 
 export default SortingOptionBox;
