@@ -1,11 +1,12 @@
 import { useState } from "react";
 import "./OnSaleDropDown.css";
 import dropDownIcon from "../image/dropDownArrow.png";
-import mobileDropDownIcon from "../image/mobileDropDown.png"
+import mobileDropDownIcon from "../image/mobileDropDown.png";
 
-const DropDown = ({ selectRecent, selectFavorite }) => {
+const DropDown = ({ selectRecent, selectFavorite, setPage }) => {
   const [dropDown, setDropDown] = useState(false);
   const [selectOrder, setSelectOrder] = useState("최신순");
+  const [pageGroup, setPageGroup] = useState(0);
 
   const toggleDropDown = () => {
     setDropDown(!dropDown);
@@ -14,6 +15,8 @@ const DropDown = ({ selectRecent, selectFavorite }) => {
   const handleSelectOrder = (order) => {
     setSelectOrder(order);
     order === "최신순" ? selectRecent() : selectFavorite();
+    setPage(1);
+    pageGroup !== 0 ? setPageGroup(1) : setPageGroup(0);
     setDropDown(false);
   };
 
@@ -25,7 +28,11 @@ const DropDown = ({ selectRecent, selectFavorite }) => {
       <button className="DropDownButton" onClick={toggleDropDown}>
         <span>{selectOrder}</span>
         <img className="dropDownIcon" src={dropDownIcon} alt="dropDownIcon" />
-        <img className="mobileDropDownIcon" src={mobileDropDownIcon} alt="mobileDropDownIcon" />
+        <img
+          className="mobileDropDownIcon"
+          src={mobileDropDownIcon}
+          alt="mobileDropDownIcon"
+        />
       </button>
       {dropDown && (
         <div className="DropDownList">

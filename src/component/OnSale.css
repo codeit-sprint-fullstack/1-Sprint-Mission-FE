@@ -75,11 +75,11 @@ h1 {
 
 #inputSearch::placeholder {
   font-size: 16px;
-  color: #9CA3AF;
+  color: #9ca3af;
 }
 
 /* Tablet view */
-@media (min-width: 744px) and (max-width: 1199px){
+@media (min-width: 744px) and (max-width: 1199px) {
   .OnSale-list {
     display: grid;
     gap: 40px 16px;
@@ -94,12 +94,10 @@ h1 {
     border-style: none;
     padding: 9px 20px 9px 44px;
     background-color: #f3f4f6;
-  
   }
 }
 /* Mobile view */
-@media (max-width: 743px){
-  
+@media (max-width: 743px) {
   .OnSale-list {
     display: grid;
     gap: 32px 8px;
@@ -131,7 +129,6 @@ h1 {
     display: block;
     position: relative;
     grid-column: 1/3;
-
   }
 
   #inputSearch {
