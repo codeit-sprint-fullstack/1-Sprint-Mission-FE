@@ -3,7 +3,7 @@ import axios from "axios";
 import "../assets/styles/marketBody.css";
 import no_image from "../assets/images/no_image.svg";
 // import { isImageUrl, isImageFileText, isImageLoaded } from "../utils/utils";
-import Input from "./Input";
+import SearchProducts from "./SearchProducts";
 import Button from "./Button";
 import { deviceContext } from "../pages/SecondhandMarket";
 import {
@@ -132,13 +132,13 @@ function Products() {
     setSearchText(e.target.value);
   };
 
-  const handleInputEnter = () => {
+  const handleSubmit = (e) => {
     getProducts(1, ORDER_BY_RECENT, searchText);
   };
 
   const handlePageMove = (pageNum) => {
     recentPage = pageNum;
-    getProducts(pageNum, recentOrder);
+    getProducts(pageNum, recentOrder, searchText);
   };
 
   function getProducts(page = 1, order = ORDER_BY_RECENT, search = "") {
@@ -168,14 +168,14 @@ function Products() {
       <div className="flex-row justify-space-between">
         <a className="Text-xl Bold">판매 중인 상품</a>
         <div className="grid main__section-tools">
-          <Input
+          <SearchProducts
             onChange={handleInputChange}
-            onEnter={handleInputEnter}
+            onSubmit={handleSubmit}
             inputClassName="Text-lg Regular input-search"
             imgClassName="img-input-search"
           >
             검색할 상품을 입력해주세요
-          </Input>
+          </SearchProducts>
           <Button
             className="registrationButton"
             onClick={handleRegistrationButtonClick}

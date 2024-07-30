@@ -1,30 +1,29 @@
 import "../assets/styles/input.css";
 
-export function Input({
+export function SearchProducts({
   onChange,
-  onEnter,
+  onSubmit,
   inputClassName,
   imgClassName,
   children,
 }) {
   const inputChange = (e) => onChange(e);
-  const inputEnter = (e) => {
-    if (e.key === "Enter") {
-      return onEnter();
-    }
+
+  const submit = (e) => {
+    e.preventDefault();
+    onSubmit(e);
   };
 
   return (
-    <div className="flex-row input-frame">
+    <form className="flex-row input-frame" onSubmit={submit}>
       <input
         onChange={inputChange}
-        onKeyDown={inputEnter}
         className={inputClassName}
         placeholder={children}
       ></input>
       <img className={imgClassName} />
-    </div>
+    </form>
   );
 }
 
-export default Input;
+export default SearchProducts;
