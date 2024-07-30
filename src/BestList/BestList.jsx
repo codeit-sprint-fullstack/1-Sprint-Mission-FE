@@ -41,14 +41,14 @@ export function BestList() {
             <div key={item.id} className="bestProductItem">
               <img
                 className="bestProduct"
-                src={item.images[0] || "No image"}
-                alt={item.name || "Product image"}
+                src={item?.images?.[0] ?? "No image"}
+                alt={item.name ?? "Product image"}
               />
-              <p className="itemName">{item.name || "No name"}</p>
+              <p className="itemName">{item.name ?? "No name"}</p>
               <p className="itemPrice">
                 {item.price ? `${formatPrice(item.price)} 원` : "No price"}
               </p>
-              <p className="itemFavoriteCnt">♡ {item.favoriteCount || "0"}</p>
+              <p className="itemFavoriteCnt">♡ {item.favoriteCount ?? "0"}</p>
             </div>
           ))
         )}

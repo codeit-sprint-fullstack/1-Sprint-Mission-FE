@@ -104,23 +104,21 @@ export function SellList() {
       {/* 판매 중인 상품 리스트 */}
       <div className="sell">
         <div className="sellProductList">
-          {loading ? (
-            <p>Loading...</p>
-          ) : products.length === 0 ? (
+          {products.length === 0 ? (
             <p>No products available</p>
           ) : (
             products.map((item) => (
               <div key={item.id} className="sellProductItem">
                 <img
                   className="sellProduct"
-                  src={item.images[0] || "No image"}
-                  alt={item.name || "Product image"}
+                  src={item?.images?.[0] ?? "No image"}
+                  alt={item.name ?? "Product image"}
                 />
-                <p className="itemName">{item.name || "No name"}</p>
+                <p className="itemName">{item.name ?? "No name"}</p>
                 <p className="itemPrice">
                   {item.price ? `${formatPrice(item.price)} 원` : "No price"}
                 </p>
-                <p className="itemFavoriteCnt">♡ {item.favoriteCount || "0"}</p>
+                <p className="itemFavoriteCnt">♡ {item.favoriteCount ?? "0"}</p>
               </div>
             ))
           )}
