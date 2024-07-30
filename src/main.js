@@ -35,21 +35,21 @@ function Main(){
 
   useEffect(() => { // 너비 기준으로 ItemperPage의 값 변경(상품수량)
     if (width <= 743) {
-      setItemsPerPage(4);  // 모바일 뷰
+      return setItemsPerPage(4);  // 모바일 뷰
     } else if (width <= 1199) {
-      setItemsPerPage(6);  // 태블릿 뷰
+      return setItemsPerPage(6);  // 태블릿 뷰
     } else {
-      setItemsPerPage(10); // 데스크탑 뷰
+      return setItemsPerPage(10); // 데스크탑 뷰
     }
   }, [width]);  // width가 변경될 때마다 itemsPerPage 업데이트
 
   useEffect(() => { // 너비 기준으로 setBestItemsPerPage의 값 변경(베스트상품수량)
     if (width <= 743) {
-      setBestItemsPerPage(1);  // 모바일 뷰
+      return setBestItemsPerPage(1);  // 모바일 뷰
     } else if (width <= 1199) {
-      setBestItemsPerPage(2);  // 태블릿 뷰
+      return setBestItemsPerPage(2);  // 태블릿 뷰
     } else {
-      setBestItemsPerPage(4); // 데스크탑 뷰
+      return setBestItemsPerPage(4); // 데스크탑 뷰
     }
   }, [width]);  // width가 변경될 때마다 itemsPerPage 업데이트
   
@@ -64,11 +64,19 @@ function Main(){
     };
 
     fetchData();
-  }, [currentPage,itemsPerPage,width]);
+  }, [currentPage,itemsPerPage]);
 
+
+
+  
   useEffect(() => { //토탈 페이지수 계산 버튼 만들때 사용
     setTotalPages(Math.ceil(totalCount / itemsPerPage)); 
-  }, [totalCount,width]); 
+  }, [totalCount]); 
+
+
+
+
+
 
   const changePage = (newPage) => { // 버튼클릭이벤트때 사용 
     setCurrentPage(newPage);
@@ -79,6 +87,8 @@ function Main(){
 
   
 
+  
+
 
   useEffect(() => { // 정렬기준이 최신순, 좋아요순 으로 데이터 변경
     if(selectedOption === '최신순'){
@@ -86,7 +96,7 @@ function Main(){
     }else{
       setvalueOption(ValueItem)
     }
-  },[selectedOption, searchItem, ValueItem, currentPage,width]);
+  },[selectedOption, searchItem, ValueItem, currentPage, itemsPerPage]);
   
 
   useEffect(() => {  // 베스트상품 API를 통해 상품을 가짐
@@ -100,7 +110,7 @@ function Main(){
       setItems(getRes.data)
     }
     getRes()
-  }, [bestItemsPerPage,width]);
+  }, [bestItemsPerPage]);
 
   useEffect(() => { // 정렬 기준
     const getRes = async () => {
@@ -128,7 +138,7 @@ function Main(){
       setSearchItem(getRes.data)
     }
     getRes()
-  }, [currentPage, itemsPerPage,width,selectedOption]);
+  }, [currentPage, itemsPerPage,selectedOption]);
 
 
   
@@ -138,7 +148,6 @@ function Main(){
 
   const handleKeyPress = (event) => { //Enter키 기준으로 keyWord에 입력된 내용으로 다시 API호출
     if (event.key === 'Enter') {
-      console.log(keyword);
       
         const getRes = async () => {
           const getRes = await axios.get("https://panda-market-api.vercel.app/products/",{
