@@ -1,0 +1,59 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css');
+
+.navBar {
+  width: 100vw;
+  height: 70px;
+  position: fixed;
+  top: 0px;
+  border-bottom: 1px solid #dfdfdf;
+  background-color: #ffffff;
+}
+
+.navBox {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navTextBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navTextBox :nth-child(2) {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  padding: 21px 15px;
+  margin-left: 32px;
+  color: #4b5563;
+}
+
+.navTextBox :nth-child(3) {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  padding: 21px 15px;
+  color: #4b5563;
+}
+
+.logo {
+  width: 153px;
+  height: 51px;
+  background-image: url('../img/logo.png');
+  background-size: cover;
+  margin-left: 200px;
+}
+
+.myLogo {
+  width: 40px;
+  height: 40px;
+  background-image: url('../img/myLogo.png');
+  background-size: cover;
+  margin-right: 200px;
+  justify-content: flex-end;
+}

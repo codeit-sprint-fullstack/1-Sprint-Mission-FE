@@ -1,0 +1,234 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css');
+
+.BestItemsContainor {
+  margin-top: 24px;
+}
+
+.title {
+  font-family: Pretendard;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.itemImg {
+  width: 282px;
+  height: 282px;
+  border-radius: 16px;
+}
+
+.BestItemsContainor > .gridBox {
+  width: 1200px;
+  height: 378px;
+  display: flex;
+  overflow: hidden;
+  margin-top: 16px;
+  gap: 24px;
+}
+
+.itemBox {
+  width: 282px;
+  height: 378px;
+}
+
+.itemName {
+  width: 282px;
+  height: 24px;
+  margin-top: 16px;
+  font-size: 16px;
+}
+
+.itemPrice {
+  width: 282px;
+  height: 26px;
+  margin-top: 6px;
+}
+
+.itemFavoriteCount {
+  width: 282px;
+  height: 18px;
+  margin-top: 6px;
+}
+
+/* -------베스트 아이템------------*/
+
+.ForSaleItemsContainor {
+  margin-top: 40px;
+}
+
+.ForSaleItemsTextBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ForSaleItemsContainor > .gridBox > .itemBox > .itemImg {
+  width: 221px;
+  height: 221px;
+  border-radius: 16px;
+}
+
+.ForSaleItemsContainor > .gridBox {
+  width: 1200px;
+  height: 674px;
+  display: grid;
+  grid-template-columns: repeat(5, 221px);
+  grid-template-rows: repeat(2, 317px);
+  row-gap: 40px;
+  column-gap: 24px;
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+.ForSaleItemsContainor > .itemBox {
+  width: 221px;
+  height: 378px;
+}
+
+.itemName {
+  width: 282px;
+  height: 24px;
+  margin-top: 16px;
+  font-size: 16px;
+}
+
+.itemPrice {
+  width: 282px;
+  height: 26px;
+  margin-top: 6px;
+}
+
+.itemFavoriteCount {
+  width: 282px;
+  height: 18px;
+  margin-top: 6px;
+}
+
+/* 판매중인 상품 */
+
+.itemFavoriteCount {
+  display: flex;
+}
+
+.favorite {
+  background-image: url('../img/favorite.png');
+  background-size: cover;
+  width: 13.4px;
+  height: 11.65px;
+}
+
+/* 좋아요 카운트 */
+
+.options {
+  display: flex;
+  gap: 12px;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  width: 325px;
+  height: 42px;
+  border-radius: 12px;
+  padding: 9px 20px 9px 16px;
+  border: none;
+  background-color: #f3f4f6;
+}
+
+.search {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  color: #9ca3af;
+  border: none;
+  background-color: #f3f4f6;
+}
+
+.search:focus {
+  outline: none;
+}
+
+.searchBtn {
+  background-image: url('../img/search.png');
+  background-size: cover;
+  width: 15px;
+  height: 15px;
+}
+
+.addItemBtn {
+  background-color: #3692ff;
+  width: 133px;
+  height: 42px;
+  padding: 12px 23px 12px 23px;
+  border-radius: 8px;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  color: #f3f4f6;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+/* 검색 인풋, 상품등록 버튼 */
+
+.dropArrow {
+  background-image: url('../img/dropdown.png');
+  background-size: cover;
+  color: #1f2937;
+  width: 14.7px;
+  height: 7.42px;
+}
+
+.dropdownTextBox {
+  width: 130px;
+  height: 42px;
+  padding: 12px 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.recentBtn {
+  width: 130px;
+  height: 42px;
+  padding: 12px 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px 12px 0px 0px;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.favoriteBtn {
+  width: 130px;
+  height: 42px;
+  padding: 12px 20px;
+  border: 1px solid #e5e7eb;
+  border-top: none;
+  border-radius: 0px 0px 12px 12px;
+  font-family: pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.dropdownBox {
+  position: absolute;
+  top: 50px;
+}
+
+.dropdownContainor {
+  position: relative;
+}
+
+/* 드롭다운 */
