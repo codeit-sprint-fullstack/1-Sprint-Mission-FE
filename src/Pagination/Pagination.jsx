@@ -40,7 +40,7 @@ export function Shift({ currentPage, onPageChange, totalPages }) {
       {currentGroupPages.map((page) => (
         <button
           key={page}
-          className={`shiftBtn ${currentPage === page ? "active" : ""}`}
+          className={`shiftBtn ${currentPage === page && "active"}`}
           onClick={(e) => handlePageChange(page, e)}
         >
           {page}
