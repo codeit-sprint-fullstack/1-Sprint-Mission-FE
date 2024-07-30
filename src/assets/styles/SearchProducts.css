@@ -3,12 +3,12 @@
   color: var(--gray400-color);
 }
 
-.input-frame {
+.search-frame {
   position: relative;
   height: 4.2rem;
 }
 
-.input-search {
+.search__input {
   width: 32.5rem;
   height: 4.2rem;
   box-sizing: border-box;
@@ -23,7 +23,7 @@
   outline-color: var(--blue100-color);
 }
 
-.img-input-search {
+.search__img {
   width: 2.4rem;
   height: 2.4rem;
   content: url(../images/ic_search.svg);

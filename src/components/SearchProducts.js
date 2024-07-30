@@ -1,4 +1,4 @@
-import "../assets/styles/input.css";
+import "../assets/styles/SearchProducts.css";
 
 export function SearchProducts({
   onChange,
@@ -15,7 +15,7 @@ export function SearchProducts({
   };
 
   return (
-    <form className="flex-row input-frame" onSubmit={submit}>
+    <form className="flex-row search-frame" onSubmit={submit}>
       <input
         onChange={inputChange}
         className={inputClassName}

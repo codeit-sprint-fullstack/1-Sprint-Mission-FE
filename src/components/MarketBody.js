@@ -171,8 +171,8 @@ function Products() {
           <SearchProducts
             onChange={handleInputChange}
             onSubmit={handleSubmit}
-            inputClassName="Text-lg Regular input-search"
-            imgClassName="img-input-search"
+            inputClassName="Text-lg Regular search__input"
+            imgClassName="search__img"
           >
             검색할 상품을 입력해주세요
           </SearchProducts>
