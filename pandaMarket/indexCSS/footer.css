@@ -1,0 +1,128 @@
+footer {
+  height: 160px;
+  background-color: #111827;
+  display: flex;
+  justify-content: center;
+}
+
+.footerContainer {
+  width: 100%;
+  height: inherit;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 200px;
+}
+
+.footerInfo {
+  color: #9ca3af;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.footerMenu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footerMenu li {
+  padding: 0px 15px;
+}
+
+.footerMenu a {
+  color: #e5e7eb;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+}
+
+.footerLinks {
+  width: 116px;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.facebook {
+  background-image: url('/img/facebook.png');
+  background-size: cover;
+  width: 18px;
+  height: 18px;
+}
+
+.twitter {
+  background-image: url('/img/twitter.png');
+  background-size: cover;
+  width: 18px;
+  height: 18px;
+}
+
+.youtube {
+  background-image: url('/img/youtube.png');
+  background-size: cover;
+  width: 18px;
+  height: 18px;
+}
+
+.instar {
+  background-image: url('/img/insta.png');
+  background-size: cover;
+  width: 18px;
+  height: 18px;
+}
+
+.footerContainerMobile {
+  display: none;
+}
+
+@media screen and (min-width: 1921px) {
+  .footerContainer {
+    width: 1920px;
+    height: inherit;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 200px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .footerContainer {
+    width: 100%;
+    height: inherit;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 24px;
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width: 767px) {
+  .footerContainer {
+    display: none;
+  }
+
+  .footerContainerMobile {
+    width: 100%;
+    height: inherit;
+    display: block;
+    justify-content: space-between;
+    padding: 32px 16px;
+  }
+
+  .footerMenu li {
+    padding: 0px 0px;
+  }
+
+  .policyFaq {
+    display: flex;
+  }
+
+  .faq {
+    margin-left: 30px;
+  }
+  .footerInfo.mobile {
+    margin-top: 24px;
+  }
+}
