@@ -1,5 +1,7 @@
-# Sprint Mission
+# install package
 
-## React
+npm install
 
-- 리액트로 화면 구성 하기
+# project start
+
+npm start
