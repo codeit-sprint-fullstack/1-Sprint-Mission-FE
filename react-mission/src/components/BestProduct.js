@@ -25,19 +25,13 @@ function BestProduct() {
     function handleResize() {
         const length = window.innerWidth;
         
-        let i;
-        console.log(length);
         if (length >= 1200) {
             setPageSize(4);
-            i = 4
         } else if (length < 1200 && length >= 768 ) {
             setPageSize(2);
-            i = 2
         } else if (length >= 375 && length < 768) {
             setPageSize(1);
-            i =1
         }
-        console.log(i);
     }
        
     useEffect(() => {
