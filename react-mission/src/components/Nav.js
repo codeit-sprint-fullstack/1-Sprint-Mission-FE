@@ -1,5 +1,4 @@
-import userIcon from '../img/userIcon.png'
-import './HeaderStyle.css'
+import userIcon from './img/userIcon.png'
 
 function Nav() {
     return (
