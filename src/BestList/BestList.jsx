@@ -1,34 +1,17 @@
 import { useEffect, useState } from "react";
 import { useFetchProducts } from "../Product/useFetchProducts";
+import { formatPrice } from "../common/Util";
+import { useDeviceType } from "../common/usePageSize";
 import "./BestList.css";
 
 export function BestList() {
-  const [pageSize, setPageSize] = useState(getPageSize(window.innerWidth));
-  function getPageSize(width) {
-    if (width < 743) return 1; // Mobile
-    if (width < 1199) return 2; // Tablet
-    return 4; // Desktop
-  }
-
-  useEffect(() => {
-    function handleResize() {
-      setPageSize(getPageSize(window.innerWidth));
-    }
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const deviceType = useDeviceType();
 
   // Product.js에서 API GET (favorite 기준 정렬)
   const { products, loading } = useFetchProducts({
     orderBy: "favorite",
-    pageSize: pageSize,
+    pageSize: deviceType === "mobile" ? 1 : deviceType === "tablet" ? 2 : 4,
   });
-
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat("ko-KR").format(price);
-  };
 
   return (
     <div className="best">

@@ -1,43 +1,26 @@
-import { useState, useEffect } from "react";
+// SellList.js
+import React, { useState, useEffect } from "react";
 import { useFetchProducts } from "../Product/useFetchProducts";
 import { Shift } from "../Pagination/Pagination";
-import CustomDropdown from "./CustomDropdown";
+import { formatPrice } from "../common/Util";
+import { useDeviceType } from "../common/usePageSize";
+import { DesktopSearchBar } from "./DesktopSearchBar";
+import { MobileSearchBar } from "./MobileSearchBar";
 import "./SellList.css";
 
 export function SellList() {
   const [sortOrder, setSortOrder] = useState("recent");
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(getPageSize(window.innerWidth));
   const [keyword, setKeyword] = useState("");
   const [searchKeyword, setSearchKeyword] = useState("");
+  const deviceType = useDeviceType();
 
-  function getPageSize(width) {
-    if (width < 743) return 4; // Mobile
-    if (width < 1199) return 6; // Tablet
-    return 10; // Desktop
-  }
-
-  useEffect(() => {
-    function handleResize() {
-      setPageSize(getPageSize(window.innerWidth));
-    }
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  // 파라미터 기준으로 API 데이터 가져오기
   const { products, loading, totalPages } = useFetchProducts({
     orderBy: sortOrder,
     page: currentPage,
-    pageSize: pageSize,
+    pageSize: deviceType === "mobile" ? 4 : deviceType === "tablet" ? 6 : 10,
     keyword: searchKeyword,
   });
-
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat("ko-KR").format(price);
-  };
 
   const handleSortChange = (value) => {
     setSortOrder(value);
@@ -61,45 +44,23 @@ export function SellList() {
 
   return (
     <>
-      {/* 데스크탑, 태블릿 사이즈 searchBar */}
-      <div className="searchBar">
-        <p className="fontStyle">판매 중인 상품</p>
-        <input
-          className="inputSearch"
-          type="text"
-          placeholder="검색할 상품을 입력해주세요"
-          value={keyword}
-          onChange={handleKeywordChange}
+      {deviceType === "mobile" ? (
+        <MobileSearchBar
+          keyword={keyword}
+          onKeywordChange={handleKeywordChange}
           onKeyDown={handleKeyDown}
+          sortOrder={sortOrder}
+          onSortChange={handleSortChange}
         />
-        <button className="btnAdd">상품 등록하기</button>
-        <CustomDropdown
-          selectedOption={sortOrder}
-          onOptionChange={handleSortChange}
+      ) : (
+        <DesktopSearchBar
+          keyword={keyword}
+          onKeywordChange={handleKeywordChange}
+          onKeyDown={handleKeyDown}
+          sortOrder={sortOrder}
+          onSortChange={handleSortChange}
         />
-      </div>
-
-      {/* 모바일 searchBar */}
-      <div className="mobileSearchBar">
-        <div className="mobileBar">
-          <p className="fontStyle">판매 중인 상품</p>
-          <button className="btnAdd">상품 등록하기</button>
-        </div>
-        <div className="mobileBar">
-          <input
-            className="inputSearch"
-            type="text"
-            placeholder="검색할 상품을 입력해주세요"
-            value={keyword}
-            onChange={handleKeywordChange}
-            onKeyDown={handleKeyDown}
-          />
-          <CustomDropdown
-            selectedOption={sortOrder}
-            onOptionChange={handleSortChange}
-          />
-        </div>
-      </div>
+      )}
 
       {/* 판매 중인 상품 리스트 */}
       <div className="sell">
