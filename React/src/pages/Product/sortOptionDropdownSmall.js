@@ -1,33 +1,65 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import "assets/styles/App.css";
 import arrow from "assets/images/ic_sort.png";
 
-function SortingOptionBoxSmall({ onChange, setCurrentPage }) {
-  const [isOpen, setIsOpen] = useState(false);
+const SortingOptionBoxSmall = React.memo(
+  ({ onChange, setCurrentPage, sortingOptions }) => {
+    const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+    // Memoize the current option for display purposes
+    const currentOption = useMemo(() => {
+      return (
+        sortingOptions.find(
+          (option) => option.value === sortingOptions[0]?.value
+        )?.value || "Select Option"
+      );
+    }, [sortingOptions]);
 
-  const selectOption = (option) => {
-    onChange(option);
-    setIsOpen(false);
-    setCurrentPage(1);
-  };
+    // Toggle the dropdown visibility
+    const toggleDropdown = useCallback(() => {
+      setIsOpen((prevIsOpen) => !prevIsOpen);
+    }, []);
 
-  return (
-    <div className="dropdown">
-      <li className="dropdown-toggle small" onClick={toggleDropdown}>
-        <img src={arrow} alt="arrow" />
-      </li>
-      {isOpen && (
-        <ul className={`dropdown-menu-small ${isOpen ? "show" : ""}`}>
-          <li onClick={() => selectOption("recent")}>최신순</li>
-          <li onClick={() => selectOption("favorite")}>좋아요순</li>
-        </ul>
-      )}
-    </div>
-  );
-}
+    // Handle option selection
+    const selectOption = useCallback(
+      (option) => {
+        onChange(option);
+        setIsOpen(false);
+        setCurrentPage(1);
+      },
+      [onChange, setCurrentPage]
+    );
+
+    return (
+      <div className="dropdown">
+        <button
+          className="dropdown-toggle small"
+          onClick={toggleDropdown}
+          aria-haspopup="listbox"
+          aria-expanded={isOpen}
+        >
+          <img src={arrow} alt="Sort options" />
+        </button>
+        {isOpen && (
+          <ul
+            className={`dropdown-menu-small ${isOpen ? "show" : ""}`}
+            role="listbox"
+          >
+            {sortingOptions.map((option) => (
+              <li
+                key={option.value}
+                onClick={() => selectOption(option.value)}
+                role="option"
+                aria-selected={option.value === currentOption}
+              >
+                {option.label}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    );
+  }
+);
 
 export default SortingOptionBoxSmall;

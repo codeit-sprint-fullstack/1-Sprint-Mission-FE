@@ -15,6 +15,10 @@ function ProductManagement({
     setKeyword(localKeyword);
     onSearch();
   };
+  const sortingOptions = [
+    { value: "최신순", label: "최신순" },
+    { value: "좋아요순", label: "좋아요순" },
+  ];
 
   return (
     <div className="product-management">
@@ -35,6 +39,7 @@ function ProductManagement({
           selectedOption={sortOption}
           onChange={setSortOption}
           setCurrentPage={setCurrentPage}
+          sortingOptions={sortingOptions}
         />
       </div>
     </div>
