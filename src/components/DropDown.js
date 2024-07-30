@@ -30,7 +30,7 @@ export function DropdownItem({ onClick, children }) {
 export function DropdownToggle({ children }) {
   const { toggleDropdown } = useContext(DropdownContext);
 
-  const dropdownClass = `Text-lg Regular dropdown`;
+  const dropdownClass = `Text-lg Regular dropdownToggle`;
 
   return (
     <>

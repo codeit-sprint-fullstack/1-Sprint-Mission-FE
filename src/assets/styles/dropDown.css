@@ -1,11 +1,13 @@
-.dropdown {
+.dropdownToggle {
   width: 13rem;
   height: 4.2rem;
   border: solid 1px;
   border-radius: 0.75em;
   border-color: var(--gray200-color);
-  text-align: center;
+  text-align: start;
+  padding: 0.1rem 2rem;
   background-color: var(--white-color);
+  background: 8.6rem url(../images/arrow_down.svg) no-repeat;
 
   position: relative;
 }
