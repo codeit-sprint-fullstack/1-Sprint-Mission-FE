@@ -161,7 +161,7 @@ function Products() {
   }
 
   useEffect(() => {
-    getProducts();
+    getProducts(recentPage, recentOrder, searchText);
   }, [device]);
 
   return (
