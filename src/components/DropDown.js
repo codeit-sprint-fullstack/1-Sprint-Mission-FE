@@ -38,7 +38,7 @@ export function DropdownToggle({ children }) {
   return (
     <>
       <button className={dropdownClass} onClick={toggleDropdown}>
-        {device === 2 || children}
+        {device === 2 ? "" : children}
       </button>
     </>
   );
@@ -48,7 +48,6 @@ export function Dropdown({ dropdwonClass, children }) {
   const [isOpened, setIsOpened] = useState(false);
 
   const toggleDropdown = () => {
-    console.log(isOpened);
     setIsOpened((prevIsOpened) => !prevIsOpened);
   };
 

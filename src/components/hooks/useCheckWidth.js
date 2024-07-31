@@ -14,14 +14,14 @@ function useCheckWidth() {
     }
   };
 
-  const [device, setDevice] = useState(getDeviceType);
+  const [device, setDevice] = useState(getDeviceType());
 
   const handleResize = () => {
     setDevice(getDeviceType());
   };
 
   useEffect(() => {
-    setDevice(handleResize());
+    setDevice(getDeviceType());
     window.addEventListener("resize", handleResize);
 
     return () => {
