@@ -10,9 +10,9 @@ import './reset.css'
 function Main(){
   const [items, setItems] = useState({ list:[]}) //getAPI list가 내용이라 list만 가지고옴
   const [searchItem, setSearchItem] = useState({list:[]}) //get API list가 내용이라 list만 가지고옴
-  const [ValueItem, setValueItem] = useState({list:[]}) //get API list가 내용이라 list만 가지고옴
+  const [valueItem, setValueItem] = useState({list:[]}) //get API list가 내용이라 list만 가지고옴
   const [selectedOption, setSelectedOption] = useState('최신순'); // 셀렉트 초기값
-  const [valueOption, setvalueOption] = useState(items) // 출력 할 내용
+  const [valueOption, setValueOption] = useState(items) // 출력 할 내용
   const [totalCount, setTotalCount] = useState(0);   // API에 totalCount(데이터 수량) API에서 결과를 보여줌
   const [currentPage, setCurrentPage] = useState(1); // API page번호 
   const [totalPages, setTotalPages] = useState(0); // 버튼수량 계산용도
@@ -92,11 +92,11 @@ function Main(){
 
   useEffect(() => { // 정렬기준이 최신순, 좋아요순 으로 데이터 변경
     if(selectedOption === '최신순'){
-      setvalueOption(searchItem)
+      setValueOption(searchItem)
     }else{
-      setvalueOption(ValueItem)
+      setValueOption(valueItem)
     }
-  },[selectedOption, searchItem, ValueItem, currentPage, itemsPerPage]);
+  },[selectedOption, searchItem, valueItem, currentPage, itemsPerPage]);
   
 
   useEffect(() => {  // 베스트상품 API를 통해 상품을 가짐
@@ -155,7 +155,7 @@ function Main(){
               keyword:keyword
             }
           })
-          setvalueOption(getRes.data)
+          setValueOption(getRes.data)
         }
         getRes()
         
