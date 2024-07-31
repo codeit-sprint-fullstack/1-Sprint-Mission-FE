@@ -1,7 +1,7 @@
 .top-bar {
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: 1fr auto auto auto;
   gap: 12px;
 }
 
@@ -13,4 +13,34 @@
   border-radius: 8px;
   width: 133px;
   height: 42px;
+}
+
+.ProductSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  /* padding: 0 24px; */
+}
+
+@media only screen and (max-width: 700px) {
+  .top-bar {
+    grid-template-areas:
+      'a b'
+      'c d';
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
+  }
+  .top-bar h2 {
+    grid-area: a;
+  }
+  .add-product-btn {
+    grid-area: b;
+  }
+  .SearchBar {
+    grid-area: c;
+  }
+
+  .Dropdown {
+    grid-area: d;
+  }
 }

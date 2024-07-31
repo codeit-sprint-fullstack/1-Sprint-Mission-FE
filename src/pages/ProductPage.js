@@ -1,14 +1,28 @@
 import Wrapper from '../components/Wrapper';
-import ProductList from '../components/ProductList';
-import BestProductList from '../components/BestProductList';
+import ProductSection from '../components/ProductSection';
+import BestSection from '../components/BestSection';
 import './ProductPage.css';
+import useMediaQuery from '../hooks/useMediaQuery';
 
 function ProductPage() {
+  const tabletSize = useMediaQuery('tabletSize');
+  const mobileSize = useMediaQuery('mobileSize');
+
   return (
-    <Wrapper className='Wrapper'>
-      <BestProductList className='best-products' />
-      <ProductList className='recent-products' />
-    </Wrapper>
+    <main>
+      <Wrapper className='Wrapper'>
+        <BestSection
+          className='BestSection'
+          tabletSize={tabletSize}
+          mobileSize={mobileSize}
+        />
+        <ProductSection
+          className='ProductSection'
+          tabletSize={tabletSize}
+          mobileSize={mobileSize}
+        />
+      </Wrapper>
+    </main>
   );
 }
 

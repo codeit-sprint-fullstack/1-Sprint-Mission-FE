@@ -1,15 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { getProducts } from '../services/api';
-import './ProductList.css';
+
+import './BestSection.css';
+
 import ProductList from './ProductList';
 
 export default function BestProducts({ className, tabletSize, mobileSize }) {
   const [products, setProducts] = useState([]);
-  const [pageSize, setPageSize] = useState(0);
+  const [pageSize, setPageSize] = useState(() => {
+    if (mobileSize) return 1;
+    else if (tabletSize) return 2;
+    return 4;
+  });
 
-  const init = async (options) => {
+  const init = useCallback(async () => {
     try {
-      const result = await getProducts(options);
+      const result = await getProducts({ orderBy: 'favorite', pageSize });
 
       const { list } = result;
       setProducts(list);
@@ -21,7 +27,7 @@ export default function BestProducts({ className, tabletSize, mobileSize }) {
         console.log(err.response.data);
       }
     }
-  };
+  }, [pageSize]);
 
   useEffect(() => {
     if (mobileSize) setPageSize(1);
@@ -30,13 +36,13 @@ export default function BestProducts({ className, tabletSize, mobileSize }) {
   }, [tabletSize, mobileSize]);
 
   useEffect(() => {
-    init({ orderBy: 'favorite', pageSize });
-  }, [pageSize]);
+    init();
+  }, [init]);
 
   return (
-    <section>
+    <section className={className}>
       <h2>베스트 상품</h2>
-      <ProductList className={className} products={products} />
+      <ProductList products={products} />
     </section>
   );
 }

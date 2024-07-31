@@ -28,6 +28,22 @@
 }
 
 .header-container .logo {
-  min-width: 153px;
+  width: 153px;
   height: 51px;
+}
+
+@media only screen and (max-width: 1199px) {
+  .Header .header-container {
+    padding: 0 24px;
+  }
+}
+
+@media only screen and (max-width: 743px) {
+  .Header .header-container {
+    padding: 0 24px;
+  }
+
+  .header-container .logo {
+    width: 81px;
+  }
 }

@@ -1,7 +1,7 @@
 import heartIcon from '../assets/ic_heart.svg';
 import './ProductList.css';
 
-export function ProductCard({ product }) {
+function ProductCard({ product }) {
   const imgUrl = product?.images?.[0] || 'default-image-url';
   return (
     <div className='ProductCard'>
@@ -18,11 +18,10 @@ export function ProductCard({ product }) {
   );
 }
 
-export default function ProductList({ className, products }) {
-  const classNames = `ProductList ${className}`;
+export default function ProductList({ products }) {
   return (
     <>
-      <ul className={classNames}>
+      <ul className='ProductList'>
         {products.map((product) => {
           return (
             <li key={product.id}>

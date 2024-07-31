@@ -6,7 +6,8 @@
   padding: 12px 20px 12px 44px;
   border-radius: 12px;
   height: 100%;
-  width: 325px;
+  max-width: 325px;
+  width: 100%;
 }
 .Search input::placeholder {
   font-size: 1rem;
@@ -23,15 +24,4 @@
 
 .Search input:focus {
   outline: 1px solid var(--primary-colour);
-}
-
-.search-button {
-  background-color: var(--primary-colour);
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  width: 133px;
-  height: 42px;
-  margin-left: 12px;
 }

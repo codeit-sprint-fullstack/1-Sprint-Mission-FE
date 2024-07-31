@@ -15,3 +15,9 @@ nav ul {
   flex-shrink: 0;
   color: var(--grey-600);
 }
+
+@media only screen and (max-width: 743px) {
+  nav ul {
+    font-size: 1rems;
+  }
+}
