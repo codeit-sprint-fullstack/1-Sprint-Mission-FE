@@ -76,6 +76,13 @@ header {
   cursor: pointer;
 }
 
+.header__btn-profile {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 20rem;
+  cursor: pointer;
+}
+
 .header__img-login {
   object-fit: cover;
   width: 8.8rem;
@@ -96,6 +103,10 @@ header {
 
   /* 로그인 버튼 오른쪽 여백 24px */
   .header__btn-login-frame {
+    margin-right: 2.4rem;
+  }
+
+  .header__btn-profile {
     margin-right: 2.4rem;
   }
 
@@ -133,6 +144,10 @@ header {
 
   /* 로그인 버튼 오른쪽 여백 16px */
   .header__btn-login-frame {
+    margin-right: 1.6rem;
+  }
+
+  .header__btn-profile {
     margin-right: 1.6rem;
   }
 
