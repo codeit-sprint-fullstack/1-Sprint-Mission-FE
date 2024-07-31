@@ -48,7 +48,10 @@ function Paging({ onChange, pageNum, totalCount, paseSize }) {
 
   const makeArrNum = () => {
     const num = Math.ceil(totalCount / paseSize);
-    const keyboard = Array.from({ length: num }, (v, i) => i + 1);
+    let keyboard = Array.from({ length: num }, (v, i) => i + 1);
+    if (keyboard.length > 5) {
+      keyboard = keyboard.slice(0, 5);
+    }
     setPagingNum(keyboard);
   };
 
@@ -65,7 +68,7 @@ function Paging({ onChange, pageNum, totalCount, paseSize }) {
         <MidPagingBtn pageNum={pageNum} onChange={onChange} key={e} num={e} />
       ))}
       <button onClick={nextBtn}>
-        <img src={arrowRigth} alt="이전 화살표"></img>
+        <img src={arrowRigth} alt="다음 화살표"></img>
       </button>
     </div>
   );
