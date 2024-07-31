@@ -1,6 +1,6 @@
 import SecondhandMarket from "./pages/SecondhandMarket";
-import "./App.css";
 import { createContext } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import useCheckWidth from "./components/hooks/useCheckWidth";
 
 export const deviceContext = createContext();
@@ -9,17 +9,14 @@ function App() {
   const [device] = useCheckWidth();
 
   return (
-    <>
-      {/* <BrowserRouter>
+    <BrowserRouter>
+      <deviceContext.Provider value={device}>
         <Routes>
           <Route path="/" element={<SecondhandMarket />} />
-          <Route path="*" element={<h1>Not Found</h1>} />
+          <Route path="/test" element={<h1>test</h1>} />
         </Routes>
-      </BrowserRouter> */}
-      <deviceContext.Provider value={device}>
-        <SecondhandMarket />
       </deviceContext.Provider>
-    </>
+    </BrowserRouter>
   );
 }
 
