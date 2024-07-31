@@ -18,7 +18,7 @@ export function DropdownItem({ onClick, children }) {
   const dropdownItemClass = `dropdownItem`;
 
   const onItemClick = () => {
-    setIsOpened();
+    setIsOpened(false);
     onClick();
   };
 

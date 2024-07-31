@@ -34,6 +34,15 @@ export function Pagination({ className, maxPageNum, recentPage, onClick }) {
   const nextPageNum = tempPageNum > maxPageNum ? maxPageNum : tempPageNum;
   const rightPageButtonClick = () => onClick(nextPageNum);
 
+  function getPaginationClass(pageNum) {
+    const pageClass =
+      recentPage === pageNum
+        ? pageButtonClass + " recentPage"
+        : pageButtonClass;
+
+    return pageClass;
+  }
+
   return (
     <div className="flex-row margin-top43 pagination-frame">
       <button className={className} onClick={leftPageButtonClick}>
@@ -43,15 +52,10 @@ export function Pagination({ className, maxPageNum, recentPage, onClick }) {
         />
       </button>
       {showPageArray.map((item) => {
-        let tempClass =
-          recentPage === item
-            ? pageButtonClass + " recentPage"
-            : pageButtonClass;
-
         return (
           <button
             key={item}
-            className={tempClass}
+            className={getPaginationClass(item)}
             onClick={() => onClick(item)}
           >
             {item}
