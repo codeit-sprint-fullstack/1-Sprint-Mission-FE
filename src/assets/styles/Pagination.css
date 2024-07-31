@@ -15,6 +15,7 @@
   border-color: var(--gray200-color);
   background-color: var(--white-color);
   color: var(--gray500-color);
+  cursor: pointer;
 }
 
 .recentPage {

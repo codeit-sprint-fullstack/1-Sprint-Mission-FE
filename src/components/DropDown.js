@@ -1,21 +1,52 @@
-import { useState, createContext, useContext } from "react";
+import React, {
+  useState,
+  createContext,
+  useContext,
+  cloneElement,
+} from "react";
 import "../";
 import "../assets/styles/dropDown.css";
 import { deviceContext } from "../App";
+import { MOBILE } from "../utils/constants";
 
-const DropdownContext = createContext();
+const dropdownContext = createContext();
 
 export function DropdownMenu({ children }) {
-  const { isOpened } = useContext(DropdownContext);
+  const device = useContext(deviceContext);
+  const { isOpened } = useContext(dropdownContext);
 
-  const dropdownMenuClass = `flex-col Text-lg Regular  dropdownMenue`;
+  let dropdownMenuClass = `flex-col Text-lg Regular dropdownMenue`;
 
-  return isOpened && <div className={dropdownMenuClass}>{children}</div>;
+  if (device === MOBILE) {
+    dropdownMenuClass += " mobileMenu";
+  }
+
+  const arrChild = React.Children.toArray(children);
+  const itemCount = arrChild.length;
+  const meneHeight = itemCount * 4.2 + "rem";
+  const menuHeightStyle = {
+    height: meneHeight,
+  };
+
+  return (
+    isOpened && (
+      <div className={dropdownMenuClass} style={menuHeightStyle}>
+        {arrChild.map((child, index) =>
+          cloneElement(child, { isLast: index === itemCount - 1 })
+        )}
+      </div>
+    )
+  );
 }
 
-export function DropdownItem({ onClick, children }) {
-  const { setIsOpened } = useContext(DropdownContext);
-  const dropdownItemClass = `dropdownItem`;
+export function DropdownItem({ onClick, children, isLast }) {
+  const { setIsOpened } = useContext(dropdownContext);
+
+  let dropdownItemClass = `dropdownItem`;
+
+  if (isLast) {
+    dropdownItemClass += ` lastItem`;
+  }
 
   const onItemClick = () => {
     setIsOpened(false);
@@ -31,14 +62,14 @@ export function DropdownItem({ onClick, children }) {
 
 export function DropdownToggle({ children }) {
   const device = useContext(deviceContext);
-  const { toggleDropdown } = useContext(DropdownContext);
+  const { toggleDropdown } = useContext(dropdownContext);
 
   const dropdownClass = `Text-lg Regular dropdownToggle`;
 
   return (
     <>
       <button className={dropdownClass} onClick={toggleDropdown}>
-        {device === 2 ? "" : children}
+        {device === MOBILE ? "" : children}
       </button>
     </>
   );
@@ -52,9 +83,9 @@ export function Dropdown({ dropdwonClass, children }) {
   };
 
   return (
-    <DropdownContext.Provider value={{ isOpened, setIsOpened, toggleDropdown }}>
+    <dropdownContext.Provider value={{ isOpened, setIsOpened, toggleDropdown }}>
       <div className={dropdwonClass}>{children}</div>
-    </DropdownContext.Provider>
+    </dropdownContext.Provider>
   );
 }
 

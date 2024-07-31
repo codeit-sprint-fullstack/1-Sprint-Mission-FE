@@ -167,7 +167,7 @@ function Products() {
   return (
     <div className="main__section-products">
       <div className="main__products-tools">
-        <p className="Text-xl Bold">판매 중인 상품</p>
+        <p className="Text-xl Bold main__products-tools-name">판매 중인 상품</p>
         <SearchProducts
           searchClassName="main__tools-search"
           onChange={handleInputChange}

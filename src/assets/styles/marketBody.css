@@ -58,6 +58,12 @@
   gap: 1.2rem;
 }
 
+.main__products-tools-name {
+  text-align: left;
+  place-content: center;
+  height: 4.2rem;
+}
+
 .main__best-products-frame {
   width: 100%;
   margin-top: 1.6rem;
