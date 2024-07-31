@@ -3,10 +3,12 @@ import { getProducts } from '../services/api';
 import SearchBar from './SearchBar';
 import DropDown from './DropDown';
 import ProductList from './ProductList';
+import './ProductSection.css';
 
 export default function ProductSection({ className, tabletSize, mobileSize }) {
   const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchValue, setSearchValue] = useState([]);
   const [orderBy, setOrderBy] = useState('recent');
   const [pageSize, setPageSize] = useState(0);
 
@@ -26,6 +28,7 @@ export default function ProductSection({ className, tabletSize, mobileSize }) {
 
       const { list } = result;
       setProducts(list);
+      setFilteredProducts(list);
     } catch (err) {
       console.error(err.message);
 
@@ -36,8 +39,17 @@ export default function ProductSection({ className, tabletSize, mobileSize }) {
     }
   };
 
-  const handleSearch = () => {
-    init({ keyword: search });
+  const handleSearchChange = (e) => {
+    const searchInputValue = e.target.value;
+    setSearchValue(searchInputValue);
+    if (searchInputValue === '') {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter((product) => {
+        return product.name.includes(searchInputValue);
+      });
+      setFilteredProducts(filtered);
+    }
   };
 
   useEffect(() => {
@@ -49,13 +61,14 @@ export default function ProductSection({ className, tabletSize, mobileSize }) {
       <div className='top-bar'>
         <h2>판매중인 상품</h2>
         <SearchBar
-          search={search}
-          setSearch={setSearch}
-          onClick={handleSearch}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          onChange={handleSearchChange}
         />
+        <button className='add-product-btn'>상품 등록하기</button>
         <DropDown orderBy={orderBy} setOrderBy={setOrderBy} />
       </div>
-      <ProductList products={products} className={className} />
+      <ProductList products={filteredProducts} className={className} />
     </section>
   );
 }

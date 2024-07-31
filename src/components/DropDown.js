@@ -3,7 +3,7 @@ import './DropDown.css';
 
 import arrowIcon from '../assets/ic_arrow_down.svg';
 
-export default function DropDown({ setOrderBy, sortOrder }) {
+export default function DropDown({ setOrderBy, orderBy }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropDown = () => {
@@ -18,9 +18,11 @@ export default function DropDown({ setOrderBy, sortOrder }) {
   return (
     <div className='DropDown'>
       <button onClick={toggleDropDown}>
-        {sortOrder === 'recent' ? '최신순' : '인기순'}
+        {orderBy === 'recent' ? '최신순' : '인기순'}
+
         <img src={arrowIcon} alt='arrow icon' className='arrow-icon' />
       </button>
+
       {isOpen && (
         <ul>
           <li onClick={() => handleSorting('recent')}>최신순</li>
