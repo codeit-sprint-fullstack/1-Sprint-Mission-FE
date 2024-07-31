@@ -82,13 +82,14 @@ function ProductOnSale() {
     } else {
       setPageSize(defaultPageSize);
     }
-  });
+  }, [tablet, mobile, defaultPageSize]);
 
   const {items, isLoadingError, totalCount} = useProducts({page, pageSize, keyword, order}, 'onSale');
 
   const handleChange = (e) => {
     const searchItem = e.target.value;
     setKeyword(searchItem);
+    setPage(1);
   }
 
 
