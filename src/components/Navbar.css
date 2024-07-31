@@ -69,6 +69,7 @@
 
 @media (min-width: 375px) and (max-width: 743px) {
     .navbar {
+        width: 376px;
         padding: 0 40px; /* 패딩 조정 */
     }
 

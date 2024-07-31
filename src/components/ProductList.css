@@ -1,6 +1,7 @@
 .product-list {
     padding: 20px;
-    max-width: 1260px;    margin: 0 auto;
+    max-width: 1260px;
+    margin: 0 auto;
 }
 
 .section-title {
@@ -244,7 +245,7 @@
 @media (min-width: 375px) and (max-width: 743px) {
     .best-products {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 10px;
     }
 
     .all-products {
@@ -274,32 +275,40 @@
     }
 
     .search-bar {
-        width: 288px;
-        height: 42px;
-        transform: translateX(10px); /* 오른쪽으로 10px 이동 */
+        width: 250px;
+        height: 40px;
+        transform: translateX(-50px); /* 오른쪽으로 10px 이동 */
+        margin-bottom: 20px;
     }
 
     .search-bar input {
-        width: 100%;
+        width: 90%;
         height: 42px;
     }
 
     .search-icon {
-        top: 50%; /* 검색 아이콘을 정중앙에 배치 */
+        top: 68%; /* 검색 아이콘을 정중앙에 배치 */
         transform: translateY(-50%);
     }
 
     .btn-sort {
-        width: 42px;
-        height: 42px;
+        width: 60px; /* 너비 조정 */
+        height: 60px; /* 높이 조정 */
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid #E5E7EB;
+        border: none;
         border-radius: 12px;
         background-color: #FFFFFF;
         cursor: pointer;
-        margin-left: 50px; /* 검색바와의 간격 조정 */
+        transform: translateX(-60px); /* 오른쪽으로 10px 이동 */
+    }
+
+    .btn-sort img {
+        width: 100%; /* 아이콘 너비를 버튼에 맞게 조정 */
+        height: 100%; /* 아이콘 높이를 버튼에 맞게 조정 */
+        border: none;
+        border-radius: 12px;
     }
 
     .sort-options {
@@ -311,7 +320,7 @@
     }
 
     .product-list {
-        min-width: 480px;
+        min-width: 343px;
         width: 100%; /* 화면 넓이에 따라 유동적으로 조정 */
         margin: 0 auto; /* 가운데 정렬 */
     }
@@ -329,7 +338,44 @@
     }
 
     .register-button {
-        margin-top: 4px; /* 모바일 버전에서 "상품 등록하기" 버튼을 4px 아래로 이동 */
+        margin-top: 4px;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+        margin-left: 10px;
+        margin-right: 10px;
+        gap: 12px;
+    }
+
+    .pagination-item {
+        width: 25px;
+        height: 25px;
+        padding: 12px;
+        border-radius: 50%;
+        border: 1px solid #E5E7EB;
+        background-color: #FFFFFF;
+        color: #6B7280;
+        font-family: 'Pretendard', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .pagination-item.active {
+        background-color: #2F80ED;
+        color: #F9FAFB;
+    }
+
+    .pagination-item img {
+        width: 14px;
+        height: 14px;
     }
 }
 

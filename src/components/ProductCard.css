@@ -56,30 +56,48 @@
 /* Desktop */
 @media (min-width: 1200px) {
     .product-card {
-    width: auto;
+        width: auto;
     }
 }
 
 /* Tablet */
 @media (min-width: 744px) and (max-width: 1199px) {
     .product-card {
-    width: auto;
+        width: auto;
     }
 
     .best-product-image {
-        width: 343px;
-        height: 343px;
+        min-width: 343px;
+        min-height: 343px;
     }
 
     .product-image {
         border-radius: 8px;
     }
-
 }
 
 /* Mobile */
 @media (min-width: 375px) and (max-width: 743px) {
     .product-card {
-    width: auto;
+        width: auto;
+    }
+
+    .best-product-image {
+        min-width: 375px;
+        min-height: 375px;
+    }
+
+    .product-image {
+        width: 175px;
+        height: 175px;
+        border-radius: 8px;
+        margin-bottom: 5px; /* 행 간격 조정 */
+    }
+
+    .all-products {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 3px; /* 행 간격을 5px로 설정 */
     }
 }
+
