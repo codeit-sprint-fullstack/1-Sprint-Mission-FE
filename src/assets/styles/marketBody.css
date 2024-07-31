@@ -58,12 +58,6 @@
   gap: 1.2rem;
 }
 
-.main__section-tools {
-  grid-template-columns: 32.5rem 13.3rem 13rem;
-  height: 4.2rem;
-  gap: 1.2rem;
-}
-
 .main__best-products-frame {
   width: 100%;
   margin-top: 1.6rem;

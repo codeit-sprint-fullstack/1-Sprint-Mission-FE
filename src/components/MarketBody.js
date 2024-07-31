@@ -96,9 +96,9 @@ function Product({ img, imgClass, title, price, favorite }) {
             className="favoriteButton"
             onClick={handleFavoriteButtonClick}
           />
-          <a className="margin-left4 Text-xs-line-height18 Medium">
+          <p className="margin-left4 Text-xs-line-height18 Medium">
             {favorite}
-          </a>
+          </p>
         </div>
       </div>
     </>
@@ -132,7 +132,7 @@ function Products() {
     setSearchText(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     getProducts(1, ORDER_BY_RECENT, searchText);
   };
 
@@ -167,8 +167,7 @@ function Products() {
   return (
     <div className="main__section-products">
       <div className="main__products-tools">
-        <a className="Text-xl Bold">판매 중인 상품</a>
-        {/* <div className="grid main__section-tools"> */}
+        <p className="Text-xl Bold">판매 중인 상품</p>
         <SearchProducts
           searchClassName="main__tools-search"
           onChange={handleInputChange}
@@ -195,7 +194,6 @@ function Products() {
             </DropdownMenu>
           </Dropdown>
         }
-        {/* </div> */}
       </div>
       <div className="main__products-frame">
         {products.map((item) => (

@@ -23,9 +23,9 @@ export function DropdownItem({ onClick, children }) {
   };
 
   return (
-    <a className={dropdownItemClass} onClick={onItemClick}>
+    <p className={dropdownItemClass} onClick={onItemClick}>
       {children}
-    </a>
+    </p>
   );
 }
 

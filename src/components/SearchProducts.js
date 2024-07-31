@@ -12,7 +12,7 @@ export function SearchProducts({
 
   const submit = (e) => {
     e.preventDefault();
-    onSubmit(e);
+    onSubmit();
   };
 
   const searchClass = `flex-row search-frame ${searchClassName}`;
@@ -24,7 +24,7 @@ export function SearchProducts({
         className={inputClassName}
         placeholder={children}
       ></input>
-      <img className={imgClassName} />
+      <img className={imgClassName} alt="검색" />
     </form>
   );
 }
