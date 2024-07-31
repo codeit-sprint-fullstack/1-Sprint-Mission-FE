@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import useProducts from './useProducts';
 import './ProductList.css';
 import SelectBox from './SelectBox';
-import { getProducts } from '../api';
+
 
 
 function ProductList() {
@@ -21,25 +22,26 @@ function ProductBest() {
   const pageSize = 4;
   const orderBy = 'favorite';
 
-  const [items, setItems] = useState([]);
-  const [isLoadingError, setIsLoadingError] = useState(null);
+  // const [items, setItems] = useState([]);
+  // const [isLoadingError, setIsLoadingError] = useState(null);
+  const { items, isLoadingError } = useProducts({ page, pageSize, orderBy }, 'best');
   
-  const handleLoad = async (options) => {
-    let result;
-    try {
-      setIsLoadingError(null);
-      result = await getProducts(options);
-      const { list } = result;
-      setItems(list);
-    } catch (error) {
-      setIsLoadingError(error);
-      return null;
-    }
-  } 
+  // const handleLoad = async (options) => {
+  //   let result;
+  //   try {
+  //     setIsLoadingError(null);
+  //     result = await getProducts(options);
+  //     const { list } = result;
+  //     setItems(list);
+  //   } catch (error) {
+  //     setIsLoadingError(error);
+  //     return null;
+  //   }
+  // } 
 
-  useEffect(() => {
-    handleLoad({page, pageSize, orderBy});
-  }, [orderBy]);
+  // useEffect(() => {
+  //   handleLoad({page, pageSize, orderBy});
+  // }, [orderBy]);
 
   return (
     <div className='BestProduct-container'>
@@ -65,50 +67,18 @@ function ProductBest() {
 
 
 
-
 function ProductOnSale() {
-  const [items, setItems] = useState([]);
   const [order, setOrder] = useState('');
   const [page, setPage] = useState(1);
   const [keyword, setKeyword] = useState('');
-  const [isLoadingError, setIsLoadingError] = useState(null);
-  const [totalCount, setTotalCount] = useState(0);
-
   const pageSize = 10;
 
-  console.log(page);
-
-  const handleLoad = async (options) => {
-    let result;
-    try {
-      setIsLoadingError(null);
-      result = await getProducts(options);
-      const { list, totalCount } = result;
-      setTotalCount(totalCount)
-      if (order === 'like') {
-        const sorted = [...list].sort((a, b) => b.favoriteCount - a.favoriteCount);
-        setItems(sorted);
-      } else if (order === 'latest') {
-        const sorted = [...list].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-        setItems(sorted);
-      } else {
-        setItems(list);
-      }
-      
-    } catch (error) {
-      setIsLoadingError(error);
-      return;
-    }
-  }
+  const {items, isLoadingError, totalCount} = useProducts({page, pageSize, keyword, order}, 'onSale');
 
   const handleChange = (e) => {
     const searchItem = e.target.value;
     setKeyword(searchItem);
   }
-
-  useEffect(() => {
-    handleLoad({page, pageSize, keyword});
-  }, [order, keyword, page]);
 
 
   return (
