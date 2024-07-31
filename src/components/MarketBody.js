@@ -32,11 +32,13 @@ const ORDER_TEXT = ["최신순", "좋아요순"];
 
 let recentOrder = ORDER_BY_RECENT;
 
-// index 0 : PC 1 : TABLET 2 : MOBILE
+/** products items count */
 const PAGE_SIZE = [10, 6, 4];
+/** best products items count */
 const BEST_PAGE_SIZE = [4, 2, 1];
 
 let recentPage = 1;
+let totalCount = 0;
 
 function Product({ img, imgClass, title, price, favorite }) {
   const [validImg, setValidImg] = useState(no_image);
@@ -111,9 +113,8 @@ function Products() {
   const [searchText, setSearchText] = useState("");
 
   let device = useContext(deviceContext);
-  let totalCount = 0;
+  // let totalCount = 0;
 
-  console.log("Products : " + device);
   const handleRegistrationButtonClick = () => {
     alert("상품 등록 : 로그인이 필요합니다");
   };
@@ -142,13 +143,22 @@ function Products() {
   };
 
   function getProducts(page = 1, order = ORDER_BY_RECENT, search = "") {
-    console.log("Products2 : " + device);
+    page =
+      page > Math.floor(totalCount / PAGE_SIZE[device]) + 1
+        ? Math.floor(totalCount / PAGE_SIZE[device]) + 1
+        : page;
+
+    recentPage = page;
+
     const params = {
       page: page,
       pageSize: PAGE_SIZE[device],
       orderBy: ORDER_BY[order],
-      keyword: search,
     };
+
+    if (search) {
+      params.keyword = search;
+    }
 
     instance
       .get(PATH, { params })
@@ -215,6 +225,7 @@ function Products() {
         <Pagination
           className="main__products-pagination"
           maxPageNum={maxPageNum}
+          totalCount={totalCount}
           recentPage={recentPage}
           onClick={handlePageMove}
         />

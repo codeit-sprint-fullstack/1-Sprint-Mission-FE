@@ -3,7 +3,6 @@ import "../assets/styles/Pagination.css";
 const SHOW_MAX_PAGINATION = 5;
 
 export function Pagination({ className, maxPageNum, recentPage, onClick }) {
-  console.log("Pagination : " + maxPageNum);
   const maxButtonNumber =
     maxPageNum > SHOW_MAX_PAGINATION ? SHOW_MAX_PAGINATION : maxPageNum;
   const pageButtonClass = className + " Text-lg Semibold";
