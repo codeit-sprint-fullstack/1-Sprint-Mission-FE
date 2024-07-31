@@ -20,14 +20,12 @@ export default function ProductSection({ className, tabletSize, mobileSize }) {
     }
   }, [mobileSize, tabletSize]);
 
-  const handleLoad = async (options) => {
+  const init = async (options) => {
     try {
-      let result;
-      result = await getProducts(options);
-      if (result) {
-        const { list } = result;
-        setProducts(list);
-      }
+      const result = await getProducts(options);
+
+      const { list } = result;
+      setProducts(list);
     } catch (err) {
       console.error(err.message);
 
@@ -39,11 +37,11 @@ export default function ProductSection({ className, tabletSize, mobileSize }) {
   };
 
   const handleSearch = () => {
-    handleLoad({ keyword: search });
+    init({ keyword: search });
   };
 
   useEffect(() => {
-    handleLoad({ orderBy, pageSize });
+    init({ orderBy, pageSize });
   }, [orderBy, pageSize]);
 
   return (

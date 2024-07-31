@@ -7,14 +7,12 @@ export default function BestProducts({ className, tabletSize, mobileSize }) {
   const [products, setProducts] = useState([]);
   const [pageSize, setPageSize] = useState(0);
 
-  const handleLoad = async (options) => {
+  const init = async (options) => {
     try {
-      let result;
-      result = await getProducts(options);
-      if (result) {
-        const { list } = result;
-        setProducts(list);
-      }
+      const result = await getProducts(options);
+
+      const { list } = result;
+      setProducts(list);
     } catch (err) {
       console.error(err.message);
 
@@ -32,7 +30,7 @@ export default function BestProducts({ className, tabletSize, mobileSize }) {
   }, [tabletSize, mobileSize]);
 
   useEffect(() => {
-    handleLoad({ orderBy: 'favorite', pageSize });
+    init({ orderBy: 'favorite', pageSize });
   }, [pageSize]);
 
   return (

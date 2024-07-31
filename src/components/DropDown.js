@@ -3,7 +3,7 @@ import './DropDown.css';
 
 import arrowIcon from '../assets/ic_arrow_down.svg';
 
-export default function DropDown({ setSortOrder, sortOrder }) {
+export default function DropDown({ setOrderBy, sortOrder }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropDown = () => {
@@ -11,7 +11,7 @@ export default function DropDown({ setSortOrder, sortOrder }) {
   };
 
   const handleSorting = (order) => {
-    setSortOrder(order);
+    setOrderBy(order);
     setIsOpen(false);
   };
 
