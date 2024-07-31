@@ -83,21 +83,20 @@
     }
 
     .best-product-image {
-        min-width: 375px;
-        min-height: 375px;
+        min-width: 390px;
+        min-height: 390px;
     }
 
     .product-image {
-        width: 175px;
-        height: 175px;
+        width: 180px;
+        height: 180px;
         border-radius: 8px;
-        margin-bottom: 5px; /* 행 간격 조정 */
+        margin-bottom: 5px;
     }
 
     .all-products {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        row-gap: 3px; /* 행 간격을 5px로 설정 */
+        row-gap: 3px;
     }
 }
-

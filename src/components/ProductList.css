@@ -16,7 +16,7 @@
 
 /* "베스트 상품" 글자 위치 조정 */
 .product-list .section-title {
-    margin-left: 20px; /* 오른쪽으로 20px 이동 */
+    margin-left: 20px;
     padding-bottom: 10px;
 }
 
@@ -55,7 +55,7 @@
 
 .search-icon {
     position: absolute;
-    left: 23px; /* 아이콘을 오른쪽으로 이동 */
+    left: 23px;
     top: 50%;
     transform: translateY(-50%);
     width: 20px;
@@ -231,7 +231,7 @@
 
     /* "베스트 상품" 글자 위치 조정 */
     .product-list .section-title {
-        margin-left: 20px; /* 오른쪽으로 20px 이동 */
+        margin-left: 20px;
     }
 
     /* "판매 중인 상품" 글자 위치 조정 */
@@ -281,9 +281,9 @@
     }
 
     .search-bar {
-        width: 250px;
+        width: 260px;
         height: 40px;
-        transform: translateX(-50px); /* 오른쪽으로 10px 이동 */
+        transform: translateX(-50px);
         margin-bottom: 20px;
     }
 
@@ -293,13 +293,13 @@
     }
 
     .search-icon {
-        top: 68%; /* 검색 아이콘을 정중앙에 배치 */
+        top: 68%;
         transform: translateY(-50%);
     }
 
     .btn-sort {
-        width: 60px; /* 너비 조정 */
-        height: 60px; /* 높이 조정 */
+        width: 60px;
+        height: 60px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -307,18 +307,18 @@
         border-radius: 12px;
         background-color: #FFFFFF;
         cursor: pointer;
-        transform: translateX(-60px); /* 오른쪽으로 10px 이동 */
+        transform: translateX(-60px);
     }
 
     .btn-sort img {
-        width: 100%; /* 아이콘 너비를 버튼에 맞게 조정 */
-        height: 100%; /* 아이콘 높이를 버튼에 맞게 조정 */
+        width: 100%;
+        height: 100%;
         border: none;
         border-radius: 12px;
     }
 
     .sort-options {
-        display: none; /* 기본적으로 숨김 */
+        display: none;
     }
 
     .sort-options.active {
@@ -327,38 +327,39 @@
 
     .product-list {
         min-width: 343px;
-        width: 100%; /* 화면 넓이에 따라 유동적으로 조정 */
-        margin: 0 auto; /* 가운데 정렬 */
+        width: 100%;
+        margin: 0 auto;
     }
 
     /* "판매 중인 상품" 글자 위치 조정 */
     .product-controls-container h2.section-title.all-products-title {
         position: relative;
         top: 5px;
-        transform: translateX(14px); /* 오른쪽으로 14px 이동 */
+        transform: translateX(14px);
     }
 
     /* "베스트 상품" 글자 위치 조정 */
     .section-title.best-products-title {
-        transform: translateX(24px); /* 오른쪽으로 24px 이동 */
+        transform: translateX(24px);
     }
 
     .register-button {
         margin-top: 4px;
+        transform: translateX(10px);
     }
 
     .pagination {
         display: flex;
         justify-content: center;
         margin: 20px 0;
-        margin-left: 10px;
-        margin-right: 10px;
-        gap: 12px;
+        margin-left: 20px;
+        margin-right: 15px;
+        gap: 10px;
     }
 
     .pagination-item {
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
         padding: 12px;
         border-radius: 50%;
         border: 1px solid #E5E7EB;
