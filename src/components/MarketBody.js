@@ -13,8 +13,7 @@ import {
   DropdownItem,
 } from "./Dropdown";
 import Pagination from "./Pagination";
-
-const PRODUCT_API_ADDRESS = "https://panda-market-api.vercel.app";
+import { PRODUCT_API_ADDRESS } from "../utils/constants";
 
 const instance = axios.create({
   baseURL: PRODUCT_API_ADDRESS,
@@ -34,9 +33,6 @@ const ORDER_TEXT = ["최신순", "좋아요순"];
 let recentOrder = ORDER_BY_RECENT;
 
 // index 0 : PC 1 : TABLET 2 : MOBILE
-const PC = 0;
-const TABLET = 1;
-const MOBILE = 2;
 const PAGE_SIZE = [10, 6, 4];
 const BEST_PAGE_SIZE = [4, 2, 1];
 
