@@ -243,6 +243,12 @@
 
 /* 모바일 버전 */
 @media (min-width: 375px) and (max-width: 743px) {
+    .product-list {
+        padding-top: 20px;
+        padding-left: 35px;
+        margin: 0 auto;
+    }
+
     .best-products {
         grid-template-columns: 1fr;
         gap: 10px;
