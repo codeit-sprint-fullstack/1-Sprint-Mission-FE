@@ -1,8 +1,9 @@
 import './SelectBox.css';
 import { useState } from 'react';
+import btnImg from '../assets/imgs/ic_sort.png';
 
-function SelectBox({setOrder}) {
-  const [btnName, setBtnName] = useState('-');
+function SelectBox({setOrder, mobile}) {
+  const [btnName, setBtnName] = useState('최신순');
   const [show, setShow] = useState(null);
 
   const handleOptionClick = (option) => {
@@ -20,11 +21,23 @@ function SelectBox({setOrder}) {
 
   return (
     <div className="SelectBox">
-      <button onClick={handleSelectClick} className='select-init base-style'>{btnName}<span>▼</span></button>
+      {(!mobile) ? 
+      <button 
+        onClick={handleSelectClick} 
+        className='select-init base-style'>
+          {btnName}<span>▼</span>
+      </button>
+      :
+      <button 
+        onClick={handleSelectClick} 
+        className='select-init base-style'>
+          <img src={btnImg} width='24' height='24' alt='button-img'/>
+      </button>
+      } 
+      
       {show && <div className='select-options'>
         <button className='base-style' onClick={() => {handleOptionClick('최신순'); setOrder('latest');}}>최신순</button>
         <button className='base-style' onClick={() => {handleOptionClick('좋아요순'); setOrder('like');}}>좋아요순</button>
-        <button className='base-style' onClick={() => {handleOptionClick(''); setOrder('');}}>--</button>
       </div>}  
     </div>
   );

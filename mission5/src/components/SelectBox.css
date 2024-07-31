@@ -31,3 +31,21 @@
   background-color: #3692FF;
   color: #E5E7EB;
 }
+
+
+@media screen and (min-width: 375px) and (max-width: 786px) {
+  .SelectBox {
+    width: 42px;
+  }
+  .select-init {
+    width: 42px;
+    height: 42px;
+    padding: 9px;
+  }
+  .select-options button {
+    width: 130px;
+    height: 40px;
+    position: relative;
+    right: 87px;
+  }
+}

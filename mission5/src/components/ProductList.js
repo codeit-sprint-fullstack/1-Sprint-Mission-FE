@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useProducts from './useProducts';
+import useMediaQuery from './useMediaQuery';
 import './ProductList.css';
 import SelectBox from './SelectBox';
-
 
 
 function ProductList() {
@@ -15,33 +15,28 @@ function ProductList() {
 }
 
 
-
-
 function ProductBest() {
   const page = 1;
-  const pageSize = 4;
   const orderBy = 'favorite';
 
-  // const [items, setItems] = useState([]);
-  // const [isLoadingError, setIsLoadingError] = useState(null);
-  const { items, isLoadingError } = useProducts({ page, pageSize, orderBy }, 'best');
+  const defaultPageSize = 4;
+  const [pageSize, setPageSize] = useState(defaultPageSize);
   
-  // const handleLoad = async (options) => {
-  //   let result;
-  //   try {
-  //     setIsLoadingError(null);
-  //     result = await getProducts(options);
-  //     const { list } = result;
-  //     setItems(list);
-  //   } catch (error) {
-  //     setIsLoadingError(error);
-  //     return null;
-  //   }
-  // } 
+  const tablet = useMediaQuery('(min-width: 787px) and (max-width: 1460px)');
+  const mobile = useMediaQuery('(min-width: 375px) and (max-width: 786px)');
 
-  // useEffect(() => {
-  //   handleLoad({page, pageSize, orderBy});
-  // }, [orderBy]);
+
+  useEffect(() => {
+    if (tablet) {
+      setPageSize(2);
+    } else if (mobile) {
+      setPageSize(1);
+    } else {
+      setPageSize(defaultPageSize);
+    }
+  });
+  
+  const { items, isLoadingError } = useProducts({ page, pageSize, orderBy }, 'best');
 
   return (
     <div className='BestProduct-container'>
@@ -52,7 +47,7 @@ function ProductBest() {
             <div className='BestProduct-item '>
               <img src={item.images} alt={item.name} />
               <div className='BestProduct-content '>
-                <div className='title'>{item.name}</div>
+                <div className='name'>{item.name}</div>
                 <div className='price'>{(item.price).toLocaleString()}원</div>
                 <div className='favoriteCount'><span> ♡ </span>{item.favoriteCount}</div>
               </div>
@@ -67,11 +62,27 @@ function ProductBest() {
 
 
 
+
 function ProductOnSale() {
   const [order, setOrder] = useState('');
   const [page, setPage] = useState(1);
   const [keyword, setKeyword] = useState('');
-  const pageSize = 10;
+  
+  const defaultPageSize = 10;
+  const [pageSize, setPageSize] = useState(defaultPageSize);
+  
+  const tablet = useMediaQuery('(min-width: 787px) and (max-width: 1460px)');
+  const mobile = useMediaQuery('(min-width: 375px) and (max-width: 786px)');
+
+  useEffect(() => {
+    if (tablet) {
+      setPageSize(6);
+    } else if (mobile) {
+      setPageSize(4);
+    } else {
+      setPageSize(defaultPageSize);
+    }
+  });
 
   const {items, isLoadingError, totalCount} = useProducts({page, pageSize, keyword, order}, 'onSale');
 
@@ -83,9 +94,10 @@ function ProductOnSale() {
 
   return (
     <div className='OnSaleProduct-container'>
+      {(!mobile) ? 
       <div className='OnSaleProduct-nav'>
         <h3 className='OnSaleProduct-title'>판매 중인 상품</h3>
-        <div className='OnSaleProduct-search-upload'>
+        <div className='OnSaleProduct-elements'>
           <input 
             className='OnSaleProduct-search' 
             type='search' 
@@ -93,9 +105,26 @@ function ProductOnSale() {
             onChange={handleChange}
           />
           <button className='OnSaleProduct-upload'>상품 등록하기</button>
+          <SelectBox setOrder={setOrder} mobile={mobile}/>
         </div>
-        <SelectBox setOrder={setOrder}/>
       </div>
+      :
+      <div className='OnSaleProduct-nav'>
+        <div className='OnSaleProduct-TU'>
+          <h3 className='OnSaleProduct-title'>판매 중인 상품</h3>
+          <button className='OnSaleProduct-upload'>상품 등록하기</button>
+        </div>
+        <div className='OnSaleProduct-SS'>
+          <input 
+            className='OnSaleProduct-search' 
+            type='search' 
+            placeholder='🔍︎ 검색할 상품을 입력해주세요.' 
+            onChange={handleChange}
+          />
+          <SelectBox setOrder={setOrder} mobile={mobile}/>
+        </div>
+      </div>
+      }
       
       <div className='OnSaleProduct-items'>
         {items.map((item) => {
@@ -103,7 +132,7 @@ function ProductOnSale() {
             <div className='OnSaleProduct-item '>
               <img src={item.images} alt={item.name} />
               <div className='OnSaleProduct-content '>
-                <div className='title'>{item.name}</div>
+                <div className='name'>{item.name}</div>
                 <div className='price'>{(item.price).toLocaleString()}원</div>
                 <div className='favoriteCount'><span> ♡ </span>{item.favoriteCount}</div>
               </div>
@@ -121,15 +150,26 @@ function ProductOnSale() {
 
 
 function Pagination({totalCount, page, setPage}) {
+  const tablet = useMediaQuery('(min-width: 787px) and (max-width: 1460px)');
+  const mobile = useMediaQuery('(min-width: 375px) and (max-width: 786px)');
+
+  let dataBatch;
+  if (tablet) {
+    dataBatch = 6;
+  } else if (mobile) {
+    dataBatch = 4;
+  } else {
+    dataBatch = 10;
+  }
+
   const maxVisibleButtons = 5;
   const halfVisible = Math.floor(maxVisibleButtons / 2);
-  const prev = '<';
-  const next = '>';
-  
-  const totalPage = Math.ceil(totalCount / 10);
+  const totalPage = Math.ceil(totalCount / dataBatch);
   const pageNumArr = Array.from({length: totalPage}, (_, i) => i + 1);
   const startPage = Math.max(1, Math.min(page - halfVisible, totalPage - maxVisibleButtons + 1));
   const endPage = Math.min(totalPage, startPage + maxVisibleButtons - 1);
+
+  
 
   const handlePrevClick = () => {
     setPage((prevPage) => Math.max(prevPage-1, 1))
@@ -146,7 +186,7 @@ function Pagination({totalCount, page, setPage}) {
 
   return (
     <div className='Pagination'>
-      <button className='pagination-prev' onClick={handlePrevClick}>{prev}</button>
+      <button className='pagination-prev' onClick={handlePrevClick}>{'<'}</button>
       {pageNumArr.slice(startPage - 1, endPage).map((num) => {
         return (
           <button key={num} 
@@ -154,7 +194,7 @@ function Pagination({totalCount, page, setPage}) {
           onClick={() => {handlePageClick(num)}}>{num}</button>
         );
       })}
-      <button className='pagination-next' onClick={handleNextClick}>{next}</button>
+      <button className='pagination-next' onClick={handleNextClick}>{'>'}</button>
     </div>
   );
 }
