@@ -104,7 +104,6 @@ function App() {
               onChange={handleSearchChange}
               onKeyDown={handleKeyDown}
             />
-            <button onClick={handleSearchClick} className="search-button">검색</button>
             <button className='addProductBotton'>상품 등록하기</button>
             <select className="sortDropDown" onChange={handleOrderChange}>
               <option value="createdAt">최신순</option>
