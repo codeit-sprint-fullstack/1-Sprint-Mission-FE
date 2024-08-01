@@ -1,108 +1,100 @@
 @media screen and (min-width: 768px) and (max-width: 1199.9px) {
-    /* header */
-    .Logo{
-        margin-left: 24px;
-    }
+  /* header */
+  .Logo {
+    margin-left: 24px;
+  }
 
-    nav{
-        margin-left: 20px;
-        margin-right: 24px;
-    }
+  nav {
+    margin-left: 20px;
+    margin-right: 24px;
+  }
 
+  /* bestProduct.js의 css */
+  .bestProductContaner {
+    width: 696px;
+    height: 482px;
+  }
 
-    /* bestProduct.js의 css */
-    .bestProductContaner{
-        width: 696px;
-        height: 482px;
-    }
+  /* SaleProduct.js의 css */
+  .saleProductContaner {
+    width: 696px;
+  }
 
+  .saleProductParts {
+    width: 695px;
+    flex-direction: row;
+    align-items: center;
+  }
 
-    /* SaleProduct.js의 css */
-    .saleProductContaner{
-        width: 696px;
-    }
+  .saleProductFrom {
+    width: 529px;
+  }
 
-    .saleProductParts{
-        width: 695px;
-        flex-direction: row;
-        align-items: center;
-    }
+  /* ProductCard.js의 css */
+  .bestProductName {
+    width: 343px;
+  }
 
-    .saleProductFrom{
-        width: 529px;
-    }
+  .saleProductName {
+    width: 221px;
+  }
 
+  /* variant이 best일 때 */
+  .bestProductImg {
+    width: 343px;
+    height: 343px;
+  }
 
-     /* ProductCard.js의 css */
-     .bestProductName {
-        width: 343px;
-    }
+  .bestProductCardContaner {
+    width: 696px;
+    height: 434px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
 
-    .saleProductName{
-        width: 221px;
-    }
+  .bestProductCard {
+    width: 343px;
+    height: 434px;
+  }
 
+  /* variant이 sale일 때 */
+  .saleProductCardContaner {
+    width: 695px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 40px 16px;
+    flex-wrap: wrap;
+  }
 
-    /* variant이 best일 때 */
-    .bestProductImg {
-        width: 343px;
-        height: 343px;
-    }
+  .saleProductCard {
+    width: 221px;
+    height: 317px;
+  }
 
-    .bestProductCardContaner{
-        width: 696px;
-        height: 434px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        overflow: hidden;
-    }
+  /* SearchFrom.js의 css */
+  .searchProduct {
+    width: 242px;
+  }
 
-    .bestProductCard{
-        width: 343px;
-        height: 434px;
-    }
+  /* Pagination의 css */
+  .pagination {
+    height: 152px;
+    padding: 40px 0 72px;
+  }
 
+  /* footer */
+  .bottom-box {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 
-    /* variant이 sale일 때 */
-    .saleProductCardContaner{
-        width: 695px;
-        height: auto;
-        display: flex;
-        flex-direction: row;
-        gap: 40px 16px;
-        flex-wrap: wrap;
-    }
+  .mobile {
+    flex-grow: 1;
+  }
 
-    .saleProductCard{
-        width: 221px;
-        height: 317px;
-    }
-
-
-    /* SearchFrom.js의 css */
-    .searchProduct{
-        width: 242px;
-    }
-
-
-    /* Pagination의 css */
-    .pagination{
-        height: 152px;
-        padding: 40px 0 72px;
-    }
-
-
-    /* footer */
-    .bottom-box {
-        padding-left: 24px;
-        padding-right: 24px;
-    }
-    
-    .mobile {
-        flex-grow: 1;
-    }
-    
-    .link_box {
-        flex-grow: 1;
-    }
+  .link_box {
+    flex-grow: 1;
+  }
 }
