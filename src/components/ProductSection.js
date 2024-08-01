@@ -11,9 +11,9 @@ export default function ProductSection({ className, tabletSize, mobileSize }) {
   const [searchValue, setSearchValue] = useState([]);
   const [orderBy, setOrderBy] = useState('recent');
   const [pageSize, setPageSize] = useState(() => {
-    if (mobileSize) return 1;
-    else if (tabletSize) return 2;
-    return 4;
+    if (mobileSize) return 4;
+    else if (tabletSize) return 6;
+    return 10;
   });
 
   const init = useCallback(async () => {

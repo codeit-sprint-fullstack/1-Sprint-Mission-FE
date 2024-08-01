@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import debounce from 'lodash.debounce';
 
 function getQueryString(breakpoint) {
   switch (breakpoint) {
@@ -17,18 +18,22 @@ export default function useMediaQuery(breakpoint) {
     () => window.matchMedia(getQueryString(breakpoint)).matches
   );
 
+  const handleChange = (e) => {
+    isSetMatch(e.matches);
+  };
+
+  const debounceHandleChange = debounce(handleChange, 150);
+
   useEffect(() => {
     const mediaQueryList = matchMedia(getQueryString(breakpoint));
 
-    const handleChange = (e) => {
-      isSetMatch(e.matches);
-    };
-    mediaQueryList.addEventListener('change', handleChange);
+    mediaQueryList.addEventListener('change', debounceHandleChange);
 
     return () => {
-      mediaQueryList.removeEventListener('change', handleChange);
+      mediaQueryList.removeEventListener('change', debounceHandleChange);
+      debounceHandleChange.cancel();
     };
-  }, [breakpoint]);
+  }, [breakpoint, debounceHandleChange]);
 
   return isMatch;
 }
