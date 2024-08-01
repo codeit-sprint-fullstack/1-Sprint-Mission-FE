@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getProductList } from '../api/api';
-
-const LIMIT = 5;
+import { LIMIT } from './constants';
 
 function useProductList(order, initialCursor) {
   const [products, setProducts] = useState([]);

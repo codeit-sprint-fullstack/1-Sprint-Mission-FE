@@ -9,8 +9,8 @@ import ProductList from './components/ProductList';
 import { filterProductsByName } from './api/api';
 import Pagination from './components/Pagination';
 import useProductList from './hooks/useProductList';
+import { LIMIT } from './constants';
 
-const LIMIT = 5;
 
 function App() {
   const [order, setOrder] = useState('createdAt');
