@@ -11,8 +11,8 @@ const Product = ({ product, className }) => {
         src={product.images}
         alt={product.description}
       />
-      <p className="description Text-md Medium">{product.description}</p>
-      <p className="price Text-lg Bold">
+      <p className="description text-md medium">{product.description}</p>
+      <p className="price text-lg bold">
         {product.price.toLocaleString("en-US")}원
       </p>
       <div className="favorites">
@@ -21,7 +21,7 @@ const Product = ({ product, className }) => {
           src={heartEmptyImage}
           alt="favorite heart"
         />
-        <p className="favorite-count Text-xs Medium">{product.favoriteCount}</p>
+        <p className="favorite-count text-xs medium">{product.favoriteCount}</p>
       </div>
     </div>
   );

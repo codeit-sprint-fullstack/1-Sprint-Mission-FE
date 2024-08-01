@@ -19,7 +19,7 @@ function Footer({ currentPage, totalPage, onChangePage }) {
         <button
           className={`page-button ${
             currentPage === i ? "on" : ""
-          } Text-lg Semibold`}
+          } text-lg semibold`}
           key={i}
           onClick={() => onChangePage(i)}
         >
@@ -35,7 +35,7 @@ function Footer({ currentPage, totalPage, onChangePage }) {
       <button
         className={`page-button ${
           currentPage === 1 ? "disabled" : ""
-        } Text-lg Semibold`}
+        } text-lg semibold`}
         onClick={handlePrevPage}
         disabled={currentPage === 1}
       >
@@ -45,7 +45,7 @@ function Footer({ currentPage, totalPage, onChangePage }) {
       <button
         className={`page-button ${
           currentPage === totalPage ? "disabled" : ""
-        } Text-lg Semibold`}
+        } text-lg semibold`}
         onClick={handleNextPage}
         disabled={currentPage === totalPage}
       >

@@ -150,35 +150,35 @@ table {
 html {
   font-size: 62.5%;
 }
-.Text-xs {
+.text-xs {
   font-size: 1.2rem;
   line-height: 1.8rem;
 }
-.Text-md {
+.text-md {
   font-size: 1.4rem;
   line-height: 2.4rem;
 }
-.Text-lg {
+.text-lg {
   font-size: 1.6rem;
   line-height: 2.6rem;
 }
-.Text-2lg {
+.text-2lg {
   font-size: 1.8rem;
   line-height: 2.6rem;
 }
-.Text-xl {
+.text-xl {
   font-size: 2rem;
   line-height: 3.2rem;
 }
-.Bold {
+.bold {
   font-weight: 700;
 }
-.Semibold {
+.semibold {
   font-weight: 600;
 }
-.Medium {
+.medium {
   font-weight: 500;
 }
-.Regular {
+.regular {
   font-weight: 400;
 }

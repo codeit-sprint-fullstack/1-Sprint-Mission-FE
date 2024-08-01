@@ -49,7 +49,7 @@ function SaleProducts() {
   return (
     <>
       <div className="sale-product-options">
-        <h2 className="sale-product-title Text-xl Bold">판매중인 상품</h2>
+        <h2 className="sale-product-title text-xl bold">판매중인 상품</h2>
         <input
           className="search-product"
           type="text"
@@ -58,9 +58,9 @@ function SaleProducts() {
           onChange={handleSearch}
         />
         <img src={searchIcon} alt="search icon" className="search-icon" />
-        <div className="enroll-product Text-lg Semibold">상품 등록하기</div>
+        <div className="enroll-product text-lg semibold">상품 등록하기</div>
         <div
-          className="order-select Text-lg Regular"
+          className="order-select text-lg regular"
           onClick={() => setIsModalOpen(!isModalOpen)}
         >
           {order === "recent" ? "최신순" : "좋아요순"}
@@ -73,7 +73,7 @@ function SaleProducts() {
           <img src={sortIcon} alt="sortIcon" className="sort-icon" />
         </div>
         {isModalOpen && (
-          <div className="order-modal Text-lg Regular">
+          <div className="order-modal text-lg regular">
             <div
               className="modal-option recent"
               onClick={() => handleChangeOrder("recent")}

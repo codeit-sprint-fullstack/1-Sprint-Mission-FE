@@ -10,7 +10,7 @@ function Navigation() {
         <a href="/" target="_self">
           <img className="logo" src={logo} alt="Home Logo" />
         </a>
-        <div className="menu Text-2lg Bold">
+        <div className="menu text-2lg bold">
           <span className="menu-content">자유게시판</span>
           <span className="menu-content">중고마켓</span>
         </div>

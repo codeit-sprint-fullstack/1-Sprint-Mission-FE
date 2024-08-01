@@ -19,7 +19,7 @@ function BestProducts() {
 
   return (
     <>
-      <h2 className="best-product-title Text-xl Bold">베스트 상품</h2>
+      <h2 className="best-product-title text-xl bold">베스트 상품</h2>
       <div className="best-products">
         {products.map((product) => (
           <Product
