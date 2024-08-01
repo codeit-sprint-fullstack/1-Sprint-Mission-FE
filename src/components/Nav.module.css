@@ -1,0 +1,53 @@
+.nav {
+  position: relative;
+  z-index: 1;
+  padding: 15px 0;
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+  border-bottom: 1px solid #dfdfdf;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 200px;
+  margin-right: 200px;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  margin-left: 200px;
+}
+
+.menu > p {
+  margin-left: 30px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #4b5563;
+  margin-top: 25px;
+}
+
+.getLinkStyle {
+  margin-left: 30px;
+  text-decoration: none; /* 링크의 밑줄 제거 */
+  color: inherit; /* 링크의 색상 제거 */
+}
+
+.getLinkStyle > p {
+  font-size: 18px;
+  font-weight: 700;
+  color: #4b5563;
+  margin-top: 24px;
+}
+
+.userImage {
+  margin-right: 200px;
+}
