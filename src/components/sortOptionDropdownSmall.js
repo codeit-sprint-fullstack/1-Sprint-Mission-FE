@@ -6,7 +6,6 @@ const SortingOptionBoxSmall = React.memo(
   ({ onChange, setCurrentPage, sortingOptions }) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    // Memoize the current option for display purposes
     const currentOption = useMemo(() => {
       return (
         sortingOptions.find(
@@ -15,12 +14,10 @@ const SortingOptionBoxSmall = React.memo(
       );
     }, [sortingOptions]);
 
-    // Toggle the dropdown visibility
     const toggleDropdown = useCallback(() => {
       setIsOpen((prevIsOpen) => !prevIsOpen);
     }, []);
 
-    // Handle option selection
     const selectOption = useCallback(
       (option) => {
         onChange(option);
