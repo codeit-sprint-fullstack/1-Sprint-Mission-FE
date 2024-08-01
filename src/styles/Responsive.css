@@ -147,34 +147,44 @@
 
   section.sale-products {
     position: relative; 
-    margin-top: 100px !important; 
+    margin-top: 40px !important; 
   }
 
-  /* 판매중인 상품 메뉴*/
-
-  .product-card{
-    height: 264px;
-  }
-
-  .SaleProductNav{
-    display: inline;
-  }
+   /* 판매중인 상품 메뉴 */
 
   .inputBtDrop {
-    z-index: 0;
+    width: 200px;
+    height: 100%;
     display: flex;
-    flex-direction: row;
-    gap: 10px;
     flex-wrap: wrap;
     justify-content: right;
   }
 
-  .search-results{
-    margin-top: 200px;
+  .search-input {
+    margin-right: 230px;
+    margin-left:-180px;
+    width: 190px;
+    order: 2;
   }
 
-  .search-error {
-    margin-top: 200px;
+  .addProductBotton {
+    margin: 0 16px;
+    order: 1;
+  }
+
+  .sortDropDown {
+    margin-left: -225px;
+    margin-right: 16px;
+    width: 100px;
+    order: 3;
+  }
+
+  .search-error{
+    margin-top: 80px;
+  }
+
+  .search-results{
+    margin-top: 80px;
   }
 }
 
