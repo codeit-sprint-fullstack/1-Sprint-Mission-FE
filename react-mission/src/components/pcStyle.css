@@ -1,89 +1,12 @@
 @media screen and (min-width: 1200px) {
-
     /* header */
-    header{
-        width: 100%;
-        height: 70px;
-        border-bottom: 1px solid #DFDFDF;
-        background-color: #FFFFFF;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        position: sticky;
-        top: 0;
-        left: 0;
-        z-index: 9999;
-    }
-    
     .Logo{
-        width: 153px;
-        height: 51px;
         margin-left: 200px;
     }
     
     nav{
-        width: 100%;
-        height: 70px;
         margin-left: 32px;
         margin-right: 200px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .listContaner{
-        width: 201px;
-        height: 70px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .listFont{
-        height: 70px;
-        margin: 0;
-        font-family: Pretendard, sans-serif;
-        font-size: 18px;
-        font-weight: 700;
-        line-height: 26px;
-        color: #4B5563;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .freeFont{
-        width: 108px;
-    }
-    
-    .usedFont{
-        width: 93px;
-    }
-    
-    .userIcon{
-        width: 40px;
-        height: 40px;
-    }
-
-
-    /* main */
-    main{
-        width: 100%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-
-    /* [  ]product.js의 css  */
-    .productFont{
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 32px;
-        color: #111827;
     }
 
 
@@ -91,261 +14,37 @@
     .bestProductContaner{
         width: 1200px;
         height: 426px;
-        margin-top: 24px;
-    }
-
-    .bestProductFont {
-        margin-bottom: 16px;
     }
 
 
     /* SaleProduct.js의 css */
     .saleProductContaner{
         width: 1201px;
-        height: auto;
-        margin-top: 40px;
     }
 
     .saleProductParts{
         width: 1200px;
-        height: 42px;
-        margin-bottom: 24px;
-        display: flex;
         flex-direction: row;
-        justify-content: space-between;
         align-items: center;
-    }
-
-    .saleProductFont{
-        width: 113px;
-        height: 42px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .mobileRegistration{
-        display: none;
     }
 
     .saleProductFrom{
         width: 612px;
-        height: 42px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .searchFromPositin{
-        position: relative;
-    }
-
-    .readingGlasses{
-        width: 24px;
-        height: 24px;
-        position: absolute;
-        top: 9px;
-        left: 16px;
-    }
-
-
-    /* SearchFrom.js의 css */
-    .searchProduct{
-        width: 325px;
-        height: 42px;
-        border-radius: 12px;
-        border: none;
-        padding: 9px 0 9px 44px;
-        background-color: #F3F4F6;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 26px;
-        color: #9CA3AF;
-    }
-
-
-    /* Registration.js의 css */
-    .registration{
-        width: 133px;
-        height: 42px;
-        border-radius: 8px;
-        padding: 8px 23px;
-        background-color: #3692FF;
-        font-size: 16px;
-        font-weight: 600;
-        line-height: 26px;
-        color: #F3F4F6;
-        cursor: pointer;
-    }
-
-
-    /* OrderChange.js의 css */
-    .orderChange{
-        width: 130px;
-        height: 42px;
-        border-radius: 12px;
-        padding: 9px 0 7px 20px;
-        border: 1px solid #E5E7EB;
-        background-color: #FFFFFF;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 26px;
-        color: #1F2937;
-        position: relative;
-        cursor: pointer;
-    }
-
-    .orderArrow{
-        width: 24px;
-        height: 24px;
-        position: absolute;
-        top: 9px;
-        right: 20px;
-    }
-
-    .orderBoxNone{
-        display: none;
-    }
-
-    .orderBox{
-        width: 130px;
-        height: 84px;
-        border-radius: 12px;
-        border: 1px solid #E5E7EB;
-        background-color: #FFFFFF;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 26px;
-        color: #1F2937;
-        position: absolute;
-        top: 50px;
-        left: 0;
-    }
-
-    .orderRecent{
-        width: 130px;
-        height: 41.5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    .orderLine{
-        width: 130px;
-        height: 1px;
-        background-color: #E5E7EB;
-    }
-
-
-    .orderFavorite{
-        width: 130px;
-        height: 41.5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-    }
-
-
-    /* Pagination의 css */
-    .pagination{
-        height: 141px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        list-style: none;
-        padding: 43px 0 58px;
-    }
-    
-    .pagination li{
-        width: 40px;
-        height: 40px;
-        border-radius: 40px;
-        border: 1px solid #E5E7EB;
-        margin: 0 2px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 16px;
-        font-weight: 600;
-        line-height: 26px;
-    }
-
-    .pagination li:first-child{ 
-    display: none;
-    }
-
-    .pagination li:last-child{ 
-        display: none;
-    }
-
-    .pagination li a{
-        text-decoration: none;
-        color: #6B7280;
-    }
-
-    .pagination li.active a {
-        color: #FFFFFF; 
-    }
-
-    .pagination li.active {
-        background-color: #2F80ED;
     }
 
 
     /* ProductCard.js의 css */
-    .productName{
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 24px;
-        margin-top: 16px;
-    }
-
     .bestProductName {
         width: 282px;
-        height: 24px;
+        margin-top: 16px;
     }
 
     .saleProductName{
         width: 217px;
-        height: 24px;
-    }
-
-    .productPrice{
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 26px;
-        margin-top: 6px;
-    }
-
-    .productColor{
-        color: #1F2937;
-    }
-
-    .productFavoriteContaner{
-        width: 221px;
-        height: 18px;
-        margin-top: 6px;
-        display: flex;
-        flex-direction: row;
-    }
-
-    .heartIcon{
-        width: 16px;
-        height: 16px;
-        margin-right: 4px;
-    }
-
-    .productFavoriteCount{
-        font-size: 12px;
-        font-weight: 500;
-        line-height: 18px;
-        color: #4B5563;
     }
 
 
-    /* variant이 bestProduct일 때 */
+    /* variant이 best일 때 */
     .bestProductImg {
         width: 282px;
         height: 282px;
@@ -363,17 +62,10 @@
     .bestProductCard{
         width: 282px;
         height: 378px;
-        background-color: #FCFCFC;
     }
 
 
-    /* variant이 saleProduct일 때 */
-    .saleProductImg {
-        width: 221px;
-        height: 221px;
-        border-radius: 16px;
-    }
-
+    /* variant이 sale일 때 */
     .saleProductCardContaner{
         width: 1201px;
         height: auto;
@@ -386,7 +78,19 @@
     .saleProductCard{
         width: 221px;
         height: 317px;
-        background-color: #FCFCFC;
+    }
+
+
+    /* SearchFrom.js의 css */
+    .searchProduct{
+        width: 325px;
+    }
+
+
+    /* Pagination의 css */
+    .pagination{
+        height: 141px;
+        padding: 43px 0 58px;
     }
 
 

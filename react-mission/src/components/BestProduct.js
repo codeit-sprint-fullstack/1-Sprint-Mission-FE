@@ -1,79 +1,61 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import useResize from "./hook/useResize";
 import ProductCard from "./ProductCard";
 import api from "./api";
+import useAsync from "./hook/useAsync";
 
 function BestProduct() {
-    const [ items, setItems ] = useState([])
-    const [ lodingError, setLodingError ] = useState(null)
-    const [ lodingErrorTag, setLodingErrorTag] = useState(false)
-    const [ pageSize, setPageSize ] = useState(null)
-    
+  const [items, setItems] = useState([]);
+  const [lodingError, lodingErrorTag, apiAsync] = useAsync(api);
+  const [pageSize, setPageSize] = useState(null);
+
+  // 스크린 크기에 따른 이미지 갯수 변경
+  const handleResize = useCallback(() => {
+    const length = window.innerWidth;
+
+    if (length >= 1200) {
+      setPageSize(4);
+    } else if (length < 1200 && length >= 768) {
+      setPageSize(2);
+    } else if (length >= 375 && length < 768) {
+      setPageSize(1);
+    }
+  }, []);
+
+  useResize(handleResize);
+
+  //첫 랜더링 시 실행
+  useEffect(() => {
     //api 호출
     const handleItemList = async (params) => {
-        try {
-            setLodingError(null);
-            setLodingErrorTag(false)
-            const { list } = await api(params);
-            setItems(list);
-        } catch(e) {
-            setLodingError(e);
-            setLodingErrorTag(true)
-            return;
-        }
+      const result = await apiAsync(params);
+
+      if (!result) {
+        return;
+      } else {
+        const { list } = result;
+        setItems(list);
+      }
     };
 
-    function handleResize() {
-        const length = window.innerWidth;
-        
-        let i;
-        console.log(length);
-        if (length >= 1200) {
-            setPageSize(4);
-            i = 4
-        } else if (length < 1200 && length >= 768 ) {
-            setPageSize(2);
-            i = 2
-        } else if (length >= 375 && length < 768) {
-            setPageSize(1);
-            i =1
-        }
-        console.log(i);
+    if (pageSize !== null) {
+      handleItemList({ orderBy: "favorite", pageSize: pageSize });
     }
-       
-    useEffect(() => {
-        // 초기 사이즈 설정
-        handleResize();
-        
-        // 윈도우 리사이즈 이벤트 핸들러 등록
-        window.addEventListener("resize", handleResize);
+  }, [pageSize, apiAsync]);
 
-        // 컴포넌트 언마운트 시 이벤트 핸들러 제거
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
-
-    //첫 랜더링 시 실행
-    useEffect(() => {
-        if (pageSize !== null) {
-            handleItemList({ orderBy: 'favorite', pageSize: pageSize });
-        }
-    }, [ pageSize ])
-
-    return (
-        <>
-        {lodingError?.message && <span>{lodingError.message}</span>}
-        {lodingErrorTag || 
+  return (
+    <>
+      {lodingError?.message && <span>{lodingError.message}</span>}
+      {lodingErrorTag || (
         <div className="ProductMobile">
-            <div className='bestProductContaner'>
-                <h2 className='productFont bestProductFont'>베스트 상품</h2>
-                <ProductCard items={items} variant='bestProduct' />
-            </div>
-
+          <div className="bestProductContaner">
+            <h2 className="productFont bestProductFont">베스트 상품</h2>
+            <ProductCard items={items} variant="best" />
+          </div>
         </div>
-        }
-        </>
-    );
+      )}
+    </>
+  );
 }
 
 export default BestProduct;
