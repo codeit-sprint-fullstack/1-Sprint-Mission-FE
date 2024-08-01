@@ -1,7 +1,7 @@
 import "../css/header.css";
 import mainLog from "../image/mainlogo.png";
 import mb_Log from "../image/mb_logo.png";
-import useImgResize from "../hooks/imgresize";
+import useImgResize from "../hooks/imgresize.js";
 
 function Header() {
   const view = useImgResize();

@@ -30,8 +30,11 @@ function Paging({ onChange, pageNum, totalCount, paseSize }) {
   //상품의 페이징을 5개로 제한 하고 싶은 의도가 있었습니다.
   //예 ) 페이지당 6개 표시하는데 60개가 있다면 페이지 번호가 1~10 이 아닌 1~5
   const makeArrNum = () => {
+    console.log("확인");
+    console.log(totalCount);
     const num = Math.ceil(totalCount / paseSize);
     let keyboard = Array.from({ length: num }, (v, i) => i + 1);
+    console.log(keyboard.length);
     if (keyboard.length > 5) {
       keyboard = keyboard.slice(0, 5);
     }
