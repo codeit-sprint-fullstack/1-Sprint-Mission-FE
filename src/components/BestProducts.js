@@ -23,7 +23,7 @@ function BestProducts() {
       <div className="best-products">
         {products.map((product) => (
           <Product
-            key={product.id}
+            key={`product-${product.id}`}
             product={product}
             className={"best-product"}
           />

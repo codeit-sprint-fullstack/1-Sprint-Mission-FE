@@ -19,7 +19,7 @@ function SaleProducts() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const pageSize = useResize(4, 6, 10);
+  const pageSize = useResize(4, 6, 10); // 모바일 태블릿 데스크탑 출력 개수
 
   useEffect(() => {
     const getProducts = async () => {
@@ -92,7 +92,7 @@ function SaleProducts() {
       <div className="sale-products">
         {products.map((product) => (
           <Product
-            key={product.id}
+            key={`product-${product.id}`}
             product={product}
             className="sale-product"
           />
