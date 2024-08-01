@@ -1,13 +1,16 @@
 import "../css/header.css";
 import mainLog from "../image/mainlogo.png";
 import mb_Log from "../image/mb_logo.png";
+import useImgResize from "../hooks/imgresize";
 
-function Header({ isMobile }) {
+function Header() {
+  const view = useImgResize();
+
   return (
     <header>
       <div className="header_box">
         <img
-          src={isMobile ? mb_Log : mainLog}
+          src={view === "isMobile" ? mb_Log : mainLog}
           className="logo_img"
           alt="메인판다로고"
         ></img>

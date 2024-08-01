@@ -6,18 +6,18 @@ const useWindowSize = (onChange, onBestChange, onChangeView) => {
     switch (nextView) {
       case "Desktop":
         onChangeView("Desktop");
-        onChange({ pagesize: 10, page: 1 });
-        onBestChange("pagesize", 4);
+        onChange({ pageSize: 10, page: 1 });
+        onBestChange("pageSize", 4);
         break;
       case "isTablet":
         onChangeView("isTablet");
-        onChange({ pagesize: 6, page: 1 });
-        onBestChange("pagesize", 2);
+        onChange({ pageSize: 6, page: 1 });
+        onBestChange("pageSize", 2);
         break;
       case "isMobile":
         onChangeView("isMobile");
-        onChange({ pagesize: 4, page: 1 });
-        onBestChange("pagesize", 1);
+        onChange({ pageSize: 4, page: 1 });
+        onBestChange("pageSize", 1);
         break;
       default:
     }

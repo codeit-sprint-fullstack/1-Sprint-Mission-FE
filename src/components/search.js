@@ -88,7 +88,7 @@ function Search({ onChange, order, isMobile = false }) {
             ></input>
           </form>
         </div>
-        {isMobile ? null : (
+        {!isMobile && (
           <button className="add_product_btn">상품 등록하기</button>
         )}
         <DropDownBox

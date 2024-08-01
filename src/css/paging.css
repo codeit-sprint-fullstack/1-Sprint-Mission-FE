@@ -11,18 +11,26 @@
   height: 40px;
   padding: 12.5px;
   border-radius: 40px;
+}
+
+.mid_btn {
   border: 1px solid #e5e7eb;
   background-color: #ffffff;
 }
 
-#on_btn {
+.on_btn {
   background-color: #2f80ed;
   color: #f9fafb;
 }
 
-#mid_btn:hover {
+.mid_btn:hover {
   background-color: #2f80ed;
   color: #f9fafb;
+}
+
+.pre_next_btn {
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
 }
 
 button > img {

@@ -1,5 +1,12 @@
+import axios from "https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/esm/axios.min.js";
+
+const instance = axios.create({
+  baseURL: "https://panda-market-api.vercel.app",
+});
+
 const baseUrl = "https://panda-market-api.vercel.app";
 
+//공부차 fetch 함수도 함께 작성 사용은 암함 추후 삭제 예정
 export async function getProducts({
   order = "",
   keyword = "",
@@ -60,4 +67,35 @@ export async function createFavoriteProduct(id, item) {
   }
   const data = await response.json();
   return data;
+}
+
+//Axios code
+
+export async function getProductsAxios(params = {}) {
+  const data = await instance
+    .get("/products", { params })
+    .then((res) => res.data);
+  return data;
+}
+
+export async function getProductAxios(id) {
+  const data = await instance.get(`/products/${id}`).then((res) => res.data);
+  return data;
+}
+
+export async function updateProductAxios(id, item) {
+  const data = await instance
+    .patch(`/products/${id}`, item)
+    .then((res) => res.data);
+  return data;
+}
+
+export async function createProductAxios(item) {
+  const data = await instance.post(`/products`, item).then((res) => res.data);
+  return data;
+}
+
+export async function deleteProductAxios(id) {
+  const data = await instance.delete(`/products/${id}`);
+  return data.status;
 }

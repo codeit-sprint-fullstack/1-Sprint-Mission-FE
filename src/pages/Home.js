@@ -1,26 +1,25 @@
-import Header from "./header.js";
 import "../css/reset.css";
 import "../css/app.css";
-import ProductList from "./productLsit.js";
-import Search from "./search.js";
-import Paging from "./paging.js";
+import ProductList from "../components/productlist.js";
+import Search from "../components/search.js";
+import Paging from "../components/paging.js";
 import useWindowSize from "../hooks/resize.js";
 import { useState, useEffect } from "react";
 import * as api from "../api.js";
 
-function App() {
-  const ProductsQuery = {
+function Home() {
+  const productsQuery = {
     order: "recent",
     page: 1,
-    pagesize: 10,
+    pageSize: 10,
   };
 
   const bestProductsQuery = {
     order: "favorite",
-    pagesize: 4,
+    pageSize: 4,
   };
 
-  const [params, setParams] = useState(ProductsQuery);
+  const [params, setParams] = useState(productsQuery);
   const [bestParams, setBestParams] = useState(bestProductsQuery);
   const [bestItems, setBestItems] = useState([]);
   const [items, setItems] = useState([]);
@@ -54,7 +53,7 @@ function App() {
 
   const loadProducts = async (query) => {
     try {
-      const { list, totalCount } = await api.getProducts(query);
+      const { list, totalCount } = await api.getProductsAxios(query);
       setItems(list);
       setTotalDataCount(totalCount);
     } catch (e) {
@@ -64,7 +63,7 @@ function App() {
 
   const loadBestProducts = async (bestParams) => {
     try {
-      const { list, totalCount } = await api.getProducts(bestParams);
+      const { list, totalCount } = await api.getProductsAxios(bestParams);
       setBestItems(list);
       setTotalDataCount(totalCount);
     } catch (e) {
@@ -80,30 +79,27 @@ function App() {
   }, [params, bestParams]);
 
   return (
-    <div className="App">
-      <Header isMobile={view === "isMobile" ? true : false} />
-      <main>
-        <div className="products_container">
-          <h2>베스트 상품</h2>
-          <ProductList items={bestItems} favorite={true} />
-        </div>
-        <div className="products_container">
-          <Search
-            isMobile={view === "isMobile" ? true : false}
-            order={params.order}
-            onChange={onChange}
-          />
-          <ProductList items={items} favorite={false} />
-        </div>
-        <Paging
+    <main>
+      <div className="products_container">
+        <h2>베스트 상품</h2>
+        <ProductList items={bestItems} favorite={true} />
+      </div>
+      <div className="products_container">
+        <Search
+          isMobile={view === "isMobile" ? true : false}
+          order={params.order}
           onChange={onChange}
-          pageNum={params.page}
-          paseSize={params.pagesize}
-          totalCount={totalDataCount}
         />
-      </main>
-    </div>
+        <ProductList items={items} favorite={false} />
+      </div>
+      <Paging
+        onChange={onChange}
+        pageNum={params.page}
+        paseSize={params.pageSize}
+        totalCount={totalDataCount}
+      />
+    </main>
   );
 }
 
-export default App;
+export default Home;
