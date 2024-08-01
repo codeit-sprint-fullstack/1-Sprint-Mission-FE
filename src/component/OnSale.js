@@ -30,15 +30,24 @@ function OnSale() {
   const [userInput, setUserInput] = useState("");
   const [pageSize, setPageSize] = useState(10);
   const [totalItems, setTotalItems] = useState(0);
+  const [resetPageGroup, setResetPageGroup] = useState(false);
 
   const totalPages = Math.ceil(totalItems / pageSize);
 
   // 정렬 세팅
   const sortedItems = items.toSorted((a, b) => b[orderBy] - a[orderBy]);
   // 최신순 정렬
-  const handleNewestClick = () => setOrderBy("recent");
+  const handleNewestClick = () => {
+    setOrderBy("recent");
+    setPage(1);
+    setResetPageGroup(true);
+  };
   // 좋아요순 정렬
-  const handleBestClick = () => setOrderBy("favorite");
+  const handleBestClick = () => {
+    setOrderBy("favorite");
+    setPage(1);
+    setResetPageGroup(true);
+  };
 
   const handleLoad = async (options) => {
     const { list, totalCount } = await getProducts(options);
@@ -67,6 +76,7 @@ function OnSale() {
   const handleSearch = (e) => {
     setUserInput(e.target.value.toLowerCase());
     setPage(1);
+    setResetPageGroup(true);
   };
 
   const filterItems = sortedItems.filter((item) =>
@@ -76,6 +86,7 @@ function OnSale() {
   // 페이지 변경
   const handlePageChange = (pageNum) => {
     setPage(pageNum);
+    setResetPageGroup(false);
   };
 
   useEffect(() => {
@@ -122,6 +133,7 @@ function OnSale() {
         currentPage={page}
         totalPages={totalPages}
         onPageChange={handlePageChange}
+        resetPageGroup={resetPageGroup}
       />
     </div>
   );

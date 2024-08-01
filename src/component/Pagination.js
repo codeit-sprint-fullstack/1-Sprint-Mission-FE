@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Pagination.css";
 
-function Pagination({ currentPage, totalPages, onPageChange }) {
+function Pagination({ currentPage, totalPages, onPageChange, resetPageGroup }) {
   const [pageGroup, setPageGroup] = useState(0);
   const pagesPerGroup = 5;
+
+  useEffect(() => {
+    if (resetPageGroup) {
+      setPageGroup(0);
+    }
+  }, [resetPageGroup]);
 
   const handlePageClick = (pageNum) => {
     onPageChange(pageNum);

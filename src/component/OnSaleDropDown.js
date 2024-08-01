@@ -6,7 +6,6 @@ import mobileDropDownIcon from "../image/mobileDropDown.png";
 const DropDown = ({ selectRecent, selectFavorite, setPage }) => {
   const [dropDown, setDropDown] = useState(false);
   const [selectOrder, setSelectOrder] = useState("최신순");
-  const [pageGroup, setPageGroup] = useState(0);
 
   const toggleDropDown = () => {
     setDropDown(!dropDown);
@@ -16,7 +15,6 @@ const DropDown = ({ selectRecent, selectFavorite, setPage }) => {
     setSelectOrder(order);
     order === "최신순" ? selectRecent() : selectFavorite();
     setPage(1);
-    pageGroup !== 0 ? setPageGroup(1) : setPageGroup(0);
     setDropDown(false);
   };
 
