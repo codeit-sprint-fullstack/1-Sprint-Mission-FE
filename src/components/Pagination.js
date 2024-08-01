@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import styles from './Pagination.module.css';
 
 export default function Pagination({
@@ -14,6 +15,7 @@ export default function Pagination({
   const totalingNum = Math.ceil(totalItems / itemCountPerPage);
 
   let remainingPages = totalingNum - currentSet * 5;
+
   let pageButtonCount = remainingPages > 0 ? 5 : pageCount + remainingPages;
 
   const startPage =
