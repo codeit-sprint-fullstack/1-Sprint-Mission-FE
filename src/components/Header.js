@@ -1,9 +1,13 @@
 import "../assets/styles/header.css";
-import tempProfileImg from "../assets/images/ic_profile40.svg";
+import { Nav, NavItem } from "./Nav";
+import Profile from "./Profile";
 
 export function Header() {
   const tempIsSignin = true;
-  // const tempProfileImg = "../assets/images/ic_profile40.svg";
+
+  const handleProfileClick = () => {
+    alert("아직 구현되지 않은 기능입니다");
+  };
 
   return (
     <header>
@@ -12,18 +16,12 @@ export function Header() {
           <img className="header__img-home" alt="홈 버튼" />
         </span>
       </a>
-      <nav className="header__navi">
-        <ul className="header__list">
-          <li className="Text-2lg Bold header__list-item">자유게시판</li>
-          <li className="Text-2lg Bold header__list-item">중고마켓</li>
-        </ul>
-      </nav>
+      <Nav className="header__nav">
+        <NavItem className="Text-2lg Bold header__nav-item">자유게시판</NavItem>
+        <NavItem className="Text-2lg Bold header__nav-item">중고마켓</NavItem>
+      </Nav>
       {tempIsSignin ? (
-        <img
-          className="header__btn-profile"
-          src={tempProfileImg}
-          alt="프로필 그림"
-        />
+        <Profile onClick={handleProfileClick} />
       ) : (
         <a className="header__btn-login-frame" href="/login" target="_self">
           <span>

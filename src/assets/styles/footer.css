@@ -53,6 +53,10 @@ footer {
   /* cursor : pointer; */
 }
 
+.footer__link-icon:hover {
+  opacity: 0.75;
+}
+
 .footer__facebook-icon {
   content: url(../images/ic_facebook.svg);
 }

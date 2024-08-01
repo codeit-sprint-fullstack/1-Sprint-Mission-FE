@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import { useContext } from "react";
 import { deviceContext } from "../App";
 
-export function SecondhandMarket() {
+export function FleaMarket() {
   const device = useContext(deviceContext);
 
   console.log("SecondhandMarket : " + device);
@@ -17,4 +17,4 @@ export function SecondhandMarket() {
   );
 }
 
-export default SecondhandMarket;
+export default FleaMarket;

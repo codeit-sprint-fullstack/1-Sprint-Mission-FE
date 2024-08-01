@@ -1,0 +1,35 @@
+.nav__item {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  text-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nav__item:hover {
+  border-bottom: 0.2rem solid var(--blue100-color);
+}
+
+.nav {
+  align-items: center;
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: row;
+}
+
+.header__nav {
+  height: 6.9rem;
+  width: 100%;
+}
+
+.header__nav-item {
+  width: 10.9rem;
+  height: 6.9rem;
+  /* line-height : 21.48px; */
+  line-height: 1.19333em;
+  color: var(--gray600-color);
+}

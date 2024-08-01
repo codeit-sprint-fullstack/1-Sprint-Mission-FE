@@ -1,4 +1,4 @@
-import SecondhandMarket from "./pages/SecondhandMarket";
+import FleaMarket from "./pages/FleaMarket";
 import { createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import useCheckWidth from "./components/hooks/useCheckWidth";
@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
       <deviceContext.Provider value={device}>
         <Routes>
-          <Route path="/" element={<SecondhandMarket />} />
+          <Route path="/" element={<FleaMarket />} />
           <Route path="/test" element={<h1>test</h1>} />
         </Routes>
       </deviceContext.Provider>

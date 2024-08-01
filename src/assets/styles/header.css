@@ -35,35 +35,6 @@ header {
   content: url(../images/btn_home.svg);
 }
 
-/* ===== menu in headerr =====*/
-.header__navi {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  height: 6.9rem;
-  width: 100%;
-}
-
-.header__list {
-  display: flex;
-  flex-direction: row;
-}
-
-.header__list-item {
-  display: flex;
-  flex-direction: row;
-  width: 10.9rem;
-  height: 6.9rem;
-  /* line-height : 21.48px; */
-  line-height: 1.19333em;
-  color: var(--gray600-color);
-  text-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
 /* ===== login button ===== */
 .header__btn-login-frame {
   width: 8.8rem;
@@ -77,10 +48,11 @@ header {
 }
 
 .header__btn-profile {
+  border-radius: 50%;
+  border: none;
   width: 4rem;
   height: 4rem;
   margin-right: 20rem;
-  cursor: pointer;
 }
 
 .header__img-login {
