@@ -1,5 +1,5 @@
-import * as Article from "./ArticleService.mjs";
-import * as Product from "./ProductService.mjs";
+import * as Article from "./ArticleService.js/index.js";
+import * as Product from "./ProductService.js";
 
 // get ArticleList
 

@@ -1,6 +1,6 @@
 import React from "react";
-import heartIcon from "../assets/images/ic_heart.png";
-import "../assets/styles/App.css";
+import heartIcon from "assets/images/ic-heart.png";
+import "assets/styles/App.css";
 
 function ProductCard({ product, className }) {
   return (

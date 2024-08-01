@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import * as Product from "API/ProductService.mjs";
+import * as Product from "API/ProductService.js";
 import PaginationBtn from "./paginationButtons";
 import ProductManagement from "./productManagement";
 import ProductManagementSmall from "./productManagementSmall";
+import usePageSize from "hooks/usePageSize";
 import useViewportSize from "hooks/useViewportSize";
 import ProductCard from "components/ProductCard";
 import "assets/styles/App.css";
@@ -15,28 +16,14 @@ function SellingMarketPlace() {
   const [sortOption, setSortOption] = useState("recent");
   const [keyword, setKeyword] = useState("");
   const [totalCount, setTotalCount] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
   const requestIdRef = useRef(0);
 
-  const getPageSize = useCallback(() => {
-    if (width <= 743) {
-      // mobile 상태
-      return 4;
-    } else if (width <= 1199) {
-      // tablet 상태
-      return 6;
-    } else {
-      return 10; // 기본값
-    }
-  }, [width]);
+  const getPageSize = usePageSize({
+    breakpoints: { mobile: 743, tablet: 1199, default: 9999 },
+    sizes: { mobile: 4, tablet: 6, default: 10 },
+  });
 
-  useEffect(() => {
-    const newPageSize = getPageSize();
-    if (newPageSize !== pageSize) {
-      setPageSize(newPageSize);
-      setCurrentPage(1);
-    }
-  }, [width, getPageSize, pageSize]);
+  const pageSize = getPageSize();
 
   const fetchProducts = useCallback(async () => {
     const requestId = ++requestIdRef.current;
@@ -69,6 +56,10 @@ function SellingMarketPlace() {
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [pageSize]);
 
   if (loading) {
     return <div>로딩중입니다, 잠시만 기다려주세요!</div>;

@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo } from "react";
 import "assets/styles/App.css";
-import arrow from "assets/images/upsideArrow.png";
+import arrow from "assets/images/upside-arrow.png";
 
 const SortingOptionBox = React.memo(
   ({ onChange, selectedOption, setCurrentPage, sortingOptions }) => {

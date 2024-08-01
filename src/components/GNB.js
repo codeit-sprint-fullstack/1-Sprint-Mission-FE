@@ -1,8 +1,8 @@
 import React from "react";
-import "../assets/styles/App.css";
-import bannerLogo from "../assets/images/logos.png";
-import bannerLogo2 from "../assets/images/lilLogo.svg";
-import userLogo from "../assets/images/userBasicLogo.png";
+import "assets/styles/App.css";
+import bannerLogo from "assets/images/logo.png";
+import bannerLogo2 from "assets/images/logo-small.svg";
+import userLogo from "assets/images/user-basic-profile.png";
 
 function GNB() {
   return (

@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo } from "react";
 import "assets/styles/App.css";
-import arrow from "assets/images/ic_sort.png";
+import arrow from "assets/images/ic-sort.png";
 
 const SortingOptionBoxSmall = React.memo(
   ({ onChange, setCurrentPage, sortingOptions }) => {

@@ -263,6 +263,11 @@
   align-items: center;
   background-color: var(--pure-white);
   border: solid 0.0625rem var(--cool-gray-200);
+  cursor: pointer;
+}
+
+.pagination_btn:hover {
+  background-color: #f0f0f0;
 }
 
 .pagination_list {
@@ -274,6 +279,11 @@
 }
 
 .active {
+  background-color: #2F80ED;
+  color: #ffffff;
+}
+
+.active:hover {
   background-color: #2F80ED;
   color: #ffffff;
 }
@@ -316,7 +326,7 @@
 }
 
 .search-input {
-  background-image: url(../images/ic_search.png);
+  background-image: url(assets/images/ic-search.png);
   background-repeat: no-repeat;
   background-size: 1.5rem;
   background-position: 1rem 0.5625rem;
