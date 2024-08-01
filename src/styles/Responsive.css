@@ -28,6 +28,7 @@
   }
 }
 
+
 /* Tablet */
 @media only screen and (min-width: 744px) and (max-width: 1199px)  {
   .header {
@@ -54,6 +55,14 @@
 
   .bestProductList > *:nth-child(n+3) {
     display: none; /* 3번째 상품부터 숨김 처리 */
+  }
+
+  .inputBtDrop{
+    gap:5px;
+  }
+
+  .search-input {
+    width: 242px;
   }
 
   .product-card{
