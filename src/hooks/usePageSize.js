@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import useViewportSize from "hooks/useViewportSize";
 
 /**
- * 화면 너비에따라 다른 리턴값을 제공하는 함수 (useViewportSize와 함께 동작함)
+ * 화면 너비에따라 다른 리턴값을 제공하는 함수 (useViewportSize와 함께 동작)
  *
  * @param {Object} breakpoints - 화면 너비에 따른 리턴값을 지정합니다
  * @param {number} breakpoints.default - 기본값 
