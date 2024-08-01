@@ -41,6 +41,7 @@ function BestProduct() {
     if (pageSize !== null) {
       handleItemList({ orderBy: "favorite", pageSize: pageSize });
     }
+    
   }, [pageSize, apiAsync]);
 
   return (
