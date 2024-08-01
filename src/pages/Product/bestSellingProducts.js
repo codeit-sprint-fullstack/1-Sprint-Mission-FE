@@ -1,32 +1,20 @@
-import * as Product from "API/ProductService.mjs";
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import useViewportSize from "hooks/useViewportSize";
+import * as Product from "API/ProductService.js";
+import React, { useState, useEffect, useRef } from "react";
+import usePageSize from "hooks/usePageSize";
 import ProductCard from "components/ProductCard";
 import "assets/styles/App.css";
 
 function BestMarketPlace() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { width } = useViewportSize();
-  const [pageSize, setPageSize] = useState(4);
   const requestIdRef = useRef(0);
 
-  const getPageSize = useCallback(() => {
-    if (width <= 743) {
-      return 1; // mobile 상태
-    } else if (width <= 1199) {
-      return 2; // tablet 상태
-    } else {
-      return 4; // default 상태
-    }
-  }, [width]);
+  const getPageSize = usePageSize({
+    breakpoints: { mobile: 743, tablet: 1199, default: 9999 },
+    sizes: { mobile: 1, tablet: 2, default: 4 },
+  });
 
-  useEffect(() => {
-    const newPageSize = getPageSize();
-    if (newPageSize !== pageSize) {
-      setPageSize(newPageSize);
-    }
-  }, [width, getPageSize, pageSize]);
+  const pageSize = getPageSize();
 
   useEffect(() => {
     const fetchProducts = async () => {

@@ -9,7 +9,7 @@ const headers = {
  * @param {number} page 몇번째 페이지로 할것이냐?
  * @param {number} pageSize 한페이지에 몇개의 제품이 나오게 할 것인가?
  * @param {string} keyword 키워드
- * @param {string} orderBy 정렬순
+ * @param {string} orderBy 정렬기준
  */
 export async function getProductList({ page = 1, pageSize = 10, keyword, orderBy = "recent" }) {
   try {
