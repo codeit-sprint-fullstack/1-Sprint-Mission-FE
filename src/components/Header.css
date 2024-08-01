@@ -1,0 +1,27 @@
+.headerContain {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 200px;
+    border-bottom: 1px solid #DFDFDF;
+    gap: 32px
+  }
+
+.logoImg {
+    height: 51px;
+}
+
+.boardList {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.boardList li {
+    padding: 15px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #4B5563;
+}

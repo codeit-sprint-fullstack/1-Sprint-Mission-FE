@@ -1,0 +1,53 @@
+.ProductBox {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.ProductBox > img {
+  border-radius: 50%;
+  object-fit: fill;
+}
+
+.ProductDescription {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.ProductDescription {
+  gap: 6px;
+}
+
+.ProductDescription > h1 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1F2937;
+  line-height: 26px;
+}
+
+.ProductDescription > span {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1F2937;
+  line-height: 24px;
+}
+
+
+.ProductLike {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+}
+
+.ProductLike > span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 18px;
+}
+
