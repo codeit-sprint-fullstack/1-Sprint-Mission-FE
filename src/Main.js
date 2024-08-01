@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './components/App.js';
-import MarketPage from './pages/MarketPages.js';
+import MarketPage from './pages/MarketPage.js';
 
 function Main() {
   return (

@@ -1,0 +1,49 @@
+body {
+  color: #1f2937;
+}
+
+.BestItem {
+  display: flex;
+  justify-content: space-between;
+}
+
+.productBestImg {
+  width: 282px;
+  height: 282px;
+  object-fit: cover;
+  margin-right: 20px;
+  justify-content: center;
+  align-items: center;
+  display: inline;
+}
+
+.productBestText {
+  margin-top: 16px;
+}
+
+.productBestName {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.productBestPrice {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 9px;
+  margin-top: 12px;
+}
+
+.productBestfavorite {
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  position: absolute;
+  text-align: center;
+}
+
+.productBestfavoriteCount {
+  position: relative;
+  left: 10px;
+  bottom: 12px;
+}

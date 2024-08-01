@@ -1,0 +1,52 @@
+.control {
+  display: flex;
+  width: 130px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  background-color: #ffffff;
+}
+
+.controlText {
+  text-align: center;
+  padding-top: -120px;
+  margin: 0;
+  padding-top: 12px;
+}
+
+.controlIcon {
+  padding-top: 12px;
+  padding-left: 34px;
+}
+
+.dropbox {
+  position: absolute;
+  background-color: #ffffff;
+  width: 130px;
+  height: 84px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.controlText {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.dropboxFirst {
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+  padding-top: 12px;
+  padding-bottom: 9px;
+}
+
+.dropboxTwice {
+  text-align: center;
+  padding-top: 12px;
+  padding-bottom: 9px;
+}
