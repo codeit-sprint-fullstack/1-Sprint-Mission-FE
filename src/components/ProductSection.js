@@ -3,6 +3,8 @@ import { getProducts } from '../services/api';
 import SearchBar from './SearchBar';
 import DropDown from './DropDown';
 import ProductList from './ProductList';
+import Pagination from './Pagination';
+
 import './ProductSection.css';
 
 export default function ProductSection({ className, tabletSize, mobileSize }) {
@@ -15,12 +17,15 @@ export default function ProductSection({ className, tabletSize, mobileSize }) {
     else if (tabletSize) return 6;
     return 10;
   });
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   const init = useCallback(async () => {
     try {
-      const result = await getProducts({ orderBy, pageSize });
+      const result = await getProducts({ orderBy, pageSize, page });
 
-      const { list } = result;
+      const { list, totalCount } = result;
+      setTotalPages(Math.ceil(totalCount / pageSize));
       setProducts(list);
       setFilteredProducts(list);
     } catch (err) {
@@ -31,7 +36,7 @@ export default function ProductSection({ className, tabletSize, mobileSize }) {
         console.log(err.response.data);
       }
     }
-  }, [orderBy, pageSize]);
+  }, [orderBy, pageSize, page]);
 
   const handleSearchChange = (e) => {
     const searchInputValue = e.target.value;
@@ -69,6 +74,11 @@ export default function ProductSection({ className, tabletSize, mobileSize }) {
         <DropDown orderBy={orderBy} setOrderBy={setOrderBy} />
       </div>
       <ProductList products={filteredProducts} />
+      <Pagination
+        totalPages={totalPages}
+        currentPage={page}
+        setPage={setPage}
+      />
     </section>
   );
 }
