@@ -8,7 +8,7 @@ import './ProductSection.css';
 export default function ProductSection({ className, tabletSize, mobileSize }) {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [searchValue, setSearchValue] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
   const [orderBy, setOrderBy] = useState('recent');
   const [pageSize, setPageSize] = useState(() => {
     if (mobileSize) return 4;

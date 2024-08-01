@@ -44,6 +44,6 @@
   }
 
   .header-container .logo {
-    width: 81px;
+    max-width: 81px;
   }
 }

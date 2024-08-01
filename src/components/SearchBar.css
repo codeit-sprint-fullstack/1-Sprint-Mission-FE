@@ -1,27 +1,28 @@
-.Search {
+.SearchBar {
   position: relative;
 }
-.Search input {
+.SearchBar input {
   background-color: var(--grey-100);
   padding: 12px 20px 12px 44px;
   border-radius: 12px;
   height: 100%;
   max-width: 325px;
+  min-width: 288px;
   width: 100%;
 }
-.Search input::placeholder {
+.SearchBar input::placeholder {
   font-size: 1rem;
   font-weight: 400;
   color: var(--grey-400);
 }
 
-.Search .search-icon {
+.SearchBar .search-icon {
   position: absolute;
   top: 50%;
   left: 16px;
   transform: translateY(-50%);
 }
 
-.Search input:focus {
+.SearchBar input:focus {
   outline: 1px solid var(--primary-colour);
 }

@@ -14,26 +14,26 @@ function getQueryString(breakpoint) {
 }
 
 export default function useMediaQuery(breakpoint) {
-  const [isMatch, isSetMatch] = useState(
+  const [isMatch, setIsMatch] = useState(
     () => window.matchMedia(getQueryString(breakpoint)).matches
   );
-
-  const handleChange = (e) => {
-    isSetMatch(e.matches);
-  };
-
-  const debounceHandleChange = debounce(handleChange, 150);
 
   useEffect(() => {
     const mediaQueryList = matchMedia(getQueryString(breakpoint));
 
-    mediaQueryList.addEventListener('change', debounceHandleChange);
+    //뭔가 느린거 같아서 debounce 해줬는데 속도가 달라진지 모르겠어요..
+    //제가 이해를 잘 못하는거 같기두..
+    const handleChange = debounce((e) => {
+      setIsMatch(e.matches);
+    }, 150);
+
+    mediaQueryList.addEventListener('change', handleChange);
 
     return () => {
-      mediaQueryList.removeEventListener('change', debounceHandleChange);
-      debounceHandleChange.cancel();
+      mediaQueryList.removeEventListener('change', handleChange);
+      handleChange.cancel();
     };
-  }, [breakpoint, debounceHandleChange]);
+  }, [breakpoint]);
 
   return isMatch;
 }

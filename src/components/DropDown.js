@@ -21,15 +21,13 @@ export default function DropDown({ setOrderBy, orderBy }) {
   return (
     <div className='DropDown'>
       <button onClick={toggleDropDown}>
+        {mobileSize ? undefined : orderBy === 'recent' ? '최신순' : '인기순'}
+
         {mobileSize ? (
           <img src={sortIcon} alt='sort icon' />
-        ) : orderBy === 'recent' ? (
-          '최신순'
         ) : (
-          '인기순'
+          <img src={arrowIcon} alt='arrow icon' className='arrow-icon' />
         )}
-
-        <img src={arrowIcon} alt='arrow icon' className='arrow-icon' />
       </button>
 
       {isOpen && (

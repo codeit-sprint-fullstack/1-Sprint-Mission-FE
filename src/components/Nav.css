@@ -16,8 +16,22 @@ nav ul {
   color: var(--grey-600);
 }
 
+@media only screen and (max-width: 1199px) {
+  nav {
+    padding-left: 35px;
+  }
+
+  nav ul {
+    gap: 30px;
+  }
+}
+
 @media only screen and (max-width: 743px) {
+  nav {
+    padding-left: 8px;
+  }
   nav ul {
     font-size: 1rems;
+    gap: 8px;
   }
 }
