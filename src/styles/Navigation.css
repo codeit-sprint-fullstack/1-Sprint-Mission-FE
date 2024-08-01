@@ -16,6 +16,9 @@
     cursor: pointer;
   }
 }
+.small-logo {
+  display: none;
+}
 .menu {
   margin-left: 3.2rem;
   display: flex;
@@ -47,5 +50,13 @@
 @media (max-width: 743px) {
   .nav-bar {
     padding: 0 1.6rem;
+  }
+  .logo {
+    display: none;
+  }
+  .small-logo {
+    display: block;
+    width: 8.1rem;
+    height: 2.7rem;
   }
 }
