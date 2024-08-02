@@ -5,6 +5,7 @@ import profile from '../assets/imgs/profile.png';
 import useMediaQuery from './useMediaQuery';
 
 function Nav() {
+  // useMediaQuery hook 사용하여 모바일 화면 여부 판단
   const mobile = useMediaQuery('(min-width: 375px) and (max-width: 786px)');
 
   return (

@@ -2,15 +2,18 @@ import './SelectBox.css';
 import { useState } from 'react';
 import btnImg from '../assets/imgs/ic_sort.png';
 
+
 function SelectBox({setOrder, mobile}) {
   const [btnName, setBtnName] = useState('최신순');
   const [show, setShow] = useState(null);
 
+  // 옵션(좋아요, 최신순) 클릭 시 이름 업데이트를 위한 함수
   const handleOptionClick = (option) => {
-    setBtnName(option);
-    setShow(false);
+    setBtnName(option); // 이름 상태 변경
+    setShow(false); // 최신순 또는 좋아요 클릭하면 버튼 박스 닫힘
   };
 
+  // show 상태에 따라 버튼 박스 렌더링 결정
   const handleSelectClick = () => {
     setShow(prevShow => !prevShow);
   };
