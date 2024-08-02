@@ -3,8 +3,11 @@ import arrowIcon from '../../assets/arrow_right.svg';
 
 export default function Pagination({ totalPages, setPage, currentPage }) {
   const pageRange = 5;
-  const currentGroup = Math.floor((currentPage - 1) / pageRange);
-  const startPage = currentGroup * pageRange + 1;
+
+  //totalPages의 5단위로 버튼 5개 보여주도록.
+  //현재 페이지가 (totalPage/ 5)의 어느 몇번째에 속하는지 startPage, endPage 정함.
+  const currentGroup = Math.ceil(currentPage / pageRange);
+  const startPage = (currentGroup - 1) * pageRange + 1;
   const endPage = Math.min(startPage + pageRange - 1, totalPages);
 
   let pageNumbers = [];
@@ -17,7 +20,7 @@ export default function Pagination({ totalPages, setPage, currentPage }) {
     setPage(pageNumber);
   };
 
-  //현재 페이지에서 5단위로 이동
+  //현재 페이지에서 5단위로  - 이동
   const handlePrevFiveClick = () => {
     setPage((page) => {
       if (page <= pageRange) return 1;
@@ -25,6 +28,7 @@ export default function Pagination({ totalPages, setPage, currentPage }) {
     });
   };
 
+  //현재 페이지에서 5단위로  + 이동
   const handleNextFiveClick = () => {
     setPage((page) => {
       if (totalPages - page < pageRange) return Math.max(page, totalPages);

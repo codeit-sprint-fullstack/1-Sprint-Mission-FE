@@ -25,6 +25,13 @@
   border: 3px solid var(--primary-colour);
 }
 
+.Pagination .arrow-left:disabled,
+.Pagination .arrow-right:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .Pagination .current {
   background-color: var(--primary-colour);
   color: #fff;
