@@ -137,7 +137,6 @@ main {
   left: 16px;
 }
 
-
 /* ProductCard.js의 css */
 .productName {
   font-size: 14px;
@@ -187,7 +186,6 @@ main {
   color: #4b5563;
 }
 
-
 /* variant이 best일 때 */
 .bestProductImg {
   border-radius: 19.46px;
@@ -196,7 +194,6 @@ main {
 .bestProductCard {
   background-color: #fcfcfc;
 }
-
 
 /* variant이 sale일 때 */
 .saleProductImg {
@@ -208,7 +205,6 @@ main {
 .saleProductCard {
   background-color: #fcfcfc;
 }
-
 
 /* SearchFrom.js의 css */
 .searchProduct {
@@ -347,7 +343,6 @@ main {
 .pagination li.active {
   background-color: #2f80ed;
 }
-
 
 /* footer */
 .bottom-frame {
