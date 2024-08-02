@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import './DropDown.css';
 
-import arrowIcon from '../assets/ic_arrow_down.svg';
-import sortIcon from '../assets/ic_sort.svg';
-import useMediaQuery from '../hooks/useMediaQuery';
+import arrowIcon from '../../assets/ic_arrow_down.svg';
+import sortIcon from '../../assets/ic_sort.svg';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 export default function DropDown({ setOrderBy, orderBy }) {
   const [isOpen, setIsOpen] = useState(false);

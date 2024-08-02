@@ -1,4 +1,4 @@
-import searchIcon from '../assets/ic_search.svg';
+import searchIcon from '../../assets/ic_search.svg';
 import './SearchBar.css';
 
 export default function SearchBar({ searchValue, onChange }) {

@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
-import { getProducts } from '../services/api';
+import { getProducts } from '../../services/api';
 
 import './BestSection.css';
 
-import ProductList from './ProductList';
+import ProductList from '../ProductList/ProductList';
 
 export default function BestProducts({ className, tabletSize, mobileSize }) {
   const [products, setProducts] = useState([]);

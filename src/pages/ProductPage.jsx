@@ -1,8 +1,8 @@
-import Wrapper from '../components/Wrapper';
-import ProductSection from '../components/ProductSection';
-import BestSection from '../components/BestSection';
-import './ProductPage.css';
+import Wrapper from '../components/Wrapper/Wrapper';
+import ProductSection from '../components/ProductSection/ProductSection';
+import BestSection from '../components/BestSection/BestSection';
 import useMediaQuery from '../hooks/useMediaQuery';
+import './ProductPage.css';
 
 function ProductPage() {
   const tabletSize = useMediaQuery('tabletSize');

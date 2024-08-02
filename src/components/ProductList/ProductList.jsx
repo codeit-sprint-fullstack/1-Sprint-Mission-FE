@@ -1,4 +1,4 @@
-import heartIcon from '../assets/ic_heart.svg';
+import heartIcon from '../../assets/ic_heart.svg';
 import './ProductList.css';
 
 function ProductCard({ product }) {

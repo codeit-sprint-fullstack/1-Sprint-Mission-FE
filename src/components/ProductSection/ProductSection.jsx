@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
-import { getProducts } from '../services/api';
-import SearchBar from './SearchBar';
-import DropDown from './DropDown';
-import ProductList from './ProductList';
-import Pagination from './Pagination';
+import { getProducts } from '../../services/api';
+import SearchBar from '../SearchBar/SearchBar';
+import DropDown from '../DropDown/DropDown';
+import ProductList from '../ProductList/ProductList';
+import Pagination from '../Pagination/Pagination';
 
 import './ProductSection.css';
 

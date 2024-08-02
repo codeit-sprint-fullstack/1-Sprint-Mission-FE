@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import useMediaQuery from '../hooks/useMediaQuery';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
-import Nav from './Nav';
-import logoImg from '../assets/logo.svg';
-import mobileLogo from '../assets/logo_mobile.svg';
-import profileIcon from '../assets/profile_icon.svg';
+import Nav from '../Nav/Nav';
+import logoImg from '../../assets/logo.svg';
+import mobileLogo from '../../assets/logo_mobile.svg';
+import profileIcon from '../../assets/profile_icon.svg';
 import './Header.css';
 
 function Header() {

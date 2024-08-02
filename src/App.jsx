@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import ProductPage from './pages/ProductPage';
 import { TempForums, TempHome } from './pages/TempPages';
 

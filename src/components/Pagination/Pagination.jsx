@@ -1,5 +1,5 @@
 import './Pagination.css';
-import arrowIcon from '../assets/arrow_right.svg';
+import arrowIcon from '../../assets/arrow_right.svg';
 
 export default function Pagination({ totalPages, setPage, currentPage }) {
   const pageRange = 5;
@@ -8,6 +8,7 @@ export default function Pagination({ totalPages, setPage, currentPage }) {
   const endPage = Math.min(startPage + pageRange - 1, totalPages);
 
   let pageNumbers = [];
+
   for (let i = startPage; i <= endPage; i++) {
     pageNumbers.push(i);
   }
@@ -16,7 +17,7 @@ export default function Pagination({ totalPages, setPage, currentPage }) {
     setPage(pageNumber);
   };
 
-  //5단위로 이동
+  //현재 페이지에서 5단위로 이동
   const handlePrevFiveClick = () => {
     setPage((page) => {
       if (page <= pageRange) return 1;
