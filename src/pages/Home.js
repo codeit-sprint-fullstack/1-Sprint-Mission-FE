@@ -21,6 +21,8 @@ function Home() {
 
   const [params, setParams] = useState(productsQuery);
   const [bestParams, setBestParams] = useState(bestProductsQuery);
+  // const [params, setParams] = useState({});
+  // const [bestParams, setBestParams] = useState({});
   const [bestItems, setBestItems] = useState([]);
   const [items, setItems] = useState([]);
   const [view, setView] = useState();
@@ -65,7 +67,6 @@ function Home() {
     try {
       const { list, totalCount } = await api.getProductsAxios(bestParams);
       setBestItems(list);
-      setTotalDataCount(totalCount);
     } catch (e) {
       console.log(e.message);
     }
@@ -76,7 +77,7 @@ function Home() {
   useEffect(() => {
     loadBestProducts(bestParams);
     loadProducts(params);
-  }, [params, bestParams]);
+  }, [params]);
 
   return (
     <main>
@@ -92,12 +93,7 @@ function Home() {
         />
         <ProductList items={items} favorite={false} />
       </div>
-      <Paging
-        onChange={onChange}
-        pageNum={params.page}
-        paseSize={params.pageSize}
-        totalCount={totalDataCount}
-      />
+      <Paging onChange={onChange} params={params} totalCount={totalDataCount} />
     </main>
   );
 }
