@@ -1,104 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import ProductCard from './ProductCard';
 import './ProductList.css';
+import useScreenType from '../hooks/useScreenType';
+import useFetchProducts from '../hooks/useFetchProducts';
 
 const ProductList = () => {
-  const [products, setProducts] = useState([]);
-  const [bestProducts, setBestProducts] = useState([]);
   const [sortOrder, setSortOrder] = useState('recent');
   const [productSearch, setProductSearch] = useState('');
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const totalPages = 5;
 
-  useEffect(() => {
-    const updatePageSize = () => {
-      const screenType = getScreenType();
-      if (screenType === 'desktop') {
-        setPageSize(10);
-      } else if (screenType === 'tablet') {
-        setPageSize(6);
-      } else {
-        setPageSize(4);
-      }
-    };
-
-    updatePageSize();
-    window.addEventListener('resize', updatePageSize);
-
-    return () => {
-      window.removeEventListener('resize', updatePageSize);
-    };
-  }, []);
+  const screenType = useScreenType();
 
   useEffect(() => {
-    fetchProducts();
-  }, [sortOrder, page, pageSize, productSearch]);
-
-  useEffect(() => {
-    fetchBestProducts();
-  }, []);
-
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get('https://panda-market-api.vercel.app/products', {
-        params: {
-          orderBy: sortOrder,
-          page,
-          pageSize,
-          keyword: productSearch,
-        },
-      });
-      setProducts(response.data.list);
-    } catch (error) {
-      console.error('Error fetching products:', error);
+    if (screenType === 'desktop') {
+      setPageSize(10);
+    } else if (screenType === 'tablet') {
+      setPageSize(6);
+    } else {
+      setPageSize(4);
     }
-  };
+  }, [screenType]);
 
-  const fetchBestProducts = async () => {
-    try {
-      const response = await axios.get('https://panda-market-api.vercel.app/products', {
-        params: {
-          orderBy: 'favorite',
-        },
-      });
-      setBestProducts(response.data.list);
-    } catch (error) {
-      console.error('Error fetching best products:', error);
-    }
-  };
+  const { products, bestProducts } = useFetchProducts(sortOrder, page, pageSize, productSearch);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    fetchProducts();
-  };
-
-  const getScreenType = () => {
-    const width = window.innerWidth;
-    if (width <= 743) {
-      return 'mobile';
-    } else if (width <= 1199) {
-      return 'tablet';
-    } else {
-      return 'desktop';
-    }
   };
 
   const renderBestProducts = () => {
-    const screenType = getScreenType();
-    const bestProductsToShow = screenType === 'desktop' ? bestProducts.slice(0, 4) :
-                               screenType === 'tablet' ? bestProducts.slice(0, 2) :
-                               bestProducts.slice(0, 1);
+    const bestProductsToShow =
+      screenType === 'desktop'
+        ? bestProducts.slice(0, 4)
+        : screenType === 'tablet'
+        ? bestProducts.slice(0, 2)
+        : bestProducts.slice(0, 1);
+
     return bestProductsToShow.map((product) => (
       <ProductCard key={product.id} product={product} isBestProduct />
     ));
   };
 
   const renderAllProducts = () => {
-    const screenType = getScreenType();
     let allProductsToShow;
-
     if (screenType === 'desktop') {
       allProductsToShow = products.slice(0, 10);
     } else if (screenType === 'tablet') {
@@ -106,7 +51,6 @@ const ProductList = () => {
     } else {
       allProductsToShow = products.slice(0, 4);
     }
-
     return allProductsToShow.map((product) => (
       <ProductCard key={product.id} product={product} />
     ));
@@ -140,13 +84,10 @@ const ProductList = () => {
     );
   };
 
-  const screenType = getScreenType();
   return (
     <div className="product-list">
       <h2 className="section-title">베스트 상품</h2>
-      <div className="best-products">
-        {renderBestProducts()}
-      </div>
+      <div className="best-products">{renderBestProducts()}</div>
       <div className="product-controls-container">
         {screenType !== 'mobile' && <h2 className="section-title">판매 중인 상품</h2>}
         {screenType === 'mobile' && (
@@ -183,12 +124,16 @@ const ProductList = () => {
                   />
                 </div>
                 <div className="btn-sort">
-                  <img src="/image/btn_sort.svg" alt="Sort Icon" onClick={() => document.querySelector('.sort-options').classList.toggle('active')} />
+                  <img
+                    src="/image/btn_sort.svg"
+                    alt="Sort Icon"
+                    onClick={() => document.querySelector('.sort-options').classList.toggle('active')}
+                  />
                 </div>
               </>
             )}
             <div className="sort-options">
-              <select value={sortOrder} onChange={e => setSortOrder(e.target.value)}>
+              <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
                 <option value="recent">최신순</option>
                 <option value="favorite">좋아요순</option>
               </select>
@@ -197,9 +142,7 @@ const ProductList = () => {
           </div>
         </form>
       </div>
-      <div className="all-products">
-        {renderAllProducts()}
-      </div>
+      <div className="all-products">{renderAllProducts()}</div>
       {renderPagination()}
     </div>
   );
