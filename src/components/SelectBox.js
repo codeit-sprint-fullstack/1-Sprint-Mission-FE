@@ -12,11 +12,7 @@ function SelectBox({setOrder, mobile}) {
   };
 
   const handleSelectClick = () => {
-    if (show) {
-      setShow(false);
-    } else {
-      setShow(true);
-    }
+    setShow(prevShow => !prevShow);
   };
 
   return (
