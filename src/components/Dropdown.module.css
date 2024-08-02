@@ -16,11 +16,17 @@
   padding-top: -120px;
   margin: 0;
   padding-top: 12px;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .controlIcon {
   padding-top: 12px;
   padding-left: 34px;
+}
+
+.arrowIcon {
+  display: none;
 }
 
 .dropbox {
@@ -33,11 +39,6 @@
   text-align: center;
 }
 
-.controlText {
-  font-size: 16px;
-  font-weight: 400;
-}
-
 .dropboxFirst {
   text-align: center;
   border-bottom: 1px solid #e5e7eb;
@@ -45,8 +46,34 @@
   padding-bottom: 9px;
 }
 
-.dropboxTwice {
+.dropboxLast {
   text-align: center;
   padding-top: 12px;
   padding-bottom: 9px;
+}
+
+@media screen and (max-width: 773px) {
+  .control {
+    width: 42px;
+    margin: 0;
+    position: absolute;
+    border: none;
+    bottom: 1px;
+  }
+
+  .controlText,
+  .controlIcon {
+    display: none;
+  }
+
+  .arrowIcon {
+    display: block;
+  }
+
+  .dropbox {
+    position: absolute;
+    margin-top: 67px;
+    margin-right: 3000px;
+    left: 67%;
+  }
 }

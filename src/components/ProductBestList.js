@@ -16,9 +16,9 @@ function ProductBestItem({ item }) {
       <div className={styles.productBestText}>
         <p className={styles.productBestName}>{item.description}</p>
         <p className={styles.productBestPrice}> {formattedPrice}</p>
-        <div className={styles.productBestfavorite}>
+        <div className={styles.productBestFavorite}>
           <FontAwesomeIcon icon={faHeart} />
-          <p className={styles.productBestfavoriteCount}>
+          <p className={styles.productBestFavoriteCount}>
             {item.favoriteCount}
           </p>
         </div>

@@ -1,9 +1,9 @@
+import { useState } from 'react';
+import styles from './Dropdown.module.css';
+import MobileArrow from '../img/mobile_arrow.png';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
-
-import styles from './Dropdown.module.css';
-
-import { useState } from 'react';
 
 function Dropdown({ onOrderChange }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,8 +22,12 @@ function Dropdown({ onOrderChange }) {
         <div className={styles.control}>
           <p className={styles.controlText}>최신순</p>
           <FontAwesomeIcon className={styles.controlIcon} icon={faCaretDown} />
+          <img
+            src={MobileArrow}
+            className={styles.arrowIcon}
+            alt='드롭다운화살표'
+          />
         </div>
-
         {isOpen && (
           <div className={styles.dropbox}>
             <div
@@ -34,7 +38,7 @@ function Dropdown({ onOrderChange }) {
               최신순
             </div>
             <div
-              className={styles.dropboxTwice}
+              className={styles.dropboxLast}
               onClick={() => handleSortChange('favorite')}
               value='favorite'
             >

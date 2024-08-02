@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Pagination.module.css';
 
 export default function Pagination({
@@ -8,30 +8,31 @@ export default function Pagination({
   onPageChange,
 }) {
   const [page, setPage] = useState(1);
-  const [use, setUse] = useState(false);
+  const [disabledPrev, setDisabledPrev] = useState(true);
 
-  const currentSet = Math.ceil(page / pageCount); //
-
+  const currentSet = Math.ceil(page / pageCount);
   const totalingNum = Math.ceil(totalItems / itemCountPerPage);
 
   let remainingPages = totalingNum - currentSet * 5;
-
   let pageButtonCount = remainingPages > 0 ? 5 : pageCount + remainingPages;
 
   const startPage =
     (currentSet - 1) * pageCount + 1 > 1 ? (currentSet - 1) * pageCount + 1 : 1;
-
   const endPage =
     currentSet * pageCount > totalingNum ? totalingNum : currentSet * pageCount;
 
-  console.log(
-    `스타트페이지: ${startPage}, 이엔드페이지: ${endPage}, 셋트페이지: ${page}`
-  );
+  useEffect(() => {
+    if (startPage > 1) {
+      setDisabledPrev(false);
+    } else {
+      setDisabledPrev(true);
+    }
+  }, [startPage]);
 
   return (
     <>
       <div className={styles.pagination}>
-        <button disabled={use} onClick={() => setPage(startPage - 1)}>
+        <button disabled={disabledPrev} onClick={() => setPage(startPage - 1)}>
           &lt;
         </button>
         {Array(pageButtonCount)

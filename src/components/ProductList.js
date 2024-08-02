@@ -7,14 +7,14 @@ function ProductBestItem({ item }) {
   const formattedPrice = Price.toLocaleString('en-US');
 
   return (
-    <div className={styles.Item}>
+    <div className={styles.ListItem}>
       <img className={styles.ItemImg} src={item.images} alt={item.name} />
       <div>
-        <p className={styles.productBestName}>{item.name}</p>
-        <h1 className={styles.productBestPrice}> {formattedPrice}</h1>
-        <div className={styles.productBestfavorite}>
+        <p className={styles.productListName}>{item.name}</p>
+        <h1 className={styles.productListPrice}> {formattedPrice}</h1>
+        <div className={styles.productListFavorite}>
           <FontAwesomeIcon className='favorite-icon' icon={faHeart} />
-          <p className={styles.productBestfavoriteCount}>
+          <p className={styles.productListFavoriteCount}>
             {item.favoriteCount}
           </p>
         </div>
@@ -26,7 +26,7 @@ function ProductBestItem({ item }) {
 function ProductList({ items }) {
   return (
     <>
-      <div className={styles.BestItems}>
+      <div className={styles.ListItems}>
         {items.map((item) => (
           <ProductBestItem key={item.id} item={item} />
         ))}

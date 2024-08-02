@@ -17,11 +17,8 @@ body {
   display: inline;
 }
 
-.productBestText {
-  margin-top: 16px;
-}
-
 .productBestName {
+  margin-top: 16px;
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 6px;
@@ -34,7 +31,7 @@ body {
   margin-top: 12px;
 }
 
-.productBestfavorite {
+.productBestFavorite {
   font-size: 12px;
   font-weight: 500;
   display: flex;
@@ -42,8 +39,21 @@ body {
   text-align: center;
 }
 
-.productBestfavoriteCount {
+.productBestFavoriteCount {
   position: relative;
   left: 10px;
   bottom: 12px;
+}
+
+@media screen and (max-width: 1200px) {
+  .productBestImg {
+    width: 343px;
+    height: 343px;
+  }
+}
+
+@media screen and (max-width: 773px) {
+  .BestItem {
+    margin: 0 auto;
+  }
 }
