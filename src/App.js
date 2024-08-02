@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import searchIcon from './assets/images/ic_search.png';
 import Header from './components/Header';
 import './App.css';
@@ -74,7 +74,8 @@ function App() {
   }, [order, currentPage,fetchProducts]);
 
   // 최신순 좋아요 순 정렬
-  const sortedProducts = [...products].sort((a, b) => {
+  const sortedProducts = useMemo(() => {
+    return [...products].sort((a, b) => {
     if (order === 'createdAt') {
       return new Date(b.createdAt) - new Date(a.createdAt);
     } else if (order === 'favoriteCount') {
@@ -82,6 +83,7 @@ function App() {
     }
     return 0;
   });
+},[products, order]);
 
   // 현재 페이지에 맞는 상품 목록 추출
   const currentPageProducts = sortedProducts.slice((currentPage - 1) * LIMIT, currentPage * LIMIT);
