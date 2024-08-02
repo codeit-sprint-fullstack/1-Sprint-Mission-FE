@@ -69,10 +69,6 @@ function App() {
     fetchProducts(page);
   };
 
-  useEffect(() => {
-    fetchProducts(currentPage); // 초기 로드 및 페이지 변경 시 로드
-  }, [order, currentPage,fetchProducts]);
-
   // 최신순 좋아요 순 정렬
   const sortedProducts = useMemo(() => {
     return [...products].sort((a, b) => {
@@ -82,8 +78,12 @@ function App() {
       return b.favoriteCount - a.favoriteCount;
     }
     return 0;
-  });
-},[products, order]);
+    });
+  },[products, order]);
+
+  useEffect(() => {
+    fetchProducts(currentPage); // 초기 로드 및 페이지 변경 시 로드
+  }, [order, currentPage,fetchProducts]);
 
   // 현재 페이지에 맞는 상품 목록 추출
   const currentPageProducts = sortedProducts.slice((currentPage - 1) * LIMIT, currentPage * LIMIT);
