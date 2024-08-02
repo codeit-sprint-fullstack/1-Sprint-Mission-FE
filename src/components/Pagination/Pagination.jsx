@@ -4,8 +4,10 @@ import arrowIcon from '../../assets/arrow_right.svg';
 export default function Pagination({ totalPages, setPage, currentPage }) {
   const pageRange = 5;
 
-  //totalPages의 5단위로 버튼 5개 보여주도록.
-  //현재 페이지가 (totalPage/ 5)의 어느 몇번째에 속하는지 startPage, endPage 정함.
+  //totalPages의 5단위로 버튼 5개씩 보여주도록
+  //현재 페이지가 (totalPages/ 5)의 몇번째(currentGroup)에 속하는지
+  //startPage, endPage 정함.
+  //e.g currentPage = 2 일때 currentGroup = 1, startPage =1, endPage = 5
   const currentGroup = Math.ceil(currentPage / pageRange);
   const startPage = (currentGroup - 1) * pageRange + 1;
   const endPage = Math.min(startPage + pageRange - 1, totalPages);

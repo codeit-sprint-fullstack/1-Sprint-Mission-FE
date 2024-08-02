@@ -6,8 +6,8 @@
   padding: 12px 20px 12px 44px;
   border-radius: 12px;
   height: 100%;
+  min-width: 325px;
   max-width: 325px;
-  min-width: 288px;
   width: 100%;
 }
 .SearchBar input::placeholder {
@@ -25,4 +25,10 @@
 
 .SearchBar input:focus {
   outline: 1px solid var(--primary-colour);
+}
+
+@media only screen and (max-width: 1199px) {
+  .SearchBar input {
+    min-width: 242px;
+  }
 }

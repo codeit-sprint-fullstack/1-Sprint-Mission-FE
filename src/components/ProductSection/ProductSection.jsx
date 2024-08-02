@@ -38,6 +38,7 @@ export default function ProductSection({ className, tabletSize, mobileSize }) {
     }
   }, [orderBy, pageSize, page]);
 
+  //서치바 인풋에 타입되는 value가 product.name에 include 되어있는 product을 filter
   const handleSearchChange = (e) => {
     const searchInputValue = e.target.value;
     setSearchValue(searchInputValue);

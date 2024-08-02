@@ -40,3 +40,9 @@
 .Pagination .arrow-right {
   transform: rotate(180deg);
 }
+
+@media only screen and (max-width: 1199px) {
+  .Pagination {
+    margin-top: 40px;
+  }
+}

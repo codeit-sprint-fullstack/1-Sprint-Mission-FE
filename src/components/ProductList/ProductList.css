@@ -56,29 +56,19 @@
   .BestSection .ProductList {
     grid-template-columns: repeat(2, minmax(200px, 1fr));
   }
-
-  .ProductSection .ProductList {
-    grid-template-columns: repeat(4, minmax(200px, 1fr));
-  }
-}
-
-@media only screen and (max-width: 990px) {
-  .BestSection .ProductList {
-    grid-template-columns: repeat(2, minmax(200px, 1fr));
-  }
   .ProductSection .ProductList {
     grid-template-columns: repeat(3, minmax(200px, 1fr));
     gap: 16px;
   }
 }
 
-@media only screen and (max-width: 744px) {
+@media only screen and (max-width: 743px) {
   .BestSection .ProductList {
     grid-template-columns: repeat(1, 1fr);
   }
   .ProductSection .ProductList {
     grid-template-columns: repeat(2, minmax(150px, 1fr));
-    gap: 16px;
+    gap: 8px;
   }
   .BestSection .ProductCard .card-image {
     min-width: 343px;
