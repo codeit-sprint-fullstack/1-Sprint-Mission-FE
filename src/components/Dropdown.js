@@ -7,6 +7,7 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 function Dropdown({ onOrderChange }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [sortOption, setSortOption] = useState('recent');
 
   const click = () => {
     setIsOpen((prevState) => !prevState);
@@ -14,13 +15,16 @@ function Dropdown({ onOrderChange }) {
 
   const handleSortChange = (orderBy) => {
     onOrderChange(orderBy);
+    setSortOption(orderBy);
   };
 
   return (
     <>
       <div onClick={click}>
         <div className={styles.control}>
-          <p className={styles.controlText}>최신순</p>
+          <p className={styles.controlText}>
+            {sortOption === 'recent' ? '최신순' : '좋아요순'}
+          </p>
           <FontAwesomeIcon className={styles.controlIcon} icon={faCaretDown} />
           <img
             src={MobileArrow}
