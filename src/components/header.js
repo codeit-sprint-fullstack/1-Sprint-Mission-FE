@@ -2,10 +2,16 @@ import "../css/header.css";
 import mainLog from "../image/mainlogo.png";
 import mb_Log from "../image/mb_logo.png";
 import useImgResize from "../hooks/Returnresize.js";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Header() {
   const view = useImgResize();
+
+  const getLinkStyle = ({ isActive }) => {
+    return {
+      color: isActive && "#3692FF",
+    };
+  };
 
   return (
     <header>
@@ -18,12 +24,16 @@ function Header() {
           />
         </Link>
         <div className="nav_bar">
-          <Link to="/">
-            <div className="nav_content">자유게시판</div>
-          </Link>
-          <Link to="/">
-            <div className="nav_content">중고마켓</div>
-          </Link>
+          <div className="nav_content">
+            <NavLink to="/" style={getLinkStyle}>
+              자유게시판
+            </NavLink>
+          </div>
+          <div className="nav_content">
+            <NavLink to="/items" style={getLinkStyle}>
+              중고마켓
+            </NavLink>
+          </div>
         </div>
       </div>
     </header>

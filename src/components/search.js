@@ -3,6 +3,7 @@ import "../css/serach.css";
 import ic_search from "../image/ic_search.png";
 import ic_arrow_down from "../image/ic_arrow_down.png";
 import ic_sort from "../image/ic_sort.png";
+import { Link } from "react-router-dom";
 
 function DropDownBox({ onOrderChange, order, isMobile = false }) {
   const [dropView, setDropView] = useState(false);
@@ -73,7 +74,9 @@ function Search({ onChange, order, isMobile = false }) {
       <div className="first_block">
         <h2>판매 중인 상품</h2>
         {isMobile ? (
-          <button className="add_product_btn">상품 등록하기</button>
+          <Link to="/regisration">
+            <button className="add_product_btn">상품 등록하기</button>
+          </Link>
         ) : null}
       </div>
       <div className="serach_query_container">
@@ -89,7 +92,9 @@ function Search({ onChange, order, isMobile = false }) {
           </form>
         </div>
         {!isMobile && (
-          <button className="add_product_btn">상품 등록하기</button>
+          <Link to="/registration">
+            <button className="add_product_btn">상품 등록하기</button>
+          </Link>
         )}
         <DropDownBox
           onOrderChange={onOrderChange}
