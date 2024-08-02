@@ -12,7 +12,7 @@ import Container from '../components/Container.js';
 
 import useMediaType from '../hook/useMediaType.js';
 
-import useMediaType from '../hook/useWindow.js';
+import useMediaType from '../hook/useMediaType.js';
 
 const PAGECOUNT = 5;
 
