@@ -11,8 +11,8 @@ function Footer() {
       <div className="footer_box">
         <p>@codeit - 2024</p>
         <div className="footer_center_box">
-          <Link href="./nav/privacy.html">Privacy Policy</Link>
-          <Link href="./nav/faq.html">FAQ</Link>
+          <Link to="/privacy">Privacy Policy</Link>
+          <Link to="/faq">FAQ</Link>
         </div>
         <div className="sns_box">
           <Link to="https://www.facebook.com/" target="_blank">
@@ -21,7 +21,7 @@ function Footer() {
           <Link to="https://x.com/?lang=ko" target="_blank">
             <img className="icon" src={twitterLogo} alt="트위터로고" />
           </Link>
-          <Link href="https://www.youtube.com/" target="_blank">
+          <Link to="https://www.youtube.com/" target="_blank">
             <img className="icon" src={youtubeLogo} alt="유튜브고" />
           </Link>
           <Link to="https://www.instagram.com/" target="_blank">
