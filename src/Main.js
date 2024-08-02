@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import App from './components/App.js';
+import Layout from './components/Layout.js';
 import MarketPage from './pages/MarketPage.js';
 
 function Main() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<App />}>
+        <Route path='/' element={<Layout />}>
           <Route index element={<MarketPage />} />
         </Route>
       </Routes>
