@@ -14,6 +14,8 @@ import styles from './MarketPage.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
+import useMediaType from '../hook/useWindow.js';
+
 const PAGECOUNT = 5;
 
 function MarketPage() {
@@ -22,10 +24,12 @@ function MarketPage() {
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
   const [keyword, setKeyword] = useState('');
-  const [mediaType, setMediaType] = useState();
+
   const [pageSizeCount, setPageSizeCount] = useState(10);
   const [total, setTotal] = useState(0);
   const [searchKeyword, SetSearchKeyword] = useState('');
+
+  const mediaType = useMediaType();
 
   const sortedListItem = items.sort((a, b) => b[orderBy] - a[orderBy]);
 
@@ -77,28 +81,6 @@ function MarketPage() {
     SetSearchKeyword(newKeyword);
     performSearch(newKeyword);
   };
-
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.outerWidth;
-
-      if (773 >= width) {
-        setMediaType('mobile');
-      } else if (1200 >= width) {
-        setMediaType('tablet');
-      } else {
-        setMediaType('pc');
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    handleResize();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     if (mediaType === 'mobile') {
