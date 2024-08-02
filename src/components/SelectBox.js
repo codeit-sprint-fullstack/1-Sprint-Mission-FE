@@ -15,6 +15,11 @@ function SelectBox({setOrder, mobile}) {
     setShow(prevShow => !prevShow);
   };
 
+  const handleOptionButtonClick = (option, order) => {
+    handleOptionClick(option);
+    setOrder(order);
+  };
+
   return (
     <div className="SelectBox">
       {(!mobile) ? 
@@ -32,8 +37,8 @@ function SelectBox({setOrder, mobile}) {
       } 
       
       {show && <div className='select-options'>
-        <button className='base-style' onClick={() => {handleOptionClick('최신순'); setOrder('latest');}}>최신순</button>
-        <button className='base-style' onClick={() => {handleOptionClick('좋아요순'); setOrder('like');}}>좋아요순</button>
+        <button className='base-style' onClick={() => handleOptionButtonClick('최신순', 'latest')}>최신순</button>
+        <button className='base-style' onClick={() => handleOptionButtonClick('좋아요순', 'like')}>좋아요순</button>
       </div>}  
     </div>
   );
