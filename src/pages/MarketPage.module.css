@@ -4,6 +4,7 @@ body {
 }
 
 .text {
+  margin-top: 30px;
   font-size: 20px;
   font-weight: 700;
   color: #111827;
@@ -58,4 +59,47 @@ body {
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+  .text {
+    font-size: 20px;
+    font-weight: 700;
+    align-items: center;
+    margin-top: 33px;
+    color: #111827;
+  }
+  .productControls > input {
+    width: 200px;
+  }
+}
+@media screen and (max-width: 773px) {
+  .container {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .productHeader {
+    display: grid;
+    position: relative;
+    height: 108px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+  }
+
+  .productControls {
+    position: relative;
+    position: absolute;
+    bottom: -18px;
+  }
+
+  .productHeader .productControlsButton {
+    position: absolute;
+    bottom: 60px;
+    left: 72%;
+  }
+
+  .productControls > input {
+    width: 256px;
+  }
 }

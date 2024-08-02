@@ -30,7 +30,6 @@ function Dropdown({ onOrderChange, sortOption }) {
             alt='드롭다운화살표'
           />
         </div>
-
         {isOpen && (
           <div className={styles.dropbox}>
             <div

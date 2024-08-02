@@ -20,9 +20,9 @@ function MarketPage() {
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
   const [keyword, setKeyword] = useState('');
-
   const [pageSizeCount, setPageSizeCount] = useState(10);
   const [total, setTotal] = useState(0);
+  const [searchKeyword, SetSearchKeyword] = useState('');
 
   const mediaType = useMediaType();
 
