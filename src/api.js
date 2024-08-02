@@ -1,20 +1,22 @@
+import axios from "axios";
+
 export async function getProducts({page, pageSize, orderBy, keyword}) {
-  const query = new URLSearchParams({
+  const params = {
     page: page.toString(),
     pageSize: pageSize.toString(),
-  });
-  
+  };
+
   if (orderBy) {
-    query.append('orderBy', orderBy);
+    params.orderBy = orderBy;
   }
   if (keyword) {
-    query.append('keyword', keyword);
+    params.keyword = keyword;
   }
 
-  const response = await fetch(`https://panda-market-api.vercel.app/products?${query.toString()}`);
-  if (!response.ok ) {
+  try {
+    const response = await axios.get('https://panda-market-api.vercel.app/products', { params });
+    return response.data;
+  } catch (error) {
     throw new Error('데이터를 불러오는데 실패했습니다.');
   }
-  const body = await response.json();
-  return body;
 }
