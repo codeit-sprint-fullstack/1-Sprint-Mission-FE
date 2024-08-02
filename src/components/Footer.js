@@ -1,46 +1,69 @@
-import React from 'react';
-import './Footer.css';
+import React from "react";
+import "./Footer.css";
 
-const Footer = ({ nowPage, showPageNum, pageState }) => {
+function Footer({ nowPage, handlePageChange, totalPageSize }) {
+  const showPageSize = 5;
+
+  const startNum = Math.floor((nowPage - 1) / showPageSize) * showPageSize + 1;
+  const endNum = Math.min(startNum - 1 + showPageSize, totalPageSize);
+
+  const pageNumSelect = (e) => {
+    handlePageChange(Number(e.target.textContent));
+  }
+
   const renderPageNumbers = () => {
-    const pageNumbers = [];
-    for (let i = 1; i <= showPageNum; i++) {
-      pageNumbers.push(
+    const pageNumGroup = [];
+    console.log(`totalPageSize: ${totalPageSize}`);
+    console.log(`nowPage: ${nowPage}`);
+    for (let i = startNum; i <= endNum; i++) {
+      pageNumGroup.push(
         <button
           key={i}
           className={nowPage === i ? "activeBtn" : "pageNumBtn"}
-          onClick={() => pageState(i)}
+          onClick={pageNumSelect}
         >
           {i}
         </button>
       );
     }
-    return pageNumbers;
+    return pageNumGroup;
   };
 
+  const renderPreviousPage = () => {
+    return (
+      <button
+        className={nowPage === 1 ? "btnNonDisplay" : "pageMoveBtn"}
+        onClick={() => {
+          handlePageChange(nowPage - 1);
+        }}
+        // disabled={nowPage === 1}
+      >
+        &lt;
+      </button>
+    );
+  };
 
+  const renderNextPage = () => {
+    return (
+      <button
+        className={nowPage === totalPageSize ? "btnNonDisplay" : "pageMoveBtn"}
+        onClick={() => {
+          handlePageChange(nowPage + 1);
+        }}
+        // disabled={nowPage === totalPageSize}
+      >
+        &gt;
+      </button>
+    );
+  };
 
   return (
     <footer className="footerContain">
-      <div className="pagination">
-        <button
-          className="pageMoveBtn"
-          onClick={() => pageState(nowPage - 1)}
-          disabled={nowPage === 1}
-        >
-          &lt;
-        </button>
-        {renderPageNumbers()}
-        <button
-          className="pageMoveBtn"
-          onClick={() => pageState(nowPage + 1)}
-          disabled={nowPage === showPageNum}
-        >
-          &gt;
-        </button>
-      </div>
+      {renderPreviousPage()}
+      {renderPageNumbers()}
+      {renderNextPage()}
     </footer>
   );
-};
+}
 
 export default Footer;

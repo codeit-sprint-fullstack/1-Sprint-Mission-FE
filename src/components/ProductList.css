@@ -1,7 +1,0 @@
-.favoriteProductsList {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 1200px;
-  gap: 24px ;
-}

@@ -1,70 +1,62 @@
 import React from "react";
-import { useState } from "react";
-
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import Nav from "../components/Nav";
-
-//원래 렌더
-import ProductRenter from "../components/ProductRender";
-// 테스트
-import ProductList from "../components/ProductList.js";
-
+import { useState, useEffect } from "react";
 import "./Homepage.css";
 
-import test from "../images/test.svg";
-import test2 from "../images/test2.svg";
-import test3 from "../images/test3.svg";
+//섹션 렌더
+import Header from "../components/Header.js";
+import Footer from "../components/Footer";
+// import Nav from "../components/Nav";
+
+// api
+import getProductList from "../api/getproducts.js";
+
+//테스트
+import ProductSectionRender from "../components/ProductSectionRender.js";
 
 const HomePage = () => {
   const [nowPage, setnowPage] = useState(1);
-  const showPageCount = 5;
+  const [totalPageSize, setMaxPageCount] = useState(1);
+  const [productMaxCount, setproductMaxCount] = useState(10);
+  const [lineProductMaxCount, setlineProductMaxCount] = useState(5);
 
   const handlePageChange = (page) => {
     setnowPage(page);
   };
 
+  useEffect(() => {
+    getProductList()
+      .then((data) => {
+        console.log(`data.totalCount: ${data.totalCount}`);
+        setMaxPageCount(Math.ceil(data.totalCount / productMaxCount));
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
-    <body>
+    <main>
       <Header />
-      <main className="bodySet">
-        <nav className="bestProductNav">베스트 상품</nav>
-        <section className="bestProductList">
-          <ProductList />
-          {/* <ProductRenter
-            maxProduct={4}
-            image={test}
-            title={items.name}
-            price="1000"
-            like="100"
-          /> */}
-        </section>
-        <nav className="sellingProductNav">
-          <Nav />
-        </nav>
-        <section className="sellingProductList">
-          <ProductRenter
-            maxProduct={5}
-            image={test2}
-            title="test"
-            price="1000"
-            like="100"
-          />
-          <ProductRenter
-            maxProduct={5}
-            image={test3}
-            title="test"
-            price="1000"
-            like="100"
-          />
-        </section>
-      </main>
+      <div className="bodySet">
+      <ProductSectionRender
+          nowPage={1}
+          sort="favorite"
+          productMaxCount={4}
+          navHeaderText={"베스트 상품"}
+        />
+        <ProductSectionRender
+          nowPage={nowPage}
+          productMaxCount={productMaxCount}
+          lineProductMaxCount={lineProductMaxCount}
+          navHeaderText={"판매 중인 상품"}
+          handlePageChange={handlePageChange}
+          isNav={true}
+        />
+      </div>
       <Footer
         nowPage={nowPage}
-        showPageNum={showPageCount}
-        onPageChange={handlePageChange}
+        handlePageChange={handlePageChange}
+        totalPageSize={totalPageSize}
       />
-    </body>
+    </main>
   );
 };
 

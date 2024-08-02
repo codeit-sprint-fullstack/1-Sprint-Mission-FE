@@ -1,30 +1,46 @@
 import React from "react";
-import iconHeart from "../images/icon/ic_heart.svg";
 
 import "./ProductRender.css";
+import iconHeart from "../images/icon/ic_heart.svg";
 
-const Product = ({ maxProduct, image, title, price, like }) => {
-  const Products = [];
-  const renderProducts = () => {
-    for (let i = 1; i <= maxProduct; i++) {
-      Products.push(
-        <li className="Product">
-          <img src={image} alt="상품" />
-          <figure className="ProductDescription">
-            <span>{title}</span>
-            <h1>{price}원</h1>
+function ProductListRender({ productList, isThereProduct }) {
+  const ProductRender = ({ product }) => {
+    const { images, name, description, price, favoriteCount } = product;
+    const [img] = images;
+
+    return (
+      <li className="ProductBox">
+        <article className="imgSizeControl">
+          <img src={img} alt={name} />
+        </article>
+        <figure className="ProductDescription">
+          <span>{description.toLocaleString()}</span>
+          {price === 0 ? "" : <h1>{`${price.toLocaleString()}원`}</h1>}
+          {favoriteCount === 0 ? (
+            ""
+          ) : (
             <div className="ProductLike">
-							<img src={iconHeart} alt="좋아요" />
-              <span>{like}</span>
+              <img src={iconHeart} alt="좋아요" />
+              <span>{favoriteCount}</span>
             </div>
-          </figure>
-        </li>
-      );
-    }
-    return Products;
+          )}
+        </figure>
+      </li>
+    );
   };
 
-  return <ul className="ProductsList">{renderProducts()}</ul>;
-};
 
-export default Product;
+  if (isThereProduct) {
+    return <div className="noProduct">상품이 없습니다.</div>;
+  } else {
+    return (
+      <ul className="productContainer">
+        {productList.map((item, idx) => (
+          <ProductRender key={item.id ? item.id : idx - 30} product={item} />
+        ))}
+      </ul>
+    );
+  }
+}
+
+export default ProductListRender;
