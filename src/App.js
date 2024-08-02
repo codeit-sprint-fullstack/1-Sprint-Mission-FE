@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import searchIcon from './assets/images/ic_search.png';
 import Header from './components/Header';
 import './App.css';
@@ -43,7 +43,7 @@ function App() {
     setSearchProduct(event.target.value);
   };
 
-  const handleSearchClick = async () => {
+  const handleSearchClick = useCallback(async () => {
     try {
       if (searchProduct.trim() === '') {
         setSearchResults([]);
@@ -62,7 +62,7 @@ function App() {
       setSearchError('검색 중 오류가 발생했습니다.');
       console.error('검색 오류', error);
     }
-  };
+  },[searchProduct, products]);
 
   const handlePageClick = (page) => {
     setCurrentPage(page);
