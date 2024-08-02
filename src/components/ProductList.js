@@ -70,7 +70,7 @@ const ProductList = () => {
         </div>
         {[...Array(totalPages)].map((_, i) => (
           <div
-            key={i + 1}
+            key={`pagination-item-${i}`}
             className={`pagination-item ${page === i + 1 ? 'active' : ''}`}
             onClick={() => handlePageChange(i + 1)}
           >
