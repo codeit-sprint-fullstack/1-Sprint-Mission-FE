@@ -97,9 +97,16 @@ const ProductList = () => {
 
   const renderAllProducts = () => {
     const screenType = getScreenType();
-    const allProductsToShow = screenType === 'desktop' ? products.slice(0, 10) :
-                              screenType === 'tablet' ? products.slice(0, 6) :
-                              products.slice(0, 4);
+    let allProductsToShow;
+
+    if (screenType === 'desktop') {
+      allProductsToShow = products.slice(0, 10);
+    } else if (screenType === 'tablet') {
+      allProductsToShow = products.slice(0, 6);
+    } else {
+      allProductsToShow = products.slice(0, 4);
+    }
+
     return allProductsToShow.map((product) => (
       <ProductCard key={product.id} product={product} />
     ));
