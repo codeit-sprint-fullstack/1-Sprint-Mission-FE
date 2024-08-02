@@ -14,7 +14,7 @@ import styles from './MarketPage.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
-import useMediaType from '../hook/useWindow.js';
+import useMediaType from '../hook/useMediaType.js';
 
 const PAGECOUNT = 5;
 
@@ -52,12 +52,11 @@ function MarketPage() {
     }
 
     const { list } = result;
-    if (options.page === 1) {
-      setItems(list);
-    } else {
-      setItems([...list]);
-    }
+
+    options.page === 1 ? setItems(list) : setItems([...list]);
+
     setTotal(() => result.totalCount);
+
     setPageSizeCount(options.pageSize);
   };
 
@@ -94,11 +93,11 @@ function MarketPage() {
 
   useEffect(() => {
     if (mediaType === 'mobile') {
-      handleBestLoad({ page, pageSize: 1, orderBy: 'favorite', keyword });
+      handleBestLoad({ page: 1, pageSize: 1, orderBy: 'favorite', keyword });
     } else if (mediaType === 'tablet') {
-      handleBestLoad({ page, pageSize: 2, orderBy: 'favorite', keyword });
+      handleBestLoad({ page: 1, pageSize: 2, orderBy: 'favorite', keyword });
     } else {
-      handleBestLoad({ page, pageSize: 4, orderBy: 'favorite', keyword });
+      handleBestLoad({ page: 1, pageSize: 4, orderBy: 'favorite', keyword });
     }
   }, [mediaType]);
 

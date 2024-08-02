@@ -1,18 +1,16 @@
 import { useState, useEffect } from 'react';
 
-// const mobileSize = window.matchMedia('(max-width: 773px)').matches;
-// const tabletSize = window.matchMedia('(max-width: 1200px)').matches;
-
 const useMediaType = () => {
   const [mediaType, setMediaType] = useState('');
 
   useEffect(() => {
     const handleResize = () => {
-      const width = window.outerWidth;
+      const mobileSize = window.matchMedia('(max-width: 773px)').matches;
+      const tabletSize = window.matchMedia('(max-width: 1200px)').matches;
 
-      if (773 >= width) {
+      if (mobileSize) {
         setMediaType('mobile');
-      } else if (1200 >= width) {
+      } else if (tabletSize) {
         setMediaType('tablet');
       } else {
         setMediaType('pc');
@@ -21,10 +19,13 @@ const useMediaType = () => {
 
     window.addEventListener('resize', handleResize);
 
+    handleResize();
+
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  console.log(mediaType);
 
   return mediaType;
 };
