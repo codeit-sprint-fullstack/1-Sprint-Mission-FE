@@ -3,23 +3,26 @@ import { getItems } from '../api.js';
 import './Items.css';
 import { useEffect, useState } from 'react';
 import { DropDown } from './Dropdown.js';
-import { PageButton } from './pageButton.js';
+import { PageButton } from './PageButton.js';
+import { useResponsive } from '../hooks/useResponsive.js';
 
 export function BestItems() {
   const [items, setItems] = useState([]);
+  const { isTablet, isMobile } = useResponsive();
 
   const BestItemsLoad = async () => {
-    const items = await getItems(1, 4, 'favorite');
+    const itemsPerPage = isTablet ? 2 : isMobile ? 1 : 4;
+    const items = await getItems(1, itemsPerPage, 'favorite');
     setItems(items);
   };
 
   useEffect(() => {
     BestItemsLoad();
-  }, []);
+  }, [isTablet, isMobile]);
 
   return (
-    <div className="BestItemsContainor">
-      <div className="BestItemsTextBox">
+    <div className="best-items-containor">
+      <div className="best-items-textBox">
         <ItemsTextBox Children={'베스트 상품'}></ItemsTextBox>
       </div>
       <ItemList items={items}></ItemList>
@@ -37,11 +40,13 @@ export function ForSaleItems() {
   const [inputText, setInputText] = useState('');
   const [pageNum, setPageNum] = useState(1);
 
+  const { isTablet, isMobile } = useResponsive();
+
   const ForSaleItemsLoad = async () => {
-    const items = await getItems(pageNum, 10, order);
-    console.log(order);
-    console.log(items);
+    const itemsPerPage = isTablet ? 6 : isMobile ? 4 : 10;
+    const items = await getItems(pageNum, itemsPerPage, order);
     setItems(items);
+    console.log('Current screen width:', window.innerWidth);
   };
 
   const onChange = (e) => {
@@ -64,16 +69,16 @@ export function ForSaleItems() {
 
   useEffect(() => {
     ForSaleItemsLoad();
-  }, [order, inputText, pageNum]);
+  }, [order, inputText, pageNum, isTablet, isMobile]);
 
-  return (
-    <div className="ForSaleItemsContainor">
-      <div className="ForSaleItemsTextBox">
+  const PcAndTabletResponsive = () => {
+    return (
+      <>
         <ItemsTextBox Children={'판매중인 상품'}></ItemsTextBox>
         <div className="options">
           <form>
-            <div className="searchBox">
-              <div className="searchBtn" onClick={searchBtnClick}></div>
+            <div className="search-box">
+              <div className="search-btn" onClick={searchBtnClick}></div>
               <input
                 type="text"
                 className="search"
@@ -82,9 +87,51 @@ export function ForSaleItems() {
               ></input>
             </div>
           </form>
-          <button className="addItemBtn">상품 등록하기</button>
-          <DropDown text={text} setText={setText} setOrder={setOrder} />
+          <button className="add-item-btn">상품 등록하기</button>
+          <DropDown
+            text={text}
+            setText={setText}
+            setOrder={setOrder}
+            setPageNum={setPageNum}
+          />
         </div>
+      </>
+    );
+  };
+
+  const MobileResponsive = () => {
+    return (
+      <>
+        <div className="options-box-first">
+          <ItemsTextBox Children={'판매중인 상품'}></ItemsTextBox>
+          <button className="add-item-btn">상품 등록하기</button>
+        </div>
+        <div className="options-box-second">
+          <form>
+            <div className="search-box">
+              <div className="search-btn" onClick={searchBtnClick}></div>
+              <input
+                type="text"
+                className="search"
+                placeholder="검색할 상품을 입력해주세요"
+                onChange={onChange}
+              ></input>
+            </div>
+          </form>
+          <DropDown
+            setText={setText}
+            setOrder={setOrder}
+            setPageNum={setPageNum}
+          />
+        </div>
+      </>
+    );
+  };
+
+  return (
+    <div className="for-sale-items-containor">
+      <div className="for-sale-items-textBox">
+        {isMobile ? <MobileResponsive /> : <PcAndTabletResponsive />}
       </div>
       <ItemList items={items}></ItemList>
       <PageButton setPageNum={setPageNum}></PageButton>

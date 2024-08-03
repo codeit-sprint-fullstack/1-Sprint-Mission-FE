@@ -6,11 +6,11 @@ export function ItemsTextBox({ Children }) {
 
 export function Items({ item }) {
   return (
-    <div className="itemBox">
-      <img className="itemImg" src={item.images} alt={item.name} />
-      <div className="itemName">{item.name}</div>
-      <div className="itemPrice">{item.price}원</div>
-      <div className="itemFavoriteCount">
+    <div className="item-box">
+      <img className="item-img" src={item.images} alt={item.name} />
+      <div className="item-name">{item.name}</div>
+      <div className="item-price">{item.price}원</div>
+      <div className="item-favorite-count">
         <div className="favorite" />
         {item.favoriteCount}
       </div>
@@ -20,7 +20,7 @@ export function Items({ item }) {
 
 export function ItemList({ items }) {
   return (
-    <div className="gridBox">
+    <div className="grid-box">
       {items.map((item) => {
         return <Items key={item.id} item={item}></Items>;
       })}

@@ -1,6 +1,6 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css');
 
-.navBar {
+.nav-bar {
   width: 100vw;
   height: 70px;
   position: fixed;
@@ -9,20 +9,20 @@
   background-color: #ffffff;
 }
 
-.navBox {
+.nav-box {
   height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.navTextBox {
+.nav-text-box {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.navTextBox :nth-child(2) {
+.nav-text-box :nth-child(2) {
   font-family: Pretendard;
   font-size: 18px;
   font-weight: 700;
@@ -32,7 +32,7 @@
   color: #4b5563;
 }
 
-.navTextBox :nth-child(3) {
+.nav-text-box :nth-child(3) {
   font-family: Pretendard;
   font-size: 18px;
   font-weight: 700;
@@ -49,11 +49,52 @@
   margin-left: 200px;
 }
 
-.myLogo {
+.my-logo {
   width: 40px;
   height: 40px;
-  background-image: url('../img/myLogo.png');
+  background-image: url('../img/my-logo.png');
   background-size: cover;
   margin-right: 200px;
   justify-content: flex-end;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .logo {
+    margin-left: 24px;
+  }
+
+  .my-logo {
+    margin-right: 24px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 767px) {
+  .logo {
+    margin-left: 16px;
+    background-image: url('../img/small-logo.png');
+    width: 81px;
+    height: 27px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .my-logo {
+    margin-right: 16px;
+  }
+
+  .nav-text-box :nth-child(2) {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    padding: 0px;
+    margin-left: 8px;
+  }
+
+  .nav-text-box :nth-child(3) {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    padding: 0px;
+    margin-left: 8px;
+  }
 }
