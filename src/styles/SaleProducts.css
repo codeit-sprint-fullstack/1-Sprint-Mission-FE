@@ -12,6 +12,7 @@
 }
 .sale-products {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 2.4rem;
 }
