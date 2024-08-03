@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { getItems } from "../api.js";
 import Product from "./Product.js";
-import useResize from "../hooks/useResize.js";
+import usePageSize from "../hooks/usePageSize.js";
 import "../styles/BestProducts.css";
 
 function BestProducts() {
   const [products, setProducts] = useState([]);
-  const pageSize = useResize(1, 2, 4); // 모바일 태블릿 데스크탑 출력 개수
+  const pageSize = usePageSize(1, 2, 4); // 모바일 태블릿 데스크탑 출력 개수
 
   useEffect(() => {
     const getProducts = async () => {

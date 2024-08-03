@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function useResize(mobileSize, tabletSize, desktopSize) {
+function usePageSize(mobileSize, tabletSize, desktopSize) {
   const [pageSize, setPageSize] = useState(desktopSize);
 
   function getPageSize() {
@@ -28,4 +28,4 @@ function useResize(mobileSize, tabletSize, desktopSize) {
   return pageSize;
 }
 
-export default useResize;
+export default usePageSize;

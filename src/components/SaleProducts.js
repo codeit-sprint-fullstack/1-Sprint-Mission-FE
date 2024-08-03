@@ -6,7 +6,7 @@ import "../styles/SaleProducts.css";
 import searchIcon from "../images/searchIcon.png";
 import sortIcon from "../images/sortIcon.png";
 import arrowDownIcon from "../images/arrowDownIcon.png";
-import useResize from "../hooks/useResize.js";
+import usePageSize from "../hooks/usePageSize.js";
 
 function SaleProducts() {
   const [products, setProducts] = useState([]);
@@ -19,7 +19,7 @@ function SaleProducts() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const pageSize = useResize(4, 6, 10); // 모바일 태블릿 데스크탑 출력 개수
+  const pageSize = usePageSize(4, 6, 10); // 모바일 태블릿 데스크탑 출력 개수
 
   useEffect(() => {
     const getProducts = async () => {

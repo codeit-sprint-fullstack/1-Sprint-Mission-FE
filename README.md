@@ -8,7 +8,7 @@
     - **Product.js**
     - **SaleProducts.js**
   - **hooks/**
-    - **useResize.js**
+    - **usePageSize.js**
   - **styles/**
     - **BestProducts.css**
     - **Footer.css**
