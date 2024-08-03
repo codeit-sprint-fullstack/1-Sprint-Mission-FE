@@ -1,0 +1,104 @@
+.nav {
+  position: relative;
+  padding: 15px 0;
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+  border-bottom: 1px solid #dfdfdf;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  margin-left: 200px;
+
+  & p {
+    margin-left: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #4b5563;
+    margin-top: 25px;
+  }
+}
+
+.getLinkStyle {
+  margin-left: 30px;
+  text-decoration: none; /* 링크의 밑줄 제거 */
+  color: inherit; /* 링크의 색상 제거 */
+
+  & p {
+    font-size: 18px;
+    font-weight: 700;
+    color: #4b5563;
+    margin-top: 27px;
+  }
+}
+
+.userImage {
+  margin-right: 200px;
+}
+
+.mobileLogo {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    margin-left: 24px;
+    margin-right: 24px;
+    width: 100%;
+  }
+  .menu {
+    margin-left: 0;
+  }
+  .userImage {
+    margin-right: 29px;
+  }
+}
+
+@media (max-width: 773px) {
+  .container {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+
+  .menu {
+    margin-left: 0;
+
+    & p {
+      margin-left: 8px;
+      margin-top: 20px;
+    }
+  }
+
+  .navLogo {
+    display: none;
+  }
+
+  .mobileLogo {
+    display: block;
+  }
+
+  .getLinkStyle {
+    margin-left: 8px;
+    text-decoration: none; /* 링크의 밑줄 제거 */
+    color: inherit; /* 링크의 색상 제거 */
+  }
+
+  .userImage {
+    margin-right: 30px;
+  }
+}
