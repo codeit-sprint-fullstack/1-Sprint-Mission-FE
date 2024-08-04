@@ -1,24 +1,36 @@
 import './assets/styles/App.css';
-import { useEffect, useState } from 'react'
+import { useEffect, useState, React } from 'react'
 import { getProductList } from './services/ProductService.js'
 import ProductList from './components/ProductList.js'
 import SearchProduct from './components/SearchProduct.js'
 import Dropdown from './components/Dropdown.js'
-import { PagingButton } from './components/PagingButton.js'
+import PagingButton from './components/PagingButton.js'
+import { PATH } from './constants/path.js'
+import { useMediaQuery } from "react-responsive"
 
 function App() {
-  const BESTPAGE = 4;
-  const SELLINGPAGE = 10;
-  const BESTFIELDS = 'favorite';
-
   const [bestItem, setBestItem] = useState([]);
   const [item, setItem] = useState([]);
+  const [page, setPage] = useState(1);
   const [order, setOrder] = useState('recent');
   const [keyword, setKeyword] = useState('');
-  const [drop, setDrop] = useState(false);
-  const [state, setState] = useState('최신순');
-  const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState();
+  const [drop, setDrop] = useState(false);
+
+  const Pc = useMediaQuery({
+    query : "(min-width:1024px)"
+  });
+
+  const Tablet = useMediaQuery({
+    query : "(min-width:768px) and (max-width:1023px)"
+  });
+  
+  const Mobile = useMediaQuery({
+    query : "(min-width:375px) and (max-width:767px)"
+  });
+
+  const bestPagesize = Pc ? PATH.bestProduct : Tablet ? PATH.bestProductTablet : PATH.bestProductMobile
+  const sellingPagesize = Pc ? PATH.sellingProduct : Tablet ? PATH.sellingProductTablet : PATH.sellingProductMobile
 
   const handleSearch = (value) => {
     setKeyword(value);
@@ -33,36 +45,41 @@ function App() {
       setOrder('favorite');
       setPage(1);
     }
-    setState(text);
   }
   
   const movePage = (page) => {
     setPage(page);
   }
-
+  
   useEffect(() => {
     const options = { 
+      page: 1, 
+      pageSize: bestPagesize, 
+      orderBy: 'favorite'
+    }
+
+    const options2 = { 
       page: page, 
-      pageSize: SELLINGPAGE, 
+      pageSize: sellingPagesize, 
       orderBy: order,
       keyword: keyword
     }
-
+    
     const bestField = async (options) => {
-      const bestLists = (await getProductList(options));
+      const bestLists = await getProductList(options);
       setBestItem(bestLists.list);
     }
 
     const fetchData = async (options) => {
-      const lists = (await getProductList(options));
+      const lists = await getProductList(options);
       setItem(lists.list);
       setTotalCount(lists.totalCount);
     }
 
-    bestField({ page: 1, pageSize: BESTPAGE, orderBy: BESTFIELDS });
-    fetchData(options);
-  }, [order, page, keyword]);
-
+    bestField(options);
+    fetchData(options2);
+  }, [order, page, bestPagesize, sellingPagesize, keyword]);
+  
   return (
     <div className="App">
       <div className="frame">
@@ -72,16 +89,14 @@ function App() {
         </div>
         <div className="sellingItem">
           <div className='sellingItemWrap'>
-            <span>판매중인 상품</span>
-            <div className='aboutItem'>
-              <SearchProduct onSubmit={handleSearch}></SearchProduct>
-              <button className='registProduct'></button>
-              <ul onClick={() => { setDrop(!drop) }}>
-                {state} <span>{" "}</span>
-                {drop ? '▲' : '▼'}
-                {drop && <Dropdown onClick={handleSort} />}
-              </ul>
-            </div>
+            <span>판매 중인 상품</span>
+            <SearchProduct onSubmit={handleSearch}></SearchProduct>
+            <button className='registProduct'></button>
+            <ul onClick={() => { setDrop(!drop) }}>
+              {Mobile? '' : order === 'recent'? '최신순':'좋아요순'} <span>{" "}</span>
+              {drop ? '▲' : '▼'}
+              {drop && <Dropdown onClick={handleSort} />}
+            </ul>
           </div>
           <ProductList items={item} field='Selling' />
         </div>

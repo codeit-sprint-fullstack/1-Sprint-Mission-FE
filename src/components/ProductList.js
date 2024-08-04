@@ -5,11 +5,9 @@ function formatDate(value) {
 
 function ProductListItem({item, field}) {
   const { images, name, price, favoriteCount } = item;
-  
-  field += 'Item';
 
   return (
-    <div className={field}>
+    <div className={`${field}ListItem`}>
       <img src={images} alt={name} />
       <div>
         <div className="name">{name}</div>
@@ -21,9 +19,8 @@ function ProductListItem({item, field}) {
 }
 
 function ProductList({items, field}) {
-  field += 'List';
   return (
-    <ul className={field}>
+    <ul className={`${field}List`}>
       {items.map((item) => (
          <li key={item.id}>
            <ProductListItem item={item} field={field}/>

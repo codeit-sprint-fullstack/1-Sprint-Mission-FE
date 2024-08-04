@@ -17,6 +17,7 @@ span {
   font-size: 2rem;
   font-weight: 700;
   color: #111827;
+  white-space:nowrap;
 }
 
 .bestItem {
@@ -59,29 +60,8 @@ span {
 
 .sellingItemWrap{
   display: flex;
-  justify-content: space-between;
-}
-
-.aboutItem {
+  align-items: center;
   height: 42px;
-  display: flex;
-  gap: 12px;
-  ul {
-    z-index: 1;
-    width: 130px;
-    height: 100%;
-    text-align: center;
-    line-height: 42px;
-    font-size: 1.6rem;
-    font-weight: 400;
-    color: #1F2937;
-    background-color: #FFFFFF;
-    border: 1px solid #E5E7EB;
-    border-radius: 12px;
-    span{
-      margin: 0 24px 0 0;
-    }
-  }
 }
 
 form {
@@ -89,13 +69,15 @@ form {
 }
 
 .searchInput {
+  margin-left: 475px;
   width: 288px;
-  height: 100%;
+  height: 42px;
   padding: 0 0 0 37px;
   border: none;
 }
 
 .searchBtn{
+  margin-left: 475px;
   width: 24px;
   height: 24px;
   background-color: #FFFFFF;
@@ -109,11 +91,30 @@ form {
 }
 
 .registProduct {
+  margin-left: 12px;
   width: 133px;
   height: 100%;
   background-image: url('../img/btn_registProduct.png');
   background-size: cover;
   border: none;
+}
+
+.sellingItemWrap ul {
+  margin-left: 12px;
+  z-index: 1;
+  width: 130px;
+  height: 100%;
+  text-align: center;
+  line-height: 42px;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #1F2937;
+  background-color: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  span{
+    margin: 0 24px 0 0;
+  }
 }
 
 .list {
@@ -135,6 +136,7 @@ form {
   display: flex;
   gap: 40px 1%;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .SellingListItem {
@@ -199,4 +201,208 @@ form {
 .pageBtnOFF {
   background-color: #FFFFFF;
   color: #000000;
+}
+
+@media all and (min-width:767.1px) and (max-width:1199px){
+  .App {
+    gap: 40px;
+  }
+  
+  .frame {
+    margin-top: 17px;
+    width: 696px;
+    gap: 40px;
+  }
+
+  .bestItem {
+    height: 482px;
+  }
+  
+  .BestList {
+    gap: 10px;
+  }
+  
+  .BestListItem {
+    width: 343px;
+    height: 434px;
+    gap: 10px;
+    img {
+      width: 100%;
+      height: 343px;
+      border-radius: 19.46px;
+    }
+    div {
+      gap: 6px;
+    }
+  }
+     
+  .sellingItem {
+    gap: 16px;
+  }
+
+  .sellingItemWrap{
+    height: 92px;
+    flex-wrap: wrap;
+  }
+
+  .searchInput {
+    margin-left: 53px;
+    width: 202px;
+    height: 42px;
+    padding: 0 0 0 40px;
+  }
+
+  .searchBtn{
+    margin-left: 53px;
+    width: 24px;
+    height: 24px;
+    left: 16px;
+    top: 9px;
+  }
+
+  .registProduct {
+    margin-left: 12px;
+    width: 133px;
+    height: 42px;
+  }
+
+  .sellingItemWrap ul {
+    margin-left: 10px;
+    width: 130px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 1.6rem;
+    font-weight: 400;
+    span{
+      margin: 0 24px 0 0;
+    }
+  }
+  
+  .list {
+    width: 130px;
+    height: 42px;
+  }
+  
+  .SellingListItem {
+    width: 221px;
+    height: 317px;
+    gap: 16px;
+    img {
+      width: 221px;
+      height: 221px;
+      border-radius: 16px;
+    }
+    div {
+      gap: 6px;
+    }
+  }
+}
+
+@media all and (min-width:375px) and (max-width:767px){
+  .App {
+    gap: 24px;
+  }
+  
+  .frame {
+    margin-top: 17px;
+    width: 344px;
+    gap: 24px;
+  }
+
+  .bestItem {
+    height: 482px;
+  }
+  
+  .BestList {
+    gap: 0;
+  }
+  
+  .BestListItem {
+    width: 343px;
+    height: 434px;
+    gap: 10px;
+    img {
+      width: 100%;
+      height: 343px;
+      border-radius: 19.46px;
+    }
+    div {
+      gap: 6px;
+    }
+  }
+     
+  .sellingItem {
+    gap: 16px;
+  }
+
+  .sellingItemWrap{
+    height: 92px;
+    flex-wrap: wrap;
+  }
+
+  .sellingItemWrap>:nth-child(1) {
+    order: -1;
+  }
+
+  .sellingItemWrap>:nth-child(3) {
+    order: -1;
+  }
+
+  .searchInput {
+    margin-left: 0;
+    width: 244px;
+    height: 42px;
+    padding: 0 0 0 44px;
+  }
+
+  .searchBtn{
+    margin-left: 0;
+    width: 24px;
+    height: 24px;
+    left: 16px;
+    top: 9px;
+  }
+
+  .registProduct {
+    margin-left: 98px;
+    width: 133px;
+    height: 42px;
+  }
+
+  .sellingItemWrap ul {
+    margin-left: 0px;
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 1.6rem;
+    font-weight: 400;
+    span{
+      margin: 0 24px 0 0;
+    }
+  }
+  
+  .list {
+    float: right;
+    width: 130px;
+    height: 42px;
+
+  }
+  
+  .SellingListItem {
+    width: 168px;
+    height: 264px;
+    gap: 16px;
+    img {
+      width: 168px;
+      height: 168px;
+      border-radius: 12px;
+    }
+    div {
+      gap: 6px;
+    }
+  }
+  
+  .paging {
+    flex-wrap: wrap;
+  }
 }
