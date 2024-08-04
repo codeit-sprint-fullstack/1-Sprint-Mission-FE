@@ -27,3 +27,16 @@ export function ItemList({ items }) {
     </div>
   );
 }
+
+export function SearchInput({ onChange }) {
+  return (
+    <input
+      type="text"
+      className="search"
+      name="search"
+      placeholder="검색할 상품을 입력해주세요"
+      onChange={onChange}
+      autoComplete="on"
+    ></input>
+  );
+}

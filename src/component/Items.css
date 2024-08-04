@@ -167,6 +167,7 @@
   background-size: cover;
   width: 15px;
   height: 15px;
+  border: none;
 }
 
 .add-item-btn {
