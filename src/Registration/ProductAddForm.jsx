@@ -33,22 +33,37 @@ function ProductAddForm({ onFormChange, onFormValuesChange }) {
   const { values, errors, handleChange, handleSubmit, setValues } =
     useValidation(initialState, validations);
   const [tags, setTags] = useState([]);
+  const [isComposing, setIsComposing] = useState(false); // 한글 입력 조합 상태
 
   useEffect(() => {
     const isFormValid =
       Object.values(errors).every((error) => error === "") &&
-      Object.values(values).every((value) => value.trim() !== "");
-    onFormChange(isFormValid && tags.length > 0);
+      Object.values(values).every((value) => value.trim() !== "") &&
+      tags.length > 0; // 태그가 1개 이상일 때 폼이 유효한 것으로 간주
+    onFormChange(isFormValid);
     onFormValuesChange({ ...values, tags });
   }, [errors, values, tags, onFormChange, onFormValuesChange]);
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter" && values.productTag.trim()) {
+    if (
+      e.key === "Enter" &&
+      !isComposing &&
+      values.productTag.trim() &&
+      values.productTag.length <= 5
+    ) {
       e.preventDefault();
       if (!tags.includes(values.productTag.trim())) {
         setTags([...tags, values.productTag.trim()]);
         setValues((prevValues) => ({ ...prevValues, productTag: "" }));
       }
+    }
+  };
+
+  const handleComposition = (e) => {
+    if (e.type === "compositionstart") {
+      setIsComposing(true);
+    } else if (e.type === "compositionend") {
+      setIsComposing(false);
     }
   };
 
@@ -117,6 +132,9 @@ function ProductAddForm({ onFormChange, onFormValuesChange }) {
         value={values.productTag}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
+        onCompositionStart={handleComposition}
+        onCompositionUpdate={handleComposition}
+        onCompositionEnd={handleComposition}
       />
       {errors.productTag && <p className="inputCheck">{errors.productTag}</p>}
       <div className="tags-container">
