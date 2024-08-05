@@ -1,6 +1,6 @@
 .ProductList {
   width: 100%;
-  padding: 24px 360px 141px 360px;
+  padding: 56px 360px;
 }
 
 
@@ -32,7 +32,7 @@
 
 .OnSaleProduct-container {
   max-width: 1920px;
-  margin: 40px auto;
+  margin: 0 auto;
 }
 .OnSaleProduct-nav {
   width: 100%;

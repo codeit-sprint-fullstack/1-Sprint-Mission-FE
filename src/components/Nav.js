@@ -1,8 +1,14 @@
 import './Nav.css';
 import logo from '../assets/imgs/logo.png';
 import logo_mobile from '../assets//imgs/logo_mobile.png';
-import profile from '../assets/imgs/profile.png';
 import useMediaQuery from './useMediaQuery';
+import { Link, NavLink } from "react-router-dom";
+
+function getLinkStyle({isActive}) {
+  return {
+    color: isActive ? '#3692FF' : '#4B5563',
+  }
+}
 
 function Nav() {
   // useMediaQuery hook 사용하여 모바일 화면 여부 판단
@@ -13,16 +19,16 @@ function Nav() {
       <div className='nav-container'>
         <div className='logo'>
           {(!mobile) ? 
-          <a href='/'><img src={logo} alt='logo' width="153" height="51"/></a>
+          <Link to="/"><img src={logo} alt='logo' width="153" height="51"/></Link>
           :
-          <a href='/'><img src={logo_mobile} alt='logo' width="81" height="40"/></a>
+          <Link to="/"><img src={logo_mobile} alt='logo' width="81" height="40"/></Link>
           }
           
         </div>
 
         <div className='nav-menu'>
-          <a className='nav-link' href='#'><p>자유게시판</p></a>
-          <a className='nav-link' href='#'><p>중고마켓</p></a>
+          <Link to="/" className='nav-link'><p>자유게시판</p></Link>
+          <NavLink to="/items" className='nav-link' style={getLinkStyle}><p>중고마켓</p></NavLink>
         </div>
 
         <div className='login'>

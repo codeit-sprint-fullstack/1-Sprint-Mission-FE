@@ -40,8 +40,8 @@ function SelectBox({setOrder, mobile}) {
       } 
       
       {show && <div className='select-options'>
-        <button className='base-style' onClick={() => handleOptionButtonClick('최신순', 'latest')}>최신순</button>
-        <button className='base-style' onClick={() => handleOptionButtonClick('좋아요순', 'like')}>좋아요순</button>
+        <button className='base-style like' onClick={() => handleOptionButtonClick('최신순', 'latest')}>최신순</button>
+        <button className='base-style recent' onClick={() => handleOptionButtonClick('좋아요순', 'like')}>좋아요순</button>
       </div>}  
     </div>
   );
