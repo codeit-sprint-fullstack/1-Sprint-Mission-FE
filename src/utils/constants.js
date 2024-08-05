@@ -1,5 +1,6 @@
 /** api url for products info */
-export const PRODUCT_API_ADDRESS = "https://panda-market-api.vercel.app";
+export const PRODUCT_API_ADDRESS = "https://sprint-be.onrender.com/";
+// export const PRODUCT_API_ADDRESS = "https://panda-market-api.vercel.app";
 
 /** device type PC : width : 1200px ~ ====== */
 export const PC = 0;
