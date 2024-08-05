@@ -1,10 +1,10 @@
-import Nav from './Nav';
 import ProductList from './ProductList';
+import Nav from './Nav';
 
 function App() {
   return (
     <div className='App'>
-      <Nav/>
+      <Nav /> 
       <ProductList/>
     </div>
   );
