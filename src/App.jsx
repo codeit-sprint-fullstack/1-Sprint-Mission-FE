@@ -1,20 +1,23 @@
 import React from "react";
-import { NavBar } from "./NavBar/NavBar";
-import { BestList } from "./BestList/BestList";
-import { SellList } from "./Sell/SellList";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import NavBar from "./NavBar/NavBar";
+import SellList from "./Sell/SellList";
+import Registration from "./Registration/Registration";
 import "./App.css";
 
 const App = () => {
   return (
-    <>
+    <Router>
       <header>
         <NavBar />
       </header>
       <main>
-        <BestList />
-        <SellList />
+        <Routes>
+          <Route path="/items" element={<SellList />} />
+          <Route path="/registration" element={<Registration />} />
+        </Routes>
       </main>
-    </>
+    </Router>
   );
 };
 

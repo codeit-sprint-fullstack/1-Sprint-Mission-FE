@@ -20,6 +20,12 @@ header {
   font-weight: 700;
   padding-top: 22px;
   margin-right: 30px;
+  text-decoration-line: none;
+  color: #4b5563;
+}
+
+.nav-text.active {
+  color: #3692ff;
 }
 
 #logoImg {

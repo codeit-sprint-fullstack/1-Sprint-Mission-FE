@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 58px;
-  margin-top: 43px;
+  margin-top: 114px;
   gap: 4px;
 }
 
@@ -22,4 +22,16 @@
   background-color: #2f80ed; /* 현재 페이지 색상 */
   color: #f9fafb;
   border: none;
+}
+
+@media (max-width: 1199px) {
+  .btnContainer {
+    margin-top: 56px;
+  }
+}
+
+@media (max-width: 743px) {
+  .btnContainer {
+    margin-top: 40px;
+  }
 }

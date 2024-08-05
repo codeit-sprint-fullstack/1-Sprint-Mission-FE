@@ -1,5 +1,6 @@
 import React from "react";
 import CustomDropdown from "./CustomDropdown";
+import { useNavigate } from "react-router-dom";
 
 export function MobileSearchBar({
   keyword,
@@ -8,11 +9,18 @@ export function MobileSearchBar({
   sortOrder,
   onSortChange,
 }) {
+  const navigate = useNavigate(); // useNavigate 훅 사용
+
+  const handleRegistration = () => {
+    navigate("/registration");
+  };
   return (
     <div className="mobileSearchBar">
       <div className="mobileBar">
         <p className="fontStyle">판매 중인 상품</p>
-        <button className="btnAdd">상품 등록하기</button>
+        <button className="btnAdd" onClick={handleRegistration}>
+          상품 등록하기
+        </button>
       </div>
       <div className="mobileBar">
         <input
