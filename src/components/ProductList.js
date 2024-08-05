@@ -8,63 +8,10 @@ import SelectBox from './SelectBox';
 function ProductList() {
   return (
     <div className='ProductList'>
-      <ProductBest />
       <ProductOnSale />
     </div>
   );
 }
-
-
-// 베스트 상품 목록 렌더링
-function ProductBest() {
-  // 페이지, 정렬 순서 초기값
-  const page = 1; 
-  const orderBy = 'favorite';
-
-  // 베스트 상품 개수 초기값
-  const defaultPageSize = 4;
-  const [pageSize, setPageSize] = useState(defaultPageSize);
-  
-  // 화면 크기에 따른 미디어 쿼리
-  const tablet = useMediaQuery('(min-width: 787px) and (max-width: 1460px)');
-  const mobile = useMediaQuery('(min-width: 375px) and (max-width: 786px)');
-
-  // 화면 크기에 따라 상품 목록 개수 설정
-  useEffect(() => {
-    if (tablet) {
-      setPageSize(2);
-    } else if (mobile) {
-      setPageSize(1);
-    } else {
-      setPageSize(defaultPageSize);
-    }
-  }, [tablet, mobile, defaultPageSize]); //의존성 배열 추가
-  
-   // 제품 목록과 로딩 오류 상태를 가져오는 커스텀 훅 사용
-  const { items, isLoadingError } = useProducts({ page, pageSize, orderBy }, 'best');
-
-  return (
-    <div className='BestProduct-container'>
-      <h3 className='BestProduct-title'>베스트 상품</h3>
-      <div className='BestProduct-items'>
-        {items.map((item) => {
-          return (
-            <div className='BestProduct-item '>
-              <img src={item.images} alt={item.name} />
-              <div className='BestProduct-content '>
-                <div className='name'>{item.name}</div>
-                <div className='price'>{(item.price).toLocaleString()}원</div>
-                <div className='favoriteCount'><span> ♡ </span>{item.favoriteCount}</div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      {isLoadingError?.message && <span>{isLoadingError.message}</span>}
-    </div>
-  );
-}
-
 
 
 //판매 중인 상품 목록을 렌더링
