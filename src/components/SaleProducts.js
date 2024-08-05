@@ -20,17 +20,17 @@ function SaleProducts({ activePath, setActivePath }) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const pageSize = usePageSize(4, 6, 10); // 모바일 태블릿 데스크탑 출력 개수
+  const limit = usePageSize(4, 6, 10); // 모바일 태블릿 데스크탑 출력 개수
 
   useEffect(() => {
     const getProducts = async () => {
-      const data = await getItems(currentPage, pageSize, order, keyword);
+      const data = await getItems(currentPage, limit, order, keyword);
       setProducts(data.list);
-      setTotalPage(Math.ceil(data.totalCount / pageSize));
+      setTotalPage(Math.ceil(data.totalCount / limit));
     };
 
     getProducts();
-  }, [order, currentPage, keyword, pageSize]);
+  }, [order, currentPage, keyword, limit]);
 
   const handleChangePage = (page) => {
     setCurrentPage(page);

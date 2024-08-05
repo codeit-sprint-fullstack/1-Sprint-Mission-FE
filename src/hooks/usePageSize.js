@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 function usePageSize(mobileSize, tabletSize, desktopSize) {
-  const [pageSize, setPageSize] = useState(desktopSize);
+  const [limit, setLimit] = useState(desktopSize);
 
   function getPageSize() {
     if (window.innerWidth < 744) {
@@ -13,7 +13,7 @@ function usePageSize(mobileSize, tabletSize, desktopSize) {
 
   useEffect(() => {
     const handleResize = () => {
-      setPageSize(getPageSize());
+      setLimit(getPageSize());
     };
 
     handleResize();
@@ -25,7 +25,7 @@ function usePageSize(mobileSize, tabletSize, desktopSize) {
     };
   }, []);
 
-  return pageSize;
+  return limit;
 }
 
 export default usePageSize;

@@ -1,14 +1,14 @@
-const URL = "https://panda-market-api.vercel.app/products";
+const URL = "https://one-sprint-mission-be.onrender.com";
 
 export const getItems = async (
   page = 1,
-  pageSize = 10,
-  order = "favorite",
-  keyword = ""
+  limit = 10,
+  order = "recent", // 최신순만 구현
+  search = ""
 ) => {
   try {
     const res = await fetch(
-      `${URL}?page=${page}&pageSize=${pageSize}&orderBy=${order}&keyword=${keyword}`
+      `${URL}?page=${page}&limit=${limit}&search=${search}`
     );
     if (!res.ok) {
       throw new Error(res.status);
