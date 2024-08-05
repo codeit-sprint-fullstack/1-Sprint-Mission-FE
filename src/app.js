@@ -1,16 +1,14 @@
-import Headers from './header'
-import Main from './main'
-import './app.css'
+import Headers from "./header";
+import Main from "./main";
+import "./app.css";
 
-
-
-function App(){
-  return(
-    <> 
-        <Headers />
-        <Main />
+function App() {
+  return (
+    <>
+      <Headers />
+      <Main />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
