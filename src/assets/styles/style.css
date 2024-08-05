@@ -1,0 +1,44 @@
+@import './reset.css';
+
+* {
+  text-decoration: none;
+  word-break: keep-all;
+}
+
+:root {
+  --brand-blue: #3692ff;
+  --error-red: #f74747;
+  --grey-50: #f9fafb;
+  --grey-100: #f3f4f6;
+  --grey-200: #e5e7eb;
+  --grey-400: #9ca3af;
+  --grey-500: #6b7280;
+  --grey-600: #4b5563;
+  --grey-700: #374151;
+  --grey-800: #1f2937;
+  --grey-900: #111827;
+  --background-blue: #cfe5ff;
+}
+
+.bestText {
+  text-align: center;
+  position: relative;
+  top: 94px;
+  right: 550px;
+  font-size: 20px;
+  line-height: 42px;
+  font-weight: 700;
+  color: var(#111827);
+}
+
+@media (max-width: 1199px) {
+  .bestText {
+    right: 300px;
+  }
+}
+
+@media (max-width: 743px) {
+  .bestText {
+    right: 126.5px;
+  }
+}

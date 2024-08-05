@@ -1,0 +1,35 @@
+@import '/src/assets/styles/style.css';
+
+.paginationContainer {
+  display: flex;
+  gap: 4px;
+  position: relative;
+  top: 222px;
+  justify-content: center;
+}
+
+.prevBtn,
+.nextBtn {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.pageBtn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #e5e7eb;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.activeBtn {
+  background-color: #2f80ed;
+  color: #f9fafb;
+}

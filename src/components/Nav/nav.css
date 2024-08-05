@@ -1,0 +1,50 @@
+@import '/src/assets/styles/style.css';
+
+.navContainer {
+  position: relative;
+  top: 155px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navContainer2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.navText {
+  color: #111827;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+@media (max-width: 1199px) {
+  .navContainer {
+    max-width: 710px;
+    gap: 31px;
+  }
+}
+
+@media (max-width: 743px) {
+  .navContainer {
+    display: block;
+  }
+  .navContainer2 {
+    display: flex;
+    max-width: 352px;
+    margin: 0 auto;
+  }
+
+  .navContainer3 {
+    display: flex;
+    justify-content: space-between;
+    max-width: 355px;
+    margin: 8px auto 0;
+  }
+}

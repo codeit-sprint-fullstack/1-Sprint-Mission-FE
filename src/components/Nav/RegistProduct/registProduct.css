@@ -1,0 +1,15 @@
+@import '/src/assets/styles/style.css';
+
+.registProduct {
+  background-color: #3692ff;
+  color: var(--grey-100);
+  width: 133px;
+  height: 42px;
+  border-radius: 8px;
+  line-height: 26px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
