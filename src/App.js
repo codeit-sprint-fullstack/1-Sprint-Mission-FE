@@ -26,7 +26,14 @@ function App() {
             </div>
           }
         />
-        <Route path="/registration" element={<Registration />} />
+        <Route
+          path="/registration"
+          element={
+            <div className="main-body">
+              <Registration />
+            </div>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
