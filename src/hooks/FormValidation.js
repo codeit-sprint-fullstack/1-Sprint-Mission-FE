@@ -1,4 +1,5 @@
 import { useState } from "react";
+import * as api from "../api.js";
 
 const validateField = (name, value) => {
   switch (name) {
@@ -13,17 +14,16 @@ const validateField = (name, value) => {
     case "price":
       return value > 0 ? "" : "판매 가격은 1원 이상입니다.";
     case "tag":
-      return value.every((item) => item.length <= 5)
-        ? ""
-        : "각 태그는 5자리 이내 입니다.";
+      return value.length <= 5 ? "" : "각 태그는 5자리 이내 입니다.";
     default:
       return "";
   }
 };
 
-const useFormValidation = (initialValues) => {
+const useFormValidation = (initialValues, callback) => {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
+  const [disabled, setDisabled] = useState(true);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -38,6 +38,7 @@ const useFormValidation = (initialValues) => {
       ...errors,
       [name]: error,
     });
+    if (!error) setDisabled(false);
   };
 
   const handleSubmit = (event) => {
@@ -57,13 +58,16 @@ const useFormValidation = (initialValues) => {
 
     if (hasErrors) {
       setErrors(newErrors);
+      setDisabled(true);
       return;
     }
+    callback(values);
   };
 
   return {
     values,
     errors,
+    disabled,
     handleChange,
     handleSubmit,
   };

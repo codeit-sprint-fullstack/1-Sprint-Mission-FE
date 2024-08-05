@@ -5,6 +5,7 @@ import Privacy from "./pages/Privacy.js";
 import App from "./components/App.js";
 import Items from "./pages/Items.js";
 import Registration from "./pages/Registration.js";
+import DetaliProduct from "./pages/DetaliProduct.js";
 
 function Main() {
   return (
@@ -16,6 +17,7 @@ function Main() {
           <Route path="/faq" element={<Faq />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/registration" element={<Registration />} />
+          <Route path="/detaliproduct" element={<DetaliProduct />} />
           {/* 추후 Route 페이지 추가 */}
         </Route>
       </Routes>
