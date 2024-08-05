@@ -1,0 +1,134 @@
+* #header {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 1);
+  width: 100%;
+  height: 70px;
+}
+#header_logo_img {
+  margin-left: 200px;
+}
+#header_str {
+  display: flex;
+  margin-left: 48.41px;
+  margin-right: auto;
+  gap: 30px;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+#header_my_img {
+  margin-right: 200px;
+}
+#main {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  margin-top: 24px;
+  gap: 25px;
+}
+
+#resgistration_container {
+  grid-column: 2;
+  display: flex;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23.87px;
+  flex-direction: column;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+#resgistration_title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23.87px;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+#from_title {
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21.48px;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+#resgistration_area::placeholder {
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  box-sizing: border-box;
+  color: rgba(156, 163, 175, 1);
+}
+#resgistration_area {
+  width: 100%;
+  height: 56px;
+  border-radius: 12px;
+  border-color: none;
+  background-color: rgba(243, 244, 246, 1);
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  padding-left: 24px;
+  align-content: center;
+  box-sizing: border-box;
+  margin-top: 12px;
+  border-color: white;
+}
+#resgistration_area_content {
+  width: 100%;
+  height: 282px;
+  border-radius: 12px;
+  border-color: none;
+  background-color: rgba(243, 244, 246, 1);
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  box-sizing: border-box;
+  padding-left: 24px;
+  padding-top: 16px;
+  align-content: start;
+  margin-top: 12px;
+  border-color: white;
+}
+
+#resgistration_area_content::placeholder {
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  box-sizing: border-box;
+  color: rgba(156, 163, 175, 1);
+}
+
+#resgistration_btn {
+  width: 74px;
+  height: 42px;
+  border-radius: 8px;
+  padding: 12px 23px 12px 23px;
+  background-color: rgba(156, 163, 175, 1);
+  color: rgba(255, 255, 255, 1);
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  position: relative;
+  margin-left: auto;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+#add_title {
+  display: flex;
+  align-items: center;
+}
+#resgistration_form {
+  box-sizing: border-box;
+}

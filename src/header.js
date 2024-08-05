@@ -11,7 +11,9 @@ function Headers() {
 
       <div id="header_str">
         <p>자유게시판</p>
-        <p>중고마켓</p>
+        <a>
+          <p>중고마켓</p>
+        </a>
       </div>
 
       <img id="header_my_img" alt="" src={Header_my}></img>
