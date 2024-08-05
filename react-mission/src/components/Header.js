@@ -4,6 +4,7 @@ import useResize from "./hook/useResize";
 import pandaLogo from "./img/PandaLogo.png";
 import textLogo from "./img/textLogo.png";
 import Nav from "./Nav";
+import { Link } from 'react-router-dom';
 
 function Header() {
   const [logoImg, setLogoImg] = useState(null);
@@ -23,9 +24,7 @@ function Header() {
 
   return (
     <header>
-      <a href="/">
-        <img className="Logo" src={logoImg} alt="판다로고" />
-      </a>
+        <Link to='/'><img className="Logo" src={logoImg} alt="판다로고" /></Link>
       <Nav />
     </header>
   );

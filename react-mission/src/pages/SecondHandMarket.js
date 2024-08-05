@@ -1,11 +1,14 @@
-import Mission6SaleProduct from "../components/Mission6SaleProduct";
+import './SecondHandMarket.css'
+// import BestProduct from "../components/BestProduct"; //미션 6으로 인한 주석
+import SaleProduct from "../components/SaleProduct";
 
-function SecondHandMarket() {
+function MainMarket() {
   return (
     <main>
-      <Mission6SaleProduct />
+      {/* <BestProduct /> */} {/* 미션 6으로 인한 주석 */}
+      <SaleProduct />
     </main>
   );
 }
 
-export default SecondHandMarket;
+export default MainMarket;

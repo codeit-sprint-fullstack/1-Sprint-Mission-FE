@@ -15,6 +15,7 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  color: #4b5563;
 }
 
 .listFont {
@@ -24,7 +25,6 @@ nav {
   font-size: 18px;
   font-weight: 700;
   line-height: 26px;
-  color: #4b5563;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,10 +38,25 @@ nav {
   width: 93px;
 }
 
-.userIcon {
+.login {
+  width: 88px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: #3692ff;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.09px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .userIcon {
   width: 40px;
   height: 40px;
-}
+} */
 
 /* pc */
 @media screen and (min-width: 1200px) {
