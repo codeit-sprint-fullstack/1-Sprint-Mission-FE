@@ -213,7 +213,7 @@ function Products() {
       <div className="main__products-frame">
         {products.map((item) => (
           <article
-            key={item.id}
+            key={item._id}
             className="flex-col justify-space-between main__product-article"
           >
             <Product
@@ -267,7 +267,7 @@ function BestProducts() {
       <div className="main__best-products-frame">
         {bestProducts.map((item) => (
           <article
-            key={item.id}
+            key={item._id}
             className="flex-col justify-space-between main__best-product-article"
           >
             <Product
