@@ -37,5 +37,38 @@
   margin-top: -16px;
   margin-bottom: 24px;
   margin-left: 16px;
-  display: none;
+}
+
+.inputError {
+  border: 1px solid #f74747;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: -12px;
+}
+
+.tag {
+  background-color: #f3f4f6;
+  color: #1f2937;
+  padding: 6px 12px 6px 16px;
+  border-radius: 26px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 400;
+  height: 36px;
+}
+
+.tag-close {
+  width: 20px;
+  height: 20px;
+  background: #9ca3af;
+  border: none;
+  color: white;
+  margin-left: 9px;
+  cursor: pointer;
+  border-radius: 999px;
 }
