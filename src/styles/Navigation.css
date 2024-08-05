@@ -31,6 +31,10 @@
   &:hover {
     cursor: pointer;
   }
+  .active {
+    color: var(--primary100);
+    text-decoration: none;
+  }
 }
 .icon {
   width: 4rem;
