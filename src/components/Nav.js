@@ -25,8 +25,8 @@ function Nav() {
           <a className='nav-link' href='#'><p>중고마켓</p></a>
         </div>
 
-        <div className='profile'>
-          <img src={profile} alt='logo' width="40" height="40"/>
+        <div className='login'>
+          <button>로그인</button>
         </div>
       </div>
     </nav>
