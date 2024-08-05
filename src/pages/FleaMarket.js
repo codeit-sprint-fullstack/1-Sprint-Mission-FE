@@ -7,7 +7,6 @@ import { deviceContext } from "../App";
 export function FleaMarket() {
   const device = useContext(deviceContext);
 
-  console.log("SecondhandMarket : " + device);
   return (
     <>
       <Header />

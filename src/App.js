@@ -1,4 +1,5 @@
 import FleaMarket from "./pages/FleaMarket";
+import Freeboard from "./pages/Freeboard";
 import Registration from "./pages/Registration";
 import Home from "./pages/Home";
 import { createContext } from "react";
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/item" element={<FleaMarket />} />
+          <Route path="/free" element={<Freeboard />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/test" element={<h1>test</h1>} />
         </Routes>

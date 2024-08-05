@@ -1,19 +1,19 @@
 import Header from "../components/Header";
-import RegistrationBody from "../components/RegistrationBody";
+import FreeboardBody from "../components/FreeboardBody";
 import Footer from "../components/Footer";
 import { useContext } from "react";
 import { deviceContext } from "../App";
 
-export function Registration() {
+export function Freeboard() {
   const device = useContext(deviceContext);
 
   return (
     <>
       <Header />
-      <RegistrationBody />
+      <FreeboardBody />
       <Footer />
     </>
   );
 }
 
-export default Registration;
+export default Freeboard;

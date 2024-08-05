@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "../assets/styles/marketBody.css";
 import no_image from "../assets/images/no_image.svg";
@@ -14,6 +15,7 @@ import {
 } from "./Dropdown";
 import Pagination from "./Pagination";
 import { PRODUCT_API_ADDRESS } from "../utils/constants";
+import registButton from "../assets/images/btn_registration.svg";
 
 const instance = axios.create({
   baseURL: PRODUCT_API_ADDRESS,
@@ -187,10 +189,13 @@ function Products() {
         >
           검색할 상품을 입력해주세요
         </SearchProducts>
-        <Button
+        {/* <Button
           className="registrationButton main__tools-button"
           onClick={handleRegistrationButtonClick}
-        />
+        /> */}
+        <Link to="/registration">
+          <img src={registButton} alt="상품 등록" />
+        </Link>
         {
           <Dropdown dropdwonClass="main__tools-dropdown">
             <DropdownToggle>{ORDER_TEXT[recentOrder]}</DropdownToggle>

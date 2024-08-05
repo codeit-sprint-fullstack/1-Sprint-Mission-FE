@@ -26,6 +26,13 @@ html {
   --royal-blue-color: #2f80ed;
 }
 
+a,
+a:hover,
+a:active,
+a:visited {
+  text-decoration: none;
+}
+
 .Bold {
   font-weight: 700;
 }

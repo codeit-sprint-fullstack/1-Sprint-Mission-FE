@@ -1,5 +1,6 @@
 import "../assets/styles/header.css";
 import { Nav, NavItem } from "./Nav";
+import { Link } from "react-router-dom";
 import Profile from "./Profile";
 
 export function Header() {
@@ -11,14 +12,21 @@ export function Header() {
 
   return (
     <header>
-      <a className="header__btn-home-frame" href="/" target="_self">
+      {/* <a className="header__btn-home-frame" href="/" target="_self">
         <span>
           <img className="header__img-home" alt="홈 버튼" />
         </span>
-      </a>
+      </a> */}
+      <Link className="header__btn-home-frame" to="/">
+        <img className="header__img-home" alt="홈 버튼" />
+      </Link>
       <Nav className="header__nav">
-        <NavItem className="Text-2lg Bold header__nav-item">자유게시판</NavItem>
-        <NavItem className="Text-2lg Bold header__nav-item">중고마켓</NavItem>
+        <NavItem className="Text-2lg Bold header__nav-item" linkto="/free">
+          자유게시판
+        </NavItem>
+        <NavItem className="Text-2lg Bold header__nav-item" linkto="/item">
+          중고마켓
+        </NavItem>
       </Nav>
       {tempIsSignin ? (
         <Profile onClick={handleProfileClick} />

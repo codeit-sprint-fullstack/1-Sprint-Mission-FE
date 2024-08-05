@@ -7,7 +7,6 @@ import { deviceContext } from "../App";
 export function Registration() {
   const device = useContext(deviceContext);
 
-  console.log("SecondhandMarket : " + device);
   return (
     <>
       <Header />
