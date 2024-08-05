@@ -1,3 +1,5 @@
+import "./SearchForm.css";
+
 function SearchForm({ value, onChange, onKeyPress }) {
   const onSubMit = (e) => e.preventDefault();
 

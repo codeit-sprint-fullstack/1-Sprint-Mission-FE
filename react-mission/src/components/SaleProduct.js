@@ -1,3 +1,5 @@
+import "./SaleProduct.css";
+import "./Pagination.css";
 import { useState, useEffect, useCallback } from "react";
 import useResize from "./hook/useResize";
 import Pagination from "react-js-pagination"; //라이브러리 다운 받았습니다
@@ -5,7 +7,7 @@ import ProductCard from "./ProductCard";
 import SearchForm from "./SearchForm";
 import Registration from "./Registration";
 import OrderChange from "./OrderChange";
-import api from "./api";
+import { api } from "../api/api";
 import searchIcon from "./img/searchIcon.png";
 import useAsync from "./hook/useAsync";
 

@@ -1,7 +1,8 @@
+import "./BestProduct.css";
 import { useState, useEffect, useCallback } from "react";
 import useResize from "./hook/useResize";
 import ProductCard from "./ProductCard";
-import api from "./api";
+import { api } from "../api/api";
 import useAsync from "./hook/useAsync";
 
 function BestProduct() {

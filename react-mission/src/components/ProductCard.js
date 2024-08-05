@@ -1,3 +1,4 @@
+import './ProductCard.css'
 import heartIcon from "./img/heartIcon.png";
 
 // ProductCard의 내부 jsx

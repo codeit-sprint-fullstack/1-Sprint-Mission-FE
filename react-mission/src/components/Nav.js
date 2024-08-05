@@ -1,3 +1,4 @@
+import './Nav.css'
 import userIcon from './img/userIcon.png'
 
 function Nav() {

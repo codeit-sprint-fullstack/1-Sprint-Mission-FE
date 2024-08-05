@@ -1,3 +1,4 @@
+import './Header.css'
 import { useCallback, useState } from "react";
 import useResize from "./hook/useResize";
 import pandaLogo from "./img/PandaLogo.png";
