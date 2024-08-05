@@ -11,26 +11,23 @@ import usePageSize from "../hooks/usePageSize.js";
 
 function SaleProducts({ activePath, setActivePath }) {
   const [products, setProducts] = useState([]);
-  const [order, setOrder] = useState("recent");
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
 
   const [keyword, setKeyword] = useState("");
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const pageSize = usePageSize(4, 6, 10); // 모바일 태블릿 데스크탑 출력 개수
 
   useEffect(() => {
     const getProducts = async () => {
-      const data = await getItems(currentPage, pageSize, order, keyword);
+      const data = await getItems(currentPage, pageSize, keyword);
       setProducts(data.list);
       setTotalPage(Math.ceil(data.totalCount / pageSize));
     };
 
     getProducts();
-  }, [order, currentPage, keyword, pageSize]);
+  }, [currentPage, keyword, pageSize]);
 
   const handleChangePage = (page) => {
     setCurrentPage(page);
@@ -39,12 +36,6 @@ function SaleProducts({ activePath, setActivePath }) {
   const handleSearch = (event) => {
     setKeyword(event.target.value);
     setCurrentPage(1);
-  };
-
-  const handleChangeOrder = (order) => {
-    setOrder(order);
-    setCurrentPage(1);
-    setIsModalOpen(false);
   };
 
   return (
@@ -68,35 +59,13 @@ function SaleProducts({ activePath, setActivePath }) {
             상품 등록하기
           </Link>
         </div>
-        <div
-          className="order-select text-lg regular"
-          onClick={() => setIsModalOpen(!isModalOpen)}
-        >
-          {order === "recent" ? "최신순" : "좋아요순"}
+        <div className="order-select text-lg regular">
+          최신순
           <img src={arrowDownIcon} alt="arrowDownIcon" className="arrow-icon" />
         </div>
-        <div
-          className="order-select mobile-size"
-          onClick={() => setIsModalOpen(!isModalOpen)}
-        >
+        <div className="order-select mobile-size">
           <img src={sortIcon} alt="sortIcon" className="sort-icon" />
         </div>
-        {isModalOpen && (
-          <div className="order-modal text-lg regular">
-            <div
-              className="modal-option recent"
-              onClick={() => handleChangeOrder("recent")}
-            >
-              최신순
-            </div>
-            <div
-              className="modal-option favorite"
-              onClick={() => handleChangeOrder("favorite")}
-            >
-              좋아요순
-            </div>
-          </div>
-        )}
       </div>
       <div className="sale-products">
         {products.map((product) => (
