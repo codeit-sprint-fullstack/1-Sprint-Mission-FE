@@ -71,7 +71,7 @@ function ProductOnSale() {
       <div className='OnSaleProduct-nav'>
         <div className='OnSaleProduct-TU'>
           <h3 className='OnSaleProduct-title'>판매 중인 상품</h3>
-          <button className='OnSaleProduct-upload'>상품 등록하기</button>
+          <Link to="/registration"><button className='OnSaleProduct-upload'>상품 등록하기</button></Link>
         </div>
         <div className='OnSaleProduct-SS'>
           <input 

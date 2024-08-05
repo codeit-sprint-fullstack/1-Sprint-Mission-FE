@@ -27,7 +27,7 @@ function Nav() {
         </div>
 
         <div className='nav-menu'>
-          <Link to="/" className='nav-link'><p>자유게시판</p></Link>
+          <NavLink to="/board" className='nav-link' style={getLinkStyle}><p>자유게시판</p></NavLink>
           <NavLink to="/items" className='nav-link' style={getLinkStyle}><p>중고마켓</p></NavLink>
         </div>
 
