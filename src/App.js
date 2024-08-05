@@ -19,7 +19,10 @@ function App() {
           path="/items"
           element={
             <div className="main-body">
-              <SaleProducts />
+              <SaleProducts
+                activePath={activePath}
+                setActivePath={setActivePath}
+              />
             </div>
           }
         />

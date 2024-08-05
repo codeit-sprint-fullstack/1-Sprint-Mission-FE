@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { getItems } from "../api.js";
 import Product from "./Product.js";
 import Footer from "./Footer.js";
@@ -8,7 +9,7 @@ import sortIcon from "../images/sortIcon.png";
 import arrowDownIcon from "../images/arrowDownIcon.png";
 import usePageSize from "../hooks/usePageSize.js";
 
-function SaleProducts() {
+function SaleProducts({ activePath, setActivePath }) {
   const [products, setProducts] = useState([]);
   const [order, setOrder] = useState("recent");
 
@@ -58,7 +59,15 @@ function SaleProducts() {
           onChange={handleSearch}
         />
         <img src={searchIcon} alt="search icon" className="search-icon" />
-        <div className="enroll-product text-lg semibold">상품 등록하기</div>
+        <div className="register-product text-lg semibold">
+          <Link
+            to="/registration"
+            className={activePath === "/registration" ? "active" : ""}
+            onClick={() => setActivePath("/registration")}
+          >
+            상품 등록하기
+          </Link>
+        </div>
         <div
           className="order-select text-lg regular"
           onClick={() => setIsModalOpen(!isModalOpen)}

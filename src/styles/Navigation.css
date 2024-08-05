@@ -28,13 +28,20 @@
   padding: 0 1.5rem;
   color: var(--gray600);
   white-space: nowrap;
-  &:hover {
-    cursor: pointer;
-  }
-  .active {
-    color: var(--primary100);
-    text-decoration: none;
-  }
+}
+.menu-content:hover {
+  cursor: pointer;
+}
+.menu-content a {
+  color: var(--gray600);
+  text-decoration: none;
+}
+.menu-content a:visited {
+  color: var(--gray600);
+}
+.menu-content a.active {
+  color: var(--primary100);
+  text-decoration: none;
 }
 .icon {
   width: 4rem;
