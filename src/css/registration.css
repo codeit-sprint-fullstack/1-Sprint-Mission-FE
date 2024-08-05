@@ -52,3 +52,29 @@ label {
 .err_border {
   border: 1px solid red;
 }
+
+.chips_box {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+}
+
+.chip {
+  box-sizing: border-box;
+  display: flex;
+  height: 36px;
+  padding: 6px 12px 6px 16px;
+  border-radius: 26px;
+  background-color: #f3f4f6;
+  gap: 8px;
+  align-items: center;
+}
+
+.chip > button {
+  height: 24px;
+}
+
+.x_icon {
+  width: 22px;
+  height: 24px;
+}

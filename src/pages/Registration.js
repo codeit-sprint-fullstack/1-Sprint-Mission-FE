@@ -1,10 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useFormValidation from "../hooks/FormValidation.js";
 import "../css/registration.css";
 import classNames from "classnames";
 import * as api from "../api.js";
 import { Navigate } from "react-router-dom";
+import x_icon from "../image/ic_X.png";
+
+function Chips({ tag, onClick, index }) {
+  const handleBtn = (e) => {
+    e.preventDefault();
+    onClick(index);
+  };
+
+  return (
+    <div className="chip">
+      #{tag}
+      <button onClick={handleBtn}>
+        <img className="x_icon" src={x_icon} />
+      </button>
+    </div>
+  );
+}
+
 function Registration() {
+  const [chips, setChips] = useState([]);
+
   const { values, errors, disabled, handleChange, handleSubmit } =
     useFormValidation(
       {
@@ -21,7 +41,7 @@ function Registration() {
     formData.append("name", values.name);
     formData.append("decription", values.decription);
     formData.append("npriceame", values.price);
-    formData.append("tag", JSON.stringify(values.tag));
+    formData.append("tag", JSON.stringify(chips));
 
     if (formData) {
       try {
@@ -33,6 +53,23 @@ function Registration() {
       }
     }
   }
+
+  const handleRemoveChip = (index) => {
+    console.log(index);
+    setChips((prev) => prev.filter((_, id) => id !== index));
+    console.log(chips);
+  };
+
+  const handleChips = (e) => {
+    if (errors.tag) return;
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (values.tag.trim() !== "") {
+        setChips((prev) => [...prev, e.target.value]);
+        values.tag = "";
+      }
+    }
+  };
 
   return (
     <main>
@@ -91,11 +128,22 @@ function Registration() {
             className={errors.tag && "err_border"}
             type="text"
             name="tag"
-            value={values.tag || []}
+            value={values.tag || ""}
             onChange={handleChange}
+            onKeyDown={handleChips}
             placeholder="태그를 입력해주세요"
           />
           {errors.tag && <p style={{ color: "red" }}>{errors.tag}</p>}
+          <div className="chips_box">
+            {chips.map((el, index) => (
+              <Chips
+                tag={el}
+                key={index}
+                index={index}
+                onClick={handleRemoveChip}
+              />
+            ))}
+          </div>
         </div>
       </form>
     </main>
