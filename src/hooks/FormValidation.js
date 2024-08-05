@@ -1,5 +1,4 @@
 import { useState } from "react";
-import * as api from "../api.js";
 
 const validateField = (name, value) => {
   switch (name) {

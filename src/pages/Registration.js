@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useFormValidation from "../hooks/FormValidation.js";
 import "../css/registration.css";
 import classNames from "classnames";
@@ -16,7 +16,7 @@ function Chips({ tag, onClick, index }) {
     <div className="chip">
       #{tag}
       <button onClick={handleBtn}>
-        <img className="x_icon" src={x_icon} />
+        <img className="x_icon" src={x_icon} alt="삭제아이콘" />
       </button>
     </div>
   );

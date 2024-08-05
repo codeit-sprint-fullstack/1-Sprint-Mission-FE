@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import * as api from "../api.js";
 
 function Home() {
+  //코드잇 API이용
   const productsQuery = {
     order: "recent",
     page: 1,
@@ -54,6 +55,7 @@ function Home() {
   const loadProducts = async (query) => {
     try {
       const { list, totalCount } = await api.getProductsAxios(query);
+      // const list = await api.getProductsAxios(query);
       setItems(list);
       setTotalDataCount(totalCount);
     } catch (e) {
@@ -63,7 +65,8 @@ function Home() {
 
   const loadBestProducts = async (bestParams) => {
     try {
-      const { list, totalCount } = await api.getProductsAxios(bestParams);
+      const { list } = await api.getProductsAxios(bestParams);
+      // const list = await api.getProductsAxios(bestParams);
       setBestItems(list);
     } catch (e) {
       console.log(e.message);

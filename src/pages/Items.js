@@ -3,11 +3,11 @@ import "../css/app.css";
 import ProductList from "../components/productlist.js";
 import Search from "../components/search.js";
 import Paging from "../components/paging.js";
-import useWindowSize from "../hooks/resize.js";
 import { useState, useEffect } from "react";
 import * as api from "../api.js";
 
 function Items() {
+  //코드잇 API이용
   const productsQuery = {
     order: "recent",
     page: 1,
@@ -26,28 +26,16 @@ function Items() {
     }));
   };
 
-  const onObjectChange = (obj) => {
-    setParams((prev) => ({
-      ...prev,
-      ...obj,
-    }));
-  };
-
-  const onChangeView = (value) => {
-    setView(value);
-  };
-
   const loadProducts = async (query) => {
     try {
       const { list, totalCount } = await api.getProductsAxios(query);
+      // const list = await api.getProductsAxios(query);
       setItems(list);
       setTotalDataCount(totalCount);
     } catch (e) {
       console.log(e.message);
     }
   };
-
-  //   useWindowSize(onObjectChange, onBestChange, onChangeView);
 
   useEffect(() => {
     loadProducts(params);
