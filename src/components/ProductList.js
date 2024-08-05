@@ -3,6 +3,7 @@ import useProducts from './useProducts';
 import useMediaQuery from './useMediaQuery';
 import './ProductList.css';
 import SelectBox from './SelectBox';
+import { Link } from 'react-router-dom';
 
 // 베스트 상품과 판매 중인 상품 목록 표시
 function ProductList() {
@@ -61,7 +62,7 @@ function ProductOnSale() {
             placeholder='🔍︎ 검색할 상품을 입력해주세요.' 
             onChange={handleChange}
           />
-          <button className='OnSaleProduct-upload'>상품 등록하기</button>
+          <Link to="/registration"><button className='OnSaleProduct-upload'>상품 등록하기</button></Link>
           <SelectBox setOrder={setOrder} mobile={mobile}/>
         </div>
       </div>
