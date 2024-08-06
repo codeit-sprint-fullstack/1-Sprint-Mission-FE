@@ -1,7 +1,7 @@
 import React from "react";
 import "./Footer.css";
 
-function Footer({ nowPage, handlePageChange, totalPageSize }) {
+function HomepageRenderFooter({ nowPage, handlePageChange, totalPageSize }) {
   const showPageSize = 5;
 
   const startNum = Math.floor((nowPage - 1) / showPageSize) * showPageSize + 1;
@@ -66,4 +66,4 @@ function Footer({ nowPage, handlePageChange, totalPageSize }) {
   );
 }
 
-export default Footer;
+export default HomepageRenderFooter;

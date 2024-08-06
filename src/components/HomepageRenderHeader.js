@@ -1,9 +1,11 @@
 import React from "react";
-import logoImg from "../images/logo.svg";
-import profileImge from "../images/profile.svg";
 import './Header.css';
 
-const Header = () => {
+// 리소스
+import logoImg from "../images/logo.svg";
+import profileImge from "../images/profile.svg";
+
+function HomepageRenderHeader() {
   return (
     <header className="headerContain">
       <img src={logoImg} alt="판다마켓" className="logoImg"/>
@@ -16,4 +18,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HomepageRenderHeader;
