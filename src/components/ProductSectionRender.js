@@ -7,7 +7,7 @@ import "./ProductSectionRender.css";
 import "./ProductsListNav.css";
 
 import ProductRender from "./ProductRender.js";
-import getProductList from "../api/getproducts.js";
+import getProductList from "../api/getProductsData.js";
 
 function ProductSectionRender({
   nowPage,

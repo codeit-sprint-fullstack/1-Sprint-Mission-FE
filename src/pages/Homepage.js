@@ -8,7 +8,10 @@ import Footer from "../components/Footer";
 // import Nav from "../components/Nav";
 
 // api
-import getProductList from "../api/getproducts.js";
+import getProductList from "../api/getProductsData.js";
+
+// 커스텀 훅
+import getWindowSize from "../hooks/useWindowWidhtSize.js";
 
 //테스트
 import ProductSectionRender from "../components/ProductSectionRender.js";
@@ -31,6 +34,8 @@ const HomePage = () => {
       })
       .catch((error) => console.error(error));
   }, []);
+
+  const WwindowSize = getWindowSize();
 
   return (
     <main>
