@@ -77,6 +77,7 @@
   align-items: center;
   gap: 8px;
   margin-right: 12px;
+  margin-bottom: 5px;
   padding: 6px 12px;
   border-radius: 26px;
   background-color: #F3F4F6;
@@ -88,3 +89,22 @@
 
 
 
+
+
+@media screen and (min-width: 787px) and (max-width: 1460px) {
+  .reg-container {
+    padding: 16px 24px;
+  }
+}
+
+
+@media screen and (min-width: 375px) and (max-width: 786px) {
+  .reg-container {
+    padding: 16px 16px;
+  }
+
+  .label-style {
+    font-size: 14px;
+    line-height: 16.71x;
+  }
+}
