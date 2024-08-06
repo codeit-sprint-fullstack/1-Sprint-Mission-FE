@@ -12,6 +12,7 @@
     margin-right: 2.4rem;
   }
 }
+
 /* ===== Mobile-width : 375px ~ 743px ====== */
 @media (min-width: 375px) and (max-width: 743px) {
   /* 프로필 오른쪽 여백 16px */

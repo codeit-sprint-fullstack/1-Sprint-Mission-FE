@@ -1,0 +1,77 @@
+.main-frame-registration {
+  width: 120rem;
+  height: 123.3rem;
+  margin: 0 auto;
+}
+
+.main__section-registration {
+  margin-top: 9.4rem;
+  margin-bottom: 1.6rem;
+}
+
+.main__registration-top-bar {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main__registration-text {
+  color: var(--gray800-color);
+}
+
+.main__registration-input-margin {
+  margin-bottom: 2.4rem;
+}
+
+.main__registration-label {
+  font-size: 1.8rem;
+  font-weight: 700;
+  /* Line height 21.48px */
+  line-height: 1.19333em;
+}
+
+.main__registration-input {
+  margin-top: 1.2rem;
+  width: 100%;
+  box-sizing: border-box;
+  border: 0.1rem solid;
+  border-color: var(--gray100-color);
+  background-color: var(--gray100-color);
+  /* border-radius : 12px; */
+  border-radius: 0.75em;
+  /* font-size : 16px */
+  text-align: left;
+  /* padding: 16px, 24px, 16px, 24px; */
+  padding: 1em 1.5em;
+  resize: none;
+  outline-color: var(--blue100-color);
+}
+
+.main__registration-input-small {
+  height: 5.6rem;
+}
+
+.main__registration-input-big {
+  height: 27.2rem;
+}
+
+/* ===== Tablet - width : 744px ~ 1199px ===== */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .main-frame-registration {
+    width: 69.6rem;
+    height: 113.3rem;
+    margin: 0 auto;
+  }
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .main-frame-registration {
+    width: 33.4rem;
+    height: 112.2rem;
+    margin: 0 auto;
+  }
+
+  .main__registration-input-big {
+    height: 20rem;
+  }
+}

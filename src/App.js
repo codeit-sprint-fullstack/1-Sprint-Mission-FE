@@ -1,4 +1,5 @@
 import FleaMarket from "./pages/FleaMarket";
+import Item from "./pages/Item";
 import Freeboard from "./pages/Freeboard";
 import Registration from "./pages/Registration";
 import Home from "./pages/Home";
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/item" element={<FleaMarket />} />
+          <Route path="/item/:id" element={<Item />} />
           <Route path="/free" element={<Freeboard />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/test" element={<h1>test</h1>} />

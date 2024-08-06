@@ -286,7 +286,7 @@ function BestProducts() {
 
 export function MarketBody() {
   return (
-    <main className="main-frame">
+    <main className="main-frame-market">
       <BestProducts />
       <Products />
     </main>

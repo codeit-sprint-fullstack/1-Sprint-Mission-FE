@@ -1,17 +1,24 @@
+button {
+  border: none;
+  cursor: pointer;
+}
+
 .favoriteButton {
   width: 1.6rem;
   height: 1.6rem;
-  border: none;
   background: url(../images/ic_heart_empty_small.svg) no-repeat center;
-  cursor: pointer;
 }
 
 .registrationButton {
   width: 13.3rem;
   height: 4.2rem;
-  border: none;
   background: url(../images/btn_registration.svg) no-repeat center;
-  cursor: pointer;
+}
+
+.btn-registration-74-decative {
+  width: 7.4rem;
+  height: 4.21rem;
+  background: url(../images/btn_registration_74_deactive.svg) no-repeat center;
 }
 
 /* ===== Mobile-width : 375px ~ 743px ====== */
