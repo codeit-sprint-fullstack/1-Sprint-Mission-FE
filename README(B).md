@@ -30,8 +30,9 @@
 - [ ] 상품 목록 검색 기능을 구현합니다.
 - [ ] 베스트 상품 데이터는 https://panda-market-api.vercel.app/docs/에 명세된 GET 메소드 “/products”의 정렬 기준 favorite을 사용해주세요.
 
-심화 요구사항
-공통
+## 심화 요구사항
+
+### 공통
 
 - [ ] 커스텀 hook을 만들어 필요한 곳에 활용해 보세요.
 
