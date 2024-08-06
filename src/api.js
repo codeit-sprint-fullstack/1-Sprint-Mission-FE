@@ -1,8 +1,8 @@
 import axios from "https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/esm/axios.min.js";
 
 const instance = axios.create({
-  baseURL: "https://panda-market-api.vercel.app",
-  // baseURL: process.env.REACT_APP_BASE_URL,
+  // baseURL: "https://panda-market-api.vercel.app",
+  baseURL: process.env.REACT_APP_BASE_URL,
 });
 
 const baseUrl = "https://panda-market-api.vercel.app";

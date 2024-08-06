@@ -5,6 +5,7 @@ import Search from "../components/search.js";
 import Paging from "../components/paging.js";
 import { useState, useEffect } from "react";
 import * as api from "../api.js";
+import useWindowSize from "../hooks/resize.js";
 
 function Items() {
   //코드잇 API이용
@@ -13,9 +14,14 @@ function Items() {
     page: 1,
     pageSize: 10,
   };
+  const bestProductsQuery = {
+    order: "favorite",
+    pageSize: 4,
+  };
 
   const [params, setParams] = useState(productsQuery);
   const [items, setItems] = useState([]);
+  const [bestParams, setBestParams] = useState(bestProductsQuery);
   const [view, setView] = useState();
   const [totalDataCount, setTotalDataCount] = useState(0);
 
@@ -24,6 +30,24 @@ function Items() {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const onBestChange = (name, value) => {
+    setBestParams((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const onObjectChange = (obj) => {
+    setParams((prev) => ({
+      ...prev,
+      ...obj,
+    }));
+  };
+
+  const onChangeView = (value) => {
+    setView(value);
   };
 
   const loadProducts = async (query) => {
@@ -36,6 +60,8 @@ function Items() {
       console.log(e.message);
     }
   };
+
+  useWindowSize(onObjectChange, onBestChange, onChangeView);
 
   useEffect(() => {
     loadProducts(params);

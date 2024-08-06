@@ -6,7 +6,7 @@ const validateField = (name, value) => {
       return value.length >= 1 && value.length <= 10
         ? ""
         : "상품명은 1자리 이상 10자리 이내 입니다.";
-    case "decription":
+    case "description":
       return value.length >= 10 && value.length <= 100
         ? ""
         : "상품 소개는 10자리 이상 100자리 이내 입니다.";
@@ -22,6 +22,7 @@ const validateField = (name, value) => {
 const useFormValidation = (initialValues, callback) => {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
+  const [chips, setChips] = useState([]);
   const [disabled, setDisabled] = useState(true);
 
   const handleChange = (event) => {
@@ -37,7 +38,7 @@ const useFormValidation = (initialValues, callback) => {
       ...errors,
       [name]: error,
     });
-    if (!error) setDisabled(false);
+    setDisabled(!!error);
   };
 
   const handleSubmit = (event) => {
@@ -63,12 +64,30 @@ const useFormValidation = (initialValues, callback) => {
     callback(values);
   };
 
+  const handleChips = (e) => {
+    if (errors.tag) return;
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (values.tag.trim() !== "") {
+        setChips((prev) => [...prev, e.target.value]);
+        values.tag = "";
+      }
+    }
+  };
+
+  const handleRemoveChip = (index) => {
+    setChips((prev) => prev.filter((_, id) => id !== index));
+  };
+
   return {
     values,
     errors,
     disabled,
+    chips,
     handleChange,
     handleSubmit,
+    handleChips,
+    handleRemoveChip,
   };
 };
 

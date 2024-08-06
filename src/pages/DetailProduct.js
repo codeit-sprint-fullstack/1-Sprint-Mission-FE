@@ -1,4 +1,4 @@
-function DetaliProduct({ data }) {
+function DetailProduct({ data }) {
   return (
     <main>
       <div>상세페이지</div>
@@ -6,4 +6,4 @@ function DetaliProduct({ data }) {
   );
 }
 
-export default DetaliProduct;
+export default DetailProduct;

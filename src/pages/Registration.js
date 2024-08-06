@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import useFormValidation from "../hooks/FormValidation.js";
 import "../css/registration.css";
 import classNames from "classnames";
@@ -23,53 +23,49 @@ function Chips({ tag, onClick, index }) {
 }
 
 function Registration() {
-  const [chips, setChips] = useState([]);
-
-  const { values, errors, disabled, handleChange, handleSubmit } =
-    useFormValidation(
-      {
-        email: "",
-        decription: "",
-        price: 0,
-        //tag는 필수 필드가 아니라 제외
-      },
-      createProduct
-    );
+  const {
+    values,
+    errors,
+    disabled,
+    chips,
+    handleChange,
+    handleSubmit,
+    handleChips,
+    handleRemoveChip,
+  } = useFormValidation(
+    {
+      name: "",
+      description: "",
+      price: 0,
+      //tag는 필수 필드가 아니라 제외
+    },
+    createProduct
+  );
 
   async function createProduct(values) {
+    console.log(values);
+    console.log(chips);
     const formData = new FormData();
     formData.append("name", values.name);
-    formData.append("decription", values.decription);
-    formData.append("npriceame", values.price);
+    formData.append("description", values.description);
+    formData.append("price", values.price);
     formData.append("tag", JSON.stringify(chips));
+
+    const postData = {
+      ...values,
+      tag: chips,
+    };
 
     if (formData) {
       try {
-        const data = await api.createProductAxios(formData);
-        Navigate("/detaliproduct", { data });
+        const data = await api.createProductAxios(postData);
+        Navigate("/detailproduct", { data });
       } catch (e) {
         console.log(e.name);
         console.log(e.message);
       }
     }
   }
-
-  const handleRemoveChip = (index) => {
-    console.log(index);
-    setChips((prev) => prev.filter((_, id) => id !== index));
-    console.log(chips);
-  };
-
-  const handleChips = (e) => {
-    if (errors.tag) return;
-    if (e.key === "Enter") {
-      e.preventDefault();
-      if (values.tag.trim() !== "") {
-        setChips((prev) => [...prev, e.target.value]);
-        values.tag = "";
-      }
-    }
-  };
 
   return (
     <main>
@@ -99,22 +95,22 @@ function Registration() {
         <div className="input_box">
           <label>상품 소개</label>
           <input
-            className={errors.decription && "err_border"}
+            className={errors.description && "err_border"}
             type="text"
-            name="decription"
-            value={values.decription || ""}
+            name="description"
+            value={values.description || ""}
             onChange={handleChange}
             placeholder="상품 소개를 입력해주세요"
           />
-          {errors.decription && (
-            <p style={{ color: "red" }}>{errors.decription}</p>
+          {errors.description && (
+            <p style={{ color: "red" }}>{errors.description}</p>
           )}
         </div>
         <div className="input_box">
           <label>판매가격</label>
           <input
             className={errors.price && "err_border"}
-            type="text"
+            type="number"
             name="price"
             value={values.price || ""}
             onChange={handleChange}
