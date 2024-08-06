@@ -84,9 +84,7 @@ export function SellList() {
                   alt={item.name ?? "Product image"}
                 />
                 <p className="itemName">{item.name ?? "No name"}</p>
-                <p className="itemPrice">
-                  {item.price ? `${formatPrice(item.price)} 원` : "No price"}
-                </p>
+                <p className="itemPrice">{`${formatPrice(item.price)} 원`}</p>
                 <p className="itemFavoriteCnt">♡ {item.favoriteCount ?? "0"}</p>
               </div>
             ))
