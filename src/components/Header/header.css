@@ -1,0 +1,81 @@
+@import '/src/assets/styles/style.css';
+
+header {
+  height: 70px;
+  width: 100%;
+  border-bottom: 1px solid #dfdfdf;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  z-index: 3;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  padding: 0 200px;
+  max-width: 1920px;
+  height: 70px;
+  margin: 0 auto;
+}
+
+.headerLogo {
+  display: flex;
+  gap: 8.59px;
+  align-items: center;
+}
+
+.pandaLogo {
+  height: 40px;
+}
+
+.pandaText {
+  height: 51px;
+}
+
+.nav {
+  display: flex;
+  margin-left: 33.41px;
+}
+
+.navContent {
+  width: 108px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--grey-600);
+}
+
+.user {
+  width: 40px;
+  margin-left: auto;
+}
+
+@media (max-width: 1199px) {
+  nav {
+    padding: 0 24px;
+  }
+
+  .nav {
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 743px) {
+  .pandaLogo {
+    display: none;
+  }
+
+  nav {
+    padding: 0 16px;
+  }
+
+  .nav {
+    margin-left: 8px;
+  }
+
+  .navContent {
+    width: 70px;
+    font-size: 16px;
+  }
+}

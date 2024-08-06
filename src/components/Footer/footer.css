@@ -1,0 +1,60 @@
+@import '/src/assets/styles/style.css';
+
+footer {
+  height: 10rem;
+  padding: 2rem 12.5rem 109px;
+  background-color: var(--grey-900);
+  width: 100%;
+  position: relative;
+  top: 280px;
+}
+.footerContainer {
+  display: flex;
+  justify-content: space-between;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+.footerOne {
+  color: var(--grey-400);
+  font-weight: 400;
+  margin-bottom: 24px;
+  grid-area: a;
+}
+.footerTwo {
+  display: flex;
+  justify-content: center;
+  gap: 2.25rem;
+  margin-bottom: 24px;
+  grid-area: b;
+}
+.policy,
+.faq {
+  font-weight: 400;
+  color: var(--grey-200);
+}
+.footerThree {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+  grid-area: c;
+}
+.sns {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+@media (max-width: 1199px) {
+  footer {
+    padding: 2rem 24px 109px;
+  }
+}
+
+@media (max-width: 743px) {
+  .footerContainer {
+    display: grid;
+    grid-template-areas:
+      'b c'
+      '. .'
+      'a .';
+  }
+}

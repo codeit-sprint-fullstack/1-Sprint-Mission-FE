@@ -1,0 +1,69 @@
+@import '/src/assets/styles/style.css';
+
+.dropDown {
+  border: 1px solid var(--grey-200);
+  width: 133px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.arrow {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s;
+}
+
+.arrow.rotate {
+  transform: rotate(180deg);
+}
+
+.dropDownText {
+  line-height: 26px;
+  font-weight: 400;
+  color: #1f2937;
+}
+
+.dropDownBox {
+  position: absolute;
+  z-index: 1;
+  top: 50px;
+  background-color: white;
+  width: 130px;
+  height: 84px;
+  border: 1px solid var(--grey-200);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.orderNew,
+.orderFavorite {
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.orderFavorite {
+  border-top: 1px solid var(--grey-200);
+}
+
+@media (max-width: 743px) {
+  .dropDown {
+    width: 42px;
+    cursor: pointer;
+    background-image: url('../../../assets/images/btn_sort.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .arrow,
+  .dropDownText {
+    display: none;
+  }
+}
