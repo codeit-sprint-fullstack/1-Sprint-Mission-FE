@@ -20,7 +20,7 @@ export default function Registration() {
             name: formValues.productName,
             description: formValues.productIntro,
             price: formValues.productPrice,
-            tags: formValues.productTag ? [formValues.productTag] : [],
+            tags: formValues.tags || [],
           }),
         });
 

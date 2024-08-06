@@ -48,6 +48,7 @@
   flex-wrap: wrap;
   gap: 12px;
   margin-top: -12px;
+  height: 36px;
 }
 
 .tag {

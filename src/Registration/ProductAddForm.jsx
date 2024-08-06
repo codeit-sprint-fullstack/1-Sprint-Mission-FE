@@ -38,8 +38,12 @@ function ProductAddForm({ onFormChange, onFormValuesChange }) {
   useEffect(() => {
     const isFormValid =
       Object.values(errors).every((error) => error === "") &&
-      Object.values(values).every((value) => value.trim() !== "") &&
-      (tags.length > 0 || values.productTag.length === 0); // 태그가 1개 이상이거나 태그 입력 값이 비어 있을 때 폼이 유효한 것으로 간주
+      Object.entries(values).every(([key, value]) => {
+        if (key === "productTag") return true;
+        return value.trim() !== "";
+      }) &&
+      tags.length > 0 &&
+      values.productTag.trim() === "";
     onFormChange(isFormValid);
     onFormValuesChange({ ...values, tags });
   }, [errors, values, tags, onFormChange, onFormValuesChange]);
