@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 
 import getApiData from "../api/getProductsData.js";
 
-const URL = "https://panda-market-api.vercel.app";
+import search from "../images/icon/ic_search.svg";
 
-const getProductData = (nowPage, showProductCount, orderBy, keyword) => {
+
+const useProductData = (nowPage, showProductCount, orderBy, keyword) => {
 
   const [getProductList, setProductsList] = useState([]);
   const [totalPageSize, setTotalPageSize] = useState(1);
 
   useEffect(() => {
-    getApiData (nowPage = 1, showProductCount = 10, orderBy = 'recent', keyword = '')
+    getApiData (nowPage, showProductCount, orderBy, keyword)
       .then((data) => {
         // 상품 최대 개수 확인
         console.log(`data.totalCount: ${data.totalCount}`);
@@ -21,9 +22,7 @@ const getProductData = (nowPage, showProductCount, orderBy, keyword) => {
         // data 정보 콘솔 로그
         console.log(`data.list.length: ${data.list.length}`);
         // 상품 데이터 확인
-        if (data.list.length === 0) { // 없으면 noProductList를 True로 설정
-          setProductsList(null)
-        } else if (data.list.length < showProductCount) { // 상품이 보여줄 갯수보다 적으면 가데이터로 채우기
+        if (data.list.length < showProductCount) { // 상품이 보여줄 갯수보다 적으면 가데이터로 채우기
           const newFiiledDataList = [
             ...data.list,
             ...Array(showProductCount - data.list.length).fill({
@@ -40,7 +39,7 @@ const getProductData = (nowPage, showProductCount, orderBy, keyword) => {
         }
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [nowPage, showProductCount, orderBy, keyword]);
 
   return {
     getProductList,
@@ -48,4 +47,4 @@ const getProductData = (nowPage, showProductCount, orderBy, keyword) => {
   }
 
 }
-export default getProductData;
+export default useProductData;

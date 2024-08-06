@@ -6,7 +6,15 @@ li {
   list-style: none;
 }
 
-.bodySet {
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.productSectionSet {
+  width: 1200px;
   display: flex;
   flex-direction: column;
   justify-content: center;

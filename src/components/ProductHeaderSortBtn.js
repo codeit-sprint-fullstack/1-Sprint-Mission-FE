@@ -5,7 +5,7 @@ import "./ProductHeaderSortBtn.css";
 // 이미지
 import arrow from "../images/icon/ic_arrow_down.svg";
 
-function ProductHeaderSortBtn(handelSortOption) {
+function ProductHeaderSortBtn({ handelSortOption }) {
   const [dropDownView, viewChange] = useState(false);
   const [optionText, optionTextChange] = useState("최신순");
 

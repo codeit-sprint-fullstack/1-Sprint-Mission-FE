@@ -1,5 +1,5 @@
 import React from "react";
-import './Header.css';
+import './HomepageRenderHeader.css';
 
 // 리소스
 import logoImg from "../images/logo.svg";

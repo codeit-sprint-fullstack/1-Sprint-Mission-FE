@@ -1,13 +1,16 @@
 import React from "react";
-import "./productHeaderText.css";
+import "./ProductHeaderSearchBar.css";
 
-function ProductHeaderSearchBar (searchText, handleInput) {
+//리소스
+import search from "../images/icon/ic_search.svg";
+
+function ProductHeaderSearchBar ( {inputText, handleInput}) {
   return (
     <div className="searchBox">
       <img src={search} alt="검색" />
       <input
         type="text"
-        value={searchText}
+        value={inputText}
         onChange={handleInput}
         placeholder="검색할 상품을 입력해주세요"
       />

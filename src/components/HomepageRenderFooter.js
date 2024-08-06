@@ -1,5 +1,5 @@
 import React from "react";
-import "./Footer.css";
+import "./HomepageRenderFooter.css";
 
 function HomepageRenderFooter({ nowPage, handlePageChange, totalPageSize }) {
   const showPageSize = 5;
