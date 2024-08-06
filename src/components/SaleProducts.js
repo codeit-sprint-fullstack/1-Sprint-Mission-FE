@@ -22,7 +22,7 @@ function SaleProducts({ activePath, setActivePath }) {
   useEffect(() => {
     const getProducts = async () => {
       const data = await getItems(currentPage, pageSize, keyword);
-      setProducts(data.list);
+      setProducts(data);
       setTotalPage(Math.ceil(data.totalCount / pageSize));
     };
 
@@ -70,7 +70,7 @@ function SaleProducts({ activePath, setActivePath }) {
       <div className="sale-products">
         {products.map((product) => (
           <Product
-            key={`product-${product.id}`}
+            key={`product-${product._id}`}
             product={product}
             className="sale-product"
           />
