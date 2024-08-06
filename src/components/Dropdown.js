@@ -7,7 +7,6 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 function Dropdown({ onOrderChange, sortOption }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [sortOption, setSortOption] = useState('recent');
 
   const click = () => {
     setIsOpen((prevState) => !prevState);
@@ -15,7 +14,6 @@ function Dropdown({ onOrderChange, sortOption }) {
 
   const handleSortChange = (orderBy) => {
     onOrderChange(orderBy);
-    setSortOption(orderBy);
   };
 
   return (
@@ -37,14 +35,12 @@ function Dropdown({ onOrderChange, sortOption }) {
             <div
               className={styles.dropboxFirst}
               onClick={() => handleSortChange('recent')}
-              id='recent'
             >
               최신순
             </div>
             <div
               className={styles.dropboxLast}
               onClick={() => handleSortChange('favorite')}
-              value='favorite'
             >
               좋아요순
             </div>

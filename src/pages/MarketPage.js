@@ -12,8 +12,6 @@ import Container from '../components/Container.js';
 
 import useMediaType from '../hook/useMediaType.js';
 
-import useMediaType from '../hook/useMediaType.js';
-
 const PAGECOUNT = 5;
 
 function MarketPage() {
@@ -24,7 +22,6 @@ function MarketPage() {
   const [keyword, setKeyword] = useState('');
   const [pageSizeCount, setPageSizeCount] = useState(10);
   const [total, setTotal] = useState(0);
-  const [searchKeyword, SetSearchKeyword] = useState('');
 
   const mediaType = useMediaType();
 
