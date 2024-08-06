@@ -1,0 +1,45 @@
+.top-bar {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 12px;
+}
+
+.top-bar .add-product-btn {
+  background-color: var(--primary-colour);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  width: 133px;
+  height: 42px;
+}
+
+.ProductSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media only screen and (max-width: 700px) {
+  .top-bar {
+    grid-template-areas:
+      'a b b'
+      'c c d';
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 1fr 1fr;
+  }
+  .top-bar h2 {
+    grid-area: a;
+  }
+  .add-product-btn {
+    grid-area: b;
+    justify-self: end;
+  }
+  .SearchBar {
+    grid-area: c;
+  }
+  .Dropdown {
+    grid-area: d;
+  }
+}

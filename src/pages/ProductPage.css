@@ -1,0 +1,10 @@
+h2 {
+  font-size: var(--20px);
+  font-weight: 700;
+  margin-left: 0;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}

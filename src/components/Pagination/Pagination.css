@@ -1,0 +1,48 @@
+.Pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 43px;
+  margin-bottom: 54px;
+  gap: 4px;
+}
+
+.Pagination button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--grey-200);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--grey-500);
+  padding-top: 2px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.Pagination .arrow-left:active,
+.Pagination .arrow-right:active {
+  border: 3px solid var(--primary-colour);
+}
+
+.Pagination .arrow-left:disabled,
+.Pagination .arrow-right:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.Pagination .current {
+  background-color: var(--primary-colour);
+  color: #fff;
+}
+
+.Pagination .arrow-right {
+  transform: rotate(180deg);
+}
+
+@media only screen and (max-width: 1199px) {
+  .Pagination {
+    margin-top: 40px;
+  }
+}
