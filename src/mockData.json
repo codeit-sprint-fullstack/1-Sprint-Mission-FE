@@ -1,0 +1,278 @@
+[
+  {
+    "id": 84,
+    "name": "왜 다시 안되지",
+    "description": "왜?",
+    "price": 3,
+    "tags": ["gg"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/250/1721551574559/retry2023-04-02.png"
+    ],
+    "ownerId": 250,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-21T08:46:14.704Z",
+    "updatedAt": "2024-07-21T08:46:14.704Z"
+  },
+  {
+    "id": 83,
+    "name": "블로그 올려야되서 한번만 더 등록할게요",
+    "description": "모르고 네트워크 안 킴 ㅎ;;",
+    "price": 3000,
+    "tags": ["wt"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/250/1721551384696/retry2023-04-02.png"
+    ],
+    "ownerId": 250,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-21T08:43:04.961Z",
+    "updatedAt": "2024-07-21T08:43:04.961Z"
+  },
+  {
+    "id": 82,
+    "name": "한글이라 안올라갔음",
+    "description": "ㅎㅇ",
+    "price": 1,
+    "tags": ["gd"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/250/1721551287263/retry2023-04-02.png"
+    ],
+    "ownerId": 250,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-21T08:41:27.349Z",
+    "updatedAt": "2024-07-21T08:41:27.349Z"
+  },
+  {
+    "id": 81,
+    "name": "한글이라 안올라갔음",
+    "description": "ㅎㅇ",
+    "price": 1,
+    "tags": [],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/250/1721551284145/retry2023-04-02.png"
+    ],
+    "ownerId": 250,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-21T08:41:24.386Z",
+    "updatedAt": "2024-07-21T08:41:24.386Z"
+  },
+  {
+    "id": 80,
+    "name": "옛날에 그래프 였나 배울 때 그렸던 그림",
+    "description": "멋있죠",
+    "price": 30000000,
+    "tags": ["ㅎㅇ"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/250/1721551200849/%C3%AC%C2%8A%C2%A4%C3%AD%C2%81%C2%AC%C3%AB%C2%A6%C2%B0%C3%AC%C2%83%C2%B7%202023-04-02%20002534.png"
+    ],
+    "ownerId": 250,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-21T08:40:01.050Z",
+    "updatedAt": "2024-07-21T08:40:01.050Z"
+  },
+  {
+    "id": 79,
+    "name": "이제 되어줘",
+    "description": "제발",
+    "price": 181818,
+    "tags": ["gg"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/250/1721546276928/githubicon.png"
+    ],
+    "ownerId": 250,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-21T07:17:57.103Z",
+    "updatedAt": "2024-07-21T07:17:57.103Z"
+  },
+  {
+    "id": 75,
+    "name": "맬왱 보디빌더 시절",
+    "description": "거진 범스테드",
+    "price": 234235,
+    "tags": ["쇼미더바디"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/228/1721397499324/sddefault.jpg"
+    ],
+    "ownerId": 228,
+    "favoriteCount": 1,
+    "createdAt": "2024-07-19T13:58:58.375Z",
+    "updatedAt": "2024-07-19T13:59:54.270Z"
+  },
+  {
+    "id": 72,
+    "name": "아 유유유유유유유유~~~~ 매그네~~~~~릭",
+    "description": "매그네릭 마스터했습니다 연락주세요",
+    "price": 23489273,
+    "tags": ["맬왱"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/228/1721397346170/maxresdefault.jpg"
+    ],
+    "ownerId": 228,
+    "favoriteCount": 1,
+    "createdAt": "2024-07-19T13:56:11.376Z",
+    "updatedAt": "2024-07-19T13:59:52.462Z"
+  },
+  {
+    "id": 69,
+    "name": "ㅋㅋㅋ",
+    "description": "ㅋㅋㅋ",
+    "price": 10000,
+    "tags": ["젭라"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/21/1721395970442/haha.jpg"
+    ],
+    "ownerId": 21,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-19T13:32:50.635Z",
+    "updatedAt": "2024-07-19T13:32:50.635Z"
+  },
+  {
+    "id": 64,
+    "name": "조현지",
+    "description": "사랑의 콜백지옥",
+    "price": 1000000000,
+    "tags": ["아이템1"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/82/1721391751509/IMG_8439.jpeg"
+    ],
+    "ownerId": 82,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-19T10:52:51.416Z",
+    "updatedAt": "2024-07-19T12:22:32.214Z"
+  },
+  {
+    "id": 63,
+    "name": "엽떡",
+    "description": "매콤",
+    "price": 16000,
+    "tags": ["밀떡파"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/243/1721385339304/%C3%AC%C2%97%C2%BD%C3%AB%C2%96%C2%A1.png"
+    ],
+    "ownerId": 243,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-19T10:35:39.585Z",
+    "updatedAt": "2024-07-19T10:35:39.585Z"
+  },
+  {
+    "id": 62,
+    "name": "ㅁ",
+    "description": "ㅁ",
+    "price": 100,
+    "tags": ["ㅁ"],
+    "images": [],
+    "ownerId": 243,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-19T09:05:02.277Z",
+    "updatedAt": "2024-07-19T09:05:02.277Z"
+  },
+  {
+    "id": 61,
+    "name": "ㅁ",
+    "description": "ㅁ",
+    "price": 100,
+    "tags": ["ㅁ"],
+    "images": [],
+    "ownerId": 243,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-19T09:03:49.376Z",
+    "updatedAt": "2024-07-19T09:03:49.376Z"
+  },
+  {
+    "id": 59,
+    "name": "고양이 너무 귀엽죠!",
+    "description": "고양이 너무 귀여워!",
+    "price": 54545454,
+    "tags": ["고양이"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/240/1721367751564/cat-8062388_1280.jpg"
+    ],
+    "ownerId": 240,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-19T05:42:31.822Z",
+    "updatedAt": "2024-07-19T06:42:14.940Z"
+  },
+  {
+    "id": 58,
+    "name": "루피 인형",
+    "description": "깨끗함",
+    "price": 15000,
+    "tags": ["루피"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/71/1721367647110/loopy.png"
+    ],
+    "ownerId": 71,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-19T05:40:47.323Z",
+    "updatedAt": "2024-07-19T05:40:47.323Z"
+  },
+  {
+    "id": 53,
+    "name": "ㅁ",
+    "description": "ㅁ",
+    "price": 100,
+    "tags": ["ㅁ"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/243/1721367186649/choco.jpg"
+    ],
+    "ownerId": 243,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-19T05:33:06.816Z",
+    "updatedAt": "2024-07-19T05:33:06.816Z"
+  },
+  {
+    "id": 51,
+    "name": "sd",
+    "description": "sdfs",
+    "price": 123,
+    "tags": ["zd"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/239/1721366106367/118be3fd-7a28-4ba3-b3f3-04ad2b310230.jpeg"
+    ],
+    "ownerId": 239,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-19T05:17:18.897Z",
+    "updatedAt": "2024-07-19T05:17:18.897Z"
+  },
+  {
+    "id": 50,
+    "name": "두바이 초콜릿",
+    "description": "두바이",
+    "price": 100000,
+    "tags": ["두바이"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/243/1721365105086/choco.jpg"
+    ],
+    "ownerId": 243,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-19T04:58:25.412Z",
+    "updatedAt": "2024-07-19T04:58:25.412Z"
+  },
+  {
+    "id": 46,
+    "name": "a",
+    "description": "a",
+    "price": 100000,
+    "tags": ["aa"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/243/1721313147591/%C3%AC%C2%82%C2%AC%C3%AC%C2%A7%C2%84.webp"
+    ],
+    "ownerId": 243,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-18T14:32:27.760Z",
+    "updatedAt": "2024-07-18T14:32:27.760Z"
+  },
+  {
+    "id": 43,
+    "name": "조현지",
+    "description": "조현지",
+    "price": 1000000,
+    "tags": ["조현지"],
+    "images": [
+      "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/82/1721297999791/IMG_8433.jpeg"
+    ],
+    "ownerId": 82,
+    "favoriteCount": 0,
+    "createdAt": "2024-07-18T10:20:00.102Z",
+    "updatedAt": "2024-07-18T10:20:00.102Z"
+  }
+]
