@@ -1,6 +1,6 @@
 import { useFetchProducts } from "../common/useFetchProducts";
 import { formatPrice } from "../common/Util";
-import { useDeviceType } from "../common/usePageSize";
+import { useDeviceType } from "../common/useDeviceType";
 import "./BestList.css";
 
 export function BestList() {

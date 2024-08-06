@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useFetchProducts } from "../common/useFetchProducts";
 import Pagination from "../Pagination/Pagination";
 import { formatPrice } from "../common/Util";
-import { useDeviceType } from "../common/usePageSize";
+import { useDeviceType } from "../common/useDeviceType";
 import { DesktopSearchBar } from "./DesktopSearchBar";
 import { MobileSearchBar } from "./MobileSearchBar";
 import "./SellList.css";
