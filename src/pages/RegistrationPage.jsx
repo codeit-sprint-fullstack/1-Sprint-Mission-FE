@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Nav from "../components/Nav";
 import './RegistrationPage.css';
 import removeIcon from '../assets/imgs/ic_X.svg';
+import { Helmet } from "react-helmet";
 
 function RegistrationPage() {
   // 태그 표시하기
@@ -31,6 +32,9 @@ function RegistrationPage() {
 
   return (
     <>
+      <Helmet>
+        <title>상품 등록</title>
+      </Helmet>
       <Nav />
       <form className="reg-container">
         <div className="reg">

@@ -1,12 +1,18 @@
 import ProductList from './ProductList';
 import Nav from './Nav';
+import { Helmet } from "react-helmet";
 
 function App() {
   return (
-    <div className='App'>
-      <Nav /> 
-      <ProductList/>
-    </div>
+    <>
+      <Helmet>
+        <title>중고마켓</title>
+      </Helmet>
+      <div className='App'>
+        <Nav /> 
+        <ProductList/>
+      </div>
+    </>
   );
 }
 
