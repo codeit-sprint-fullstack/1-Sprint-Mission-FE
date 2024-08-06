@@ -21,6 +21,7 @@ function ProductOnSale() {
   const [order, setOrder] = useState(''); // 좋아요, 최신순 정렬 순서 상태
   const [page, setPage] = useState(1); // 페이지 번호 상태
   const [keyword, setKeyword] = useState(''); // 검색 키워드 상태
+  const [searchInput, setSearchInput] = useState('') // 사용자 입력 상태
   
   const defaultPageSize = 10; // 기본 상품 개수
   const [pageSize, setPageSize] = useState(defaultPageSize);
@@ -45,10 +46,18 @@ function ProductOnSale() {
 
   // 검색 키워드 핸들러
   const handleChange = (e) => {
-    const searchItem = e.target.value;
-    setKeyword(searchItem); // 검색어 설정
-    setPage(1); // 페이지 초기화
+    setSearchInput(e.target.value);
   }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && searchInput.trim() !== '') {
+      e.preventDefault();
+      setKeyword(searchInput);
+      setSearchInput('');
+      setPage(1);
+    }
+  }
+
 
 
   return (
@@ -60,8 +69,10 @@ function ProductOnSale() {
           <input 
             className='OnSaleProduct-search' 
             type='search' 
+            value={searchInput}
             placeholder='🔍︎ 검색할 상품을 입력해주세요.' 
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
           />
           <Link to="/registration"><button className='OnSaleProduct-upload'>상품 등록하기</button></Link>
           <SelectBox setOrder={setOrder} mobile={mobile}/>
