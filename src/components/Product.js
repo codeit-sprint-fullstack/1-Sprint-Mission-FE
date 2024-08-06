@@ -1,14 +1,16 @@
 import React from "react";
 import heartFullImage from "../images/favoriteFullHeart-small.png";
 import heartEmptyImage from "../images/favoriteEmptyHeart-small.png";
+import defaultPanda from "../images/panda_image.png";
 import "../styles/Product.css";
 
 const Product = ({ product, className }) => {
+  const favoriteCountDefault = 1;
   return (
     <div className={`${className}`}>
       <img
         className="product-image"
-        src={product.images}
+        src={defaultPanda}
         alt={product.description}
       />
       <p className="description text-md medium">{product.description}</p>
@@ -21,7 +23,7 @@ const Product = ({ product, className }) => {
           src={heartEmptyImage}
           alt="favorite heart"
         />
-        <p className="favorite-count text-xs medium">{product.favoriteCount}</p>
+        <p className="favorite-count text-xs medium">{favoriteCountDefault}</p>
       </div>
     </div>
   );

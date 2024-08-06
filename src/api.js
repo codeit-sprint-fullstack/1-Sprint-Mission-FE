@@ -1,4 +1,4 @@
-const URL = "https://one-sprint-mission-be.onrender.com";
+const URL = "https://one-sprint-mission-be.onrender.com/products";
 
 export const getItems = async (page = 1, pageSize = 10, keyword = "") => {
   try {
