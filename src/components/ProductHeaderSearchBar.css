@@ -1,0 +1,22 @@
+.searchBox {
+  display: flex;
+  background-color: #F3F4F6;  ;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 12px;
+  padding: 9px 16px;
+}
+
+.searchBox > input { 
+  border: none;
+  background-color: #F3F4F6;
+  width: 265px;
+  height: 24px;
+  padding-left: 16px;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.searchBox > input:focus {
+  outline: none;
+}
