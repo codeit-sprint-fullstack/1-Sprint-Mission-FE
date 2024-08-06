@@ -1,0 +1,400 @@
+* {
+  font-family: Pretendard, sans-serif;
+  box-sizing: border-box;
+}
+
+/* header */
+header {
+  width: 100%;
+  height: 70px;
+  border-bottom: 1px solid #dfdfdf;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.Logo {
+  width: 153px;
+  height: 51px;
+}
+
+nav {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listContaner {
+  width: 201px;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listFont {
+  height: 70px;
+  margin: 0;
+  font-family: Pretendard, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  color: #4b5563;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.freeFont {
+  width: 108px;
+}
+
+.usedFont {
+  width: 93px;
+}
+
+.userIcon {
+  width: 40px;
+  height: 40px;
+}
+
+/* main */
+main {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* [  ]product.js의 css  */
+.productFont {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #111827;
+}
+
+/* bestProduct.js의 css */
+.bestProductContaner {
+  margin-top: 24px;
+}
+
+.bestProductFont {
+  margin-bottom: 16px;
+}
+
+/* SaleProduct.js의 css */
+.saleProductContaner {
+  height: auto;
+  margin-top: 40px;
+}
+
+.saleProductParts {
+  height: 42px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.saleProductFont {
+  width: 113px;
+  height: 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mobileRegistration {
+  display: none;
+}
+
+.saleProductFrom {
+  height: 42px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.searchFromPositin {
+  position: relative;
+}
+
+.readingGlasses {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 9px;
+  left: 16px;
+}
+
+/* ProductCard.js의 css */
+.productName {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.bestProductName {
+  height: 24px;
+  margin-top: 10px;
+}
+
+.saleProductName {
+  height: 24px;
+  margin-top: 16px;
+}
+
+.productPrice {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+  margin-top: 6px;
+}
+
+.productColor {
+  color: #1f2937;
+}
+
+.productFavoriteContaner {
+  width: 221px;
+  height: 18px;
+  margin-top: 6px;
+  display: flex;
+  flex-direction: row;
+}
+
+.heartIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.productFavoriteCount {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #4b5563;
+}
+
+/* variant이 best일 때 */
+.bestProductImg {
+  border-radius: 19.46px;
+}
+
+.bestProductCard {
+  background-color: #fcfcfc;
+}
+
+/* variant이 sale일 때 */
+.saleProductImg {
+  width: 221px;
+  height: 221px;
+  border-radius: 16px;
+}
+
+.saleProductCard {
+  background-color: #fcfcfc;
+}
+
+/* SearchFrom.js의 css */
+.searchProduct {
+  height: 42px;
+  border-radius: 12px;
+  border: none;
+  padding: 9px 0 9px 44px;
+  background-color: #f3f4f6;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #9ca3af;
+}
+
+/* Registration.js의 css */
+.registration {
+  width: 133px;
+  height: 42px;
+  border-radius: 8px;
+  padding: 8px 23px;
+  background-color: #3692ff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  color: #f3f4f6;
+  cursor: pointer;
+}
+
+/* OrderChange.js의 css */
+.orderChange {
+  width: 130px;
+  height: 42px;
+  border-radius: 12px;
+  padding: 9px 0 7px 20px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #1f2937;
+  position: relative;
+  cursor: pointer;
+}
+
+.orderArrow {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 9px;
+  right: 20px;
+}
+
+.orderBoxNone {
+  display: none;
+}
+
+.orderBox {
+  width: 130px;
+  height: 84px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #1f2937;
+  position: absolute;
+  top: 50px;
+  left: 0;
+}
+
+.orderRecent {
+  width: 130px;
+  height: 41.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.orderLine {
+  width: 130px;
+  height: 1px;
+  background-color: #e5e7eb;
+}
+
+.orderFavorite {
+  width: 130px;
+  height: 41.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Pagination의 css */
+.pagination {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  list-style: none;
+}
+
+.pagination li {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  border: 1px solid #e5e7eb;
+  margin: 0 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+}
+
+.pagination li:first-child {
+  display: none;
+}
+
+.pagination li:last-child {
+  display: none;
+}
+
+.pagination li a {
+  text-decoration: none;
+  color: #6b7280;
+}
+
+.pagination li.active a {
+  color: #ffffff;
+}
+
+.pagination li.active {
+  background-color: #2f80ed;
+}
+
+/* footer */
+.bottom-frame {
+  width: 100%;
+  height: 160px;
+  background-color: #111827;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.bottom-box {
+  width: 100%;
+  height: 20px;
+  margin-top: 32px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.09px;
+  color: #9ca3af;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.mobile {
+  width: 112px;
+  height: 19px;
+}
+
+.link_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.qna {
+  width: 159px;
+  height: 19px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.qna-word {
+  text-decoration: none;
+  color: #e5e7eb;
+}
+
+.icon {
+  width: 116px;
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
