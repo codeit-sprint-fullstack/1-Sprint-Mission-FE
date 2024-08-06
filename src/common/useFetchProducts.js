@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export function useFetchProducts({ pageSize, page, keyword }) {
-  const baseUrl = "http://localhost:3000/products";
+export function useFetchProducts({ pageSize = 10, page = 1, keyword = "" }) {
+  const baseUrl = "https://thrift-shop.onrender.com/products";
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
@@ -14,7 +14,6 @@ export function useFetchProducts({ pageSize, page, keyword }) {
       try {
         const params = { limit: pageSize, page, search: keyword };
         const response = await axios.get(baseUrl, { params });
-        console.log("response.data:", response.data); // 응답 로그 추가
         const data = response.data.products || [];
         const totalItems = response.data.total || 0;
 

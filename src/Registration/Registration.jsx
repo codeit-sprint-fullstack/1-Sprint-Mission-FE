@@ -11,18 +11,21 @@ export default function Registration() {
   const handleProductPost = async () => {
     if (isFormValid) {
       try {
-        const response = await fetch("http://localhost:3000/products", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: formValues.productName,
-            description: formValues.productIntro,
-            price: formValues.productPrice,
-            tags: formValues.tags || [],
-          }),
-        });
+        const response = await fetch(
+          "https://thrift-shop.onrender.com/products",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: formValues.productName,
+              description: formValues.productIntro,
+              price: formValues.productPrice,
+              tags: formValues.tags || [],
+            }),
+          }
+        );
 
         if (response.ok) {
           navigate("/Product");
