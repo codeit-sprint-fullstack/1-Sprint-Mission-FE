@@ -23,7 +23,7 @@ function SaleProducts({ activePath, setActivePath }) {
     const getProducts = async () => {
       const data = await getItems(currentPage, pageSize, keyword);
       setProducts(data);
-      setTotalPage(Math.ceil(data.totalCount / pageSize));
+      setTotalPage(Math.ceil(data.length / pageSize));
     };
 
     getProducts();
