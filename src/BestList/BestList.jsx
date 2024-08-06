@@ -19,18 +19,23 @@ export function BestList() {
         {products.length === 0 ? (
           <p>No products available</p>
         ) : (
-          products.map((item) => (
-            <div key={item.id} className="bestProductItem">
-              <img
-                className="bestProduct"
-                src={item?.images?.[0] ?? "No image"}
-                alt={item.name ?? "Product image"}
-              />
-              <p className="itemName">{item.name ?? "No name"}</p>
-              <p className="itemPrice">{`${formatPrice(item.price)} 원`}</p>
-              <p className="itemFavoriteCnt">♡ {item.favoriteCount ?? "0"}</p>
-            </div>
-          ))
+          products.map((item) => {
+            const { id, images, name, price, favoriteCount } = item ?? {};
+            return (
+              <div key={id} className="bestProductItem">
+                <img
+                  className="bestProduct"
+                  src={images?.[0] ?? "No image"}
+                  alt={name ?? "Product image"}
+                />
+                <p className="itemName">{name ?? "No name"}</p>
+                <p className="itemPrice">
+                  {price ? `${formatPrice(price)} 원` : "No price"}
+                </p>
+                <p className="itemFavoriteCnt">♡ {favoriteCount ?? "0"}</p>
+              </div>
+            );
+          })
         )}
       </div>
     </div>
