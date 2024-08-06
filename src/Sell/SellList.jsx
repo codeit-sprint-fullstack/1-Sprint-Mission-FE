@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useFetchProducts } from "../common/useFetchProducts";
 import Pagination from "../Pagination/Pagination";
 import { formatPrice } from "../common/Util";
-import { useDeviceType } from "../common/usePageSize";
+import { useDeviceType } from "../common/useDeviceType";
 import { DesktopSearchBar } from "./DesktopSearchBar";
 import { MobileSearchBar } from "./MobileSearchBar";
 import "./SellList.css";
@@ -66,20 +66,21 @@ export function SellList() {
           {products.length === 0 ? (
             <p>No products available</p>
           ) : (
-            products.map((item) => (
-              <div key={item._id} className="sellProductItem">
-                <img
-                  className="sellProduct"
-                  src={default_img}
-                  alt={item.name ?? "Product image"}
-                />
-                <p className="itemName">{item.name ?? "No name"}</p>
-                <p className="itemPrice">
-                  {item.price ? `${formatPrice(item.price)} 원` : "No price"}
-                </p>
-                <p className="itemFavoriteCnt">♡ {item.favoriteCount ?? "0"}</p>
-              </div>
-            ))
+            products.map((item) => {
+              const { id, images, name, price, favoriteCount } = item ?? {};
+              return (
+                <div key={id} className="sellProductItem">
+                  <img
+                    className="sellProduct"
+                    src={default_img}
+                    alt={name ?? "Product image"}
+                  />
+                  <p className="itemName">{name ?? "No name"}</p>
+                  <p className="itemPrice">{`${formatPrice(price)} 원`}</p>
+                  <p className="itemFavoriteCnt">♡ {favoriteCount ?? "0"}</p>
+                </div>
+              );
+            })
           )}
         </div>
         <Pagination
