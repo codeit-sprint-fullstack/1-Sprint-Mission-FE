@@ -73,3 +73,17 @@ label {
     margin: 12px 0 24px 0;
     height: 56px;
 }
+
+/* 상품 소개 스타일 */
+textarea.RegistrationInput {
+    resize: vertical;
+    min-height: 218px;
+    background: #F3F4F6;
+    padding-top: 20px;
+    font-family: Pretendard;
+}
+
+/* 폼 테두리 */
+#Input1, #Input2, #Input3, #Input4 {
+    border-radius: 12px;
+}
