@@ -34,6 +34,11 @@ function RegistrationPage() {
     }
   };
 
+  // 태그 삭제 핸들러
+  const handleTagRemove = (tagToRemove) => {
+    setTags((prevTags) => prevTags.filter((tag) => tag !== tagToRemove));
+  };
+
   return (
     <div className='RegistrationPage'>
       <ItemsPageHeader />
@@ -99,6 +104,13 @@ function RegistrationPage() {
             {tags.map((tag, index) => (
               <div key={index} className='tag-item'>
                 <span className='tag-text'>{tag}</span>
+                <button
+                  type="button"
+                  className='remove-tag'
+                  onClick={() => handleTagRemove(tag)}
+                >
+                  X
+                </button>
               </div>
             ))}
           </div>
