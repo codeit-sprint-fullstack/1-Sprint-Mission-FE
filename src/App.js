@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 
 function App() {
-  const [activePath, setActivePath] = useState("items");
+  const [activePath, setActivePath] = useState("");
 
   return (
     <BrowserRouter>

@@ -1,11 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../images/pandaLogo.png";
 import smallLogo from "../images/pandaLogo_small.png";
 import icon from "../images/userIcon.png";
 import "../styles/Navigation.css";
 
 function Navigation({ activePath, setActivePath }) {
+  //  처음 접속 시 active 상태로
+  const location = useLocation();
+  useEffect(() => {
+    if (!activePath) {
+      setActivePath(location.pathname);
+    }
+  }, [activePath, location.pathname, setActivePath]);
+
   return (
     <nav className="nav-bar">
       <div className="nav-left">
