@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './RegistrationPage.css';
 import { createProduct } from '../api/api';
 import ItemsPageHeader from '../components/ItemsPageHeader';
@@ -18,6 +19,8 @@ function RegistrationPage() {
 
   /* 커스텀 훅 호출*/
   const { values, setValues, errors, validate, handleBlur } = useFormValidation(INITIAL_VALUES);
+
+  const navigate = useNavigate();
 
   // 입력 필드 변경시, 상태 업데이트 핸들러
   const handleInputChange = (e) => {
@@ -66,6 +69,7 @@ function RegistrationPage() {
       await createProduct(formData);
       setValues(INITIAL_VALUES);
       setTags([]);
+      navigate('/Productinformation'); // 상품 상세정보 페이지로 이동
     } catch (error) {
       console.error('상품 등록 실패', error);
       setSubmittingError(error);
