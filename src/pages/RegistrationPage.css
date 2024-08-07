@@ -1,4 +1,25 @@
 /* 전체 페이지 스타일 */
 .RegistrationPage {
-    text-align: center;
+  text-align: center;
+}
+
+main {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 상품 등록 폼 스타일 */
+.product-form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 24px;
+    gap: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 379px;
   }
+
