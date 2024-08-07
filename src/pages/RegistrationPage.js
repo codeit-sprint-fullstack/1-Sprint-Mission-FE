@@ -70,7 +70,7 @@ function RegistrationPage() {
     <div className='RegistrationPage'>
       <ItemsPageHeader />
       <div className="product-form">
-        <form>
+        <form onSubmit={handleSubmit} noValidate>
           <div className='FormTop'>
             <h2>상품 등록하기</h2>
             <button type="submit" disabled={isSubmitting}>등록</button>
