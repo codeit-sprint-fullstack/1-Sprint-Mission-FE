@@ -1,0 +1,44 @@
+.footerContain {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin: 43px 0px 58px 0px;
+}
+
+.pageMoveBtn {
+    background-color: #FFFFFF;
+    border: 1px solid #d4d8e0;
+    box-shadow: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+    text-align: center;
+}
+
+.pageNumBtn {
+    background-color: #FFFFFF;
+    border: 1px solid #d4d8e0;
+    box-shadow: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+    color: #6B7280;
+    text-align: center;
+}
+
+
+.activeBtn {
+    background-color: #2F80ED;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: #F9FAFB;
+    text-align: center;
+}
+
+.btnNonDisplay {
+    display: none;
+}
