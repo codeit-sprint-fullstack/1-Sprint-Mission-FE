@@ -65,17 +65,15 @@ function ItemsPage() {
     fetchProducts(page);
   };
 
-  // 최신순 좋아요 순 정렬
+  // 최신순 정렬
   const sortedProducts = useMemo(() => {
     return [...products].sort((a, b) => {
-    if (order === 'createdAt') {
-      return new Date(b.createdAt) - new Date(a.createdAt);
-    } else if (order === 'favoriteCount') {
-      return b.favoriteCount - a.favoriteCount;
-    }
-    return 0;
+      if (order === 'createdAt') {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      }
+      return 0;
     });
-  },[products, order]);
+  }, [products, order]);
 
   useEffect(() => {
     fetchProducts(currentPage); // 초기 로드 및 페이지 변경 시 로드
@@ -103,7 +101,6 @@ function ItemsPage() {
             <button className='addProductBotton'>상품 등록하기</button>
             <select className="sortDropDown" onChange={handleOrderChange}>
               <option value="createdAt">최신순</option>
-              <option value="favoriteCount">좋아요순</option>
             </select>
           </div>
         </div>
