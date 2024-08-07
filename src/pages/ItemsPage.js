@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
-import searchIcon from './assets/images/ic_search.png';
-import Header from './components/Header';
-import './styles/Responsive.css'; 
-import BestProducts from './components/BestProducts';
-import ProductList from './components/ProductList';
-import { filterProductsByName } from './api/api';
-import Pagination from './components/Pagination';
-import useProductList from './hooks/useProductList';
-import { LIMIT } from './constants';
-
+import searchIcon from '../assets/images/ic_search.png';
+import Header from '../components/Header';
+import '../styles/Responsive.css'; 
+import BestProducts from '../components/BestProducts';
+import ProductList from '../components/ProductList';
+import { filterProductsByName } from '../api/api';
+import Pagination from '../components/Pagination';
+import useProductList from '../hooks/useProductList';
+import { LIMIT } from '../constants';
 
 function ItemsPage() {
   const [order, setOrder] = useState('createdAt');
