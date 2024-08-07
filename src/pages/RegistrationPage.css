@@ -8,8 +8,8 @@
   padding: 16px 24px;
   border: none;
   border-radius: 12px;
-  background-color: #F3F4F6;
-  font-family: "Pretendard", sans-serif;
+  background-color: #f3f4f6;
+  font-family: 'Pretendard', sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -21,25 +21,16 @@
   gap: 12px;
 }
 
-
-
-
-
-
 .reg-container {
   padding: 24px 360px;
 }
-
-
-
-
 
 .reg {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.reg p{
+.reg p {
   font-weight: 700;
   font-size: 20px;
   line-height: 23.87px;
@@ -54,26 +45,24 @@
   font-size: 16px;
   line-height: 19.09px;
   color: #ffffff;
+  cursor: pointer;
 }
 
-
-
-
-.reg-intro {
+.reg-description {
   margin-top: 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-#intro {
+#description {
   padding-top: 16px;
   padding-left: 24px;
   height: 282px;
   resize: none;
   border: none;
   border-radius: 12px;
-  background-color: #F3F4F6;
-  font-family: "Pretendard", sans-serif;
+  background-color: #f3f4f6;
+  font-family: 'Pretendard', sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -88,23 +77,17 @@
   margin-bottom: 5px;
   padding: 6px 12px;
   border-radius: 26px;
-  background-color: #F3F4F6;
+  background-color: #f3f4f6;
 }
 .remove-tag {
   cursor: pointer;
 }
-
-
-
-
-
 
 @media screen and (min-width: 787px) and (max-width: 1460px) {
   .reg-container {
     padding: 16px 24px;
   }
 }
-
 
 @media screen and (min-width: 375px) and (max-width: 786px) {
   .reg-container {

@@ -31,8 +31,16 @@ function useProducts({ page = 1, limit = 10, search = '', sort = '' }, type) {
             setItems(products);
           }
         }
-      } catch (error) {
-        setIsLoadingError(error);
+      } catch (e) {
+        if (e.response) {
+          // 리퀘스트는 성공했지만 상태 코드가 실패(4XX, 5XX)를 나타냄
+          console.log(e.response.status);
+          console.log(e.response.data);
+        } else {
+          // 리퀘스트 자체가 실패
+          console.log('리퀘스트가 실패했습니다.');
+        }
+        setIsLoadingError(e);
       }
     },
     [type]

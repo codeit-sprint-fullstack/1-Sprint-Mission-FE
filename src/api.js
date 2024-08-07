@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+const instance = axios.create({
+  baseURL: 'https://myproducts-api.onrender.com',
+  timeout: 3000,
+});
+
 export async function getProducts({ page, limit, sort, search }) {
   const params = {
     page: page.toString(),
@@ -13,11 +18,11 @@ export async function getProducts({ page, limit, sort, search }) {
     params.search = search;
   }
 
-  try {
-    const response = await axios.get('https://myproducts-api.onrender.com/products', { params });
-    return response.data;
-  } catch (error) {
-    const errorMessage = error.message || '데이터를 불러오는데 실패했습니다.';
-    throw new Error(errorMessage);
-  }
+  const response = await instance.get('/products', { params });
+  return response.data;
+}
+
+export async function createProduct(productData) {
+  const res = await instance.post('/registration', productData);
+  return res.data;
 }
