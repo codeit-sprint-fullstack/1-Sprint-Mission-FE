@@ -146,4 +146,9 @@ input[type="number"]::-webkit-outer-spin-button {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
+
+  /* 버튼 hover 시 스타일 */
+.remove-tag:hover {
+    background-color: #084bd1; /* 호버 시 배경색 */
+}
