@@ -44,7 +44,7 @@ function RegistrationPage() {
             판매 가격
             <input
               id='Input3'
-              className={`RegistrationInpu`}
+              className={`RegistrationInput`}
               type="number"
               name="price"
               required
