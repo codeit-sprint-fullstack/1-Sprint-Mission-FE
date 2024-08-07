@@ -1,7 +1,7 @@
 import "../css/header.css";
 import mainLog from "../image/mainlogo.png";
 import mb_Log from "../image/mb_logo.png";
-import useImgResize from "../hooks/Returnresize.js";
+import useImgResize from "../hooks/useReturnResize.js";
 import { Link, NavLink } from "react-router-dom";
 
 function Header() {

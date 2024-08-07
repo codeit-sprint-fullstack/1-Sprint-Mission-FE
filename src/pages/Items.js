@@ -1,11 +1,11 @@
 import "../css/reset.css";
 import "../css/app.css";
-import ProductList from "../components/productlist.js";
-import Search from "../components/search.js";
-import Paging from "../components/paging.js";
+import ProductList from "../components/Productlist.js";
+import Search from "../components/Search.js";
+import Paging from "../components/Paging.js";
 import { useState, useEffect } from "react";
 import * as api from "../api.js";
-import useWindowSize from "../hooks/resize.js";
+import useWindowSize from "../hooks/useResize.js";
 
 function Items() {
   //코드잇 API이용

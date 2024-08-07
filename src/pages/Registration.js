@@ -1,5 +1,5 @@
 import React from "react";
-import useFormValidation from "../hooks/FormValidation.js";
+import useFormValidation from "../hooks/useFormValidation.js";
 import "../css/registration.css";
 import classNames from "classnames";
 import * as api from "../api.js";
