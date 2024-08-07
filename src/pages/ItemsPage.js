@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import searchIcon from '../assets/images/ic_search.png';
 import ItemsPageHeader from '../components/ItemsPageHeader';
+import './ItemsPage.css';
 import '../styles/Responsive.css'; 
 import ProductList from '../components/ProductList';
 import { filterProductsByName } from '../api/api';
