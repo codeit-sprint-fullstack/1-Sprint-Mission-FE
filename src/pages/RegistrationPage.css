@@ -108,3 +108,11 @@ input[type="number"]::-webkit-outer-spin-button {
     color: #9CA3AF;
     font-family: Pretendard;
 }
+
+/* 태그 컨테이너 스타일 */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; /* 태그 간격 */
+    margin-bottom: 16px; /* 태그 영역 하단 여백 */
+  }
