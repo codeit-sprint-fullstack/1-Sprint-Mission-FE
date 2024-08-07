@@ -87,3 +87,10 @@ textarea.RegistrationInput {
 #Input1, #Input2, #Input3, #Input4 {
     border-radius: 12px;
 }
+
+/* 포커스 시 테두리 색상 변경 */
+.RegistrationInput:focus, textarea:focus {
+    border-color: #3692FF; 
+    border-width: 4px;
+    outline: none;
+  }
