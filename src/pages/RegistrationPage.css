@@ -102,7 +102,9 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-:placeholder-shown{
+/* placeholder */
+.RegistrationInput::placeholder,
+textarea.RegistrationInput::placeholder {
     font-weight: 400;
     font-size: 16px;
     color: #9CA3AF;
