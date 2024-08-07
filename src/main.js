@@ -7,9 +7,6 @@ import { useNavigate } from "react-router-dom";
 
 function Main() {
   const [searchItem, setSearchItem] = useState({ list: [] }); //get API list가 내용이라 list만 가지고옴
-  const [valueItem, setValueItem] = useState({ list: [] }); //get API list가 내용이라 list만 가지고옴
-  const [selectedOption, setSelectedOption] = useState("최신순"); // 셀렉트 초기값
-  const [valueOption, setValueOption] = useState(valueItem); // 출력 할 내용
   const [totalCount, setTotalCount] = useState(0); // API에 totalCount(데이터 수량) API에서 결과를 보여줌
   const [currentPage, setCurrentPage] = useState(1); // API page번호
   const [totalPages, setTotalPages] = useState(0); // 버튼수량 계산용도
@@ -48,25 +45,33 @@ function Main() {
   }, [width]); // width가 변경될 때마다 itemsPerPage 업데이트
 
   useEffect(() => {
-    // get API를 통해서 상품을 가지고오고
-    const fetchData = async () => {
-      const response = await axios.get(
-        "https://panda-market-api.vercel.app/products/",
-        {
-          params: { pageSize: itemsPerPage, page: currentPage },
-        }
-      );
-      setTotalCount(response.data.totalCount); //data.totalCount를 통해 값을 저장 이부분은 없어도 상관 없을거 같음 다른곳에서 setTotalCount한번 더 써주면 끝...?
+    const getRes = async () => {
+      try {
+        const getRes = await axios.get(
+          `https://product-ogs1.onrender.com/product`,
+          {
+            params: {
+              limit: itemsPerPage,
+              page: currentPage,
+              keyword: keyword,
+            },
+          }
+        );
+        setSearchItem({ list: getRes.data.product });
+        setTotalCount(getRes.data.totalCount);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     };
-
-    fetchData();
-  }, [currentPage, itemsPerPage]);
+    getRes();
+  }, [totalCount, itemsPerPage, currentPage, keyword]);
 
   useEffect(() => {
     //토탈 페이지수 계산 버튼 만들때 사용
     setTotalPages(Math.ceil(totalCount / itemsPerPage));
   }, [totalCount]);
 
+  /** 그래야지 이런식으로 정보가 나옴 */
   const changePage = (newPage) => {
     // 버튼클릭이벤트때 사용
     setCurrentPage(newPage);
@@ -75,72 +80,9 @@ function Main() {
     }
   };
 
-  useEffect(() => {
-    // 정렬기준이 최신순, 좋아요순 으로 데이터 변경
-    if (selectedOption === "최신순") {
-      setValueOption(searchItem);
-    } else {
-      setValueOption(valueItem);
-    }
-  }, [selectedOption, searchItem, valueItem, currentPage, itemsPerPage]);
-
-  useEffect(() => {
-    // 정렬 기준
-    const getRes = async () => {
-      const getRes = await axios.get(
-        "https://panda-market-api.vercel.app/products/",
-        {
-          params: {
-            pageSize: itemsPerPage,
-            orderBy: "favorite",
-            page: currentPage,
-          },
-        }
-      );
-      setValueItem(getRes.data);
-    };
-    getRes();
-  }, [currentPage, itemsPerPage, width, selectedOption, width]);
-
-  useEffect(() => {
-    // 정렬 기준
-    const getRes = async () => {
-      const getRes = await axios.get(
-        "https://panda-market-api.vercel.app/products/",
-        {
-          params: {
-            pageSize: itemsPerPage,
-            orderBy: "recent",
-            page: currentPage,
-          },
-        }
-      );
-      setSearchItem(getRes.data);
-    };
-    getRes();
-  }, [currentPage, itemsPerPage, selectedOption]);
-
   const handleinputChange = (event) => {
     // 인풋에 입력된 벨류값을 전달 onChange를 사용하지 않으면 실시간 처리를 못함.
     setKeyword(event.target.value);
-  };
-
-  const handleKeyPress = (event) => {
-    //Enter키 기준으로 keyWord에 입력된 내용으로 다시 API호출
-    if (event.key === "Enter") {
-      const getRes = async () => {
-        const getRes = await axios.get(
-          "https://panda-market-api.vercel.app/products/",
-          {
-            params: {
-              keyword: keyword,
-            },
-          }
-        );
-        setValueOption(getRes.data);
-      };
-      getRes();
-    }
   };
 
   // 여기부터 (Select, opstion) 말고, 버튼을 통해서 구현
@@ -157,7 +99,7 @@ function Main() {
       item.addEventListener("click", (event) => {
         dropdownButton.textContent = event.target.textContent;
         dropdownContent.style.display = "none";
-        setSelectedOption(event.target.dataset.value);
+        // setSelectedOption(event.target.dataset.value);
       });
     });
 
@@ -175,7 +117,6 @@ function Main() {
         <a id="sell_item">
           <input
             onChange={handleinputChange}
-            onKeyDown={handleKeyPress}
             id="sell_item_input"
             placeholder="검색할 상품을 입력해주세요"
           ></input>
@@ -202,16 +143,14 @@ function Main() {
 
       <div className="serch_item">
         <div id="serch_item_list">
-          {valueOption.list.map((valueOption, index) => (
+          {searchItem.list.map((searchItem, index) => (
             <div className="item" key={index}>
-              <img className="item_img" src={valueOption.images} alt="Header" />
-              <a className="item_name">{valueOption.name}</a>
+              <img className="item_img" src={search_icon} alt="Header" />
+              <a className="item_name">{searchItem.name}</a>
               <a className="item_price">
-                {Intl.NumberFormat("ko-KR").format(valueOption.price)}원
+                {Intl.NumberFormat("ko-KR").format(searchItem.price)}원
               </a>
-              <a className="item_favoriteCount">
-                ❤️ {valueOption.favoriteCount}
-              </a>
+              <a className="item_tag">{searchItem.tag}</a>
             </div>
           ))}
         </div>
