@@ -1,5 +1,6 @@
 import React from 'react';
 import { createProduct } from '../api/api';
+import './RegistrationPage.css';
 import ItemsPageHeader from '../components/ItemsPageHeader';
 
 const INITIAL_VALUES = {
