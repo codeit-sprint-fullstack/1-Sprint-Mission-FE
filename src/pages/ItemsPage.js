@@ -2,7 +2,6 @@ import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import searchIcon from '../assets/images/ic_search.png';
 import Header from '../components/Header';
 import '../styles/Responsive.css'; 
-import BestProducts from '../components/BestProducts';
 import ProductList from '../components/ProductList';
 import { filterProductsByName } from '../api/api';
 import Pagination from '../components/Pagination';
@@ -89,8 +88,6 @@ function ItemsPage() {
     <div className='App'>
       <Header />
       <main>
-        <h2>베스트 상품</h2>
-        <BestProducts />
         <div className='SaleProductNav'>
           <h2>판매 중인 상품</h2>
           <div className='inputBtDrop'>
