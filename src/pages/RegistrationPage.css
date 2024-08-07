@@ -133,3 +133,17 @@ input[type="number"]::-webkit-outer-spin-button {
     color: #111827;
     margin-right: 8px;
 }
+
+/* 태그 삭제 버튼 스타일 */
+.remove-tag {
+    width: 20px; 
+    height: 20px;
+    border: none;
+    border-radius: 50%; 
+    background-color: #9CA3AF; 
+    color: #ffffff;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
