@@ -1,0 +1,79 @@
+.control {
+  display: flex;
+  width: 130px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  background-color: #ffffff;
+}
+
+.controlText {
+  text-align: center;
+  padding-top: -120px;
+  margin: 0;
+  padding-top: 12px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.controlIcon {
+  padding-top: 12px;
+  padding-left: 34px;
+}
+
+.arrowIcon {
+  display: none;
+}
+
+.dropbox {
+  position: absolute;
+  background-color: #ffffff;
+  width: 130px;
+  height: 84px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.dropboxFirst {
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+  padding-top: 12px;
+  padding-bottom: 9px;
+}
+
+.dropboxLast {
+  text-align: center;
+  padding-top: 12px;
+  padding-bottom: 9px;
+}
+
+@media screen and (max-width: 773px) {
+  .control {
+    width: 42px;
+    margin: 0;
+    position: absolute;
+    border: none;
+    bottom: 1px;
+  }
+
+  .controlText,
+  .controlIcon {
+    display: none;
+  }
+
+  .arrowIcon {
+    display: block;
+  }
+
+  .dropbox {
+    position: absolute;
+    margin-top: 67px;
+    margin-right: 3000px;
+    left: 67%;
+  }
+}
