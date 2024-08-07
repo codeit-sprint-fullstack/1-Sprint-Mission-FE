@@ -9,15 +9,17 @@ function Navigation({ activePath, setActivePath }) {
   //  처음 접속 시 active 상태로
   const location = useLocation();
   useEffect(() => {
-    if (!activePath) {
-      setActivePath(location.pathname);
-    }
-  }, [activePath, location.pathname, setActivePath]);
+    setActivePath(location.pathname);
+  }, [location.pathname, setActivePath]);
 
   return (
     <nav className="nav-bar">
       <div className="nav-left">
-        <Link to="/items" target="_self">
+        <Link
+          to="/items"
+          target="_self"
+          onClick={() => setActivePath("/items")}
+        >
           <img className="logo" src={logo} alt="Home Logo" />
           <img className="small-logo" src={smallLogo} alt="Home Logo small" />
         </Link>
