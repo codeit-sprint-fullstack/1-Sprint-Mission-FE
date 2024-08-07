@@ -1,0 +1,33 @@
+/* src/components/ProductList.css */
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px;
+}
+
+/* 미디어 쿼리 적용 */
+@media (min-width: 768px) {
+  .product-list.full .full-product-card {
+    width: calc(33.33% - 20px); /* Tablet: 3열 */
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-list.full .full-product-card {
+    width: calc(20% - 20px); /* Desktop: 5열 */
+  }
+}
+
+@media (max-width: 767px) {
+  .product-list .product-card {
+    width: calc(48% - 20px); /* Mobile: 2열 */
+  }
+}
+
+@media (max-width: 480px) {
+  .product-list .product-card {
+    width: calc(100% - 20px); /* Mobile: 1열 */
+  }
+}
