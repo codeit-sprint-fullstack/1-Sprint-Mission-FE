@@ -1,4 +1,3 @@
-// Pagination.js
 import React from "react";
 import "./Pagination.css";
 
@@ -14,8 +13,6 @@ export function Pagination({ currentPage, onPageChange, totalPages }) {
     },
     (_, i) => currentGroup * pagesPerGroup + i + 1
   );
-
-  console.log("Pagination rendered", currentGroupPages);
 
   const handlePageChange = (page, event) => {
     event.preventDefault();
@@ -43,6 +40,7 @@ export function Pagination({ currentPage, onPageChange, totalPages }) {
         className="shiftBtn"
         onClick={handlePrevPage}
         disabled={currentPage === 1}
+        key="prev"
       >
         &lt;
       </button>
@@ -61,6 +59,7 @@ export function Pagination({ currentPage, onPageChange, totalPages }) {
         className="shiftBtn"
         onClick={handleNextPage}
         disabled={currentPage === totalPages}
+        key="next"
       >
         &gt;
       </button>
