@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import searchIcon from '../assets/images/ic_search.png';
 import ItemsPageHeader from '../components/ItemsPageHeader';
+import { useNavigate } from 'react-router-dom';
 import './ItemsPage.css';
 import '../styles/Responsive.css'; 
 import ProductList from '../components/ProductList';
@@ -10,6 +11,7 @@ import useProductList from '../hooks/useProductList';
 import { LIMIT } from '../constants';
 
 function ItemsPage() {
+  const navigate = useNavigate();
   const [order, setOrder] = useState('createdAt');
 
   // 검색 기능
@@ -66,7 +68,7 @@ function ItemsPage() {
     fetchProducts(page);
   };
 
-  // 최신순 정렬
+  // 최신순 정렬(좋아요 순 정렬 제거)
   const sortedProducts = useMemo(() => {
     return [...products].sort((a, b) => {
       if (order === 'createdAt') {
@@ -82,6 +84,11 @@ function ItemsPage() {
 
   // 현재 페이지에 맞는 상품 목록 추출
   const currentPageProducts = sortedProducts.slice((currentPage - 1) * LIMIT, currentPage * LIMIT);
+
+  /* 상품 등록하기 버튼 눌렀을때 이동페이지*/
+  const handleAddProductClick = () => {
+    navigate('/registration');
+  };
 
   return (
     <div className='App'>
@@ -99,7 +106,7 @@ function ItemsPage() {
               onChange={handleSearchChange}
               onKeyDown={handleKeyDown}
             />
-            <button className='addProductBotton'>상품 등록하기</button>
+            <button className='addProductBotton' onClick={handleAddProductClick}>상품 등록하기</button>
             <select className="sortDropDown" onChange={handleOrderChange}>
               <option value="createdAt">최신순</option>
             </select>
