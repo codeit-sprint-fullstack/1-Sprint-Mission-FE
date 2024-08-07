@@ -3,7 +3,7 @@ import useFormValidation from "../hooks/useFormValidation.js";
 import "../css/registration.css";
 import classNames from "classnames";
 import * as api from "../api.js";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import x_icon from "../image/ic_X.png";
 
 function Chips({ tag, onClick, index }) {
@@ -23,6 +23,7 @@ function Chips({ tag, onClick, index }) {
 }
 
 function Registration() {
+  const navigate = useNavigate();
   const {
     values,
     errors,
@@ -43,27 +44,17 @@ function Registration() {
   );
 
   async function createProduct(values) {
-    console.log(values);
-    console.log(chips);
-    const formData = new FormData();
-    formData.append("name", values.name);
-    formData.append("description", values.description);
-    formData.append("price", values.price);
-    formData.append("tag", JSON.stringify(chips));
-
     const postData = {
       ...values,
       tag: chips,
     };
 
-    if (formData) {
-      try {
-        const data = await api.createProductAxios(postData);
-        Navigate("/detailproduct", { data });
-      } catch (e) {
-        console.log(e.name);
-        console.log(e.message);
-      }
+    try {
+      const data = await api.createProductAxios(postData);
+      navigate("/detailProduct", { state: data });
+    } catch (e) {
+      console.log(e.name);
+      console.log(e.message);
     }
   }
 
