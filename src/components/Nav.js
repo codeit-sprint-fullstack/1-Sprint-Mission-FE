@@ -18,7 +18,7 @@ function Nav() {
               alt='판다마켓모바일로고'
             />
             <p className='first'>자유게시판</p>
-            <Link className={styles.getLinkStyle} to='/'>
+            <Link className={styles.getLinkStyle} to='/items'>
               <p>중고마켓</p>
             </Link>
           </div>

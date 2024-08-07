@@ -29,11 +29,14 @@ function ProductBestItem({ item }) {
 
 function ProductBestList({ items }) {
   return (
-    <div className={styles.BestItem}>
-      {items.map((item) => (
-        <ProductBestItem key={item.id} item={item} />
-      ))}
-    </div>
+    <>
+      <p className={styles.text}>베스트상품</p>
+      <div className={styles.BestItem}>
+        {items.map((item) => (
+          <ProductBestItem key={item.id} item={item} />
+        ))}
+      </div>
+    </>
   );
 }
 

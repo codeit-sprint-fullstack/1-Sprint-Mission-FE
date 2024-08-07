@@ -15,7 +15,7 @@ export async function getProductBestList(params = {}) {
       console.log(e.res.status);
       console.log(e.res.data);
     } else {
-      console.log('Product List: 데이터 불러오기에 실패했습니다');
+      console.log('Product BestList: 데이터 불러오기에 실패했습니다');
     }
   }
 }

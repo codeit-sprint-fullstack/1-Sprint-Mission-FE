@@ -2,9 +2,9 @@ import styles from './ProductList.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
-function ProductBestItem({ item }) {
-  const Price = item.price;
-  const formattedPrice = Price.toLocaleString('en-US');
+function ProductListItem({ item }) {
+  const price = item.price;
+  const formattedPrice = price.toLocaleString('en-US');
 
   return (
     <div className={styles.ListItem}>
@@ -28,7 +28,7 @@ function ProductList({ items }) {
     <>
       <div className={styles.ListItems}>
         {items.map((item) => (
-          <ProductBestItem key={item.id} item={item} />
+          <ProductListItem key={item.id} item={item} />
         ))}
       </div>
     </>

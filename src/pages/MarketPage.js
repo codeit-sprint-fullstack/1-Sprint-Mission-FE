@@ -5,14 +5,10 @@ import { debounce } from 'lodash';
 
 import ProductBestList from '../components/ProductBestList.js';
 import ProductList from '../components/ProductList.js';
-import Dropdown from '../components/Dropdown.js';
+import ProductListHeader from '../components/ProductListHeader.js';
 import Pagination from '../components/Pagination.js';
 
 import Container from '../components/Container.js';
-import styles from './MarketPage.module.css';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import useMediaType from '../hook/useMediaType.js';
 
@@ -24,10 +20,8 @@ function MarketPage() {
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
   const [keyword, setKeyword] = useState('');
-
   const [pageSizeCount, setPageSizeCount] = useState(10);
   const [total, setTotal] = useState(0);
-  const [searchKeyword, SetSearchKeyword] = useState('');
 
   const mediaType = useMediaType();
 
@@ -53,10 +47,7 @@ function MarketPage() {
 
     const { list } = result;
 
-    options.page === 1 ? setItems(list) : setItems([...list]);
-
-    setTotal(() => result.totalCount);
-
+    setItems(list);
     setPageSizeCount(options.pageSize);
   };
 
@@ -75,12 +66,6 @@ function MarketPage() {
     []
   );
 
-  const handleInputChange = (event) => {
-    const newKeyword = event.target.value;
-    SetSearchKeyword(newKeyword);
-    performSearch(newKeyword);
-  };
-
   useEffect(() => {
     if (mediaType === 'mobile') {
       handleLoad({ page, pageSize: 4, orderBy, keyword });
@@ -93,39 +78,23 @@ function MarketPage() {
 
   useEffect(() => {
     if (mediaType === 'mobile') {
-      handleBestLoad({ page: 1, pageSize: 1, orderBy: 'favorite', keyword });
+      handleBestLoad({ page: 1, pageSize: 1, orderBy: 'favorite' });
     } else if (mediaType === 'tablet') {
-      handleBestLoad({ page: 1, pageSize: 2, orderBy: 'favorite', keyword });
+      handleBestLoad({ page: 1, pageSize: 2, orderBy: 'favorite' });
     } else {
-      handleBestLoad({ page: 1, pageSize: 4, orderBy: 'favorite', keyword });
+      handleBestLoad({ page: 1, pageSize: 4, orderBy: 'favorite' });
     }
   }, [mediaType]);
 
   return (
     <>
-      <Container className={styles.content}>
-        <p className={styles.text}>베스트상품</p>
-        <ProductBestList className={styles.list} items={itemsBest} />
-        <div className={styles.productHeader}>
-          <p className={styles.text}>판매중인 상품</p>
-          <div className={styles.productControls}>
-            <FontAwesomeIcon
-              className={styles.productControlsIcon}
-              icon={faMagnifyingGlass}
-            />
-            <input
-              name='search'
-              type='text'
-              onChange={handleInputChange}
-              value={searchKeyword}
-              placeholder='검색할 상품을 입력해 주세요'
-            />
-            <button className={styles.productControlsButton} type='submit'>
-              상품 등록하기
-            </button>
-            <Dropdown onOrderChange={handleOrderbyChange} />
-          </div>
-        </div>
+      <Container>
+        <ProductBestList items={itemsBest} />
+        <ProductListHeader
+          performSearch={performSearch}
+          handleOrderbyChange={handleOrderbyChange}
+          orderBy={orderBy}
+        />
         <ProductList
           items={sortedListItem}
           totalItems={total}

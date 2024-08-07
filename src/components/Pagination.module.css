@@ -24,3 +24,10 @@
     margin-bottom: 35px;
   }
 }
+
+@media screen and (max-width: 773px) {
+  .pagination {
+    margin-top: 35px;
+    margin-bottom: 35px;
+  }
+}
