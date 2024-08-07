@@ -28,6 +28,7 @@ function RegistrationPage() {
               className={`RegistrationInput`}
               type="text"
               name="name"
+              placeholder='상품명을 입력해주세요'
               required
             />
           </label>
@@ -37,6 +38,7 @@ function RegistrationPage() {
               id='Input2'
               name="description"
               className={`RegistrationInput`}
+              placeholder='상품 소개를 입력해주세요'
               required
             />
           </label>
@@ -47,6 +49,7 @@ function RegistrationPage() {
               className={`RegistrationInput`}
               type="number"
               name="price"
+              placeholder='판매 가격을 입력해주세요'
               required
             />
           </label>
@@ -57,6 +60,7 @@ function RegistrationPage() {
               className={`RegistrationInput`}
               type="text"
               name="tags"
+              placeholder='#태그 형식으로 입력해주세요 (예시, #모자)'
               required
             />
           </label>
