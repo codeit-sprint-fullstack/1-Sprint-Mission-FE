@@ -14,7 +14,8 @@ function RegistrationPage() {
   const [tags, setTags] = useState([]);
 
   // 입력 필드 변경시, 상태 업데이트 핸들러
-  const handleInputChange = (name, value) => {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
     setValues((prevValues) => ({
       ...prevValues,
       [name]: value,
@@ -40,7 +41,7 @@ function RegistrationPage() {
         <form>
           <div className='FormTop'>
             <h2>상품 등록하기</h2>
-            <button>등록</button>
+            <button type="submit">등록</button>
           </div>
           <label className='Label1'>
             상품명
@@ -106,6 +107,5 @@ function RegistrationPage() {
     </div>
   );
 }
-
 
 export default RegistrationPage;
