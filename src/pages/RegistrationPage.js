@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './RegistrationPage.css';
 import { createProduct } from '../api/api';
 import ItemsPageHeader from '../components/ItemsPageHeader';
+import useFormValidation from '../hooks/useFormValidation';
 
 const INITIAL_VALUES = {
   name: '',
@@ -11,10 +12,12 @@ const INITIAL_VALUES = {
 };
 
 function RegistrationPage() {
-  const [values, setValues] = useState(INITIAL_VALUES);
   const [tags, setTags] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittingError, setSubmittingError] = useState(null);
+
+  /* 커스텀 훅 호출*/
+  const { values, setValues, errors, validate } = useFormValidation(INITIAL_VALUES);
 
   // 입력 필드 변경시, 상태 업데이트 핸들러
   const handleInputChange = (e) => {
@@ -45,6 +48,11 @@ function RegistrationPage() {
   // 제출 핸들러
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // 유효성 검사 실패시
+    if (!validate()) {
+      return;
+    }
   
     const formData = new FormData();
     formData.append('name', values.name);
@@ -79,7 +87,7 @@ function RegistrationPage() {
             상품명
             <input
               id='Input1'
-              className={`RegistrationInput`}
+              className={`RegistrationInput ${errors.name ? 'error' : ''}`}
               type="text"
               name="name"
               value={values.name}
@@ -87,24 +95,26 @@ function RegistrationPage() {
               placeholder='상품명을 입력해주세요'
               required
             />
+            {errors.name && <div className='error-message'>{errors.name}</div>}
           </label>
           <label className='Label2'>
             상품 소개
             <textarea
               id='Input2'
               name="description"
-              className={`RegistrationInput`}
+              className={`RegistrationInput ${errors.description ? 'error' : ''}`}
               value={values.description}
               onChange={handleInputChange}
               placeholder='상품 소개를 입력해주세요'
               required
             />
+            {errors.description && <div className='error-message'>{errors.description}</div>}
           </label>
           <label className='Label3'>
             판매 가격
             <input
               id='Input3'
-              className={`RegistrationInput`}
+              className={`RegistrationInput ${errors.price ? 'error' : ''}`}
               type="number"
               name="price"
               value={values.price}
@@ -112,12 +122,13 @@ function RegistrationPage() {
               placeholder='판매 가격을 입력해주세요'
               required
             />
+            {errors.price && <div className='error-message'>{errors.price}</div>}
           </label>
           <label className='Label4'>
             태그
             <input
               id='Input4'
-              className={`RegistrationInput`}
+              className={`RegistrationInput ${errors.tags ? 'error' : ''}`}
               type="text"
               name="tags"
               value={values.tags}
@@ -126,6 +137,7 @@ function RegistrationPage() {
               placeholder='#태그 형식으로 입력해주세요 (예시, #모자)'
               required
             />
+            {errors.tags && <div className='error-message'>{errors.tags}</div>}
           </label>
           <div className='tags-container'>
             {tags.map((tag, index) => (
