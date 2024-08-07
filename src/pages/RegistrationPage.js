@@ -74,6 +74,11 @@ function RegistrationPage() {
     }
   };
 
+  // 버튼 활성화 상태 결정 함수
+  const isFormValid = () => {
+    return Object.keys(errors).length === 0 && values.name && values.description && values.price && tags.length > 0;
+  };
+
   return (
     <div className='RegistrationPage'>
       <ItemsPageHeader />
@@ -81,7 +86,7 @@ function RegistrationPage() {
         <form onSubmit={handleSubmit} noValidate>
           <div className='FormTop'>
             <h2>상품 등록하기</h2>
-            <button type="submit" disabled={isSubmitting}>등록</button>
+            <button type="submit" disabled={isSubmitting || !isFormValid()}>등록</button>
           </div>
           <label className='Label1'>
             상품명
