@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import searchIcon from '../assets/images/ic_search.png';
-import Header from '../components/Header';
+import ItemsPageHeader from '../components/ItemsPageHeader';
 import '../styles/Responsive.css'; 
 import ProductList from '../components/ProductList';
 import { filterProductsByName } from '../api/api';
@@ -84,7 +84,7 @@ function ItemsPage() {
 
   return (
     <div className='App'>
-      <Header />
+      <ItemsPageHeader />
       <main>
         <div className='SaleProductNav'>
           <h2>판매 중인 상품</h2>
