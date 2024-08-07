@@ -3,10 +3,14 @@ import { useState, useEffect } from 'react';
 const useFormValidation = (initialValues) => {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({}); // 필드 터치여부
 
+  // 필드가 터치된 경우에만 유효성 검사를 실행
   useEffect(() => {
-    validate(); // 입력 값에 따라 유효성 검사 실시
-  }, [values]);
+    if (Object.keys(touched).length > 0) {
+      validate(); 
+    }
+  }, [values, touched]); 
 
   // 유효성 검사
   const validate = () => {
@@ -32,7 +36,16 @@ const useFormValidation = (initialValues) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  return { values, setValues, errors, validate };
+  // 필드 터치 상태 업데이트 함수
+  const handleBlur = (e) => {
+    const { name } = e.target;
+    setTouched((prevTouched) => ({
+      ...prevTouched,
+      [name]: true,
+    }));
+  };
+
+  return { values, setValues, errors, validate, handleBlur };
 };
 
 export default useFormValidation;
