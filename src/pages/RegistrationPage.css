@@ -93,4 +93,12 @@ textarea.RegistrationInput {
     border-color: #3692FF; 
     border-width: 4px;
     outline: none;
-  }
+}
+
+/* 판매 가격 입력 필드 옆의 증가/감소 버튼 숨기기 */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
