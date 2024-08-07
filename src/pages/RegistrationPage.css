@@ -31,6 +31,12 @@ main {
   margin-bottom: 20px;
   }
 
+h2 {
+  text-align: left;
+  font-weight: 700;
+  font-size: 20px;
+  color: #111827;
+}
 
 /* 등록 버튼 */
 .FormTop button {
@@ -44,4 +50,26 @@ main {
   cursor: pointer;
   font-family: Pretendard;
   font-weight: 700;
+}
+
+/* 라벨 스타일 */
+label {
+  display: block;
+  font-weight: 700;
+  font-size: 18px;
+  color: #1F2937;
+  font-family: Pretendard;
+  margin-bottom: 8px;
+}
+
+/* 입력 필드 스타일 */
+.RegistrationInput {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 1rem;
+    margin: 12px 0 24px 0;
+    height: 56px;
 }
