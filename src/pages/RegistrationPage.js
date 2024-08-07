@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './RegistrationPage.css';
+import { createProduct } from '../api/api';
 import ItemsPageHeader from '../components/ItemsPageHeader';
 
 const INITIAL_VALUES = {
@@ -12,6 +13,8 @@ const INITIAL_VALUES = {
 function RegistrationPage() {
   const [values, setValues] = useState(INITIAL_VALUES);
   const [tags, setTags] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittingError, setSubmittingError] = useState(null);
 
   // 입력 필드 변경시, 상태 업데이트 핸들러
   const handleInputChange = (e) => {
@@ -39,6 +42,30 @@ function RegistrationPage() {
     setTags((prevTags) => prevTags.filter((tag) => tag !== tagToRemove));
   };
 
+  // 제출 핸들러
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    const formData = new FormData();
+    formData.append('name', values.name);
+    formData.append('description', values.description);
+    formData.append('price', values.price);
+    formData.append('tags', tags.join(','));
+
+    try {
+      setSubmittingError(null);
+      setIsSubmitting(true);
+      await createProduct(formData);
+      setValues(INITIAL_VALUES);
+      setTags([]);
+    } catch (error) {
+      console.error('상품 등록 실패', error);
+      setSubmittingError(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className='RegistrationPage'>
       <ItemsPageHeader />
@@ -46,7 +73,7 @@ function RegistrationPage() {
         <form>
           <div className='FormTop'>
             <h2>상품 등록하기</h2>
-            <button type="submit">등록</button>
+            <button type="submit" disabled={isSubmitting}>등록</button>
           </div>
           <label className='Label1'>
             상품명
@@ -114,6 +141,7 @@ function RegistrationPage() {
               </div>
             ))}
           </div>
+          {submittingError && <div className='error-message'>상품 등록 실패: {submittingError.message}</div>}
         </form>
       </div>
     </div>
