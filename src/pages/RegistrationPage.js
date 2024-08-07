@@ -1,5 +1,4 @@
 import React from 'react';
-import { createProduct } from '../api/api';
 import './RegistrationPage.css';
 import ItemsPageHeader from '../components/ItemsPageHeader';
 
@@ -11,6 +10,8 @@ const INITIAL_VALUES = {
 };
 
 function RegistrationPage() {
+  const [values, setValues] = useState(INITIAL_VALUES);
+  const [tags, setTags] = useState([]);
 
   return (
     <div className='RegistrationPage'>
