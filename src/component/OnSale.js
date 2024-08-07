@@ -4,6 +4,7 @@ import { getProducts } from "../api";
 import searchIcon from "../image/searchIcon.png";
 import DropDown from "./OnSaleDropDown";
 import Pagination from "./Pagination";
+import { Link } from "react-router-dom";
 
 function OnSaleItem({ item = {} }) {
   const thousandPrice = item.price
@@ -105,7 +106,9 @@ function OnSale() {
             onChange={handleSearch}
           />
         </div>
-        <button className="postProduct">상품 등록하기</button>
+        <Link to="/registration">
+          <button className="postProduct">상품 등록하기</button>
+        </Link>
         <div className="mobileSearchBox">
           <img id="searchIcon" src={searchIcon} alt="searchIcon" />
           <input

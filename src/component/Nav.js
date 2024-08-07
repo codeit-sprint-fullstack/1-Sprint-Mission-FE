@@ -1,20 +1,23 @@
+import { NavLink } from "react-router-dom";
 import logo from "../image/logo.png";
 import userIcon from "../image/userIcon.png";
-import mobileLogo from "../image/mobileLogo.png"
+import mobileLogo from "../image/mobileLogo.png";
 import "./Nav.css";
 
 function Nav() {
-
-  const clickLogo = () => {
-    window.location.href = "/";
-  }
-
   return (
     <div className="Nav">
-      <img className="Nav-logo" src={logo} alt="mainLogo" onClick={clickLogo} />
-      <img className="mobileLogo" src={mobileLogo} alt="mobileLogo" onClick={clickLogo} />
-      <a className="Nav-text">자유게시판</a>
-      <a className="Nav-text">중고마켓</a>
+      <NavLink to="/">
+        <img className="Nav-logo" src={logo} alt="mainLogo" />
+        <img className="mobileLogo" src={mobileLogo} alt="mobileLogo" />
+      </NavLink>
+      <div className="Nav-text">자유게시판</div>
+      <NavLink
+        to="/items"
+        className={({ isActive }) => (isActive ? "Nav-text active" : "Nav-text")}
+      >
+        중고마켓
+      </NavLink>
       <img className="Nav-user" src={userIcon} alt="userIcon" />
     </div>
   );

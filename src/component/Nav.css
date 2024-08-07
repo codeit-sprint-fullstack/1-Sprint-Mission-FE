@@ -1,3 +1,8 @@
+/* 로고에 다른 padding이 들어가는 것을 막음 */
+.Nav a:first-child {
+  padding: 0;
+}
+
 .Nav {
   display: flex;
   height: 70px;
@@ -18,10 +23,16 @@
 }
 
 .Nav-text {
+  text-decoration: none;
+  color: #4b5563;
   font-size: 18px;
   font-weight: 700;
   padding: 21px 15px;
   line-height: 26px;
+}
+
+.Nav-text.active {
+  color: #3692FF;
 }
 
 .Nav-user {
@@ -33,7 +44,7 @@
 }
 
 /* Tablet view */
-@media (min-width: 744px) and (max-width: 1199px){
+@media (min-width: 744px) and (max-width: 1199px) {
   .Nav-logo {
     margin-right: 20px;
     margin-left: 24px;
@@ -44,7 +55,7 @@
   }
 }
 /* Mobile view */
-@media (max-width: 743px){
+@media (max-width: 743px) {
   .Nav {
     display: flex;
     gap: 8px;
@@ -53,7 +64,7 @@
   }
 
   .Nav-logo {
-    display:none;
+    display: none;
   }
 
   /* .Nav-logo {
@@ -63,7 +74,7 @@
     margin-right: 32px;
     margin-left: 200px;
   } */
-  
+
   .mobileLogo {
     display: block;
     width: 81px;
@@ -85,4 +96,3 @@
     line-height: 22px;
   }
 }
-
