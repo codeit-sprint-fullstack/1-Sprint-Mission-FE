@@ -13,13 +13,35 @@ main {
 
 /* 상품 등록 폼 스타일 */
 .product-form {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    padding: 24px;
-    gap: 16px;
-    max-width: 1200px;
-    margin: 0 auto;
-    margin-bottom: 379px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 24px;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 379px;
   }
 
+/* 폼 상단 스타일 */
+.FormTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  }
+
+
+/* 등록 버튼 */
+.FormTop button {
+  width: 74px;
+  height: 42px;
+  border: none;
+  border-radius: 8px;
+  background: #3692FF;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: Pretendard;
+  font-weight: 700;
+}
