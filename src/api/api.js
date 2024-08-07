@@ -22,6 +22,27 @@ try {
 }
 }
 
+/* 새상품 틍록 */
+export async function createProduct(product) {
+  const formData = new FormData();
+  formData.append('name', product.name);
+  formData.append('description', product.description);
+  formData.append('price', product.price);
+  formData.append('tags', product.tags); // 태그를 문자열로 변환하여 전송
+
+  try {
+    const response = await axios.post(`${BASE_URL}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('상품 생성 실패', error);
+    throw error;
+  }
+}
+
 /* 제품 목록을 필터링하는 함수 */
 export function filterProductsByName(products, query) {
   return products.filter(product =>
