@@ -1,10 +1,49 @@
+import { useState, useEffect } from "react";
 import Button from "./Button";
 import "../assets/styles/registration.css";
 
+let tags = [];
+
 export function RegistrationBody() {
+  const [productName, setProductName] = useState("");
+  const [productDescription, setProductDescription] = useState("");
+  const [productPrice, setProductPrice] = useState(0);
+  const [productTag, setProductTag] = useState("");
+
+  function handleProductName(e) {
+    setProductName(e.target.value);
+  }
+
+  function handleProductDescription(e) {
+    setProductDescription(e.target.value);
+  }
+
+  function handleProductPrice(e) {
+    setProductPrice(e.target.value);
+  }
+
+  function handelProductTag(e) {
+    setProductTag(e.target.value);
+  }
+
+  function submitProductTag(e) {
+    e.preventDefault();
+    tags.push(productTag);
+    setProductTag("");
+    console.log(tags);
+  }
+
   function handleRegistration() {
     alert("registration");
+    const body = {
+      name: productName,
+      description: productDescription,
+      price: productPrice,
+      tag: [tags],
+    };
   }
+
+  useEffect(() => {}, [productTag]);
 
   let btnRegistClass = "btn-registration-74-decative";
 
@@ -19,6 +58,7 @@ export function RegistrationBody() {
       <div className="main__registration-input-margin">
         <label className="main__registration-label">상품명</label>
         <input
+          onChange={handleProductName}
           className="Text-lg-line-height24 Regular main__registration-input main__registration-input-small"
           placeholder="상품명의 입력해주세요"
         ></input>
@@ -26,6 +66,7 @@ export function RegistrationBody() {
       <div className="main__registration-input-margin">
         <label className="main__registration-label">상품 소개</label>
         <textarea
+          onChange={handleProductDescription}
           className="Text-lg-line-height24 Regular main__registration-input main__registration-input-big"
           placeholder="상품 소개를 입력해주세요"
         ></textarea>
@@ -33,13 +74,19 @@ export function RegistrationBody() {
       <div className="main__registration-input-margin">
         <label className="main__registration-label">판매가격</label>
         <input
+          onChange={handleProductPrice}
           className="Text-lg-line-height24 Regular main__registration-input main__registration-input-small"
           placeholder="판매 가격을 입력해주세요"
         ></input>
       </div>
-      <form className="main__registration-input-margin">
+      <form
+        className="main__registration-input-margin"
+        onSubmit={submitProductTag}
+      >
         <label className="main__registration-label">태그</label>
         <input
+          onChange={handelProductTag}
+          value={productTag}
           className="Text-lg-line-height24 Regular main__registration-input main__registration-input-small"
           placeholder="태그를 입력해주세요"
         ></input>
