@@ -44,6 +44,10 @@
     margin-right: 20px;
   }
 
+  #LoginButton {
+    margin-right: 20px;
+  }
+
   .bestProduct-image{
     width: 343px;
     height: 343px;
@@ -109,6 +113,10 @@
   .profile{
     margin-left: 10px;
     margin-right: 10px;
+  }
+
+  #LoginButton {
+    margin-right: 20px;
   }
 
   .logo:first-child {
