@@ -17,7 +17,7 @@ function RegistrationPage() {
   const [submittingError, setSubmittingError] = useState(null);
 
   /* 커스텀 훅 호출*/
-  const { values, setValues, errors, validate } = useFormValidation(INITIAL_VALUES);
+  const { values, setValues, errors, validate, handleBlur } = useFormValidation(INITIAL_VALUES);
 
   // 입력 필드 변경시, 상태 업데이트 핸들러
   const handleInputChange = (e) => {
@@ -91,6 +91,7 @@ function RegistrationPage() {
               type="text"
               name="name"
               value={values.name}
+              onBlur={handleBlur}
               onChange={handleInputChange}
               placeholder='상품명을 입력해주세요'
               required
@@ -104,6 +105,7 @@ function RegistrationPage() {
               name="description"
               className={`RegistrationInput ${errors.description ? 'error' : ''}`}
               value={values.description}
+              onBlur={handleBlur}
               onChange={handleInputChange}
               placeholder='상품 소개를 입력해주세요'
               required
@@ -118,6 +120,7 @@ function RegistrationPage() {
               type="number"
               name="price"
               value={values.price}
+              onBlur={handleBlur}
               onChange={handleInputChange}
               placeholder='판매 가격을 입력해주세요'
               required
@@ -132,6 +135,7 @@ function RegistrationPage() {
               type="text"
               name="tags"
               value={values.tags}
+              onBlur={handleBlur}
               onChange={handleInputChange}
               onKeyDown={handleTagAdd}
               placeholder='#태그 형식으로 입력해주세요 (예시, #모자)'
