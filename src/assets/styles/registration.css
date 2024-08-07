@@ -29,9 +29,10 @@
   line-height: 1.19333em;
 }
 
-.main__registration-input {
+.main__registration-input-small {
   margin-top: 1.2rem;
   width: 100%;
+  height: 5.6rem;
   box-sizing: border-box;
   border: 0.1rem solid;
   border-color: var(--gray100-color);
@@ -43,15 +44,50 @@
   /* padding: 16px, 24px, 16px, 24px; */
   padding: 1em 1.5em;
   resize: none;
-  outline-color: var(--blue100-color);
-}
-
-.main__registration-input-small {
-  height: 5.6rem;
+  /* outline-color: var(--blue100-color); */
 }
 
 .main__registration-input-big {
+  margin-top: 1.2rem;
+  width: 100%;
   height: 27.2rem;
+  box-sizing: border-box;
+  border: 0.1rem solid;
+  border-color: var(--gray100-color);
+  background-color: var(--gray100-color);
+  /* border-radius : 12px; */
+  border-radius: 0.75em;
+  /* font-size : 16px */
+  text-align: left;
+  /* padding: 16px, 24px, 16px, 24px; */
+  padding: 1em 1.5em;
+  resize: none;
+  /* outline-color: var(--blue100-color); */
+}
+
+.input-valid {
+  border-color: var(--gray100-color);
+}
+
+.input-valid:focus {
+  border-color: var(--blue100-color);
+}
+
+.input-invalid {
+  border-color: var(--red-color);
+}
+
+.input-invalid:focus {
+  border-color: var(--red-color);
+}
+
+.input-invalid-warn {
+  margin-top: 0.8rem;
+  margin-left: 1.6rem;
+  color: var(--red-color);
+  font-size: 1.5rem;
+  /* line-height: 17.9px; */
+  line-height: 1.19333em;
 }
 
 /* ===== Tablet - width : 744px ~ 1199px ===== */

@@ -1,0 +1,10 @@
+.loading-spinner {
+  position: relative;
+  top: 35rem;
+  display: block;
+  margin: 0 auto;
+  width: 12rem;
+  height: 6rem;
+  content: url(../images/loading_infinite_spinner.svg);
+  z-index: 999;
+}

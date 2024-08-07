@@ -16,6 +16,8 @@ import {
 import Pagination from "./Pagination";
 import { PRODUCT_API_ADDRESS } from "../utils/constants";
 import registButton from "../assets/images/btn_registration.svg";
+import Loading from "./Loading";
+import img_loading from "../assets/images/loading_infinite_spinner.svg";
 
 const instance = axios.create({
   baseURL: PRODUCT_API_ADDRESS,
@@ -169,7 +171,9 @@ function Products() {
         totalCount = res.data.totalCount;
         setMaxPageNum(Math.ceil(totalCount / PAGE_SIZE[device]));
       })
-      .catch((err) => console.log(err.name));
+      .catch((err) => {
+        console.log(err.name);
+      });
   }
 
   useEffect(() => {
@@ -178,6 +182,8 @@ function Products() {
 
   return (
     <div className="main__section-products">
+      {/* {true ? <h1>Loading</h1> : undefined} */}
+
       <div className="main__products-tools">
         <p className="Text-xl Bold main__products-tools-name">판매 중인 상품</p>
         <SearchProducts
@@ -241,6 +247,7 @@ function Products() {
 
 function BestProducts() {
   const [bestProducts, setBestProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   let device = useContext(deviceContext);
 
@@ -253,7 +260,10 @@ function BestProducts() {
 
     instance
       .get(PATH, { params })
-      .then((res) => setBestProducts(res.data.list))
+      .then((res) => {
+        setBestProducts(res.data.list);
+        setLoading(false);
+      })
       .catch((err) => console.log(err.name));
   }
 
@@ -263,6 +273,7 @@ function BestProducts() {
 
   return (
     <div className="main__section-best-products">
+      {loading ? <Loading /> : undefined}
       <div className="Text-xl Bold">베스트 상품</div>
       <div className="main__best-products-frame">
         {bestProducts.map((item) => (
