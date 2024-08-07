@@ -53,4 +53,23 @@
     height: 40px;
     margin-right: 200px; 
   }
+
+  /* 중고마켓 페이지의 상단바 '중고마켓 버튼색'*/
+  #ItemPageMarket{
+    color: #3692FF;
+  }
   
+  /* 중고마켓 페이지의 로그인 버튼*/
+  #LoginButton{
+    width: 74px;
+    height: 42px;
+    /* padding: 12px 23px; */
+    border-radius: 8px;
+    background: #3692FF;
+    color:#ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    margin-right: 200px; 
+    font-family: Pretendard;
+  }
