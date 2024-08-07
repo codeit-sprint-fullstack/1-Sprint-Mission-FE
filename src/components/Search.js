@@ -19,7 +19,7 @@ function DropDownBox({ onOrderChange, order, isMobile = false }) {
     <div>
       <div className="serach_order_container" onClick={viewDropbox}>
         <button className="order_drop_btn">
-          {isMobile ? null : dropDownBox[order]}
+          {!isMobile && dropDownBox[order]}
         </button>
         <img
           className="ic_arrow_down"
@@ -73,11 +73,11 @@ function Search({ onChange, order, isMobile = false }) {
     <div className="serach_container">
       <div className="first_block">
         <h2>판매 중인 상품</h2>
-        {isMobile ? (
+        {isMobile && (
           <Link to="/regisration">
             <button className="add_product_btn">상품 등록하기</button>
           </Link>
-        ) : null}
+        )}
       </div>
       <div className="serach_query_container">
         <div className="input_and_icon">
