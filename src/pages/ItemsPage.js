@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import searchIcon from './assets/images/ic_search.png';
 import Header from './components/Header';
-import './App.css';
-import './index.css';
 import './styles/Responsive.css'; 
 import BestProducts from './components/BestProducts';
 import ProductList from './components/ProductList';
