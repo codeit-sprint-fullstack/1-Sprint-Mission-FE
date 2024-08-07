@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './RegistrationPage.css';
 import ItemsPageHeader from '../components/ItemsPageHeader';
 
@@ -19,6 +19,18 @@ function RegistrationPage() {
       ...prevValues,
       [name]: value,
     }));
+  };
+
+  // 태그 추가하는 핸들러
+  const handleTagAdd = (e) => {
+    if (e.key === 'Enter' && values.tags.trim()) {
+      setTags((prevTags) => [...prevTags, values.tags.trim()]);
+      setValues((prevValues) => ({
+        ...prevValues,
+        tags: '',
+      }));
+      e.preventDefault();
+    }
   };
 
   return (
@@ -77,14 +89,23 @@ function RegistrationPage() {
               name="tags"
               value={values.tags}
               onChange={handleInputChange}
+              onKeyDown={handleTagAdd}
               placeholder='#태그 형식으로 입력해주세요 (예시, #모자)'
               required
             />
           </label>
+          <div className='tags-container'>
+            {tags.map((tag, index) => (
+              <div key={index} className='tag-item'>
+                <span className='tag-text'>{tag}</span>
+              </div>
+            ))}
+          </div>
         </form>
       </div>
     </div>
   );
 }
+
 
 export default RegistrationPage;
