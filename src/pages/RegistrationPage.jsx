@@ -1,26 +1,43 @@
-import { useState } from 'react';
-import Nav from '../components/Nav';
-import './RegistrationPage.css';
-import removeIcon from '../assets/imgs/ic_X.svg';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { createProduct } from '../api';
+import Nav from '../components/Nav';
+import removeIcon from '../assets/imgs/ic_X.svg';
+import useFormValidation from '../hook/useFormValidation';
+import './RegistrationPage.css';
 
 function RegistrationPage() {
   const [name, setName] = useState('');
   const [description, setDesc] = useState('');
   const [price, setPrice] = useState('');
+  const [tags, setTags] = useState([]);
+  const [tagInput, setTagInput] = useState('');
+
+  const { errors, validate } = useFormValidation();
+
+  // 초기 렌더링 시 유효성 검사 수행
+  useEffect(() => {
+    validate('name', name);
+    validate('description', description);
+    validate('price', price);
+    validate('tag', tagInput);
+  }, []);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     console.log(typeof e.target.value);
     if (id === 'name') {
       setName(value);
+      validate('name', value);
     } else if (id === 'description') {
       setDesc(value);
+      validate('description', value);
     } else if (id === 'price') {
       setPrice(value);
+      validate('price', value);
     } else if (id === 'tag') {
       setTagInput(value);
+      validate('tag', value);
     }
   };
 
@@ -29,9 +46,6 @@ function RegistrationPage() {
   // - 사용자가 입력을 끝내고 엔터를 누르면
   // - 태그 배열의 상태를 업데이트
   // - 업데이트 된 배열을 화면에 렌더링
-  const [tags, setTags] = useState([]);
-  const [tagInput, setTagInput] = useState('');
-
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && tagInput.trim() !== '') {
       e.preventDefault();
@@ -77,6 +91,12 @@ function RegistrationPage() {
     }
   };
 
+  // errors 객체를 배열로 변환
+  // 배열을 순회하면서 주어진 조건에 맞는지 검사
+  // 반환값(error)이 하나라도 truthy한 값이면 isFormatValid는 false
+  // 즉 format에 잘 못 된 값이 입력된 상태를 의미
+  const isFormatValid = !Object.values(errors).some((error) => error);
+
   return (
     <>
       <Helmet>
@@ -86,7 +106,13 @@ function RegistrationPage() {
       <form className="reg-container" onSubmit={handleFormSubmit}>
         <div className="reg">
           <p>상품 등록하기</p>
-          <button type="submit">등록</button>
+          <button
+            type="submit"
+            className={`submit-button ${isFormatValid ? 'valid' : 'invalid'}`}
+            disabled={!isFormatValid}
+          >
+            등록
+          </button>
         </div>
 
         <div className="reg-flex reg-name">
@@ -95,11 +121,12 @@ function RegistrationPage() {
           </label>
           <input
             id="name"
-            className="input-style"
+            className={`input-style ${errors.name ? 'error' : ''}`}
             placeholder="상품명을 입력해주세요"
             value={name}
             onChange={handleInputChange}
           />
+          {errors.name && <p className="error-message">{errors.name}</p>}
         </div>
 
         <div className="reg-flex reg-description">
@@ -108,10 +135,12 @@ function RegistrationPage() {
           </label>
           <textarea
             id="description"
+            className={`input-style ${errors.description ? 'error' : ''}`}
             placeholder="상품 소개를 입력해주세요"
             value={description}
             onChange={handleInputChange}
           />
+          {errors.description && <p className="error-message">{errors.description}</p>}
         </div>
 
         <div className="reg-flex reg-price">
@@ -120,11 +149,12 @@ function RegistrationPage() {
           </label>
           <input
             id="price"
-            className="input-style"
+            className={`input-style ${errors.price ? 'error' : ''}`}
             placeholder="판매 가격을 입력해주세요"
             value={price}
             onChange={handleInputChange}
           />
+          {errors.price && <p className="error-message">{errors.price}</p>}
         </div>
 
         <div className="reg-flex reg-tag">
@@ -133,12 +163,13 @@ function RegistrationPage() {
           </label>
           <input
             id="tag"
-            className="input-style"
+            className={`input-style ${errors.tag ? 'error' : ''}`}
             placeholder="태그를 입력해주세요."
             value={tagInput}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-          ></input>
+          />
+          {errors.tag && <p className="error-message">{errors.tag}</p>}
 
           <div className="tags-container">
             {tags.map((tag, index) => (

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import useProducts from './useProducts';
-import useMediaQuery from './useMediaQuery';
+import useProducts from '../hook/useProducts';
+import useMediaQuery from '../hook/useMediaQuery';
 import SelectBox from './SelectBox';
 import Pagination from './Pagination';
 import './ProductList.css';
+import defaultImage from '../assets/imgs/img_default.svg';
 
 // 베스트 상품과 판매 중인 상품 목록 표시
 function ProductList() {
@@ -103,14 +104,17 @@ function ProductOnSale() {
 
       <div className="OnSaleProduct-items">
         {items.map((item) => {
+          // 이미지 배열이 비어 있는지 확인하고, 첫 번째 이미지나 기본 이미지 사용
+          const imageUrl = item.images.length > 0 ? item.images[0] : defaultImage;
           return (
             <div className="OnSaleProduct-item" key={item._id}>
-              <img src={item.images} alt={item.name} />
+              <img src={imageUrl} alt={item.name} />
               <div className="OnSaleProduct-content ">
                 <div className="name">{item.name}</div>
                 <div className="description">{item.description}</div>
                 <div className="price">{item.price.toLocaleString()}원</div>
               </div>
+              {console.log(item.images)}
             </div>
           );
         })}

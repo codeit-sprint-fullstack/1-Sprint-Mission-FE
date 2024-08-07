@@ -1,4 +1,4 @@
-import useMediaQuery from './useMediaQuery';
+import useMediaQuery from '../hook/useMediaQuery';
 import './Pagination.css';
 
 // 페이지네이션 UI 렌더링
