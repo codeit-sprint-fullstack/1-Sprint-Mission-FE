@@ -8,6 +8,7 @@ import ProductRender from "./ProductRender.js";
 function ProductRenderGrid({
   productData,
   productCountPerRow,
+  noProduct
 }) {
 
   
@@ -27,7 +28,7 @@ function ProductRenderGrid({
   };
 
   return (
-    !productData || !productData.length
+    noProduct
     ? <section className="noProduct">상품이 없습니다.</section>
     : <section className="sellingProductList">{ProductsGridRender()}</section>
   );

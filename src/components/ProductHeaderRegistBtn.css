@@ -1,0 +1,19 @@
+.registerBtn {
+  background-color: #3692FF;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 23px;
+  color: #F3F4F6;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* .registerBtn > span {
+  color: #F3F4F6;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+} */
+
+

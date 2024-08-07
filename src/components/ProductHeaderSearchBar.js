@@ -4,7 +4,7 @@ import "./ProductHeaderSearchBar.css";
 //리소스
 import search from "../images/icon/ic_search.svg";
 
-function ProductHeaderSearchBar ( {inputText, handleInput}) {
+function ProductHeaderSearchBar({ inputText, handleInput }) {
   return (
     <div className="searchBox">
       <img src={search} alt="검색" />

@@ -29,18 +29,14 @@ function ProductListRender({ productList, isThereProduct }) {
     );
   };
 
+  return (
+    <ul className="productContainer">
+      {productList.map((item, idx) => (
+        <ProductRender key={item.id ? item.id : idx - 30} product={item} />
+      ))}
+    </ul>
+  );
 
-  if (isThereProduct) {
-    return <div className="noProduct">상품이 없습니다.</div>;
-  } else {
-    return (
-      <ul className="productContainer">
-        {productList.map((item, idx) => (
-          <ProductRender key={item.id ? item.id : idx - 30} product={item} />
-        ))}
-      </ul>
-    );
-  }
 }
 
 export default ProductListRender;

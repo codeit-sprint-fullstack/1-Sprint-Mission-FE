@@ -4,28 +4,23 @@ import getApiData from "../api/getProductsData.js";
 
 import search from "../images/icon/ic_search.svg";
 
+const URL = "https://panda-market-api.vercel.app";
 
-const useProductData = (nowPage, showProductCount, orderBy, keyword) => {
+const useProductData = (nowPage, productCount, sortOption, keyword) => {
+  const [productsList, setProductsList] = useState([]);
+  const [noProduct, setNoProduct] = useState(false);
 
-  const [getProductList, setProductsList] = useState([]);
-  const [totalPageSize, setTotalPageSize] = useState(1);
+  const productData = new Array();
 
   useEffect(() => {
-    getApiData (nowPage, showProductCount, orderBy, keyword)
+    getApiData(nowPage, productCount, sortOption, keyword)
       .then((data) => {
-        // 상품 최대 개수 확인
-        console.log(`data.totalCount: ${data.totalCount}`);
-        // 최대 페이지 계산
-        const maxPageCalc = Math.ceil(data.totalCount / showProductCount);
-        setTotalPageSize(maxPageCalc);
-
-        // data 정보 콘솔 로그
-        console.log(`data.list.length: ${data.list.length}`);
-        // 상품 데이터 확인
-        if (data.list.length < showProductCount) { // 상품이 보여줄 갯수보다 적으면 가데이터로 채우기
-          const newFiiledDataList = [
+        if (data.list.length === 0) {
+          setNoProduct(true);
+        } else if (data.list.length < productCount) {
+          const newDataList = [
             ...data.list,
-            ...Array(showProductCount - data.list.length).fill({
+            ...Array(productCount - data.list.length).fill({
               images: [search],
               name: "",
               description: "",
@@ -33,18 +28,14 @@ const useProductData = (nowPage, showProductCount, orderBy, keyword) => {
               favoriteCount: 0,
             }),
           ];
-          setProductsList(newFiiledDataList); 
+          setProductsList(newDataList);
         } else {
-          setProductsList(data.list); // 이상 없으면 getProductList 채우기
+          setProductsList(data.list);
         }
       })
       .catch((error) => console.error(error));
-  }, [nowPage, showProductCount, orderBy, keyword]);
+  }, [nowPage, productCount, sortOption, keyword]);
 
-  return {
-    getProductList,
-    totalPageSize
-  }
-
-}
+  return { productsList, noProduct };
+};
 export default useProductData;

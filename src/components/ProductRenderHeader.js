@@ -14,11 +14,11 @@ function ProductRenderHeader({
   sortBtn = false,
   inputText,
   handleInput,
-  handelSortOption
+  handleSortOption
 }) {
   return (
     <div className="productRenderHeader">
-      <ProductHeaderText text={headerText} />
+      <ProductHeaderText headerText={headerText} />
       {searchBar && (
         <ProductHeaderSearchBar
         inputText={inputText}
@@ -26,7 +26,7 @@ function ProductRenderHeader({
         />
       )}
       {registBtn && <ProductHeaderRegistBtn />}
-      {sortBtn && <ProductHeaderSortBtn handelSortOption={handelSortOption} />}
+      {sortBtn && <ProductHeaderSortBtn handleSortOption={handleSortOption} />}
     </div>
   );
 }

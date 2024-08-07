@@ -5,7 +5,7 @@ import "./ProductHeaderSortBtn.css";
 // 이미지
 import arrow from "../images/icon/ic_arrow_down.svg";
 
-function ProductHeaderSortBtn({ handelSortOption }) {
+function ProductHeaderSortBtn({ handleSortOption }) {
   const [dropDownView, viewChange] = useState(false);
   const [optionText, optionTextChange] = useState("최신순");
 
@@ -29,7 +29,7 @@ function ProductHeaderSortBtn({ handelSortOption }) {
           <li
             onClick={(e) => {
               handleOptionTextChange(e);
-              handelSortOption("recent");
+              handleSortOption("recent");
             }}
           >
             최신순
@@ -37,7 +37,7 @@ function ProductHeaderSortBtn({ handelSortOption }) {
           <li
             onClick={(e) => {
               handleOptionTextChange(e);
-              handelSortOption("favorite");
+              handleSortOption("favorite");
             }}
           >
             좋아요순
