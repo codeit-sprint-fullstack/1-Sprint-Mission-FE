@@ -13,6 +13,6 @@ export const getItems = async (page = 1, pageSize = 10, keyword = "") => {
     return data;
   } catch (error) {
     console.log(error);
-    return [];
+    return { totalProducts: 0, products: [] };
   }
 };

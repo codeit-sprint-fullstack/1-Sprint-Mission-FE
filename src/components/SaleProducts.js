@@ -22,8 +22,8 @@ function SaleProducts({ activePath, setActivePath }) {
   useEffect(() => {
     const getProducts = async () => {
       const data = await getItems(currentPage, pageSize, keyword);
-      setProducts(data);
-      setTotalPage(Math.ceil(data.length / pageSize));
+      setProducts(data.products);
+      setTotalPage(Math.ceil(data.totalProducts / pageSize));
     };
 
     getProducts();
