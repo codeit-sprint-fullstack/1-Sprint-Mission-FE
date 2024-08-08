@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
   const [logoSrc, setLogoSrc] = useState('image/logo.svg');
+  const location = useLocation();
 
   useEffect(() => {
     const updateLogo = () => {
@@ -25,10 +27,14 @@ const Navbar = () => {
     <nav className="navbar">
       <img src={logoSrc} alt="Panda" className="panda" />
       <div className="nav-links">
-        <a href="/" className="board-link">자유게시판</a>
-        <a href="/" className="market-link">중고마켓</a>
+        <Link to="/" className="board-link">자유게시판</Link>
+        <Link to="/" className="market-link">중고마켓</Link>
       </div>
-      <img src="image/profile.svg" alt="Profile" className="profile" />
+      {location.pathname === '/registration' ? (
+        <button className="login-button">로그인</button>
+      ) : (
+        <img src="image/profile.svg" alt="Profile" className="profile" />
+      )}
     </nav>
   );
 };
