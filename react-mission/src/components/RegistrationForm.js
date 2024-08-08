@@ -132,7 +132,7 @@ function RegistrationForm() {
         }
       }
     }
-  }; //고쳐야함
+  }; 
 
   return (
     <form className="RegistrationFormContaner">
