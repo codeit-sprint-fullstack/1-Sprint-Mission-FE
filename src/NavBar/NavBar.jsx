@@ -10,15 +10,13 @@ export default function NavBar() {
 
   return (
     <nav className="navbar">
-      <Link to="/">
+      <Link>
         <img id="logoImg" className="margin-left" src={logoImg} alt="logoImg" />
       </Link>
-      <Link to="/">
+      <Link>
         <img id="logo" className="margin-left" src={logo} alt="logo" />
       </Link>
-      <Link to="/board" className="nav-text">
-        자유게시판
-      </Link>
+      <Link className="nav-text">자유게시판</Link>
       <Link
         to="/items"
         className={`nav-text ${location.pathname === "/items" ? "active" : ""}`}
