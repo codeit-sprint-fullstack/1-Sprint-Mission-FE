@@ -48,28 +48,31 @@ function RegistrationPage() {
     setTags((prevTags) => prevTags.filter((tag) => tag !== tagToRemove));
   };
 
-  // 제출 핸들러
+  // 제출 이벤트
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // 유효성 검사 실패시
+    // 유효성 검사
     if (!validate()) {
       return;
     }
-  
-    const formData = new FormData();
-    formData.append('name', values.name);
-    formData.append('description', values.description);
-    formData.append('price', values.price);
-    formData.append('tags', tags.join(','));
 
     try {
       setSubmittingError(null);
       setIsSubmitting(true);
-      await createProduct(formData);
+
+      // 서버에 상품 생성 요청 보내기
+      await createProduct({
+        name: values.name,
+        description: values.description,
+        price: values.price,
+        tags: values.tags
+      });
+
+      // 상품 등록 성공 후 초기화
       setValues(INITIAL_VALUES);
       setTags([]);
-      navigate('/Productinformation'); // 상품 상세정보 페이지로 이동
+      navigate('/Productinformation');
     } catch (error) {
       console.error('상품 등록 실패', error);
       setSubmittingError(error);
@@ -77,6 +80,7 @@ function RegistrationPage() {
       setIsSubmitting(false);
     }
   };
+
 
   // 버튼 활성화 상태 결정 함수
   const isFormValid = () => {
