@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import './ProductList.css';
 import useScreenType from '../hooks/useScreenType';
@@ -12,6 +12,8 @@ const ProductList = () => {
   const [pageSize, setPageSize] = useState(10);
   const totalPages = 5;
   const navigate = useNavigate();
+  const location = useLocation();
+  const isMarketPage = location.pathname === '/items';
 
   const screenType = useScreenType();
 
@@ -88,63 +90,123 @@ const ProductList = () => {
 
   return (
     <div className="product-list">
-      <h2 className="section-title">베스트 상품</h2>
-      <div className="best-products">{renderBestProducts()}</div>
-      <div className="product-controls-container">
-        {screenType !== 'mobile' && <h2 className="section-title">판매 중인 상품</h2>}
-        {screenType === 'mobile' && (
-          <div className="title-register-row">
-            <h2 className="section-title">판매 중인 상품</h2>
-            <button className="register-button" onClick={() => navigate('/registration')}>상품 등록하기</button>
-          </div>
-        )}
-        <form onSubmit={handleSearchSubmit} className="product-controls">
-          {screenType !== 'mobile' && (
-            <>
-              <div className="search-bar">
-                <img src="/image/glass.svg" alt="Search Icon" className="search-icon" />
-                <input
-                  type="text"
-                  placeholder="검색할 상품을 입력해주세요"
-                  value={productSearch}
-                  onChange={(e) => setProductSearch(e.target.value)}
-                />
-              </div>
-              <button className="register-button" type="button" onClick={() => navigate('/registration')}>상품 등록하기</button>
-            </>
-          )}
-          <div className={`search-sort-row ${screenType === 'mobile' ? 'mobile-row' : ''}`}>
+      {isMarketPage ? (
+        <>
+          <div className="product-controls-container">
             {screenType === 'mobile' && (
-              <>
-                <div className="search-bar">
-                  <img src="/image/glass.svg" alt="Search Icon" className="search-icon" />
-                  <input
-                    type="text"
-                    placeholder="검색할 상품을 입력해주세요"
-                    value={productSearch}
-                    onChange={(e) => setProductSearch(e.target.value)}
-                  />
-                </div>
-                <div className="btn-sort">
-                  <img
-                    src="/image/btn_sort.svg"
-                    alt="Sort Icon"
-                    onClick={() => document.querySelector('.sort-options').classList.toggle('active')}
-                  />
-                </div>
-              </>
+              <div className="title-register-row">
+                <button className="register-button" onClick={() => navigate('/registration')}>상품 등록하기</button>
+              </div>
             )}
-            <div className="sort-options">
-              <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
-                <option value="recent">최신순</option>
-                <option value="favorite">좋아요순</option>
-              </select>
-              <img src="/image/down.svg" alt="Dropdown Icon" className="dropdown-icon" />
-            </div>
+            <form onSubmit={handleSearchSubmit} className="product-controls">
+              {screenType !== 'mobile' && (
+                <>
+                  <div className="search-bar">
+                    <img src="/image/glass.svg" alt="Search Icon" className="search-icon" />
+                    <input
+                      type="text"
+                      placeholder="검색할 상품을 입력해주세요"
+                      value={productSearch}
+                      onChange={(e) => setProductSearch(e.target.value)}
+                    />
+                  </div>
+                  <button className="register-button" type="button" onClick={() => navigate('/registration')}>상품 등록하기</button>
+                </>
+              )}
+              <div className={`search-sort-row ${screenType === 'mobile' ? 'mobile-row' : ''}`}>
+                {screenType === 'mobile' && (
+                  <>
+                    <div className="search-bar">
+                      <img src="/image/glass.svg" alt="Search Icon" className="search-icon" />
+                      <input
+                        type="text"
+                        placeholder="검색할 상품을 입력해주세요"
+                        value={productSearch}
+                        onChange={(e) => setProductSearch(e.target.value)}
+                      />
+                    </div>
+                    <div className="btn-sort">
+                      <img
+                        src="/image/btn_sort.svg"
+                        alt="Sort Icon"
+                        onClick={() => document.querySelector('.sort-options').classList.toggle('active')}
+                      />
+                    </div>
+                  </>
+                )}
+                <div className="sort-options">
+                  <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+                    <option value="recent">최신순</option>
+                    <option value="favorite">좋아요순</option>
+                  </select>
+                  <img src="/image/down.svg" alt="Dropdown Icon" className="dropdown-icon" />
+                </div>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-      <div className="all-products">{renderAllProducts()}</div>
+          <div className="all-products">{renderAllProducts()}</div>
+        </>
+      ) : (
+        <>
+          <h2 className="section-title">베스트 상품</h2>
+          <div className="best-products">{renderBestProducts()}</div>
+          <div className="product-controls-container">
+            {screenType !== 'mobile' && <h2 className="section-title">판매 중인 상품</h2>}
+            {screenType === 'mobile' && (
+              <div className="title-register-row">
+                <h2 className="section-title">판매 중인 상품</h2>
+                <button className="register-button" onClick={() => navigate('/registration')}>상품 등록하기</button>
+              </div>
+            )}
+            <form onSubmit={handleSearchSubmit} className="product-controls">
+              {screenType !== 'mobile' && (
+                <>
+                  <div className="search-bar">
+                    <img src="/image/glass.svg" alt="Search Icon" className="search-icon" />
+                    <input
+                      type="text"
+                      placeholder="검색할 상품을 입력해주세요"
+                      value={productSearch}
+                      onChange={(e) => setProductSearch(e.target.value)}
+                    />
+                  </div>
+                  <button className="register-button" type="button" onClick={() => navigate('/registration')}>상품 등록하기</button>
+                </>
+              )}
+              <div className={`search-sort-row ${screenType === 'mobile' ? 'mobile-row' : ''}`}>
+                {screenType === 'mobile' && (
+                  <>
+                    <div className="search-bar">
+                      <img src="/image/glass.svg" alt="Search Icon" className="search-icon" />
+                      <input
+                        type="text"
+                        placeholder="검색할 상품을 입력해주세요"
+                        value={productSearch}
+                        onChange={(e) => setProductSearch(e.target.value)}
+                      />
+                    </div>
+                    <div className="btn-sort">
+                      <img
+                        src="/image/btn_sort.svg"
+                        alt="Sort Icon"
+                        onClick={() => document.querySelector('.sort-options').classList.toggle('active')}
+                      />
+                    </div>
+                  </>
+                )}
+                <div className="sort-options">
+                  <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+                    <option value="recent">최신순</option>
+                    <option value="favorite">좋아요순</option>
+                  </select>
+                  <img src="/image/down.svg" alt="Dropdown Icon" className="dropdown-icon" />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div className="all-products">{renderAllProducts()}</div>
+        </>
+      )}
       {renderPagination()}
     </div>
   );
