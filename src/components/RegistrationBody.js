@@ -187,6 +187,7 @@ export function RegistrationBody() {
   }
 
   function handleRegistration() {
+    // 권한 테스트를 위한 임시 로직
     const headers = {
       Authorization: 99,
     };
