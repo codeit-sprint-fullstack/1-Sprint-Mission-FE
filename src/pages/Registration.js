@@ -5,6 +5,7 @@ import classNames from "classnames";
 import * as api from "../api.js";
 import { useNavigate } from "react-router-dom";
 import x_icon from "../image/ic_X.png";
+import { productModel } from "../models/productModel.js";
 
 function Chips({ tag, onClick, index }) {
   const handleBtn = (e) => {
@@ -44,13 +45,11 @@ function Registration() {
   );
 
   async function createProduct(values) {
-    const postData = {
-      ...values,
-      tag: chips,
-    };
+    const postvalues = productModel(values, chips);
+    console.log(postvalues);
 
     try {
-      const data = await api.createProductAxios(postData);
+      const data = await api.createProductAxios(postvalues);
       navigate("/detailProduct", { state: data });
     } catch (e) {
       console.log(e.name);
