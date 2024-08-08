@@ -70,13 +70,11 @@ function ItemsPage() {
 
   // 최신순 정렬(좋아요 순 정렬 제거)
   const sortedProducts = useMemo(() => {
-    return [...products].sort((a, b) => {
-      if (order === 'createdAt') {
-        return new Date(b.createdAt) - new Date(a.createdAt);
-      }
-      return 0;
-    });
-  }, [products, order]);
+    if (Array.isArray(products)) {
+      return [...products].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    }
+    return []; // products가 배열이 아닐 경우 빈 배열 반환
+  }, [products]);
 
   useEffect(() => {
     fetchProducts(currentPage); // 초기 로드 및 페이지 변경 시 로드
