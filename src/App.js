@@ -34,6 +34,14 @@ function App() {
             </div>
           }
         />
+        <Route
+          path="/product/:id"
+          element={
+            <div className="main-body">
+              <ProductDetail />
+            </div>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

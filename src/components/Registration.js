@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { postItem } from "../api.js";
 import "../styles/Registration.css";
+import { useNavigate } from "react-router-dom";
 
 function Registration() {
   const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ function Registration() {
     price: "",
     tags: [],
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -23,6 +26,7 @@ function Registration() {
     try {
       const data = await postItem(formData);
       console.log("post success", data);
+      navigate(`/items/${data.id}`);
     } catch (error) {
       console.log(error);
     }
