@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useValidateInput from "./hooks/useValidateInput";
 import axios from "axios";
 import { PRODUCT_API_ADDRESS } from "../utils/constants";
 import Button from "./Button";
@@ -17,20 +18,19 @@ const instance = axios.create({
 const PATH = "/products";
 
 const MAX_PRODUCT_NAME_LENGTH = 10;
+const WARN_MAX_PRODUCT_NAME_LENGTH = 410;
 const MIN_PRODUCT_NAME_LENGTH = 1;
+const WARN_MIN_PRODUCT_NAME_LENGTH = 401;
+const VALID_DATA = 0;
 const MAX_PRODUCT_DESCRIPTION_LENGTH = 100;
+const WARN_MAX_PRODUCT_DESCRIPTION_LENGTH = 500;
 const MIN_PRODUCT_DESCRIPTION_LENGTH = 10;
+const WARN_MIN_PRODUCT_DESCRIPTION_LENGTH = 410;
 const MAX_PRODUCT_TAG_LENGTH = 5;
+const WARN_NOT_NUMBER = 404;
+const WARN_MAX_PRODUCT_TAG_LENGTH = 404;
 const MAX_TAG_NUM = 5;
-
-let secondFrameName = false;
-let secondFrameDescription = false;
-let secondFramePrice = false;
-let secondFrameTag = false;
-
-let validName = false;
-let validDescription = false;
-let validPrice = false;
+const WARN_MAX_TAG_NUM = 405;
 
 const nameOriginClass =
   "Text-lg-line-height24 Regular main__registration-input-small";
@@ -49,99 +49,172 @@ const tagOriginClass =
 let tagClass = tagOriginClass;
 
 export function RegistrationBody() {
-  const [productName, setProductName] = useState("");
-  const [productDescription, setProductDescription] = useState("");
-  const [productPrice, setProductPrice] = useState(0);
-  const [productTag, setProductTag] = useState("");
   const [productTags, setProductTags] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  function validateName() {
-    const length = productName.toString().trim().length;
-
-    nameClass = `${nameOriginClass} input-invalid`;
-    validName = false;
+  function validateName(value) {
+    const length = value.length;
 
     if (length < MIN_PRODUCT_NAME_LENGTH) {
-      return (
-        <p className="input-invalid-warn Semibold">1자 이상 입력해주세요</p>
-      );
+      return WARN_MIN_PRODUCT_NAME_LENGTH;
     } else if (MAX_PRODUCT_NAME_LENGTH < length) {
-      return (
-        <p className="input-invalid-warn Semibold">10자 이내로 입력해주세요</p>
-      );
+      return WARN_MAX_PRODUCT_NAME_LENGTH;
     } else {
-      validName = true;
-      nameClass = `${nameOriginClass} input-valid`;
+      return VALID_DATA;
     }
   }
 
-  function validateDescription() {
-    const length = productDescription.toString().trim().length;
+  const name = useValidateInput(validateName);
 
-    descriptionClass = `${descriptionOriginClass} input-invalid`;
-    validDescription = false;
+  function invalidNameWarn() {
+    switch (name.isValid) {
+      case WARN_MIN_PRODUCT_NAME_LENGTH: {
+        nameClass = `${nameOriginClass} input-invalid`;
+        return (
+          <p className="input-invalid-warn Semibold">1자 이상 입력해주세요</p>
+        );
+      }
+      case WARN_MAX_PRODUCT_NAME_LENGTH: {
+        nameClass = `${nameOriginClass} input-invalid`;
+        return (
+          <p className="input-invalid-warn Semibold">
+            10자 이내로 입력해주세요
+          </p>
+        );
+      }
+      case VALID_DATA:
+      default: {
+        nameClass = `${nameOriginClass} input-valid`;
+        return undefined;
+      }
+    }
+  }
+
+  function validateDsecription(value) {
+    const length = value.length;
 
     if (length < MIN_PRODUCT_DESCRIPTION_LENGTH) {
-      return (
-        <p className="input-invalid-warn Semibold">10자 이상 입력해주세요</p>
-      );
+      return WARN_MIN_PRODUCT_DESCRIPTION_LENGTH;
     } else if (MAX_PRODUCT_DESCRIPTION_LENGTH < length) {
-      return (
-        <p className="input-invalid-warn Semibold">100자 이내로 입력해주세요</p>
-      );
+      return WARN_MAX_PRODUCT_DESCRIPTION_LENGTH;
     } else {
-      validDescription = true;
-      descriptionClass = `${descriptionOriginClass} input-valid`;
+      return VALID_DATA;
     }
   }
 
-  function validatePrice() {
-    const priceNum = isNaN(productPrice.toString().trim());
+  const description = useValidateInput(validateDsecription);
 
-    priceClass = `${priceOriginClass} input-invalid`;
-    validPrice = false;
-
-    if (priceNum) {
-      return <p className="input-invalid-warn Semibold">숫자로 입력해주세요</p>;
-    } else if (Number(productPrice) < 0) {
-      return (
-        <p className="input-invalid-warn Semibold">
-          0 이상 숫자로 입력해주세요
-        </p>
-      );
-    } else {
-      validPrice = true;
-      priceClass = `${priceOriginClass} input-valid`;
+  function invalidDescriptionWarn() {
+    switch (description.isValid) {
+      case WARN_MIN_PRODUCT_DESCRIPTION_LENGTH: {
+        descriptionClass = `${descriptionOriginClass} input-invalid`;
+        return (
+          <p className="input-invalid-warn Semibold">10자 이상 입력해주세요</p>
+        );
+      }
+      case WARN_MAX_PRODUCT_DESCRIPTION_LENGTH: {
+        descriptionClass = `${descriptionOriginClass} input-invalid`;
+        return (
+          <p className="input-invalid-warn Semibold">
+            100자 이내로 입력해주세요
+          </p>
+        );
+      }
+      case VALID_DATA:
+      default: {
+        descriptionClass = `${descriptionOriginClass} input-valid`;
+        return undefined;
+      }
     }
   }
 
-  function validateTag() {
-    const length = productTag.toString().trim().length;
+  function validatePrice(value) {
+    const dotCheck = value.endsWith(".");
+    const priceNum = Number(value);
+    const isNumber = Number.isInteger(priceNum);
 
-    tagClass = `${tagOriginClass} input-invalid`;
+    if (!isNumber || dotCheck) {
+      return WARN_NOT_NUMBER;
+    } else if (value < 0) {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
 
-    if (length > 0 && MAX_TAG_NUM <= productTags.length) {
-      return (
-        <p className="input-invalid-warn Semibold">
-          태그는 최대 5개까지 입력 가능합니다
-        </p>
-      );
+  const price = useValidateInput(validatePrice);
+
+  function invalidPriceWarn() {
+    switch (price.isValid) {
+      case WARN_NOT_NUMBER: {
+        priceClass = `${priceOriginClass} input-invalid`;
+        return (
+          <p className="input-invalid-warn Semibold">숫자로 입력해주세요</p>
+        );
+      }
+      case -1: {
+        priceClass = `${priceOriginClass} input-invalid`;
+        return (
+          <p className="input-invalid-warn Semibold">
+            0 이상 숫자로 입력해주세요
+          </p>
+        );
+      }
+      case 1:
+      default: {
+        priceClass = `${priceOriginClass} input-valid`;
+        return undefined;
+      }
+    }
+  }
+
+  function validateTag(value) {
+    const length = value.length;
+
+    if (0 < length && MAX_TAG_NUM <= productTags.length) {
+      return WARN_MAX_TAG_NUM;
     } else if (MAX_PRODUCT_TAG_LENGTH < length) {
-      return (
-        <p className="input-invalid-warn Semibold">5글자 이내로 입력해주세요</p>
-      );
+      return WARN_MAX_PRODUCT_TAG_LENGTH;
     } else {
-      tagClass = `${tagOriginClass} input-valid`;
+      return VALID_DATA;
+    }
+  }
+
+  const tag = useValidateInput(validateTag);
+
+  function invalidTagWarn() {
+    console.log("tag.isValid " + tag.isValid);
+    switch (tag.isValid) {
+      case WARN_MAX_TAG_NUM: {
+        tagClass = `${tagOriginClass} input-invalid`;
+        return (
+          <p className="input-invalid-warn Semibold">
+            태그는 최대 5개까지 입력 가능합니다
+          </p>
+        );
+      }
+      case WARN_MAX_PRODUCT_TAG_LENGTH: {
+        tagClass = `${tagOriginClass} input-invalid`;
+        return (
+          <p className="input-invalid-warn Semibold">
+            5글자 이내로 입력해주세요
+          </p>
+        );
+      }
+      case VALID_DATA:
+      default: {
+        tagClass = `${tagOriginClass} input-valid`;
+        return undefined;
+      }
     }
   }
 
   function validateReqData() {
     let btnRegistClass = "btn-registration-74-deactive";
 
-    if (validName && validDescription && validPrice) {
+    if (name.isValid && description.isValid && price.isValid) {
       btnRegistClass = "btn-registration-74-active";
       return <Button className={btnRegistClass} onClick={handleRegistration} />;
     } else {
@@ -149,29 +222,9 @@ export function RegistrationBody() {
     }
   }
 
-  function handleProductName(e) {
-    secondFrameName = true;
-    setProductName(e.target.value);
-  }
-
-  function handleProductDescription(e) {
-    secondFrameDescription = true;
-    setProductDescription(e.target.value);
-  }
-
-  function handleProductPrice(e) {
-    secondFramePrice = true;
-    setProductPrice(e.target.value);
-  }
-
-  function handelProductTag(e) {
-    secondFrameTag = true;
-    setProductTag(e.target.value);
-  }
-
   function submitProductTag(e) {
     e.preventDefault();
-    const newTag = productTag.toString().trim();
+    const newTag = tag.value;
 
     if (
       productTags.length < MAX_TAG_NUM &&
@@ -181,7 +234,7 @@ export function RegistrationBody() {
     ) {
       const newTags = [...productTags, newTag];
       setProductTags(newTags);
-      setProductTag("");
+      tag.setValue("");
     } else {
     }
   }
@@ -192,9 +245,9 @@ export function RegistrationBody() {
       Authorization: 99,
     };
     const body = {
-      name: productName,
-      description: productDescription,
-      price: productPrice,
+      name: name.value,
+      description: description.value,
+      price: price.value,
       tags: productTags,
       ownerId: 99,
     };
@@ -247,40 +300,43 @@ export function RegistrationBody() {
       <div className="margin-bottom24">
         <label className="main__registration-label Bold">상품명</label>
         <input
-          onChange={handleProductName}
+          onChange={name.onChange}
           className={nameClass}
+          value={name.value}
           placeholder="상품명의 입력해주세요"
         ></input>
-        {secondFrameName ? validateName() : undefined}
+        {invalidNameWarn()}
       </div>
       <div className="margin-bottom24">
         <label className="main__registration-label Bold">상품 소개</label>
         <textarea
-          onChange={handleProductDescription}
+          onChange={description.onChange}
           className={descriptionClass}
+          value={description.value}
           placeholder="상품 소개를 입력해주세요"
         ></textarea>
-        {secondFrameDescription ? validateDescription() : undefined}
+        {invalidDescriptionWarn()}
       </div>
       <div className="margin-bottom24">
         <label className="main__registration-label Bold">판매가격</label>
         <input
-          onChange={handleProductPrice}
+          onChange={price.onChange}
           className={priceClass}
+          value={price.value}
           placeholder="판매 가격을 입력해주세요"
         ></input>
-        {secondFramePrice ? validatePrice() : undefined}
+        {invalidPriceWarn()}
       </div>
       <div>
         <form className="margin-bottom12" onSubmit={submitProductTag}>
           <label className="main__registration-label Bold">태그</label>
           <input
-            onChange={handelProductTag}
-            value={productTag}
+            onChange={tag.onChange}
             className={tagClass}
+            value={tag.value}
             placeholder="태그를 입력해주세요"
           ></input>
-          {secondFrameTag ? validateTag() : undefined}
+          {invalidTagWarn()}
         </form>
         {showTags()}
       </div>
