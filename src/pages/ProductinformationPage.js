@@ -1,8 +1,10 @@
 import React from 'react';
+import ItemsPageHeader from '../components/ItemsPageHeader';
 
 function ProductInformationPage() {
   return (
-      <h1>상품 상세정보 페이지</h1>
+    <><ItemsPageHeader />
+    <h1>상품 상세정보 페이지</h1></>
   );
 }
 
