@@ -4,6 +4,7 @@ import axios from "axios";
 import { PRODUCT_API_ADDRESS } from "../utils/constants";
 import Button from "./Button";
 import Tag from "./Tag";
+import Loading from "./Loading";
 import "../assets/styles/registration.css";
 
 const instance = axios.create({
@@ -53,6 +54,7 @@ export function RegistrationBody() {
   const [productPrice, setProductPrice] = useState(0);
   const [productTag, setProductTag] = useState("");
   const [productTags, setProductTags] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -185,22 +187,31 @@ export function RegistrationBody() {
   }
 
   function handleRegistration() {
+    const headers = {
+      Authorization: 99,
+    };
     const body = {
       name: productName,
       description: productDescription,
       price: productPrice,
       tags: productTags,
+      ownerId: 99,
     };
 
+    setLoading(true);
+
     instance
-      .post(PATH, body)
+      .post(PATH, body, { headers })
       .then((res) => {
-        console.log(res);
+        setLoading(false);
         const productId = res.data._id;
         const productPath = `/item/${productId}`;
         navigate(productPath);
       })
-      .catch((err) => console.log(err.name));
+      .catch((err) => {
+        console.log(err.name);
+        setLoading(false);
+      });
   }
 
   function deleteTag(tag) {
@@ -223,10 +234,9 @@ export function RegistrationBody() {
 
   function doNothing() {}
 
-  useEffect(() => {}, [productTag]);
-
   return (
     <main className="main-frame-registration">
+      {loading ? <Loading /> : undefined}
       <div className="main__section-registration">
         <div className="flex-row main__registration-top-bar">
           <p className="Text-xl Bold main__registration-text">상품 등록하기</p>
