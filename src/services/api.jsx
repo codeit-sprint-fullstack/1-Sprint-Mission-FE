@@ -20,3 +20,12 @@ export async function getProducts({
     throw error;
   }
 }
+
+export async function postProduct(formData) {
+  try {
+    const res = await instance.post('/api/products', formData);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+}

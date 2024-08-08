@@ -1,4 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
+
 import { getProducts } from '../../services/api';
 import SearchBar from '../SearchBar/SearchBar';
 import DropDown from '../DropDown/DropDown';
@@ -75,7 +77,9 @@ export default function ProductSection({
           setSearchValue={setSearchValue}
           onChange={handleSearchChange}
         />
-        <button className='add-product-btn'>상품 등록하기</button>
+        <Link to='/registration'>
+          <button className='add-product-btn'>상품 등록하기</button>
+        </Link>
         <DropDown orderBy={orderBy} setOrderBy={setOrderBy} />
       </div>
       <ProductList products={filteredProducts} />

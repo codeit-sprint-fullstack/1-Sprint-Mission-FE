@@ -24,7 +24,7 @@ export default function ProductList({ products }) {
     <ul className='ProductList'>
       {products.map((product) => {
         return (
-          <li key={product.id}>
+          <li key={product._id}>
             <ProductCard product={product} />
           </li>
         );
