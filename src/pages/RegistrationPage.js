@@ -80,7 +80,7 @@ function RegistrationPage() {
 
   // 버튼 활성화 상태 결정 함수
   const isFormValid = () => {
-    return Object.keys(errors).length === 0 && values.name && values.description && values.price && tags.length > 0;
+    return Object.keys(errors).length === 0 && values.name && values.description && values.price > 0;
   };
 
   return (
