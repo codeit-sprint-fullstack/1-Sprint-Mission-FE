@@ -8,7 +8,12 @@
     width: 221px;
     height: 221px;
     border-radius: 8px;
-    object-fit: cover; /* 이미지를 고정된 크기에 맞게 자르기 */
+    object-fit: cover;
+}
+
+.product-image.default-size {
+    width: 220px;
+    height: 220px;
 }
 
 .best-product-image {
@@ -88,10 +93,15 @@
     }
 
     .product-image {
-        width: 180px;
-        height: 180px;
+        width: 168px;
+        height: 168px;
         border-radius: 8px;
         margin-bottom: 5px;
+    }
+
+    .product-image.default-size {
+        width: 168px;
+        height: 168px;
     }
 
     .all-products {
@@ -100,3 +110,4 @@
         row-gap: 3px;
     }
 }
+
