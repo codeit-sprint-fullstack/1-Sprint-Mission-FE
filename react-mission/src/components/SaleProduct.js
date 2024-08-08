@@ -7,14 +7,14 @@ import ProductCard from "./ProductCard";
 import SearchForm from "./SearchForm";
 import Registration from "./Registration";
 import OrderChange from "./OrderChange";
-import api  from "../api/api";
+import { getApi }  from "../api/api";
 import searchIcon from "./img/searchIcon.png";
 import useAsync from "./hook/useAsync";
 import { NavLink } from "react-router-dom";
 
 function SaleProduct() {
   const [items, setItems] = useState([]);
-  const [logingError, logingErrorTag, apiAsync] = useAsync(api);
+  const [logingError, logingErrorTag, apiAsync] = useAsync(getApi);
   const [order, setOrder] = useState("recent");
   const [orderName, setOrderName] = useState("최신순");
   const [search, setSeaerch] = useState("");
@@ -40,7 +40,7 @@ function SaleProduct() {
 
   //첫 랜더링 시 실행
   useEffect(() => {
-    //api 호출
+    //getApi 호출
     const handleItemList = async (params) => {
       const result = await apiAsync(params);
 

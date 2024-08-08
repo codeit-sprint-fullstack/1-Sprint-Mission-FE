@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const getLinkStyle = ({isActive}) => {
     return {
-        color: isActive? '#3692FF': '',
+        color: isActive? '#3692FF': '#4b5563',
         textDecoration: 'none'
     }
 }

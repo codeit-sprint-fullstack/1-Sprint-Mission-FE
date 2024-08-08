@@ -58,11 +58,23 @@
     color: #1F2937;
 }
 
+.validConditionsContaner{
+    width: 1200px;
+    height: auto;
+}
+
+.validConditions{
+    margin: 8px 0 0 16px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 17.9px;
+    color: #F74747;
+}
+
 .productInput{
     width: 1200px;
     height: 56px;
     border-radius: 12px;
-    border: none;
     padding: 16px 24px 16px 24px;
     background-color: #F3F4F6;
     font-size: 16px;
@@ -71,10 +83,21 @@
     color: #9CA3AF;
 }
 
+.borderNone{
+    border: none;
+}
+
+.borderError{
+    border: 1px solid #F74747;
+}
+
 #registrationIntroduction{
     height: 315px;
 }
 
 #productIntroduction{
-    height: 282px;
+    max-width: 1200px;
+    min-width: 1200px;
+    max-height: 282px;
+    min-height: 282px;
 }
