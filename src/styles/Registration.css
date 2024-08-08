@@ -22,8 +22,8 @@
   flex-direction: column;
   margin-top: 2.4rem;
 }
-input,
-textarea {
+.product-name input,
+.product-name textarea {
   background-color: var(--gray100);
   border: none;
   border-radius: 1.2rem;
