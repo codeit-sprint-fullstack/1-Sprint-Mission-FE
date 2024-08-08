@@ -1,5 +1,5 @@
 import "./RegistrationForm.css";
-// import { postApi } from "../api/api";
+import { postApi } from "../api/api";
 import { useState } from "react";
 import useRegistationBlur from "./hook/useRegistationBlur";
 import tegDeleteImg from "./img/tagDeleteImg.png";
@@ -7,9 +7,9 @@ import tegDeleteImg from "./img/tagDeleteImg.png";
 function RegistrationForm() {
   const [values, setValues] = useState({
     name: "",
-    introduction: "",
+    description: "",
     price: "",
-    tag: "",
+    tags: "",
   });
   const [tagArray, setTageArray] = useState([]);
   const [conditionError, inputClassName, handleBlurTrue, handleBlurFalse] =
@@ -35,11 +35,11 @@ function RegistrationForm() {
       } else if (conditionError.name && value.length <= 10) {
         handleBlurTrue(name);
       }
-      //target이 introduction일때
-    } else if (name === "introduction" && e.key !== 'Tab') {
+      //target이 description일때
+    } else if (name === "description" && e.key !== "Tab") {
       if (value.length < 10) {
         handleBlurFalse(name);
-      } else if (conditionError.introduction && value.length >= 10) {
+      } else if (conditionError.description && value.length >= 10) {
         handleBlurTrue(name);
       }
       //target이 price일때
@@ -53,10 +53,10 @@ function RegistrationForm() {
         handleBlurTrue(name);
       }
       //target이 tag일때
-    } else if (name === "tag") {
+    } else if (name === "tags") {
       if (value.length > 5) {
         handleBlurFalse(name);
-      } else if (conditionError.tag && value.length <= 5) {
+      } else if (conditionError.tags && value.length <= 5) {
         handleBlurTrue(name);
       }
     }
@@ -69,7 +69,7 @@ function RegistrationForm() {
 
   // Enter 누를시 tag 추가
   const handleAddTagArray = (e) => {
-    const tag = values.tag;
+    const tag = values.tags;
 
     // 태그 중복 방지
     const noDuplication = tagArray.find((findTag) => findTag === tag);
@@ -78,7 +78,7 @@ function RegistrationForm() {
       setTageArray((preTagArray) => [...preTagArray, tag]);
       setValues((preValues) => ({
         ...preValues,
-        tag: "",
+        tags: "",
       }));
     }
   };
@@ -94,15 +94,15 @@ function RegistrationForm() {
 
   //버튼 활성화 함수
   const activateButton = () => {
-    const { name, introduction, price, tag } = values;
+    const { name, description, price, tags } = values;
     if (
       name.length > 0 &&
       name.length <= 10 &&
-      introduction.length >= 10 &&
-      introduction.length <= 100 &&
+      description.length >= 10 &&
+      description.length <= 100 &&
       price.length >= 1 &&
       price >= 0 &&
-      (tag.length <= 5 || (tagArray && tag.length <= 5))
+      (tags.length <= 5 || (tagArray && tags.length <= 5))
     ) {
       setButtonClass("productRegistrationButtonAtivate");
     } else {
@@ -110,16 +110,30 @@ function RegistrationForm() {
     }
   };
 
+  //keyUp시 실행할 함수
   const handleKeyUp = (e) => {
     handleBlur(e);
     activateButton();
+  };
+
+  const handlePost = async () => {
+    if (buttonClass === "productRegistrationButtonAtivate") {
+      const newTags = [...tagArray, values.tags];
+      const surveyData = {
+        ...values,
+        tags: newTags,
+      };
+      await postApi(surveyData);
+    }
   };
 
   return (
     <form className="RegistrationFormContaner" onSubmit={handleNoSubmit}>
       <div className="productRegistration">
         <p className="productRegistrationLabel">상품 등록하기</p>
-        <button className={buttonClass}>등록</button>
+        <button className={buttonClass} onClick={handlePost}>
+          등록
+        </button>
       </div>
       <div id="registrationName" className="Registrationbox">
         <label htmlFor="productName" className="RegistrationLabel">
@@ -140,21 +154,21 @@ function RegistrationForm() {
           <p className="validConditions">10자 이내로 입력해주세요</p>
         </div>
       )}
-      <div id="registrationIntroduction" className="Registrationbox">
-        <label htmlFor="productIntroduction" className="RegistrationLabel">
+      <div id="registrationDescription" className="Registrationbox">
+        <label htmlFor="productDescription" className="RegistrationLabel">
           상품 소개
         </label>
         <textarea
-          name="introduction"
-          value={values.introduction}
-          id="productIntroduction"
-          className={inputClassName.introduction}
+          name="description"
+          value={values.description}
+          id="productDescription"
+          className={inputClassName.description}
           placeholder="상품 소개를 입력해주세요"
           onChange={handleChange}
           onKeyUp={handleKeyUp}
         />
       </div>
-      {conditionError.introduction && (
+      {conditionError.description && (
         <div className="validConditionsContaner">
           <p className="validConditions">10자 이상 입력해주세요</p>
         </div>
@@ -183,10 +197,10 @@ function RegistrationForm() {
           태그
         </label>
         <input
-          name="tag"
-          value={values.tag}
+          name="tags"
+          value={values.tags}
           id="productTag"
-          className={inputClassName.tag}
+          className={inputClassName.tags}
           placeholder="태그를 입력해주세요"
           onChange={handleChange}
           onKeyUp={handleKeyUp}
@@ -199,10 +213,10 @@ function RegistrationForm() {
         </div>
       )}
       <ol>
-        {tagArray.map((tags) => {
+        {tagArray.map((tagText) => {
           return (
             <li>
-              {`#${tags}`}
+              {`#${tagText}`}
               <img
                 src={tegDeleteImg}
                 alt="X버튼"

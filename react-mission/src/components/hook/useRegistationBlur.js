@@ -4,15 +4,15 @@ function useRegistationBlur() {
 
   const [conditionError, setConditionError] = useState({
     name: false,
-    introduction: false,
+    description: false,
     price: false,
-    tag: false,
+    tags: false,
   });
   const [inputClassName, setInputClassName] = useState({
     name: "productInput borderNone",
-    introduction: "productInput borderNone",
+    description: "productInput borderNone",
     price: "productInput borderNone",
-    tag: "productInput borderNone",
+    tags: "productInput borderNone",
   });
 
   const handleBlurFalse = (eventName) => {

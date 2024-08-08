@@ -91,11 +91,11 @@
     border: 1px solid #F74747;
 }
 
-#registrationIntroduction{
+#registrationDescription{
     height: 315px;
 }
 
-#productIntroduction{
+#productDescription{
     max-width: 1200px;
     min-width: 1200px;
     max-height: 282px;
