@@ -22,8 +22,8 @@
   flex-direction: column;
   margin-top: 2.4rem;
 }
-.product-name input,
-.product-name textarea {
+.registration-form input,
+.registration-form textarea {
   background-color: var(--gray100);
   border: none;
   border-radius: 1.2rem;
