@@ -1,0 +1,17 @@
+.ItemForm {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ItemForm-img {
+  width: 221px;
+  height: 221px;
+  border-radius: 16px;
+  margin-bottom: 10px;
+}
+
+.like {
+  display: flex;
+  gap: 4px;
+}

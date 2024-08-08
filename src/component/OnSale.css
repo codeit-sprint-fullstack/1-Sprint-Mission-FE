@@ -10,24 +10,6 @@ h1 {
   grid-template-rows: repeat(2, 1fr);
 }
 
-.OnSaleItem {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.OnSaleItem-img {
-  width: 221px;
-  height: 221px;
-  border-radius: 16px;
-  margin-bottom: 10px;
-}
-
-.like {
-  display: flex;
-  gap: 4px;
-}
-
 .OnSaleHeader {
   display: flex;
   gap: 12px;

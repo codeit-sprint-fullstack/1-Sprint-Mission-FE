@@ -1,24 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Best.css";
 import { getProducts } from "../api";
-
-function BestItem({ item }) {
-  const thousandPrice = item.price
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-  return (
-    <div className="BestItem">
-      <img className="BestItem-img" src={item.images} alt={item.name} />
-      <p>{item.name}</p>
-      <h1>{thousandPrice}원</h1>
-      <div className="like">
-        <p>♡</p>
-        <p>{item.favoriteCount}</p>
-      </div>
-    </div>
-  );
-}
+import ItemForm from "./ItemForm";
 
 function Best() {
   const [items, setItems] = useState([]);
@@ -29,16 +12,16 @@ function Best() {
     const handleResize = () => {
       const width = window.innerWidth;
       if (width <= 743) {
-        setPageSize(1);   // mobile view
+        setPageSize(1); // mobile view
       } else if (width <= 1199) {
-        setPageSize(2);   // tablet view
+        setPageSize(2); // tablet view
       } else {
-        setPageSize(4);  // desktop view
+        setPageSize(4); // desktop view
       }
-    }  
-    window.addEventListener('resize', handleResize);
+    };
+    window.addEventListener("resize", handleResize);
     handleResize();
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const sortedItems = items.toSorted(
@@ -61,7 +44,7 @@ function Best() {
         {sortedItems.map((item) => {
           return (
             <li key={item.id}>
-              <BestItem item={item} />
+              <ItemForm item={item} />
             </li>
           );
         })}

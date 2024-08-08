@@ -8,24 +8,6 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
-.BestItem {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.BestItem-img {
-  width: 282px;
-  height: 282px;
-  border-radius: 16px;
-  margin-bottom: 10px;
-}
-
-.like {
-  display: flex;
-  gap: 4px;
-}
-
 /* Tablet view */
 @media (min-width: 744px) and (max-width: 1199px) {
   .Best-list {
