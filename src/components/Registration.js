@@ -7,7 +7,7 @@ function Registration() {
       <form className="registration-form">
         <div className="register-title-container">
           <h2 className="register-title text-xl bold">상품 등록하기</h2>
-          <button className="register" type="submit">
+          <button className="register text-lg semibold" type="submit">
             등록
           </button>
         </div>

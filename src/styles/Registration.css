@@ -4,10 +4,20 @@
 .register-title-container {
   display: flex;
   justify-content: space-between;
+  margin-top: 2.4rem;
+}
+.register {
+  width: 7.4rem;
+  height: 4.2rem;
+  background-color: var(--gray400);
+  color: var(--white);
+  border: none;
+  border-radius: 0.8rem;
 }
 .input {
   display: flex;
   flex-direction: column;
+  margin-top: 2.4rem;
 }
 input,
 textarea {
@@ -15,10 +25,20 @@ textarea {
   border: none;
   border-radius: 1.2rem;
   text-indent: 2.4rem;
+  margin-top: 1.2rem;
 }
 input {
   height: 5.6rem;
 }
 textarea {
   height: 28.2rem;
+}
+.input input::placeholder,
+.input textarea::placeholder {
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.input textarea::placeholder {
+  padding-top: 1.6rem;
 }
