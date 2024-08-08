@@ -10,6 +10,7 @@ function Registration() {
     price: "",
     tags: [],
   });
+  const [tagData, setTagData] = useState("");
 
   const navigate = useNavigate();
 
@@ -19,6 +20,21 @@ function Registration() {
       ...prevData,
       [id.replace("product-", "")]: value, // 인풋 id의 "product-"를 제거
     }));
+  };
+
+  const handleTagChange = (e) => {
+    setTagData(e.target.value);
+  };
+
+  const handleEnterTag = (e) => {
+    if (e.key === "Enter" && tagData !== "") {
+      e.preventDefault();
+      setFormData((prevData) => ({
+        ...prevData,
+        tags: [...prevData.tags, tagData],
+      }));
+      setTagData("");
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -84,8 +100,17 @@ function Registration() {
             type="text"
             id="product-tag"
             placeholder="태그를 입력해주세요"
+            value={tagData}
+            onChange={handleTagChange}
+            onKeyDown={handleEnterTag}
           />
-          <div className="tag-box">#태그1</div>
+          <div className="tag-box">
+            {formData.tags.map((tag, index) => (
+              <span key={index} className="tag-item text-lg regular">
+                #{tag}
+              </span>
+            ))}
+          </div>
         </div>
       </form>
     </div>

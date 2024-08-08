@@ -43,3 +43,14 @@ textarea {
   font-size: 1.6rem;
   font-weight: 400;
 }
+.tag-box {
+  margin-top: 1.2rem;
+  display: flex;
+  gap: 1.2rem;
+}
+.tag-item {
+  background-color: var(--gray100);
+  border: none;
+  border-radius: 1.2rem;
+  text-indent: 2.4rem;
+}
