@@ -47,6 +47,15 @@
         padding: 0 40px;
     }
 
+    .navbar.registration-page {
+        padding-left: 20px;
+        width: 100%;
+    }
+
+    .login-button {
+        transform: translateX(-5px) !important;
+    }
+
     .panda {
         margin-left: 0;
         margin-right: 20px;
@@ -95,5 +104,21 @@
         margin-left: auto;
         margin-right: 40px;
     }
+}
+
+.login-button {
+    width: 88px;
+    height: 42px;
+    padding: 12px 23px;
+    background-color: #3692FF;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19.09px;
+    color: #F3F4F6;
+    cursor: pointer;
+    transform: translateX(20px);
 }
 
