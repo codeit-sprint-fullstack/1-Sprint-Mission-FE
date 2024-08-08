@@ -49,6 +49,7 @@ textarea {
   gap: 1.2rem;
 }
 .tag-item {
+  padding: 0.6rem 1.2rem;
   background-color: var(--gray100);
   border: none;
   border-radius: 1.2rem;
