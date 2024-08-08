@@ -40,11 +40,18 @@ header {
   display: none;
 }
 
-#profileIc {
-  width: 40px;
-  height: 40px;
+#login-btn {
+  color: #ffffff;
+  background-color: #3692ff;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  width: 88px;
+  height: 42px;
+  border-radius: 8px;
   margin-left: auto;
-  margin-top: 15px;
+  margin-top: 14px;
 }
 
 .margin-right {
@@ -66,6 +73,11 @@ header {
 }
 
 @media (max-width: 743px) {
+  .nav-text {
+    font-size: 16px;
+    margin-right: 8px;
+  }
+
   .margin-right {
     margin-right: 16px;
   }

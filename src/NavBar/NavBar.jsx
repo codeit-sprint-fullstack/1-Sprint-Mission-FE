@@ -23,12 +23,9 @@ export default function NavBar() {
       >
         중고마켓
       </Link>
-      <img
-        id="profileIc"
-        className="margin-right"
-        src={profileIcon}
-        alt="profileIc"
-      />
+      <button id="login-btn" className="margin-right" type="button">
+        로그인
+      </button>
     </nav>
   );
 }
