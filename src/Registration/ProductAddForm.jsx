@@ -3,37 +3,10 @@ import "./ProductAddForm.css";
 import { useValidation } from "../common/useValidation";
 
 function ProductAddForm({ onFormChange, onFormValuesChange }) {
-  const initialState = {
-    productName: "",
-    productIntro: "",
-    productPrice: "",
-    productTag: "",
-  };
-
-  const validations = {
-    productName: {
-      required: true,
-      minLength: 1,
-      maxLength: 10,
-    },
-    productIntro: {
-      required: true,
-      minLength: 10,
-      maxLength: 100,
-    },
-    productPrice: {
-      required: true,
-      pattern: /^[0-9]+$/,
-    },
-    productTag: {
-      maxLength: 5,
-    },
-  };
-
   const { values, errors, handleChange, handleSubmit, setValues } =
-    useValidation(initialState, validations);
+    useValidation();
   const [tags, setTags] = useState([]);
-  const [isComposing, setIsComposing] = useState(false); // 한글 입력 조합 상태
+  const [isComposing, setIsComposing] = useState(false); // 한글 입력 조합
 
   useEffect(() => {
     const isFormValid =

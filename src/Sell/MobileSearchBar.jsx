@@ -9,7 +9,7 @@ export function MobileSearchBar({
   sortOrder,
   onSortChange,
 }) {
-  const navigate = useNavigate(); // useNavigate 훅 사용
+  const navigate = useNavigate();
 
   const handleRegistration = () => {
     navigate("/registration");

@@ -1,6 +1,33 @@
 import { useState } from "react";
 
-export function useValidation(initialState, validations) {
+export function useValidation() {
+  const initialState = {
+    productName: "",
+    productIntro: "",
+    productPrice: "",
+    productTag: "",
+  };
+
+  const validations = {
+    productName: {
+      required: true,
+      minLength: 1,
+      maxLength: 10,
+    },
+    productIntro: {
+      required: true,
+      minLength: 10,
+      maxLength: 100,
+    },
+    productPrice: {
+      required: true,
+      pattern: /^[0-9]+$/,
+    },
+    productTag: {
+      maxLength: 5,
+    },
+  };
+
   const [values, setValues] = useState(initialState);
   const [errors, setErrors] = useState({});
 
@@ -53,6 +80,6 @@ export function useValidation(initialState, validations) {
     errors,
     handleChange,
     handleSubmit,
-    setValues, // Add setValues to the returned object
+    setValues,
   };
 }
