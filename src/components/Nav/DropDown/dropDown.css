@@ -31,7 +31,7 @@
 .dropDownBox {
   position: absolute;
   z-index: 1;
-  top: 50px;
+  margin-top: 8px;
   background-color: white;
   width: 130px;
   height: 84px;

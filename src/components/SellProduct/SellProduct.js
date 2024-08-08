@@ -14,7 +14,6 @@ function SellProduct({ currentPage, orderBy, searchQuery, setTotalCount }) {
       setData(products);
       const count = await getTotalCount(searchQuery);
       setTotalCount(count);
-      console.log(count);
     }
     fetchData();
   }, [currentPage, orderBy, searchQuery, setTotalCount, pageSize]);

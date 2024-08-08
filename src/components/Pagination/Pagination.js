@@ -2,16 +2,18 @@ import prevPageBtn from '../../assets/images/btn_left.png';
 import nextPageBtn from '../../assets/images/btn_right.png';
 import './pagination.css';
 import { useState, useEffect } from 'react';
+import usePageSize from '../../hook/usePageSize';
 
-function Pagination({ currentPage, setCurrentPage, totalCount }) {
+function Pagination({ currentPage, setCurrentPage, totalCount, className }) {
   const [totalPage, setTotalPage] = useState([]);
+  const listPerPage = usePageSize(10, 6, 4);
 
   useEffect(() => {
-    const listPerPage = 10;
     const pages = Math.ceil(totalCount / listPerPage);
     const array = Array.from({ length: pages }, (value, i) => i + 1);
     setTotalPage(array);
-  }, [totalCount]);
+    setCurrentPage(1);
+  }, [totalCount, listPerPage, setCurrentPage]);
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPage.length));
@@ -35,8 +37,10 @@ function Pagination({ currentPage, setCurrentPage, totalCount }) {
     }
   };
 
+  const paginationClass = className ? `${className} Pagination` : 'paginationContainer';
+
   return (
-    <div className="paginationContainer">
+    <div className={paginationClass}>
       <img className="prevBtn" src={prevPageBtn} alt="prevBtn" onClick={handlePrevPage} />
       {getPageNumbers().map((page) => (
         <span key={page} className={`pageBtn ${page === currentPage ? 'activeBtn' : ''}`} onClick={() => handlePageClick(page)}>

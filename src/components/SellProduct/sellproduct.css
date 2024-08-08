@@ -19,11 +19,10 @@
 .sellProductLayout {
   width: 1200px;
   height: 674px;
-  position: relative;
-  top: 179px;
+  justify-content: center;
   gap: 40px 24px;
   display: grid;
-  margin: 0 auto;
+  margin: 24px auto 0;
   grid-template:
     repeat(2, 1fr) /
     repeat(5, 1fr);

@@ -6,8 +6,23 @@ footer {
   background-color: var(--grey-900);
   width: 100%;
   position: relative;
-  top: 280px;
 }
+
+.registerFooter {
+  top: 1233px;
+  position: absolute;
+}
+
+.appFooter {
+  top: 1441px;
+  position: absolute;
+}
+
+.itemsFooter {
+  top: 1080px;
+  position: absolute;
+}
+
 .footerContainer {
   display: flex;
   justify-content: space-between;
@@ -47,9 +62,28 @@ footer {
   footer {
     padding: 2rem 24px 109px;
   }
+
+  .itemsFooter {
+    top: 1014px;
+    position: absolute;
+  }
+
+  .registerFooter {
+    top: 1122px;
+    position: absolute;
+  }
 }
 
 @media (max-width: 743px) {
+  footer {
+    padding: 2rem 24px 109px;
+  }
+
+  .itemsFooter {
+    top: 876px;
+    position: absolute;
+  }
+
   .footerContainer {
     display: grid;
     grid-template-areas:
