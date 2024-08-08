@@ -43,7 +43,7 @@ function Best() {
       <ul className="Best-list">
         {sortedItems.map((item) => {
           return (
-            <li key={item.id}>
+            <li key={item._id}>
               <ItemForm item={item} />
             </li>
           );

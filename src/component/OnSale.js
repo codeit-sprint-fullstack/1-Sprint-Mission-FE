@@ -109,7 +109,7 @@ function OnSale() {
       <ul className="OnSale-list">
         {(userInput ? filterItems : sortedItems).map((item) => {
           return (
-            <li key={item.id}>
+            <li key={item._id}>
               <ItemForm item={item} />
             </li>
           );
