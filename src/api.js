@@ -1,4 +1,4 @@
-const BASE_URL = "https://panda-market-api.vercel.app/products";
+const BASE_URL = "https://product-api-shiu.onrender.com/products";
 
 export async function getProducts({
   page = 1,
