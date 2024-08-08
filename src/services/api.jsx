@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://panda-market-api.vercel.app',
-  header: { 'Content-type': 'application/json' },
+  baseURL: 'https://one-sprint-mission-be-hu1k.onrender.com',
+  headers: { 'Content-type': 'application/json' },
 });
 
 export async function getProducts({
@@ -12,7 +12,7 @@ export async function getProducts({
   keyword = '',
 }) {
   try {
-    const res = await instance.get('/products', {
+    const res = await instance.get('/api/products', {
       params: { page, pageSize, orderBy, keyword },
     });
     return res.data;

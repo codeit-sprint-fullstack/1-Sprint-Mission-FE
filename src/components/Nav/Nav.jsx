@@ -10,7 +10,7 @@ function Nav() {
           <Link to={'/forums'}>자유게시판</Link>
         </li>
         <li>
-          <Link to={'/'}>중고마켓</Link>
+          <Link to={'/items'}>중고마켓</Link>
         </li>
       </ul>
     </nav>

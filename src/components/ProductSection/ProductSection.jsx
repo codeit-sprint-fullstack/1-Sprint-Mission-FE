@@ -7,14 +7,18 @@ import Pagination from '../Pagination/Pagination';
 
 import './ProductSection.css';
 
-export default function ProductSection({ className, tabletSize, mobileSize }) {
+export default function ProductSection({
+  className,
+  isTabletSize,
+  isMobileSize,
+}) {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [orderBy, setOrderBy] = useState('recent');
   const [pageSize, setPageSize] = useState(() => {
-    if (mobileSize) return 4;
-    else if (tabletSize) return 6;
+    if (isMobileSize) return 4;
+    else if (isTabletSize) return 6;
     return 10;
   });
   const [page, setPage] = useState(1);
@@ -53,10 +57,10 @@ export default function ProductSection({ className, tabletSize, mobileSize }) {
   };
 
   useEffect(() => {
-    if (mobileSize) setPageSize(4);
-    else if (tabletSize) setPageSize(6);
+    if (isMobileSize) setPageSize(4);
+    else if (isTabletSize) setPageSize(6);
     else setPageSize(10);
-  }, [mobileSize, tabletSize]);
+  }, [isMobileSize, isTabletSize]);
 
   useEffect(() => {
     init();

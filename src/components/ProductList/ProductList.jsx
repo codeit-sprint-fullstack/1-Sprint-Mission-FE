@@ -1,8 +1,9 @@
 import heartIcon from '../../assets/ic_heart.svg';
+import defaultImg from '../../assets/img_default.svg';
 import './ProductList.css';
 
 function ProductCard({ product }) {
-  const imgUrl = product?.images?.[0] || 'default-image-url';
+  const imgUrl = product?.images?.[0] || defaultImg;
   return (
     <div className='ProductCard'>
       <img src={imgUrl} alt={product.name} className='card-image' />
@@ -20,16 +21,14 @@ function ProductCard({ product }) {
 
 export default function ProductList({ products }) {
   return (
-    <>
-      <ul className='ProductList'>
-        {products.map((product) => {
-          return (
-            <li key={product.id}>
-              <ProductCard product={product} />
-            </li>
-          );
-        })}
-      </ul>
-    </>
+    <ul className='ProductList'>
+      {products.map((product) => {
+        return (
+          <li key={product.id}>
+            <ProductCard product={product} />
+          </li>
+        );
+      })}
+    </ul>
   );
 }

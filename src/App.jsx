@@ -9,8 +9,8 @@ function App() {
       <Header />
       <Routes>
         <Route path='/forums' element={<TempForums />} />
-        <Route path='/' element={<ProductPage />} />
-        <Route path='/home' element={<TempHome />} />
+        <Route path='/items' element={<ProductPage />} />
+        <Route path='/' element={<TempHome />} />
       </Routes>
     </BrowserRouter>
   );
