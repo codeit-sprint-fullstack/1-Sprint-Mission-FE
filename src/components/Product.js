@@ -1,5 +1,4 @@
 import React from "react";
-import heartFullImage from "../images/favoriteFullHeart-small.png";
 import heartEmptyImage from "../images/favoriteEmptyHeart-small.png";
 import defaultPanda from "../images/panda_image.png";
 import "../styles/Product.css";
