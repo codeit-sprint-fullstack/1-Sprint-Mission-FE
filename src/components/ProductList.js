@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import './ProductList.css';
 import useScreenType from '../hooks/useScreenType';
@@ -10,6 +11,7 @@ const ProductList = () => {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const totalPages = 5;
+  const navigate = useNavigate();
 
   const screenType = useScreenType();
 
@@ -93,7 +95,7 @@ const ProductList = () => {
         {screenType === 'mobile' && (
           <div className="title-register-row">
             <h2 className="section-title">판매 중인 상품</h2>
-            <button className="register-button">상품 등록하기</button>
+            <button className="register-button" onClick={() => navigate('/registration')}>상품 등록하기</button>
           </div>
         )}
         <form onSubmit={handleSearchSubmit} className="product-controls">
@@ -108,7 +110,7 @@ const ProductList = () => {
                   onChange={(e) => setProductSearch(e.target.value)}
                 />
               </div>
-              <button className="register-button">상품 등록하기</button>
+              <button className="register-button" type="button" onClick={() => navigate('/registration')}>상품 등록하기</button>
             </>
           )}
           <div className={`search-sort-row ${screenType === 'mobile' ? 'mobile-row' : ''}`}>
