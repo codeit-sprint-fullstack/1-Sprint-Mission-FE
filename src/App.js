@@ -36,7 +36,7 @@ function App() {
           }
         />
         <Route
-          path="/product/:id"
+          path="/items/detail"
           element={
             <div className="main-body">
               <ProductDetail />

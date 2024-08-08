@@ -26,7 +26,7 @@ function Registration() {
     try {
       const data = await postItem(formData);
       console.log("post success", data);
-      navigate(`/items/${data.id}`);
+      navigate(`/items/detail`);
     } catch (error) {
       console.log(error);
     }
