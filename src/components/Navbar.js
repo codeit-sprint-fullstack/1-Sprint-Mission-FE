@@ -23,8 +23,10 @@ const Navbar = () => {
     };
   }, []);
 
+  const navbarClass = location.pathname === '/registration' ? 'navbar registration-page' : 'navbar';
+
   return (
-    <nav className="navbar">
+    <nav className={navbarClass}>
       <img src={logoSrc} alt="Panda" className="panda" />
       <div className="nav-links">
         <Link to="/" className="board-link">자유게시판</Link>
