@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://panda-market-api.vercel.app/products';
+//const BASE_URL = 'https://panda-market-api.vercel.app/products';
+
+//로컬 개발 서버
+const BASE_URL =process.env.REACT_APP_API_URL;
+console.log('BASE_URL:', BASE_URL);
 
 export async function getProductList({
   order = 'createdAt',
@@ -22,23 +26,32 @@ try {
 }
 }
 
-/* 새상품 틍록 */
+// 새 상품 등록
 export async function createProduct(product) {
-  const formData = new FormData();
-  formData.append('name', product.name);
-  formData.append('description', product.description);
-  formData.append('price', product.price);
-  formData.append('tags', product.tags); // 태그를 문자열로 변환하여 전송
-
   try {
-    const response = await axios.post(`${BASE_URL}`, formData, {
+    const { name, description, price, tags } = product;
+
+    if (!name || !description || !price) {
+      throw new Error('상품 이름과 설명, 판매가격은 필수로 적어주세요.');
+    }
+
+    const response = await axios.post(BASE_URL, {
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      tags: product.tags // 이 부분은 이미 배열 형태로 전달됨
+    }, {
       headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+        'Content-Type': 'application/json'
+      }
     });
     return response.data;
   } catch (error) {
-    console.error('상품 생성 실패', error);
+    if (error.response) {
+      console.error('상품 생성 실패 - 서버에서 반환한 오류:', error.response.data);
+    } else {
+      console.error('상품 생성 실패 - 네트워크 오류:', error.message);
+    }
     throw error;
   }
 }
