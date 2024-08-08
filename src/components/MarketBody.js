@@ -17,7 +17,6 @@ import Pagination from "./Pagination";
 import { PRODUCT_API_ADDRESS } from "../utils/constants";
 import registButton from "../assets/images/btn_registration.svg";
 import Loading from "./Loading";
-import img_loading from "../assets/images/loading_infinite_spinner.svg";
 
 const instance = axios.create({
   baseURL: PRODUCT_API_ADDRESS,

@@ -1,7 +1,18 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
+import { PRODUCT_API_ADDRESS } from "../utils/constants";
 import Button from "./Button";
 import Tag from "./Tag";
 import "../assets/styles/registration.css";
+
+const instance = axios.create({
+  baseURL: PRODUCT_API_ADDRESS,
+  header: {
+    "Content-Type": "application/json",
+  },
+});
+
+const PATH = "/products";
 
 const MAX_PRODUCT_NAME_LENGTH = 10;
 const MIN_PRODUCT_NAME_LENGTH = 1;
@@ -46,6 +57,7 @@ export function RegistrationBody() {
     const length = productName.toString().trim().length;
 
     nameClass = `${nameOriginClass} input-invalid`;
+    validName = false;
 
     if (length < MIN_PRODUCT_NAME_LENGTH) {
       return (
@@ -56,6 +68,7 @@ export function RegistrationBody() {
         <p className="input-invalid-warn Semibold">10자 이내로 입력해주세요</p>
       );
     } else {
+      validName = true;
       nameClass = `${nameOriginClass} input-valid`;
     }
   }
@@ -64,6 +77,7 @@ export function RegistrationBody() {
     const length = productDescription.toString().trim().length;
 
     descriptionClass = `${descriptionOriginClass} input-invalid`;
+    validDescription = false;
 
     if (length < MIN_PRODUCT_DESCRIPTION_LENGTH) {
       return (
@@ -74,6 +88,7 @@ export function RegistrationBody() {
         <p className="input-invalid-warn Semibold">100자 이내로 입력해주세요</p>
       );
     } else {
+      validDescription = true;
       descriptionClass = `${descriptionOriginClass} input-valid`;
     }
   }
@@ -82,6 +97,7 @@ export function RegistrationBody() {
     const priceNum = isNaN(productPrice.toString().trim());
 
     priceClass = `${priceOriginClass} input-invalid`;
+    validPrice = false;
 
     if (priceNum) {
       return <p className="input-invalid-warn Semibold">숫자로 입력해주세요</p>;
@@ -92,6 +108,7 @@ export function RegistrationBody() {
         </p>
       );
     } else {
+      validPrice = true;
       priceClass = `${priceOriginClass} input-valid`;
     }
   }
@@ -120,7 +137,7 @@ export function RegistrationBody() {
     let btnRegistClass = "btn-registration-74-deactive";
 
     if (validName && validDescription && validPrice) {
-      btnRegistClass = "btn-registration-74-ative";
+      btnRegistClass = "btn-registration-74-active";
       return <Button className={btnRegistClass} onClick={handleRegistration} />;
     } else {
       return <Button className={btnRegistClass} onClick={doNothing} />;
@@ -166,12 +183,18 @@ export function RegistrationBody() {
 
   function handleRegistration() {
     alert("registration");
+
     const body = {
       name: productName,
       description: productDescription,
       price: productPrice,
       tag: [productTags],
     };
+
+    instance
+      .post(PATH, body)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err.name));
   }
 
   function deleteTag(tag) {
