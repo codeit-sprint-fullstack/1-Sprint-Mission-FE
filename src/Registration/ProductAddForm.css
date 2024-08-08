@@ -13,6 +13,7 @@
   font-size: 16px;
   border-radius: 12px;
   color: #1f2937;
+  outline: none;
 }
 
 .inputStyle::placeholder {
