@@ -1,16 +1,26 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './Nav.css';
+
+function getLinkStyle({ isActive }) {
+  return {
+    color: isActive ? 'var(--primary-colour)' : 'var(--grey-600)',
+  };
+}
 
 function Nav() {
   return (
     <nav>
       <ul>
         <li>
-          <Link to={'/forums'}>자유게시판</Link>
+          <NavLink to={'/forums'} style={getLinkStyle}>
+            자유게시판
+          </NavLink>
         </li>
         <li>
-          <Link to={'/items'}>중고마켓</Link>
+          <NavLink to={'/items'} style={getLinkStyle}>
+            중고마켓
+          </NavLink>
         </li>
       </ul>
     </nav>
