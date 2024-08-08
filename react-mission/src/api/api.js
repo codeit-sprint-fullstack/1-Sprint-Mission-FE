@@ -4,7 +4,6 @@ import axios from "axios";
 const instance = axios.create({
   //   baseURL: "https://panda-market-api.vercel.app", //미션 6으로 인한 주석
   baseURL: "https://product-api-cezx.onrender.com", //백엔드로 만든 api 주소
-  timeout: 5000,
 });
 
 async function getApi(params = {}) {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-function useRegistationBlur(eventName) {
+function useRegistationBlur() {
+
   const [conditionError, setConditionError] = useState({
     name: false,
     introduction: false,
@@ -28,11 +29,11 @@ function useRegistationBlur(eventName) {
   const handleBlurTrue = (eventName) => {
     setConditionError((preConditionError) => ({
       ...preConditionError,
-      eventName: false,
+      [eventName]: false,
     }));
     setInputClassName((preInputClassName) => ({
       ...preInputClassName,
-      eventName: "productInput borderNone",
+      [eventName]: "productInput borderNone",
     }));
   };
 
