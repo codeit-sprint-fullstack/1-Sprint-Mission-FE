@@ -1,0 +1,81 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+label {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+input {
+  height: 56px;
+}
+
+input:focus, textarea:focus {
+  outline: 1px solid #3692FF;
+}
+
+textarea {
+  resize: none; /* textarea에서 크기조정 하는 것을 막을 수 있다. */
+  width: 100%;
+  height: 282px;
+}
+
+input,
+textarea {
+  border-style: none;
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  padding: 16px 24px;
+  font-size: 16px;
+}
+
+.reg-input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reg-header {
+  display: flex;
+  align-items: center;
+  height: 42px;
+}
+
+.reg-title {
+  line-height: 23.87px;
+}
+
+.reg-button {
+  width: 74px;
+  height: 42px;
+  border-radius: 8px;
+  padding: 12px 23px;
+  border-style: none;
+  background-color: #9ca3af;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Tablet view */
+@media (min-width: 744px) and (max-width: 1199px) {
+  textarea {
+    height: 200px;
+  }
+}
+
+/* Mobile view */
+@media (max-width: 743px) {
+  textarea {
+    height: 200px;
+  }
+
+  form {
+    gap: 16px;
+  }
+}

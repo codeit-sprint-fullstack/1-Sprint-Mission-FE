@@ -1,0 +1,30 @@
+.page button {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  border: 1px solid #E5E7EB;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  color: #6B7280;
+  line-height: 26px;
+  cursor: pointer;
+}
+
+.page button.active{
+  color: #F9FAFB;
+  background-color: #2F80ED;
+  border-style: none;
+}
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 43px;
+  margin-bottom: 58px;
+}
+
+.page {
+  display: flex;
+  gap: 4px;
+}

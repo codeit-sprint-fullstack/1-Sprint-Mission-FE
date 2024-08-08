@@ -1,0 +1,82 @@
+a {
+  padding: 9px 0 7px;
+  text-wrap: nowrap;
+}
+
+.DropDownContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 130px;
+}
+
+.DropDownButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 42px;
+  font-size: 16px;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  cursor: pointer;
+  text-wrap: nowrap;
+}
+
+.mobileDropDownIcon {
+  display: none;
+}
+
+.DropDownList {
+  position: absolute;
+  top: 50px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  border-style: solid;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  z-index: 9999;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.DropDownList a {
+  height: 42px;
+  line-height: 26px;
+}
+
+.DropDownList a:not(:last-child) {
+  border-bottom: 1px solid #E5E7EB;
+  width: 100%;
+  text-align: center;
+}
+
+/* Mobile view */
+@media (max-width: 743px) {
+  .DropDownButton {
+    display: block;
+    padding: 0 8px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    cursor: pointer;
+    text-wrap: nowrap;
+  }
+
+  .DropDownList {
+    width: 130px;
+    right: 1px;   /* ? */
+  }
+
+  span, .dropDownIcon {
+    display: none;
+  }
+  
+  .mobileDropDownIcon {
+    display: block;
+  }
+}
