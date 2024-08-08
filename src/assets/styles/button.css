@@ -15,10 +15,16 @@ button {
   background: url(../images/btn_registration.svg) no-repeat center;
 }
 
-.btn-registration-74-decative {
+.btn-registration-74-deactive {
   width: 7.4rem;
   height: 4.21rem;
   background: url(../images/btn_registration_74_deactive.svg) no-repeat center;
+}
+
+.btn-registration-74-active {
+  width: 7.4rem;
+  height: 4.21rem;
+  background: url(../images/btn_registration_74_active.svg) no-repeat center;
 }
 
 /* ===== Mobile-width : 375px ~ 743px ====== */

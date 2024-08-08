@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Button from "./Button";
+import Tag from "./Tag";
 import "../assets/styles/registration.css";
 
 const MAX_PRODUCT_NAME_LENGTH = 10;
@@ -8,11 +9,15 @@ const MAX_PRODUCT_DESCRIPTION_LENGTH = 100;
 const MIN_PRODUCT_DESCRIPTION_LENGTH = 10;
 const MAX_PRODUCT_TAG_LENGTH = 5;
 const MAX_TAG_NUM = 5;
-let tags = [];
+
 let secondFrameName = false;
 let secondFrameDescription = false;
 let secondFramePrice = false;
 let secondFrameTag = false;
+
+let validName = false;
+let validDescription = false;
+let validPrice = false;
 
 const nameOriginClass =
   "Text-lg-line-height24 Regular main__registration-input-small";
@@ -35,6 +40,7 @@ export function RegistrationBody() {
   const [productDescription, setProductDescription] = useState("");
   const [productPrice, setProductPrice] = useState(0);
   const [productTag, setProductTag] = useState("");
+  const [productTags, setProductTags] = useState([]);
 
   function validateName() {
     const length = productName.toString().trim().length;
@@ -95,13 +101,29 @@ export function RegistrationBody() {
 
     tagClass = `${tagOriginClass} input-invalid`;
 
-    if (MAX_PRODUCT_TAG_LENGTH < length) {
-      console.log("5자 이내로 입력해주세요");
+    if (length > 0 && MAX_TAG_NUM <= productTags.length) {
+      return (
+        <p className="input-invalid-warn Semibold">
+          태그는 최대 5개까지 입력 가능합니다
+        </p>
+      );
+    } else if (MAX_PRODUCT_TAG_LENGTH < length) {
       return (
         <p className="input-invalid-warn Semibold">5글자 이내로 입력해주세요</p>
       );
     } else {
       tagClass = `${tagOriginClass} input-valid`;
+    }
+  }
+
+  function validateReqData() {
+    let btnRegistClass = "btn-registration-74-deactive";
+
+    if (validName && validDescription && validPrice) {
+      btnRegistClass = "btn-registration-74-ative";
+      return <Button className={btnRegistClass} onClick={handleRegistration} />;
+    } else {
+      return <Button className={btnRegistClass} onClick={doNothing} />;
     }
   }
 
@@ -127,16 +149,19 @@ export function RegistrationBody() {
 
   function submitProductTag(e) {
     e.preventDefault();
+    const newTag = productTag.toString().trim();
 
     if (
-      tags.length < MAX_TAG_NUM &&
-      e.target.value.toString().trim() < MAX_PRODUCT_TAG_LENGTH
+      productTags.length < MAX_TAG_NUM &&
+      0 < newTag.length &&
+      newTag.length < MAX_PRODUCT_TAG_LENGTH + 1 &&
+      !productTags.includes(newTag)
     ) {
-      tags.push(productTag);
+      const newTags = [...productTags, newTag];
+      setProductTags(newTags);
       setProductTag("");
     } else {
     }
-    console.log(tags);
   }
 
   function handleRegistration() {
@@ -145,24 +170,42 @@ export function RegistrationBody() {
       name: productName,
       description: productDescription,
       price: productPrice,
-      tag: [tags],
+      tag: [productTags],
     };
   }
 
-  useEffect(() => {}, [productTag]);
+  function deleteTag(tag) {
+    console.log("deleteTag " + tag);
+    const newTags = productTags.filter((item) => item !== tag);
+    setProductTags(newTags);
+  }
 
-  let btnRegistClass = "btn-registration-74-decative";
+  function showTags() {
+    return (
+      <div className="flex-row main__registration-tags">
+        {productTags.map((tag) => (
+          <Tag key={tag} onXClick={deleteTag}>
+            {tag}
+          </Tag>
+        ))}
+      </div>
+    );
+  }
+
+  function doNothing() {}
+
+  useEffect(() => {}, [productTag]);
 
   return (
     <main className="main-frame-registration">
       <div className="main__section-registration">
         <div className="flex-row main__registration-top-bar">
           <p className="Text-xl Bold main__registration-text">상품 등록하기</p>
-          <Button className={btnRegistClass} onClick={handleRegistration} />
+          {validateReqData()}
         </div>
       </div>
-      <div className="main__registration-input-margin">
-        <label className="main__registration-label">상품명</label>
+      <div className="margin-bottom24">
+        <label className="main__registration-label Bold">상품명</label>
         <input
           onChange={handleProductName}
           className={nameClass}
@@ -170,8 +213,8 @@ export function RegistrationBody() {
         ></input>
         {secondFrameName ? validateName() : undefined}
       </div>
-      <div className="main__registration-input-margin">
-        <label className="main__registration-label">상품 소개</label>
+      <div className="margin-bottom24">
+        <label className="main__registration-label Bold">상품 소개</label>
         <textarea
           onChange={handleProductDescription}
           className={descriptionClass}
@@ -179,8 +222,8 @@ export function RegistrationBody() {
         ></textarea>
         {secondFrameDescription ? validateDescription() : undefined}
       </div>
-      <div className="main__registration-input-margin">
-        <label className="main__registration-label">판매가격</label>
+      <div className="margin-bottom24">
+        <label className="main__registration-label Bold">판매가격</label>
         <input
           onChange={handleProductPrice}
           className={priceClass}
@@ -188,19 +231,19 @@ export function RegistrationBody() {
         ></input>
         {secondFramePrice ? validatePrice() : undefined}
       </div>
-      <form
-        className="main__registration-input-margin"
-        onSubmit={submitProductTag}
-      >
-        <label className="main__registration-label">태그</label>
-        <input
-          onChange={handelProductTag}
-          value={productTag}
-          className={tagClass}
-          placeholder="태그를 입력해주세요"
-        ></input>
-        {secondFrameTag ? validateTag() : undefined}
-      </form>
+      <div>
+        <form className="margin-bottom12" onSubmit={submitProductTag}>
+          <label className="main__registration-label Bold">태그</label>
+          <input
+            onChange={handelProductTag}
+            value={productTag}
+            className={tagClass}
+            placeholder="태그를 입력해주세요"
+          ></input>
+          {secondFrameTag ? validateTag() : undefined}
+        </form>
+        {showTags()}
+      </div>
     </main>
   );
 }
