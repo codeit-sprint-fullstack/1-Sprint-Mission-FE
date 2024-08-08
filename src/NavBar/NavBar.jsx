@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import profileIcon from "../image/ic_profile.svg";
 import logoImg from "../image/img_logo.svg";
 import logo from "../image/logo.svg";
 import "./NavBar.css";
