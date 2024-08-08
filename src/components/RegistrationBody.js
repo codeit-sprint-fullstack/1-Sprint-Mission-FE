@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { PRODUCT_API_ADDRESS } from "../utils/constants";
 import Button from "./Button";
@@ -52,6 +53,8 @@ export function RegistrationBody() {
   const [productPrice, setProductPrice] = useState(0);
   const [productTag, setProductTag] = useState("");
   const [productTags, setProductTags] = useState([]);
+
+  const navigate = useNavigate();
 
   function validateName() {
     const length = productName.toString().trim().length;
@@ -182,18 +185,21 @@ export function RegistrationBody() {
   }
 
   function handleRegistration() {
-    alert("registration");
-
     const body = {
       name: productName,
       description: productDescription,
       price: productPrice,
-      tag: [productTags],
+      tags: productTags,
     };
 
     instance
       .post(PATH, body)
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        const productId = res.data._id;
+        const productPath = `/item/${productId}`;
+        navigate(productPath);
+      })
       .catch((err) => console.log(err.name));
   }
 
