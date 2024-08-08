@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navigation from "./components/Navigation";
 import SaleProducts from "./components/SaleProducts";
 import Registration from "./components/Registration";
+import ProductDetail from "./components/ProductDetail";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 
