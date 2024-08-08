@@ -1,0 +1,100 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css');
+
+.nav-bar {
+  width: 100vw;
+  height: 70px;
+  position: fixed;
+  top: 0px;
+  border-bottom: 1px solid #dfdfdf;
+  background-color: #ffffff;
+}
+
+.nav-box {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-text-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-text-box :nth-child(2) {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  padding: 21px 15px;
+  margin-left: 32px;
+  color: #4b5563;
+}
+
+.nav-text-box :nth-child(3) {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  padding: 21px 15px;
+  color: #4b5563;
+}
+
+.logo {
+  width: 153px;
+  height: 51px;
+  background-image: url('../img/logo.png');
+  background-size: cover;
+  margin-left: 200px;
+}
+
+.my-logo {
+  width: 40px;
+  height: 40px;
+  background-image: url('../img/my-logo.png');
+  background-size: cover;
+  margin-right: 200px;
+  justify-content: flex-end;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .logo {
+    margin-left: 24px;
+  }
+
+  .my-logo {
+    margin-right: 24px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 767px) {
+  .logo {
+    margin-left: 16px;
+    background-image: url('../img/small-logo.png');
+    width: 81px;
+    height: 27px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .my-logo {
+    margin-right: 16px;
+  }
+
+  .nav-text-box :nth-child(2) {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    padding: 0px;
+    margin-left: 8px;
+  }
+
+  .nav-text-box :nth-child(3) {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    padding: 0px;
+    margin-left: 8px;
+  }
+}
