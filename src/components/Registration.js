@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { postItem } from "../api.js";
 import "../styles/Registration.css";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ function Registration() {
     tags: [],
   });
   const [tagData, setTagData] = useState("");
+  const [isValid, setIsValid] = useState(false);
 
   const navigate = useNavigate();
 
@@ -55,12 +56,25 @@ function Registration() {
     }
   };
 
+  useEffect(() => {
+    const { name, description, price, tags } = formData;
+    if (name !== "0" && description !== "" && price !== "" && tags.length > 0) {
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  }, [formData]);
+
   return (
     <div className="registration-body">
       <form className="registration-form" onSubmit={handleSubmit}>
         <div className="register-title-container">
           <h2 className="register-title text-xl bold">상품 등록하기</h2>
-          <button className="register text-lg semibold" type="submit">
+          <button
+            className="register text-lg semibold"
+            type="submit"
+            disabled={!isValid}
+          >
             등록
           </button>
         </div>
