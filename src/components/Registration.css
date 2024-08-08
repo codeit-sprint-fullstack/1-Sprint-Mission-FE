@@ -152,7 +152,8 @@
   /* Mobile 기준 */
   @media (max-width: 743px) and (min-width: 375px) {
     .registration-form {
-      padding: 10px;
+      padding-left: 15px;
+      padding-right: 15px;
     }
 
     .form-header h2 {
@@ -165,7 +166,7 @@
       height: 36px;
       font-size: 14px;
       line-height: 16.09px;
-      transform: translateX(60px);
+      transform: translateX(50px);
     }
 
     .form-group label,
@@ -179,8 +180,8 @@
     .form-group textarea#description,
     .form-group input#price,
     .form-group input#tag {
-      width: 442px;
-      height: 23px;
+      width: 425px;
+      height: 27px;
     }
 
     .form-group textarea#description {
