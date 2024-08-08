@@ -43,7 +43,7 @@ textarea {
   font-size: 1.6rem;
   font-weight: 400;
 }
-.tag-box {
+.tag-container {
   margin-top: 1.2rem;
   display: flex;
   gap: 1.2rem;
@@ -53,4 +53,14 @@ textarea {
   background-color: var(--gray100);
   border: none;
   border-radius: 1.2rem;
+}
+.tag-remove {
+  margin-left: 0.8rem;
+  background-color: var(--gray400);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  &:hover {
+    cursor: pointer;
+  }
 }

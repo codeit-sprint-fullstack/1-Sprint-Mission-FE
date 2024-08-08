@@ -37,6 +37,13 @@ function Registration() {
     }
   };
 
+  const removeTag = (removeIndex) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      tags: prevData.tags.filter((tag, index) => index !== removeIndex),
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -104,11 +111,20 @@ function Registration() {
             onChange={handleTagChange}
             onKeyDown={handleEnterTag}
           />
-          <div className="tag-box">
+          <div className="tag-container">
             {formData.tags.map((tag, index) => (
-              <span key={index} className="tag-item text-lg regular">
-                #{tag}
-              </span>
+              <div className="tag-item">
+                <span key={index} className="text-lg regular">
+                  #{tag}
+                </span>
+                <button
+                  type="button"
+                  className="tag-remove"
+                  onClick={() => removeTag(index)}
+                >
+                  x
+                </button>
+              </div>
             ))}
           </div>
         </div>
