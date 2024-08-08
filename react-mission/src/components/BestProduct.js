@@ -1,12 +1,13 @@
+import "./BestProduct.css";
 import { useState, useEffect, useCallback } from "react";
 import useResize from "./hook/useResize";
 import ProductCard from "./ProductCard";
-import api from "./api";
+import { getapi } from "../api/api";
 import useAsync from "./hook/useAsync";
 
 function BestProduct() {
   const [items, setItems] = useState([]);
-  const [lodingError, lodingErrorTag, apiAsync] = useAsync(api);
+  const [lodingError, lodingErrorTag, apiAsync] = useAsync(getapi);
   const [pageSize, setPageSize] = useState(null);
 
   // 스크린 크기에 따른 이미지 갯수 변경
@@ -26,7 +27,7 @@ function BestProduct() {
 
   //첫 랜더링 시 실행
   useEffect(() => {
-    //api 호출
+    //getapi 호출
     const handleItemList = async (params) => {
       const result = await apiAsync(params);
 

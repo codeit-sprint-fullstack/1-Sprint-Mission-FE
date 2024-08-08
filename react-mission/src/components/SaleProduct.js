@@ -1,3 +1,5 @@
+import "./SaleProduct.css";
+import "./Pagination.css";
 import { useState, useEffect, useCallback } from "react";
 import useResize from "./hook/useResize";
 import Pagination from "react-js-pagination"; //라이브러리 다운 받았습니다
@@ -5,13 +7,14 @@ import ProductCard from "./ProductCard";
 import SearchForm from "./SearchForm";
 import Registration from "./Registration";
 import OrderChange from "./OrderChange";
-import api from "./api";
+import { getApi }  from "../api/api";
 import searchIcon from "./img/searchIcon.png";
 import useAsync from "./hook/useAsync";
+import { NavLink } from "react-router-dom";
 
 function SaleProduct() {
   const [items, setItems] = useState([]);
-  const [logingError, logingErrorTag, apiAsync] = useAsync(api);
+  const [logingError, logingErrorTag, apiAsync] = useAsync(getApi);
   const [order, setOrder] = useState("recent");
   const [orderName, setOrderName] = useState("최신순");
   const [search, setSeaerch] = useState("");
@@ -37,7 +40,7 @@ function SaleProduct() {
 
   //첫 랜더링 시 실행
   useEffect(() => {
-    //api 호출
+    //getApi 호출
     const handleItemList = async (params) => {
       const result = await apiAsync(params);
 
@@ -98,7 +101,7 @@ function SaleProduct() {
               <div className="productFont_Registration">
                 <h2 className="productFont saleProductFont">판매 중인 상품</h2>
                 <div className="mobileRegistration">
-                  <Registration />
+                  <NavLink to='/registration' style={{textDecoration: 'none'}}><Registration /></NavLink>
                 </div>
               </div>
               <div className="saleProductFrom">
@@ -115,7 +118,7 @@ function SaleProduct() {
                   />
                 </div>
                 <div className="usuallyRegistration">
-                  <Registration />
+                  <NavLink to='/registration' style={{textDecoration: 'none'}}><Registration /></NavLink>
                 </div>
                 <OrderChange
                   orderName={orderName}

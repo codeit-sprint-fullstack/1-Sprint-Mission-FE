@@ -1,0 +1,82 @@
+/* public */
+.orderChange {
+  width: 130px;
+  height: 42px;
+  border-radius: 12px;
+  padding: 9px 0 7px 20px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #1f2937;
+  position: relative;
+  cursor: pointer;
+}
+
+.orderArrow {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 9px;
+  right: 20px;
+}
+
+.orderBoxNone {
+  display: none;
+}
+
+.orderBox {
+  width: 130px;
+  height: 84px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #1f2937;
+  position: absolute;
+  top: 50px;
+  left: 0;
+}
+
+.orderRecent {
+  width: 130px;
+  height: 41.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.orderLine {
+  width: 130px;
+  height: 1px;
+  background-color: #e5e7eb;
+}
+
+.orderFavorite {
+  width: 130px;
+  height: 41.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* mobile */
+@media screen and (min-width: 375px) and (max-width: 767.9px) {
+  .orderChange {
+    width: 42px;
+    padding: 9px;
+  }
+
+  .mobileOrderChange {
+    display: none;
+  }
+
+  .orderArrow {
+    right: 9px;
+  }
+}

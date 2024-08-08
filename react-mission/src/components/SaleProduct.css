@@ -1,0 +1,117 @@
+/* public */
+.saleProductContaner {
+  height: auto;
+  margin-top: 40px;
+}
+
+.saleProductParts {
+  height: 42px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.saleProductFont {
+  width: 113px;
+  height: 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mobileRegistration {
+  display: none;
+}
+
+.saleProductFrom {
+  height: 42px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.searchFromPositin {
+  position: relative;
+}
+
+.readingGlasses {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 9px;
+  left: 16px;
+}
+
+/* pc */
+@media screen and (min-width: 1200px) {
+  .saleProductContaner {
+    width: 1201px;
+  }
+
+  .saleProductParts {
+    width: 1200px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .saleProductFrom {
+    width: 612px;
+  }
+}
+
+/* tablit */
+@media screen and (min-width: 768px) and (max-width: 1199.9px) {
+  .saleProductContaner {
+    width: 696px;
+  }
+
+  .saleProductParts {
+    width: 695px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .saleProductFrom {
+    width: 529px;
+  }
+}
+
+/* mobile */
+@media screen and (min-width: 375px) and (max-width: 767.9px) {
+  .saleProductContaner {
+    width: 100%;
+    margin: 24px 16px 0;
+  }
+
+  .saleProductParts {
+    width: 100%;
+    height: 92px;
+    margin-bottom: 16px;
+    flex-direction: column;
+  }
+
+  .mobileRegistration {
+    display: block;
+  }
+
+  .productFont_Registration {
+    width: 100%;
+    height: 42px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .usuallyRegistration {
+    display: none;
+  }
+
+  .saleProductFrom {
+    width: 100%;
+  }
+
+  .searchFromPositin {
+    width: 100%;
+    margin-right: 14px;
+  }
+}

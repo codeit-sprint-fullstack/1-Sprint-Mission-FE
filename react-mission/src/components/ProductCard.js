@@ -1,4 +1,6 @@
+import './ProductCard.css'
 import heartIcon from "./img/heartIcon.png";
+import defaultImg from './img/marketDefaultImg.png'
 
 // ProductCard의 내부 jsx
 function ProductCardList({ item, variant }) {
@@ -14,7 +16,8 @@ function ProductCardList({ item, variant }) {
     <div>
       <img
         className={`${variant}ProductImg`}
-        src={item.images[0]}
+        // src={item.images[0]} // 미션 6으로 인한 주석
+        src={defaultImg}
         alt={item.tags}
       />
       <div>
@@ -37,7 +40,8 @@ function ProductCard({ items, variant }) {
   return (
     <ol className={`${variant}ProductCardContaner`}>
       {items.map((item) => (
-        <li className={`${variant}ProductCard`} key={item.id}>
+        // <li className={`${variant}ProductCard`} key={item.id}> //미션 6으로 인한 주석
+        <li className={`${variant}ProductCard`} key={item._id}>
           <ProductCardList item={item} variant={variant} />
         </li>
       ))}
