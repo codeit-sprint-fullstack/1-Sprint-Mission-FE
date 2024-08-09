@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { createProductAxios } from "API/week6API";
+import { createProduct } from "API/week6API";
 import removeIcon from "assets/images/removal-icon.png";
 import useFormValidation from "hooks/UseArticleValidation";
 import "assets/styles/reg.css";
@@ -59,7 +59,7 @@ function RegistrationPage() {
     };
 
     try {
-      const response = await createProductAxios(productData);
+      const response = await createProduct(productData);
       if (response) {
         alert("상품을 등록하였습니다");
         setFormValues({
