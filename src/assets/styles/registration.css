@@ -97,6 +97,7 @@
 }
 
 .main__registration-tags {
+  flex-wrap: wrap;
   margin-top: 1.2rem;
   gap: 1.2rem;
 }

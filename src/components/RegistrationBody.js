@@ -247,14 +247,14 @@ export function RegistrationBody() {
   function handleRegistration() {
     // 권한 테스트를 위한 임시 로직
     const headers = {
-      Authorization: 99,
+      Authorization: "66b5ccad2cf6ddb53d85e3a6",
     };
     const body = {
       name: name.value,
       description: description.value,
       price: price.value,
       tags: productTags,
-      ownerId: 99,
+      ownerId: "66b5ccad2cf6ddb53d85e3a6",
     };
 
     setLoading(true);
