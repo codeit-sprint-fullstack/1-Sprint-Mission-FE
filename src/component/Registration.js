@@ -45,15 +45,20 @@ function Registration() {
       navigate(`/products/${result._id}`);
     } catch (error) {
       console.error("Error registering product:", error.message);
-      // 추가 작업: 사용자에게 오류 메시지 표시
     }
   };
+
+  const isFormValid = formData.name && formData.description && formData.price;
 
   return (
     <div>
       <div className="reg-header">
         <h1 className="reg-title">상품 등록하기</h1>
-        <button className="reg-button" onClick={handleSubmit}>
+        <button
+          className="reg-button"
+          onClick={handleSubmit}
+          disabled={!isFormValid} // name, description, price가 채워지지 않으면 버튼 비활성화
+        >
           등록
         </button>
       </div>
