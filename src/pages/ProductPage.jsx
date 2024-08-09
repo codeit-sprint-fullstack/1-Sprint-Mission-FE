@@ -1,7 +1,7 @@
 import Wrapper from '../components/Wrapper/Wrapper';
 import ProductSection from '../components/ProductSection/ProductSection';
 import useMediaQuery from '../hooks/useMediaQuery';
-import './ProductPage.css';
+import './Pages.css';
 
 function ProductPage() {
   const isTabletSize = useMediaQuery('tabletSize');

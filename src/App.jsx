@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import ProductPage from './pages/ProductPage';
 import { TempForums, TempHome, TempProductDetailPage } from './pages/TempPages';
-import Register from './components/Register/Register';
+import RegistrationPage from './pages/RegistrationPage';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Route path='/forums' element={<TempForums />} />
         <Route path='/items' element={<ProductPage />} />
         <Route path='/items/:id' element={<TempProductDetailPage />} />
-        <Route path='/registration' element={<Register />} />
+        <Route path='/registration' element={<RegistrationPage />} />
       </Routes>
     </BrowserRouter>
   );

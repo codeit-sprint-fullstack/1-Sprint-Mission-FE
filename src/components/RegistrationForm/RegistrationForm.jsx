@@ -4,6 +4,8 @@ import { postProduct } from '../../services/api';
 
 import './RegistrationForm.css';
 
+import TagInput from './TagInput';
+
 export default function RegistrationForm({ className, initialValue }) {
   const [inputValues, setInputValues] = useState(initialValue);
   const [tagInputValue, setTagInputValue] = useState('');
@@ -17,31 +19,10 @@ export default function RegistrationForm({ className, initialValue }) {
       [name]: value,
     }));
   };
-
   const handleTagInputChange = (e) => {
     const value = e.target.value;
     setTagInputValue(value);
   };
-
-  const addTag = () => {
-    const newTag = tagInputValue.trim();
-    if (newTag !== '') {
-      if (!tags.includes(newTag)) {
-        setTags((prevTags) => [...prevTags, newTag]);
-        setTagInputValue('');
-      } else {
-        console.log('이미 입력한 태그임');
-      }
-    }
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
-      e.preventDefault();
-      addTag();
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -97,21 +78,14 @@ export default function RegistrationForm({ className, initialValue }) {
           onChange={handleInputChange}
           placeholder='판매가격을 입력해주세요'
         />
-        <label htmlFor='tags'>태그</label>
-        <input
-          id='tags'
-          name='tags'
-          type='text'
-          value={tagInputValue}
-          onChange={handleTagInputChange}
-          onKeyDown={handleKeyDown}
-          placeholder='태그를 입력해주세요'
+        <TagInput
+          setTags={setTags}
+          tagInputValue={tagInputValue}
+          tags={tags}
+          setTagInputValue={setTagInputValue}
+          handleTagInputChange={handleTagInputChange}
+          className='TagInput'
         />
-        <ul>
-          {tags.map((tag, index) => {
-            return <li key={index}>{tag}</li>;
-          })}
-        </ul>
       </div>
     </form>
   );

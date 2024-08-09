@@ -1,0 +1,30 @@
+.TagInput {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.TagInput ul {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  font-weight: 400;
+}
+
+.TagInput ul li {
+  font-size: 1rem;
+  width: 400;
+  display: flex;
+  gap: 9px;
+  background-color: var(--grey-100);
+  justify-content: center;
+  align-items: center;
+  padding: 6px 12px 6px 16px;
+  border-radius: 26px;
+}
+
+.TagInput ul li button {
+  padding: 0;
+  background: none;
+}
