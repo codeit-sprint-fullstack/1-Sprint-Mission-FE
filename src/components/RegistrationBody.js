@@ -28,6 +28,7 @@ const MIN_PRODUCT_DESCRIPTION_LENGTH = 10;
 const WARN_MIN_PRODUCT_DESCRIPTION_LENGTH = 410;
 const MAX_PRODUCT_TAG_LENGTH = 5;
 const WARN_NOT_NUMBER = 404;
+const WARN_NAGATIVE_NUMBER = -1;
 const WARN_MAX_PRODUCT_TAG_LENGTH = 404;
 const MAX_TAG_NUM = 5;
 const WARN_MAX_TAG_NUM = 405;
@@ -138,9 +139,9 @@ export function RegistrationBody() {
     if (!isNumber || dotCheck) {
       return WARN_NOT_NUMBER;
     } else if (value < 0) {
-      return -1;
+      return WARN_NAGATIVE_NUMBER;
     } else {
-      return 1;
+      return VALID_DATA;
     }
   }
 
@@ -214,7 +215,11 @@ export function RegistrationBody() {
   function validateReqData() {
     let btnRegistClass = "btn-registration-74-deactive";
 
-    if (name.isValid && description.isValid && price.isValid) {
+    if (
+      name.isValid === VALID_DATA &&
+      description.isValid === VALID_DATA &&
+      price.isValid === VALID_DATA
+    ) {
       btnRegistClass = "btn-registration-74-active";
       return <Button className={btnRegistClass} onClick={handleRegistration} />;
     } else {
