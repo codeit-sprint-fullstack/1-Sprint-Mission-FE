@@ -22,7 +22,6 @@
   --pure-white: #ffffff;
   --background-sky: #CFE5FF;
   --brand-blue: #3692FF;
-  --white-font: #ffffff;
   --cool-gray-200: #E5E7EB;
   --cool-gray-400: #9CA3AF;
   --cool-gray-600: #4B5563;
@@ -251,6 +250,7 @@
   height: 2.625rem;
   background-color: var(--brand-blue);
   color: var(--cool-gray-100);
+  cursor: pointer;
 }
 
 /* Pagination */
@@ -357,7 +357,7 @@
 
 .container {
   max-width: 75rem;
-  /* 1200px */
+  width:100%;
 }
 
 #root {
