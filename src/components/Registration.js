@@ -17,7 +17,7 @@ const Registration = () => {
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
-    const isValid = validate(); // 유효성 검사 결과에 따라 isFormValid 값을 설정
+    const isValid = validate();
     setIsFormValid(isValid);
   }, [name, description, price, tags]);
 
@@ -25,7 +25,18 @@ const Registration = () => {
     e.preventDefault();
     if (validate()) {
       try {
-        const result = await axios.post(`${process.env.REACT_APP_API_URL}/products`, { name, description, price, tags });
+        // 환경 변수가 제대로 설정되었는지 확인
+        console.log(process.env.REACT_APP_API_URL);
+
+        // 하드코딩으로 시도해보기
+        const result = await axios.post('https://one-sprint-mission-be-rzbk.onrender.com/api/products', {
+          name,
+          description,
+          price,
+          tags,
+        });
+
+        console.log('Received response:', result);
         if (result.status === 201) {
           navigate(`/products/${result.data.id}`);
         }
@@ -116,6 +127,5 @@ const Registration = () => {
 };
 
 export default Registration;
-
 
 
