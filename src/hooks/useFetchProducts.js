@@ -9,32 +9,28 @@ const useFetchProducts = (sortOrder, page, pageSize, productSearch, isMarketPage
     const fetchProducts = async () => {
       try {
         let response;
+        const baseUrl = isMarketPage 
+          ? `${process.env.REACT_APP_API_URL}/products` 
+          : 'https://panda-market-api.vercel.app/products';
 
-        if (isMarketPage) {
-          // 중고마켓 페이지인 경우 로컬 백엔드 API 호출
-          response = await axios.get(`${process.env.REACT_APP_API_URL}/products`, {
-            params: {
-              orderBy: sortOrder,
-              page,
-              pageSize,
-              keyword: productSearch,
-            },
-          });
-        } else {
-          // 초기 렌더링인 경우 원격 API 호출
-          response = await axios.get('https://panda-market-api.vercel.app/products', {
-            params: {
-              orderBy: sortOrder,
-              page,
-              pageSize,
-              keyword: productSearch,
-            },
-          });
-        }
+        response = await axios.get(baseUrl, {
+          params: {
+            orderBy: sortOrder,
+            page,
+            pageSize,
+            keyword: productSearch,
+          },
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
 
         setProducts(response.data.list);
       } catch (error) {
         console.error('Error fetching products:', error);
+        if (error.response) {
+          console.error('Response data:', error.response.data); // 서버에서 반환한 오류 메시지 확인
+        }
       }
     };
 
@@ -43,17 +39,18 @@ const useFetchProducts = (sortOrder, page, pageSize, productSearch, isMarketPage
 
   useEffect(() => {
     if (!isMarketPage) {
-      // 초기 렌더링인 경우에만 베스트 상품 로드
       const fetchBestProducts = async () => {
         try {
           const response = await axios.get('https://panda-market-api.vercel.app/products', {
-            params: {
-              orderBy: 'favorite',
-            },
+            params: { orderBy: 'favorite' },
+            headers: { 'Content-Type': 'application/json' },
           });
           setBestProducts(response.data.list);
         } catch (error) {
           console.error('Error fetching best products:', error);
+          if (error.response) {
+            console.error('Response data:', error.response.data); // 서버에서 반환한 오류 메시지 확인
+          }
         }
       };
 
@@ -65,4 +62,5 @@ const useFetchProducts = (sortOrder, page, pageSize, productSearch, isMarketPage
 };
 
 export default useFetchProducts;
+
 
