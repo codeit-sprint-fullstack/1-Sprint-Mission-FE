@@ -9,14 +9,19 @@ const Registration = () => {
   const [price, setPrice] = useState('');
   const [tag, setTag] = useState('');
   const [tags, setTags] = useState([]);
+  const [isFormValid, setIsFormValid] = useState(false);
   const navigate = useNavigate();
 
   // 간단한 유효성 검사 함수
   const validate = useCallback(() => {
-    return name && description && price && tags.length > 0;
+    return (
+      name.trim().length > 0 &&
+      description.trim().length > 0 &&
+      !isNaN(parseFloat(price)) && 
+      parseFloat(price) > 0 &&
+      tags.length > 0
+    );
   }, [name, description, price, tags]);
-
-  const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     setIsFormValid(validate());
@@ -26,30 +31,47 @@ const Registration = () => {
     e.preventDefault();
     if (isFormValid) {
       try {
-        const result = await axios.post('https://one-sprint-mission-be-rzbk.onrender.com/api/products', {
-          name,
-          description,
-          price,
-          tags,
-        });
+        // 전송할 데이터 로그 확인
+        const payload = {
+          name: name.trim(),
+          description: description.trim(),
+          price: parseFloat(price),
+          tags: tags,
+        };
+        console.log('Submitting:', payload);
+
+        const result = await axios.post(
+          'https://one-sprint-mission-be-rzbk.onrender.com/api/products', 
+          payload, 
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
 
         if (result.status === 201) {
           navigate(`/products/${result.data.id}`);
+        } else {
+          console.error('Error submitting product:', result.data);
         }
       } catch (error) {
         console.error('Error submitting product:', error);
+        if (error.response) {
+          console.error('Response data:', error.response.data); // 서버에서 반환한 오류 메시지 확인
+        }
       }
     }
   };
 
   const handleDeleteTag = (deleteTag) => {
-    setTags(tags.filter(t => t !== deleteTag));
+    setTags(tags.filter((t) => t !== deleteTag));
   };
 
   const handleTagKeyPress = (e) => {
-    if (e.key === 'Enter' && tag.length > 0 && tag.length <= 5) {
+    if (e.key === 'Enter' && tag.trim().length > 0 && tag.trim().length <= 5) {
       e.preventDefault();
-      setTags([...tags, tag]);
+      setTags([...tags, tag.trim()]);
       setTag('');
     }
   };
@@ -123,5 +145,6 @@ const Registration = () => {
 };
 
 export default Registration;
+
 
 
