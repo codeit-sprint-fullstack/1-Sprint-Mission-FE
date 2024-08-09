@@ -1,10 +1,11 @@
 import axios from "axios";
 
+// Axios 인스턴스 생성
 const instance = axios.create({
-  baseURL:
-    process.env.REACT_APP_BASE_URL,
+  baseURL: process.env.REACT_APP_BASE_URL,
 });
 
+// 상품 목록을 가져오는 함수
 export async function getProductsAxios(params = {}) {
   try {
     const res = await instance.get("/products", { params });
@@ -15,6 +16,7 @@ export async function getProductsAxios(params = {}) {
   }
 }
 
+// 특정 상품을 가져오는 함수
 export async function getProductAxios(id) {
   try {
     const res = await instance.get(`/products/${id}`);
@@ -25,6 +27,7 @@ export async function getProductAxios(id) {
   }
 }
 
+// 특정 상품을 업데이트하는 함수
 export async function updateProductAxios(id, item) {
   try {
     const res = await instance.patch(`/products/${id}`, item);
@@ -35,6 +38,7 @@ export async function updateProductAxios(id, item) {
   }
 }
 
+// 새로운 상품을 생성하는 함수
 export async function createProductAxios(item) {
   try {
     const res = await instance.post(`/products`, item);
@@ -45,6 +49,7 @@ export async function createProductAxios(item) {
   }
 }
 
+// 특정 상품을 삭제하는 함수
 export async function deleteProductAxios(id) {
   try {
     const res = await instance.delete(`/products/${id}`);

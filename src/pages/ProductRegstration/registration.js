@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { createProduct } from "API/CreateProduct";
+import { createProductAxios } from "API/week6API";
 import removeIcon from "assets/images/removal-icon.png";
 import useFormValidation from "hooks/UseArticleValidation";
 import "assets/styles/reg.css";
@@ -32,6 +32,10 @@ function RegistrationPage() {
   const handleTagKeyDown = (e) => {
     if (e.key === "Enter" && currentTag.trim()) {
       e.preventDefault();
+      if (formValues.tags.includes(currentTag.trim())) {
+        alert("이미 추가되어있는 태그입니다");
+        return;
+      }
       setFormValues((prev) => ({
         ...prev,
         tags: [currentTag.trim(), ...prev.tags],
@@ -55,9 +59,9 @@ function RegistrationPage() {
     };
 
     try {
-      const response = await createProduct(productData);
+      const response = await createProductAxios(productData);
       if (response) {
-        console.log("상품 등록 성공");
+        alert("상품을 등록하였습니다");
         setFormValues({
           name: "",
           description: "",
@@ -65,12 +69,10 @@ function RegistrationPage() {
           tags: [],
         });
       } else {
-        console.log("상품 등록에 실패했습니다.");
+        alert("상품에 실패하였습니다");
       }
     } catch (error) {
-      console.log(
-        error.response ? error.response.data : "리퀘스트가 실패했습니다."
-      );
+      alert(error.response ? error.response.data : "리퀘스트가 실패했습니다.");
     }
   };
 
