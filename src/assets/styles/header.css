@@ -111,7 +111,7 @@ header {
   /* 판다마켓 로고 왼쪽 여백 16px */
   .header__btn-home-frame {
     margin-left: 1.6rem;
-    margin-right: 1.6rem;
+    margin-right: 0.8rem;
   }
 
   /* 로그인 버튼 오른쪽 여백 16px */

@@ -258,7 +258,7 @@ export function RegistrationBody() {
       .post(PATH, body, { headers })
       .then((res) => {
         setLoading(false);
-        const productId = res.data._id;
+        const productId = res.data.id;
         const productPath = `/item/${productId}`;
         navigate(productPath);
       })

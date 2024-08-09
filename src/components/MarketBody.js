@@ -118,10 +118,6 @@ function Products() {
   let device = useContext(deviceContext);
   // let totalCount = 0;
 
-  const handleRegistrationButtonClick = () => {
-    alert("상품 등록 : 로그인이 필요합니다");
-  };
-
   const sortByRecent = () => {
     getProducts(recentPage, ORDER_BY_RECENT, searchText);
     recentOrder = ORDER_BY_RECENT;
@@ -194,11 +190,10 @@ function Products() {
         >
           검색할 상품을 입력해주세요
         </SearchProducts>
-        {/* <Button
+        <Link
           className="registrationButton main__tools-button"
-          onClick={handleRegistrationButtonClick}
-        /> */}
-        <Link to="/registration">
+          to="/registration"
+        >
           <img src={registButton} alt="상품 등록" />
         </Link>
         {
@@ -218,7 +213,7 @@ function Products() {
       <div className="main__products-frame">
         {products.map((item) => (
           <article
-            key={item._id}
+            key={item.id}
             className="flex-col justify-space-between main__product-article"
           >
             <Product
@@ -277,7 +272,7 @@ function BestProducts() {
       <div className="main__best-products-frame">
         {bestProducts.map((item) => (
           <article
-            key={item._id}
+            key={item.id}
             className="flex-col justify-space-between main__best-product-article"
           >
             <Product

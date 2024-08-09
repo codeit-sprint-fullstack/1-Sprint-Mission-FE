@@ -42,3 +42,14 @@
   line-height: 1.19333em;
   /* color: var(--gray600-color); */
 }
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .nav__list {
+    gap: 0.8rem;
+  }
+
+  .header__nav-item {
+    width: 7rem;
+  }
+}
