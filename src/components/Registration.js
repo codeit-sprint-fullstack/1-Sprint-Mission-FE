@@ -104,7 +104,7 @@ const Registration = () => {
           value={tag}
           onChange={(e) => setTag(e.target.value)}
           onKeyPress={handleTagKeyPress}
-          placeholder="태그를 입력하고 엔터를 누르세요"
+          placeholder="태그를 입력해주세요"
           className={errors.tag ? 'error' : ''}
         />
         {errors.tag && <p className="error-message">{errors.tag}</p>}
@@ -122,8 +122,4 @@ const Registration = () => {
 };
 
 export default Registration;
-
-
-
-
 
