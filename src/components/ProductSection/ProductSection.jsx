@@ -77,8 +77,8 @@ export default function ProductSection({
           setSearchValue={setSearchValue}
           onChange={handleSearchChange}
         />
-        <Link to='/registration'>
-          <button className='add-product-btn'>상품 등록하기</button>
+        <Link to='/registration' className='add-product-btn'>
+          <button>상품 등록하기</button>
         </Link>
         <DropDown orderBy={orderBy} setOrderBy={setOrderBy} />
       </div>

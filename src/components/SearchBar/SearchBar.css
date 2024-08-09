@@ -23,10 +23,6 @@
   transform: translateY(-50%);
 }
 
-.SearchBar input:focus {
-  outline: 1px solid var(--primary-colour);
-}
-
 @media only screen and (max-width: 1199px) {
   .SearchBar input {
     min-width: 242px;

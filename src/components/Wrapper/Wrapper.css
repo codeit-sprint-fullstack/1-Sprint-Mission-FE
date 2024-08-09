@@ -10,7 +10,8 @@
 
 @media only screen and (max-width: 743px) {
   .Wrapper {
-    padding-top: 17px;
+    padding-top: 0;
+    margin: 16px;
     gap: 24px;
   }
 }
