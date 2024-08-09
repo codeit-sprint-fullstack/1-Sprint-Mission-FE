@@ -12,7 +12,7 @@ const useFetchProducts = (sortOrder, page, pageSize, productSearch, isMarketPage
 
         if (isMarketPage) {
           // 중고마켓 페이지인 경우 로컬 백엔드 API 호출
-          response = await axios.get('/api/products', {
+          response = await axios.get(`${process.env.REACT_APP_API_URL}/products`, {
             params: {
               orderBy: sortOrder,
               page,
@@ -65,5 +65,4 @@ const useFetchProducts = (sortOrder, page, pageSize, productSearch, isMarketPage
 };
 
 export default useFetchProducts;
-
 

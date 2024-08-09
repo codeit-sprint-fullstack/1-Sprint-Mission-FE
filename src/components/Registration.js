@@ -17,15 +17,9 @@ const Registration = () => {
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
-    console.log("Name:", name);
-    console.log("Description:", description);
-    console.log("Price:", price);
-    console.log("Tags:", tags);
-    console.log("Errors:", errors);
-
-    const isValid = name.length > 0 && description.length >= 10 && description.length <= 100 && price.length > 0 && !isNaN(price) && tags.length > 0;
+    const isValid = validate(); // 유효성 검사 결과에 따라 isFormValid 값을 설정
     setIsFormValid(isValid);
-  }, [name, description, price, tags, errors]);
+  }, [name, description, price, tags]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -122,4 +116,6 @@ const Registration = () => {
 };
 
 export default Registration;
+
+
 
