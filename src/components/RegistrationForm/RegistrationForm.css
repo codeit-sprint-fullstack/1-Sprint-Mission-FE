@@ -1,0 +1,45 @@
+.RegistrationForm {
+  width: 100%;
+}
+
+.RegistrationForm .form-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.RegistrationForm .form-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.RegistrationForm label {
+  color: var(--grey-800);
+  font-size: var(--18px);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.RegistrationForm input,
+.RegistrationForm textarea {
+  color: var(--grey-400);
+  background-color: var(--grey-100);
+  padding: 1rem var(--24px);
+  border-radius: 12px;
+}
+
+.RegistrationForm textarea {
+  width: 100%;
+  height: 282px;
+}
+
+.RegistrationForm button {
+  color: #fff;
+  background-color: var(--grey-400);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 11.5px 23px;
+  border-radius: 8px;
+}
