@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './Registration.css';
-import useValidation from '../hooks/useValidation';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -13,16 +12,15 @@ const Registration = () => {
   const navigate = useNavigate();
 
   // 간단한 유효성 검사 함수
-  const validate = () => {
+  const validate = useCallback(() => {
     return name && description && price && tags.length > 0;
-  };
+  }, [name, description, price, tags]);
 
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
-    const isValid = validate();
-    setIsFormValid(isValid);
-  }, [name, description, price, tags]);
+    setIsFormValid(validate());
+  }, [name, description, price, tags, validate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -125,4 +123,5 @@ const Registration = () => {
 };
 
 export default Registration;
+
 
