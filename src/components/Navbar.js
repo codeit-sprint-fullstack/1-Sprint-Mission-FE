@@ -30,7 +30,7 @@ const Navbar = () => {
       <img src={logoSrc} alt="Panda" className="panda" />
       <div className="nav-links">
         <Link to="/" className="board-link">자유게시판</Link>
-        <Link to="/" className="market-link">중고마켓</Link>
+        <Link to="/items" className={`market-link ${location.pathname === '/items' ? 'active' : ''}`}>중고마켓</Link>
       </div>
       {location.pathname === '/registration' ? (
         <button className="login-button">로그인</button>

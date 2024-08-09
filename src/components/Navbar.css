@@ -41,6 +41,10 @@
     margin-right: 25px;
 }
 
+.market-link.active {
+    color: #3692FF;
+}
+
 /* 태블릿 버전 */
 @media (min-width: 744px) and (max-width: 1199px) {
     .navbar {
@@ -90,6 +94,7 @@
 
     .login-button {
         transform: translateX(10px) !important;
+        height: 40px !important;
     }
 
     .panda {

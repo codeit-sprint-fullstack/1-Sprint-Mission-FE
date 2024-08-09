@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Registration.css';
 import useValidation from '../hooks/useValidation';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Registration = () => {
   const [name, setName] = useState('');
@@ -8,17 +10,46 @@ const Registration = () => {
   const [price, setPrice] = useState('');
   const [tag, setTag] = useState('');
   const [tags, setTags] = useState([]);
+  const navigate = useNavigate();
 
   const { errors, validate } = useValidation({ name, description, price, tags });
+
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    console.log("Name:", name);
+    console.log("Description:", description);
+    console.log("Price:", price);
+    console.log("Tags:", tags);
+    console.log("Errors:", errors);
+
+    const isValid = name.length > 0 && description.length >= 10 && description.length <= 100 && price.length > 0 && !isNaN(price) && tags.length > 0;
+    setIsFormValid(isValid);
+  }, [name, description, price, tags, errors]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (validate()) {
+      try {
+        const result = await axios.post(`${process.env.REACT_APP_API_URL}/products`, { name, description, price, tags });
+        if (result.status === 201) {
+          navigate(`/products/${result.data.id}`);
+        }
+      } catch (error) {
+        console.error('Error submitting product:', error);
+      }
+    }
+  };
 
   const handleDeleteTag = (deleteTag) => {
     setTags(tags.filter(t => t !== deleteTag));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      console.log({ name, description, price, tags });
+  const handleTagKeyPress = (e) => {
+    if (e.key === 'Enter' && tag.length > 0 && tag.length <= 5) {
+      e.preventDefault();
+      setTags([...tags, tag]);
+      setTag('');
     }
   };
 
@@ -26,7 +57,9 @@ const Registration = () => {
     <form className="registration-form" onSubmit={handleSubmit}>
       <div className="form-header">
         <h2>상품 등록하기</h2>
-        <button type="submit" className="submit-button">등록</button>
+        <button type="submit" className={`submit-button ${isFormValid ? 'active' : ''}`} disabled={!isFormValid}>
+          등록
+        </button>
       </div>
       <div className="form-group">
         <label htmlFor="name">상품명</label>
@@ -70,7 +103,8 @@ const Registration = () => {
           id="tag"
           value={tag}
           onChange={(e) => setTag(e.target.value)}
-          placeholder="태그를 입력해주세요"
+          onKeyPress={handleTagKeyPress}
+          placeholder="태그를 입력하고 엔터를 누르세요"
           className={errors.tag ? 'error' : ''}
         />
         {errors.tag && <p className="error-message">{errors.tag}</p>}
@@ -78,7 +112,7 @@ const Registration = () => {
           {tags.map((t, index) => (
             <div key={index} className="tag">
               <span>{t}</span>
-              <button type="button" onClick={() => handleDeleteTag(t)}>x</button>
+              <button type="button" onClick={() => handleDeleteTag(t)}>X</button>
             </div>
           ))}
         </div>
@@ -88,4 +122,8 @@ const Registration = () => {
 };
 
 export default Registration;
+
+
+
+
 
