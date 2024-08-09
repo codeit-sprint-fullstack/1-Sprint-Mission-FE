@@ -1,5 +1,5 @@
 import Wrapper from '../components/Wrapper/Wrapper';
-import RegistrationForm from '../components/RegistrationForm/RegistrationForm';
+import RegistrationForm from '../components/Registration/RegistrationForm';
 import './Pages.css';
 
 export default function RegistrationPage() {

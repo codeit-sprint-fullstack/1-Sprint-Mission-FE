@@ -2,7 +2,7 @@ import heartIcon from '../../assets/ic_heart.svg';
 import defaultImg from '../../assets/img_default.svg';
 import './ProductList.css';
 
-function ProductCard({ product }) {
+export function ProductCard({ product }) {
   const imgUrl = product?.images?.[0] || defaultImg;
   return (
     <div className='ProductCard'>

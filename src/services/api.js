@@ -29,3 +29,13 @@ export async function postProduct(formData) {
     throw error;
   }
 }
+
+export async function getProductById(id) {
+  console.log('Fetching product with ID:', id);
+  try {
+    const res = await instance.get(`/api/products/${id}`);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+}

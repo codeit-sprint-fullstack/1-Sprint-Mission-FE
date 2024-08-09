@@ -31,6 +31,10 @@ export default function RegistrationForm({ className, initialValue }) {
     formData.append('description', inputValues.description);
     formData.append('price', inputValues.price);
 
+    tags.forEach((tag, index) => {
+      return formData.append(`tags[${index}]`, tag);
+    });
+
     try {
       const response = await postProduct(formData);
       const productId = response._id;
