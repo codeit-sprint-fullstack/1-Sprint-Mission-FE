@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Registration.css";
+import { useNavigate } from "react-router-dom";
 
 const BASE_URL = "https://product-api-shiu.onrender.com/products";
 
@@ -10,6 +11,9 @@ function Registration() {
     price: "",
     tags: "",
   });
+
+  // useNavigate 훅 초기화
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,8 +41,8 @@ function Registration() {
 
       const result = await response.json();
       console.log("Product registered successfully:", result);
-      // 추가 작업: 등록 성공 후 폼 초기화 또는 사용자 알림 처리
-      console.log(result);
+      // 등록 성공 후 상세 페이지로 이동
+      navigate(`/products/${result._id}`);
     } catch (error) {
       console.error("Error registering product:", error.message);
       // 추가 작업: 사용자에게 오류 메시지 표시
