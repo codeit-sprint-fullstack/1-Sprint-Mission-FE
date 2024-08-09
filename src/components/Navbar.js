@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom'; // useNavigate 추가
 import './Navbar.css';
 
 const Navbar = () => {
   const [logoSrc, setLogoSrc] = useState('image/logo.svg');
   const location = useLocation();
+  const navigate = useNavigate(); // useNavigate 훅을 사용하여 탐색 기능 추가
 
   useEffect(() => {
     const updateLogo = () => {
@@ -27,7 +28,13 @@ const Navbar = () => {
 
   return (
     <nav className={navbarClass}>
-      <img src={logoSrc} alt="Panda" className="panda" />
+      <img 
+        src={logoSrc} 
+        alt="Panda" 
+        className="panda" 
+        onClick={() => navigate('/')}
+        style={{ cursor: 'pointer' }}
+      />
       <div className="nav-links">
         <Link to="/" className="board-link">자유게시판</Link>
         <Link to="/items" className={`market-link ${location.pathname === '/items' ? 'active' : ''}`}>중고마켓</Link>
