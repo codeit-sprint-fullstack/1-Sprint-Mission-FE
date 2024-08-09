@@ -12,7 +12,10 @@ const Registration = () => {
   const [tags, setTags] = useState([]);
   const navigate = useNavigate();
 
-  const { errors, validate } = useValidation({ name, description, price, tags });
+  // 간단한 유효성 검사 함수
+  const validate = () => {
+    return name && description && price && tags.length > 0;
+  };
 
   const [isFormValid, setIsFormValid] = useState(false);
 
@@ -23,12 +26,8 @@ const Registration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
+    if (isFormValid) {
       try {
-        // 환경 변수가 제대로 설정되었는지 확인
-        console.log(process.env.REACT_APP_API_URL);
-
-        // 하드코딩으로 시도해보기
         const result = await axios.post('https://one-sprint-mission-be-rzbk.onrender.com/api/products', {
           name,
           description,
@@ -36,7 +35,6 @@ const Registration = () => {
           tags,
         });
 
-        console.log('Received response:', result);
         if (result.status === 201) {
           navigate(`/products/${result.data.id}`);
         }
@@ -62,7 +60,15 @@ const Registration = () => {
     <form className="registration-form" onSubmit={handleSubmit}>
       <div className="form-header">
         <h2>상품 등록하기</h2>
-        <button type="submit" className={`submit-button ${isFormValid ? 'active' : ''}`} disabled={!isFormValid}>
+        <button 
+          type="submit" 
+          className={`submit-button ${isFormValid ? 'active' : ''}`} 
+          disabled={!isFormValid}
+          style={{
+            backgroundColor: isFormValid ? '#3692FF' : '#9CA3AF',
+            cursor: isFormValid ? 'pointer' : 'not-allowed'
+          }}
+        >
           등록
         </button>
       </div>
@@ -74,9 +80,7 @@ const Registration = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="상품명을 입력해주세요"
-          className={errors.name ? 'error' : ''}
         />
-        {errors.name && <p className="error-message">{errors.name}</p>}
       </div>
       <div className="form-group">
         <label htmlFor="description">상품 소개</label>
@@ -85,9 +89,7 @@ const Registration = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="상품 소개를 입력해주세요"
-          className={errors.description ? 'error' : ''}
         />
-        {errors.description && <p className="error-message">{errors.description}</p>}
       </div>
       <div className="form-group">
         <label htmlFor="price">판매 가격</label>
@@ -97,9 +99,7 @@ const Registration = () => {
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           placeholder="판매 가격을 입력해주세요"
-          className={errors.price ? 'error' : ''}
         />
-        {errors.price && <p className="error-message">{errors.price}</p>}
       </div>
       <div className="form-group">
         <label htmlFor="tag">태그</label>
@@ -110,9 +110,7 @@ const Registration = () => {
           onChange={(e) => setTag(e.target.value)}
           onKeyPress={handleTagKeyPress}
           placeholder="태그를 입력해주세요"
-          className={errors.tag ? 'error' : ''}
         />
-        {errors.tag && <p className="error-message">{errors.tag}</p>}
         <div className="tags">
           {tags.map((t, index) => (
             <div key={index} className="tag">
@@ -127,5 +125,4 @@ const Registration = () => {
 };
 
 export default Registration;
-
 
