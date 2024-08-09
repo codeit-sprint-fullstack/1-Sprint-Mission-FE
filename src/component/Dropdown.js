@@ -21,7 +21,7 @@ export const DropDown = ({ text, setText, setOrder, setPageNum }) => {
   };
 
   return (
-    <div className="drop-down-containor">
+    <div className="drop-down-container">
       <div className="drop-down-text-box" onClick={clickDropdown}>
         {text} <div className="drop-arrow" />
       </div>
