@@ -72,7 +72,7 @@ function RegistrationPage() {
         alert("상품에 실패하였습니다");
       }
     } catch (error) {
-      alert(error.response ? error.response.data : "리퀘스트가 실패했습니다.");
+      alert(error.response ? error.response.data : "요청에 실패하였습니다");
     }
   };
 

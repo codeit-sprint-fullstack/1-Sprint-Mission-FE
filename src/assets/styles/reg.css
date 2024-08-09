@@ -16,6 +16,10 @@
   line-height: 24px;
 }
 
+input:focus {
+  outline: none;
+}
+
 .input.error {
   border: 1px solid red;
 }
@@ -79,6 +83,10 @@
 #description {
   height: 282px;
   resize: none;
+}
+
+#description:focus {
+  outline: none;
 }
 
 .tag-item {
