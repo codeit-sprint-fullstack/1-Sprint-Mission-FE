@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { createProduct } from '../api';
 import Nav from '../components/Nav';
@@ -14,6 +15,8 @@ function RegistrationPage() {
   const [tagInput, setTagInput] = useState('');
 
   const { errors, validate } = useFormValidation();
+  // Link 사용시 DB에 데이터 저장도기 전에 상세 페이지로 이동하는 문제로 리다이렉트 적용
+  const navigate = useNavigate();
 
   // 초기 렌더링 시 유효성 검사 수행
   useEffect(() => {
@@ -25,7 +28,7 @@ function RegistrationPage() {
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    console.log(typeof e.target.value);
+
     if (id === 'name') {
       setName(value);
       validate('name', value);
@@ -76,6 +79,7 @@ function RegistrationPage() {
         setDesc('');
         setPrice('');
         setTags([]);
+        navigate(`/products/${name}`); // 리다이렉트 처리
       } else {
         console.log('상품 등록에 실패했습니다.');
       }
@@ -100,7 +104,7 @@ function RegistrationPage() {
   return (
     <>
       <Helmet>
-        <title>상품 등록</title>
+        <title>상품 등록 페이지</title>
       </Helmet>
       <Nav />
       <form className="reg-container" onSubmit={handleFormSubmit}>

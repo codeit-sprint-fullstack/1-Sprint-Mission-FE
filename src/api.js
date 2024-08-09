@@ -5,7 +5,7 @@ const instance = axios.create({
   timeout: 3000,
 });
 
-export async function getProducts({ page, limit, sort, search }) {
+export async function getProducts({ page = 1, limit = 10, sort, search }) {
   const params = {
     page: page.toString(),
     limit: limit.toString(),
@@ -25,4 +25,11 @@ export async function getProducts({ page, limit, sort, search }) {
 export async function createProduct(productData) {
   const res = await instance.post('/registration', productData);
   return res.data;
+}
+
+export async function getItemByName(name) {
+  const result = await getProducts({ search: name });
+  const { products } = result;
+
+  return products.find((product) => product.name === name);
 }
