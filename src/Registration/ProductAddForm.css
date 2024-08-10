@@ -3,6 +3,12 @@
   flex-direction: column;
 }
 
+.labelText {
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
 .inputStyle {
   margin-bottom: 24px;
   width: 100%;
