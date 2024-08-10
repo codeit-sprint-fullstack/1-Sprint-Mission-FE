@@ -18,7 +18,7 @@ const useProductData = (initialPage, productCount, sortOption, keyword) => {
         setTotalPageSize(Math.ceil(data.totalCount / productCount));
 
         if (data.list.length === 0) {
-          handleNoProduct();
+          setNoProduct(true);
         } else if (data.list.length < productCount) {
           const newDataList = [
             ...data.list,
@@ -31,8 +31,10 @@ const useProductData = (initialPage, productCount, sortOption, keyword) => {
             }),
           ];
           setProductsList(newDataList);
+          setNoProduct(false);
         } else {
           setProductsList(data.list);
+          setNoProduct(false);
         }
       })
       .catch((error) => console.error(error))
@@ -41,10 +43,6 @@ const useProductData = (initialPage, productCount, sortOption, keyword) => {
 
   const handlePageChange = (page) => {
     setNowPage(page);
-  };
-
-  const handleNoProduct = () => {
-    setNoProduct(!noProduct);
   };
 
   return { productsList, noProduct, nowPage, totalPageSize, handlePageChange };

@@ -17,9 +17,10 @@ import useProductData from "../hooks/useProductData.js";
 import useWindowWidhtSize from "../hooks/useWindowWidhtSize.js";
 
 function Hompage() {
-  const [sellingProductCount, setSellingProductCount] = useState(10);
   const [bestProductCount, setBestProductCount] = useState(4);
-  const [sellingProductCountPerRow, setSellingProductCountPerRow] = useState(5);
+
+  const [sellingProductCount, setSellingProductCount] = useState(10);
+
   const [ProductSortOption, setProductSortOption] = useState("recent");
   const [searchKeyword, setSearchKeyword] = useState("");
 
@@ -35,18 +36,24 @@ function Hompage() {
     handlePageChange,
   } = useProductData(1, sellingProductCount, ProductSortOption, searchKeyword);
 
-  const {windowWidhth} = useWindowWidhtSize();
+  const windowWidhth = useWindowWidhtSize();
 
+  // 화면 유즈 이펙트
   useEffect(() => {
-    if (windowWidhth < 745) {
+    if ( windowWidhth > 769) {
+      setSellingProductCount(10);
+      setBestProductCount(4);
+    } else if ( windowWidhth < 768 && windowWidhth > 375) {
       setSellingProductCount(6);
       setBestProductCount(2);
-    } else if (windowWidhth < 376) {
+    } else {
       setSellingProductCount(4);
       setBestProductCount(1);
     }
   }, [windowWidhth]);
 
+
+  // 검색어 핸들러
   const handleSeachKeyword = (e) => {
     setSearchKeyword(e.target.value);
   };
@@ -66,13 +73,12 @@ function Hompage() {
             </div>
             <ProductRenderGrid
               productData={bestProductData}
-              productCountPerRow={bestProductCount}
               noProduct={bestNoProduct}
             />
           </section>
           <section className="sellingProductSection">
             <div className="productRenderHeader">
-              <ProductHeaderText headerText={"베스트 상품"} />
+              <ProductHeaderText headerText={"판매 중인 상품"} />
               <ProductHeaderSearchBar
                 inputText={searchKeyword}
                 handleInput={handleSeachKeyword}
@@ -84,7 +90,7 @@ function Hompage() {
             </div>
             <ProductRenderGrid
               productData={sellingProductData}
-              productCountPerRow={sellingProductCountPerRow}
+              productRowCount={2}
               noProduct={sellingNoProduct}
             />
           </section>
