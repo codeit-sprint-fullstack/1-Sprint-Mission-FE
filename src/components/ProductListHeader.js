@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import Dropdown from './Dropdown.js';
 import styles from './ProductListHeader.module.css';
 
@@ -25,9 +27,11 @@ function ProductListHeader({ performSearch, handleOrderbyChange, orderBy }) {
             onChange={handleInputChange}
             placeholder='검색할 상품을 입력해 주세요'
           />
-          <button className={styles.productControlsButton} type='submit'>
-            상품 등록하기
-          </button>
+          <Link className={styles.link} to='/registration'>
+            <button className={styles.productControlsButton} type='submit'>
+              상품 등록하기
+            </button>
+          </Link>
           <Dropdown onOrderChange={handleOrderbyChange} sortOption={orderBy} />
         </div>
       </div>

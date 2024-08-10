@@ -10,7 +10,6 @@ body {
   color: #111827;
 }
 
-
 .productHeader {
   display: flex;
   margin-top: 40px;
@@ -42,7 +41,7 @@ body {
   margin-top: 34px;
 }
 
-.productControls > button {
+.link > button {
   background-color: #3692ff;
   border: none;
   width: 133px;
@@ -70,7 +69,6 @@ body {
   }
 }
 @media screen and (max-width: 773px) {
-
   .productHeader {
     display: grid;
     position: relative;
