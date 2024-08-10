@@ -1,0 +1,95 @@
+.font {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.input {
+  width: 100%;
+  height: 56px;
+  border: 0;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  font-size: 16px;
+  font-weight: 400;
+  padding-left: 24px;
+  box-sizing: border-box;
+}
+
+.tags {
+  padding: 0;
+
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 8px 0 0 0;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag {
+  width: auto;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1f2937;
+  font-size: 16px;
+  list-style: none;
+  border-radius: 26px;
+  margin: 12px 8px 8px 0;
+  background: #f3f4f6;
+  border-radius: 15px;
+  padding: 0 15px;
+}
+
+.tagIcon {
+  color: #87888b;
+  padding-left: 9px;
+  width: 22px;
+  height: 22px;
+}
+
+.error {
+  padding: '5px';
+  border: '1px solid black';
+  border-radius: '3px';
+  margin-right: '5px';
+}
+
+.errorInput {
+  width: 100%;
+  height: 56px;
+  border: 0;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  font-size: 16px;
+  font-weight: 400;
+  padding-left: 24px;
+  border: 1px solid red;
+}
+
+.errorTag {
+  width: 100%;
+  height: 56px;
+  border: 1px solid red;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  font-size: 16px;
+  font-weight: 400;
+  padding-left: 24px;
+  display: block;
+  box-sizing: border-box;
+}
+
+.error {
+  margin-top: 8px;
+  margin-left: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #f74747;
+  display: block;
+  margin-bottom: 0;
+}
