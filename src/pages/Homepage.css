@@ -6,6 +6,13 @@ li {
   list-style: none;
 }
 
+.homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap :24px
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -19,36 +26,22 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 16px
+  gap: 40px
 }
 
-.bestProductNav {
-  width: 1200px;
+.productRenderHeader {
+  width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #111827;
-  line-height: 32px;
-  margin: 24px 0px 16px 0px;
+  gap: 12px;
 }
 
-.sellingProductNav {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #111827;
-  line-height: 32px;
-  margin: 40px 0px 16px 0px;
-}
-
-.sellingProductList {
+.sellingProductSection,
+.bestProductSection {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px
+  gap: 24px
 }

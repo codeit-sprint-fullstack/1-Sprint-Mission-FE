@@ -13,8 +13,6 @@ function HomepageRenderFooter({ nowPage, handlePageChange, totalPageSize }) {
 
   const renderPageNumbers = () => {
     const pageNumGroup = [];
-    console.log(`totalPageSize: ${totalPageSize}`);
-    console.log(`nowPage: ${nowPage}`);
     for (let i = startNum; i <= endNum; i++) {
       pageNumGroup.push(
         <button
@@ -36,7 +34,6 @@ function HomepageRenderFooter({ nowPage, handlePageChange, totalPageSize }) {
         onClick={() => {
           handlePageChange(nowPage - 1);
         }}
-        // disabled={nowPage === 1}
       >
         &lt;
       </button>
@@ -50,7 +47,6 @@ function HomepageRenderFooter({ nowPage, handlePageChange, totalPageSize }) {
         onClick={() => {
           handlePageChange(nowPage + 1);
         }}
-        // disabled={nowPage === totalPageSize}
       >
         &gt;
       </button>

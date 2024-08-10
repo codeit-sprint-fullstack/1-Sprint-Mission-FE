@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import "./Homepage.css";
 
@@ -6,12 +6,15 @@ import "./Homepage.css";
 import HomepageRenderFooter from "../components/HomepageRenderFooter.js";
 import HomepageRenderHeader from "../components/HomepageRenderHeader.js";
 import ProductRenderGrid from "../components/ProductRenderGrid.js";
-import ProductRenderHeader from "../components/ProductRenderHeader.js";
+
+import ProductHeaderRegistBtn from "../components/ProductHeaderRegistBtn";
+import ProductHeaderSearchBar from "../components/ProductHeaderSearchBar";
+import ProductHeaderSortBtn from "../components/ProductHeaderSortBtn";
+import ProductHeaderText from "../components/ProductHeaderText";
 
 // 커스텀 훅
 import useProductData from "../hooks/useProductData.js";
-import useControlPage from "../hooks/useControlPage.js";
-// import getWindowSize from "../hooks/useWindowWidhtSize.js";
+import useWindowWidhtSize from "../hooks/useWindowWidhtSize.js";
 
 function Hompage() {
   const [sellingProductCount, setSellingProductCount] = useState(10);
@@ -20,21 +23,29 @@ function Hompage() {
   const [ProductSortOption, setProductSortOption] = useState("recent");
   const [searchKeyword, setSearchKeyword] = useState("");
 
-
-
   // 커스텀 훅
-  const { getProductList: bestProductData, noProduct: bestNoProduct } =
+  const { productsList: bestProductData, noProduct: bestNoProduct } =
     useProductData(1, bestProductCount, "favorite", "");
 
-  const { getProductList: sellingProductData, noProduct: sellingNoProduct } =
-    useProductData(1, sellingProductCount, ProductSortOption, searchKeyword);
-
   const {
+    productsList: sellingProductData,
+    noProduct: sellingNoProduct,
     nowPage,
     totalPageSize,
     handlePageChange,
-  } = useControlPage(1, sellingProductCount)
+  } = useProductData(1, sellingProductCount, ProductSortOption, searchKeyword);
 
+  const {windowWidhth} = useWindowWidhtSize();
+
+  useEffect(() => {
+    if (windowWidhth < 745) {
+      setSellingProductCount(6);
+      setBestProductCount(2);
+    } else if (windowWidhth < 376) {
+      setSellingProductCount(4);
+      setBestProductCount(1);
+    }
+  }, [windowWidhth]);
 
   const handleSeachKeyword = (e) => {
     setSearchKeyword(e.target.value);
@@ -45,12 +56,14 @@ function Hompage() {
   };
 
   return (
-    <div>
+    <div className="homepage">
       <HomepageRenderHeader />
       <main>
         <div className="productSectionSet">
           <section className="bestProductSection">
-            <ProductRenderHeader headerText={"베스트 상품"} />
+            <div className="productRenderHeader">
+              <ProductHeaderText headerText={"베스트 상품"} />
+            </div>
             <ProductRenderGrid
               productData={bestProductData}
               productCountPerRow={bestProductCount}
@@ -58,15 +71,17 @@ function Hompage() {
             />
           </section>
           <section className="sellingProductSection">
-            <ProductRenderHeader
-              headerText={"판매 중인 상품"}
-              searchBar={true}
-              registBtn={true}
-              sortBtn={true}
-              inputText={searchKeyword}
-              handleInput={handleSeachKeyword}
-              handleSortOption={handleSetProductSortOption}
-            />
+            <div className="productRenderHeader">
+              <ProductHeaderText headerText={"베스트 상품"} />
+              <ProductHeaderSearchBar
+                inputText={searchKeyword}
+                handleInput={handleSeachKeyword}
+              />
+              <ProductHeaderRegistBtn />
+              <ProductHeaderSortBtn
+                handleSortOption={handleSetProductSortOption}
+              />
+            </div>
             <ProductRenderGrid
               productData={sellingProductData}
               productCountPerRow={sellingProductCountPerRow}
