@@ -74,6 +74,8 @@ textarea {
 }
 
 .error-message {
+  margin-top: -4px;
+  margin-left: 16px;
   color: #f74747;
   font-size: 15px;
   font-weight: 600;
