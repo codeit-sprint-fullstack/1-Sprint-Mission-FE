@@ -36,7 +36,7 @@ const ProductList = () => {
 
   const renderAllProducts = () => {
     return products.map((product) => (
-      <ProductCard key={product.id} product={product} />
+      <ProductCard key={product._id} product={product} />
     ));
   };
 
@@ -130,7 +130,7 @@ const ProductList = () => {
           <h2 className="section-title">베스트 상품</h2>
           <div className="best-products">
             {bestProducts.slice(0, 4).map(product => (
-              <ProductCard key={product.id} product={product} isBestProduct />
+              <ProductCard key={product._id} product={product} isBestProduct />
             ))}
           </div>
           <div className="product-controls-container">
@@ -195,5 +195,4 @@ const ProductList = () => {
 };
 
 export default ProductList;
-
 
