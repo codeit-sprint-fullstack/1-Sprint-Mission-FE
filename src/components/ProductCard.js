@@ -4,9 +4,11 @@ import { useLocation } from 'react-router-dom';
 
 const ProductCard = ({ product, isBestProduct }) => {
   const location = useLocation();
+
   const isMarketPage = location.pathname === '/items';
 
-  const imageSrc = '/image/img_default.svg';
+  // '/items' 페이지일 경우 기본 이미지 사용, 그렇지 않으면 상품의 실제 이미지 사용
+  const imageSrc = isMarketPage ? '/image/img_default.svg' : (product.images && product.images.length > 0 ? product.images[0] : '/image/img_default.svg');
 
   return (
     <div className={`product-card ${isBestProduct ? 'best-product-card' : ''}`}>
