@@ -6,7 +6,7 @@ import useValidation from '../hooks/useValidation';
 
 const Registration = () => {
   const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
+  const [description, setDescription] =useState('');
   const [price, setPrice] = useState('');
   const [tag, setTag] = useState('');
   const [tags, setTags] = useState([]);
@@ -51,8 +51,10 @@ const Registration = () => {
           }
         );
 
+        console.log('Response data:', result.data);
+
         if (result.status === 201) {
-          navigate(`/products/${result.data.id}`);
+          navigate(`/products/${result.data._id}`); // _id로 참조하여 상품 상세 페이지로 이동
         } else {
           console.error('Error submitting product:', result.data);
         }
@@ -158,8 +160,4 @@ const Registration = () => {
 };
 
 export default Registration;
-
-
-
-
 
