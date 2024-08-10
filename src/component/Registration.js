@@ -1,30 +1,32 @@
 import { useState } from "react";
 import "./Registration.css";
 import { useNavigate } from "react-router-dom";
+import { useValidation } from "../useValidation";
 
 const BASE_URL = "https://product-api-shiu.onrender.com/products";
 
 function Registration() {
-  const [formData, setFormData] = useState({
+  // useNavigate 훅 초기화
+  const navigate = useNavigate();
+
+  const {
+    values: formData,
+    errors,
+    handleChange,
+  } = useValidation({
     name: "",
     description: "",
     price: "",
     tags: "",
   });
 
-  // useNavigate 훅 초기화
-  const navigate = useNavigate();
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (Object.keys(errors).some((key) => errors[key])) {
+      console.log("Validation failed");
+      return;
+    }
+
     try {
       const response = await fetch(BASE_URL, {
         method: "POST",
@@ -48,7 +50,7 @@ function Registration() {
     }
   };
 
-  const isFormValid = formData.name && formData.description && formData.price;
+  const isFormValid = !errors.name && !errors.description && !errors.price;
 
   return (
     <div>
@@ -66,38 +68,48 @@ function Registration() {
         <div className="reg-input-box">
           <label>상품명</label>
           <input
+            className={errors.name ? "error" : ""}
             placeholder="상품명을 입력해주세요"
             name="name"
             value={formData.name}
-            onChange={handleInputChange}
+            onChange={handleChange}
           />
+          {errors.name && <p className="error-message">{errors.name}</p>}
         </div>
         <div className="reg-input-box">
           <label>상품 소개</label>
           <textarea
+            className={errors.description ? "error" : ""}
             placeholder="상품 소개를 입력해주세요"
             name="description"
             value={formData.description}
-            onChange={handleInputChange}
+            onChange={handleChange}
           />
+          {errors.description && (
+            <p className="error-message">{errors.description}</p>
+          )}
         </div>
         <div className="reg-input-box">
           <label>판매 가격</label>
           <input
+            className={errors.price ? "error" : ""}
             placeholder="판매 가격을 입력해주세요"
             name="price"
             value={formData.price}
-            onChange={handleInputChange}
+            onChange={handleChange}
           />
+          {errors.price && <p className="error-message">{errors.price}</p>}
         </div>
         <div className="reg-input-box">
           <label>태그</label>
           <input
+            className={errors.tags ? "error" : ""}
             placeholder="태그를 입력해주세요"
             name="tags"
             value={formData.tags}
-            onChange={handleInputChange}
+            onChange={handleChange}
           />
+          {errors.tags && <p className="error-message">{errors.tags}</p>}
         </div>
       </form>
     </div>

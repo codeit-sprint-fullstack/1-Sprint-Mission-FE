@@ -15,8 +15,9 @@ input {
   height: 56px;
 }
 
-input:focus, textarea:focus {
-  outline: 1px solid #3692FF;
+input:focus,
+textarea:focus {
+  outline: 1px solid #3692ff;
 }
 
 textarea {
@@ -66,6 +67,16 @@ textarea {
 .reg-button:disabled {
   background-color: #9ca3af;
   cursor: default;
+}
+
+.error {
+  border: 1px solid #f74747;
+}
+
+.error-message {
+  color: #f74747;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 /* Tablet view */
