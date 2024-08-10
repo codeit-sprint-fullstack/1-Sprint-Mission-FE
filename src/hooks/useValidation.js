@@ -18,7 +18,11 @@ const useValidation = (values) => {
       newErrors.price = '숫자로 입력해주세요';
     }
 
-    if (!values.tags || values.tags.some(tag => tag.length > 5)) {
+    if (values.tags.length === 0) {
+      newErrors.tags = '5글자 이내로 입력해주세요';
+    }
+
+    if (values.tags.length > 0 && values.tags.some(tag => tag.length > 5)) {
       newErrors.tags = '5글자 이내로 입력해주세요';
     }
 
