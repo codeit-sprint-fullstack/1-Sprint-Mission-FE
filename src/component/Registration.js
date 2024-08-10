@@ -8,6 +8,7 @@ const BASE_URL = "https://product-api-shiu.onrender.com/products";
 function Registration() {
   // useNavigate 훅 초기화
   const navigate = useNavigate();
+  const [tags, setTags] = useState([]);
 
   const {
     values: formData,
@@ -33,7 +34,7 @@ function Registration() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, tags }),
       });
 
       if (!response.ok) {
@@ -50,6 +51,25 @@ function Registration() {
     }
   };
 
+  // 태그 입력 후 엔터키
+  const handleTagKeyDown = (e) => {
+    if (e.key === "Enter" && formData.tags) {
+      e.preventDefault();
+      if (formData.tags.length <= 4 && !tags.includes(formData.tags)) {
+        setTags([...tags, formData.tags]);
+        handleChange({
+          target: { name: "tags", value: "" },
+        });
+      }
+    }
+  };
+
+  // 태그 삭제 처리
+  const handleTagDelete = (tagDelete) => {
+    setTags(tags.filter((tag) => tag !== tagDelete));
+  };
+
+  const isFormEmpty = formData.name && formData.description && formData.price;
   const isFormValid = !errors.name && !errors.description && !errors.price;
 
   return (
@@ -59,7 +79,7 @@ function Registration() {
         <button
           className="reg-button"
           onClick={handleSubmit}
-          disabled={!isFormValid} // name, description, price가 채워지지 않으면 버튼 비활성화
+          disabled={!isFormEmpty || !isFormValid} // name, description, price가 채워지지않거나 에러발생 시 버튼 비활성화
         >
           등록
         </button>
@@ -108,8 +128,21 @@ function Registration() {
             name="tags"
             value={formData.tags}
             onChange={handleChange}
+            onKeyDown={handleTagKeyDown}
           />
           {errors.tags && <p className="error-message">{errors.tags}</p>}
+          <div className="tag-container">
+            {tags.map((tag, index) => (
+              <div key={index} className="tag-chip">
+                #{tag}
+                <button
+                  type="button"
+                  onClick={() => handleTagDelete(tag)}
+                  className="tag-delete"
+                ></button>
+              </div>
+            ))}
+          </div>
         </div>
       </form>
     </div>

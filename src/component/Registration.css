@@ -69,6 +69,34 @@ textarea {
   cursor: default;
 }
 
+.tag-container {
+  display: flex;
+  gap: 12px;
+}
+
+.tag-chip {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  height: 36px;
+  padding: 6px 12px 6px 16px;
+  border-radius: 26px;
+  color: #1f2937;
+  background-color: #f3f4f6;
+  line-height: 24px;
+  text-wrap: nowrap;
+}
+
+.tag-delete {
+  background-color: #f3f4f6;
+  background-image: url(../image/tagDelete.png);
+  width: 22px;
+  height: 24px;
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+}
+
 .error {
   border: 1px solid #f74747;
 }

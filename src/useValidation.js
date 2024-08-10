@@ -22,7 +22,7 @@ export function useValidation(initailState) {
         else if (isNaN(Number(value))) error = "숫자로 입력해주세요.";
         break;
       case "tags":
-        if (value.length > 5) error = "5자 이내로 입력해주세요.";
+        if (value.length > 4) error = "5자 이내로 입력해주세요.";
         break;
       default:
         break;
