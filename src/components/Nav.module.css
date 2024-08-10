@@ -46,6 +46,18 @@
   }
 }
 
+.activeStyle {
+  margin-left: 30px;
+  text-decoration: none; /* 링크의 밑줄 제거 */
+  color: inherit; /* 링크의 색상 제거 */
+  & p {
+    font-size: 18px;
+    font-weight: 700;
+    color: #3692ff;
+    margin-top: 27px;
+  }
+}
+
 .userImage {
   margin-right: 200px;
 }
