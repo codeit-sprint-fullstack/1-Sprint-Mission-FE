@@ -23,7 +23,6 @@
 
 .RegistrationForm input,
 .RegistrationForm textarea {
-  color: var(--grey-400);
   background-color: var(--grey-100);
   padding: 1rem var(--24px);
   border-radius: 12px;
@@ -41,6 +40,10 @@
   font-weight: 400;
   padding: 10px 23px;
   border-radius: 8px;
+}
+
+.RegistrationForm button:hover {
+  background-color: var(--primary-colour);
 }
 
 @media only screen and (max-width: 743px) {

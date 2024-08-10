@@ -103,6 +103,12 @@ textarea:focus {
   outline: 1px solid var(--primary-colour);
 }
 
+::placeholder {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--grey-400);
+}
+
 body {
   font-family: 'Pretendard Variable', Pretendard, -apple-system,
     BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',

@@ -10,11 +10,6 @@
   max-width: 325px;
   width: 100%;
 }
-.SearchBar input::placeholder {
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--grey-400);
-}
 
 .SearchBar .search-icon {
   position: absolute;
