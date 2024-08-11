@@ -4,8 +4,6 @@ import getApiData from "../api/getApiData.js";
 
 import search from "../images/icon/ic_search.svg";
 
-const URL = "https://panda-market-api.vercel.app";
-
 const useProductData = (initialPage, productCount, sortOption, keyword) => {
   const [productsList, setProductsList] = useState([]);
   const [noProduct, setNoProduct] = useState(false);
