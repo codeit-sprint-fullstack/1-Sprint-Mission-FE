@@ -51,7 +51,6 @@ export function ForSaleItems() {
       pageSize: itemsPerPage,
       option: sort,
     });
-    console.log(pageNum);
     setItems(items);
   };
 

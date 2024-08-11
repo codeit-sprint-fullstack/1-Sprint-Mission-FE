@@ -29,7 +29,6 @@ export default function Registration() {
     ) {
       setTag((prevTags) => [...prevTags, { text: formValues.tags.trim() }]);
       setFormValues((prevValues) => ({ ...prevValues, tags: '' }));
-      console.log(tag);
     }
   };
 

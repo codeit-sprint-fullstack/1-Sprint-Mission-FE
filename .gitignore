@@ -27,6 +27,3 @@ yarn-error.log*
 *.http
 *.log
 *.gz
-
-# Exclude sensitive files
-env.js

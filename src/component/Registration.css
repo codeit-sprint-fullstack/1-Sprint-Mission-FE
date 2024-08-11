@@ -130,3 +130,61 @@ textarea:focus {
   height: 24px;
   background-size: contain;
 }
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .registration-header {
+    width: 696px;
+  }
+
+  label {
+    width: 696px;
+  }
+
+  #name,
+  #price,
+  #tags {
+    width: 696px;
+  }
+
+  #description {
+    width: 696px;
+    height: 200px;
+  }
+
+  .err-text {
+    width: 696px;
+  }
+
+  .tags-container {
+    width: 696px;
+  }
+}
+@media (min-width: 375px) and (max-width: 767px) {
+  .registration-header {
+    width: 344px;
+  }
+
+  label {
+    width: 344px;
+    font-size: 14px;
+  }
+
+  #name,
+  #price,
+  #tags {
+    width: 344px;
+  }
+
+  #description {
+    width: 344px;
+    height: 200px;
+  }
+
+  .err-text {
+    width: 344px;
+  }
+
+  .tags-container {
+    width: 344px;
+  }
+}
