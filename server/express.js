@@ -1,6 +1,5 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import { DATABASE_URL } from './env.js/index.js';
 import Data from './DataSchema.js';
 import cors from 'cors';
 
@@ -17,6 +16,8 @@ app.use(express.static(path.join(__dirname, '../build')));
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
 });
+
+const DATABASE_URL = process.env.DATABASE_URL;
 
 /**에러 핸들러 */
 function asyncHandler(handler) {
