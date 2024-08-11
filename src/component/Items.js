@@ -12,7 +12,10 @@ export function BestItems() {
 
   const BestItemsLoad = async () => {
     const itemsPerPage = isTablet ? 2 : isMobile ? 1 : 4;
-    const items = await getItems({ page: 1, pageSize: itemsPerPage });
+    const items = await getItems({
+      page: 1,
+      pageSize: itemsPerPage,
+    });
     setItems(items);
   };
 
@@ -35,6 +38,7 @@ export function BestItems() {
 export function ForSaleItems() {
   const [items, setItems] = useState([]);
   const [text, setText] = useState('최신순'); // 정렬 옵션 텍스트 변경
+  const [sort, setSort] = useState('recent');
   const [pageNum, setPageNum] = useState(1);
   const inputRef = useRef(null);
 
@@ -42,7 +46,11 @@ export function ForSaleItems() {
 
   const ForSaleItemsLoad = async () => {
     const itemsPerPage = isTablet ? 6 : isMobile ? 4 : 10;
-    const items = await getItems({ page: pageNum, pageSize: itemsPerPage });
+    const items = await getItems({
+      page: pageNum,
+      pageSize: itemsPerPage,
+      option: sort,
+    });
     console.log(pageNum);
     setItems(items);
   };

@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors());
 
+/**에러 핸들러 */
 function asyncHandler(handler) {
   return async function (req, res) {
     try {
@@ -26,17 +27,44 @@ function asyncHandler(handler) {
   };
 }
 
+//상품 목록조회
 app.get(
   '/datas',
   asyncHandler(async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const pageSize = parseInt(req.query.pageSize) || 10;
     const offset = (page - 1) * pageSize;
-    const data = await Data.find({}).skip(offset).limit(pageSize);
+    const option = req.query.option; // recent, oldest 옵션
+    const search = req.query.search || '';
+    const sortOption = () => {
+      if (option === 'recent') {
+        return { createdAt: -1 };
+      } else if (option === 'oldest') {
+        return { createdAt: 1 };
+      }
+      return {};
+    };
+
+    const searchFilter = search
+      ? {
+          $or: [
+            { name: { $regex: search, $options: 'i' } },
+            { description: { $regex: search, $options: 'i' } },
+          ],
+        }
+      : {};
+
+    const data = await Data.find(searchFilter)
+      .skip(offset)
+      .limit(pageSize)
+      .sort(sortOption())
+      .select('id name price createAt');
+
     res.status(200).send(data);
   })
 );
 
+//전체 데이터
 app.get(
   '/datas/all',
   asyncHandler(async (req, res) => {
@@ -45,6 +73,23 @@ app.get(
   })
 );
 
+//상품 상세 조회
+app.get(
+  '/datas/:id',
+  asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const data = await Data.findById(id).select(
+      'id name description price tags createdAt'
+    );
+    if (item) {
+      res.status(200).send(data);
+    } else {
+      res.status(404).send({ message: 'Cannot find given id.' });
+    }
+  })
+);
+
+//상품 등록
 app.post(
   '/datas',
   asyncHandler(async (req, res) => {
@@ -53,6 +98,7 @@ app.post(
   })
 );
 
+//상품 수정
 app.patch(
   '/datas/:id',
   asyncHandler(async (req, res) => {
@@ -70,6 +116,7 @@ app.patch(
   })
 );
 
+//상품 삭제
 app.delete(
   '/datas/:id',
   asyncHandler(async (req, res) => {

@@ -10,8 +10,8 @@ async function fetchURL(params) {
   return response;
 }
 /**상품 페이지 */
-export async function getItems({ page, pageSize }) {
-  const params = { page, pageSize };
+export async function getItems({ page, pageSize, option }) {
+  const params = { page, pageSize, option };
   const response = await fetchQuery(params);
   return response.data;
 }
