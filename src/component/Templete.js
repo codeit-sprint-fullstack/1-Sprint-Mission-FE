@@ -34,16 +34,16 @@ export function ItemList({ items }) {
   );
 }
 
-export function InputTemplete({ input }) {
-  const {
-    inputName,
-    inputTitle,
-    type,
-    errMessage,
-    textarea,
-    placeholder,
-    onChange,
-  } = input;
+export function InputTemplete({
+  input,
+  onChange,
+  value,
+  errText,
+  touch,
+  onKeyDown,
+}) {
+  const { inputName, inputTitle, type, textarea, placeholder } = input;
+
   return (
     <>
       <label htmlFor={inputName}>{inputTitle}</label>
@@ -54,6 +54,7 @@ export function InputTemplete({ input }) {
           name={inputName}
           placeholder={placeholder}
           onChange={onChange}
+          value={value}
         ></textarea>
       ) : (
         <input
@@ -62,9 +63,11 @@ export function InputTemplete({ input }) {
           name={inputName}
           placeholder={placeholder}
           onChange={onChange}
+          value={value}
+          onKeyDown={onKeyDown}
         ></input>
       )}
-      <div className="err-text">{errMessage}</div>
+      <div className="err-text">{touch ? errText : null}</div>
     </>
   );
 }

@@ -93,7 +93,6 @@ textarea::placeholder {
   color: #f74747;
   width: 1200px;
   text-align: left;
-  display: none;
 }
 
 input:focus {
@@ -102,4 +101,32 @@ input:focus {
 
 textarea:focus {
   outline: 1px solid #3692ff;
+}
+
+.tags-container {
+  width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.tags {
+  background-color: #f3f4f6;
+  padding: 6px 12px 6px 16px;
+  border-radius: 26px;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.delete-button {
+  background-image: url('../img/delete-button.png');
+  width: 22px;
+  height: 24px;
+  background-size: contain;
 }
