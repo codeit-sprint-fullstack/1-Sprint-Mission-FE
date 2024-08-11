@@ -13,4 +13,15 @@
 
 a {
   text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+img {
+  object-fit: cover;
+}
+
+li {
+  list-style: none;
 }

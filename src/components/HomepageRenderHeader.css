@@ -26,9 +26,7 @@
     color: #4B5563;
 }
 
-.boardList li a {
-    padding: 15px;
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: #4B5563;
+.marketBoardActive,
+.freeBoardActive{
+    color: #3692FF;
 }

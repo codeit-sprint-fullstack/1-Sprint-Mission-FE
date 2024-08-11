@@ -4,6 +4,7 @@ import "./App.css";
 
 import Homepage from "./pages/Homepage.js";
 import Marketpage from "./pages/Marketpage.js";
+import Registration from "./pages/Registration.js";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route path="/items" element={<Marketpage />} />
+          <Route path="/register" element={<Registration />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
     </BrowserRouter>

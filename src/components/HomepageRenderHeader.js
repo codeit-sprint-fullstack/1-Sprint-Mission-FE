@@ -6,13 +6,17 @@ import { Link } from 'react-router-dom';
 import logoImg from "../images/logo.svg";
 import profileImge from "../images/profile.svg";
 
-function HomepageRenderHeader() {
+function HomepageRenderHeader({ freeBoardActive = false, marketBoardActive = false }) {
   return (
     <header className="headerContain">
       <img src={logoImg} alt="판다마켓" className="logoImg"/>
       <ul className="boardList">
-        <li>자유게시판</li>
-        <li><Link to ="/items">중고마켓</Link></li>
+        {freeBoardActive
+        ? <li><Link to ="/" className="marketBoardActive">자유게시판</Link></li> 
+        : <li><Link to ="/" >자유게시판</Link></li>}
+        {marketBoardActive
+        ? <li><Link to ="/items" className="freeBoardActive">중고마켓</Link></li> 
+        : <li><Link to ="/items">중고마켓</Link></li>}
       </ul>
       <img src={profileImge} alt="프로필" className="profileImg"/>
     </header>

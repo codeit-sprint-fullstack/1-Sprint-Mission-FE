@@ -1,16 +1,9 @@
-img {
-  object-fit: cover;
-}
-
-li {
-  list-style: none;
-}
-
 .marketpage {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap :24px
+  /* gap :24px; */
+
 }
 
 main {
