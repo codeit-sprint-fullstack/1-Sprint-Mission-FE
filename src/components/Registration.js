@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { postItem } from "../api.js";
 import "../styles/Registration.css";
 import { useNavigate } from "react-router-dom";
+import useFormValid from "../hooks/useFormValid.js";
 
 function Registration() {
   const [formData, setFormData] = useState({
@@ -11,8 +12,7 @@ function Registration() {
     tags: [],
   });
   const [tagData, setTagData] = useState("");
-  const [isValid, setIsValid] = useState(false);
-
+  const { errors, isValid } = useFormValid(formData);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -56,15 +56,6 @@ function Registration() {
     }
   };
 
-  useEffect(() => {
-    const { name, description, price, tags } = formData;
-    if (name !== "0" && description !== "" && price !== "" && tags.length > 0) {
-      setIsValid(true);
-    } else {
-      setIsValid(false);
-    }
-  }, [formData]);
-
   return (
     <div className="registration-body">
       <form className="registration-form" onSubmit={handleSubmit}>
@@ -78,7 +69,7 @@ function Registration() {
             등록
           </button>
         </div>
-        <div className="product-name input">
+        <div className={`product-name input ${errors.name ? "error" : ""}`}>
           <label htmlFor="product-name" className="text-2lg bold">
             상품명
           </label>
@@ -89,8 +80,13 @@ function Registration() {
             value={formData.name}
             onChange={handleChange}
           />
+          {errors.name && <span className="error-message">{errors.name}</span>}
         </div>
-        <div className="product-description input">
+        <div
+          className={`product-description input ${
+            errors.description ? "error" : ""
+          }`}
+        >
           <label htmlFor="product-description" className="text-2lg bold">
             상품 소개
           </label>
@@ -100,8 +96,11 @@ function Registration() {
             value={formData.description}
             onChange={handleChange}
           ></textarea>
+          {errors.description && (
+            <span className="error-message">{errors.description}</span>
+          )}
         </div>
-        <div className="product-price input">
+        <div className={`product-price input ${errors.price ? "error" : ""}`}>
           <label htmlFor="product-price" className="text-2lg bold">
             판매가격
           </label>
@@ -112,8 +111,11 @@ function Registration() {
             value={formData.price}
             onChange={handleChange}
           />
+          {errors.price && (
+            <span className="error-message">{errors.price}</span>
+          )}
         </div>
-        <div className="product-tag input">
+        <div className={`product-tag input ${errors.tags ? "error" : ""}`}>
           <label htmlFor="product-tag" className="text-2lg bold">
             태그
           </label>
@@ -125,6 +127,7 @@ function Registration() {
             onChange={handleTagChange}
             onKeyDown={handleEnterTag}
           />
+          {errors.tags && <span className="error-message">{errors.tags}</span>}
           <div className="tag-container">
             {formData.tags.map((tag, index) => (
               <div className="tag-item">
