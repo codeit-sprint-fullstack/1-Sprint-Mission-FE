@@ -23,11 +23,12 @@ function ProductRenderGrid({ productData, productRowCount = 1, noProduct }) {
     }
   };
 
-  return noProduct ? (
-    <section className="noProduct">상품이 없습니다.</section>
-  ) : (
-    <section className="showProductList">{ProductsGridRender()}</section>
-  );
+
+  if (noProduct) {
+    return <section className="noProduct">상품이 없습니다.</section>
+  } else {
+    return <section className="showProductList">{ProductsGridRender()}</section>
+  };
 }
 
 export default ProductRenderGrid;
