@@ -1,6 +1,7 @@
 import "./RegistrationForm.css";
 import { postApi } from "../api/api";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useRegistationBlur from "./hook/useRegistationBlur";
 import tegDeleteImg from "./img/tagDeleteImg.png";
 
@@ -14,7 +15,8 @@ function RegistrationForm() {
   const [tagArray, setTageArray] = useState([]);
   const [conditionError, inputClassName, handleBlurTrue, handleBlurFalse] =
     useRegistationBlur();
-  const [buttonClass, setButtonClass] = useState("productRegistrationButton");
+  const [buttonClass, setButtonClass] = useState("productRegistrationButton noColor");
+  const navigate = useNavigate();
 
   // input 값
   const handleChange = (event) => {
@@ -104,9 +106,9 @@ function RegistrationForm() {
       price >= 0 &&
       (tags.length <= 5 || (tagArray && tags.length <= 5))
     ) {
-      setButtonClass("productRegistrationButtonAtivate");
+      setButtonClass("productRegistrationButton activateColor");
     } else {
-      setButtonClass("productRegistrationButton");
+      setButtonClass("productRegistrationButton noColor");
     }
   };
 
@@ -116,117 +118,139 @@ function RegistrationForm() {
     activateButton();
   };
 
+  // 등록 함수
   const handlePost = async () => {
-    if (buttonClass === "productRegistrationButtonAtivate") {
-      const newTags = [...tagArray, values.tags];
+    if (buttonClass === "productRegistrationButton activateColor") {
+      let newTags = [];
+      if (values.tags !== "") {
+        newTags = [...tagArray, values.tags];
+      } else if (values.tags === "") {
+        newTags = [...tagArray];
+      }
+
       const surveyData = {
         ...values,
         tags: newTags,
       };
-      await postApi(surveyData);
+      const res = await postApi(surveyData);
+
+      setValues({
+        name: "",
+        description: "",
+        price: "",
+        tags: "",
+      });
+      setTageArray([]);
+
+      if (res) {
+        navigate("/particular");
+      }
     }
   };
 
   return (
-    <form className="RegistrationFormContaner" onSubmit={handleNoSubmit}>
-      <div className="productRegistration">
-        <p className="productRegistrationLabel">상품 등록하기</p>
-        <button className={buttonClass} onClick={handlePost}>
-          등록
-        </button>
-      </div>
-      <div id="registrationName" className="Registrationbox">
-        <label htmlFor="productName" className="RegistrationLabel">
-          상품명
-        </label>
-        <input
-          name="name"
-          value={values.name}
-          id="productName"
-          className={inputClassName.name}
-          placeholder="상품명을 입력해주세요"
-          onChange={handleChange}
-          onKeyUp={handleKeyUp}
-        />
-      </div>
-      {conditionError.name && (
-        <div className="validConditionsContaner">
-          <p className="validConditions">10자 이내로 입력해주세요</p>
+    <div className="RegistationMobile">
+      <form className="RegistrationFormContaner" onSubmit={handleNoSubmit}>
+        <div className="productRegistration">
+          <p className="productRegistrationLabel">상품 등록하기</p>
+          <button className={buttonClass} onMouseDown={handlePost}>
+            등록
+          </button>
         </div>
-      )}
-      <div id="registrationDescription" className="Registrationbox">
-        <label htmlFor="productDescription" className="RegistrationLabel">
-          상품 소개
-        </label>
-        <textarea
-          name="description"
-          value={values.description}
-          id="productDescription"
-          className={inputClassName.description}
-          placeholder="상품 소개를 입력해주세요"
-          onChange={handleChange}
-          onKeyUp={handleKeyUp}
-        />
-      </div>
-      {conditionError.description && (
-        <div className="validConditionsContaner">
-          <p className="validConditions">10자 이상 입력해주세요</p>
+        <div id="registrationName" className="Registrationbox">
+          <label htmlFor="productName" className="RegistrationLabel">
+            상품명
+          </label>
+          <input
+            name="name"
+            value={values.name}
+            id="productName"
+            className={inputClassName.name}
+            placeholder="상품명을 입력해주세요"
+            onChange={handleChange}
+            onKeyUp={handleKeyUp}
+          />
         </div>
-      )}
-      <div className="Registrationbox">
-        <label htmlFor="productPrice" className="RegistrationLabel">
-          판매가격
-        </label>
-        <input
-          name="price"
-          value={values.price}
-          id="productPrice"
-          className={inputClassName.price}
-          placeholder="판매 가격을 입력해주세요"
-          onChange={handleChange}
-          onKeyUp={handleKeyUp}
-        />
-      </div>
-      {conditionError.price && (
-        <div className="validConditionsContaner">
-          <p className="validConditions">숫자로 입력해주세요</p>
+        {conditionError.name && (
+          <div className="validConditionsContaner">
+            <p className="validConditions">10자 이내로 입력해주세요</p>
+          </div>
+        )}
+        <div id="registrationDescription" className="Registrationbox">
+          <label htmlFor="productDescription" className="RegistrationLabel">
+            상품 소개
+          </label>
+          <textarea
+            name="description"
+            value={values.description}
+            id="productDescription"
+            className={inputClassName.description}
+            placeholder="상품 소개를 입력해주세요"
+            onChange={handleChange}
+            onKeyUp={handleKeyUp}
+          />
         </div>
-      )}
-      <div className="Registrationbox">
-        <label htmlFor="productTag" className="RegistrationLabel">
-          태그
-        </label>
-        <input
-          name="tags"
-          value={values.tags}
-          id="productTag"
-          className={inputClassName.tags}
-          placeholder="태그를 입력해주세요"
-          onChange={handleChange}
-          onKeyUp={handleKeyUp}
-          onKeyDown={handleAddTagArray}
-        />
-      </div>
-      {conditionError.tag && (
-        <div className="validConditionsContaner">
-          <p className="validConditions">5글자 이내로 입력해주세요</p>
+        {conditionError.description && (
+          <div className="validConditionsContaner">
+            <p className="validConditions">10자 이상 입력해주세요</p>
+          </div>
+        )}
+        <div className="Registrationbox">
+          <label htmlFor="productPrice" className="RegistrationLabel">
+            판매가격
+          </label>
+          <input
+            name="price"
+            value={values.price}
+            id="productPrice"
+            className={inputClassName.price}
+            placeholder="판매 가격을 입력해주세요"
+            onChange={handleChange}
+            onKeyUp={handleKeyUp}
+          />
         </div>
-      )}
-      <ol>
-        {tagArray.map((tagText) => {
-          return (
-            <li>
-              {`#${tagText}`}
-              <img
-                src={tegDeleteImg}
-                alt="X버튼"
-                onClick={handleDeleteTagArray}
-              />
-            </li>
-          );
-        })}
-      </ol>
-    </form>
+        {conditionError.price && (
+          <div className="validConditionsContaner">
+            <p className="validConditions">숫자로 입력해주세요</p>
+          </div>
+        )}
+        <div className="Registrationbox">
+          <label htmlFor="productTag" className="RegistrationLabel">
+            태그
+          </label>
+          <input
+            name="tags"
+            value={values.tags}
+            id="productTag"
+            className={inputClassName.tags}
+            placeholder="태그를 입력해주세요"
+            onChange={handleChange}
+            onKeyUp={handleKeyUp}
+            onKeyDown={handleAddTagArray}
+          />
+        </div>
+        {conditionError.tags && (
+          <div className="validConditionsContaner">
+            <p className="validConditions">5글자 이내로 입력해주세요</p>
+          </div>
+        )}
+        <ol className="tagContaner">
+          {tagArray.map((tagText) => {
+            return (
+              <li className="tagBox">
+                {`#${tagText}`}
+                <img
+                className="xImg"
+                  src={tegDeleteImg}
+                  alt="X버튼"
+                  onClick={handleDeleteTagArray}
+                />
+              </li>
+            );
+          })}
+        </ol>
+      </form>
+    </div>
   );
 }
 

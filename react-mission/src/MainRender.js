@@ -3,17 +3,19 @@ import App from "./components/App";
 import HomePage from "./pages/HomePage";
 import SecondHandMarket from "./pages/SecondHandMarket";
 import Registration from "./pages/Registration";
+import ParticularPage from "./pages/ParticularPage";
 
 function MainRender() {
   return (
     <BrowserRouter>
-      <App>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="items" element={<SecondHandMarket />} />
-          <Route path="registration" element={<Registration />} />
+          <Route path="/" element={<App />}>
+            <Route index element={<HomePage />} />
+            <Route path="items" element={<SecondHandMarket />} />
+            <Route path="registration" element={<Registration />} />
+            <Route path=":particularId" element={<ParticularPage />} />
+          </Route>
         </Routes>
-      </App>
     </BrowserRouter>
   );
 }

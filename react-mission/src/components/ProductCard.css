@@ -101,11 +101,12 @@
   /* variant이 sale일 때 */
   .saleProductCardContaner {
     width: 1201px;
-    height: auto;
+    height: 678px;
     display: flex;
     flex-direction: row;
     gap: 40px 24px;
     flex-wrap: wrap;
+    overflow: hidden;
   }
 
   .saleProductCard {
