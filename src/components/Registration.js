@@ -80,7 +80,11 @@ function Registration() {
             value={formData.name}
             onChange={handleChange}
           />
-          {errors.name && <span className="error-message">{errors.name}</span>}
+          {errors.name && (
+            <span className="error-message text-lg semibold">
+              {errors.name}
+            </span>
+          )}
         </div>
         <div
           className={`product-description input ${
@@ -97,7 +101,9 @@ function Registration() {
             onChange={handleChange}
           ></textarea>
           {errors.description && (
-            <span className="error-message">{errors.description}</span>
+            <span className="error-message text-lg semibold">
+              {errors.description}
+            </span>
           )}
         </div>
         <div className={`product-price input ${errors.price ? "error" : ""}`}>
@@ -112,7 +118,9 @@ function Registration() {
             onChange={handleChange}
           />
           {errors.price && (
-            <span className="error-message">{errors.price}</span>
+            <span className="error-message text-lg semibold">
+              {errors.price}
+            </span>
           )}
         </div>
         <div className={`product-tag input ${errors.tags ? "error" : ""}`}>
@@ -127,7 +135,11 @@ function Registration() {
             onChange={handleTagChange}
             onKeyDown={handleEnterTag}
           />
-          {errors.tags && <span className="error-message">{errors.tags}</span>}
+          {errors.tags && (
+            <span className="error-message text-lg semibold">
+              {errors.tags}
+            </span>
+          )}
           <div className="tag-container">
             {formData.tags.map((tag, index) => (
               <div className="tag-item">

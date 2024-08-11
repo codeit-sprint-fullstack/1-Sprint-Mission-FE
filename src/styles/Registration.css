@@ -67,3 +67,12 @@ textarea {
     cursor: pointer;
   }
 }
+.error-message {
+  color: var(--errorRed);
+  padding-top: 0.8rem;
+  padding-left: 1.6rem;
+}
+.input.error input,
+.input.error textarea {
+  border: 1px solid var(--errorRed);
+}
