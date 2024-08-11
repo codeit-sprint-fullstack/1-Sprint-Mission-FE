@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import { DATABASE_URL } from './env.js';
+import { DATABASE_URL } from './env.js/index.js';
 import Data from './DataSchema.js';
 import cors from 'cors';
 
@@ -9,6 +9,14 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cors());
+
+// React 정적 파일 제공 설정
+app.use(express.static(path.join(__dirname, '../build')));
+
+// 모든 경로에 대해 index.html 반환 (React 라우팅 지원)
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
+});
 
 /**에러 핸들러 */
 function asyncHandler(handler) {
