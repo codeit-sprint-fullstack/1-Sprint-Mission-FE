@@ -11,7 +11,7 @@ function ItemForm({ item = {} }) {
   return (
     <div className="ItemForm">
       <img className="ItemForm-img" src={ImageWithDefault} alt={item.name} />
-      <p>{item.name}</p>
+      <p className="Item-name">{item.name}</p>
       <h1>{thousandPrice}원</h1>
       <div className="like">
         <p>♡</p>

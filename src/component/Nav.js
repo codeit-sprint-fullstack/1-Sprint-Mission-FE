@@ -18,6 +18,7 @@ function Nav() {
       >
         중고마켓
       </NavLink>
+      <button className="login-button">로그인</button>
       <img className="Nav-user" src={userIcon} alt="userIcon" />
     </div>
   );

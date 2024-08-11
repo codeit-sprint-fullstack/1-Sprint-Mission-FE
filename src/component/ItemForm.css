@@ -15,3 +15,25 @@
   display: flex;
   gap: 4px;
 }
+
+@media (max-width: 743px) {
+  .Item-name {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 16px;
+  }
+
+  .ItemForm-img {
+    width: 168px;
+    height: 168px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+
+  .like {
+    font-size: 12px;
+  }
+}
