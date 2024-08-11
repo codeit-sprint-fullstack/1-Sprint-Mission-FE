@@ -9,7 +9,7 @@
 .register {
   width: 7.4rem;
   height: 4.2rem;
-  background-color: var(--gray400);
+  background-color: var(--primary100);
   color: var(--white);
   border: none;
   border-radius: 0.8rem;
@@ -17,7 +17,7 @@
     cursor: pointer;
   }
   &:disabled {
-    opacity: 0.5;
+    background-color: var(--gray400);
   }
 }
 .input {
