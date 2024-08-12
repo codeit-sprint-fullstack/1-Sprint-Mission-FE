@@ -1,0 +1,46 @@
+.headerContain {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #DFDFDF;
+    padding: 0px 200px;
+    gap: 32px;
+    font-size: 1.125rem;
+  }
+
+.logoContain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoImg {
+    height: 51px;
+}
+
+.marketBoardActive,
+.freeBoardActive{
+    color: #3692FF;
+}
+
+@media (max-width: 1200px){
+  .headerContain {
+    padding: 0px 24px;
+    gap: 16px;
+    }
+}
+
+@media (max-width: 400px) {
+  .headerContain {
+    gap: 16px;
+    padding: 0px 16px;
+    font-size: 1rem;
+    }
+
+    .logoImg {
+      width: 80px;
+      height: auto;
+  }
+    
+}

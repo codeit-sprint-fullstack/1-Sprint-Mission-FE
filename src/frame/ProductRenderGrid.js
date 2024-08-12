@@ -2,15 +2,17 @@ import React from "react";
 import "./ProductRenderGrid.css";
 
 // 컴포넌트
-import ProductRender from "./ProductRender.js";
+import ProductRender from "../components/ProductRender.js";
 
-function ProductRenderGrid({ productData, productRowCount = 1, noProduct }) {
+function ProductRenderGrid({
+  productData,
+  productRowCount = 1,
+  productCountPerRow,
+  noProduct,
+}) {
   const ProductsGridRender = () => {
     const TempArrayProducts = [];
-
     if (productRowCount > 1) {
-      const productCountPerRow = productData.length / productRowCount;
-
       for (let i = 0; i < productData.length; i += productCountPerRow) {
         TempArrayProducts.push(productData.slice(i, i + productCountPerRow));
       }
@@ -23,12 +25,13 @@ function ProductRenderGrid({ productData, productRowCount = 1, noProduct }) {
     }
   };
 
-
   if (noProduct) {
-    return <section className="noProduct">상품이 없습니다.</section>
+    return <section className="noProduct">상품이 없습니다.</section>;
   } else {
-    return <section className="showProductList">{ProductsGridRender()}</section>
-  };
+    return (
+      <section className="showProductList">{ProductsGridRender()}</section>
+    );
+  }
 }
 
 export default ProductRenderGrid;

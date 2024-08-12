@@ -20,3 +20,11 @@
 .searchBox > input:focus {
   outline: none;
 }
+
+.inputForTablet {
+  width: 242px;
+}
+
+.inputForMobile {
+  width: 288px;
+}

@@ -9,6 +9,17 @@
   width: 130px;
 }
 
+.sortByBtnForMobile {
+  border: 1px solid #E5E7EB;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 130px;
+}
+
 .sortByBtn > span {
   color: #1F2937;
   text-align: center;

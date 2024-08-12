@@ -1,28 +1,34 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import "./Homepage.css";
 
 //렌더링 컴포넌트
-import HomepageRenderFooter from "../components/HomepageRenderFooter.js";
-import HomepageRenderHeader from "../components/HomepageRenderHeader.js";
-import ProductRenderGrid from "../components/ProductRenderGrid.js";
 
 import ProductHeaderRegistBtn from "../components/ProductHeaderRegistBtn";
 import ProductHeaderSearchBar from "../components/ProductHeaderSearchBar";
 import ProductHeaderSortBtn from "../components/ProductHeaderSortBtn";
 import ProductHeaderText from "../components/ProductHeaderText";
 
+//렌더링 프레임
+import HomepageRenderFooter from "../frame/HomepageRenderFooter.js";
+import HomepageRenderHeader from "../frame/PageHeaderRender.js";
+import ProductRenderGrid from "../frame/ProductRenderGrid.js";
+
 // 커스텀 훅
 import useProductData from "../hooks/useProductData.js";
 import useWindowWidhtSize from "../hooks/useWindowWidhtSize.js";
 
 function Hompage() {
-
   const [ProductSortOption, setProductSortOption] = useState("recent");
   const [searchKeyword, setSearchKeyword] = useState("");
 
   // 커스텀 훅
-  const { bestProductCount, sellingProductCount } = useWindowWidhtSize();
+  const {
+    bestProductCount,
+    sellingProductCount,
+    sellingProductCountPerRow,
+    Device,
+  } = useWindowWidhtSize();
 
   const { productsList: bestProductData, noProduct: bestNoProduct } =
     useProductData(1, bestProductCount, "favorite", "");
@@ -65,6 +71,7 @@ function Hompage() {
             <ProductHeaderSearchBar
               inputText={searchKeyword}
               handleInput={handleSeachKeyword}
+              device={Device}
             />
             <ProductHeaderRegistBtn />
             <ProductHeaderSortBtn
@@ -74,6 +81,7 @@ function Hompage() {
           <ProductRenderGrid
             productData={sellingProductData}
             productRowCount={2}
+            productCountPerRow={sellingProductCountPerRow}
             noProduct={sellingNoProduct}
           />
         </section>

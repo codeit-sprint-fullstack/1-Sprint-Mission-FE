@@ -2,13 +2,14 @@
 
 * {
   box-sizing: border-box;
-  text-align: center;
   font-family: 'Pretendard', sans-serif;
   margin: 0px;
   padding: 0px;
   white-space: nowrap;
   font-size: 16px;
   color: #4B5563;
+  text-align: center;
+  vertical-align: bottom;
 }
 
 a {
@@ -29,6 +30,8 @@ li {
 #root {
   display: flex;
   justify-content: center;
+  
+  overflow-x: hidden;
 }
 
 

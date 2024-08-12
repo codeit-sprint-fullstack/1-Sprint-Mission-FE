@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import "./Registration.css";
 
 //렌더링 컴포넌트
-import HomepageRenderHeader from "../components/HomepageRenderHeader.js";
-
 import ProductHeaderText from "../components/ProductHeaderText.js";
 import ProductDataRegistBtn from "../components/ProductDataRegistBtn.js";
 
 import RegistrationInput from "../components/RegistrationInput.js";
 import RegistrationTextArea from "../components/RegistrationTextArea.js";
+
+//렌더링 프레임
+import HomepageRenderHeader from "../frame/PageHeaderRender.js";
 
 // 커스텀 훅
 import useValidationText from "../hooks/useValidationText.js";
@@ -52,8 +53,9 @@ function Registration() {
   return (
     <div className="registrationPage">
       <nav>
-        <HomepageRenderHeader marketBoardActive={true} />
+        <HomepageRenderHeader marketBoardActive={true} loginStatus={false}/>
       </nav>
+
       <main>
         <header className="registrationHeader">
           <ProductHeaderText headerText={"상품 등록하기"} />
@@ -94,6 +96,7 @@ function Registration() {
           />
         </section>
       </main>
+
     </div>
   );
 }

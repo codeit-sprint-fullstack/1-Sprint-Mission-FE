@@ -1,0 +1,25 @@
+.boardList {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 30px;
+  font-size: inherit;
+}
+
+.boardList li {
+  font-size: inherit;
+  font-weight: 700;
+  color: #4B5563;
+}
+
+.boardBtnActive{
+  color: #3692FF;
+}
+
+
+@media (max-width: 400px) {
+  .boardList {
+    gap: 8px
+  }
+}
