@@ -16,7 +16,7 @@ function ItemsPageHeader() {
       <nav className="nav">
         <ul>
         <li><a href="#free-board">자유게시판</a></li>
-        <li><Link id='ItemPageMarket' to="/items">중고마켓</Link></li>
+        <li><Link id='item-page-market' to="/items">중고마켓</Link></li>
         </ul>
       </nav>
       <button id='LoginButton'>로그인</button>
