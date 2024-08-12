@@ -1,20 +1,21 @@
 .registrationPage {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap :56px;
-}
-
-.mainSectionSet {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  gap :24px;
 }
 
+nav {
+  width: 100%;
+}
 
-main {
+header {
+  margin-bottom: 16px;
+}
+
+.mainInputSectionSet {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -22,7 +23,6 @@ main {
   align-items: center;
   gap: 24px;
 }
-
 
 
 .registrationHeader {
@@ -33,6 +33,20 @@ main {
   gap: 12px;
 }
 
+.searchBox > input { 
+  border: none;
+  background-color: #F3F4F6;
+  width: 265px;
+  height: 24px;
+  padding-left: 16px;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.searchBox > input:focus {
+  outline: none;
+}
+/* 
 .ProductInputSection {
   width: 100%;
   display: flex;
@@ -49,4 +63,4 @@ main {
   justify-content: center;
   align-items: center;
   gap: 8px
-}
+} */

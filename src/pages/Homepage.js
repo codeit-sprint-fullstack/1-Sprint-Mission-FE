@@ -45,11 +45,11 @@ function Hompage() {
   };
 
   return (
-    <main className="homepage">
+    <div className="homepage">
       <nav>
         <HomepageRenderHeader />
       </nav>
-      <section className="mainProductShowSection">
+      <main className="mainProductShowSection">
         <section className="bestProductSection">
           <header className="ProductSectionHeader">
             <ProductHeaderText headerText={"베스트 상품"} />
@@ -77,13 +77,13 @@ function Hompage() {
             noProduct={sellingNoProduct}
           />
         </section>
-      </section>
+      </main>
       <HomepageRenderFooter
         nowPage={nowPage}
         handlePageChange={handlePageChange}
         totalPageSize={totalPageSize}
       />
-    </main>
+    </div>
   );
 }
 

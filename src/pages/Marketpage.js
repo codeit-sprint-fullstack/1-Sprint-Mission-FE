@@ -55,32 +55,37 @@ function Marketpage() {
   };
 
   return (
-    <main className="marketpage">
+    <div className="marketpage">
       <nav>
         <HomepageRenderHeader marketBoardActive={true} />
       </nav>
-      <section className="marketProductSection">
-        <header className="marketProductHeader">
-          <ProductHeaderText headerText={"판매 중인 상품"} />
-          <ProductHeaderSearchBar
-            inputText={searchKeyword}
-            handleInput={handleSeachKeyword}
+      <main>
+        <section className="marketProductSection">
+          <header className="marketProductHeader">
+            <ProductHeaderText headerText={"판매 중인 상품"} />
+            <ProductHeaderSearchBar
+              inputText={searchKeyword}
+              handleInput={handleSeachKeyword}
+            />
+            <ProductHeaderRegistBtn />
+            <ProductHeaderSortBtn
+              handleSortOption={handleSetProductSortOption}
+            />
+          </header>
+          <ProductRenderGrid
+            productData={sellingProductData}
+            productRowCount={2}
+            noProduct={sellingNoProduct}
           />
-          <ProductHeaderRegistBtn />
-          <ProductHeaderSortBtn handleSortOption={handleSetProductSortOption} />
-        </header>
-        <ProductRenderGrid
-          productData={sellingProductData}
-          productRowCount={2}
-          noProduct={sellingNoProduct}
-        />
-      </section>
+        </section>
+      </main>
+
       <HomepageRenderFooter
         nowPage={nowPage}
         handlePageChange={handlePageChange}
         totalPageSize={totalPageSize}
       />
-    </main>
+    </div>
   );
 }
 
