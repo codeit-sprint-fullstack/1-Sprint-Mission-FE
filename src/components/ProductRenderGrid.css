@@ -5,7 +5,6 @@
   justify-content: center;
   align-items: center;
   gap: 40px;
-  flex-wrap: nowrap;
   overflow: auto;
 }
 

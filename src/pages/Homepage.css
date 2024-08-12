@@ -5,41 +5,14 @@
   gap :24px
 }
 
-main {
+.mainProductShowSection {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  gap: 40px
 }
 
-.productSectionSet {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-}
-
-@media (min-width: 769px){
-  .productSectionSet {
-    max-width: 1200px;
-  }
-}
-
-@media (min-width: 375px) and (max-width: 768px) {
-  .productSectionSet {
-    max-width: 768px;
-  }
-}
-
-@media (max-width: 375px) {
-  .productSectionSet {
-    max-width: 375px;
-  }
-}
-
-
-.productRenderHeader {
+.ProductSectionHeader {
   width: 100%;
   display: flex;
   justify-content: space-between;

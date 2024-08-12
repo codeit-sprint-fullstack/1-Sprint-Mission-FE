@@ -36,15 +36,14 @@ function Marketpage() {
 
   // 화면 유즈 이펙트
   useEffect(() => {
-    if ( windowWidhth > 769) {
+    if (windowWidhth > 769) {
       setSellingProductCount(10);
-    } else if ( windowWidhth < 768 && windowWidhth > 375) {
+    } else if (windowWidhth < 768 && windowWidhth > 375) {
       setSellingProductCount(6);
     } else {
       setSellingProductCount(4);
     }
   }, [windowWidhth]);
-
 
   // 검색어 핸들러
   const handleSeachKeyword = (e) => {
@@ -56,36 +55,32 @@ function Marketpage() {
   };
 
   return (
-    <div className="marketpage">
-      <HomepageRenderHeader marketBoardActive={true}/>
-      <main>
-        <div className="productSectionSet">
-          <section className="sellingProductSection">
-            <div className="productRenderHeader">
-              <ProductHeaderText headerText={"판매 중인 상품"} />
-              <ProductHeaderSearchBar
-                inputText={searchKeyword}
-                handleInput={handleSeachKeyword}
-              />
-              <ProductHeaderRegistBtn />
-              <ProductHeaderSortBtn
-                handleSortOption={handleSetProductSortOption}
-              />
-            </div>
-            <ProductRenderGrid
-              productData={sellingProductData}
-              productRowCount={2}
-              noProduct={sellingNoProduct}
-            />
-          </section>
-        </div>
-      </main>
+    <main className="marketpage">
+      <nav>
+        <HomepageRenderHeader marketBoardActive={true} />
+      </nav>
+      <section className="marketProductSection">
+        <header className="marketProductHeader">
+          <ProductHeaderText headerText={"판매 중인 상품"} />
+          <ProductHeaderSearchBar
+            inputText={searchKeyword}
+            handleInput={handleSeachKeyword}
+          />
+          <ProductHeaderRegistBtn />
+          <ProductHeaderSortBtn handleSortOption={handleSetProductSortOption} />
+        </header>
+        <ProductRenderGrid
+          productData={sellingProductData}
+          productRowCount={2}
+          noProduct={sellingNoProduct}
+        />
+      </section>
       <HomepageRenderFooter
         nowPage={nowPage}
         handlePageChange={handlePageChange}
         totalPageSize={totalPageSize}
       />
-    </div>
+    </main>
   );
 }
 

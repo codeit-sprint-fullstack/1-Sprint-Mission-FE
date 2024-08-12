@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 const useWindowWidhtSize = () => {
   const [windowWidhth, setWindowWidthSize] = useState(window.innerWidth);
 
+  const [bestProductCount, setBestProductCount] = useState(4);
+  const [sellingProductCount, setSellingProductCount] = useState(10);
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidthSize(window.innerWidth);
@@ -16,8 +19,23 @@ const useWindowWidhtSize = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (windowWidhth > 800) {
+      setSellingProductCount(10);
+      setBestProductCount(4);
+    } else if (windowWidhth <= 800 && windowWidhth > 400) {
+      setSellingProductCount(6);
+      setBestProductCount(2);
+    } else if (windowWidhth <= 400) {
+      setSellingProductCount(4);
+      setBestProductCount(1);
+    }
+  }, [windowWidhth]);
 
-  return windowWidhth;
+
+
+  return { bestProductCount, sellingProductCount };
+  // return windowWidhth;
 };
 
 export default useWindowWidhtSize;

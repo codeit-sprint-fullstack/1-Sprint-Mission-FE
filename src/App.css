@@ -25,3 +25,36 @@ img {
 li {
   list-style: none;
 }
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 12px;
+}
+
+@media (min-width: 800px){
+  main {
+    max-width: 1200px;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 800px) {
+  main {
+    max-width: 768px;
+    min-width: 375px;
+  }
+}
+
+@media (max-width: 400px) {
+  main {
+    max-width: 375px;
+  }
+}
