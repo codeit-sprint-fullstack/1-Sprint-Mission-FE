@@ -18,6 +18,7 @@ function RegistrationInput({
         className={validationActive ? "textareaInputError" : "textareaInputStyle"}
         value={inputText}
         onChange={handleinputText}
+        onBlur={handleinputText}
         placeholder={placeholderText}
       />
       {validationActive && <span className="errorText">{validationMessage}</span>}

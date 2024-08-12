@@ -25,6 +25,7 @@ function Registration() {
     priceValidation,
     discriptionValidation,
     tagValidation,
+    validationForm
   } = useValidationText(
     inputNameText,
     inputPrice,
@@ -56,7 +57,7 @@ function Registration() {
       <main>
         <header className="registrationHeader">
           <ProductHeaderText headerText={"상품 등록하기"} />
-          <ProductDataRegistBtn registerBtnActive={false} />
+          <ProductDataRegistBtn registerBtnActive={validationForm} />
         </header>
         <section className="mainInputSectionSet">
           <RegistrationInput
@@ -98,34 +99,3 @@ function Registration() {
 }
 
 export default Registration;
-
-// <div className="inputContainer">
-// <span className="inputHeader">상품 소개</span>
-// <input
-//   className="productdiscriptionInput"
-//   type="text"
-//   value={inputDiscriptionText}
-//   onChange={handleInputDiscriptionText}
-//   placeholder="상품 소개를 입력해주세요"
-// />
-// </div>
-// <div className="inputContainer">
-// <span className="inputHeader">판매가격</span>
-// <input
-//   className="productPriceInput"
-//   type="number"
-//   value={inputPrice}
-//   onChange={handleInputPrice}
-//   placeholder="판매가격을 입력해주세요"
-// />
-// </div>
-// <div className="inputContainer">
-// <span className="inputHeader">태그</span>
-// <input
-//   className="productTagInput"
-//   type="number"
-//   value={inputTagText}
-//   onChange={handleInputTagText}
-//   placeholder="판매가격을 입력해주세요"
-// />
-// </div>
