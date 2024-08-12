@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import "assets/styles/App.css";
 import bannerLogo from "assets/images/logo.png";
 import bannerLogo2 from "assets/images/logo-small.svg";
@@ -9,15 +9,15 @@ function GNB() {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const currentPageHighlight = (path) => {
-    return currentPath === path
-      ? { color: "#3692FF" }
-      : { color: "#4B5563" };
-  };
+  const currentPageHighlight = useMemo(() => {
+    return (path) => {
+      return currentPath === path ? { color: "#3692FF" } : { color: "#4B5563" };
+    };
+  }, [currentPath]);
 
-  return (
-    <div className="header">
-      <div className="header-wrapper">
+  const headerContent = useMemo(
+    () => (
+      <>
         <Link to="/" className="header-logo">
           <img src={bannerLogo} alt="Header_Logo" />
         </Link>
@@ -44,8 +44,15 @@ function GNB() {
             <div>중고마켓</div>
           </Link>
         </div>
-        <img src={userLogo} alt="" className="header-userprofile"></img>
-      </div>
+        <img src={userLogo} alt="" className="header-userprofile" />
+      </>
+    ),
+    [currentPageHighlight]
+  );
+
+  return (
+    <div className="header">
+      <div className="header-wrapper">{headerContent}</div>
     </div>
   );
 }
