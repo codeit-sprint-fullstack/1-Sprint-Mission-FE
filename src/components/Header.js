@@ -1,9 +1,9 @@
-import React from 'react';
-import './Header.css';
-import pandaLogo from '../assets/images/panda-face.png';
-import pandaMarket from '../assets/images/panda-market.png';
-import profileImage from '../assets/images/profile-image.png';
-import { Link } from 'react-router-dom';
+import React from "react";
+import "./Header.css";
+import pandaLogo from "../assets/images/panda-face.png";
+import pandaMarket from "../assets/images/panda-market.png";
+import profileImage from "../assets/images/profile-image.png";
+import { Link } from "react-router-dom";
 
 /* 판다마켓 헤더 */
 function Header() {
@@ -11,12 +11,23 @@ function Header() {
     <header className="header">
       <div className="logo-container">
         <img src={pandaLogo} alt="Panda Logo" className="logo" />
-        <img src={pandaMarket} alt="Panda Market" className="logo" id="pandaMarket_logo" />
+        <img
+          src={pandaMarket}
+          alt="Panda Market"
+          className="logo"
+          id="pandaMarket_logo"
+        />
       </div>
       <nav className="nav">
         <ul>
-        <li><a href="#free-board">자유게시판</a></li>
-        <li><Link id='ItemPageMarket' to="/items">중고마켓</Link></li>
+          <li>
+            <a href="#free-board">자유게시판</a>
+          </li>
+          <li>
+            <Link id="ItemPageMarket" to="/items">
+              중고마켓
+            </Link>
+          </li>
         </ul>
       </nav>
       <img src={profileImage} alt="Profile" className="profile" />

@@ -11,9 +11,6 @@
 # production
 /build
 
-# public
-/public
-
 # 테스트 관련 파일들
 setupTests.js
 App.test.js

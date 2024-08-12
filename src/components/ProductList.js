@@ -1,7 +1,6 @@
-import React from 'react';
-import './ProductList.css';
-import ProductListItem from './ProductListItem';
-
+import React from "react";
+import "./ProductList.css";
+import ProductListItem from "./ProductListItem";
 
 function ProductList({ products }) {
   if (!Array.isArray(products)) {
@@ -13,7 +12,7 @@ function ProductList({ products }) {
       <ul className="product-list">
         {products.map((product) => (
           <ProductListItem key={product.id} product={product} />
-      ))}
+        ))}
       </ul>
     </section>
   );

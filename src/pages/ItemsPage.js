@@ -1,21 +1,21 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
-import searchIcon from '../assets/images/ic_search.png';
-import ItemsPageHeader from '../components/ItemsPageHeader';
-import { useNavigate } from 'react-router-dom';
-import './ItemsPage.css';
-import '../styles/Responsive.css'; 
-import ProductList from '../components/ProductList';
-import { filterProductsByName } from '../api/api';
-import Pagination from '../components/Pagination';
-import useProductList from '../hooks/useProductList';
-import { LIMIT } from '../constants';
+import React, { useEffect, useState, useMemo, useCallback } from "react";
+import searchIcon from "../assets/images/ic_search.png";
+import ItemsPageHeader from "../components/ItemsPageHeader";
+import { useNavigate } from "react-router-dom";
+import "./ItemsPage.css";
+import "../styles/Responsive.css";
+import ProductList from "../components/ProductList";
+import { filterProductsByName } from "../api/api";
+import Pagination from "../components/Pagination";
+import useProductList from "../hooks/useProductList";
+import { LIMIT } from "../constants";
 
 function ItemsPage() {
   const navigate = useNavigate();
-  const [order, setOrder] = useState('createdAt');
+  const [order, setOrder] = useState("createdAt");
 
   // 검색 기능
-  const [searchProduct, setSearchProduct] = useState('');
+  const [searchProduct, setSearchProduct] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [searchError, setSearchError] = useState(null);
 
@@ -23,7 +23,8 @@ function ItemsPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
   // 커스텀 훅 호출
-  const { products, hasNext, loadingError, totalPages, fetchProducts } = useProductList(order, null);
+  const { products, hasNext, loadingError, totalPages, fetchProducts } =
+    useProductList(order, null);
 
   const handleOrderChange = (event) => {
     setOrder(event.target.value);
@@ -32,11 +33,11 @@ function ItemsPage() {
   };
 
   /* 엔터키로 검색 입력 */
-  const handleKeyDown = (e) =>{
-    if(e.key === 'Enter'){
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
       handleSearchClick();
     }
-  }
+  };
 
   const handleSearchChange = (event) => {
     setSearchProduct(event.target.value);
@@ -44,24 +45,24 @@ function ItemsPage() {
 
   const handleSearchClick = useCallback(async () => {
     try {
-      if (searchProduct.trim() === '') {
+      if (searchProduct.trim() === "") {
         setSearchResults([]);
-        setSearchError('⚠ 검색어를 입력해 주세요.');
+        setSearchError("⚠ 검색어를 입력해 주세요.");
         return;
       }
       const results = filterProductsByName(products, searchProduct);
       if (results.length === 0) {
         setSearchResults([]);
-        setSearchError('상품이 존재하지 않습니다.');
+        setSearchError("상품이 존재하지 않습니다.");
       } else {
         setSearchResults(results);
         setSearchError(null);
       }
     } catch (error) {
-      setSearchError('검색 중 오류가 발생했습니다.');
-      console.error('검색 오류', error);
+      setSearchError("검색 중 오류가 발생했습니다.");
+      console.error("검색 오류", error);
     }
-  },[searchProduct, products]);
+  }, [searchProduct, products]);
 
   const handlePageClick = (page) => {
     setCurrentPage(page);
@@ -71,40 +72,50 @@ function ItemsPage() {
   // 최신순 정렬(좋아요 순 정렬 제거)
   const sortedProducts = useMemo(() => {
     if (Array.isArray(products)) {
-      return [...products].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      return [...products].sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+      );
     }
     return []; // products가 배열이 아닐 경우 빈 배열 반환
   }, [products]);
 
   useEffect(() => {
     fetchProducts(currentPage); // 초기 로드 및 페이지 변경 시 로드
-  }, [order, currentPage,fetchProducts]);
+  }, [order, currentPage, fetchProducts]);
 
   // 현재 페이지에 맞는 상품 목록 추출
-  const currentPageProducts = sortedProducts.slice((currentPage - 1) * LIMIT, currentPage * LIMIT);
+  const currentPageProducts = sortedProducts.slice(
+    (currentPage - 1) * LIMIT,
+    currentPage * LIMIT,
+  );
 
   /* 상품 등록하기 버튼 눌렀을때 이동페이지*/
   const handleAddProductClick = () => {
-    navigate('/registration');
+    navigate("/registration");
   };
 
   return (
-    <div className='App'>
+    <div className="App">
       <ItemsPageHeader />
       <main>
-        <div className='SaleProductNav'>
+        <div className="SaleProductNav">
           <h2>판매 중인 상품</h2>
-          <div className='inputBtDrop'>
-            <input 
-              type="text" 
-              placeholder="검색할 상품을 입력해주세요" 
-              className="search-input" 
+          <div className="inputBtDrop">
+            <input
+              type="text"
+              placeholder="검색할 상품을 입력해주세요"
+              className="search-input"
               style={{ backgroundImage: `url(${searchIcon})` }}
               value={searchProduct}
               onChange={handleSearchChange}
               onKeyDown={handleKeyDown}
             />
-            <button className='addProductBotton' onClick={handleAddProductClick}>상품 등록하기</button>
+            <button
+              className="addProductBotton"
+              onClick={handleAddProductClick}
+            >
+              상품 등록하기
+            </button>
             <select className="sortDropDown" onChange={handleOrderChange}>
               <option value="createdAt">최신순</option>
             </select>
@@ -122,12 +133,14 @@ function ItemsPage() {
           </div>
         )}
         {loadingError && <span>{loadingError}</span>}
-        <ProductList products={searchProduct ? searchResults : currentPageProducts} />
-        <Pagination 
-          currentPage={currentPage} 
-          totalPages={totalPages} 
-          onPageChange={handlePageClick} 
-          hasNext={hasNext} 
+        <ProductList
+          products={searchProduct ? searchResults : currentPageProducts}
+        />
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageClick}
+          hasNext={hasNext}
         />
       </main>
     </div>

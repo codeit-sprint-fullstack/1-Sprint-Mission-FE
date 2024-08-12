@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
-import { getProductList } from '../api/api';
-import { LIMIT } from '../constants';
+import { useState, useEffect, useCallback } from "react";
+import { getProductList } from "../api/api";
+import { LIMIT } from "../constants";
 
 function useProductList(order, initialCursor) {
   const [products, setProducts] = useState([]);
@@ -16,10 +16,10 @@ function useProductList(order, initialCursor) {
       const { paging, list, totalCount } = response;
 
       // 응답 데이터의 구조 확인
-      console.log('받아온 객체:',response);
-      console.log('list:', response.list);
-      console.log('paging:', response.paging);
-      console.log('totalCount:', response.totalCount);
+      console.log("받아온 객체:", response);
+      console.log("list:", response.list);
+      console.log("paging:", response.paging);
+      console.log("totalCount:", response.totalCount);
 
       if (Array.isArray(response)) {
         setProducts(response); // 전체 상품 목록 설정
@@ -27,7 +27,7 @@ function useProductList(order, initialCursor) {
         setHasNext(paging ? paging.hasNext : false);
         setTotalPages(totalCount ? Math.ceil(totalCount / LIMIT) : 5);
       } else {
-        throw new Error('상품 목록 데이터가 유효하지 않습니다.');
+        throw new Error("상품 목록 데이터가 유효하지 않습니다.");
       }
     } catch (error) {
       setLoadingError(error.message);

@@ -1,4 +1,3 @@
-
 .App {
   text-align: center;
 }
@@ -19,15 +18,15 @@ h2 {
 }
 
 /* 판매 중인 상품 줄 메뉴*/
-.SaleProductNav{
+.SaleProductNav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 42px;
 }
 
-input{
-  background-color: #F3F4F6;
+input {
+  background-color: #f3f4f6;
   border-style: none;
   width: 300px;
   border-radius: 12px;
@@ -45,24 +44,24 @@ input::placeholder {
   font-size: 16px;
 }
 
-.inputBtDrop{
+.inputBtDrop {
   height: 100%;
 }
 
 .inputBtDrop input,
 .inputBtDrop button,
 .inputBtDrop select {
-  font-family: 'Pretendard', sans-serif !important;
+  font-family: "Pretendard", sans-serif !important;
 }
 
 /* 드롭다운 */
-select{
+select {
   appearance: none;
   padding-right: 30px;
 }
 
-select::after{
-  content: '';
+select::after {
+  content: "";
   position: absolute;
   top: 50%;
   right: 10px;
@@ -75,17 +74,17 @@ select::after{
   pointer-events: none;
 }
 
-.sortDropDown{
+.sortDropDown {
   width: 130px;
   padding: 12px 20px;
   border-radius: 12px;
-  color:#1F2937;
+  color: #1f2937;
   font-size: 16px;
   font-weight: 400;
-  border: 1px solid #E5E7EB;
+  border: 1px solid #e5e7eb;
   background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cpath d="M7 10l5 5 5-5z" fill="%23333"/%3E%3C/svg%3E'); /* 삼각형 이모티콘 SVG */
-  background-repeat: no-repeat; 
-  background-position: right 10px center; 
+  background-repeat: no-repeat;
+  background-position: right 10px center;
   background-size: 30px;
 }
 
@@ -98,7 +97,7 @@ select::after{
   border-radius: 8px;
   border: none;
   color: #ffffff;
-  background-color: #3692FF;
+  background-color: #3692ff;
   margin: 10px;
   cursor: pointer;
 }
@@ -107,7 +106,7 @@ select::after{
 .inputBtDrop {
   display: flex;
   align-items: center;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .search-button {
