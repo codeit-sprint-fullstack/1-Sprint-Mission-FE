@@ -1,23 +1,35 @@
-import axios from "axios";
+import axios from 'axios';
 
-export async function getProducts({page, pageSize, orderBy, keyword}) {
+const instance = axios.create({
+  baseURL: 'https://myproducts-api.onrender.com',
+  timeout: 3000,
+});
+
+export async function getProducts({ page = 1, limit = 10, sort, search }) {
   const params = {
     page: page.toString(),
-    pageSize: pageSize.toString(),
+    limit: limit.toString(),
   };
 
-  if (orderBy) {
-    params.orderBy = orderBy;
+  if (sort) {
+    params.sort = sort;
   }
-  if (keyword) {
-    params.keyword = keyword;
+  if (search) {
+    params.search = search;
   }
 
-  try {
-    const response = await axios.get('https://panda-market-api.vercel.app/products', { params });
-    return response.data;
-  } catch (error) {
-    const errorMessage = error.message || '데이터를 불러오는데 실패했습니다.' ;
-    throw new Error(errorMessage);
-  }
+  const response = await instance.get('/products', { params });
+  return response.data;
+}
+
+export async function createProduct(productData) {
+  const res = await instance.post('/registration', productData);
+  return res.data;
+}
+
+export async function getItemByName(name) {
+  const result = await getProducts({ search: name });
+  const { products } = result;
+
+  return products.find((product) => product.name === name);
 }

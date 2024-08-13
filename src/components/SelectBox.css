@@ -4,17 +4,17 @@
   z-index: 10;
 }
 .base-style {
-  border: 1px solid #E5E7EB;
+  border: 1px solid #e5e7eb;
   background-color: white;
-  border-radius: 12px;
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
-  color:#1F2937
+  color: #1f2937;
 }
 .select-init {
   width: 100%;
   height: 100%;
+  border-radius: 12px;
 }
 .select-init span {
   margin-left: 24px;
@@ -28,10 +28,15 @@
   height: 40px;
 }
 .select-options button:hover {
-  background-color: #3692FF;
-  color: #E5E7EB;
+  background-color: #3692ff;
+  color: #e5e7eb;
 }
-
+.init {
+  border-radius: 0 0 12px 12px;
+}
+.recent {
+  border-radius: 12px 12px 0 0;
+}
 
 @media screen and (min-width: 375px) and (max-width: 786px) {
   .SelectBox {

@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
-
+import { useEffect, useState } from 'react';
 
 function useMediaQuery(query) {
   const [matches, setMatches] = useState(window.matchMedia(query).matches);
 
   useEffect(() => {
     const mediaQueryList = window.matchMedia(query);
-    const documentChangeHandler = () => setMatches(mediaQueryList .matches);
+    const documentChangeHandler = () => setMatches(mediaQueryList.matches);
 
     mediaQueryList.addEventListener('change', documentChangeHandler);
 
@@ -14,7 +13,7 @@ function useMediaQuery(query) {
       mediaQueryList.removeEventListener('change', documentChangeHandler);
     };
   }, [query]);
-  
+
   return matches;
 }
 

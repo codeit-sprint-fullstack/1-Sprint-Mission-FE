@@ -34,9 +34,15 @@ nav {
 .nav-link:visited {
   color : #4B5563;
 }
-.profile {
-  background-color: #DFDFDF;
-  border-radius: 50px
+.login button {
+  padding: 12px 23px;
+  background-color: #3692FF;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: white;
 }
 
 
