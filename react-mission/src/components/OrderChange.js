@@ -1,3 +1,4 @@
+import './OrderChange.css'
 import { useCallback, useState } from "react";
 import useResize from "./hook/useResize";
 import orderChangeArrow from "./img/orderChangeArrow.png";

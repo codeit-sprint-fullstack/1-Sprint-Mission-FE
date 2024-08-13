@@ -1,0 +1,219 @@
+/* public */
+.RegistrationFormContaner {
+  width: 100%;
+  height: 1139px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.productRegistration {
+  height: 42px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.productRegistrationLabel {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23.87px;
+  color: #1f2937;
+}
+
+.productRegistrationButton {
+  width: 74px;
+  height: 42px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.09px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.activateColor {
+  background-color: #3692ff;
+}
+
+.noColor {
+  background-color: #9CA3AF;
+}
+.Registrationbox {
+  width: 1200px;
+  height: 89px;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.RegistrationLabel {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21.48px;
+  color: #1f2937;
+}
+
+.validConditionsContaner {
+  width: 100%;
+  height: auto;
+}
+
+.validConditions {
+  margin: 8px 0 0 16px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 17.9px;
+  color: #f74747;
+}
+
+.productInput {
+  height: 56px;
+  border-radius: 12px;
+  padding: 16px 24px 16px 24px;
+  background-color: #f3f4f6;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #9ca3af;
+}
+
+.borderNone {
+  border: none;
+}
+
+.borderError {
+  border: 1px solid #f74747;
+}
+
+.tagContaner {
+  width: 100%;
+  height: 36px;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: row;
+}
+
+.tagBox {
+  width: auto;
+  height: 36px;
+  border-radius: 26px;
+  background-color: #f3f4f6;
+  padding: 6px 12px;
+  margin-right: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #1f2937;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.xImg {
+  width: 22px;
+  height: 24px;
+  margin-left: 8px;
+}
+
+/* pc */
+@media screen and (min-width: 1200px) {
+  .productRegistration {
+    width: 1200px;
+  }
+
+  .Registrationbox {
+    width: 1200px;
+  }
+
+  .productInput {
+    width: 1200px;
+  }
+
+  #registrationDescription {
+    height: 315px;
+  }
+
+  #productDescription {
+    max-width: 1200px;
+    min-width: 1200px;
+    max-height: 282px;
+    min-height: 282px;
+  }
+}
+
+/* tablit */
+@media screen and (min-width: 768px) and (max-width: 1199.9px) {
+  .productRegistration {
+    width: 696px;
+  }
+
+  .Registrationbox {
+    width: 696px;
+  }
+
+  .productInput {
+    width: 696px;
+  }
+
+  #registrationDescription {
+    height: 233px;
+  }
+
+  #productDescription {
+    max-width: 696px;
+    min-width: 696px;
+    max-height: 200px;
+    min-height: 200px;
+  }
+}
+
+/* mobile */
+@media screen and (min-width: 375px) and (max-width: 767.9px) {
+  .RegistationMobile {
+    max-width: 767px;
+    width: 100%;
+    height: 1036px;
+  }
+
+  .RegistrationFormContaner {
+    height: 1036px;
+    padding: 0 16px;
+  }
+
+  .productRegistration {
+    width: 100%;
+  }
+
+  .Registrationbox {
+    width: 100%;
+    height: 85px;
+    margin-top: 16px;
+  }
+
+  .RegistrationLabel {
+    font-size: 14px;
+    line-height: 16.71px;
+  }
+
+  .productInput {
+    width: 100%;
+  }
+
+  #registrationDescription {
+    height: 229px;
+  }
+
+  #productDescription {
+    max-width: 767px;
+    min-width: 344px;
+    max-height: 200px;
+    min-height: 200px;
+  }
+}

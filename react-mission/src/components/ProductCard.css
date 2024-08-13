@@ -1,0 +1,211 @@
+/* public */
+.productName {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.bestProductName {
+  height: 24px;
+  margin-top: 10px;
+}
+
+.saleProductName {
+  height: 24px;
+  margin-top: 16px;
+}
+
+.productPrice {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+  margin-top: 6px;
+}
+
+.productColor {
+  color: #1f2937;
+}
+
+.productFavoriteContaner {
+  width: 221px;
+  height: 18px;
+  margin-top: 6px;
+  display: flex;
+  flex-direction: row;
+}
+
+.heartIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.productFavoriteCount {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #4b5563;
+}
+
+/* variant이 best일 때 */
+.bestProductImg {
+  border-radius: 19.46px;
+}
+
+.bestProductCard {
+  background-color: #fcfcfc;
+}
+
+/* variant이 sale일 때 */
+.saleProductImg {
+  width: 221px;
+  height: 221px;
+  border-radius: 16px;
+}
+
+.saleProductCard {
+  background-color: #fcfcfc;
+}
+
+/* pc */
+@media screen and (min-width: 1200px) {
+  .bestProductName {
+    width: 282px;
+    margin-top: 16px;
+  }
+
+  .saleProductName {
+    width: 217px;
+  }
+
+  /* variant이 best일 때 */
+  .bestProductImg {
+    width: 282px;
+    height: 282px;
+    border-radius: 16px;
+  }
+
+  .bestProductCardContaner {
+    width: 1200px;
+    height: 378px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .bestProductCard {
+    width: 282px;
+    height: 378px;
+  }
+
+  /* variant이 sale일 때 */
+  .saleProductCardContaner {
+    width: 1201px;
+    height: 678px;
+    display: flex;
+    flex-direction: row;
+    gap: 40px 24px;
+    flex-wrap: wrap;
+    overflow: hidden;
+  }
+
+  .saleProductCard {
+    width: 221px;
+    height: 317px;
+  }
+}
+
+/* tablit */
+@media screen and (min-width: 768px) and (max-width: 1199.9px) {
+  .bestProductName {
+    width: 343px;
+  }
+
+  .saleProductName {
+    width: 221px;
+  }
+
+  /* variant이 best일 때 */
+  .bestProductImg {
+    width: 343px;
+    height: 343px;
+  }
+
+  .bestProductCardContaner {
+    width: 696px;
+    height: 434px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+
+  .bestProductCard {
+    width: 343px;
+    height: 434px;
+  }
+
+  /* variant이 sale일 때 */
+  .saleProductCardContaner {
+    width: 695px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 40px 16px;
+    flex-wrap: wrap;
+  }
+
+  .saleProductCard {
+    width: 221px;
+    height: 317px;
+  }
+}
+
+/* mobile */
+@media screen and (min-width: 375px) and (max-width: 767.9px) {
+  .bestProductName {
+    width: 100%;
+  }
+
+  .saleProductName {
+    width: 100%;
+  }
+
+  .productFavoriteContaner {
+    width: 100%;
+    height: 19px;
+  }
+
+  /* variant이 best일 때 */
+  .bestProductImg {
+    width: 100%;
+    aspect-ratio: 1/ 1;
+  }
+
+  .bestProductCardContaner {
+    width: 100%;
+    min-height: 434px;
+    height: auto;
+  }
+
+  .bestProductCard {
+    width: 100%;
+    min-height: 434px;
+    height: auto;
+  }
+
+  /* variant이 sale일 때 */
+  .saleProductImg {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/ 1;
+    border-radius: 12px;
+  }
+
+  .saleProductCardContaner {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 8px;
+  }
+}

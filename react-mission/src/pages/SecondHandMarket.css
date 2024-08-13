@@ -1,0 +1,26 @@
+/* public */
+main {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* [  ]product.js의 css  */
+.productFont {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #111827;
+}
+
+/* mobile */
+@media screen and (min-width: 375px) and (max-width: 767.9px) {
+  .ProductMobile {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
