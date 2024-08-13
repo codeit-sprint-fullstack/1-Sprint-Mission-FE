@@ -37,7 +37,7 @@ ul {
     flex-direction: column;
     gap: 40px;
     width: 696px;
-    height: 1342px;
+    height: 848px;
   }
 }
 /* Mobile view */
@@ -47,7 +47,7 @@ ul {
     flex-direction: column;
     gap: 24px;
     width: 344px;
-    height: 1254px;
+    height: 674px;
     margin-top: 17px;
   }
 }

@@ -18,7 +18,7 @@ a {
   padding: 0 20px;
   height: 42px;
   font-size: 16px;
-  border: 1px solid #E5E7EB;
+  border: 1px solid #e5e7eb;
   border-radius: 12px;
   cursor: pointer;
   text-wrap: nowrap;
@@ -36,7 +36,7 @@ a {
   flex-direction: column;
   align-items: center;
   border-style: solid;
-  border: 1px solid #E5E7EB;
+  border: 1px solid #e5e7eb;
   border-radius: 12px;
   z-index: 9999;
   overflow: hidden;
@@ -49,19 +49,23 @@ a {
 }
 
 .DropDownList a:not(:last-child) {
-  border-bottom: 1px solid #E5E7EB;
+  border-bottom: 1px solid #e5e7eb;
   width: 100%;
   text-align: center;
 }
 
 /* Mobile view */
 @media (max-width: 743px) {
+  .DropDownContainer {
+    width: 24px;
+  }
+
   .DropDownButton {
     display: block;
     padding: 0 8px;
     width: 42px;
     height: 42px;
-    border: 1px solid #E5E7EB;
+    border: 1px solid #e5e7eb;
     border-radius: 12px;
     cursor: pointer;
     text-wrap: nowrap;
@@ -69,13 +73,14 @@ a {
 
   .DropDownList {
     width: 130px;
-    right: 1px;   /* ? */
+    right: 1px; /* ? */
   }
 
-  span, .dropDownIcon {
+  span,
+  .dropDownIcon {
     display: none;
   }
-  
+
   .mobileDropDownIcon {
     display: block;
   }

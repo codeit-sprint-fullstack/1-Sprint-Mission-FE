@@ -4,6 +4,7 @@ import Best from "./Best";
 import Nav from "./Nav";
 import OnSale from "./OnSale";
 import Registration from "./Registration";
+import ProductDetail from "./ProductDetail";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             />
             <Route path="/items" element={<OnSale />} />
             <Route path="/registration" element={<Registration />} />
+            <Route path="/products/:id" element={<ProductDetail />} />
           </Routes>
         </div>
       </main>

@@ -36,11 +36,27 @@
 }
 
 .Nav-user {
+  display: none;
   width: 40px;
   height: 40px;
   margin-top: 15px;
   margin-left: auto;
   margin-right: 200px;
+}
+
+.login-button {
+  width: 88px;
+  height: 42px;
+  padding: 12px 23px;
+  border-radius: 8px;
+  border-style: none;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: 200px;
+  background-color: #3692FF;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 /* Tablet view */
@@ -51,6 +67,10 @@
   }
 
   .Nav-user {
+    margin-right: 24px;
+  }
+
+  .login-button {
     margin-right: 24px;
   }
 }
@@ -86,6 +106,10 @@
   }
 
   .Nav-user {
+    margin-right: 16px;
+  }
+
+  .login-button {
     margin-right: 16px;
   }
 

@@ -15,8 +15,9 @@ input {
   height: 56px;
 }
 
-input:focus, textarea:focus {
-  outline: 1px solid #3692FF;
+input:focus,
+textarea:focus {
+  outline: 1px solid #3692ff;
 }
 
 textarea {
@@ -56,9 +57,55 @@ textarea {
   border-radius: 8px;
   padding: 12px 23px;
   border-style: none;
-  background-color: #9ca3af;
+  background-color: #3692ff;
+  cursor: pointer;
   color: #ffffff;
   font-size: 16px;
+  font-weight: 600;
+}
+
+.reg-button:disabled {
+  background-color: #9ca3af;
+  cursor: default;
+}
+
+.tag-container {
+  display: flex;
+  gap: 12px;
+}
+
+.tag-chip {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  height: 36px;
+  padding: 6px 12px 6px 16px;
+  border-radius: 26px;
+  color: #1f2937;
+  background-color: #f3f4f6;
+  line-height: 24px;
+  text-wrap: nowrap;
+}
+
+.tag-delete {
+  background-color: #f3f4f6;
+  background-image: url(../image/tagDelete.png);
+  width: 22px;
+  height: 24px;
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+}
+
+.error {
+  border: 1px solid #f74747;
+}
+
+.error-message {
+  margin-top: -4px;
+  margin-left: 16px;
+  color: #f74747;
+  font-size: 15px;
   font-weight: 600;
 }
 

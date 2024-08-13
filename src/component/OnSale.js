@@ -4,25 +4,8 @@ import { getProducts } from "../api";
 import searchIcon from "../image/searchIcon.png";
 import DropDown from "./OnSaleDropDown";
 import Pagination from "./Pagination";
+import ItemForm from "./ItemForm";
 import { Link } from "react-router-dom";
-
-function OnSaleItem({ item = {} }) {
-  const thousandPrice = item.price
-    ? item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-    : "0";
-
-  return (
-    <div className="OnSaleItem">
-      <img className="OnSaleItem-img" src={item.images} alt={item.name} />
-      <p>{item.name}</p>
-      <h1>{thousandPrice}원</h1>
-      <div className="like">
-        <p>♡</p>
-        <p>{item.favoriteCount}</p>
-      </div>
-    </div>
-  );
-}
 
 function OnSale() {
   const [orderBy, setOrderBy] = useState("recent");
@@ -126,8 +109,8 @@ function OnSale() {
       <ul className="OnSale-list">
         {(userInput ? filterItems : sortedItems).map((item) => {
           return (
-            <li key={item.id}>
-              <OnSaleItem item={item} />
+            <li key={item._id}>
+              <ItemForm item={item} />
             </li>
           );
         })}
