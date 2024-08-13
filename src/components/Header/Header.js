@@ -2,18 +2,29 @@ import pandaLogo from '../../assets/images/logo-pic.png';
 import pandaText from '../../assets/images/logo-text.png';
 import userImg from '../../assets/images/user.png';
 import './header.css';
+import { Link, NavLink } from 'react-router-dom';
+
+function getLinkStyle({ isActive }) {
+  return {
+    color: isActive ? '#3692FF' : '#4b5563',
+  };
+}
 
 const Header = () => {
   return (
     <header>
       <nav>
-        <div className="headerLogo">
+        <Link to="/" className="headerLogo">
           <img src={pandaLogo} alt={pandaLogo} className="pandaLogo" />
           <img src={pandaText} alt={pandaText} className="pandaText" />
-        </div>
+        </Link>
         <div className="nav">
-          <div className="navContent">자유게시판</div>
-          <div className="navContent">중고마켓</div>
+          <NavLink to="/community" className="navContent" style={getLinkStyle}>
+            자유게시판
+          </NavLink>
+          <NavLink to="/items" className="navContent" style={getLinkStyle}>
+            중고마켓
+          </NavLink>
         </div>
         <img src={userImg} alt={userImg} className="user" />
       </nav>

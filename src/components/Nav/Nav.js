@@ -1,11 +1,10 @@
-// Nav.js
 import './nav.css';
 import React, { useState, useEffect } from 'react';
 import SearchForm from './SearchForm/SearchForm';
 import DropDown from './DropDown/DropDown';
 import RegistProduct from './RegistProduct/RegistProduct';
 
-const Nav = ({ setOrderBy, setSearchQuery, setCurrentPage }) => {
+const Nav = ({ setOrderBy, setSearchQuery, setCurrentPage, className }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -19,9 +18,11 @@ const Nav = ({ setOrderBy, setSearchQuery, setCurrentPage }) => {
     };
   }, []);
 
+  const containerClass = className ? `${className} navContainer` : 'navContainer';
+
   if (isMobile) {
     return (
-      <div className="navContainer">
+      <div className={containerClass}>
         <div className="navContainer2">
           <p className="navText">판매중인 상품</p>
           <RegistProduct />
@@ -35,7 +36,7 @@ const Nav = ({ setOrderBy, setSearchQuery, setCurrentPage }) => {
   }
 
   return (
-    <div className="navContainer">
+    <div className={containerClass}>
       <p className="navText">판매중인 상품</p>
       <div className="navContainer2">
         <SearchForm setSearchQuery={setSearchQuery} setCurrentPage={setCurrentPage} />

@@ -1,12 +1,14 @@
-import faceBook from "../../assets/images/ic_facebook.png";
-import instargram from "../../assets/images/ic_instagram.png";
-import twitter from "../../assets/images/ic_twitter.png";
-import youtube from "../../assets/images/ic_youtube.png";
-import "./footer.css";
+import faceBook from '../../assets/images/ic_facebook.png';
+import instargram from '../../assets/images/ic_instagram.png';
+import twitter from '../../assets/images/ic_twitter.png';
+import youtube from '../../assets/images/ic_youtube.png';
+import './footer.css';
 
-const Footer = () => {
+const Footer = ({ className }) => {
+  const footerClass = className ? `${className} Footer` : 'footer';
+
   return (
-    <footer>
+    <footer className={footerClass}>
       <div className="footerContainer">
         <span className="footerOne">ⓒcodeit - 2024</span>
         <div className="footerTwo">

@@ -17,21 +17,24 @@ function BestProduct() {
   }, [pageSize]);
 
   return (
-    <ul className="productLayout">
-      {data.map(({ favoriteCount, id, description, images, price }) => {
-        return (
-          <li key={id} className="productContainer">
-            <img src={images} alt={description} className="productImg" />
-            <p className="itemDescription">{description}</p>
-            <p className="itemPrice">{price.toLocaleString('en-US') + '원'}</p>
-            <div className="favoriteBox">
-              <img src={heartImg} alt={heartImg} className="heartImg" />
-              <p className="itemFavoriteCount">{favoriteCount}</p>
-            </div>
-          </li>
-        );
-      })}
-    </ul>
+    <div className="bestProductContainer">
+      <div className="bestProduct">베스트 상품</div>
+      <ul className="productLayout">
+        {data.map(({ favoriteCount, id, description, images, price }) => {
+          return (
+            <li key={id} className="productContainer">
+              <img src={images} alt={description} className="productImg" />
+              <p className="itemDescription">{description}</p>
+              <p className="itemPrice">{price.toLocaleString('en-US') + '원'}</p>
+              <div className="favoriteBox">
+                <img src={heartImg} alt={heartImg} className="heartImg" />
+                <p className="itemFavoriteCount">{favoriteCount}</p>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
 

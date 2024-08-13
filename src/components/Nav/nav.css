@@ -1,13 +1,18 @@
 @import '/src/assets/styles/style.css';
 
+.appNav {
+  margin: 40px auto 0;
+}
+
+.itemsNav {
+  margin: 110px auto 0;
+}
+
 .navContainer {
-  position: relative;
-  top: 155px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: 1200px;
-  margin: 0 auto;
 }
 
 .navContainer2 {
@@ -46,5 +51,9 @@
     justify-content: space-between;
     max-width: 355px;
     margin: 8px auto 0;
+  }
+
+  .itemsNav {
+    margin-top: 86px;
   }
 }
