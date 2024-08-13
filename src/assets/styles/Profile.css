@@ -4,3 +4,19 @@
   margin-right: 20rem;
   cursor: pointer;
 }
+
+/* ===== Tablet - width : 744px ~ 1199px ===== */
+@media (min-width: 744px) and (max-width: 1199px) {
+  /* 프로필 오른쪽 여백 24px */
+  .header__btn-profile {
+    margin-right: 2.4rem;
+  }
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  /* 프로필 오른쪽 여백 16px */
+  .header__btn-profile {
+    margin-right: 1.6rem;
+  }
+}

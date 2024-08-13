@@ -1,0 +1,22 @@
+.tag {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 0.1rem solid;
+  border-color: var(--gray100-color);
+  background-color: var(--gray100-color);
+  height: 3.6rem;
+  border-radius: 1.0833em;
+  padding-left: 1.6rem;
+}
+
+.btn-delete-tag {
+  position: static;
+  top: -50%;
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-left: 0.8rem;
+  margin-right: 1.1rem;
+  background-image: url(../images/ic_X.svg);
+}

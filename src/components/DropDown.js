@@ -4,7 +4,7 @@ import React, {
   useContext,
   cloneElement,
 } from "react";
-import "../";
+import "..";
 import "../assets/styles/dropDown.css";
 import { deviceContext } from "../App";
 import { MOBILE } from "../utils/constants";

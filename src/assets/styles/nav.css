@@ -5,11 +5,20 @@
   text-wrap: nowrap;
   justify-content: center;
   align-items: center;
+
   cursor: pointer;
+}
+
+.nav__text {
+  color: var(--gray600-color);
 }
 
 .nav__item:hover {
   border-bottom: 0.2rem solid var(--blue100-color);
+}
+
+.nav__text.active {
+  color: var(--blue100-color);
 }
 
 .nav {
@@ -31,5 +40,16 @@
   height: 6.9rem;
   /* line-height : 21.48px; */
   line-height: 1.19333em;
-  color: var(--gray600-color);
+  /* color: var(--gray600-color); */
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .nav__list {
+    gap: 0.8rem;
+  }
+
+  .header__nav-item {
+    width: 7rem;
+  }
 }

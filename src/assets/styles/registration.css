@@ -1,0 +1,125 @@
+.main-frame-registration {
+  width: 120rem;
+  height: 123.3rem;
+  margin: 0 auto;
+}
+
+.main__section-registration {
+  margin-top: 9.4rem;
+  margin-bottom: 1.6rem;
+}
+
+.main__registration-top-bar {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main__registration-text {
+  color: var(--gray800-color);
+}
+
+.margin-bottom24 {
+  margin-bottom: 2.4rem;
+}
+
+.margin-bottom12 {
+  margin-bottom: 1.2rem;
+}
+
+.main__registration-label {
+  font-size: 1.8rem;
+  /* Line height 21.48px */
+  line-height: 1.19333em;
+  color: var(--gray800-color);
+}
+
+.main__registration-input-small {
+  margin-top: 1.2rem;
+  width: 100%;
+  height: 5.6rem;
+
+  box-sizing: border-box;
+  border: 0.1rem solid;
+  border-color: var(--gray100-color);
+  background-color: var(--gray100-color);
+  /* border-radius : 12px; */
+  border-radius: 0.75em;
+  /* font-size : 16px */
+  text-align: left;
+  /* padding: 16px, 24px, 16px, 24px; */
+  padding: 1em 1.5em;
+  resize: none;
+  /* outline-color: var(--blue100-color); */
+}
+
+.main__registration-input-big {
+  margin-top: 1.2rem;
+  width: 100%;
+  height: 28.2rem;
+
+  box-sizing: border-box;
+  border: 0.1rem solid;
+  border-color: var(--gray100-color);
+  background-color: var(--gray100-color);
+  /* border-radius : 12px; */
+  border-radius: 0.75em;
+  /* font-size : 16px */
+  text-align: left;
+  /* padding: 16px, 24px, 16px, 24px; */
+  padding: 1em 1.5em;
+  resize: none;
+  /* outline-color: var(--blue100-color); */
+}
+
+.input-valid {
+  border-color: var(--gray100-color);
+}
+
+.input-valid:focus {
+  border-color: var(--blue100-color);
+}
+
+.input-invalid {
+  border-color: var(--red-color);
+}
+
+.input-invalid:focus {
+  border-color: var(--red-color);
+}
+
+.input-invalid-warn {
+  margin-top: 0.8rem;
+  margin-left: 1.6rem;
+  color: var(--red-color);
+  font-size: 1.5rem;
+  /* line-height: 17.9px; */
+  line-height: 1.19333em;
+}
+
+.main__registration-tags {
+  flex-wrap: wrap;
+  margin-top: 1.2rem;
+  gap: 1.2rem;
+}
+
+/* ===== Tablet - width : 744px ~ 1199px ===== */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .main-frame-registration {
+    width: 69.6rem;
+    height: 113.3rem;
+    margin: 0 auto;
+  }
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .main-frame-registration {
+    width: 33.4rem;
+    height: 112.2rem;
+    margin: 0 auto;
+  }
+
+  .main__registration-input-big {
+    height: 20rem;
+  }
+}

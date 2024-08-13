@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "../assets/styles/marketBody.css";
 import no_image from "../assets/images/no_image.svg";
@@ -14,6 +15,8 @@ import {
 } from "./Dropdown";
 import Pagination from "./Pagination";
 import { PRODUCT_API_ADDRESS } from "../utils/constants";
+import registButton from "../assets/images/btn_registration.svg";
+import Loading from "./Loading";
 
 const instance = axios.create({
   baseURL: PRODUCT_API_ADDRESS,
@@ -115,10 +118,6 @@ function Products() {
   let device = useContext(deviceContext);
   // let totalCount = 0;
 
-  const handleRegistrationButtonClick = () => {
-    alert("상품 등록 : 로그인이 필요합니다");
-  };
-
   const sortByRecent = () => {
     getProducts(recentPage, ORDER_BY_RECENT, searchText);
     recentOrder = ORDER_BY_RECENT;
@@ -167,7 +166,9 @@ function Products() {
         totalCount = res.data.totalCount;
         setMaxPageNum(Math.ceil(totalCount / PAGE_SIZE[device]));
       })
-      .catch((err) => console.log(err.name));
+      .catch((err) => {
+        console.log(err.name);
+      });
   }
 
   useEffect(() => {
@@ -176,6 +177,8 @@ function Products() {
 
   return (
     <div className="main__section-products">
+      {/* {true ? <h1>Loading</h1> : undefined} */}
+
       <div className="main__products-tools">
         <p className="Text-xl Bold main__products-tools-name">판매 중인 상품</p>
         <SearchProducts
@@ -187,10 +190,12 @@ function Products() {
         >
           검색할 상품을 입력해주세요
         </SearchProducts>
-        <Button
+        <Link
           className="registrationButton main__tools-button"
-          onClick={handleRegistrationButtonClick}
-        />
+          to="/registration"
+        >
+          <img src={registButton} alt="상품 등록" />
+        </Link>
         {
           <Dropdown dropdwonClass="main__tools-dropdown">
             <DropdownToggle>{ORDER_TEXT[recentOrder]}</DropdownToggle>
@@ -236,6 +241,7 @@ function Products() {
 
 function BestProducts() {
   const [bestProducts, setBestProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   let device = useContext(deviceContext);
 
@@ -248,7 +254,10 @@ function BestProducts() {
 
     instance
       .get(PATH, { params })
-      .then((res) => setBestProducts(res.data.list))
+      .then((res) => {
+        setBestProducts(res.data.list);
+        setLoading(false);
+      })
       .catch((err) => console.log(err.name));
   }
 
@@ -258,6 +267,7 @@ function BestProducts() {
 
   return (
     <div className="main__section-best-products">
+      {loading ? <Loading /> : undefined}
       <div className="Text-xl Bold">베스트 상품</div>
       <div className="main__best-products-frame">
         {bestProducts.map((item) => (
@@ -281,7 +291,7 @@ function BestProducts() {
 
 export function MarketBody() {
   return (
-    <main className="main-frame">
+    <main className="main-frame-market">
       <BestProducts />
       <Products />
     </main>

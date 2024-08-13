@@ -1,13 +1,15 @@
+import { NavLink } from "react-router-dom";
 import "../assets/styles/global.css";
 import "../assets/styles/nav.css";
 
-export function NavItem({ className, onClick, children }) {
+export function NavItem({ className, linkto, children }) {
   const navItemClass = `nav__item ${className}`;
-  const itemClick = () => onClick();
 
   return (
-    <li className={navItemClass} onClick={itemClick}>
-      {children}
+    <li className={navItemClass}>
+      <NavLink to={linkto} className="nav__text">
+        {children}
+      </NavLink>
     </li>
   );
 }

@@ -1,19 +1,19 @@
 import Header from "../components/Header";
-import MarketBody from "../components/MarketBody";
+import ItemBody from "../components/ItemBody";
 import Footer from "../components/Footer";
 import { useContext } from "react";
 import { deviceContext } from "../App";
 
-export function FleaMarket() {
+export function Registration() {
   const device = useContext(deviceContext);
 
   return (
     <>
       <Header />
-      <MarketBody />
+      <ItemBody />
       <Footer />
     </>
   );
 }
 
-export default FleaMarket;
+export default Registration;
