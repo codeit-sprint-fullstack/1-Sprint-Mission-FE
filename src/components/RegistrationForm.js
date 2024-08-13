@@ -7,7 +7,6 @@ import RegistrationTags from './RegistrationTags.js';
 import useValidation from '../hooks/registrationHook.js';
 
 import styles from './RegistrationForm.module.css';
-import { eventWrapper } from '@testing-library/user-event/dist/utils/index.js';
 
 const INITIAL_VALUES = {
   name: '',
@@ -23,7 +22,6 @@ function RegistrationForm() {
   const [values, setValues] = useState(INITIAL_VALUES);
   const [isSubmitting, setIsSubmitting] = useState(true);
   const [submittingError, setSubmittingError] = useState(null);
-  const [price, setPrice] = useState('');
   const [blurred, setBlurred] = useState({
     name: false,
     description: false,
@@ -56,8 +54,6 @@ function RegistrationForm() {
       ...prevTouched,
       [name]: true,
     }));
-
-    handleInputChange(e);
   };
 
   const handleSubmit = async (e) => {
@@ -123,6 +119,7 @@ function RegistrationForm() {
         <input
           className={hasError('name') ? styles.errorInput : styles.input}
           onBlur={handleBlur}
+          onChange={handleInputChange}
           name='name'
           placeholder='상품명을 입력해 주세요'
         />
@@ -135,6 +132,7 @@ function RegistrationForm() {
             hasError('description') ? styles.errorTextarea : styles.textarea
           }
           onBlur={handleBlur}
+          onChange={handleInputChange}
           minLength={10}
           name='description'
           placeholder='상품 소개를 입력해 주세요'
@@ -149,6 +147,7 @@ function RegistrationForm() {
         <input
           className={hasError('price') ? styles.errorInput : styles.input}
           onBlur={handleBlur}
+          onChange={handleInputChange}
           name='price'
           type='text'
           placeholder='판매 가격을 입력해 주세요'

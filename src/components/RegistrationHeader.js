@@ -1,10 +1,6 @@
-
-
 import styles from './RegistrationHeader.module.css';
 
 function RegistrationHeader({ isSubmitting, handleSubmit, submittingError }) {
-
-
   // const handleSubmit = () => {
   //   navigate('/pro');
   // };
@@ -14,7 +10,7 @@ function RegistrationHeader({ isSubmitting, handleSubmit, submittingError }) {
       <p>상품 등록하기</p>
       <button
         disabled={isSubmitting}
-        className={styles.button}
+        className={isSubmitting ? styles.button : styles.activeButton}
         type='button'
         onClick={handleSubmit}
       >

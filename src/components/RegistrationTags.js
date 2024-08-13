@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faL } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './RegistrationTags.module.css';
 
@@ -9,13 +9,13 @@ function RegistrationTags({ handleInputChange, initialValues, errors }) {
   const [tags, setTags] = useState(initialValues.tags);
 
   const removeTags = (indexToRemove) => {
-    const filter = tags.filter((el, index) => index !== indexToRemove);
+    const filter = tags.filter((tag) => tag !== indexToRemove);
     setTags(filter);
   };
 
   const addTags = (event) => {
     const inputVal = event.target.value;
-    if (inputVal.length <= 5) {
+    if (1 <= inputVal.length <= 5) {
       if (
         event.key === 'Enter' &&
         inputVal !== '' &&
@@ -44,10 +44,10 @@ function RegistrationTags({ handleInputChange, initialValues, errors }) {
         />
         {errors.tags && <p className={styles.error}>{errors.tags}</p>}
         <div className={styles.tagList}>
-          {tags.map((tag, i) => (
-            <li key={i} className={styles.tag}>
+          {tags.map((tag) => (
+            <li key={tag} className={styles.tag}>
               <span>#{tag}</span>
-              <span onClick={() => removeTags(i)}>
+              <span onClick={() => removeTags(tag)}>
                 <FontAwesomeIcon
                   className={styles.tagIcon}
                   icon={faCircleXmark}

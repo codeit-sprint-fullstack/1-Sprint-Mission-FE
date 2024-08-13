@@ -1,7 +1,5 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { getProductItemList } from '../api/ProductItem.js';
-
-import { debounce } from 'lodash';
 
 import ProductItemList from '../components/ProductItemList.js';
 import ProductListHeader from '../components/ProductListHeader.js';
@@ -48,13 +46,6 @@ function MarketItemPage() {
     setPage(pageNumber);
   };
 
-  const performSearch = useCallback(
-    debounce(async (searchTerm) => {
-      setKeyword(searchTerm);
-    }, 900),
-    []
-  );
-
   useEffect(() => {
     if (mediaType === 'mobile') {
       handleLoad({ page, pageSize: 4, orderBy, keyword });
@@ -69,7 +60,7 @@ function MarketItemPage() {
     <>
       <Container>
         <ProductListHeader
-          performSearch={performSearch}
+          setKeyword={setKeyword}
           handleOrderbyChange={handleOrderbyChange}
           orderBy={orderBy}
         />

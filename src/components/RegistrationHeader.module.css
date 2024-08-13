@@ -27,3 +27,16 @@
   text-align: center;
   margin-top: 9px;
 }
+
+.activeButton {
+  border-radius: 8px;
+  width: 74px;
+  height: 42px;
+  border: 0;
+  background-color: #3692ff;
+  color: #ffff;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 9px;
+}
