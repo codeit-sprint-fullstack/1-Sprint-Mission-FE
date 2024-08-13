@@ -12,7 +12,7 @@ function Header() {
   return (
     <header className='Header'>
       <div className='header-container'>
-        <Link to='/home'>
+        <Link to='/'>
           <img
             className='logo'
             src={mobileSize ? mobileLogo : logoImg}

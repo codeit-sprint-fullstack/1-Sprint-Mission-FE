@@ -4,13 +4,14 @@
   width: 100%;
   flex-direction: column;
   margin: 0 24px;
-  padding-top: 24px;
+  padding-top: 56px;
   gap: 40px;
 }
 
 @media only screen and (max-width: 743px) {
   .Wrapper {
-    padding-top: 17px;
+    padding-top: 0;
+    margin: 16px;
     gap: 24px;
   }
 }

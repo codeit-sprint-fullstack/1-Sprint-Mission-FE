@@ -5,7 +5,7 @@
   gap: 12px;
 }
 
-.top-bar .add-product-btn {
+.top-bar .add-product-btn button {
   background-color: var(--primary-colour);
   color: #ffffff;
   font-size: 1rem;
@@ -32,14 +32,14 @@
   .top-bar h2 {
     grid-area: a;
   }
-  .add-product-btn {
+  .top-bar .add-product-btn {
     grid-area: b;
     justify-self: end;
   }
-  .SearchBar {
+  .top-bar .SearchBar {
     grid-area: c;
   }
-  .Dropdown {
+  .top-bar .Dropdown {
     grid-area: d;
   }
 }
