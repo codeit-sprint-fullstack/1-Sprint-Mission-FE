@@ -86,6 +86,7 @@ function Main() {
   };
 
   // 여기부터 (Select, opstion) 말고, 버튼을 통해서 구현
+
   document.addEventListener("DOMContentLoaded", (event) => {
     const dropdownButton = document.getElementById("dropdownButton");
     const dropdownContent = document.getElementById("dropdownContent");
