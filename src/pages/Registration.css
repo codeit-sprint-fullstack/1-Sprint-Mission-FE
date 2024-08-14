@@ -1,8 +1,9 @@
-.homepage {
+.marketpage {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap :24px
+  gap :24px;
+
 }
 
 main {
@@ -10,9 +11,11 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
-.productSectionSet {
+.productInputsectionSet {
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,21 +41,30 @@ main {
   }
 }
 
-
 .productRenderHeader {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+  margin-top: 56px;
+  padding-top: 56px
 }
 
-.sellingProductSection,
-.bestProductSection {
+.ProductInputSection {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 24px
+}
+
+.inputContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px
 }

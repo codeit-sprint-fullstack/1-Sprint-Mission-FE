@@ -15,10 +15,8 @@ function ProductListRender({ productList, isThereProduct }) {
         </article>
         <figure className="ProductDescription">
           <span>{description.toLocaleString()}</span>
-          {price === 0 ? "" : <h1>{`${price.toLocaleString()}원`}</h1>}
-          {favoriteCount === 0 ? (
-            ""
-          ) : (
+          {price && <h1>{`${price.toLocaleString()}원`}</h1>}
+          {favoriteCount && (
             <div className="ProductLike">
               <img src={iconHeart} alt="좋아요" />
               <span>{favoriteCount}</span>
@@ -36,7 +34,6 @@ function ProductListRender({ productList, isThereProduct }) {
       ))}
     </ul>
   );
-
 }
 
 export default ProductListRender;

@@ -1,51 +1,16 @@
-img {
-  object-fit: cover;
-}
-
-li {
-  list-style: none;
-}
-
-.bodySet {
+.showProductList {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.bestProductNav {
-  width: 1200px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #111827;
-  line-height: 32px;
-  margin: 24px 0px 16px 0px;
-}
-
-.sellingProductNav {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #111827;
-  line-height: 32px;
-  margin: 40px 0px 16px 0px;
-}
-
-.sellingProductList {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 40px
+  gap: 40px;
+  flex-wrap: nowrap;
+  overflow: auto;
 }
 
 .noProduct {
-  width: 1200px;
+  width: 100%;
   height: 400px;
   display: flex;
   justify-content: center;

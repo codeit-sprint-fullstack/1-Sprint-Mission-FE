@@ -25,3 +25,8 @@
     font-weight: 700;
     color: #4B5563;
 }
+
+.marketBoardActive,
+.freeBoardActive{
+    color: #3692FF;
+}
