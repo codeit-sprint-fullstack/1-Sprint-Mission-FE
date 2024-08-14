@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Registration.css";
 import ProductAddForm from "./ProductAddForm";
+import { createProduct } from "./createProduct.js";
 
 export default function Registration() {
   const [isFormValid, setIsFormValid] = useState(false);
@@ -11,30 +12,15 @@ export default function Registration() {
   const handleProductPost = async () => {
     if (isFormValid) {
       try {
-        const response = await fetch(
-          "https://thrift-shop.onrender.com/products",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: formValues.productName,
-              description: formValues.productIntro,
-              price: formValues.productPrice,
-              tags: formValues.tags || [],
-            }),
-          }
-        );
-
-        if (response.ok) {
-          navigate("/Product");
-        } else {
-          const errorData = await response.json();
-          console.error("Failed to submit form", errorData);
-        }
+        await createProduct({
+          name: formValues.productName,
+          description: formValues.productIntro,
+          price: formValues.productPrice,
+          tags: formValues.tags || [],
+        });
+        navigate("/Product");
       } catch (error) {
-        console.error("Error:", error);
+        console.error("Failed to create product:", error);
       }
     }
   };
