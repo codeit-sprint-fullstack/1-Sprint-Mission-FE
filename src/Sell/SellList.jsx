@@ -83,9 +83,9 @@ export function SellList() {
             <p>No products available</p>
           ) : (
             products.map((item) => {
-              const { id, name, price, favoriteCount } = item ?? {};
+              const { _id, name, price, favoriteCount } = item ?? {};
               return (
-                <div key={id} className="sellProductItem">
+                <div key={_id} className="sellProductItem">
                   <img
                     className="sellProduct"
                     src={default_img}
