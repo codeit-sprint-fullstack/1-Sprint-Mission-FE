@@ -11,12 +11,9 @@ function ProductAddForm({ onFormChange, onFormValuesChange }) {
   useEffect(() => {
     const isFormValid =
       Object.values(errors).every((error) => error === "") &&
-      Object.entries(values).every(([key, value]) => {
-        if (key === "productTag") return true;
-        return value.trim() !== "";
-      }) &&
       tags.length > 0 &&
       values.productTag.trim() === "";
+
     onFormChange(isFormValid);
     onFormValuesChange({ ...values, tags });
   }, [errors, values, tags, onFormChange, onFormValuesChange]);
