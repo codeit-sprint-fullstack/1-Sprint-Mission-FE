@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, Link, useNavigate } from 'react-router-dom'; // useNavigate 추가
 import './Navbar.css';
 
 const Navbar = () => {
   const [logoSrc, setLogoSrc] = useState('image/logo.svg');
+  const location = useLocation();
+  const navigate = useNavigate(); // useNavigate 훅을 사용하여 탐색 기능 추가
 
   useEffect(() => {
     const updateLogo = () => {
@@ -21,14 +24,26 @@ const Navbar = () => {
     };
   }, []);
 
+  const navbarClass = location.pathname === '/registration' ? 'navbar registration-page' : 'navbar';
+
   return (
-    <nav className="navbar">
-      <img src={logoSrc} alt="Panda" className="panda" />
+    <nav className={navbarClass}>
+      <img 
+        src={logoSrc} 
+        alt="Panda" 
+        className="panda" 
+        onClick={() => navigate('/')}
+        style={{ cursor: 'pointer' }}
+      />
       <div className="nav-links">
-        <a href="/" className="board-link">자유게시판</a>
-        <a href="/" className="market-link">중고마켓</a>
+        <Link to="/" className="board-link">자유게시판</Link>
+        <Link to="/items" className={`market-link ${location.pathname === '/items' ? 'active' : ''}`}>중고마켓</Link>
       </div>
-      <img src="image/profile.svg" alt="Profile" className="profile" />
+      {location.pathname === '/registration' ? (
+        <button className="login-button">로그인</button>
+      ) : (
+        <img src="image/profile.svg" alt="Profile" className="profile" />
+      )}
     </nav>
   );
 };
