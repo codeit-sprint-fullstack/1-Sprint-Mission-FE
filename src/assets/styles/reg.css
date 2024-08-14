@@ -1,0 +1,132 @@
+.label {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21.48px;
+  color: #1f2937;
+}
+
+.input {
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.input.error {
+  border: 1px solid red;
+}
+
+.form-container {
+  margin-top: 5.875rem;
+  width: 100%;
+}
+
+.form-inner-container {
+  width: 100%;
+}
+
+.flex-container {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-header p {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23.87px;
+  color: #1f2937;
+}
+
+.submit-button {
+  padding: 12px 23px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #ffffff;
+}
+
+.submit-button.active {
+  background-color: #3692ff;
+  cursor: pointer;
+}
+
+.submit-button.disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.description-container {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#description {
+  height: 282px;
+  resize: none;
+}
+
+#description:focus {
+  outline: none;
+}
+
+.tag-item {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-right: 12px;
+  margin-bottom: 5px;
+  padding: 6px 12px;
+  border-radius: 26px;
+  background-color: #f3f4f6;
+}
+
+.tag-remove {
+  cursor: pointer;
+}
+
+.error-message {
+  color: #f74747;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 17.9px;
+  margin-top: -4px;
+  margin-left: 16px;
+}
+
+@media screen and (min-width: 787px) and (max-width: 1460px) {
+  .form-container {
+    padding: 16px 24px;
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width: 786px) {
+  .form-container {
+    padding: 16px 16px;
+  }
+
+  .label {
+    font-size: 14px;
+    line-height: 16.71px;
+  }
+}
