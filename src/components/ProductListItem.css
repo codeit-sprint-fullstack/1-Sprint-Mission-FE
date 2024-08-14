@@ -18,23 +18,23 @@
 }
 
 .product-info p {
-  margin: 10px 0; 
+  margin: 10px 0;
 }
 
 .product-name {
   font-weight: 500;
   font-size: 14px;
-  color: #1F2937;
+  color: #1f2937;
 }
 
 .product-price {
   font-weight: 700;
   font-size: 16px;
-  color: #1F2937;
+  color: #1f2937;
 }
 
 .product-favorite {
   font-weight: 500;
   font-size: 12px;
-  color: #4B5563;
+  color: #4b5563;
 }
