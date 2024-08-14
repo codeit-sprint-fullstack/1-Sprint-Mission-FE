@@ -46,8 +46,8 @@ function ProductAddForm({ onFormChange, onFormValuesChange }) {
     }
   };
 
-  const removeTag = (indexToRemove) => {
-    setTags(tags.filter((_, index) => index !== indexToRemove));
+  const removeTag = (tagToRemove) => {
+    setTags(tags.filter((tag) => tag !== tagToRemove));
   };
 
   return (
@@ -123,7 +123,7 @@ function ProductAddForm({ onFormChange, onFormValuesChange }) {
             <button
               type="button"
               className="tag-close"
-              onClick={() => removeTag(index)}
+              onClick={() => removeTag(tag)}
             >
               &times;
             </button>
