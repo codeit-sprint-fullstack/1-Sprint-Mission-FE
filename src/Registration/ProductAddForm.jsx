@@ -49,7 +49,7 @@ function ProductAddForm({ onFormChange, onFormValuesChange }) {
   };
 
   return (
-    <form className="productForm" onSubmit={handleSubmit(() => {})}>
+    <form className="productForm" onSubmit={handleSubmit}>
       <label htmlFor="productName" className="labelText">
         상품명
       </label>
