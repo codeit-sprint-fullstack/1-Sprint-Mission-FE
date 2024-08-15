@@ -1,3 +1,33 @@
+<<<<<<< HEAD
+- **public/**
+  - **index.html**
+- **src/**
+  - **api/**
+    - **ProductService.js**
+  - **components/**
+    - **Container.js**
+    - **Container.module.css**
+    - **Dropdown.js**
+    - **Dropdown.module.css**
+    - **Layout.js**
+    - **Nav.js**
+    - **Nav.module.css**
+    - **Pagination.js**
+    - **Pagination.module.css**
+    - **ProductBestList.js**
+    - **ProductBestList.module.css**
+    - **ProductList.js**
+    - **ProductList.module.css**
+  - **css/**
+    - **reset.css**
+  - **hooks/**
+    - **useMediaType.js**
+  - **pages/**
+    - **MarketPage.js**
+    - **MarketPage.module.css**
+  - **index.js**
+  - **Main.js**
+=======
 
 # SpringBoot-Mission-PandaMarket
 
@@ -30,3 +60,4 @@
 
 - 검색 기능 추가
 - 페이지네이션으로 페이지목록 버튼 누르면 판매중인상품 목록 페이지 전환
+>>>>>>> upstream/react-김효인

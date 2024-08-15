@@ -1,22 +1,17 @@
-import { useEffect, useState, useCallback } from 'react';
-import { getProductBestList, getProductList } from '../api/ProductService.js';
+import { useEffect, useState } from 'react';
+import { getProductItemList } from '../api/ProductItem.js';
 
-import { debounce } from 'lodash';
-
-import ProductBestList from '../components/ProductBestList.js';
-import ProductList from '../components/ProductList.js';
+import ProductItemList from '../components/ProductItemList.js';
 import ProductListHeader from '../components/ProductListHeader.js';
 import Pagination from '../components/Pagination.js';
 
 import Container from '../components/Container.js';
-
 import useMediaType from '../hooks/useMediaType.js';
 
-const PAGECOUNT = 5;
+const PAGE_COUNT = 5;
 
-function MarketPage() {
+function MarketItemPage() {
   const [orderBy, setOrderBy] = useState('recent');
-  const [itemsBest, setItemsBest] = useState([]);
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
   const [keyword, setKeyword] = useState('');
@@ -25,28 +20,19 @@ function MarketPage() {
 
   const mediaType = useMediaType();
 
-  const sortedListItem = items.sort((a, b) => b[orderBy] - a[orderBy]);
-
-  const handleBestLoad = async (orderBestQuery) => {
-    const { list } = await getProductBestList(orderBestQuery);
-
-    setItemsBest(list);
-  };
-
   const handleLoad = async (options) => {
     let result;
 
     try {
-      result = await getProductList(options);
+      result = await getProductItemList(options);
       setTotal(() => result.totalCount);
-      console.log(result);
     } catch (error) {
       console.log(error);
       return;
     } finally {
     }
 
-    const { list } = result;
+    const list = result.products;
 
     setItems(list);
     setPageSizeCount(options.pageSize);
@@ -60,13 +46,6 @@ function MarketPage() {
     setPage(pageNumber);
   };
 
-  const performSearch = useCallback(
-    debounce(async (searchTerm) => {
-      setKeyword(searchTerm);
-    }, 900),
-    []
-  );
-
   useEffect(() => {
     if (mediaType === 'mobile') {
       handleLoad({ page, pageSize: 4, orderBy, keyword });
@@ -77,35 +56,24 @@ function MarketPage() {
     }
   }, [page, orderBy, keyword, mediaType]);
 
-  useEffect(() => {
-    if (mediaType === 'mobile') {
-      handleBestLoad({ page: 1, pageSize: 1, orderBy: 'favorite' });
-    } else if (mediaType === 'tablet') {
-      handleBestLoad({ page: 1, pageSize: 2, orderBy: 'favorite' });
-    } else {
-      handleBestLoad({ page: 1, pageSize: 4, orderBy: 'favorite' });
-    }
-  }, [mediaType]);
-
   return (
     <>
       <Container>
-        <ProductBestList items={itemsBest} />
         <ProductListHeader
-          performSearch={performSearch}
-          onChange={handleOrderbyChange}
+          setKeyword={setKeyword}
+          handleOrderbyChange={handleOrderbyChange}
           orderBy={orderBy}
         />
-        <ProductList
-          items={sortedListItem}
+        <ProductItemList
+          items={items}
           totalItems={total}
           itemCountPerPage={pageSizeCount}
-          pageCount={PAGECOUNT}
+          pageCount={PAGE_COUNT}
         />
         <Pagination
           totalItems={total}
           itemCountPerPage={pageSizeCount}
-          pageCount={PAGECOUNT}
+          pageCount={PAGE_COUNT}
           onPageChange={handlePageChange}
         />
       </Container>
@@ -113,4 +81,4 @@ function MarketPage() {
   );
 }
 
-export default MarketPage;
+export default MarketItemPage;
