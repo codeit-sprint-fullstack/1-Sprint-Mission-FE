@@ -1,0 +1,76 @@
+.productForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.labelText {
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.inputStyle {
+  margin-bottom: 24px;
+  width: 100%;
+  height: 56px;
+  padding: 16px 24px;
+  border: none;
+  background-color: #f3f4f6;
+  font-size: 16px;
+  border-radius: 12px;
+  color: #1f2937;
+  outline: none;
+}
+
+.inputStyle::placeholder {
+  color: #9ca3af;
+}
+
+.textareaStyle {
+  height: 200px;
+  resize: none;
+}
+
+.inputCheck {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f74747;
+  margin-top: -16px;
+  margin-bottom: 24px;
+  margin-left: 16px;
+}
+
+.inputError {
+  border: 1px solid #f74747;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: -12px;
+  height: 36px;
+}
+
+.tag {
+  background-color: #f3f4f6;
+  color: #1f2937;
+  padding: 6px 12px 6px 16px;
+  border-radius: 26px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 400;
+  height: 36px;
+}
+
+.tag-close {
+  width: 20px;
+  height: 20px;
+  background: #9ca3af;
+  border: none;
+  color: white;
+  margin-left: 9px;
+  cursor: pointer;
+  border-radius: 999px;
+}

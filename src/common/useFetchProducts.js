@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export function useFetchProducts({ orderBy, pageSize, page, keyword }) {
-  const baseUrl = "https://panda-market-api.vercel.app/products";
+export function useFetchProducts({ pageSize = 10, page = 1, keyword = "" }) {
+  const baseUrl = "https://thrift-shop.onrender.com/products";
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
@@ -12,10 +12,10 @@ export function useFetchProducts({ orderBy, pageSize, page, keyword }) {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const params = { orderBy, pageSize, page, keyword };
+        const params = { limit: pageSize, page, search: keyword };
         const response = await axios.get(baseUrl, { params });
-        const data = response.data.list || [];
-        const totalItems = response.data.totalCount || 0;
+        const data = response.data.products || [];
+        const totalItems = response.data.total || 0;
 
         setProducts(data);
         setTotalCount(totalItems);
@@ -28,7 +28,7 @@ export function useFetchProducts({ orderBy, pageSize, page, keyword }) {
     };
 
     fetchProducts();
-  }, [orderBy, page, pageSize, keyword]);
+  }, [page, pageSize, keyword]);
 
   return { products, loading, totalCount, totalPages };
 }
