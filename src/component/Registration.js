@@ -22,11 +22,12 @@ export default function Registration() {
   const [tag, setTag] = useState([]);
 
   const tagsEnterDown = (e) => {
-    if (
+    const isTagsValueValid =
       formValues.tags.trim() !== '' &&
       formValues.tags.length <= 5 &&
-      e.key === 'Enter'
-    ) {
+      e.key === 'Enter';
+
+    if (isTagsValueValid) {
       setTag((prevTags) => [...prevTags, { text: formValues.tags.trim() }]);
       setFormValues((prevValues) => ({ ...prevValues, tags: '' }));
     }
