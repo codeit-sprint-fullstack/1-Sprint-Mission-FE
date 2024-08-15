@@ -45,9 +45,9 @@ function Main() {
   }, [width]); // width가 변경될 때마다 itemsPerPage 업데이트
 
   useEffect(() => {
-    const getRes = async () => {
+    const getProduct = async () => {
       try {
-        const getRes = await axios.get(
+        const getProduct = await axios.get(
           `https://product-ogs1.onrender.com/product`,
           {
             params: {
@@ -57,13 +57,13 @@ function Main() {
             },
           }
         );
-        setSearchItem({ list: getRes.data.product });
-        setTotalCount(getRes.data.totalCount);
+        setSearchItem({ list: getProduct.data.product });
+        setTotalCount(getProduct.data.totalCount);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
-    getRes();
+    getProduct();
   }, [totalCount, itemsPerPage, currentPage, keyword]);
 
   useEffect(() => {

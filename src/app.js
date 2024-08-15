@@ -1,20 +1,17 @@
 import Header from "./header";
 import Main from "./main";
 import Registration from "./registration";
-import "./app.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <Router>
+      <Header />
       <Routes>
-        <Route path="/" element={<Header />}></Route>
-
         <Route
           path="/items"
           element={
             <>
-              <Header />
               <Main />
             </>
           }
@@ -23,7 +20,8 @@ function App() {
           path="/registration"
           element={
             <>
-              <Header /> <Registration />
+              {" "}
+              <Registration />
             </>
           }
         ></Route>
