@@ -1,0 +1,227 @@
+* #header {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 1);
+  width: 100%;
+  height: 70px;
+}
+.tagItem {
+  background-color: rgba(243, 244, 246, 1);
+  border-radius: 26px;
+  width: 110px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 16px;
+  font-weight: 400;
+}
+.tagContainer {
+  display: flex;
+}
+#tagBtn {
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: rgba(156, 163, 175, 1);
+  border: none;
+  font-size: 20px;
+}
+
+#headerLogoImg2 {
+  display: none;
+}
+#headerLogoImg {
+  margin-left: 200px;
+}
+#headerStr {
+  display: flex;
+  margin-left: 48.41px;
+  margin-right: auto;
+  gap: 30px;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+#main {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  margin-top: 24px;
+  gap: 25px;
+}
+
+#resgistration_container {
+  grid-column: 2;
+  display: flex;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23.87px;
+  flex-direction: column;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+#resgistration_title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23.87px;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+#from_title {
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21.48px;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+#resgistration_area::placeholder {
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  box-sizing: border-box;
+  color: rgba(156, 163, 175, 1);
+}
+#resgistration_area {
+  width: 100%;
+  height: 56px;
+  border-radius: 12px;
+  border-color: none;
+  background-color: rgba(243, 244, 246, 1);
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  padding-left: 24px;
+  align-content: center;
+  box-sizing: border-box;
+  margin-top: 12px;
+  border-color: white;
+  color: black;
+}
+#error {
+  color: rgba(247, 71, 71, 1);
+  font-size: 15px;
+  font-weight: 600;
+  position: relative;
+  left: 16px;
+}
+#resgistration_area_content {
+  width: 100%;
+  height: 282px;
+  border-radius: 12px;
+  border-color: none;
+  background-color: rgba(243, 244, 246, 1);
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  box-sizing: border-box;
+  padding-left: 24px;
+  padding-top: 16px;
+  align-content: start;
+  margin-top: 12px;
+  border-color: white;
+}
+
+#resgistration_area_content::placeholder {
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  box-sizing: border-box;
+  color: rgba(156, 163, 175, 1);
+}
+
+#resgistration_btn {
+  width: 74px;
+  height: 42px;
+  border-radius: 8px;
+  padding: 12px 23px 12px 23px;
+  background-color: rgba(156, 163, 175, 1);
+  color: rgba(255, 255, 255, 1);
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  position: relative;
+  margin-left: auto;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+#add_title {
+  display: flex;
+  align-items: center;
+}
+#resgistration_form {
+  box-sizing: border-box;
+}
+#headerMyLogin {
+  background-color: #3692ff;
+  color: white;
+  width: 88px;
+  height: 42px;
+  border-radius: 8px;
+  border-color: white;
+  box-shadow: none;
+  margin-left: auto;
+  margin-right: 200px;
+  cursor: pointer;
+  z-index: 9999;
+  border: none;
+  font-size: 16px;
+}
+
+@media (max-width: 1199px) {
+  #headerLogoImg {
+    margin-left: 24px;
+  }
+  #headerMyImg {
+    margin-right: 24px;
+  }
+  #headerMyLogin {
+    margin-right: 24px;
+    margin-left: auto;
+  }
+  #main {
+    display: grid;
+    grid-template-columns: 1fr 696px 1fr;
+    margin-top: 24px;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 743px) {
+  #headerLogoImg {
+    margin-left: 24px;
+    display: none;
+  }
+  #headerLogoImg2 {
+    display: block;
+    margin-left: 16px;
+  }
+  #headerMyLogin {
+    margin-right: 16.5px;
+  }
+  #main {
+    display: grid;
+    grid-template-columns: 1fr 344px 1fr;
+    margin-top: 24px;
+    gap: 25px;
+  }
+  #from_title {
+    font-size: 14px;
+  }
+}

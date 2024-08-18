@@ -32,6 +32,7 @@
   font-size: 20px;
   font-weight: 700;
   line-height: 32px;
+  white-space: nowrap;
 }
 .item {
   display: flex;
@@ -112,6 +113,7 @@
   color: white;
   border: 0px;
   margin-right: 12px;
+  white-space: nowrap;
 }
 #serch_item_list {
   display: grid;

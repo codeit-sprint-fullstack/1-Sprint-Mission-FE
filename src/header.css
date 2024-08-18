@@ -7,10 +7,14 @@
   width: 100%;
   height: 70px;
 }
-#header-logo-img {
+#headerLogoImg {
   margin-left: 200px;
 }
-#header-str {
+#linkStr {
+  text-decoration: none;
+}
+
+#headerStr {
   display: flex;
   margin-left: 48.41px;
   margin-right: auto;
@@ -20,6 +24,9 @@
   font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
-#header-my-img {
-  margin-right: 200px;
+
+@media (max-width: 1199px) {
+  #headerLogoImg {
+    margin-left: 20px;
+  }
 }
