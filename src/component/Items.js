@@ -1,4 +1,4 @@
-import { ItemsTextBox, ItemList } from './Templete.js';
+import { ItemsTextBox, ItemList, Button } from './Templete.js';
 import { getItems, getProductLength } from '../api.js';
 import './Items.css';
 import { useEffect, useState, useRef } from 'react';
@@ -12,7 +12,10 @@ export function BestItems() {
 
   const BestItemsLoad = async () => {
     const itemsPerPage = isTablet ? 2 : isMobile ? 1 : 4;
-    const items = await getItems(1, itemsPerPage, 'favorite');
+    const items = await getItems({
+      page: 1,
+      pageSize: itemsPerPage,
+    });
     setItems(items);
   };
 
@@ -21,7 +24,7 @@ export function BestItems() {
   }, [isTablet, isMobile]);
 
   return (
-    <div className="best-items-containor">
+    <div className="best-items-container">
       <div className="best-items-textBox">
         <ItemsTextBox Children={'베스트 상품'}></ItemsTextBox>
       </div>
@@ -33,9 +36,9 @@ export function BestItems() {
 //판매중 상품
 
 export function ForSaleItems() {
-  const [order, setOrder] = useState('recent'); // 정렬 순
   const [items, setItems] = useState([]);
   const [text, setText] = useState('최신순'); // 정렬 옵션 텍스트 변경
+  const [sort, setSort] = useState('recent');
   const [pageNum, setPageNum] = useState(1);
   const inputRef = useRef(null);
 
@@ -43,14 +46,18 @@ export function ForSaleItems() {
 
   const ForSaleItemsLoad = async () => {
     const itemsPerPage = isTablet ? 6 : isMobile ? 4 : 10;
-    const items = await getItems(pageNum, itemsPerPage, order);
+    const items = await getItems({
+      page: pageNum,
+      pageSize: itemsPerPage,
+      option: sort,
+    });
     setItems(items);
   };
 
   const searchBtnClick = async (e) => {
     e.preventDefault();
     const length = await getProductLength().then((data) => data.totalCount);
-    const allData = await getItems(1, length, order);
+    const allData = await getItems({ page: 1, pageSize: length });
     const inputText = inputRef.current.value.toLowerCase();
     const searchFilter = allData.filter((item) => {
       return item.name.toLowerCase().includes(inputText.toLowerCase());
@@ -71,7 +78,7 @@ export function ForSaleItems() {
 
   useEffect(() => {
     ForSaleItemsLoad();
-  }, [order, pageNum, isTablet, isMobile]);
+  }, [pageNum, isTablet, isMobile]);
 
   const PcAndTabletResponsive = () => {
     return (
@@ -94,13 +101,12 @@ export function ForSaleItems() {
               ></input>
             </div>
           </form>
-          <button className="add-item-btn">상품 등록하기</button>
-          <DropDown
-            text={text}
-            setText={setText}
-            setOrder={setOrder}
-            setPageNum={setPageNum}
-          />
+          <Button
+            path={'/registration'}
+            name={'add-item-btn'}
+            text={'상품 등록하기'}
+          ></Button>
+          <DropDown text={text} setText={setText} setPageNum={setPageNum} />
         </div>
       </>
     );
@@ -111,7 +117,11 @@ export function ForSaleItems() {
       <>
         <div className="options-box-first">
           <ItemsTextBox Children={'판매중인 상품'}></ItemsTextBox>
-          <button className="add-item-btn">상품 등록하기</button>
+          <Button
+            path={'/registration'}
+            name={'add-item-btn'}
+            text={'상품 등록하기'}
+          ></Button>
         </div>
         <div className="options-box-second">
           <form id="input-form">
@@ -125,22 +135,17 @@ export function ForSaleItems() {
                 type="text"
                 className="search"
                 placeholder="검색할 상품을 입력해주세요"
-                // onChange={onChange}
               ></input>
             </div>
           </form>
-          <DropDown
-            setText={setText}
-            setOrder={setOrder}
-            setPageNum={setPageNum}
-          />
+          <DropDown setText={setText} setPageNum={setPageNum} />
         </div>
       </>
     );
   };
 
   return (
-    <div className="for-sale-items-containor">
+    <div className="for-sale-items-container">
       <div className="for-sale-items-textBox">
         {isMobile ? <MobileResponsive /> : <PcAndTabletResponsive />}
       </div>

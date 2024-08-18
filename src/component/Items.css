@@ -1,6 +1,6 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css');
 
-.best-items-containor {
+.best-items-container {
   margin-top: 24px;
 }
 
@@ -17,7 +17,7 @@
   border-radius: 16px;
 }
 
-.best-items-containor > .grid-box {
+.best-items-container > .grid-box {
   width: 1200px;
   height: 378px;
   display: flex;
@@ -52,7 +52,7 @@
 
 /* -------베스트 아이템------------*/
 
-.for-sale-items-containor {
+.for-sale-items-container {
   margin-top: 40px;
 }
 
@@ -62,13 +62,13 @@
   align-items: center;
 }
 
-.for-sale-items-containor > .grid-box > .item-box > .item-img {
+.for-sale-items-container > .grid-box > .item-box > .item-img {
   width: 221px;
   height: 221px;
   border-radius: 16px;
 }
 
-.for-sale-items-containor > .grid-box {
+.for-sale-items-container > .grid-box {
   width: 1200px;
   height: 674px;
   display: grid;
@@ -80,7 +80,7 @@
   margin-top: 24px;
 }
 
-.for-sale-items-containor > .item-box {
+.for-sale-items-container > .item-box {
   width: 221px;
   height: 378px;
 }
@@ -242,7 +242,7 @@
   top: 50px;
 }
 
-.drop-down-containor {
+.drop-down-container {
   position: relative;
 }
 
@@ -293,35 +293,35 @@
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
-  .best-items-containor {
+  .best-items-container {
     margin-top: 24px;
   }
 
-  .best-items-containor > .grid-box {
+  .best-items-container > .grid-box {
     width: 695px;
     height: 432px;
     margin-top: 16px;
     gap: 10px;
   }
 
-  .best-items-containor > .grid-box > .item-box > .item-img {
+  .best-items-container > .grid-box > .item-box > .item-img {
     width: 343px;
     height: 343px;
   }
 
-  .best-items-containor > .grid-box > .item-box {
+  .best-items-container > .grid-box > .item-box {
     width: 343px;
     height: 434px;
   }
 
-  .best-items-containor > .grid-box > .item-box > .item-name {
+  .best-items-container > .grid-box > .item-box > .item-name {
     width: 282px;
     height: 24px;
     margin-top: 10px;
     font-size: 14px;
   }
 
-  .for-sale-items-containor > .grid-box {
+  .for-sale-items-container > .grid-box {
     width: 695px;
     height: 674px;
     display: grid;
@@ -332,7 +332,7 @@
     margin-top: 24px;
   }
 
-  .for-sale-items-containor > .grid-box > .item-box {
+  .for-sale-items-container > .grid-box > .item-box {
     width: 221px;
     height: 317 px;
     border-radius: 16px;
@@ -348,25 +348,25 @@
 }
 
 @media (min-width: 375px) and (max-width: 767px) {
-  .best-items-containor {
+  .best-items-container {
     margin-top: 17px;
     width: 343px;
     height: 482px;
   }
 
-  .best-items-containor > .grid-box > .item-box > .item-img {
+  .best-items-container > .grid-box > .item-box > .item-img {
     width: 343px;
     height: 343px;
   }
 
-  .best-items-containor > .grid-box {
+  .best-items-container > .grid-box {
     width: 343px;
     height: 482px;
     display: flex;
     margin-top: 16px;
   }
 
-  .for-sale-items-containor {
+  .for-sale-items-container {
     margin-top: 24px;
     width: 344px;
     height: 668px;
@@ -389,13 +389,13 @@
     margin-top: 8px;
   }
 
-  .for-sale-items-containor > .grid-box > .item-box > .item-img {
+  .for-sale-items-container > .grid-box > .item-box > .item-img {
     width: 168px;
     height: 168px;
     border-radius: 12px;
   }
 
-  .for-sale-items-containor > .grid-box {
+  .for-sale-items-container > .grid-box {
     width: 344px;
     height: 560px;
     display: grid;
@@ -406,7 +406,7 @@
     margin-top: 24px;
   }
 
-  .for-sale-items-containor > .item-box {
+  .for-sale-items-container > .item-box {
     width: 221px;
     height: 378px;
   }

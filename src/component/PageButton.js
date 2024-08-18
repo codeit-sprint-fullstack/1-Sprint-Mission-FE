@@ -25,7 +25,7 @@ export function PageButton({ setPageNum }) {
   };
 
   const getWholeLength = async () => {
-    const length = await getProductLength().then((data) => data.totalCount);
+    const length = await getProductLength().then((data) => data.length);
     setBtnNum(Math.ceil(length / 10));
   };
 

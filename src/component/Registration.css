@@ -1,0 +1,190 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css');
+
+.registration-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1200px;
+  height: 42px;
+  margin-top: 24px;
+}
+
+.registration-text {
+  font-family: Pretendard;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.registration-submit {
+  width: 74px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: #9ca3af;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 1100px;
+}
+
+label {
+  margin-top: 24px;
+  width: 1200px;
+  text-align: left;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+#name,
+#price,
+#tags {
+  padding: 24px 15.45px 24px 17.38px;
+  margin-top: 12px;
+  width: 1200px;
+  height: 56px;
+  border-radius: 12px;
+  border: none;
+  background-color: #f3f4f6;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+input::placeholder {
+  color: #9ca3af;
+}
+
+#description {
+  padding: 24px 16px;
+  margin-top: 12px;
+  width: 1200px;
+  height: 282px;
+  border-radius: 12px;
+  border: none;
+  background-color: #f3f4f6;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  resize: none;
+}
+textarea::placeholder {
+  color: #9ca3af;
+}
+
+.err-text {
+  margin-top: 8px;
+  margin-left: 16px;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-weight: 600;
+  color: #f74747;
+  width: 1200px;
+  text-align: left;
+}
+
+input:focus {
+  outline: 1px solid #3692ff;
+}
+
+textarea:focus {
+  outline: 1px solid #3692ff;
+}
+
+.tags-container {
+  width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.tags {
+  background-color: #f3f4f6;
+  padding: 6px 12px 6px 16px;
+  border-radius: 26px;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.delete-button {
+  background-image: url('../img/delete-button.png');
+  width: 22px;
+  height: 24px;
+  background-size: contain;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .registration-header {
+    width: 696px;
+  }
+
+  label {
+    width: 696px;
+  }
+
+  #name,
+  #price,
+  #tags {
+    width: 696px;
+  }
+
+  #description {
+    width: 696px;
+    height: 200px;
+  }
+
+  .err-text {
+    width: 696px;
+  }
+
+  .tags-container {
+    width: 696px;
+  }
+}
+@media (min-width: 375px) and (max-width: 767px) {
+  .registration-header {
+    width: 344px;
+  }
+
+  label {
+    width: 344px;
+    font-size: 14px;
+  }
+
+  #name,
+  #price,
+  #tags {
+    width: 344px;
+  }
+
+  #description {
+    width: 344px;
+    height: 200px;
+  }
+
+  .err-text {
+    width: 344px;
+  }
+
+  .tags-container {
+    width: 344px;
+  }
+}

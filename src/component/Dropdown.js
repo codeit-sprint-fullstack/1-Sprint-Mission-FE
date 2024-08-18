@@ -1,27 +1,25 @@
 import { useState } from 'react';
 
-export const DropDown = ({ text, setText, setOrder, setPageNum }) => {
+export const DropDown = ({ text, setText, setPageNum }) => {
   const [dropdownView, setDropdownView] = useState('none');
   const clickDropdown = () => {
     setDropdownView(dropdownView === 'none' ? 'block' : 'none');
   };
 
   const handleRecentClick = () => {
-    setOrder('recent');
     setText('최신순');
     setDropdownView('none');
     setPageNum(1);
   };
 
   const handleBestClick = () => {
-    setOrder('favorite');
     setText('좋아요순');
     setDropdownView('none');
     setPageNum(1);
   };
 
   return (
-    <div className="drop-down-containor">
+    <div className="drop-down-container">
       <div className="drop-down-text-box" onClick={clickDropdown}>
         {text} <div className="drop-arrow" />
       </div>
