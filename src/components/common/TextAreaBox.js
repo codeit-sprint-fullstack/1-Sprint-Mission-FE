@@ -1,5 +1,5 @@
 import React from "react";
-import "./RegistrationTextArea.css";
+import styles from "./textArea.css";
 
 function RegistrationInput({
   headerText,
@@ -10,18 +10,18 @@ function RegistrationInput({
   validationMessage,
 }) {
   return (
-    <section className="inputContainer">
-      <div className="inputHeader">
-        <span>{headerText}</span>
-      </div>
+    <section className={styles.AreaContainer}>
+      <span className={styles.headerText}>{headerText}</span>
       <textarea
-        className={validationActive ? "textareaInputError" : "textareaInputStyle"}
+        className={validationActive ? styles.inputError : ""}
         value={inputText}
         onChange={handleinputText}
         onBlur={handleinputText}
         placeholder={placeholderText}
       />
-      {validationActive && <span className="errorText">{validationMessage}</span>}
+      {validationActive && (
+        <span className="errorText">{validationMessage}</span>
+      )}
     </section>
   );
 }

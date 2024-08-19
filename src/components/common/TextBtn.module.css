@@ -1,6 +1,5 @@
-
-.LoginBtnActive {
-  background-color: #3692FF;
+.btn {
+  background-color: #9CA3AF;
   border: none;
   border-radius: 8px;
   padding: 12px 23px;
@@ -8,4 +7,8 @@
   text-align: center;
   font-size: 1rem;
   font-weight: 600;
+}
+
+.btnActive {
+  background-color: #3692FF;
 }
