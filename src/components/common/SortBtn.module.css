@@ -9,7 +9,7 @@
   padding: 10px 20px;
 }
 
-.forMobile {
+.forMobileBtn {
   display: flex;
   align-items: center;
   justify-content: space-between;

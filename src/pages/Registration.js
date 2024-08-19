@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "./Registration.css";
+import styles from "./Registration.module.css";
 
 //렌더링 컴포넌트
 import ProductHeaderText from "../components/common/ProductHeaderText.js";

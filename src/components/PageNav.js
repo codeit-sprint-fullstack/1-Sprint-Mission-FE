@@ -3,14 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import styles from "./PageNav.module.css";
 
 // 리소스
+import pandaImg from "../images/panda_img.svg";
 import logoText from "../images/logo_text.svg";
-import pandaImg from "../images/panda_logo.svg";
+
 
 //컴포넌트
-import HeaderLoginBtn from "./common/HeaderLoginBtn";
-import HeaderBoardList from "./common/HeaderBoardList";
-import TextBtn from "./common/TextBtn";
 import LinkBtn from "./common/LinkBtn";
+import TextBtn from "./common/TextBtn";
 
 function PageNavRender() {
   const location = useLocation(); 
@@ -36,11 +35,13 @@ function PageNavRender() {
     <nav className={styles.outlineContain}>
       <section className={styles.pageNavBox}>
         <Link to="/">
-          <img src={pandaImg} alt="logo_img" />
-          <img src={logoText} alt="logo_text" />
+          <div className={styles.logoBox}>
+            <img className={styles.logoImg} src={pandaImg} alt="logo_img" />
+            <img className={styles.logoText} src={logoText} alt="logo_text" />
+          </div>
         </Link>
         <BoardList />
-        <LinkBtn link={"/login"} disabled={false} text={"로그인"} />
+        <TextBtn text={"로그인"} />
       </section>
     </nav>
 

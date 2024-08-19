@@ -3,10 +3,10 @@ import { useState } from "react";
 import styles from "./SortBtn.module.css";
 
 // 이미지
-import arrow from "../images/icon/ic_arrow_down.svg";
-import iconSort from "../images/icon/ic_sort.svg";
+import arrow from "../../images/icon/ic_arrow_down.svg";
+import iconSort from "../../images/icon/ic_sort.svg";
 
-function ProductHeaderSortBtn({ handleSortOption, deviceType}) {
+function SortBtn({ handleSortOption, deviceType}) {
   const [dropDownView, viewChange] = useState(false);
   const [optionText, optionTextChange] = useState("최신순");
 
@@ -40,4 +40,4 @@ function ProductHeaderSortBtn({ handleSortOption, deviceType}) {
   );
 }
 
-export default ProductHeaderSortBtn;
+export default SortBtn;

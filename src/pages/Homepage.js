@@ -1,18 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import "./Homepage.css";
+import styles from "./Homepage.module.css";
 
 //렌더링 컴포넌트
-
-import ProductHeaderRegistBtn from "../components/ProductHeaderRegistBtn.js";
-import ProductHeaderSearchBar from "../components/common/ProductHeaderSearchBar.js";
-import ProductHeaderSortBtn from "../components/common/ProductHeaderSortBtn.js";
-import ProductHeaderText from "../components/common/ProductHeaderText.js";
-
-//렌더링 프레임
-import HomepageRenderFooter from "../components/HomepageRenderFooter.js";
-import PageNavRender from "../components/PageNavRender.js";
-import ProductRenderGrid from "../components/ProductRenderGrid.js";
+import PageNav from "../components/PageNav.js"
+import SellingProductHeader from "../components/SellingProductHeader.js";
 
 // 커스텀 훅
 import useProductData from "../hooks/useProductData.js";
@@ -27,7 +19,7 @@ function Hompage() {
     bestProductCount,
     sellingProductCount,
     sellingProductCountPerRow,
-    Device,
+    device,
   } = useWindowWidhtSize();
 
   const { productsList: bestProductData, noProduct: bestNoProduct } =
@@ -46,53 +38,56 @@ function Hompage() {
     setSearchKeyword(e.target.value);
   };
 
-  const handleSetProductSortOption = (option) => {
+  const handleSortOption = (option) => {
     setProductSortOption(option);
   };
 
   return (
-    <div className="homepage">
-      <nav>
-        <PageNavRender />
-      </nav>
-      <main className="mainProductShowSection">
-        <section className="bestProductSection">
-          <header className="ProductSectionHeader">
-            <ProductHeaderText headerText={"베스트 상품"} />
-          </header>
-          <ProductRenderGrid
-            productData={bestProductData}
-            noProduct={bestNoProduct}
-          />
-        </section>
-        <section className="sellingProductSection">
-          <header className="ProductSectionHeader">
-            <ProductHeaderText headerText={"판매 중인 상품"} />
-            <ProductHeaderSearchBar
-              inputText={searchKeyword}
-              handleInput={handleSeachKeyword}
-              device={Device}
-            />
-            <ProductHeaderRegistBtn />
-            <ProductHeaderSortBtn
-              handleSortOption={handleSetProductSortOption}
-            />
-          </header>
-          <ProductRenderGrid
-            productData={sellingProductData}
-            productRowCount={2}
-            productCountPerRow={sellingProductCountPerRow}
-            noProduct={sellingNoProduct}
-          />
-        </section>
+    <div className={styles.homepage}>
+      <PageNav />
+      <main className={styles.mainContainer}>
+        <SellingProductHeader text={"판매 중인 상품"} handleSortOption={handleSortOption} devicetype={device}/>
+        
+
       </main>
-      <HomepageRenderFooter
+      {/* <HomepageRenderFooter
         nowPage={nowPage}
         handlePageChange={handlePageChange}
         totalPageSize={totalPageSize}
-      />
+      /> */}
     </div>
   );
 }
 
 export default Hompage;
+
+
+// <section className="bestProductSection">
+// <header className="ProductSectionHeader">
+//   <ProductHeaderText headerText={"베스트 상품"} />
+// </header>
+// <ProductRenderGrid
+//   productData={bestProductData}
+//   noProduct={bestNoProduct}
+// />
+// </section>
+// <section className="sellingProductSection">
+// <header className="ProductSectionHeader">
+//   <ProductHeaderText headerText={"판매 중인 상품"} />
+//   <ProductHeaderSearchBar
+//     inputText={searchKeyword}
+//     handleInput={handleSeachKeyword}
+//     device={Device}
+//   />
+//   <ProductHeaderRegistBtn />
+//   <ProductHeaderSortBtn
+//     handleSortOption={handleSetProductSortOption}
+//   />
+// </header>
+// <ProductRenderGrid
+//   productData={sellingProductData}
+//   productRowCount={2}
+//   productCountPerRow={sellingProductCountPerRow}
+//   noProduct={sellingNoProduct}
+// />
+// </section>

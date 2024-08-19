@@ -4,7 +4,7 @@ import styles from "./LinkBtn.module.css";
 
 // 이미지
 
-function LinkBtn(link, btnActive = true, text) {
+function LinkBtn({ link, btnActive = false, text }) {
   return (
     <button className={styles.linkBtn} disabled={btnActive}>
       <Link to={link}>{text}</Link>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "./Marketpage.css";
+import styles from "./Marketpage.module.css";
 
 //렌더링 컴포넌트
 import ProductHeaderRegistBtn from "../components/ProductHeaderRegistBtn.js";

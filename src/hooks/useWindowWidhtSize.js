@@ -7,7 +7,7 @@ const useWindowWidhtSize = () => {
   const [sellingProductCount, setSellingProductCount] = useState(10);
   const [sellingProductCountPerRow, setSellingProductCountPerRow] = useState(5);
 
-  const [Device, setDevice] = useState("PC");
+  const [device, setDevice] = useState("PC");
 
   useEffect(() => {
     const handleResize = () => {
@@ -39,11 +39,11 @@ const useWindowWidhtSize = () => {
       setBestProductCount(1);
       setDevice("Mobile")
     }
-    console.log(Device)
+    console.log(device)
   }, [windowWidhth]);
 
 
-  return { bestProductCount, sellingProductCount, sellingProductCountPerRow, Device };
+  return { bestProductCount, sellingProductCount, sellingProductCountPerRow, device };
 
 };
 
