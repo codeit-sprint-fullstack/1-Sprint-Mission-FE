@@ -21,10 +21,10 @@
   outline: none;
 }
 
-.inputForTablet {
-  width: 242px;
-}
 
-.inputForMobile {
-  width: 288px;
+
+@media (max-width: 400px) {
+  .searchBox > input { 
+    width: 100%;
+  }
 }

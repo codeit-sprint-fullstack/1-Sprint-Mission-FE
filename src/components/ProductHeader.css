@@ -1,0 +1,20 @@
+import React from "react";
+
+
+
+<div className="marketProductHeader">
+<ProductHeaderText headerText={"판매 중인 상품"} />
+<ProductHeaderRegistBtn />
+
+</div>
+<div className="marketProductHeader">
+<ProductHeaderSearchBar
+  inputText={searchKeyword}
+  handleInput={handleSeachKeyword}
+  device={Device}
+  />
+<ProductHeaderSortBtn
+  handleSortOption={handleSetProductSortOption}
+  device={Device}
+/>
+</div>

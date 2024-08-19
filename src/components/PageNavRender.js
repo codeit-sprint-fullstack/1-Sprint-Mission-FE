@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./PageHeaderRender.css";
+import "./PageNavRender.css";
 
 // 리소스
 import logoImg from "../images/logo.svg";
@@ -8,10 +8,10 @@ import logoSmallImg from "../images/logo_small.svg";
 import profileImge from "../images/profile.svg";
 
 //컴포넌트
-import HeaderLoginBtn from "../components/HeaderLoginBtn";
-import HeaderBoardList from "../components/HeaderBoardList";
+import HeaderLoginBtn from "./common/HeaderLoginBtn";
+import HeaderBoardList from "./common/HeaderBoardList";
 
-function HomepageRenderHeader({
+function PageNavRender({
   loginStatus = false,
   freeBoardActive = false,
   marketBoardActive = false,
@@ -41,4 +41,4 @@ function HomepageRenderHeader({
   );
 }
 
-export default HomepageRenderHeader;
+export default PageNavRender;

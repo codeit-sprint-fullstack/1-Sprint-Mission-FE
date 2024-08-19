@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./ProductDataRegistBtn.css";
 
-// 이미지
 
 function ProductDataRegistBtn({ registerBtnActive = false }) {
   return (

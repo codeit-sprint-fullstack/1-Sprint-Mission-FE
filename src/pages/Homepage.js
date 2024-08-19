@@ -4,15 +4,15 @@ import "./Homepage.css";
 
 //렌더링 컴포넌트
 
-import ProductHeaderRegistBtn from "../components/ProductHeaderRegistBtn";
-import ProductHeaderSearchBar from "../components/ProductHeaderSearchBar";
-import ProductHeaderSortBtn from "../components/ProductHeaderSortBtn";
-import ProductHeaderText from "../components/ProductHeaderText";
+import ProductHeaderRegistBtn from "../components/ProductHeaderRegistBtn.js";
+import ProductHeaderSearchBar from "../components/common/ProductHeaderSearchBar.js";
+import ProductHeaderSortBtn from "../components/common/ProductHeaderSortBtn.js";
+import ProductHeaderText from "../components/common/ProductHeaderText.js";
 
 //렌더링 프레임
-import HomepageRenderFooter from "../frame/HomepageRenderFooter.js";
-import HomepageRenderHeader from "../frame/PageHeaderRender.js";
-import ProductRenderGrid from "../frame/ProductRenderGrid.js";
+import HomepageRenderFooter from "../components/HomepageRenderFooter.js";
+import PageNavRender from "../components/PageNavRender.js";
+import ProductRenderGrid from "../components/ProductRenderGrid.js";
 
 // 커스텀 훅
 import useProductData from "../hooks/useProductData.js";
@@ -53,7 +53,7 @@ function Hompage() {
   return (
     <div className="homepage">
       <nav>
-        <HomepageRenderHeader />
+        <PageNavRender />
       </nav>
       <main className="mainProductShowSection">
         <section className="bestProductSection">

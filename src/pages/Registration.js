@@ -3,14 +3,14 @@ import { useState } from "react";
 import "./Registration.css";
 
 //렌더링 컴포넌트
-import ProductHeaderText from "../components/ProductHeaderText.js";
+import ProductHeaderText from "../components/common/ProductHeaderText.js";
 import ProductDataRegistBtn from "../components/ProductDataRegistBtn.js";
 
-import RegistrationInput from "../components/RegistrationInput.js";
-import RegistrationTextArea from "../components/RegistrationTextArea.js";
+import RegistrationInput from "../components/common/RegistrationInput.js";
+import RegistrationTextArea from "../components/common/textArea.js";
 
 //렌더링 프레임
-import HomepageRenderHeader from "../frame/PageHeaderRender.js";
+import PageNavRender from "../components/PageNavRender.js";
 
 // 커스텀 훅
 import useValidationText from "../hooks/useValidationText.js";
@@ -53,7 +53,7 @@ function Registration() {
   return (
     <div className="registrationPage">
       <nav>
-        <HomepageRenderHeader marketBoardActive={true} loginStatus={false}/>
+        <PageNavRender marketBoardActive={true} loginStatus={false}/>
       </nav>
 
       <main>

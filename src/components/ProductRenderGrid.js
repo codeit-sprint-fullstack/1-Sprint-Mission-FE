@@ -2,7 +2,7 @@ import React from "react";
 import "./ProductRenderGrid.css";
 
 // 컴포넌트
-import ProductRender from "../components/ProductRender.js";
+import ProductRender from "./common/ProductRender.js";
 
 function ProductRenderGrid({
   productData,
