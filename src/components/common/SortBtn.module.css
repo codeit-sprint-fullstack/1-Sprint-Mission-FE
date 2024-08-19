@@ -1,23 +1,22 @@
-.sortByBtn {
+.btnBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 130px;
   border: 1px solid #E5E7EB;
   background-color: #FFFFFF;
   border-radius: 12px;
   padding: 10px 20px;
+}
+
+.forMobile {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 130px;
-}
-
-.sortByBtnForMobile {
   border: 1px solid #E5E7EB;
   background-color: #FFFFFF;
   border-radius: 12px;
   padding: 9px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 130px;
 }
 
 .sortByBtn > span {

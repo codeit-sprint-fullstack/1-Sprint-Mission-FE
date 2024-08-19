@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./textArea.css";
+import styles from "./TextArea.module.css";
 
 function RegistrationInput({
   headerText,

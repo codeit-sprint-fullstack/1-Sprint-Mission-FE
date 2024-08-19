@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "./ProductHeaderSortBtn.css";
+import styles from "./SortBtn.module.css";
 
 // 이미지
 import arrow from "../images/icon/ic_arrow_down.svg";
@@ -22,10 +22,10 @@ function ProductHeaderSortBtn({ handleSortOption, device}) {
   return (
     <div>
       {device === "Mobile" 
-      ? ( <button className="sortByBtnForMobile" onClick={toggleDropDownView}>
+      ? ( <button className={styles.forMobileBtn} onClick={toggleDropDownView}>
             <img src={iconSort} alt="클릭" />
           </button> ) 
-      : ( <button className="sortByBtn" onClick={toggleDropDownView}>
+      : ( <button className={styles.btnBox} onClick={toggleDropDownView}>
             <span>{optionText}</span>
             <img src={arrow} alt="클릭" />
           </button> )
