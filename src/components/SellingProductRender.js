@@ -1,10 +1,11 @@
 import React from "react";
-import "./ProductRenderGrid.css";
+import stlyes from "./ProductGridRender.module.css";
 
 // 컴포넌트
 import ProductRender from "./common/ProductRender.js";
 
-function ProductRenderGrid({
+function ProductGridRender({
+  headerText,
   productData,
   productRowCount = 1,
   productCountPerRow,
@@ -26,12 +27,15 @@ function ProductRenderGrid({
   };
 
   if (noProduct) {
-    return <section className="noProduct">상품이 없습니다.</section>;
+    return <section className={stlyes.noProduct}>상품이 없습니다.</section>;
   } else {
     return (
-      <section className="showProductList">{ProductsGridRender()}</section>
+      <div className={stlyes.productContainer}>
+        <p className={stlyes.headrSubject}>{headerText}</p>
+        <section className={stlyes.showProductList}>{ProductsGridRender()}</section>
+      </div>
     );
   }
 }
 
-export default ProductRenderGrid;
+export default ProductGridRender;
