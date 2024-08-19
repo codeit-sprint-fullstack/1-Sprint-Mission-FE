@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
+import "../styles/reset.css";
 
 import Homepage from "./pages/Homepage.js";
 import Marketpage from "./pages/Marketpage.js";
