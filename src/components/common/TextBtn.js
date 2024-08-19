@@ -1,8 +1,12 @@
 import React from "react";
-import "./HeaderLoginBtn.css";
+import styles from "./TextBtn.module.css";
 
-function HeaderLoginBtn({ registerBtnActive = false }) {
-  return <button className="LoginBtnActive">로그인</button>
+function TextBtn({ btnActive = true, text }) {
+  return (
+    <button className={`${styles.btn} ${btnActive && styles.btnActive}`}>
+      {text}
+    </button>
+  );
 }
 
-export default HeaderLoginBtn;
+export default TextBtn;
