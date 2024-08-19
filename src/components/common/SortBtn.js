@@ -6,7 +6,7 @@ import styles from "./SortBtn.module.css";
 import arrow from "../images/icon/ic_arrow_down.svg";
 import iconSort from "../images/icon/ic_sort.svg";
 
-function ProductHeaderSortBtn({ handleSortOption, device}) {
+function ProductHeaderSortBtn({ handleSortOption, deviceType}) {
   const [dropDownView, viewChange] = useState(false);
   const [optionText, optionTextChange] = useState("최신순");
 
@@ -21,7 +21,7 @@ function ProductHeaderSortBtn({ handleSortOption, device}) {
 
   return (
     <div>
-      {device === "Mobile" 
+      {deviceType === "Mobile" 
       ? ( <button className={styles.forMobileBtn} onClick={toggleDropDownView}>
             <img src={iconSort} alt="클릭" />
           </button> ) 

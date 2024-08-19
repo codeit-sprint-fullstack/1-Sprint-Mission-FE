@@ -4,12 +4,12 @@ import stlyes from "./ProductGridRender.module.css";
 // 컴포넌트
 import ProductRender from "./common/ProductRender.js";
 
+
 function ProductGridRender({
-  headerText,
   productData,
   productRowCount = 1,
   productCountPerRow,
-  noProduct,
+  noProduct
 }) {
   const ProductsGridRender = () => {
     const TempArrayProducts = [];
@@ -31,8 +31,9 @@ function ProductGridRender({
   } else {
     return (
       <div className={stlyes.productContainer}>
-        <p className={stlyes.headrSubject}>{headerText}</p>
-        <section className={stlyes.showProductList}>{ProductsGridRender()}</section>
+        <section className={stlyes.showProductList}>
+          {ProductsGridRender()}
+        </section>
       </div>
     );
   }

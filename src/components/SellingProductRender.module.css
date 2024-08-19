@@ -1,5 +1,6 @@
 .showProductList {
-  width: 100%;
+  min-width: 344px;
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,7 +10,7 @@
 }
 
 .noProduct {
-  width: 100%;
+  max-width: 1200px;
   height: 400px;
   display: flex;
   justify-content: center;
