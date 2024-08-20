@@ -7,16 +7,7 @@
   align-items: center;
   border-bottom: 1px solid #DFDFDF;
 }
-
-.logoBox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8.59px;
-  margin-right: 47px;
-}
-
-.pageNavBox {
+.pageNavSection {
   min-width: 376px;
   max-width: 1520px;
   width: 100%;
@@ -26,10 +17,18 @@
   justify-content: space-between;
 }
 
+.logoBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8.59px;
+  margin-right: 47px;
+}
+
 .boardList {
   width: 100%;
-  min-width: 135px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   gap: 0px 34px;
@@ -74,9 +73,7 @@
   .boardList {
     gap: 0px 8px;
   }
-}
 
-@media (max-width: 376px) {
   .boardList li {
     font-size: 1rem;
   }

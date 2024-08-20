@@ -5,24 +5,20 @@
   font-family: 'Pretendard', sans-serif;
   margin: 0px;
   padding: 0px;
-  white-space: nowrap;
-  font-size: 16px;
-  color: #4B5563;
-  text-align: center;
+  white-space: nowrap; /* 글자 넘침 시 처리 방식 */
+  text-align: center; 
   vertical-align: bottom;
 }
 
-a {
+/* Link로 스타일링 되는 a태그 기본값 설정 */
+a { 
   text-decoration: none;
   color: inherit;
   font-size: inherit;
   font-weight: inherit;
 }
 
-img {
-  object-fit: cover;
-}
-
+/* li 태그 사용 시 앞에 붙는 스타일 제거 */
 li {
   list-style: none;
 }

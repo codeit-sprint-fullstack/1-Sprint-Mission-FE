@@ -1,22 +1,40 @@
 .headerContaier {
-  min-width: 344px;
-  max-width: 1200px;
+  min-width: 375px;
+  width: 1200px;
   width: 100%;
+  padding: 0px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  flex-shrink: 1;
 }
 
-.headrSubject {
+.textBox {
+  min-width: 345px;
+  max-width: 588px;
   width: 100%;
+  text-align: left;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+}
+
+.headerText {
   font-size: 1.25rem;
   font-weight: 700;
   color: #111827;
 }
 
+.functionBox {
+  min-width: 529px;
+  max-width: 612px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
 
 
 .headerContaierForMobile {
