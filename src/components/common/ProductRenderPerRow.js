@@ -1,11 +1,11 @@
 import React from "react";
 
-import styles from "./ProductRender.module.css";
+import styles from "./ProductRenderPerRow.module.css";
 import iconHeart from "../../images/icon/ic_heart.svg";
 
 function ProductRenderPerRow({ productList }) {
   const ProductRender = ({ product }) => {
-    const { images, name, description, price, favoriteCount } = product;
+    const { id, images, name, description, price, favoriteCount } = product;
     const [img] = images;
 
     return (
@@ -15,13 +15,11 @@ function ProductRenderPerRow({ productList }) {
         </article>
         <figure className={styles.ProductDescription}>
           <span>{description.toLocaleString()}</span>
-          {price && <h1>{`${price.toLocaleString()}원`}</h1>}
-          {favoriteCount && (
-            <div className={styles.ProductLike}>
-              <img src={iconHeart} alt="좋아요" />
-              <span>{favoriteCount}</span>
-            </div>
-          )}
+          <h1>{`${price.toLocaleString()}원`}</h1>
+          <div className={styles.ProductLike}>
+            <img src={iconHeart} alt="좋아요" />
+            <span>{favoriteCount}</span>
+          </div>
         </figure>
       </li>
     );

@@ -2,7 +2,7 @@ import React from "react";
 import stlyes from "./SellingProductRender.module.css";
 
 // 컴포넌트
-import ProductRenderPerRow from "./common/ProductRender.js";
+import ProductRenderPerRow from "./common/ProductRenderPerRow.js";
 
 
 function SellingProductRender({
