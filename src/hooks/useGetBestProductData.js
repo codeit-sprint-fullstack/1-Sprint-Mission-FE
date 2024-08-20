@@ -3,7 +3,7 @@ import getApiData from "../api/getApiData.js";
 import imgDefualt from "../images/img_default.png";
 
 const useProductData = (deviceType) => {
-  const [productsList, setProductsList] = useState([]);
+  const [BestProductsList, setProductsList] = useState([]);
 
   let productCountPerRow = 4;
 
@@ -17,7 +17,7 @@ const useProductData = (deviceType) => {
   }
 
   useEffect(() => {
-    getApiData(nowPage, productCount, sortOption, keyword)
+    getApiData(1, productCountPerRow, "favorite")
       .then((data) => {
         if (data.list.length < productCount) {
           setProductsList([
@@ -37,6 +37,6 @@ const useProductData = (deviceType) => {
       .catch((error) => console.error(error));
   }, [deviceType]);
 
-  return { nowPage, productsList, totalPageSize, handlePageChange };
+  return BestProductsList;
 };
 export default useProductData;

@@ -3,7 +3,7 @@ import getApiData from "../api/getApiData.js";
 import imgDefualt from "../images/img_default.png";
 
 const useProductData = (deviceType, initialPage, sortOption, keyword) => {
-  const [productsList, setProductsList] = useState([]);
+  const [sellingProducts, setProductsList] = useState([]);
   const [nowPage, setNowPage] = useState(initialPage);
   const [totalPageSize, setTotalPageSize] = useState(1);
 
@@ -19,7 +19,7 @@ const useProductData = (deviceType, initialPage, sortOption, keyword) => {
   }
 
   useEffect(() => {
-    getApiData(nowPage, productCount, sortOption, keyword)
+    getApiData(nowPage, productCountPerRow, sortOption, keyword)
       .then((data) => {
         setTotalPageSize(Math.ceil(data.totalCount / productCount));
         if (data.list.length < productCount) {
@@ -44,6 +44,6 @@ const useProductData = (deviceType, initialPage, sortOption, keyword) => {
     setNowPage(page);
   };
 
-  return { nowPage, productsList, totalPageSize, handlePageChange };
+  return { nowPage, sellingProducts, totalPageSize, handlePageChange };
 };
 export default useProductData;

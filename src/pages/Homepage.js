@@ -8,7 +8,8 @@ import SellingProductHeader from "../components/SellingProductHeader.js";
 import SellingProductRender from "components/SellingProductRender";
 
 // 커스텀 훅
-import useProductData from "../hooks/useGetSellingProductData.js/index.js";
+import useGetSellingProductData from "../hooks/useGetSellingProductData.js";
+import useGetBestProductData from "../hooks/useGetBestProductData.js";
 import useGetDeviceType from "../hooks/useGetDeviceType.js";
 
 function Hompage() {
@@ -18,16 +19,10 @@ function Hompage() {
   // 커스텀 훅
   const deviceType = useGetDeviceType();
 
-  // const { productsList: bestProductData, noProduct: bestNoProduct } =
-  //   useProductData(1, bestProductCount, "favorite", "");
+  const BestProductsList = useGetBestProductData(deviceType);
 
-  const {
-    productsList: sellingProductData,
-    noProduct: sellingNoProduct,
-    nowPage,
-    totalPageSize,
-    handlePageChange,
-  } = useProductData(1, deviceType, ProductSortOption, searchKeyword);
+  const { nowPage, sellingProducts, totalPageSize, handlePageChange } =
+    useGetSellingProductData(1, deviceType, ProductSortOption, searchKeyword);
 
   // 검색어 핸들러
   const handleSeachKeyword = (e) => {
@@ -46,7 +41,7 @@ function Hompage() {
       <main className={styles.mainContainer}>
         <SellingProductHeader text={"판매 중인 상품"} />
         <SellingProductRender
-          productData={sellingProductData}
+          productData={sellingProducts}
           deviceType={deviceType}
         />
       </main>
