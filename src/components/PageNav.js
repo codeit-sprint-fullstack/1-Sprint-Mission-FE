@@ -8,6 +8,7 @@ import logoText from "../images/logo_text.svg";
 
 //컴포넌트
 import TextBtn from "./common/TextBtn";
+import LinkBtn from "./common/LinkBtn";
 
 function PageNavRender() {
   const location = useLocation();
@@ -38,14 +39,14 @@ function PageNavRender() {
   return (
     <nav className={styles.outlineContain}>
       <section className={styles.pageNavSection}>
-        <Link to="/">
-          <div className={styles.logoBox}>
+        <div className={styles.logoBox}>
+          <Link to="/">
             <img className={styles.logoImg} src={pandaImg} alt="logo_img" />
             <img className={styles.logoText} src={logoText} alt="logo_text" />
-          </div>
-        </Link>
+          </Link>
+        </div>
         <BoardList />
-        <TextBtn text={"로그인"} />
+        <LinkBtn link={"/login"} text={"로그인"} />
       </section>
     </nav>
   );

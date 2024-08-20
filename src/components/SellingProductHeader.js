@@ -8,15 +8,19 @@ import LinkBtn from "./common/LinkBtn.js";
 function SellingProductHeader({ text, handleSortOption, deviceType }) {
   return (
     <div className={styles.headerContaier}>
-      <div className={styles.textBox}>
-        <span className={styles.headerText}>{text}</span>
-      </div>
+      <span className={styles.headerText}>투자 현황</span>
       <div className={styles.functionBox}>
         <SearchBar />
         <LinkBtn Link={"/register"} text={"상품 등록하기"} />
         <SortBtn handleSortOption={handleSortOption} deviceType={deviceType} />
       </div>
     </div>
+  );
+}
+
+export default SellingProductHeader;
+
+
     // deviceType !== "Mobile"
     // ? ( <header className={styles.headerContaier}>
     //       <div className={styles.textBox}>{text}</div>
@@ -38,7 +42,3 @@ function SellingProductHeader({ text, handleSortOption, deviceType }) {
     //       </div>
     //     </header>
     //   )
-  );
-}
-
-export default SellingProductHeader;

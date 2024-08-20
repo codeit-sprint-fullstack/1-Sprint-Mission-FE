@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
-import "./styles/reset.css";
+import "styles/reset.css"
 
 import Homepage from "./pages/Homepage.js";
 // import Marketpage from "./pages/Marketpage.js";
@@ -13,8 +13,6 @@ function App() {
     <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Homepage />} />
-          {/* <Route path="/items" element={<Marketpage />} />
-          <Route path="/register" element={<Registration />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
@@ -23,3 +21,7 @@ function App() {
 }
 
 export default App;
+
+
+          {/* <Route path="/items" element={<Marketpage />} />
+          <Route path="/register" element={<Registration />} /> */}

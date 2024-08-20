@@ -1,15 +1,13 @@
 .headerContaier {
-  min-width: 375px;
-  width: 1200px;
-  width: 100%;
-  padding: 0px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-shrink: 1;
+  width: 100%;
+  gap: 28px;
 }
 
 .textBox {
+  flex-basis: 100%;
   min-width: 345px;
   max-width: 588px;
   width: 100%;
@@ -20,9 +18,10 @@
 }
 
 .headerText {
-  font-size: 1.25rem;
+  display: flex;
+  justify-content: flex-start;
   font-weight: 700;
-  color: #111827;
+  font-size: 1.25rem;
 }
 
 .functionBox {
