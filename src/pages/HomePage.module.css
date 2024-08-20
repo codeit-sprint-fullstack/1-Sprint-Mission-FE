@@ -1,0 +1,197 @@
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.best {
+  margin: 24px 0 0 0;
+}
+
+.best h1 {
+  margin: 0 0 16px 0;
+}
+
+.flexBox {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.flexBox:last-child {
+  margin: 0 0 3px 0;
+}
+
+.flexBox div {
+  margin: 0 0 40px 0;
+}
+
+.img {
+  width: 282px;
+  height: 282px;
+  border-radius: 16px;
+  background-color: #e4e4e4;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 16px 0 6px 0;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.zzim {
+  display: flex;
+  align-items: center;
+  margin: 6px 0 0 0;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 1px;
+}
+
+.heart {
+  font-size: 12px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.flex {
+  display: flex;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 24px 0;
+}
+
+.search {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  top: 7px;
+  left: 40px;
+}
+
+.box input {
+  width: 325px;
+  height: 42px;
+  border: none;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  margin-right: 12px;
+  padding: 0 0 0 44px;
+}
+
+.box input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+.box button {
+  width: 133px;
+  height: 42px;
+  border: none;
+  border-radius: 8px;
+  background-color: #3692ff;
+  color: #f3f4f6;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 12px 0 0;
+  cursor: pointer;
+}
+
+.dropdownMenu {
+  position: relative;
+}
+
+.dropdown {
+  width: 130px;
+  height: 42px;
+  line-height: 42px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 0 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.dropdown img {
+  position: absolute;
+  top: 9px;
+  right: 20px;
+  width: 24px;
+  height: 24px;
+}
+
+.popup {
+  display: block;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  list-style: none;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background-color: #ffffff;
+  padding: 0;
+  margin: 0;
+}
+
+.popup li {
+  width: 130px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.popup li:first-child {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.productImage {
+  width: 221px;
+  height: 221px;
+  border-radius: 16px;
+  background-color: #e4e4e4;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.pagination button {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #6b7280;
+  background-color: inherit;
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0 0 58px 0;
+}
+
+.pagination button img {
+  width: 16px;
+  height: 16px;
+}
