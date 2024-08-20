@@ -22,7 +22,7 @@ function Hompage() {
   const BestProductsList = useGetBestProductData(deviceType);
 
   const { nowPage, sellingProducts, totalPageSize, handlePageChange } =
-    useGetSellingProductData(1, deviceType, ProductSortOption, searchKeyword);
+    useGetSellingProductData(1, ProductSortOption, searchKeyword, deviceType);
 
   // 검색어 핸들러
   const handleSeachKeyword = (e) => {

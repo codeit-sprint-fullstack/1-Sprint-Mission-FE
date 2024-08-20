@@ -6,26 +6,26 @@ const useProductData = (deviceType, initialPage, sortOption, keyword) => {
   const [sellingProducts, setProductsList] = useState([]);
   const [nowPage, setNowPage] = useState(initialPage);
   const [totalPageSize, setTotalPageSize] = useState(1);
+  const [SellingProductCountPerRow, setSellingProductCountPerRow] = useState(10);
 
-  let productCountPerRow = 10;
-
-  switch (deviceType) {
-    case "PC":
-      productCountPerRow = 10;
-    case "Tablet":
-      productCountPerRow = 8;
-    case "Mobile":
-      productCountPerRow = 6;
-  }
+  useEffect(() => { 
+    if (deviceType === "PC") {
+      setSellingProductCountPerRow(10)
+    } else if (deviceType === "Tablet") {
+      setSellingProductCountPerRow(8)
+    } else if (deviceType === "Mobile") {
+      setSellingProductCountPerRow(6)
+    }
+  },[deviceType])
 
   useEffect(() => {
-    getApiData(nowPage, productCountPerRow, sortOption, keyword)
+    getApiData(nowPage, SellingProductCountPerRow, sortOption, keyword)
       .then((data) => {
-        setTotalPageSize(Math.ceil(data.totalCount / productCount));
-        if (data.list.length < productCount) {
+        setTotalPageSize(Math.ceil(data.totalCount / SellingProductCountPerRow));
+        if (data.list.length < SellingProductCountPerRow) {
           setProductsList([
             ...data.list,
-            ...Array(productCount - data.list.length).fill({
+            ...Array(SellingProductCountPerRow - data.list.length).fill({
               images: [imgDefualt],
               name: "",
               description: "",
@@ -38,7 +38,7 @@ const useProductData = (deviceType, initialPage, sortOption, keyword) => {
         }
       })
       .catch((error) => console.error(error));
-  }, [deviceType, nowPage, sortOption, keyword]);
+  }, [SellingProductCountPerRow, nowPage, sortOption, keyword]);
 
   const handlePageChange = (page) => {
     setNowPage(page);

@@ -5,24 +5,24 @@ import stlyes from "./SellingProductRender.module.css";
 import ProductRenderPerRow from "./common/ProductRenderPerRow.js";
 
 function SellingProductRender({ productData }) {
-  const ProductsGridRender = () => {
-    const TempArrayProducts = [];
-    if (productRowCount > 1) {
-      for (let i = 0; i < productData.length; i += productCountPerRow) {
-        TempArrayProducts.push(productData.slice(i, i + productCountPerRow));
-      }
+  const arraySlice = () => {
+    let maxCountPerRow = productData.length / 2;
+    const resultArray = [];
 
-      return TempArrayProducts.map((item, rowGroupIndex) => (
-        <ProductRenderPerRow key={rowGroupIndex} productList={item} />
-      ));
-    } else {
-      return <ProductRenderPerRow productList={productData} />;
+    for (let i = 0; i < productData.length; i += maxCountPerRow) {
+      resultArray.push(productData.slice(i, i + maxCountPerRow));
     }
+
+    return resultArray;
   };
 
-  if (noProduct) {
-    return <section className={stlyes.noProduct}>상품이 없습니다.</section>;
-  } else {
+  const ProductsGridRender = () => {
+    return arraySlice().map((item, rowGroupIndex) => (
+      <ProductRenderPerRow key={rowGroupIndex} productList={item} />
+    ));
+  };
+
+  if (productData) {
     return (
       <div className={stlyes.productContainer}>
         <section className={stlyes.showProductList}>
@@ -30,6 +30,8 @@ function SellingProductRender({ productData }) {
         </section>
       </div>
     );
+  } else {
+    return <section className={stlyes.noProduct}>상품이 없습니다.</section>;
   }
 }
 

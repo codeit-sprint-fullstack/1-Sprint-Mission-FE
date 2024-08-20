@@ -3,26 +3,27 @@ import getApiData from "../api/getApiData.js";
 import imgDefualt from "../images/img_default.png";
 
 const useProductData = (deviceType) => {
-  const [BestProductsList, setProductsList] = useState([]);
+  const [bestProductsList, setBestProductsList] = useState([]);
+  const [bestProductCount, setBestProductCount] = useState(4);
 
-  let productCountPerRow = 4;
+  useEffect(() => { 
+    if (deviceType === "PC") {
+      setBestProductCount(4)
+    } else if (deviceType === "Tablet") {
+      setBestProductCount(3)
+    } else if (deviceType === "Mobile") {
+      setBestProductCount(2)
+    }
+  },[deviceType])
 
-  switch (deviceType) {
-    case "PC":
-      productCountPerRow = 3;
-    case "Tablet":
-      productCountPerRow = 2;
-    case "Mobile":
-      productCountPerRow = 1;
-  }
 
   useEffect(() => {
-    getApiData(1, productCountPerRow, "favorite")
+    getApiData(1, bestProductCount, "favorite", "")
       .then((data) => {
-        if (data.list.length < productCount) {
-          setProductsList([
+        if (data.list.length < bestProductCount) {
+          setBestProductsList([
             ...data.list,
-            ...Array(productCount - data.list.length).fill({
+            ...Array(bestProductCount - data.list.length).fill({
               images: [imgDefualt],
               name: "",
               description: "",
@@ -31,12 +32,12 @@ const useProductData = (deviceType) => {
             }),
           ]);
         } else {
-          setProductsList(data.list);
+          setBestProductsList(data.list);
         }
       })
       .catch((error) => console.error(error));
-  }, [deviceType]);
+  }, [bestProductCount]);
 
-  return BestProductsList;
+  return bestProductsList;
 };
 export default useProductData;
