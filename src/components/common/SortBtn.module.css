@@ -1,22 +1,23 @@
-.btnBox {
+.btnStyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #E5E7EB;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+
+}
+
+.largeBtnBox {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 130px;
-  border: 1px solid #E5E7EB;
-  background-color: #FFFFFF;
-  border-radius: 12px;
   padding: 10px 20px;
 }
 
-.forMobileBtn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid #E5E7EB;
-  background-color: #FFFFFF;
-  border-radius: 12px;
-  padding: 9px;
+.smallBtnBox {
+ padding: 9px;
 }
 
 .sortByBtn > span {
@@ -47,4 +48,15 @@
 
 .dropDownList li:not(:last-child) {
   border-bottom: 1px solid #E5E7EB;
+}
+
+@media (min-width: 745px) {
+  .smallBtnBox {
+    display: none;
+   }
+}
+@media (max-width: 744px) {
+  .largeBtnBox {
+    display: none;
+  }
 }

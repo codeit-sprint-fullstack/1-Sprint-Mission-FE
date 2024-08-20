@@ -21,15 +21,15 @@ function SortBtn({ handleSortOption, deviceType}) {
 
   return (
     <div>
-      {deviceType === "Mobile" 
-      ? ( <button className={styles.forMobileBtn} onClick={toggleDropDownView}>
-            <img src={iconSort} alt="클릭" />
-          </button> ) 
-      : ( <button className={styles.btnBox} onClick={toggleDropDownView}>
-            <span>{optionText}</span>
-            <img src={arrow} alt="클릭" />
-          </button> )
-      }
+      <button className={styles.btnStyle} onClick={toggleDropDownView}>
+        <div className={styles.largeBtnBox} >
+          <span>{optionText}</span>
+          <img src={arrow} alt="클릭" />
+        </div> 
+        <div className={styles.smallBtnBox}>
+          <img src={iconSort} alt="클릭" />
+        </div>
+      </button>
       {dropDownView && (
         <ul className="dropDownList">
           <li onClick={(e) => { handleOptionTextChange(e); handleSortOption("recent");}}>최신순</li>
@@ -41,3 +41,14 @@ function SortBtn({ handleSortOption, deviceType}) {
 }
 
 export default SortBtn;
+
+
+// {deviceType === "Mobile" 
+//   ? ( <button className={styles.forMobileBtn} onClick={toggleDropDownView}>
+//         <img src={iconSort} alt="클릭" />
+//       </button> ) 
+//   : ( <button className={styles.btnBox} onClick={toggleDropDownView}>
+//         <span>{optionText}</span>
+//         <img src={arrow} alt="클릭" />
+//       </button> )
+//   }

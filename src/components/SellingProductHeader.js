@@ -7,14 +7,27 @@ import LinkBtn from "./common/LinkBtn.js";
 
 function SellingProductHeader({ text, handleSortOption, deviceType }) {
   return (
-    <div className={styles.headerContaier}>
-      <span className={styles.headerText}>투자 현황</span>
-      <div className={styles.functionBox}>
-        <SearchBar />
-        <LinkBtn Link={"/register"} text={"상품 등록하기"} />
-        <SortBtn handleSortOption={handleSortOption} deviceType={deviceType} />
-      </div>
-    </div>
+    deviceType === "PC"
+      ? ( <header className={styles.headerContaier}>
+            <span className={styles.headerText}>{text}</span>
+            <div className={styles.functionBox}>
+              <SearchBar />
+              <LinkBtn Link={"/register"} text={"상품 등록하기"} />
+              <SortBtn handleSortOption={handleSortOption} deviceType={deviceType} />
+            </div>
+          </header>
+      )
+    : ( <header className={styles.twoLineContainer}>
+          <div className={styles.perRowBox}>
+            <span className={styles.headerText}>{text}</span>
+            <LinkBtn Link={"/register"} text={"상품 등록하기"} />
+          </div>
+          <div className={styles.perRowBox}>
+            <SearchBar />
+            <SortBtn handleSortOption={handleSortOption} deviceType={deviceType} />
+          </div>
+        </header>
+      )
   );
 }
 

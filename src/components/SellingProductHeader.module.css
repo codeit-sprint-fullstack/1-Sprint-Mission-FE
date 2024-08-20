@@ -14,7 +14,7 @@
 }
 
 .functionBox {
-  min-width: 529px;
+  /* min-width: 529px; */
   max-width: 612px;
   width: 100%;
   display: flex;
@@ -24,8 +24,21 @@
   gap: 12px;
 }
 
-
-.headerContaierForMobile {
+.twoLineContainer {
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
+  gap: 8px 0px;
+}
+
+.perRowBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+@media (max-width: 744px) {
+  .headerText {
+    width: 100%;
+  }
 }
