@@ -5,7 +5,7 @@ import SearchBar from "./common/SearchBar.js";
 import SortBtn from "./common/SortBtn.js";
 import LinkBtn from "./common/LinkBtn.js";
 
-function SellingProductHeader({ text, handleSortOption, deviceType }) {
+function SellingProductHeader({ text, handleSortOption, deviceType = "PC"}) {
   return (
     deviceType === "PC"
       ? ( <header className={styles.headerContaier}>

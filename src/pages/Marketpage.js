@@ -15,7 +15,7 @@ import ProductRenderGrid from "../components/ProductRenderGrid.js";
 
 // 커스텀 훅
 import useProductData from "../hooks/useProductData.js";
-import useWindowWidhtSize from "../hooks/useWindowWidhtSize.js";
+import useWindowWidhtSize from "../hooks/useGetDeviceType.js/index.js";
 
 function Marketpage() {
   const [ProductSortOption, setProductSortOption] = useState("recent");
