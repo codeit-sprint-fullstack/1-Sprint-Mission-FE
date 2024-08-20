@@ -2,26 +2,23 @@ import { useEffect, useState } from "react";
 import getApiData from "../api/getApiData.js";
 import imgDefualt from "../images/img_default.png";
 
-const useProductData = (deviceType, initialPage, sortOption, keyword) => {
+const useProductData = (deviceType) => {
   const [productsList, setProductsList] = useState([]);
-  const [nowPage, setNowPage] = useState(initialPage);
-  const [totalPageSize, setTotalPageSize] = useState(1);
 
-  let productCountPerRow = 10;
+  let productCountPerRow = 4;
 
   switch (deviceType) {
     case "PC":
-      productCountPerRow = 10;
+      productCountPerRow = 3;
     case "Tablet":
-      productCountPerRow = 8;
+      productCountPerRow = 2;
     case "Mobile":
-      productCountPerRow = 6;
+      productCountPerRow = 1;
   }
 
   useEffect(() => {
     getApiData(nowPage, productCount, sortOption, keyword)
       .then((data) => {
-        setTotalPageSize(Math.ceil(data.totalCount / productCount));
         if (data.list.length < productCount) {
           setProductsList([
             ...data.list,
@@ -38,11 +35,7 @@ const useProductData = (deviceType, initialPage, sortOption, keyword) => {
         }
       })
       .catch((error) => console.error(error));
-  }, [deviceType, nowPage, sortOption, keyword]);
-
-  const handlePageChange = (page) => {
-    setNowPage(page);
-  };
+  }, [deviceType]);
 
   return { nowPage, productsList, totalPageSize, handlePageChange };
 };
