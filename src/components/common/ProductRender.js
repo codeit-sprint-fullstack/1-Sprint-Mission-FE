@@ -1,23 +1,23 @@
 import React from "react";
 
-import "./ProductRender.css";
-import iconHeart from "../images/icon/ic_heart.svg";
+import styles from "./ProductRender.module.css";
+import iconHeart from "../../images/icon/ic_heart.svg";
 
-function ProductListRender({ productList, isThereProduct }) {
+function ProductRenderPerRow({ productList }) {
   const ProductRender = ({ product }) => {
     const { images, name, description, price, favoriteCount } = product;
     const [img] = images;
 
     return (
-      <li className="ProductBox">
-        <article className="imgSizeControl">
+      <li className={styles.ProductBox}>
+        <article className={styles.imgSizeControl}>
           <img src={img} alt={name} />
         </article>
-        <figure className="ProductDescription">
+        <figure className={styles.ProductDescription}>
           <span>{description.toLocaleString()}</span>
           {price && <h1>{`${price.toLocaleString()}원`}</h1>}
           {favoriteCount && (
-            <div className="ProductLike">
+            <div className={styles.ProductLike}>
               <img src={iconHeart} alt="좋아요" />
               <span>{favoriteCount}</span>
             </div>
@@ -28,7 +28,7 @@ function ProductListRender({ productList, isThereProduct }) {
   };
 
   return (
-    <ul className="productContainer">
+    <ul className={styles.productContainer}>
       {productList.map((item, idx) => (
         <ProductRender key={item.id ? item.id : idx - 30} product={item} />
       ))}
@@ -36,4 +36,4 @@ function ProductListRender({ productList, isThereProduct }) {
   );
 }
 
-export default ProductListRender;
+export default ProductRenderPerRow;

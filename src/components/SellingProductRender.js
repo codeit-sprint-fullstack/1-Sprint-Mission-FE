@@ -1,11 +1,11 @@
 import React from "react";
-import stlyes from "./ProductGridRender.module.css";
+import stlyes from "./SellingProductRender.module.css";
 
 // 컴포넌트
-import ProductRender from "./common/ProductRender.js";
+import ProductRenderPerRow from "./common/ProductRender.js";
 
 
-function ProductGridRender({
+function SellingProductRender({
   productData,
   productRowCount = 1,
   productCountPerRow,
@@ -19,10 +19,10 @@ function ProductGridRender({
       }
 
       return TempArrayProducts.map((item, rowGroupIndex) => (
-        <ProductRender key={rowGroupIndex} productList={item} />
+        <ProductRenderPerRow key={rowGroupIndex} productList={item} />
       ));
     } else {
-      return <ProductRender productList={productData} />;
+      return <ProductRenderPerRow productList={productData} />;
     }
   };
 
@@ -39,4 +39,4 @@ function ProductGridRender({
   }
 }
 
-export default ProductGridRender;
+export default SellingProductRender;
