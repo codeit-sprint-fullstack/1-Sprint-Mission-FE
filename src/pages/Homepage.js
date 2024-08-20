@@ -8,6 +8,7 @@ import styles from "./HomePage.module.css";
 
 function HomePage() {
   const [products, setProducts] = useState([]);
+  const [bestProducts, setBestProducts] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [keyword, setKeyword] = useState("");
   const [order, setOrder] = useState("createdAt");
@@ -30,11 +31,22 @@ function HomePage() {
     }
   };
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  const fetchBestProducts = async () => {
+    try {
+      const response = await fetch(
+        "https://panda-market-api.vercel.app/products?sort=favorite" // favorite으로 정렬된 베스트 상품 API 호출
+      );
+      const data = await response.json();
+      setBestProducts(data.list); // 베스트 상품 데이터 설정
+    } catch (error) {
+      console.error("Error fetching best products:");
+    }
+  };
 
-  const bestProducts = products.slice(0, 4);
+  useEffect(() => {
+    fetchProducts(); // 일반 상품 데이터 가져오기
+    fetchBestProducts(); // 베스트 상품 데이터 가져오기
+  }, []);
 
   const handleKeywordChange = (e) => setKeyword(e.target.value);
 
@@ -68,7 +80,7 @@ function HomePage() {
       <div className={styles.best}>
         <h1>베스트 상품</h1>
         <div className={styles.flexBox}>
-          {bestProducts.map((product) => (
+          {bestProducts.slice(0, 4).map((product) => (
             <div key={product.id} className={styles.product}>
               <img
                 src={product.images[0]}
