@@ -14,7 +14,6 @@
 }
 
 .functionBox {
-  /* min-width: 529px; */
   max-width: 612px;
   width: 100%;
   display: flex;
