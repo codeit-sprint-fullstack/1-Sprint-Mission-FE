@@ -4,7 +4,7 @@ import styles from "./SearchBar.module.css";
 //리소스
 import search from "../../images/icon/ic_search.svg";
 
-function ProductHeaderSearchBar({ inputText, handleInput, device }) {
+function ProductHeaderSearchBar({ inputText, handleInput }) {
   const ProductHeaderSearchBarRender = () => {
     return (
       <div className={styles.containerSet}>
