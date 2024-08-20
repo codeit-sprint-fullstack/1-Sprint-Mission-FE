@@ -18,7 +18,7 @@ const useGetDeviceType = () => {
   }, []);
 
   useEffect(() => {
-    if (windowWidhth > 800) {
+    if (windowWidhth > 745) {
       setDevice("PC")
     } else if (windowWidhth <= 744 && windowWidhth > 376) {
       setDevice("Tablet")
