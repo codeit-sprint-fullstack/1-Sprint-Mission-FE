@@ -4,13 +4,7 @@ import stlyes from "./SellingProductRender.module.css";
 // 컴포넌트
 import ProductRenderPerRow from "./common/ProductRenderPerRow.js";
 
-
-function SellingProductRender({
-  productData,
-  productRowCount = 1,
-  productCountPerRow,
-  noProduct
-}) {
+function SellingProductRender({ productData }) {
   const ProductsGridRender = () => {
     const TempArrayProducts = [];
     if (productRowCount > 1) {

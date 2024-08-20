@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const useGetDeviceType = () => {
   const [windowWidhth, setWindowWidthSize] = useState(window.innerWidth);
-  const [device, setDevice] = useState("PC");
+  const [deviceType, setDevice] = useState("PC");
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,18 +19,16 @@ const useGetDeviceType = () => {
 
   useEffect(() => {
     if (windowWidhth > 745) {
-      setDevice("PC")
+      setDevice("PC");
     } else if (windowWidhth <= 744 && windowWidhth > 376) {
-      setDevice("Tablet")
+      setDevice("Tablet");
     } else if (windowWidhth <= 375) {
-      setDevice("Mobile")
+      setDevice("Mobile");
     }
-    console.log(device)
+    console.log(deviceType);
   }, [windowWidhth]);
 
-
-  return { bestProductCount, sellingProductCount, sellingProductCountPerRow, device };
-
+  return deviceType;
 };
 
 export default useGetDeviceType;

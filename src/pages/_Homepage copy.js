@@ -7,7 +7,7 @@ import PageNav from "../components/PageNav.js";
 import SellingProductHeader from "../components/SellingProductHeader.js";
 
 // 커스텀 훅
-import useProductData from "../hooks/useProductData.js";
+import useProductData from "../hooks/useGetSellingProductData.js/index.js";
 import useWindowWidhtSize from "../hooks/useGetDeviceType.js/index.js";
 
 function Hompage() {
