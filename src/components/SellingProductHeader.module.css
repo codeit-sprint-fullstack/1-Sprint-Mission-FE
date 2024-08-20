@@ -6,17 +6,6 @@
   gap: 28px;
 }
 
-.textBox {
-  flex-basis: 100%;
-  min-width: 345px;
-  max-width: 588px;
-  width: 100%;
-  text-align: left;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
 .headerText {
   display: flex;
   justify-content: flex-start;
