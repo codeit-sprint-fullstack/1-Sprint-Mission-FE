@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: nowrap;
-  gap: 8px;
+  gap: 0px 24px;
 }
 
 .ProductBox {
@@ -70,4 +70,10 @@
   font-size: 0.75rem;
   font-weight: 500;
   line-height: 18px;
+}
+
+@media (max-width: 744px) {
+  .productContainer {
+    gap: 0px 8px;
+  }
 }

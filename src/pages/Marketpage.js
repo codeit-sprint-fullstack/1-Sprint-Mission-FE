@@ -1,104 +1,90 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import styles from "./Marketpage.module.css";
 
 //렌더링 컴포넌트
-import ProductHeaderRegistBtn from "../components/ProductHeaderRegistBtn.js";
-import ProductHeaderSearchBar from "../components/common/ProductHeaderSearchBar.js";
-import ProductHeaderSortBtn from "../components/common/ProductHeaderSortBtn.js";
-import ProductHeaderText from "../components/common/ProductHeaderText.js";
-
-// 렌더링 프레임
-import HomepageRenderFooter from "../components/Pagenation.js";
-import PageNavRender from "../components/PageNavRender.js";
-import ProductRenderGrid from "../components/ProductRenderGrid.js";
+import PageNav from "../components/PageNav.js";
+import SellingProductHeader from "../components/SellingProductHeader.js";
+import SellingProductRender from "components/SellingProductRender";
+import Pagenation from "components/Pagenation";
 
 // 커스텀 훅
-import useProductData from "../../../temp/useGetSellingProductData.js/index.js";
-import useWindowWidhtSize from "../../../temp/useGetDeviceType.js/index.js";
+import useProductData from "../hooks/useProductData.js";
+import useWindowWidhtSize from "../hooks/useWindowWidhtSize.js";
+
+// 리소스
+import defaultImg from "images/mock/img_default.png";
 
 function Marketpage() {
   const [ProductSortOption, setProductSortOption] = useState("recent");
   const [searchKeyword, setSearchKeyword] = useState("");
+  const [dataList, setDataList] = useState([]);
+
+  const { device } = useWindowWidhtSize();
+
+  useEffect(() => {
+    const dataObject = {
+      images: [defaultImg],
+      name: "로봇 청소기",
+      description: "로봇 청소기",
+      price: 1500000,
+      favoriteCount: 240,
+    };
+
+    if (device === "PC") {
+      const tempList = [];
+      for (let i = 0; i < 10; i++) {
+        tempList.push(dataObject);
+      }
+      setDataList(tempList);
+    } else if (device === "Tablet") {
+      const tempList = [];
+      for (let i = 0; i < 6; i++) {
+        tempList.push(dataObject);
+      }
+      setDataList(tempList);
+    } else if (device === "Mobile") {
+      const tempList = [];
+      for (let i = 0; i < 4; i++) {
+        tempList.push(dataObject);
+      }
+      setDataList(tempList);
+    }
+  }, [device]);
 
   // 커스텀 훅
-
-  const { sellingProductCount, sellingProductCountPerRow, Device } =
-    useWindowWidhtSize();
-
-  const {
-    productsList: sellingProductData,
-    noProduct: sellingNoProduct,
-    nowPage,
-    totalPageSize,
-    handlePageChange,
-  } = useProductData(1, sellingProductCount, ProductSortOption, searchKeyword);
-
+  const nowPage = 1;
+  const totalPageSize= 10;
+  const handlePageChange = (page) => {
+  }
+  
   // 검색어 핸들러
   const handleSeachKeyword = (e) => {
     setSearchKeyword(e.target.value);
   };
 
-  const handleSetProductSortOption = (option) => {
+  const handleSortOption = (option) => {
     setProductSortOption(option);
   };
 
   return (
-    <div className="marketpage">
-      <nav>
-        <PageNavRender marketBoardActive={true} loginStatus={false} device={Device}/>
+    <div className={styles.bgSet}>
+      <nav className={styles.navSet}>
+        <PageNav />
       </nav>
-
-      <main>
-        <section className="marketProductSection">
-          {Device === "Mobile" ? (
-            <header className="marketProductHeaderForMobile">
-              <div className="marketProductHeader">
-                <ProductHeaderText headerText={"판매 중인 상품"} />
-                <ProductHeaderRegistBtn />
-
-              </div>
-              <div className="marketProductHeader">
-                <ProductHeaderSearchBar
-                  inputText={searchKeyword}
-                  handleInput={handleSeachKeyword}
-                  device={Device}
-                  />
-                <ProductHeaderSortBtn
-                  handleSortOption={handleSetProductSortOption}
-                  device={Device}
-                />
-              </div>
-            </header>
-          ) : (
-            <header className="marketProductHeader">
-            <ProductHeaderText headerText={"판매 중인 상품"} />
-            <ProductHeaderSearchBar
-              inputText={searchKeyword}
-              handleInput={handleSeachKeyword}
-              device={Device}
-            />
-            <ProductHeaderRegistBtn />
-            <ProductHeaderSortBtn
-              handleSortOption={handleSetProductSortOption}
-            />
-          </header>
-          )}
-
-          <ProductRenderGrid
-            productData={sellingProductData}
-            productRowCount={2}
-            productCountPerRow={sellingProductCountPerRow}
-            noProduct={sellingNoProduct}
-          />
+      <main className={styles.mainContainer}>
+        <section className={styles.SellingSection}>
+          <SellingProductHeader text={"판매 중인 상품"} deviceType={device} />
+          <SellingProductRender productData={dataList} />
         </section>
       </main>
-
-      <HomepageRenderFooter
-        nowPage={nowPage}
-        handlePageChange={handlePageChange}
-        totalPageSize={totalPageSize}
-      />
+      <footer>
+        <Pagenation
+          nowPage={nowPage}
+          handlePageChange={handlePageChange}
+          totalPageSize={totalPageSize}
+        />
+      </footer>
     </div>
   );
 }

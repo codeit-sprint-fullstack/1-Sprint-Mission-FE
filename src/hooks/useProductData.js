@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import getApiData from "../api/getApiData.js";
-import imgDefualt from "../images/img_default.png";
+import imgDefualt from "../images/mock/img_default.png";
 
 const useProductData = (initialPage, productCount, sortOption, keyword) => {
   const [productsList, setProductsList] = useState([]);
