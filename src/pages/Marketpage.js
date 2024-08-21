@@ -9,13 +9,13 @@ import ProductHeaderSortBtn from "../components/common/ProductHeaderSortBtn.js";
 import ProductHeaderText from "../components/common/ProductHeaderText.js";
 
 // 렌더링 프레임
-import HomepageRenderFooter from "../components/HomepageRenderFooter.js";
+import HomepageRenderFooter from "../components/Pagenation.js";
 import PageNavRender from "../components/PageNavRender.js";
 import ProductRenderGrid from "../components/ProductRenderGrid.js";
 
 // 커스텀 훅
-import useProductData from "../hooks/useGetSellingProductData.js/index.js";
-import useWindowWidhtSize from "../hooks/useGetDeviceType.js/index.js";
+import useProductData from "../../../temp/useGetSellingProductData.js/index.js";
+import useWindowWidhtSize from "../../../temp/useGetDeviceType.js/index.js";
 
 function Marketpage() {
   const [ProductSortOption, setProductSortOption] = useState("recent");
