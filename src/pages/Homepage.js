@@ -6,6 +6,7 @@ import styles from "./Homepage.module.css";
 import PageNav from "../components/PageNav.js";
 import SellingProductHeader from "../components/SellingProductHeader.js";
 import SellingProductRender from "components/SellingProductRender";
+import ProductRenderPerRow from "components/common/ProductRenderPerRow";
 
 // 커스텀 훅
 import useProductData from "../hooks/useProductData.js";
@@ -51,6 +52,7 @@ function Hompage() {
       <main className={styles.mainContainer}>
         <section className={styles.bestSection}>
           <header className={styles.headerText}>베스트 상품</header>
+          <ProductRenderPerRow productList={bestProductData} />
         </section>
         <section className={styles.SellingSection}>
           <SellingProductHeader text={"판매 중인 상품"} />
