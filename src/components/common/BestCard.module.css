@@ -3,7 +3,8 @@
   min-width: 343px;
   max-width: 384px;
   width: 100%;
-  height: 100%;
+  min-height: 169px;
+  max-height: 198px;
   background-color: #F9FAFB;
   display: flex;
   flex-direction: column;
@@ -16,7 +17,7 @@
   height: 30px;
 }
 
-.cardInfoBox {
+.cardMain {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -30,9 +31,9 @@
   display: flex;
   align-items: center;
   max-width: 256px;
+  text-align: left;
   white-space: pre-wrap; 
   word-wrap: break-word; 
-  overflow-wrap: break-word;
 }
 
 .imgSizeControl {
@@ -47,6 +48,7 @@
   height: 72px;
   border: 1px solid #E5E7EB;
   border-radius: 6px;
+  flex-shrink: 0;
 }
 
 .imgSizeControl > img {
@@ -81,4 +83,10 @@
 
 .date {
   color: #9CA3AF;
+}
+
+@media (max-width: 1200px) {
+  .cardMain {
+    font-size: 1.125rem;
+  }
 }

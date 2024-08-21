@@ -14,7 +14,7 @@ function BestCard({ dataObject }) {
       <div className={styles.badge}>
         <img src={bestBadge} alt="badge" />
       </div>
-      <figure className={styles.cardInfoBox}>
+      <figure className={styles.cardMain}>
         <div className={styles.cardTitle}>
             맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?
         </div>
