@@ -5,11 +5,12 @@ import styles from "./PageNav.module.css";
 // 리소스
 import pandaImg from "../images/panda_img.svg";
 import logoText from "../images/logo_text.svg";
+import profile from "../images/profile.svg";
 
 //컴포넌트
 import LinkBtn from "./common/LinkBtn";
 
-function PageNavRender() {
+function PageNavRender({ loginState = false }) {
   const location = useLocation();
 
   const BoardList = () => {
@@ -18,7 +19,9 @@ function PageNavRender() {
         <li>
           <Link
             to="/freeboard"
-            className={location.pathname === "/freeboard" ? styles.boardActive : ""}
+            className={
+              location.pathname === "/freeboard" ? styles.boardActive : ""
+            }
           >
             자유게시판
           </Link>
@@ -45,7 +48,11 @@ function PageNavRender() {
           </Link>
         </div>
         <BoardList />
-        <LinkBtn link={"/login"} text={"로그인"} />
+        {loginState ? (
+          <img src={profile} alt="logo_text" />
+        ) : (
+          <LinkBtn link={"/login"} text={"로그인"} />
+        )}
       </section>
     </nav>
   );

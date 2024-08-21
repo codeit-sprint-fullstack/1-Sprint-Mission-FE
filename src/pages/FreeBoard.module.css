@@ -1,0 +1,20 @@
+.bgSet {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.navSet {
+  width: 100%;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  padding: 40px 24px;
+  flex-basis: 1000px;
+  gap: 16px 0px
+}

@@ -64,7 +64,7 @@ function FreeBoardWrite() {
   return (
     <div className={styles.registrationPage}>
       <nav>
-        <PageNav />
+        <PageNav loginState={true}/>
       </nav>
       <main className={styles.mainContainer}>
         <header className={styles.registrationHeader}>
