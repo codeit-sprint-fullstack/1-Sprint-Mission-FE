@@ -17,7 +17,7 @@
   border: none;
   background-color: #F3F4F6;
   width: 100%;
-  height: 200px;
+  height: 282px;
   padding: 16px 24px;
   font-size: 1rem;
   text-align: left;
@@ -27,8 +27,8 @@
   overflow-wrap: break-word;
   overflow-y: auto;
   resize: none;
-
 }
+
 .AreaContainer > textarea:focus {
   outline: none;
 }
@@ -47,5 +47,9 @@
 @media (max-width: 744px) {
   .headerText {
     font-size: 0.875rem;
+  }
+
+  .AreaContainer > textarea {
+    height: 200px;
   }
 }
