@@ -1,0 +1,45 @@
+.containerSet {
+  display: flex;
+  min-width: 242px;
+  max-width: 325px;
+  width: 100%;
+  padding: 9px 16px;
+  border-radius: 12px;
+  background-color: #F3F4F6;
+}
+
+.inputBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 9px;
+  background-color: inherit;
+}
+
+.inputBox > input { 
+  border: none;
+  background-color: inherit;
+  width: 100%;
+  height: 24px;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.inputBox > input:focus {
+  outline: none;
+}
+
+
+
+@media (max-width: 745px) {
+  .inputBox {
+    gap: 4px;
+  }
+}
+
+@media (max-width: 500px) {
+}
+
+@media (max-width: 376px) {
+
+}

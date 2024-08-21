@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./BestBoardCard.module.css";
+import styles from "./BestCard.module.css";
 import { Link } from "react-router-dom";
 
 //리소스
@@ -7,7 +7,7 @@ import boardCardImg from "images/mock/board_card_temp.svg";
 import iconHeart from "../../images/icon/ic_heart.svg";
 import bestBadge from "images/badge/img_badge.svg";
 
-function BestBoardCard({ dataObject }) {
+function BestCard({ dataObject }) {
   return (
     <article className={styles.cardContainer}>
       {/* <Link to={`/freeboard/${board.boardId}`}> */}
@@ -39,4 +39,4 @@ function BestBoardCard({ dataObject }) {
   );
 }
 
-export default BestBoardCard;
+export default BestCard;

@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "./SearchBar.module.css";
+import styles from "./SearchBarLarge.module.css";
 
 //리소스
 import search from "../../images/icon/ic_search.svg";
 
-function SearchBar({ inputText, handleInput }) {
+function SearchBarLarge({ inputText, handleInput }) {
   return (
     <div className={styles.containerSet}>
       <div className={styles.inputBox}>
@@ -20,4 +20,4 @@ function SearchBar({ inputText, handleInput }) {
   );
 }
 
-export default SearchBar;
+export default SearchBarLarge;
