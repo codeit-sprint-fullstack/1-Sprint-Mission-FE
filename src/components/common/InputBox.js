@@ -7,7 +7,7 @@ function InputBox({
   inputText,
   handleinputText,
   handleKeyPress,
-  validationActive = false,
+  inputError = false,
   validationMessage,
 }) {
   return (
@@ -16,14 +16,14 @@ function InputBox({
         <span>{headerText}</span>
       </div>
       <input
-        className={validationActive ? styles.inputError : styles.defaultBox}
+        className={inputError ? styles.inputError : styles.defaultBox}
         type={"text"}
         value={inputText}
         onChange={handleinputText}
         onKeyPress={handleKeyPress}
         placeholder={placeholderText}
       />
-      {validationActive && (
+      {inputError && (
         <span className={styles.errorText}>{validationMessage}</span>
       )}
     </section>

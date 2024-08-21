@@ -6,20 +6,20 @@ function TextAreaBox({
   placeholderText,
   inputText,
   handleinputText,
-  validationActive = false,
+  inputError = false,
   validationMessage,
 }) {
   return (
     <section className={styles.AreaContainer}>
       <span className={styles.headerText}>{headerText}</span>
       <textarea
-        className={validationActive ? styles.inputError : ""}
+        className={inputError ? styles.inputError : styles.defaultBox}
         value={inputText}
         onChange={handleinputText}
         onBlur={handleinputText}
         placeholder={placeholderText}
       />
-      {validationActive && (
+      {inputError && (
         <span className={styles.errorText}>{validationMessage}</span>
       )}
     </section>

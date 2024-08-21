@@ -77,7 +77,7 @@ function Registration() {
             inputText={inputNameText}
             handleinputText={handleinpuNametText}
             placeholderText={"상품명를 입력해주세요"}
-            validationActive={nameValidation}
+            inputError={nameValidation}
             validationMessage={"10자 이내로 입력해주세요"}
           />
           <TextAreaBox
@@ -85,7 +85,7 @@ function Registration() {
             inputText={inputDiscriptionText}
             handleinputText={handleInputDiscriptionText}
             placeholderText={"상품 소개를 입력해주세요"}
-            validationActive={discriptionValidation}
+            inputError={discriptionValidation}
             validationMessage={"10자 이상 입력해주세요"}
           />
           <InputBox
@@ -93,7 +93,7 @@ function Registration() {
             inputText={inputPrice}
             handleinputText={handleInputPrice}
             placeholderText={"판매 가격을 입력해주세요"}
-            validationActive={priceValidation}
+            inputError={priceValidation}
             validationMessage={"숫자로 입력해주세요"}
           />
           <InputBox
@@ -102,7 +102,7 @@ function Registration() {
             handleinputText={handleInputTagText}
             placeholderText={"태그를 입력해주세요"}
             handleKeyPress={handleKeyPress}
-            validationActive={tagValidation}
+            inputError={tagValidation}
             validationMessage={"5글자 이내로 입력해주세요"}
           />
           <Tags tagList={tagList} tagDelete={tagDelete} />

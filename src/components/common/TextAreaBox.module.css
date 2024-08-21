@@ -13,7 +13,8 @@
   font-weight: 700;
 }
 
-.AreaContainer > textarea {
+.defaultBox, 
+.inputError {
   border: none;
   background-color: #F3F4F6;
   width: 100%;
@@ -27,6 +28,13 @@
   overflow-wrap: break-word;
   overflow-y: auto;
   resize: none;
+}
+.defaultBox {
+  border: none;
+}
+
+.inputError {
+  border: 1px solid #F74747;
 }
 
 .AreaContainer > textarea:focus {
@@ -49,7 +57,8 @@
     font-size: 0.875rem;
   }
 
-  .AreaContainer > textarea {
+  .defaultBox,
+  .inputError {
     height: 200px;
   }
 }

@@ -15,9 +15,9 @@ nav {
   flex-direction: column;
   width: 100%;
   max-width: 1200px;
-  padding: 40px 24px;
+  padding: 24px 24px;
   flex-basis: 1000px;
-  gap: 16px 0px
+  gap: 32px 0px
 }
 
 .inputSection {
@@ -26,7 +26,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 24px 0px;
 }
 
 
@@ -35,10 +35,27 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  gap: 12px 0px;
 }
 
 .headerText {
   font-weight: 700;
   font-size: 1.25rem;
+}
+
+@media (max-width: 1200px) {
+  .inputSection {
+    gap: 12px 0px;
+  }
+}
+
+
+@media (max-width: 744px) {
+  .mainContainer {
+    padding: 16px 15px;
+    gap: 24px 0px;
+  }
+
+
+  
 }
