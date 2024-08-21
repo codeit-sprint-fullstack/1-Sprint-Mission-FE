@@ -1,5 +1,5 @@
 import React from "react";
-import "./HomepageRenderFooter.css";
+import styles from "./Pagenation.module.css";
 
 function HomepageRenderFooter({ nowPage, handlePageChange, totalPageSize }) {
   const showPageSize = 5;
@@ -9,7 +9,7 @@ function HomepageRenderFooter({ nowPage, handlePageChange, totalPageSize }) {
 
   const pageNumSelect = (e) => {
     handlePageChange(Number(e.target.textContent));
-  }
+  };
 
   const renderPageNumbers = () => {
     const pageNumGroup = [];
@@ -17,7 +17,7 @@ function HomepageRenderFooter({ nowPage, handlePageChange, totalPageSize }) {
       pageNumGroup.push(
         <button
           key={i}
-          className={nowPage === i ? "activeBtn" : "pageNumBtn"}
+          className={nowPage === i ? styles.activeBtn : styles.pageNumBtn}
           onClick={pageNumSelect}
         >
           {i}
@@ -30,7 +30,7 @@ function HomepageRenderFooter({ nowPage, handlePageChange, totalPageSize }) {
   const renderPreviousPage = () => {
     return (
       <button
-        className={nowPage === 1 ? "btnNonDisplay" : "pageMoveBtn"}
+        className={nowPage === 1 ? styles.btnNonDisplay : styles.pageMoveBtn}
         onClick={() => {
           handlePageChange(nowPage - 1);
         }}
@@ -43,7 +43,9 @@ function HomepageRenderFooter({ nowPage, handlePageChange, totalPageSize }) {
   const renderNextPage = () => {
     return (
       <button
-        className={nowPage === totalPageSize ? "btnNonDisplay" : "pageMoveBtn"}
+        className={
+          nowPage === totalPageSize ? styles.btnNonDisplay : styles.pageMoveBtn
+        }
         onClick={() => {
           handlePageChange(nowPage + 1);
         }}
@@ -54,11 +56,11 @@ function HomepageRenderFooter({ nowPage, handlePageChange, totalPageSize }) {
   };
 
   return (
-    <footer className="footerContain">
+    <div className={styles.btnContainer}>
       {renderPreviousPage()}
       {renderPageNumbers()}
       {renderNextPage()}
-    </footer>
+    </div>
   );
 }
 
