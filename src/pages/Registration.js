@@ -7,6 +7,7 @@ import PageNav from "components/PageNav.js";
 import TextBtn from "components/common/TextBtn";
 import InputBox from "components/common/InputBox.js";
 import TextAreaBox from "components/common/TextAreaBox.js";
+import Tags from "components/common/Tags.js";
 
 // 커스텀 훅
 import useValidationText from "../hooks/useValidationText.js";
@@ -45,6 +46,10 @@ function Registration() {
   const handleInputTagText = (e) => {
     setInputTagText(e.target.value);
   };
+
+  const tagList = [
+    "티셔츠", "상의"
+  ]
 
   return (
     <div className={styles.registrationPage}>
@@ -89,6 +94,7 @@ function Registration() {
             validationActive={tagValidation}
             validationMessage={"5글자 이내로 입력해주세요"}
           />
+          <Tags tagList={tagList} />
         </section>
       </main>
 
