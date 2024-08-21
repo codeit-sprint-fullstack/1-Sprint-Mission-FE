@@ -4,5 +4,5 @@
   },
   "include": [
     "src"
-, "../temp/useGetBestProductData.js", "../temp/useGetDeviceType.js", "../temp/useGetSellingProductData.js"  ]
+, "../temp/useGetBestProductData.js", "../temp/useGetDeviceType.js", "../temp/useGetSellingProductData.js", "../temp/useMongoData .js"  ]
 }
