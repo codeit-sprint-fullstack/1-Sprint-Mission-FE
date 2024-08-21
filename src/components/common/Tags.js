@@ -9,7 +9,9 @@ function Tags({ tagList = [] }) {
     return (
       <li key={idx} className={styles.tagBox}>
         <span>{`#${tag}`}</span>
-        <img src={roundX} alt="X" />
+        <button>
+          <img src={roundX} alt="X" />
+        </button>
       </li>
     );
   };

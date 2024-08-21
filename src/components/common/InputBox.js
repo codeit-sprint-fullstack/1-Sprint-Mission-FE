@@ -6,6 +6,7 @@ function InputBox({
   placeholderText,
   inputText,
   handleinputText,
+  handleKeyPress,
   validationActive = false,
   validationMessage,
 }) {
@@ -19,6 +20,7 @@ function InputBox({
         type={"text"}
         value={inputText}
         onChange={handleinputText}
+        onKeyPress={handleKeyPress}
         placeholder={placeholderText}
       />
       {validationActive && (

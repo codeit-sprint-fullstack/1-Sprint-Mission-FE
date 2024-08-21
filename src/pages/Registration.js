@@ -17,6 +17,7 @@ function Registration() {
   const [inputNameText, setinpuNametText] = useState("");
   const [inputPrice, setInputPrice] = useState("");
   const [inputTagText, setInputTagText] = useState("");
+  const [tagList, setTagList] = useState([]);
 
   const {
     nameValidation,
@@ -47,9 +48,15 @@ function Registration() {
     setInputTagText(e.target.value);
   };
 
-  const tagList = [
-    "티셔츠", "상의"
-  ]
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if (inputTagText.trim() !== '') {
+        setTagList([...tagList, inputTagText]);
+        setInputTagText('');
+      }
+    }
+  };
 
   return (
     <div className={styles.registrationPage}>
@@ -91,6 +98,7 @@ function Registration() {
             inputText={inputTagText}
             handleinputText={handleInputTagText}
             placeholderText={"태그를 입력해주세요"}
+            handleKeyPress={handleKeyPress}
             validationActive={tagValidation}
             validationMessage={"5글자 이내로 입력해주세요"}
           />
