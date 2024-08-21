@@ -15,14 +15,14 @@ function BestCard({ dataObject }) {
         <img src={bestBadge} alt="badge" />
       </div>
       <figure className={styles.cardInfoBox}>
-        <div className={styles.description}>
+        <div className={styles.cardTitle}>
             맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?
         </div>
         <div className={styles.imgSizeControl}>
           <img src={boardCardImg} alt="board_card" />
         </div>
       </figure>
-      <div className={styles.boardInfo}>
+      <div className={styles.cardInfo}>
         <div className={styles.writerProduckLike}>
           <span>총명한 판다</span>
           <div className={styles.ProductLike}>

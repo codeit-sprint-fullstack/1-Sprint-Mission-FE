@@ -13,7 +13,7 @@ function SearchBarLarge({ inputText, handleInput }) {
           type="text"
           value={inputText}
           onChange={handleInput}
-          placeholder="검색할 상품을 입력해주세요"
+          placeholder="검색할 게시물을 입력해주세요"
         />
       </div>
     </div>

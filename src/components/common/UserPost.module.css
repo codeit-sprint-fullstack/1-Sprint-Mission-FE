@@ -1,19 +1,16 @@
-.cardContainer {
+.postContainer {
   width: 100%;
-  min-width: 343px;
-  max-width: 384px;
-  /* height: 100%; */
-  height: 169px;
-  background-color: #F9FAFB;
+  height: 138px;
+  background-color: #FCFCFC;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 0px 24px 16px 24px;
+  padding-bottom: 24px;
 }
 
-.badge {
-  height: 30px;
+.postContainer:not(:last-child) {
+  border-bottom: 1px solid #E5E7EB;
 }
 
 .cardInfoBox {
@@ -26,10 +23,10 @@
   font-weight: 600;
 }
 
-.cardTitle {
+.postTitle {
   display: flex;
   align-items: center;
-  max-width: 256px;
+  max-width: 1120px;
   white-space: pre-wrap; 
   word-wrap: break-word; 
   overflow-wrap: break-word;
@@ -56,29 +53,40 @@
   object-fit: cover;
 }
 
-.cardInfo {
+.boardInfo {
   width: 100%;
   display: flex;
   justify-content: space-between;
   font-size: 0.875rem;
 }
 
-.writerProduckLike {
+.postInfo {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 0px 8px;
   font-weight: 400;
   color: #4B5563;
+}
+
+.profile > img {
+  width: 24px;
+}
+
+.date {
+  color: #9CA3AF;
 }
 
 .ProductLike {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0px 4px;
+  gap: 0px 8px;
+  font-size: 1rem;
   color: #6B7280;
 }
 
-.date {
-  color: #9CA3AF;
+.ProductLike > img{
+  width: 24px;
 }
+

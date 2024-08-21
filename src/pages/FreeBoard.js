@@ -6,6 +6,8 @@ import PageNav from "../components/PageNav.js";
 import BestCard from "components/common/BestCard";
 import LinkBtn from "components/common/LinkBtn";
 import SortBtn from "components/common/SortBtn";
+import SearchBarLarge from "components/common/SearchBarLarge";
+import UserPost from "components/common/UserPost"
 
 function FreeBoard() {
   return (
@@ -24,9 +26,15 @@ function FreeBoard() {
             <LinkBtn link={"/write"} text={"글쓰기"} />
           </header>
           <section className={styles.seachSection}>
-            <p className={styles.noProduct}>테스트 데이터</p>
+            <SearchBarLarge />
             <SortBtn />
           </section>
+          <ul>
+            <UserPost />
+            <UserPost />
+            <UserPost />
+          </ul>
+          
         </section>
       </main>
     </div>

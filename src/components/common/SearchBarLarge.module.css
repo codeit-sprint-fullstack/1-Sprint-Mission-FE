@@ -1,7 +1,5 @@
 .containerSet {
   display: flex;
-  min-width: 242px;
-  max-width: 325px;
   width: 100%;
   padding: 9px 16px;
   border-radius: 12px;
