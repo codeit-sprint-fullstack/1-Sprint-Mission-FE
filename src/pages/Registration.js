@@ -57,6 +57,10 @@ function Registration() {
       }
     }
   };
+  const tagDelete = (deleteTag) => {
+    setTagList(tagList.filter((tag) => tag !== deleteTag));
+  }
+
 
   return (
     <div className={styles.registrationPage}>
@@ -102,7 +106,7 @@ function Registration() {
             validationActive={tagValidation}
             validationMessage={"5글자 이내로 입력해주세요"}
           />
-          <Tags tagList={tagList} />
+          <Tags tagList={tagList} tagDelete={tagDelete} />
         </section>
       </main>
 

@@ -4,12 +4,13 @@ import styles from "./Tags.module.css";
 // 이미지
 import roundX from "../../images/icon/ic_round_x.svg";
 
-function Tags({ tagList = [] }) {
-  const tagRender = (tag, idx) => {
+function Tags({ tagList = [], tagDelete}) {
+
+  const tagRender = (tag) => {
     return (
-      <li key={idx} className={styles.tagBox}>
+      <li key={tag} className={styles.tagBox}>
         <span>{`#${tag}`}</span>
-        <button>
+        <button onClick={() => tagDelete(tag)}>
           <img src={roundX} alt="X" />
         </button>
       </li>
@@ -18,7 +19,7 @@ function Tags({ tagList = [] }) {
 
   return (
     <ul className={styles.tagListContainer}>
-      {tagList.map((tag, idx) => tagRender(tag, idx))}
+      {tagList.map((tag) => tagRender(tag))}
     </ul>
   );
 }
