@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./TextArea.module.css";
+import styles from "./TextAreaBox.module.css";
 
-function RegistrationInput({
+function TextAreaBox({
   headerText,
   placeholderText,
   inputText,
@@ -26,4 +26,4 @@ function RegistrationInput({
   );
 }
 
-export default RegistrationInput;
+export default TextAreaBox;

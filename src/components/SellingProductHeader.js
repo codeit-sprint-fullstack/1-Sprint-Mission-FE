@@ -12,7 +12,7 @@ function SellingProductHeader({ text, handleSortOption, deviceType = "PC"}) {
             <span className={styles.headerText}>{text}</span>
             <div className={styles.functionBox}>
               <SearchBar />
-              <LinkBtn Link={"/register"} text={"상품 등록하기"} />
+              <LinkBtn link={"/register"} text={"상품 등록하기"} />
               <SortBtn handleSortOption={handleSortOption} deviceType={deviceType} />
             </div>
           </header>

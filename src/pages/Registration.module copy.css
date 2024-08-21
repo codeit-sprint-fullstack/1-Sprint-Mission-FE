@@ -28,17 +28,3 @@ nav {
   align-items: center;
   gap: 12px;
 }
-
-.searchBox > input { 
-  border: none;
-  background-color: #F3F4F6;
-  width: 265px;
-  height: 24px;
-  padding-left: 16px;
-  font-size: 1rem;
-  text-align: left;
-}
-
-.searchBox > input:focus {
-  outline: none;
-}
