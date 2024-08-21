@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 40px 0px;
   overflow: auto;
 }
 
@@ -20,4 +20,10 @@
   color: #111827;
   line-height: 32px;
   margin: 40px 0px 16px 0px;
+}
+
+@media (max-width: 744px) {
+ .showProductList {
+  gap: 32px 0px;
+ }
 }

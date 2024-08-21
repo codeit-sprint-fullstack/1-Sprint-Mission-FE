@@ -49,3 +49,9 @@
   align-items: center;
   gap: 0px 16px;
 }
+
+@media (max-width: 744px) {
+  .mainContainer {
+   padding: 40px 16px;
+  }
+ }

@@ -32,6 +32,11 @@
 
 
 @media (max-width: 745px) {
+  .containerSet {
+    min-width: 242px;
+    max-width: none;
+    width: 100%;
+  }
   .inputBox {
     gap: 4px;
   }

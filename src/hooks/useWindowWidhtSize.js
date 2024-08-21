@@ -23,17 +23,17 @@ const useWindowWidhtSize = () => {
   }, []);
 
   useEffect(() => {
-    if (windowWidhth > 800) {
+    if (windowWidhth > 745) {
       setSellingProductCount(10);
       setSellingProductCountPerRow(5)
       setBestProductCount(4);
       setDevice("PC")
-    } else if (windowWidhth <= 800 && windowWidhth > 400) {
+    } else if (windowWidhth <= 744 && windowWidhth > 375) {
       setSellingProductCount(6);
       setSellingProductCountPerRow(3)
       setBestProductCount(2);
       setDevice("Tablet")
-    } else if (windowWidhth <= 400) {
+    } else if (windowWidhth <= 375) {
       setSellingProductCount(4);
       setSellingProductCountPerRow(2)
       setBestProductCount(1);
