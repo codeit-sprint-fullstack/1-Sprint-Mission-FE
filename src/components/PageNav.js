@@ -7,7 +7,6 @@ import pandaImg from "../images/panda_img.svg";
 import logoText from "../images/logo_text.svg";
 
 //컴포넌트
-import TextBtn from "./common/TextBtn";
 import LinkBtn from "./common/LinkBtn";
 
 function PageNavRender() {
@@ -18,8 +17,8 @@ function PageNavRender() {
       <ul className={styles.boardList}>
         <li>
           <Link
-            to="/free"
-            className={location.pathname === "/free" ? styles.boardActive : ""}
+            to="/freeboard"
+            className={location.pathname === "/freeboard" ? styles.boardActive : ""}
           >
             자유게시판
           </Link>

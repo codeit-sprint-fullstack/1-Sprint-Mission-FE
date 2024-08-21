@@ -7,6 +7,8 @@ import Homepage from "./pages/Homepage.js";
 // import Marketpage from "./pages/Marketpage.js";
 import Registration from "./pages/Registration.js";
 import Login from "./pages/Login.js";
+import FreeBoard from "./pages/FreeBoard";
+import FreeBoardWrite from "./pages/FreeBoardWrite";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         {/* <Route path="/items" element={<Marketpage />} /> */}
         <Route path="/register" element={<Registration />} />
+        <Route path="/freeboard" element={<FreeBoard />} />
+        <Route path="/write" element={<FreeBoardWrite />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
