@@ -3,13 +3,18 @@ import styles from "./FreeBoard.module.css";
 
 // 컴포넌트
 import PageNav from "../components/PageNav.js";
-import BestCard from "components/common/BestCard";
 import LinkBtn from "components/common/LinkBtn";
+import BestCardList from "components/BestCardList";
 import SortBtn from "components/common/SortBtn";
 import SearchBarLarge from "components/common/SearchBarLarge";
 import UserPost from "components/common/UserPost"
 
+
+
 function FreeBoard() {
+
+  const tempBest = ['', '', '']
+
   return (
     <div className={styles.bgSet}>
       <nav className={styles.navSet}>
@@ -18,7 +23,7 @@ function FreeBoard() {
       <main className={styles.mainContainer}>
         <section className={styles.bestSection}>
           <header className={styles.headerText}>베스트 게시글</header>
-          <BestCard />
+          <BestCardList dataList={tempBest}/>
         </section>
         <section className={styles.commonSection}>
           <header className={styles.commonHeader}>

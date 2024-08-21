@@ -1,0 +1,13 @@
+.listContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 169px;
+  gap: 0px 24px
+}
+
+@media (max-width: 744px) {
+  .listContainer {
+    height: 198px;
+  }
+}
