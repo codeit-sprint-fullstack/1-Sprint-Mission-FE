@@ -20,7 +20,7 @@ function TextAreaBox({
         placeholder={placeholderText}
       />
       {validationActive && (
-        <span className="errorText">{validationMessage}</span>
+        <span className={styles.errorText}>{validationMessage}</span>
       )}
     </section>
   );

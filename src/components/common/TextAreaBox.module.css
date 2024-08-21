@@ -1,6 +1,7 @@
 .AreaContainer {
   min-width: 344px;
   max-width: 1200px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,11 +39,15 @@
   border: 1px solid #F74747;
 }
 
-
-
 .errorText {
   color: #F74747;
   font-size: 0.9375rem;
   font-weight: 600;
   margin-left: 16px;
+}
+
+@media (max-width: 744px) {
+  .headerText {
+    font-size: 0.875rem;
+  }
 }

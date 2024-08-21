@@ -44,3 +44,9 @@
   font-weight: 600;
   margin-left: 16px;
 }
+
+@media (max-width: 744px) {
+  .inputHeader {
+    font-size: 0.875rem;
+  }
+}

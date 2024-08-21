@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./InputBox.module.css";
 
-function RegistrationInput({
+function InputBox({
   headerText,
   placeholderText,
   inputText,
@@ -21,9 +21,11 @@ function RegistrationInput({
         onChange={handleinputText}
         placeholder={placeholderText}
       />
-      {validationActive && <span className={styles.errorText}>{validationMessage}</span>}
+      {validationActive && (
+        <span className={styles.errorText}>{validationMessage}</span>
+      )}
     </section>
   );
 }
 
-export default RegistrationInput;
+export default InputBox;
