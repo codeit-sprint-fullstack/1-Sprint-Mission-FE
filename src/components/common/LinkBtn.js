@@ -6,9 +6,11 @@ import styles from "./LinkBtn.module.css";
 
 function LinkBtn({ link, btnActive = false, text }) {
   return (
-    <button className={styles.linkBtn} disabled={btnActive}>
-      <Link to={link}>{text}</Link>
-    </button>
+    <Link to={link}>
+      <button className={styles.linkBtn} disabled={btnActive}>
+        {text}
+      </button>
+    </Link>
   );
 }
 

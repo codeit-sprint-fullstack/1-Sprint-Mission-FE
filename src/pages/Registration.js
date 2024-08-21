@@ -20,11 +20,11 @@ function Registration() {
   const [tagList, setTagList] = useState([]);
 
   const {
-    nameValidation,
-    priceValidation,
-    discriptionValidation,
-    tagValidation,
-    validationForm,
+    nameError,
+    priceError,
+    discriptionError,
+    tagError,
+    submitError,
   } = useValidationText(
     inputNameText,
     inputPrice,
@@ -69,7 +69,7 @@ function Registration() {
       <main className={styles.mainContainer}>
         <header className={styles.registrationHeader}>
           <span className={styles.headerText}>상품 등록하기</span>
-          <TextBtn btnActive={validationForm} text={"등록"} />
+          <TextBtn btnActive={!submitError} text={"등록"} />
         </header>
         <section className={styles.inputSection}>
           <InputBox
@@ -77,7 +77,7 @@ function Registration() {
             inputText={inputNameText}
             handleinputText={handleinpuNametText}
             placeholderText={"상품명를 입력해주세요"}
-            inputError={nameValidation}
+            inputError={nameError}
             validationMessage={"10자 이내로 입력해주세요"}
           />
           <TextAreaBox
@@ -85,7 +85,7 @@ function Registration() {
             inputText={inputDiscriptionText}
             handleinputText={handleInputDiscriptionText}
             placeholderText={"상품 소개를 입력해주세요"}
-            inputError={discriptionValidation}
+            inputError={discriptionError}
             validationMessage={"10자 이상 입력해주세요"}
           />
           <InputBox
@@ -93,7 +93,7 @@ function Registration() {
             inputText={inputPrice}
             handleinputText={handleInputPrice}
             placeholderText={"판매 가격을 입력해주세요"}
-            inputError={priceValidation}
+            inputError={priceError}
             validationMessage={"숫자로 입력해주세요"}
           />
           <InputBox
@@ -102,7 +102,7 @@ function Registration() {
             handleinputText={handleInputTagText}
             placeholderText={"태그를 입력해주세요"}
             handleKeyPress={handleKeyPress}
-            inputError={tagValidation}
+            inputError={tagError}
             validationMessage={"5글자 이내로 입력해주세요"}
           />
           <Tags tagList={tagList} tagDelete={tagDelete} />

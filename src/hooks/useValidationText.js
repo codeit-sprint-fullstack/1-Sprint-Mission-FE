@@ -1,65 +1,65 @@
 import { useState, useEffect } from "react";
 
 const useValidationText = (name, price, description, tag) => {
-  const [nameValidation, setNameValidation] = useState(false);
-  const [priceValidation, setPriceValidation] = useState(false);
-  const [discriptionValidation, setDiscriptionValidation] = useState(false);
-  const [tagValidation, setTagValidation] = useState(false);
-  const [validationForm, setValidationForm] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [priceError, setPriceError] = useState(false);
+  const [discriptionError, setDiscriptionError] = useState(false);
+  const [tagError, setTagError] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   useEffect(() => {
     if (name.length > 10) {
-      setNameValidation(true);
+      setNameError(true);
     } else {
-      setNameValidation(false);
+      setNameError(false);
     }
   }, [name]);
 
   useEffect(() => {
     if (price && !/^\d+$/.test(price)) {
-      setPriceValidation(true);
+      setPriceError(true);
     } else {
-      setPriceValidation(false);
+      setPriceError(false);
     }
   }, [price]);
 
   useEffect(() => {
     if (description && description.length < 10) {
-      setDiscriptionValidation(true);
+      setDiscriptionError(true);
     } else {
-      setDiscriptionValidation(false);
+      setDiscriptionError(false);
     }
   }, [description]);
 
   useEffect(() => {
     if (tag.length > 5) {
-      setTagValidation(true);
+      setTagError(true);
     } else {
-      setTagValidation(false);
+      setTagError(false);
     }
   }, [tag]);
 
   useEffect(() => {
     if (
-      name &&
-      price &&
-      description &&
-      !nameValidation &&
-      !priceValidation &&
-      !discriptionValidation
+      !name &&
+      !price &&
+      !description &&
+      !nameError &&
+      !priceError &&
+      !discriptionError
     ) {
-      setValidationForm(true);
+      setSubmitError(true);
     } else {
-      setValidationForm(false);
+      setSubmitError(false);
     }
   }, [name, price, description, tag]);
 
   return {
-    nameValidation,
-    priceValidation,
-    discriptionValidation,
-    tagValidation,
-    validationForm,
+    nameError,
+    priceError,
+    discriptionError,
+    tagError,
+    submitError,
   };
 };
 
