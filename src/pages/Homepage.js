@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "./Homepage.module.css";
 
 //렌더링 컴포넌트
-import PageNav from "../components/PageNav.js"
+import PageNav from "../components/PageNav.js";
 import SellingProductHeader from "../components/SellingProductHeader.js";
 import SellingProductRender from "components/SellingProductRender";
 
@@ -49,10 +49,13 @@ function Hompage() {
         <PageNav />
       </nav>
       <main className={styles.mainContainer}>
-        <SellingProductHeader text={"판매 중인 상품"} />
-        <SellingProductRender
-          productData={sellingProductData}
-        />
+        <section className={styles.bestSection}>
+          <header className={styles.headerText}>베스트 상품</header>
+        </section>
+        <section className={styles.SellingSection}>
+          <SellingProductHeader text={"판매 중인 상품"} />
+          <SellingProductRender productData={sellingProductData} />
+        </section>
       </main>
     </div>
   );

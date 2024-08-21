@@ -7,13 +7,15 @@ import LinkBtn from "components/common/LinkBtn";
 import BestCardList from "components/BestCardList";
 import SortBtn from "components/common/SortBtn";
 import SearchBarLarge from "components/common/SearchBarLarge";
-import UserPost from "components/common/UserPost"
+// import UserPost from "components/common/UserPost"
+import UserPostList from "components/UserPostList";
 
 
 
 function FreeBoard() {
 
   const tempBest = ['', '', '']
+  const tempPost = ['', '', '', '', '', '', '']
 
   return (
     <div className={styles.bgSet}>
@@ -34,12 +36,7 @@ function FreeBoard() {
             <SearchBarLarge />
             <SortBtn />
           </section>
-          <ul>
-            <UserPost />
-            <UserPost />
-            <UserPost />
-          </ul>
-          
+          <UserPostList dataList={tempPost}/>
         </section>
       </main>
     </div>

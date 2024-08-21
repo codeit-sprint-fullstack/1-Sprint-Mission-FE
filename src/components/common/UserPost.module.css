@@ -13,7 +13,7 @@
   border-bottom: 1px solid #E5E7EB;
 }
 
-.cardInfoBox {
+.postMain {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -26,6 +26,7 @@
 .postTitle {
   display: flex;
   align-items: center;
+  text-align: left;
   max-width: 1120px;
   white-space: pre-wrap; 
   word-wrap: break-word; 
@@ -90,3 +91,8 @@
   width: 24px;
 }
 
+@media (max-width: 744px) {
+  .postMain {
+    font-size: 1.125rem;
+  }
+}

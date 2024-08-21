@@ -11,7 +11,7 @@ function UserPost({ dataObject }) {
   return (
     <li className={styles.postContainer}>
       {/* <Link to={`/freeboard/${board.boardId}`}> */}
-      <figure className={styles.cardInfoBox}>
+      <figure className={styles.postMain}>
         <div className={styles.postTitle}>
           맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?
         </div>

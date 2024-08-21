@@ -18,3 +18,8 @@
   flex-basis: 1000px;
   gap: 16px 0px
 }
+
+.headerText {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
