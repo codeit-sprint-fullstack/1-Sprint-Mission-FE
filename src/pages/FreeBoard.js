@@ -2,15 +2,12 @@ import React from "react";
 import { useState } from "react";
 import styles from "./Registration.module.css";
 
-//렌더링 컴포넌트
-import ProductHeaderText from "../components/common/ProductHeaderText.js";
-import ProductDataRegistBtn from "../components/ProductDataRegistBtn.js";
-
-import RegistrationInput from "../components/common/RegistrationInput.js";
-import RegistrationTextArea from "../components/common/textArea.js";
-
-//렌더링 프레임
-import PageNavRender from "../components/PageNavRender.js";
+// 컴포넌트
+import PageNav from "components/PageNav.js";
+import TextBtn from "components/common/TextBtn";
+import InputBox from "components/common/InputBox.js";
+import TextAreaBox from "components/common/TextAreaBox.js";
+import Tags from "components/common/Tags.js";
 
 // 커스텀 훅
 import useValidationText from "../hooks/useValidationText.js";
@@ -20,13 +17,14 @@ function Registration() {
   const [inputNameText, setinpuNametText] = useState("");
   const [inputPrice, setInputPrice] = useState("");
   const [inputTagText, setInputTagText] = useState("");
+  const [tagList, setTagList] = useState([]);
 
   const {
     nameValidation,
     priceValidation,
     discriptionValidation,
     tagValidation,
-    validationForm
+    validationForm,
   } = useValidationText(
     inputNameText,
     inputPrice,
@@ -50,19 +48,31 @@ function Registration() {
     setInputTagText(e.target.value);
   };
 
-  return (
-    <div className="registrationPage">
-      <nav>
-        <PageNavRender marketBoardActive={true} loginStatus={false}/>
-      </nav>
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if (inputTagText.trim() !== "") {
+        setTagList([...tagList, inputTagText]);
+        setInputTagText("");
+      }
+    }
+  };
+  const tagDelete = (deleteTag) => {
+    setTagList(tagList.filter((tag) => tag !== deleteTag));
+  };
 
-      <main>
-        <header className="registrationHeader">
-          <ProductHeaderText headerText={"상품 등록하기"} />
-          <ProductDataRegistBtn registerBtnActive={validationForm} />
+  return (
+    <div className={styles.registrationPage}>
+      <nav>
+        <PageNav />
+      </nav>
+      <main className={styles.mainContainer}>
+        <header className={styles.registrationHeader}>
+          <span className={styles.headerText}>게시글 쓰기</span>
+          <TextBtn btnActive={validationForm} text={"등록"} />
         </header>
-        <section className="mainInputSectionSet">
-          <RegistrationInput
+        <section className={styles.inputSection}>
+          <InputBox
             headerText={"상품명"}
             inputText={inputNameText}
             handleinputText={handleinpuNametText}
@@ -70,7 +80,7 @@ function Registration() {
             validationActive={nameValidation}
             validationMessage={"10자 이내로 입력해주세요"}
           />
-          <RegistrationTextArea
+          <TextAreaBox
             headerText={"상품 소개"}
             inputText={inputDiscriptionText}
             handleinputText={handleInputDiscriptionText}
@@ -78,7 +88,7 @@ function Registration() {
             validationActive={discriptionValidation}
             validationMessage={"10자 이상 입력해주세요"}
           />
-          <RegistrationInput
+          <InputBox
             headerText={"판매가격"}
             inputText={inputPrice}
             handleinputText={handleInputPrice}
@@ -86,17 +96,18 @@ function Registration() {
             validationActive={priceValidation}
             validationMessage={"숫자로 입력해주세요"}
           />
-          <RegistrationInput
+          <InputBox
             headerText={"태그"}
             inputText={inputTagText}
             handleinputText={handleInputTagText}
             placeholderText={"태그를 입력해주세요"}
+            handleKeyPress={handleKeyPress}
             validationActive={tagValidation}
             validationMessage={"5글자 이내로 입력해주세요"}
           />
+          <Tags tagList={tagList} tagDelete={tagDelete} />
         </section>
       </main>
-
     </div>
   );
 }

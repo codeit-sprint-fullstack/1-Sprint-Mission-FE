@@ -24,7 +24,7 @@ function Registration() {
     priceValidation,
     discriptionValidation,
     tagValidation,
-    validationForm
+    validationForm,
   } = useValidationText(
     inputNameText,
     inputPrice,
@@ -49,18 +49,17 @@ function Registration() {
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       event.preventDefault();
-      if (inputTagText.trim() !== '') {
+      if (inputTagText.trim() !== "") {
         setTagList([...tagList, inputTagText]);
-        setInputTagText('');
+        setInputTagText("");
       }
     }
   };
   const tagDelete = (deleteTag) => {
     setTagList(tagList.filter((tag) => tag !== deleteTag));
-  }
-
+  };
 
   return (
     <div className={styles.registrationPage}>
@@ -69,8 +68,8 @@ function Registration() {
       </nav>
       <main className={styles.mainContainer}>
         <header className={styles.registrationHeader}>
-          <span className={styles.headerText}>게시글 쓰기</span>
-          <TextBtn btnActive={validationForm} text={"등록"}/>
+          <span className={styles.headerText}>상품 등록하기</span>
+          <TextBtn btnActive={validationForm} text={"등록"} />
         </header>
         <section className={styles.inputSection}>
           <InputBox
@@ -109,7 +108,6 @@ function Registration() {
           <Tags tagList={tagList} tagDelete={tagDelete} />
         </section>
       </main>
-
     </div>
   );
 }
