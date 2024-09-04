@@ -1,0 +1,33 @@
+.activeBtn {
+  background-color: #3692FF;
+  border: none;
+  border-radius: 40px;
+  padding: 12px 64px;
+  color: #F3F4F6;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0px 8px;
+  cursor: pointer;
+}
+
+.disabledBtn {
+  background-color: #9CA3AF;
+  border: none;
+  border-radius: 40px;
+  padding: 12px 64px;
+  color: #F3F4F6;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0px 8px;
+  cursor: default;
+}
+
+.btnText {
+  color: inherit;
+  font-size: 1.125rem;
+  font-weight: 600;
+}

@@ -1,10 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./FunctionBtn.module.css";
+import styles from "./BtnSquareFunction.module.css";
 
 // 이미지
 
-function FunctionBtn({ linkTo, innerText = "버튼", activeState = true }) {
+function BtnSquareFunction({
+  linkTo,
+  innerText = "버튼",
+  handleOnClick = () => {},
+  activeState = true,
+}) {
+  
   return (
     <>
       {linkTo ? (
@@ -12,6 +18,7 @@ function FunctionBtn({ linkTo, innerText = "버튼", activeState = true }) {
           <button
             className={activeState ? styles.activeBtn : styles.disabledBtn}
             disabled={!activeState}
+            onClick={handleOnClick}
           >
             {innerText}
           </button>
@@ -20,6 +27,7 @@ function FunctionBtn({ linkTo, innerText = "버튼", activeState = true }) {
         <button
           className={activeState ? styles.activeBtn : styles.disabledBtn}
           disabled={!activeState}
+          onClick={handleOnClick}
         >
           {innerText}
         </button>
@@ -28,4 +36,4 @@ function FunctionBtn({ linkTo, innerText = "버튼", activeState = true }) {
   );
 }
 
-export default FunctionBtn;
+export default BtnSquareFunction;

@@ -17,7 +17,7 @@ function InputBar({
 
   //에러 관리
   InputErrorState = false,
-  validationMessage = "오류입니다.",
+  validationMessage = "입력 오류입니다.",
 }) {
 
   return (
