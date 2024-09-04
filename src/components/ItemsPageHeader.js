@@ -4,7 +4,7 @@ import React from "react";
 import "./Header.css";
 import pandaLogo from "../assets/images/panda-face.png";
 import pandaMarket from "../assets/images/panda-market.png";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 /* 중고마켓 홈페이지 헤더 */
 function ItemsPageHeader() {
@@ -25,7 +25,7 @@ function ItemsPageHeader() {
             <a href="#free-board">자유게시판</a>
           </li>
           <li>
-            <Link id="item-page-market" to="/items">
+            <Link id="item-page-market" href="/items">
               중고마켓
             </Link>
           </li>
