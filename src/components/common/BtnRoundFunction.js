@@ -5,10 +5,18 @@ import styles from "./BtnRoundFunction.module.css";
 // 이미지
 
 function BtnRoundFunction({
+  //기본 props
   linkTo,
   innerText = "버튼",
   imgSrc,
+
+  //스타일 커스텀
+  customWidth,
+
+  //핸들러
   handleOnClick = () => {},
+
+  //상태 관리
   activeState = true,
 }) {
 
@@ -19,6 +27,7 @@ function BtnRoundFunction({
           <button
             className={activeState ? styles.activeBtn : styles.disabledBtn}
             disabled={!activeState}
+            style={{ width: customWidth ? customWidth : '' }}
             onClick={handleOnClick}
           >
             <span className={styles.btnText}>{innerText}</span>
@@ -29,6 +38,7 @@ function BtnRoundFunction({
         <button
           className={activeState ? styles.activeBtn : styles.disabledBtn}
           disabled={!activeState}
+          style={{ width: customWidth ? customWidth : '' }}
           onClick={handleOnClick}
         >
           {innerText}
