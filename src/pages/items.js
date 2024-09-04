@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState, useMemo, useCallback } from "react";
-import searchIcon from "../assets/images/ic_search.png";
 import ItemsPageHeader from "../components/ItemsPageHeader";
 import { useRouter } from "next/router";
 import styles from "./ItemsPage.module.css"; // CSS 모듈 임포트
@@ -11,6 +10,7 @@ import { filterProductsByName } from "../api/api";
 import Pagination from "../components/Pagination";
 import useProductList from "../hooks/useProductList";
 import { LIMIT } from "../constants";
+import Image from "next/image"; // Next.js의 Image 컴포넌트 임포트
 
 export default function ItemsPage() {
   const router = useRouter(); // useNavigate 대신 useRouter 사용
@@ -107,7 +107,7 @@ export default function ItemsPage() {
               type="text"
               placeholder="검색할 상품을 입력해주세요"
               className={styles.searchInput}
-              style={{ backgroundImage: `url(${searchIcon})` }}
+              style={{ backgroundImage: `url(/images/ic_search.png)` }} // public/images 폴더에서 이미지 접근
               value={searchProduct}
               onChange={handleSearchChange}
               onKeyDown={handleKeyDown}

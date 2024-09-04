@@ -2,8 +2,7 @@
 
 import React from "react";
 import styles from "./Header.module.css"; // CSS 모듈 임포트
-import pandaLogo from "../assets/images/panda-face.png";
-import pandaMarket from "../assets/images/panda-market.png";
+import Image from "next/image"; // Next.js의 Image 컴포넌트 임포트
 import Link from "next/link";
 
 /* 중고마켓 홈페이지 헤더 */
@@ -12,10 +11,18 @@ function ItemsPageHeader() {
     <header className={styles.header}>
       {/* 로고와 판다 마켓 로고를 담는 컨테이너 */}
       <div className={styles.logoContainer}>
-        <img src={pandaLogo} alt="Panda Logo" className={styles.logo} />
-        <img
-          src={pandaMarket}
+        <Image
+          src="/images/panda-face.png" // public/images 폴더에서 이미지 접근
+          alt="Panda Logo"
+          width={50} // 이미지의 폭
+          height={50} // 이미지의 높이
+          className={styles.logo}
+        />
+        <Image
+          src="/images/panda-market.png" // public/images 폴더에서 이미지 접근
           alt="Panda Market"
+          width={100} // 이미지의 폭
+          height={50} // 이미지의 높이
           className={`${styles.logo} ${styles.pandaMarketLogo}`}
         />
       </div>
