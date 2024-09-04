@@ -1,9 +1,11 @@
+"use client";
+
 import React, { useEffect, useState, useMemo, useCallback } from "react";
 import searchIcon from "../assets/images/ic_search.png";
 import ItemsPageHeader from "../components/ItemsPageHeader";
 import { useRouter } from "next/router";
-import "./ItemsPage.css";
-import "../styles/Responsive.css";
+import styles from "./ItemsPage.module.css"; // CSS 모듈 임포트
+import ResponsiveStyles from "../styles/Responsive.module.css"; // CSS 모듈 임포트
 import ProductList from "../components/ProductList";
 import { filterProductsByName } from "../api/api";
 import Pagination from "../components/Pagination";
@@ -95,35 +97,38 @@ export default function ItemsPage() {
   };
 
   return (
-    <div className="App">
+    <div className={styles.ItemsPage}>
       <ItemsPageHeader />
-      <main>
-        <div className="SaleProductNav">
-          <h2>판매 중인 상품</h2>
-          <div className="inputBtDrop">
+      <main className={styles.mainContent}>
+        <div className={styles.saleProductNav}>
+          <h2 className={styles.heading}>판매 중인 상품</h2>
+          <div className={styles.inputBtDrop}>
             <input
               type="text"
               placeholder="검색할 상품을 입력해주세요"
-              className="search-input"
+              className={styles.searchInput}
               style={{ backgroundImage: `url(${searchIcon})` }}
               value={searchProduct}
               onChange={handleSearchChange}
               onKeyDown={handleKeyDown}
             />
             <button
-              className="addProductBotton"
+              className={styles.addProductBotton}
               onClick={handleAddProductClick}
             >
               상품 등록하기
             </button>
-            <select className="sortDropDown" onChange={handleOrderChange}>
+            <select
+              className={styles.sortDropDown}
+              onChange={handleOrderChange}
+            >
               <option value="createdAt">최신순</option>
             </select>
           </div>
         </div>
-        {searchError && <div className="search-error">{searchError}</div>}
+        {searchError && <div className={styles.searchError}>{searchError}</div>}
         {searchProduct && searchResults.length > 0 && (
-          <div className="search-results">
+          <div className={styles.searchResults}>
             <h3>검색 결과</h3>
             <ul>
               {searchResults.map((product) => (
