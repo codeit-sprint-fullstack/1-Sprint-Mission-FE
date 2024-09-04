@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useMemo, useCallback } from "react";
-import searchIcon from "../assets/images/ic_search.png";
+import Image from "next/image";
 import ItemsPageHeader from "../components/ItemsPageHeader";
 import { useNavigate } from "react-router-dom";
 import "./ItemsPage.css";
@@ -11,6 +11,8 @@ import { filterProductsByName } from "../api/api";
 import Pagination from "../components/Pagination";
 import useProductList from "../hooks/useProductList";
 import { LIMIT } from "../constants";
+
+const searchIcon = "/images/ic_search.png";
 
 export default function ItemsPage() {
   const navigate = useNavigate();
