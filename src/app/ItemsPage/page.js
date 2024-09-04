@@ -10,7 +10,7 @@ import Pagination from "../components/Pagination";
 import useProductList from "../hooks/useProductList";
 import { LIMIT } from "../constants";
 
-function ItemsPage() {
+export default function ItemsPage() {
   const navigate = useNavigate();
   const [order, setOrder] = useState("createdAt");
 
@@ -73,7 +73,7 @@ function ItemsPage() {
   const sortedProducts = useMemo(() => {
     if (Array.isArray(products)) {
       return [...products].sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
     }
     return []; // products가 배열이 아닐 경우 빈 배열 반환
@@ -86,7 +86,7 @@ function ItemsPage() {
   // 현재 페이지에 맞는 상품 목록 추출
   const currentPageProducts = sortedProducts.slice(
     (currentPage - 1) * LIMIT,
-    currentPage * LIMIT,
+    currentPage * LIMIT
   );
 
   /* 상품 등록하기 버튼 눌렀을때 이동페이지*/
@@ -146,5 +146,3 @@ function ItemsPage() {
     </div>
   );
 }
-
-export default ItemsPage;
