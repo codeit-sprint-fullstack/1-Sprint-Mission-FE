@@ -1,12 +1,11 @@
-.sale-products {
+.saleProducts {
   margin: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.product-list {
+.productList {
   display: grid;
-  /* grid-template-columns: repeat(5, 1fr); */
   gap: 24px;
   justify-content: center;
   padding-inline-start: 0;

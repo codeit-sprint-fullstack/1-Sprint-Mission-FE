@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import "./ProductList.css";
+import styles from "./ProductList.module.css"; // CSS 모듈 임포트
 import ProductListItem from "./ProductListItem";
 
 function ProductList({ products }) {
@@ -8,8 +10,8 @@ function ProductList({ products }) {
   }
 
   return (
-    <section className="sale-products">
-      <ul className="product-list">
+    <section className={styles.saleProducts}>
+      <ul className={styles.productList}>
         {products.map((product) => (
           <ProductListItem key={product.id} product={product} />
         ))}
