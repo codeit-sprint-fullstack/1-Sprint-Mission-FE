@@ -5,35 +5,35 @@ import styles from "./PageNav.module.css";
 // 리소스
 import pandaImg from "../images/panda_img.svg";
 import logoText from "../images/logo_text.svg";
-import profile from "../images/profile.svg";
 
 //컴포넌트
-import LinkBtn from "./common/LinkBtn";
+import BtnSquareFunction from "./common/BtnSquareFunction";
 
-function PageNavRender({ loginState = false }) {
+function PageNav({
+  boardListData = [
+    { name: "자유게시판", path: "freeboard" },
+    { name: "중고마켓", path: "items" },
+  ],
+  loginState = false,
+  userData = {},
+}) {
   const location = useLocation();
 
-  const BoardList = () => {
+  const BoardListRender = ({ boardListData }) => {
     return (
       <ul className={styles.boardList}>
-        <li>
-          <Link
-            to="/freeboard"
-            className={
-              location.pathname === "/freeboard" ? styles.boardActive : ""
-            }
-          >
-            자유게시판
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/items"
-            className={location.pathname === "/items" ? styles.boardActive : ""}
-          >
-            중고마켓
-          </Link>
-        </li>
+        {boardListData.map((data, idx) => (
+          <li key={idx}>
+            <Link
+              to={data.path}
+              className={
+                location.pathname === data.path ? styles.boardActive : ""
+              }
+            >
+              {data.name}
+            </Link>
+          </li>
+        ))}
       </ul>
     );
   };
@@ -47,15 +47,18 @@ function PageNavRender({ loginState = false }) {
             <img className={styles.logoText} src={logoText} alt="logo_text" />
           </Link>
         </div>
-        <BoardList />
+        <BoardListRender boardListData={boardListData} />
         {loginState ? (
-          <img src={profile} alt="logo_text" />
+          <div className={styles.profileBox}>
+            <img src={userData.profileImg} alt="profile" />
+            <span className={styles.profileName}>{userData.nickname}</span>
+          </div>
         ) : (
-          <LinkBtn link={"/login"} text={"로그인"} />
+          <BtnSquareFunction linkTo={"/login"} innerText={"로그인"} />
         )}
       </section>
     </nav>
   );
 }
 
-export default PageNavRender;
+export default PageNav;

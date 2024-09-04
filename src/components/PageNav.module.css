@@ -49,6 +49,19 @@
 }
 
 
+.profileBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0px 6px;
+}
+
+.profileName {
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: #4B5563;
+}
+
 @media (max-width: 1200px) {
   .logoBox {
     margin-right: 35px;
@@ -79,5 +92,9 @@
 
   .boardList li {
     font-size: 1rem;
+  }
+
+  .profileName {
+    display: none;
   }
 }
