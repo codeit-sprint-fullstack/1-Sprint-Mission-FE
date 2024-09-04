@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useCallback } from "react";
 import { getProductList } from "../api/api";
 import { LIMIT } from "../constants";

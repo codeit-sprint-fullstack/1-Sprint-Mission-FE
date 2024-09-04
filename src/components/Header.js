@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import "./Header.css";
 import pandaLogo from "../assets/images/panda-face.png";

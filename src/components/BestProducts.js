@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import "./BestProducts.css";
 import { getProductList } from "../api/api";
@@ -17,7 +19,7 @@ function BestProducts() {
         console.log("응답 데이터:", response);
 
         const sortedProducts = response.list.sort(
-          (a, b) => b.favoriteCount - a.favoriteCount,
+          (a, b) => b.favoriteCount - a.favoriteCount
         );
         setProducts(sortedProducts);
       } catch (error) {

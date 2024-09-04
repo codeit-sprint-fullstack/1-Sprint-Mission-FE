@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState, useMemo, useCallback } from "react";
 import searchIcon from "../assets/images/ic_search.png";
 import ItemsPageHeader from "../components/ItemsPageHeader";
