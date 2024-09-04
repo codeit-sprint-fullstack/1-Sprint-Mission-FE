@@ -1,0 +1,72 @@
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+(self["webpackChunk_N_E"] = self["webpackChunk_N_E"] || []).push([["app/page"],{
+
+/***/ "(app-pages-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5CGRAM%5C%5CDesktop%5C%5Csprint6-FE%5C%5Csrc%5C%5Cassets%5C%5Cimages%5C%5Cpanda-face.png%22%2C%22ids%22%3A%5B%22*%22%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5CGRAM%5C%5CDesktop%5C%5Csprint6-FE%5C%5Csrc%5C%5Cassets%5C%5Cimages%5C%5Cpanda-market.png%22%2C%22ids%22%3A%5B%22*%22%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5CGRAM%5C%5CDesktop%5C%5Csprint6-FE%5C%5Csrc%5C%5Cassets%5C%5Cimages%5C%5Cprofile-image.png%22%2C%22ids%22%3A%5B%22*%22%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5CGRAM%5C%5CDesktop%5C%5Csprint6-FE%5C%5Csrc%5C%5Ccomponents%5C%5CHeader.css%22%2C%22ids%22%3A%5B%5D%7D&server=false!":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5CGRAM%5C%5CDesktop%5C%5Csprint6-FE%5C%5Csrc%5C%5Cassets%5C%5Cimages%5C%5Cpanda-face.png%22%2C%22ids%22%3A%5B%22*%22%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5CGRAM%5C%5CDesktop%5C%5Csprint6-FE%5C%5Csrc%5C%5Cassets%5C%5Cimages%5C%5Cpanda-market.png%22%2C%22ids%22%3A%5B%22*%22%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5CGRAM%5C%5CDesktop%5C%5Csprint6-FE%5C%5Csrc%5C%5Cassets%5C%5Cimages%5C%5Cprofile-image.png%22%2C%22ids%22%3A%5B%22*%22%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5CGRAM%5C%5CDesktop%5C%5Csprint6-FE%5C%5Csrc%5C%5Ccomponents%5C%5CHeader.css%22%2C%22ids%22%3A%5B%5D%7D&server=false! ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+eval(__webpack_require__.ts("Promise.resolve(/*! import() eager */).then(__webpack_require__.bind(__webpack_require__, /*! ./src/assets/images/panda-face.png */ \"(app-pages-browser)/./src/assets/images/panda-face.png\"));\n;\nPromise.resolve(/*! import() eager */).then(__webpack_require__.bind(__webpack_require__, /*! ./src/assets/images/panda-market.png */ \"(app-pages-browser)/./src/assets/images/panda-market.png\"));\n;\nPromise.resolve(/*! import() eager */).then(__webpack_require__.bind(__webpack_require__, /*! ./src/assets/images/profile-image.png */ \"(app-pages-browser)/./src/assets/images/profile-image.png\"));\n;\nPromise.resolve(/*! import() eager */).then(__webpack_require__.bind(__webpack_require__, /*! ./src/components/Header.css */ \"(app-pages-browser)/./src/components/Header.css\"));\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwcC1wYWdlcy1icm93c2VyKS8uL25vZGVfbW9kdWxlcy9uZXh0L2Rpc3QvYnVpbGQvd2VicGFjay9sb2FkZXJzL25leHQtZmxpZ2h0LWNsaWVudC1lbnRyeS1sb2FkZXIuanM/bW9kdWxlcz0lN0IlMjJyZXF1ZXN0JTIyJTNBJTIyQyUzQSU1QyU1Q1VzZXJzJTVDJTVDR1JBTSU1QyU1Q0Rlc2t0b3AlNUMlNUNzcHJpbnQ2LUZFJTVDJTVDc3JjJTVDJTVDYXNzZXRzJTVDJTVDaW1hZ2VzJTVDJTVDcGFuZGEtZmFjZS5wbmclMjIlMkMlMjJpZHMlMjIlM0ElNUIlMjIqJTIyJTVEJTdEJm1vZHVsZXM9JTdCJTIycmVxdWVzdCUyMiUzQSUyMkMlM0ElNUMlNUNVc2VycyU1QyU1Q0dSQU0lNUMlNUNEZXNrdG9wJTVDJTVDc3ByaW50Ni1GRSU1QyU1Q3NyYyU1QyU1Q2Fzc2V0cyU1QyU1Q2ltYWdlcyU1QyU1Q3BhbmRhLW1hcmtldC5wbmclMjIlMkMlMjJpZHMlMjIlM0ElNUIlMjIqJTIyJTVEJTdEJm1vZHVsZXM9JTdCJTIycmVxdWVzdCUyMiUzQSUyMkMlM0ElNUMlNUNVc2VycyU1QyU1Q0dSQU0lNUMlNUNEZXNrdG9wJTVDJTVDc3ByaW50Ni1GRSU1QyU1Q3NyYyU1QyU1Q2Fzc2V0cyU1QyU1Q2ltYWdlcyU1QyU1Q3Byb2ZpbGUtaW1hZ2UucG5nJTIyJTJDJTIyaWRzJTIyJTNBJTVCJTIyKiUyMiU1RCU3RCZtb2R1bGVzPSU3QiUyMnJlcXVlc3QlMjIlM0ElMjJDJTNBJTVDJTVDVXNlcnMlNUMlNUNHUkFNJTVDJTVDRGVza3RvcCU1QyU1Q3NwcmludDYtRkUlNUMlNUNzcmMlNUMlNUNjb21wb25lbnRzJTVDJTVDSGVhZGVyLmNzcyUyMiUyQyUyMmlkcyUyMiUzQSU1QiU1RCU3RCZzZXJ2ZXI9ZmFsc2UhIiwibWFwcGluZ3MiOiJBQUFBLDhMQUE4RztBQUM5RztBQUNBLGtNQUFnSDtBQUNoSDtBQUNBLG9NQUFpSDtBQUNqSDtBQUNBLGdMQUFzRyIsInNvdXJjZXMiOlsid2VicGFjazovL19OX0UvP2I2NTgiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0KC8qIHdlYnBhY2tNb2RlOiBcImVhZ2VyXCIgKi8gXCJDOlxcXFxVc2Vyc1xcXFxHUkFNXFxcXERlc2t0b3BcXFxcc3ByaW50Ni1GRVxcXFxzcmNcXFxcYXNzZXRzXFxcXGltYWdlc1xcXFxwYW5kYS1mYWNlLnBuZ1wiKTtcbjtcbmltcG9ydCgvKiB3ZWJwYWNrTW9kZTogXCJlYWdlclwiICovIFwiQzpcXFxcVXNlcnNcXFxcR1JBTVxcXFxEZXNrdG9wXFxcXHNwcmludDYtRkVcXFxcc3JjXFxcXGFzc2V0c1xcXFxpbWFnZXNcXFxccGFuZGEtbWFya2V0LnBuZ1wiKTtcbjtcbmltcG9ydCgvKiB3ZWJwYWNrTW9kZTogXCJlYWdlclwiICovIFwiQzpcXFxcVXNlcnNcXFxcR1JBTVxcXFxEZXNrdG9wXFxcXHNwcmludDYtRkVcXFxcc3JjXFxcXGFzc2V0c1xcXFxpbWFnZXNcXFxccHJvZmlsZS1pbWFnZS5wbmdcIik7XG47XG5pbXBvcnQoLyogd2VicGFja01vZGU6IFwiZWFnZXJcIiAqLyBcIkM6XFxcXFVzZXJzXFxcXEdSQU1cXFxcRGVza3RvcFxcXFxzcHJpbnQ2LUZFXFxcXHNyY1xcXFxjb21wb25lbnRzXFxcXEhlYWRlci5jc3NcIik7XG4iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(app-pages-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5CGRAM%5C%5CDesktop%5C%5Csprint6-FE%5C%5Csrc%5C%5Cassets%5C%5Cimages%5C%5Cpanda-face.png%22%2C%22ids%22%3A%5B%22*%22%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5CGRAM%5C%5CDesktop%5C%5Csprint6-FE%5C%5Csrc%5C%5Cassets%5C%5Cimages%5C%5Cpanda-market.png%22%2C%22ids%22%3A%5B%22*%22%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5CGRAM%5C%5CDesktop%5C%5Csprint6-FE%5C%5Csrc%5C%5Cassets%5C%5Cimages%5C%5Cprofile-image.png%22%2C%22ids%22%3A%5B%22*%22%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5CGRAM%5C%5CDesktop%5C%5Csprint6-FE%5C%5Csrc%5C%5Ccomponents%5C%5CHeader.css%22%2C%22ids%22%3A%5B%5D%7D&server=false!\n"));
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./src/components/Header.css":
+/*!***********************************!*\
+  !*** ./src/components/Header.css ***!
+  \***********************************/
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval(__webpack_require__.ts("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"835ca5652ea0\");\nif (true) { module.hot.accept() }\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwcC1wYWdlcy1icm93c2VyKS8uL3NyYy9jb21wb25lbnRzL0hlYWRlci5jc3MiLCJtYXBwaW5ncyI6IjtBQUFBLCtEQUFlLGNBQWM7QUFDN0IsSUFBSSxJQUFVLElBQUksaUJBQWlCIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vX05fRS8uL3NyYy9jb21wb25lbnRzL0hlYWRlci5jc3M/YTlmNyJdLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCBcIjgzNWNhNTY1MmVhMFwiXG5pZiAobW9kdWxlLmhvdCkgeyBtb2R1bGUuaG90LmFjY2VwdCgpIH1cbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(app-pages-browser)/./src/components/Header.css\n"));
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./src/assets/images/panda-face.png":
+/*!******************************************!*\
+  !*** ./src/assets/images/panda-face.png ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval(__webpack_require__.ts("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\"src\":\"/_next/static/media/panda-face.e6083473.png\",\"height\":161,\"width\":160,\"blurDataURL\":\"/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpanda-face.e6083473.png&w=8&q=70\",\"blurWidth\":8,\"blurHeight\":8});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwcC1wYWdlcy1icm93c2VyKS8uL3NyYy9hc3NldHMvaW1hZ2VzL3BhbmRhLWZhY2UucG5nIiwibWFwcGluZ3MiOiI7QUFBQSwrREFBZSxDQUFDLHdNQUF3TSIsInNvdXJjZXMiOlsid2VicGFjazovL19OX0UvLi9zcmMvYXNzZXRzL2ltYWdlcy9wYW5kYS1mYWNlLnBuZz8yMzBhIl0sInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IHtcInNyY1wiOlwiL19uZXh0L3N0YXRpYy9tZWRpYS9wYW5kYS1mYWNlLmU2MDgzNDczLnBuZ1wiLFwiaGVpZ2h0XCI6MTYxLFwid2lkdGhcIjoxNjAsXCJibHVyRGF0YVVSTFwiOlwiL19uZXh0L2ltYWdlP3VybD0lMkZfbmV4dCUyRnN0YXRpYyUyRm1lZGlhJTJGcGFuZGEtZmFjZS5lNjA4MzQ3My5wbmcmdz04JnE9NzBcIixcImJsdXJXaWR0aFwiOjgsXCJibHVySGVpZ2h0XCI6OH07Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(app-pages-browser)/./src/assets/images/panda-face.png\n"));
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./src/assets/images/panda-market.png":
+/*!********************************************!*\
+  !*** ./src/assets/images/panda-market.png ***!
+  \********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval(__webpack_require__.ts("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\"src\":\"/_next/static/media/panda-market.df1ab751.png\",\"height\":97,\"width\":400,\"blurDataURL\":\"/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpanda-market.df1ab751.png&w=8&q=70\",\"blurWidth\":8,\"blurHeight\":2});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwcC1wYWdlcy1icm93c2VyKS8uL3NyYy9hc3NldHMvaW1hZ2VzL3BhbmRhLW1hcmtldC5wbmciLCJtYXBwaW5ncyI6IjtBQUFBLCtEQUFlLENBQUMsMk1BQTJNIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vX05fRS8uL3NyYy9hc3NldHMvaW1hZ2VzL3BhbmRhLW1hcmtldC5wbmc/YjA4MiJdLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCB7XCJzcmNcIjpcIi9fbmV4dC9zdGF0aWMvbWVkaWEvcGFuZGEtbWFya2V0LmRmMWFiNzUxLnBuZ1wiLFwiaGVpZ2h0XCI6OTcsXCJ3aWR0aFwiOjQwMCxcImJsdXJEYXRhVVJMXCI6XCIvX25leHQvaW1hZ2U/dXJsPSUyRl9uZXh0JTJGc3RhdGljJTJGbWVkaWElMkZwYW5kYS1tYXJrZXQuZGYxYWI3NTEucG5nJnc9OCZxPTcwXCIsXCJibHVyV2lkdGhcIjo4LFwiYmx1ckhlaWdodFwiOjJ9OyJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(app-pages-browser)/./src/assets/images/panda-market.png\n"));
+
+/***/ }),
+
+/***/ "(app-pages-browser)/./src/assets/images/profile-image.png":
+/*!*********************************************!*\
+  !*** ./src/assets/images/profile-image.png ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval(__webpack_require__.ts("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\"src\":\"/_next/static/media/profile-image.44aebbb1.png\",\"height\":160,\"width\":160,\"blurDataURL\":\"/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprofile-image.44aebbb1.png&w=8&q=70\",\"blurWidth\":8,\"blurHeight\":8});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwcC1wYWdlcy1icm93c2VyKS8uL3NyYy9hc3NldHMvaW1hZ2VzL3Byb2ZpbGUtaW1hZ2UucG5nIiwibWFwcGluZ3MiOiI7QUFBQSwrREFBZSxDQUFDLDhNQUE4TSIsInNvdXJjZXMiOlsid2VicGFjazovL19OX0UvLi9zcmMvYXNzZXRzL2ltYWdlcy9wcm9maWxlLWltYWdlLnBuZz9iZTY3Il0sInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IHtcInNyY1wiOlwiL19uZXh0L3N0YXRpYy9tZWRpYS9wcm9maWxlLWltYWdlLjQ0YWViYmIxLnBuZ1wiLFwiaGVpZ2h0XCI6MTYwLFwid2lkdGhcIjoxNjAsXCJibHVyRGF0YVVSTFwiOlwiL19uZXh0L2ltYWdlP3VybD0lMkZfbmV4dCUyRnN0YXRpYyUyRm1lZGlhJTJGcHJvZmlsZS1pbWFnZS40NGFlYmJiMS5wbmcmdz04JnE9NzBcIixcImJsdXJXaWR0aFwiOjgsXCJibHVySGVpZ2h0XCI6OH07Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(app-pages-browser)/./src/assets/images/profile-image.png\n"));
+
+/***/ })
+
+},
+/******/ function(__webpack_require__) { // webpackRuntimeModules
+/******/ var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId); }
+/******/ __webpack_require__.O(0, ["main-app"], function() { return __webpack_exec__("(app-pages-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5CGRAM%5C%5CDesktop%5C%5Csprint6-FE%5C%5Csrc%5C%5Cassets%5C%5Cimages%5C%5Cpanda-face.png%22%2C%22ids%22%3A%5B%22*%22%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5CGRAM%5C%5CDesktop%5C%5Csprint6-FE%5C%5Csrc%5C%5Cassets%5C%5Cimages%5C%5Cpanda-market.png%22%2C%22ids%22%3A%5B%22*%22%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5CGRAM%5C%5CDesktop%5C%5Csprint6-FE%5C%5Csrc%5C%5Cassets%5C%5Cimages%5C%5Cprofile-image.png%22%2C%22ids%22%3A%5B%22*%22%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5CGRAM%5C%5CDesktop%5C%5Csprint6-FE%5C%5Csrc%5C%5Ccomponents%5C%5CHeader.css%22%2C%22ids%22%3A%5B%5D%7D&server=false!"); });
+/******/ var __webpack_exports__ = __webpack_require__.O();
+/******/ _N_E = __webpack_exports__;
+/******/ }
+]);
