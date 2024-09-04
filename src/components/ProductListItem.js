@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import "./ProductListItem.css";
+import styles from "./ProductListItem.module.css"; // CSS 모듈 임포트
 import img_default from "../assets/images/img_default.png";
 
 function ProductListItem({ product }) {
@@ -10,12 +12,19 @@ function ProductListItem({ product }) {
       : img_default;
 
   return (
-    <div className="product-card">
-      <img src={productImage} alt={product.name} className="product-image" />
-      <div className="product-info">
-        <p className="product-name">{product.name}</p>
-        <p className="product-price">{product.price}원</p>
-        <p className="product-favorite"> 💙 좋아요 {product.favoriteCount}</p>
+    <div className={styles.productCard}>
+      <img
+        src={productImage}
+        alt={product.name}
+        className={styles.productImage}
+      />
+      <div className={styles.productInfo}>
+        <p className={styles.productName}>{product.name}</p>
+        <p className={styles.productPrice}>{product.price}원</p>
+        <p className={styles.productFavorite}>
+          {" "}
+          💙 좋아요 {product.favoriteCount}
+        </p>
       </div>
     </div>
   );
