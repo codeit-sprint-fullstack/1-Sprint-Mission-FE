@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import "./Pagination.css";
+import styles from "./Pagination.module.css"; // CSS 모듈 import
 
 const Pagination = ({ currentPage, totalPages, onPageChange, hasNext }) => {
   // 페이지 범위 계산
@@ -7,10 +9,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange, hasNext }) => {
   const endPage = Math.min(startPage + 4, totalPages);
 
   return (
-    <div className="pagination">
-      <div className="pageButtons">
+    <div className={styles.pagination}>
+      <div className={styles.pageButtons}>
         <button
-          className="leftPageButton"
+          className={styles.leftPageButton}
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
         >
@@ -20,13 +22,13 @@ const Pagination = ({ currentPage, totalPages, onPageChange, hasNext }) => {
           <button
             key={startPage + index}
             onClick={() => onPageChange(startPage + index)}
-            className={startPage + index === currentPage ? "active" : ""}
+            className={startPage + index === currentPage ? styles.active : ""}
           >
             {startPage + index}
           </button>
         ))}
         <button
-          className="rightPageButton"
+          className={styles.rightPageButton}
           onClick={() => onPageChange(currentPage + 1)}
           disabled={!hasNext || currentPage === totalPages}
         >
