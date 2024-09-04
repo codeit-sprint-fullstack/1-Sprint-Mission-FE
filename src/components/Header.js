@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import "./Header.css";
 import pandaLogo from "../assets/images/panda-face.png";
 import pandaMarket from "../assets/images/panda-market.png";
 import profileImage from "../assets/images/profile-image.png";
@@ -23,7 +22,7 @@ function Header() {
       <nav className="nav">
         <ul>
           <li>
-            <a href="#free-board">자유게시판</a>
+            <Link href="/free-board">자유게시판</Link>
           </li>
           <li>
             <Link id="ItemPageMarket" href="/items">
