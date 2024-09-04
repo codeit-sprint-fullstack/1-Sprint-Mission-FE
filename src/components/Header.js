@@ -5,7 +5,7 @@ import "./Header.css";
 import pandaLogo from "../assets/images/panda-face.png";
 import pandaMarket from "../assets/images/panda-market.png";
 import profileImage from "../assets/images/profile-image.png";
-import { Link } from "react-router-dom";
+import Link from "next/link"; // Next.js의 Link
 
 /* 판다마켓 헤더 */
 function Header() {
@@ -26,7 +26,7 @@ function Header() {
             <a href="#free-board">자유게시판</a>
           </li>
           <li>
-            <Link id="ItemPageMarket" to="/items">
+            <Link id="ItemPageMarket" href="/items">
               중고마켓
             </Link>
           </li>
