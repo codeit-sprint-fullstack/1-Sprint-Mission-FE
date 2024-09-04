@@ -72,6 +72,8 @@
   line-height: 18px;
 }
 
+
+
 @media (max-width: 744px) {
   .productContainer {
     gap: 0px 8px;
