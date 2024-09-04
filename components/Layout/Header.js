@@ -11,12 +11,7 @@ export default function Header() {
       <div className={styles.headerContainer}>
         <div>
           <Link href="/" passHref>
-            <Image
-              src={Desktop_logo}
-              alt="logo"
-              className={styles.logo}
-              style={{ cursor: "pointer" }} // 클릭 가능하다는 시각적 힌트 추가
-            />
+            <Image src={Desktop_logo} alt="logo" className={styles.logo} />
           </Link>
         </div>
         <div className={styles.moves}>

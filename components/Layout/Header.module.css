@@ -10,6 +10,7 @@
   height: 51px;
   margin-top: 10px;
   margin-left: 200px;
+  cursor: pointer;
 }
 
 .moves {
@@ -38,4 +39,5 @@
   font-weight: 600;
   color: #ffffff;
   margin: 14px 200px 14px auto;
+  cursor: pointer;
 }
