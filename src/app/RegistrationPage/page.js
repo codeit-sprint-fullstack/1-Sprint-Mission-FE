@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RegistrationPage.css";
-import { createProduct } from "../api/api";
-import ItemsPageHeader from "../components/ItemsPageHeader";
-import useFormValidation from "../hooks/useFormValidation";
+import { createProduct } from "../../api/api";
+import ItemsPageHeader from "../../components/ItemsPageHeader";
+import useFormValidation from "../../hooks/useFormValidation";
 
 const INITIAL_VALUES = {
   name: "",
@@ -12,7 +12,7 @@ const INITIAL_VALUES = {
   tags: "",
 };
 
-function RegistrationPage() {
+export default function RegistrationPage() {
   const [tags, setTags] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittingError, setSubmittingError] = useState(null);
@@ -123,7 +123,9 @@ function RegistrationPage() {
             <textarea
               id="Input2"
               name="description"
-              className={`RegistrationInput ${errors.description ? "error" : ""}`}
+              className={`RegistrationInput ${
+                errors.description ? "error" : ""
+              }`}
               value={values.description}
               onBlur={handleBlur}
               onChange={handleInputChange}
@@ -191,5 +193,3 @@ function RegistrationPage() {
     </div>
   );
 }
-
-export default RegistrationPage;
