@@ -1,22 +1,14 @@
-.containerSet {
+
+.searchBox {
   display: flex;
-  min-width: 242px;
-  max-width: 325px;
-  width: 100%;
+  align-items: center;
   padding: 9px 16px;
   border-radius: 12px;
   background-color: #F3F4F6;
-}
-
-.inputBox {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
   gap: 9px;
-  background-color: inherit;
 }
 
-.inputBox > input { 
+.searchBox > input { 
   border: none;
   background-color: inherit;
   width: 100%;
@@ -25,26 +17,12 @@
   text-align: left;
 }
 
-.inputBox > input:focus {
+.searchBox > input:focus {
   outline: none;
 }
 
-
-
 @media (max-width: 745px) {
-  .containerSet {
-    min-width: 242px;
-    max-width: none;
-    width: 100%;
-  }
-  .inputBox {
+  .searchBox {
     gap: 4px;
   }
-}
-
-@media (max-width: 500px) {
-}
-
-@media (max-width: 376px) {
-
 }

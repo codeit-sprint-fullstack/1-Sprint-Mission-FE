@@ -6,6 +6,9 @@ function InputArea({
   headerText,
   customGap, // gap 크기를 동적으로 변경 > 기본값은 CSS에서 12px
 
+  //커스텀 height
+  customHeight,
+
   //Area 기본 Props
   placeholderText = "입력해주세요",
   inputValue = "",
@@ -23,6 +26,7 @@ function InputArea({
       {headerText && <div className={styles.headerText}>{headerText}</div>}
       <textarea
         className={InputErrorState ? styles.inputError : styles.defaultBox}
+        style={{ height: customHeight ? customHeight : '' }}
         value={inputValue}
         onChange={handleInputAreaOnChange}
         onBlur={handleInputAreaOnBlur}
