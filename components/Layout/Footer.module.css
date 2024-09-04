@@ -1,0 +1,40 @@
+.footerContainer {
+  height: 160px;
+  width: 100%;
+  background-color: #111827;
+  margin-top: 1300px;
+  padding-top: 32px;
+}
+
+.footerInfo {
+  display: flex;
+  flex-direction: row;
+  margin: auto 200px;
+  justify-content: space-between;
+}
+
+.footerCopyright {
+  color: #9ca3af;
+}
+
+.footerLinks {
+  display: flex;
+  flex-direction: row;
+  color: #e5e7eb;
+  justify-content: space-between;
+
+  .link {
+    margin-right: 30px;
+  }
+}
+
+.footerSNS {
+  width: 116px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .sns {
+    width: 24px;
+    height: 24px;
+  }
+}

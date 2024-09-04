@@ -1,0 +1,41 @@
+.headerContainer {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  background-color: #ffffff;
+}
+
+.logo {
+  width: 153px;
+  height: 51px;
+  margin-top: 10px;
+  margin-left: 200px;
+}
+
+.moves {
+  margin-left: 32px;
+  display: flex;
+}
+
+.moves p {
+  font-size: 18px;
+  font-weight: 700;
+  color: #4b5563;
+  margin: 22px 39px 0 0;
+}
+
+.moves p.active {
+  color: #3692ff;
+}
+
+.login_btn {
+  width: 88px;
+  height: 42px;
+  border-radius: 8px;
+  padding: 12px 23px;
+  background-color: #3692ff;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 14px 200px 14px auto;
+}
