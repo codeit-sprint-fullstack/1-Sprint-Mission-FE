@@ -6,26 +6,34 @@ import { useRouter } from "next/router";
 
 function Nav() {
   const router = useRouter();
+  const { id } = router.query;
   const getLinkStyle = (href) =>
-    (router.pathname === href[0] || router.pathname === href[1]) ? style.onHref : style.offHref;
+    router.asPath === href[0] ||
+    router.asPath === href[1] ||
+    router.asPath === href[2]
+      ? style.onHref
+      : style.offHref;
 
+  console.log(router.asPath);
   return (
     <nav>
       <div className={style.listContaner}>
         <Link href="/freeNoticeBoard">
           <p
-            className={`${style.listFont} ${style.freeFont} ${getLinkStyle(
-              ["/freeNoticeBoard", "/postArticle"]
-            )}`}
+            className={`${style.listFont} ${style.freeFont} ${getLinkStyle([
+              "/freeNoticeBoard",
+              "/freeNoticeBoard/postArticle",
+              `/freeNoticeBoard/${id}`,
+            ])}`}
           >
             자유게시판
           </p>
         </Link>
         <Link href="/items">
           <p
-            className={`${style.listFont} ${style.usedFont} ${getLinkStyle(
-              ["/items"]
-            )}`}
+            className={`${style.listFont} ${style.usedFont} ${getLinkStyle([
+              "/items",
+            ])}`}
           >
             중고마켓
           </p>

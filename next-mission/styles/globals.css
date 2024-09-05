@@ -40,7 +40,7 @@ main {
   height: auto;
   margin-top: 70px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

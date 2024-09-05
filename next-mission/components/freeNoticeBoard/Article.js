@@ -8,7 +8,7 @@ export default function Article() {
     <div>
       <div>
         <div>게시글</div>
-        <Link href={'/postArticle'}>
+        <Link href={'/freeNoticeBoard/postArticle'}>
           <div>글쓰기</div>
         </Link>
       </div>
