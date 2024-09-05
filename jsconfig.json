@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src"
+    "baseUrl": ".",  // 루트 기준 경로 설정
+    "paths": {
+      "@components/*": ["src/components/*"],  // src/components로 매핑
+      "@hooks/*": ["src/hooks/*"],            // src/hooks로 매핑
+      "@utils/*": ["src/utils/*"]             // src/utils로 매핑
+    }
   },
-  "include": [
-    "src"
-, "../temp/useGetBestProductData.js", "../temp/useGetDeviceType.js", "../temp/useGetSellingProductData.js", "../temp/useMongoData .js"  ]
+  "include": ["src"]
 }
