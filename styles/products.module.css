@@ -22,7 +22,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 282px;
+  /* width: 282px; */
   height: 378px;
   gap: 6px;
 }
@@ -37,6 +37,8 @@
 }
 
 .normal {
+  width: 221px;
+  height: auto;
   margin-bottom: 10px;
   border-radius: 16px;
 }
@@ -81,6 +83,10 @@
 }
 
 @media screen and (max-width: 1200px) {
+  .normal {
+    width: 100%;
+  }
+
   .favorite_product_item {
     width: 343px;
     height: 434px;
@@ -107,10 +113,6 @@
   .product_item {
     width: 168px;
     height: 264px;
-  }
-
-  .nomal {
-    width: 100%;
   }
 
   .favorite_product_item > img {

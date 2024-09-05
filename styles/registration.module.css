@@ -32,12 +32,17 @@
   gap: 8px;
 }
 
-.input_box > input {
+.input {
+  font-size: 16px;
   background-color: #f3f4f6;
   box-sizing: border-box;
-  height: 56px;
-  padding: 16px 24px 16px 24px;
+  padding: 16px 24px;
   border-radius: 12px;
+}
+
+.description {
+  height: 282px;
+  resize: none;
 }
 
 .err_border {
@@ -46,6 +51,7 @@
 
 .chips_box {
   margin-top: 12px;
+  margin-bottom: 219px;
   display: flex;
   gap: 12px;
 }

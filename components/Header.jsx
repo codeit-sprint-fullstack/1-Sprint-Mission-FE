@@ -1,12 +1,12 @@
 import styles from "@/styles/header.module.css";
 import mainLog from "../public/images/mainlogo.png";
 import mb_Log from "../public/images/mb_logo.png";
-import useImgResize from "../hooks/useReturnResize.js";
 import Link from "next/link";
 import Image from "next/image";
+import useWindowResize from "@/hooks/useWindowResize";
 
 function Header() {
-  const view = useImgResize();
+  const view = useWindowResize();
 
   const getLinkStyle = ({ isActive }) => {
     return {

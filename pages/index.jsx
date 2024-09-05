@@ -2,9 +2,9 @@ import Head from "next/head";
 import ProductList from "@/components/ProductList";
 import Pagination from "@/components/Pagination";
 import SearchBar from "@/components/SearchBar";
-import useWindowSize from "../hooks/useResize.js";
 import * as api from "@/pages/api/products.js";
 import { useEffect, useState } from "react";
+import useWindowResize from "@/hooks/useWindowResize";
 
 export async function getServerSideProps() {
   const productsQuery = {
@@ -101,19 +101,19 @@ export default function Home({
     }
   };
 
-  const view = useWindowSize();
+  const view = useWindowResize();
   const changeFromNextView = () => {
     switch (view) {
-      case "Desktop":
-        onChange({ pageSize: 10, page: 1 });
+      case "isDesktop":
+        onObjectChange({ pageSize: 10, page: 1 });
         onBestChange("pageSize", 4);
         break;
       case "isTablet":
-        onChange({ pageSize: 6, page: 1 });
+        onObjectChange({ pageSize: 6, page: 1 });
         onBestChange("pageSize", 2);
         break;
       case "isMobile":
-        onChange({ pageSize: 4, page: 1 });
+        onObjectChange({ pageSize: 4, page: 1 });
         onBestChange("pageSize", 1);
         break;
       default:

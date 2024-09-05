@@ -1,22 +1,21 @@
-import { useDebounce } from "use-debounce";
 import { useEffect, useState } from "react";
 
-const useWindowSize = () => {
+const useWindowResize = () => {
   const [nextView, setNextView] = useState("isDesktop");
 
-  const handleResize = useDebounce(() => {
+  const handleResize = () => {
     if (window.innerWidth >= 1200) {
-      setNextView("Desktop");
+      setNextView("isDesktop");
     } else if (window.innerWidth < 1200 && window.innerWidth >= 775) {
       setNextView("isTablet");
     } else if (window.innerWidth <= 774) {
       setNextView("isMobile");
     }
-  }, 150);
+  };
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
-    handleResize;
+    handleResize();
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -25,4 +24,4 @@ const useWindowSize = () => {
   return nextView;
 };
 
-export default useWindowSize;
+export default useWindowResize;

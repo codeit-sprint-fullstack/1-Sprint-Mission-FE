@@ -11,11 +11,10 @@ function Product({ itemValues, favorite }) {
       className={favorite ? styles.favorite_product_item : styles.product_item}
     >
       <Image
-        width={221}
-        height={221}
         className={styles.normal}
         src={imgDefault}
         alt="상품이미지"
+        priority={true}
       ></Image>
       <p className={styles.name}>{name}</p>
       <p className={styles.price}>{`${numFormat}원`}</p>

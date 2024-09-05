@@ -3,7 +3,7 @@ import SearchBar from "@/components/SearchBar";
 import Pagination from "@/components/Pagination";
 import { useState, useEffect } from "react";
 import * as api from "@/pages/api/products.js";
-import useWindowSize from "@/hooks/useResize";
+import useWindowResize from "@/hooks/useWindowResize";
 
 export async function getServerSideProps() {
   const productsQuery = {
@@ -44,6 +44,13 @@ function Items({ items, productsTotalCount, productsQuery }) {
     }));
   };
 
+  const onObjectChange = (obj) => {
+    setParams((prev) => ({
+      ...prev,
+      ...obj,
+    }));
+  };
+
   const loadProducts = async (query) => {
     try {
       const { list, totalCount } = await api.getProductsAxios(query);
@@ -54,17 +61,17 @@ function Items({ items, productsTotalCount, productsQuery }) {
     }
   };
 
-  const view = useWindowSize();
+  const view = useWindowResize();
   const changeFromNextView = () => {
     switch (view) {
       case "isDesktop":
-        onChange({ pageSize: 10, page: 1 });
+        onObjectChange({ pageSize: 10, page: 1 });
         break;
       case "isTablet":
-        onChange({ pageSize: 6, page: 1 });
+        onObjectChange({ pageSize: 6, page: 1 });
         break;
       case "isMobile":
-        onChange({ pageSize: 4, page: 1 });
+        onObjectChange({ pageSize: 4, page: 1 });
         break;
       default:
     }

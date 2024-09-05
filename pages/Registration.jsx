@@ -74,7 +74,7 @@ function Registration() {
         <div className={styles.input_box}>
           <label>삼품명</label>
           <input
-            className={errors.name && styles.err_border}
+            className={`${styles.input} ${errors.name && styles.err_border}`}
             type="text"
             name="name"
             value={values.name || ""}
@@ -85,9 +85,10 @@ function Registration() {
         </div>
         <div className={styles.input_box}>
           <label>상품 소개</label>
-          <input
-            className={errors.description && styles.err_border}
-            type="text"
+          <textarea
+            className={`${styles.input} ${styles.description} ${
+              errors.description && styles.err_border
+            }`}
             name="description"
             value={values.description || ""}
             onChange={handleChange}
@@ -100,7 +101,7 @@ function Registration() {
         <div className={styles.input_box}>
           <label>판매가격</label>
           <input
-            className={errors.price && styles.err_border}
+            className={`${styles.input} ${errors.price && styles.err_border}`}
             type="number"
             name="price"
             value={values.price || ""}
@@ -112,12 +113,12 @@ function Registration() {
         <div className={styles.input_box}>
           <label>태그</label>
           <input
-            className={errors.tag && styles.err_border}
+            className={`${styles.input} ${errors.tag && styles.err_border}`}
             type="text"
             name="tag"
             value={values.tag || ""}
             onChange={handleChange}
-            onKeyDown={handleChips}
+            onKeyUp={handleChips}
             placeholder="태그를 입력해주세요"
           />
           {errors.tag && <p style={{ color: "red" }}>{errors.tag}</p>}
