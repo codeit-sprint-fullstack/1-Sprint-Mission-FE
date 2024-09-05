@@ -1,0 +1,19 @@
+/* 전체 페이지 스타일*/
+.freeBoardPage {
+  text-align: center;
+}
+
+.bestPostsContainer {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 베스트 게시글 문구 */
+h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+}
