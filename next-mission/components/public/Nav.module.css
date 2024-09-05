@@ -1,0 +1,88 @@
+/* public */
+  .listContaner {
+    width: 201px;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #4b5563;
+  }
+  
+  .listFont {
+    height: 70px;
+    margin: 0;
+    font-family: Pretendard, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21.48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .freeFont {
+    width: 108px;
+  }
+  
+  .usedFont {
+    width: 93px;
+  }
+
+  .onHref{
+    color: #3692FF;
+  }
+
+  .offHref{
+    color:#4b5563;
+  }
+  
+  .login {
+    width: 88px;
+    height: 42px;
+    border-radius: 8px;
+    background-color: #3692ff;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.09px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+
+  /* pc */
+  @media screen and (min-width: 1200px) {
+  }
+  
+  /* tablit */
+  @media screen and (min-width: 768px) and (max-width: 1199.9px) {
+  }
+  
+  /* mobile */
+  @media screen and (min-width: 375px) and (max-width: 767.9px) {
+    .Logo {
+      width: 81px;
+      height: 40px;
+      margin-left: 16px;
+    }
+  
+    .listContaner {
+      width: 143px;
+    }
+  
+    .listFont {
+      font-size: 16px;
+      line-height: 19.09px;
+    }
+  
+    .freeFont {
+      width: 75px;
+    }
+  
+    .usedFont {
+      width: 60px;
+    }
+  }
