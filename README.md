@@ -1,77 +1,36 @@
-# SPRINT-MISSION
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-- html, css, js 등으로 구성된 프로젝트
-- vs code, vs 등의 프로그램을 사용하여 개발
-- chrome 에서 주로 결과 확인
-- 개발자 : 이진우
-- css 3 / html 5 를 기준으로 작성
-- 미션 1 : ver 1.0
+## Getting Started
 
-### 미션1
-#### https://www.figma.com/design/EWfmnBJU3fdkeHKyYBQW6L/[%EC%88%98%EA%B0%95%EC%83%9D-%EA%B3%B5%EC%9C%A0%EC%9A%A9]-%ED%8C%90%EB%8B%A4%EB%A7%88%EC%BC%93?node-id=1-6643&t=xvD2Ez7Ih6WpW5vw-0 의 규격에 맞춘 html, css 작성
+First, run the development server:
 
-- 규격에 특히 집중하여 작성
-- flexbox를 많이 사용하여, 추후 작업은 grid를 사용해볼 예정
-- 기본 요구사항 - 완
-	- React와 같은 UI 라이브러리를 사용하지 않고 진행합니다
-	- PC사이즈만 고려해 주어진 디자인으로 구현합니다.
-	- HTML, CSS 파일을 [Netlify](https://www.netlify.com/)로 배포해 주세요. (참고: https://www.codeit.kr/learn/5309)
-	- 랜딩 페이지의 url path는 루트(‘/’)로 설정합니다.
-    - title은 “판다마켓”로 설정합니다.
-    - “판다마켓” 로고 클릭 시 루트 페이지(‘/’)로 이동합니다.
-    - '로그인' 버튼 클릭 시 로그인 페이지(‘/login’)로 이동합니다 (빈 페이지)
-    - “구경하러 가기”버튼 클릭 시(’/items’)로 이동합니다. (빈 페이지)
-    - “Privacy Policy”, “FAQ”는 클릭 시 각각 Privacy 페이지(‘/privacy’), FAQ 페이지(‘/faq’)로 이동합니다.(모두 빈 페이지)
-    - 페이스북, 트위터, 유튜브, 인스타그램 아이콘을 클릭 시 각각의 홈페이지로 새로운 창이 열리면서 이동합니다.
-    - 아래로 스크롤해도 “판다 마켓” 로고와 “로그인” 버튼이 있는 상단 내비게이션 바(Global Navigation Bar)가 최상단에 고정되게 해 주세요.
-    - 화면의 너비가 1920px 이상이면 하늘색 배경색은 너비를 꽉 채우도록 채워지고, 내부 요소들의 위치는 고정되고, 여백만 커지도록 합니다.
-    - 화면의 너비가 1920px 보다 작아질 때, “판다마켓” 로고의 왼쪽 여백 200px, “로그인" 버튼의 오른쪽 여백 200px이 유지되고, 화면의 너비가 작아질수록 두 요소 간 거리가 가까워지도록 설정합니다.
-    - 화면의 너비가 1920px 이상이면 내부에 있는 요소 간 동일한 간격을 유지하며 가운데 정렬해야 합니다.
-	- 화면의 너비가 1920px 보다 작아질 때, 최하단에 있는 “codeit-2024”의 왼쪽 여백 200px과 SNS 아이콘들의 오른쪽 여백 200px을 유지하면서 가운데 있는 “Privacy Policy”, “FAQ” 요소와 각각 동일한 간격을 유지하며 가까워져야 합니다.
-	- 클릭으로 기능이 동작해야 하는 경우, 사용자가 클릭할 수 있는 요소임을 알 수 있도록 CSS 속성 cursor: pointer로 설정합니다.
-- 심화 요구과정 - 완
-	- reset.css를 설정해 주세요.
-	- 사용자의 브라우저 설정에 따라 기본 폰트 크기 설정이 변화함에 따라서 페이지의 요소 간 간격, 요소의 크기, font-size 등 모든 크기와 관련된 값이 크고 작아지도록 설정해 주세요.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### 미션2
-#### https://www.figma.com/design/EWfmnBJU3fdkeHKyYBQW6L/[%EC%88%98%EA%B0%95%EC%83%9D-%EA%B3%B5%EC%9C%A0%EC%9A%A9]-%ED%8C%90%EB%8B%A4%EB%A7%88%EC%BC%93?node-id=1-8221&t=TJnTIUnYx1MKToXD-0 의 규격에 맞춘 html, css 작성
+You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-- 작성예정
-- 작성예정
-- 기본 요구사항
-	- `README.md` 파일을 작성해 주세요.
-		- 마크다운 언어를 숙지하여 작성해 주세요.
-	    - 내용은 자유롭게 작성해 주세요.
-	- 본인 브랜치(ex)`part1-홍길동`)에 스프린트 미션을 업로드해 주세요.   
-	- 적절한 커밋 메시지를 남겨 주세요.    
-	- `1-Sprint-Mission` 레포지토리를 fork 합니다.    
-	- GitHub에 PR(Pull Request)을 생성해 upstream의 본인 브랜치(ex)`part1-홍길동`)에 미션을 제출합니다.    
-	- PR 코멘트에 아래 내용들을 포함해 주세요.    
-	    - 스프린트 미션 요구사항 체크리스트        
-	        - 아래 예시 사진과 같이 완료한 만큼 체크 표시를 해 주세요. ![참고](https://bakey-api.codeit.kr/api/files/resource?root=static&seqId=8732&version=1&directory=%25E1%2584%2589%25E1%2585%25B3%25E1%2584%2591%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2590%25E1%2585%25B3%2520%25E1%2584%258F%25E1%2585%25A5%25E1%2584%2585%25E1%2585%25B5%25E1%2584%258F%25E1%2585%25B2%25E1%2586%25AF%25E1%2584%2585%25E1%2585%25A5%25E1%2586%25B7.png&name=%2525E1%252584%252589%2525E1%252585%2525B3%2525E1%252584%252591%2525E1%252585%2525B3%2525E1%252584%252585%2525E1%252585%2525B5%2525E1%252586%2525AB%2525E1%252584%252590%2525E1%252585%2525B3%252520%2525E1%252584%25258F%2525E1%252585%2525A5%2525E1%252584%252585%2525E1%252585%2525B5%2525E1%252584%25258F%2525E1%252585%2525B2%2525E1%252586%2525AF%2525E1%252584%252585%2525E1%252585%2525A5%2525E1%252586%2525B7.png)
-	    - 주요 변경사항        
-	    - 멘토님에게 남길 메시지        
-	- Git 활용 과정에서 유닉스 커맨드를 활용해 주세요.    
-	- HTML, CSS 파일을 Netlify로 배포합니다. (참고: https://www.codeit.kr/learn/5309)
-	    
-	- 로그인 페이지, 회원가입 페이지 공통
-		- “판다마켓" 로고 클릭 시 루트 페이지(“/”)로 이동합니다.
-		- 로그인 페이지, 회원가입 페이지 모두 로고 위 상단 여백이 동일합니다.
-		- SNS 아이콘들은 클릭 시 각각 “https://www.google.com/”, “https://www.kakaocorp.com/page/” 으로 이동합니다.
-		- input 요소에 focus in 일 때, 테두리 색상은 ##3692FF입니다.
-		- input 요소에 focus out 일 때, 테두리는 없습니다.
-	
-	- 로그인 페이지
-		- “회원가입”버튼 클릭 시 “/signup” 페이지로 이동합니다.
-	
-	- 회원가입 페이지
-		- “로그인”버튼 클릭 시 “/login” 페이지로 이동합니다
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-- 심화 요구사항
-	- palette에 있는 color값들을 css 변수로 등록해서 사용합니다.
-	- 사용자의 브라우저가 크고 작아짐에 따라 페이지의 요소 간 간격, 요소의 크기, font-size 등 모든 크기와 관련된 값이 크고 작아지도록 설정해 주세요.
-	- 구글 애널리틱스로 방문자 수 확인하기 할 수 있도록 설정합니다.
+## Learn More
 
-	- 로그인 페이지, 회원가입 페이지 공통**
-		- 비밀번호, 비밀번호 확인 input 요소 오른쪽에 비밀번호를 확인할 수 있는 눈 모양 아이콘을 추가합니다.
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

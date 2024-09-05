@@ -1,14 +1,10 @@
-# Created by https://www.toptal.com/developers/gitignore/api/react,visualstudiocode,nextjs,dotenv
-# Edit at https://www.toptal.com/developers/gitignore?templates=react,visualstudiocode,nextjs,dotenv
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-### dotenv ###
-.env
-
-### NextJS ###
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
+.yarn/install-state.gz
 
 # testing
 /coverage
@@ -28,14 +24,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
-# env files
-.env
+# local env files
 .env*.local
-.env*.develop
-.env*.production
-.env*.test
 
 # vercel
 .vercel
@@ -43,40 +34,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-### react ###
-.DS_*
-*.log
-logs
-**/*.backup.*
-**/*.back.*
-
-node_modules
-bower_components
-
-*.sublime*
-
-psd
-thumb
-sketch
-
-### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
-
-# Local History for Visual Studio Code
-.history/
-
-# Built Visual Studio Code Extensions
-*.vsix
-
-### VisualStudioCode Patch ###
-# Ignore all local history of files
-.history
-.ionide
-
-# End of https://www.toptal.com/developers/gitignore/api/react,visualstudiocode,nextjs,dotenv
