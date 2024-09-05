@@ -5,11 +5,12 @@ import ItemsPageHeader from "../components/ItemsPageHeader";
 import styles from "./FreeBoardPage.module.css";
 
 export default function FreeBoardPage() {
+
   return (
     <div className={styles.freeBoardPage}>
       <ItemsPageHeader />
       <div className={styles.bestPostsContainer}>
-        <h1>베스트 게시글</h1>
+        <h1 className="freeBoardh1">베스트 게시글</h1>
         <div className={styles.bestPosts}></div>
         <div className={styles.postsContainer}>
           <h2>게시글</h2>

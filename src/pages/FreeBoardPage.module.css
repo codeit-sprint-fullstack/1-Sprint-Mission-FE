@@ -12,7 +12,7 @@
 }
 
 /* 베스트 게시글 문구 */
-h1 {
+.freeBoardh1 {
   font-size: 20px;
   font-weight: 700;
   color: #1f2937;
