@@ -1,6 +1,7 @@
 .searchContainer {
   position: relative;
   display: flex;
+  margin-bottom: 24px;
 }
 
 .inputSearch {
