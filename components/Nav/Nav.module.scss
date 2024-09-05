@@ -1,0 +1,37 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 47px;
+}
+
+nav ul {
+  display: flex;
+  font-weight: 700;
+  font-size: var(--18px);
+  justify-content: center;
+  align-items: center;
+  gap: 39px;
+  flex-shrink: 0;
+  color: var(--grey-600);
+}
+
+@media only screen and (max-width: 1199px) {
+  nav {
+    padding-left: 35px;
+  }
+
+  nav ul {
+    gap: 30px;
+  }
+}
+
+@media only screen and (max-width: 743px) {
+  nav {
+    padding-left: 8px;
+  }
+  nav ul {
+    font-size: 1rems;
+    gap: 8px;
+  }
+}
