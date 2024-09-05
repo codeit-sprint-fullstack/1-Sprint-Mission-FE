@@ -64,8 +64,9 @@ function Registration() {
           <h2>상품 등록하기</h2>
           <button
             type="submit"
-            // className={classNames("submit_btn", { disabled_btn: disabled })}
-            className={styles.submit_btn}
+            className={`${styles.submit_btn} ${
+              disabled && styles.disabled_btn
+            }`}
             disabled={disabled}
           >
             등록

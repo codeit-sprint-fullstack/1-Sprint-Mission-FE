@@ -3,7 +3,7 @@ import ProductList from "@/components/ProductList";
 import Pagination from "@/components/Pagination";
 import SearchBar from "@/components/SearchBar";
 import * as api from "@/pages/api/products.js";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useWindowResize from "@/hooks/useWindowResize";
 
 export async function getServerSideProps() {
@@ -82,27 +82,27 @@ export default function Home({
     }));
   };
 
-  const loadProducts = async (query) => {
+  const loadProducts = useCallback(async () => {
     try {
-      const { list, totalCount } = await api.getProductsAxios(query);
+      const { list, totalCount } = await api.getProductsAxios(params);
       setProducts(list);
       setTotalDataCount(totalCount);
     } catch (e) {
       console.log(e.message);
     }
-  };
+  }, [params]);
 
-  const loadBestProducts = async (bestParams) => {
+  const loadBestProducts = useCallback(async () => {
     try {
       const { list } = await api.getProductsAxios(bestParams);
       setBestProducts(list);
     } catch (e) {
       console.log(e.message);
     }
-  };
+  }, [bestParams]);
 
   const view = useWindowResize();
-  const changeFromNextView = () => {
+  const changeFromNextView = useCallback(() => {
     switch (view) {
       case "isDesktop":
         onObjectChange({ pageSize: 10, page: 1 });
@@ -118,16 +118,16 @@ export default function Home({
         break;
       default:
     }
-  };
+  }, [view]);
 
   useEffect(() => {
-    loadProducts(params);
-    loadBestProducts(bestParams);
-  }, [params]);
+    loadProducts();
+    loadBestProducts();
+  }, [loadProducts, loadBestProducts]);
 
   useEffect(() => {
     changeFromNextView();
-  }, [view]);
+  }, [changeFromNextView]);
 
   return (
     <>

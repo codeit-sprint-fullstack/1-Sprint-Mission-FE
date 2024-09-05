@@ -1,7 +1,7 @@
 import ProductList from "@/components/ProductList.jsx";
 import SearchBar from "@/components/SearchBar";
 import Pagination from "@/components/Pagination";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import * as api from "@/pages/api/products.js";
 import useWindowResize from "@/hooks/useWindowResize";
 
@@ -62,7 +62,7 @@ function Items({ items, productsTotalCount, productsQuery }) {
   };
 
   const view = useWindowResize();
-  const changeFromNextView = () => {
+  const changeFromNextView = useCallback(() => {
     switch (view) {
       case "isDesktop":
         onObjectChange({ pageSize: 10, page: 1 });
@@ -75,7 +75,7 @@ function Items({ items, productsTotalCount, productsQuery }) {
         break;
       default:
     }
-  };
+  }, [view]);
 
   useEffect(() => {
     loadProducts(params);
@@ -83,7 +83,7 @@ function Items({ items, productsTotalCount, productsQuery }) {
 
   useEffect(() => {
     changeFromNextView();
-  }, [view]);
+  }, [changeFromNextView]);
 
   return (
     <main>

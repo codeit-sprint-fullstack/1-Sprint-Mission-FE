@@ -1,9 +1,7 @@
-// import axios from "https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/esm/axios.min.js";
 import axios from "axios";
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-  // baseURL: "https://one-sprint-mission-be-35sh.onrender.com",
 });
 
 export async function getProductsAxios(params = {}) {
