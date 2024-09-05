@@ -13,7 +13,7 @@ function Header() {
 
   const getLinkStyle = (href) => {
     return {
-      color: href === path && "#3692FF",
+      color: href === path ? "#3692FF" : "inherit",
     };
   };
 
@@ -29,12 +29,12 @@ function Header() {
         </Link>
         <div className={styles.nav_bar}>
           <div className={styles.nav_content}>
-            <Link href="/Articles" style={getLinkStyle("/Articles")}>
+            <Link href="/Articles" style={getLinkStyle("/Articles") || {}}>
               자유게시판
             </Link>
           </div>
           <div className={styles.nav_content}>
-            <Link href="/Items" style={getLinkStyle("/Items")}>
+            <Link href="/Items" style={getLinkStyle("/Items") || {}}>
               중고마켓
             </Link>
           </div>
