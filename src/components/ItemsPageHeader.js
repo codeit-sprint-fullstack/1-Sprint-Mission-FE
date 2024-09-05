@@ -14,16 +14,18 @@ function ItemsPageHeader() {
         <Image
           src="/images/panda-face.png" // public/images 폴더에서 이미지 접근
           alt="Panda Logo"
-          width={50} // 이미지의 폭
-          height={50} // 이미지의 높이
+          layout="fixed"
+          width={40} // CSS에서 height: 40px로 설정했으므로 width를 40px로 설정
+          height={40}
           className={styles.logo}
         />
         <Image
           src="/images/panda-market.png" // public/images 폴더에서 이미지 접근
           alt="Panda Market"
-          width={100} // 이미지의 폭
-          height={50} // 이미지의 높이
-          className={`${styles.logo} ${styles.pandaMarketLogo}`}
+          layout="fixed"
+          width={103}
+          height={70}
+          className={styles.pandaMarketLogo}
         />
       </div>
       {/* 네비게이션 메뉴 */}

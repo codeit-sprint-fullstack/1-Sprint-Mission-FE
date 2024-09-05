@@ -19,8 +19,8 @@ function ProductListItem({ product }) {
       <Image
         src={productImage}
         alt={product.name}
-        width={200} // 원하는 이미지 폭
-        height={200} // 원하는 이미지 높이
+        width={200}
+        height={200} 
         className={styles.productImage}
       />
       <div className={styles.productInfo}>
