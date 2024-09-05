@@ -1,9 +1,21 @@
 import styles from "./SearchBar.module.css";
 import { useState } from "react";
-export default function SearchBar() {
+
+export default function SearchBar({
+  keyword,
+  onKeywordChange,
+  onKeyDown,
+  sortOrder,
+  onSortChange,
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
+
+  const handleOptionClick = (value) => {
+    onSortChange(value); // 정렬 옵션 변경
+    setIsOpen(false); // 드롭다운 닫기
+  };
 
   return (
     <div className={styles.searchContainer}>
@@ -11,31 +23,36 @@ export default function SearchBar() {
         className={styles.inputSearch}
         type="text"
         placeholder="검색할 상품을 입력해주세요"
+        value={keyword}
+        onChange={onKeywordChange}
+        onKeyDown={onKeyDown}
       />
 
-      <div>
-        <div className={styles.customDropdown}>
-          <button
-            className={styles.customDropdown__selected}
-            onClick={toggleDropdown}
-          >
-            <span className={styles.customDropdown__text}>최신순</span>
-          </button>
-          {isOpen && (
-            <div className={styles.customDropdown__options}>
-              <div
-                className={styles.option} //onClick={() => handleOptionClick("recent")}
-              >
-                최신순
-              </div>
-              <div
-                className={styles.option} // onClick={() => handleOptionClick("favorite")}
-              >
-                좋아요순
-              </div>
+      <div className={styles.customDropdown}>
+        <button
+          className={styles.customDropdown__selected}
+          onClick={toggleDropdown}
+        >
+          <span className={styles.customDropdown__text}>
+            {sortOrder === "favorite" ? "좋아요순" : "최신순"}
+          </span>
+        </button>
+        {isOpen && (
+          <div className={styles.customDropdown__options}>
+            <div
+              className={styles.option}
+              onClick={() => handleOptionClick("createdAt")} // 최신순
+            >
+              최신순
             </div>
-          )}
-        </div>
+            <div
+              className={styles.option}
+              onClick={() => handleOptionClick("favorite")} // 좋아요순
+            >
+              좋아요순
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -2,8 +2,39 @@ import styles from "./BoardList.module.css";
 import SearchBar from "@/components/BoardComponents/SearchBar";
 import BoardListItems from "@/components/BoardComponents/BoardListItems";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
-export default function BoardList() {
+export default function BoardList({ articles }) {
+  const router = useRouter();
+  const [keyword, setKeyword] = useState(router.query.keyword || "");
+  const [sortOrder, setSortOrder] = useState(router.query.sort || "createdAt");
+
+  const handleSortChange = (value) => {
+    setSortOrder(value);
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, sort: value, page: 1 },
+    });
+  };
+
+  const handleKeywordChange = (event) => {
+    setKeyword(event.target.value);
+  };
+
+  const handleKeywordSearch = () => {
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, keyword, page: 1 },
+    });
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleKeywordSearch();
+    }
+  };
+
   return (
     <>
       <div className={styles.createContainer}>
@@ -12,8 +43,14 @@ export default function BoardList() {
           <button className={styles.createBtn}>글쓰기</button>
         </Link>
       </div>
-      <SearchBar />
-      <BoardListItems />
+      <SearchBar
+        keyword={keyword}
+        onKeywordChange={handleKeywordChange}
+        onKeyDown={handleKeyDown}
+        sortOrder={sortOrder}
+        onSortChange={handleSortChange}
+      />
+      <BoardListItems articles={articles} />
     </>
   );
 }
