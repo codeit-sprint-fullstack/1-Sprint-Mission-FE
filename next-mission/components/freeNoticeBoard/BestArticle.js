@@ -1,8 +1,9 @@
 import { useCallback, useState } from "react";
 import useResize from "../hook/useResize";
-import VastArticleBody from "./VastArticleBody";
+import BestArticleBody from "./BestArticleBody";
+import style from './BestArticle.module.css'
 
-export default function VastArticle() {
+export default function BestArticle() {
   const [list, setList] = useState([]); //예정
   const [idx, setIdx] = useState([0, 1, 2]);
 
@@ -22,13 +23,13 @@ export default function VastArticle() {
   useResize(handleResize);
 
   return (
-    <div>
-      <div>베스트 게시글</div>
-      <ul>
+    <div className={style.vastArticle_contaner}>
+      <div className={style.vastArticle_title}>베스트 게시글</div>
+      <ul className={style.vastArticle_ul}>
         {idx.map((idx) => {
           return (
-            <li>
-              <VastArticleBody list={list[idx]} />
+            <li className={style.vastArticle_li}>
+              <BestArticleBody list={list[idx]} />
             </li>
           );
         })}

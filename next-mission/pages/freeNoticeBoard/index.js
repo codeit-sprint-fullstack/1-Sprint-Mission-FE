@@ -1,5 +1,5 @@
 import Article from "@/components/freeNoticeBoard/Article";
-import VastArticle from "@/components/freeNoticeBoard/VastArticle";
+import BestArticle from "@/components/freeNoticeBoard/BestArticle";
 import Head from "next/head";
 
 export default function freeNoticeBoard() {
@@ -8,10 +8,8 @@ export default function freeNoticeBoard() {
       <Head>
         <title>자유게시판 - 판다마켓</title>
       </Head>
-      <div>
-        <VastArticle />
-        <Article />
-      </div>
+      <BestArticle />
+      <Article />
     </>
   );
 }

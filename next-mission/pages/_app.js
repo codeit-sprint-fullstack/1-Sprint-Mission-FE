@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import Header from "@/components/public/Header";
 import Head from "next/head";
 
+
 export default function App({ Component, pageProps }) {
   return (
     <>

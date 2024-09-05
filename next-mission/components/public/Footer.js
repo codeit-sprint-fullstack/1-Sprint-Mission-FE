@@ -1,5 +1,6 @@
 import style from "./Footer.module.css";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -17,16 +18,16 @@ export default function Footer() {
           </div>
           <div className={style.icon}>
             <Link href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-              <img src={'/images/ic_facebook.svg'} alt="페이스북" />
+              <Image src={'/images/ic_facebook.svg'} width={20} height={20} alt="페이스북" />
             </Link>
             <Link href="https://x.com/" target="_blank" rel="noopener noreferrer">
-              <img src={'/images/ic_twitter.svg'} alt="X(구트위터)" />
+              <Image src={'/images/ic_twitter.svg'} width={20} height={20} alt="X(구트위터)" />
             </Link>
             <Link href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
-              <img src={'/images/ic_youtube.svg'} alt="유튜브" />
+              <Image src={'/images/ic_youtube.svg'} width={20} height={20} alt="유튜브" />
             </Link>
             <Link href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-              <img src={'/images/ic_instagram.svg'} alt="인스타그램" />
+              <Image src={'/images/ic_instagram.svg'} width={20} height={20} alt="인스타그램" />
             </Link>
           </div>
         </div>
