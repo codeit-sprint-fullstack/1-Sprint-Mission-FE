@@ -1,3 +1,30 @@
+
+
+# next.js용
+node_modules/         # 프로젝트 의존성 패키지가 저장되는 폴더
+
+# 빌드 출력물
+.next/               # Next.js 빌드 시 생성되는 디렉토리 (정적/서버 파일)
+out/                 # Next.js에서 내보내기(export)할 때 생성되는 디렉토리
+
+# 환경 변수
+.env                 # 환경 변수 파일 (환경에 따른 설정, API 키 등)
+
+# 로그 파일
+npm-debug.log*       # npm 오류 로그 파일
+yarn-debug.log*      # yarn 오류 로그 파일
+yarn-error.log*
+
+# 운영체제별 불필요한 파일
+Thumbs.db            # Windows에서 생성되는 파일
+
+# 에디터 및 IDE 관련 파일
+.vscode/             # VSCode 설정 폴더 (팀 구성원에 따라 다를 수 있음)
+.idea/               # JetBrains IDE 설정 파일
+*.swp                # Vim에서 생성되는 swap 파일
+
+
+# 기존 gitignore
 temp
 .DS_STORE
 node_modules
@@ -19,10 +46,7 @@ test/the-files-to-test.generated.js
 chrome-user-data
 *.sublime-project
 *.sublime-workspace
-.idea
 *.iml
-.vscode
-*.swp
 *.swo
 
 packages/react-devtools-core/dist
