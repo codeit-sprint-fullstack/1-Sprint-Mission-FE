@@ -3,6 +3,7 @@
   width: 100%;
   display: flex;
   background-color: #ffffff;
+  border-bottom: 1px solid #dfdfdf;
 }
 
 .logo {
