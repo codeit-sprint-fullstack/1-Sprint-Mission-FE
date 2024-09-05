@@ -6,7 +6,7 @@ import styles from "./Default.module.css";
 import PageNav from "../components/PageNav.js";
 import SellingProductHeader from "../components/SellingProductHeader.js";
 import SellingProductRender from "components/SellingProductRender";
-import ProductRenderPerRow from "components/common/ProductRenderPerRow";
+import ProductRenderPerRow from "components/renderData/ProductRenderPerRow";
 import Pagenation from "components/Pagenation"
 
 // 커스텀 훅

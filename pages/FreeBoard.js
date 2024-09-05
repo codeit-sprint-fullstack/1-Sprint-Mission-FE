@@ -8,7 +8,7 @@ import BestCardList from "components/BestCardList";
 import SortBtn from "components/common/SortBtn";
 import SearchBarLarge from "components/common/SearchBarLarge";
 // import UserPost from "components/common/UserPost"
-import UserPostList from "components/UserPostList";
+import UserPostList from "components/renderData/UserPostList";
 
 
 
