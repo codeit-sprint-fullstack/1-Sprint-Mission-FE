@@ -1,0 +1,70 @@
+.GridItem {
+  display: flex;
+  grid-column: 2;
+  margin-top: 24px;
+  width: 384px;
+  height: 169px;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  flex-direction: column;
+  position: relative;
+}
+.BestItem {
+  position: relative;
+  left: 24px;
+  width: 102px;
+  height: 30px;
+  border-radius: 0px 0px 16px 16px;
+  background-color: #3692ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.BestItemImg {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  bottom: 2px;
+}
+.BestItemTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-left: 5px;
+}
+.BestItemContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.BestImg {
+  position: relative;
+  border: 1px solid;
+  border-color: #e5e7eb;
+  border-radius: 6px;
+  width: 72px;
+  height: 72px;
+}
+.BestItemContentTitle {
+  width: 100%;
+  font-size: 20px;
+  font-weight: 600;
+  width: 256px;
+  height: 64px;
+  margin-top: 16px;
+}
+
+.BestItemInfo {
+  display: flex;
+  position: absolute;
+  bottom: 9px;
+  left: 24px;
+  gap: 9px;
+}
+
+.BestItemDate {
+  position: absolute;
+  left: 247px;
+}
