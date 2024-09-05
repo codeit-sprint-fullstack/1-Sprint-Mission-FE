@@ -1,8 +1,8 @@
-import style from './Header.module.css'
+import style from "./Header.module.css";
 import { useCallback, useState } from "react";
-import useResize from '../hook/useResize';
-import Nav from './Nav';
-import Link from 'next/link';
+import useResize from "../hook/useResize";
+import Nav from "./Nav";
+import Link from "next/link";
 
 export default function Header() {
   const [logoImg, setLogoImg] = useState(null);
@@ -14,7 +14,7 @@ export default function Header() {
     if (length >= 768) {
       setLogoImg("/images/pandaLogo.svg");
     } else if (length >= 375 && length < 768) {
-      setLogoImg('/images/textLogo.svg');
+      setLogoImg("/images/textLogo.svg");
     }
   }, []);
 
@@ -22,7 +22,9 @@ export default function Header() {
 
   return (
     <header>
-        <Link href='/'><img className={style.Logo} src={logoImg} alt="판다로고" /></Link>
+      <Link href="/">
+        <img className={style.Logo} src={logoImg} alt="판다로고" />
+      </Link>
       <Nav />
     </header>
   );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ArticleBody from "./ArticleBody";
+import Link from "next/link";
 
 export default function Article() {
   const [list, setList] = useState([]); // 예정
@@ -7,7 +8,9 @@ export default function Article() {
     <div>
       <div>
         <div>게시글</div>
-        <div>글쓰기</div>
+        <Link href={'/postArticle'}>
+          <div>글쓰기</div>
+        </Link>
       </div>
       <div>
         <input />

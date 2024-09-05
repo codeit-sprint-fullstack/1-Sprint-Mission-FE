@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 function Nav() {
   const router = useRouter();
   const getLinkStyle = (href) =>
-    router.pathname === href ? style.onHref : style.offHref;
+    (router.pathname === href[0] || router.pathname === href[1]) ? style.onHref : style.offHref;
 
   return (
     <nav>
@@ -15,7 +15,7 @@ function Nav() {
         <Link href="/freeNoticeBoard">
           <p
             className={`${style.listFont} ${style.freeFont} ${getLinkStyle(
-              "/freeNoticeBoard"
+              ["/freeNoticeBoard", "/postArticle"]
             )}`}
           >
             자유게시판
@@ -24,7 +24,7 @@ function Nav() {
         <Link href="/items">
           <p
             className={`${style.listFont} ${style.usedFont} ${getLinkStyle(
-              "/items"
+              ["/items"]
             )}`}
           >
             중고마켓
