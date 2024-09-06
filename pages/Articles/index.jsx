@@ -1,13 +1,15 @@
 import styles from "@/styles/articles.module.css";
-import in_search from "@/public/images/ic_search.png";
-import in_arrow_down from "@/public/images/ic_arrow_down.png";
+import ic_search from "@/public/images/ic_search.png";
 import imgDefault from "@/public/images/img_default.png";
 import ic_heart from "@/public/images/ic_heart.png";
 import ic_medal from "@/public/images/ic_medal.png";
+import ic_profile from "@/public/images/ic_profile.png";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import * as api from "@/pages/api/articles";
 import Pagination from "@/components/Pagination";
+import DropDownBox from "@/components/DropDownBox";
+import { dateFormatYYYYMMDD } from "@/utils/dateFromat";
 
 export async function getServerSideProps() {
   const defaultParams = {
@@ -33,13 +35,7 @@ export async function getServerSideProps() {
 
 function BestArticles({ item }) {
   const { user, title, createAt, favorite } = item;
-  const date = new Date(createAt);
-
-  const formattedDate = date.toLocaleDateString("ko-KR", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
+  const date = dateFormatYYYYMMDD(createAt);
 
   return (
     <div className={styles.best_article_box}>
@@ -55,20 +51,59 @@ function BestArticles({ item }) {
           alt="게시글이미지"
         />
       </div>
-      <div className={styles.best_item_data_box}>
-        <div className={styles.best_item_data_box_left}>
-          <span>{item.user.name}</span>
+      <div className={styles.item_data_box}>
+        <div className={styles.item_data_box}>
+          <span>{user.name}</span>
           {/* <span>판다마켓</span> */}
           <Image
-            className={styles.best_favorite_icon}
+            width={16}
+            height={16}
+            className={styles.favorite_icon}
             src={ic_heart}
             alt="좋아요이미지"
           />
           <span>{favorite}</span>
         </div>
-        <span className={styles.best_create_time}>{formattedDate}</span>
+        <div className={styles.item_data_box}>
+          <span className={styles.create_time}>{date}</span>
+        </div>
       </div>
     </div>
+  );
+}
+
+function ArticleItems({ item }) {
+  const { user, title, createAt, favorite } = item;
+  const date = dateFormatYYYYMMDD(createAt);
+
+  return (
+    <li className={styles.article_item_box}>
+      <div className={styles.article_main_content_box}>
+        <span className={styles.article_item_title}>{title}</span>
+        <Image
+          className={styles.article_item_image}
+          src={imgDefault}
+          alt="게시글이미지"
+        />
+      </div>
+      <div className={styles.item_data_box}>
+        <div className={styles.item_data_box}>
+          <Image width={24} height={24} src={ic_profile} alt="유저이미지" />
+          <span className={styles.item_data_user_name}>{user.name}</span>
+          <span className={styles.create_time}>{date}</span>
+        </div>
+        <div className={styles.item_data_box}>
+          <Image
+            width={24}
+            height={24}
+            className={styles.favorite_icon}
+            src={ic_heart}
+            alt="좋아요이미지"
+          />
+          <span>{favorite}</span>
+        </div>
+      </div>
+    </li>
   );
 }
 
@@ -77,7 +112,6 @@ function Articles({ bestItem, defaultParams }) {
   const [articles, setArticles] = useState([]);
   const [bestArticles, setBestArticles] = useState(bestItem);
   const [totalCount, setTotalCont] = useState(0);
-  const [orderByName, setOrderByName] = useState({});
 
   const getArticles = useCallback(async () => {
     try {
@@ -105,6 +139,12 @@ function Articles({ bestItem, defaultParams }) {
     }));
   };
 
+  const onOrderChange = (e) => {
+    const name = [e.target.name];
+    const value = [e.target.value];
+    onChange(name, value);
+  };
+
   useEffect(() => {
     getBestArticles();
   }, [getBestArticles]);
@@ -129,24 +169,26 @@ function Articles({ bestItem, defaultParams }) {
           <button className={styles.articles_create_btn}>글쓰기</button>
         </div>
         <div className={styles.search_box}>
-          <Image src={in_search} width={24} height={24} alt="검색아이콘" />
+          <Image
+            src={ic_search}
+            className={styles.search_icon}
+            alt="검색아이콘"
+          />
           <input
+            className={styles.search_input}
             type="text"
             name="keyword"
             value={params.keyword || ""}
             onChange={onChange}
             placeholder="검색할 게시글을 입력해주세요."
           />
-          <button>
-            {params.orderBy}
-            <Image
-              src={in_arrow_down}
-              width={24}
-              height={24}
-              alt="아래화살표"
-            />
-          </button>
+          <DropDownBox onOrderChange={onOrderChange} order={params.orderBy} />
         </div>
+        <ul>
+          {articles.map((item) => (
+            <ArticleItems key={item.id} item={item} />
+          ))}
+        </ul>
       </div>
       <Pagination onChange={onChange} params={params} totalCount={totalCount} />
     </main>
