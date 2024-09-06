@@ -110,6 +110,7 @@
   font-weight: 400;
   border: 1px solid #e5e7eb;
   cursor: pointer;
+  background-color: #ffffff;
 }
 
 .menu li:first-child {

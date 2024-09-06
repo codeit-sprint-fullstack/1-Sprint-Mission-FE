@@ -67,4 +67,5 @@
 .BestItemDate {
   position: absolute;
   left: 247px;
+  white-space: nowrap;
 }
