@@ -4,6 +4,9 @@
   display: flex;
   background-color: #ffffff;
   border-bottom: 1px solid #dfdfdf;
+  position: fixed;
+  top: 0;
+  z-index: 1;
 }
 
 .logo {

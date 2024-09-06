@@ -1,6 +1,7 @@
 import Image from "next/image";
 import profile from "@/images/ic_profile.png";
 import kebab from "@/images/ic_kebab.png";
+import reply_empty from "@/images/img_reply_empty.png";
 import styles from "./ChatItem.module.css";
 import { useState } from "react";
 import { deleteComments } from "@/utils/chatApi";
@@ -50,7 +51,17 @@ export default function ChatItem({ comments, onEdit }) {
   return (
     <div className={styles.chatContainer}>
       {!comments.length ? (
-        <p>댓글이 없습니다.</p>
+        <div className={styles.nonContainer}>
+          <Image
+            src={reply_empty}
+            alt="reply_empty"
+            className={styles.replyImg}
+          />
+          <div className={styles.nonText}>
+            <p>아직 댓글이 없어요, </p>
+            <p>지금 댓글을 달아보세요!</p>
+          </div>
+        </div>
       ) : (
         comments.map((chatItem) => (
           <div key={chatItem.id} className={styles.container}>
