@@ -7,8 +7,8 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 // 리소스
-import pandaImg from "/images/panda_img.svg";
-import logoText from "/images/logo_text.svg";
+const pandaImg = "/images/logo/panda_img.svg";
+const logoText = "/images/logo/logo_text.svg";
 
 //컴포넌트
 import BtnSquareFunction from "./common/BtnSquareFunction";

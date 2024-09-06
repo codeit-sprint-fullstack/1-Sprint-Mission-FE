@@ -1,7 +1,15 @@
-import '@styles/reset.css';  // src/styles/reset.css 파일을 절대 경로로 import
+import '@styles/reset.css';
+
+// 컴포넌트
+import PageNav from '@components/PageNav';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+    <PageNav />
+    <Component {...pageProps} />
+    </>
+  );
 }
 
 export default MyApp;
