@@ -1,5 +1,8 @@
+// pages/board.js
+
 import BestProduct from "@/components/BoardComponents/BestProduct";
 import BoardList from "@/components/BoardComponents/BoardList";
+import { fetchArticles, fetchBestArticles } from "@/utils/articleApi"; // API 함수 불러오기
 import styles from "@/styles/board.module.css";
 
 export async function getServerSideProps(context) {
@@ -10,22 +13,13 @@ export async function getServerSideProps(context) {
     size = 5,
   } = context.query;
 
-  // 쿼리 파라미터를 바탕으로 정렬 기준 및 검색어 처리
+  // 페이지에 따른 오프셋 계산
   const offset = (page - 1) * size;
 
   try {
-    // 검색어 및 정렬 기준이 적용된 게시글
-    const board = await fetch(
-      `https://thrift-shop.onrender.com/articles?sort=${sort}&search=${keyword}&offset=${offset}&size=${size}`
-    );
-
-    // 최신순으로 3개의 베스트 게시글 가져오기
-    const bestBoard = await fetch(
-      `https://thrift-shop.onrender.com/articles?sort=createdAt&offset=0&size=3`
-    );
-
-    const articles = await board.json();
-    const bestArticles = await bestBoard.json();
+    // API 호출을 utils/api.js에서 처리
+    const articles = await fetchArticles({ sort, keyword, offset, size });
+    const bestArticles = await fetchBestArticles();
 
     return {
       props: {

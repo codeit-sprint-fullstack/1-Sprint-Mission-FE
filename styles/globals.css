@@ -121,6 +121,12 @@ body {
   text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  height: 1600px;
+}
+
+main {
+  height: 100%;
 }
 
 /* 폼 요소 스타일 초기화 */
@@ -138,9 +144,4 @@ textarea {
 img {
   user-select: none;
   -webkit-user-drag: none;
-}
-
-/* 기본 배경색 제거 */
-body {
-  background-color: #ffffff;
 }
