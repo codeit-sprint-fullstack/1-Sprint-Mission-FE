@@ -2,14 +2,14 @@ import Head from "next/head";
 import ProductList from "@/components/ProductList";
 import Pagination from "@/components/Pagination";
 import SearchBar from "@/components/SearchBar";
-import * as api from "@/pages/api/products.js";
+import * as api from "@/offsets/api/products.js";
 import { useCallback, useEffect, useState } from "react";
 import useWindowResize from "@/hooks/useWindowResize";
 
 export async function getServerSideProps() {
   const productsQuery = {
     orderBy: "recent",
-    page: 1,
+    offset: 1,
     limit: 10,
   };
 
@@ -112,15 +112,15 @@ export default function Home({
     const changeFromNextView = () => {
       switch (view) {
         case "isDesktop":
-          onObjectChange({ limit: 10, page: 1 });
+          onObjectChange({ limit: 10, offset: 1 });
           onBestChange("limit", 4);
           break;
         case "isTablet":
-          onObjectChange({ limit: 6, page: 1 });
+          onObjectChange({ limit: 6, offset: 1 });
           onBestChange("limit", 2);
           break;
         case "isMobile":
-          onObjectChange({ limit: 4, page: 1 });
+          onObjectChange({ limit: 4, offset: 1 });
           onBestChange("limit", 1);
           break;
         default:

@@ -96,7 +96,7 @@ export async function getServerSideProps() {
     orderBy: "recent",
     keyword: "",
     limit: 5,
-    offset: 1,
+    offset: 0,
   };
 
   let bestItems = [];
