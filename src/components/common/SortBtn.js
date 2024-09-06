@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./SortBtn.module.css";
 
 // 이미지
-const ic_arrow_down = "images/icon/ic_arrow_down.svg";
-const ic_sort = "images/icon/ic_sort.svg";
+const ic_arrow_down = "/images/icon/ic_arrow_down.svg";
+const ic_sort = "/images/icon/ic_sort.svg";
 
 function SortBtn({ CurrentOption, toggleModalState }) {
   return (

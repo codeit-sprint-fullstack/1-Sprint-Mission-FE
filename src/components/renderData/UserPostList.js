@@ -1,14 +1,16 @@
+// 기본
 import React from "react";
 import styles from "./UserPostList.module.css";
-import { Link } from "react-router-dom";
 
-//리소스
-import boardCardImg from "images/mock/board_card_temp.svg";
-import iconHeart from "../../images/icon/ic_heart.svg";
-import profile from "images/profile.svg";
+// 추가
+import Link from "next/link";
 
 // 유틸 함수
 import { formatDate } from "../../utils/formatData";
+
+//리소스
+const boardCardImg = "/images/default/default_board_card.svg";
+const iconHeart = "/images/icon/ic_heart.svg";
 
 function UserPostList({ dataList }) {
   const UserPostRender = (dataObject) => {
@@ -24,7 +26,7 @@ function UserPostList({ dataList }) {
     } = dataObject;
     return (
       <li className={styles.postContainer}>
-        <Link to={`/${category}/${id}`}>
+        <Link href={`/${category}/${id}`}>
         <figure className={styles.postMain}>
           <div className={styles.postTitle}>
             {title} {/*게시물 제목*/}

@@ -1,7 +1,8 @@
 import React from "react";
-
 import styles from "./ProductList.module.css";
-import iconHeart from "../../images/icon/ic_heart.svg";
+
+//리소스
+const iconHeart = "/images/icon/ic_heart.svg";
 
 function ProductList({ dataList }) {
   const ProductRender = ({ dataObject }) => {

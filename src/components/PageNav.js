@@ -1,7 +1,10 @@
+// 기본
 import React from "react";
+import styles from "./PageNav.module.css";
+
+// 추가
 import { useRouter } from "next/router";
 import Link from "next/link";
-import styles from "./PageNav.module.css";
 
 // 리소스
 import pandaImg from "/images/panda_img.svg";
@@ -26,7 +29,7 @@ function PageNav({
         {boardListData.map((data, idx) => (
           <li key={idx}>
             <Link
-              to={data.path}
+              href={data.path}
               className={
                 location.pathname === data.path ? styles.boardActive : ""
               }
@@ -43,7 +46,7 @@ function PageNav({
     <nav className={styles.outlineContain}>
       <section className={styles.pageNavSection}>
         <div className={styles.logoBox}>
-          <Link to="/">
+          <Link href="/">
             <img className={styles.logoImg} src={pandaImg} alt="logo_img" />
             <img className={styles.logoText} src={logoText} alt="logo_text" />
           </Link>
@@ -55,7 +58,9 @@ function PageNav({
             <span className={styles.profileName}>{userData.nickname}</span>
           </div>
         ) : (
-          <BtnSquareFunction linkTo={"/login"} innerText={"로그인"} />
+          <Link href="/login">
+            <BtnSquareFunction innerText={"로그인"} />
+          </Link>
         )}
       </section>
     </nav>

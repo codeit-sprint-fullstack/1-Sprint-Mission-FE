@@ -2,13 +2,13 @@ import React from "react";
 import styles from "./BestPostCardList.module.css";
 import { Link } from "react-router-dom";
 
-//리소스
-import boardCardImg from "images/mock/board_card_temp.svg";
-import iconHeart from "../../images/icon/ic_heart.svg";
-import bestBadge from "images/badge/img_badge.svg";
-
 //유틸 함수
 import { formatDate } from "../../utils/formatData";
+
+//리소스
+const boardCardImg = "/images/default/default_board_card.svg";
+const iconHeart = "/images/icon/ic_heart.svg";
+const bestBadge = "/images/badge/img_badge.svg";
 
 function BestCardList({ dataList }) {
   const BestCardRender = (dataObject) => {

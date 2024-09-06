@@ -1,8 +1,6 @@
 import React from "react";
 import styles from "./BtnRoundFunction.module.css";
 
-// 이미지
-
 function BtnRoundFunction({
   //기본 props
   innerText = "버튼",
