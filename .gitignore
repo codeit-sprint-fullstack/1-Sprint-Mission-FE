@@ -1,8 +1,10 @@
 # 의존성 패키지
 node_modules          # 프로젝트의 의존성 패키지가 저장되는 폴더
+node_modules/
 
 # 빌드 출력물
 .next                # Next.js에서 빌드된 결과물이 저장되는 디렉토리
+.next/
 out                  # Next.js에서 내보내기(export) 시 생성되는 디렉토리
 
 # 환경 변수
