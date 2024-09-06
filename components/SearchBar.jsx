@@ -11,9 +11,8 @@ function SearchBar({ onChange, order, isMobile = false }) {
   const [keyword, setKeyword] = useState();
 
   const onOrderChange = (e) => {
-    const name = [e.target.name];
-    const value = [e.target.value];
-    onChange(name, value);
+    const value = e.target.value;
+    onChange("orderBy", value);
   };
 
   const handleKeyword = (e) => {

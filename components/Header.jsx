@@ -22,6 +22,7 @@ function Header() {
       <div className={styles.header_box}>
         <Link href="/">
           <Image
+            priority={true}
             src={view === "isMobile" ? mb_Log : mainLog}
             className={styles.logo_img}
             alt="메인판다로고"

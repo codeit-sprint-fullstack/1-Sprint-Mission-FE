@@ -84,6 +84,7 @@
 }
 
 .dropbox_list {
+  z-index: 1;
   position: absolute;
   flex-direction: column;
   width: 130px;

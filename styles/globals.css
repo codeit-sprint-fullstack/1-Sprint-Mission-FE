@@ -182,6 +182,10 @@ label {
   margin-bottom: 4px;
 }
 
+form {
+  width: 100%;
+}
+
 @media screen and (max-width: 1920px) {
   header {
     width: 100%;

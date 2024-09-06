@@ -91,6 +91,7 @@
   height: 138px;
   background: #fcfcfc;
   gap: 16px;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .article_main_content_box {
@@ -130,7 +131,9 @@
 .best_articles_item {
   display: flex;
   justify-content: space-between;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  height: 169px;
+  overflow: hidden;
 }
 
 .articles_box {
@@ -175,4 +178,24 @@
   border-radius: 12px;
   background: #f3f4f6;
   outline-color: #3692ff;
+}
+
+.article_ul {
+  margin-top: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.article_item_box:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+/* 미디어쿼리 */
+@media screen and (max-width: 1200px) {
+  .best_articles_item {
+    justify-content: space-evenly;
+  }
 }

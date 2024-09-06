@@ -8,14 +8,14 @@ import useWindowResize from "@/hooks/useWindowResize";
 
 export async function getServerSideProps() {
   const productsQuery = {
-    order: "recent",
+    orderBy: "recent",
     page: 1,
-    pageSize: 10,
+    limit: 10,
   };
 
   const bestProductsQuery = {
-    order: "favorite",
-    pageSize: 4,
+    orderBy: "favorite",
+    limit: 4,
   };
 
   let items = [];
@@ -102,23 +102,6 @@ export default function Home({
   }, [bestParams]);
 
   const view = useWindowResize();
-  const changeFromNextView = useCallback(() => {
-    switch (view) {
-      case "isDesktop":
-        onObjectChange({ pageSize: 10, page: 1 });
-        onBestChange("pageSize", 4);
-        break;
-      case "isTablet":
-        onObjectChange({ pageSize: 6, page: 1 });
-        onBestChange("pageSize", 2);
-        break;
-      case "isMobile":
-        onObjectChange({ pageSize: 4, page: 1 });
-        onBestChange("pageSize", 1);
-        break;
-      default:
-    }
-  }, [view]);
 
   useEffect(() => {
     loadProducts();
@@ -126,8 +109,25 @@ export default function Home({
   }, [loadProducts, loadBestProducts]);
 
   useEffect(() => {
+    const changeFromNextView = () => {
+      switch (view) {
+        case "isDesktop":
+          onObjectChange({ limit: 10, page: 1 });
+          onBestChange("limit", 4);
+          break;
+        case "isTablet":
+          onObjectChange({ limit: 6, page: 1 });
+          onBestChange("limit", 2);
+          break;
+        case "isMobile":
+          onObjectChange({ limit: 4, page: 1 });
+          onBestChange("limit", 1);
+          break;
+        default:
+      }
+    };
     changeFromNextView();
-  }, [changeFromNextView]);
+  }, [view]);
 
   return (
     <>
@@ -145,7 +145,7 @@ export default function Home({
         <div className="products_container">
           <SearchBar
             isMobile={view === "isMobile" ? true : false}
-            order={params.order}
+            order={params.orderBy}
             onChange={onChange}
           />
           <ProductList items={products} favorite={false} />

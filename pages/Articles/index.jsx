@@ -11,28 +11,6 @@ import Pagination from "@/components/Pagination";
 import DropDownBox from "@/components/DropDownBox";
 import { dateFormatYYYYMMDD } from "@/utils/dateFromat";
 
-export async function getServerSideProps() {
-  const defaultParams = {
-    orderBy: "resent",
-    keyword: "",
-  };
-
-  let bestItem = [];
-  try {
-    const { list, totalCount } = await api.getBestArticles();
-    bestItem = list;
-  } catch (error) {
-    console.log(error);
-  }
-
-  return {
-    props: {
-      bestItem,
-      defaultParams,
-    },
-  };
-}
-
 function BestArticles({ item }) {
   const { user, title, createAt, favorite } = item;
   const date = dateFormatYYYYMMDD(createAt);
@@ -88,7 +66,13 @@ function ArticleItems({ item }) {
       </div>
       <div className={styles.item_data_box}>
         <div className={styles.item_data_box}>
-          <Image width={24} height={24} src={ic_profile} alt="유저이미지" />
+          <Image
+            priority
+            width={24}
+            height={24}
+            src={ic_profile}
+            alt="유저이미지"
+          />
           <span className={styles.item_data_user_name}>{user.name}</span>
           <span className={styles.create_time}>{date}</span>
         </div>
@@ -107,11 +91,46 @@ function ArticleItems({ item }) {
   );
 }
 
-function Articles({ bestItem, defaultParams }) {
+export async function getServerSideProps() {
+  const defaultParams = {
+    orderBy: "recent",
+    keyword: "",
+    limit: 5,
+    offset: 1,
+  };
+
+  let bestItems = [];
+  let Items = [];
+  let total = 0;
+  try {
+    const { list } = await api.getBestArticles();
+    bestItems = list;
+  } catch (error) {
+    console.log(error);
+  }
+
+  try {
+    const { list, totalCount } = await api.getArticles(defaultParams);
+    Items = list;
+    total = totalCount;
+  } catch (error) {
+    console.log(error);
+  }
+
+  return {
+    props: {
+      Items,
+      bestItems,
+      defaultParams,
+      total,
+    },
+  };
+}
+
+function Articles({ bestItems, defaultParams, total, Items }) {
   const [params, setParams] = useState(defaultParams);
-  const [articles, setArticles] = useState([]);
-  const [bestArticles, setBestArticles] = useState(bestItem);
-  const [totalCount, setTotalCont] = useState(0);
+  const [articles, setArticles] = useState(Items);
+  const [totalCount, setTotalCont] = useState(total);
 
   const getArticles = useCallback(async () => {
     try {
@@ -123,15 +142,6 @@ function Articles({ bestItem, defaultParams }) {
     }
   }, [params]);
 
-  const getBestArticles = useCallback(async () => {
-    try {
-      const { list } = await api.getBestArticles();
-      setBestArticles(list);
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
   const onChange = (name, value) => {
     setParams((prev) => ({
       ...prev,
@@ -139,15 +149,15 @@ function Articles({ bestItem, defaultParams }) {
     }));
   };
 
-  const onOrderChange = (e) => {
-    const name = [e.target.name];
-    const value = [e.target.value];
-    onChange(name, value);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (e.target.key === "Enter") onChange("keyword", e.target.value);
   };
 
-  useEffect(() => {
-    getBestArticles();
-  }, [getBestArticles]);
+  const onOrderChange = (e) => {
+    const value = e.target.value;
+    onChange("orderBy", value);
+  };
 
   useEffect(() => {
     getArticles();
@@ -158,7 +168,7 @@ function Articles({ bestItem, defaultParams }) {
       <div className={styles.best_articles}>
         <h2>베스트 게시글</h2>
         <div className={styles.best_articles_item}>
-          {bestArticles.map((item) => (
+          {bestItems.map((item) => (
             <BestArticles key={item.id} item={item} />
           ))}
         </div>
@@ -171,20 +181,22 @@ function Articles({ bestItem, defaultParams }) {
         <div className={styles.search_box}>
           <Image
             src={ic_search}
+            width={24}
+            height={24}
             className={styles.search_icon}
             alt="검색아이콘"
           />
-          <input
-            className={styles.search_input}
-            type="text"
-            name="keyword"
-            value={params.keyword || ""}
-            onChange={onChange}
-            placeholder="검색할 게시글을 입력해주세요."
-          />
-          <DropDownBox onOrderChange={onOrderChange} order={params.orderBy} />
+          <form onSubmit={onSubmit}>
+            <input
+              className={styles.search_input}
+              type="text"
+              // value={params.keyword || ""}
+              placeholder="검색할 게시글을 입력해주세요."
+            />
+          </form>
+          <DropDownBox onOrderChange={onOrderChange} orderBy={params.orderBy} />
         </div>
-        <ul>
+        <ul className={styles.article_ul}>
           {articles.map((item) => (
             <ArticleItems key={item.id} item={item} />
           ))}
