@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import useResize from "../hook/useResize";
 import BestArticleBody from "./BestArticleBody";
-import style from './BestArticle.module.css'
+import style from "./BestArticle.module.css";
 
 export default function BestArticle() {
   const [list, setList] = useState([]); //예정
@@ -23,12 +23,12 @@ export default function BestArticle() {
   useResize(handleResize);
 
   return (
-    <div className={style.vastArticle_contaner}>
-      <div className={style.vastArticle_title}>베스트 게시글</div>
-      <ul className={style.vastArticle_ul}>
+    <div className={style.BestArticle_contaner}>
+      <div className={style.BestArticle_title}>베스트 게시글</div>
+      <ul className={style.BestArticle_ul}>
         {idx.map((idx) => {
           return (
-            <li className={style.vastArticle_li}>
+            <li className={style.BestArticle_li}>
               <BestArticleBody list={list[idx]} />
             </li>
           );
