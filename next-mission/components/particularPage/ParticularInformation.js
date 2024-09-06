@@ -20,8 +20,12 @@ export default function ParticularInformation() {
           />
           {hideDropDown || (
             <div className={style.ParticularInformation_drop_down}>
-              <div className={`${style.drop_down_button} ${style.font16}`}>수정하기</div>
-              <div className={`${style.drop_down_button} ${style.font16}`}>삭제하기</div>
+              <div className={`${style.drop_down_button} ${style.font16}`}>
+                수정하기
+              </div>
+              <div className={`${style.drop_down_button} ${style.font16}`}>
+                삭제하기
+              </div>
             </div>
           )}
         </div>
@@ -46,7 +50,9 @@ export default function ParticularInformation() {
             0000. 00. 00
           </div>
           <div className={style.ParticularInformation_line} />
-          <div className={`${style.ParticularInformation_favorite} ${style.flex_row} ${style.font16}`}>
+          <div
+            className={`${style.ParticularInformation_favorite} ${style.flex_row} ${style.font16}`}
+          >
             <Image
               src={"/images/ic_heart.svg"}
               width={32}

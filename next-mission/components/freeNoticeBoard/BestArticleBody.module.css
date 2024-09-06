@@ -55,8 +55,7 @@
 }
 
 .BestArticleBody_date {
-  width: 84px;
+  width: auto;
   height: 24px;
-  text-align: end;
   color: #9ca3af;
 }
