@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./SearchBar.module.css";
 
 //리소스
-import search from "../../images/icon/ic_search.svg";
+const ic_search = "/images/icon/ic_search.svg";
 
 function SearchBar({
   inputValue,
@@ -14,7 +14,7 @@ function SearchBar({
   return (
     <>
       <div className={styles.searchBox}>
-        <img src={search} alt="검색" />
+        <img src={ic_search} alt="검색" />
         <input
           type="text"
           value={inputValue}

@@ -4,7 +4,8 @@
     "paths": {
       "@components/*": ["src/components/*"],  // src/components로 매핑
       "@hooks/*": ["src/hooks/*"],            // src/hooks로 매핑
-      "@utils/*": ["src/utils/*"]             // src/utils로 매핑
+      "@utils/*": ["src/utils/*"],           // src/utils로 매핑
+      "@styles/*": ["src/styles/*"],           // src/styles로 매핑
     }
   },
   "include": ["src"]

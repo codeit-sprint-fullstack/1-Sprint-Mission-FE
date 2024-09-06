@@ -14,7 +14,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "next dev & npx open http://localhost:3000",  
+    "dev": "next dev", 
     "build": "next build",
     "start": "next start"
   },

@@ -1,10 +1,11 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import styles from "./PageNav.module.css";
 
 // 리소스
-import pandaImg from "../images/panda_img.svg";
-import logoText from "../images/logo_text.svg";
+import pandaImg from "/images/panda_img.svg";
+import logoText from "/images/logo_text.svg";
 
 //컴포넌트
 import BtnSquareFunction from "./common/BtnSquareFunction";
@@ -17,7 +18,7 @@ function PageNav({
   loginState = false,
   userData = {},
 }) {
-  const location = useLocation();
+  const location = useRouter();
 
   const BoardListRender = ({ boardListData }) => {
     return (

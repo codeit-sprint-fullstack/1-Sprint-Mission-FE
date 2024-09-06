@@ -4,7 +4,7 @@
 node_modules/         # 프로젝트 의존성 패키지가 저장되는 폴더
 
 # 빌드 출력물
-.next/               # Next.js 빌드 시 생성되는 디렉토리 (정적/서버 파일)
+.next/               # Next.js 빌드 결과물
 out/                 # Next.js에서 내보내기(export)할 때 생성되는 디렉토리
 
 # 환경 변수
@@ -23,6 +23,8 @@ Thumbs.db            # Windows에서 생성되는 파일
 .idea/               # JetBrains IDE 설정 파일
 *.swp                # Vim에서 생성되는 swap 파일
 
+#env
+.env.local
 
 # 기존 gitignore
 temp
