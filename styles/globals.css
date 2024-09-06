@@ -122,10 +122,29 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffffff;
+  margin: 0;
+  height: 100%;
 }
 
-main {
+/* main {
   height: 100%;
+} */
+
+#page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 화면 전체 높이를 채우도록 설정 */
+}
+
+#content-wrap {
+  flex: 1; /* 메인 콘텐츠가 차지할 공간을 flex로 설정 */
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
 }
 
 /* 폼 요소 스타일 초기화 */

@@ -11,9 +11,13 @@ export default function App({ Component, pageProps }) {
         <title>판다마켓</title>
       </Head>
       <main>
-        <Header />
-        <Component {...pageProps} />
-        <Footer />
+        <div id="page-container">
+          <div id="content-wrap">
+            <Header />
+            <Component {...pageProps} />
+          </div>
+          <Footer />
+        </div>
       </main>
     </>
   );
