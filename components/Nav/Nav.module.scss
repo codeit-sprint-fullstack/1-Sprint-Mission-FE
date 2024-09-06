@@ -1,37 +1,33 @@
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 47px;
-}
+@use "@/styles/globals/shared" as g;
 
-nav ul {
-  display: flex;
-  font-weight: 700;
-  font-size: var(--18px);
-  justify-content: center;
-  align-items: center;
-  gap: 39px;
-  flex-shrink: 0;
-  color: var(--grey-600);
-}
+.Nav {
+  @include g.flex-box(row, center, center);
 
-@media only screen and (max-width: 1199px) {
-  nav {
-    padding-left: 35px;
+  ul {
+    @include g.font(18, 700);
+    @include g.flex-box(row, center, center, 39px);
+    font-weight: 700;
+    flex-shrink: 0;
+    color: g.$grey-600;
+
+    a {
+      color: g.$grey-600;
+    }
+
+    .active {
+      color: g.$primary-color;
+    }
+  }
+  @include g.device-size(tablet) {
+    ul {
+      gap: 30px;
+    }
   }
 
-  nav ul {
-    gap: 30px;
-  }
-}
-
-@media only screen and (max-width: 743px) {
-  nav {
-    padding-left: 8px;
-  }
-  nav ul {
-    font-size: 1rems;
-    gap: 8px;
+  @include g.device-size(mobile) {
+    ul {
+      @include g.font(16, 700);
+      gap: 8px;
+    }
   }
 }

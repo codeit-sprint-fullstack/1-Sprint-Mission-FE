@@ -1,28 +1,24 @@
+"use client";
 import styles from "./Nav.module.scss";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-function getLinkStyle({ isActive }) {
-  return {
-    color: isActive ? "var(--primary-colour)" : "var(--grey-600)",
-  };
-}
-
-function Nav() {
+export default function Nav({ links }) {
+  const pathname = usePathname();
   return (
-    <nav>
+    <nav className={styles.Nav}>
       <ul>
-        <li>
-          <NavLink to={"/forums"} style={getLinkStyle}>
-            자유게시판
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to={"/items"} style={getLinkStyle}>
-            중고마켓
-          </NavLink>
-        </li>
+        {links.map((link) => {
+          const isActive = pathname === link.path;
+          return (
+            <li key={link.path}>
+              <Link className={isActive ? styles.active : ""} href={link.path}>
+                {link.label}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
 }
-
-export default Nav;

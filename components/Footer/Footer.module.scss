@@ -1,0 +1,44 @@
+@use "@/styles/globals/shared" as g;
+
+.Footer {
+  background-color: g.$dark-color;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 160px;
+  font-size: 1rem;
+  position: fixed;
+  bottom: 0;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1520px;
+    width: 100%;
+    margin: 2rem 200px 0;
+    flex-wrap: wrap;
+    height: fit-content;
+
+    p {
+      color: g.$grey-400;
+    }
+  }
+
+  .extras {
+    @include g.flex-box(row, center, center, 30px);
+
+    a {
+      @include g.link(g.$grey-200);
+    }
+  }
+
+  .icons {
+    display: flex;
+    gap: 12px;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

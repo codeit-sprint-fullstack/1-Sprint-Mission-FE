@@ -1,0 +1,14 @@
+@use "@/styles/globals/shared" as g;
+
+.button-primary {
+  @include g.button(g.$primary-color);
+
+  &:hover {
+    background-color: darken(g.$primary-color, 10%);
+  }
+
+  &:disabled {
+    background-color: lighten(g.$primary-color, 20%);
+    cursor: not-allowed;
+  }
+}

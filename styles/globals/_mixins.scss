@@ -1,0 +1,39 @@
+@mixin font($px, $weight: 400) {
+  font-size: $px / 16 * 1rem;
+  font-weight: $weight;
+}
+
+@mixin flex-box($direction: row, $justify: center, $align: center, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin device-size($breakpoint) {
+  @if $breakpoint == tablet {
+    @media only screen and (max-width: 1199px) {
+      @content;
+    }
+  } @else if $breakpoint == mobile {
+    @media only screen and (max-width: 743px) {
+      @content;
+    }
+  }
+}
+
+@mixin button($bg: transparent, $padding: 11.5px 23px) {
+  color: #fff;
+  @include font(16, 600);
+  background-color: $bg;
+  border-radius: 8px;
+  padding: $padding;
+}
+
+@mixin link($text-color: #fff) {
+  color: $text-color;
+  &:hover {
+    color: lighten($text-color, 30%);
+  }
+}

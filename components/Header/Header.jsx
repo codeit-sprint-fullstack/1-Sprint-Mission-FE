@@ -1,29 +1,33 @@
-import { Link } from 'react-router-dom';
-import useMediaQuery from '../../hooks/useMediaQuery';
+import Nav from "../Nav/Nav";
+import styles from "./Header.module.scss";
+import Link from "next/link";
+import logoImg from "../../public/assets/logo.svg";
+import Image from "next/image";
+import Button from "../Button/Button";
 
-import Nav from '../Nav/Nav';
-import logoImg from '../../assets/logo.svg';
-import mobileLogo from '../../assets/logo_mobile.svg';
-import profileIcon from '../../assets/profile_icon.svg';
-import './Header.css';
-
-function Header() {
-  const mobileSize = useMediaQuery('mobileSize');
+export default function Header() {
+  const pages = [
+    { label: "자유게시판", path: "/boards" },
+    { label: "중고마켓", path: "/products" },
+  ];
   return (
-    <header className='Header'>
-      <div className='header-container'>
-        <Link to='/'>
-          <img
-            className='logo'
-            src={mobileSize ? mobileLogo : logoImg}
-            alt='panda market logo'
-          />
-        </Link>
-        <Nav />
-        <img className='profile-icon' src={profileIcon} alt='profile icon' />
+    <header className={styles.Header}>
+      <div className={styles.container}>
+        <div className={styles.left}>
+          <Link href="/">
+            <Image
+              className="logo"
+              src={logoImg}
+              alt="panda market logo"
+              width={153}
+              height={51}
+            />
+          </Link>
+          <Nav links={pages} />
+        </div>
+
+        <Button>로그인</Button>
       </div>
     </header>
   );
 }
-
-export default Header;
