@@ -7,9 +7,8 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 // 리소스
-const pandaImg = "/images/logo/panda_img.svg";
+const pandaImg = "/images/logo/logo_panda_img.svg";
 const logoText = "/images/logo/logo_text.svg";
-
 //컴포넌트
 import BtnSquareFunction from "./common/BtnSquareFunction";
 
@@ -51,17 +50,21 @@ function PageNav({
             <img className={styles.logoText} src={logoText} alt="logo_text" />
           </Link>
         </div>
-        <BoardListRender boardListData={boardListData} />
-        {loginState ? (
-          <div className={styles.profileBox}>
-            <img src={userData.profileImg} alt="profile" />
-            <span className={styles.profileName}>{userData.nickname}</span>
-          </div>
-        ) : (
-          <Link href="/login">
-            <BtnSquareFunction innerText={"로그인"} />
-          </Link>
-        )}
+        <>
+          <BoardListRender boardListData={boardListData} />
+        </>
+        <>
+          {loginState ? (
+            <div className={styles.profileBox}>
+              <img src={userData.profileImg} alt="profile" />
+              <span className={styles.profileName}>{userData.nickname}</span>
+            </div>
+          ) : (
+            <Link href="/login">
+              <BtnSquareFunction innerText={"로그인"} />
+            </Link>
+          )}
+        </>
       </section>
     </nav>
   );
