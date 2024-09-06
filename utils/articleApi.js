@@ -48,3 +48,38 @@ export async function updateArticle(id, formData) {
 
   return res.json();
 }
+
+export async function deleteArticle(id) {
+  const res = await fetch(`https://thrift-shop.onrender.com/articles/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to delete article");
+  }
+  return res.json();
+}
+
+export async function createArticle(formData) {
+  try {
+    const res = await fetch("https://thrift-shop.onrender.com/articles", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text(); // 에러 텍스트 받기
+      console.error("Server error response:", errorText);
+      throw new Error("Failed to create article");
+    }
+
+    // 응답을 JSON으로 파싱하여 반환
+    return await res.json();
+  } catch (error) {
+    console.error("Error during article creation:", error.message);
+    throw error;
+  }
+}

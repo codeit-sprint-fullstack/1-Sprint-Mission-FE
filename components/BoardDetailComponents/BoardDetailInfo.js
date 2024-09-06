@@ -1,5 +1,6 @@
 import styles from "./BoardDetailInfo.module.css";
 import { useState } from "react";
+import { deleteArticle } from "@/utils/articleApi";
 import Image from "next/image";
 import profile from "@/images/ic_profile.png";
 import kebab from "@/images/ic_kebab.png";
@@ -10,18 +11,7 @@ export default function BoardDetailInfo({ article }) {
   const toggleDropdown = () => setIsOpen(!isOpen);
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(
-        `https://thrift-shop.onrender.com/articles/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
-
-      if (res.ok) {
-        router.push("/board");
-      } else {
-        console.error("Failed to delete article");
-      }
+      await deleteArticle(id);
     } catch (error) {
       console.error("Error deleting article:", error);
     }
