@@ -20,7 +20,6 @@ export async function getServerSideProps(context) {
     // API 호출을 utils/api.js에서 처리
     const articles = await fetchArticles({ sort, keyword, offset, size });
     const bestArticles = await fetchBestArticles();
-
     return {
       props: {
         articles,

@@ -1,0 +1,49 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  .chatTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 9px;
+  }
+
+  .inputChat {
+    width: 100%;
+    height: 104px;
+    border-radius: 12px;
+    padding: 16px 24px;
+    background-color: #f3f4f6;
+    font-size: 16px;
+    font-weight: 400;
+    resize: none;
+    color: #1f2937;
+    margin-bottom: 16px;
+  }
+
+  .sendBtn {
+    width: 74px;
+    height: 42px;
+    border-radius: 8px;
+    padding: 12px 23px;
+    background-color: #3692ff;
+    color: #f3f4f6;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 0;
+  }
+  .sendBtn:disabled {
+    cursor: not-allowed;
+    background-color: #9ca3af;
+  }
+}

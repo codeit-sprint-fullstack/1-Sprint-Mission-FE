@@ -12,7 +12,6 @@ export async function fetchArticles({ sort, keyword, offset, size }) {
   const res = await fetch(
     `https://thrift-shop.onrender.com/articles?sort=${sort}&search=${keyword}&offset=${offset}&size=${size}`
   );
-
   if (!res.ok) {
     throw new Error("Failed to fetch articles");
   }
