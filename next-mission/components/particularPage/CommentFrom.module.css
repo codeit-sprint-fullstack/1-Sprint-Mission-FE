@@ -1,0 +1,68 @@
+.font16{
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.CommentFrom_form {
+  width: 1200px;
+  height: 197px;
+  display: flex;
+  flex-direction: column;
+}
+
+.CommentFrom_label {
+  width: 56px;
+  height: 26px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.CommentFrom_input {
+  width: 1200px;
+  height: 104px;
+  padding: 16px 24px;
+  margin-top: 9px;
+  border: none;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  font-weight: 400;
+  color: #9ca3af;
+  resize: none;
+}
+
+.CommentFrom_input:focus {
+  outline: none;
+  border: 1px solid #3692ff;
+}
+
+.CommentFrom_input::-webkit-scrollbar {
+  display: none;
+}
+
+.CommentFrom_button_cotaner {
+  width: 1200px;
+  height: 42px;
+  margin-top: 16px;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+.CommentFrom_button {
+  width: 74px;
+  height: 42px;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 23px;
+  font-weight: 600;
+  color: #f3f4f6;
+  cursor: pointer;
+}
+
+.button_off {
+  background-color: #9ca3af;
+}
+
+.button_on {
+  background-color: #3692ff;
+}

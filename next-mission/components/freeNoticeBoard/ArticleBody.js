@@ -26,7 +26,7 @@ export default function ArticleBody() {
             alt="유저 이미지"
           />
           <div className={style.ArticleBody_user}>유저 이름</div>
-          <div className={style.ArticleBody_date}>2024. 09. 06</div>
+          <div className={style.ArticleBody_date}>0000. 00. 00</div>
         </div>
         <div className={`${style.ArticleBody_favorite} ${style.flex_row}`}>
           <Image

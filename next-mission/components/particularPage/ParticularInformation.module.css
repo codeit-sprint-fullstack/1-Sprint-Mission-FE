@@ -1,0 +1,123 @@
+.flex_row {
+  display: flex;
+  flex-direction: row;
+}
+
+.font14 {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.font16 {
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.ParticularInformation_contaner {
+  width: 1200px;
+  height: auto;
+  margin-top: 34px;
+}
+
+.ParticularInformation_key_information {
+  width: 1200px;
+  height: 104px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.ParticularInformation_subject {
+  width: 1200px;
+  height: 32px;
+  justify-content: space-between;
+  position: relative;
+}
+
+.ParticularInformation_title {
+  width: 1168px;
+  height: 32px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #1f2937;
+}
+
+.ParticularInformation_drop_down {
+  width: 139px;
+  height: 92px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  position: absolute;
+  top: 24px;
+  right: 4px;
+}
+
+.drop_down_button {
+  width: 139px;
+  height: 46px;
+  border: none;
+  font-weight: 400;
+  color: #6b7280;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ParticularInformation_additional_information {
+  width: 1200px;
+  height: 40px;
+  margin-top: 16px;
+  align-items: center;
+}
+
+.ParticularInformation_ArticleBody_user_img {
+  border-radius: 50%;
+  background-color: #d1d5db;
+}
+
+.ParticularInformation_user {
+  width: auto;
+  height: auto;
+  margin-left: 16px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.ParticularInformation_date {
+  width: auto;
+  height: auto;
+  margin-left: 8px;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+.ParticularInformation_line {
+  width: 0;
+  height: 34px;
+  border-left: 1.5px solid #e5e7eb;
+  margin-left: 32px;
+}
+
+.ParticularInformation_favorite {
+  max-width: 100px;
+  height: 40px;
+  border: 1px solid #e5e7eb;
+  border-radius: 35px;
+  padding: 4px 12px;
+  margin-left: 32px;
+  font-weight: 500;
+  color: #6B7280;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.ParticularInformation_contents{
+    width: 1200px;
+    height: auto;
+    margin: 24px 0 32px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #1F2937;
+}

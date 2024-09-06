@@ -39,7 +39,7 @@ export default function BestArticleBody({ list }) {
             <div>좋아요</div>
           </div>
         </div>
-        <div className={style.BestArticleBody_date}>2024. 09. 05</div>
+        <div className={style.BestArticleBody_date}>0000. 00. 00</div>
       </div>
     </>
   );

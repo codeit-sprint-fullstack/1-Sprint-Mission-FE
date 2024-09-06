@@ -36,20 +36,18 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
-  position: relative;
 }
 
 .ArticleBody_user_img {
   border-radius: 50%;
-  background-color: #9ca3af;
-  position: absolute;
-  top: 1px;
+  background-color: #D1D5DB;
+  margin: 1px 0;
 }
 
 .ArticleBody_user {
   width: auto;
   height: 26px;
-  margin-left: 32px;
+  margin-left: 8px;
   color: #4b5563;
 }
 

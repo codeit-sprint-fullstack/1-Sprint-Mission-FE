@@ -76,7 +76,12 @@
 
 .input_contents {
   height: 282px;
-  padding: 16px 0 240px 24px;
+  padding: 16px 24px 240px 24px;
+  resize: none;
+}
+
+.input_contents::-webkit-scrollbar {
+  display: none;
 }
 
 .PostForm_input:focus {
