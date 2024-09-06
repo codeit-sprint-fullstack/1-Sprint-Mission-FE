@@ -3,7 +3,7 @@ import styles from "./BoardChat.module.css";
 import ChatItem from "./ChatItem";
 import { createComments, updateComments } from "@/utils/chatApi"; // 댓글 수정 API도 추가
 
-export default function BoardChat({ comments }) {
+export default function BoardChat({ articleId, comments }) {
   const [formValid, setFormValid] = useState(false);
   const [comment, setComment] = useState("");
   const [chats, setChats] = useState(comments);
@@ -38,7 +38,7 @@ export default function BoardChat({ comments }) {
           );
         }
       } else {
-        const newComment = await createComments(comments[0].articleId, {
+        const newComment = await createComments(articleId, {
           content: comment,
         });
         if (newComment) {

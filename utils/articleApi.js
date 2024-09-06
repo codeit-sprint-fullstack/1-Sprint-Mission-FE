@@ -57,7 +57,17 @@ export async function deleteArticle(id) {
   if (!res.ok) {
     throw new Error("Failed to delete article");
   }
-  return res.json();
+
+  const text = await res.text();
+  if (text) {
+    try {
+      return JSON.parse(text);
+    } catch (error) {
+      console.error("Failed to parse JSON response:", error);
+    }
+  }
+
+  return {};
 }
 
 export async function createArticle(formData) {

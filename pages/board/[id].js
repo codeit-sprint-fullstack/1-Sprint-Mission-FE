@@ -41,7 +41,7 @@ export default function BoardDetail({ article, comments }) {
   return (
     <div className={styles.container}>
       <BoardDetailInfo article={article} />
-      <BoardChat comments={comments} />
+      <BoardChat comments={comments} articleId={article.id} />
       <Link href="/board" passHref>
         <button className={styles.backBtn}>목록으로 돌아가기</button>
       </Link>
