@@ -5,7 +5,7 @@ import styles from "./ChatItem.module.css";
 import { useState } from "react";
 import { deleteComments } from "@/utils/chatApi";
 
-export default function ChatItem({ comments }) {
+export default function ChatItem({ comments, onEdit }) {
   const [openDropdownId, setOpenDropdownId] = useState(null);
 
   const toggleDropdown = (id) => {
@@ -36,9 +36,15 @@ export default function ChatItem({ comments }) {
       } else {
         console.error("Failed to delete comment");
       }
+      setOpenDropdownId(null);
     } catch (error) {
       console.error("Error deleting comment:", error);
     }
+  };
+
+  const handleEdit = (chatItem) => {
+    onEdit(chatItem);
+    setOpenDropdownId(null);
   };
 
   return (
@@ -59,7 +65,12 @@ export default function ChatItem({ comments }) {
             </div>
             {openDropdownId === chatItem.id && (
               <div className={styles.dropdown}>
-                <div className={styles.dropdownItem}>수정하기</div>
+                <div
+                  className={styles.dropdownItem}
+                  onClick={() => handleEdit(chatItem)}
+                >
+                  수정하기
+                </div>
                 <div
                   className={styles.dropdownItem}
                   onClick={() => handleDelete(chatItem.id)}

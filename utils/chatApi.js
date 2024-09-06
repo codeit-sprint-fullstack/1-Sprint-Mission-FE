@@ -54,3 +54,26 @@ export async function createComments(id, formData) {
     console.error("API error:", error);
   }
 }
+
+export async function updateComments(id, formData) {
+  try {
+    const dataToSend = { ...formData };
+    const response = await fetch(
+      `https://thrift-shop.onrender.com/articleComments/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataToSend),
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to update comments");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("API error:", error);
+  }
+}

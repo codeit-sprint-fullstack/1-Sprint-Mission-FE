@@ -1,12 +1,13 @@
 import { useState } from "react";
 import styles from "./BoardChat.module.css";
 import ChatItem from "./ChatItem";
-import { createComments } from "@/utils/chatApi";
+import { createComments, updateComments } from "@/utils/chatApi"; // 댓글 수정 API도 추가
 
 export default function BoardChat({ comments }) {
   const [formValid, setFormValid] = useState(false);
   const [comment, setComment] = useState("");
   const [chats, setChats] = useState(comments);
+  const [editCommentId, setEditCommentId] = useState(null);
 
   const validateAndSetFormValid = (value) => {
     setFormValid(value.trim().length > 0);
@@ -18,19 +19,38 @@ export default function BoardChat({ comments }) {
     validateAndSetFormValid(value);
   };
 
+  const handleEdit = (chatItem) => {
+    setComment(chatItem.content);
+    setEditCommentId(chatItem.id);
+  };
+
   const handleSubmit = async () => {
     if (!formValid) return;
+
     try {
-      const newComment = await createComments(comments[0].articleId, {
-        content: comment,
-      });
-      if (newComment) {
-        setChats((prevChats) => [newComment, ...prevChats]);
+      if (editCommentId) {
+        const updatedComment = await updateComments(editCommentId, {
+          content: comment,
+        });
+        if (updatedComment) {
+          setChats((prevChats) =>
+            prevChats.map((c) => (c.id === editCommentId ? updatedComment : c))
+          );
+        }
+      } else {
+        const newComment = await createComments(comments[0].articleId, {
+          content: comment,
+        });
+        if (newComment) {
+          setChats((prevChats) => [newComment, ...prevChats]);
+        }
       }
+
       setComment("");
+      setEditCommentId(null);
       setFormValid(false);
     } catch (error) {
-      console.error("Error creating comment:", error);
+      console.error("Error creating or updating comment:", error);
     }
   };
 
@@ -49,10 +69,10 @@ export default function BoardChat({ comments }) {
           disabled={!formValid}
           onClick={handleSubmit}
         >
-          등록
+          {editCommentId ? "수정" : "등록"}
         </button>
       </div>
-      <ChatItem comments={chats} />
+      <ChatItem comments={chats} onEdit={handleEdit} />
     </div>
   );
 }
