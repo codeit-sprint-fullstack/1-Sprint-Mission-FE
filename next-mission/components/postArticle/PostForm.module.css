@@ -1,0 +1,85 @@
+.font16 {
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.PostForm_form {
+  width: 1200px;
+  height: 512px;
+  margin: 24px 0 794px;
+  display: flex;
+  flex-direction: column;
+}
+
+.PostForm_subject {
+  width: 1200px;
+  height: 42px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.PostForm_title {
+  width: 92px;
+  height: 42px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #1f2937;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.PostForm_button {
+  width: 74px;
+  height: 42px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #f3f4f6;
+}
+
+.button_off {
+  background-color: #9ca3af;
+}
+
+.button_on {
+  background-color: #3692ff;
+}
+
+.PostForm_label {
+  width: 1200px;
+  height: 26px;
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  color: #1f2937;
+}
+
+.PostForm_input {
+  width: 1200px;
+  border: none;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+.input_title {
+  height: 56px;
+  padding: 16px 0 14px 24px;
+  margin-bottom: 24px;
+}
+
+.input_contents {
+  height: 282px;
+  padding: 16px 0 240px 24px;
+}
+
+.PostForm_input:focus {
+  outline: none;
+  border: 1px solid #3692ff;
+}
