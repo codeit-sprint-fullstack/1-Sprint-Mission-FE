@@ -1,9 +1,10 @@
 import { useState } from "react";
 import style from "./ParticularInformation.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ParticularInformation() {
-  const [hideDropDown, setHideDropDown] = useState(true);
+  const [hideDropDown, setHideDropDown] = useState(false);
 
   return (
     <div className={style.ParticularInformation_contaner}>
@@ -20,9 +21,11 @@ export default function ParticularInformation() {
           />
           {hideDropDown || (
             <div className={style.ParticularInformation_drop_down}>
-              <div className={`${style.drop_down_button} ${style.font16}`}>
-                수정하기
-              </div>
+              <Link href="/freeNoticeBoard/patchArticle">
+                <div className={`${style.drop_down_button} ${style.font16}`}>
+                  수정하기
+                </div>
+              </Link>
               <div className={`${style.drop_down_button} ${style.font16}`}>
                 삭제하기
               </div>

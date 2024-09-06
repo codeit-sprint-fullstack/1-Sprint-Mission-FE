@@ -10,7 +10,8 @@ function Nav() {
   const getLinkStyle = (href) =>
     router.asPath === href[0] ||
     router.asPath === href[1] ||
-    router.asPath === href[2]
+    router.asPath === href[2] ||
+    router.asPath === href[3]
       ? style.onHref
       : style.offHref;
 
@@ -23,6 +24,7 @@ function Nav() {
             className={`${style.listFont} ${style.freeFont} ${getLinkStyle([
               "/freeNoticeBoard",
               "/freeNoticeBoard/postArticle",
+              "/freeNoticeBoard/patchArticle",
               `/freeNoticeBoard/${id}`,
             ])}`}
           >
