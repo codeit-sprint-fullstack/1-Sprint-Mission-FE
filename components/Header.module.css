@@ -1,0 +1,48 @@
+.font {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21.48px;
+  color: #4b5563;
+}
+
+.header {
+  width: 100%;
+  height: 70px;
+  padding: 10px 200px;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 47px;
+}
+
+.logoWrapper {
+  width: 151px;
+  height: 53px;
+  position: relative;
+}
+
+.menu {
+  flex-grow: 1;
+  display: flex;
+  gap: 39px;
+  cursor: pointer;
+}
+.freeboard,
+.market {
+  text-decoration: none;
+}
+.freeboard:link,
+.market:link {
+  color: #4b5563;
+}
+.freeboard:hover,
+.market:hover {
+  color: #3692ff;
+}
