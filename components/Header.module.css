@@ -38,6 +38,10 @@
 .market {
   text-decoration: none;
 }
+.freeboard:visited,
+.market:visited {
+  color: #4b5563;
+}
 .freeboard:link,
 .market:link {
   color: #4b5563;
