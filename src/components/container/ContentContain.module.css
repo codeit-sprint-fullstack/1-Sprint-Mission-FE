@@ -1,7 +1,9 @@
-.mainContainer {
+.contentContainer {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 100%; */
   max-width: 1200px;
   padding: 26px 24px;
   gap: 40px 0px

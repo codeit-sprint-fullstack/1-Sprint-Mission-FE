@@ -1,7 +1,7 @@
 import React from "react";
 
 // 콘테이너
-import MainContainer from "@components/container/MainContainer";
+import ContentContain from "@components/container/ContentContain";
 
 // Common 컴포넌트
 import InputBar from "@components/common/InputBar";
@@ -18,7 +18,7 @@ const ic_arrow_round_left = "/images/icon/ic_arrow_round_left.svg";
 
 export default function Test() {
   return (
-    <MainContainer>
+    <ContentContain>
       <div style={{ width: "500px" }}>
         <InputBar headerText={"안녕"} />
         <InputArea
@@ -38,6 +38,6 @@ export default function Test() {
         <SortBtn CurrentOption={"최신순"} />
         <DropdownModal options={["test1", "test2", "test3"]} />
       </div>
-    </MainContainer>
+    </ContentContain>
   );
 }
