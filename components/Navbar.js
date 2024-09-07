@@ -13,7 +13,7 @@ export default function Navbar() {
             <Link href='/' className={styles.link}>
               <Image src={logo} alt='로고' priority />
             </Link>
-            <Link href='/fleamarket' className={styles.link}>
+            <Link href='/freeboard' className={styles.link}>
               <span className={styles.freeboard}>자유게시판</span>
             </Link>
             <span className={styles.fleamarket}>중고마켓</span>
