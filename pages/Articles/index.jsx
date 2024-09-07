@@ -9,7 +9,8 @@ import { useCallback, useEffect, useState } from "react";
 import * as api from "@/pages/api/articles";
 import Pagination from "@/components/Pagination";
 import DropDownBox from "@/components/DropdownBox";
-import { dateFormatYYYYMMDD } from "@/utils/dateFromat";
+import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
+import Link from "next/link";
 
 function BestArticles({ item }) {
   const { user, title, createAt, favorite } = item;
@@ -55,39 +56,41 @@ function ArticleItems({ item }) {
   const date = dateFormatYYYYMMDD(createAt);
 
   return (
-    <li className={styles.article_item_box}>
-      <div className={styles.article_main_content_box}>
-        <span className={styles.article_item_title}>{title}</span>
-        <Image
-          className={styles.article_item_image}
-          src={imgDefault}
-          alt="게시글이미지"
-        />
-      </div>
-      <div className={styles.item_data_box}>
-        <div className={styles.item_data_box}>
+    <Link href={`/Articles/${item.id}`}>
+      <li className={styles.article_item_box}>
+        <div className={styles.article_main_content_box}>
+          <span className={styles.article_item_title}>{title}</span>
           <Image
-            priority
-            width={24}
-            height={24}
-            src={ic_profile}
-            alt="유저이미지"
+            className={styles.article_item_image}
+            src={imgDefault}
+            alt="게시글이미지"
           />
-          <span className={styles.item_data_user_name}>{user.name}</span>
-          <span className={styles.create_time}>{date}</span>
         </div>
         <div className={styles.item_data_box}>
-          <Image
-            width={24}
-            height={24}
-            className={styles.favorite_icon}
-            src={ic_heart}
-            alt="좋아요이미지"
-          />
-          <span>{favorite}</span>
+          <div className={styles.item_data_box}>
+            <Image
+              priority
+              width={24}
+              height={24}
+              src={ic_profile}
+              alt="유저이미지"
+            />
+            <span className={styles.item_data_user_name}>{user.name}</span>
+            <span className={styles.create_time}>{date}</span>
+          </div>
+          <div className={styles.item_data_box}>
+            <Image
+              width={24}
+              height={24}
+              className={styles.favorite_icon}
+              src={ic_heart}
+              alt="좋아요이미지"
+            />
+            <span>{favorite}</span>
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </Link>
   );
 }
 
@@ -96,7 +99,6 @@ export async function getServerSideProps() {
     orderBy: "recent",
     keyword: "",
     limit: 5,
-    offset: 0,
   };
 
   let bestItems = [];

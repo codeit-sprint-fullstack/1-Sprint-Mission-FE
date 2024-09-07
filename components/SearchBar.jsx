@@ -1,13 +1,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import ic_search from "../public/images/ic_search.png";
-import ic_arrow_down from "../public/images/ic_arrow_down.png";
-import ic_sort from "../public/images/ic_sort.png";
 import styles from "@/styles/searchBar.module.css";
 import Image from "next/image";
 import DropdownBox from "@/components/DropdownBox.jsx";
 
-function SearchBar({ onChange, order, isMobile = false }) {
+function SearchBar({ onChange, orderBy, isMobile = false }) {
   const [keyword, setKeyword] = useState();
 
   const onOrderChange = (e) => {
@@ -55,9 +53,9 @@ function SearchBar({ onChange, order, isMobile = false }) {
             <button className={styles.add_product_btn}>상품 등록하기</button>
           </Link>
         )}
-        <DropDownBox
+        <DropdownBox
           onOrderChange={onOrderChange}
-          order={order}
+          orderBy={orderBy}
           isMobile={isMobile}
         />
       </div>

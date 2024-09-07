@@ -148,6 +148,7 @@ header {
 main {
   margin: auto;
   width: 1200px;
+  min-height: 1200px;
   min-width: 376px;
 }
 
@@ -161,6 +162,15 @@ h2 {
   line-height: 32px;
   text-align: left;
   margin-bottom: 16px;
+  color: #1f2937;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: left;
+  color: #1f2937;
 }
 
 button {
@@ -184,6 +194,14 @@ label {
 
 form {
   width: 100%;
+}
+
+textarea {
+  resize: none;
+}
+
+textarea:focus {
+  outline: 1px solid #3692ff;
 }
 
 @media screen and (max-width: 1920px) {

@@ -2,7 +2,7 @@ import Head from "next/head";
 import ProductList from "@/components/ProductList";
 import Pagination from "@/components/Pagination";
 import SearchBar from "@/components/SearchBar";
-import * as api from "@/offsets/api/products.js";
+import * as api from "@/pages/api/products";
 import { useCallback, useEffect, useState } from "react";
 import useWindowResize from "@/hooks/useWindowResize";
 
@@ -145,7 +145,7 @@ export default function Home({
         <div className="products_container">
           <SearchBar
             isMobile={view === "isMobile" ? true : false}
-            order={params.orderBy}
+            orderBy={params.orderBy}
             onChange={onChange}
           />
           <ProductList items={products} favorite={false} />
