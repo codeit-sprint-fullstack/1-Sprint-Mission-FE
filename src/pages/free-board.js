@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useMemo, useCallback } from "react";
 import searchIcon from "../../public/images/ic_search.png";
-import ItemsPageHeader from "../components/ItemsPageHeader";
+import FreeBoardPageHeader from "../components/FreeBoardPageHeader";
 import { useRouter } from "next/router";
 import PostList from "../components/PostList";
 import { filterPostsByName } from "../api/api";
@@ -100,7 +100,7 @@ export default function FreeBoardPage() {
 
   return (
     <div className={styles.App}>
-      <ItemsPageHeader />
+      <FreeBoardPageHeader />
       <main className={styles.bestPostsContainer}>
         <div className={styles.firstContainer}>
           <BestPostsList />

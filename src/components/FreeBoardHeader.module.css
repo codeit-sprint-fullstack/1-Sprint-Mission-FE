@@ -52,17 +52,12 @@
   margin-right: 200px;
 }
 
-/* 중고마켓 페이지의 상단바 '중고마켓 버튼색'*/
-.itemPageMarket {
-  color: #3692ff;
-}
-
 /* 자유게시판 페이지의 상단바 '자유게시판 버튼색'*/
 .freeBoard {
   color: #3692ff;
 }
 
-/* 중고마켓 페이지의 로그인 버튼*/
+/* 자유게시판 페이지의 로그인 버튼*/
 .loginButton {
   width: 74px;
   height: 42px;
