@@ -1,3 +1,8 @@
+/* 게시글 상세 컨테이너 */
+.postDetailItem {
+  position: relative; /* 메뉴의 위치를 설정하기 위해*/
+}
+
 /* 게시글 제목과 옵션 컨테이너 */
 .postHeaderContainer {
   display: flex;
@@ -140,4 +145,42 @@
 .postCommentDalki button:disabled {
   background: #9ca3af;
   cursor: not-allowed;
+}
+
+/* 수정/삭제를 위한 : 버튼 */
+.moreMenuButton {
+  position: relative;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: none;
+  color: #9ca3af;
+}
+
+/* 수정/삭제 메뉴 */
+.menu {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  border: 1px solid #d1d5db;
+  display: flex;
+  flex-direction: column;
+  width: 139px;
+}
+
+/* 메뉴 버튼 스타일 */
+.menuButton {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #6b7280;
+  cursor: pointer;
+  text-align: center;
+}
+
+.menuButton:hover {
+  background: #e5e7eb;
 }

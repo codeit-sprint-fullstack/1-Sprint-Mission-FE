@@ -1,15 +1,38 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import AuthorProfile from "../../public/images/profile-image.png"; // 이미지 경로
-import Heart from "../../public/images/ic_heart.png"; // 이미지 경로
+import AuthorProfile from "../../public/images/profile-image.png";
+import Heart from "../../public/images/ic_heart.png";
 import styles from "./PostDetail.module.css";
+import { updateArticle, deleteArticle } from "../api/api"; // 게시글 수정 삭제 API 호출
 
 export default function PostDetail({ post }) {
   const [menuVisible, setMenuVisible] = useState(false);
 
-  // 메뉴 토글 핸들러
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
+  const toggleMenu = () => setMenuVisible(!menuVisible);
+
+  // 게시글 수정 핸들러
+  const handleEdit = async () => {
+    try {
+      const updatedData = {
+        /* 수정할 데이터 */
+      };
+      await updateArticle(post.id, updatedData);
+      alert("게시글이 수정되었습니다.");
+      setMenuVisible(false); // 메뉴 닫기
+    } catch (error) {
+      console.error("게시글 수정 실패:", error);
+    }
+  };
+
+  // 게시글 삭제 핸들러
+  const handleDelete = async () => {
+    try {
+      await deleteArticle(post.id);
+      alert("게시글이 삭제되었습니다.");
+      setMenuVisible(false); // 메뉴 닫기
+    } catch (error) {
+      console.error("게시글 삭제 실패:", error);
+    }
   };
 
   return (
@@ -62,6 +85,18 @@ export default function PostDetail({ post }) {
         </label>
         <button className={styles.registrationBtn}>등록</button>
       </div>
+
+      {/* 수정/삭제 메뉴 */}
+      {menuVisible && (
+        <div className={styles.menu}>
+          <button className={styles.menuButton} onClick={handleEdit}>
+            수정하기
+          </button>
+          <button className={styles.menuButton} onClick={handleDelete}>
+            삭제하기
+          </button>
+        </div>
+      )}
     </div>
   );
 }
