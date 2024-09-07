@@ -1,0 +1,42 @@
+.footerContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 160px;
+  background-color: #111827;
+}
+
+.contentSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1520px;
+  padding: 32px 24px;
+}
+
+.copyright {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: #9CA3AF;
+  font-weight: 400;
+}
+
+.contentMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0px 59px;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #E5E7EB;
+}
+
+.iconSNS {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0px 12px;
+}
