@@ -11,6 +11,11 @@
   margin-bottom: 9px;
 }
 
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .menu {
   display: flex;
   flex-direction: row;
