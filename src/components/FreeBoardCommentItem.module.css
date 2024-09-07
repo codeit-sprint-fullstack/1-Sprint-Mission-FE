@@ -1,0 +1,62 @@
+/* 댓글 전체 컨테이너 */
+.commentContainer {
+  height: 100px;
+  background: #fcfcfc;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* 댓글 내용과 : 버튼 */
+.commentHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 32px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 24px;
+}
+
+/* 수정/삭제를 위한 : 버튼 */
+.moreMenuButton {
+  position: relative;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: none;
+  color: #9ca3af;
+}
+
+/* 댓글 내용 */
+.content {
+  font-size: 14px;
+  font-weight: 400;
+  color: #1f2937;
+}
+
+/* 작성자 */
+.author {
+  font-size: 12px;
+  font-weight: 400;
+  color: #4b5563;
+}
+
+/* 작성한 시간 */
+.date {
+  font-size: 12px;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+/* 이미지와 작성자, 작성한 시간 */
+.imageAuthorDate {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+/* 작성자와 작성 시간*/
+.authorDate {
+  display: flex;
+  flex-direction: column;
+}
