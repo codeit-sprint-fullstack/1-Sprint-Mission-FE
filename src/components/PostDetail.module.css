@@ -1,3 +1,10 @@
+/* 게시글 제목과 옵션 컨테이너 */
+.postHeaderContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 /* 게시글 제목과 옵션 메뉴 */
 .postHeader {
   display: flex;
@@ -7,34 +14,44 @@
   height: 32px;
   font-size: 20px;
   font-weight: 700;
-  margin-bottom: 40px;
   color: #1f2937;
 }
 
-/* 프로필이미지, 작성자, 작성날짜 */
+/* 프로필이미지, 작성자, 작성날짜와 좋아요 수*/
 .postFooter {
   display: flex;
+  gap: 32px;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+/* 프로필이미지, 작성자, 작성날짜 */
+.postAuthorDate {
+  display: flex;
   gap: 16px;
+  align-items: center;
 }
 
 /* 좋아요 수 버튼 */
-/* width: Hug (87px)px;
-height: Fixed (40px)px;
-padding: 4px 12px 4px 12px;
-gap: 10px;
-border-radius: 35px 0px 0px 0px;
-border: 1px 0px 0px 0px;
-opacity: 0px; 
-border: 1px solid #E5E7EB*/
+.likeCount {
+  width: 87px;
+  height: 40px;
+  padding: 4px 12px;
+  border-radius: 35px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+}
 
-/* 좋아요수 */
-/* //styleName: pretendard/lg-16px-medium;
-font-family: Pretendard;
-font-size: 16px;
-font-weight: 500;
-line-height: 26px;
-text-align: left;
-background: #6B7280; */
+/* 좋아요 수 */
+.likeCount {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #6b7280;
+}
 
 /* 작성자 */
 .authorName {
@@ -47,5 +64,80 @@ background: #6B7280; */
 .postDate {
   font-size: 14px;
   font-weight: 400;
+  color: #9ca3af;
+}
+
+/* 게시글 내용 */
+.postContent {
+  margin: 24px 0 32px 0;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: left;
+  color: #1f2937;
+}
+
+/* 댓글 달기 컨테이너 */
+.postCommentDalki {
+  display: flex;
+  flex-direction: column;
+  height: 197px;
+}
+
+/* 댓글 달기 문구 */
+.commentDalkiH3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* 댓글 내용 textarea */
+.detailCommentContainer {
+  display: flex;
+  gap: 16px;
+}
+
+/* 댓글 textarea */
+.commentInput {
+  height: 104px;
+  padding: 16px 24px;
+  background: #f3f4f6;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+/* 포커스 시 테두리 색상 변경 */
+.commentInput:focus {
+  border-color: #3692ff;
+  border-width: 4px;
+  outline: none;
+}
+
+/* placeholder */
+.commentInput::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  color: #9ca3af;
+}
+
+/* 댓글 등록 버튼 */
+.registrationBtn {
+  padding: 12px 0;
+  border-radius: 8px;
+  background: #3692ff;
+  width: 74px;
+  height: 42px;
+  border: none;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 700;
+  align-self: flex-end;
+}
+
+/* 등록 버튼 비활성화*/
+.postCommentDalki button:disabled {
   background: #9ca3af;
+  cursor: not-allowed;
 }
