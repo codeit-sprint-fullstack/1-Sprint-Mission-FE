@@ -8,14 +8,20 @@ export default function usePostList(order, initialCursor) {
   const [loadingError, setLoadingError] = useState(null);
   const [totalPages, setTotalPages] = useState(1);
   const [cursor, setCursor] = useState(initialCursor);
+  const [loading, setLoading] = useState(true);
 
   // 게시글 가져오기 함수
   const fetchPosts = useCallback(
     async (page = 1) => {
       try {
+        setLoading(true);
         setLoadingError(null);
         const response = await fetchArticles({ order, cursor, limit: LIMIT });
-        const { paging, list, totalCount } = response;
+        console.log("API 응답:", response);
+
+        // 직접 배열을 응답으로 사용
+        const { paging, totalCount } = response;
+        const list = response; // API 응답의 최상위 요소가 리스트
 
         if (Array.isArray(list)) {
           setPosts((prevPosts) =>
@@ -29,6 +35,8 @@ export default function usePostList(order, initialCursor) {
         }
       } catch (error) {
         setLoadingError(error.message);
+      } finally {
+        setLoading(false);
       }
     },
     [order, cursor]
@@ -38,5 +46,5 @@ export default function usePostList(order, initialCursor) {
     fetchPosts(); // 초기 로드
   }, [order, fetchPosts]);
 
-  return { posts, hasNext, loadingError, totalPages, fetchPosts };
+  return { posts, hasNext, loadingError, totalPages, fetchPosts, loading };
 }

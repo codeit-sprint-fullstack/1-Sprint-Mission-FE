@@ -21,10 +21,8 @@ export default function FreeBoardPage() {
   const [searchError, setSearchError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { posts, hasNext, loadingError, totalPages, fetchPosts } = usePostList(
-    order,
-    (currentPage - 1) * LIMIT
-  );
+  const { posts, hasNext, loadingError, totalPages, fetchPosts, loading } =
+    usePostList(order, (currentPage - 1) * LIMIT);
 
   const handleOrderChange = (event) => {
     setOrder(event.target.value);
@@ -126,7 +124,10 @@ export default function FreeBoardPage() {
             <option value="likeCount">좋아요 순</option>
           </select>
         </div>
-        {searchError && <div className={styles.searchError}>{searchError}</div>}
+        {loading && <div>로딩 중...</div>}
+        {loadingError && !loading && (
+          <div className={styles.searchError}>{loadingError}</div>
+        )}
         {searchPosts && searchResults.length > 0 && (
           <div className={styles.searchResults}>
             <h3>검색 결과</h3>
@@ -137,14 +138,18 @@ export default function FreeBoardPage() {
             </ul>
           </div>
         )}
-        {loadingError && <span>{loadingError}</span>}
-        <PostList posts={displayPosts} />
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageClick}
-          hasNext={hasNext}
-        />
+        {searchError && <div className={styles.searchError}>{searchError}</div>}
+        {!loading && !searchError && (
+          <>
+            <PostList posts={displayPosts} />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageClick}
+              hasNext={hasNext}
+            />
+          </>
+        )}
       </main>
       <Footer />
     </div>
