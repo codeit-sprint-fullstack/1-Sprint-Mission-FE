@@ -31,11 +31,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/free-board.js"
-    ],
-    "/post-registration": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/post-registration.js"
     ]
   },
   "ampFirstPages": []
