@@ -1,0 +1,29 @@
+.nav {
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.navMenu {
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.freeboard {
+  color: #3692ff;
+  margin-left: 32px;
+}
+
+.fleamarket {
+  color: #4b5563;
+  margin-left: 16px;
+}
