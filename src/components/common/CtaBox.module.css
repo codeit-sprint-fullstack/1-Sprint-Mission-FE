@@ -1,0 +1,55 @@
+.mainBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  align-items: flex-start;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.alignRight {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.ctaText {
+  display: flex;
+  flex-direction: column;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 56px;
+  color: #374151;
+  text-align: inherit;
+  align-items: inherit;
+  white-space: nowrap;
+}
+
+.keywordText {
+  color: #3692FF;
+  padding-bottom: 16px;
+}
+
+.descriptionText {
+  font-weight: 500;
+  color: #374151;
+  padding-top: 24px;
+}
+
+@media (max-width: 988px) {
+  .ctaText {
+    flex-direction: row;
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .keywordText{
+    font-size: 1rem;
+  }
+  
+  .ctaText {
+    font-size: 1.5rem;
+  }
+}

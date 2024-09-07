@@ -1,7 +1,7 @@
 import React from "react";
 
 // 콘테이너
-import ContentContain from "@components/container/ContentContain";
+import ContainerContent from "@components/container/ContainerContent";
 
 // Common 컴포넌트
 import InputBar from "@components/common/InputBar";
@@ -11,6 +11,7 @@ import BtnSquareFunction from "@components/common/BtnSquareFunction";
 import SearchBar from "@components/common/SearchBar";
 import DropdownModal from "@components/modal/DropdownModal";
 import SortBtn from "@components/common/SortBtn";
+import CtaBox from "@components/common/CtaBox";
 
 import Link from "next/link";
 
@@ -18,7 +19,18 @@ const ic_arrow_round_left = "/images/icon/ic_arrow_round_left.svg";
 
 export default function Test() {
   return (
-    <ContentContain>
+    <ContainerContent>
+      <CtaBox
+        keyword={"컴포넌트"}
+        mainCTA={["컴포넌트 ", "뭐"]}
+        description={"컴포넌트"}
+      />
+      <CtaBox
+        keyword={"컴포넌트"}
+        mainCTA={["컴포넌트 ", "뭐"]}
+        description={"컴포넌트"}
+        alignRight={true}
+      />
       <div style={{ width: "500px" }}>
         <InputBar headerText={"안녕"} />
         <InputArea
@@ -38,6 +50,6 @@ export default function Test() {
         <SortBtn CurrentOption={"최신순"} />
         <DropdownModal options={["test1", "test2", "test3"]} />
       </div>
-    </ContentContain>
+    </ContainerContent>
   );
 }
