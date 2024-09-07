@@ -1,16 +1,17 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
-import { useRouter } from "next/router";
-import searchIcon from "../public/images/ic_search.png";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
+import searchIcon from "../../public/images/ic_search.png";
 import ItemsPageHeader from "../components/ItemsPageHeader";
+import { useRouter } from "next/router";
 import PostList from "../components/PostList";
+import { filterPostsByName } from "../api/api";
 import BestPostsList from "../components/BestPostsList";
 import Pagination from "../components/Pagination";
-import Footer from "../components/Footer";
-import { filterPostsByName } from "../api/api";
 import usePostList from "../hooks/usePostList";
 import { LIMIT } from "../constants";
+import Footer from "../components/Footer";
+import styles from "./FreeBoardPage.module.css"; // CSS 모듈 import
 
 export default function FreeBoardPage() {
   const router = useRouter();
@@ -25,24 +26,20 @@ export default function FreeBoardPage() {
     (currentPage - 1) * LIMIT
   );
 
-  useEffect(() => {
-    fetchPosts(currentPage);
-  }, [order, currentPage, fetchPosts]);
-
   const handleOrderChange = (event) => {
     setOrder(event.target.value);
-    setCurrentPage(1); // 정렬 순서 변경 시 첫 페이지로 이동
-    fetchPosts(1); // 첫 페이지의 데이터 새로고침
+    setCurrentPage(1);
+    fetchPosts(1);
   };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      handleSearchClick(); // 엔터키로 검색 실행
+      handleSearchClick();
     }
   };
 
   const handleSearchChange = (event) => {
-    setSearchPosts(event.target.value); // 검색 입력 값 변경
+    setSearchPosts(event.target.value);
   };
 
   const handleSearchClick = useCallback(() => {
@@ -69,11 +66,11 @@ export default function FreeBoardPage() {
 
   const handlePageClick = (page) => {
     setCurrentPage(page);
-    fetchPosts(page); // 페이지 변경 시 데이터 새로고침
+    fetchPosts(page);
   };
 
   const handleAddPostClick = () => {
-    router.push("/post-registration"); // 글쓰기 페이지로 이동
+    router.push("/post-registration");
   };
 
   const sortedPosts = useMemo(() => {
@@ -86,8 +83,12 @@ export default function FreeBoardPage() {
         return [...posts].sort((a, b) => b.likeCount - a.likeCount);
       }
     }
-    return []; // posts가 배열이 아닐 경우 빈 배열 반환
+    return [];
   }, [posts, order]);
+
+  useEffect(() => {
+    fetchPosts(currentPage);
+  }, [order, currentPage, fetchPosts]);
 
   const currentPagePosts = sortedPosts.slice(
     (currentPage - 1) * LIMIT,
@@ -98,36 +99,36 @@ export default function FreeBoardPage() {
     searchResults.length > 0 ? searchResults : currentPagePosts;
 
   return (
-    <div className="App">
+    <div className={styles.App}>
       <ItemsPageHeader />
-      <main className="bestPostsContainer">
-        <div className="firstContainer">
+      <main className={styles.bestPostsContainer}>
+        <div className={styles.firstContainer}>
           <BestPostsList />
         </div>
-        <div className="postsContainer">
-          <h2>게시글</h2>
-          <button className="postBtn" onClick={handleAddPostClick}>
+        <div className={styles.postsContainer}>
+          <h2 className={styles.freeBoardH1}>게시글</h2>
+          <button className={styles.postBtn} onClick={handleAddPostClick}>
             글쓰기
           </button>
         </div>
-        <div className="inputDrop">
+        <div className={styles.inputDrop}>
           <input
             type="text"
             placeholder="검색할 게시글을 입력해주세요"
-            className="freeSearchInput"
+            className={styles.freeSearchInput}
             style={{ backgroundImage: `url(${searchIcon.src})` }}
             value={searchPosts}
             onChange={handleSearchChange}
             onKeyDown={handleKeyDown}
           />
-          <select className="sortDropDown" onChange={handleOrderChange}>
+          <select className={styles.sortDropDown} onChange={handleOrderChange}>
             <option value="createdAt">최신순</option>
             <option value="likeCount">좋아요 순</option>
           </select>
         </div>
-        {searchError && <div className="search-error">{searchError}</div>}
+        {searchError && <div className={styles.searchError}>{searchError}</div>}
         {searchPosts && searchResults.length > 0 && (
-          <div className="search-results">
+          <div className={styles.searchResults}>
             <h3>검색 결과</h3>
             <ul>
               {searchResults.map((post) => (
