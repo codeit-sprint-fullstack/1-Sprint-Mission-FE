@@ -5,10 +5,10 @@ import styles from "@/styles/searchBar.module.css";
 import Image from "next/image";
 import useWindowResize from "@/hooks/useWindowResize";
 
-function DropDownBox({ onOrderChange, orderBy }) {
-  const [dropView, setDropView] = useState(false);
-  const viewDropbox = () => {
-    setDropView((e) => !e);
+function DropdownBox({ onOrderChange, orderBy }) {
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const changeDropbox = () => {
+    setOpenDropdown((e) => !e);
   };
   const handleOrderChange = (e) => {
     onOrderChange(e);
@@ -22,7 +22,7 @@ function DropDownBox({ onOrderChange, orderBy }) {
 
   return (
     <div>
-      <div className={styles.search_order_container} onClick={viewDropbox}>
+      <div className={styles.search_order_container} onClick={changeDropbox}>
         <button className={styles.order_drop_btn}>
           {view !== "isMobile" && dropDownBox[orderBy]}
         </button>
@@ -32,7 +32,7 @@ function DropDownBox({ onOrderChange, orderBy }) {
           alt="드롭다운아이콘"
         ></Image>
       </div>
-      {dropView && (
+      {openDropdown && (
         <div className={styles.dropbox_list}>
           <button
             className={styles.firstdrop}
@@ -54,4 +54,4 @@ function DropDownBox({ onOrderChange, orderBy }) {
   );
 }
 
-export default DropDownBox;
+export default DropdownBox;

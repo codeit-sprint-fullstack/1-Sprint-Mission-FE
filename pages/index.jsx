@@ -23,7 +23,7 @@ export async function getServerSideProps() {
   let bestItems = [];
 
   try {
-    const { list, totalCount } = await api.getProductsAxios(productsQuery);
+    const { list, totalCount } = await api.getProducts(productsQuery);
     items = list;
     productsTotalCount = totalCount;
   } catch (e) {
@@ -31,7 +31,7 @@ export async function getServerSideProps() {
   }
 
   try {
-    const { list } = await api.getProductsAxios(bestProductsQuery);
+    const { list } = await api.getProducts(bestProductsQuery);
     bestItems = list;
   } catch (e) {
     console.log(e.message);
@@ -84,7 +84,7 @@ export default function Home({
 
   const loadProducts = useCallback(async () => {
     try {
-      const { list, totalCount } = await api.getProductsAxios(params);
+      const { list, totalCount } = await api.getProducts(params);
       setProducts(list);
       setTotalDataCount(totalCount);
     } catch (e) {
@@ -94,7 +94,7 @@ export default function Home({
 
   const loadBestProducts = useCallback(async () => {
     try {
-      const { list } = await api.getProductsAxios(bestParams);
+      const { list } = await api.getProducts(bestParams);
       setBestProducts(list);
     } catch (e) {
       console.log(e.message);

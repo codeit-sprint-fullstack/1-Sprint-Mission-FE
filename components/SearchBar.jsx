@@ -5,7 +5,7 @@ import ic_arrow_down from "../public/images/ic_arrow_down.png";
 import ic_sort from "../public/images/ic_sort.png";
 import styles from "@/styles/searchBar.module.css";
 import Image from "next/image";
-import DropDownBox from "@/components/DropDownBox.jsx";
+import DropdownBox from "@/components/DropdownBox.jsx";
 
 function SearchBar({ onChange, order, isMobile = false }) {
   const [keyword, setKeyword] = useState();

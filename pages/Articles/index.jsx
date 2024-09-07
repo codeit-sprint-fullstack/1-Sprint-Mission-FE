@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import * as api from "@/pages/api/articles";
 import Pagination from "@/components/Pagination";
-import DropDownBox from "@/components/DropDownBox";
+import DropDownBox from "@/components/DropdownBox";
 import { dateFormatYYYYMMDD } from "@/utils/dateFromat";
 
 function BestArticles({ item }) {
