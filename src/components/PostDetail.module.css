@@ -1,0 +1,51 @@
+/* 게시글 제목과 옵션 메뉴 */
+.postHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 32px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #1f2937;
+}
+
+/* 프로필이미지, 작성자, 작성날짜 */
+.postFooter {
+  display: flex;
+  gap: 16px;
+}
+
+/* 좋아요 수 버튼 */
+/* width: Hug (87px)px;
+height: Fixed (40px)px;
+padding: 4px 12px 4px 12px;
+gap: 10px;
+border-radius: 35px 0px 0px 0px;
+border: 1px 0px 0px 0px;
+opacity: 0px; 
+border: 1px solid #E5E7EB*/
+
+/* 좋아요수 */
+/* //styleName: pretendard/lg-16px-medium;
+font-family: Pretendard;
+font-size: 16px;
+font-weight: 500;
+line-height: 26px;
+text-align: left;
+background: #6B7280; */
+
+/* 작성자 */
+.authorName {
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 작성 날짜 */
+.postDate {
+  font-size: 14px;
+  font-weight: 400;
+  background: #9ca3af;
+}
