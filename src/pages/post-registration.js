@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import styles from "../styles/PostRegistrationPage.module.css";
+import styles from "./PostRegistrationPage.module.css";
 import { createArticle } from "../api/api";
 import ItemsPageHeader from "../components/ItemsPageHeader";
 import usePostFormValidation from "../hooks/usePostFormValidation";
@@ -64,7 +64,7 @@ export default function PostRegistrationPage() {
       <div className={styles.productForm}>
         <form onSubmit={handleSubmit} noValidate>
           <div className={styles.FormTop}>
-            <h2>게시글 쓰기</h2>
+            <h2 className={styles.PostRegistrationH1}>게시글 쓰기</h2>
             <button type="submit" disabled={isSubmitting || !isFormValid()}>
               등록
             </button>
