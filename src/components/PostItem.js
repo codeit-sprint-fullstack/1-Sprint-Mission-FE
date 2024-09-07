@@ -8,11 +8,11 @@ export default function PostItem({ post }) {
       <div className={styles.postHeader}>
         <h3 className={styles.postTitle}>{post.title}</h3>
         <Image
-          src="/images/article.svg"
+          src="/images/post-Image.png"
           alt={post.title}
           className={styles.bestPostImage}
-          width={100}
-          height={100}
+          width={72}
+          height={72}
         />
       </div>
       <div className={styles.postFooter}>

@@ -6,7 +6,7 @@ export default function BestPostItem({ post }) {
     <div className={styles.bestPostItemCard}>
       <div className={styles.bestIconContainer}>
         <Image
-          src="/assets/images/best_icon.png"
+          src="/images/best_icon.png"
           alt={post.title}
           className={styles.bestIcon}
           width={102}
@@ -17,11 +17,11 @@ export default function BestPostItem({ post }) {
         <div className={styles.titleImage}>
           <h3 className={styles.postTitle}>{post.title}</h3>
           <Image
-            src="/images/article.svg"
+            src="/images/post-Image.png"
             alt={post.title}
             className={styles.bestPostImage}
-            width={100}
-            height={100}
+            width={72}
+            height={72}
           />
         </div>
         <div className={styles.authorLikesDateContainer}>
