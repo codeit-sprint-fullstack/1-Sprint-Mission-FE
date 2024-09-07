@@ -81,3 +81,14 @@ export const fetchArticles = async (params = {}) => {
     throw error;
   }
 };
+
+// 게시글 상세 조회
+export const fetchArticleById = async (id) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("게시글 상세 조회 실패:", error);
+    throw error;
+  }
+};
