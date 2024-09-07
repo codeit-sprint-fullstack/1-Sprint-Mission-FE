@@ -20,14 +20,38 @@ export default function FreeBoardPage() {
   const [searchResults, setSearchResults] = useState([]);
   const [searchError, setSearchError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false); // 로딩 상태 추가
 
-  const { posts, hasNext, loadingError, totalPages, fetchPosts, loading } =
-    usePostList(order, (currentPage - 1) * LIMIT);
+  const {
+    posts,
+    hasNext,
+    loadingError,
+    totalPages,
+    fetchPosts,
+    loading: apiLoading,
+  } = usePostList(order, (currentPage - 1) * LIMIT);
+
+  useEffect(() => {
+    setLoading(apiLoading);
+  }, [apiLoading]);
+
+  useEffect(() => {
+    if (!searchPosts.trim()) {
+      fetchPosts(currentPage);
+    } else {
+      handleSearchClick(); // 검색어가 있을 때 검색 실행
+    }
+  }, [searchPosts, order, currentPage]);
+
+  useEffect(() => {
+    if (!searchPosts.trim()) {
+      fetchPosts(currentPage);
+    }
+  }, [order, currentPage]);
 
   const handleOrderChange = (event) => {
     setOrder(event.target.value);
-    setCurrentPage(1);
-    fetchPosts(1);
+    setCurrentPage(1); // Reset to first page on order change
   };
 
   const handleKeyDown = (e) => {
@@ -41,30 +65,29 @@ export default function FreeBoardPage() {
   };
 
   const handleSearchClick = useCallback(() => {
-    try {
-      if (searchPosts.trim() === "") {
-        setSearchResults([]);
-        setSearchError("⚠ 검색어를 입력해 주세요.");
-        return;
-      }
-      const results = filterPostsByName(posts, searchPosts);
+    if (searchPosts.trim() === "") {
+      setSearchResults([]);
+      setSearchError("⚠ 검색어를 입력해 주세요.");
+      return;
+    }
 
-      if (results.length === 0) {
-        setSearchResults([]);
-        setSearchError("게시글이 존재하지 않습니다.");
-      } else {
-        setSearchResults(results);
-        setSearchError(null);
-      }
-    } catch (error) {
-      setSearchError("검색 중 오류가 발생했습니다.");
-      console.error("검색 오류", error);
+    // 검색어에 맞는 게시글 필터링
+    const results = filterPostsByName(posts, searchPosts);
+
+    if (results.length === 0) {
+      setSearchResults([]);
+      setSearchError("게시글이 존재하지 않습니다.");
+    } else {
+      setSearchResults(results);
+      setSearchError(null);
     }
   }, [searchPosts, posts]);
 
   const handlePageClick = (page) => {
     setCurrentPage(page);
-    fetchPosts(page);
+    if (!searchPosts.trim()) {
+      fetchPosts(page);
+    }
   };
 
   const handleAddPostClick = () => {
@@ -84,17 +107,9 @@ export default function FreeBoardPage() {
     return [];
   }, [posts, order]);
 
-  useEffect(() => {
-    fetchPosts(currentPage);
-  }, [order, currentPage, fetchPosts]);
-
-  const currentPagePosts = sortedPosts.slice(
-    (currentPage - 1) * LIMIT,
-    currentPage * LIMIT
-  );
-
-  const displayPosts =
-    searchResults.length > 0 ? searchResults : currentPagePosts;
+  const currentPagePosts = useMemo(() => {
+    return sortedPosts.slice((currentPage - 1) * LIMIT, currentPage * LIMIT);
+  }, [sortedPosts, currentPage]);
 
   return (
     <div className={styles.App}>
@@ -128,20 +143,21 @@ export default function FreeBoardPage() {
         {loadingError && !loading && (
           <div className={styles.searchError}>{loadingError}</div>
         )}
-        {searchPosts && searchResults.length > 0 && (
+        {searchError && <div className={styles.searchError}>{searchError}</div>}
+        {searchPosts && searchResults.length > 0 && !searchError && (
           <div className={styles.searchResults}>
             <h3>검색 결과</h3>
             <ul>
               {searchResults.map((post) => (
-                <li key={post.id}>{post.name}</li>
+                <li key={post.id}>{post.title}</li>
               ))}
             </ul>
+            <PostList posts={searchResults} />
           </div>
         )}
-        {searchError && <div className={styles.searchError}>{searchError}</div>}
-        {!loading && !searchError && (
+        {!searchPosts && !loading && !searchError && (
           <>
-            <PostList posts={displayPosts} />
+            <PostList posts={currentPagePosts} />
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}

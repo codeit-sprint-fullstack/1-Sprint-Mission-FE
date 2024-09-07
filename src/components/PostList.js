@@ -1,39 +1,21 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import PostItem from "./PostItem";
 import styles from "./PostItem.module.css";
-import { fetchArticles } from "../api/api";
 
-export default function PostList() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export default function PostList({ posts }) {
+  if (!Array.isArray(posts)) {
+    return <div>Invalid data</div>;
+  }
 
-  useEffect(() => {
-    const getPosts = async () => {
-      try {
-        const response = await fetchArticles();
-        console.log("받아온 데이터:", response); // 데이터 구조를 콘솔에 출력하여 확인
-        setPosts(Array.isArray(response) ? response : response.data || []);
-        setLoading(false);
-      } catch (error) {
-        setError("데이터를 가져오는 중 오류가 발생했습니다.");
-        setLoading(false);
-      }
-    };
-
-    getPosts();
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (posts.length === 0) {
+    return <div>불러올 게시물이 없습니다.</div>;
+  }
 
   return (
     <div className={styles.postList}>
-      {Array.isArray(posts) && posts.length > 0 ? (
-        posts.map((post) => <PostItem key={post.id} post={post} />)
-      ) : (
-        <div>불러올 게시물이 없습니다.</div>
-      )}
+      {posts.map((post) => (
+        <PostItem key={post.id} post={post} />
+      ))}
     </div>
   );
 }
