@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PostItem from "./PostItem";
+import styles from "./PostItem.module.css";
 import { fetchArticles } from "../api/api";
 
 export default function PostList() {
@@ -31,7 +32,7 @@ export default function PostList() {
       {Array.isArray(posts) && posts.length > 0 ? (
         posts.map((post) => <PostItem key={post.id} post={post} />)
       ) : (
-        <div>No posts available</div>
+        <div>불러올 게시물이 없습니다.</div>
       )}
     </div>
   );

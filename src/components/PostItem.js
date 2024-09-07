@@ -12,7 +12,7 @@ export default function PostItem({ post }) {
           alt={post.title}
           className={styles.bestPostImage}
           width={100}
-          height={auto}
+          height={100}
         />
       </div>
       <div className={styles.postFooter}>
