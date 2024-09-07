@@ -3,7 +3,7 @@ import axios from "axios";
 //const BASE_URL = 'https://panda-market-api.vercel.app/products';
 
 //로컬 개발 서버
-const BASE_URL = process.env.API_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 console.log("BASE_URL:", BASE_URL);
 
 export async function getProductList({
