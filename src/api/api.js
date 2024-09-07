@@ -125,3 +125,12 @@ export const deleteArticle = async (id) => {
     throw error;
   }
 };
+
+/* 게시글 목록을 필터링하는 함수 */
+export function filterPostsByName(posts, query) {
+  return posts.filter(
+    (post) =>
+      post.title.toLowerCase().includes(query.toLowerCase()) ||
+      post.content.toLowerCase().includes(query.toLowerCase())
+  );
+}
