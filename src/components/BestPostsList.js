@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "../styles/BestPostsList.module.css";
+import styles from "./BestPostsList.module.css";
 import { fetchArticles } from "../api/api"; // 게시글 데이터를 가져오는 API 호출 함수
 import BestPostItem from "./BestPostItem";
 

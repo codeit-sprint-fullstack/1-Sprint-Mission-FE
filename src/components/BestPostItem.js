@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "../styles/BestPostItem.module.css";
+import styles from "./BestPostItem.module.css";
 
 export default function BestPostItem({ post }) {
   return (

@@ -1,0 +1,18 @@
+.bestPosts {
+  max-width: 1200px;
+  margin: 5px auto;
+  margin-bottom: 40px;
+}
+
+.bestPostList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(336px, 1fr));
+  gap: 10px;
+}
+
+/* 베스트 게시글 문구 */
+.bestH1 {
+  font-display: left;
+  font-size: 20px;
+  font-weight: 700;
+}
