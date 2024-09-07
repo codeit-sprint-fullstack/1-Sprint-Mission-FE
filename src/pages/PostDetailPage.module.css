@@ -2,3 +2,17 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
+/* 목록으로 돌아가기 버튼 */
+.BackBtn {
+  background: #3692ff;
+  width: 240px;
+  height: 48px;
+  border-radius: 40px;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+  color: #ffffff;
+  margin: 64px 480px 193px 480px;
+}

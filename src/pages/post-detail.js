@@ -10,6 +10,7 @@ export default function PostDetailPage() {
       <main className={styles.main}>
         <PostDetail />
         <FreeBoardCommentItem />
+        <button className={styles.BackBtn}>목록으로 돌아가기 ↩</button>
       </main>
     </div>
   );
