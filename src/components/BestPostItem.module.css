@@ -26,6 +26,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: 100px;
+  height: auto;
 }
 
 /* 작성자, 좋아요수, 작성날짜 */

@@ -10,7 +10,7 @@ export default function BestPostItem({ post }) {
           alt={post.title}
           className={styles.bestIcon}
           width={102}
-          height={auto}
+          height={102}
         />
       </div>
       <div className={styles.postInfo}>
@@ -21,7 +21,7 @@ export default function BestPostItem({ post }) {
             alt={post.title}
             className={styles.bestPostImage}
             width={100}
-            height={auto}
+            height={100}
           />
         </div>
         <div className={styles.authorLikesDateContainer}>
