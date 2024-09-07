@@ -2,7 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/free-board": "pages/free-board.js",
-  "/post-registration": "pages/post-registration.js",
   "/post-detail": "pages/post-detail.js"
 }
