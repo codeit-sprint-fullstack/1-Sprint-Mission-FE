@@ -92,3 +92,14 @@ export const fetchArticleById = async (id) => {
     throw error;
   }
 };
+
+// 게시글 등록
+export const createArticle = async (articleData) => {
+  try {
+    const response = await axios.post(BASE_URL, articleData);
+    return response.data;
+  } catch (error) {
+    console.error("게시글 등록 실패:", error);
+    throw error;
+  }
+};
