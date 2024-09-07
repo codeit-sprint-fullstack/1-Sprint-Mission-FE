@@ -1,0 +1,29 @@
+/* 수정/삭제 메뉴 */
+.menu {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  display: flex;
+  flex-direction: column;
+  width: 139px;
+}
+
+/* 메뉴 버튼 스타일 */
+.menuButton {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #6b7280;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* 마우스 올렸을 때 */
+.menuButton:hover {
+  background: #e5e7eb;
+}

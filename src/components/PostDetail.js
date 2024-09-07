@@ -3,7 +3,8 @@ import Image from "next/image";
 import AuthorProfile from "../../public/images/profile-image.png";
 import Heart from "../../public/images/ic_heart.png";
 import styles from "./PostDetail.module.css";
-import { updateArticle, deleteArticle } from "../api/api"; // 게시글 수정 삭제 API 호출
+import { updateArticle, deleteArticle } from "../api/api"; // 수정하기 삭제하기 API 호출
+import UpdateDeleteButton from "../components/UpdateDeleteButton"; // 수정/삭제 컴포넌트
 
 export default function PostDetail({ post }) {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -14,11 +15,11 @@ export default function PostDetail({ post }) {
   const handleEdit = async () => {
     try {
       const updatedData = {
-        /* 수정할 데이터 */
+        // 수정할 데이터
       };
       await updateArticle(post.id, updatedData);
       alert("게시글이 수정되었습니다.");
-      setMenuVisible(false); // 메뉴 닫기
+      setMenuVisible(false);
     } catch (error) {
       console.error("게시글 수정 실패:", error);
     }
@@ -29,7 +30,7 @@ export default function PostDetail({ post }) {
     try {
       await deleteArticle(post.id);
       alert("게시글이 삭제되었습니다.");
-      setMenuVisible(false); // 메뉴 닫기
+      setMenuVisible(false);
     } catch (error) {
       console.error("게시글 삭제 실패:", error);
     }
@@ -88,14 +89,7 @@ export default function PostDetail({ post }) {
 
       {/* 수정/삭제 메뉴 */}
       {menuVisible && (
-        <div className={styles.menu}>
-          <button className={styles.menuButton} onClick={handleEdit}>
-            수정하기
-          </button>
-          <button className={styles.menuButton} onClick={handleDelete}>
-            삭제하기
-          </button>
-        </div>
+        <UpdateDeleteButton onEdit={handleEdit} onDelete={handleDelete} />
       )}
     </div>
   );
