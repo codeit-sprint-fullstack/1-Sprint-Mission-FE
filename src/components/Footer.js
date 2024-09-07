@@ -13,7 +13,7 @@ export default function Footer() {
         <div className={styles.sns_icon}>
           <a href="/facebook">
             <Image
-              src="/assets/images/ic_facebook.png"
+              src="/images/ic_facebook.png"
               alt="FACEBOOK"
               width={20}
               height={20}
@@ -21,7 +21,7 @@ export default function Footer() {
           </a>
           <a href="/twitter">
             <Image
-              src="/assets/images/ic_twitter.png"
+              src="/images/ic_twitter.png"
               alt="TWITTER"
               width={20}
               height={20}
@@ -29,7 +29,7 @@ export default function Footer() {
           </a>
           <a href="/youtube">
             <Image
-              src="/assets/images/ic_youtube.png"
+              src="/images/ic_youtube.png"
               alt="YOUTUBE"
               width={20}
               height={20}
@@ -37,7 +37,7 @@ export default function Footer() {
           </a>
           <a href="/instagram">
             <Image
-              src="/assets/images/ic_instagram.png"
+              src="/images/ic_instagram.png"
               alt="INSTAGRAM"
               width={20}
               height={20}
