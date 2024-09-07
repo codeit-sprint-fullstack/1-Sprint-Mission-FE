@@ -1,5 +1,6 @@
 import Image from "next/image";
 import AuthorProfile from "../../public/images/profile-image.png"; // 이미지 경로
+import styles from "./PostItem.module.css";
 
 export default function PostItem({ post }) {
   return (
