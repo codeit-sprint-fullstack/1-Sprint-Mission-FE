@@ -1,0 +1,33 @@
+.footer {
+  background: #111827;
+  width: 100%;
+  height: auto;
+  height: 160px;
+}
+
+.footerList {
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.codeitLogo {
+  margin-top: 32px;
+}
+
+.textList {
+  color: #e5e7eb;
+  margin-top: 32px;
+  display: flex;
+  gap: 30px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.snsLogo {
+  margin-top: 32px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
