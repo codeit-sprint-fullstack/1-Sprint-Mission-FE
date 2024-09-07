@@ -103,3 +103,25 @@ export const createArticle = async (articleData) => {
     throw error;
   }
 };
+
+// 게시글 수정
+export const updateArticle = async (id, articleData) => {
+  try {
+    const response = await axios.patch(`${BASE_URL}/${id}`, articleData);
+    return response.data;
+  } catch (error) {
+    console.error("게시글 수정 실패:", error);
+    throw error;
+  }
+};
+
+// 게시글 삭제
+export const deleteArticle = async (id) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("게시글 삭제 실패:", error);
+    throw error;
+  }
+};
