@@ -1,6 +1,4 @@
-import Image from "next/image";
-
-export default function Home() {
+export function HomeBody() {
   return (
     <main className="main-frame">
       <h1>temp home page</h1>
@@ -18,3 +16,5 @@ export default function Home() {
     </main>
   );
 }
+
+export default HomeBody;

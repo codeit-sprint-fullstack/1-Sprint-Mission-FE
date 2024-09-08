@@ -1,0 +1,11 @@
+.img-frame {
+  width: 7.2rem;
+  height: 7.2rem;
+  box-sizing: border-box;
+  border-radius: 0.6em;
+  border: 0.1rem solid;
+  border-color: var(--gray200-color);
+  /* 임시로 static 한 이미지 사용 */
+  /* content: url(../../public/images/no_image.svg); */
+  position: relative;
+}

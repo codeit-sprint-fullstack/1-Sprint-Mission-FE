@@ -1,0 +1,33 @@
+.search {
+  width: 105.4rem;
+  height: 4.2rem;
+  position: relative;
+}
+
+.input {
+  width: 105.4rem;
+  height: 4.2rem;
+  padding-left: 4.4rem;
+  background-color: var(--gray100-color);
+  box-sizing: border-box;
+  font-size: 1.6rem;
+  line-height: 1.625em;
+  border-radius: 0.75rem;
+}
+
+.icon-frame {
+  width: 2.4rem;
+  height: 2.4rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1.6rem;
+}
+
+/* ===== Tablet - width : 744px ~ 1199px ===== */
+@media (min-width: 744px) and (max-width: 1199px) {
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+}
