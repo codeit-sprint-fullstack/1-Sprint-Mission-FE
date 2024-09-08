@@ -1,0 +1,19 @@
+.submit {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  top: 9px;
+  left: 16px;
+}
+
+.searchInput {
+  width: 1055px;
+  height: 42px;
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 12px;
+  padding-left: 44px;
+  box-sizing: border-box;
+}
