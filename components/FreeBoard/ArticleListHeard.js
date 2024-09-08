@@ -4,7 +4,7 @@ import arrowDown from '@/public/ic_arrow_down.png';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '@/styles/FreeBoard.module.css';
-export default function ArticleListHeard({ articles = [] }) {
+export default function ArticleListHeard() {
   return (
     <>
       <div className={styles.listHeader}>

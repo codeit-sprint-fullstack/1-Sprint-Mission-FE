@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styles from '@/styles/Article.module.css';
 import backBtn from '@/public/btn_back.png';
-import Comment from '@/components/ArticleDetail/Comment.js';
+import Comments from '@/components/ArticleDetail/Comments.js';
 import ArticleDetailInfo from '@/components/ArticleDetail/ArticleDetailInfo';
 
 export default function Article() {
@@ -58,7 +58,7 @@ export default function Article() {
           id={id}
           deleteArticle={deleteArticle}
         />
-        <Comment comments={comments} articleId={articleId} />
+        <Comments comments={comments} articleId={articleId} />
         <Link href='/freeboard'>
           <Image
             src={backBtn}
