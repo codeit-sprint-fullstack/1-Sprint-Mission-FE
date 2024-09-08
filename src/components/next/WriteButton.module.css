@@ -1,0 +1,41 @@
+.writeButton {
+  width: 74px;
+  height: 42px;
+  padding: 12px 23px;
+  background-color: #4f46e5; /* 활성화 기본 색상 */
+  border: none;
+  border-radius: 8px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.writeButton:hover {
+  background-color: #4338ca; /* 마우스 오버 시 색상 */
+}
+
+.writeButton:disabled {
+  background-color: #9ca3af; /* 비활성화 색상 */
+  cursor: not-allowed;
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .writeButton {
+    transform: translateX(-6px);
+  }
+}
+
+@media (max-width: 743px) and (min-width: 375px) {
+  .writeButton {
+    width: 75px;
+    height: 36px;
+    font-size: 14px;
+    line-height: 16.09px;
+    transform: translateX(50px);
+  }
+}
+
