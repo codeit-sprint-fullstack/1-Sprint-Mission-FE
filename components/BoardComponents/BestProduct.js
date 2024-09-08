@@ -1,6 +1,7 @@
 import styles from "./BestProduct.module.css";
 import Image from "next/image";
 import ProductImg from "../../images/product.png";
+import Link from "next/link";
 
 export default function BestProduct({ articles }) {
   const bestArticles = Array.isArray(articles.data) ? articles.data : [];
@@ -12,23 +13,27 @@ export default function BestProduct({ articles }) {
         {bestArticles.length > 0 ? (
           bestArticles.map((article) => (
             <div className={styles.productItem} key={article.id}>
-              <div className={styles.badge}>Best</div>
-              <div className={styles.titleContainer}>
-                <p className={styles.title}>{article.title}</p>
-                <div className={styles.productImgContainer}>
-                  <Image
-                    src={ProductImg}
-                    alt="product"
-                    className={styles.productImg}
-                  />
+              <Link href={`/board/${article.id}`} passHref>
+                <div className={styles.badge}>Best</div>
+                <div className={styles.titleContainer}>
+                  <p className={styles.title}>{article.title}</p>
+                  <div className={styles.productImgContainer}>
+                    <Image
+                      src={ProductImg}
+                      alt="product"
+                      className={styles.productImg}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className={styles.info}>
-                <p className={styles.user}>총명한 판다 ♡ {article.favorite}</p>
-                <p className={styles.date}>
-                  {new Date(article.createdAt).toLocaleDateString()}
-                </p>
-              </div>
+                <div className={styles.info}>
+                  <p className={styles.user}>
+                    총명한 판다 ♡ {article.favorite}
+                  </p>
+                  <p className={styles.date}>
+                    {new Date(article.createdAt).toLocaleDateString()}
+                  </p>
+                </div>
+              </Link>
             </div>
           ))
         ) : (
