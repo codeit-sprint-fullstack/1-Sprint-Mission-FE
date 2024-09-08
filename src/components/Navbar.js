@@ -28,10 +28,10 @@ const Navbar = () => {
 
   return (
     <nav className={navbarClass}>
-      <img 
-        src={logoSrc} 
-        alt="Panda" 
-        className="panda" 
+      <img
+        src={logoSrc}
+        alt="Panda"
+        className="panda"
         onClick={() => navigate('/')}
         style={{ cursor: 'pointer' }}
       />

@@ -63,4 +63,3 @@ const useFetchProducts = (sortOrder, page, pageSize, productSearch, isMarketPage
 
 export default useFetchProducts;
 
-
