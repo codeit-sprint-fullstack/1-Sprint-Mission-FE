@@ -1,5 +1,42 @@
 .body {
   margin: 0 auto;
+  height: auto;
   max-width: 1200px;
-  
+}
+
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 45px;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropDown {
+  width: 130px;
+  height: 42px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  position: relative;
+}
+
+.dropDownText {
+  position: absolute;
+  margin-left: 20px;
+  margin-top: 12px;
+}
+
+.dropDownArrow {
+  position: absolute;
+  margin-left: 90px;
+  margin-top: 10px;
 }

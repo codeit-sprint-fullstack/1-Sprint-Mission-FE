@@ -4,7 +4,7 @@ import bestBadge from '@/public/best_badge.png';
 
 import Image from 'next/image';
 import styles from '@/styles/BestArticleList.module.css';
-import Date from '@/utils/Date.js';
+import CreateDate from '@/utils/CreateDate.js';
 
 export default function BestArticleList({ articles = [] }) {
   return (
@@ -27,7 +27,7 @@ export default function BestArticleList({ articles = [] }) {
               <div className={styles.footer}>
                 <span className={styles.userName}>{article.user.name}</span>
                 <span className={styles.date}>
-                  <Date createDate={article} />
+                  <CreateDate createDate={article} />
                 </span>
               </div>
             </Link>
