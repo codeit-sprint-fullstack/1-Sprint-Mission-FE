@@ -1,0 +1,19 @@
+.contentBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0px 64px;
+  max-width: 988px;
+  padding: 24px;
+  background-color: #FCFCFC;
+}
+
+@media (max-width: 1024px) {
+  .contentBox {
+    flex-direction: column;
+  }
+
+  .mainContainer {
+    gap: 52px;
+  }
+}

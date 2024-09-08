@@ -1,0 +1,8 @@
+.bannerContain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 540px;
+  background-color: #CFE5FF
+}

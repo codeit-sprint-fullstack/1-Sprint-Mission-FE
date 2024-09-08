@@ -1,58 +1,66 @@
 import React from "react";
+import styles from "./index.module.css";
 
-// 콘테이너
-import ContainerContent from "@components/container/ContainerContent";
-
-// Common 컴포넌트
-import InputBar from "@components/common/InputBar";
-import InputArea from "@components/common/InputArea";
-import BtnRoundFunction from "@components/common/BtnRoundFunction";
-import BtnSquareFunction from "@components/common/BtnSquareFunction";
-import SearchBar from "@components/common/SearchBar";
-import DropdownModal from "@components/modal/DropdownModal";
-import SortBtn from "@components/common/SortBtn";
-import CtaBox from "@components/common/CtaBox";
-
+//기능
 import Link from "next/link";
 
-const ic_arrow_round_left = "/images/icon/ic_arrow_round_left.svg";
+// 콘테이너
+import ContentBanner from "@components/container/ContentBanner";
+import TopBottomBanner from "@components/container/TopBottomBanner";
 
-export default function Test() {
+// Common 컴포넌트
+import CtaBox, {RenderOnlyCTA} from "@components/common/CtaBox";
+
+// 기타 컴포넌트
+import Footer from "@components/Footer";
+
+export default function RandingPage() {
   return (
-    <>
-      <ContainerContent>
-        <CtaBox
-          keyword={"컴포넌트"}
-          mainCTA={["컴포넌트 ", "뭐"]}
-          description={"컴포넌트"}
-        />
-        <CtaBox
-          keyword={"컴포넌트"}
-          mainCTA={["컴포넌트 ", "뭐"]}
-          description={"컴포넌트"}
-          alignRight={true}
-        />
-        <div style={{ width: "500px" }}>
-          <InputBar headerText={"안녕"} />
-          <InputArea
-            headerText={"인풋아리아"}
-            customGap={"30px"}
-            customHeight={"100px"}
+    <main className={styles.mainContainer}>
+      <TopBottomBanner>
+        <RenderOnlyCTA mainCTA={["일상의 모든 물건을 ", "거래해 보세요"]} />
+      </TopBottomBanner>
+      <ContentBanner>
+        <article className={styles.contentBox}>
+          <CtaBox
+            keyword={"Hot item"}
+            mainCTA={["인기 상품을 ", "확인해 보세요"]}
+            description={[
+              "가장 HOT한 중고거래 물품을",
+              "판다 마켓에서 확인해 보세요",
+            ]}
           />
-          <Link href="/freeboard">
-            <BtnSquareFunction innerText={"로그인"} activeState={true} />
-          </Link>
-          <BtnRoundFunction
-            innerText={"목록으로 돌아가기"}
-            imgSrc={ic_arrow_round_left}
-            activeState={true}
+        </article>
+      </ContentBanner>
+      <ContentBanner>
+        <article className={styles.contentBox}>
+          <CtaBox
+            keyword={"Serch"}
+            mainCTA={["구매를 원하는", "상품을 검색하세요"]}
+            description={[
+              "구매하고 싶은 물품은 검색해서", 
+              "쉽게 찾아보세요"
+            ]}
+            alignRight={true}
           />
-          <SearchBar />
-          <SortBtn CurrentOption={"최신순"} />
-          <DropdownModal options={["test1", "test2", "test3"]} />
-        </div>
-      </ContainerContent>
-      <footer />
-    </>
+        </article>
+      </ContentBanner>
+      <ContentBanner>
+        <article className={styles.contentBox}>
+          <CtaBox
+            keyword={"Register"}
+            mainCTA={["판매를 원하는 ", "상품을 등록하세요"]}
+            description={[
+              "어떤 물건이든 판매하고 싶은 상품을",
+              "쉽게 등록하세요",
+            ]}
+          />
+        </article>
+      </ContentBanner>
+      <TopBottomBanner>
+        <CtaBox mainCTA={["믿을 수 있는", "판다마켓 중고 거래"]} />
+      </TopBottomBanner>
+      <Footer />
+    </main>
   );
 }
