@@ -8,35 +8,63 @@
 
 .contentSection {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   width: 100%;
+  height: fit-content;
   max-width: 1520px;
   padding: 32px 24px;
+  flex-grow: 1;
 }
 
 .copyright {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  flex-grow: 1;
   font-size: 1rem;
   color: #9CA3AF;
   font-weight: 400;
 }
 
+.menuAndSNS {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-grow: 1;
+}
+
 .contentMenu {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0px 59px;
+  /* justify-content: flex-start; */
+  flex-grow: 1;
   font-size: 1rem;
   font-weight: 400;
   color: #E5E7EB;
+  gap: 0px 59px;
 }
 
 .iconSNS {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   gap: 0px 12px;
+  justify-content: flex-end;
+}
+
+.iconSNS img{
+  width: 20px;
+  height: 20px;
+}
+
+/* 744px 이하에서 레이아웃 변경 */
+@media (max-width: 744px) {
+  .contentSection {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 24px 0px;
+  }
+
+  .copyright {
+    order: 1;
+  }
+
+  .menuAndSNS {
+    order: 0;
+  }
 }
