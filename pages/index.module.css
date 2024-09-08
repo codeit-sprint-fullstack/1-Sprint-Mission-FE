@@ -1,19 +1,40 @@
 .contentBox {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  gap: 0px 64px;
   max-width: 988px;
-  padding: 24px;
+  height: 444px;
+  gap: 0px 64px;
   background-color: #FCFCFC;
 }
 
-@media (max-width: 1024px) {
+.imgBox {
+  display: flex;
+  width: auto;
+  height: 444px;
+}
+
+@media (max-width: 988px) {
   .contentBox {
+    width: 100%;
+    height: 100%;
     flex-direction: column;
+    background-color: inherit;
+    padding: 24px;
+    gap: 24px;
+  }
+  .imgBox {
+    width: 100%;
+    height: 100%;
+  }
+
+  .imgBox img{
+    width: 100%;
+    height: 100%;
   }
 
   .mainContainer {
     gap: 52px;
   }
 }
+

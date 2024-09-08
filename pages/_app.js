@@ -8,9 +8,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <PageNav />
-      <main>
-        <Component {...pageProps} />
-      </main>
+      <Component {...pageProps} />
       {/* <Footer /> */}
     </>
   );
