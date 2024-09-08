@@ -7,12 +7,20 @@ import styles from '@/styles/Comment.module.css';
 function CreateDate({ createDate }) {
   const createdDate = new Date(createDate.createdAt);
   const nowDate = new Date();
+
   let diff = Math.abs(nowDate.getTime() - createdDate.getTime());
-  diff = Math.ceil(diff / (1000 * 60 * 60 * 24));
 
-  const result = `${diff}일 전`;
+  let day = Math.ceil(diff / (1000 * 60 * 60 * 24));
+  let hours = Math.ceil(diff / (1000 * 60 * 60));
+  let minute = Math.ceil(diff / (1000 * 60));
 
-  return result;
+  if (day > 1) {
+    return `${day}일 전`;
+  } else if (hours > 1) {
+    return `${hours}시간 전`;
+  } else {
+    return `${minute}분 전`;
+  }
 }
 
 export default function CommentList({ comments }) {
