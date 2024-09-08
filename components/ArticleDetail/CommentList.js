@@ -8,19 +8,16 @@ function CreateDate({ createDate }) {
   const createdDate = new Date(createDate.createdAt);
   const nowDate = new Date();
 
-  let diff = Math.abs(nowDate.getTime() - createdDate.getTime());
+  const timeDiff = nowDate - createdDate;
 
-  let day = Math.ceil(diff / (1000 * 60 * 60 * 24));
-  let hours = Math.ceil(diff / (1000 * 60 * 60));
-  let minute = Math.ceil(diff / (1000 * 60));
+  const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+  const minutes = Math.floor(timeDiff / (1000 * 60));
 
-  if (day > 1) {
-    return `${day}일 전`;
-  } else if (hours > 1) {
-    return `${hours}시간 전`;
-  } else {
-    return `${minute}분 전`;
-  }
+  if (days > 0) return `${days}일 전`;
+  if (hours > 0) return `${hours}시간 전`;
+  if (minutes > 0) return `${minutes}분 전`;
+  return `방금 전`;
 }
 
 export default function CommentList({ comments }) {
