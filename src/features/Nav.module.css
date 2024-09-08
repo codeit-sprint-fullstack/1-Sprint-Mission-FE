@@ -1,0 +1,48 @@
+.nav {
+  height: 70px;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.container {
+  max-width: 1520px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+}
+
+.article {
+  width: 109px;
+  height: 69px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 32px;
+}
+
+.market {
+  width: 109px;
+  height: 69px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active {
+  text-decoration: none;
+  color: var(--color-blue-100);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.inactive {
+  text-decoration: none;
+  color: var(--color-gray-300);
+  font-size: 1.125rem;
+  font-weight: 700;
+}

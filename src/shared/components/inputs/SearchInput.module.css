@@ -1,0 +1,28 @@
+.search-container {
+  display: flex;
+  position: relative;
+}
+
+.search-image {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 16px;
+  top: 9px;
+}
+
+.search-input {
+  width: 990px;
+  height: 24px;
+  border-radius: 12px;
+  padding: 9px 20px 9px 44px;
+  background-color: #f3f4f6;
+  border: 0;
+  color: var(--color-gray-100);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  outline: 1px solid var(--color-blue-100);
+}
