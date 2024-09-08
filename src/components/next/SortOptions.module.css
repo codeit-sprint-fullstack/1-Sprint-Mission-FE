@@ -1,0 +1,73 @@
+.sortOptionsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sortOptions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.sortOptions select {
+  width: 130px;
+  height: 42px;
+  padding: 12px 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background-color: #ffffff;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 26px;
+  color: #1f2937;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.dropdownIcon {
+  position: absolute;
+  right: 20px;
+  width: 16px;
+  height: auto;
+  pointer-events: none;
+}
+
+/* 태블릿 버전 이하에서의 드롭다운 아이콘 크기 조정 */
+@media (max-width: 1199px) {
+  .dropdownIcon {
+    width: 14px;
+    height: 10px;
+  }
+}
+
+/* 모바일 버전에서의 드롭다운 아이콘 크기 조정 */
+@media (max-width: 743px) {
+  .sortOptionsContainer {
+    width: 80px;
+    display: flex;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sortOptionsContainer img {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    cursor: pointer;
+  }
+
+  .dropdownIcon {
+    width: 12px; /* 모바일에서는 더 작은 크기 */
+    height: 5px;
+  }
+}
+
