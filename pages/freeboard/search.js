@@ -1,32 +1,30 @@
-import ArticleList from '@/components/ArticleList';
-import SearchForm from '@/components/SearchForm';
+import ArticleList from '@/components/FreeBoard/ArticleList';
+import SearchForm from '@/components/FreeBoard/SearchForm';
 import axios from '@/lib/axios.js';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styles from '@/styles/Search.module.css';
-
-import mock from '@/lib/mock.js';
 
 export default function Search() {
   const [articles, setArticles] = useState([]);
   const router = useRouter();
   const { keyword } = router.query;
 
-  // async function getArticles(query) {
-  //   const res = await axios.get(`/articles/?keyword=${query}`);
-  //   const nextArticles = res.data.results;
-  //   setArticles(setArticles);
-  // }
+  async function getArticles() {
+    try {
+      const res = await axios.get(
+        `https://sprint-be-h8kw.onrender.com/articles?keyword=${keyword}`
+      );
+      const nextArticle = res.data;
+      setArticles(nextArticle);
+    } catch (error) {
+      console.error('Error posting data:', error);
+    }
+  }
 
-  // function getArticles(query) {
-  //   const res = await axios.get(`/articles/?keyword=${query}`);
-  //   const nextArticles = res.data.results;
-  //   setArticles(setArticles);
-  // }
-
-  // useEffect(() => {
-  //   getArticles(keyword);
-  // }, [keyword]);
+  useEffect(() => {
+    getArticles(keyword);
+  }, [keyword]);
 
   return (
     <>

@@ -4,17 +4,9 @@ import noComment from '@/public/no_comment.png';
 import Image from 'next/image';
 import styles from '@/styles/Comment.module.css';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function CreateDate({ createDate }) {
-  // let data = new Date(createDate.createdAt);
-
-  // let year = data.getFullYear();
-  // let month = data.getMonth() + 1;
-  // let date = data.getDate();
-
-  // let resultDate = `${year}.${month}.${date}`;
-  // console.log(resultDate);
-
   const createdDate = new Date(createDate.createdAt);
   const nowDate = new Date();
   let diff = Math.abs(nowDate.getTime() - createdDate.getTime());
@@ -25,13 +17,29 @@ function CreateDate({ createDate }) {
   return result;
 }
 
-export default function Comments({ comments }) {
+export default function Comments({ comments, articleId }) {
   const [comment, setComment] = useState('');
   const [submit, setSubmit] = useState(false);
 
   const handleComment = (event) => {
     setComment(event.target.value);
   };
+
+  async function postComment() {
+    try {
+      const res = await axios.post(
+        `https://sprint-be-h8kw.onrender.com/comments`,
+        {
+          content: comment,
+          articleId: articleId,
+          userId: '3160c83b-8dcc-4ca2-9d51-717c5246d414',
+        }
+      );
+      console.log(res.data);
+    } catch (error) {
+      console.error('Error posting data:', error);
+    }
+  }
 
   useEffect(() => {
     if (comment) {
@@ -40,6 +48,11 @@ export default function Comments({ comments }) {
       setSubmit(false);
     }
   }, [comment]);
+
+  function handleSubmit(e) {
+    postComment();
+    setComment('');
+  }
 
   return (
     <div className={styles.submit}>
@@ -51,13 +64,14 @@ export default function Comments({ comments }) {
         onChange={handleComment}
         className={styles.inputComment}
       />
-      {submit ? (
-        <button className={styles.submitBtn}>등록</button>
-      ) : (
-        <button disabled={submit} className={styles.btn}>
-          등록
-        </button>
-      )}
+      <button
+        disabled={!submit}
+        className={submit ? styles.submitBtn : styles.btn}
+        type='button'
+        onClick={handleSubmit}
+      >
+        등록
+      </button>
 
       {comments.length > 0 ? (
         comments.map((comment) => (

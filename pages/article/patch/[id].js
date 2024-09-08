@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import { useRouter } from 'next/router';
-import data from '@/lib/mock.js';
+import axios from 'axios';
 
 export default function Post() {
   const [titleValue, setTitleValue] = useState('');
@@ -12,6 +12,38 @@ export default function Post() {
 
   const router = useRouter();
   const { id } = router.query;
+
+  async function getArticle(targetId) {
+    try {
+      const res = await axios.get(
+        `https://sprint-be-h8kw.onrender.com/articles/${targetId}`
+      );
+      const nextArticle = res.data;
+      console.log(nextArticle);
+      setTitleValue(nextArticle.title);
+      setContentValue(nextArticle.content);
+    } catch (error) {
+      console.error('Error posting data:', error);
+    }
+  }
+
+  async function patchArticle(targetId) {
+    try {
+      const res = await axios.patch(
+        `https://sprint-be-h8kw.onrender.com/articles/${targetId}`,
+        {
+          title: titleValue,
+          content: contentValue,
+        }
+      );
+      const nextArticle = res.data;
+      console.log(nextArticle);
+      setTitleValue(nextArticle.title);
+      setContentValue(nextArticle.content);
+    } catch (error) {
+      console.error('Error posting data:', error);
+    }
+  }
 
   const titleChange = (event) => {
     setTitleValue(event.target.value);
@@ -27,14 +59,11 @@ export default function Post() {
 
   useEffect(() => {
     if (!id) return;
-    const nextArticle = data.find((article) => article.id === id);
-    setTitleValue(nextArticle.title);
-    setContentValue(nextArticle.content);
+    getArticle(id);
   }, [id]);
 
   const handleSubmit = () => {
-    // 여기에 실제 데이터 제출 로직을 추가하세요.
-    // 예를 들어, API 호출을 통해 수정된 데이터를 서버에 제출하는 작업 등을 추가합니다.
+    patchArticle(id);
     router.push(`/article/${id}`); // 제출 후 페이지 이동
   };
 
