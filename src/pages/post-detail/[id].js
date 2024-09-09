@@ -6,6 +6,7 @@ import FreeBoardCommentItem from "../../components/FreeBoardCommentItem";
 import Footer from "../../components/Footer";
 import styles from "../PostDetailPage.module.css";
 import { fetchArticleById, fetchComments, createComment } from "../../api/api"; // 게시글 및 댓글 전체 조회 api 호출
+import NoComments from "../../components/NoComments"; // NoComments 컴포넌트 import
 
 export default function PostDetailPage() {
   const router = useRouter();
@@ -93,13 +94,17 @@ export default function PostDetailPage() {
           />
         )}
         <div className={styles.commentsList}>
-          {filteredComments.map((comment) => (
-            <FreeBoardCommentItem
-              key={comment.id}
-              comment={comment}
-              onCommentUpdate={handleCommentUpdate}
-            />
-          ))}
+          {filteredComments.length === 0 ? (
+            <NoComments />
+          ) : (
+            filteredComments.map((comment) => (
+              <FreeBoardCommentItem
+                key={comment.id}
+                comment={comment}
+                onCommentUpdate={handleCommentUpdate}
+              />
+            ))
+          )}
         </div>
         <button className={styles.BackBtn} onClick={() => router.back()}>
           목록으로 돌아가기 ↩
