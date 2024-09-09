@@ -1,39 +1,43 @@
-import { useState } from 'react';
-import './DropDown.css';
+import { useState, useRef } from "react";
+import "./DropDown.css";
 
-import arrowIcon from '../../assets/ic_arrow_down.svg';
-import sortIcon from '../../assets/ic_sort.svg';
-import useMediaQuery from '../../hooks/useMediaQuery';
-
-export default function DropDown({ setOrderBy, orderBy }) {
+export default function DropDown({ setSortBy, sortBy }) {
   const [isOpen, setIsOpen] = useState(false);
-  const mobileSize = useMediaQuery('mobileSize');
+  const dropDownRef = useRef(0);
 
   const toggleDropDown = () => {
     setIsOpen(!isOpen);
   };
 
   const handleSorting = (order) => {
-    setOrderBy(order);
+    setSortBy(order);
     setIsOpen(false);
   };
 
-  return (
-    <div className='DropDown'>
-      <button onClick={toggleDropDown}>
-        {mobileSize ? undefined : orderBy === 'recent' ? '최신순' : '인기순'}
+  const handleClickOutside = (e) => {
+    if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
 
-        {mobileSize ? (
-          <img src={sortIcon} alt='sort icon' />
-        ) : (
-          <img src={arrowIcon} alt='arrow icon' className='arrow-icon' />
-        )}
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div className="DropDown">
+      <button onClick={toggleDropDown} ref={dropDownRef}>
+        {sortBy === "recent" ? "최신순" : "인기순"}
+        <div className={styles["sort-icon"]} />
       </button>
 
       {isOpen && (
         <ul>
-          <li onClick={() => handleSorting('recent')}>최신순</li>
-          <li onClick={() => handleSorting('favorite')}>인기순</li>
+          <li onClick={() => handleSorting("recent")}>최신순</li>
+          <li onClick={() => handleSorting("best")}>인기순</li>
         </ul>
       )}
     </div>
