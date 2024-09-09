@@ -3,26 +3,30 @@ import Link from "next/link";
 import logo from "../images/pandaLogo.png";
 import smallLogo from "../images/pandaLogo_small.png";
 import icon from "../images/userIcon.png";
-import "@styles/Navigation.css";
+import styles from "@styles/Navigation.module.css";
 
 function Navigation() {
   return (
-    <nav className="nav-bar">
-      <div className="nav-left">
+    <nav className={styles.navBar}>
+      <div className={styles.navLeft}>
         <Link href="/items">
-          <img className="logo" src={logo} alt="Home Logo" />
-          <img className="small-logo" src={smallLogo} alt="Home Logo small" />
+          <img className={styles.logo} src={logo} alt="Home Logo" />
+          <img
+            className={styles.smallLogo}
+            src={smallLogo}
+            alt="Home Logo small"
+          />
         </Link>
-        <div className="menu text-2lg bold">
-          <span className="menu-content">
+        <div className={`${styles.menu} text-2lg bold`}>
+          <span className={styles.menuContent}>
             <Link href="/community">자유게시판</Link>
           </span>
-          <span className="menu-content">
+          <span className={styles.menuContent}>
             <Link href="/items">중고마켓</Link>
           </span>
         </div>
       </div>
-      <img className="icon" src={icon} alt="User Icon" />
+      <img className={styles.icon} src={icon} alt="User Icon" />
     </nav>
   );
 }
