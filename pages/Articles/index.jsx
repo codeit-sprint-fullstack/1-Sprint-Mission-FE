@@ -17,36 +17,38 @@ function BestArticles({ item }) {
   const date = dateFormatYYYYMMDD(createAt);
 
   return (
-    <div className={styles.best_article_box}>
-      <div className={styles.medal_box}>
-        <Image src={ic_medal} width={16} height={16} alt="메달아이콘" />
-        <span>Best</span>
-      </div>
-      <div className={styles.best_item_content_box}>
-        <span className={styles.best_article_title}>{title}</span>
-        <Image
-          className={styles.best_article_image}
-          src={imgDefault}
-          alt="게시글이미지"
-        />
-      </div>
-      <div className={styles.item_data_box}>
-        <div className={styles.item_data_box}>
-          <span>{user.name}</span>
+    <Link href={`/Articles/${item.id}`}>
+      <div className={styles.best_article_box}>
+        <div className={styles.medal_box}>
+          <Image src={ic_medal} width={16} height={16} alt="메달아이콘" />
+          <span>Best</span>
+        </div>
+        <div className={styles.best_item_content_box}>
+          <span className={styles.best_article_title}>{title}</span>
           <Image
-            width={16}
-            height={16}
-            className={styles.favorite_icon}
-            src={ic_heart}
-            alt="좋아요이미지"
+            className={styles.best_article_image}
+            src={imgDefault}
+            alt="게시글이미지"
           />
-          <span>{favorite}</span>
         </div>
         <div className={styles.item_data_box}>
-          <span className={styles.create_time}>{date}</span>
+          <div className={styles.item_data_box}>
+            <span>{user.name}</span>
+            <Image
+              width={16}
+              height={16}
+              className={styles.favorite_icon}
+              src={ic_heart}
+              alt="좋아요이미지"
+            />
+            <span>{favorite}</span>
+          </div>
+          <div className={styles.item_data_box}>
+            <span className={styles.create_time}>{date}</span>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -132,6 +134,7 @@ function Articles({ bestItems, defaultParams, total, Items }) {
   const [params, setParams] = useState(defaultParams);
   const [articles, setArticles] = useState(Items);
   const [totalCount, setTotalCont] = useState(total);
+  const [keyword, setKeyword] = useState("");
 
   const getArticles = useCallback(async () => {
     try {
@@ -150,9 +153,14 @@ function Articles({ bestItems, defaultParams, total, Items }) {
     }));
   };
 
+  const onChangeKeyword = (e) => {
+    e.preventDefault();
+    setKeyword(e.target.value);
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    if (e.target.key === "Enter") onChange("keyword", e.target.value);
+    onChange("keyword", keyword);
   };
 
   const onOrderChange = (e) => {
@@ -191,9 +199,10 @@ function Articles({ bestItems, defaultParams, total, Items }) {
           />
           <form onSubmit={onSubmit}>
             <input
+              onChange={onChangeKeyword}
               className={styles.search_input}
               type="text"
-              // value={params.keyword || ""}
+              value={keyword || ""}
               placeholder="검색할 게시글을 입력해주세요."
             />
           </form>

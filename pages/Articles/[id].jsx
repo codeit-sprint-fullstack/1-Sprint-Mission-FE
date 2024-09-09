@@ -88,14 +88,17 @@ function DetailArticle({ article }) {
   const [Confirm, setConfirm] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
+  // 모달 오픈상태 값
   const openAlertModal = () => setAlert(true);
   const closeAlertModal = () => setAlert(false);
   const openConfirmModal = () => setConfirm(true);
   const closeConfirmModal = () => setConfirm(false);
 
+  //수정/삭제 드롭다운오픈 상태 값
   const [ArticleDropdown, setArticleDropdown] = useState(false);
   const openArticleDropdown = () => setArticleDropdown(!ArticleDropdown);
 
+  // 게시글수정을 선택시 Registration 페이지의 쿼리로 게시글의 id를 전달한다.
   const updateArticle = () => {
     router.push(`/Articles/Registration?id=${article.id}`);
   };
@@ -150,6 +153,7 @@ function DetailArticle({ article }) {
 
   return (
     <>
+      {/* 모달을 콘텐츠의 최상위에 위치하기 위함 */}
       <AlertModal
         onClose={closeAlertModal}
         isOpen={Alert}
@@ -176,6 +180,7 @@ function DetailArticle({ article }) {
               <DropdownData
                 handleUpdate={updateArticle}
                 handleDelete={() => {
+                  //삭제의 경우 confirm 모달을 통하여 확인하여 진행한다.
                   setAlertMessage(
                     "게시글이 영구적으로 삭제됩니다. 삭제 하시겠습니까?"
                   );
@@ -232,6 +237,7 @@ function DetailArticle({ article }) {
             {comment.map((item) => (
               <Comment key={item.id} item={item} />
             ))}
+            {/* 게시글의 등록된 댓글이 없다면 아래의 내용을 렌더링한다. */}
             {comment.length < 1 && (
               <>
                 <Image
