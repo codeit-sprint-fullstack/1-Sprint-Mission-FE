@@ -178,7 +178,9 @@ function Articles({ bestItems, defaultParams, total, Items }) {
       <div className={styles.articles_box}>
         <div className={styles.articles_head_box}>
           <h2>게시글</h2>
-          <button className={styles.articles_create_btn}>글쓰기</button>
+          <Link href={"/Articles/Registration"}>
+            <button className={styles.articles_create_btn}>글쓰기</button>
+          </Link>
         </div>
         <div className={styles.search_box}>
           <Image

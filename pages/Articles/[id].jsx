@@ -86,6 +86,7 @@ function DetailArticle({ article }) {
       }
     } catch (error) {
       setAlertMessage("댓글생성에 실패했습니다." + error.name);
+      openModal();
       console.log(error);
     }
   };

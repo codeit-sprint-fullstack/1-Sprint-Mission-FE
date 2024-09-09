@@ -2,6 +2,10 @@ import { useState } from "react";
 
 const validateField = (name, value) => {
   switch (name) {
+    case "title":
+      return value.length >= 1 && value.length <= 15
+        ? ""
+        : "제목은 1자리 이상 15자리 이내 입니다.";
     case "name":
       return value.length >= 1 && value.length <= 10
         ? ""
@@ -9,7 +13,7 @@ const validateField = (name, value) => {
     case "description":
       return value.length >= 10 && value.length <= 100
         ? ""
-        : "상품 소개는 10자리 이상 100자리 이내 입니다.";
+        : "내용은 10자리 이상 100자리 이내 입니다.";
     case "price":
       return value > 0 ? "" : "판매 가격은 1원 이상입니다.";
     case "tag":
