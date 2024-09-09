@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './SearchBar.module.css'; // CSS 모듈로 변경
+import styles from './SearchBar.module.css';
 
 const SearchBar = ({ setKeyword }) => {
   const handleChange = (e) => {
@@ -7,11 +7,11 @@ const SearchBar = ({ setKeyword }) => {
   };
 
   return (
-    <div className={styles.searchBar}> {/* CSS 모듈 방식으로 변경 */}
-      <img src="/image/glass.svg" alt="Search Icon" className={styles.searchIcon} /> {/* CSS 모듈 방식으로 변경 */}
+    <div className={styles.searchBar}> 
+      <img src="/image/glass.svg" alt="Search Icon" className={styles.searchIcon} />
       <input
         type="text"
-        placeholder="게시글 검색"
+        placeholder="검색할 게시글을 입력해주세요"
         onChange={handleChange}
         className={styles.searchInput}
       />
