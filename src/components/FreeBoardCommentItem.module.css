@@ -55,7 +55,7 @@
 .imageAuthorDate {
   display: flex;
   flex-direction: row;
-  gap: 4px;
+  gap: 10px;
 }
 /* 작성자와 작성 시간*/
 .authorDate {
