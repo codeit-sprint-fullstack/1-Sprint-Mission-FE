@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import styles from "./FreeBoardCommentItem.module.css";
 import AuthorProfile from "../../public/images/profile-image.png";
@@ -10,6 +10,9 @@ export default function FreeBoardCommentItem({ comment, onCommentUpdate }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(comment.content);
 
+  // 메뉴를 참조하기 위한 ref
+  const menuRef = useRef(null);
+
   const toggleMenu = () => setMenuVisible(!menuVisible);
 
   // 댓글 수정 핸들러
@@ -18,7 +21,7 @@ export default function FreeBoardCommentItem({ comment, onCommentUpdate }) {
       try {
         await updateComment(comment.id, { content: editedContent });
         setIsEditing(false);
-        onCommentUpdate(); // 댓글 수정 후,상위 컴포넌트에 알림
+        onCommentUpdate(); // 댓글 수정 후, 상위 컴포넌트에 알림
       } catch (error) {
         console.error("댓글 수정 실패:", error);
       }
@@ -38,6 +41,22 @@ export default function FreeBoardCommentItem({ comment, onCommentUpdate }) {
 
   // 댓글 수정 입력 핸들러
   const handleChange = (e) => setEditedContent(e.target.value);
+
+  // 메뉴를 닫는 함수
+  const closeMenu = (e) => {
+    // 클릭된 위치가 메뉴 외부인지 확인
+    if (menuRef.current && !menuRef.current.contains(e.target)) {
+      setMenuVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    // 컴포넌트가 마운트될 때 클릭 이벤트 리스너 추가
+    document.addEventListener("mousedown", closeMenu);
+
+    // 컴포넌트 언마운트 시 클릭 이벤트 리스너 제거
+    return () => document.removeEventListener("mousedown", closeMenu);
+  }, []);
 
   return (
     <div className={styles.commentContainer}>
@@ -80,10 +99,12 @@ export default function FreeBoardCommentItem({ comment, onCommentUpdate }) {
 
       {/* 수정/삭제 메뉴 */}
       {menuVisible && (
-        <UpdateDeleteButton
-          onEdit={() => setIsEditing(true)} // 수정 버튼 클릭 시 편집 모드로 전환
-          onDelete={handleDelete} // 삭제버튼 클릭 시 댓글 삭제
-        />
+        <div ref={menuRef}>
+          <UpdateDeleteButton
+            onEdit={() => setIsEditing(true)} // 수정 버튼 클릭 시 편집 모드로 전환
+            onDelete={handleDelete} // 삭제버튼 클릭 시 댓글 삭제
+          />
+        </div>
       )}
     </div>
   );

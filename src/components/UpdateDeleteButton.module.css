@@ -1,8 +1,8 @@
 /* 수정/삭제 메뉴 */
 .menu {
   position: absolute;
-  top: 30px;
-  right: 0;
+  top: 0;
+  right: 20px;
   border-radius: 8px;
   border: 1px solid #d1d5db;
   display: flex;
