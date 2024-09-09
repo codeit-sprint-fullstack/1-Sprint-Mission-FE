@@ -1,0 +1,32 @@
+.text-input-title {
+  width: 1200px;
+  height: 56px;
+  border-radius: 12px;
+  padding: 16px 24px 16px 24px;
+  background-color: #f3f4f6;
+  border: 0;
+  color: var(--color-gray-100);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.text-input-title:focus {
+  outline: 1px solid var(--color-blue-100);
+}
+
+.textarea-input-content {
+  width: 1200px;
+  height: 282px;
+  border-radius: 12px;
+  padding: 16px 24px 16px 24px;
+  background-color: #f3f4f6;
+  border: 0;
+  color: var(--color-gray-100);
+  font-weight: 400;
+  font-size: 1rem;
+  resize: none;
+}
+
+.textarea-input-content:focus {
+  outline: 1px solid var(--color-blue-100);
+}
