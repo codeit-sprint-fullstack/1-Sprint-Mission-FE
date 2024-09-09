@@ -27,10 +27,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/post-detail": [
+    "/free-board": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/post-detail.js"
+      "static/chunks/pages/free-board.js"
+    ],
+    "/post-registration": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/post-registration.js"
     ]
   },
   "ampFirstPages": []

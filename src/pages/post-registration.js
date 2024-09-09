@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "./PostRegistrationPage.module.css";
 import { createArticle } from "../api/api";
-import ItemsPageHeader from "../components/ItemsPageHeader";
+import FreeBoardPageHeader from "../components/FreeBoardPageHeader";
 import usePostFormValidation from "../hooks/usePostFormValidation";
 import Footer from "../components/Footer";
 
@@ -60,7 +60,7 @@ export default function PostRegistrationPage() {
 
   return (
     <div className={styles.RegistrationPage}>
-      <ItemsPageHeader />
+      <FreeBoardPageHeader />
       <div className={styles.productForm}>
         <form onSubmit={handleSubmit} noValidate>
           <div className={styles.FormTop}>
