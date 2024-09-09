@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { createArticle } from '../../src/api/api'; // API 파일에서 함수 가져오기
+import styles from '../../styles/create.module.css';
 
 const CreateArticle = () => {
   const [title, setTitle] = useState('');
@@ -8,37 +10,48 @@ const CreateArticle = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL; // 환경 변수 사용
-    const response = await fetch(`${apiUrl}/articles`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ title, content }),
-    });
 
-    if (response.ok) {
-      const article = await response.json();
+    try {
+      // createArticle 함수 호출로 API 요청
+      const article = await createArticle({ title, content });
+      // 게시글이 생성되면 상세 페이지로 이동
       router.push(`/articles/${article.id}`);
-    } else {
-      console.error('Failed to create article');
+    } catch (error) {
+      console.error('Failed to create article:', error);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="제목을 입력하세요"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <textarea
-        placeholder="내용을 입력하세요"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      />
-      <button type="submit" disabled={!title || !content}>등록</button>
+    <form onSubmit={handleSubmit} className={styles.registrationForm}>
+      <div className={styles.formHeader}>
+        <h2>게시글 쓰기</h2>
+        <button
+          type="submit"
+          className={styles.submitButton}
+          disabled={!title || !content}
+        >
+          등록
+        </button>
+      </div>
+      <div className={styles.formGroup}>
+        <label htmlFor="title">*제목</label>
+        <input
+          type="text"
+          id="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="제목을 입력해주세요"
+        />
+      </div>
+      <div className={styles.formGroup}>
+        <label htmlFor="content">*내용</label>
+        <textarea
+          id="content"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          placeholder="내용을 입력해주세요"
+        />
+      </div>
     </form>
   );
 };
