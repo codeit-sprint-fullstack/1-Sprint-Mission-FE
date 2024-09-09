@@ -3,10 +3,12 @@ import Image from "next/image";
 import AuthorProfile from "../../public/images/profile-image.png";
 import Heart from "../../public/images/ic_heart.png";
 import styles from "./PostDetail.module.css";
+import { useRouter } from "next/router";
 import { updateArticle, deleteArticle, createComment } from "../api/api"; // 수정, 삭제, 댓글 등록 API 호출
 import UpdateDeleteButton from "./UpdateDeleteButton"; // 수정/삭제 컴포넌트
 
 export default function PostDetail({ post, onCommentSubmit }) {
+  const router = useRouter(); // useRouter 훅을 사용하여 router 객체 생성
   const [menuVisible, setMenuVisible] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [updatedTitle, setUpdatedTitle] = useState(post.title);
@@ -67,6 +69,11 @@ export default function PostDetail({ post, onCommentSubmit }) {
         console.error("댓글 등록 실패:", error);
       }
     }
+  };
+
+  // 수정 페이지로 이동하는 핸들러
+  const handleEditRedirect = () => {
+    router.push(`/post-edit/${post.id}`);
   };
 
   return (
@@ -146,7 +153,7 @@ export default function PostDetail({ post, onCommentSubmit }) {
       {/* 수정/삭제 메뉴 */}
       {menuVisible && (
         <UpdateDeleteButton
-          onEdit={handleEdit}
+          onEdit={handleEditRedirect}
           onDelete={handleDelete}
           isEditing={isEditing}
           toggleEdit={toggleEdit}

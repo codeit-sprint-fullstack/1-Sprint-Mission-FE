@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./UpdateDeleteButton.module.css"; // CSS 파일
+import { Link } from "react-router-dom";
 
 export default function UpdateDeleteButton({ onEdit, onDelete }) {
   return (
