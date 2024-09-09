@@ -1,0 +1,72 @@
+@use "@/styles/globals/shared" as g;
+
+.ArticleCard {
+  @include g.flex-box(column, center, center);
+  background-color: g.$grey-50;
+  position: relative;
+  width: 100%;
+  padding: 46px 24px 16px;
+  border-radius: 8px;
+
+  h4 {
+    @include g.font(20, 600);
+    line-height: 32px;
+    color: g.$grey-900;
+  }
+}
+
+.top {
+  position: absolute;
+  top: 0;
+  left: 24px;
+  background-color: g.$primary-color;
+  border-radius: 0px 0px 16px 16px;
+  width: 102px;
+  height: 30px;
+
+  @include g.flex-box(row, center, center, 4px);
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+  span {
+    @include g.font(16, 600);
+    color: #fff;
+  }
+}
+
+.middle {
+  @include g.flex-box(row, space-between, flex-start, 8px);
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.img-container {
+  min-width: 72px;
+  min-height: 72px;
+  position: relative;
+  aspect-ratio: 1/1;
+  border: 1px solid g.$grey-200;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.bottom {
+  @include g.flex-box(row, space-between, center);
+  width: 100%;
+}
+
+.bottom-left {
+  @include g.flex-box(row, center, center, 8px);
+  color: g.$grey-600;
+}
+
+.like {
+  @include g.flex-box(row, center, center, 4px);
+  color: g.$grey-600;
+}
+
+.date {
+  color: g.$grey-400;
+}

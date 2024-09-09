@@ -1,0 +1,13 @@
+@use "@/styles/globals/shared" as g;
+
+.BestArticles {
+  @include g.flex-box(row, space-between, center, 24px);
+  width: 100%;
+  max-height: 169px;
+  height: 100%;
+
+  li {
+    max-width: 384px;
+    width: 100%;
+  }
+}
