@@ -1,9 +1,4 @@
-import axios from "axios";
-
-const instance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-});
-
+import instance from "./axios.js";
 export async function getArticles(params = {}) {
   const res = await instance.get("/articles", { params });
   return res.data;

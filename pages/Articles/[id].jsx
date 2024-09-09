@@ -9,6 +9,8 @@ import ic_back from "@/public/images/ic_back.png";
 import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
 import Link from "next/link";
 import { useState } from "react";
+import * as api from "@/pages/api/comment";
+import AlertModal from "@/components/Modals/AlertModal";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
@@ -56,83 +58,141 @@ function Comment({ item }) {
 
 function DetailArticle({ article }) {
   const { title, content, favorite, user, createAt, comment } = article;
+
+  const defaultUser = {
+    //유저관리를 안하고 있음 기본 유저를 설정 추후 유저관리의 로그인계정으로 변경해야 함
+    userId: user.id,
+    articleId: article.id,
+  };
+
   const date = dateFormatYYYYMMDD(createAt);
+  const [values, setValues] = useState(defaultUser);
+  const [openAlertModal, setOpenAlertModal] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
-  const [contentValue, setContentValue] = useState("");
+  const openModal = () => setOpenAlertModal(true);
+  const closeModal = () => setOpenAlertModal(false);
 
-  const onChange = (e) => setContentValue(e.target.value);
+  const createComment = () => {
+    try {
+      const data = api.createComment(values);
+      if (data) {
+        console.log("확인");
+        location.reload();
+      } else {
+        //모달 오픈
+        setAlertMessage("댓글생성에 실패했습니다." + error.name);
+        openModal();
+      }
+    } catch (error) {
+      setAlertMessage("댓글생성에 실패했습니다." + error.name);
+      console.log(error);
+    }
+  };
+
+  const onChangeValues = (name, value) => {
+    setValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const onChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    onChangeValues(name, value);
+  };
+
   return (
-    <main>
-      <div className={styles.article_item_box}>
-        <div className={styles.article_item_title_box}>
-          <h1 className={styles.article_title}>{title}</h1>
-          <Image src={ic_kebab} width={24} height={24} alt="수정/삭제이미지" />
-        </div>
-        <div className={styles.article_data_box}>
-          <div className={styles.article_data}>
+    <>
+      <AlertModal
+        onClose={closeModal}
+        isOpen={openAlertModal}
+        message={alertMessage}
+      />
+      <main>
+        <div className={styles.article_item_box}>
+          <div className={styles.article_item_title_box}>
+            <h1 className={styles.article_title}>{title}</h1>
             <Image
-              src={ic_profile}
-              width={40}
-              height={40}
-              alt="사용자프로필이미지"
+              src={ic_kebab}
+              width={24}
+              height={24}
+              alt="수정/삭제이미지"
             />
-            <span className={styles.article_user}>{user.name}</span>
-            <span className={styles.article_createAt}>{date}</span>
           </div>
-          <div className={styles.article_favorite_box}>
-            <button className={styles.article_favorite_btn}>
-              <Image src={ic_heart} width={32} height={32} />
-              {favorite}
-            </button>
-          </div>
-        </div>
-      </div>
-      <p className={styles.article_content}>{content}</p>
-      <div className={styles.article_comment_box}>
-        <h3>댓글달기</h3>
-        <textarea
-          name="content"
-          onChange={onChange}
-          className={styles.article_comment_textarea}
-          placeholder="댓글을 입력해주세요."
-        />
-        <button
-          className={`${styles.article_create_comment_btn} ${
-            !contentValue && styles.disabled
-          }`}
-          disabled={!contentValue}
-        >
-          등록
-        </button>
-      </div>
-      <div className={styles.article_comments_box}>
-        <div className={styles.article_comments}>
-          {comment.map((item) => (
-            <Comment key={item.id} item={item} />
-          ))}
-          {comment.length < 1 && (
-            <>
+          <div className={styles.article_data_box}>
+            <div className={styles.article_data}>
               <Image
-                src={img_reply_empty}
-                width={140}
-                height={140}
-                alt="댓글이없습니다"
+                src={ic_profile}
+                width={40}
+                height={40}
+                alt="사용자프로필이미지"
               />
-              <p>
-                아직 댓글이 없어요, <br />
-                지금 댓글을 달아보세요!
-              </p>
-            </>
-          )}
+              <span className={styles.article_user}>{user.name}</span>
+              <span className={styles.article_createAt}>{date}</span>
+            </div>
+            <div className={styles.article_favorite_box}>
+              <button className={styles.article_favorite_btn}>
+                <Image
+                  src={ic_heart}
+                  width={32}
+                  height={32}
+                  alt="좋아요이미지"
+                />
+                {favorite}
+              </button>
+            </div>
+          </div>
         </div>
-        <Link href={"/Articles"}>
-          <button className={styles.return_articles_page_btn}>
-            목록으로 돌아가기
-            <Image src={ic_back} width={24} height={24} alt="돌아가기" />
+        <p className={styles.article_content}>{content}</p>
+        <div className={styles.article_comment_box}>
+          <h3>댓글달기</h3>
+          <textarea
+            name="content"
+            onChange={onChange}
+            className={styles.article_comment_textarea}
+            placeholder="댓글을 입력해주세요."
+          />
+          <button
+            onClick={createComment}
+            className={`${styles.article_create_comment_btn} ${
+              !values.content && styles.disabled
+            }`}
+            disabled={!values.content}
+          >
+            등록
           </button>
-        </Link>
-      </div>
-    </main>
+        </div>
+        <div className={styles.article_comments_box}>
+          <div className={styles.article_comments}>
+            {comment.map((item) => (
+              <Comment key={item.id} item={item} />
+            ))}
+            {comment.length < 1 && (
+              <>
+                <Image
+                  src={img_reply_empty}
+                  width={140}
+                  height={140}
+                  alt="댓글이없습니다"
+                />
+                <p>
+                  아직 댓글이 없어요, <br />
+                  지금 댓글을 달아보세요!
+                </p>
+              </>
+            )}
+          </div>
+          <Link href={"/Articles"}>
+            <button className={styles.return_articles_page_btn}>
+              목록으로 돌아가기
+              <Image src={ic_back} width={24} height={24} alt="돌아가기" />
+            </button>
+          </Link>
+        </div>
+      </main>
+    </>
   );
 }
 
