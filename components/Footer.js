@@ -3,7 +3,6 @@ import facebookLogo from '../public/ic_facebook.png';
 import youtuveLogo from '../public/ic_youtuve.png';
 import instaLogo from '../public/ic_insta.png';
 import twitterLogo from '../public/ic_twitter.png';
-import loginBtn from '../public/login_btn.png';
 import Image from 'next/image';
 import styles from '@/styles/Footer.module.css';
 import Link from 'next/link';

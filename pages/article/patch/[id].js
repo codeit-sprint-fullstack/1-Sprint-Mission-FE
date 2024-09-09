@@ -1,7 +1,5 @@
 import styles from '@/styles/Post.module.css';
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-
 import { useRouter } from 'next/router';
 import axios from 'axios';
 
@@ -19,7 +17,6 @@ export default function Post() {
         `https://sprint-be-h8kw.onrender.com/articles/${targetId}`
       );
       const nextArticle = res.data;
-      console.log(nextArticle);
       setTitleValue(nextArticle.title);
       setContentValue(nextArticle.content);
     } catch (error) {
@@ -37,7 +34,6 @@ export default function Post() {
         }
       );
       const nextArticle = res.data;
-      console.log(nextArticle);
       setTitleValue(nextArticle.title);
       setContentValue(nextArticle.content);
     } catch (error) {
@@ -86,7 +82,6 @@ export default function Post() {
           placeholder='제목을 입력하세요'
           value={titleValue}
           onChange={titleChange}
-          id='titleValue'
           className={styles.input}
         ></input>
         <div className={styles.name}>내용</div>

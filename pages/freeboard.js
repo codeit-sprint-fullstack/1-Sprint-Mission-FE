@@ -12,7 +12,7 @@ export default function FreeBoard() {
   async function getArticles() {
     try {
       const res = await axios.get(
-        'https://sprint-be-h8kw.onrender.com/articles?orderBy=old'
+        'https://sprint-be-h8kw.onrender.com/articles/freeboard?orderBy=recent'
       );
       const nextArticles = res.data;
       setArticles(nextArticles);

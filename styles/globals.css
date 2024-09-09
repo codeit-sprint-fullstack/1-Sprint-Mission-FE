@@ -1,4 +1,21 @@
+html,
 body {
+  max-width: 100vw;
+  min-height: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0 au;
+}
+
+* {
   box-sizing: border-box;
-  min-height: 1200px;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
