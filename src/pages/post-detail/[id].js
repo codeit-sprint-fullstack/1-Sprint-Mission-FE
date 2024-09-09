@@ -61,6 +61,24 @@ export default function PostDetailPage() {
     }
   };
 
+  // 댓글 수정 및 삭제후 상태 업데이트 하는 함수
+  const handleCommentUpdate = async () => {
+    await updateComments();
+  };
+
+  const updateComments = async () => {
+    try {
+      const allComments = await fetchComments(id);
+      setComments(allComments);
+      const postComments = allComments.filter(
+        (comment) => comment.postId === parseInt(id)
+      );
+      setFilteredComments(postComments);
+    } catch (error) {
+      console.error("댓글 목록 갱신 실패:", error);
+    }
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
@@ -79,8 +97,7 @@ export default function PostDetailPage() {
             <FreeBoardCommentItem
               key={comment.id}
               comment={comment}
-              onEdit={() => console.log("Edit", comment.id)}
-              onDelete={() => console.log("Delete", comment.id)}
+              onCommentUpdate={handleCommentUpdate}
             />
           ))}
         </div>
