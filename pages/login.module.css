@@ -1,0 +1,9 @@
+.mainContainer {
+ width: 640px;
+ min-width: 344px;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ gap: 24px 0px;
+}

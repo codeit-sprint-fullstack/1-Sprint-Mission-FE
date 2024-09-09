@@ -16,7 +16,8 @@ import CtaBox, {
 } from "@components/common/CtaBox";
 import BtnRoundFunction from "@components/common/BtnRoundFunction";
 
-// 기타 컴포넌트
+// 중요 컴포넌트
+import PageNav from "@components/PageNav";
 import Footer from "@components/Footer";
 
 export default function RandingPage() {
@@ -29,6 +30,7 @@ export default function RandingPage() {
           content="판다마켓에서 일상 속 모든 물건을 거래해보세요."
         />
       </Head>
+      <PageNav />
       <TopBottomBanner>
         <article className={styles.topContainer}>
           <div className={styles.ctaBtnbox}>
@@ -45,7 +47,7 @@ export default function RandingPage() {
         </article>
       </TopBottomBanner>
 
-      <div className={styles.contentBannerContainer}>
+      <main className={styles.mainContainer}>
         <ContentBanner>
           <article className={styles.contentBox}>
             <div className={styles.imgBox}>
@@ -89,7 +91,7 @@ export default function RandingPage() {
             />
           </article>
         </ContentBanner>
-      </div>
+      </main>
 
       <TopBottomBanner>
         <article className={styles.bottomContainer}>

@@ -7,10 +7,10 @@ import PageNav from "@components/PageNav";
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <PageNav />
-      <main>
+      {/* <PageNav /> */}
+      {/* <main> */}
         <Component {...pageProps} />
-      </main>
+      {/* </main> */}
       {/* <Footer /> */}
     </>
   );
