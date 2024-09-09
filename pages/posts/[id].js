@@ -1,3 +1,8 @@
+import { useRouter } from 'next/router';
+
 export default function Post() {
-  return <div>등록된 게시글에 대한 각 페이지</div>;
+  const router = useRouter();
+  const { id } = router.query;
+
+  return <div>Post {id} 페이지</div>;
 }

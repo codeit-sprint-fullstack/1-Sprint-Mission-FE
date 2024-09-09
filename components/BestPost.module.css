@@ -1,0 +1,20 @@
+.bestContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bestContainer li {
+  list-style: none;
+}
+
+.bestTop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bestBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -15,6 +15,7 @@ export default function App({ Component, pageProps }) {
         <style>{`html {font-family: pretendard ;}`}</style>
       </Head>
       <Header />
+      <Component {...pageProps} />
     </>
   );
 }
