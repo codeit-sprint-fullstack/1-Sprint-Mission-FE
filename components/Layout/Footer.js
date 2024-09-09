@@ -21,6 +21,7 @@ export default function Footer() {
           <Image className={styles.sns} src={instagram} alt="instagram" />
         </div>
       </div>
+      <div className={styles.footerCopyrightM}>@codeit - 2024</div>
     </footer>
   );
 }

@@ -26,9 +26,9 @@ export async function fetchArticles({ sort, keyword, page, size }) {
   }
 }
 
-export async function fetchBestArticles() {
+export async function fetchBestArticles(size) {
   const res = await fetch(
-    `https://thrift-shop.onrender.com/articles?sort=createdAt&offset=0&size=3`
+    `https://thrift-shop.onrender.com/articles?sort=createdAt&size=${size}`
   );
 
   if (!res.ok) {

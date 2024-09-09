@@ -28,6 +28,7 @@
 
       textarea& {
         height: 282px;
+        resize: none;
       }
     }
   }

@@ -1,10 +1,39 @@
+import { useState, useEffect } from "react";
 import styles from "./BestProduct.module.css";
 import Image from "next/image";
 import ProductImg from "../../images/product.png";
 import Link from "next/link";
 
 export default function BestProduct({ articles }) {
-  const bestArticles = Array.isArray(articles.data) ? articles.data : [];
+  const [bestArticles, setBestArticles] = useState([]);
+
+  useEffect(() => {
+    const updateBestArticles = () => {
+      const screenWidth = window.innerWidth;
+      let maxArticles;
+
+      if (screenWidth <= 743) {
+        maxArticles = 1;
+      } else if (screenWidth <= 1199) {
+        maxArticles = 2;
+      } else {
+        maxArticles = 3;
+      }
+
+      const filteredArticles = Array.isArray(articles.data)
+        ? articles.data.slice(0, maxArticles)
+        : [];
+      setBestArticles(filteredArticles);
+    };
+
+    updateBestArticles();
+
+    window.addEventListener("resize", updateBestArticles);
+
+    return () => {
+      window.removeEventListener("resize", updateBestArticles);
+    };
+  }, [articles]);
 
   return (
     <div className={styles.bestProducts}>

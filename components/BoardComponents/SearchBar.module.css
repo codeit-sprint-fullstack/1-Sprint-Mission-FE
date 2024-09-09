@@ -5,6 +5,10 @@
   height: 42px;
 }
 
+.mobileSort {
+  display: none;
+}
+
 .inputSearch {
   width: 1054px;
   height: 42px;
@@ -16,6 +20,12 @@
   background-repeat: no-repeat;
   background-position: 16px;
   background-size: 24px;
+}
+
+.inputSearch::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: #9ca3af;
 }
 
 .customDropdown {
@@ -64,4 +74,65 @@
   cursor: pointer;
   border: 1px solid #e5e7eb;
   background-color: #ffffff;
+}
+
+@media (max-width: 1199px) {
+  .inputSearch {
+    width: 560px;
+  }
+}
+
+@media (max-width: 743px) {
+  .inputSearch {
+    width: 100%;
+  }
+
+  .customDropdown__text {
+    display: none;
+  }
+
+  .customDropdown__selected {
+    width: 42px;
+  }
+
+  .customDropdown {
+    display: inline-block;
+    width: 42px;
+    height: 42px;
+  }
+
+  .customDropdown__selected {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 9px;
+    background-image: url("../../images/ic_sort.png");
+    background-position: 9px;
+  }
+
+  .customDropdown__options {
+    z-index: 1000;
+    display: block;
+    position: relative;
+    margin-top: 8px;
+    right: 88px;
+  }
+
+  .customDropdown__options :first-child {
+    border-radius: 12px 12px 0 0;
+  }
+
+  .customDropdown__options :last-child {
+    border-radius: 0 0 12px 12px;
+  }
+
+  .option {
+    width: 130px;
+    height: 42px;
+    text-align: center;
+    padding-top: 9px;
+    cursor: pointer;
+    border: 1px solid #e5e7eb;
+    background-color: #ffffff;
+  }
 }

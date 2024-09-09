@@ -1,4 +1,5 @@
 import Desktop_logo from "@/images/desktop_logo.png";
+import Mobile_logo from "@/images/mobile_logo.png";
 import styles from "./Header.module.css";
 import Image from "next/image";
 import Link from "next/link"; // Link 컴포넌트 추가
@@ -12,6 +13,7 @@ export default function Header() {
         <div>
           <Link href="/" passHref>
             <Image src={Desktop_logo} alt="logo" className={styles.logo} />
+            <Image src={Mobile_logo} alt="logo" className={styles.mobileLogo} />
           </Link>
         </div>
         <div className={styles.moves}>

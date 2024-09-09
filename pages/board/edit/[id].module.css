@@ -36,3 +36,16 @@
     background-color: #9ca3af;
   }
 }
+
+@media (max-width: 1199px) {
+  .container {
+    width: 696px;
+  }
+}
+
+@media (max-width: 743px) {
+  .container {
+    width: 100%;
+    padding: 0 16px;
+  }
+}

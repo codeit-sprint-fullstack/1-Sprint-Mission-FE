@@ -9,6 +9,10 @@
   z-index: 1;
 }
 
+.mobileLogo {
+  display: none;
+}
+
 .logo {
   width: 153px;
   height: 51px;
@@ -44,4 +48,44 @@
   color: #ffffff;
   margin: 14px 200px 14px auto;
   cursor: pointer;
+}
+
+@media (max-width: 1199px) {
+  .logo {
+    margin-left: 24px;
+  }
+
+  .login_btn {
+    margin: 14px 24px 14px auto;
+  }
+}
+
+@media (max-width: 743px) {
+  .logo {
+    display: none;
+  }
+
+  .mobileLogo {
+    display: block;
+    margin-left: 16px;
+    margin-top: 15px;
+    width: 81px;
+    height: 40px;
+  }
+
+  .login_btn {
+    margin: 14px 16px 14px auto;
+  }
+
+  .moves {
+    margin-left: 16px;
+    display: flex;
+  }
+
+  .moves p {
+    font-size: 16px;
+    font-weight: 700;
+    color: #4b5563;
+    margin: 22px 8px 0 0;
+  }
 }

@@ -1,5 +1,7 @@
 import styles from "./SearchBar.module.css";
 import { useState } from "react";
+import Image from "next/image";
+import sort from "@/images/ic_sort.png";
 
 export default function SearchBar({
   keyword,

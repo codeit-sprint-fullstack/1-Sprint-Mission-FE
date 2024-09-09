@@ -1,9 +1,11 @@
-import { useState, useCallback, useEffect } from "react";
+// pages/Board.js
+import { useRouter } from "next/router";
 import BestProduct from "@/components/BoardComponents/BestProduct";
 import BoardList from "@/components/BoardComponents/BoardList";
-import { fetchArticles, fetchBestArticles } from "@/utils/articleApi";
+import { useArticles } from "@/hooks/useArticles";
 import styles from "@/styles/board.module.css";
-import { useRouter } from "next/router";
+import { fetchArticles, fetchBestArticles } from "@/utils/articleApi";
+import { useEffect } from "react";
 
 export async function getServerSideProps(context) {
   const {
@@ -15,7 +17,8 @@ export async function getServerSideProps(context) {
 
   try {
     const articles = await fetchArticles({ sort, keyword, page, size });
-    const bestArticles = await fetchBestArticles();
+    const bestArticles = await fetchBestArticles(3);
+
     return {
       props: {
         initialArticles: articles.data || [],
@@ -43,76 +46,15 @@ export default function Board({
   initialArticles,
   bestArticles,
   totalArticles,
-  initialPage,
   pageSize,
 }) {
-  const [articles, setArticles] = useState(initialArticles);
-  const [page, setPage] = useState(initialPage);
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(articles.length < totalArticles);
   const router = useRouter();
-
-  const loadMoreArticles = useCallback(async () => {
-    if (loading || !hasMore) return;
-
-    setLoading(true);
-    const nextPage = page + 1;
-    try {
-      const response = await fetchArticles({
-        sort: router.query.sort || "createdAt",
-        keyword: router.query.keyword || "",
-        page: nextPage,
-        size: pageSize,
-      });
-
-      const newArticles = response.data || [];
-      setArticles((prevArticles) => [...prevArticles, ...newArticles]);
-      setPage(nextPage);
-
-      if (
-        newArticles.length === 0 ||
-        articles.length + newArticles.length >= totalArticles
-      ) {
-        setHasMore(false);
-      }
-    } catch (error) {
-      console.error("Error fetching more articles:", error);
-    } finally {
-      setLoading(false);
-    }
-  }, [
-    page,
-    loading,
-    hasMore,
-    articles.length,
+  const { articles, loadMoreArticles, hasMore, loading } = useArticles(
+    initialArticles,
     totalArticles,
     pageSize,
-    router.query,
-  ]);
-
-  useEffect(() => {
-    const fetchUpdatedArticles = async () => {
-      setLoading(true);
-      try {
-        const response = await fetchArticles({
-          sort: router.query.sort || "createdAt",
-          keyword: router.query.keyword || "",
-          page: 1,
-          size: pageSize,
-        });
-
-        setArticles(response.data || []);
-        setPage(1);
-        setHasMore(response.data.length < totalArticles);
-      } catch (error) {
-        console.error("Error fetching updated articles:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUpdatedArticles();
-  }, [router.query, totalArticles, pageSize]);
+    router
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -131,7 +73,7 @@ export default function Board({
   }, [loadMoreArticles, hasMore, loading]);
 
   return (
-    <div className={styles.bestContainer}>
+    <div className={styles.boardContainer}>
       <BestProduct articles={bestArticles} />
       <BoardList articles={articles} />
       {loading && <div>로딩중...</div>}

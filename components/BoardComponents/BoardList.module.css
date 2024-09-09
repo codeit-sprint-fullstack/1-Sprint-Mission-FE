@@ -20,3 +20,15 @@
   background-color: #3692ff;
   cursor: pointer;
 }
+
+@media (max-width: 743px) {
+  .createContainer h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 5px 0 0 0;
+  }
+
+  .createContainer {
+    margin: 24px 0 16px 0;
+  }
+}
