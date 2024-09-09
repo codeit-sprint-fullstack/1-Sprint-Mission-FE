@@ -11,9 +11,9 @@
   position: relative;
 }
 
-.sortOptions select {
+.sortSelect {
   width: 130px;
-  height: 42px;
+  height: 45px;
   padding: 12px 20px;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
@@ -36,7 +36,6 @@
   pointer-events: none;
 }
 
-/* 태블릿 버전 이하에서의 드롭다운 아이콘 크기 조정 */
 @media (max-width: 1199px) {
   .dropdownIcon {
     width: 14px;
@@ -44,7 +43,6 @@
   }
 }
 
-/* 모바일 버전에서의 드롭다운 아이콘 크기 조정 */
 @media (max-width: 743px) {
   .sortOptionsContainer {
     width: 80px;
@@ -53,20 +51,20 @@
     margin: 0;
   }
 
-  .sortOptionsContainer img {
+  .sortButton {
     width: 60px;
     height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-image: url("/image/btn_sort.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     border: none;
     border-radius: 12px;
-    background-color: #ffffff;
     cursor: pointer;
   }
 
   .dropdownIcon {
-    width: 12px; /* 모바일에서는 더 작은 크기 */
+    width: 12px; 
     height: 5px;
   }
 }
