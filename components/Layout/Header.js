@@ -2,7 +2,7 @@ import Desktop_logo from "@/images/desktop_logo.png";
 import Mobile_logo from "@/images/mobile_logo.png";
 import styles from "./Header.module.css";
 import Image from "next/image";
-import Link from "next/link"; // Link 컴포넌트 추가
+import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function Header() {

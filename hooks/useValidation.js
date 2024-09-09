@@ -1,5 +1,3 @@
-// utils/validation.js
-
 export function validateForm(formData) {
   const errors = {};
   if (!formData.title || formData.title.trim() === "") {

@@ -1,4 +1,3 @@
-// hooks/useArticles.js
 import { useState, useCallback, useEffect } from "react";
 import { fetchArticles } from "@/utils/articleApi";
 

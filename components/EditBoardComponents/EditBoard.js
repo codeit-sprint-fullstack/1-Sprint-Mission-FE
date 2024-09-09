@@ -1,6 +1,6 @@
 import styles from "./EditBoard.module.css";
 import { useState } from "react";
-import { validateForm } from "@/utils/validation";
+import { validateForm } from "@/hooks/useValidation";
 
 export default function EditBoard({ formData, onChange, setFormValid }) {
   const [errors, setErrors] = useState({});

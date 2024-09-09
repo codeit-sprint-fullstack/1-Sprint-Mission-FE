@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./BoardChat.module.css";
 import ChatItem from "./ChatItem";
-import { createComments, updateComments } from "@/utils/chatApi"; // 댓글 수정 API도 추가
+import { createComments, updateComments } from "@/utils/chatApi";
 
 export default function BoardChat({ articleId, comments }) {
   const [formValid, setFormValid] = useState(false);

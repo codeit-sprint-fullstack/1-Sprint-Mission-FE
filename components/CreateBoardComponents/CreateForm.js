@@ -1,7 +1,7 @@
 import styles from "./CreateForm.module.css";
 import { useState } from "react";
 import { createArticle } from "@/utils/articleApi";
-import { validateForm } from "@/utils/validation";
+import { validateForm } from "@/hooks/useValidation";
 import { useRouter } from "next/router";
 
 export default function CreateForm() {

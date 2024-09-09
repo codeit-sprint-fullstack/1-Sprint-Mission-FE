@@ -24,15 +24,14 @@ export default function EditArticlePage({ article }) {
   const router = useRouter();
   const { id } = router.query;
 
-  // 부모 컴포넌트에서 폼 데이터를 관리
   const [formData, setFormData] = useState({
     title: article.title || "",
     content: article.content || "",
   });
-  const [isFormValid, setFormValid] = useState(false); // 폼 유효성 상태
+  const [isFormValid, setFormValid] = useState(false);
 
   const handleSubmit = async () => {
-    if (!isFormValid) return; // 폼이 유효하지 않으면 submit 막기
+    if (!isFormValid) return;
     try {
       await updateArticle(id, formData);
       router.push(`/board/${id}`);

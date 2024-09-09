@@ -1,7 +1,7 @@
 import styles from "./BoardDetailInfo.module.css";
 import { useState } from "react";
 import { deleteArticle } from "@/utils/articleApi";
-import { useRouter } from "next/router"; // router 추가
+import { useRouter } from "next/router";
 import Image from "next/image";
 import profile from "@/images/ic_profile.png";
 import kebab from "@/images/ic_kebab.png";
@@ -9,14 +9,14 @@ import Link from "next/link";
 
 export default function BoardDetailInfo({ article }) {
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter(); // useRouter 훅 사용
+  const router = useRouter();
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleDelete = async (id) => {
     try {
-      await deleteArticle(id); // 게시글 삭제 API 호출
-      router.push("/board"); // 삭제 후 게시글 목록으로 이동
+      await deleteArticle(id);
+      router.push("/board");
     } catch (error) {
       console.error("Error deleting article:", error);
     }
