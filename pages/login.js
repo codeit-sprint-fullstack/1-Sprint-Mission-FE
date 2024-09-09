@@ -7,6 +7,7 @@ import Link from "next/link";
 
 // 컴포넌트
 import InputBar from "@components/common/InputBar";
+import InputBarPassword from "@components/common/InputBarPassword";
 import BtnRound from "@components/common/BtnRound";
 
 function Login() {
@@ -16,14 +17,18 @@ function Login() {
         <title>판다마켓 - 로그인</title>
       </Head>
       <main>
-        <section className={styles.mainContainer}>
+        <div className={styles.logoBox}>
+          <img src="/images/logo/logo_big.svg" alt="logo" />
+        </div>
+        <section className={styles.inputSection}>
           <InputBar headerText="이메일" placeholder="이메일을 입력해 주세요" />
-          <InputBar
+          <InputBarPassword
             headerText="비밀번호"
+            type="password"
             placeholder="비밀번호를 입력해 주세요"
           />
           <div className={styles.btnSizeControl}>
-            <BtnRound innerText="로그인" active={false}/>
+            <BtnRound innerText="로그인" active={false} />
           </div>
           <section className={styles.loginOnSns}></section>
           <p>

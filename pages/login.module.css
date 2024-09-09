@@ -1,14 +1,39 @@
-.mainContainer {
- width: 640px;
+.logoBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 122px 40px 122px;
+}
+
+.logoBox img {
+  width: 100%;
+}
+
+.inputSection {
+ max-width: 640px;
  min-width: 344px;
+ width: 100%;
  display: flex;
  flex-direction: column;
  justify-content: center;
  align-items: center;
+ padding: 0px 24px;
  gap: 24px 0px;
 }
 
 .btnSizeControl {
   width: 100%;
   height: 56px;
+}
+
+@media (max-width: 744px) {
+  .logoBox {
+    padding: 0px 71px 40px 71px;
+  }
+}
+
+@media (max-width: 500px) {
+  .logoBox {
+    padding: 0px 71px 24px 71px;
+  }
 }

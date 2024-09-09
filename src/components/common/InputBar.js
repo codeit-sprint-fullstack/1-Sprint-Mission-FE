@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./InputBar.module.css";
 
 function InputBar({
@@ -21,7 +21,10 @@ function InputBar({
 }) {
 
   return (
-    <div className={styles.inputContainer} style={{ gap: customGap ? customGap : '' }}>
+    <div
+      className={styles.inputContainer}
+      style={{ gap: customGap ? customGap : "" }}
+    >
       {headerText && <div className={styles.inputHeader}>{headerText}</div>}
       <input
         className={InputErrorState ? styles.inputError : styles.defaultBox}
