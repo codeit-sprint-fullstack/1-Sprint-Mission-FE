@@ -1,11 +1,12 @@
 import axios from '@/lib/axios';
 import BestPost from '@/components/BestPost';
+import Container from '@/components/Container';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
 export default function Freeboard() {
   // 자유게시판 페이지
-  // 등록된 게시글 중 최신순 기준으로 3개를 정렬해서 서버로부터 가져온다.
+  // 등록된 게시글 중 최신순으로 3개를 정렬해서 서버로부터 가져온다.
   // BestList 컴포넌트를 통해 렌더링 한다.
   const [bestPosts, setBestPosts] = useState([]);
 
@@ -38,7 +39,9 @@ export default function Freeboard() {
 
   return (
     <>
-      <BestPost posts={bestPosts} />
+      <Container>
+        <BestPost posts={bestPosts} />
+      </Container>
     </>
   );
 }
