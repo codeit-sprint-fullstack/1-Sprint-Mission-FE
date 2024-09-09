@@ -1,12 +1,11 @@
-// pages/api/posts/index.js
-import { posts } from '../../../'; // 예시 데이터 파일
+import { posts } from '../../../data/postMockData.js';
 import {
   BadRequestException,
   NotFoundException,
   CommonException
-} from '../errors/CustomExceptions'; // 예시 경로, 필요에 맞게 수정
+} from '../errors/CustomExceptions';
 
-let nextId = 1; // 다음 게시글 ID를 관리하기 위한 변수 (예시)
+let nextId = 1;
 
 export default function handler(req, res) {
   try {
@@ -29,17 +28,16 @@ export default function handler(req, res) {
         }
 
         const newPost = req.body;
-        newPost.id = String(nextId++); // 새로운 ID를 생성하고 할당
+        newPost.id = String(nextId++);
         posts.push(newPost);
-        res.status(201).json(newPost); // 201 Created
+        res.status(201).json(newPost);
         break;
 
       default:
-        // 허용되지 않는 HTTP 메서드가 요청되면
         res.setHeader('Allow', ['GET', 'POST']);
         throw new CommonException({
           status: 405,
-          message: `Method ${req.method} Not Allowed`,
+          message: `${req.method} 는 사용할 수 없습니다`,
           code: "METHOD_NOT_ALLOWED",
         });
     }
@@ -54,10 +52,9 @@ export default function handler(req, res) {
         occuredAt: error.occuredAt,
       });
     } else {
-      // Unhandled error
       res.status(500).json({
         code: "INTERNAL_SERVER_ERROR",
-        message: "서버 내부 오류가 발생했습니다.",
+        message: "서버 내부 오류",
         occuredAt: new Date().toISOString(),
       });
     }
