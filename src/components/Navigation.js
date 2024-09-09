@@ -3,7 +3,7 @@ import Link from "next/link";
 import logo from "../images/pandaLogo.png";
 import smallLogo from "../images/pandaLogo_small.png";
 import icon from "../images/userIcon.png";
-import "../styles/Navigation.css";
+import "@styles/Navigation.css";
 
 function Navigation() {
   return (
