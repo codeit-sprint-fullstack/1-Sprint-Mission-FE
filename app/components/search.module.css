@@ -26,8 +26,14 @@
 
 /* ===== Tablet - width : 744px ~ 1199px ===== */
 @media (min-width: 744px) and (max-width: 1199px) {
+  .input {
+    width: 56rem;
+  }
 }
 
 /* ===== Mobile-width : 375px ~ 743px ====== */
 @media (min-width: 375px) and (max-width: 743px) {
+  .input {
+    width: 28.8rem;
+  }
 }

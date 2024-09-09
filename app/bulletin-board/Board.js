@@ -28,7 +28,7 @@ const PAGE_SIZE_BY_DEVICE = [4, 6, 3];
 
 export function Board() {
   const [list, setList] = useState([]);
-  const [recentOrder, setRecentOrder] = useState(ORDER_BY[ORDER_BY_RECENT]);
+  const [recentOrder, setRecentOrder] = useState(ORDER_TEXT[ORDER_BY_RECENT]);
   const [page, setPage] = useState(1);
   const [addingList, setAddingList] = useState(false);
 
@@ -45,7 +45,7 @@ export function Board() {
   const boardListClass = `flex flex-col ${style.list}`;
 
   const handleSortByRecent = () => {
-    setRecentOrder(ORDER_BY[ORDER_BY_RECENT]);
+    setRecentOrder(ORDER_TEXT[ORDER_BY_RECENT]);
     setPage(1);
     const path = "article";
     const config = {
@@ -55,11 +55,25 @@ export function Board() {
         orderBy: ORDER_BY[ORDER_BY_RECENT],
       },
     };
-    instance.get(path, config);
+    instance.get(path, config).then((res) => {
+      const newList = res.data.articles.map((post, index) => {
+        return (
+          <PostPreview
+            key={index}
+            title={post.title}
+            owner={post.user.name}
+            myFavorite={false}
+            favoriteCount={post.favorite}
+            createdDate={post.createdDate}
+          />
+        );
+      });
+      setList(newList);
+    });
   };
 
   const handleSortByFavorite = () => {
-    setRecentOrder(ORDER_BY[ORDER_BY_FAVORITE]);
+    setRecentOrder(ORDER_TEXT[ORDER_BY_FAVORITE]);
     setPage(1);
     const path = "article";
     const config = {
@@ -69,7 +83,21 @@ export function Board() {
         orderBy: ORDER_BY[ORDER_BY_FAVORITE],
       },
     };
-    instance.get(path, config);
+    instance.get(path, config).then((res) => {
+      const newList = res.data.articles.map((post, index) => {
+        return (
+          <PostPreview
+            key={index}
+            title={post.title}
+            owner={post.user.name}
+            myFavorite={false}
+            favoriteCount={post.favorite}
+            createdDate={post.createdDate}
+          />
+        );
+      });
+      setList(newList);
+    });
   };
 
   const postList = tempList.map((post, index) => {
@@ -85,13 +113,14 @@ export function Board() {
         orderBy: recentOrder,
       },
     };
-    instance.get(path, config).then((data) => {
-      const newList = data.articles.map((post, index) => {
+
+    instance.get(path, config).then((res) => {
+      const newList = res.data.articles.map((post, index) => {
         return (
           <PostPreview
             key={index}
             title={post.title}
-            owner={"임시로"}
+            owner={post.user.name}
             myFavorite={false}
             favoriteCount={post.favorite}
             createdDate={post.createdDate}
@@ -101,9 +130,7 @@ export function Board() {
 
       setList(newList);
     });
-
-    // 임시
-  }, [recentOrder]);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -125,18 +152,7 @@ export function Board() {
       return;
     }
 
-    const path = "";
-    const config = {};
-    instance.get(path, config);
-
-    // 임시
-    const additionalList = tempList.map((post, index) => {
-      return <PostPreview key={index} />;
-    });
-
-    // const additionalList = [];
     setList([...list, additionalList]);
-
     setPage(page + 1);
     setAddingList(false);
   }, [addingList]);
@@ -152,7 +168,7 @@ export function Board() {
       <div className={boardMiddleBarClass}>
         <Search />
         <Dropdown>
-          <DropdownToggle>{ORDER_TEXT[recentOrder]}</DropdownToggle>
+          <DropdownToggle>{recentOrder}</DropdownToggle>
           <DropdownMenu>
             <DropdownItem onClick={handleSortByRecent}>
               {ORDER_TEXT[ORDER_BY_RECENT]}

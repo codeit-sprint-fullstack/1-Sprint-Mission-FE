@@ -5,6 +5,9 @@ import { useContext, useState, useEffect } from "react";
 import { BestPost } from "./BestPost";
 import { DeviceContext } from "../components/DeviceProvider";
 
+import { instance } from "@/lib/axios";
+import { BEST_POST_PAGE_SIZE } from "../constants/Favorite";
+
 import style from "./bestboard.module.css";
 
 export function BestBoard() {
@@ -16,33 +19,37 @@ export function BestBoard() {
   const boardListClass = `flex flex-row ${style.list}`;
 
   useEffect(() => {
-    let newList = [0, 1, 2]; // 임시. API로 처리하도록 수정해야함
+    const path = "article";
+    const config = {
+      params: {
+        page: 1,
+        pageSize: BEST_POST_PAGE_SIZE[device],
+        orderBy: "favorite",
+      },
+    };
 
-    if (device === 2) {
-      newList = [0, 1];
-    }
-
-    setList(newList);
+    instance.get(path, config).then((res) => {
+      const newList = res.data.articles.map((post, index) => {
+        return (
+          <BestPost
+            key={index}
+            title={post.title}
+            imgUrl={"../../public/images/no_image.svg"}
+            owner={post.user.name}
+            myFavorite={false}
+            favoriteCount={post.favorite}
+            createdDate={post.createdDate}
+          />
+        );
+      });
+      setList(newList);
+    });
   }, [device]);
-
-  const bestList = list.map((best, index) => {
-    return (
-      <BestPost
-        key={index}
-        title={"임시 제목"}
-        imgUrl={"../../public/images/no_image.svg"}
-        owner={"임시 작성자"}
-        myFavorite={false}
-        favoriteCount={9999}
-        createdDate={"2023.04.16"}
-      />
-    );
-  });
 
   return (
     <div className={boardClass}>
       <div className={boardLabelClass}>베스트 게시글</div>
-      <div className={boardListClass}>{bestList}</div>
+      <div className={boardListClass}>{list}</div>
     </div>
   );
 }
