@@ -5,7 +5,7 @@ import PostDetail from "../../components/PostDetail";
 import FreeBoardCommentItem from "../../components/FreeBoardCommentItem";
 import Footer from "../../components/Footer";
 import styles from "../PostDetailPage.module.css";
-import { fetchArticleById, fetchComments } from "../../api/api"; // 게시글 및 댓글 전체 조회 api 호출
+import { fetchArticleById, fetchComments, createComment } from "../../api/api"; // 게시글 및 댓글 전체 조회 api 호출
 
 export default function PostDetailPage() {
   const router = useRouter();
@@ -46,6 +46,21 @@ export default function PostDetailPage() {
     fetchPostAndComments();
   }, [id]);
 
+  const handleCommentSubmit = async (commentData) => {
+    try {
+      await createComment(commentData);
+      const allComments = await fetchComments(id);
+      const postComments = allComments.filter(
+        (comment) => comment.postId === parseInt(id)
+      );
+      setComments(allComments);
+      setFilteredComments(postComments);
+    } catch (error) {
+      console.error("댓글 등록 실패:", error);
+      setError("댓글 등록에 실패했습니다.");
+    }
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
@@ -53,8 +68,12 @@ export default function PostDetailPage() {
     <div>
       <FreeBoardPageHeader />
       <main className={styles.main}>
-        {post && <PostDetail post={post} />} {/* 게시글 정보 전달 */}
-        {/* 댓글 리스트 */}
+        {post && (
+          <PostDetail
+            post={post}
+            onCommentSubmit={handleCommentSubmit} // 댓글 등록 핸들러를 prop으로 전달
+          />
+        )}
         <div className={styles.commentsList}>
           {filteredComments.map((comment) => (
             <FreeBoardCommentItem

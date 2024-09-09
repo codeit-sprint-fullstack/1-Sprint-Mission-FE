@@ -6,7 +6,7 @@ import styles from "./PostDetail.module.css";
 import { updateArticle, deleteArticle, createComment } from "../api/api"; // 수정, 삭제, 댓글 등록 API 호출
 import UpdateDeleteButton from "./UpdateDeleteButton"; // 수정/삭제 컴포넌트
 
-export default function PostDetail({ post }) {
+export default function PostDetail({ post, onCommentSubmit }) {
   const [menuVisible, setMenuVisible] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [updatedTitle, setUpdatedTitle] = useState(post.title);
@@ -60,7 +60,7 @@ export default function PostDetail({ post }) {
           author: "작성자 판다",
           createdAt: new Date().toISOString(), // 작성한 시간(현재시간)
         };
-        await createComment(commentData); // 댓글 등록 API 호출
+        await onCommentSubmit(commentData); // prop으로 전달된 핸들러 호출
         setComment(""); // 입력 필드 초기화
         setIsCommentButtonEnabled(false); // 버튼 비활성화
       } catch (error) {
