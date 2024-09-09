@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./BtnRoundFunction.module.css";
+import styles from "./BtnRound.module.css";
 
-function BtnRoundFunction({
+function BtnRound({
   //기본 props
   innerText = "버튼",
   imgSrc,
@@ -13,13 +13,13 @@ function BtnRoundFunction({
   handleOnClick = () => {},
 
   //상태 관리
-  activeState = true,
+  active = true,
 }) {
   return (
     <>
       <button
-        className={`${styles.basicBtn} ${!activeState && styles.disabledBtn}`}
-        disabled={!activeState}
+        className={`${styles.basicBtn} ${!active && styles.disabledBtn}`}
+        disabled={!active}
         style={inlineBtnStyle}
         onClick={handleOnClick}
       >
@@ -30,4 +30,4 @@ function BtnRoundFunction({
   );
 }
 
-export default BtnRoundFunction;
+export default BtnRound;

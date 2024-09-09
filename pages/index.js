@@ -14,7 +14,7 @@ import CtaBox, {
   RenderTopCTA,
   RenderBottomCTA,
 } from "@components/common/CtaBox";
-import BtnRoundFunction from "@components/common/BtnRoundFunction";
+import BtnRound from "@components/common/BtnRound";
 
 // 중요 컴포넌트
 import PageNav from "@components/PageNav";
@@ -37,7 +37,7 @@ export default function RandingPage() {
             <RenderTopCTA mainCTA={["일상의 모든 물건을", "거래해 보세요"]} />
             <div className={styles.btnStyleControl}>
               <Link href={"/market"}>
-                <BtnRoundFunction innerText={"구경하러 가기"} />
+                <BtnRound innerText={"구경하러 가기"} />
               </Link>
             </div>
           </div>

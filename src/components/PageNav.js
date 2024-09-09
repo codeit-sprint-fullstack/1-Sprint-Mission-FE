@@ -10,7 +10,7 @@ import Link from "next/link";
 const pandaImg = "/images/logo/logo_panda_img.svg";
 const logoText = "/images/logo/logo_text.svg";
 //컴포넌트
-import BtnSquareFunction from "./common/BtnSquareFunction";
+import BtnSquare from "./common/BtnSquare";
 
 function PageNav({
   boardListData = [
@@ -62,7 +62,7 @@ function PageNav({
               </div>
             ) : (
               <Link href="/login">
-                <BtnSquareFunction innerText={"로그인"} />
+                <BtnSquare innerText={"로그인"} />
               </Link>
             )}
           </>
