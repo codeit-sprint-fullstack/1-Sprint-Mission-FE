@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getItems } from "../api.js";
 import Product from "./Product.js";
-import Footer from "./Footer.js";
+import Footer from "./Pagination.js";
 import "../styles/SaleProducts.css";
 import searchIcon from "../images/searchIcon.png";
 import sortIcon from "../images/sortIcon.png";
