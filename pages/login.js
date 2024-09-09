@@ -1,3 +1,11 @@
+import Container from '@/components/Container';
+
 export default function login() {
-  return <div>로그인 페이지</div>;
+  return (
+    <>
+      <Container>
+        <h1>로그인</h1>
+      </Container>
+    </>
+  );
 }
