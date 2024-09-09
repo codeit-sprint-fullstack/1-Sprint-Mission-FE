@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import logo from "../images/pandaLogo.png";
 import smallLogo from "../images/pandaLogo_small.png";
 import icon from "../images/userIcon.png";
@@ -10,8 +11,8 @@ function Navigation() {
     <nav className={styles.navBar}>
       <div className={styles.navLeft}>
         <Link href="/items">
-          <img className={styles.logo} src={logo} alt="Home Logo" />
-          <img
+          <Image className={styles.logo} src={logo} alt="Home Logo" />
+          <Image
             className={styles.smallLogo}
             src={smallLogo}
             alt="Home Logo small"
@@ -26,7 +27,7 @@ function Navigation() {
           </span>
         </div>
       </div>
-      <img className={styles.icon} src={icon} alt="User Icon" />
+      <Image className={styles.icon} src={icon} alt="User Icon" />
     </nav>
   );
 }
