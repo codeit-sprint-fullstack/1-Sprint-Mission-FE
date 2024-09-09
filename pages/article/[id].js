@@ -10,7 +10,6 @@ import ArticleDetailInfo from '@/components/ArticleDetail/ArticleDetailInfo';
 
 export default function Article() {
   const [article, setArticle] = useState(null);
-  const [comments, setComments] = useState([]);
   const [articleId, setArticleId] = useState('');
 
   const router = useRouter();
@@ -24,9 +23,6 @@ export default function Article() {
       const nextArticle = res.data;
       setArticle(nextArticle);
       setArticleId(nextArticle.id);
-      if (nextArticle.comment.length > 0) {
-        setComments(nextArticle.comment);
-      }
     } catch (error) {
       console.error('Error posting data:', error);
     }
@@ -58,7 +54,7 @@ export default function Article() {
           id={id}
           deleteArticle={deleteArticle}
         />
-        <Comments comments={comments} articleId={articleId} />
+        <Comments articleId={articleId} />
         <Link href='/freeboard'>
           <Image
             src={backBtn}

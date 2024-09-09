@@ -3,13 +3,30 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CommentList from './CommentList';
 
-export default function Comments({ comments, articleId }) {
+export default function Comments({ articleId }) {
   const [comment, setComment] = useState('');
+  const [comments, setComments] = useState('');
+  const [edit, setEdit] = useState(null);
   const [submit, setSubmit] = useState(false);
 
   const handleComment = (event) => {
     setComment(event.target.value);
   };
+
+  async function getComments(articleId) {
+    try {
+      const res = await axios.get(
+        `https://sprint-be-h8kw.onrender.com/comments/${articleId}`
+      );
+      const nextArticle = res.data;
+      setEdit(null);
+      if (nextArticle) {
+        setComments(nextArticle);
+      }
+    } catch (error) {
+      console.error('Error posting data:', error);
+    }
+  }
 
   async function postComment() {
     try {
@@ -21,11 +38,31 @@ export default function Comments({ comments, articleId }) {
           userId: '3160c83b-8dcc-4ca2-9d51-717c5246d414',
         }
       );
-      console.log(res.data);
+      setComments([res.data, ...comments]);
     } catch (error) {
       console.error('Error posting data:', error);
     }
   }
+
+  async function deleteComment(commentId) {
+    try {
+      const res = await axios.delete(
+        `https://sprint-be-h8kw.onrender.com/comments/${commentId}`,
+        {
+          content: comment,
+          articleId: articleId,
+          userId: '3160c83b-8dcc-4ca2-9d51-717c5246d414',
+        }
+      );
+      getComments(articleId);
+    } catch (error) {
+      console.error('Error posting data:', error);
+    }
+  }
+
+  const handleCommentDeleteId = (id) => {
+    deleteComment(id);
+  };
 
   useEffect(() => {
     if (comment) {
@@ -34,6 +71,10 @@ export default function Comments({ comments, articleId }) {
       setSubmit(false);
     }
   }, [comment]);
+
+  useEffect(() => {
+    getComments(articleId);
+  }, [edit, articleId]);
 
   function handleSubmit(e) {
     postComment();
@@ -59,7 +100,11 @@ export default function Comments({ comments, articleId }) {
         등록
       </button>
 
-      <CommentList comments={comments} />
+      <CommentList
+        comments={comments}
+        onCommentDeleteId={handleCommentDeleteId}
+        setComments={setEdit}
+      />
     </div>
   );
 }

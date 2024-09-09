@@ -53,7 +53,6 @@
   justify-content: space-between;
   margin-bottom: 24px;
   line-height: 24px;
-  width: 1170px;
 }
 
 .profile {
@@ -82,4 +81,47 @@
   display: flex;
   margin: 120px auto;
   height: auto;
+}
+
+.dotImage {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropDown {
+  position: absolute;
+  width: 139px;
+  height: 92px;
+  border: 1px solid #d1d5db;
+  background-color: #ffff;
+  text-align: center;
+  border-radius: 8px;
+  margin-top: 30px;
+  margin-left: 1055px;
+  cursor: pointer;
+}
+
+.dropDownText {
+  padding: 11px 0 12px 0;
+  border-bottom: 1px solid #d1d5db;
+  font-size: 16px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.dropDownDelete {
+  padding: 11px 0 12px 0;
+  border-bottom: none;
+  font-size: 16px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.editSubmit {
+  margin-top: 90px;
 }

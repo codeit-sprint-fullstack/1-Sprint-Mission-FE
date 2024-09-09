@@ -2,7 +2,9 @@ import dotIcon from '@/public/ic_dot.png';
 import profileIcon from '@/public/ic_profile.png';
 import noComment from '@/public/no_comment.png';
 import Image from 'next/image';
+import EditComment from '@/components/ArticleDetail/EditComment.js';
 import styles from '@/styles/Comment.module.css';
+import { useState } from 'react';
 
 function CreateDate({ createDate }) {
   const createdDate = new Date(createDate.createdAt);
@@ -20,31 +22,92 @@ function CreateDate({ createDate }) {
   return `방금 전`;
 }
 
-export default function CommentList({ comments }) {
+export default function CommentList({
+  comments,
+  onCommentDeleteId,
+  setComments,
+}) {
+  const [commentId, setCommentId] = useState('');
+  const [openOptions, setOpenOptions] = useState(false);
+  const [editId, setEditId] = useState(null);
+
+  const handleDropDown = (e) => {
+    setOpenOptions((prev) => !prev);
+    setCommentId(e);
+  };
+
+  function handleDelete() {
+    onCommentDeleteId(commentId);
+    setOpenOptions(false);
+  }
+
+  function handleEdit(e) {
+    setEditId(e);
+  }
+
   return (
     <>
-      {comments.length > 0 ? (
+      {comments ? (
         comments.map((comment) => (
           <div key={comment.id}>
-            <div className={styles.comments}>
-              <div className={styles.commentText}>
-                <span>{comment.content}</span>
-                <Image src={dotIcon} alt='수정삭제 버튼' />
-              </div>
-              <div className={styles.profile}>
-                <Image
-                  src={profileIcon}
-                  alt='프로필 사진'
-                  width={32}
-                  height={32}
+            <div>
+              {editId === comment.id ? (
+                <EditComment
+                  id={comment.id}
+                  content={comment.content}
+                  setEditId={setEditId}
+                  setComments={setComments}
+                  setOpenOptions={setOpenOptions}
                 />
-                <div className={styles.name}>
-                  <span className={styles.userName}>{comment.user.name}</span>
-                  <span className={styles.createdDate}>
-                    <CreateDate createDate={comment} />
-                  </span>
-                </div>
-              </div>
+              ) : (
+                <>
+                  <div className={styles.comments}>
+                    <div className={styles.commentText}>
+                      <span>{comment.content}</span>
+                      <Image
+                        onClick={() => handleDropDown(comment.id)}
+                        src={dotIcon}
+                        className={styles.dotImage}
+                        alt='수정삭제 버튼'
+                        width={24}
+                        height={24}
+                      />
+                      {commentId === comment.id && openOptions && (
+                        <div className={styles.dropDown}>
+                          <div
+                            className={styles.dropDownDelete}
+                            onClick={() => handleEdit(comment.id)}
+                          >
+                            수정하기
+                          </div>
+                          <div
+                            className={styles.dropDownDelete}
+                            onClick={handleDelete}
+                          >
+                            삭제하기
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    <div className={styles.profile}>
+                      <Image
+                        src={profileIcon}
+                        alt='프로필 사진'
+                        width={32}
+                        height={32}
+                      />
+                      <div className={styles.name}>
+                        <span className={styles.userName}>
+                          {comment.user.name}
+                        </span>
+                        <span className={styles.createdDate}>
+                          <CreateDate createDate={comment} />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         ))
