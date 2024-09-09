@@ -216,6 +216,9 @@
   gap: 4px;
   position: absolute;
   right: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
 }
 
 .comment_data_save_btn {
@@ -223,9 +226,7 @@
   height: 40px;
   width: 80px;
   border-radius: 8px;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 26px;
+  color: #ffffff;
 }
 
 .comment_data_cancel_btn {
@@ -233,9 +234,7 @@
   height: 40px;
   width: 80px;
   border-radius: 8px;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 26px;
+
   color: #3692ff;
   background-color: #ffffff;
   border: 1px solid #3692ff;
