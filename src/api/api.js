@@ -141,28 +141,16 @@ export function filterPostsByName(posts, searchPosts) {
 
 /*---------------------댓글 관련 API 호출--------------------*/
 // 댓글 목록 조회
-export const fetchComments = async (params = {}) => {
+export async function fetchComments() {
   try {
-    const response = await axios.get(commentsUrl, { params });
+    const response = await axios.get(commentsUrl);
     return response.data;
   } catch (error) {
     console.error("댓글 목록 조회 실패:", error);
     throw error;
   }
-};
-
-// 댓글 상세 조회 (단일 댓글 조회를 위한 API가 없다면, 댓글 목록 조회 API로 대체 가능)
-export const fetchCommentById = async (id) => {
-  try {
-    const response = await axios.get(`${commentsUrl}/${id}`);
-    return response.data;
-  } catch (error) {
-    console.error("댓글 상세 조회 실패:", error);
-    throw error;
-  }
-};
-
-// 댓글 등록
+}
+// 댓글 등록 API
 export const createComment = async (commentData) => {
   try {
     const response = await axios.post(commentsUrl, commentData);
@@ -173,7 +161,7 @@ export const createComment = async (commentData) => {
   }
 };
 
-// 댓글 수정
+// 댓글 수정 API
 export const updateComment = async (id, commentData) => {
   try {
     const response = await axios.patch(`${commentsUrl}/${id}`, commentData);
@@ -184,7 +172,7 @@ export const updateComment = async (id, commentData) => {
   }
 };
 
-// 댓글 삭제
+// 댓글 삭제 API
 export const deleteComment = async (id) => {
   try {
     const response = await axios.delete(`${commentsUrl}/${id}`);
