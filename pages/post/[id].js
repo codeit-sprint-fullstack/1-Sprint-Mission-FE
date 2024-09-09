@@ -12,7 +12,7 @@ import { formatDistanceToNow } from "date-fns";
 import { ko } from "date-fns/locale";
 import Modal from "../../components/articleModal/articleModal";
 import CommentModal from "../../components/commentModal/commentModal";
-
+let pageSize = 3;
 export async function getServerSideProps(path) {
   const { id } = path.params;
   return {
@@ -34,17 +34,54 @@ export default function post({ id }) {
   const [commentContent, setCommentContent] = useState("");
   const [commnetdata, setCommnetdata] = useState([]);
   const [btnState, setbtnState] = useState("commentBtn");
-  const [commentIndex, setCommentIndex] = useState(0);
   const router = useRouter();
+
+  const [isFetching, setIsFetching] = useState(false);
+
+  useEffect(() => {
+    // 스크롤 이벤트 핸들러 추가
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      // 컴포넌트 언마운트 시 스크롤 이벤트 핸들러 제거
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + window.scrollY === document.body.offsetHeight &&
+      !isFetching
+    ) {
+      // 끝에 도달했는지 확인
+      setIsFetching(true);
+    }
+  };
+
+  useEffect(() => {
+    if (!isFetching) return;
+
+    // 여기서 데이터를 로드하거나 API 호출 가능
+    pageSize += 3;
+    console.log("데이터를 가져오는 중...");
+    console.log(pageSize);
+
+    // 데이터 로드가 끝나면 isFetching 상태를 false로 설정
+    setTimeout(() => {
+      console.log("데이터 로드 완료");
+      setIsFetching(false);
+    }, 2000); // 임의의 지연 시간 추가
+  }, [isFetching]);
+
   const article = async () => {
-    const data = await getarticleId(id);
+    const data = await getarticleId(id, pageSize);
     setData(data);
     setDate(data.createAt.slice(0, 10));
     setCommnetdata(data.comments);
   };
   useEffect(() => {
     article();
-  }, []);
+  }, [commnetdata]);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -146,7 +183,6 @@ export default function post({ id }) {
         <CommentModal
           isOpen={isModalOpen2}
           closeModal={closeModal}
-          index={commentIndex}
           id={ModalData.id}
           commentsId={ModalData.commentsId}
         ></CommentModal>

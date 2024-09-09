@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { getArticles } from "./api/api";
 import { useRouter } from "next/router";
+let pageSize = 3;
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownValue, setdropdownValue] = useState("최신 순");
@@ -13,11 +14,38 @@ export default function Home() {
   const [articledata, setarticledata] = useState([]);
   const [keyword, setKeyword] = useState("");
 
+  const [isFetching, setIsFetching] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + window.scrollY === document.body.offsetHeight &&
+      !isFetching
+    ) {
+      // 끝에 도달했는지 확인
+      setIsFetching(true);
+    }
+  };
+
+  useEffect(() => {
+    if (!isFetching) return;
+
+    pageSize += 3;
+    console.log("데이터를 가져오는 중...");
+    console.log(pageSize);
+  }, [isFetching]);
+
   const router = useRouter();
   const article = async () => {
     const data = await getArticles({ pageSize: 3 });
     setbestArticles(data.data);
-    // console.log(data.data);
   };
   useEffect(() => {
     article();
@@ -32,17 +60,16 @@ export default function Home() {
 
   const contentarticle = async () => {
     const data = await getArticles({
-      pageSize: 5,
+      pageSize: pageSize,
       keyword: keyword,
       orderBy: Value,
       order: "asc",
     });
     setarticledata(data.data);
-    console.log(data.data);
   };
   useEffect(() => {
     contentarticle();
-  }, [keyword]);
+  }, [keyword, articledata]);
 
   const handletoggle = () => {
     setIsOpen(!isOpen);

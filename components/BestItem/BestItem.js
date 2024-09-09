@@ -1,9 +1,16 @@
 import styles from "@/components/BestItem/BestItem.module.css";
 import Image from "next/image";
+import { useRouter } from "next/router";
+
 export default function Home(article) {
+  const router = useRouter();
+  const pagemove = () => {
+    router.push(`/post/${article.article.id}`);
+    // console.log(article.article.id);
+  };
   return (
     <>
-      <div className={styles.GridItem}>
+      <div className={styles.GridItem} onClick={pagemove}>
         <div className={styles.BestItem}>
           <div className={styles.BestItemImg}>
             <Image src="/bestItem.svg" fill={true} />

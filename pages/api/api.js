@@ -29,9 +29,13 @@ export async function postArticles(data) {
   }
 }
 
-export async function getarticleId(id) {
+export async function getarticleId(id, pageSize) {
   try {
-    const response = await api.get(`/articles/${id}`);
+    const response = await api.get(`/articles/${id}`, {
+      params: {
+        pageSize: pageSize,
+      },
+    });
     return response.data;
   } catch (error) {
     console.error("Failed to fetch articles:", error);
