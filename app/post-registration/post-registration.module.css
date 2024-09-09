@@ -2,7 +2,63 @@
   width: 120rem;
   margin: 0 auto;
   margin-top: var(--header-height);
-  padding: 2.4rem;
+  padding-top: 2.4rem;
+  margin-bottom: 79.4rem;
+}
+
+.content {
+  width: 120rem;
+  margin: 0 auto;
+}
+
+.top-bar {
+  height: 4.2rem;
+}
+
+.top-bar-text {
+  font-size: 2rem;
+  line-height: 1.6em;
+  color: var(--gray800-color);
+}
+
+.btn-regist-invalid {
+  width: 7.4rem;
+  height: 4.2rem;
+  background-image: url(../../public/buttons/btn_small_regist_invalid.svg);
+}
+
+.btn-regist {
+  width: 7.4rem;
+  height: 4.2rem;
+  background-image: url(../../public/buttons/btn_small_regist.svg);
+}
+
+.label {
+  font-size: 1.8rem;
+  line-height: 1.44444em;
+  color: var(--gray800-color);
+}
+
+.title-input-set {
+  margin-top: 3.2rem;
+  width: 120rem;
+}
+
+.input-frame {
+  margin-top: 1.2rem;
+  width: 120rem;
+  height: 5.6rem;
+}
+
+.content-text-area-set {
+  margin-top: 2.4rem;
+  width: 120rem;
+}
+
+.text-area-frame {
+  margin-top: 1.2rem;
+  width: 120rem;
+  height: 28.2rem;
 }
 
 /* ===== Tablet - width : 744px ~ 1199px ===== */

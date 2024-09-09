@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
 
 import { DeviceContext } from "../components/DeviceProvider";
-import { instance } from "@/lib/axios";
+import { getArticles } from "@/lib/axios";
 import PostPreview from "./PostPrevies";
 import Search from "../components/Search";
 import {
@@ -43,44 +43,34 @@ export function Board() {
   const handleSortByRecent = () => {
     setRecentOrder(ORDER_TEXT[ORDER_BY_RECENT]);
     setPage(1);
-    const path = "article";
-    const config = {
-      params: {
-        page: 1,
-        pageSize: PAGE_SIZE_BY_DEVICE[device],
-        orderBy: ORDER_BY[ORDER_BY_RECENT],
-      },
-    };
-    instance.get(path, config).then((res) => {
-      const newList = res.data.articles.map((post, index) => {
-        return (
-          <PostPreview
-            key={index}
-            title={post.title}
-            owner={post.user.name}
-            myFavorite={false}
-            favoriteCount={post.favorite}
-            createdDate={post.createdDate}
-          />
-        );
-      });
-      setList(newList);
-    });
+    getArticles(1, PAGE_SIZE_BY_DEVICE[device], ORDER_BY[ORDER_BY_RECENT]).then(
+      (data) => {
+        const newList = data.articles.map((post, index) => {
+          return (
+            <PostPreview
+              key={index}
+              title={post.title}
+              owner={post.user.name}
+              myFavorite={false}
+              favoriteCount={post.favorite}
+              createdDate={post.createdDate}
+            />
+          );
+        });
+        setList(newList);
+      }
+    );
   };
 
   const handleSortByFavorite = () => {
     setRecentOrder(ORDER_TEXT[ORDER_BY_FAVORITE]);
     setPage(1);
-    const path = "article";
-    const config = {
-      params: {
-        page: 1,
-        pageSize: PAGE_SIZE_BY_DEVICE[device],
-        orderBy: ORDER_BY[ORDER_BY_FAVORITE],
-      },
-    };
-    instance.get(path, config).then((res) => {
-      const newList = res.data.articles.map((post, index) => {
+    getArticles(
+      1,
+      PAGE_SIZE_BY_DEVICE[device],
+      ORDER_BY[ORDER_BY_FAVORITE]
+    ).then((data) => {
+      const newList = data.articles.map((post, index) => {
         return (
           <PostPreview
             key={index}
@@ -97,17 +87,8 @@ export function Board() {
   };
 
   useEffect(() => {
-    const path = "article";
-    const config = {
-      params: {
-        page: 1,
-        pageSize: PAGE_SIZE_BY_DEVICE[device],
-        orderBy: recentOrder,
-      },
-    };
-
-    instance.get(path, config).then((res) => {
-      const newList = res.data.articles.map((post, index) => {
+    getArticles(1, PAGE_SIZE_BY_DEVICE[device], recentOrder).then((data) => {
+      const newList = data.articles.map((post, index) => {
         return (
           <PostPreview
             key={index}

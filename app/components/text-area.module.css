@@ -1,0 +1,33 @@
+.input {
+  width: 100%;
+  height: 100%;
+  padding-top: 1.6rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+  background-color: var(--gray100-color);
+  box-sizing: border-box;
+  font-size: 1.6rem;
+  line-height: 1.625em;
+  border-radius: 0.75rem;
+  border: 0.1rem solid var(--gray300-color);
+  resize: none;
+}
+
+.input-invalid {
+  width: 100%;
+  height: 100%;
+  padding-top: 1.6rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+  background-color: var(--gray100-color);
+  box-sizing: border-box;
+  font-size: 1.6rem;
+  line-height: 1.625em;
+  border-radius: 0.75rem;
+  border: 0.1rem solid var(--red-color);
+  resize: none;
+}
+
+.input:focus {
+  border: 0.1rem solid var(--blue100-color);
+}

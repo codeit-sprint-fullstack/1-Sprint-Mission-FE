@@ -5,7 +5,7 @@ import { useContext, useState, useEffect } from "react";
 import { BestPost } from "./BestPost";
 import { DeviceContext } from "../components/DeviceProvider";
 
-import { instance } from "@/lib/axios";
+import { getArticles } from "@/lib/axios";
 import { BEST_POST_PAGE_SIZE } from "../constants/Favorite";
 
 import style from "./bestboard.module.css";
@@ -19,17 +19,8 @@ export function BestBoard() {
   const boardListClass = `flex flex-row ${style.list}`;
 
   useEffect(() => {
-    const path = "article";
-    const config = {
-      params: {
-        page: 1,
-        pageSize: BEST_POST_PAGE_SIZE[device],
-        orderBy: "favorite",
-      },
-    };
-
-    instance.get(path, config).then((res) => {
-      const newList = res.data.articles.map((post, index) => {
+    getArticles(1, BEST_POST_PAGE_SIZE[device], "favorite").then((data) => {
+      const newList = data.articles.map((post, index) => {
         return (
           <BestPost
             key={index}
