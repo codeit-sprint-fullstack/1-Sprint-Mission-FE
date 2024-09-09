@@ -26,11 +26,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/post-detail/[id].js"
-    ],
-    "/post-registration": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/post-registration.js"
     ]
   },
   "ampFirstPages": []

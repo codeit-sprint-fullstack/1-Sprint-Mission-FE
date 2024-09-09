@@ -3,7 +3,7 @@ import Image from "next/image";
 import AuthorProfile from "../../public/images/profile-image.png";
 import Heart from "../../public/images/ic_heart.png";
 import styles from "./PostDetail.module.css";
-import { updateArticle, deleteArticle } from "../api/api"; // 수정하기 삭제하기 API 호출
+import { updateArticle, deleteArticle, createComment } from "../api/api"; // 수정, 삭제, 댓글 등록 API 호출
 import UpdateDeleteButton from "./UpdateDeleteButton"; // 수정/삭제 컴포넌트
 
 export default function PostDetail({ post }) {
@@ -11,6 +11,10 @@ export default function PostDetail({ post }) {
   const [isEditing, setIsEditing] = useState(false);
   const [updatedTitle, setUpdatedTitle] = useState(post.title);
   const [updatedContent, setUpdatedContent] = useState(post.content);
+
+  // 댓글 관련 상태
+  const [comment, setComment] = useState("");
+  const [isCommentButtonEnabled, setIsCommentButtonEnabled] = useState(false);
 
   const toggleMenu = () => setMenuVisible(!menuVisible);
   const toggleEdit = () => setIsEditing(!isEditing);
@@ -34,9 +38,34 @@ export default function PostDetail({ post }) {
   const handleDelete = async () => {
     try {
       await deleteArticle(post.id);
-      // 삭제 후 목록으로 이동하는 기능 추가 가능
     } catch (error) {
       console.error("게시글 삭제 실패:", error);
+    }
+  };
+
+  // 댓글 입력 핸들러
+  const handleCommentChange = (e) => {
+    const value = e.target.value;
+    setComment(value);
+    setIsCommentButtonEnabled(value.trim().length > 0); // 입력값이 있으면 버튼 활성화
+  };
+
+  // 댓글 등록 핸들러
+  const handleCommentSubmit = async () => {
+    if (comment.trim()) {
+      try {
+        const commentData = {
+          postId: post.id, // 게시글 ID
+          content: comment,
+          author: "작성자 판다",
+          createdAt: new Date().toISOString(), // 작성한 시간(현재시간)
+        };
+        await createComment(commentData); // 댓글 등록 API 호출
+        setComment(""); // 입력 필드 초기화
+        setIsCommentButtonEnabled(false); // 버튼 비활성화
+      } catch (error) {
+        console.error("댓글 등록 실패:", error);
+      }
     }
   };
 
@@ -99,11 +128,19 @@ export default function PostDetail({ post }) {
         <label className={styles.detailCommentContainer}>
           <textarea
             name="content"
+            value={comment}
+            onChange={handleCommentChange}
             className={styles.commentInput}
             placeholder="댓글을 입력해주세요"
           />
         </label>
-        <button className={styles.registrationBtn}>등록</button>
+        <button
+          className={styles.registrationBtn}
+          onClick={handleCommentSubmit}
+          disabled={!isCommentButtonEnabled}
+        >
+          등록
+        </button>
       </div>
 
       {/* 수정/삭제 메뉴 */}

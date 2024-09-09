@@ -10,7 +10,7 @@ console.log("BASE_URL:", BASE_URL);
 const articlesUrl = `${BASE_URL}/articles`;
 
 // 댓글 API 호출
-const commentsUrl = `${BASE_URL}/comments`;
+const commentsUrl = `${BASE_URL}/board/comments`;
 
 /*----------------------상품 관련 API ---------------------------*/
 
