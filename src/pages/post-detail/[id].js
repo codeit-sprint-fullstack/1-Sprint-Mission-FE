@@ -5,9 +5,10 @@ import FreeBoardPageHeader from "../../components/FreeBoardPageHeader";
 import PostDetail from "../../components/PostDetail"; // 기존의 PostDetail 컴포넌트
 import FreeBoardCommentItem from "../../components/FreeBoardCommentItem";
 import Footer from "../../components/Footer";
-import styles from "./PostDetailPage.module.css"; // CSS 모듈 파일
+import styles from "../PostDetailPage.module.css"; // CSS 모듈 파일
+import { fetchArticleById } from "../../api/api"; // 게시글 상세 조회 api 호출
 
-const PostDetailPage = () => {
+export default function PostDetailPage() {
   const router = useRouter();
   const { id } = router.query; // URL에서 id를 추출
   const [post, setPost] = useState(null);
@@ -18,8 +19,8 @@ const PostDetailPage = () => {
     const fetchPost = async () => {
       try {
         if (!id) return;
-        const response = await axios.get(`/api/articles/${id}`);
-        setPost(response.data);
+        const data = await fetchArticleById(id); // 게시글 상세 조회 api 사용
+        setPost(data);
         setLoading(false);
       } catch (err) {
         console.error("게시글을 불러오는 중 오류 발생:", err);
@@ -39,7 +40,7 @@ const PostDetailPage = () => {
       <FreeBoardPageHeader />
       <main className={styles.main}>
         {post && <PostDetail post={post} />} {/* 게시글 정보 전달 */}
-        <FreeBoardCommentItem postId={post.id} />{" "}
+        <FreeBoardCommentItem postId={post.id} />
         {/* 댓글 컴포넌트에 postId 전달 */}
         <button className={styles.BackBtn} onClick={() => router.back()}>
           목록으로 돌아가기 ↩
@@ -48,6 +49,4 @@ const PostDetailPage = () => {
       <Footer />
     </div>
   );
-};
-
-export default PostDetailPage;
+}

@@ -22,10 +22,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/free-board": [
+    "/post-detail/[id]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/free-board.js"
+      "static/chunks/pages/post-detail/[id].js"
     ],
     "/post-registration": [
       "static/chunks/webpack.js",

@@ -3,6 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/post-registration": "pages/post-registration.js",
-  "/free-board": "pages/free-board.js",
-  "/": "pages/index.js"
+  "/post-detail/[id]": "pages/post-detail/[id].js"
 }
