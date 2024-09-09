@@ -1,8 +1,12 @@
+import BestPost from "@components/BestPost";
+import styles from "@styles/Community.module.css";
+
 export default function Community() {
   return (
-    <div>
-      <h1>커뮤니티</h1>
-      <p>이곳은 커뮤니티 페이지입니다.</p>
+    <div className={styles.body}>
+      <h1 className={`${styles.postTitle} text-xl bold`}>베스트 게시글</h1>
+      <BestPost />
+      <h1 className={`${styles.postTitle} text-xl bold`}>게시글</h1>
     </div>
   );
 }

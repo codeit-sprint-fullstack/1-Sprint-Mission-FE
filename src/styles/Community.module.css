@@ -1,0 +1,8 @@
+.body {
+  color: var(--gray800);
+  margin-top: 2.4rem;
+  padding-left: 20rem;
+}
+.postTitle {
+  margin: 2.4rem 0;
+}

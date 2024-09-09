@@ -10,7 +10,7 @@ function Navigation() {
   return (
     <nav className={styles.navBar}>
       <div className={styles.navLeft}>
-        <Link href="/items">
+        <Link href="/">
           <Image className={styles.logo} src={logo} alt="Home Logo" />
           <Image
             className={styles.smallLogo}

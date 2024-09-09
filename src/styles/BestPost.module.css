@@ -1,0 +1,16 @@
+.bestPost {
+  width: 38.4rem;
+  height: 16.9rem;
+  padding-top: 4.6rem;
+  border-radius: 0.8rem;
+  background-color: var(--gray50);
+  position: relative;
+}
+
+.badgeContainer {
+  width: 10.2rem;
+  height: 3rem;
+  position: absolute;
+  top: 0;
+  left: 2.4rem;
+}
