@@ -9,7 +9,7 @@ export default function PostItem({ post }) {
     <a className={styles.postItem}>
       <div className={styles.postHeader}>
         <Link href={`/post-detail/${post.id}`}>
-          <h3 className={styles.postTitle}>{post.title}</h3>
+          <span className={styles.postTitle}>{post.title}</span>
         </Link>
         <Image
           src="/images/post-Image.png"

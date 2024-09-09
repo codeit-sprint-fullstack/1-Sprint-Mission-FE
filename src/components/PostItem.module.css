@@ -2,7 +2,7 @@
 .postItem {
   max-width: 1200px;
   height: 138px;
-  background-color: #fcfcfc;
+  background: #fcfcfc;
   margin-bottom: 24px;
 }
 
@@ -56,4 +56,18 @@
   color: #6b7280;
   font-size: 16px;
   font-weight: 400;
+}
+
+/* 게시물 제목 링크 스타일 */
+.postTitle {
+  color: inherit; /* 부모 요소의 색상 상속 */
+  text-decoration: none; /* 기본 밑줄 제거 */
+  cursor: pointer; /* 마우스 오버 시 손가락 커서 */
+  font-size: inherit; /* 상속된 폰트 크기 사용 */
+  font-weight: inherit; /* 상속된 폰트 두께 사용 */
+}
+
+/* 게시물에 마우스 올렸을 때 */
+.postTitle:hover {
+  text-decoration: underline;
 }

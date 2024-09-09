@@ -2,6 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/post-edit/[id]": "pages/post-edit/[id].js",
-  "/free-board": "pages/free-board.js"
+  "/free-board": "pages/free-board.js",
+  "/post-detail/[id]": "pages/post-detail/[id].js"
 }
