@@ -4,7 +4,7 @@ import AuthorProfile from "../../public/images/profile-image.png";
 import Heart from "../../public/images/ic_heart.png";
 import styles from "./PostDetail.module.css";
 import { useRouter } from "next/router";
-import { updateArticle, deleteArticle, createComment } from "../api/api"; // 수정, 삭제, 댓글 등록 API 호출
+import { deleteArticle } from "../api/api"; // 수정, 삭제, 댓글 등록 API 호출
 import UpdateDeleteButton from "./UpdateDeleteButton"; // 수정/삭제 컴포넌트
 
 export default function PostDetail({ post, onCommentSubmit }) {
@@ -19,21 +19,6 @@ export default function PostDetail({ post, onCommentSubmit }) {
   const [isCommentButtonEnabled, setIsCommentButtonEnabled] = useState(false);
 
   const toggleMenu = () => setMenuVisible(!menuVisible);
-
-  // 게시글 수정 핸들러
-  const handleEdit = async () => {
-    try {
-      const updatedData = {
-        title: updatedTitle,
-        content: updatedContent,
-      };
-      await updateArticle(post.id, updatedData);
-      setMenuVisible(false);
-      setIsEditing(false);
-    } catch (error) {
-      console.error("게시글 수정 실패:", error);
-    }
-  };
 
   // 게시글 삭제 핸들러
   const handleDelete = async () => {
