@@ -97,7 +97,7 @@ function DetailArticle({ article }) {
   const openArticleDropdown = () => setArticleDropdown(!ArticleDropdown);
 
   const updateArticle = () => {
-    router.push(`/Article/${item.id}`);
+    router.push(`/Articles/Registration?id=${article.id}`);
   };
 
   const deleteArticle = () => {

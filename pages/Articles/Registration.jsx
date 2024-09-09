@@ -5,14 +5,36 @@ import * as api from "@/pages/api/articles";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-function Registration() {
+export async function getServerSideProps(context) {
+  if (context.query) {
+    const { id } = context.query;
+
+    let article = {};
+    try {
+      const data = await api.getArticle(id);
+      article = data;
+    } catch (error) {
+      console.log(error);
+    }
+
+    return {
+      props: { article },
+    };
+  } else {
+    return {
+      props: {},
+    };
+  }
+}
+
+function Registration({ article }) {
   const router = useRouter();
   const [openAlertModal, setOpenAlertModal] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
   const createArticle = async () => {
     try {
-      const data = await api.createArticles(values);
+      const data = await api.createArticle(values);
       if (data) {
         router.push("/Articles");
       } else {
@@ -26,18 +48,34 @@ function Registration() {
     }
   };
 
+  const updateArticle = async () => {
+    try {
+      const data = await api.updateArticle(article.id, values);
+      if (data) {
+        router.push("/Articles");
+      } else {
+        setAlertMessage("게시글 수정에 실패했습니다.");
+        openAlert();
+      }
+    } catch (error) {
+      console.log(error);
+      setAlertMessage("게시글 수정에 실패했습니다." + error.message);
+      openAlert();
+    }
+  };
+
   const openAlert = () => setOpenAlertModal(true);
   const closeAlert = () => setOpenAlertModal(false);
 
   const { values, errors, disabled, handleChange, handleSubmit } =
     useFormValidation(
       {
-        title: "",
-        content: "",
+        title: article ? article.title : "",
+        content: article ? article.content : "",
         //유저관리를 안하고 있음 기본 유저를 설정 추후 유저관리의 로그인계정으로 변경해야 함
         userId: "550e8400-e29b-41d4-a716-446655440000",
       },
-      createArticle
+      article ? updateArticle : createArticle
     );
 
   return (
