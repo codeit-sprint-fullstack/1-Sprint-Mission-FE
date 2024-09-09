@@ -7,10 +7,10 @@ function DropdownData({ handleUpdate, handleDelete }) {
   return (
     <div className={styles.dropbox_list}>
       <button className={styles.first_drop} onClick={onUpdate}>
-        수정
+        수정하기
       </button>
       <button className={styles.last_drop} onClick={onDelete}>
-        삭제
+        삭제하기
       </button>
     </div>
   );

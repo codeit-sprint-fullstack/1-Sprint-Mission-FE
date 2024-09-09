@@ -1,5 +1,6 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import styles from "@/styles/alertModal.module.css";
+import ReactDOM from "react-dom";
 function AlertModal({ message = "", isOpen, onClose }) {
   const dialogRef = useRef(null);
 

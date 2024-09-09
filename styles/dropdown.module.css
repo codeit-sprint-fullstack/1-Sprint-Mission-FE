@@ -12,6 +12,7 @@
 }
 
 .dropbox_list > button {
+  color: #6b7280;
   box-sizing: border-box;
   width: 130px;
   height: 42px;

@@ -34,27 +34,68 @@ export async function getServerSideProps(context) {
   };
 }
 
-function Comment({ item }) {
-  const { content, user, createAt } = item;
-  const date = dateFormatYYYYMMDD(createAt);
+function Comment({ item, openAlert, setMessage }) {
+  const { content, user, createAt, updateAt } = item;
+  const router = useRouter();
+  const createDate = dateFormatYYYYMMDD(createAt);
+  const updateDate = dateFormatYYYYMMDD(updateAt);
 
   const [CommentDropdown, setCommentDropdown] = useState(false);
+  const [contentUpdate, setContentUpdate] = useState(false);
+  const [value, setValue] = useState(content);
+  const openCommentDropdown = () => setCommentDropdown(!CommentDropdown);
 
-  const openCommentDropdown = () => setCommentDropdown(true);
-  const closeCommentDropdown = () => setCommentDropdown(false);
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const onContentUpdate = () => {
+    setContentUpdate(true);
+    setCommentDropdown(false);
+  };
+  const onUpdateCancel = () => {
+    setContentUpdate(false);
+    setCommentDropdown(true);
+  };
+
+  const updateComment = async () => {
+    try {
+      const res = await commentApi.updateComment(item.id, { content: value });
+      if (res) {
+        setContentUpdate(false);
+        router.reload();
+      }
+    } catch (error) {
+      console.log(error);
+      setMessage("댓글 수정에 실패했습니다." + error.name);
+      openAlert();
+    }
+  };
 
   return (
     <div className={styles.comment_item_box}>
       <div className={styles.comment_item_content_box}>
-        <h1 className={styles.comment_content}>{content}</h1>
-        <Image
-          onClick={openCommentDropdown}
-          src={ic_kebab}
-          width={24}
-          height={24}
-          alt="수정/삭제이미지"
-        />
-        {CommentDropdown && <DropdownData />}
+        {contentUpdate ? (
+          <textarea
+            className={styles.comment_content_textarea}
+            name="content"
+            onChange={onChange}
+            value={value || ""}
+          />
+        ) : (
+          <p className={styles.comment_content}>{content}</p>
+        )}
+        {!contentUpdate && (
+          <Image
+            onClick={openCommentDropdown}
+            src={ic_kebab}
+            width={24}
+            height={24}
+            alt="수정/삭제이미지"
+          />
+        )}
+
+        {CommentDropdown && <DropdownData handleUpdate={onContentUpdate} />}
       </div>
       <div className={styles.comment_content_data_box}>
         <Image
@@ -65,8 +106,32 @@ function Comment({ item }) {
         />
         <div className={styles.comment_content_data}>
           <span className={styles.comment_name}>{user.name}</span>
-          <span className={styles.comment_date}>{date}</span>
+          <div>
+            <span className={styles.comment_date}>{createDate}</span>
+            {updateDate !== createDate && (
+              <span className={styles.comment_update_date}>
+                ( 수정됨 {updateDate} )
+              </span>
+            )}
+          </div>
         </div>
+
+        {contentUpdate && (
+          <div className={styles.comment_update_box}>
+            <button
+              onClick={onUpdateCancel}
+              className={styles.comment_data_cancel_btn}
+            >
+              취소
+            </button>
+            <button
+              onClick={updateComment}
+              className={styles.comment_data_save_btn}
+            >
+              수정
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -235,7 +300,12 @@ function DetailArticle({ article }) {
         <div className={styles.article_comments_box}>
           <div className={styles.article_comments}>
             {comment.map((item) => (
-              <Comment key={item.id} item={item} />
+              <Comment
+                key={item.id}
+                item={item}
+                openAlert={openAlertModal}
+                setMessage={setAlertMessage}
+              />
             ))}
             {/* 게시글의 등록된 댓글이 없다면 아래의 내용을 렌더링한다. */}
             {comment.length < 1 && (
