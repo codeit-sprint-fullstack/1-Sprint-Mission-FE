@@ -1,16 +1,32 @@
-import React from 'react';
-import styles from './SortOptions.module.css'; // CSS 모듈로 변경
+import React from "react";
+import styles from "./SortOptions.module.css";
 
-const SortOptions = ({ setSortOrder }) => {
-  const handleChange = (e) => {
-    setSortOrder(e.target.value);
+const SortOptions = ({ sortOrder, setPage, screenType }) => {
+  const handleSortClick = () => {
+    // 모바일에서는 버튼 클릭 시 sort-options를 토글
+    if (screenType === "mobile") {
+      document.querySelector(`.${styles.sortOptions}`).classList.toggle(styles.active);
+    }
   };
 
   return (
-    <select onChange={handleChange} className={styles.sortOptions}> {/* CSS 모듈 방식으로 변경 */}
-      <option value="recent">최신순</option>
-      <option value="popular">인기순</option>
-    </select>
+    <div className={styles.sortOptionsContainer}>
+      {screenType === "mobile" ? (
+        <div onClick={handleSortClick} className={styles.sortButton} />
+      ) : (
+        <div className={styles.sortOptions}>
+          <select value={sortOrder} onChange={() => setPage(1)} className={styles.sortSelect}>
+            <option value="recent">최신순</option>
+            <option value="popular">인기순</option>
+          </select>
+          <img
+            src="/image/down.svg"
+            alt="Dropdown Icon"
+            className={styles.dropdownIcon}
+          />
+        </div>
+      )}
+    </div>
   );
 };
 
