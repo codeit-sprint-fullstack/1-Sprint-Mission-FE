@@ -5,13 +5,12 @@
 }
 
 :root {
-  --best-title: #111827;
-  --best-content: #1f2937;
-  --best-background: #f9fafb;
-
-  --date: #9ca3af;
-  --userName: #4b5563;
-  --like: #6b7280;
+  --grey-900: #111827;
+  --grey-800: #1f2937;
+  --grey-500: #9ca3af;
+  --grey-600: #4b5563;
+  --grey-400: #6b7280;
+  --grey-50: #f9fafb;
 
   --blue: #3692ff;
 }

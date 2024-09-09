@@ -1,6 +1,7 @@
 import axios from '@/lib/axios';
 import BestPost from '@/components/BestPost';
 import Container from '@/components/Container';
+import WriteButton from '@/components/WriteButton';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
@@ -41,6 +42,7 @@ export default function Freeboard() {
     <>
       <Container>
         <BestPost posts={bestPosts} />
+        <WriteButton />
       </Container>
     </>
   );

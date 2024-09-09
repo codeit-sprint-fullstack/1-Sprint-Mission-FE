@@ -3,7 +3,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 23.87px;
-  color: var(--best-title);
+  color: var(--grey-900);
 }
 
 .bestContainer {
@@ -14,7 +14,7 @@
 
 .bestListBox {
   width: 33.3%;
-  background-color: var(--best-background);
+  background-color: var(--grey-50);
   padding: 0 24px;
   border-radius: 8px;
 }
@@ -37,7 +37,7 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 32px;
-  color: var(--best-content);
+  color: var(--grey-800);
 }
 
 .postImgWrapper {
@@ -63,13 +63,13 @@
 }
 
 .userName {
-  color: var(--userName);
+  color: var(--grey-600);
 }
 
 .like {
-  color: var(--like);
+  color: var(--grey-400);
 }
 
 .bestFormatDate {
-  color: var(--date);
+  color: var(--grey-500);
 }
