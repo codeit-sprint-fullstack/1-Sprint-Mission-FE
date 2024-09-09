@@ -6,6 +6,14 @@ import axios from "axios";
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 console.log("BASE_URL:", BASE_URL);
 
+// 게시글 API 호출
+const articlesUrl = `${BASE_URL}/articles`;
+
+// 댓글 API 호출
+const commentsUrl = `${BASE_URL}/comments`;
+
+/*----------------------상품 관련 API ---------------------------*/
+
 export async function getProductList({
   order = "createdAt",
   cursor = null,
@@ -74,7 +82,7 @@ export function filterProductsByName(products, query) {
 // 게시글 목록 조회
 export const fetchArticles = async (params = {}) => {
   try {
-    const response = await axios.get(BASE_URL, { params });
+    const response = await axios.get(articlesUrl, { params });
     return response.data;
   } catch (error) {
     console.error("게시글 목록 조회 실패:", error);
@@ -85,7 +93,7 @@ export const fetchArticles = async (params = {}) => {
 // 게시글 상세 조회
 export const fetchArticleById = async (id) => {
   try {
-    const response = await axios.get(`${BASE_URL}/${id}`);
+    const response = await axios.get(`${articlesUrl}/${id}`);
     return response.data;
   } catch (error) {
     console.error("게시글 상세 조회 실패:", error);
@@ -96,7 +104,7 @@ export const fetchArticleById = async (id) => {
 // 게시글 등록
 export const createArticle = async (articleData) => {
   try {
-    const response = await axios.post(BASE_URL, articleData);
+    const response = await axios.post(articlesUrl, articleData);
     return response.data;
   } catch (error) {
     console.error("게시글 등록 실패:", error);
@@ -107,7 +115,7 @@ export const createArticle = async (articleData) => {
 // 게시글 수정
 export const updateArticle = async (id, articleData) => {
   try {
-    const response = await axios.patch(`${BASE_URL}/${id}`, articleData);
+    const response = await axios.patch(`${articlesUrl}/${id}`, articleData);
     return response.data;
   } catch (error) {
     console.error("게시글 수정 실패:", error);
@@ -118,7 +126,7 @@ export const updateArticle = async (id, articleData) => {
 // 게시글 삭제
 export const deleteArticle = async (id) => {
   try {
-    const response = await axios.delete(`${BASE_URL}/${id}`);
+    const response = await axios.delete(`${articlesUrl}/${id}`);
     return response.data;
   } catch (error) {
     console.error("게시글 삭제 실패:", error);
@@ -130,3 +138,59 @@ export const deleteArticle = async (id) => {
 export function filterPostsByName(posts, searchPosts) {
   return posts.filter((post) => post.title.includes(searchPosts));
 }
+
+/*---------------------댓글 관련 API 호출--------------------*/
+// 댓글 목록 조회
+export const fetchComments = async (params = {}) => {
+  try {
+    const response = await axios.get(commentsUrl, { params });
+    return response.data;
+  } catch (error) {
+    console.error("댓글 목록 조회 실패:", error);
+    throw error;
+  }
+};
+
+// 댓글 상세 조회 (단일 댓글 조회를 위한 API가 없다면, 댓글 목록 조회 API로 대체 가능)
+export const fetchCommentById = async (id) => {
+  try {
+    const response = await axios.get(`${commentsUrl}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("댓글 상세 조회 실패:", error);
+    throw error;
+  }
+};
+
+// 댓글 등록
+export const createComment = async (commentData) => {
+  try {
+    const response = await axios.post(commentsUrl, commentData);
+    return response.data;
+  } catch (error) {
+    console.error("댓글 등록 실패:", error);
+    throw error;
+  }
+};
+
+// 댓글 수정
+export const updateComment = async (id, commentData) => {
+  try {
+    const response = await axios.patch(`${commentsUrl}/${id}`, commentData);
+    return response.data;
+  } catch (error) {
+    console.error("댓글 수정 실패:", error);
+    throw error;
+  }
+};
+
+// 댓글 삭제
+export const deleteComment = async (id) => {
+  try {
+    const response = await axios.delete(`${commentsUrl}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("댓글 삭제 실패:", error);
+    throw error;
+  }
+};
