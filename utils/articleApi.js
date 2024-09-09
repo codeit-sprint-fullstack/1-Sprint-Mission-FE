@@ -8,10 +8,10 @@ export async function fetchArticle(id) {
 
 // utils/api.js
 
-export async function fetchArticles({ sort, keyword, offset, size }) {
+export async function fetchArticles({ sort, keyword, page, size }) {
   try {
     const res = await fetch(
-      `https://thrift-shop.onrender.com/articles?sort=${sort}&search=${keyword}&offset=${offset}&size=${size}`
+      `https://thrift-shop.onrender.com/articles?sort=${sort}&search=${keyword}&page=${page}&size=${size}`
     );
     if (!res.ok) {
       throw new Error("Failed to fetch articles");

@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import BestProduct from "@/components/BoardComponents/BestProduct";
 import BoardList from "@/components/BoardComponents/BoardList";
 import { fetchArticles, fetchBestArticles } from "@/utils/articleApi";
 import styles from "@/styles/board.module.css";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps(context) {
   const {
@@ -12,17 +13,16 @@ export async function getServerSideProps(context) {
     size = 4,
   } = context.query;
 
-  const offset = (page - 1) * size;
-
   try {
-    const articles = await fetchArticles({ sort, keyword, offset, size });
+    const articles = await fetchArticles({ sort, keyword, page, size });
     const bestArticles = await fetchBestArticles();
     return {
       props: {
         initialArticles: articles.data || [],
         totalArticles: articles.total || 0,
         bestArticles,
-        initialOffset: offset,
+        initialPage: page,
+        pageSize: size,
       },
     };
   } catch (error) {
@@ -32,7 +32,8 @@ export async function getServerSideProps(context) {
         initialArticles: [],
         totalArticles: 0,
         bestArticles: [],
-        initialOffset: 0,
+        initialPage: 1,
+        pageSize: size,
       },
     };
   }
@@ -42,48 +43,76 @@ export default function Board({
   initialArticles,
   bestArticles,
   totalArticles,
-  initialOffset,
+  initialPage,
+  pageSize,
 }) {
-  const [articles, setArticles] = useState(
-    Array.isArray(initialArticles) ? initialArticles : []
-  );
-  const [page, setPage] = useState(1);
+  const [articles, setArticles] = useState(initialArticles);
+  const [page, setPage] = useState(initialPage);
   const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-  const [offset, setOffset] = useState(initialOffset);
+  const [hasMore, setHasMore] = useState(articles.length < totalArticles);
+  const router = useRouter();
 
   const loadMoreArticles = useCallback(async () => {
     if (loading || !hasMore) return;
 
     setLoading(true);
-
+    const nextPage = page + 1;
     try {
-      const newPage = page + 1;
-      const newOffset = offset + 4;
-
       const response = await fetchArticles({
-        sort: "createdAt",
-        keyword: "",
-        offset: newOffset,
-        size: 4,
+        sort: router.query.sort || "createdAt",
+        keyword: router.query.keyword || "",
+        page: nextPage,
+        size: pageSize,
       });
 
       const newArticles = response.data || [];
+      setArticles((prevArticles) => [...prevArticles, ...newArticles]);
+      setPage(nextPage);
 
-      // 모든 게시글을 다 불러왔는지 확인
-      if (articles.length >= totalArticles) {
+      if (
+        newArticles.length === 0 ||
+        articles.length + newArticles.length >= totalArticles
+      ) {
         setHasMore(false);
-      } else {
-        setArticles((prevArticles) => [...prevArticles, ...newArticles]);
-        setPage(newPage);
-        setOffset(newOffset); // offset 갱신
       }
     } catch (error) {
       console.error("Error fetching more articles:", error);
     } finally {
       setLoading(false);
     }
-  }, [page, loading, hasMore, offset, articles.length, totalArticles]);
+  }, [
+    page,
+    loading,
+    hasMore,
+    articles.length,
+    totalArticles,
+    pageSize,
+    router.query,
+  ]);
+
+  useEffect(() => {
+    const fetchUpdatedArticles = async () => {
+      setLoading(true);
+      try {
+        const response = await fetchArticles({
+          sort: router.query.sort || "createdAt",
+          keyword: router.query.keyword || "",
+          page: 1,
+          size: pageSize,
+        });
+
+        setArticles(response.data || []);
+        setPage(1);
+        setHasMore(response.data.length < totalArticles);
+      } catch (error) {
+        console.error("Error fetching updated articles:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUpdatedArticles();
+  }, [router.query, totalArticles, pageSize]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -106,7 +135,6 @@ export default function Board({
       <BestProduct articles={bestArticles} />
       <BoardList articles={articles} />
       {loading && <div>로딩중...</div>}
-      {!hasMore && <div>더 이상 게시글이 없습니다.</div>}
     </div>
   );
 }
