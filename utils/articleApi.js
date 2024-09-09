@@ -9,15 +9,21 @@ export async function fetchArticle(id) {
 // utils/api.js
 
 export async function fetchArticles({ sort, keyword, offset, size }) {
-  const res = await fetch(
-    `https://thrift-shop.onrender.com/articles?sort=${sort}&search=${keyword}&offset=${offset}&size=${size}`
-  );
-  if (!res.ok) {
-    throw new Error("Failed to fetch articles");
-  }
+  try {
+    const res = await fetch(
+      `https://thrift-shop.onrender.com/articles?sort=${sort}&search=${keyword}&offset=${offset}&size=${size}`
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch articles");
+    }
+    const data = await res.json();
 
-  const data = await res.json();
-  return data;
+    // articles 필드가 정의되지 않았을 때 대비
+    return data;
+  } catch (error) {
+    console.error("Error fetching articles:", error);
+    return [];
+  }
 }
 
 export async function fetchBestArticles() {

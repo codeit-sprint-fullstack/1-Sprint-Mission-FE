@@ -5,12 +5,11 @@ import profile from "@/images/ic_profile.png";
 import Link from "next/link";
 
 export default function BoardListItems({ articles }) {
-  const articlesList = Array.isArray(articles.data) ? articles.data : [];
   return (
     <>
       <div className={styles.boardListContainer}>
-        {articlesList.length > 0 ? (
-          articlesList.map((article) => (
+        {articles.length > 0 ? (
+          articles.map((article) => (
             <Link href={`/board/${article.id}`} passHref key={article.id}>
               <div className={styles.boardList}>
                 <div className={styles.titleContainer}>
@@ -41,7 +40,7 @@ export default function BoardListItems({ articles }) {
             </Link>
           ))
         ) : (
-          <p>No best articles available.</p>
+          <p>No articles available.</p>
         )}
       </div>
     </>

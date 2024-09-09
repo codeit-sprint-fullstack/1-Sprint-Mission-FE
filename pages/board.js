@@ -1,8 +1,7 @@
-// pages/board.js
-
+import { useState, useEffect, useCallback } from "react";
 import BestProduct from "@/components/BoardComponents/BestProduct";
 import BoardList from "@/components/BoardComponents/BoardList";
-import { fetchArticles, fetchBestArticles } from "@/utils/articleApi"; // API 함수 불러오기
+import { fetchArticles, fetchBestArticles } from "@/utils/articleApi";
 import styles from "@/styles/board.module.css";
 
 export async function getServerSideProps(context) {
@@ -10,39 +9,104 @@ export async function getServerSideProps(context) {
     sort = "createdAt",
     keyword = "",
     page = 1,
-    size = 5,
+    size = 4,
   } = context.query;
 
-  // 페이지에 따른 오프셋 계산
   const offset = (page - 1) * size;
 
   try {
-    // API 호출을 utils/api.js에서 처리
     const articles = await fetchArticles({ sort, keyword, offset, size });
     const bestArticles = await fetchBestArticles();
     return {
       props: {
-        articles,
+        initialArticles: articles.data || [],
+        totalArticles: articles.total || 0,
         bestArticles,
+        initialOffset: offset,
       },
     };
   } catch (error) {
     console.error("Error fetching articles:", error);
-
     return {
       props: {
-        articles: [],
+        initialArticles: [],
+        totalArticles: 0,
         bestArticles: [],
+        initialOffset: 0,
       },
     };
   }
 }
 
-export default function Board({ articles, bestArticles }) {
+export default function Board({
+  initialArticles,
+  bestArticles,
+  totalArticles,
+  initialOffset,
+}) {
+  const [articles, setArticles] = useState(
+    Array.isArray(initialArticles) ? initialArticles : []
+  );
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [offset, setOffset] = useState(initialOffset);
+
+  const loadMoreArticles = useCallback(async () => {
+    if (loading || !hasMore) return;
+
+    setLoading(true);
+
+    try {
+      const newPage = page + 1;
+      const newOffset = offset + 4; // 다음 offset 계산
+
+      const response = await fetchArticles({
+        sort: "createdAt",
+        keyword: "",
+        offset: newOffset,
+        size: 4,
+      });
+
+      const newArticles = response.data || [];
+
+      // 모든 게시글을 다 불러왔는지 확인
+      if (articles.length >= totalArticles) {
+        setHasMore(false);
+      } else {
+        setArticles((prevArticles) => [...prevArticles, ...newArticles]);
+        setPage(newPage);
+        setOffset(newOffset); // offset 갱신
+      }
+    } catch (error) {
+      console.error("Error fetching more articles:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [page, loading, hasMore, offset, articles.length, totalArticles]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+          document.documentElement.offsetHeight - 100 &&
+        hasMore &&
+        !loading
+      ) {
+        loadMoreArticles();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [loadMoreArticles, hasMore, loading]);
+
   return (
     <div className={styles.bestContainer}>
       <BestProduct articles={bestArticles} />
       <BoardList articles={articles} />
+      {loading && <div>로딩중...</div>}
+      {!hasMore && <div>더 이상 게시글이 없습니다.</div>}
     </div>
   );
 }
