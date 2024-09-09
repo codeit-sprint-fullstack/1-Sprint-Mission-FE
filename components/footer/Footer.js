@@ -11,10 +11,10 @@ export default function Footer() {
             <p>FAQ</p>
           </div>
           <div className={styles.FooterIcon}>
-            <Image src="facebook.svg" alt="logo" width={20} height={20} />
-            <Image src="twitter.svg" alt="logo" width={20} height={20} />
-            <Image src="youtube.svg" alt="logo" width={20} height={20} />
-            <Image src="instagram.svg" alt="logo" width={20} height={20} />
+            <Image src="/facebook.svg" alt="logo" width={20} height={20} />
+            <Image src="/twitter.svg" alt="logo" width={20} height={20} />
+            <Image src="/youtube.svg" alt="logo" width={20} height={20} />
+            <Image src="/instagram.svg" alt="logo" width={20} height={20} />
           </div>
         </div>
       </div>

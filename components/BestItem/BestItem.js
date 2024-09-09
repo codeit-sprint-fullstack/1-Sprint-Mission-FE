@@ -6,14 +6,14 @@ export default function Home(article) {
       <div className={styles.GridItem}>
         <div className={styles.BestItem}>
           <div className={styles.BestItemImg}>
-            <Image src="bestItem.svg" fill={true} />
+            <Image src="/bestItem.svg" fill={true} />
           </div>
           <p className={styles.BestItemTitle}>Best</p>
         </div>
         <div className={styles.BestItemContent}>
           <p className={styles.BestItemContentTitle}>{article.article.title}</p>
           <div className={styles.BestImg}>
-            <Image src="ItemImg.svg" fill={true} alt="logo" />
+            <Image src="/ItemImg.svg" fill={true} alt="logo" />
           </div>
         </div>
         <div className={styles.BestItemInfo}>

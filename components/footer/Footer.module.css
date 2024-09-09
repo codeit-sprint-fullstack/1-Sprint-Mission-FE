@@ -5,6 +5,8 @@
   display: flex;
   justify-content: center;
   color: aliceblue;
+  position: fixed;
+  bottom: 0;
 }
 
 .FooterContent {

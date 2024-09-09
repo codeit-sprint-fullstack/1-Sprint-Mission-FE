@@ -4,6 +4,7 @@ import Postview from "../components/postView/Postview";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { getArticles } from "./api/api";
+import { useRouter } from "next/router";
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownValue, setdropdownValue] = useState("최신 순");
@@ -12,6 +13,7 @@ export default function Home() {
   const [articledata, setarticledata] = useState([]);
   const [keyword, setKeyword] = useState("");
 
+  const router = useRouter();
   const article = async () => {
     const data = await getArticles({ pageSize: 3 });
     setbestArticles(data.data);
@@ -22,6 +24,10 @@ export default function Home() {
   }, []);
   const handleKeywordChange = (event) => {
     setKeyword(event.target.value);
+  };
+  const postClick = () => {
+    console.log("클릭했음");
+    router.push("/addpost");
   };
 
   const contentarticle = async () => {
@@ -67,7 +73,9 @@ export default function Home() {
 
           <div className={styles.ContentTitle}>
             <p>게시글</p>
-            <button className={styles.ContentBtn}>글쓰기</button>
+            <button onClick={postClick} className={styles.ContentBtn}>
+              글쓰기
+            </button>
           </div>
           <div className={styles.ContentPost}>
             <input
@@ -77,7 +85,7 @@ export default function Home() {
               placeholder="검색할 상품을 입력해주세요"
             ></input>
             <Image
-              src="search.svg"
+              src="/search.svg"
               width={24}
               height={24}
               className={styles.SearchImg}
@@ -85,7 +93,7 @@ export default function Home() {
             <div className={styles.dropdown}>
               <p className={styles.toggle} onClick={handletoggle}>
                 {dropdownValue}
-                <Image src="dropdown.svg" width={24} height={24} />
+                <Image src="/dropdown.svg" width={24} height={24} />
               </p>
               {isOpen && (
                 <ul className={styles.menu}>

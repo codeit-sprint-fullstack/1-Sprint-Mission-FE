@@ -3,7 +3,13 @@
   border-bottom: 1px solid #dfdfdf;
   align-items: center;
   height: 70px;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  background-color: #ffffff;
+  z-index: 999;
 }
+
 .HeaderMenu {
   display: flex;
   align-items: center;
@@ -30,8 +36,21 @@
   width: 153px;
   height: 51px;
   margin-left: 200px;
+  cursor: pointer;
 }
 .BestItemTitle {
   position: absolute;
   left: 44px;
+}
+.active {
+  color: #3692ff;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration-line: none;
+}
+.notactive {
+  text-decoration-line: none;
+  color: #4b5563;
+  font-size: 18px;
+  font-weight: 700;
 }
