@@ -1,6 +1,6 @@
 import ArticleList from '@/components/FreeBoard/ArticleList';
 import SearchForm from '@/components/FreeBoard/SearchForm';
-import axios from '@/lib/axios.js';
+import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styles from '@/styles/Search.module.css';
@@ -13,7 +13,7 @@ export default function Search() {
   async function getArticles() {
     try {
       const res = await axios.get(
-        `https://sprint-be-h8kw.onrender.com/articles?keyword=${keyword}`
+        `https://sprint-be-h8kw.onrender.com/articles/freeboard?keyword=${keyword}`
       );
       const nextArticle = res.data;
       setArticles(nextArticle);
@@ -29,10 +29,20 @@ export default function Search() {
   return (
     <>
       <div className={styles.layout}>
-        <h1>서치페이지</h1>
-        <SearchForm initialValue={keyword} />
-        <h1> 검색어는 {keyword} 입니다.</h1>
-        <ArticleList articles={articles} />
+        <div className={styles.mainText}>서치페이지</div>
+        <SearchForm className={styles.input} initialValue={keyword} />
+
+        {articles.length >= 1 ? (
+          <ArticleList articles={articles} />
+        ) : (
+          <>
+            <div className={styles.noResultsHeading}>앗!</div>
+            <span className={styles.noResultsMessage}>
+              <span className={styles.noResultsKeyword}>'{keyword}'</span> 검색
+              결과가 없어요
+            </span>
+          </>
+        )}
       </div>
     </>
   );

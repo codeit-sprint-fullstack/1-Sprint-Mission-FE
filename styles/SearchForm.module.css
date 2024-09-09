@@ -9,11 +9,13 @@
 }
 
 .searchInput {
-  width: 1055px;
+  width: 100%;
+  min-width: 1055px;
   height: 42px;
   background-color: #f3f4f6;
   border: none;
   border-radius: 12px;
   padding-left: 44px;
   box-sizing: border-box;
+  margin-bottom: 25px;
 }
