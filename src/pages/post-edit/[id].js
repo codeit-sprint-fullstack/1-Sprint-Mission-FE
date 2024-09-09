@@ -1,11 +1,10 @@
-// 게시글 수정 페이지
-
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../PostRegistrationPage.module.css";
 import { fetchArticleById, updateArticle } from "../../api/api"; // 게시글 상세조회 및 게시글 수정 API
 import FreeBoardPageHeader from "../../components/FreeBoardPageHeader";
 import Footer from "../../components/Footer";
+import usePostFormValidation from "../../hooks/usePostFormValidation"; // 유효성 검사 훅
 
 const INITIAL_VALUES = {
   title: "",
@@ -18,7 +17,9 @@ export default function PostEditPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittingError, setSubmittingError] = useState(null);
-  const [values, setValues] = useState(INITIAL_VALUES);
+
+  const { values, setValues, errors, validate, handleBlur } =
+    usePostFormValidation(INITIAL_VALUES);
 
   useEffect(() => {
     if (id) {
@@ -51,6 +52,10 @@ export default function PostEditPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (!validate()) {
+      return;
+    }
+
     try {
       setSubmittingError(null);
       setIsSubmitting(true);
@@ -72,7 +77,11 @@ export default function PostEditPage() {
   };
 
   const isFormValid = () => {
-    return values.title.trim().length > 0 && values.content.trim().length > 0;
+    return (
+      Object.keys(errors).length === 0 &&
+      values.title.trim() &&
+      values.content.trim()
+    );
   };
 
   return (
@@ -90,26 +99,38 @@ export default function PostEditPage() {
             * 제목
             <input
               id="Input1"
-              className={`${styles.RegistrationInput}`}
+              className={`${styles.RegistrationInput} ${
+                errors.title ? styles.error : ""
+              }`}
               type="text"
               name="title"
               value={values.title || ""}
+              onBlur={handleBlur}
               onChange={handleInputChange}
               placeholder="제목을 입력해주세요"
               required
             />
+            {errors.title && (
+              <div className={styles.errorMessage}>{errors.title}</div>
+            )}
           </label>
           <label className={styles.label2}>
             * 내용
             <textarea
               id="Input2"
               name="content"
-              className={`${styles.RegistrationInput}`}
+              className={`${styles.RegistrationInput} ${
+                errors.content ? styles.error : ""
+              }`}
               value={values.content || ""}
+              onBlur={handleBlur}
               onChange={handleInputChange}
               placeholder="내용을 입력해주세요"
               required
             />
+            {errors.content && (
+              <div className={styles.errorMessage}>{errors.content}</div>
+            )}
           </label>
 
           {submittingError && (
