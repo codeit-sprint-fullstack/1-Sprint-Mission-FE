@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useState } from "react";
 import * as api from "@/pages/api/comment";
 import AlertModal from "@/components/Modals/AlertModal";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
@@ -57,6 +58,7 @@ function Comment({ item }) {
 }
 
 function DetailArticle({ article }) {
+  const router = useRouter();
   const { title, content, favorite, user, createAt, comment } = article;
 
   const defaultUser = {
@@ -77,8 +79,7 @@ function DetailArticle({ article }) {
     try {
       const data = api.createComment(values);
       if (data) {
-        console.log("확인");
-        location.reload();
+        router.reload();
       } else {
         //모달 오픈
         setAlertMessage("댓글생성에 실패했습니다." + error.name);

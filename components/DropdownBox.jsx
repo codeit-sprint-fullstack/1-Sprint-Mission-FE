@@ -12,7 +12,7 @@ function DropdownBox({ onOrderChange, orderBy }) {
   };
   const handleOrderChange = (e) => {
     onOrderChange(e);
-    viewDropbox();
+    changeDropbox();
   };
   const dropDownBox = {
     recent: "최신순",

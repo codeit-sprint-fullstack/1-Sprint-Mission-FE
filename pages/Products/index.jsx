@@ -7,16 +7,16 @@ import useWindowResize from "@/hooks/useWindowResize";
 
 export async function getServerSideProps() {
   const productsQuery = {
-    order: "recent",
-    page: 1,
-    pageSize: 10,
+    orderBy: "recent",
+    offset: 1,
+    limit: 10,
   };
 
   let items = [];
   let productsTotalCount = 0;
 
   try {
-    const { list, totalCount } = await api.getProductsAxios(productsQuery);
+    const { list, totalCount } = await api.getProducts(productsQuery);
     items = list;
     productsTotalCount = totalCount;
   } catch (e) {
@@ -53,7 +53,7 @@ function Items({ items, productsTotalCount, productsQuery }) {
 
   const loadProducts = async (query) => {
     try {
-      const { list, totalCount } = await api.getProductsAxios(query);
+      const { list, totalCount } = await api.getProducts(query);
       setProducts(list);
       setTotalDataCount(totalCount);
     } catch (e) {
@@ -65,13 +65,13 @@ function Items({ items, productsTotalCount, productsQuery }) {
   const changeFromNextView = useCallback(() => {
     switch (view) {
       case "isDesktop":
-        onObjectChange({ pageSize: 10, page: 1 });
+        onObjectChange({ limit: 10, offset: 1 });
         break;
       case "isTablet":
-        onObjectChange({ pageSize: 6, page: 1 });
+        onObjectChange({ limit: 6, offset: 1 });
         break;
       case "isMobile":
-        onObjectChange({ pageSize: 4, page: 1 });
+        onObjectChange({ limit: 4, offset: 1 });
         break;
       default:
     }
@@ -90,7 +90,7 @@ function Items({ items, productsTotalCount, productsQuery }) {
       <div className="products_container">
         <SearchBar
           isMobile={view === "isMobile"}
-          order={params.order}
+          orderBy={params.orderBy}
           onChange={onChange}
         />
         <ProductList items={products} favorite={false} />

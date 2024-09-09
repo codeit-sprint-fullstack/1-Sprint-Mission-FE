@@ -25,6 +25,7 @@ export async function updateArticles(id, item) {
 }
 
 export async function createArticles(item) {
+  console.log(item);
   const res = await instance.post(`/articles`, item);
   return res.data;
 }

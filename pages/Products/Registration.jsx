@@ -81,6 +81,7 @@ function Registration() {
             value={values.name || ""}
             onChange={handleChange}
             placeholder="상품명을 입력해주세요"
+            autoComplete="off"
           />
           {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
         </div>
@@ -108,6 +109,7 @@ function Registration() {
             value={values.price || ""}
             onChange={handleChange}
             placeholder="상품 가격을 입력해주세요"
+            autoComplete="off"
           />
           {errors.price && <p style={{ color: "red" }}>{errors.price}</p>}
         </div>
@@ -121,6 +123,7 @@ function Registration() {
             onChange={handleChange}
             onKeyUp={handleChips}
             placeholder="태그를 입력해주세요"
+            autoComplete="off"
           />
           {errors.tag && <p style={{ color: "red" }}>{errors.tag}</p>}
           <div className={styles.chips_box}>

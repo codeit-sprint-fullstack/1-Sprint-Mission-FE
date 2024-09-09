@@ -12,8 +12,9 @@ function Header() {
   const path = router.pathname;
 
   const getLinkStyle = (href) => {
+    //전달받은 파라미터가 현재 경로의 하위 파일아리면 스타일 적용
     return {
-      color: href === path ? "#3692FF" : "inherit",
+      color: path.startsWith(`${href}`) ? "#3692FF" : "inherit",
     };
   };
 
@@ -35,7 +36,7 @@ function Header() {
             </Link>
           </div>
           <div className={styles.nav_content}>
-            <Link href="/Items" style={getLinkStyle("/Items") || {}}>
+            <Link href="/Products" style={getLinkStyle("/Products") || {}}>
               중고마켓
             </Link>
           </div>

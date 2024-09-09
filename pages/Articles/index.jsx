@@ -69,11 +69,10 @@ function ArticleItems({ item }) {
         <div className={styles.item_data_box}>
           <div className={styles.item_data_box}>
             <Image
-              priority
               width={24}
               height={24}
               src={ic_profile}
-              alt="유저이미지"
+              alt="사용자프로필이미지"
             />
             <span className={styles.item_data_user_name}>{user.name}</span>
             <span className={styles.create_time}>{date}</span>
@@ -99,6 +98,7 @@ export async function getServerSideProps() {
     orderBy: "recent",
     keyword: "",
     limit: 5,
+    offset: 1,
   };
 
   let bestItems = [];

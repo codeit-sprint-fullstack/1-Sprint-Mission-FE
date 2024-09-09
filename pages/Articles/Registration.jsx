@@ -3,17 +3,25 @@ import useFormValidation from "@/hooks/useFormValidation";
 import AlertModal from "@/components/Modals/AlertModal";
 import * as api from "@/pages/api/articles";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 function Registration() {
+  const router = useRouter();
   const [openAlertModal, setOpenAlertModal] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
-  const createArticle = () => {
+  const createArticle = async () => {
     try {
-      const data = api.createArticles(values);
+      const data = await api.createArticles(values);
+      if (data) {
+        router.push("/Articles");
+      } else {
+        setAlertMessage("게시글 생성에 실패했습니다.");
+        openAlert();
+      }
     } catch (error) {
       console.log(error);
-      setAlertMessage("게시글 생성에 실패했습니다." + error.name);
+      setAlertMessage("게시글 생성에 실패했습니다." + error.message);
       openAlert();
     }
   };
@@ -25,7 +33,7 @@ function Registration() {
     useFormValidation(
       {
         title: "",
-        description: "",
+        content: "",
         userId: "550e8400-e29b-41d4-a716-446655440000",
       },
       createArticle
@@ -61,14 +69,15 @@ function Registration() {
               onChange={handleChange}
               className={`${styles.input} ${errors.title && styles.err_border}`}
               placeholder="제목을 입력해주세요"
+              autoComplete="off"
             />
             {errors.title && <p style={{ color: "red" }}>{errors.title}</p>}
           </div>
           <div className={styles.input_box}>
             <label>*내용</label>
             <textarea
-              name="description"
-              value={values.description || ""}
+              name="content"
+              value={values.content || ""}
               onChange={handleChange}
               className={`${styles.input} ${styles.description} ${
                 errors.description && styles.err_border

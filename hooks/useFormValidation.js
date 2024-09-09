@@ -10,7 +10,7 @@ const validateField = (name, value) => {
       return value.length >= 1 && value.length <= 10
         ? ""
         : "상품명은 1자리 이상 10자리 이내 입니다.";
-    case "description":
+    case "description" || "content":
       return value.length >= 10 && value.length <= 100
         ? ""
         : "내용은 10자리 이상 100자리 이내 입니다.";
