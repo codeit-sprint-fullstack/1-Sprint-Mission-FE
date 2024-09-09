@@ -25,7 +25,7 @@
 /* 프로필이미지, 작성자, 작성날짜와 좋아요 수*/
 .postFooter {
   display: flex;
-  gap: 32px;
+  gap: 10px;
   align-items: center;
   padding-bottom: 16px;
   border-bottom: 1px solid #e5e7eb;
@@ -183,4 +183,9 @@
 
 .menuButton:hover {
   background: #e5e7eb;
+}
+
+/* | divider */
+.divider {
+  color: #9ca3af;
 }
