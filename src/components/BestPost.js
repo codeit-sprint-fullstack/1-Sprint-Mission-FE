@@ -17,10 +17,19 @@ const BestPost = ({
       <div className={styles.badgeContainer}>
         <Image src={bestBadge} alt="Best Badge" fill className={styles.badge} />
       </div>
-      <h3>{title}</h3>
+      <div className={styles.postContent}>
+        <h3 className="text-xl semibold">{title}</h3>
+        <Image
+          src={defaultImage}
+          alt="Post Image"
+          width={72}
+          height={72}
+          className={styles.postImage}
+        />
+      </div>
       <div className={styles.postInfo}>
-        <span>{date}</span>
-        <div className={styles.likes}>
+        <div className={styles.infoLeft}>
+          <span className="text-md regular">{nickname}</span>
           <Image
             src={emptyHeart}
             alt="Heart"
@@ -28,12 +37,9 @@ const BestPost = ({
             height={16}
             className={styles.heart}
           />
-          <span>{likes}</span>
+          <span className="text-md regular">{likes}</span>
         </div>
-      </div>
-      <Image src={defaultImage} alt="Post Image" width={72} height={72} />
-      <div className={styles.author}>
-        <span>작성자: {nickname}</span>
+        <span className={`${styles.date} text-md regular`}>{date}</span>
       </div>
     </div>
   );

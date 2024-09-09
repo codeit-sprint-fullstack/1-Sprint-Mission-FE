@@ -6,11 +6,35 @@
   background-color: var(--gray50);
   position: relative;
 }
-
 .badgeContainer {
   width: 10.2rem;
   height: 3rem;
   position: absolute;
   top: 0;
   left: 2.4rem;
+}
+.postContent {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2.4rem;
+}
+.postImage {
+  border: 1px solid var(--gray200);
+  border-radius: 0.6rem;
+}
+.postInfo {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2.4rem;
+  padding-top: 1.8rem;
+}
+.infoLeft {
+  color: var(--gray600);
+}
+.heart {
+  margin-left: 0.8rem;
+  margin-right: 0.4rem;
+}
+.date {
+  color: var(--gray400);
 }
