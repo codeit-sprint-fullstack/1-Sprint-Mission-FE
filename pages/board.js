@@ -59,7 +59,7 @@ export default function Board({
 
     try {
       const newPage = page + 1;
-      const newOffset = offset + 4; // 다음 offset 계산
+      const newOffset = offset + 4;
 
       const response = await fetchArticles({
         sort: "createdAt",
