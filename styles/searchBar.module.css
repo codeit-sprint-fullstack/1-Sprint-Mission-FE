@@ -53,15 +53,16 @@
   color: #f3f4f6;
 }
 
-.search_order_container {
-  position: relative;
-}
-
 .mobile_search {
   display: flex;
   flex-direction: column;
   /* justify-content: flex-end; */
 }
+
+.search_order_container {
+  position: relative;
+}
+
 .order_drop_btn {
   text-align: left;
   width: 130px;

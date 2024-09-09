@@ -19,18 +19,18 @@ export async function getArticle(id) {
   return res.data;
 }
 
-export async function updateArticles(id, item) {
+export async function updateArticle(id, item) {
   const res = await instance.patch(`/articles/${id}`, item);
   return res.data;
 }
 
-export async function createArticles(item) {
+export async function createArticle(item) {
   console.log(item);
   const res = await instance.post(`/articles`, item);
   return res.data;
 }
 
-export async function deleteArticles(id) {
+export async function deleteArticle(id) {
   const res = await instance.delete(`/articles/${id}`);
   return res.status;
 }

@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import * as api from "@/pages/api/articles";
 import Pagination from "@/components/Pagination";
-import DropDownBox from "@/components/DropdownBox";
+import DropDownBox from "@/components/DropdownList/DropdownBox";
 import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
 import Link from "next/link";
 
@@ -33,7 +33,6 @@ function BestArticles({ item }) {
       <div className={styles.item_data_box}>
         <div className={styles.item_data_box}>
           <span>{user.name}</span>
-          {/* <span>판다마켓</span> */}
           <Image
             width={16}
             height={16}

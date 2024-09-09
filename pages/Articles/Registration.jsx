@@ -34,6 +34,7 @@ function Registration() {
       {
         title: "",
         content: "",
+        //유저관리를 안하고 있음 기본 유저를 설정 추후 유저관리의 로그인계정으로 변경해야 함
         userId: "550e8400-e29b-41d4-a716-446655440000",
       },
       createArticle

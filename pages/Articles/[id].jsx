@@ -9,9 +9,12 @@ import ic_back from "@/public/images/ic_back.png";
 import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
 import Link from "next/link";
 import { useState } from "react";
-import * as api from "@/pages/api/comment";
+import * as commentApi from "@/pages/api/comment";
+import * as articleApi from "@/pages/api/articles";
 import AlertModal from "@/components/Modals/AlertModal";
 import { useRouter } from "next/router";
+import DropdownData from "@/components/DropdownList/DropdownData";
+import ConfirmModal from "@/components/Modals/ConfirmModal";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
@@ -35,11 +38,23 @@ function Comment({ item }) {
   const { content, user, createAt } = item;
   const date = dateFormatYYYYMMDD(createAt);
 
+  const [CommentDropdown, setCommentDropdown] = useState(false);
+
+  const openCommentDropdown = () => setCommentDropdown(true);
+  const closeCommentDropdown = () => setCommentDropdown(false);
+
   return (
     <div className={styles.comment_item_box}>
       <div className={styles.comment_item_content_box}>
         <h1 className={styles.comment_content}>{content}</h1>
-        <Image src={ic_kebab} width={24} height={24} alt="수정/삭제이미지" />
+        <Image
+          onClick={openCommentDropdown}
+          src={ic_kebab}
+          width={24}
+          height={24}
+          alt="수정/삭제이미지"
+        />
+        {CommentDropdown && <DropdownData />}
       </div>
       <div className={styles.comment_content_data_box}>
         <Image
@@ -69,20 +84,48 @@ function DetailArticle({ article }) {
 
   const date = dateFormatYYYYMMDD(createAt);
   const [values, setValues] = useState(defaultUser);
-  const [openAlertModal, setOpenAlertModal] = useState(false);
+  const [Alert, setAlert] = useState(false);
+  const [Confirm, setConfirm] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
-  const openModal = () => setOpenAlertModal(true);
-  const closeModal = () => setOpenAlertModal(false);
+  const openAlertModal = () => setAlert(true);
+  const closeAlertModal = () => setAlert(false);
+  const openConfirmModal = () => setConfirm(true);
+  const closeConfirmModal = () => setConfirm(false);
+
+  const [ArticleDropdown, setArticleDropdown] = useState(false);
+  const openArticleDropdown = () => setArticleDropdown(!ArticleDropdown);
+
+  const updateArticle = () => {
+    router.push(`/Article/${item.id}`);
+  };
+
+  const deleteArticle = () => {
+    try {
+      const res = articleApi.deleteArticle(article.id);
+      if (res) {
+        router.push("/Articles");
+      } else {
+        setAlertMessage("게시글 삭제에 실패했습니다.");
+        openAlertModal();
+        closeConfirmModal();
+      }
+    } catch (error) {
+      setAlertMessage("게시글 삭제에 실패했습니다." + error.name);
+      openAlertModal();
+      closeConfirmModal();
+      console.log(error);
+    }
+  };
 
   const createComment = () => {
     try {
-      const data = api.createComment(values);
+      const data = commentApi.createComment(values);
       if (data) {
         router.reload();
       } else {
         //모달 오픈
-        setAlertMessage("댓글생성에 실패했습니다." + error.name);
+        setAlertMessage("댓글생성에 실패했습니다.");
         openModal();
       }
     } catch (error) {
@@ -108,8 +151,14 @@ function DetailArticle({ article }) {
   return (
     <>
       <AlertModal
-        onClose={closeModal}
-        isOpen={openAlertModal}
+        onClose={closeAlertModal}
+        isOpen={Alert}
+        message={alertMessage}
+      />
+      <ConfirmModal
+        onConfirm={deleteArticle}
+        onClose={closeConfirmModal}
+        isOpen={Confirm}
         message={alertMessage}
       />
       <main>
@@ -117,11 +166,23 @@ function DetailArticle({ article }) {
           <div className={styles.article_item_title_box}>
             <h1 className={styles.article_title}>{title}</h1>
             <Image
+              onClick={openArticleDropdown}
               src={ic_kebab}
               width={24}
               height={24}
               alt="수정/삭제이미지"
             />
+            {ArticleDropdown && (
+              <DropdownData
+                handleUpdate={updateArticle}
+                handleDelete={() => {
+                  setAlertMessage(
+                    "게시글이 영구적으로 삭제됩니다. 삭제 하시겠습니까?"
+                  );
+                  openConfirmModal();
+                }}
+              />
+            )}
           </div>
           <div className={styles.article_data_box}>
             <div className={styles.article_data}>

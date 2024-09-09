@@ -1,0 +1,33 @@
+.dropbox_list {
+  z-index: 1;
+  position: absolute;
+  flex-direction: column;
+  width: 130px;
+  height: 84px;
+  right: 0;
+  bottom: -10px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.dropbox_list > button {
+  box-sizing: border-box;
+  width: 130px;
+  height: 42px;
+  padding: 9px 0 7px 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  background-color: #ffffff;
+}
+
+.first_drop {
+  border-radius: 12px 12px 0 0;
+  border: 1px solid #e5e7eb;
+}
+
+.last_drop {
+  border-radius: 0 0 12px 12px;
+  border: 1px solid #e5e7eb;
+}
