@@ -39,13 +39,14 @@ export default function PostRegistrationPage() {
       setSubmittingError(null);
       setIsSubmitting(true);
 
-      await createArticle({
+      // 게시글 등록
+      const { id } = await createArticle({
         title: values.title || "",
         content: values.content || "",
       });
 
-      setValues(INITIAL_VALUES);
-      router.push("/Productinformation");
+      // 게시글 상세 페이지로 이동
+      router.push(`/post-detail/${id}`);
     } catch (error) {
       console.error("게시글 등록 실패", error);
       setSubmittingError(error);
