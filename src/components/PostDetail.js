@@ -19,7 +19,6 @@ export default function PostDetail({ post, onCommentSubmit }) {
   const [isCommentButtonEnabled, setIsCommentButtonEnabled] = useState(false);
 
   const toggleMenu = () => setMenuVisible(!menuVisible);
-  const toggleEdit = () => setIsEditing(!isEditing);
 
   // 게시글 수정 핸들러
   const handleEdit = async () => {
@@ -40,6 +39,7 @@ export default function PostDetail({ post, onCommentSubmit }) {
   const handleDelete = async () => {
     try {
       await deleteArticle(post.id);
+      router.push("/free-board"); // 삭제 후, 자유게시판 페이지로 이동
     } catch (error) {
       console.error("게시글 삭제 실패:", error);
     }
@@ -155,8 +155,6 @@ export default function PostDetail({ post, onCommentSubmit }) {
         <UpdateDeleteButton
           onEdit={handleEditRedirect}
           onDelete={handleDelete}
-          isEditing={isEditing}
-          toggleEdit={toggleEdit}
         />
       )}
     </div>
