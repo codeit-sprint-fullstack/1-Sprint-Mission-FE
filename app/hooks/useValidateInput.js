@@ -5,7 +5,7 @@ export function useValidateInput(validate) {
   const [isValid, setIsValid] = useState(false);
 
   const handleChangeName = (e) => {
-    const newValue = e.target.value.toString().trimStart().trimEnd();
+    const newValue = e.target.value.toString().trimStart();
     setValue(newValue);
     setIsValid(validate(newValue));
   };

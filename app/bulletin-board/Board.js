@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
 
@@ -33,8 +31,6 @@ export function Board() {
   const [addingList, setAddingList] = useState(false);
 
   const { device } = useContext(DeviceContext);
-
-  let tempList = [0, 1, 2, 3];
 
   const boardClass = `${style.board}`;
   const boardTopBarClass = `flex flex-row items-center justify-between ${style["top-bar"]}`;
@@ -100,10 +96,6 @@ export function Board() {
     });
   };
 
-  const postList = tempList.map((post, index) => {
-    return <PostPreview key={index} />;
-  });
-
   useEffect(() => {
     const path = "article";
     const config = {
@@ -161,7 +153,7 @@ export function Board() {
     <div className={boardClass}>
       <div className={boardTopBarClass}>
         <div className={boardTopBarLabelClass}>게시글</div>
-        <Link href="/write-post" target="_self">
+        <Link href="/post-registration" target="_self">
           <button className={boardTopBarBtnWritePostClass} />
         </Link>
       </div>

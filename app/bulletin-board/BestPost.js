@@ -24,7 +24,7 @@ export function BestPost({
   const postBottomBarClass = `flex flex-row justify-between items-center ${style["post-bottom-bar"]}`;
   const postBottomOwnerClass = `flex items-center font-normal text-gray-600 align-middle ${style["post-bottom-name"]}`;
 
-  const createdDateText = createdDate; // 임시로 사용. 서버에서 받아오는 형식 확인 후 수정
+  const createdDateText = createdDate;
 
   return (
     <div className={bestPostClass}>
