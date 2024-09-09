@@ -1,0 +1,167 @@
+.registrationForm {
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formHeader h2 {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23.87px;
+  color: #1f2937;
+}
+
+.submitButton,
+.registerButton {
+  width: 74px;
+  height: 42px;
+  padding: 12px 23px;
+  background-color: #9ca3af;
+  border: none;
+  border-radius: 8px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #f3f4f6;
+  cursor: pointer;
+}
+
+.submitButton:enabled,
+.registerButton:enabled {
+  background-color: #2563eb;
+  color: white;
+}
+
+.submitButton:disabled,
+.registerButton:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.formGroup label {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #1f2937;
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #f3f4f6;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #1f2937;
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  padding-left: 3px;
+}
+
+.formGroup input#title,
+.formGroup textarea#content {
+  width: 100%;
+}
+
+.formGroup input#title {
+  height: 56px !important;
+}
+
+.formGroup textarea#content {
+  height: 282px !important;
+}
+
+.formGroup input.error,
+.formGroup textarea.error {
+  border-color: #f74747;
+}
+
+.error-message {
+  color: #f74747;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14.32px;
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .formGroup input#title,
+  .formGroup textarea#content {
+      min-width: 696px;
+      width: calc(100% - 20px);
+  }
+
+  .formGroup textarea#content {
+      height: 180px;
+  }
+
+  .submitButton,
+  .registerButton {
+      transform: translateX(-6px);
+  }
+}
+
+@media (max-width: 743px) and (min-width: 375px) {
+  .registrationForm {
+      padding-left: 15px;
+      padding-right: 15px;
+  }
+
+  .formHeader h2 {
+      font-size: 18px;
+      line-height: 21.09px;
+  }
+
+  .submitButton,
+  .registerButton {
+      width: 75px;
+      height: 36px;
+      font-size: 14px;
+      line-height: 16.09px;
+      transform: translateX(50px);
+  }
+
+  .formGroup label,
+  .formGroup input,
+  .formGroup textarea {
+      font-size: 14px;
+      line-height: 16.09px;
+  }
+
+  .formGroup input#title,
+  .formGroup textarea#content {
+      min-width: 345px;
+      width: calc(100% + 25px);
+  }
+
+  .formGroup textarea#content {
+      height: 282px;
+  }
+}
+
