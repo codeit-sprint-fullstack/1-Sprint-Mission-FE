@@ -3,8 +3,9 @@ import useResize from "../hook/useResize";
 import BestArticleBody from "./BestArticleBody";
 import style from "./BestArticle.module.css";
 
-export default function BestArticle() {
-  const [list, setList] = useState([]); //예정
+export default function BestArticle({ list }) {
+  if (!list[0]) return;
+
   const [idx, setIdx] = useState([0, 1, 2]);
 
   // 스크린 크기에 따른 로고 변경
