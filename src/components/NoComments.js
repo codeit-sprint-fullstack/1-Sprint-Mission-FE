@@ -1,4 +1,5 @@
 import Image from "next/image";
+import styles from "./NoComments.module.css";
 
 export default function NoComments() {
   return (

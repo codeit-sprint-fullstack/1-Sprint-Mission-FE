@@ -1,0 +1,9 @@
+/* 댓글 없을때 이미지 */
+.noComments {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 수평 중앙 정렬 */
+  justify-content: center;
+  max-width: 1200px;
+  margin: 40px auto;
+}
