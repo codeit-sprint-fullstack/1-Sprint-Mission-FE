@@ -20,6 +20,9 @@ html {
 }
 
 body {
-  box-sizing: border-box;
   font-family: Pretendard;
+}
+
+* {
+  box-sizing: border-box;
 }
