@@ -14,8 +14,8 @@ import BtnSquareFunction from "./common/BtnSquareFunction";
 
 function PageNav({
   boardListData = [
-    { name: "자유게시판", path: "freeboard" },
-    { name: "중고마켓", path: "items" },
+    { name: "자유게시판", path: "/freeboard" },
+    { name: "중고마켓", path: "/items" },
   ],
   loginState = false,
   userData = {},
@@ -41,33 +41,34 @@ function PageNav({
     );
   };
 
-  return (
-    <nav className={styles.outlineContain}>
-      <section className={styles.pageNavSection}>
-        <div className={styles.logoBox}>
-          <Link href="/">
-            <img className={styles.logoImg} src={pandaImg} alt="logo_img" />
-            <img className={styles.logoText} src={logoText} alt="logo_text" />
-          </Link>
-        </div>
-        <>
-          <BoardListRender boardListData={boardListData} />
-        </>
-        <>
-          {loginState ? (
-            <div className={styles.profileBox}>
-              <img src={userData.profileImg} alt="profile" />
-              <span className={styles.profileName}>{userData.nickname}</span>
-            </div>
-          ) : (
-            <Link href="/login">
-              <BtnSquareFunction innerText={"로그인"} />
+
+    return (
+      <nav className={styles.outlineContain} >
+        <section className={styles.pageNavSection}>
+          <div className={styles.logoBox}>
+            <Link href="/">
+              <img className={styles.logoImg} src={pandaImg} alt="logo_img" />
+              <img className={styles.logoText} src={logoText} alt="logo_text" />
             </Link>
-          )}
-        </>
-      </section>
-    </nav>
-  );
+          </div>
+          <>
+            <BoardListRender boardListData={boardListData} />
+          </>
+          <>
+            {loginState ? (
+              <div className={styles.profileBox}>
+                <img src={userData.profileImg} alt="profile" />
+                <span className={styles.profileName}>{userData.nickname}</span>
+              </div>
+            ) : (
+              <Link href="/login">
+                <BtnSquareFunction innerText={"로그인"} />
+              </Link>
+            )}
+          </>
+        </section>
+      </nav>
+    );
 }
 
 export default PageNav;

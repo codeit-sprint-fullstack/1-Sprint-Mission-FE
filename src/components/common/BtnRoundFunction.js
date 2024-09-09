@@ -6,8 +6,8 @@ function BtnRoundFunction({
   innerText = "버튼",
   imgSrc,
 
-  //스타일 커스텀
-  customWidth,
+  //인라인스타일
+  inlineBtnStyle = {},
 
   //핸들러
   handleOnClick = () => {},
@@ -18,9 +18,9 @@ function BtnRoundFunction({
   return (
     <>
       <button
-        className={activeState ? styles.activeBtn : styles.disabledBtn}
+        className={`${styles.basicBtn} ${!activeState && styles.disabledBtn}`}
         disabled={!activeState}
-        style={{ width: customWidth ? customWidth : "" }}
+        style={inlineBtnStyle}
         onClick={handleOnClick}
       >
         <span className={styles.btnText}>{innerText}</span>

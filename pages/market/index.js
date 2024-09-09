@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import styles from "./Marketpage.module.css";
+import styles from "./index.module.css";
 
 //렌더링 컴포넌트
 import PageNav from "../components/PageNav.js";

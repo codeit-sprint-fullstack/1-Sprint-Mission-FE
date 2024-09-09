@@ -1,15 +1,29 @@
 import React from "react";
 import styles from "./CtaBox.module.css";
 
-export const RenderOnlyCTA = ({ mainCTA, alignRight }) => {
+export const RenderTopCTA = ({ mainCTA }) => {
   return (
-    <div className={`${styles.mainBox} ${alignRight ? styles.alignRight : ""}`}>
-      <div className={`${styles.ctaText} ${styles.mobileCtaText}`}>
+    <div className={`${styles.topBottomMainBox}`}>
+      <div className={`${styles.topCtaText}`}>
         {mainCTA.map((text, index) => (
           <span key={index}>
-            {alignRight && index > 0 && <>&nbsp;</>}
+            {index > 0 && <>&nbsp;</>}
             {text}
-            {!alignRight && index < mainCTA.length - 1 && <>&nbsp;</>}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export const RenderBottomCTA = ({ mainCTA }) => {
+  return (
+    <div className={`${styles.topBottomMainBox}`}>
+      <div className={`${styles.bottomCtaText}`}>
+        {mainCTA.map((text, index) => (
+          <span key={index}>
+            {index > 0 && <>&nbsp;</>}
+            {text}
           </span>
         ))}
       </div>

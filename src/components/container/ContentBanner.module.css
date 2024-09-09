@@ -3,5 +3,11 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 720px;
+  height: 720px;
+}
+
+@media (max-width: 1024px) {
+  .contentBanner {
+    height: 100%;
+  }
 }

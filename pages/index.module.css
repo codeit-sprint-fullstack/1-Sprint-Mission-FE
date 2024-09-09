@@ -1,6 +1,37 @@
+.topContainer,
+.bottomContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0px 7px;
+  max-width: 1110px;
+  height: 100%;
+}
+
+.topContainer img,
+.bottomContainer img {
+  width: 100%;
+}
+
+.ctaBtnbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px 0px;
+  padding-bottom: 100px;
+}
+
+.btnStyleControl {
+  width: 357px;
+  height: 56px;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
 .contentBox {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   max-width: 988px;
   height: 444px;
@@ -14,7 +45,26 @@
   height: 444px;
 }
 
-@media (max-width: 988px) {
+@media (max-width: 1024px) {
+  .topContainer,
+  .bottomContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .topContainer {
+    overflow: hidden;
+  }
+
+  .topContainer img {
+    min-width: 448px;
+  }
+
+  .ctaBtnbox {
+    padding-top: 84px;
+    padding-bottom: 211px; 
+  }
+
   .contentBox {
     width: 100%;
     height: 100%;
@@ -23,9 +73,14 @@
     padding: 24px;
     gap: 24px;
   }
+
   .imgBox {
     width: 100%;
     height: 100%;
+  }
+
+  .reverseControl {
+    flex-direction: column-reverse;
   }
 
   .imgBox img{
@@ -33,8 +88,34 @@
     height: 100%;
   }
 
-  .mainContainer {
-    gap: 52px;
+  .paddingControl {
+    padding-top: 201px;
+    padding-bottom: 217px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contentBox {
+    padding: 15px
+  }
+
+  .ctaBtnbox {
+    padding-top: 48px;
+    padding-bottom: 132px; 
+  }
+
+  .btnStyleControl {
+    width: 240px;
+    height: 56px;
+  }
+
+  .contentBannerContainer {
+    padding: 24px 0px;
+  }
+
+  .paddingControl {
+    padding-top: 121px;
+    padding-bottom: 131px;
   }
 }
 

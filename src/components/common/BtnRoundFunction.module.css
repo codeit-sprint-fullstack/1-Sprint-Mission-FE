@@ -1,8 +1,7 @@
-.activeBtn {
+.basicBtn {
   background-color: #3692FF;
   border: none;
   border-radius: 40px;
-  padding: 12px 64px;
   color: #F3F4F6;
   text-align: center;
   display: flex;
@@ -10,24 +9,21 @@
   align-items: center;
   gap: 0px 8px;
   cursor: pointer;
+  width: 100%;
+  height: 100%;
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 .disabledBtn {
   background-color: #9CA3AF;
   border: none;
-  border-radius: 40px;
-  padding: 12px 64px;
-  color: #F3F4F6;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0px 8px;
   cursor: default;
+  padding: inherit;
 }
 
 .btnText {
   color: inherit;
-  font-size: 1.125rem;
-  font-weight: 600;
+  font-size: inherit;
+  font-weight: inherit;
 }

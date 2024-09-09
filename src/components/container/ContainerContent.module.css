@@ -15,7 +15,7 @@
   }
 }
 
-@media (max-width: 744px) {
+@media (max-width: 768px) {
   .mainContainer {
     padding: 24px 16px;
   }

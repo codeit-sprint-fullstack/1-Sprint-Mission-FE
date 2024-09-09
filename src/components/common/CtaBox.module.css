@@ -9,6 +9,17 @@
   font-weight: 700;
 }
 
+.topBottomMainBox {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  align-items: flex-start;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
 .alignRight {
   text-align: right;
   align-items: flex-end;
@@ -28,7 +39,7 @@
 
 .keywordText {
   color: #3692FF;
-  padding-bottom: 16px;
+  padding-bottom: 12px;
 }
 
 .descriptionText {
@@ -45,16 +56,55 @@
   
 }
 
-@media (max-width: 988px) {
+
+.topCtaText,
+.bottomCtaText {
+  display: flex;
+  flex-direction: column;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 56px;
+  color: #374151;
+  text-align: inherit;
+  align-items: inherit;
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
   .ctaText {
     flex-direction: row;
     font-size: 2rem;
+    line-height: normal;
+  }
+
+  .keywordText{
+    padding-bottom: 16px;
+  }
+
+  .descriptionText {
+    font-size: 1.125rem;
+    line-height: 26px;
+  }
+
+  .topCtaText,
+  .bottomCtaText {
+    line-height: normal;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .topCtaText {
+    flex-direction: row;
+    padding: 15px;
   }
 }
+
 
 @media (max-width: 500px) {
   .keywordText{
     font-size: 1rem;
+    padding-bottom: 8px;
   }
   
   .ctaText {
@@ -62,12 +112,18 @@
   }
 
   .descriptionText {
-    font-size: 1.25rem;
+    font-size: 1rem;
+    line-height: 19.2px;
+    padding-top: 16px;
   }
   
-  .mobileCtaText {
+  .topCtaText,
+  .bottomCtaText {
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    line-height: 45px;
   }
 }
 
