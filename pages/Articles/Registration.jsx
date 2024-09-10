@@ -37,7 +37,7 @@ function Registration({ article }) {
     try {
       const data = await api.createArticle(values);
       if (data) {
-        router.push("/Articles");
+        router.push(`/Articles/${data.id}`);
       } else {
         setAlertMessage("게시글 생성에 실패했습니다.");
         openAlert();
