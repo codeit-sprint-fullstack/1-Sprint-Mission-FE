@@ -33,6 +33,7 @@ export default function Article() {
       const res = await axios.delete(
         `https://sprint-be-h8kw.onrender.com/articles/${targetId}`
       );
+      router.push('/freeboard');
     } catch (error) {
       console.error('Error posting data:', error);
     }

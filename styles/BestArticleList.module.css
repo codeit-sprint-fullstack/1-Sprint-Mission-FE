@@ -35,10 +35,11 @@
 
 .title {
   width: 256px;
-  height: 64px;
+  height: 69px;
   margin-right: 8px;
-  margin-bottom: 20px;
+
   overflow: hidden;
+  word-wrap: break-word;
   font-size: 20px;
   font-weight: 600;
   color: #1f2937;

@@ -57,9 +57,9 @@ export default function Post() {
     getArticle(id);
   }, [id]);
 
-  const handleSubmit = () => {
-    patchArticle(id);
-    router.push(`/article/${id}`); // 제출 후 페이지 이동
+  const handleSubmit = async () => {
+    await patchArticle(id);
+    router.push(`/article/${id}`); // 페이지 이동
   };
 
   return (
