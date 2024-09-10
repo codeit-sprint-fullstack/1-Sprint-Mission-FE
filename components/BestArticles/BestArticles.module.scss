@@ -1,8 +1,82 @@
 @use "@/styles/globals/shared" as g;
 
 .BestArticles {
-  @include g.flex-box(row, space-between, center, 24px);
+  @include g.flex-box(row, center, center, 24px);
   width: 100%;
   max-height: 169px;
   height: 100%;
+
+  @include g.device-size(tablet) {
+    li:nth-child(n + 3) {
+      display: none;
+    }
+  }
+
+  @include g.device-size(mobile) {
+    li:nth-child(n + 2) {
+      display: none;
+    }
+  }
+}
+
+.ArticleCard {
+  @include g.flex-box(column, center, center);
+  background-color: g.$grey-50;
+  position: relative;
+  max-width: 384px;
+  width: 100%;
+  padding: 46px 24px 16px;
+  border-radius: 8px;
+
+  h4 {
+    @include g.font(20, 600);
+    line-height: 32px;
+    color: g.$grey-900;
+  }
+}
+
+.top {
+  position: absolute;
+  top: 0;
+  left: 24px;
+  background-color: g.$primary-color;
+  border-radius: 0px 0px 16px 16px;
+  width: 102px;
+  height: 30px;
+
+  @include g.flex-box(row, center, center, 4px);
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+  span {
+    @include g.font(16, 600);
+    color: #fff;
+  }
+}
+
+.middle {
+  @include g.flex-box(row, space-between, flex-start, 8px);
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.bottom {
+  @include g.flex-box(row, space-between, center);
+  width: 100%;
+}
+
+.bottom-left {
+  @include g.flex-box(row, center, center, 8px);
+  color: g.$grey-600;
+}
+
+.like {
+  @include g.flex-box(row, center, center, 4px);
+  color: g.$grey-600;
+}
+
+.date {
+  color: g.$grey-400;
 }

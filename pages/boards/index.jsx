@@ -43,11 +43,6 @@ export default function Boards() {
   const [keyword, setKeyword] = useState("");
   const [sortBy, setSortBy] = useState("recent");
 
-  const { data: bestArticles } = useQuery({
-    queryKey: ["bestArticles"],
-    queryFn: () => getArticleList({ limit: 3, sortBy: "best" }),
-  });
-
   const {
     data: allArticles,
     isLoading,
@@ -68,7 +63,7 @@ export default function Boards() {
       </Head>
       <section className={styles["best-section"]}>
         <h2>베스트 게시글</h2>
-        <BestArticles data={bestArticles} />
+        <BestArticles />
       </section>
       <section className={styles["article-section"]}>
         <div className={styles["article-section-topbar"]}>
