@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #1f2937;
+}
+
+.body {
+  width: 1200px;
+  margin: 0 auto;
+}
