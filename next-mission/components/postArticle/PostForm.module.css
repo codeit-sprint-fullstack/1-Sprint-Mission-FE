@@ -88,3 +88,71 @@
   outline: none;
   border: 1px solid #3692ff;
 }
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .PostForm_form {
+    width: 696px;
+    margin: 16px 0 879px;
+  }
+
+  .PostForm_subject {
+    width: 696px;
+  }
+
+  .PostForm_title {
+    line-height: 23.87px;
+  }
+
+  .PostForm_button {
+    line-height: 19.09px;
+  }
+
+  .PostForm_label {
+    width: 696px;
+  }
+
+  .PostForm_input {
+    width: 696px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+  .PostForm_form {
+    width: 345px;
+    height: 410px;
+    margin: 16px 0 965px;
+  }
+
+  .PostForm_subject {
+    width: 345px;
+    margin-bottom: 24px;
+  }
+
+  .PostForm_title {
+    line-height: 23.87px;
+  }
+
+  .PostForm_button {
+    line-height: 19.09px;
+  }
+
+  .PostForm_label {
+    width: 345px;
+    height: 24px;
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .PostForm_input {
+    width: 345px;
+  }
+
+  .input_title {
+    margin-bottom: 16px;
+  }
+
+  .input_contents {
+    height: 200px;
+    padding: 16px 24px 158px 24px;
+  }
+}
