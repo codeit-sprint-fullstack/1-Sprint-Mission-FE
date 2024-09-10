@@ -52,8 +52,22 @@ export function validationEmail(email) {
   return error;
 }
 
-export function validationSubmit(...errorStates) {
+export function validationCompare(...values) {
+  let error;
 
+  for (let i = 1; i < values.length; i++) {
+    if (values[i] !== values[0]) {
+      error = true; 
+      break;
+    } else [
+      error = false
+    ]
+  }
+
+  return error;
+}
+
+export function validationSubmit(...errorStates) {
   const submit = errorStates.every((errorState) => errorState === false);
 
   return submit;
