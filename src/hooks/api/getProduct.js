@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const URL = "https://panda-market-api.vercel.app";
+const API_URL = "https://panda-market-api.vercel.app";
 
-export async function getApiData(page, pageSize, orderBy, keyword) {
+export async function getProduct(page, pageSize, orderBy, keyword) {
   try {
-    const response = await axios.get(`${URL}/products`, {
+    const response = await axios.get(`${API_URL}/products`, {
       params: { page, pageSize, orderBy, keyword },
     });
     return response.data;
@@ -13,4 +13,4 @@ export async function getApiData(page, pageSize, orderBy, keyword) {
     throw error;
   }
 }
-export default getApiData;
+export default getProduct;
