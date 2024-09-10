@@ -1,0 +1,23 @@
+.btn {
+  background-color: #9ca3af;
+  border: none;
+  padding: 12px 23px;
+  color: #ffff;
+  border-radius: 8px;
+  margin-top: 16px;
+  width: 74px;
+  height: 42px;
+  float: right;
+}
+
+.submitBtn {
+  background-color: #3692ff;
+  border: none;
+  padding: 12px 23px;
+  color: #ffff;
+  border-radius: 8px;
+  margin-top: 16px;
+  width: 74px;
+  height: 42px;
+  float: right;
+}

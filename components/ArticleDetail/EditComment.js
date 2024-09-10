@@ -1,5 +1,7 @@
 import axios from 'axios';
+import Button from '@/utils/Button';
 import styles from '@/styles/Comment.module.css';
+
 import { useEffect, useState } from 'react';
 
 export default function CommentList({
@@ -10,7 +12,6 @@ export default function CommentList({
   setOpenOptions,
 }) {
   const [editComment, setEditComment] = useState(content);
-  const [submit, setSubmit] = useState(false);
 
   async function patchComment(id) {
     try {
@@ -36,13 +37,7 @@ export default function CommentList({
     patchComment(id);
   }
 
-  useEffect(() => {
-    if (editComment) {
-      setSubmit(true);
-    } else {
-      setSubmit(false);
-    }
-  }, [editComment]);
+  console.log(Boolean(editComment));
 
   return (
     <>
@@ -55,14 +50,7 @@ export default function CommentList({
           type='text'
           className={styles.inputComment}
         />
-        <button
-          disabled={!submit}
-          className={submit ? styles.submitBtn : styles.btn}
-          onClick={handleSubmit}
-          type='button'
-        >
-          수정
-        </button>
+        <Button disabled={!editComment} onClick={handleSubmit} label='수정' />
       </div>
     </>
   );

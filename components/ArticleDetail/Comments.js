@@ -1,6 +1,7 @@
 import styles from '@/styles/Comment.module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Button from '@/utils/Button';
 import CommentList from './CommentList';
 
 export default function Comments({ articleId }) {
@@ -91,14 +92,7 @@ export default function Comments({ articleId }) {
         onChange={handleComment}
         className={styles.inputComment}
       />
-      <button
-        disabled={!canSubmit}
-        className={canSubmit ? styles.submitBtn : styles.btn}
-        type='button'
-        onClick={handleSubmit}
-      >
-        등록
-      </button>
+      <Button disabled={!canSubmit} onClick={handleSubmit} label={'등록'} />
 
       <CommentList
         comments={comments}

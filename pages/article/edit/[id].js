@@ -1,6 +1,7 @@
 import styles from '@/styles/Post.module.css';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Button from '@/utils/Button';
 import axios from 'axios';
 
 export default function Post() {
@@ -67,13 +68,7 @@ export default function Post() {
       <div className={styles.postLayout}>
         <div className={styles.header}>
           <span className={styles.title}>수정하기</span>
-          <button
-            onClick={handleSubmit}
-            disabled={!canSubmit}
-            className={canSubmit ? styles.submitBtn : styles.btn}
-          >
-            등록
-          </button>
+          <Button onClick={handleSubmit} disabled={!canSubmit} label='등록' />
         </div>
 
         <div className={styles.name}>제목</div>

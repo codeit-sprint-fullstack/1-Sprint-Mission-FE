@@ -2,6 +2,7 @@ import styles from '@/styles/Post.module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import Button from '@/utils/Button';
 
 export default function Post() {
   const [titleValue, setTitleValue] = useState('');
@@ -29,16 +30,16 @@ export default function Post() {
   }
 
   const titleChange = (event) => {
-    setTitleValue(event.target.value);
+    const value = event.target.value;
+    setTitleValue(value);
+    setSubmit(value.trim() !== '' && contentValue.trim() !== '');
   };
 
   const contentChange = (event) => {
-    setContentValue(event.target.value);
+    const value = event.target.value;
+    setContentValue(value);
+    setSubmit(value.trim() !== '' && titleValue.trim() !== '');
   };
-
-  useEffect(() => {
-    setSubmit(titleValue.trim() !== '' && contentValue.trim() !== '');
-  }, [titleValue, contentValue]);
 
   function handleSubmit() {
     postArticle();
@@ -49,15 +50,7 @@ export default function Post() {
       <div className={styles.postLayout}>
         <div className={styles.header}>
           <span className={styles.title}>게시글 쓰기</span>
-
-          <button
-            disabled={!submit}
-            className={submit ? styles.submitBtn : styles.btn}
-            type='button'
-            onClick={handleSubmit}
-          >
-            등록
-          </button>
+          <Button disabled={!submit} onClick={handleSubmit} label={'등록'} />
         </div>
 
         <div className={styles.name}>제목</div>
