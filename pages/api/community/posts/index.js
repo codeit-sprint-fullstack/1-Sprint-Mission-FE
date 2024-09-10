@@ -3,7 +3,7 @@ import {
   CommonException,
   HttpStatus,
   ExceptionCode,
-} from "../../../../errors/CustomExceptions";
+} from "../../../../errors";
 import { getPosts, addPost } from "../../../../data/postData";
 import { handleError } from "../../../../utils/handleError";
 
@@ -15,9 +15,9 @@ export default async function handler(req, res) {
         res.status(HttpStatus.OK).json(posts);
         break;
       case "POST":
-        if (!req.body.title || !req.body.content) {
+        if (!req.body.title || !req.body.content || !req.body.author_name) {
           throw new BadRequestException(
-            "게시글 제목과 내용을 입력해야 합니다."
+            "게시글 제목, 내용, 작성자 이름을 입력해야 합니다."
           );
         }
         const newPost = await addPost(req.body);
