@@ -9,6 +9,7 @@ import usePostList from "../hooks/usePostList";
 import { LIMIT } from "../constants";
 import Footer from "../components/Footer";
 import styles from "./FreeBoardPage.module.css"; // CSS 모듈 import
+import Spinner from "../components/Spinner"; // spinner import
 
 export default function FreeBoardPage() {
   const router = useRouter();
@@ -151,7 +152,7 @@ export default function FreeBoardPage() {
             <option value="likeCount">좋아요 순</option>
           </select>
         </div>
-        {loading && <div>로딩 중...</div>}
+        {loading && <Spinner />}
         {loadingError && !loading && (
           <div className={styles.searchError}>{loadingError}</div>
         )}
