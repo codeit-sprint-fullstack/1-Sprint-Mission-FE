@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './BestPosts.module.css';
+import { fetchBestArticles } from '../../api/api'; // api.js에서 fetchBestArticles 함수 가져오기
 
 const BestBox = ({ title, author, likes, date, image }) => {
   return (
@@ -21,10 +22,23 @@ const BestBox = ({ title, author, likes, date, image }) => {
   );
 };
 
-const BestPosts = ({ bestPosts }) => {
+const BestPosts = () => {
+  const [bestPosts, setBestPosts] = useState([]);
   const [columns, setColumns] = useState(null); // 초기 상태 null로 설정
 
   useEffect(() => {
+    // 베스트 게시글 데이터 불러오기
+    const loadBestPosts = async () => {
+      try {
+        const bestPostsData = await fetchBestArticles();
+        setBestPosts(bestPostsData);
+      } catch (error) {
+        console.error('Failed to load best posts:', error);
+      }
+    };
+
+    loadBestPosts();
+
     const handleResize = () => {
       const width = window.innerWidth;
       if (width < 744) {
@@ -75,27 +89,6 @@ const BestPosts = ({ bestPosts }) => {
     </div>
   );
 };
-
-// 서버 사이드 렌더링을 통해 베스트 게시글 가져오기
-export async function getStaticProps() {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
-  try {
-    const response = await fetch(`${apiUrl}/articles/best`);
-    if (!response.ok) {
-      throw new Error('Failed to fetch best articles');
-    }
-    const bestPosts = await response.json();
-    return {
-      props: { bestPosts },
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      props: { bestPosts: [] },
-    };
-  }
-}
 
 export default BestPosts;
 

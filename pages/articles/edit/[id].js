@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { fetchArticleById, updateArticle } from '../../src/api/api'; // api.js에서 함수 가져오기
 
 const EditArticle = () => {
   const router = useRouter();
@@ -9,37 +10,28 @@ const EditArticle = () => {
 
   useEffect(() => {
     if (id) {
-      const fetchArticle = async () => {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL; // 환경 변수 사용
-        const response = await fetch(`${apiUrl}/articles/${id}`);
-        if (response.ok) {
-          const data = await response.json();
+      const fetchData = async () => {
+        try {
+          // api.js의 fetchArticleById 함수 사용
+          const data = await fetchArticleById(id);
           setTitle(data.title);
           setContent(data.content);
-        } else {
-          console.error('Failed to fetch article');
+        } catch (error) {
+          console.error('Failed to fetch article:', error);
         }
       };
-
-      fetchArticle();
+      fetchData();
     }
   }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL; // 환경 변수 사용
-    const response = await fetch(`${apiUrl}/articles/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ title, content }),
-    });
-
-    if (response.ok) {
+    try {
+      // api.js의 updateArticle 함수 사용
+      await updateArticle(id, { title, content });
       router.push(`/articles/${id}`);
-    } else {
-      console.error('Failed to update article');
+    } catch (error) {
+      console.error('Failed to update article:', error);
     }
   };
 
@@ -64,4 +56,3 @@ const EditArticle = () => {
 };
 
 export default EditArticle;
-

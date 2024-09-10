@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const BASE_URL = 'https://one-sprint-mission-be-rzbk.onrender.com';
+
 console.log('BASE_URL임:', BASE_URL);
 
 const articlesUrl = `${BASE_URL}/articles`;
-const commentsUrl = `${BASE_URL}/board/comments`;
 
+const getCommentsUrl = (articleId) => `${BASE_URL}/articles/${articleId}/comments`;
 
 // 게시글 목록 조회
 export const fetchArticles = async (params = {}) => {
@@ -83,7 +84,7 @@ export const fetchBestArticles = async () => {
 // 댓글 목록 조회
 export const fetchComments = async (articleId) => {
   try {
-    const response = await axios.get(`${commentsUrl}/${articleId}`);
+    const response = await axios.get(getCommentsUrl(articleId)); 
     return response.data;
   } catch (error) {
     console.error('댓글 목록 조회 실패:', error);
@@ -94,7 +95,7 @@ export const fetchComments = async (articleId) => {
 // 댓글 등록
 export const createComment = async (articleId, commentData) => {
   try {
-    const response = await axios.post(`${commentsUrl}/${articleId}`, commentData);
+    const response = await axios.post(getCommentsUrl(articleId), commentData);
     return response.data;
   } catch (error) {
     console.error('댓글 등록 실패:', error);
@@ -105,7 +106,7 @@ export const createComment = async (articleId, commentData) => {
 // 댓글 수정
 export const updateComment = async (commentId, commentData) => {
   try {
-    const response = await axios.patch(`${commentsUrl}/${commentId}`, commentData);
+    const response = await axios.patch(`${BASE_URL}/comments/${commentId}`, commentData); 
     return response.data;
   } catch (error) {
     console.error('댓글 수정 실패:', error);
@@ -116,7 +117,7 @@ export const updateComment = async (commentId, commentData) => {
 // 댓글 삭제
 export const deleteComment = async (commentId) => {
   try {
-    const response = await axios.delete(`${commentsUrl}/${commentId}`);
+    const response = await axios.delete(`${BASE_URL}/comments/${commentId}`);
     return response.data;
   } catch (error) {
     console.error('댓글 삭제 실패:', error);
