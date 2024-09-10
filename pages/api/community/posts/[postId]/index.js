@@ -3,13 +3,13 @@ import {
   CommonException,
   HttpStatus,
   ExceptionCode,
-} from "../../../../../errors";
+} from "../../../../../errors/CustomExceptions";
 import {
   getPostById,
   updatePost,
   deletePost,
 } from "../../../../../data/postData";
-import { handleError } from "../../../../../utils/handleError";
+import { handleError } from "../../../../utils/handleError";
 
 export default async function handler(req, res) {
   try {
@@ -31,16 +31,11 @@ export default async function handler(req, res) {
         res.status(HttpStatus.OK).json(updatedPost);
         break;
       case "DELETE":
-        const deleteResult = await deletePost(postId);
-        if (deleteResult) {
-          res.status(HttpStatus.OK).json({
-            success: true,
-            message: "게시글이 성공적으로 삭제되었습니다.",
-            deletedPostId: postId,
-          });
-        } else {
-          throw new NotFoundException("삭제할 게시글을 찾을 수 없습니다.");
+        const wasDeleted = await deletePost(postId);
+        if (!wasDeleted) {
+          throw new NotFoundException("게시글을 찾을 수 없습니다.");
         }
+        res.status(HttpStatus.NO_CONTENT).end();
         break;
       default:
         res.setHeader("Allow", ["GET", "PATCH", "DELETE"]);

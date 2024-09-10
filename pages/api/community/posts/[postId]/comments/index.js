@@ -3,7 +3,7 @@ import {
   CommonException,
   HttpStatus,
   ExceptionCode,
-} from "../../../../../../errors";
+} from "../../../../../../errors/CustomExceptions";
 import {
   getCommentsByPostId,
   addComment,
