@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect, useState, useMemo, useCallback } from "react";
 import searchIcon from "../../public/images/ic_search.png";
 import FreeBoardPageHeader from "../components/FreeBoardPageHeader";
@@ -7,7 +5,6 @@ import { useRouter } from "next/router";
 import PostList from "../components/PostList";
 import { filterPostsByName } from "../api/api";
 import BestPostsList from "../components/BestPostsList";
-import Pagination from "../components/Pagination";
 import usePostList from "../hooks/usePostList";
 import { LIMIT } from "../constants";
 import Footer from "../components/Footer";
@@ -19,17 +16,16 @@ export default function FreeBoardPage() {
   const [searchPosts, setSearchPosts] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [searchError, setSearchError] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false); // 로딩 상태 추가
+  const [hasMore, setHasMore] = useState(true); // 추가 데이터 여부 확인
 
   const {
     posts,
     hasNext,
     loadingError,
-    totalPages,
     fetchPosts,
     loading: apiLoading,
-  } = usePostList(order, (currentPage - 1) * LIMIT);
+  } = usePostList(order);
 
   useEffect(() => {
     setLoading(apiLoading);
@@ -37,21 +33,45 @@ export default function FreeBoardPage() {
 
   useEffect(() => {
     if (!searchPosts.trim()) {
-      fetchPosts(currentPage);
+      fetchPosts(); // 초기 로드
     } else {
       handleSearchClick(); // 검색어가 있을 때 검색 실행
     }
-  }, [searchPosts, order, currentPage]);
+  }, [searchPosts, order]);
 
   useEffect(() => {
     if (!searchPosts.trim()) {
-      fetchPosts(currentPage);
+      fetchPosts(); // 초기 로드
     }
-  }, [order, currentPage]);
+  }, [order]);
+
+  // 스크롤 이벤트 핸들러 추가
+  useEffect(() => {
+    const handleScroll = () => {
+      // 스크롤이 페이지 하단에 도달했을 떄
+      if (
+        window.innerHeight + document.documentElement.scrollTop + 1 >=
+        document.documentElement.scrollHeight
+      ) {
+        // 현재 로딩 중이지 않고, 추가 데이터가 있는 경우
+        if (!loading && hasMore) {
+          fetchPosts(true); // 데이터 추가 로드
+        }
+      }
+    };
+
+    // 스크롤 이벤트 리스너 등록
+    window.addEventListener("scroll", handleScroll);
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [loading, hasMore, fetchPosts]);
 
   const handleOrderChange = (event) => {
     setOrder(event.target.value);
-    setCurrentPage(1); // Reset to first page on order change
+    setSearchResults([]);
+    setSearchPosts(""); // 정렬 변경 시 검색 결과 초기화
+    setHasMore(true); // 추가 데이터 여부 플래그 초기화
   };
 
   const handleKeyDown = (e) => {
@@ -83,13 +103,6 @@ export default function FreeBoardPage() {
     }
   }, [searchPosts, posts]);
 
-  const handlePageClick = (page) => {
-    setCurrentPage(page);
-    if (!searchPosts.trim()) {
-      fetchPosts(page);
-    }
-  };
-
   const handleAddPostClick = () => {
     router.push("/post-registration");
   };
@@ -107,9 +120,8 @@ export default function FreeBoardPage() {
     return [];
   }, [posts, order]);
 
-  const currentPagePosts = useMemo(() => {
-    return sortedPosts.slice((currentPage - 1) * LIMIT, currentPage * LIMIT);
-  }, [sortedPosts, currentPage]);
+  // 검색 결과 또는 전체 게시글 리스트
+  const displayPosts = searchPosts ? searchResults : sortedPosts;
 
   return (
     <div className={styles.App}>
@@ -157,13 +169,8 @@ export default function FreeBoardPage() {
         )}
         {!searchPosts && !loading && !searchError && (
           <>
-            <PostList posts={currentPagePosts} />
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageClick}
-              hasNext={hasNext}
-            />
+            <PostList posts={displayPosts} />
+            {!hasMore && <div>더 이상 게시글이 없습니다.</div>}
           </>
         )}
       </main>
