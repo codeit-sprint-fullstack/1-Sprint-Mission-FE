@@ -1,0 +1,28 @@
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.titleInput {
+  width: 100%;
+  border: none;
+  height: 56px;
+  background-color: #f3f4f6;
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+}
+
+.contentInput {
+  width: 100%;
+  border: none;
+  height: 282px;
+  background-color: #f3f4f6;
+  padding: 16px 24px;
+  box-sizing: border-box;
+  resize: none;
+  border-radius: 12px;
+  margin-bottom: 300px;
+}

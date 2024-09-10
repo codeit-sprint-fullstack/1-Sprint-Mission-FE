@@ -1,6 +1,7 @@
 import styles from '@/styles/Post.module.css';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import ArticleFormFields from '@/utils/ArticleFormFields';
 import Button from '@/utils/Button';
 import axios from 'axios';
 
@@ -42,17 +43,6 @@ export default function Post() {
     }
   }
 
-  const titleChange = (event) => {
-    const value = event.target.value;
-    setTitleValue(value);
-    setCanSubmit(value.trim() !== '' && contentValue.trim() !== '');
-  };
-  const contentChange = (event) => {
-    const value = event.target.value;
-    setContentValue(value);
-    setCanSubmit(value.trim() !== '' && titleValue.trim() !== '');
-  };
-
   useEffect(() => {
     if (!id) return;
     getArticle(id);
@@ -68,22 +58,14 @@ export default function Post() {
       <div className={styles.postLayout}>
         <div className={styles.header}>
           <span className={styles.title}>수정하기</span>
-          <Button onClick={handleSubmit} disabled={!canSubmit} label='등록' />
+          <Button disabled={!canSubmit} label='등록' onClick={handleSubmit} />
         </div>
-
-        <div className={styles.name}>제목</div>
-        <input
-          placeholder='제목을 입력하세요'
-          value={titleValue}
-          onChange={titleChange}
-          className={styles.input}
-        />
-        <div className={styles.name}>내용</div>
-        <textarea
-          placeholder='내용을 입력하세요 '
-          value={contentValue}
-          onChange={contentChange}
-          className={styles.textarea}
+        <ArticleFormFields
+          titleValue={titleValue}
+          setTitleValue={setTitleValue}
+          contentValue={contentValue}
+          setContentValue={setContentValue}
+          setCanSubmit={setCanSubmit}
         />
       </div>
     </>
