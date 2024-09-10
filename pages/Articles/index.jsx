@@ -1,8 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import * as api from "@/pages/api/articles";
-import Pagination from "@/components/Pagination";
 import DropDownBox from "@/components/DropdownList/DropdownBox";
 import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
 import ic_search from "@/public/images/ic_search.png";
@@ -11,6 +10,7 @@ import ic_heart from "@/public/images/ic_heart.png";
 import ic_medal from "@/public/images/ic_medal.png";
 import ic_profile from "@/public/images/ic_profile.png";
 import styles from "@/styles/articles.module.css";
+import { RefContext } from "../_app";
 
 function BestArticles({ item }) {
   const { user, title, createAt, favorite } = item;
@@ -99,12 +99,10 @@ export async function getServerSideProps() {
     orderBy: "recent",
     keyword: "",
     limit: 5,
-    offset: 1,
   };
 
   let bestItems = [];
   let Items = [];
-  let total = 0;
   try {
     const { list } = await api.getBestArticles();
     bestItems = list;
@@ -113,9 +111,8 @@ export async function getServerSideProps() {
   }
 
   try {
-    const { list, totalCount } = await api.getArticles(defaultParams);
+    const { list } = await api.getArticles(defaultParams);
     Items = list;
-    total = totalCount;
   } catch (error) {
     console.log(error);
   }
@@ -125,26 +122,36 @@ export async function getServerSideProps() {
       Items,
       bestItems,
       defaultParams,
-      total,
     },
   };
 }
 
-function Articles({ bestItems, defaultParams, total, Items }) {
+function Articles({ bestItems, defaultParams, Items }) {
+  const globalDivRef = useContext(RefContext);
   const [params, setParams] = useState(defaultParams);
   const [articles, setArticles] = useState(Items);
-  const [totalCount, setTotalCont] = useState(total);
+  const [cursor, setCursor] = useState("");
   const [keyword, setKeyword] = useState("");
 
   const getArticles = useCallback(async () => {
     try {
-      const { list, totalCount } = await api.getArticles(params);
+      const { list, nextCursor } = await api.getArticles(params);
       setArticles(list);
-      setTotalCont(totalCount);
+      setCursor(nextCursor);
     } catch (error) {
       console.log(error);
     }
   }, [params]);
+
+  const getMoreArticles = useCallback(async () => {
+    try {
+      const { list, nextCursor } = await api.getArticles(params, cursor);
+      setArticles([...articles, ...list]);
+      setCursor(nextCursor);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [params, cursor]);
 
   const handleChangeParams = (name, value) => {
     setParams((prev) => ({
@@ -171,6 +178,24 @@ function Articles({ bestItems, defaultParams, total, Items }) {
   useEffect(() => {
     getArticles();
   }, [getArticles]);
+
+  useEffect(() => {
+    if (globalDivRef.current) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (cursor) {
+              getMoreArticles();
+            }
+          }
+        });
+      });
+      observer.observe(globalDivRef.current);
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, [globalDivRef, getMoreArticles]);
 
   return (
     <main>
@@ -207,7 +232,7 @@ function Articles({ bestItems, defaultParams, total, Items }) {
             />
           </form>
           <DropDownBox
-            onChangeOrder={handleChangeOrder}
+            onOrderChange={handleChangeOrder}
             orderBy={params.orderBy}
           />
         </div>
@@ -217,11 +242,6 @@ function Articles({ bestItems, defaultParams, total, Items }) {
           ))}
         </ul>
       </div>
-      <Pagination
-        onChange={handleChangeParams}
-        params={params}
-        totalCount={totalCount}
-      />
     </main>
   );
 }

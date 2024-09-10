@@ -1,6 +1,9 @@
 import instance from "./axios.js";
-export async function getArticles(params = {}) {
-  const res = await instance.get("/articles", { params });
+
+export async function getArticles(params = {}, cursor = "") {
+  const res = await instance.get("/articles", {
+    params: { ...params, cursor },
+  });
   return res.data;
 }
 
@@ -10,7 +13,9 @@ export async function getBestArticles(
     limit: 3,
   }
 ) {
-  const res = await instance.get("/articles", { params });
+  const res = await instance.get("/articles", {
+    params,
+  });
   return res.data;
 }
 

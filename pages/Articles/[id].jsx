@@ -199,8 +199,8 @@ function DetailArticle({ article }) {
   const closeConfirmModal = () => setConfirm(false);
 
   //수정/삭제 드롭다운오픈 상태 값
-  const [ArticleDropdown, setArticleDropdown] = useState(false);
-  const openArticleDropdown = () => setArticleDropdown(!ArticleDropdown);
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const openArticleDropdown = () => setOpenDropdown(!openDropdown);
 
   // 게시글수정을 선택시 Registration 페이지의 쿼리로 게시글의 id를 전달한다.
   const updateArticle = () => {
@@ -242,6 +242,12 @@ function DetailArticle({ article }) {
     }
   };
 
+  const handleDeleteArticle = () => {
+    //삭제의 경우 confirm 모달을 통하여 확인하여 진행한다.
+    setConfirmMessage("게시글이 영구적으로 삭제됩니다. 삭제하시겠습니까?");
+    openConfirmModal();
+  };
+
   const handleChangeValues = (name, value) => {
     setValues((prev) => ({
       ...prev,
@@ -280,16 +286,10 @@ function DetailArticle({ article }) {
               height={24}
               alt="수정/삭제이미지"
             />
-            {ArticleDropdown && (
+            {openDropdown && (
               <DropdownData
                 handleUpdate={updateArticle}
-                handleDelete={() => {
-                  //삭제의 경우 confirm 모달을 통하여 확인하여 진행한다.
-                  setConfirmMessage(
-                    "게시글이 영구적으로 삭제됩니다. 삭제하시겠습니까?"
-                  );
-                  openConfirmModal();
-                }}
+                handleDelete={handleDeleteArticle}
               />
             )}
           </div>
