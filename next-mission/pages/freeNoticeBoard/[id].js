@@ -40,6 +40,12 @@ export default function particularPage({
   const [cursor, setCursor] = useState(""); // 현재 커서
   const [hasMore, setHasMore] = useState(true); // 더 불러올 데이터가 있는지 여부
   const [nextCursor, setNextCursor] = useState(cursorData);
+  const [patchCommend, setPaychCommend] = useState({
+    boolinValue: false,
+    contentValue: "",
+    id: "",
+    idx: "",
+  });
 
   // API를 통해 데이터를 가져오는 함수
   const fetchItems = async (cursor) => {
@@ -83,6 +89,19 @@ export default function particularPage({
     setComment((prevComment) => [comment, ...prevComment]);
   };
 
+  // 댓글 수정 함수
+  const patchcomment = async (value) => {
+    const subject = {
+      content: value,
+    };
+    const res = await axios.patch(`/freeCommends/${patchCommend.id}`, subject);
+    const data = res.data;
+
+    const newComment = [...comment];
+    newComment.splice(patchCommend.idx, 1, data);
+    setComment(newComment);
+  };
+
   // 댓글 삭제 함수
   const deleteCommentHandler = async (id, idx) => {
     await axios.delete(`/freeCommends/${id}`);
@@ -97,12 +116,29 @@ export default function particularPage({
         <title>{noticeBoardData.title} - 자유게시판 | 판다마켓</title>
       </Head>
       <ParticularInformation data={noticeBoardData} />
-      <CommentFrom postHandler={postCommentHandler} />
+      {patchCommend.boolinValue || (
+        <CommentFrom
+          Handler={postCommentHandler}
+          mode={"등록"}
+          patchCommend={patchCommend}
+          setPaychCommend={setPaychCommend}
+        />
+      )}
+      {patchCommend.boolinValue && (
+        <CommentFrom
+          Handler={patchcomment}
+          mode={"수정"}
+          patchCommend={patchCommend}
+          setPaychCommend={setPaychCommend}
+        />
+      )}
       <CommentList
         comment={comment} // 불러온 데이터 배열
         hasMore={hasMore} // 추가 데이터 여부
         loadMore={loadMoreItems} // 페이지를 로드하는 함수
         deleteCommentHandler={deleteCommentHandler}
+        patchCommend={patchCommend}
+        setPaychCommend={setPaychCommend}
       />
     </>
   );

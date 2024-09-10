@@ -37,7 +37,7 @@
 .CommentListBody_additional_information {
   width: auto;
   height: 40px;
-  margin-top: 24px;
+  margin: 24px 0 12px;
   display: flex;
   flex-direction: row;
 }

@@ -4,7 +4,7 @@ import style from "./CommentList.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CommentList({ comment, hasMore, loadMore, deleteCommentHandler }) {
+export default function CommentList({ comment, hasMore, loadMore, deleteCommentHandler, patchCommend, setPaychCommend }) {
   const [noList, setNoList] = useState(false);
   const [buttonMargin, setButtonMargin] = useState(style.yes_list_button); //(style.no_list_button);
   const observerRef = useRef();
@@ -64,6 +64,8 @@ export default function CommentList({ comment, hasMore, loadMore, deleteCommentH
                     comment={data}
                     deleteCommentHandler={deleteCommentHandler}
                     idx={idx}
+                    patchCommend={patchCommend}
+                    setPaychCommend={setPaychCommend}
                   />
                 </li>
               );
@@ -74,6 +76,8 @@ export default function CommentList({ comment, hasMore, loadMore, deleteCommentH
                     comment={data}
                     deleteCommentHandler={deleteCommentHandler}
                     idx={idx}
+                    patchCommend={patchCommend}
+                    setPaychCommend={setPaychCommend}
                   />
                 </li>
               );

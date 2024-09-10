@@ -1,9 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./CommentFrom.module.css";
 
-export default function CommentFrom({ postHandler }) {
+export default function CommentFrom({
+  Handler,
+  mode,
+  patchCommend,
+  setPaychCommend,
+}) {
   const [value, setValue] = useState("");
   const [activateButton, setActivateButton] = useState(style.button_off);
+  const [title, setTitle] = useState("댓글달기");
+  const [button, setButton] = useState("등록");
+
+  useEffect(() => {
+    if (mode === "등록") {
+      setValue("");
+      setTitle("댓글달기");
+      setButton("등록");
+    } else if (mode === "수정") {
+      setValue(patchCommend.contentValue);
+      setTitle("댓글수정");
+      setButton("수정");
+      setActivateButton(style.button_on);
+    }
+  }, []);
 
   // value 값 일치 함수
   const valueChangeHandler = (e) => {
@@ -27,9 +47,16 @@ export default function CommentFrom({ postHandler }) {
   const buttonHandler = (e) => {
     e.preventDefault();
 
-    if (activateButton === style.button_on) {
-      postHandler(value);
+    if (activateButton === style.button_on && mode === "등록") {
+      Handler(value);
       setValue("");
+    } else if (activateButton === style.button_on && mode === "수정") {
+      if (patchCommend.contentValue === value) {
+        setPaychCommend({ boolinValue: false, contentValue: "", id: '', idx: "" });
+      } else {
+        Handler(value);
+        setPaychCommend({ boolinValue: false, contentValue: "", id: '', idx: "" });
+      }
     }
   };
 
@@ -39,7 +66,7 @@ export default function CommentFrom({ postHandler }) {
         className={`${style.CommentFrom_label} ${style.font16}`}
         htmlFor="comment"
       >
-        댓글달기
+        {title}
       </label>
       <textarea
         className={`${style.CommentFrom_input} ${style.font16}`}
@@ -54,7 +81,7 @@ export default function CommentFrom({ postHandler }) {
           className={`${style.CommentFrom_button} ${style.font16} ${activateButton}`}
           onClick={buttonHandler}
         >
-          등록
+          {button}
         </button>
       </div>
     </form>

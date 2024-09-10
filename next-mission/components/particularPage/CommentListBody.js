@@ -2,9 +2,14 @@ import { useState } from "react";
 import style from "./CommentListBody.module.css";
 import Image from "next/image";
 
-export default function CommentListBody({ comment, deleteCommentHandler, idx }) {
+export default function CommentListBody({
+  comment,
+  deleteCommentHandler,
+  idx,
+  patchCommend,
+  setPaychCommend,
+}) {
   const [hideDropDown, setHideDropDown] = useState(true);
-  const [patchcomment, setPatchComment] = useState(false)
 
   // 설정 드롭다운 온/오프 함수
   const dropDownHandler = () => {
@@ -15,15 +20,23 @@ export default function CommentListBody({ comment, deleteCommentHandler, idx }) 
     }
   };
 
+  // 댓글 수정 함수
+  const patchHandler = () => {
+    if(!patchCommend.boolinValue){
+      setPaychCommend({ boolinValue: true, contentValue: comment.content, id: comment.id, idx });
+      setHideDropDown(true);
+    }
+  };
+
   // 댓글 삭제 함수
   const deleteHandler = async () => {
-    deleteCommentHandler(comment.id, idx)
+    deleteCommentHandler(comment.id, idx);
   };
 
   // 시간 계산
   const today = new Date().getTime();
   const commentDate = new Date(comment.createdAt).getTime();
-  
+
   const timeDifference = Math.floor((today - commentDate) / (1000 * 60));
   let stringTime;
   if (timeDifference === -1) {
@@ -39,8 +52,7 @@ export default function CommentListBody({ comment, deleteCommentHandler, idx }) 
   return (
     <>
       <div className={style.CommentListBody_comment}>
-        {patchcomment || <div>{comment.content}</div>}
-        {patchcomment && <input />}
+        <div>{comment.content}</div>
         <Image
           src={"/images/ic_vertical_point_3.svg"}
           width={24}
@@ -50,8 +62,12 @@ export default function CommentListBody({ comment, deleteCommentHandler, idx }) 
         />
         {hideDropDown || (
           <div className={style.CommentListBody_drop_down}>
-            <div className={style.drop_down_text}>수정하기</div>
-            <div className={style.drop_down_text} onClick={deleteHandler}>삭제하기</div>
+            <div className={style.drop_down_text} onClick={patchHandler}>
+              수정하기
+            </div>
+            <div className={style.drop_down_text} onClick={deleteHandler}>
+              삭제하기
+            </div>
           </div>
         )}
       </div>
