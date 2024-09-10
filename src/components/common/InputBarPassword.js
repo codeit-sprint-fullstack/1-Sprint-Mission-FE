@@ -4,7 +4,7 @@ import styles from "./InputBarPassword.module.css";
 function InputBarPassword({
   //헤더 사용 여부 > 전달하지 않으면 그리지 않음
   headerText,
-  customGap, // gap 크기를 동적으로 변경 > 기본값은 CSS에서 12px
+  style, // 가변 스타일
 
   //input 기본 Props
   placeholder = "입력해주세요",
@@ -14,7 +14,7 @@ function InputBarPassword({
   onBlur = () => {},
 
   //에러 관리
-  InputErrorState = false,
+  inputError = false,
   validationMessage = "입력 오류입니다.",
 }) {
   const [visibleToggle, setVisibleToggle] = useState(true);
@@ -26,17 +26,19 @@ function InputBarPassword({
 
   const handleOnChange = (e) => {
     setValue(e.target.value);
-    onChange;
+    onChange(e);
   };
-
 
   return (
     <div
       className={styles.mainContainer}
-      style={{ gap: customGap ? customGap : "" }}
+      style={{
+        gap: style?.gap ? style.gap : undefined,
+        width: style?.width ? style.width : undefined,
+      }}
     >
       {headerText && <div className={styles.inputHeader}>{headerText}</div>}
-      <div className={InputErrorState ? styles.inputError : styles.defaultBox}>
+      <div className={inputError ? styles.inputError : styles.defaultBox}>
         <input
           className={styles.inputBox}
           type={visibleToggle ? "password" : "text"}
@@ -54,7 +56,7 @@ function InputBarPassword({
         </button>
       </div>
 
-      {InputErrorState && (
+      {inputError && (
         <span className={styles.errorText}>{validationMessage}</span>
       )}
     </div>

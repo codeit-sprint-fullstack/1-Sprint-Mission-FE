@@ -16,10 +16,10 @@ function Footer() {
             <p>FAQ</p>
           </div>
           <div className={styles.iconSNS}>
-            <img src="/images/icon/ic_facebook.png" alt="facebook" />
-            <img src="/images/icon/ic_twitter.png" alt="twitter" />
-            <img src="/images/icon/ic_youtube.png" alt="youtube" />
-            <img src="/images/icon/ic_instagram.png" alt="instagram" />
+            <img src="/images/icon_sns/ic_facebook.png" alt="facebook" />
+            <img src="/images/icon_sns/ic_twitter.png" alt="twitter" />
+            <img src="/images/icon_sns/ic_youtube.png" alt="youtube" />
+            <img src="/images/icon_sns/ic_instagram.png" alt="instagram" />
           </div>
         </div>
       </section>
