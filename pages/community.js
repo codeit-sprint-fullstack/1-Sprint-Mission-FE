@@ -1,5 +1,6 @@
 import BestPost from "@components/BestPost";
 import Dropdown from "@components/Dropdown";
+import MainPost from "@components/MainPost";
 import SearchBar from "@components/SearchBar";
 import styles from "@styles/Community.module.css";
 import { useState } from "react";
@@ -36,6 +37,7 @@ export default function Community() {
         />
         <Dropdown />
       </div>
+      <MainPost />
     </div>
   );
 }

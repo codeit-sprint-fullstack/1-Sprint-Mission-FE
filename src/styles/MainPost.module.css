@@ -1,0 +1,36 @@
+.mainPost {
+  height: 13.8rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--backGray);
+  border-bottom: 1px solid var(--gray200);
+}
+.postLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.postInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding-bottom: 2.5rem;
+}
+.date {
+  color: var(--gray400);
+}
+.postRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.postImage {
+  border: 1px solid var(--gray200);
+  border-radius: 0.6rem;
+}
+.likes {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding-bottom: 2.5rem;
+}
