@@ -78,7 +78,7 @@ const BestPosts = ({ bestPosts }) => {
 
 // 서버 사이드 렌더링을 통해 베스트 게시글 가져오기
 export async function getStaticProps() {
-  const apiUrl = 'https://one-sprint-mission-be-rzbk.onrender.com/api'; 
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   try {
     const response = await fetch(`${apiUrl}/articles/best`);
