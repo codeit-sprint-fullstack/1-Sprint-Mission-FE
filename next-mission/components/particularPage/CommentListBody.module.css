@@ -11,6 +11,10 @@
   position: relative;
 }
 
+.CommentListBody_setting_img{
+  cursor: pointer;
+}
+
 .CommentListBody_drop_down {
   width: 139px;
   height: 92px;
@@ -20,6 +24,7 @@
   position: absolute;
   top: 24px;
   right: 4px;
+  cursor: pointer;
 }
 
 .drop_down_text {

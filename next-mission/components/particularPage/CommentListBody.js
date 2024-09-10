@@ -7,7 +7,7 @@ export default function CommentListBody({
   deleteCommentHandler,
   idx,
   patchCommend,
-  setPaychCommend,
+  setPatchCommend,
 }) {
   const [hideDropDown, setHideDropDown] = useState(true);
 
@@ -20,10 +20,15 @@ export default function CommentListBody({
     }
   };
 
-  // 댓글 수정 함수
+  // 댓글 수정 시작 함수
   const patchHandler = () => {
-    if(!patchCommend.boolinValue){
-      setPaychCommend({ boolinValue: true, contentValue: comment.content, id: comment.id, idx });
+    if (!patchCommend.boolinValue) {
+      setPatchCommend({
+        boolinValue: true,
+        contentValue: comment.content,
+        id: comment.id,
+        idx,
+      });
       setHideDropDown(true);
     }
   };
@@ -54,6 +59,7 @@ export default function CommentListBody({
       <div className={style.CommentListBody_comment}>
         <div>{comment.content}</div>
         <Image
+        className={style.CommentListBody_setting_img}
           src={"/images/ic_vertical_point_3.svg"}
           width={24}
           height={24}

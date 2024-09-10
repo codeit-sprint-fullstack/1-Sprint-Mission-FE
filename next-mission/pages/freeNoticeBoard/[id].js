@@ -40,7 +40,7 @@ export default function particularPage({
   const [cursor, setCursor] = useState(""); // 현재 커서
   const [hasMore, setHasMore] = useState(true); // 더 불러올 데이터가 있는지 여부
   const [nextCursor, setNextCursor] = useState(cursorData);
-  const [patchCommend, setPaychCommend] = useState({
+  const [patchCommend, setPatchCommend] = useState({
     boolinValue: false,
     contentValue: "",
     id: "",
@@ -108,6 +108,12 @@ export default function particularPage({
     const nextComment = [...comment];
     nextComment.splice(idx, 1);
     setComment(nextComment);
+    setPatchCommend({
+      boolinValue: false,
+      contentValue: "",
+      id: "",
+      idx: "",
+    })
   };
 
   return (
@@ -121,7 +127,7 @@ export default function particularPage({
           Handler={postCommentHandler}
           mode={"등록"}
           patchCommend={patchCommend}
-          setPaychCommend={setPaychCommend}
+          setPatchCommend={setPatchCommend}
         />
       )}
       {patchCommend.boolinValue && (
@@ -129,7 +135,7 @@ export default function particularPage({
           Handler={patchcomment}
           mode={"수정"}
           patchCommend={patchCommend}
-          setPaychCommend={setPaychCommend}
+          setPatchCommend={setPatchCommend}
         />
       )}
       <CommentList
@@ -138,7 +144,7 @@ export default function particularPage({
         loadMore={loadMoreItems} // 페이지를 로드하는 함수
         deleteCommentHandler={deleteCommentHandler}
         patchCommend={patchCommend}
-        setPaychCommend={setPaychCommend}
+        setPatchCommend={setPatchCommend}
       />
     </>
   );

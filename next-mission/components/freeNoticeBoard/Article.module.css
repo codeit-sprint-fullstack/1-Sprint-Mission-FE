@@ -110,3 +110,11 @@
   border-bottom: 1px solid #e5e7eb;
   background-color: #fcfcfc;
 }
+
+@media (min-width: 744px) and (max-width: 1199px) {
+
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+
+}

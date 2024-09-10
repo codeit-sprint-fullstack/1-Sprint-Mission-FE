@@ -36,6 +36,7 @@ export default function ParticularInformation({ data }) {
         >
           <div className={style.ParticularInformation_title}>{data.title}</div>
           <Image
+          className={style.ParticularInformation_setting_img}
             src={"/images/ic_vertical_point_3.svg"}
             width={24}
             height={24}

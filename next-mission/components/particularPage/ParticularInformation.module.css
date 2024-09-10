@@ -41,6 +41,10 @@
   color: #1f2937;
 }
 
+.ParticularInformation_setting_img{
+  cursor: pointer;
+}
+
 .ParticularInformation_drop_down {
   width: 139px;
   height: 92px;

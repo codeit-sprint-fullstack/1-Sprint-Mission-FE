@@ -5,7 +5,7 @@ import useTimeCalculation from "../hook/useTimeCalculation";
 
 export default function BestArticleBody({ list }) {
   // 날짜 계산
-  const stringDay = useTimeCalculation(list.createdAt)
+  const stringDay = useTimeCalculation(list.createdAt);
 
   return (
     <Link href={`/freeNoticeBoard/${list.id}`}>
@@ -44,9 +44,7 @@ export default function BestArticleBody({ list }) {
             <div>999+</div>
           </div>
         </div>
-        <div
-          className={style.BestArticleBody_date}
-        >{stringDay}</div>
+        <div className={style.BestArticleBody_date}>{stringDay}</div>
       </div>
     </Link>
   );

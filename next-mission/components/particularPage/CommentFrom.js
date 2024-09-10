@@ -5,7 +5,7 @@ export default function CommentFrom({
   Handler,
   mode,
   patchCommend,
-  setPaychCommend,
+  setPatchCommend,
 }) {
   const [value, setValue] = useState("");
   const [activateButton, setActivateButton] = useState(style.button_off);
@@ -52,10 +52,20 @@ export default function CommentFrom({
       setValue("");
     } else if (activateButton === style.button_on && mode === "수정") {
       if (patchCommend.contentValue === value) {
-        setPaychCommend({ boolinValue: false, contentValue: "", id: '', idx: "" });
+        setPatchCommend({
+          boolinValue: false,
+          contentValue: "",
+          id: "",
+          idx: "",
+        });
       } else {
         Handler(value);
-        setPaychCommend({ boolinValue: false, contentValue: "", id: '', idx: "" });
+        setPatchCommend({
+          boolinValue: false,
+          contentValue: "",
+          id: "",
+          idx: "",
+        });
       }
     }
   };

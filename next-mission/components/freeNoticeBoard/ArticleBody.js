@@ -5,7 +5,7 @@ import useTimeCalculation from "../hook/useTimeCalculation";
 
 export default function ArticleBody({ data }) {
   //날짜 계산
-  const stringDay = useTimeCalculation(data.createdAt)
+  const stringDay = useTimeCalculation(data.createdAt);
 
   return (
     <Link href={`/freeNoticeBoard/${data.id}`}>
@@ -31,9 +31,7 @@ export default function ArticleBody({ data }) {
             alt="유저 이미지"
           />
           <div className={style.ArticleBody_user}>코드잇</div>
-          <div
-            className={style.ArticleBody_date}
-          >{stringDay}</div>
+          <div className={style.ArticleBody_date}>{stringDay}</div>
         </div>
         <div className={`${style.ArticleBody_favorite} ${style.flex_row}`}>
           <Image

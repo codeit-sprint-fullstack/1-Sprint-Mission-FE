@@ -3,47 +3,53 @@ import style from "../postArticle/PostForm.module.css";
 import { useRouter } from "next/router";
 import axios from "@/lib/axios";
 
-export default function PatchForm({data}) {
+export default function PatchForm({ data }) {
   const [activateButton, setActivateButton] = useState(style.button_on);
-  const [value, setValue] = useState({title: data.title, content: data.content})
-  const defaultValue = {title: data.title, content: data.content}
-  const router = useRouter()
+  const [value, setValue] = useState({
+    title: data.title,
+    content: data.content,
+  });
+  const defaultValue = { title: data.title, content: data.content };
+  const router = useRouter();
 
   // value 값 일치 함수
   const onChangeHandler = (e) => {
-    const name = e.target.name
-    const value = e.target.value
+    const name = e.target.name;
+    const value = e.target.value;
 
     setValue((prevValue) => ({
       ...prevValue,
-      [name]: value
-    }))
+      [name]: value,
+    }));
 
-    if(value.title !== '' && value.content !== '') {
-      setActivateButton(style.button_on)
+    if (value.title !== "" && value.content !== "") {
+      setActivateButton(style.button_on);
     }
-  }
+  };
 
   // 버튼 비/활성화 함수
   const onKetUpHandler = () => {
-    if(value.title !== '' && value.content !== '') {
-      setActivateButton(style.button_on)
+    if (value.title !== "" && value.content !== "") {
+      setActivateButton(style.button_on);
     } else {
-      setActivateButton(style.button_off)
+      setActivateButton(style.button_off);
     }
-  }
+  };
 
   // 수정 함수
   const onClickHandler = async (e) => {
     e.preventDefault();
 
-    if(defaultValue.title === value.title && defaultValue.content === value.content) {
-      router.push(`/freeNoticeBoard/${data.id}`)
+    if (
+      defaultValue.title === value.title &&
+      defaultValue.content === value.content
+    ) {
+      router.push(`/freeNoticeBoard/${data.id}`);
     } else {
-      await axios.patch(`/noticeBoards/${data.id}`, value)
-      router.push(`/freeNoticeBoard/${data.id}`)
+      await axios.patch(`/noticeBoards/${data.id}`, value);
+      router.push(`/freeNoticeBoard/${data.id}`);
     }
-  }
+  };
 
   return (
     <form className={style.PostForm_form}>
