@@ -1,0 +1,37 @@
+.loginButton {
+  width: 88px;
+  height: 42px;
+  padding: 12px 23px;
+  background-color: #3692ff; /* 활성화 기본 색상 */
+  border: none;
+  border-radius: 8px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.loginButton:disabled {
+  background-color: #9ca3af; /* 비활성화 색상 */
+  cursor: not-allowed;
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .loginButton {
+    transform: translateX(-6px);
+  }
+}
+
+@media (max-width: 743px) and (min-width: 375px) {
+  .loginButton {
+    width: 88px;
+    height: 42px;
+    font-size: 16px;
+    line-height: 16.09px;
+    transform: translateX(50px);
+  }
+}
+
