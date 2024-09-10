@@ -1,11 +1,16 @@
+import Link from "next/link";
 import style from "./ArticleBody.module.css";
 import Image from "next/image";
+import useTimeCalculation from "../hook/useTimeCalculation";
 
-export default function ArticleBody() {
+export default function ArticleBody({ data }) {
+  //날짜 계산
+  const stringDay = useTimeCalculation(data.createdAt)
+
   return (
-    <>
+    <Link href={`/freeNoticeBoard/${data.id}`}>
       <div className={`${style.ArticleBody_subject} ${style.flex_row}`}>
-        <div className={style.ArticleBody_title}>제목</div>
+        <div className={style.ArticleBody_title}>{data.title}</div>
         <Image
           className={style.ArticleBody_product_img}
           src={"/images/img_default.svg"}
@@ -25,8 +30,10 @@ export default function ArticleBody() {
             height={24}
             alt="유저 이미지"
           />
-          <div className={style.ArticleBody_user}>유저 이름</div>
-          <div className={style.ArticleBody_date}>0000. 00. 00</div>
+          <div className={style.ArticleBody_user}>코드잇</div>
+          <div
+            className={style.ArticleBody_date}
+          >{stringDay}</div>
         </div>
         <div className={`${style.ArticleBody_favorite} ${style.flex_row}`}>
           <Image
@@ -35,9 +42,9 @@ export default function ArticleBody() {
             height={24}
             alt="하트"
           />
-          <div>좋아요</div>
+          <div>999+</div>
         </div>
       </div>
-    </>
+    </Link>
   );
 }

@@ -2,22 +2,56 @@ import { useState } from "react";
 import style from "./CommentListBody.module.css";
 import Image from "next/image";
 
-export default function CommentListBody() {
+export default function CommentListBody({ comment, deleteCommentHandler, idx }) {
   const [hideDropDown, setHideDropDown] = useState(true);
+  const [patchcomment, setPatchComment] = useState(false)
+
+  // 설정 드롭다운 온/오프 함수
+  const dropDownHandler = () => {
+    if (!hideDropDown) {
+      setHideDropDown(true);
+    } else if (hideDropDown) {
+      setHideDropDown(false);
+    }
+  };
+
+  // 댓글 삭제 함수
+  const deleteHandler = async () => {
+    deleteCommentHandler(comment.id, idx)
+  };
+
+  // 시간 계산
+  const today = new Date().getTime();
+  const commentDate = new Date(comment.createdAt).getTime();
+  
+  const timeDifference = Math.floor((today - commentDate) / (1000 * 60));
+  let stringTime;
+  if (timeDifference === -1) {
+    stringTime = `0분 전`;
+  } else if (timeDifference < 60) {
+    stringTime = `${timeDifference}분 전`;
+  } else if (timeDifference / 60 < 24) {
+    stringTime = `${Math.floor(timeDifference / 60)}시간 전`;
+  } else {
+    stringTime = `${Math.floor(timeDifference / (60 * 24))}일 전`;
+  }
+
   return (
     <>
       <div className={style.CommentListBody_comment}>
-        <div>댓글 내용</div>
+        {patchcomment || <div>{comment.content}</div>}
+        {patchcomment && <input />}
         <Image
           src={"/images/ic_vertical_point_3.svg"}
           width={24}
           height={24}
           alt="설정"
+          onClick={dropDownHandler}
         />
         {hideDropDown || (
           <div className={style.CommentListBody_drop_down}>
             <div className={style.drop_down_text}>수정하기</div>
-            <div className={style.drop_down_text}>삭제하기</div>
+            <div className={style.drop_down_text} onClick={deleteHandler}>삭제하기</div>
           </div>
         )}
       </div>
@@ -30,8 +64,8 @@ export default function CommentListBody() {
           alt="유저 이미지"
         />
         <div className={style.CommentListBody_box}>
-          <div className={style.CommentListBody_user}>유저 이름</div>
-          <div className={style.CommentListBody_date}>시간</div>
+          <div className={style.CommentListBody_user}>코드잇</div>
+          <div className={style.CommentListBody_date}>{stringTime}</div>
         </div>
       </div>
     </>

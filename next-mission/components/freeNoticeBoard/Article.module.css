@@ -97,6 +97,11 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  overflow: scroll;
+}
+
+.Article_ul::-webkit-scrollbar{
+  display: none;
 }
 
 .Article_li {

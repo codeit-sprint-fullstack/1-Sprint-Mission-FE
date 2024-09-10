@@ -1,9 +1,14 @@
 import Image from "next/image";
 import style from "./BestArticleBody.module.css";
+import Link from "next/link";
+import useTimeCalculation from "../hook/useTimeCalculation";
 
 export default function BestArticleBody({ list }) {
+  // 날짜 계산
+  const stringDay = useTimeCalculation(list.createdAt)
+
   return (
-    <>
+    <Link href={`/freeNoticeBoard/${list.id}`}>
       <Image
         src={"/images/img_bast.svg"}
         width={102}
@@ -13,7 +18,7 @@ export default function BestArticleBody({ list }) {
       <div
         className={`${style.BestArticleBody_key_information} ${style.flex_row}`}
       >
-        <div className={style.BestArticleBody_title}>제목</div>
+        <div className={style.BestArticleBody_title}>{list.title}</div>
         <Image
           className={style.BestArticleBody_default_img}
           src={"/images/img_default.svg"}
@@ -26,7 +31,7 @@ export default function BestArticleBody({ list }) {
         className={`${style.BestArticleBody_additional_information} ${style.flex_row}`}
       >
         <div className={`${style.BestArticleBody_box} ${style.flex_row}`}>
-          <div className={style.BestArticleBody_user}>유저이름</div>
+          <div className={style.BestArticleBody_user}>코드잇</div>
           <div
             className={`${style.BestArticleBody_favorite} ${style.flex_row}`}
           >
@@ -36,11 +41,13 @@ export default function BestArticleBody({ list }) {
               height={16}
               alt="하트"
             />
-            <div>좋아요</div>
+            <div>999+</div>
           </div>
         </div>
-        <div className={style.BestArticleBody_date}>0000. 00. 00</div>
+        <div
+          className={style.BestArticleBody_date}
+        >{stringDay}</div>
       </div>
-    </>
+    </Link>
   );
 }

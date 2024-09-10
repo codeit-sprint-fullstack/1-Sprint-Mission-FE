@@ -1,27 +1,30 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useResize from "../hook/useResize";
 import BestArticleBody from "./BestArticleBody";
 import style from "./BestArticle.module.css";
+import instance from "@/lib/axios";
 
 export default function BestArticle({ list }) {
-  if (!list[0]) return;
-
   const [idx, setIdx] = useState([0, 1, 2]);
 
-  // 스크린 크기에 따른 로고 변경
-  const handleResize = useCallback(() => {
-    const length = window.innerWidth;
+  if (list[0]) {
+    // 스크린 크기에 따른 베스트 게시물 갯수 변경
+    const handleResize = useCallback(() => {
+      const length = window.innerWidth;
 
-    if (length >= 1200) {
-      setIdx([0, 1, 2]);
-    } else if (length >= 768 && length < 1200) {
-      setIdx([0, 1]);
-    } else if (length >= 375 && length < 768) {
-      setIdx([0]);
-    }
-  }, []);
+      if (length >= 1200) {
+        setIdx([0, 1, 2]);
+      } else if (length >= 768 && length < 1200) {
+        setIdx([0, 1]);
+      } else if (length >= 375 && length < 768) {
+        setIdx([0]);
+      }
+    }, []);
 
-  useResize(handleResize);
+    useResize(handleResize);
+
+    console.log(list);
+  }
 
   return (
     <div className={style.BestArticle_contaner}>
@@ -29,7 +32,7 @@ export default function BestArticle({ list }) {
       <ul className={style.BestArticle_ul}>
         {idx.map((idx) => {
           return (
-            <li className={style.BestArticle_li}>
+            <li className={style.BestArticle_li} key={idx}>
               <BestArticleBody list={list[idx]} />
             </li>
           );

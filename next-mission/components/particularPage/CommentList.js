@@ -1,13 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CommentListBody from "./CommentListBody";
 import style from "./CommentList.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CommentList() {
-  const [list, setList] = useState([1, 2, 3, 4, 5]); // 예정
+export default function CommentList({ comment, deleteCommentHandler }) {
   const [noList, setNoList] = useState(false);
-  const [buttonMargin, setButtonMargin] = useState(style.yes_list_button) //(style.no_list_button);
+  const [buttonMargin, setButtonMargin] = useState(style.yes_list_button); //(style.no_list_button);
+
+  // 변경 가능
+  const [list, setList] = useState(comment);
+  const [addList, setAddList] = useState([]);
+
+  useEffect(() => {
+    setList([...comment, ...addList]);
+  }, [comment, addList]);
+
+  // 댓글이 없을 시 관련 로직
+  useEffect(() => {
+    if (!comment[0]) {
+      setNoList(true);
+      setButtonMargin(style.no_list_button);
+    } else {
+      setNoList(false);
+      setButtonMargin(style.yes_list_button);
+    }
+  }, [comment]);
 
   return (
     <>
@@ -27,10 +45,14 @@ export default function CommentList() {
       )}
       {noList || (
         <ul className={`${style.CommentList_ul} ${style.flex_column}`}>
-          {list.map((comment) => {
+          {list.map((comment, idx) => {
             return (
-              <li className={style.CommentList_li}>
-                <CommentListBody comment={comment} />
+              <li className={style.CommentList_li} key={comment.id}>
+                <CommentListBody
+                  comment={comment}
+                  deleteCommentHandler={deleteCommentHandler}
+                  idx={idx}
+                />
               </li>
             );
           })}

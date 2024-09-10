@@ -2,9 +2,31 @@ import { useState } from "react";
 import style from "./ParticularInformation.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "@/lib/axios";
+import { useRouter } from "next/router";
+import useTimeCalculation from "../hook/useTimeCalculation";
 
-export default function ParticularInformation() {
-  const [hideDropDown, setHideDropDown] = useState(false);
+export default function ParticularInformation({ data }) {
+  const [hideDropDown, setHideDropDown] = useState(true);
+  const router = useRouter();
+
+  // 날짜 계산
+  const stringDay = useTimeCalculation(data.createdAt)
+
+  // 설정 드롭다운 온/오프 함수
+  const dropDownHandler = () => {
+    if (!hideDropDown) {
+      setHideDropDown(true);
+    } else if (hideDropDown) {
+      setHideDropDown(false);
+    }
+  };
+
+  // 삭제 함수
+  const deleteHandler = async () => {
+    await axios.delete(`/noticeBoards/${data.id}`);
+    router.push("/freeNoticeBoard");
+  };
 
   return (
     <div className={style.ParticularInformation_contaner}>
@@ -12,21 +34,25 @@ export default function ParticularInformation() {
         <div
           className={`${style.ParticularInformation_subject} ${style.flex_row}`}
         >
-          <div className={style.ParticularInformation_title}>제목</div>
+          <div className={style.ParticularInformation_title}>{data.title}</div>
           <Image
             src={"/images/ic_vertical_point_3.svg"}
             width={24}
             height={24}
             alt="설정"
+            onClick={dropDownHandler}
           />
           {hideDropDown || (
             <div className={style.ParticularInformation_drop_down}>
-              <Link href="/freeNoticeBoard/patchArticle">
+              <Link href={`/freeNoticeBoard/pacthArticle/${data.id}`}>
                 <div className={`${style.drop_down_button} ${style.font16}`}>
                   수정하기
                 </div>
               </Link>
-              <div className={`${style.drop_down_button} ${style.font16}`}>
+              <div
+                className={`${style.drop_down_button} ${style.font16}`}
+                onClick={deleteHandler}
+              >
                 삭제하기
               </div>
             </div>
@@ -45,12 +71,12 @@ export default function ParticularInformation() {
           <div
             className={`${style.ParticularInformation_user} ${style.font14}`}
           >
-            유저 이름
+            코드잇
           </div>
           <div
             className={`${style.ParticularInformation_date} ${style.font14}`}
           >
-            0000. 00. 00
+            {stringDay}
           </div>
           <div className={style.ParticularInformation_line} />
           <div
@@ -66,7 +92,7 @@ export default function ParticularInformation() {
           </div>
         </div>
       </div>
-      <div className={style.ParticularInformation_contents}>설명</div>
+      <div className={style.ParticularInformation_contents}>{data.content}</div>
     </div>
   );
 }

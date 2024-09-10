@@ -15,7 +15,6 @@ function Nav() {
       ? style.onHref
       : style.offHref;
 
-  console.log(router.asPath);
   return (
     <nav>
       <div className={style.listContaner}>
@@ -23,8 +22,8 @@ function Nav() {
           <p
             className={`${style.listFont} ${style.freeFont} ${getLinkStyle([
               "/freeNoticeBoard",
+              `/freeNoticeBoard/patchArticle/${id}`,
               "/freeNoticeBoard/postArticle",
-              "/freeNoticeBoard/patchArticle",
               `/freeNoticeBoard/${id}`,
             ])}`}
           >

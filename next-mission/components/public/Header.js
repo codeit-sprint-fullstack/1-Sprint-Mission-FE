@@ -5,7 +5,7 @@ import Nav from "./Nav";
 import Link from "next/link";
 
 export default function Header() {
-  const [logoImg, setLogoImg] = useState(null);
+  const [logoImg, setLogoImg] = useState("/images/pandaLogo.svg");
 
   // 스크린 크기에 따른 로고 변경
   const handleResize = useCallback(() => {

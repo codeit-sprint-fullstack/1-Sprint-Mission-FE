@@ -3,9 +3,22 @@ import ArticleBody from "./ArticleBody";
 import Link from "next/link";
 import style from "./Article.module.css";
 import Image from "next/image";
+import axios from "@/lib/axios";
 
-export default function Article() {
-  const [list, setList] = useState([1, 2, 3, 4]); // 예정
+export default function Article({ list, total }) {
+  const [data, setData] = useState(list)
+  const [value, setValue] = useState('')
+
+  // 검색에 따른 게시물 변경 함수
+  async function onKeyUpHandler () {
+    const res = await axios.get(`/noticeBoards?keyWord=${value}`)
+    setData(res.data.list)
+  }
+
+  // value 값 일치 함수
+  const onChangeHandler = (e) => {
+    setValue(e.target.value)
+  }
 
   return (
     <div className={style.Article_contaner}>
@@ -26,6 +39,9 @@ export default function Article() {
         <input
           className={`${style.Article_search_input} ${style.search_form_font}`}
           placeholder="검색할 상품을 입력해주세요"
+          value={value}
+          onChange={onChangeHandler}
+          onKeyUp={onKeyUpHandler}
         />
         <div className={`${style.Article_drop_down} ${style.search_form_font}`}>
           <div>최신순</div>
@@ -39,23 +55,14 @@ export default function Article() {
         </div>
       </div>
       <ul className={style.Article_ul}>
-        {list.map((data) => {
+        {data.map((data, idx) => {
           return (
-            <li className={style.Article_li}>
-              <ArticleBody />
+            <li className={style.Article_li} key={idx}>
+              <ArticleBody data={data} />
             </li>
           );
         })}
       </ul>
-      {/* <Pagination
-        activePage={1} // 현재 페이지
-        itemsCountPerPage={3} // 한 페이지랑 보여줄 아이템 갯수
-        totalItemsCount={3} // 총 아이템 갯수
-        pageRangeDisplayed={3} // paginator의 페이지 범위
-        prevPageText={"‹"} // "이전"을 나타낼 텍스트
-        nextPageText={"›"} // "다음"을 나타낼 텍스트
-        onChange={1} // 페이지 변경을 핸들링하는 함수
-      /> */}
     </div>
   );
 }
