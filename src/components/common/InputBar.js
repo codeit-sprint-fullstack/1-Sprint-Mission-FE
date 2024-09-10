@@ -7,18 +7,24 @@ function InputBar({
   customGap, // gap 크기를 동적으로 변경 > 기본값은 CSS에서 12px
 
   //input 기본 Props
-  placeholderText = "입력해주세요",
+  placeholder = "입력해주세요",
   type = "text",
-  inputValue = "",
 
   //input 태그 핸들러
-  handleInputOnChange,
-  handleInputOnBlur,
+  onChange = () => {},
+  onBlur = () => {},
 
   //에러 관리
   InputErrorState = false,
   validationMessage = "입력 오류입니다.",
 }) {
+
+  const [value, setValue] = useState("");
+
+  const handleOnChange = (e) => {
+    setValue(e.target.value);
+    onChange;
+  };
 
   return (
     <div
@@ -29,10 +35,10 @@ function InputBar({
       <input
         className={InputErrorState ? styles.inputError : styles.defaultBox}
         type={type}
-        value={inputValue}
-        onChange={handleInputOnChange}
-        onBlur={handleInputOnBlur}
-        placeholder={placeholderText}
+        value={value}
+        onChange={handleOnChange}
+        onBlur={onBlur}
+        placeholder={placeholder}
       />
       {InputErrorState && (
         <span className={styles.errorText}>{validationMessage}</span>

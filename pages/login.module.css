@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px 122px 40px 122px;
+  padding: 60px 122px 40px 122px;
 }
 
 .logoBox img {
@@ -28,12 +28,12 @@
 
 @media (max-width: 744px) {
   .logoBox {
-    padding: 0px 71px 40px 71px;
+    padding: 48px 71px 40px 71px;
   }
 }
 
 @media (max-width: 500px) {
   .logoBox {
-    padding: 0px 71px 24px 71px;
+    padding: 24px 71px 24px 71px;
   }
 }

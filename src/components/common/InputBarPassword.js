@@ -7,22 +7,28 @@ function InputBarPassword({
   customGap, // gap 크기를 동적으로 변경 > 기본값은 CSS에서 12px
 
   //input 기본 Props
-  placeholderText = "입력해주세요",
-  inputValue = "",
+  placeholder = "입력해주세요",
 
   //input 태그 핸들러
-  handleInputOnChange,
-  handleInputOnBlur,
+  onChange = () => {},
+  onBlur = () => {},
 
   //에러 관리
   InputErrorState = false,
   validationMessage = "입력 오류입니다.",
 }) {
   const [visibleToggle, setVisibleToggle] = useState(true);
+  const [value, setValue] = useState("");
 
   const handleVisibleToggle = () => {
     setVisibleToggle(!visibleToggle);
   };
+
+  const handleOnChange = (e) => {
+    setValue(e.target.value);
+    onChange;
+  };
+
 
   return (
     <div
@@ -33,11 +39,11 @@ function InputBarPassword({
       <div className={InputErrorState ? styles.inputError : styles.defaultBox}>
         <input
           className={styles.inputBox}
-          type="password"
-          value={inputValue}
-          onChange={handleInputOnChange}
-          onBlur={handleInputOnBlur}
-          placeholder={placeholderText}
+          type={visibleToggle ? "password" : "text"}
+          value={value}
+          onChange={handleOnChange}
+          onBlur={onBlur}
+          placeholder={placeholder}
         />
         <button onClick={handleVisibleToggle}>
           {visibleToggle ? (
