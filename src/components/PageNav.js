@@ -14,13 +14,14 @@ import BtnSquare from "./common/BtnSquare";
 
 function PageNav({
   boardListData = [
-    { name: "자유게시판", path: "/freeboard" },
+    { name: "자유게시판", path: "/article" },
     { name: "중고마켓", path: "/items" },
   ],
   loginState = false,
   userData = {},
 }) {
   const location = useRouter();
+  console.log(location.pathname);
 
   const BoardListRender = ({ boardListData }) => {
     return (

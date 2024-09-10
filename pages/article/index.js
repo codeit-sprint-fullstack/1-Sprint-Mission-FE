@@ -1,14 +1,14 @@
 import React from "react";
-import styles from "./FreeBoard.module.css";
+import styles from "./article.module.css";
 
 // 컴포넌트
-import PageNav from "../components/PageNav.js";
-import LinkBtn from "components/common/LinkBtn";
-import BestCardList from "components/BestCardList";
-import SortBtn from "components/common/SortBtn";
-import SearchBarLarge from "components/common/SearchBarLarge";
+import PageNav from "@components/PageNav.js";
+import LinkBtn from "@components/common/LinkBtn";
+import BestCardList from "@components/BestCardList";
+import SortBtn from "@components/common/SortBtn";
+import SearchBarLarge from "@components/common/SearchBarLarge";
 // import UserPost from "components/common/UserPost"
-import UserPostList from "components/renderData/UserPostList";
+import UserPostList from "@components/renderData/UserPostList";
 
 
 
