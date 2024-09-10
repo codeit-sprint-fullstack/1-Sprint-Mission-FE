@@ -3,6 +3,7 @@ import BestPost from '@/components/BestPost';
 import Container from '@/components/Container';
 import WriteButton from '@/components/WriteButton';
 import SearchForm from '@/components/SearchForm';
+import PostList from '@/components/PostList';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
@@ -14,7 +15,7 @@ export default function Freeboard() {
   const { order = 'recent', limit = 3, q } = router.query;
 
   const [bestPosts, setBestPosts] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   const getBestPosts = async (order, limit) => {
     const res = await axios.get('/posts', {
@@ -29,25 +30,21 @@ export default function Freeboard() {
 
   useEffect(() => {
     getBestPosts(order, limit);
-  }, [limit]);
+  }, [order, limit]);
 
-  // 검색 기능
-  // 검색어에 해당되는 게시글을 서버로부터 가져온다.
-  // SearchForm 컴포넌트를 통해 검색한다.
-  // Search 컴포넌트를 통해 검색 결과를 렌더링한다.
-  const getSearchResults = async (query) => {
-    const res = await axios.get(`/posts?search=${query}`);
-    const nextPosts = res.data;
-    setSearchResults(nextPosts ?? []);
+  // 검색 및 전체 게시글 조회
+  // 검색어가 존재하면 검색 결과를 화면에 렌더링 한다.
+  // 검색어가 없으면 서버에 등록된 모든 게시글을 화면에 렌더링 한다.
+  const getPosts = async (query) => {
+    const res = await axios.get('/posts', {
+      params: query ? { search: query } : {},
+    });
+    setPosts(res.data ?? []);
   };
 
   useEffect(() => {
-    getSearchResults(q);
+    getPosts(q);
   }, [q]);
-
-  // 게시글 목록
-  // 서버로부터 모든 게시글을 가져온다.
-  // PostList 컴포넌트를 통해
 
   return (
     <>
@@ -55,13 +52,7 @@ export default function Freeboard() {
         <BestPost posts={bestPosts} />
         <WriteButton />
         <SearchForm />
-        <ul>
-          {searchResults.map((result) => (
-            <li key={result.id}>
-              <div>{result.content}</div>
-            </li>
-          ))}
-        </ul>
+        <PostList posts={posts} />
       </Container>
     </>
   );
