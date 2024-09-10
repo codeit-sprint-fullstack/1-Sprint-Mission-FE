@@ -7,7 +7,7 @@ export default function Comments({ articleId }) {
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState('');
   const [edit, setEdit] = useState(null);
-  const [submit, setSubmit] = useState(false);
+  const [canSubmit, setCanSubmit] = useState(false);
 
   const handleComment = (event) => {
     setComment(event.target.value);
@@ -66,9 +66,9 @@ export default function Comments({ articleId }) {
 
   useEffect(() => {
     if (comment) {
-      setSubmit(true);
+      setCanSubmit(true);
     } else {
-      setSubmit(false);
+      setCanSubmit(false);
     }
   }, [comment]);
 
@@ -92,8 +92,8 @@ export default function Comments({ articleId }) {
         className={styles.inputComment}
       />
       <button
-        disabled={!submit}
-        className={submit ? styles.submitBtn : styles.btn}
+        disabled={!canSubmit}
+        className={canSubmit ? styles.submitBtn : styles.btn}
         type='button'
         onClick={handleSubmit}
       >
