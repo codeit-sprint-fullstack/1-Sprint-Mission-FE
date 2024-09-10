@@ -46,9 +46,6 @@ export default function FreeBoard() {
 
   useEffect(() => {
     getBestArticles();
-  }, []);
-
-  useEffect(() => {
     getArticles();
   }, [keyword]);
 

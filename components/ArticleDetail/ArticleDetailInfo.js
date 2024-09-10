@@ -20,10 +20,10 @@ export default function ArticleDetail({ article, deleteArticle }) {
     setOpenOptions((prev) => !prev);
   };
 
-  function handleDelete() {
+  const handleDelete = () => {
     deleteArticle(id);
     router.push('/freeboard');
-  }
+  };
 
   return (
     <>
