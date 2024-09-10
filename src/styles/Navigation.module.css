@@ -43,6 +43,9 @@
   color: var(--primary100);
   text-decoration: none;
 }
+.active {
+  color: var(--primary100) !important;
+}
 .icon {
   width: 4rem;
   height: 4rem;

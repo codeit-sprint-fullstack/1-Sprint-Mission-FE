@@ -5,8 +5,11 @@ import logo from "../images/pandaLogo.png";
 import smallLogo from "../images/pandaLogo_small.png";
 import icon from "../images/userIcon.png";
 import styles from "@styles/Navigation.module.css";
+import { useRouter } from "next/router";
 
 function Navigation() {
+  const router = useRouter();
+
   return (
     <nav className={styles.navBar}>
       <div className={styles.navLeft}>
@@ -20,10 +23,20 @@ function Navigation() {
         </Link>
         <div className={`${styles.menu} text-2lg bold`}>
           <span className={styles.menuContent}>
-            <Link href="/community">자유게시판</Link>
+            <Link
+              href="/community"
+              className={router.pathname === "/community" ? styles.active : ""}
+            >
+              자유게시판
+            </Link>
           </span>
           <span className={styles.menuContent}>
-            <Link href="/items">중고마켓</Link>
+            <Link
+              href="/items"
+              className={router.pathname === "/items" ? styles.active : ""}
+            >
+              중고마켓
+            </Link>
           </span>
         </div>
       </div>
