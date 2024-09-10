@@ -4,8 +4,7 @@ import styles from './RegisterButton.module.css';
 
 const RegisterButton = ({ title, content }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const router = useRouter(); // Next.js 라우터 사용
-
+  const router = useRouter();
   const handleSubmit = async () => {
     if (!title || !content) {
       alert('제목과 내용을 입력해주세요.');
@@ -43,7 +42,7 @@ const RegisterButton = ({ title, content }) => {
   return (
     <button
       className={styles.registerButton}
-      type="button" // API 요청을 위한 버튼 클릭
+      type="button"
       onClick={handleSubmit} // 등록 처리
       disabled={isSubmitting || !title || !content} // 제출 중이거나 제목/내용이 없으면 비활성화
     >

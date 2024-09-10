@@ -1,9 +1,21 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { createArticle } from '../../src/api/api'; // API 파일에서 함수 가져오기
+import axios from 'axios';
 import styles from '../../styles/create.module.css';
 
-const CreateArticle = () => {
+const BASE_URL = 'https://one-sprint-mission-be-rzbk.onrender.com/api';
+
+const createArticle = async (articleData) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/articles`, articleData);
+    return response.data;
+  } catch (error) {
+    console.error('게시글 등록 실패:', error);
+    throw error;
+  }
+};
+
+const CreateArticle = ({ onNewPost }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const router = useRouter();
@@ -12,10 +24,9 @@ const CreateArticle = () => {
     e.preventDefault();
 
     try {
-      // createArticle 함수 호출로 API 요청
-      const article = await createArticle({ title, content });
-      // 게시글이 생성되면 상세 페이지로 이동
-      router.push(`/articles/${article.id}`);
+      const newPost = await createArticle({ title, content });
+      onNewPost(newPost); // 새 게시글을 게시글 전체 페이지에 전달
+      router.push(`/articles/${newPost.id}`);
     } catch (error) {
       console.error('Failed to create article:', error);
     }

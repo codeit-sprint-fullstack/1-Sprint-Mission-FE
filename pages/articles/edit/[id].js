@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
+const BASE_URL = 'https://one-sprint-mission-be-rzbk.onrender.com/api';
+
 const EditArticle = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -10,8 +12,7 @@ const EditArticle = () => {
   useEffect(() => {
     if (id) {
       const fetchArticle = async () => {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL; // 환경 변수 사용
-        const response = await fetch(`${apiUrl}/articles/${id}`);
+        const response = await fetch(`${BASE_URL}/articles/${id}`);
         if (response.ok) {
           const data = await response.json();
           setTitle(data.title);
@@ -27,8 +28,7 @@ const EditArticle = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL; // 환경 변수 사용
-    const response = await fetch(`${apiUrl}/articles/${id}`, {
+    const response = await fetch(`${BASE_URL}/articles/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

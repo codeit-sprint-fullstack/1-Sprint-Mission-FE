@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const BASE_URL = 'https://one-sprint-mission-be-rzbk.onrender.com/api';
 console.log('BASE_URL임:', BASE_URL);
 
 const articlesUrl = `${BASE_URL}/articles`;
@@ -123,4 +123,3 @@ export const deleteComment = async (commentId) => {
     throw error;
   }
 };
-
