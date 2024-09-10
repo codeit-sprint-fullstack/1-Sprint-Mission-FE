@@ -26,13 +26,11 @@ export default function BestPostsList() {
     fetchBestPosts();
   }, []);
 
-  const topPosts = posts.slice(0, 3);
-
   return (
     <section className={styles.bestPosts}>
       <h2 className={styles.bestH1}>베스트 게시글</h2>
       <div className={styles.bestPostList}>
-        {topPosts.map((post) => (
+        {posts.map((post) => (
           <BestPostItem key={post.id} post={post} />
         ))}
       </div>

@@ -61,3 +61,17 @@
 /* 좋아요수
   background: #6B7280;
   */
+
+/*-------------------반응형 디자인 ---------------------------*/
+
+/* Tablet */
+@media only screen and (min-width: 744px) and (max-width: 1199px) {
+  .bestPostItemCard {
+    width: 340px;
+    height: 198px;
+  }
+}
+
+/* Mobile */
+@media only screen and (min-width: 375px) and (max-width: 743px) {
+}
