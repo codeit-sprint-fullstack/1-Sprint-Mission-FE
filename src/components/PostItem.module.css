@@ -54,6 +54,7 @@
 
 /* 좋아요 수 */
 .likeCount {
+  margin-right: 20px;
   color: #6b7280;
   font-size: 16px;
   font-weight: 400;

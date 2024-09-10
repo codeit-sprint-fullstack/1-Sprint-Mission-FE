@@ -27,11 +27,6 @@
       "static/chunks/main.js",
       "static/chunks/pages/free-board.js"
     ],
-    "/post-detail/[id]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/post-detail/[id].js"
-    ],
     "/post-edit/[id]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
