@@ -1,9 +1,9 @@
+import { useState, useEffect, useCallback } from "react";
+import useWindowResize from "@/hooks/useWindowResize";
 import ProductList from "@/components/ProductList.jsx";
 import SearchBar from "@/components/SearchBar";
 import Pagination from "@/components/Pagination";
-import { useState, useEffect, useCallback } from "react";
 import * as api from "@/pages/api/products.js";
-import useWindowResize from "@/hooks/useWindowResize";
 
 export async function getServerSideProps() {
   const productsQuery = {
@@ -37,14 +37,14 @@ function Items({ items, productsTotalCount, productsQuery }) {
   const [products, setProducts] = useState(items);
   const [totalDataCount, setTotalDataCount] = useState(productsTotalCount);
 
-  const onChange = (name, value) => {
+  const handleChange = (name, value) => {
     setParams((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const onObjectChange = (obj) => {
+  const handleChangeParams = (obj) => {
     setParams((prev) => ({
       ...prev,
       ...obj,
@@ -65,13 +65,13 @@ function Items({ items, productsTotalCount, productsQuery }) {
   const changeFromNextView = useCallback(() => {
     switch (view) {
       case "isDesktop":
-        onObjectChange({ limit: 10, offset: 1 });
+        handleChangeParams({ limit: 10, offset: 1 });
         break;
       case "isTablet":
-        onObjectChange({ limit: 6, offset: 1 });
+        handleChangeParams({ limit: 6, offset: 1 });
         break;
       case "isMobile":
-        onObjectChange({ limit: 4, offset: 1 });
+        handleChangeParams({ limit: 4, offset: 1 });
         break;
       default:
     }
@@ -91,12 +91,12 @@ function Items({ items, productsTotalCount, productsQuery }) {
         <SearchBar
           isMobile={view === "isMobile"}
           orderBy={params.orderBy}
-          onChange={onChange}
+          onChange={handleChange}
         />
         <ProductList items={products} favorite={false} />
       </div>
       <Pagination
-        onChange={onChange}
+        onChange={handleChange}
         params={params}
         totalCount={totalDataCount}
       />

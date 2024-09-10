@@ -1,27 +1,26 @@
-import { getArticle } from "../api/articles";
 import Image from "next/image";
-import styles from "@/styles/detailArticle.module.css";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
+import * as commentApi from "@/pages/api/comment";
+import * as articleApi from "@/pages/api/articles";
+import AlertModal from "@/components/Modals/AlertModal";
+import DropdownData from "@/components/DropdownList/DropdownData";
+import ConfirmModal from "@/components/Modals/ConfirmModal";
 import ic_kebab from "@/public/images/ic_kebab.png";
 import ic_profile from "@/public/images/ic_profile.png";
 import ic_heart from "@/public/images/ic_heart.png";
 import img_reply_empty from "@/public/images/img_reply_empty.png";
 import ic_back from "@/public/images/ic_back.png";
-import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
-import Link from "next/link";
-import { useState } from "react";
-import * as commentApi from "@/pages/api/comment";
-import * as articleApi from "@/pages/api/articles";
-import AlertModal from "@/components/Modals/AlertModal";
-import { useRouter } from "next/router";
-import DropdownData from "@/components/DropdownList/DropdownData";
-import ConfirmModal from "@/components/Modals/ConfirmModal";
+import styles from "@/styles/detailArticle.module.css";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
 
   let article = [];
   try {
-    const data = await getArticle(id);
+    const data = await articleApi.getArticle(id);
     article = data;
   } catch (error) {
     console.log(error);
@@ -37,23 +36,25 @@ export async function getServerSideProps(context) {
 function Comment({ item, openAlert, setMessage }) {
   const { content, user, createAt, updateAt } = item;
   const router = useRouter();
+  //날짜 포멧
   const createDate = dateFormatYYYYMMDD(createAt);
   const updateDate = dateFormatYYYYMMDD(updateAt);
 
   const [CommentDropdown, setCommentDropdown] = useState(false);
   const [contentUpdate, setContentUpdate] = useState(false);
   const [value, setValue] = useState(content);
+
   const openCommentDropdown = () => setCommentDropdown(!CommentDropdown);
 
-  const onChange = (e) => {
+  const handleChangeValue = (e) => {
     setValue(e.target.value);
   };
 
-  const onContentUpdate = () => {
+  const handleUpdateContent = () => {
     setContentUpdate(true);
     setCommentDropdown(false);
   };
-  const onUpdateCancel = () => {
+  const handleUpdateCancel = () => {
     setContentUpdate(false);
     setCommentDropdown(true);
   };
@@ -79,7 +80,7 @@ function Comment({ item, openAlert, setMessage }) {
           <textarea
             className={styles.comment_content_textarea}
             name="content"
-            onChange={onChange}
+            onChange={handleChangeValue}
             value={value || ""}
           />
         ) : (
@@ -95,7 +96,7 @@ function Comment({ item, openAlert, setMessage }) {
           />
         )}
 
-        {CommentDropdown && <DropdownData handleUpdate={onContentUpdate} />}
+        {CommentDropdown && <DropdownData onUpdate={handleUpdateContent} />}
       </div>
       <div className={styles.comment_content_data_box}>
         <Image
@@ -119,7 +120,7 @@ function Comment({ item, openAlert, setMessage }) {
         {contentUpdate && (
           <div className={styles.comment_update_box}>
             <button
-              onClick={onUpdateCancel}
+              onClick={handleUpdateCancel}
               className={styles.comment_data_cancel_btn}
             >
               취소
@@ -140,14 +141,13 @@ function Comment({ item, openAlert, setMessage }) {
 function DetailArticle({ article }) {
   const router = useRouter();
   const { title, content, favorite, user, createAt, comment } = article;
-
+  //날짜 포멧
+  const date = dateFormatYYYYMMDD(createAt);
   const defaultUser = {
     //유저관리를 안하고 있음 기본 유저를 설정 추후 유저관리의 로그인계정으로 변경해야 함
     userId: user.id,
     articleId: article.id,
   };
-
-  const date = dateFormatYYYYMMDD(createAt);
   const [values, setValues] = useState(defaultUser);
   const [Alert, setAlert] = useState(false);
   const [Confirm, setConfirm] = useState(false);
@@ -203,17 +203,17 @@ function DetailArticle({ article }) {
     }
   };
 
-  const onChangeValues = (name, value) => {
+  const handleChangeValues = (name, value) => {
     setValues((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const onChange = (e) => {
+  const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    onChangeValues(name, value);
+    handleChangeValues(name, value);
   };
 
   return (
@@ -283,7 +283,7 @@ function DetailArticle({ article }) {
           <h3>댓글달기</h3>
           <textarea
             name="content"
-            onChange={onChange}
+            onChange={handleChange}
             className={styles.article_comment_textarea}
             placeholder="댓글을 입력해주세요."
           />

@@ -8,12 +8,12 @@ import DropdownBox from "@/components/DropdownList/DropdownBox";
 function SearchBar({ onChange, orderBy, isMobile = false }) {
   const [keyword, setKeyword] = useState();
 
-  const onOrderChange = (e) => {
+  const handleChangeOrder = (e) => {
     const value = e.target.value;
     onChange("orderBy", value);
   };
 
-  const handleKeyword = (e) => {
+  const handleChangeKeyword = (e) => {
     setKeyword(e.target.value);
   };
 
@@ -41,7 +41,7 @@ function SearchBar({ onChange, orderBy, isMobile = false }) {
           ></Image>
           <form onSubmit={handleSubmit}>
             <input
-              onChange={handleKeyword}
+              onChange={handleChangeKeyword}
               name="keyword"
               className={styles.keyword}
               placeholder="검색할 상품을 입력해주세요"
@@ -54,7 +54,7 @@ function SearchBar({ onChange, orderBy, isMobile = false }) {
           </Link>
         )}
         <DropdownBox
-          onOrderChange={onOrderChange}
+          onOrderChange={handleChangeOrder}
           orderBy={orderBy}
           isMobile={isMobile}
         />

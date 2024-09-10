@@ -1,10 +1,10 @@
 import Head from "next/head";
+import { useCallback, useEffect, useState } from "react";
+import useWindowResize from "@/hooks/useWindowResize";
 import ProductList from "@/components/ProductList";
 import Pagination from "@/components/Pagination";
 import SearchBar from "@/components/SearchBar";
 import * as api from "@/pages/api/products";
-import { useCallback, useEffect, useState } from "react";
-import useWindowResize from "@/hooks/useWindowResize";
 
 export async function getServerSideProps() {
   const productsQuery = {
@@ -61,21 +61,21 @@ export default function Home({
   const [bestProducts, setBestProducts] = useState(bestItems);
   const [totalDataCount, setTotalDataCount] = useState(productsTotalCount);
 
-  const onChange = (name, value) => {
+  const handleChange = (name, value) => {
     setParams((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const onObjectChange = (obj) => {
+  const handleChangeParams = (obj) => {
     setParams((prev) => ({
       ...prev,
       ...obj,
     }));
   };
 
-  const onBestChange = (name, value) => {
+  const onChangeBestParams = (name, value) => {
     setBestParams((prev) => ({
       ...prev,
       [name]: value,
@@ -112,16 +112,16 @@ export default function Home({
     const changeFromNextView = () => {
       switch (view) {
         case "isDesktop":
-          onObjectChange({ limit: 10, offset: 1 });
-          onBestChange("limit", 4);
+          handleChangeParams({ limit: 10, offset: 1 });
+          onChangeBestParams("limit", 4);
           break;
         case "isTablet":
-          onObjectChange({ limit: 6, offset: 1 });
-          onBestChange("limit", 2);
+          handleChangeParams({ limit: 6, offset: 1 });
+          onChangeBestParams("limit", 2);
           break;
         case "isMobile":
-          onObjectChange({ limit: 4, offset: 1 });
-          onBestChange("limit", 1);
+          handleChangeParams({ limit: 4, offset: 1 });
+          onChangeBestParams("limit", 1);
           break;
         default:
       }
@@ -146,12 +146,12 @@ export default function Home({
           <SearchBar
             isMobile={view === "isMobile" ? true : false}
             orderBy={params.orderBy}
-            onChange={onChange}
+            onChange={handleChange}
           />
           <ProductList items={products} favorite={false} />
         </div>
         <Pagination
-          onChange={onChange}
+          onChange={handleChange}
           params={params}
           totalCount={totalDataCount}
         />

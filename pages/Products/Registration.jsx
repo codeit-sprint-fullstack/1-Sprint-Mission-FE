@@ -1,14 +1,14 @@
 import React from "react";
-import useFormValidation from "@/hooks/useFormValidation.js";
-import styles from "@/styles/registration.module.css";
-import * as api from "@/pages/api/products";
-import x_icon from "@/public/images/ic_X.png";
-import { productModel } from "@/models/productModel";
-import Image from "next/image";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import useFormValidation from "@/hooks/useFormValidation.js";
+import * as api from "@/pages/api/products";
+import { productModel } from "@/models/productModel";
+import styles from "@/styles/registration.module.css";
+import x_icon from "@/public/images/ic_X.png";
 
 function Chips({ tag, onClick, index }) {
-  const handleBtn = (e) => {
+  const handleBtnClick = (e) => {
     e.preventDefault();
     onClick(index);
   };
@@ -16,7 +16,7 @@ function Chips({ tag, onClick, index }) {
   return (
     <div className={styles.chip}>
       #{tag}
-      <button onClick={handleBtn}>
+      <button onClick={handleBtnClick}>
         <Image className={styles.x_icon} src={x_icon} alt="삭제아이콘" />
       </button>
     </div>
@@ -49,7 +49,7 @@ function Registration() {
     const postValues = productModel(values, chips);
 
     try {
-      const data = await api.createProductAxios(postValues);
+      const data = await api.createProduct(postValues);
       router.push(`/DetailProduct/${data.id}`);
     } catch (e) {
       console.log(e.name);

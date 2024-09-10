@@ -1,16 +1,16 @@
-import styles from "@/styles/articles.module.css";
-import ic_search from "@/public/images/ic_search.png";
-import imgDefault from "@/public/images/img_default.png";
-import ic_heart from "@/public/images/ic_heart.png";
-import ic_medal from "@/public/images/ic_medal.png";
-import ic_profile from "@/public/images/ic_profile.png";
+import Link from "next/link";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import * as api from "@/pages/api/articles";
 import Pagination from "@/components/Pagination";
 import DropDownBox from "@/components/DropdownList/DropdownBox";
 import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
-import Link from "next/link";
+import ic_search from "@/public/images/ic_search.png";
+import imgDefault from "@/public/images/img_default.png";
+import ic_heart from "@/public/images/ic_heart.png";
+import ic_medal from "@/public/images/ic_medal.png";
+import ic_profile from "@/public/images/ic_profile.png";
+import styles from "@/styles/articles.module.css";
 
 function BestArticles({ item }) {
   const { user, title, createAt, favorite } = item;
@@ -146,26 +146,26 @@ function Articles({ bestItems, defaultParams, total, Items }) {
     }
   }, [params]);
 
-  const onChange = (name, value) => {
+  const handleChangeParams = (name, value) => {
     setParams((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const onChangeKeyword = (e) => {
+  const handleChangeKeyword = (e) => {
     e.preventDefault();
     setKeyword(e.target.value);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    onChange("keyword", keyword);
+    handleChangeParams("keyword", keyword);
   };
 
-  const onOrderChange = (e) => {
+  const handleChangeOrder = (e) => {
     const value = e.target.value;
-    onChange("orderBy", value);
+    handleChangeParams("orderBy", value);
   };
 
   useEffect(() => {
@@ -199,14 +199,17 @@ function Articles({ bestItems, defaultParams, total, Items }) {
           />
           <form onSubmit={onSubmit}>
             <input
-              onChange={onChangeKeyword}
+              onChange={handleChangeKeyword}
               className={styles.search_input}
               type="text"
               value={keyword || ""}
               placeholder="검색할 게시글을 입력해주세요."
             />
           </form>
-          <DropDownBox onOrderChange={onOrderChange} orderBy={params.orderBy} />
+          <DropDownBox
+            onChangeOrder={handleChangeOrder}
+            orderBy={params.orderBy}
+          />
         </div>
         <ul className={styles.article_ul}>
           {articles.map((item) => (
@@ -214,7 +217,11 @@ function Articles({ bestItems, defaultParams, total, Items }) {
           ))}
         </ul>
       </div>
-      <Pagination onChange={onChange} params={params} totalCount={totalCount} />
+      <Pagination
+        onChange={handleChangeParams}
+        params={params}
+        totalCount={totalCount}
+      />
     </main>
   );
 }

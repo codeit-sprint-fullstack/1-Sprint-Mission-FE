@@ -1,9 +1,9 @@
-import styles from "@/styles/registration.module.css";
+import { useState } from "react";
+import { useRouter } from "next/router";
 import useFormValidation from "@/hooks/useFormValidation";
 import AlertModal from "@/components/Modals/AlertModal";
 import * as api from "@/pages/api/articles";
-import { useState } from "react";
-import { useRouter } from "next/router";
+import styles from "@/styles/registration.module.css";
 
 export async function getServerSideProps(context) {
   //경로의 context 값이 있다면 지곤 게시글의 수정으로 서버에서 값을 전달한다.

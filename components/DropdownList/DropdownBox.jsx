@@ -7,12 +7,12 @@ import useWindowResize from "@/hooks/useWindowResize";
 
 function DropdownBox({ onOrderChange, orderBy }) {
   const [openDropdown, setOpenDropdown] = useState(false);
-  const changeDropbox = () => {
+  const handleChangeDropbox = () => {
     setOpenDropdown((e) => !e);
   };
-  const handleOrderChange = (e) => {
+  const handleChangeOrder = (e) => {
     onOrderChange(e);
-    changeDropbox();
+    handleChangeDropbox();
   };
   const dropDownBox = {
     recent: "최신순",
@@ -22,7 +22,10 @@ function DropdownBox({ onOrderChange, orderBy }) {
 
   return (
     <div>
-      <div className={styles.search_order_container} onClick={changeDropbox}>
+      <div
+        className={styles.search_order_container}
+        onClick={handleChangeDropbox}
+      >
         <button className={styles.order_drop_btn}>
           {view !== "isMobile" && dropDownBox[orderBy]}
         </button>
@@ -37,14 +40,14 @@ function DropdownBox({ onOrderChange, orderBy }) {
           <button
             className={styles.firstdrop}
             value="recent"
-            onClick={handleOrderChange}
+            onClick={handleChangeOrder}
           >
             {dropDownBox.recent}
           </button>
           <button
             className={styles.lastdrop}
             value="favorite"
-            onClick={handleOrderChange}
+            onClick={handleChangeOrder}
           >
             {dropDownBox.favorite}
           </button>
