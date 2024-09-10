@@ -41,7 +41,7 @@
 
 .submitButton:enabled,
 .registerButton:enabled {
-  background-color: #2563eb;
+  background-color: #3692FF;
   color: white;
 }
 
@@ -88,6 +88,7 @@
 .formGroup textarea#content {
   width: 100%;
 }
+
 
 .formGroup input#title {
   height: 56px !important;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { createArticle } from '../../src/api/api'; // API 파일에서 함수 가져오기
+import { createArticle } from '../../src/api/api';
 import styles from '../../styles/create.module.css';
 
 const CreateArticle = () => {
@@ -41,6 +41,7 @@ const CreateArticle = () => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="제목을 입력해주세요"
+          style={{ height: '56px' }}
         />
       </div>
       <div className={styles.formGroup}>
@@ -50,6 +51,7 @@ const CreateArticle = () => {
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="내용을 입력해주세요"
+          style={{ height: '282px' }}
         />
       </div>
     </form>
