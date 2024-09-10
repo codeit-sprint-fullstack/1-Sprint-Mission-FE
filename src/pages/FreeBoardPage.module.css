@@ -47,7 +47,7 @@
   border: none;
   border-radius: 12px;
   height: 42px;
-  padding: 0 10px;
+  padding: 0 40px;
   flex: 1;
   min-width: 220px;
   max-width: 100%;
@@ -58,7 +58,7 @@
 }
 
 .freeSearchInput::placeholder {
-  padding-left: 35px; /* 플레이스홀더가 검색 아이콘과 겹치지 않도록 여백 설정 */
+  padding-left: 5px; /* 플레이스홀더가 검색 아이콘과 겹치지 않도록 여백 설정 */
   color: #999;
   font-size: 16px;
 }
@@ -149,13 +149,24 @@
 }
 
 /* Mobile */
-@media only screen and (max-width: 743px) {
+@media only screen and (min-width: 375px) and (max-width: 743px) {
+  .bestPostsContainer {
+    box-sizing: border-box;
+  }
+
   .freeSearchInput {
     width: 100%; /* 모바일 화면에서 입력창이 전체 너비를 차지하도록 설정 */
     min-width: unset; /* 최소 너비 제한 제거 */
   }
 
   .sortDropDown {
+    width: 100px;
     padding: 8px;
+  }
+
+  .freeSearchInput::placeholder {
+    padding-left: 25px; /* 플레이스홀더가 검색 아이콘과 겹치지 않도록 여백 설정 */
+    color: #999;
+    font-size: 16px;
   }
 }

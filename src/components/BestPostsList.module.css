@@ -8,7 +8,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 기본 데스크탑 버전: 3개 */
   gap: 10px;
-  justify-content: center;
 }
 
 .bestH1 {
@@ -22,6 +21,7 @@
 /* Tablet */
 @media only screen and (min-width: 744px) and (max-width: 1199px) {
   .bestPostList {
+    justify-content: center;
     grid-template-columns: repeat(2, 1fr); /* 태블릿에서는 2개 */
   }
 
@@ -34,6 +34,7 @@
 /* Mobile */
 @media only screen and (max-width: 743px) {
   .bestPostList {
+    justify-content: center;
     grid-template-columns: repeat(1, 1fr); /* 모바일에서는 1개 */
   }
 

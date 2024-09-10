@@ -76,7 +76,7 @@ export default function FreeBoardPage() {
 
     if (results.length === 0) {
       setSearchResults([]);
-      setSearchError("게시글이 존재하지 않습니다.");
+      setSearchError("⚠ 게시글이 존재하지 않습니다.");
     } else {
       setSearchResults(results);
       setSearchError(null);
