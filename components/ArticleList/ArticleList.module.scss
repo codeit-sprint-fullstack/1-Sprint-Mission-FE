@@ -1,1 +1,13 @@
 @use "@/styles/globals/shared" as g;
+
+.ArticleList {
+  @include g.flex-box(column, center, center);
+  width: 100%;
+  padding-bottom: 100px;
+
+  li {
+    @include g.flex-box(column, center, center);
+    border-bottom: 1px solid g.$grey-200;
+    width: 100%;
+  }
+}

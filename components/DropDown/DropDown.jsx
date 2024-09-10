@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
-import "./DropDown.css";
+import { useState, useRef, useEffect } from "react";
+import styles from "./DropDown.module.scss";
 
 export default function DropDown({ setSortBy, sortBy }) {
   const [isOpen, setIsOpen] = useState(false);

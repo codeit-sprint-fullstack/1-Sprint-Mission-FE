@@ -1,35 +1,32 @@
-import { QueryClient, dehydrate } from "@tanstack/react-query";
+import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
 import BestArticles from "@/components/BestArticles/BestArticles";
 import Head from "next/head";
 import Button from "@/components/Button/Button";
 import ArticleList from "@/components/ArticleList/ArticleList";
 import { getArticleList } from "@/lib/api";
 import styles from "@/styles/pages/Board.module.scss";
-import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useState } from "react";
+import SearchBar from "@/components/SearchBar/SearchBar";
+import DropDown from "@/components/DropDown/DropDown";
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
 
   try {
-    await queryClient.prefetchQuery({
-      queryKey: ["bestArticles"],
-      queryFn: () => getArticleList({ limit: 3, sortBy: "best" }),
-    });
-
-    await queryClient.prefetchQuery({
-      queryKey: ["articles"],
-      queryFn: () => getArticleList({ limit: 10, sortBy: "recent" }),
-    });
-
-    const bestArticleData = queryClient.getQueryData(["bestArticles"]) || [];
-    const articleData = queryClient.getQueryData(["articles"]) || [];
-
-    const { list } = bestArticleData;
+    await Promise.all([
+      queryClient.prefetchQuery({
+        queryKey: ["bestArticles"],
+        queryFn: () => getArticleList({ limit: 3, sortBy: "best" }),
+      }),
+      queryClient.prefetchQuery({
+        queryKey: ["articles"],
+        queryFn: () => getArticleList({ sortBy: "recent" }),
+      }),
+    ]);
 
     return {
       props: {
-        list,
-        articleData,
         dehydratedState: dehydrate(queryClient),
       },
     };
@@ -42,7 +39,29 @@ export async function getServerSideProps() {
   }
 }
 
-export default function Boards({ list: bestArticleList, articleData }) {
+export default function Boards() {
+  const [keyword, setKeyword] = useState("");
+
+  const { data: bestArticles } = useQuery({
+    queryKey: ["bestArticles"],
+    queryFn: () => getArticleList({ limit: 3, sortBy: "best" }),
+  });
+
+  const {
+    data: allArticles,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: keyword ? ["articles", keyword] : ["articles"],
+    queryFn: () => getArticleList({ keyword }),
+    enabled: !!keyword,
+  });
+
+  console.log(allArticles);
+
+  if (isLoading) return <p>로딩중</p>;
+  if (isError) return <p>에러</p>;
+
   return (
     <>
       <Head>
@@ -50,14 +69,20 @@ export default function Boards({ list: bestArticleList, articleData }) {
       </Head>
       <section className={styles["best-section"]}>
         <h2>베스트 게시글</h2>
-        <BestArticles list={bestArticleList} />
+        <BestArticles data={bestArticles} />
       </section>
       <section className={styles["article-section"]}>
-        <div>
+        <div className={styles["article-section-topbar"]}>
           <h2>게시글</h2>
-          <Button type="primary">글쓰기</Button>
+          <Link href="/boards/create-article" passHref>
+            <Button type="primary">글쓰기</Button>
+          </Link>
         </div>
-        <ArticleList />
+        <div className={styles["article-section-secondbar"]}>
+          <SearchBar setKeyword={setKeyword} />
+          <DropDown />
+        </div>
+        <ArticleList data={allArticles} />
       </section>
     </>
   );

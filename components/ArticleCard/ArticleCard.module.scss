@@ -4,6 +4,7 @@
   @include g.flex-box(column, center, center);
   background-color: g.$grey-50;
   position: relative;
+  max-width: 384px;
   width: 100%;
   padding: 46px 24px 16px;
   border-radius: 8px;
@@ -40,16 +41,6 @@
   @include g.flex-box(row, space-between, flex-start, 8px);
   width: 100%;
   margin-bottom: 16px;
-}
-
-.img-container {
-  min-width: 72px;
-  min-height: 72px;
-  position: relative;
-  aspect-ratio: 1/1;
-  border: 1px solid g.$grey-200;
-  border-radius: 6px;
-  background-color: #fff;
 }
 
 .bottom {
