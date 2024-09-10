@@ -1,22 +1,29 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import CommentListBody from "./CommentListBody";
 import style from "./CommentList.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CommentList({ comment, deleteCommentHandler }) {
+export default function CommentList({ comment, hasMore, loadMore, deleteCommentHandler }) {
   const [noList, setNoList] = useState(false);
   const [buttonMargin, setButtonMargin] = useState(style.yes_list_button); //(style.no_list_button);
+  const observerRef = useRef();
 
-  // 변경 가능
-  const [list, setList] = useState(comment);
-  const [addList, setAddList] = useState([]);
+  // Intersection Observer 콜백
+  const lastItemRef = useCallback(
+    (node) => {
+      if (observerRef.current) observerRef.current.disconnect();
+      observerRef.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          loadMore(); // 상위 컴포넌트에서 전달된 함수 호출
+        }
+      });
+      if (node) observerRef.current.observe(node);
+    },
+    [hasMore, loadMore]
+  );
 
-  useEffect(() => {
-    setList([...comment, ...addList]);
-  }, [comment, addList]);
-
-  // 댓글이 없을 시 관련 로직
+  // 댓글이 없을 시 이미지 보여주는 로직
   useEffect(() => {
     if (!comment[0]) {
       setNoList(true);
@@ -45,16 +52,32 @@ export default function CommentList({ comment, deleteCommentHandler }) {
       )}
       {noList || (
         <ul className={`${style.CommentList_ul} ${style.flex_column}`}>
-          {list.map((comment, idx) => {
-            return (
-              <li className={style.CommentList_li} key={comment.id}>
-                <CommentListBody
-                  comment={comment}
-                  deleteCommentHandler={deleteCommentHandler}
-                  idx={idx}
-                />
-              </li>
-            );
+          {comment.map((data, idx) => {
+            if (idx === comment.length - 1) {
+              return (
+                <li
+                  className={style.CommentList_li}
+                  ref={lastItemRef}
+                  key={data.id}
+                >
+                  <CommentListBody
+                    comment={data}
+                    deleteCommentHandler={deleteCommentHandler}
+                    idx={idx}
+                  />
+                </li>
+              );
+            } else {
+              return (
+                <li className={style.CommentList_li} key={data.id}>
+                  <CommentListBody
+                    comment={data}
+                    deleteCommentHandler={deleteCommentHandler}
+                    idx={idx}
+                  />
+                </li>
+              );
+            }
           })}
         </ul>
       )}

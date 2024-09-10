@@ -4,20 +4,24 @@ import ParticularInformation from "@/components/particularPage/ParticularInforma
 import axios from "@/lib/axios";
 import Head from "next/head";
 import { notFound } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export async function getServerSideProps(context) {
   const id = context.params["id"];
 
   try {
     const res = await axios.get(`/noticeBoards/${id}`);
-    const resComment = await axios.get(`/noticeBoards/${id}/freeCommends`);
-    const data = res.data;
+    const resComment = await axios.get(
+      `/noticeBoards/${id}/freeCommends?pageSize=5`
+    );
+    const noticeBoardData = res.data;
     const commentData = resComment.data.list ?? [];
+    const cursorData = resComment.data.cursorInfo.NextCusor;
     return {
       props: {
-        data,
+        noticeBoardData,
         commentData,
+        cursorData,
       },
     };
   } catch {
@@ -27,14 +31,50 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function particularPage({ data, commentData }) {
+export default function particularPage({
+  noticeBoardData,
+  commentData,
+  cursorData,
+}) {
   const [comment, setComment] = useState(commentData);
+  const [cursor, setCursor] = useState(""); // 현재 커서
+  const [hasMore, setHasMore] = useState(true); // 더 불러올 데이터가 있는지 여부
+  const [nextCursor, setNextCursor] = useState(cursorData);
+
+  // API를 통해 데이터를 가져오는 함수
+  const fetchItems = async (cursor) => {
+    try {
+      const res = await axios.get(
+        `/noticeBoards/${noticeBoardData.id}/freeCommends?cursor=${cursor}&pageSize=5`
+      );
+      const data = res.data;
+      setComment((prevComment) => [...prevComment, ...data.list]);
+      setNextCursor(data.cursorInfo.NextCusor);
+      if (data.cursorInfo.NextCusor === "null") {
+        setHasMore(false);
+      }
+    } catch (error) {
+      console.error("Error fetching items:", error);
+    }
+  };
+
+  // 페이지가 변경될 때마다 데이터를 가져옴
+  useEffect(() => {
+    if (cursor !== "") {
+      fetchItems(cursor);
+    }
+  }, [cursor]);
+
+  // 커서 변경 함수
+  const loadMoreItems = () => {
+    setCursor(nextCursor);
+  };
 
   // 댓글 추가 함수
   const postCommentHandler = async (value) => {
     const subject = {
       content: value,
-      noticeBoardId: data.id,
+      noticeBoardId: noticeBoardData.id,
     };
 
     const res = await axios.post("/freeCommends", subject);
@@ -46,20 +86,22 @@ export default function particularPage({ data, commentData }) {
   // 댓글 삭제 함수
   const deleteCommentHandler = async (id, idx) => {
     await axios.delete(`/freeCommends/${id}`);
-    const nextComment = [...comment]
-    nextComment.splice(idx, 1)
-    setComment(nextComment)
+    const nextComment = [...comment];
+    nextComment.splice(idx, 1);
+    setComment(nextComment);
   };
 
   return (
     <>
       <Head>
-        <title>{data.title} - 자유게시판 | 판다마켓</title>
+        <title>{noticeBoardData.title} - 자유게시판 | 판다마켓</title>
       </Head>
-      <ParticularInformation data={data} />
+      <ParticularInformation data={noticeBoardData} />
       <CommentFrom postHandler={postCommentHandler} />
       <CommentList
-        comment={comment}
+        comment={comment} // 불러온 데이터 배열
+        hasMore={hasMore} // 추가 데이터 여부
+        loadMore={loadMoreItems} // 페이지를 로드하는 함수
         deleteCommentHandler={deleteCommentHandler}
       />
     </>

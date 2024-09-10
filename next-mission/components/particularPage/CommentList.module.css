@@ -23,14 +23,17 @@
 
 .CommentList_ul {
   width: 1200px;
-  height: auto;
+  height: 348px;
   margin: 40px 0 64px 0;
   padding: 0;
   gap: 24px;
   list-style-type: none;
+  overflow: scroll;
 }
 
-
+.CommentList_ul::-webkit-scrollbar{
+  display: none;
+}
 
 .CommentList_li {
   width: 1200px;

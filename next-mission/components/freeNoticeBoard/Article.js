@@ -1,24 +1,36 @@
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import ArticleBody from "./ArticleBody";
 import Link from "next/link";
 import style from "./Article.module.css";
 import Image from "next/image";
-import axios from "@/lib/axios";
 
-export default function Article({ list, total }) {
-  const [data, setData] = useState(list)
-  const [value, setValue] = useState('')
+export default function Article({ list, hasMore, loadMore, searchValue }) {
+  const [value, setValue] = useState("");
+  const observerRef = useRef();
+
+  // Intersection Observer 콜백
+  const lastItemRef = useCallback(
+    (node) => {
+      if (observerRef.current) observerRef.current.disconnect();
+      observerRef.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          loadMore(); // 상위 컴포넌트에서 전달된 함수 호출
+        }
+      });
+      if (node) observerRef.current.observe(node);
+    },
+    [hasMore, loadMore]
+  );
 
   // 검색에 따른 게시물 변경 함수
-  async function onKeyUpHandler () {
-    const res = await axios.get(`/noticeBoards?keyWord=${value}`)
-    setData(res.data.list)
+  function onKeyUpHandler() {
+    searchValue(value);
   }
 
   // value 값 일치 함수
   const onChangeHandler = (e) => {
-    setValue(e.target.value)
-  }
+    setValue(e.target.value);
+  };
 
   return (
     <div className={style.Article_contaner}>
@@ -55,12 +67,20 @@ export default function Article({ list, total }) {
         </div>
       </div>
       <ul className={style.Article_ul}>
-        {data.map((data, idx) => {
-          return (
-            <li className={style.Article_li} key={idx}>
-              <ArticleBody data={data} />
-            </li>
-          );
+        {list.map((data, idx) => {
+          if (idx === list.length - 1) {
+            return (
+              <li className={style.Article_li} ref={lastItemRef} key={data.id}>
+                <ArticleBody data={data} />
+              </li>
+            );
+          } else {
+            return (
+              <li className={style.Article_li} key={data.id}>
+                <ArticleBody data={data} />
+              </li>
+            );
+          }
         })}
       </ul>
     </div>
