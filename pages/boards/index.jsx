@@ -20,7 +20,7 @@ export async function getServerSideProps() {
         queryFn: () => getArticleList({ limit: 3, sortBy: "best" }),
       }),
       queryClient.prefetchQuery({
-        queryKey: ["articles"],
+        queryKey: ["articles", "recent"],
         queryFn: () => getArticleList({ sortBy: "recent" }),
       }),
     ]);
@@ -41,6 +41,7 @@ export async function getServerSideProps() {
 
 export default function Boards() {
   const [keyword, setKeyword] = useState("");
+  const [sortBy, setSortBy] = useState("recent");
 
   const { data: bestArticles } = useQuery({
     queryKey: ["bestArticles"],
@@ -52,12 +53,10 @@ export default function Boards() {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: keyword ? ["articles", keyword] : ["articles"],
-    queryFn: () => getArticleList({ keyword }),
-    enabled: !!keyword,
+    queryKey: ["articles", sortBy, keyword || "none"],
+    queryFn: () => getArticleList({ keyword, sortBy }),
+    enabled: !!sortBy,
   });
-
-  console.log(allArticles);
 
   if (isLoading) return <p>로딩중</p>;
   if (isError) return <p>에러</p>;
@@ -80,7 +79,7 @@ export default function Boards() {
         </div>
         <div className={styles["article-section-secondbar"]}>
           <SearchBar setKeyword={setKeyword} />
-          <DropDown />
+          <DropDown setSortBy={setSortBy} sortBy={sortBy} />
         </div>
         <ArticleList data={allArticles} />
       </section>

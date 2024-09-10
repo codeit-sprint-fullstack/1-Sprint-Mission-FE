@@ -2,9 +2,9 @@ import styles from "./ArticleList.module.scss";
 import Image from "next/image";
 import defaultProfile from "../../public/assets/icons/ic_profile.svg";
 import defaultArticleImg from "../../public/assets/img_default.svg";
-
-import { formatDate } from "@/lib/utils";
+import inactiveHeart from "../../public/assets/icons/ic_heart_inactive.svg";
 import ImageContainer from "../ImgContainer/ImgContainer";
+import { formatDate, likeFormat } from "@/lib/utils";
 
 export default function ArticleList({ data }) {
   const { list, nextCursor } = data;
@@ -37,10 +37,20 @@ export default function ArticleList({ data }) {
                   radius="50%"
                 />
 
-                <span>총명한 판다</span>
-                <span>{formatDate(article.updatedAt)}</span>
+                <span className={styles["user-name"]}>총명한 판다</span>
+                <span className={styles["date"]}>
+                  {formatDate(article.updatedAt)}
+                </span>
               </div>
-              <div className={styles["bottom-right"]}></div>
+              <div className={styles["bottom-right"]}>
+                <Image
+                  src={inactiveHeart}
+                  alt="like icon"
+                  width={24}
+                  height={24}
+                />
+                <span>{likeFormat(article.favoriteCount)}</span>
+              </div>
             </div>
           </li>
         );

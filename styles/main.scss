@@ -7,6 +7,13 @@ textarea:focus {
   outline: 1px solid g.$primary-color;
 }
 
+input,
+textarea {
+  background-color: g.$grey-100;
+  width: 100%;
+  border-radius: 12px;
+}
+
 ::placeholder {
   font-size: 1rem;
   font-weight: 400;
