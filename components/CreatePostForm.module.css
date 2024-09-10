@@ -3,7 +3,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 32px;
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.createPostButton {
+  line-height: 26px;
+  color: var(--grey-100);
 }
 
 .title,

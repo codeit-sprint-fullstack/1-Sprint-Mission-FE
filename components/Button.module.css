@@ -13,4 +13,5 @@
 
 .button:disabled {
   background-color: var(--grey-400);
+  cursor: not-allowed;
 }

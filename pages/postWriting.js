@@ -1,0 +1,51 @@
+import CreatePostForm from '@/components/CreatePostForm';
+import axios from '@/lib/axios';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+
+export default function postWriting() {
+  // CreatePostForm에 title과 content 상태, 그리고 상태 변경 함수 전달
+  // CreatePostButton에 isFormValid 전달해서 버튼 설정(사용자 입력 부분이 비워져 있으면 disabled)
+  // 등록버튼(CreatePostButton) 눌렀을 때 API 요청 후 해당 게시물 상세 페이지로 이동
+
+  const [title, setTitle] = useState(''); // 제목 상태
+  const [content, setContent] = useState(''); // 내용 상태
+  const router = useRouter(); // useRouter를 사용해 페이지 이동 처리
+
+  // 입력값이 모두 채워졌는지 확인
+  const isFormValid = title.trim() !== '' && content.trim() !== '';
+
+  // 게시글 등록 핸들러
+  const handleSubmit = async () => {
+    if (!isFormValid) return;
+
+    // 자유게시판과 중고마켓 구분을 위한 category 설정
+    let category;
+    if (router.pathname === '/postWriting') {
+      category = 'FREE_BOARD'; // '/postWriting'이면 category를 'FREE_MARKET'으로 고정
+    } else {
+      category = 'MARKET'; // 다른 경우에 기본 category 설정 (필요에 따라 수정)
+    }
+
+    const res = await axios.post('/posts', {
+      title: title,
+      content: content,
+      category: category,
+    });
+
+    // 요청 성공 후 게시물 상세 페이지로 이동
+    const postId = res.data.id;
+    router.push(`/posts/${postId}`);
+  };
+
+  return (
+    <CreatePostForm
+      title={title}
+      content={content}
+      setTitle={setTitle}
+      setContent={setContent}
+      isFormValid={isFormValid}
+      onSubmit={handleSubmit}
+    />
+  );
+}

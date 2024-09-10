@@ -7,7 +7,7 @@ export default function WriteButton() {
     <>
       <div className={styles.container}>
         <h4 className={styles.header}>게시글</h4>
-        <Link href="/writing">
+        <Link href="/postWriting">
           <Button name="글쓰기" />
         </Link>
       </div>
