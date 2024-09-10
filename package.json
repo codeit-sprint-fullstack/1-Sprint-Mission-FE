@@ -1,6 +1,7 @@
 {
   "name": "panda-market",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,7 +10,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "next": "14.2.8",
+    "pg": "^8.12.0",
     "react": "^18",
     "react-dom": "^18",
     "reset-css": "^5.0.2"
