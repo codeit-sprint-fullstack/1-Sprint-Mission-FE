@@ -6,8 +6,6 @@ export async function fetchArticle(id) {
   return res.json();
 }
 
-// utils/api.js
-
 export async function fetchArticles({ sort, keyword, page, size }) {
   try {
     const res = await fetch(
@@ -18,7 +16,6 @@ export async function fetchArticles({ sort, keyword, page, size }) {
     }
     const data = await res.json();
 
-    // articles 필드가 정의되지 않았을 때 대비
     return data;
   } catch (error) {
     console.error("Error fetching articles:", error);
@@ -87,12 +84,11 @@ export async function createArticle(formData) {
     });
 
     if (!res.ok) {
-      const errorText = await res.text(); // 에러 텍스트 받기
+      const errorText = await res.text();
       console.error("Server error response:", errorText);
       throw new Error("Failed to create article");
     }
 
-    // 응답을 JSON으로 파싱하여 반환
     return await res.json();
   } catch (error) {
     console.error("Error during article creation:", error.message);

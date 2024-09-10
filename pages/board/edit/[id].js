@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState } from "react"; // 부모 컴포넌트에서 상태 관리
+import { useState } from "react";
 import EditBoard from "@/components/EditBoardComponents/EditBoard";
 import { fetchArticle, updateArticle } from "@/utils/articleApi";
 import styles from "./[id].module.css";

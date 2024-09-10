@@ -4,7 +4,7 @@ import BoardChat from "@/components/BoardDetailComponents/BoardChat";
 import styles from "./[id].module.css";
 import Link from "next/link";
 import { fetchArticle } from "@/utils/articleApi";
-import { fetchComments } from "@/utils/chatApi"; // createComments 불필요 시 제거
+import { fetchComments } from "@/utils/chatApi";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
@@ -12,7 +12,7 @@ export async function getServerSideProps(context) {
 
   try {
     const article = await fetchArticle(id);
-    const comments = await fetchComments(id, page, size); // 수정된 부분
+    const comments = await fetchComments(id, page, size);
 
     return {
       props: {

@@ -12,7 +12,7 @@ export async function fetchComments(id, page, size) {
     return data;
   } catch (error) {
     console.error("API error:", error);
-    return { data: [], total: 0 }; // 빈 값 반환
+    return { data: [], total: 0 };
   }
 }
 

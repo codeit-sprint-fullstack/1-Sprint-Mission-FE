@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./BoardChat.module.css";
 import ChatItem from "./ChatItem";
-import { useComments } from "@/hooks/useComments"; // 수정된 useComments 훅 가져오기
+import { useComments } from "@/hooks/useComments";
 
 export default function BoardChat({
   initialComments = [],
@@ -14,12 +14,12 @@ export default function BoardChat({
   const [editCommentId, setEditCommentId] = useState(null);
 
   const {
-    comments, // useComments 훅에서 반환된 comments 상태 사용
+    comments,
     loadMoreComments,
     hasMore,
     loading,
-    addComment, // 댓글 추가 함수
-    editComment, // 댓글 수정 함수
+    addComment,
+    editComment,
   } = useComments(articleId, initialComments, totalComments, pageSize);
 
   const validateAndSetFormValid = (value) => {
@@ -47,7 +47,6 @@ export default function BoardChat({
         await addComment(comment);
       }
 
-      // 댓글 등록/수정 후 입력 필드 초기화
       setComment("");
       setEditCommentId(null);
       setFormValid(false);
@@ -64,7 +63,7 @@ export default function BoardChat({
         hasMore &&
         !loading
       ) {
-        loadMoreComments(); // 댓글 추가 로드
+        loadMoreComments();
       }
     };
 
