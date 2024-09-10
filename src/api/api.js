@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://one-sprint-mission-be-rzbk.onrender.com';
+const BASE_URL = 'https://baomarket.onrender.com';
 
 console.log('BASE_URL임:', BASE_URL);
 

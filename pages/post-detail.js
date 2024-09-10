@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/post-detail.module.css'; // CSS 모듈 import
 
 const PostDetail = () => {
   // 기본값으로 사용할 게시글 정보
@@ -12,16 +13,21 @@ const PostDetail = () => {
   };
 
   return (
-    <div>
-      <h1>{defaultPost.title}</h1>
-      <img src={defaultPost.image} alt="Default Post Image" />
-      <p>작성자: {defaultPost.author}</p>
-      <p>작성일: {defaultPost.date}</p>
-      <p>좋아요: {defaultPost.likes}</p>
-      <p>{defaultPost.content}</p>
+    <div className={styles.postDetailContainer}>
+      <h1 className={styles.postTitle}>{defaultPost.title}</h1>
+      <img
+        src={defaultPost.image}
+        alt="Default Post Image"
+        className={styles.postImage}
+      />
+      <div className={styles.postInfo}>
+        <p className={styles.postAuthor}>작성자: {defaultPost.author}</p>
+        <p className={styles.postDate}>작성일: {defaultPost.date}</p>
+        <p className={styles.postLikes}>좋아요: {defaultPost.likes}</p>
+      </div>
+      <p className={styles.postContent}>{defaultPost.content}</p>
     </div>
   );
 };
 
 export default PostDetail;
-

@@ -1,0 +1,59 @@
+.postDetailContainer {
+  padding: 80px 16px;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.postTitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.postImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.postInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.postAuthor,
+.postDate,
+.postLikes {
+  font-size: 16px;
+  color: #4b5563;
+}
+
+.postContent {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .postDetailContainer {
+    padding: 0 16px;
+    width: 100%;
+    max-width: 696px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 743px) {
+  .postDetailContainer {
+    padding: 0 16px;
+    width: 100%;
+    margin: auto;
+  }
+
+  .postInfo {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

@@ -20,8 +20,7 @@ const PostList = ({ initialPosts }) => {
     image: '/image/default.svg',
   };
 
-  // 데이터가 있을 때는 API에서 받은 데이터를, 없을 때는 기본값 사용
-  const combinedPosts = posts.length > 0 ? posts : [defaultPost]; // 데이터가 없을 때만 기본값 포함
+  const combinedPosts = posts.length > 0 ? posts : [defaultPost];
 
   // 검색어에 따른 게시글 필터링
   const filteredPosts = keyword
@@ -42,7 +41,6 @@ const PostList = ({ initialPosts }) => {
 
   return (
     <div className={styles.postList}>
-      {/* 게시글과 글쓰기 버튼을 같은 줄에 배치하는 컨테이너 */}
       <div className={styles.titleWriteContainer}>
         <h2 className={styles.postTitle}>게시글</h2>
         <WriteButton />
@@ -57,7 +55,6 @@ const PostList = ({ initialPosts }) => {
         <div className={styles.noPosts}>검색 결과가 없습니다.</div>
       )}
 
-      {/* 게시글 목록 */}
       <div className={styles.posts}>
         {sortedPosts.length > 0 &&
           sortedPosts.map((post, index) => (
@@ -68,6 +65,7 @@ const PostList = ({ initialPosts }) => {
               date={post.date}
               likes={post.likes}
               image={post.image}
+              isDefault={posts.length === 0}  // 기본값 여부를 전달
             />
           ))}
       </div>
@@ -78,17 +76,16 @@ const PostList = ({ initialPosts }) => {
 // 서버 사이드 렌더링을 통해 게시글 목록 가져오기
 export async function getServerSideProps() {
   try {
-    const data = await fetchArticles({ orderBy: 'recent' }); // API 호출
+    const data = await fetchArticles({ orderBy: 'recent' });
     return {
-      props: { initialPosts: data.list }, // initialPosts를 props로 전달
+      props: { initialPosts: data.list },
     };
   } catch (error) {
     console.error('Error fetching posts:', error);
     return {
-      props: { initialPosts: [] }, // 에러 발생 시 빈 배열 전달
+      props: { initialPosts: [] },
     };
   }
 }
 
 export default PostList;
-
