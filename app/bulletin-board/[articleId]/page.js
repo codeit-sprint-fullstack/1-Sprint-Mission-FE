@@ -1,13 +1,13 @@
-import PostDetailClient from "./PostDetailClient";
+import ArticleDetailClient from "./ArticleDetailClient";
 
-export function Post({ params }) {
+export function Article({ params }) {
   const { articleId } = params;
 
   return (
     <div>
-      <PostDetailClient articleId={articleId} />
+      <ArticleDetailClient articleId={articleId} />
     </div>
   );
 }
 
-export default Post;
+export default Article;

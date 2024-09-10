@@ -1,0 +1,109 @@
+.article {
+  width: 120rem;
+  margin-bottom: 3.2rem;
+}
+
+.top-bar {
+  width: 120rem;
+}
+
+.top-bar-text {
+  font-size: 2rem;
+  line-height: 1.6em;
+  color: var(--gray800-color);
+}
+
+.top-bar-btn-ellipsis {
+  background-image: url(../../../public/icons/ic_kebab.svg);
+}
+
+.middle-bar {
+  width: 120rem;
+  height: 7.2rem;
+  gap: 1.6rem;
+  border-bottom: 0.1rem solid var(--gray300-color);
+}
+
+.middle-bar-owner-data-set {
+  gap: 0.8rem;
+}
+
+.middle-bar-owner {
+  height: 2.4rem;
+  font-size: 1.4rem;
+  line-height: 1.71428em;
+  color: var(--gray600-color);
+}
+
+.divider {
+  width: 3.2rem;
+  height: 4rem;
+}
+
+.content {
+  margin-top: 2.4rem;
+  width: 120rem;
+  font-size: 1.8rem;
+  line-height: 1.44444em;
+  color: var(--gray800-color);
+}
+
+/* ===== Tablet - width : 744px ~ 1199px ===== */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .article {
+    width: 69.6rem;
+    margin-bottom: 4rem;
+  }
+
+  .top-bar {
+    width: 69.6rem;
+  }
+
+  .middle-bar {
+    width: 69.6rem;
+  }
+
+  .middle-bar-owner-data-set {
+    gap: 0.8rem;
+  }
+
+  .content {
+    margin-top: 1.6rem;
+    width: 69.6rem;
+    font-size: 1.6rem;
+    line-height: 1.625em;
+  }
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .article {
+    width: 34.3rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .top-bar {
+    width: 34.3rem;
+  }
+
+  .middle-bar {
+    width: 34.3rem;
+    gap: 1.6rem;
+  }
+
+  .middle-bar-owner-data-set {
+    gap: 0.2rem;
+  }
+
+  .divider {
+    width: 0.1rem;
+    height: 4rem;
+  }
+
+  .content {
+    margin-top: 1.6rem;
+    width: 69.6rem;
+    font-size: 1.6rem;
+    line-height: 1.625em;
+  }
+}

@@ -178,7 +178,7 @@ body {
   flex-direction: column;
 }
 
-.justify-space-between {
+.justify-between {
   justify-content: space-between;
 }
 
@@ -196,4 +196,11 @@ body {
 
 .margin-top43 {
   margin-top: 4rem;
+}
+
+.text-warn {
+  margin-top: 0.8rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--red-color);
 }

@@ -36,12 +36,15 @@
   content: url(../../public/buttons/btn_home.svg);
 }
 
+.profile-frame {
+  margin-right: 20rem;
+}
+
 /* ===== login button ===== */
 .btn-login-frame {
   width: 8.8rem;
   height: 4.2rem;
   display: flex;
-  margin-right: 20rem;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
@@ -74,9 +77,12 @@
     margin-right: 2rem;
   }
 
+  .profile-frame {
+    margin-right: 2.4rem;
+  }
+
   /* 로그인 버튼 오른쪽 여백 24px */
   .btn-login-frame {
-    margin-right: 2.4rem;
   }
 
   .btn-profile {
@@ -115,9 +121,12 @@
     margin-right: 0.8rem;
   }
 
+  .profile-frame {
+    margin-right: 1.6rem;
+  }
+
   /* 로그인 버튼 오른쪽 여백 16px */
   .btn-login-frame {
-    margin-right: 1.6rem;
   }
 
   .btn-profile {

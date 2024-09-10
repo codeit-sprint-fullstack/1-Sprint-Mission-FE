@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 
 import { DeviceContext } from "../components/DeviceProvider";
 import { getArticles } from "@/lib/axios";
-import PostPreview from "./PostPrevies";
+import ArticlePreview from "./ArticlePreview";
 import Search from "../components/Search";
 import {
   Dropdown,
@@ -21,6 +21,7 @@ import {
 
 import style from "./board.module.css";
 
+// 임시로 기존 figma 요구사항에 맞춘 값 > page_size 동일하게 변경 예정
 const BOARD_INFINITY_SCROLL_Y = [313, 29, 101];
 const PAGE_SIZE_BY_DEVICE = [4, 6, 3];
 
@@ -35,7 +36,7 @@ export function Board() {
   const boardClass = `${style.board}`;
   const boardTopBarClass = `flex flex-row items-center justify-between ${style["top-bar"]}`;
   const boardTopBarLabelClass = `font-bold ${style["top-bar-name"]}`;
-  const boardTopBarBtnWritePostClass = `${style["top-bar-btn-write-post"]}`;
+  const boardTopBarBtnWriteArticleClass = `${style["top-bar-btn-write-article"]}`;
 
   const boardMiddleBarClass = `flex flex-row justify-between ${style["middle-bar"]}`;
   const boardListClass = `flex flex-col ${style.list}`;
@@ -45,15 +46,15 @@ export function Board() {
     setPage(1);
     getArticles(1, PAGE_SIZE_BY_DEVICE[device], ORDER_BY[ORDER_BY_RECENT]).then(
       (data) => {
-        const newList = data.articles.map((post, index) => {
+        const newList = data.articles.map((article, index) => {
           return (
-            <PostPreview
+            <ArticlePreview
               key={index}
-              title={post.title}
-              owner={post.user.name}
+              title={article.title}
+              owner={article.user.name}
               myFavorite={false}
-              favoriteCount={post.favorite}
-              createdDate={post.createdDate}
+              favoriteCount={article.favorite}
+              createdDate={article.createdDate}
             />
           );
         });
@@ -70,15 +71,15 @@ export function Board() {
       PAGE_SIZE_BY_DEVICE[device],
       ORDER_BY[ORDER_BY_FAVORITE]
     ).then((data) => {
-      const newList = data.articles.map((post, index) => {
+      const newList = data.articles.map((article, index) => {
         return (
-          <PostPreview
+          <ArticlePreview
             key={index}
-            title={post.title}
-            owner={post.user.name}
+            title={article.title}
+            owner={article.user.name}
             myFavorite={false}
-            favoriteCount={post.favorite}
-            createdDate={post.createdDate}
+            favoriteCount={article.favorite}
+            createdDate={article.createdDate}
           />
         );
       });
@@ -88,15 +89,15 @@ export function Board() {
 
   useEffect(() => {
     getArticles(1, PAGE_SIZE_BY_DEVICE[device], recentOrder).then((data) => {
-      const newList = data.articles.map((post, index) => {
+      const newList = data.articles.map((article, index) => {
         return (
-          <PostPreview
+          <ArticlePreview
             key={index}
-            title={post.title}
-            owner={post.user.name}
+            title={article.title}
+            owner={article.user.name}
             myFavorite={false}
-            favoriteCount={post.favorite}
-            createdDate={post.createdDate}
+            favoriteCount={article.favorite}
+            createdDate={article.createdDate}
           />
         );
       });
@@ -125,7 +126,7 @@ export function Board() {
       return;
     }
 
-    setList([...list, additionalList]);
+    setList([...list, addingList]);
     setPage(page + 1);
     setAddingList(false);
   }, [addingList]);
@@ -134,8 +135,8 @@ export function Board() {
     <div className={boardClass}>
       <div className={boardTopBarClass}>
         <div className={boardTopBarLabelClass}>게시글</div>
-        <Link href="/post-registration" target="_self">
-          <button className={boardTopBarBtnWritePostClass} />
+        <Link href="/article-registration" target="_self">
+          <button className={boardTopBarBtnWriteArticleClass} />
         </Link>
       </div>
       <div className={boardMiddleBarClass}>

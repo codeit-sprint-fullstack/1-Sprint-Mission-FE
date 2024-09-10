@@ -2,10 +2,13 @@ import Image from "next/image";
 
 import style from "@/app/components/profile.module.css";
 
-import { HEADER_PROFILE, POST_PREVIEW_PROFILE } from "../constants/Profile";
+import { PROFILE_H40, PROFILE_H32, PROFILE_H24 } from "../constants/Profile";
 
 export function Profile({ type, profileImgUrl, onClick }) {
   const clickProfile = () => onClick();
+  const h40Class = `${style.h40} ${style.profile}`;
+  const h32Class = `${style.h32} ${style.profile}`;
+  const h24Class = `${style.h24} ${style.profile}`;
 
   let profile = undefined;
 
@@ -15,17 +18,24 @@ export function Profile({ type, profileImgUrl, onClick }) {
   }
 
   switch (type) {
-    case HEADER_PROFILE: {
+    case PROFILE_H40: {
       profile = (
-        <div className={style["header-profile"]} onClick={clickProfile}>
+        <div className={h40Class} onClick={clickProfile}>
           <Image src={profileImgUrl} fill={true} alt="프로필 사진" />
         </div>
       );
       break;
     }
-    case POST_PREVIEW_PROFILE: {
+    case PROFILE_H32: {
       profile = (
-        <div className={style["post-preview-profile"]} onClick={clickProfile}>
+        <div className={h32Class} onClick={clickProfile}>
+          <Image src={profileImgUrl} fill={true} alt="프로필 사진" />
+        </div>
+      );
+    }
+    case PROFILE_H24: {
+      profile = (
+        <div className={h24Class} onClick={clickProfile}>
           <Image src={profileImgUrl} fill={true} alt="프로필 사진" />
         </div>
       );

@@ -1,2 +1,3 @@
-export const HEADER_PROFILE = 1;
-export const POST_PREVIEW_PROFILE = 2;
+export const PROFILE_H40 = 1;
+export const PROFILE_H32 = 2;
+export const PROFILE_H24 = 3;

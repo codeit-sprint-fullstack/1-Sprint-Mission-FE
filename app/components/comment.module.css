@@ -1,0 +1,38 @@
+.comment {
+  width: 120rem;
+  height: 10rem;
+  border-bottom: 0.1rem solid var(--gray200-color);
+}
+
+.content {
+  font-size: 1.4rem;
+  line-height: 1.71428em;
+  color: var(--gray800-color);
+}
+
+.owner {
+  font-size: 1.2rem;
+  line-height: 1.5em;
+  color: var(--gray600-color);
+}
+
+.btn-ellipsis {
+  width: 2.4rem;
+  height: 2.4rem;
+  background-image: url(../../public/icons/ic_kebab.svg);
+}
+
+/* ===== Tablet - width : 744px ~ 1199px ===== */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .comment {
+    width: 69.6rem;
+  }
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .comment {
+    width: 34.3rem;
+    height: 9.6rem;
+  }
+}

@@ -2,11 +2,11 @@
 
 import { useContext, useState, useEffect } from "react";
 
-import { BestPost } from "./BestPost";
+import { BestArticle } from "./BestArticle";
 import { DeviceContext } from "../components/DeviceProvider";
 
 import { getArticles } from "@/lib/axios";
-import { BEST_POST_PAGE_SIZE } from "../constants/Favorite";
+import { BEST_ARTICLE_PAGE_SIZE } from "../constants/Favorite";
 
 import style from "./bestboard.module.css";
 
@@ -19,17 +19,17 @@ export function BestBoard() {
   const boardListClass = `flex flex-row ${style.list}`;
 
   useEffect(() => {
-    getArticles(1, BEST_POST_PAGE_SIZE[device], "favorite").then((data) => {
-      const newList = data.articles.map((post, index) => {
+    getArticles(1, BEST_ARTICLE_PAGE_SIZE[device], "favorite").then((data) => {
+      const newList = data.articles.map((article, index) => {
         return (
-          <BestPost
+          <BestArticle
             key={index}
-            title={post.title}
+            title={article.title}
             imgUrl={"../../public/images/no_image.svg"}
-            owner={post.user.name}
+            owner={article.user.name}
             myFavorite={false}
-            favoriteCount={post.favorite}
-            createdDate={post.createdDate}
+            favoriteCount={article.favorite}
+            createdDate={article.createdDate}
           />
         );
       });

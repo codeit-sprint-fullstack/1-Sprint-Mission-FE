@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { Nav, NavItem } from "@/app/components/Nav";
 import Profile from "@/app/components/Profile";
-import { HEADER_PROFILE } from "../constants/Profile";
+import { PROFILE_H40 } from "../constants/Profile";
 
 import style from "@/app/components/header.module.css";
 
@@ -29,15 +29,21 @@ export function Header() {
         <NavItem linkto="/bulletin-board">자유게시판</NavItem>
         <NavItem linkto="/flea-market">중고마켓</NavItem>
       </Nav>
-      {tempIsSignin ? (
-        <Profile type={HEADER_PROFILE} onClick={handleProfileClick} />
-      ) : (
-        <Link className={style["btn-login-frame"]} href="/login" target="_self">
-          <div>
-            <img className={style["img-login"]} alt="로그인 버튼" />
-          </div>
-        </Link>
-      )}
+      <div className={style["profile-frame"]}>
+        {tempIsSignin ? (
+          <Profile type={PROFILE_H40} onClick={handleProfileClick} />
+        ) : (
+          <Link
+            className={style["btn-login-frame"]}
+            href="/login"
+            target="_self"
+          >
+            <div>
+              <img className={style["img-login"]} alt="로그인 버튼" />
+            </div>
+          </Link>
+        )}
+      </div>
     </div>
   );
 }

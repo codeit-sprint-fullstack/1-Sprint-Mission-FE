@@ -3,3 +3,9 @@
   line-height: 1.71428em;
   color: var(--gray400-color);
 }
+
+.last-time {
+  font-size: 1.2rem;
+  line-height: 1.5em;
+  color: var(--gray400-color);
+}

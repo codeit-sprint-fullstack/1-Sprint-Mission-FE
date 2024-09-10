@@ -24,13 +24,13 @@
 .btn-regist-invalid {
   width: 7.4rem;
   height: 4.2rem;
-  background-image: url(../../public/buttons/btn_small_regist_invalid.svg);
+  background-image: url(../../public/buttons/btn_registration_w74_disabled.svg);
 }
 
 .btn-regist {
   width: 7.4rem;
   height: 4.2rem;
-  background-image: url(../../public/buttons/btn_small_regist.svg);
+  background-image: url(../../public/buttons/btn_registration_w74.svg);
 }
 
 .label {

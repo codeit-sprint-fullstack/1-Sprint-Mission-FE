@@ -1,4 +1,8 @@
-import { BEST_POST, POST_PREVIEW, POST_DETAIL } from "../constants/Favorite";
+import {
+  BEST_ARTICLE,
+  ARTICLE_PREVIEW,
+  ARTICLE_DETAIL,
+} from "../constants/Favorite";
 
 import style from "./favorite.module.css";
 
@@ -20,7 +24,7 @@ export function Favorite({ type, myFavorite, favoriteCount }) {
   let favoriteCountText = favoriteCount < 9999 ? favoriteCount : "9999+";
 
   switch (type) {
-    case BEST_POST: {
+    case BEST_ARTICLE: {
       favorite = (
         <div className={bestPostFavoriteClass}>
           <img className={bestPostFavoriteImgClass} />
@@ -29,7 +33,7 @@ export function Favorite({ type, myFavorite, favoriteCount }) {
       );
       break;
     }
-    case POST_PREVIEW: {
+    case ARTICLE_PREVIEW: {
       favorite = (
         <div className={postPreviewFavoriteClass}>
           <img className={postPreviewFavoriteImgClass} />
@@ -40,7 +44,7 @@ export function Favorite({ type, myFavorite, favoriteCount }) {
       );
       break;
     }
-    case POST_DETAIL: {
+    case ARTICLE_DETAIL: {
       favorite = (
         <div className={postDetailFavoriteClass}>
           <img className={postDetailFavoriteImgClass} />

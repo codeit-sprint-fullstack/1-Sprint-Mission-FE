@@ -4,24 +4,24 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import { createArticle } from "@/lib/axios";
-import Input from "../components/input";
-import TextArea from "../components/TextArea";
+import Input from "@/app/components/input";
+import TextArea from "@/app/components/TextArea";
 
-import style from "./post-registration.module.css";
+import {
+  MIN_TITLE_LENGTH,
+  WARN_MIN_TITLE_LENGTH,
+  MAX_TITLE_LENGHT,
+  WARN_MAX_TITLE_LENGHT,
+  MIN_CONTENT_LENGTH,
+  WARN_MIN_CONTENT_LENGTH,
+  MAX_CONTENT_LENGHT,
+  WARN_MAX_CONTENT_LENGHT,
+  VALID_VALUE,
+} from "@/app/constants/article";
 
-const MIN_TITLE_LENGTH = 2;
-const WARN_MIN_TITLE_LENGTH = 402;
-const MAX_TITLE_LENGHT = 30;
-const WARN_MAX_TITLE_LENGHT = 430;
+import style from "./article-registration.module.css";
 
-const MIN_CONTENT_LENGTH = 10;
-const WARN_MIN_CONTENT_LENGTH = 410;
-const MAX_CONTENT_LENGHT = 200;
-const WARN_MAX_CONTENT_LENGHT = 600;
-
-const VALID_VALUE = 0;
-
-export function PostRegistration() {
+export function ArticleRegistration() {
   const [titleValid, setTitleValid] = useState(undefined);
   const [contentValid, setContentValid] = useState(undefined);
   const [registBtnClass, setRegistBtnClass] = useState(
@@ -35,28 +35,27 @@ export function PostRegistration() {
 
   const router = useRouter();
 
-  const handleRegistPost = () => {
+  const handleRegistArticle = () => {
     if (titleValid !== 0 || contentValid !== 0) {
       return;
     }
 
     // 등록 api 호출 + 페이지 이동
     createArticle(title, content).then((data) => {
-      console.log(data);
       const path = `/bulletin-board/${data.id}`;
       router.push(path);
     });
   };
 
-  const validRegistValue = () => {
-    if (titleValid === 0 && contentValid === 0) {
+  const validateRegistValue = () => {
+    if (titleValid === VALID_VALUE && contentValid === VALID_VALUE) {
       setRegistBtnClass(`${style["btn-regist"]}`);
     } else {
       setRegistBtnClass(`${style["btn-regist-invalid"]}`);
     }
   };
 
-  const titleValidate = (value) => {
+  const validateTitle = (value) => {
     if (!value) {
       return undefined;
     }
@@ -82,15 +81,19 @@ export function PostRegistration() {
 
   const getTitleWarn = () => {
     if (titleValid === WARN_MIN_TITLE_LENGTH) {
-      return <p>{MIN_TITLE_LENGTH}자 이상 입력해주세요</p>;
+      return (
+        <p className="text-warn">{MIN_TITLE_LENGTH}자 이상 입력해주세요</p>
+      );
     } else if (titleValid === WARN_MAX_TITLE_LENGHT) {
-      return <p>{MAX_TITLE_LENGHT}자 이하로 입력해주세요</p>;
+      return (
+        <p className="text-warn">{MAX_TITLE_LENGHT}자 이하로 입력해주세요</p>
+      );
     } else {
       return undefined;
     }
   };
 
-  const contentValidate = (value) => {
+  const validateContent = (value) => {
     if (!value) {
       return undefined;
     }
@@ -116,16 +119,20 @@ export function PostRegistration() {
 
   const getContentWarn = () => {
     if (contentValid === WARN_MIN_CONTENT_LENGTH) {
-      return <p>{MIN_CONTENT_LENGTH}자 이상 입력해주세요</p>;
+      return (
+        <p className="text-warn">{MIN_CONTENT_LENGTH}자 이상 입력해주세요</p>
+      );
     } else if (contentValid === WARN_MAX_CONTENT_LENGHT) {
-      return <p>{MAX_CONTENT_LENGHT}자 이하로 입력해주세요</p>;
+      return (
+        <p className="text-warn">{MAX_CONTENT_LENGHT}자 이하로 입력해주세요</p>
+      );
     } else {
       return undefined;
     }
   };
 
   useEffect(() => {
-    validRegistValue();
+    validateRegistValue();
   }, [titleValid, contentValid]);
 
   return (
@@ -133,13 +140,13 @@ export function PostRegistration() {
       <div className={style.content}>
         <div className={topBarClass}>
           <p className={topBarTextClass}>게시판 쓰기</p>
-          <button className={registBtnClass} onClick={handleRegistPost} />
+          <button className={registBtnClass} onClick={handleRegistArticle} />
         </div>
         <div className={style["title-input-set"]}>
           <p className={labelClass}>*제목</p>
           <div className={style["input-frame"]}>
             <Input
-              validateFunc={titleValidate}
+              validateFunc={validateTitle}
               onChange={handleTitleChange}
               getValid={getTitleValid}
               placeholder={"제목을 입력해주세요"}
@@ -151,7 +158,7 @@ export function PostRegistration() {
           <p className={labelClass}>*내용</p>
           <div className={style["text-area-frame"]}>
             <TextArea
-              validateFunc={contentValidate}
+              validateFunc={validateContent}
               onChange={handleContentChange}
               getValid={getContentValid}
               placeholder={"내용을 입력해주세요"}
@@ -164,4 +171,4 @@ export function PostRegistration() {
   );
 }
 
-export default PostRegistration;
+export default ArticleRegistration;

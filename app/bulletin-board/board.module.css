@@ -15,10 +15,10 @@
   color: var(--gray800-color);
 }
 
-.top-bar-btn-write-post {
+.top-bar-btn-write-article {
   width: 8.8rem;
   height: 4.2rem;
-  background-image: url(../../public/buttons/btn_small_write_post.svg);
+  background-image: url(../../public/buttons/btn_small_write_article.svg);
 }
 
 .middle-bar {

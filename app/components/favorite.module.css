@@ -53,6 +53,10 @@
   margin-right: 1.2rem;
 }
 
+/* ===== Tablet - width : 744px ~ 1199px ===== */
+@media (min-width: 744px) and (max-width: 1199px) {
+}
+
 /* ===== Mobile-width : 375px ~ 743px ====== */
 @media (min-width: 375px) and (max-width: 743px) {
   .post-detail-favorite {

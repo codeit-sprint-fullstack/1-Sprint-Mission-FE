@@ -1,4 +1,4 @@
-import PostRegistration from "./postRegistration";
+import PostRegistration from "./articleRegistration";
 
 export function PostRegistrationPage() {
   return (

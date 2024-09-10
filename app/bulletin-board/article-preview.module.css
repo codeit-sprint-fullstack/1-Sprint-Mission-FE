@@ -1,4 +1,4 @@
-.post-preview {
+.article-preview {
   width: 120rem;
   height: 13.8rem;
   background-color: var(--alabaster-color);
@@ -39,7 +39,7 @@
 
 /* ===== Tablet - width : 744px ~ 1199px ===== */
 @media (min-width: 744px) and (max-width: 1199px) {
-  .post-preview {
+  .article-preview {
     width: 69.6rem;
   }
 
@@ -54,7 +54,7 @@
 
 /* ===== Mobile-width : 375px ~ 743px ====== */
 @media (min-width: 375px) and (max-width: 743px) {
-  .post-preview {
+  .article-preview {
     width: 34.3rem;
   }
 
