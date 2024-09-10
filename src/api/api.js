@@ -10,7 +10,7 @@ const api = axios.create({
 // 베스트 게시글 목록 조회
 export async function fetchBestArticles() {
   try {
-    const response = await api.get('/articles/best');
+    const response = await api.get('/api/articles/best');  // '/api' 추가
     return response.data;
   } catch (error) {
     console.error('베스트 게시글 조회 실패:', error);
@@ -21,7 +21,7 @@ export async function fetchBestArticles() {
 // 게시글 목록 조회
 export async function fetchArticles(params) {
   try {
-    const response = await api.get('/articles', { params });
+    const response = await api.get('/api/articles', { params });  // '/api' 추가
     return response.data;
   } catch (error) {
     console.error('게시글 목록 조회 실패:', error);
@@ -32,7 +32,7 @@ export async function fetchArticles(params) {
 // 게시글 상세 조회
 export async function fetchArticleById(id) {
   try {
-    const response = await api.get(`/articles/${id}`);
+    const response = await api.get(`/api/articles/${id}`);  // '/api' 추가
     return response.data;
   } catch (error) {
     console.error('게시글 상세 조회 실패:', error);
@@ -43,7 +43,7 @@ export async function fetchArticleById(id) {
 // 게시글 등록
 export async function createArticle(articleData) {
   try {
-    const response = await api.post('/articles', articleData);
+    const response = await api.post('/api/articles', articleData);  // '/api' 추가
     return response.data;
   } catch (error) {
     console.error('게시글 등록 실패:', error);
@@ -54,7 +54,7 @@ export async function createArticle(articleData) {
 // 게시글 수정
 export async function updateArticle(id, articleData) {
   try {
-    const response = await api.patch(`/articles/${id}`, articleData);
+    const response = await api.patch(`/api/articles/${id}`, articleData);  // '/api' 추가
     return response.data;
   } catch (error) {
     console.error('게시글 수정 실패:', error);
@@ -65,7 +65,7 @@ export async function updateArticle(id, articleData) {
 // 게시글 삭제
 export async function deleteArticle(id) {
   try {
-    const response = await api.delete(`/articles/${id}`);
+    const response = await api.delete(`/api/articles/${id}`);  // '/api' 추가
     return response.data;
   } catch (error) {
     console.error('게시글 삭제 실패:', error);
@@ -76,7 +76,7 @@ export async function deleteArticle(id) {
 // 댓글 목록 조회
 export async function fetchComments(articleId) {
   try {
-    const response = await api.get(`/articles/${articleId}/comments`);
+    const response = await api.get(`/api/articles/${articleId}/comments`);  // '/api' 추가
     return response.data;
   } catch (error) {
     console.error('댓글 목록 조회 실패:', error);
@@ -87,7 +87,7 @@ export async function fetchComments(articleId) {
 // 댓글 등록
 export async function createComment(articleId, commentData) {
   try {
-    const response = await api.post(`/articles/${articleId}/comments`, commentData);
+    const response = await api.post(`/api/articles/${articleId}/comments`, commentData);  // '/api' 추가
     return response.data;
   } catch (error) {
     console.error('댓글 등록 실패:', error);
@@ -98,7 +98,7 @@ export async function createComment(articleId, commentData) {
 // 댓글 수정
 export async function updateComment(articleId, commentId, commentData) {
   try {
-    const response = await api.patch(`/articles/${articleId}/comments/${commentId}`, commentData);
+    const response = await api.patch(`/api/articles/${articleId}/comments/${commentId}`, commentData);  // '/api' 추가
     return response.data;
   } catch (error) {
     console.error('댓글 수정 실패:', error);
@@ -109,7 +109,7 @@ export async function updateComment(articleId, commentId, commentData) {
 // 댓글 삭제
 export async function deleteComment(articleId, commentId) {
   try {
-    const response = await api.delete(`/articles/${articleId}/comments/${commentId}`);
+    const response = await api.delete(`/api/articles/${articleId}/comments/${commentId}`);  // '/api' 추가
     return response.data;
   } catch (error) {
     console.error('댓글 삭제 실패:', error);
