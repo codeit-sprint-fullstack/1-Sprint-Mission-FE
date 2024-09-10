@@ -1,13 +1,15 @@
 import ArticleDetailClient from "./ArticleDetailClient";
 
-export function Article({ params }) {
+import style from "./article-page.module.css";
+
+export function ArticlePage({ params }) {
   const { articleId } = params;
 
   return (
-    <div>
+    <div className={style.main}>
       <ArticleDetailClient articleId={articleId} />
     </div>
   );
 }
 
-export default Article;
+export default ArticlePage;

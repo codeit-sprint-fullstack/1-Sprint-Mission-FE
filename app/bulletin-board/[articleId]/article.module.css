@@ -14,6 +14,8 @@
 }
 
 .top-bar-btn-ellipsis {
+  width: 2.4rem;
+  height: 2.4rem;
   background-image: url(../../../public/icons/ic_kebab.svg);
 }
 

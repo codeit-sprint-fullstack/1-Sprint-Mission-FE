@@ -45,7 +45,7 @@ export function BestArticle({
               favoriteCount={favoriteCount}
             />
           </div>
-          <Date date={createdDateText} />
+          <Date dbDate={createdDateText} />
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ export function Profile({ type, profileImgUrl, onClick }) {
 
   // 임시로 고정 프로필 이미지 설정
   if (!profileImgUrl) {
-    profileImgUrl = "icons/ic_profile40.svg";
+    profileImgUrl = "/icons/ic_profile40.svg";
   }
 
   switch (type) {
@@ -32,6 +32,7 @@ export function Profile({ type, profileImgUrl, onClick }) {
           <Image src={profileImgUrl} fill={true} alt="프로필 사진" />
         </div>
       );
+      break;
     }
     case PROFILE_H24: {
       profile = (

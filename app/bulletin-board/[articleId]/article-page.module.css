@@ -1,0 +1,6 @@
+.main {
+  width: 120rem;
+  margin: 0 auto;
+  margin-top: var(--header-height);
+  padding: 2.4rem;
+}

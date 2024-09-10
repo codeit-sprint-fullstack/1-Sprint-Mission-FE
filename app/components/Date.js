@@ -3,13 +3,13 @@ import { LAST_TIME, DATE } from "../constants/date";
 
 import style from "./date.module.css";
 
-export function Date({ type, date = "2024.09.06" }) {
+export function Date({ type, dbDate }) {
   const dateClass = `flex flex-row items-center font-normal ${style.date}`;
   const lastTimeClass = `flex flex-row items-center font-normal ${style["last-time"]}`;
 
   let result = undefined;
 
-  if (type === LAST_TIME) {
+  if (type === DATE) {
     const localDate = DateTime.fromISO(dbDate, { zone: "UTC" }).setZone(
       Intl.DateTimeFormat().resolvedOptions().timeZone
     );
@@ -19,7 +19,7 @@ export function Date({ type, date = "2024.09.06" }) {
     const localDate = DateTime.fromISO(dbDate, { zone: "UTC" }).setZone(
       Intl.DateTimeFormat().resolvedOptions().timeZone
     );
-    const dateText = localDate.toRelative(); // "3 hours ago" 등으로 표시
+    const dateText = localDate.toRelative();
     result = <div className={dateClass}>{dateText}</div>;
   }
 

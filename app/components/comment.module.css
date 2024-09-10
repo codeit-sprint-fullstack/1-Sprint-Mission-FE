@@ -10,6 +10,15 @@
   color: var(--gray800-color);
 }
 
+.bottom-bar {
+  margin-top: 2.4rem;
+}
+
+.owner-last-time-set {
+  margin-left: 0.8rem;
+  gap: 0.4rem;
+}
+
 .owner {
   font-size: 1.2rem;
   line-height: 1.5em;

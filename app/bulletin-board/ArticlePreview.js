@@ -36,7 +36,7 @@ export function ArticlePreview({
             <Profile type={PROFILE_H24} />
             <div className={articlePreviewBottomOwnerClass}>{owner}</div>
           </div>
-          <Date date={createdDate} />
+          <Date dbDate={createdDate} />
         </div>
         <Favorite
           type={ARTICLE_PREVIEW}

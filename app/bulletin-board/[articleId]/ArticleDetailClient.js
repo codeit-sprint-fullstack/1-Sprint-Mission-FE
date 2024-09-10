@@ -2,8 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-
 import { getArticle } from "@/lib/axios";
+
+import Article from "./Article";
+import CommentMaker from "@/app/components/CommentMaker";
+import CommentList from "@/app/components/CommentList";
+
+import { ARTICLE } from "@/app/constants/comment";
+
+import style from "./article-detail-client.module.css";
 
 export function ArticleDetailClient({ articleId }) {
   const [title, setTitle] = useState("게시글 제목");
@@ -16,7 +23,7 @@ export function ArticleDetailClient({ articleId }) {
   const router = useRouter();
 
   const handleBack = () => {
-    router.back();
+    // router.back();
   };
 
   useEffect(() => {
@@ -30,10 +37,24 @@ export function ArticleDetailClient({ articleId }) {
   }, [articleId]);
 
   return (
-    <div>
-      <div>{articleId}</div>
-      <button onClick={handleBack}>뒤로 가기</button>
-    </div>
+    <>
+      <Article
+        title={"임시 article 제목"}
+        profileImgUrl={null}
+        ownerName={"작성자이름"}
+        createdDate={"2024-09-10T00:00:00.000Z"}
+        favoriteCount={0}
+      />
+      <div className={style["comment-maker-frame"]}>
+        <CommentMaker articleId={articleId} />
+      </div>
+      <div className={style["comment-list-frame"]}>
+        <CommentList type={ARTICLE} id={articleId} />
+      </div>
+      <button className={style["btn-to-list"]} onClick={handleBack}>
+        목록으로 돌아가기
+      </button>
+    </>
   );
 }
 

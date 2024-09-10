@@ -3,7 +3,9 @@ import Image from "next/image";
 import Profile from "@/app/components/Profile";
 import Date from "@/app/components/Date";
 import Favorite from "@/app/components/Favorite";
-import { POST_DETAIL } from "@/app/constants/Favorite";
+import { ARTICLE_DETAIL } from "@/app/constants/Favorite";
+import { PROFILE_H40 } from "@/app/constants/Profile";
+import { DATE } from "@/app/constants/date";
 
 import style from "./article.module.css";
 
@@ -16,11 +18,11 @@ export function Article({
 }) {
   const topBarClass = `flex flex-row justify-between ${style["top-bar"]}`;
   const topBarTextClass = `font-bold ${style["top-bar-text"]}`;
-  const topBarBtnEllipsis = `${style["top-bar-ellipsis"]}`;
-  const middleBarClass = `flex flex-row item-center ${style["middle-bar"]}`;
-  const middleBarOwnerDateSetClass = `flex flex-row ${style["top-bar-btn-ellipsis"]}`;
+  const topBarBtnEllipsis = `${style["top-bar-btn-ellipsis"]}`;
+  const middleBarClass = `flex flex-row items-center ${style["middle-bar"]}`;
+  const middleBarOwnerDateSetClass = `flex flex-row items-center ${style["middle-bar-owner-data-set"]}`;
   const middleBarOwnerClass = `font-medium ${style["middle-bar-owner"]}`;
-  const dividerClass = `flex flex-row ${style.divider}`;
+  const dividerClass = `flex flex-row items-center justify-center ${style.divider}`;
   const contentClass = `font-normal ${style.content}`;
 
   const Owner = () => {
@@ -30,7 +32,7 @@ export function Article({
   const Divider = () => {
     return (
       <div className={dividerClass}>
-        <Image src="images/divider.svg" />
+        <Image src="/images/divider_h40.svg" width="2" height="40" alt="분리" />
       </div>
     );
   };
@@ -43,15 +45,17 @@ export function Article({
         <button className={topBarBtnEllipsis} />
       </div>
       <div className={middleBarClass}>
-        <Profile profileImgUrl={profileImgUrl} />
+        <Profile type={PROFILE_H40} profileImgUrl={profileImgUrl} />
         <div className={middleBarOwnerDateSetClass}>
           <Owner />
-          <Date date={createdDate} />
+          <Date type={DATE} dbDate={createdDate} />
         </div>
         <Divider />
-        <Favorite type={POST_DETAIL} favoriteCount={favoriteCount} />
+        <Favorite type={ARTICLE_DETAIL} favoriteCount={favoriteCount} />
       </div>
       <div className={contentClass}></div>
     </div>
   );
 }
+
+export default Article;
