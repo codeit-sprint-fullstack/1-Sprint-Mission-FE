@@ -3,7 +3,7 @@ import axios from '@/lib/axios';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-export default function postWriting() {
+export default function PostWriting() {
   // CreatePostForm에 title과 content 상태, 그리고 상태 변경 함수 전달
   // CreatePostButton에 isFormValid 전달해서 버튼 설정(사용자 입력 부분이 비워져 있으면 disabled)
   // 등록버튼(CreatePostButton) 눌렀을 때 API 요청 후 해당 게시물 상세 페이지로 이동
