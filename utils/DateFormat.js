@@ -1,4 +1,4 @@
-export default function CreateDate({ createDate }) {
+export default function DateFormat({ createDate }) {
   let data = createDate.createdAt;
 
   const newDate = new Date(data);

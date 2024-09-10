@@ -6,7 +6,7 @@ import profileIcon from '@/public/ic_profile.png';
 import heartIcon from '@/public/ic_heart.png';
 import dotIcon from '@/public/ic_dot.png';
 import Image from 'next/image';
-import CreateDate from '@/utils/CreateDate.js';
+import DateFormat from '@/utils/DateFormat.js';
 
 import line from '@/public/heartLine.png';
 
@@ -52,7 +52,7 @@ export default function ArticleDetail({ article, deleteArticle }) {
         <Image src={profileIcon} alt='프로필 사진' width={40} height={40} />
         <p className={styles.userName}>{article.user.name}</p>
         <span className={styles.date}>
-          <CreateDate createDate={article} className={styles.profileIcon} />
+          <DateFormat createDate={article} className={styles.profileIcon} />
         </span>
         <Image src={line} alt='선' className={styles.line} />
         <div className={styles.heart}>

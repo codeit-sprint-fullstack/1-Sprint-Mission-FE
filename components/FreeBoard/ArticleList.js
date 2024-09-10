@@ -3,7 +3,7 @@ import Image from 'next/image';
 import articleImage from '@/public/article_image.png';
 import profileIcon from '@/public/ic_profile.png';
 import heartIcon from '@/public/ic_heart.png';
-import CreateDate from '@/utils/CreateDate.js';
+import DateFormat from '@/utils/DateFormat.js';
 import styles from '@/styles/ArticleList.module.css';
 
 export default function ArticleList({ articles = [] }) {
@@ -24,7 +24,7 @@ export default function ArticleList({ articles = [] }) {
                     <Image src={profileIcon} alt='프로필 이미지' />
                     <span className={styles.userName}>{article.user.name}</span>
                     <span className={styles.date}>
-                      <CreateDate createDate={article} />
+                      <DateFormat createDate={article} />
                     </span>
                   </div>
                   <Image src={heartIcon} alt='하트 아이콘' />
