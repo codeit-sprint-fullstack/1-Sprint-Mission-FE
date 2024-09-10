@@ -12,16 +12,15 @@ const logoText = "/images/logo/logo_text.svg";
 //컴포넌트
 import BtnSquare from "./common/BtnSquare";
 
-function PageNav({
+export const PageNav = React.memo(({
   boardListData = [
     { name: "자유게시판", path: "/article" },
     { name: "중고마켓", path: "/items" },
   ],
   loginState = false,
   userData = {},
-}) {
+}) => {
   const location = useRouter();
-  console.log(location.pathname);
 
   const BoardListRender = ({ boardListData }) => {
     return (
@@ -72,6 +71,6 @@ function PageNav({
       <div className={styles.space}></div>
     </>
   );
-}
+});
 
 export default PageNav;
