@@ -105,3 +105,58 @@
 .saveButton:hover {
   background-color: #005bb5;
 }
+
+/*-------------------반응형 디자인 ---------------------------*/
+/* Tablet */
+@media only screen and (min-width: 744px) and (max-width: 1199px) {
+  .commentContainer {
+    height: auto; /* 높이를 자동으로 조정 */
+    padding: 12px; /* 안쪽 여백 조정 */
+  }
+
+  .commentHeader {
+    font-size: 18px; /* 폰트 크기 조정 */
+    margin-bottom: 20px; /* 아래 여백 조정 */
+  }
+
+  .moreMenuButton {
+    font-size: 18px; /* 폰트 크기 조정 */
+  }
+
+  .editTextarea {
+    height: 80px; /* 높이 조정 */
+  }
+
+  .saveButton {
+    width: 100px; /* 너비 조정 */
+    height: 40px; /* 높이 조정 */
+    font-size: 0.875rem; /* 폰트 크기 조정 */
+  }
+}
+
+/* Mobile */
+@media only screen and (min-width: 375px) and (max-width: 743px) {
+  .commentContainer {
+    height: auto; /* 높이를 자동으로 조정 */
+    padding: 12px; /* 안쪽 여백 조정 */
+  }
+
+  .commentHeader {
+    font-size: 16px; /* 폰트 크기 조정 */
+    margin-bottom: 16px; /* 아래 여백 조정 */
+  }
+
+  .moreMenuButton {
+    font-size: 16px; /* 폰트 크기 조정 */
+  }
+
+  .editTextarea {
+    height: 60px; /* 높이 조정 */
+  }
+
+  .saveButton {
+    width: 100px; /* 너비 조정 */
+    height: 40px; /* 높이 조정 */
+    font-size: 0.75rem; /* 폰트 크기 조정 */
+  }
+}
