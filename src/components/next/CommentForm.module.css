@@ -1,0 +1,99 @@
+.commentForm {
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.formGroup label {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #1f2937;
+}
+
+.formGroup textarea {
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #f3f4f6;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #1f2937;
+}
+
+.submitButton {
+  width: 74px;
+  height: 42px;
+  padding: 12px 23px;
+  background-color: #9ca3af;
+  border: none;
+  border-radius: 8px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #f3f4f6;
+  cursor: pointer;
+}
+
+.submitButton:enabled {
+  background-color: #3692ff;
+  color: white;
+}
+
+.submitButton:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .formGroup textarea {
+    min-width: 696px;
+    width: calc(100% - 20px);
+  }
+
+  .submitButton {
+    transform: translateX(-6px);
+  }
+}
+
+@media (max-width: 743px) and (min-width: 375px) {
+  .commentForm {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .formGroup label {
+    font-size: 14px;
+    line-height: 16.09px;
+  }
+
+  .formGroup textarea {
+    min-width: 345px;
+    width: calc(100% + 25px);
+  }
+
+  .submitButton {
+    width: 75px;
+    height: 36px;
+    font-size: 14px;
+    line-height: 16.09px;
+    transform: translateX(50px);
+  }
+}
+
