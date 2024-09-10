@@ -41,7 +41,7 @@ const CreateArticle = () => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="제목을 입력해주세요"
-          style={{ height: '56px' }}
+          style={{ height: '30px' }}
         />
       </div>
       <div className={styles.formGroup}>
@@ -51,7 +51,7 @@ const CreateArticle = () => {
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="내용을 입력해주세요"
-          style={{ height: '282px' }}
+          style={{ height: '252px' }}
         />
       </div>
     </form>
