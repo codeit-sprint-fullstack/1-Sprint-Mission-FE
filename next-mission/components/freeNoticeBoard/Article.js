@@ -3,10 +3,28 @@ import ArticleBody from "./ArticleBody";
 import Link from "next/link";
 import style from "./Article.module.css";
 import Image from "next/image";
+import useResize from "../hook/useResize";
 
 export default function Article({ list, hasMore, loadMore, searchValue }) {
   const [value, setValue] = useState("");
+  const [dropDown, setDropDown] = useState("/images/ic_drop_down_arrow.svg");
+  const [hideText, setHideText] = useState(false);
   const observerRef = useRef();
+
+  // 스크린 크기에 따른 베스트 게시물 갯수 변경
+  const handleResize = useCallback(() => {
+    const length = window.innerWidth;
+
+    if (length >= 768) {
+      setDropDown("/images/ic_drop_down_arrow.svg");
+      setHideText(false);
+    } else if (length >= 375 && length < 768) {
+      setDropDown("/images/ic_mobile_drop_down_arrow.svg");
+      setHideText(true);
+    }
+  }, []);
+
+  useResize(handleResize);
 
   // Intersection Observer 콜백
   const lastItemRef = useCallback(
@@ -56,10 +74,10 @@ export default function Article({ list, hasMore, loadMore, searchValue }) {
           onKeyUp={onKeyUpHandler}
         />
         <div className={`${style.Article_drop_down} ${style.search_form_font}`}>
-          <div>최신순</div>
+          {hideText || <div>최신순</div>}
           <Image
             className={style.Article_drop_down_arrow}
-            src={"/images/ic_drop_down_arrow.svg"}
+            src={dropDown}
             width={24}
             height={24}
             alt="아래 화살표"

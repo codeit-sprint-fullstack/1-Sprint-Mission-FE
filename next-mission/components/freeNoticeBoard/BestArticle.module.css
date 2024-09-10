@@ -31,13 +31,49 @@
   width: 384px;
   height: 169px;
   background-color: #f9fafb;
-  padding: 0 24px 9px;
+  padding: 0 24px 16px;
 }
 
 @media (min-width: 744px) and (max-width: 1199px) {
-
+  .BestArticle_contaner {
+    width: 696px;
+    height: 246px;
+    margin-top: 24px;
+  }
+  
+  .BestArticle_ul {
+    width: 696px;
+    height: 198px;
+    gap: 16px;
+  }
+  
+  .BestArticle_li {
+    width: 340px;
+    height: 198px;
+  }
 }
 
 @media (min-width: 375px) and (max-width: 743px) {
-
+  .BestArticle_contaner {
+    width: 343px;
+    height: 240px;
+    margin-top: 16px;
+  }
+  
+  .BestArticle_title {
+    height: 26px;
+    font-size: 18px;
+    line-height: 26px;
+  }
+  
+  .BestArticle_ul {
+    width: 343px;
+    height: 198px;
+    display: block;
+  }
+  
+  .BestArticle_li {
+    width: 343px;
+    height: 198px;
+  }
 }

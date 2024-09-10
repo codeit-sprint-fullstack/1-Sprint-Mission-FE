@@ -22,8 +22,6 @@ export default function BestArticle({ list }) {
     }, []);
 
     useResize(handleResize);
-
-    console.log(list);
   }
 
   return (
