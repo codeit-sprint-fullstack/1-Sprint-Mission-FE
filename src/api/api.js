@@ -6,7 +6,9 @@ console.log('BASE_URL임:', BASE_URL);
 
 const articlesUrl = `${BASE_URL}/articles`;
 
-const getCommentsUrl = (articleId) => `${BASE_URL}/articles/${articleId}/comments`;
+// 댓글 경로 생성 함수
+const getCommentsUrl = (articleId, commentId = '') => 
+  `${BASE_URL}/articles/${articleId}/comments${commentId ? `/${commentId}` : ''}`;
 
 // 게시글 목록 조회
 export const fetchArticles = async (params = {}) => {
@@ -84,7 +86,7 @@ export const fetchBestArticles = async () => {
 // 댓글 목록 조회
 export const fetchComments = async (articleId) => {
   try {
-    const response = await axios.get(getCommentsUrl(articleId)); 
+    const response = await axios.get(getCommentsUrl(articleId));
     return response.data;
   } catch (error) {
     console.error('댓글 목록 조회 실패:', error);
@@ -104,9 +106,9 @@ export const createComment = async (articleId, commentData) => {
 };
 
 // 댓글 수정
-export const updateComment = async (commentId, commentData) => {
+export const updateComment = async (articleId, commentId, commentData) => {
   try {
-    const response = await axios.patch(`${BASE_URL}/comments/${commentId}`, commentData); 
+    const response = await axios.patch(getCommentsUrl(articleId, commentId), commentData);
     return response.data;
   } catch (error) {
     console.error('댓글 수정 실패:', error);
@@ -115,13 +117,12 @@ export const updateComment = async (commentId, commentData) => {
 };
 
 // 댓글 삭제
-export const deleteComment = async (commentId) => {
+export const deleteComment = async (articleId, commentId) => {
   try {
-    const response = await axios.delete(`${BASE_URL}/comments/${commentId}`);
+    const response = await axios.delete(getCommentsUrl(articleId, commentId));
     return response.data;
   } catch (error) {
     console.error('댓글 삭제 실패:', error);
     throw error;
   }
 };
-

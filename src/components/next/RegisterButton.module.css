@@ -30,7 +30,7 @@
 }
 
 .registerButton:enabled {
-  background-color: #2563eb; /* 활성화 시 색상 */
+  background-color: #3692FF; /* 활성화 시 색상 */
   color: white;
 }
 
