@@ -1,0 +1,33 @@
+.footer {
+  height: 160px;
+  background-color: var(--grey-900);
+}
+
+.test {
+  display: flex;
+  justify-content: space-between;
+}
+
+.containerLeft {
+  color: var(--white);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: var(--grey-500);
+}
+
+.containerCenter {
+  color: var(--white);
+  display: flex;
+  align-items: center;
+}
+
+.imgWrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  width: 20px;
+  height: 20px;
+}

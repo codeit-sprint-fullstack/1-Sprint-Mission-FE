@@ -51,13 +51,11 @@ export default function Freeboard() {
   };
 
   return (
-    <>
-      <Container>
-        <BestPost posts={bestPosts} />
-        <WriteButton />
-        <SearchForm onOrderChange={handleOrderChange} />
-        <PostList posts={posts} />
-      </Container>
-    </>
+    <Container>
+      <BestPost posts={bestPosts} />
+      <WriteButton />
+      <SearchForm onOrderChange={handleOrderChange} />
+      <PostList posts={posts} />
+    </Container>
   );
 }
