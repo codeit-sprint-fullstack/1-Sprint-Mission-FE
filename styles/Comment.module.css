@@ -48,11 +48,19 @@
   height: auto;
 }
 
-.commentText {
+.commentMain {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 24px;
-  line-height: 24px;
+  margin-top: 34px;
+  margin-bottom: 16px;
+}
+
+.commentText {
+  font-size: 14px;
+  font-weight: 400;
+  color: #1f2937;
+  word-wrap: break-word;
+  width: 1100px;
 }
 
 .profile {
@@ -84,42 +92,11 @@
 }
 
 .dotImage {
+  cursor: pointer;
+}
+
+.buttonTest {
   position: relative;
-  cursor: pointer;
-}
-
-.dropDown {
-  position: absolute;
-  width: 139px;
-  height: 92px;
-  border: 1px solid #d1d5db;
-  background-color: #ffff;
-  text-align: center;
-  border-radius: 8px;
-  margin-top: 30px;
-  margin-left: 1055px;
-  cursor: pointer;
-}
-
-.dropDownText {
-  padding: 11px 0 12px 0;
-  border-bottom: 1px solid #d1d5db;
-  font-size: 16px;
-  font-weight: 400;
-  color: #6b7280;
-}
-
-.dropDownDelete {
-  padding: 11px 0 12px 0;
-  border-bottom: none;
-  font-size: 16px;
-  font-weight: 400;
-  color: #6b7280;
-}
-
-.link {
-  text-decoration: none;
-  color: inherit;
 }
 
 .editSubmit {

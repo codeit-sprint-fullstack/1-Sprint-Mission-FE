@@ -7,6 +7,7 @@ import heartIcon from '@/public/ic_heart.png';
 import dotIcon from '@/public/ic_dot.png';
 import Image from 'next/image';
 import DateFormat from '@/utils/DateFormat.js';
+import DropDown from '@/utils/DropDown.js';
 
 import line from '@/public/heartLine.png';
 
@@ -16,20 +17,25 @@ export default function ArticleDetail({ article, deleteArticle }) {
   const router = useRouter();
   const { id } = router.query;
 
+  // useCallback 사용
+
   const handleDropDown = () => {
     setOpenOptions((prev) => !prev);
   };
 
   const handleDelete = () => {
     deleteArticle(id);
-    router.push('/freeboard');
+  };
+
+  const handleEdit = () => {
+    router.push(`/article/edit/${id}`);
   };
 
   return (
     <>
       <div className={styles.title}>
         <div className={styles.titleText}>{article.title}</div>
-        <div>
+        <div className={styles.buttonTest}>
           <Image
             src={dotIcon}
             alt='수정삭제 버튼'
@@ -37,14 +43,16 @@ export default function ArticleDetail({ article, deleteArticle }) {
             className={styles.dotImage}
           />
           {openOptions && (
-            <div className={styles.dropDown}>
-              <Link href={`/article/edit/${id}`} className={styles.link}>
-                <div className={styles.dropDownText}>수정하기</div>
-              </Link>
-              <div className={styles.dropDownDelete} onClick={handleDelete}>
-                삭제하기
-              </div>
-            </div>
+            <DropDown
+              firstAction={{
+                onClickHandler: handleEdit,
+                label: '수정하기',
+              }}
+              secondAction={{
+                onClickHandler: handleDelete,
+                label: '삭제하기',
+              }}
+            />
           )}
         </div>
       </div>

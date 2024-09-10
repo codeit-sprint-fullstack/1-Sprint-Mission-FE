@@ -4,8 +4,21 @@ import arrowDown from '@/public/ic_arrow_down.png';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '@/styles/FreeBoard.module.css';
+import DropDown from '@/utils/DropDown.js';
+import { useState } from 'react';
 
-export default function ArticleListHeard({ keyword }) {
+export default function ArticleListHeard({ keyword, setOrderBy }) {
+  const [showDropDown, setShowDropDOwn] = useState(false);
+  const [orderByText, setOrderByText] = useState('최신순');
+  const handleDropDown = () => {
+    setShowDropDOwn((prev) => !prev);
+  };
+
+  const handleOrderByClick = (orderBy) => {
+    setOrderBy(orderBy);
+    setOrderByText(orderBy === 'recent' ? '최신순' : '좋아요순');
+  };
+
   return (
     <>
       <div className={styles.listHeader}>
@@ -20,13 +33,27 @@ export default function ArticleListHeard({ keyword }) {
       </div>
       <div className={styles.menu}>
         <SearchForm keyword={keyword} />
-        <div className={styles.dropDown}>
-          <div className={styles.dropDownText}>최신순</div>
+        <div className={styles.dropDownBoxLayout} onClick={handleDropDown}>
+          <div className={styles.dropDownBoxText}>{orderByText}</div>
           <Image
             src={arrowDown}
             alt='아래 화살표'
             className={styles.dropDownArrow}
           />
+          {showDropDown && (
+            <div className={styles.dropDownLayout}>
+              <DropDown
+                firstAction={{
+                  onClickHandler: () => handleOrderByClick('recent'),
+                  label: '최신순',
+                }}
+                secondAction={{
+                  onClickHandler: () => handleOrderByClick('old'),
+                  label: '좋아요순',
+                }}
+              />
+            </div>
+          )}
         </div>
       </div>
     </>

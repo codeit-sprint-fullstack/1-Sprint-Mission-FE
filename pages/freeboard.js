@@ -54,7 +54,7 @@ export default function FreeBoard() {
       <div className={styles.body}>
         <BestArticleList articles={bestArticles} />
 
-        <ArticleListHeard keyword={keyword} />
+        <ArticleListHeard keyword={keyword} setOrderBy={setOrderBy} />
 
         <ArticleList articles={articles} />
       </div>

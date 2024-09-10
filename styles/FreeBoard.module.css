@@ -22,7 +22,7 @@
   justify-content: space-between;
 }
 
-.dropDown {
+.dropDownBoxLayout {
   width: 130px;
   height: 42px;
   border: 1px solid #e5e7eb;
@@ -30,7 +30,7 @@
   position: relative;
 }
 
-.dropDownText {
+.dropDownBoxText {
   position: absolute;
   margin-left: 20px;
   margin-top: 12px;
@@ -40,4 +40,10 @@
   position: absolute;
   margin-left: 90px;
   margin-top: 10px;
+  position: relative;
+}
+
+.dropDownLayout {
+  margin-left: 119px;
+  margin-top: 20px;
 }

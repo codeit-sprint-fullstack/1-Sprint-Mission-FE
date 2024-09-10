@@ -5,6 +5,7 @@ import Image from 'next/image';
 import EditComment from '@/components/ArticleDetail/EditComment.js';
 import styles from '@/styles/Comment.module.css';
 import { useState } from 'react';
+import DropDown from '@/utils/DropDown.js';
 
 function CreateDate({ createDate }) {
   const createdDate = new Date(createDate.createdAt);
@@ -45,25 +46,38 @@ export default function CommentList({
     setEditId(e);
   }
 
+  if (comments.length === 0) {
+    return (
+      <Image
+        src={noComment}
+        alt='댓글이 없습니다'
+        className={styles.noComment}
+        priority
+      />
+    );
+  }
+
   return (
     <>
-      {comments ? (
-        comments.map((comment) => (
-          <div key={comment.id}>
-            <div>
-              {editId === comment.id ? (
-                <EditComment
-                  id={comment.id}
-                  content={comment.content}
-                  setEditId={setEditId}
-                  setComments={setComments}
-                  setOpenOptions={setOpenOptions}
-                />
-              ) : (
-                <>
-                  <div className={styles.comments}>
-                    <div className={styles.commentText}>
-                      <span>{comment.content}</span>
+      {comments.map((comment) => (
+        <div key={comment.id}>
+          <div>
+            {editId === comment.id ? (
+              <EditComment
+                id={comment.id}
+                content={comment.content}
+                setEditId={setEditId}
+                setComments={setComments}
+                setOpenOptions={setOpenOptions}
+              />
+            ) : (
+              <>
+                <div className={styles.comments}>
+                  <div className={styles.commentMain}>
+                    <span className={styles.commentText}>
+                      {comment.content}
+                    </span>
+                    <div>
                       <Image
                         onClick={() => handleDropDown(comment.id)}
                         src={dotIcon}
@@ -73,52 +87,41 @@ export default function CommentList({
                         height={24}
                       />
                       {commentId === comment.id && openOptions && (
-                        <div className={styles.dropDown}>
-                          <div
-                            className={styles.dropDownDelete}
-                            onClick={() => handleEdit(comment.id)}
-                          >
-                            수정하기
-                          </div>
-                          <div
-                            className={styles.dropDownDelete}
-                            onClick={handleDelete}
-                          >
-                            삭제하기
-                          </div>
-                        </div>
+                        <DropDown
+                          firstAction={{
+                            onClickHandler: () => handleEdit(comment.id),
+                            label: '수정하기',
+                          }}
+                          secondAction={{
+                            onClickHandler: handleDelete,
+                            label: '삭제하기',
+                          }}
+                        />
                       )}
                     </div>
-                    <div className={styles.profile}>
-                      <Image
-                        src={profileIcon}
-                        alt='프로필 사진'
-                        width={32}
-                        height={32}
-                      />
-                      <div className={styles.name}>
-                        <span className={styles.userName}>
-                          {comment.user.name}
-                        </span>
-                        <span className={styles.createdDate}>
-                          <CreateDate createDate={comment} />
-                        </span>
-                      </div>
+                  </div>
+                  <div className={styles.profile}>
+                    <Image
+                      src={profileIcon}
+                      alt='프로필 사진'
+                      width={32}
+                      height={32}
+                    />
+                    <div className={styles.name}>
+                      <span className={styles.userName}>
+                        {comment.user.name}
+                      </span>
+                      <span className={styles.createdDate}>
+                        <CreateDate createDate={comment} />
+                      </span>
                     </div>
                   </div>
-                </>
-              )}
-            </div>
+                </div>
+              </>
+            )}
           </div>
-        ))
-      ) : (
-        <Image
-          src={noComment}
-          alt='댓글이 없습니다'
-          className={styles.noComment}
-          priority
-        />
-      )}
+        </div>
+      ))}
     </>
   );
 }
