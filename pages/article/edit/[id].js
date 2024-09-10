@@ -6,7 +6,7 @@ import axios from 'axios';
 export default function Post() {
   const [titleValue, setTitleValue] = useState('');
   const [contentValue, setContentValue] = useState('');
-  const [submit, setSubmit] = useState(false);
+  const [canSubmit, setCanSubmit] = useState(true);
 
   const router = useRouter();
   const { id } = router.query;
@@ -42,16 +42,15 @@ export default function Post() {
   }
 
   const titleChange = (event) => {
-    setTitleValue(event.target.value);
+    const value = event.target.value;
+    setTitleValue(value);
+    setCanSubmit(value.trim() !== '' && contentValue.trim() !== '');
   };
-
   const contentChange = (event) => {
-    setContentValue(event.target.value);
+    const value = event.target.value;
+    setContentValue(value);
+    setCanSubmit(value.trim() !== '' && titleValue.trim() !== '');
   };
-
-  useEffect(() => {
-    setSubmit(titleValue.trim() !== '' && contentValue.trim() !== '');
-  }, [titleValue, contentValue]);
 
   useEffect(() => {
     if (!id) return;
@@ -70,8 +69,8 @@ export default function Post() {
           <span className={styles.title}>수정하기</span>
           <button
             onClick={handleSubmit}
-            disabled={!submit}
-            className={submit ? styles.submitBtn : styles.btn}
+            disabled={!canSubmit}
+            className={canSubmit ? styles.submitBtn : styles.btn}
           >
             등록
           </button>
@@ -83,7 +82,7 @@ export default function Post() {
           value={titleValue}
           onChange={titleChange}
           className={styles.input}
-        ></input>
+        />
         <div className={styles.name}>내용</div>
         <textarea
           placeholder='내용을 입력하세요 '

@@ -58,7 +58,7 @@ export default function Article() {
         <Link href='/freeboard'>
           <Image
             src={backBtn}
-            alt='목록으로 돌아긱 버튼'
+            alt='목록으로 돌아가기 버튼'
             className={styles.backBtn}
             priority
           />

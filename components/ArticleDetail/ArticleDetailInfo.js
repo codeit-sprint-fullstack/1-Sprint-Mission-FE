@@ -38,7 +38,7 @@ export default function ArticleDetail({ article, deleteArticle }) {
           />
           {openOptions && (
             <div className={styles.dropDown}>
-              <Link href={`/article/patch/${id}`} className={styles.link}>
+              <Link href={`/article/edit/${id}`} className={styles.link}>
                 <div className={styles.dropDownText}>수정하기</div>
               </Link>
               <div className={styles.dropDownDelete} onClick={handleDelete}>
