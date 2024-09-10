@@ -26,7 +26,7 @@ export default function ChatItem({ comments, onEdit }) {
     if (days > 0) return `${days}일 전`;
     if (hours > 0) return `${hours}시간 전`;
     if (minutes > 0) return `${minutes}분 전`;
-    return `${seconds}초 전`;
+    return `${seconds + 1}초 전`;
   };
 
   const handleDelete = async (id) => {
@@ -56,6 +56,7 @@ export default function ChatItem({ comments, onEdit }) {
             src={reply_empty}
             alt="reply_empty"
             className={styles.replyImg}
+            priority={true}
           />
           <div className={styles.nonText}>
             <p>아직 댓글이 없어요, </p>

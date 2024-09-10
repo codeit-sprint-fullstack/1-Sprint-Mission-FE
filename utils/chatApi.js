@@ -1,15 +1,18 @@
-export async function fetchComments(id) {
+export async function fetchComments(id, page, size) {
   try {
     const response = await fetch(
-      `https://thrift-shop.onrender.com/articleComments/${id}`
+      `https://thrift-shop.onrender.com/articleComments/${id}?page=${page}&size=${size}`
     );
+
     if (!response.ok) {
       throw new Error("Failed to fetch comments");
     }
-    return await response.json();
+
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.error("API error:", error);
-    return []; // 에러 발생 시 빈 배열 반환
+    return { data: [], total: 0 }; // 빈 값 반환
   }
 }
 

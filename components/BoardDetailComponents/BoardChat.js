@@ -1,13 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./BoardChat.module.css";
 import ChatItem from "./ChatItem";
-import { createComments, updateComments } from "@/utils/chatApi";
+import { useComments } from "@/hooks/useComments"; // 수정된 useComments 훅 가져오기
 
-export default function BoardChat({ articleId, comments }) {
+export default function BoardChat({
+  initialComments = [],
+  articleId,
+  totalComments,
+  pageSize,
+}) {
   const [formValid, setFormValid] = useState(false);
   const [comment, setComment] = useState("");
-  const [chats, setChats] = useState(comments);
   const [editCommentId, setEditCommentId] = useState(null);
+
+  const {
+    comments, // useComments 훅에서 반환된 comments 상태 사용
+    loadMoreComments,
+    hasMore,
+    loading,
+    addComment, // 댓글 추가 함수
+    editComment, // 댓글 수정 함수
+  } = useComments(articleId, initialComments, totalComments, pageSize);
 
   const validateAndSetFormValid = (value) => {
     setFormValid(value.trim().length > 0);
@@ -29,23 +42,12 @@ export default function BoardChat({ articleId, comments }) {
 
     try {
       if (editCommentId) {
-        const updatedComment = await updateComments(editCommentId, {
-          content: comment,
-        });
-        if (updatedComment) {
-          setChats((prevChats) =>
-            prevChats.map((c) => (c.id === editCommentId ? updatedComment : c))
-          );
-        }
+        await editComment(editCommentId, comment);
       } else {
-        const newComment = await createComments(articleId, {
-          content: comment,
-        });
-        if (newComment) {
-          setChats((prevChats) => [newComment, ...prevChats]);
-        }
+        await addComment(comment);
       }
 
+      // 댓글 등록/수정 후 입력 필드 초기화
       setComment("");
       setEditCommentId(null);
       setFormValid(false);
@@ -53,6 +55,22 @@ export default function BoardChat({ articleId, comments }) {
       console.error("Error creating or updating comment:", error);
     }
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+          document.documentElement.offsetHeight - 100 &&
+        hasMore &&
+        !loading
+      ) {
+        loadMoreComments(); // 댓글 추가 로드
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [loadMoreComments, hasMore, loading]);
 
   return (
     <div className={styles.container}>
@@ -72,7 +90,7 @@ export default function BoardChat({ articleId, comments }) {
           {editCommentId ? "수정" : "등록"}
         </button>
       </div>
-      <ChatItem comments={chats} onEdit={handleEdit} />
+      <ChatItem comments={comments} onEdit={handleEdit} />
     </div>
   );
 }
