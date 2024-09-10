@@ -41,9 +41,9 @@ function PageNav({
     );
   };
 
-
-    return (
-      <nav className={styles.outlineContain} >
+  return (
+    <>
+      <nav className={styles.outlineContain}>
         <section className={styles.pageNavSection}>
           <div className={styles.logoBox}>
             <Link href="/">
@@ -68,7 +68,9 @@ function PageNav({
           </>
         </section>
       </nav>
-    );
+      <div className={styles.space}></div>
+    </>
+  );
 }
 
 export default PageNav;

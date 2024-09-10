@@ -54,7 +54,9 @@ function Login() {
 
       <main>
         <div className={styles.logoBox}>
-          <img src="/images/logo/logo_big.svg" alt="logo" />
+          <Link href="/">
+            <img src="/images/logo/logo_big.svg" alt="logo" />
+          </Link>
         </div>
         <section className={styles.inputSection}>
           <InputBar

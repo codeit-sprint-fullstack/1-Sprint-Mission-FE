@@ -18,7 +18,7 @@ import InputBar from "@components/common/InputBar";
 import InputBarPassword from "@components/common/InputBarPassword";
 import BtnRound from "@components/common/BtnRound";
 
-function Login() {
+function SignUp() {
   // input 값
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
@@ -47,18 +47,6 @@ function Login() {
         )
       );
     }
-
-    console.log(`email: ${email}, password: ${password}`);
-    console.log(`nickname: ${nickname}`);
-    console.log(`confirmPassword: ${confirmPassword}`);
-    console.log(`ableSubmit: ${ableSubmit}`);
-    console.log(
-      `email : ${emailInputError},
-      nickname: ${nicknameInputError}, 
-      password: ${passwordInputError}, 
-      confirmPassword: ${confirmPasswordInputError}`
-    );
-
   }, [
     emailInputError,
     nicknameInputError,
@@ -87,7 +75,6 @@ function Login() {
     setConfirmPassword(e.target.value);
   };
 
-
   // Onblur 핸들
   const handleCommonOnblur = (e) => {
     setNicknameInputError(validationMinLength(e.target.value, 2));
@@ -101,7 +88,9 @@ function Login() {
 
       <main>
         <div className={styles.logoBox}>
-          <img src="/images/logo/logo_big.svg" alt="logo" />
+          <Link href="/">
+            <img src="/images/logo/logo_big.svg" alt="logo" />
+          </Link>
         </div>
         <section className={styles.inputSection}>
           <InputBar
@@ -160,4 +149,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignUp;
