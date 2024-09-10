@@ -1,0 +1,17 @@
+.dropdown {
+  width: 13rem;
+  height: 4.2rem;
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--gray200);
+  border-radius: 1.2rem;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.dropdownContent {
+  color: var(--gray800);
+  white-space: nowrap;
+}

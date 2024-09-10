@@ -1,4 +1,5 @@
 import BestPost from "@components/BestPost";
+import Dropdown from "@components/Dropdown";
 import SearchBar from "@components/SearchBar";
 import styles from "@styles/Community.module.css";
 import { useState } from "react";
@@ -33,6 +34,7 @@ export default function Community() {
           onClear={handleClear}
           onSearch={handleSearch}
         />
+        <Dropdown />
       </div>
     </div>
   );
