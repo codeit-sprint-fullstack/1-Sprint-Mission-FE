@@ -7,6 +7,7 @@ import Footer from "../../components/Footer";
 import styles from "../PostDetailPage.module.css";
 import { fetchArticleById, fetchComments, createComment } from "../../api/api"; // 게시글 및 댓글 전체 조회 api 호출
 import NoComments from "../../components/NoComments"; // NoComments 컴포넌트 import
+import Spinner from "../../components/Spinner"; // Spinner 컴포넌트 import
 
 export default function PostDetailPage() {
   const router = useRouter();
@@ -80,7 +81,7 @@ export default function PostDetailPage() {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Spinner />; // 스피너 컴포넌트 사용
   if (error) return <div>{error}</div>;
 
   return (

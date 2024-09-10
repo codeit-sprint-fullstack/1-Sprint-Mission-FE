@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       {loading && <Spinner />}
-      <Component {...pageProps} />
+      <Component {...pageProps} onPageLoad={() => setLoading(false)} />{" "}
     </>
   );
 }
