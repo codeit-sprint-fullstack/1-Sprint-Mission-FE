@@ -4,6 +4,7 @@ import MainPost from "@components/MainPost";
 import SearchBar from "@components/SearchBar";
 import styles from "@styles/Community.module.css";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Community() {
   const [searchValue, setSearchValue] = useState("");
@@ -26,7 +27,9 @@ export default function Community() {
       <BestPost />
       <div className={styles.mainTitle}>
         <h1 className={`${styles.postTitle} text-xl bold`}>게시글</h1>
-        <div className={`${styles.postButton} text-lg semibold`}>글쓰기</div>
+        <Link href="/create-post">
+          <div className={`${styles.postButton} text-lg semibold`}>글쓰기</div>
+        </Link>
       </div>
       <div className={styles.mainOption}>
         <SearchBar
