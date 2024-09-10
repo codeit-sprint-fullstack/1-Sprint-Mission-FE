@@ -5,11 +5,20 @@ import SearchBar from "@components/SearchBar";
 import styles from "@styles/Community.module.css";
 import { useState } from "react";
 import Link from "next/link";
-import axios from "@/lib/axios";
+// import axios from "@/lib/axios";
 
-export async function getStaticProps() {}
+// export async function getStaticProps() {
+//   const res = await axios.get("/articles");
+//   const posts = res.data.results;
 
-export default function Community() {
+//   return {
+//     props: {
+//       posts,
+//     },
+//   };
+// }
+
+export default function Community({ posts }) {
   const [searchValue, setSearchValue] = useState("");
 
   const handleSearchChange = (value) => {
