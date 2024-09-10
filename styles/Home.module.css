@@ -4,6 +4,8 @@
   align-items: center;
   padding-top: 70px;
   padding-bottom: 160px;
+  width: 100%;
+  justify-content: space-around;
 }
 .ContainerGrid {
   margin-top: 24px;

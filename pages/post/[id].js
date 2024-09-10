@@ -64,7 +64,7 @@ export default function post({ id }) {
     // 여기서 데이터를 로드하거나 API 호출 가능
     pageSize += 3;
     console.log("데이터를 가져오는 중...");
-    console.log(pageSize);
+    // console.log(pageSize);
 
     // 데이터 로드가 끝나면 isFetching 상태를 false로 설정
     setTimeout(() => {
