@@ -144,9 +144,10 @@ function Articles({ bestItems, defaultParams, Items }) {
   }, [params]);
 
   const getMoreArticles = useCallback(async () => {
+    if (!cursor) return;
     try {
       const { list, nextCursor } = await api.getArticles(params, cursor);
-      setArticles([...articles, ...list]);
+      setArticles((prev) => [...prev, ...list]);
       setCursor(nextCursor);
     } catch (error) {
       console.log(error);
@@ -184,9 +185,7 @@ function Articles({ bestItems, defaultParams, Items }) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            if (cursor) {
-              getMoreArticles();
-            }
+            getMoreArticles();
           }
         });
       });

@@ -40,12 +40,12 @@ function Registration({ article }) {
         router.push(`/Articles/${data.id}`);
       } else {
         setAlertMessage("게시글 생성에 실패했습니다.");
-        openAlert();
+        handleOpenAlert();
       }
     } catch (error) {
       console.log(error);
       setAlertMessage("게시글 생성에 실패했습니다." + error.message);
-      openAlert();
+      handleOpenAlert();
     }
   };
 
@@ -56,17 +56,17 @@ function Registration({ article }) {
         router.push("/Articles");
       } else {
         setAlertMessage("게시글 수정에 실패했습니다.");
-        openAlert();
+        handleOpenAlert();
       }
     } catch (error) {
       console.log(error);
       setAlertMessage("게시글 수정에 실패했습니다." + error.message);
-      openAlert();
+      handleOpenAlert();
     }
   };
 
-  const openAlert = () => setOpenAlertModal(true);
-  const closeAlert = () => setOpenAlertModal(false);
+  const handleOpenAlert = () => setOpenAlertModal(true);
+  const handleCloseAlert = () => setOpenAlertModal(false);
 
   const { values, errors, disabled, handleChange, handleSubmit } =
     useFormValidation(
@@ -84,7 +84,7 @@ function Registration({ article }) {
     <>
       <AlertModal
         isOpen={openAlertModal}
-        onClose={closeAlert}
+        onClose={handleCloseAlert}
         message={alertMessage}
       />
       <main>
