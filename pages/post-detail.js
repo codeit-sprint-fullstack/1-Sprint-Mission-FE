@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useState } from "react";
 
 import kebabIcon from "@images/ic_kebab.svg";
+import profileImage from "@images/ic_profile.svg";
+import emptyHeart from "@images/favoriteEmptyHeart-small.png";
 
 const PostDetail = ({
   title = "맥북이요",
@@ -26,6 +28,18 @@ const PostDetail = ({
       <div className={styles.titleContainer}>
         <span className="text-xl bold">{title}</span>
         <Image src={kebabIcon} alt="drop down" width={24} height={24} />
+      </div>
+      <div className={styles.profileContainer}>
+        <Image src={profileImage} alt="profile image" width={40} height={40} />
+        <span className={`${styles.nickname} text-md medium`}>{nickname}</span>
+        <span className={`${styles.date} text-md regular`}>{date}</span>
+        <div className={styles.likeBox}>
+          <Image src={emptyHeart} alt="heart image" width={32} height={32} />
+          <span className={`${styles.likes} text-lg medium`}>{likes}</span>
+        </div>
+      </div>
+      <div className={styles.contentContainer}>
+        <span className={`${styles.content} text-2lg regular`}>{content}</span>
       </div>
       <form
         className={styles.commentInputContainer}
