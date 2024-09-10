@@ -9,7 +9,7 @@ import usePostList from "../hooks/usePostList";
 import { LIMIT } from "../constants";
 import Footer from "../components/Footer";
 import styles from "./FreeBoardPage.module.css"; // CSS 모듈 import
-import Spinner from "../components/Spinner"; // spinner import
+import Spinner from "../components/Spinner"; // Spinner import
 
 export default function FreeBoardPage() {
   const router = useRouter();
@@ -18,7 +18,6 @@ export default function FreeBoardPage() {
   const [searchResults, setSearchResults] = useState([]);
   const [searchError, setSearchError] = useState(null);
   const [loading, setLoading] = useState(false); // 로딩 상태 추가
-  const [hasMore, setHasMore] = useState(true); // 추가 데이터 여부 확인
 
   const {
     posts,
@@ -49,13 +48,13 @@ export default function FreeBoardPage() {
   // 스크롤 이벤트 핸들러 추가
   useEffect(() => {
     const handleScroll = () => {
-      // 스크롤이 페이지 하단에 도달했을 떄
+      // 스크롤이 페이지 하단에 도달했을 때
       if (
         window.innerHeight + document.documentElement.scrollTop + 1 >=
         document.documentElement.scrollHeight
       ) {
         // 현재 로딩 중이지 않고, 추가 데이터가 있는 경우
-        if (!loading && hasMore) {
+        if (!loading && hasNext) {
           fetchPosts(true); // 데이터 추가 로드
         }
       }
@@ -66,13 +65,12 @@ export default function FreeBoardPage() {
 
     // 컴포넌트 언마운트 시 이벤트 리스너 제거
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [loading, hasMore, fetchPosts]);
+  }, [loading, hasNext, fetchPosts]);
 
   const handleOrderChange = (event) => {
     setOrder(event.target.value);
     setSearchResults([]);
     setSearchPosts(""); // 정렬 변경 시 검색 결과 초기화
-    setHasMore(true); // 추가 데이터 여부 플래그 초기화
   };
 
   const handleKeyDown = (e) => {
@@ -171,7 +169,7 @@ export default function FreeBoardPage() {
         {!searchPosts && !loading && !searchError && (
           <>
             <PostList posts={displayPosts} />
-            {!hasMore && <div>더 이상 게시글이 없습니다.</div>}
+            {!hasNext && <div>더 이상 게시글이 없습니다.</div>}
           </>
         )}
       </main>

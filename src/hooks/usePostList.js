@@ -18,7 +18,7 @@ export default function usePostList(order) {
         const response = await fetchArticles({ order, cursor, limit: LIMIT });
         console.log("API 응답:", response);
 
-        const { paging, totalCount } = response;
+        const { paging } = response;
         const list = response; // API 응답의 최상위 요소가 리스트
 
         if (Array.isArray(list)) {
