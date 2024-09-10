@@ -169,7 +169,11 @@ export default function FreeBoardPage() {
         {!searchPosts && !loading && !searchError && (
           <>
             <PostList posts={displayPosts} />
-            {!hasNext && <div>더 이상 게시글이 없습니다.</div>}
+            {!hasNext && (
+              <div className={styles.noMorePosts}>
+                더 이상 게시글이 없습니다.
+              </div>
+            )}
           </>
         )}
       </main>

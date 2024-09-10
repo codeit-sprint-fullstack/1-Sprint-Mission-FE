@@ -171,15 +171,11 @@
   }
 }
 
-/* 무한 스크롤 적용된 페이지에서 로딩표시 */
-.loading {
-  text-align: center;
-  padding: 10px;
-  font-size: 16px;
-}
-
+/* 더 이상 게시물이 없습니다 문구 */
 .noMorePosts {
   text-align: center;
-  padding: 10px;
-  color: #999;
+  font-size: 1.2rem;
+  color: #005ccc;
+  font-weight: 800;
+  padding: 20px;
 }
