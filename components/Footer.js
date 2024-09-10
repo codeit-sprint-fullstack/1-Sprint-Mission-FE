@@ -23,9 +23,9 @@ export default function Footer() {
           </div>
           <div className={styles.snsLogo}>
             <Image src={facebookLogo} alt='코드잇 로고' />
+            <Image src={twitterLogo} alt='코드잇 로고' />
             <Image src={youtuveLogo} alt='코드잇 로고' />
             <Image src={instaLogo} alt='코드잇 로고' />
-            <Image src={twitterLogo} alt='코드잇 로고' />
           </div>
         </div>
       </div>
