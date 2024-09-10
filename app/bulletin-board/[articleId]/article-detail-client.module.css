@@ -6,10 +6,16 @@
   margin-top: 4rem;
 }
 
+.btn-to-list-frame {
+  width: 120rem;
+  height: 4.8rem;
+  margin-top: 6.4rem;
+  margin-bottom: 32.5rem;
+}
+
 .btn-to-list {
   width: 24rem;
   height: 4.8rem;
+  background-image: url(../../../public/buttons/btn_medium.svg);
   margin: 0 auto;
-  margin-top: 6.4rem;
-  margin-bottom: 32.5rem;
 }

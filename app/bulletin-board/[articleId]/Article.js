@@ -11,6 +11,7 @@ import style from "./article.module.css";
 
 export function Article({
   title,
+  content,
   profileImgUrl,
   ownerName,
   createdDate,
@@ -32,7 +33,7 @@ export function Article({
   const Divider = () => {
     return (
       <div className={dividerClass}>
-        <Image src="/images/divider_h40.svg" width="2" height="40" alt="분리" />
+        <Image src="/images/divider_h40.svg" width={2} height={34} alt="분리" />
       </div>
     );
   };
@@ -53,7 +54,7 @@ export function Article({
         <Divider />
         <Favorite type={ARTICLE_DETAIL} favoriteCount={favoriteCount} />
       </div>
-      <div className={contentClass}></div>
+      <div className={contentClass}>{content}</div>
     </div>
   );
 }

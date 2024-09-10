@@ -5,14 +5,7 @@ import { LAST_TIME } from "../constants/date";
 
 import style from "./comment.module.css";
 
-export function Comment({
-  content,
-  profileImgUrl,
-  ownerName,
-  date,
-  favoriteCount,
-  myFavorite = false,
-}) {
+export function Comment({ content, profileImgUrl, ownerName, date }) {
   const topBarClass = `flex-row justify-between`;
   const contentClass = `font-normal ${style.content}`;
   const bottomBarClass = `flex-row ${style["bottom-bar"]}`;
@@ -26,7 +19,7 @@ export function Comment({
         <button className={style["btn-ellipsis"]} />
       </div>
       <div className={bottomBarClass}>
-        <Profile type={PROFILE_H32} favoriteCount={favoriteCount} />
+        <Profile type={PROFILE_H32} />
         <div className={bottomBarOwnerDateSet}>
           <div className={ownerClass}>{ownerName}</div>
           <Date type={LAST_TIME} dbDate={date} />

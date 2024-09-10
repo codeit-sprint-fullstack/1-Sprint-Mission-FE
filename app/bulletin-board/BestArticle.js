@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import Favorite from "../components/Favorite";
 import Date from "../components/Date";
@@ -8,6 +9,7 @@ import { ProductImg } from "../components/ProductImg";
 import style from "./best-article.module.css";
 
 export function BestArticle({
+  articleId,
   title = "게시글 제목",
   imgUrl,
   owner = "작성자",
@@ -24,31 +26,34 @@ export function BestArticle({
   const articleBottomBarClass = `flex flex-row justify-between items-center ${style["article-bottom-bar"]}`;
   const articleBottomOwnerClass = `flex items-center font-normal text-gray-600 align-middle ${style["article-bottom-name"]}`;
 
-  const createdDateText = createdDate;
+  const handleClickArticle = () => {};
+  const link = `/bulletin-board/${articleId}`;
 
   return (
-    <div className={bestArticleClass}>
-      <div className={bestArticleContentClass}>
-        <div className={badgeFrameClass}>
-          <img className={badgeImgClass} alt="베스트 게시글 마크" />
-        </div>
-        <div className={articleMainClass}>
-          <div className={articleTitleClass}>{title}</div>
-          <ProductImg />
-        </div>
-        <div className={articleBottomBarClass}>
-          <div className="flex flex-row">
-            <div className={articleBottomOwnerClass}>{owner}</div>
-            <Favorite
-              type={BEST_ARTICLE}
-              myFavorite={myFavorite}
-              favoriteCount={favoriteCount}
-            />
+    <Link href={link}>
+      <div className={bestArticleClass}>
+        <div className={bestArticleContentClass}>
+          <div className={badgeFrameClass}>
+            <img className={badgeImgClass} alt="베스트 게시글 마크" />
           </div>
-          <Date dbDate={createdDateText} />
+          <div className={articleMainClass}>
+            <div className={articleTitleClass}>{title}</div>
+            <ProductImg />
+          </div>
+          <div className={articleBottomBarClass}>
+            <div className="flex flex-row">
+              <div className={articleBottomOwnerClass}>{owner}</div>
+              <Favorite
+                type={BEST_ARTICLE}
+                myFavorite={myFavorite}
+                favoriteCount={favoriteCount}
+              />
+            </div>
+            <Date dbDate={createdDate} />
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

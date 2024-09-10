@@ -2,25 +2,23 @@ import Comment from "./Comment";
 
 import style from "./comment-list.module.css";
 
-export function CommentList({ type, id }) {
+export function CommentList({ list }) {
   const commentListClass = `flex-col ${style["comment-list"]}`;
   // 임시로 고정 댓글
   const temp = [0, 1, 2];
-  const list = temp.map((commnet, index) => {
+  const tempList = list.map((comment, index) => {
     return (
       <Comment
         key={index}
-        content="테스트 댓글 본문"
+        content={comment.content}
         profileImgUrl={null}
-        ownerName="작성자"
-        date="2024-09-10T00:37:54.669Z"
-        favoriteCount={9999}
-        myFavorite={false}
+        ownerName={comment.user.name}
+        date={comment.createdAt}
       />
     );
   });
 
-  return <div className={commentListClass}>{list}</div>;
+  return <div className={commentListClass}>{tempList}</div>;
 }
 
 export default CommentList;

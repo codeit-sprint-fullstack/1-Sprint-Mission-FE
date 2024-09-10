@@ -9,3 +9,5 @@ export const MAX_CONTENT_LENGHT = 200;
 export const WARN_MAX_CONTENT_LENGHT = 600;
 
 export const VALID_VALUE = 0;
+
+export const BEST_ARTICLE_PAGE_SIZE = [3, 2, 1];

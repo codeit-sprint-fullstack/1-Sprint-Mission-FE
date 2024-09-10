@@ -6,7 +6,7 @@ import { BestArticle } from "./BestArticle";
 import { DeviceContext } from "../components/DeviceProvider";
 
 import { getArticles } from "@/lib/axios";
-import { BEST_ARTICLE_PAGE_SIZE } from "../constants/Favorite";
+import { BEST_ARTICLE_PAGE_SIZE } from "../constants/article";
 
 import style from "./bestboard.module.css";
 
@@ -24,6 +24,7 @@ export function BestBoard() {
         return (
           <BestArticle
             key={index}
+            articleId={article.id}
             title={article.title}
             imgUrl={"../../public/images/no_image.svg"}
             owner={article.user.name}

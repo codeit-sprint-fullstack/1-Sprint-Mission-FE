@@ -1,3 +1,3 @@
-export const PC = 1;
-export const TABLET = 2;
-export const MOBILE = 3;
+export const PC = 0;
+export const TABLET = 1;
+export const MOBILE = 2;
