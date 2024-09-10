@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styles from './SearchForm.module.css';
 import Dropdown from './Dropdown';
+import Input from './Input';
 
 export default function SearchForm({ onOrderChange }) {
   // SearchForm component
@@ -35,7 +36,7 @@ export default function SearchForm({ onOrderChange }) {
 
   return (
     <form className={styles.searchForm} onSubmit={handleSubmit}>
-      <input
+      <Input
         className={styles.searchInput}
         name="q"
         value={value}

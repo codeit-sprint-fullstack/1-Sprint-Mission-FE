@@ -10,3 +10,7 @@
   cursor: pointer;
   text-decoration: none;
 }
+
+.button:disabled {
+  background-color: var(--grey-400);
+}

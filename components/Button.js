@@ -5,14 +5,10 @@ import styles from '@/components/Button.module.css';
 // prop으로 name과 size를 내려받는다.
 // size는 inline style로 패딩에 적용된다. 값이 존재할 경우 버튼 크기를 변경한다.
 
-export default function Button({ className = '', name, size, ...props }) {
-  console.log(className);
+export default function Button({ className = '', name, ...props }) {
+  const classNames = `${styles.button} ${className}`;
   return (
-    <button
-      className={`${styles.button} ${styles[className]}`}
-      style={size ? { padding: size } : {}}
-      {...props}
-    >
+    <button className={classNames} {...props}>
       {name}
     </button>
   );

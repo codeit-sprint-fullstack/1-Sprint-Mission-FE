@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 32px;
+}
+
+.title,
+.content {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  color: var(--grey-800);
+  margin-bottom: 12px;
+}
+
+.content {
+  margin-top: 24px;
+}
+
+.createPostFormInput {
+  padding: 16px 24px;
+  background-color: var(--grey-100);
+  border: none;
+  border-radius: 12px;
+}
+.createPostFormInput::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--grey-400);
+}
+.createPostFormInput:hover,
+.createPostFormInput:focus {
+  border: 1px solid var(--blue);
+  border-color: var(--blue);
+  outline: none;
+}
+
+.createPostFormTextarea {
+  padding: 0 24px;
+  padding-top: 16px;
+  padding-bottom: 240px;
+
+  background-color: var(--grey-100);
+  border: none;
+  border-radius: 12px;
+  height: 282px;
+}
+.createPostFormTextarea::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--grey-400);
+}
+.createPostFormTextarea:hover,
+.createPostFormTextarea:focus {
+  border: 1px solid var(--blue);
+  border-color: var(--blue);
+  outline: none;
+}
