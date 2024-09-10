@@ -2,8 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/post-detail/[id]": "pages/post-detail/[id].js",
-  "/free-board": "pages/free-board.js",
-  "/post-edit/[id]": "pages/post-edit/[id].js",
-  "/post-registration": "pages/post-registration.js"
+  "/free-board": "pages/free-board.js"
 }

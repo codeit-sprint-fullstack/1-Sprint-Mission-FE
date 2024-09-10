@@ -6,9 +6,9 @@ import styles from "./PostItem.module.css";
 
 export default function PostItem({ post }) {
   return (
-    <a className={styles.postItem}>
+    <div className={styles.postItem}>
       <div className={styles.postHeader}>
-        <Link href={`/post-detail/${post.id}`}>
+        <Link href={`/post-detail/${post.id}`} passHref>
           <span className={styles.postTitle}>{post.title}</span>
         </Link>
         <Image
@@ -35,6 +35,6 @@ export default function PostItem({ post }) {
         </div>
         <span className={styles.likeCount}>💙 {post.likeCount}</span>
       </div>
-    </a>
+    </div>
   );
 }

@@ -18,7 +18,7 @@
   margin-bottom: 40px;
 }
 
-/* 프로필이미지,작성자,작성일자 박스 */
+/* 프로필 이미지, 작성자, 작성일자 박스 */
 .postAuthorDate {
   display: flex;
   justify-content: center;
@@ -26,7 +26,7 @@
   gap: 8px;
 }
 
-/* 프로필이미지와 작성자, 작성일자, 좋아요 수 */
+/* 프로필 이미지와 작성자, 작성일자, 좋아요 수 */
 .postFooter {
   display: flex;
   flex-direction: row;
@@ -40,7 +40,8 @@
 }
 
 /* 작성자 및 작성 일자 */
-.authorName .postDate {
+.authorName,
+.postDate {
   font-size: 14px;
   font-weight: 400;
   color: #4b5563;
@@ -60,14 +61,12 @@
 
 /* 게시물 제목 링크 스타일 */
 .postTitle {
-  color: inherit; /* 부모 요소의 색상 상속 */
-  text-decoration: none; /* 기본 밑줄 제거 */
+  color: #000000; /* 원하는 색상으로 변경 */
   cursor: pointer; /* 마우스 오버 시 손가락 커서 */
-  font-size: inherit; /* 상속된 폰트 크기 사용 */
-  font-weight: inherit; /* 상속된 폰트 두께 사용 */
+  font-size: 20px; /* 원하는 폰트 크기로 변경 */
+  font-weight: 600; /* 원하는 폰트 두께로 변경 */
 }
 
-/* 게시물에 마우스 올렸을 때 */
 .postTitle:hover {
-  text-decoration: underline;
+  text-decoration: underline; /* 마우스 오버 시 밑줄 표시 */
 }
