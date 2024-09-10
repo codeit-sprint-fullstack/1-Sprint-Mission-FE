@@ -5,17 +5,21 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from '@/styles/FreeBoard.module.css';
 
-export default function ArticleListHeard() {
+export default function ArticleListHeard({ keyword }) {
   return (
     <>
       <div className={styles.listHeader}>
-        <span className={styles.title}>게시글</span>
+        {keyword ? (
+          <span className={styles.title}>검색 결과</span>
+        ) : (
+          <span className={styles.title}>게시글</span>
+        )}
         <Link href='/freeboard/post'>
           <Image src={postBtn} alt='글쓰기 버튼' />
         </Link>
       </div>
       <div className={styles.menu}>
-        <SearchForm />
+        <SearchForm keyword={keyword} />
         <div className={styles.dropDown}>
           <div className={styles.dropDownText}>최신순</div>
           <Image

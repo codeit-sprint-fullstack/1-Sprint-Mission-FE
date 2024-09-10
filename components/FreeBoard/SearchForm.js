@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import searchIcon from '@/public/ic_search.png';
 import styles from '@/styles/SearchForm.module.css';
 import Image from 'next/image';
 
-export default function SearchForm({ initialValue = '' }) {
+export default function SearchForm({ keyword }) {
   const router = useRouter();
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState(keyword || '');
 
   function handleChange(e) {
     setValue(e.target.value);
@@ -18,8 +18,12 @@ export default function SearchForm({ initialValue = '' }) {
       router.push('/freeboard');
       return;
     }
-    router.push(`/freeboard/search?keyword=${value}`);
+    router.push(`/freeboard?keyword=${value}`);
   }
+
+  useEffect(() => {
+    setValue(keyword || '');
+  }, [keyword]);
 
   return (
     <>
