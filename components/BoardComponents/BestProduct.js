@@ -56,7 +56,7 @@ export default function BestProduct({ articles }) {
                 </div>
                 <div className={styles.info}>
                   <p className={styles.user}>
-                    총명한 판다 ♡ {article.favorite}
+                    총명한 판다{article.id} ♡ {article.favorite}
                   </p>
                   <p className={styles.date}>
                     {new Date(article.createdAt).toLocaleDateString()}

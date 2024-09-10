@@ -97,8 +97,8 @@ export default function ChatItem({ comments, onEdit }) {
                 className={styles.profileImg}
               />
               <div className={styles.infoText}>
-                <p>총명한 판다</p>
-                <p>{timeAgo(chatItem.createdAt)}</p>
+                <p className={styles.user}>총명한 판다{chatItem.id}</p>
+                <p className={styles.date}>{timeAgo(chatItem.createdAt)}</p>
               </div>
             </div>
           </div>

@@ -29,7 +29,7 @@ export default function BoardListItems({ articles }) {
                       alt="profile"
                       className={styles.profileImg}
                     />
-                    <p className={styles.user}>총명한 판다</p>
+                    <p className={styles.user}>총명한 판다{article.id}</p>
                     <p className={styles.date}>
                       {new Date(article.createdAt).toLocaleDateString()}
                     </p>

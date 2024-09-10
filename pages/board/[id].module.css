@@ -21,6 +21,7 @@
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
+  margin-bottom: 30px;
 }
 
 @media (max-width: 1199px) {
