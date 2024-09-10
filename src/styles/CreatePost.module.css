@@ -1,0 +1,14 @@
+.body {
+  margin-top: 2.4rem;
+  padding-left: 36rem;
+  padding-right: 36rem;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.4rem;
+}
