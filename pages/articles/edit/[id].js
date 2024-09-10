@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { fetchArticleById, updateArticle } from '../../src/api/api'; // api.js에서 함수 가져오기
+import { fetchArticleById, updateArticle } from '../../../src/api/api'; // api.js에서 함수 가져오기
 
 const EditArticle = () => {
   const router = useRouter();

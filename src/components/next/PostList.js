@@ -4,7 +4,7 @@ import SortOptions from './SortOptions';
 import PostItem from './PostItem';
 import WriteButton from './WriteButton';
 import styles from './PostList.module.css'; 
-import { fetchArticles } from '../../src/api/api'; 
+import { fetchArticles } from '../../api/api'; 
 
 const PostList = ({ initialPosts }) => {
   const [posts, setPosts] = useState(initialPosts || []); 
