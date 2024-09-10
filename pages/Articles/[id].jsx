@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
+import { dateFormatYYYYMMDD, elapsedTime } from "@/utils/dateFormat";
 import * as commentApi from "@/pages/api/comment";
 import * as articleApi from "@/pages/api/articles";
 import AlertModal from "@/components/Modals/AlertModal";
@@ -33,108 +33,146 @@ export async function getServerSideProps(context) {
   };
 }
 
-function Comment({ item, openAlert, setMessage }) {
+function Comment({ item, openAlert, setAlertMessage }) {
   const { content, user, createAt, updateAt } = item;
   const router = useRouter();
   //날짜 포멧
-  const createDate = dateFormatYYYYMMDD(createAt);
-  const updateDate = dateFormatYYYYMMDD(updateAt);
+  const createDate = elapsedTime(createAt);
+  const updateDate = elapsedTime(updateAt);
 
-  const [CommentDropdown, setCommentDropdown] = useState(false);
-  const [contentUpdate, setContentUpdate] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const [updateContent, setUpdateContent] = useState(false);
   const [value, setValue] = useState(content);
-
-  const openCommentDropdown = () => setCommentDropdown(!CommentDropdown);
+  const [confirmModal, setConfirmModal] = useState(false);
+  const [confirmMessage, setConfirmMessage] = useState(false);
 
   const handleChangeValue = (e) => {
     setValue(e.target.value);
   };
 
-  const handleUpdateContent = () => {
-    setContentUpdate(true);
-    setCommentDropdown(false);
+  const handleUpdateComment = () => {
+    setUpdateContent(true);
+    setOpenDropdown(false);
   };
   const handleUpdateCancel = () => {
-    setContentUpdate(false);
-    setCommentDropdown(true);
+    setUpdateContent(false);
   };
+  const handleDeleteComment = () => {
+    setOpenDropdown(false);
+    //삭제의 경우 confirm 모달을 통하여 확인하여 진행한다.
+    setConfirmMessage("댓글이 영구적으로 삭제됩니다. 삭제하시겠습니까?");
+    handleOpenConfirmModal();
+  };
+
+  const handleOpenDropdown = () => setOpenDropdown(!openDropdown);
+  const handleOpenConfirmModal = () => setConfirmModal(true);
+  const handleCloseConfirmModal = () => setConfirmModal(false);
 
   const updateComment = async () => {
     try {
       const res = await commentApi.updateComment(item.id, { content: value });
       if (res) {
-        setContentUpdate(false);
+        setUpdateContent(false);
         router.reload();
       }
     } catch (error) {
       console.log(error);
-      setMessage("댓글 수정에 실패했습니다." + error.name);
+      setAlertMessage("댓글 수정에 실패했습니다." + error.name);
+      openAlert();
+    }
+  };
+
+  const deleteComment = async () => {
+    try {
+      const res = await commentApi.deleteComment(item.id);
+      if (res) {
+        setAlertMessage("댓글이 삭제 되었습니다.");
+        handleCloseConfirmModal();
+        openAlert();
+        router.reload();
+      }
+    } catch (error) {
+      console.log(error);
+      setAlertMessage("댓글 삭제에 실패했습니다." + error.name);
       openAlert();
     }
   };
 
   return (
-    <div className={styles.comment_item_box}>
-      <div className={styles.comment_item_content_box}>
-        {contentUpdate ? (
-          <textarea
-            className={styles.comment_content_textarea}
-            name="content"
-            onChange={handleChangeValue}
-            value={value || ""}
-          />
-        ) : (
-          <p className={styles.comment_content}>{content}</p>
-        )}
-        {!contentUpdate && (
-          <Image
-            onClick={openCommentDropdown}
-            src={ic_kebab}
-            width={24}
-            height={24}
-            alt="수정/삭제이미지"
-          />
-        )}
+    <>
+      <ConfirmModal
+        onConfirm={deleteComment}
+        onClose={handleCloseConfirmModal}
+        isOpen={confirmModal}
+        message={confirmMessage}
+      />
+      <div className={styles.comment_item_box}>
+        <div className={styles.comment_item_content_box}>
+          {updateContent ? (
+            <textarea
+              className={styles.comment_content_textarea}
+              name="content"
+              onChange={handleChangeValue}
+              value={value || ""}
+            />
+          ) : (
+            <p className={styles.comment_content}>{content}</p>
+          )}
+          {!updateContent && (
+            <Image
+              onClick={handleOpenDropdown}
+              src={ic_kebab}
+              width={24}
+              height={24}
+              alt="수정/삭제이미지"
+            />
+          )}
 
-        {CommentDropdown && <DropdownData onUpdate={handleUpdateContent} />}
-      </div>
-      <div className={styles.comment_content_data_box}>
-        <Image
-          src={ic_profile}
-          width={40}
-          height={40}
-          alt="사용자프로필이미지"
-        />
-        <div className={styles.comment_content_data}>
-          <span className={styles.comment_name}>{user.name}</span>
-          <div>
-            <span className={styles.comment_date}>{createDate}</span>
-            {updateDate !== createDate && (
-              <span className={styles.comment_update_date}>
-                ( 수정됨 {updateDate} )
-              </span>
-            )}
-          </div>
+          {openDropdown && (
+            <DropdownData
+              onUpdate={handleUpdateComment}
+              onDelete={handleDeleteComment}
+            />
+          )}
         </div>
-
-        {contentUpdate && (
-          <div className={styles.comment_update_box}>
-            <button
-              onClick={handleUpdateCancel}
-              className={styles.comment_data_cancel_btn}
-            >
-              취소
-            </button>
-            <button
-              onClick={updateComment}
-              className={styles.comment_data_save_btn}
-            >
-              수정
-            </button>
+        <div className={styles.comment_content_data_box}>
+          <Image
+            src={ic_profile}
+            width={40}
+            height={40}
+            alt="사용자프로필이미지"
+          />
+          <div className={styles.comment_content_data}>
+            <span className={styles.comment_name}>{user.name}</span>
+            <div>
+              <span className={styles.comment_date}>{createDate}</span>
+              {createAt !== updateAt && (
+                <span className={styles.comment_update_date}>
+                  ( 수정됨 {updateDate} )
+                </span>
+              )}
+            </div>
           </div>
-        )}
+
+          {updateContent && (
+            <div className={styles.comment_update_box}>
+              <button
+                onClick={handleUpdateCancel}
+                className={styles.comment_data_cancel_btn}
+              >
+                취소
+              </button>
+              <button
+                onClick={updateComment}
+                className={styles.comment_data_save_btn}
+              >
+                수정
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -152,6 +190,7 @@ function DetailArticle({ article }) {
   const [Alert, setAlert] = useState(false);
   const [Confirm, setConfirm] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [confirmMessage, setConfirmMessage] = useState("");
 
   // 모달 오픈상태 값
   const openAlertModal = () => setAlert(true);
@@ -194,11 +233,11 @@ function DetailArticle({ article }) {
       } else {
         //모달 오픈
         setAlertMessage("댓글생성에 실패했습니다.");
-        openModal();
+        openAlertModal();
       }
     } catch (error) {
       setAlertMessage("댓글생성에 실패했습니다." + error.name);
-      openModal();
+      openAlertModal();
       console.log(error);
     }
   };
@@ -228,7 +267,7 @@ function DetailArticle({ article }) {
         onConfirm={deleteArticle}
         onClose={closeConfirmModal}
         isOpen={Confirm}
-        message={alertMessage}
+        message={confirmMessage}
       />
       <main>
         <div className={styles.article_item_box}>
@@ -246,8 +285,8 @@ function DetailArticle({ article }) {
                 handleUpdate={updateArticle}
                 handleDelete={() => {
                   //삭제의 경우 confirm 모달을 통하여 확인하여 진행한다.
-                  setAlertMessage(
-                    "게시글이 영구적으로 삭제됩니다. 삭제 하시겠습니까?"
+                  setConfirmMessage(
+                    "게시글이 영구적으로 삭제됩니다. 삭제하시겠습니까?"
                   );
                   openConfirmModal();
                 }}
@@ -304,7 +343,7 @@ function DetailArticle({ article }) {
                 key={item.id}
                 item={item}
                 openAlert={openAlertModal}
-                setMessage={setAlertMessage}
+                setAlertMessage={setAlertMessage}
               />
             ))}
             {/* 게시글의 등록된 댓글이 없다면 아래의 내용을 렌더링한다. */}
