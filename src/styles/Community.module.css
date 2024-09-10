@@ -2,7 +2,26 @@
   color: var(--gray800);
   margin-top: 2.4rem;
   padding-left: 20rem;
+  padding-right: 20rem;
 }
 .postTitle {
   margin: 2.4rem 0;
+}
+.mainTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.postButton {
+  width: 8.8rem;
+  height: 4.2rem;
+  border-radius: 0.8rem;
+  background-color: var(--primary100);
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
 }
