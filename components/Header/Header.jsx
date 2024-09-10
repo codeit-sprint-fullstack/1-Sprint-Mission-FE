@@ -1,8 +1,6 @@
 import Nav from "../Nav/Nav";
 import styles from "./Header.module.scss";
 import Link from "next/link";
-import logoImg from "../../public/assets/logo.svg";
-import Image from "next/image";
 import Button from "../Button/Button";
 
 export default function Header() {
@@ -15,13 +13,7 @@ export default function Header() {
       <div className={styles.container}>
         <div className={styles.left}>
           <Link href="/">
-            <Image
-              className="logo"
-              src={logoImg}
-              alt="panda market logo"
-              width={153}
-              height={51}
-            />
+            <div className={styles.logo}></div>
           </Link>
           <Nav links={pages} />
         </div>

@@ -14,7 +14,7 @@ function ArticleCard({ article, userName }) {
   return (
     <li className={styles.ArticleCard}>
       <div className={styles.top}>
-        <Image src={bestBadge} alt="best badge" />
+        <Image src={bestBadge} alt="best badge icon" />
         <span>Best</span>
       </div>
       <div className={styles.middle}>
@@ -59,7 +59,7 @@ export default function BestArticles() {
   return (
     <ul className={styles.BestArticles}>
       {list.map((article) => {
-        return <ArticleCard article={article} />;
+        return <ArticleCard article={article} key={article.id} />;
       })}
     </ul>
   );

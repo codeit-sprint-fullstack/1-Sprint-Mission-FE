@@ -19,7 +19,7 @@ export default function ImageContainer({
         "--border-color": borderColor,
       }}
     >
-      <Image src={src} alt={alt} layout="fill" objectFit="contain" />
+      <Image src={src} alt={alt} fill />
     </div>
   );
 }

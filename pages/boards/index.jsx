@@ -1,4 +1,8 @@
-import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
+import {
+  QueryClient,
+  dehydrate,
+  useInfiniteQuery,
+} from "@tanstack/react-query";
 import BestArticles from "@/components/BestArticles/BestArticles";
 import Head from "next/head";
 import Button from "@/components/Button/Button";
@@ -6,7 +10,7 @@ import ArticleList from "@/components/ArticleList/ArticleList";
 import { getArticleList } from "@/lib/api";
 import styles from "@/styles/pages/Board.module.scss";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import DropDown from "@/components/DropDown/DropDown";
 
@@ -21,7 +25,12 @@ export async function getServerSideProps() {
       }),
       queryClient.prefetchQuery({
         queryKey: ["articles", "recent"],
-        queryFn: () => getArticleList({ sortBy: "recent" }),
+        queryFn: () => {
+          getArticleList({ sortBy: "recent" });
+          return {
+            pages: [data],
+          };
+        },
       }),
     ]);
 
@@ -44,17 +53,21 @@ export default function Boards() {
   const [sortBy, setSortBy] = useState("recent");
 
   const {
-    data: allArticles,
-    isLoading,
+    data: articleData,
+    isFetching,
     isError,
-  } = useQuery({
-    queryKey: ["articles", sortBy, keyword || "none"],
-    queryFn: () => getArticleList({ keyword, sortBy }),
-    enabled: !!sortBy,
+  } = useInfiniteQuery({
+    queryKey: ["articles", sortBy, keyword],
+    queryFn: ({ pageParams = null }) =>
+      getArticleList({ keyword, sortBy, lastId: pageParams }),
+    getNextPageParam: (lastPage) => {
+      return lastPage.nextCursor || undefined;
+    },
+    keepPreviousData: true,
   });
-
-  if (isLoading) return <p>로딩중</p>;
+  if (isFetching) return <p>로딩중</p>;
   if (isError) return <p>에러</p>;
+  const pages = articleData?.pages || [];
 
   return (
     <>
@@ -76,7 +89,7 @@ export default function Boards() {
           <SearchBar setKeyword={setKeyword} />
           <DropDown setSortBy={setSortBy} sortBy={sortBy} />
         </div>
-        <ArticleList data={allArticles} />
+        <ArticleList data={pages} />
       </section>
     </>
   );
