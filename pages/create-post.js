@@ -12,13 +12,23 @@ export default function CreatePost() {
     console.log("내용:", content);
   };
 
+  const isFormValid = title !== "" && content !== "";
+
   return (
     <form className={styles.body} onSubmit={handleSubmit}>
       <div className={styles.header}>
-        <span>게시글 쓰기</span>
-        <button type="submit">등록</button>
+        <span className="text-xl bold">게시글 쓰기</span>
+        <button
+          type="submit"
+          className={`${styles.postButton} ${
+            isFormValid ? styles.active : ""
+          } text-lg semibold`}
+          disabled={!isFormValid}
+        >
+          등록
+        </button>
       </div>
-      <div className={styles.formGroup}>
+      <div className={`${styles.formGroup} text-2lg bold`}>
         <label htmlFor="title">*제목</label>
         <input
           type="text"
@@ -29,7 +39,7 @@ export default function CreatePost() {
           className={styles.input}
         />
       </div>
-      <div className={styles.formGroup}>
+      <div className={`${styles.formGroup} text-2lg bold`}>
         <label htmlFor="content">*내용</label>
         <textarea
           id="content"
