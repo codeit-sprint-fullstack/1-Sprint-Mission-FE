@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styles from './SearchForm.module.css';
+import Dropdown from './Dropdown';
 
-export default function SearchForm() {
+export default function SearchForm({ onOrderChange }) {
   // SearchForm component
   // 검색 폼을 제공하는 컴포넌트
   // prop으로 initialValue를 받아 검색어의 초기값을 설정한다.
@@ -25,6 +26,13 @@ export default function SearchForm() {
     router.push(`/freeboard?q=${value}`);
   };
 
+  const handleOptionSelect = (selectedOption) => {
+    const newOrder = selectedOption === '최신순' ? 'recent' : 'oldest';
+    onOrderChange(newOrder); // 드롭다운에서 선택된 order 값 전달
+  };
+
+  const options = ['최신순', '오래된 순'];
+
   return (
     <form className={styles.searchForm} onSubmit={handleSubmit}>
       <input
@@ -35,7 +43,7 @@ export default function SearchForm() {
         onChange={handleChange}
         autoComplete="off"
       />
-      <button>최신순</button>
+      <Dropdown options={options} onOptionSelect={handleOptionSelect} />
     </form>
   );
 }
