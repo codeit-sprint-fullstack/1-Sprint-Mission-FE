@@ -65,6 +65,26 @@
   margin-top: 40px;
 }
 
+
+.commentFormContainer {
+  margin-top: 35px; /* 본문으로부터 35px 아래 */
+  margin-bottom: 30px;
+}
+
+.replyIcon {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px; /* reply.svg 아래에 10px 간격 */
+}
+
+.noCommentsText {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  color: #9CA3AF;
+  line-height: 26px;
+}
+
 /* 미디어 쿼리 유지 */
 @media (min-width: 744px) and (max-width: 1199px) {
   .postDetailContainer {
