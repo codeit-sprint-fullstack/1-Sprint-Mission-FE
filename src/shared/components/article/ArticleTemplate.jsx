@@ -24,7 +24,9 @@ export default function ArticleTemplate({ isBest, article }) {
       {isBest ? (
         <div className={styles['article-info']}>
           <div className={styles['article-meta']}>
-            <div className={styles['article-user']}>{article.user.name}</div>
+            {article.user ? (
+              <div className={styles['article-user']}>{article.user.name}</div>
+            ) : null}
             <div className={styles['favorite-count']}>
               <div className={styles['favorite-image']}>
                 <Image src="/favorite.svg" alt="favorite-count" fill />
@@ -40,9 +42,13 @@ export default function ArticleTemplate({ isBest, article }) {
         <div className={styles['article-info']}>
           <div className={styles['article-meta']}>
             <div className={styles['article-user-image']}>
-              <Image src={article.user.image} fill alt="item-image" />
+              {article.user ? (
+                <Image src={article.user.image} fill alt="item-image" />
+              ) : null}
             </div>
-            <div className={styles['article-user']}>{article.user.name}</div>
+            {article.user ? (
+              <div className={styles['article-user']}>{article.user.name}</div>
+            ) : null}
             <div className={styles['article-updated']}>
               {moment(article.createdAt).format('YYYY. MM. DD')}
             </div>

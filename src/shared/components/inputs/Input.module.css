@@ -27,6 +27,20 @@
   resize: none;
 }
 
-.textarea-input-content:focus {
+.textarea-input-content:focus,
+.textarea-input-comment:focus {
   outline: 1px solid var(--color-blue-100);
+}
+
+.textarea-input-comment {
+  width: 1200px;
+  height: 104px;
+  border-radius: 12px;
+  padding: 16px 24px 16px 24px;
+  background-color: #f3f4f6;
+  border: 0;
+  color: var(--color-gray-100);
+  font-weight: 400;
+  font-size: 1rem;
+  resize: none;
 }
