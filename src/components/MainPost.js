@@ -11,6 +11,7 @@ const MainPost = ({
   likes = 9999,
   nickname = "총명한 판다",
 }) => {
+  const formattedDate = new Date(date).toLocaleDateString();
   return (
     <div className={styles.mainPost}>
       <div className={styles.postLeft}>
@@ -23,7 +24,9 @@ const MainPost = ({
             height={24}
           />
           <span className="text-md regular">{nickname}</span>
-          <span className={`${styles.date} text-md regular`}>{date}</span>
+          <span className={`${styles.date} text-md regular`}>
+            {formattedDate}
+          </span>
         </div>
       </div>
       <div className={styles.postRight}>

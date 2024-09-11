@@ -33,6 +33,7 @@ export async function getServerSideProps() {
 
 export default function Community({ posts }) {
   const [searchValue, setSearchValue] = useState("");
+  const [visibleCount, setVisibleCount] = useState(4);
 
   const handleSearchChange = (value) => {
     setSearchValue(value);
@@ -44,6 +45,10 @@ export default function Community({ posts }) {
 
   const handleClear = () => {
     setSearchValue("");
+  };
+
+  const handleShowMore = () => {
+    setVisibleCount((prevCount) => prevCount + 4);
   };
 
   const bestPosts = posts.slice(0, 3);
@@ -71,7 +76,19 @@ export default function Community({ posts }) {
         />
         <Dropdown />
       </div>
-      <MainPost />
+      <div className={styles.mainPostContainer}>
+        {posts.slice(0, visibleCount).map((post) => (
+          <MainPost key={post.id} title={post.title} date={post.createdAt} />
+        ))}
+      </div>
+      {visibleCount < posts.length && (
+        <button
+          className={`${styles.loadMoreButton} text-lg semibold`}
+          onClick={handleShowMore}
+        >
+          더 보기
+        </button>
+      )}
     </div>
   );
 }
