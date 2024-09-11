@@ -4,7 +4,8 @@
     "paths": {
       "@errors/*": ["errors/*"],
       "@data/*": ["data/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@/*": ["./*"]
     }
   }
 }

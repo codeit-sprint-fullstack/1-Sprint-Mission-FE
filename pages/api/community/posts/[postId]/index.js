@@ -3,7 +3,7 @@ import {
   CommonException,
   HttpStatus,
   ExceptionCode,
-} from "@/errors/CustomExceptions";
+} from "@/errors";
 import { getPostById, updatePost, deletePost } from "@/data/postData";
 import { handleError } from "@/utils/handleError";
 
