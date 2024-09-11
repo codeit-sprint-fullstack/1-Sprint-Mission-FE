@@ -17,15 +17,13 @@
   font-weight: 700;
 }
 
-/* 검색 결과 없음 표시 스타일 */
 .noPosts {
-    margin-top: 3px;
-    color: red;
-    font-weight: bold;
-    font-size: 18px;
-    transform: translateX(15px);
-  }
-  
+  margin-top: 3px;
+  color: red;
+  font-weight: bold;
+  font-size: 18px;
+  transform: translateX(15px);
+}
 
 .searchSortContainer {
   display: flex;
@@ -38,11 +36,22 @@
   transform: translateY(-10px);
 }
 
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* PostItem 간의 간격을 20px로 설정 */
+}
+
 .postItem {
   background-color: #f9fafb;
   padding: 16px;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
+  transition: transform 0.3s ease; 
+}
+
+.postItem.newPost {
+  transform: translateY(-20px); /* 새로 추가된 PostItem이 위로 올라옴 */
 }
 
 @media (min-width: 744px) and (max-width: 1199px) {

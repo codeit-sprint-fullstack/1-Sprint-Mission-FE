@@ -11,7 +11,12 @@ const PostList = ({ initialPosts }) => {
   const [keyword, setKeyword] = useState(''); 
   const [sortOrder, setSortOrder] = useState('recent'); 
 
-  // 데이터가 없을 때 보여줄 기본값
+  // 새 게시글 추가 함수
+  const addNewPost = (newPost) => {
+    setPosts([newPost, ...posts]); // 새로운 게시글을 맨 앞에 추가
+  };
+
+  // 데이터가 없을 때 보여줄 기본값 - 테스트용
   const defaultPost = {
     title: '맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?',
     author: '총명한 판다',
@@ -32,9 +37,9 @@ const PostList = ({ initialPosts }) => {
   // 게시글 정렬 처리
   const sortedPosts = filteredPosts.sort((a, b) => {
     if (sortOrder === 'recent') {
-      return new Date(b.date) - new Date(a.date); // 최근순
+      return new Date(b.date) - new Date(a.date); 
     } else if (sortOrder === 'popular') {
-      return parseInt(b.likes) - parseInt(a.likes); // 인기순
+      return parseInt(b.likes) - parseInt(a.likes); 
     }
     return 0;
   });
@@ -43,7 +48,7 @@ const PostList = ({ initialPosts }) => {
     <div className={styles.postList}>
       <div className={styles.titleWriteContainer}>
         <h2 className={styles.postTitle}>게시글</h2>
-        <WriteButton />
+        <WriteButton onNewPost={addNewPost} /> {/* 새 게시글 추가 */}
       </div>
 
       <div className={styles.searchSortContainer}>
@@ -65,7 +70,6 @@ const PostList = ({ initialPosts }) => {
               date={post.date}
               likes={post.likes}
               image={post.image}
-              isDefault={posts.length === 0}  // 기본값 여부를 전달
             />
           ))}
       </div>
@@ -89,3 +93,4 @@ export async function getServerSideProps() {
 }
 
 export default PostList;
+
