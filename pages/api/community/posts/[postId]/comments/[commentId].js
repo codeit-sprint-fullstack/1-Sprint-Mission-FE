@@ -3,13 +3,9 @@ import {
   CommonException,
   HttpStatus,
   ExceptionCode,
-} from "../../../../../../errors/CustomExceptions";
-import {
-  getCommentById,
-  updateComment,
-  deleteComment,
-} from "../../../../../../data/postData";
-import { handleError } from "../../../../utils/handleError";
+} from "@/errors/CustomExceptions";
+import { getCommentById, updateComment, deleteComment } from "@/data/postData";
+import { handleError } from "@/utils/handleError";
 
 export default async function handler(req, res) {
   try {
