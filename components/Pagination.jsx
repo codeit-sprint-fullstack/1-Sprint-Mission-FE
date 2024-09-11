@@ -7,7 +7,7 @@ import Image from "next/image";
 function MidPagingBtn({ num, onChange, pageNum }) {
   const handlePage = (e) => {
     const name = e.target.name;
-    onChange(name, num);
+    onChange({ name: num });
   };
   return (
     <button

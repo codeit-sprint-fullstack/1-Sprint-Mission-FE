@@ -6,11 +6,11 @@ import Image from "next/image";
 import DropdownBox from "@/components/DropdownList/DropdownBox";
 
 function SearchBar({ onChange, orderBy, isMobile = false }) {
-  const [keyword, setKeyword] = useState();
+  const [keyword, setKeyword] = useState("");
 
   const handleChangeOrder = (e) => {
     const value = e.target.value;
-    onChange("orderBy", value);
+    onChange({ orderBy: value });
   };
 
   const handleChangeKeyword = (e) => {
@@ -19,7 +19,7 @@ function SearchBar({ onChange, orderBy, isMobile = false }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onChange("keyword", keyword);
+    onChange({ keyword });
   };
 
   return (

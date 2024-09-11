@@ -61,13 +61,6 @@ export default function Home({
   const [bestProducts, setBestProducts] = useState(bestItems);
   const [totalDataCount, setTotalDataCount] = useState(productsTotalCount);
 
-  const handleChange = (name, value) => {
-    setParams((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
   const handleChangeParams = (obj) => {
     setParams((prev) => ({
       ...prev,
@@ -75,7 +68,7 @@ export default function Home({
     }));
   };
 
-  const onChangeBestParams = (name, value) => {
+  const handleChangeBestParams = (name, value) => {
     setBestParams((prev) => ({
       ...prev,
       [name]: value,
@@ -113,15 +106,15 @@ export default function Home({
       switch (view) {
         case "isDesktop":
           handleChangeParams({ limit: 10, offset: 1 });
-          onChangeBestParams("limit", 4);
+          handleChangeBestParams("limit", 4);
           break;
         case "isTablet":
           handleChangeParams({ limit: 6, offset: 1 });
-          onChangeBestParams("limit", 2);
+          handleChangeBestParams("limit", 2);
           break;
         case "isMobile":
           handleChangeParams({ limit: 4, offset: 1 });
-          onChangeBestParams("limit", 1);
+          handleChangeBestParams("limit", 1);
           break;
         default:
       }
@@ -146,12 +139,12 @@ export default function Home({
           <SearchBar
             isMobile={view === "isMobile" ? true : false}
             orderBy={params.orderBy}
-            onChange={handleChange}
+            onChange={handleChangeParams}
           />
           <ProductList items={products} favorite={false} />
         </div>
         <Pagination
-          onChange={handleChange}
+          onChange={handleChangeParams}
           params={params}
           totalCount={totalDataCount}
         />

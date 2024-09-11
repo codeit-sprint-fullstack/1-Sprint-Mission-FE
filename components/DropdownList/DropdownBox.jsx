@@ -18,6 +18,7 @@ function DropdownBox({ onOrderChange, orderBy }) {
     recent: "최신순",
     favorite: "좋아요순",
   };
+  //클라이언트 뷰 사이즈를 리턴받는다. 예 : isDesktop
   const view = useWindowResize();
 
   return (

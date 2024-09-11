@@ -4,6 +4,7 @@ function ConfirmModal({ message = "", isOpen, onClose, onConfirm }) {
   const dialogRef = useRef(null);
 
   const handleClose = () => onClose();
+  //확인 버튼을 클릭하면 전달받은 콜백함수를 실행한다.
   const handleConfirm = () => onConfirm();
 
   useEffect(() => {
