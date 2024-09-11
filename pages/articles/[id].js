@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/post-detail.module.css';
+import styles from '../../styles/post-detail.module.css';
 
 const PostDetail = ({ post }) => {
   // 기본값으로 사용할 게시글 정보 - 테스트용

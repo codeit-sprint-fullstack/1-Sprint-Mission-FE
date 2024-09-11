@@ -3,39 +3,69 @@
   width: 100%;
   max-width: 1200px;
   margin: auto;
+  position: relative; /* 제목과 kebab.svg를 함께 배치하기 위해 */
 }
 
 .postTitle {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
+  line-height: 32px;
   margin-bottom: 16px;
+  position: relative;
 }
 
-.postImage {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 20px;
+.kebabIcon {
+  position: absolute;
+  right: 0;
+  top: 20px;
 }
 
 .postInfo {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #E5E7EB;
+  padding-bottom: 40px;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 16px;
+  align-items: center;
 }
 
-.postAuthor,
-.postDate,
+.profileIcon {
+  margin-right: 20px;
+  vertical-align: middle;
+}
+
+.postAuthor {
+  font-size: 14px;
+  color: #4B5563;
+  margin-right: 20px;
+}
+
+.postDate {
+  font-size: 14px;
+  color: #9CA3AF;
+  margin-right: 30px; /* 날짜와 line.svg 사이 간격 */
+}
+
+.lineIcon {
+  margin-right: 30px; /* line.svg와 하트 사이 간격 */
+}
+
+.heartIcon {
+  margin-right: 10px;
+}
+
 .postLikes {
   font-size: 16px;
-  color: #4b5563;
+  color: #6B7280;
 }
 
 .postContent {
   font-size: 18px;
-  line-height: 1.6;
+  font-weight: 400;
+  color: #1F2937;
+  margin-top: 40px;
 }
 
+/* 미디어 쿼리 유지 */
 @media (min-width: 744px) and (max-width: 1199px) {
   .postDetailContainer {
     padding: 0 16px;
@@ -57,3 +87,4 @@
     gap: 8px;
   }
 }
+
