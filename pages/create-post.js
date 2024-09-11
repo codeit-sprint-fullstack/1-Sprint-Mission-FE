@@ -1,15 +1,24 @@
 import styles from "@styles/CreatePost.module.css";
 import { useState } from "react";
+import { useRouter } from "next/router";
+import axios from "@/lib/axios";
 
 export default function CreatePost({ createMode = "게시글 쓰기" }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("제목:", title);
-    console.log("내용:", content);
+    try {
+      const res = await axios.post("/articles", { title, content });
+      const postId = res.data.id;
+
+      router.push(`/community/${postId}`);
+    } catch (error) {
+      console.error("게시글 등록에 실패했습니다:", error);
+    }
   };
 
   const isFormValid = title !== "" && content !== "";
