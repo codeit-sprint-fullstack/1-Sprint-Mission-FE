@@ -51,6 +51,10 @@ export default function Community({ posts }) {
     setVisibleCount((prevCount) => prevCount + 4);
   };
 
+  const searchedPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
   const bestPosts = posts.slice(0, 3);
 
   return (
@@ -77,11 +81,11 @@ export default function Community({ posts }) {
         <Dropdown />
       </div>
       <div className={styles.mainPostContainer}>
-        {posts.slice(0, visibleCount).map((post) => (
+        {searchedPosts.slice(0, visibleCount).map((post) => (
           <MainPost key={post.id} title={post.title} date={post.createdAt} />
         ))}
       </div>
-      {visibleCount < posts.length && (
+      {visibleCount < searchedPosts.length && (
         <button
           className={`${styles.loadMoreButton} text-lg semibold`}
           onClick={handleShowMore}
