@@ -3,10 +3,14 @@ import ActionButton from '@shared/components/Buttons/ActionButton';
 import Input from '@shared/components/inputs/Input';
 import styles from '@shared/components/article/CreateArticle.module.css';
 import { useEffect, useState } from 'react';
+import { postArticle } from '@utils/api/api';
+import { useRouter } from 'next/navigation';
 
 export default function CreateArticle() {
   const [inputValue, setInputValue] = useState({ title: '', content: '' });
   const [inputValid, setInputValid] = useState(true);
+
+  const router = useRouter();
 
   const handleTitleOnChange = (e) => {
     setInputValue((prev) => ({
@@ -22,6 +26,14 @@ export default function CreateArticle() {
     }));
   };
 
+  const handlePostClick = () => {
+    postArticle(inputValue)
+      .then((res) => {
+        router.push(res.id);
+      })
+      .catch((error) => console.log(error));
+  };
+
   useEffect(() => {
     if (inputValue.title && inputValue.content) {
       setInputValid(false);
@@ -32,7 +44,12 @@ export default function CreateArticle() {
     <div className={styles['container']}>
       <div className={styles['create-header']}>
         <div className={styles['create-title']}>게시글 쓰기</div>
-        <ActionButton content={'등록'} type={'post'} disabled={inputValid} />
+        <ActionButton
+          content={'등록'}
+          type={'post'}
+          disabled={inputValid}
+          onClick={handlePostClick}
+        />
       </div>
       <div className={styles['input-label']}>*제목</div>
       <div className={styles['input-container']}>
