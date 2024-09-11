@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { fetchArticleById } from '../../src/api/api'; 
+import { fetchArticleById } from '../../src/api/api';
 import styles from '../../styles/post-detail.module.css';
 
 const PostDetail = () => {
   const router = useRouter();
-  const { id } = router.query; 
+  const { id } = router.query;
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -14,7 +14,7 @@ const PostDetail = () => {
       fetchArticleById(id)
         .then((data) => {
           setPost(data);
-          setLoading(false); 
+          setLoading(false);
         })
         .catch((error) => {
           console.error('Error fetching article:', error);
@@ -31,6 +31,9 @@ const PostDetail = () => {
     return <div>게시글을 불러오는 중 오류가 발생했습니다.</div>;
   }
 
+  const randomNickname = '푸바오'; 
+  const randomLikes = Math.floor(Math.random() * 10000); 
+
   return (
     <div className={styles.postDetailContainer}>
       {/* 제목과 Kebab 아이콘 */}
@@ -42,11 +45,11 @@ const PostDetail = () => {
       {/* 프로필 및 기타 정보 */}
       <div className={styles.postInfo}>
         <img src="/image/mini_profile.svg" alt="Mini Profile" className={styles.profileIcon} />
-        <span className={styles.author}>{post.author}</span>
+        <span className={styles.author}>{post.author || randomNickname}</span> 
         <span className={styles.date}>{post.date}</span>
         <img src="/image/line.svg" alt="Line" className={styles.lineIcon} />
         <img src="/image/heart.svg" alt="Likes" className={styles.heartIcon} />
-        <span className={styles.likes}>{post.likes}</span>
+        <span className={styles.likes}>{post.likes !== undefined ? post.likes : randomLikes}</span> 
       </div>
 
       {/* 게시글 본문 */}

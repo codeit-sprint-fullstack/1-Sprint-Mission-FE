@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { createArticle } from '../../src/api/api'; 
+import { createArticle } from '../../src/api/api';
 import styles from './RegisterButton.module.css';
 
 const RegisterButton = ({ title, content }) => {
@@ -16,8 +16,10 @@ const RegisterButton = ({ title, content }) => {
     setIsSubmitting(true);
 
     try {
-      // API를 통해 게시글 생성 요청
       const newPost = await createArticle({ title, content });
+
+      // 새 게시글을 localStorage에 저장
+      localStorage.setItem('newPost', JSON.stringify(newPost));
 
       // 게시글이 성공적으로 등록되면 상세 페이지로 이동
       router.push(`/articles/${newPost.id}`);
@@ -32,9 +34,9 @@ const RegisterButton = ({ title, content }) => {
   return (
     <button
       className={styles.registerButton}
-      type="button" 
-      onClick={handleSubmit} 
-      disabled={isSubmitting || !title || !content} // 제출 중이거나 제목/내용이 없으면 비활성화
+      type="button"
+      onClick={handleSubmit}
+      disabled={isSubmitting || !title || !content}
     >
       {isSubmitting ? '등록 중...' : '등록'}
     </button>

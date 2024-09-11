@@ -1,45 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import SortOptions from './SortOptions';
 import PostItem from './PostItem';
 import WriteButton from './WriteButton';
-import styles from './PostList.module.css'; 
-import { fetchArticles } from '../../api/api'; 
+import styles from './PostList.module.css';
+import { fetchArticles } from '../../api/api';
 
 const PostList = ({ initialPosts }) => {
-  const [posts, setPosts] = useState(initialPosts || []); 
-  const [keyword, setKeyword] = useState(''); 
-  const [sortOrder, setSortOrder] = useState('recent'); 
+  const [posts, setPosts] = useState(initialPosts || []);
+  const [keyword, setKeyword] = useState('');
+  const [sortOrder, setSortOrder] = useState('recent');
 
   // 새 게시글 추가 함수
   const addNewPost = (newPost) => {
     setPosts([newPost, ...posts]); // 새로운 게시글을 맨 앞에 추가
   };
 
-  // 데이터가 없을 때 보여줄 기본값 - 테스트용
-  const defaultPost = {
-    title: '맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?',
-    author: '총명한 판다',
-    date: '2024.04.16',
-    likes: '9999+',
-    image: '/image/default.svg',
-  };
+  // 새 게시글 감지 (localStorage를 통해 등록된 새 게시물 확인)
+  useEffect(() => {
+    const storedNewPost = localStorage.getItem('newPost');
+    if (storedNewPost) {
+      const parsedPost = JSON.parse(storedNewPost);
+      addNewPost(parsedPost);
+      localStorage.removeItem('newPost'); // 새 게시물을 목록에 추가한 후 localStorage에서 삭제
+    }
+  }, []);
 
-  const combinedPosts = posts.length > 0 ? posts : [defaultPost];
-
-  // 검색어에 따른 게시글 필터링
   const filteredPosts = keyword
-    ? combinedPosts.filter((post) =>
+    ? posts.filter((post) =>
         post.title.toLowerCase().includes(keyword.toLowerCase())
       )
-    : combinedPosts;
+    : posts;
 
-  // 게시글 정렬 처리
+
   const sortedPosts = filteredPosts.sort((a, b) => {
     if (sortOrder === 'recent') {
-      return new Date(b.date) - new Date(a.date); 
+      return new Date(b.date) - new Date(a.date);
     } else if (sortOrder === 'popular') {
-      return parseInt(b.likes) - parseInt(a.likes); 
+      return parseInt(b.likes) - parseInt(a.likes);
     }
     return 0;
   });
@@ -48,12 +46,12 @@ const PostList = ({ initialPosts }) => {
     <div className={styles.postList}>
       <div className={styles.titleWriteContainer}>
         <h2 className={styles.postTitle}>게시글</h2>
-        <WriteButton onNewPost={addNewPost} /> {/* 새 게시글 추가 */}
+        <WriteButton onNewPost={addNewPost} />
       </div>
 
       <div className={styles.searchSortContainer}>
         <SearchBar setKeyword={setKeyword} />
-        <SortOptions setSortOrder={setSortOrder} /> 
+        <SortOptions setSortOrder={setSortOrder} />
       </div>
 
       {keyword && sortedPosts.length === 0 && (
