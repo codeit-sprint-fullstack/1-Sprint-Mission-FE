@@ -10,7 +10,11 @@ import axios from "@/lib/axios";
 export async function getServerSideProps() {
   try {
     const res = await axios.get("/articles");
-    const posts = res.data.results;
+    let posts = res.data.articles;
+
+    if (!posts) {
+      posts = [];
+    }
 
     return {
       props: {
