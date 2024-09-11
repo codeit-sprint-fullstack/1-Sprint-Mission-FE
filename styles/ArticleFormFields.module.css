@@ -1,3 +1,25 @@
+.postLayout {
+  max-width: 1200px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  min-height: 1200px;
+}
+
+.header {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #1f2937;
+}
+
 .sectionTitle {
   font-size: 18px;
   font-weight: 700;

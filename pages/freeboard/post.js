@@ -1,4 +1,3 @@
-import styles from '@/styles/Post.module.css';
 import ArticleFormFields from '@/utils/ArticleFormFields';
 import { useState } from 'react';
 import axios from 'axios';
@@ -35,19 +34,23 @@ export default function Post() {
 
   return (
     <>
-      <div className={styles.postLayout}>
-        <div className={styles.header}>
-          <span className={styles.title}>게시글 쓰기</span>
-          <Button disabled={!canSubmit} onClick={handleSubmit} label={'등록'} />
-        </div>
-        <ArticleFormFields
-          titleValue={titleValue}
-          setTitleValue={setTitleValue}
-          contentValue={contentValue}
-          setContentValue={setContentValue}
-          setCanSubmit={setCanSubmit}
-        />
-      </div>
+      <ArticleFormFields
+        title={{
+          label: '게시물 등록',
+        }}
+        button={{
+          disabled: !canSubmit,
+          label: '등록',
+          onClick: handleSubmit,
+          setCanSubmit: setCanSubmit,
+        }}
+        content={{
+          titleValue: titleValue,
+          setTitleValue: setTitleValue,
+          contentValue: contentValue,
+          setContentValue: setContentValue,
+        }}
+      />
     </>
   );
 }

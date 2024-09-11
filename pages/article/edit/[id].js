@@ -1,4 +1,3 @@
-import styles from '@/styles/Post.module.css';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import ArticleFormFields from '@/utils/ArticleFormFields';
@@ -55,19 +54,23 @@ export default function Post() {
 
   return (
     <>
-      <div className={styles.postLayout}>
-        <div className={styles.header}>
-          <span className={styles.title}>수정하기</span>
-          <Button disabled={!canSubmit} label='등록' onClick={handleSubmit} />
-        </div>
-        <ArticleFormFields
-          titleValue={titleValue}
-          setTitleValue={setTitleValue}
-          contentValue={contentValue}
-          setContentValue={setContentValue}
-          setCanSubmit={setCanSubmit}
-        />
-      </div>
+      <ArticleFormFields
+        title={{
+          label: '게시물 수정',
+        }}
+        button={{
+          disabled: !canSubmit,
+          label: '수정',
+          onClick: handleSubmit,
+          setCanSubmit: setCanSubmit,
+        }}
+        content={{
+          titleValue: titleValue,
+          setTitleValue: setTitleValue,
+          contentValue: contentValue,
+          setContentValue: setContentValue,
+        }}
+      />
     </>
   );
 }
