@@ -31,6 +31,7 @@ export default function Posting() {
       title: title,
       content: content,
       category: category,
+      userId: 'db7a3df4-dff0-43bf-80d5-5b74b2216dd9', // 아직 로그인 기능이 없어서 게시글 생성할 때 마다 특정 유저와 연결
     });
 
     // 요청 성공 후 게시물 상세 페이지로 이동

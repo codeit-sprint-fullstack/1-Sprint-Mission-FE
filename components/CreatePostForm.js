@@ -49,7 +49,6 @@ export default function CreatePostForm({
           value={title}
           onChange={onChangeTitle}
           placeholder="제목을 입력해주세요"
-          autoComplete="off"
         />
         <label className={styles.content}>*내용</label>
         <Textarea
