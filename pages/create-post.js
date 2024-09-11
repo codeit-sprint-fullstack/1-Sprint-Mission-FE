@@ -6,10 +6,14 @@ import axios from "@/lib/axios";
 export default function CreatePost({ createMode = "게시글 쓰기" }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!isFormValid) return;
+    setIsLoading(true);
 
     try {
       const res = await axios.post("/articles", { title, content });
@@ -18,6 +22,8 @@ export default function CreatePost({ createMode = "게시글 쓰기" }) {
       router.push(`/community/${postId}`);
     } catch (error) {
       console.error("게시글 등록에 실패했습니다:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -32,9 +38,9 @@ export default function CreatePost({ createMode = "게시글 쓰기" }) {
           className={`${styles.postButton} ${
             isFormValid ? styles.active : ""
           } text-lg semibold`}
-          disabled={!isFormValid}
+          disabled={!isFormValid || isLoading}
         >
-          등록
+          {isLoading ? "로딩중..." : "등록"}
         </button>
       </div>
       <div className={`${styles.formGroup} text-2lg bold`}>
