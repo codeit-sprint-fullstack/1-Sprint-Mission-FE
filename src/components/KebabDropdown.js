@@ -11,6 +11,16 @@ const KebabDropdown = ({ onEdit, onDelete }) => {
     setIsOpen((prev) => !prev);
   };
 
+  const handleEdit = () => {
+    setIsOpen(false);
+    onEdit();
+  };
+
+  const handleDelete = () => {
+    setIsOpen(false);
+    onDelete();
+  };
+
   return (
     <div className={styles.dropdownContainer}>
       <Image
@@ -24,13 +34,13 @@ const KebabDropdown = ({ onEdit, onDelete }) => {
       {isOpen && (
         <div className={styles.dropdownMenu}>
           <div
-            onClick={onEdit}
+            onClick={handleEdit}
             className={`${styles.dropdownItem} text-lg regular`}
           >
             수정하기
           </div>
           <div
-            onClick={onDelete}
+            onClick={handleDelete}
             className={`${styles.dropdownItem} text-lg regular`}
           >
             삭제하기
