@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { fetchArticleById } from '../../src/api/api';
 import styles from '../../styles/post-detail.module.css';
-import CommentForm from '../src/components/next/CommentForm';
+import CommentForm from '../../src/components/next/CommentForm';
 
 const PostDetail = () => {
   const router = useRouter();
