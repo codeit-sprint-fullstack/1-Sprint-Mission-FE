@@ -199,7 +199,8 @@ body {
 }
 
 .text-warn {
-  margin-top: 0.8rem;
+  margin-top: 0.2rem;
+  padding-left: 0.4rem;
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--red-color);

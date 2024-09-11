@@ -5,9 +5,19 @@ import { useState, useEffect } from "react";
 import useValidateInput from "../hooks/useValidateInput";
 import style from "./text-area.module.css";
 
-export function TextArea({ validateFunc, placeholder, getValid, onChange }) {
+export function TextArea({
+  validateFunc,
+  placeholder,
+  getValid,
+  onChange,
+  value,
+}) {
   const [inputClass, setInputClass] = useState(style.input);
   const customInput = useValidateInput(validateFunc);
+
+  useEffect(() => {
+    customInput.setValue(value);
+  }, [value]);
 
   useEffect(() => {
     if (!customInput.isValid) {

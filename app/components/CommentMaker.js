@@ -14,8 +14,8 @@ import {
 
 import style from "./comment-maker.module.css";
 
-export function CommentMaker({ articleId }) {
-  const [comment, setComment] = useState();
+export function CommentMaker({ articleId, registComment }) {
+  const [comment, setComment] = useState("");
   const [commentValid, setCommentValid] = useState(undefined);
 
   const commentMakerLabelClass = `font-semibold ${style["comment-maker-label"]}`;
@@ -27,12 +27,13 @@ export function CommentMaker({ articleId }) {
     }
 
     createArticleComment(articleId, comment).then((data) => {
-      setComment();
+      setComment("");
       setCommentValid(undefined);
+      registComment();
     });
   };
 
-  const btnRegistCommentDisabled = commentValid !== VALID_VALUE;
+  let btnRegistCommentDisabled = commentValid !== VALID_VALUE;
 
   const validtateComment = (comment) => {
     if (!comment) {
@@ -40,9 +41,10 @@ export function CommentMaker({ articleId }) {
     }
 
     const castedComment = comment.toString();
-    if (castedComment.Length < MIN_COMMENT_LENGTH) {
+
+    if (castedComment.length < MIN_COMMENT_LENGTH) {
       return WARN_MIN_COMMENT_LENGTH;
-    } else if (MAX_COMMENT_LENGTH < castedComment.Length) {
+    } else if (MAX_COMMENT_LENGTH < castedComment.length) {
       return WARN_MAX_COMMENT_LENGTH;
     } else {
       return VALID_VALUE;
@@ -64,7 +66,7 @@ export function CommentMaker({ articleId }) {
       );
     } else if (commentValid === WARN_MAX_COMMENT_LENGTH) {
       return (
-        <p className="text-warn">{MAX_COMMENT_LENGHT}자 이하로 입력해주세요</p>
+        <p className="text-warn">{MAX_COMMENT_LENGHTH}자 이하로 입력해주세요</p>
       );
     } else {
       return undefined;
@@ -80,6 +82,7 @@ export function CommentMaker({ articleId }) {
           placeholder={"댓글을 입력해주세요."}
           validateFunc={validtateComment}
           getValid={getCommentValid}
+          value={comment}
         />
       </div>
       {getCommentWarn()}

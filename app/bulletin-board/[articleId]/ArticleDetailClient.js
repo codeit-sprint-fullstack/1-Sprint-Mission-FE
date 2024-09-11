@@ -29,6 +29,12 @@ export function ArticleDetailClient({ articleId }) {
     // router.back();
   };
 
+  const handleRegistComment = () => {
+    getArticleComment(articleId).then((data) => {
+      setCommentList(data);
+    });
+  };
+
   useEffect(() => {
     getArticle(articleId).then((data) => {
       setTitle(data.title);
@@ -54,7 +60,10 @@ export function ArticleDetailClient({ articleId }) {
         favoriteCount={favorite}
       />
       <div className={style["comment-maker-frame"]}>
-        <CommentMaker articleId={articleId} />
+        <CommentMaker
+          articleId={articleId}
+          registComment={handleRegistComment}
+        />
       </div>
       <div className={style["comment-list-frame"]}>
         <CommentList list={commentList} />

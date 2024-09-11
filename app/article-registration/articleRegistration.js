@@ -151,8 +151,8 @@ export function ArticleRegistration() {
               getValid={getTitleValid}
               placeholder={"제목을 입력해주세요"}
             ></Input>
+            {getTitleWarn()}
           </div>
-          {getTitleWarn()}
         </div>
         <div className={style["content-text-area-set"]}>
           <p className={labelClass}>*내용</p>
@@ -163,8 +163,8 @@ export function ArticleRegistration() {
               getValid={getContentValid}
               placeholder={"내용을 입력해주세요"}
             ></TextArea>
+            {getContentWarn()}
           </div>
-          {getContentWarn()}
         </div>
       </div>
     </div>

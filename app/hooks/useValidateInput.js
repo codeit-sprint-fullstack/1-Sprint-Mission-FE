@@ -4,7 +4,7 @@ export function useValidateInput(validate) {
   const [value, setValue] = useState("");
   const [isValid, setIsValid] = useState(false);
 
-  const handleChangeName = (e) => {
+  const handleChangeValue = (e) => {
     const newValue = e.target.value.toString().trimStart();
     setValue(newValue);
     setIsValid(validate(newValue));
@@ -13,7 +13,7 @@ export function useValidateInput(validate) {
   return {
     value,
     isValid,
-    onChange: handleChangeName,
+    onChange: handleChangeValue,
     setValue,
   };
 }
