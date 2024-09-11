@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import SearchBar from './SearchBar';
 import SortOptions from './SortOptions';
 import PostItem from './PostItem';
@@ -9,52 +8,25 @@ import { fetchArticles } from '../../api/api';
 
 const PostList = ({ initialPosts }) => {
   const [posts, setPosts] = useState(initialPosts || []);
-  const [keyword, setKeyword] = useState('');
-  const [sortOrder, setSortOrder] = useState('recent');
-  const router = useRouter();
 
-  // 새 게시물 감지
-  useEffect(() => {
-    if (router.query.newPost) {
-      const newPost = JSON.parse(router.query.newPost); // 전달된 새 게시물
-      setPosts([newPost, ...posts]); // 새로운 게시글을 맨 앞에 추가
-    }
-  }, [router.query.newPost]);
+  // 새 게시글 추가 함수
+  const addNewPost = (newPost) => {
+    setPosts([newPost, ...posts]); // 새로운 게시글을 맨 앞에 추가
+  };
 
-  const filteredPosts = keyword
-    ? posts.filter((post) =>
-        post.title.toLowerCase().includes(keyword.toLowerCase())
-      )
-    : posts;
-
-  const sortedPosts = filteredPosts.sort((a, b) => {
-    if (sortOrder === 'recent') {
-      return new Date(b.date) - new Date(a.date);
-    } else if (sortOrder === 'popular') {
-      return parseInt(b.likes) - parseInt(a.likes);
-    }
-    return 0;
-  });
+  // 검색어에 따른 게시글 필터링
+  const filteredPosts = posts;
 
   return (
     <div className={styles.postList}>
       <div className={styles.titleWriteContainer}>
         <h2 className={styles.postTitle}>게시글</h2>
-        <WriteButton onNewPost={setPosts} />
+        <WriteButton onNewPost={addNewPost} />
       </div>
-
-      <div className={styles.searchSortContainer}>
-        <SearchBar setKeyword={setKeyword} />
-        <SortOptions setSortOrder={setSortOrder} />
-      </div>
-
-      {keyword && sortedPosts.length === 0 && (
-        <div className={styles.noPosts}>검색 결과가 없습니다.</div>
-      )}
 
       <div className={styles.posts}>
-        {sortedPosts.length > 0 &&
-          sortedPosts.map((post, index) => (
+        {filteredPosts.length > 0 &&
+          filteredPosts.map((post, index) => (
             <PostItem
               key={index}
               title={post.title}

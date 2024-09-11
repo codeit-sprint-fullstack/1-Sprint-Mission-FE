@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { createArticle } from '../../src/api/api';
 import styles from './RegisterButton.module.css';
 
-const RegisterButton = ({ title, content }) => {
+const RegisterButton = ({ title, content, addNewPost }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
@@ -18,10 +18,9 @@ const RegisterButton = ({ title, content }) => {
     try {
       const newPost = await createArticle({ title, content });
 
-      router.push({
-        pathname: `/articles/${newPost.id}`,
-        query: { newPost: JSON.stringify(newPost) }, // 새 게시물 정보를 query로 전달
-      });
+      addNewPost(newPost);
+
+      router.replace(`/articles/${newPost.id}`);
     } catch (error) {
       console.error('게시글 등록 중 오류가 발생했습니다.', error);
       alert('게시글 등록 중 오류가 발생했습니다.');

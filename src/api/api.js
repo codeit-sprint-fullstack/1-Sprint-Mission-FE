@@ -19,15 +19,19 @@ export async function fetchBestArticles() {
 }
 
 // 게시글 목록 조회
-export async function fetchArticles(params) {
+export async function fetchArticles(params = {}) {
   try {
-    const response = await api.get('/api/articles', { params });
+    const { page = 1, pageSize = 10, orderBy = 'recent' } = params; // 기본값 설정
+    const response = await api.get('/api/articles', {
+      params: { page, pageSize, orderBy },
+    });
     return response.data;
   } catch (error) {
     console.error('게시글 목록 조회 실패:', error);
     throw error;
   }
 }
+
 
 // 게시글 상세 조회
 export async function fetchArticleById(id) {
