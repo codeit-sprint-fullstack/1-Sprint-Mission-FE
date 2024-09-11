@@ -2,6 +2,7 @@ import styles from "@styles/PostDetail.module.css";
 import Image from "next/image";
 import { useState } from "react";
 import axios from "@/lib/axios";
+import KebabDropdown from "@components/KebabDropdown";
 
 import kebabIcon from "@images/ic_kebab.svg";
 import profileImage from "@images/ic_profile.svg";
@@ -36,6 +37,14 @@ const PostDetail = ({ post }) => {
     setComment("");
   };
 
+  const handleEdit = () => {
+    console.log("수정 버튼 클릭");
+  };
+
+  const handleDelete = () => {
+    console.log("삭제 버튼 클릭");
+  };
+
   const isFormValid = comment !== "";
 
   const { title, content, createdAt } = post;
@@ -47,7 +56,7 @@ const PostDetail = ({ post }) => {
     <div className={styles.postDetail}>
       <div className={styles.titleContainer}>
         <span className="text-xl bold">{title}</span>
-        <Image src={kebabIcon} alt="drop down" width={24} height={24} />
+        <KebabDropdown onEdit={handleEdit} onDelete={handleDelete} />
       </div>
       <div className={styles.profileContainer}>
         <Image src={profileImage} alt="profile image" width={40} height={40} />

@@ -1,0 +1,27 @@
+.dropdownContainer {
+  position: relative;
+}
+.kebabIcon:hover {
+  cursor: pointer;
+}
+.dropdownMenu {
+  width: 13.9rem;
+  height: 9.2rem;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--white);
+  z-index: 10;
+  border: 1px solid var(--gray300);
+  border-radius: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.dropdownItem {
+  color: var(--gray500);
+  &:hover {
+    cursor: pointer;
+  }
+}
