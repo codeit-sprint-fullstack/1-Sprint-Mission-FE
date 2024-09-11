@@ -1,44 +1,45 @@
 import React from 'react';
-import { useRouter } from 'next/router';
-import { fetchArticleById } from '../../src/api/api'; // api.js에서 함수 가져오기
+import styles from '../styles/post-detail.module.css';
 
 const PostDetail = ({ post }) => {
-  const router = useRouter();
-  const { id } = router.query; // 현재 게시글 ID를 가져옴
+  // 기본값으로 사용할 게시글 정보 - 테스트용
+  const defaultPost = {
+    title: '맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?',
+    author: '총명한 판다',
+    date: '2024.01.02',
+    likes: '9999+',
+    content: '이 맥북을 어떻게 팔아야 할지 고민입니다. 적절한 가격을 알고 싶습니다.',
+    image: '/image/img_default.svg',
+  };
 
-  if (!post) {
-    return <div>Loading...</div>; // 데이터가 없을 때 로딩 표시
-  }
+  // post 데이터가 없을 경우 기본값을 사용 - 테스트용
+  const displayedPost = post || defaultPost;
 
   return (
-    <div>
-      <h1>{post.title}</h1>
-      <p>{post.content}</p>
-      <p>작성자: {post.author}</p>
-      <p>좋아요: {post.likes}</p>
-      <p>작성일: {post.date}</p>
+    <div className={styles.postDetailContainer}>
+      {/* 제목과 Kebab 아이콘 */}
+      <div className={styles.titleContainer}>
+        <h1 className={styles.postTitle}>{displayedPost.title}</h1>
+        <img src="/image/kebab.svg" alt="Kebab Icon" className={styles.kebabIcon} />
+      </div>
+
+      {/* 프로필 및 기타 정보 */}
+      <div className={styles.postInfo}>
+        <img src="/image/mini_profile.svg" alt="Mini Profile" className={styles.profileIcon} />
+        <span className={styles.author}>{displayedPost.author}</span>
+        <span className={styles.date}>{displayedPost.date}</span>
+        <img src="/image/line.svg" alt="Line" className={styles.lineIcon} />
+        <img src="/image/heart.svg" alt="Likes" className={styles.heartIcon} />
+        <span className={styles.likes}>{displayedPost.likes}</span>
+      </div>
+
+      {/* 게시글 본문 */}
+      <div className={styles.contentContainer}>
+        <p className={styles.postContent}>{displayedPost.content}</p>
+      </div>
     </div>
   );
 };
-
-// 서버 사이드에서 게시글 데이터를 가져옴
-export async function getServerSideProps(context) {
-  const { id } = context.params; // URL의 ID 값
-
-  try {
-    // api.js 파일에서 정의된 함수로 게시글 가져오기
-    const post = await fetchArticleById(id);
-
-    return {
-      props: { post }, // post를 props로 전달
-    };
-  } catch (error) {
-    console.error('Error fetching post:', error);
-    return {
-      props: { post: null }, // 오류 발생 시 null 전달
-    };
-  }
-}
 
 export default PostDetail;
 
