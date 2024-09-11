@@ -11,7 +11,7 @@ const MainPost = ({
   likes = 9999,
   nickname = "총명한 판다",
 }) => {
-  const formattedDate = new Date(date).toLocaleDateString();
+  const formattedDate = new Date(date).toLocaleDateString("ko-KR");
   return (
     <div className={styles.mainPost}>
       <div className={styles.postLeft}>

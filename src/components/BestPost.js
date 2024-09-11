@@ -12,7 +12,7 @@ const BestPost = ({
   likes = 9999,
   nickname = "총명한 판다",
 }) => {
-  const formattedDate = new Date(date).toLocaleDateString();
+  const formattedDate = new Date(date).toLocaleDateString("ko-KR");
   return (
     <div className={styles.bestPost}>
       <div className={styles.badgeContainer}>
