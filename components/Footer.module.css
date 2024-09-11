@@ -54,8 +54,8 @@
       "company company";
     gap: 24px;
     margin: 0px 16px 0px 16px;
-    justify-content: center; /* 수평 중앙 정렬 */
-    align-content: center; /* 수직 중앙 정렬 */
+    justify-content: center;
+    align-content: center;
   }
 
   .footerCompanyText {
