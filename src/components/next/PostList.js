@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import SearchBar from './SearchBar';
 import SortOptions from './SortOptions';
 import PostItem from './PostItem';
@@ -10,28 +11,21 @@ const PostList = ({ initialPosts }) => {
   const [posts, setPosts] = useState(initialPosts || []);
   const [keyword, setKeyword] = useState('');
   const [sortOrder, setSortOrder] = useState('recent');
+  const router = useRouter();
 
-  // 새 게시글 추가 함수
-  const addNewPost = (newPost) => {
-    setPosts([newPost, ...posts]); // 새로운 게시글을 맨 앞에 추가
-  };
-
-  // 새 게시글 감지 (localStorage를 통해 등록된 새 게시물 확인)
+  // 새 게시물 감지
   useEffect(() => {
-    const storedNewPost = localStorage.getItem('newPost');
-    if (storedNewPost) {
-      const parsedPost = JSON.parse(storedNewPost);
-      addNewPost(parsedPost);
-      localStorage.removeItem('newPost'); // 새 게시물을 목록에 추가한 후 localStorage에서 삭제
+    if (router.query.newPost) {
+      const newPost = JSON.parse(router.query.newPost); // 전달된 새 게시물
+      setPosts([newPost, ...posts]); // 새로운 게시글을 맨 앞에 추가
     }
-  }, []);
+  }, [router.query.newPost]);
 
   const filteredPosts = keyword
     ? posts.filter((post) =>
         post.title.toLowerCase().includes(keyword.toLowerCase())
       )
     : posts;
-
 
   const sortedPosts = filteredPosts.sort((a, b) => {
     if (sortOrder === 'recent') {
@@ -46,7 +40,7 @@ const PostList = ({ initialPosts }) => {
     <div className={styles.postList}>
       <div className={styles.titleWriteContainer}>
         <h2 className={styles.postTitle}>게시글</h2>
-        <WriteButton onNewPost={addNewPost} />
+        <WriteButton onNewPost={setPosts} />
       </div>
 
       <div className={styles.searchSortContainer}>

@@ -18,11 +18,10 @@ const RegisterButton = ({ title, content }) => {
     try {
       const newPost = await createArticle({ title, content });
 
-      // 새 게시글을 localStorage에 저장
-      localStorage.setItem('newPost', JSON.stringify(newPost));
-
-      // 게시글이 성공적으로 등록되면 상세 페이지로 이동
-      router.push(`/articles/${newPost.id}`);
+      router.push({
+        pathname: `/articles/${newPost.id}`,
+        query: { newPost: JSON.stringify(newPost) }, // 새 게시물 정보를 query로 전달
+      });
     } catch (error) {
       console.error('게시글 등록 중 오류가 발생했습니다.', error);
       alert('게시글 등록 중 오류가 발생했습니다.');

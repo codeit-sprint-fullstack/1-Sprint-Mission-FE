@@ -62,3 +62,4 @@ const PostDetail = () => {
 
 export default PostDetail;
 
+기
