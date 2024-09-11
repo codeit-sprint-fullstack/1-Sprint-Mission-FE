@@ -5,18 +5,27 @@ import SearchBar from "@components/SearchBar";
 import styles from "@styles/Community.module.css";
 import { useState } from "react";
 import Link from "next/link";
-// import axios from "@/lib/axios";
+import axios from "@/lib/axios";
 
-// export async function getStaticProps() {
-//   const res = await axios.get("/articles");
-//   const posts = res.data.results;
+export async function getServerSideProps() {
+  try {
+    const res = await axios.get("/articles");
+    const posts = res.data.results;
 
-//   return {
-//     props: {
-//       posts,
-//     },
-//   };
-// }
+    return {
+      props: {
+        posts,
+      },
+    };
+  } catch (error) {
+    console.error("게시글 fetch에 실패했습니다.", error);
+    return {
+      props: {
+        posts: [],
+      },
+    };
+  }
+}
 
 export default function Community({ posts }) {
   const [searchValue, setSearchValue] = useState("");
@@ -33,10 +42,16 @@ export default function Community({ posts }) {
     setSearchValue("");
   };
 
+  const bestPosts = posts.slice(0, 3);
+
   return (
     <div className={styles.body}>
       <h1 className={`${styles.postTitle} text-xl bold`}>베스트 게시글</h1>
-      <BestPost />
+      <div className={styles.bestPostContainer}>
+        {bestPosts.map((post) => (
+          <BestPost key={post.id} title={post.title} date={post.createdAt} />
+        ))}
+      </div>
       <div className={styles.mainTitle}>
         <h1 className={`${styles.postTitle} text-xl bold`}>게시글</h1>
         <Link href="/create-post">

@@ -12,6 +12,7 @@ const BestPost = ({
   likes = 9999,
   nickname = "총명한 판다",
 }) => {
+  const formattedDate = new Date(date).toLocaleDateString();
   return (
     <div className={styles.bestPost}>
       <div className={styles.badgeContainer}>
@@ -39,7 +40,9 @@ const BestPost = ({
           />
           <span className="text-md regular">{likes}</span>
         </div>
-        <span className={`${styles.date} text-md regular`}>{date}</span>
+        <span className={`${styles.date} text-md regular`}>
+          {formattedDate}
+        </span>
       </div>
     </div>
   );
