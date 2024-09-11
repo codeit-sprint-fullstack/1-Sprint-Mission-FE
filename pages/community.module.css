@@ -1,0 +1,79 @@
+.bestPostTitle {
+  color: var(--gray-900);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.searchSectionHug {
+  display: flex;
+  gap: 16px;
+}
+
+.buttonSectionHug {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  color: var(--gary-800);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.bestPostContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 24px;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.likesHug {
+  display: flex;
+  color: var(--gray-500);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  align-items: center;
+  gap: 4px;
+}
+
+.authorImageHug {
+  display: flex;
+  gap: 8px;
+}
+
+.BottomHug {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bestPostDate {
+  color: var(--gray-400);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.BestCardHeadImageHug {
+  display: flex;
+  flex-direction: row;
+}
+
+.communityContainer {
+  padding-top: 24px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.postCardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 24px;
+  margin-bottom: 48px;
+  text-decoration: none;
+}

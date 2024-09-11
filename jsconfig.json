@@ -5,6 +5,7 @@
       "@errors/*": ["errors/*"],
       "@data/*": ["data/*"],
       "@utils/*": ["utils/*"],
+      "@public/*": ["public/*"],
       "@/*": ["./*"]
     }
   }
