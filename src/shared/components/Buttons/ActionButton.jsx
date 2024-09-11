@@ -3,7 +3,13 @@ import classNames from 'classnames';
 import styles from '@shared/components/Buttons/ActionButton.module.css';
 import { useRouter } from 'next/navigation';
 
-export default function ActionButton({ content, type, path, disabled }) {
+export default function ActionButton({
+  content,
+  type,
+  path,
+  disabled,
+  onClick,
+}) {
   const router = useRouter();
 
   const buttonClass = classNames({
@@ -11,6 +17,7 @@ export default function ActionButton({ content, type, path, disabled }) {
     [styles['signup-button']]: type === 'signup', // 회원가입
     [styles['post-button']]: type === 'post', // 게시글 등록
     [styles['write-button']]: type === 'write', // 게시글 글쓰기
+    [styles['return-arrow-button']]: type === 'return-arrow', //목록으로 돌아가기
     [styles['disabled']]: disabled,
   });
 
@@ -27,7 +34,7 @@ export default function ActionButton({ content, type, path, disabled }) {
       );
     } else {
       return (
-        <button className={buttonClass} disabled={disabled}>
+        <button className={buttonClass} disabled={disabled} onClick={onClick}>
           {content}
         </button>
       );

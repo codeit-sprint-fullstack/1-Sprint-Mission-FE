@@ -1,0 +1,39 @@
+.dropdown-container {
+  position: relative;
+}
+
+.kebab-dropdown-image {
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+}
+
+.patch {
+  width: 139px;
+  height: 46px;
+  border-radius: 8px 8px 0px 0px;
+  border: 1px solid var(--color-cool-gray-300);
+  color: var(--color-gray-200);
+  font-size: 1rem;
+  font-weight: 400;
+  background-color: #ffffff;
+}
+
+.delete {
+  width: 139px;
+  height: 46px;
+  border-radius: 0px 0px 8px 8px;
+  border: 1px solid var(--color-cool-gray-300);
+  border-top: 0;
+  color: var(--color-gray-200);
+  font-size: 1rem;
+  font-weight: 400;
+  background-color: #ffffff;
+}

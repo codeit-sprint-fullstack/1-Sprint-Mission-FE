@@ -1,0 +1,21 @@
+.return-arrow {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.return-arrow-button {
+  width: 240px;
+  height: 48px;
+  border-radius: 40px;
+  padding: 0;
+  gap: 8px;
+  background-color: var(--color-blue-100);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+}

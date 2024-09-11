@@ -8,6 +8,7 @@
   font-weight: 600;
   color: var(--color-white);
   font-size: 1rem;
+  cursor: pointer;
 }
 
 .write-button {
@@ -20,6 +21,7 @@
   font-weight: 600;
   color: var(--color-white);
   font-size: 1rem;
+  cursor: pointer;
 }
 
 .post-button {
@@ -32,6 +34,7 @@
   font-weight: 600;
   color: var(--color-white);
   font-size: 1rem;
+  cursor: pointer;
 }
 
 .post-button.disabled {
