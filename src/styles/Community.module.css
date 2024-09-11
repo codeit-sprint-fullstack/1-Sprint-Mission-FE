@@ -12,6 +12,10 @@
   display: flex;
   gap: 2.4rem;
 }
+.linkPost {
+  text-decoration: none;
+  color: inherit;
+}
 .mainTitle {
   display: flex;
   justify-content: space-between;

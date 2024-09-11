@@ -39,10 +39,6 @@ export default function Community({ posts }) {
     setSearchValue(value);
   };
 
-  const handleSearch = () => {
-    console.log(`검색 실행: ${searchValue}`);
-  };
-
   const handleClear = () => {
     setSearchValue("");
   };
@@ -62,7 +58,19 @@ export default function Community({ posts }) {
       <h1 className={`${styles.postTitle} text-xl bold`}>베스트 게시글</h1>
       <div className={styles.bestPostContainer}>
         {bestPosts.map((post) => (
-          <BestPost key={post.id} title={post.title} date={post.createdAt} />
+          <Link
+            key={post.id}
+            href={`/community/${post.id}`}
+            className={styles.linkPost}
+          >
+            <div>
+              <BestPost
+                key={post.id}
+                title={post.title}
+                date={post.createdAt}
+              />
+            </div>
+          </Link>
         ))}
       </div>
       <div className={styles.mainTitle}>
@@ -76,13 +84,24 @@ export default function Community({ posts }) {
           value={searchValue}
           onChange={handleSearchChange}
           onClear={handleClear}
-          onSearch={handleSearch}
         />
         <Dropdown />
       </div>
       <div className={styles.mainPostContainer}>
         {searchedPosts.slice(0, visibleCount).map((post) => (
-          <MainPost key={post.id} title={post.title} date={post.createdAt} />
+          <Link
+            key={post.id}
+            href={`/community/${post.id}`}
+            className={styles.linkPost}
+          >
+            <div>
+              <MainPost
+                key={post.id}
+                title={post.title}
+                date={post.createdAt}
+              />
+            </div>
+          </Link>
         ))}
       </div>
       {visibleCount < searchedPosts.length && (

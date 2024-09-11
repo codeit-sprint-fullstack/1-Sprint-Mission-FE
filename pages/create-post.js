@@ -1,7 +1,7 @@
 import styles from "@styles/CreatePost.module.css";
 import { useState } from "react";
 
-export default function CreatePost() {
+export default function CreatePost({ createMode = "게시글 쓰기" }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -17,7 +17,7 @@ export default function CreatePost() {
   return (
     <form className={styles.body} onSubmit={handleSubmit}>
       <div className={styles.header}>
-        <span className="text-xl bold">게시글 쓰기</span>
+        <span className="text-xl bold">{createMode}</span>
         <button
           type="submit"
           className={`${styles.postButton} ${
