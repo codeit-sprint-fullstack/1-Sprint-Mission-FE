@@ -6,7 +6,7 @@ import Image from "next/image";
 import styles from "./GNB.module.css";
 import normalLogo from "../public/images/headerLogo.svg";
 import smallLogo from "../public/images/headerSmallLogo.svg";
-import SmallButton from "./SmallButton";
+import SmallButton from "./ui/SmallButton";
 
 const NAV_ITEMS = [
   { href: "/community", text: "자유게시판" },
