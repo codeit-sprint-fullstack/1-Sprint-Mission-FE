@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { fetchArticleById } from '../../src/api/api';
 import styles from '../../styles/post-detail.module.css';
+import CommentForm from '../src/components/next/CommentForm';
 
 const PostDetail = () => {
   const router = useRouter();
@@ -36,25 +37,27 @@ const PostDetail = () => {
 
   return (
     <div className={styles.postDetailContainer}>
-      {/* 제목과 Kebab 아이콘 */}
       <div className={styles.titleContainer}>
-        <h1 className={styles.postTitle}>{post.title}</h1>
+        <h1 className={styles.postTitle}>{post.title}</h1> 
         <img src="/image/kebab.svg" alt="Kebab Icon" className={styles.kebabIcon} />
       </div>
 
-      {/* 프로필 및 기타 정보 */}
       <div className={styles.postInfo}>
         <img src="/image/mini_profile.svg" alt="Mini Profile" className={styles.profileIcon} />
         <span className={styles.author}>{post.author || randomNickname}</span> 
-        <span className={styles.date}>{post.date}</span>
+        <span className={styles.date}>{new Date(post.createdAt).toLocaleDateString()}</span> 
         <img src="/image/line.svg" alt="Line" className={styles.lineIcon} />
         <img src="/image/heart.svg" alt="Likes" className={styles.heartIcon} />
-        <span className={styles.likes}>{post.likes !== undefined ? post.likes : randomLikes}</span> 
+        <span className={styles.likes}>{post.likes || randomLikes}</span> 
       </div>
 
-      {/* 게시글 본문 */}
       <div className={styles.contentContainer}>
-        <p className={styles.postContent}>{post.content}</p>
+        <p className={styles.postContent}>{post.content}</p> 
+      </div>
+
+  
+      <div className={styles.commentFormContainer}>
+        <CommentForm articleId={id} />
       </div>
     </div>
   );

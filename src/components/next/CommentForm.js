@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { createComment } from '../../src/api/api'; // API에서 댓글 등록 함수 가져오기
-import styles from '../../styles/commentForm.module.css';
+import { createComment } from '../../api/api'; 
+import styles from './CommentForm.module.css';
 
 const CommentForm = ({ articleId }) => {
   const [content, setContent] = useState(''); 
@@ -19,7 +19,6 @@ const CommentForm = ({ articleId }) => {
     setIsSubmitting(true);
 
     try {
-      // createComment 함수 호출로 댓글 등록 API 요청
       const newComment = await createComment(articleId, { content });
       alert('댓글이 등록되었습니다.');
       router.reload();
