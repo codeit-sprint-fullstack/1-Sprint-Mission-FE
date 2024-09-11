@@ -3,7 +3,7 @@ import axios from '@/lib/axios';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-export default function PostWriting() {
+export default function Posting() {
   // CreatePostForm에 title과 content 상태, 그리고 상태 변경 함수 전달
   // CreatePostButton에 isFormValid 전달해서 버튼 설정(사용자 입력 부분이 비워져 있으면 disabled)
   // 등록버튼(CreatePostButton) 눌렀을 때 API 요청 후 해당 게시물 상세 페이지로 이동
@@ -21,10 +21,10 @@ export default function PostWriting() {
 
     // 자유게시판과 중고마켓 구분을 위한 category 설정
     let category;
-    if (router.pathname === '/postWriting') {
+    if (router.pathname === '/posting') {
       category = 'FREE_BOARD'; // '/postWriting'이면 category를 'FREE_MARKET'으로 고정
     } else {
-      category = 'MARKET'; // 다른 경우에 기본 category 설정 (필요에 따라 수정)
+      category = 'MARKET'; // 다른 경우에 category를 'MARKET;으로 설정
     }
 
     const res = await axios.post('/posts', {

@@ -1,6 +1,5 @@
 import axios from '@/lib/axios';
 import BestPost from '@/components/BestPost';
-import Container from '@/components/Container';
 import WriteButton from '@/components/WriteButton';
 import SearchForm from '@/components/SearchForm';
 import PostList from '@/components/PostList';
