@@ -1,35 +1,64 @@
 .commentItem {
-  background-color: #fcfcfc;
-  border-bottom: 1px solid #e5e7eb;
-  padding: 16px;
-  max-width: 1170px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin: auto;
+    background-color: #fcfcfc;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 16px;
+    max-width: 1170px;
+    width: 100%;
+    height: 100px; /* 댓글은 높이가 더 낮음 */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: auto;
+    transition: transform 0.3s ease; 
+}
+
+.commentItem.moveDown {
+    transform: translateY(270px); /* 댓글의 경우 moveDown 시 270px 내려가게 */
 }
 
 .commentContent {
-  display: flex;
-  flex-direction: column;
+    font-size: 16px;
+    font-weight: 400;
+    color: #1f2937;
+    margin: 0;
 }
 
 .commentDetails {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
+    display: flex;
+    align-items: center;
+    margin-top: 30px; /* 게시글보다 아래에 위치 */
 }
 
-.commentDetails span {
-  font-size: 14px;
-  font-weight: 400;
-  color: #6b7280;
+.profileIcon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
 }
 
-.commentDetails span:first-child {
-  font-weight: 500;
-  color: #1f2937;
+.author {
+    font-size: 14px;
+    font-weight: 400;
+    color: #4b5563;
+    margin-right: 15px;
 }
+
+.date {
+    font-size: 14px;
+    font-weight: 400;
+    color: #9ca3af;
+    margin-right: 15px;
+}
+
+.kebabIcon {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.kebabIcon img {
+    width: 24px;
+    height: 24px;
+}
+

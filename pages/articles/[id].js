@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { fetchArticleById, fetchComments, createComment } from '../../src/api/api';
+import { fetchArticleById, fetchComments } from '../../src/api/api';
 import styles from '../../styles/post-detail.module.css';
 import CommentItem from '../../src/components/next/CommentItem';
+import CommentForm from '../../src/components/next/CommentForm'; // CommentForm 가져오기
 
 const PostDetail = () => {
   const router = useRouter();
@@ -11,7 +12,6 @@ const PostDetail = () => {
   const [loading, setLoading] = useState(true);
   const [likes, setLikes] = useState(Math.floor(Math.random() * 10000)); // 랜덤 좋아요 상태 생성
   const [comments, setComments] = useState([]); // 댓글을 빈 배열로 초기화
-  const [newComment, setNewComment] = useState('');
 
   useEffect(() => {
     if (id) {
@@ -31,20 +31,8 @@ const PostDetail = () => {
     }
   }, [id]);
 
-  const handleNewComment = async (e) => {
-    e.preventDefault();
-    if (!newComment) return;
-
-    try {
-      const addedComment = await createComment(id, { content: newComment });
-      
-      // 첫 댓글일 때도 정상적으로 배열에 추가
-      setComments([addedComment, ...comments]);
-
-      setNewComment(''); // 입력창 초기화
-    } catch (error) {
-      console.error('댓글 등록 실패:', error);
-    }
+  const addNewComment = (newComment) => {
+    setComments([newComment, ...comments]); // 새로운 댓글을 추가
   };
 
   if (loading) return <div>Loading...</div>;
@@ -72,19 +60,9 @@ const PostDetail = () => {
         <p className={styles.postContent}>{post.content}</p>
       </div>
 
-      <div className={styles.commentSection}>
-        <form onSubmit={handleNewComment} className={styles.commentForm}>
-          <textarea
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            placeholder="댓글을 입력해주세요."
-            className={styles.commentInput}
-          />
-          <button type="submit" className={styles.submitButton} disabled={!newComment}>
-            댓글 등록
-          </button>
-        </form>
+      <CommentForm articleId={id} addNewComment={addNewComment} />
 
+      <div className={styles.commentSection}>
         {comments.length === 0 ? (
           <>
             <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
@@ -94,7 +72,12 @@ const PostDetail = () => {
           </>
         ) : (
           comments.map((comment) => (
-            <CommentItem key={comment.id} author={comment.author} content={comment.content} date={comment.createdAt} />
+            <CommentItem
+              key={comment.id}
+              author={comment.author}
+              content={comment.content}
+              date={comment.createdAt}
+            />
           ))
         )}
       </div>

@@ -97,6 +97,32 @@
   margin-top: 30px;
 }
 
+.commentForm {
+  margin-top: 30px;
+}
+
+.commentInput {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #E5E7EB;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.submitButton {
+  background-color: #4F46E5;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submitButton:disabled {
+  background-color: #9CA3AF;
+  cursor: not-allowed;
+}
 
 /* 미디어 쿼리 유지 */
 @media (min-width: 744px) and (max-width: 1199px) {
