@@ -27,9 +27,10 @@ const PostDetail = () => {
 
       fetchComments(id)
         .then((data) => {
+          console.log("Fetched comments: ", data.list); // 댓글 데이터를 로그로 확인
           const commentList = Array.isArray(data.list) ? data.list : [];
           setComments(commentList);
-          console.log("Fetched comments: ", commentList);
+          console.log("Processed comments: ", commentList); // 처리된 댓글 데이터를 로그로 확인
         })
         .catch(console.error);
     }
@@ -75,17 +76,14 @@ const PostDetail = () => {
             </p>
           </>
         ) : (
-          comments.map((comment, index) => {
-            console.log("Rendering comment: ", comment); // 콘솔에서 comment 데이터를 확인
-            return (
-              <CommentItem
-                key={comment.id}
-                author={`[${comments.length - index}]번 사용자`}
-                content={comment.content}
-                createdAt={comment.createdAt}
-              />
-            );
-          })
+          comments.map((comment, index) => (
+            <CommentItem
+              key={comment.id}
+              author={`[${comments.length - index}]번 사용자`}
+              content={comment.content}
+              createdAt={comment.createdAt}
+            />
+          ))
         )}
       </div>
     </div>
@@ -93,3 +91,4 @@ const PostDetail = () => {
 };
 
 export default PostDetail;
+
