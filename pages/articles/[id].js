@@ -15,6 +15,7 @@ const PostDetail = () => {
 
   useEffect(() => {
     if (id) {
+      // 게시글 불러오기
       fetchArticleById(id)
         .then((data) => {
           setPost(data);
@@ -25,12 +26,12 @@ const PostDetail = () => {
           setLoading(false);
         });
 
+      // 댓글 불러오기
       fetchComments(id)
         .then((data) => {
-          console.log("Fetched comments: ", data.list); // 댓글 데이터를 로그로 확인
-          const commentList = Array.isArray(data.list) ? data.list : [];
-          setComments(commentList);
-          console.log("Processed comments: ", commentList); // 처리된 댓글 데이터를 로그로 확인
+          console.log("Fetched comments: ", data);  // API에서 가져온 댓글 데이터 확인
+          setComments(Array.isArray(data) ? data : []);  // 데이터가 배열인지 확인 후 상태 설정
+          console.log("Processed comments: ", comments);  // 처리된 댓글 상태 확인
         })
         .catch(console.error);
     }
@@ -91,4 +92,3 @@ const PostDetail = () => {
 };
 
 export default PostDetail;
-
