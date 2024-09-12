@@ -1,4 +1,31 @@
 .comment {
   display: flex;
   flex-direction: column;
+  background-color: var(--backGray);
+  border-bottom: 1px solid var(--gray200);
+}
+.commentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.commentContent {
+  color: var(--gray800);
+}
+.commentInfo {
+  display: flex;
+  margin-top: 2.4rem;
+  margin-bottom: 1.2rem;
+}
+.infoContent {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.8rem;
+  gap: 0.4rem;
+}
+.commentNickname {
+  color: var(--gray600);
+}
+.commentTime {
+  color: var(--gray400);
 }

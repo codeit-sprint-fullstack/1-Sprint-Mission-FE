@@ -112,9 +112,11 @@ const PostDetail = ({ post }) => {
           등록
         </button>
       </form>
-      <Comment />
+      <div className={styles.commentsContainer}>
+        <Comment />
+      </div>
       <button
-        className={styles.backButton}
+        className={`${styles.backButton} text-2lg semibold`}
         onClick={() => router.push("/community")}
       >
         목록으로 돌아가기

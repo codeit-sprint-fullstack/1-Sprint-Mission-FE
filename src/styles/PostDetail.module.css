@@ -76,3 +76,20 @@
     cursor: pointer;
   }
 }
+.commentsContainer {
+  margin-top: 4rem;
+}
+.backButton {
+  width: 24rem;
+  height: 4.8rem;
+  margin-top: 6.4rem;
+  margin-left: 50%;
+  transform: translate(-50%, 0);
+  background-color: var(--primary100);
+  color: var(--white);
+  border: none;
+  border-radius: 4rem;
+  &:hover {
+    cursor: pointer;
+  }
+}

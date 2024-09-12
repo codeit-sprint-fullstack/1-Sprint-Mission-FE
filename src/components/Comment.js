@@ -8,14 +8,18 @@ const Comment = () => {
   return (
     <div className={styles.comment}>
       <div className={styles.commentHeader}>
-        <span>Comment</span>
+        <span className={`${styles.commentContent} text-md regular`}>
+          Comment
+        </span>
         <KebabDropdown />
       </div>
       <div className={styles.commentInfo}>
         <Image src={profileImage} alt="profile image" width={32} height={32} />
-        <div>
-          <span>Nick Name</span>
-          <span>time</span>
+        <div className={styles.infoContent}>
+          <span className={`${styles.commentNickname} text-xs regular`}>
+            Nick Name
+          </span>
+          <span className={`${styles.commentTime} text-xs regular`}>time</span>
         </div>
       </div>
     </div>
