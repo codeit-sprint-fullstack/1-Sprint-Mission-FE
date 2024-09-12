@@ -1,9 +1,18 @@
 import React from 'react';
-import { formatDistanceToNow } from 'date-fns';
 import styles from './CommentItem.module.css';
 
 const CommentItem = ({ id = 0, author, date, content }) => {
-  const formattedTime = formatDistanceToNow(new Date(date), { addSuffix: true }); // 몇시간 전 형식으로 변환
+  // 날짜를 "YYYY년 MM월 DD일 HH:mm:ss" 형식으로 변환
+  const formattedDate = new Date(date).toLocaleDateString('ko-KR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+  const formattedTime = new Date(date).toLocaleTimeString('ko-KR', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  });
 
   return (
     <div className={styles.commentItem}>
@@ -12,7 +21,9 @@ const CommentItem = ({ id = 0, author, date, content }) => {
         <div className={styles.commentDetails}>
           <img src="/image/profile.svg" alt="Profile Icon" className={styles.profileIcon} />
           <span className={styles.author}>{author || '익명'}</span>
-          <span className={styles.date}>{formattedTime}</span> {/* 몇 시간 전 */}
+          <span className={styles.date}>
+            {formattedDate} {formattedTime} {/* 년, 월, 일, 시, 분, 초 */}
+          </span>
         </div>
       </div>
       <div className={styles.commentKebab}>
