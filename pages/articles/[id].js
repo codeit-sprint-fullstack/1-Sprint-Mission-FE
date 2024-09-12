@@ -62,7 +62,7 @@ const PostDetail = () => {
 
       <CommentForm articleId={id} addNewComment={addNewComment} />
 
-      <div className={styles.commentSection}>
+      <div className={styles.commentsContainer}>
         {comments.length === 0 ? (
           <>
             <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
@@ -74,7 +74,7 @@ const PostDetail = () => {
           comments.map((comment, index) => (
             <CommentItem
               key={comment.id}
-              author={`${index + 1}번 사용자`}
+              author={`[${comments.length - index}]번 사용자`}
               content={comment.content}
               date={comment.createdAt}
             />
