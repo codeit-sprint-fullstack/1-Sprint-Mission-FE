@@ -17,7 +17,7 @@ export default function BoardDetailInfo({ article }) {
   const handleDelete = async (id) => {
     try {
       await deleteArticle(id);
-      router.push(BOARD);
+      router.push(ROUTES.BOARD);
     } catch (error) {
       console.error("Error deleting article:", error);
     }
