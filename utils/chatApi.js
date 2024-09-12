@@ -1,8 +1,8 @@
+const baseUrl = "https://thrift-shop.onrender.com/articleComments";
+
 export async function fetchComments(id, page, size) {
   try {
-    const response = await fetch(
-      `https://thrift-shop.onrender.com/articleComments/${id}?page=${page}&size=${size}`
-    );
+    const response = await fetch(`${baseUrl}/${id}?page=${page}&size=${size}`);
 
     if (!response.ok) {
       throw new Error("Failed to fetch comments");
@@ -18,12 +18,9 @@ export async function fetchComments(id, page, size) {
 
 export async function deleteComments(id) {
   try {
-    const response = await fetch(
-      `https://thrift-shop.onrender.com/articleComments/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`${baseUrl}/${id}`, {
+      method: "DELETE",
+    });
     if (!response.ok) {
       throw new Error("Failed to delete comments");
     }
@@ -37,16 +34,13 @@ export async function createComments(id, formData) {
   try {
     const dataToSend = { ...formData };
 
-    const response = await fetch(
-      `https://thrift-shop.onrender.com/articleComments/${id}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dataToSend),
-      }
-    );
+    const response = await fetch(`${baseUrl}/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToSend),
+    });
 
     if (!response.ok) {
       throw new Error("Failed to create comments");
@@ -61,16 +55,13 @@ export async function createComments(id, formData) {
 export async function updateComments(id, formData) {
   try {
     const dataToSend = { ...formData };
-    const response = await fetch(
-      `https://thrift-shop.onrender.com/articleComments/${id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dataToSend),
-      }
-    );
+    const response = await fetch(`${baseUrl}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToSend),
+    });
     if (!response.ok) {
       throw new Error("Failed to update comments");
     }

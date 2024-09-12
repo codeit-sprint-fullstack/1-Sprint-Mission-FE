@@ -1,5 +1,7 @@
+const baseUrl = "https://thrift-shop.onrender.com/articles";
+
 export async function fetchArticle(id) {
-  const res = await fetch(`https://thrift-shop.onrender.com/articles/${id}`);
+  const res = await fetch(`${baseUrl}/${id}`);
   if (!res.ok) {
     throw new Error("Failed to fetch article");
   }
@@ -9,7 +11,7 @@ export async function fetchArticle(id) {
 export async function fetchArticles({ sort, keyword, page, size }) {
   try {
     const res = await fetch(
-      `https://thrift-shop.onrender.com/articles?sort=${sort}&search=${keyword}&page=${page}&size=${size}`
+      `${baseUrl}?sort=${sort}&search=${keyword}&page=${page}&size=${size}`
     );
     if (!res.ok) {
       throw new Error("Failed to fetch articles");
@@ -24,9 +26,7 @@ export async function fetchArticles({ sort, keyword, page, size }) {
 }
 
 export async function fetchBestArticles(size) {
-  const res = await fetch(
-    `https://thrift-shop.onrender.com/articles?sort=createdAt&size=${size}`
-  );
+  const res = await fetch(`${baseUrl}?sort=createdAt&size=${size}`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch best articles");
@@ -37,7 +37,7 @@ export async function fetchBestArticles(size) {
 }
 
 export async function updateArticle(id, formData) {
-  const res = await fetch(`https://thrift-shop.onrender.com/articles/${id}`, {
+  const res = await fetch(`${baseUrl}/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -53,7 +53,7 @@ export async function updateArticle(id, formData) {
 }
 
 export async function deleteArticle(id) {
-  const res = await fetch(`https://thrift-shop.onrender.com/articles/${id}`, {
+  const res = await fetch(`${baseUrl}/${id}`, {
     method: "DELETE",
   });
 
@@ -75,7 +75,7 @@ export async function deleteArticle(id) {
 
 export async function createArticle(formData) {
   try {
-    const res = await fetch("https://thrift-shop.onrender.com/articles", {
+    const res = await fetch(baseUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
