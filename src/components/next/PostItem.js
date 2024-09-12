@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import styles from './PostItem.module.css';
 
 const PostItem = ({ id = 0, title, author, date, likes, image }) => {
-  const router = useRouter(); // useRouter 훅 초기화
+  const router = useRouter();
 
   // 게시글 클릭 시 호출되는 함수
   const handleClick = () => {
@@ -20,20 +20,20 @@ const PostItem = ({ id = 0, title, author, date, likes, image }) => {
   };
 
   return (
-    <div className={styles.postItem} onClick={handleClick}> {/* 클릭 시 handleClick 호출 */}
+    <div className={styles.postItem} onClick={handleClick}>
       <div className={styles.postContent}>
-        <h3 className={styles.postTitle}>{title || defaultData.title}</h3> {/* 제목이 없을 경우 기본값 사용 */}
+        <h3 className={styles.postTitle}>{title || defaultData.title}</h3>
         <div className={styles.postDetails}>
           <img src="/image/profile.svg" alt="Profile Icon" className={styles.profileIcon} />
-          <span className={styles.author}>{author || defaultData.author}</span> {/* 작성자가 없을 경우 기본값 사용 */}
-          <span className={styles.date}>{date || defaultData.date}</span> {/* 날짜가 없을 경우 기본값 사용 */}
+          <span className={styles.author}>{author || defaultData.author}</span>
+          <span className={styles.date}>{date || defaultData.date}</span>
         </div>
       </div>
       <div className={styles.postImageContainer}>
-        <img src={image || defaultData.image} alt="게시글 이미지" className={styles.postImage} /> {/* 이미지가 없을 경우 기본값 사용 */}
+        <img src={image || defaultData.image} alt="게시글 이미지" className={styles.postImage} />
         <div className={styles.postLikes}>
           <img src="/image/heart.svg" alt="Likes" />
-          <span>{likes !== undefined ? likes : defaultData.likes}</span> {/* 좋아요 수가 없을 경우 기본값 사용 */}
+          <span>{likes !== undefined ? likes : defaultData.likes}</span> {/* 전달된 좋아요 사용 */}
         </div>
       </div>
     </div>

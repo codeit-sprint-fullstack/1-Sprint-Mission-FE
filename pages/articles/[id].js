@@ -9,6 +9,7 @@ const PostDetail = () => {
   const { id } = router.query;
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [likes, setLikes] = useState(Math.floor(Math.random() * 10000)); // 랜덤 좋아요 상태 생성
 
   useEffect(() => {
     if (id) {
@@ -32,30 +33,26 @@ const PostDetail = () => {
     return <div>게시글을 불러오는 중 오류가 발생했습니다.</div>;
   }
 
-  const randomNickname = '푸바오'; 
-  const randomLikes = Math.floor(Math.random() * 10000); 
-
   return (
     <div className={styles.postDetailContainer}>
       <div className={styles.titleContainer}>
-        <h1 className={styles.postTitle}>{post.title}</h1> 
+        <h1 className={styles.postTitle}>{post.title}</h1>
         <img src="/image/kebab.svg" alt="Kebab Icon" className={styles.kebabIcon} />
       </div>
 
       <div className={styles.postInfo}>
         <img src="/image/mini_profile.svg" alt="Mini Profile" className={styles.profileIcon} />
-        <span className={styles.author}>{post.author || randomNickname}</span> 
-        <span className={styles.date}>{new Date(post.createdAt).toLocaleDateString()}</span> 
+        <span className={styles.author}>{post.author || '푸바오'}</span>
+        <span className={styles.date}>{new Date(post.createdAt).toLocaleDateString()}</span>
         <img src="/image/line.svg" alt="Line" className={styles.lineIcon} />
         <img src="/image/heart.svg" alt="Likes" className={styles.heartIcon} />
-        <span className={styles.likes}>{post.likes || randomLikes}</span> 
+        <span className={styles.likes}>{likes}</span> {/* 랜덤 좋아요 표시 */}
       </div>
 
       <div className={styles.contentContainer}>
-        <p className={styles.postContent}>{post.content}</p> 
+        <p className={styles.postContent}>{post.content}</p>
       </div>
 
-  
       <div className={styles.commentFormContainer}>
         <CommentForm articleId={id} />
       </div>
