@@ -13,8 +13,10 @@ const PostDetail = () => {
   const [likes, setLikes] = useState(Math.floor(Math.random() * 10000)); // 랜덤 좋아요 상태 생성
   const [comments, setComments] = useState([]); // 댓글을 빈 배열로 초기화
 
+  // 게시글 및 댓글을 불러오는 useEffect
   useEffect(() => {
     if (id) {
+      // 게시글 불러오기
       fetchArticleById(id)
         .then((data) => {
           setPost(data);
@@ -25,7 +27,7 @@ const PostDetail = () => {
           setLoading(false);
         });
 
-      // 전체 댓글을 가져오기
+      // 댓글 목록 불러오기
       fetchComments(id)
         .then((data) => {
           console.log('Fetched comments:', data.list); // 불러온 댓글 데이터 확인
@@ -35,8 +37,9 @@ const PostDetail = () => {
     }
   }, [id]);
 
+  // 새로운 댓글을 추가하는 함수
   const addNewComment = (newComment) => {
-    setComments([newComment, ...comments]); // 새로운 댓글을 추가
+    setComments([newComment, ...comments]); // 새로운 댓글을 리스트에 추가
   };
 
   if (loading) return <div>Loading...</div>;
@@ -53,7 +56,7 @@ const PostDetail = () => {
         <img src="/image/mini_profile.svg" alt="Mini Profile" className={styles.profileIcon} />
         <span className={styles.author}>{post.author || '푸바오'}</span>
         <span className={styles.date}>
-          {new Date(post.createdAt).toISOString().slice(0, 10).replace(/-/g, '.')}
+          {new Date(post.createdAt).toISOString().slice(0, 10).replace(/-/g, ':')}
         </span>
         <img src="/image/line.svg" alt="Line" className={styles.lineIcon} />
         <img src="/image/heart.svg" alt="Likes" className={styles.heartIcon} />
@@ -64,8 +67,10 @@ const PostDetail = () => {
         <p className={styles.postContent}>{post.content}</p>
       </div>
 
+      {/* 댓글 작성 폼 */}
       <CommentForm articleId={id} addNewComment={addNewComment} />
 
+      {/* 댓글 목록 */}
       <div className={styles.commentsContainer}>
         {comments.length === 0 ? (
           <>
@@ -78,7 +83,7 @@ const PostDetail = () => {
           comments.map((comment, index) => (
             <CommentItem
               key={comment.id}
-              author={`${comments.length - index}번 사용자`}
+              author={`[${comments.length - index}]번 사용자`} // 역순으로 index 표시
               content={comment.content}
               date={comment.createdAt}
             />
