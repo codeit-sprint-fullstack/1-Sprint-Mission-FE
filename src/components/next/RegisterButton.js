@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { createArticle } from '../../src/api/api';
+import { createArticle } from '../../api/api';
 import styles from './RegisterButton.module.css';
 
 const RegisterButton = ({ title, content, addNewPost }) => {
