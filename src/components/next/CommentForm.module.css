@@ -27,6 +27,9 @@
 .formGroup textarea {
   padding: 12px;
   border: 1px solid #e5e7eb;
+  width: 100%;
+  max-width: 1200px; 
+  box-sizing: border-box;
   border-radius: 8px;
   background-color: #f3f4f6;
   font-family: "Pretendard", sans-serif;
