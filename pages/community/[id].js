@@ -13,29 +13,42 @@ export async function getServerSideProps(context) {
   const { id } = context.params;
 
   try {
-    const res = await axios.get(`/articles/${id}`);
-    const post = res.data;
+    const postRes = await axios.get(`/articles/${id}`);
+    const post = postRes.data;
+
+    const commentsRes = await axios.get(`/comments/articles/${id}/comments`);
+    const initialComments = commentsRes.data.comments;
 
     return {
       props: {
         post,
+        initialComments,
       },
     };
   } catch (error) {
-    console.error("게시글을 fetch에 실패했습니다:", error);
+    console.error("데이터 fetch에 실패했습니다:", error);
     return {
       notFound: true,
     };
   }
 }
 
-const PostDetail = ({ post }) => {
+const PostDetail = ({ post, initialComments }) => {
   const [comment, setComment] = useState("");
+  const [comments, setComments] = useState(initialComments);
   const router = useRouter();
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
     console.log("댓글 등록:", comment);
+
+    const newComment = {
+      id: Date.now().toString(),
+      content: comment,
+      createdAt: new Date(),
+    };
+
+    setComments([...comments, newComment]);
     setComment("");
   };
 
@@ -113,7 +126,13 @@ const PostDetail = ({ post }) => {
         </button>
       </form>
       <div className={styles.commentsContainer}>
-        <Comment />
+        {comments.length > 0 ? (
+          comments.map((comment) => (
+            <Comment key={comment.id} comment={comment} />
+          ))
+        ) : (
+          <p>댓글이 없습니다.</p>
+        )}
       </div>
       <button
         className={`${styles.backButton} text-2lg semibold`}

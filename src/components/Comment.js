@@ -4,12 +4,12 @@ import Image from "next/image";
 
 import profileImage from "@images/ic_profile.svg";
 
-const Comment = () => {
+const Comment = ({ comment }) => {
   return (
     <div className={styles.comment}>
       <div className={styles.commentHeader}>
         <span className={`${styles.commentContent} text-md regular`}>
-          Comment
+          {comment.content}
         </span>
         <KebabDropdown />
       </div>
@@ -17,9 +17,11 @@ const Comment = () => {
         <Image src={profileImage} alt="profile image" width={32} height={32} />
         <div className={styles.infoContent}>
           <span className={`${styles.commentNickname} text-xs regular`}>
-            Nick Name
+            힘쎈 판다
           </span>
-          <span className={`${styles.commentTime} text-xs regular`}>time</span>
+          <span className={`${styles.commentTime} text-xs regular`}>
+            {new Date(comment.createdAt).toLocaleDateString("ko-KR")}
+          </span>
         </div>
       </div>
     </div>
