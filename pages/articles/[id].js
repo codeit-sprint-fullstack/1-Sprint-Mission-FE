@@ -55,7 +55,7 @@ const PostDetail = () => {
         <img src="/image/mini_profile.svg" alt="Mini Profile" className={styles.profileIcon} />
         <span className={styles.author}>{post.author || '푸바오'}</span>
         <span className={styles.date}>
-          {new Date(post.createdAt).toISOString().slice(0, 10).replace(/-/g, ':')}
+          {new Date(post.createdAt).toISOString().slice(0, 10).replace(/-/g, '.')}
         </span>
         <img src="/image/line.svg" alt="Line" className={styles.lineIcon} />
         <img src="/image/heart.svg" alt="Likes" className={styles.heartIcon} />
@@ -68,7 +68,7 @@ const PostDetail = () => {
 
       <CommentForm articleId={id} addNewComment={addNewComment} />
 
-      <div className={styles.commentSection}>
+      <div className={styles.commentsContainer}>
         {comments.length === 0 ? (
           <>
             <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
@@ -80,7 +80,7 @@ const PostDetail = () => {
           comments.map((comment, index) => (
             <CommentItem
               key={comment.id}
-              author={`[${comments.length - index}]번 사용자`}
+              author={`${comments.length - index}번 바오`}
               content={comment.content}
               createdAt={comment.createdAt}
             />
