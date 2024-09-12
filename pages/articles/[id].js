@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import { fetchArticleById, fetchComments } from '../../src/api/api';
 import styles from '../../styles/post-detail.module.css';
 import CommentItem from '../../src/components/next/CommentItem';
-import CommentForm from '../../src/components/next/CommentForm'; // CommentForm 가져오기
+import CommentForm from '../../src/components/next/CommentForm';
+import BackButton from '../../src/components/next/BackButton'; // BackButton 추가
 
 const PostDetail = () => {
   const router = useRouter();
@@ -29,9 +30,8 @@ const PostDetail = () => {
       // 댓글 불러오기
       fetchComments(id)
         .then((data) => {
-          console.log("Fetched comments: ", data);  // API에서 가져온 댓글 데이터 확인
-          setComments(Array.isArray(data) ? data : []);  // 데이터가 배열인지 확인 후 상태 설정
-          console.log("Processed comments: ", comments);  // 처리된 댓글 상태 확인
+          console.log("Fetched comments: ", data);
+          setComments(Array.isArray(data) ? data : []); // 데이터가 배열인지 확인 후 상태 설정
         })
         .catch(console.error);
     }
@@ -75,16 +75,24 @@ const PostDetail = () => {
             <p className={styles.noCommentsText}>
               아직 댓글이 없어요, <br /> 지금 댓글을 달아보세요!
             </p>
+            <div className={styles.buttonContainer}>
+              <BackButton />
+            </div>
           </>
         ) : (
-          comments.map((comment, index) => (
-            <CommentItem
-              key={comment.id}
-              author={`${comments.length - index}번 바오`}
-              content={comment.content}
-              createdAt={comment.createdAt}
-            />
-          ))
+          <>
+            {comments.map((comment, index) => (
+              <CommentItem
+                key={comment.id}
+                author={`${comments.length - index}번 바오`}
+                content={comment.content}
+                createdAt={comment.createdAt}
+              />
+            ))}
+            <div className={styles.buttonContainer}>
+              <BackButton />
+            </div>
+          </>
         )}
       </div>
     </div>
@@ -92,3 +100,4 @@ const PostDetail = () => {
 };
 
 export default PostDetail;
+

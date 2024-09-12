@@ -88,13 +88,20 @@
   font-weight: 400;
   color: #9CA3AF;
   line-height: 26px;
+  margin-bottom: 30px; 
 }
 
 .commentsContainer {
   display: flex;
   flex-direction: column;
   gap: 20px; /* 댓글 간 간격 */
-  margin-top: 30px;
+  margin-top: 20px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px; 
 }
 
 @media (min-width: 744px) and (max-width: 1199px) {
