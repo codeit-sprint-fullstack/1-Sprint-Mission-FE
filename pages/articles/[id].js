@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { fetchArticleById, fetchComments } from '../../src/api/api';
 import styles from '../../styles/post-detail.module.css';
 import CommentItem from '../../src/components/next/CommentItem';
-import CommentForm from '../../src/components/next/CommentForm'; 
+import CommentForm from '../../src/components/next/CommentForm'; // CommentForm 가져오기
 
 const PostDetail = () => {
   const router = useRouter();
@@ -26,9 +26,7 @@ const PostDetail = () => {
         });
 
       fetchComments(id)
-        .then((data) => {
-          setComments(data || []); // 댓글 데이터를 설정
-        })
+        .then((data) => setComments(Array.isArray(data.list) ? data.list : [])) // 댓글 데이터가 배열인지 확인
         .catch(console.error);
     }
   }, [id]);
@@ -64,7 +62,7 @@ const PostDetail = () => {
 
       <CommentForm articleId={id} addNewComment={addNewComment} />
 
-      <div className={styles.commentsContainer}>
+      <div className={styles.commentSection}>
         {comments.length === 0 ? (
           <>
             <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
@@ -73,12 +71,12 @@ const PostDetail = () => {
             </p>
           </>
         ) : (
-          comments.map((comment) => (
+          comments.map((comment, index) => (
             <CommentItem
               key={comment.id}
-              author={comment.author}
+              author={`${index + 1}번 사용자`}
               content={comment.content}
-              createdAt={comment.createdAt}
+              date={comment.createdAt}
             />
           ))
         )}
@@ -88,4 +86,3 @@ const PostDetail = () => {
 };
 
 export default PostDetail;
-
