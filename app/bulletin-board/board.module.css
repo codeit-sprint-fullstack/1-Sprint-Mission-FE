@@ -37,6 +37,7 @@
 @media (min-width: 744px) and (max-width: 1199px) {
   .board {
     width: 69.6rem;
+    margin-top: 2.4rem;
     margin-bottom: 1.9rem;
   }
 
@@ -59,6 +60,7 @@
 @media (min-width: 375px) and (max-width: 743px) {
   .board {
     width: 34.3rem;
+    margin-top: 2.4rem;
     margin-bottom: 9.1rem;
   }
 

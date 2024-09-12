@@ -13,7 +13,7 @@ export function Article({
   title,
   content,
   profileImgUrl,
-  ownerName,
+  nickname,
   createdDate,
   favoriteCount,
 }) {
@@ -27,7 +27,7 @@ export function Article({
   const contentClass = `font-normal ${style.content}`;
 
   const Owner = () => {
-    return <p className={middleBarOwnerClass}>{ownerName}</p>;
+    return <p className={middleBarOwnerClass}>{nickname}</p>;
   };
 
   const Divider = () => {

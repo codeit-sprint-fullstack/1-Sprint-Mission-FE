@@ -2,12 +2,18 @@
   height: 2.4rem;
 }
 
+.heart-empty {
+  content: url(../../public/icons/ic_heart_empty_small.svg);
+}
+
+.heart-full {
+  content: url(../../public/icons/ic_heart_full.svg);
+}
+
 .best-post-favorite-img {
   width: 1.6rem;
   height: 1.6rem;
   margin-right: 0.4rem;
-  /* 임시로 static 한 이미지 사용 */
-  content: url(../../public/icons/ic_heart_empty_small.svg);
 }
 
 .best-post-favorite-count {
@@ -22,8 +28,6 @@
   width: 2.4rem;
   height: 2.4rem;
   margin-right: 0.8rem;
-  /* 임시로 static 한 이미지 사용 */
-  content: url(../../public/icons/ic_heart_empty_small.svg);
 }
 
 .post-preview-favorite-count {
@@ -44,8 +48,6 @@
   height: 3.2rem;
   margin-left: 1.2rem;
   margin-right: 0.4rem;
-  /* 임시로 static 한 이미지 사용 */
-  content: url(../../public/icons/ic_heart_empty_small.svg);
 }
 
 .post-detail-favorite-count {

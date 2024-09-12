@@ -8,7 +8,7 @@
   font-size: 1.6rem;
   line-height: 1.625em;
   border-radius: 0.75rem;
-  border: 0.1rem solid var(--gray300-color);
+  border: 0.1rem solid var(--gray100-color);
 }
 
 .input-invalid {

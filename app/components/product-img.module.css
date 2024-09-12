@@ -7,5 +7,6 @@
   border-color: var(--gray200-color);
   /* 임시로 static 한 이미지 사용 */
   /* content: url(../../public/images/no_image.svg); */
+  background-color: white;
   position: relative;
 }

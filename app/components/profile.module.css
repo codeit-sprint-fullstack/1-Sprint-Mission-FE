@@ -3,6 +3,7 @@
   border: 0.1rem solid;
   border-color: var(--gray300-color);
   border-radius: 50%;
+  overflow: hidden;
   position: relative;
   cursor: pointer;
 }

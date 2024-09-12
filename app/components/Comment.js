@@ -5,12 +5,12 @@ import { LAST_TIME } from "../constants/date";
 
 import style from "./comment.module.css";
 
-export function Comment({ content, profileImgUrl, ownerName, date }) {
+export function Comment({ content, profileImgUrl, nickname, date }) {
   const topBarClass = `flex-row justify-between`;
   const contentClass = `font-normal ${style.content}`;
   const bottomBarClass = `flex-row ${style["bottom-bar"]}`;
-  const bottomBarOwnerDateSet = `flex-col ${style["owner-last-time-set"]}`;
-  const ownerClass = `${style.owner}`;
+  const bottomBarNicknameDateSetClass = `flex-col ${style["nickname-last-time-set"]}`;
+  const nicknameClass = `${style.nickname}`;
 
   return (
     <div className={style.comment}>
@@ -19,9 +19,9 @@ export function Comment({ content, profileImgUrl, ownerName, date }) {
         <button className={style["btn-ellipsis"]} />
       </div>
       <div className={bottomBarClass}>
-        <Profile type={PROFILE_H32} />
-        <div className={bottomBarOwnerDateSet}>
-          <div className={ownerClass}>{ownerName}</div>
+        <Profile type={PROFILE_H32} profileImgUrl={profileImgUrl} />
+        <div className={bottomBarNicknameDateSetClass}>
+          <div className={nicknameClass}>{nickname}</div>
           <Date type={LAST_TIME} dbDate={date} />
         </div>
       </div>

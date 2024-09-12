@@ -10,8 +10,8 @@ export function CommentList({ list }) {
       <Comment
         key={index}
         content={comment.content}
-        profileImgUrl={null}
-        ownerName={comment.user.name}
+        profileImgUrl={comment.user.image}
+        nickname={comment.user.nickname}
         date={comment.createdAt}
       />
     );

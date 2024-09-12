@@ -21,7 +21,7 @@ export function Profile({ type, profileImgUrl, onClick }) {
     case PROFILE_H40: {
       profile = (
         <div className={h40Class} onClick={clickProfile}>
-          <Image src={profileImgUrl} fill={true} alt="프로필 사진" />
+          <Image src={profileImgUrl} sizes="100vw" fill alt="프로필 사진" />
         </div>
       );
       break;
@@ -29,7 +29,7 @@ export function Profile({ type, profileImgUrl, onClick }) {
     case PROFILE_H32: {
       profile = (
         <div className={h32Class} onClick={clickProfile}>
-          <Image src={profileImgUrl} fill={true} alt="프로필 사진" />
+          <Image src={profileImgUrl} sizes="100vw" fill alt="프로필 사진" />
         </div>
       );
       break;
@@ -37,7 +37,7 @@ export function Profile({ type, profileImgUrl, onClick }) {
     case PROFILE_H24: {
       profile = (
         <div className={h24Class} onClick={clickProfile}>
-          <Image src={profileImgUrl} fill={true} alt="프로필 사진" />
+          <Image src={profileImgUrl} sizes="100vw" fill alt="프로필 사진" />
         </div>
       );
       break;

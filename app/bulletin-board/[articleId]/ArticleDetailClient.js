@@ -14,8 +14,8 @@ import style from "./article-detail-client.module.css";
 
 export function ArticleDetailClient({ articleId }) {
   const [title, setTitle] = useState("게시글 제목");
-  const [profileImgUrl, setProfileImgUrl] = useState(null); // 아직 사용 안함
-  const [name, setName] = useState("작성자");
+  const [profileImgUrl, setProfileImgUrl] = useState(null);
+  const [nickname, setNickname] = useState("작성자");
   const [createDate, setCreateDate] = useState("2024-09-10T00:00:00.000Z");
   const [favorite, setFavorite] = useState(0);
   const [content, setContent] = useState(0);
@@ -38,7 +38,8 @@ export function ArticleDetailClient({ articleId }) {
   useEffect(() => {
     getArticle(articleId).then((data) => {
       setTitle(data.title);
-      setName(data.user.name);
+      setProfileImgUrl(data.user.image);
+      setNickname(data.user.nickname);
       setCreateDate(data.createdAt);
       setFavorite(data.favorite);
       setContent(data.content);
@@ -55,7 +56,7 @@ export function ArticleDetailClient({ articleId }) {
         title={title}
         content={content}
         profileImgUrl={profileImgUrl}
-        ownerName={name}
+        nickname={nickname}
         createdDate={createDate}
         favoriteCount={favorite}
       />

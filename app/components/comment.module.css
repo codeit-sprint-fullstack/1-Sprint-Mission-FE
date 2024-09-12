@@ -1,6 +1,7 @@
 .comment {
   width: 120rem;
   height: 10rem;
+  background-color: var(--alabaster-color);
   border-bottom: 0.1rem solid var(--gray200-color);
 }
 
@@ -14,12 +15,12 @@
   margin-top: 2.4rem;
 }
 
-.owner-last-time-set {
+.nickname-last-time-set {
   margin-left: 0.8rem;
   gap: 0.4rem;
 }
 
-.owner {
+.nickname {
   font-size: 1.2rem;
   line-height: 1.5em;
   color: var(--gray600-color);

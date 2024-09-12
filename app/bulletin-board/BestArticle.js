@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import Favorite from "../components/Favorite";
 import Date from "../components/Date";
+import { DATE } from "../constants/date";
 import { BEST_ARTICLE } from "../constants/Favorite";
 import { ProductImg } from "../components/ProductImg";
 
@@ -12,7 +13,7 @@ export function BestArticle({
   articleId,
   title = "게시글 제목",
   imgUrl,
-  owner = "작성자",
+  nickname = "작성자",
   myFavorite = false,
   favoriteCount = 0,
   createdDate,
@@ -24,10 +25,12 @@ export function BestArticle({
   const articleMainClass = `flex flex-row justify-between ${style["article-main"]}`;
   const articleTitleClass = `font-semibold ${style["article-title"]}`;
   const articleBottomBarClass = `flex flex-row justify-between items-center ${style["article-bottom-bar"]}`;
-  const articleBottomOwnerClass = `flex items-center font-normal text-gray-600 align-middle ${style["article-bottom-name"]}`;
+  const articleBottomNicknameClass = `flex items-center font-normal text-gray-600 align-middle ${style["article-bottom-nickname"]}`;
 
   const handleClickArticle = () => {};
   const link = `/bulletin-board/${articleId}`;
+
+  console.log("myFavorite : ", myFavorite);
 
   return (
     <Link href={link}>
@@ -42,14 +45,14 @@ export function BestArticle({
           </div>
           <div className={articleBottomBarClass}>
             <div className="flex flex-row">
-              <div className={articleBottomOwnerClass}>{owner}</div>
+              <div className={articleBottomNicknameClass}>{nickname}</div>
               <Favorite
                 type={BEST_ARTICLE}
                 myFavorite={myFavorite}
                 favoriteCount={favoriteCount}
               />
             </div>
-            <Date dbDate={createdDate} />
+            <Date type={DATE} dbDate={createdDate} />
           </div>
         </div>
       </div>

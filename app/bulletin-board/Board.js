@@ -51,10 +51,11 @@ export function Board() {
             <ArticlePreview
               key={index}
               title={article.title}
-              owner={article.user.name}
-              myFavorite={false}
+              profileImgUrl={article.user.image}
+              nickname={article.user.nickname}
+              myFavorite={article.myFavorite}
               favoriteCount={article.favorite}
-              createdDate={article.createdDate}
+              createdDate={article.createdAt}
             />
           );
         });
@@ -76,10 +77,11 @@ export function Board() {
           <ArticlePreview
             key={index}
             title={article.title}
-            owner={article.user.name}
-            myFavorite={false}
+            profileImgUrl={article.user.image}
+            nickname={article.user.nickname}
+            myFavorite={article.myFavorite}
             favoriteCount={article.favorite}
-            createdDate={article.createdDate}
+            createdDate={article.createdAt}
           />
         );
       });
@@ -94,10 +96,11 @@ export function Board() {
           <ArticlePreview
             key={index}
             title={article.title}
-            owner={article.user.name}
-            myFavorite={false}
+            profileImgUrl={article.user.image}
+            nickname={article.user.nickname}
+            myFavorite={article.myFavorite}
             favoriteCount={article.favorite}
-            createdDate={article.createdDate}
+            createdDate={article.createdAt}
           />
         );
       });

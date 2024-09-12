@@ -1,6 +1,7 @@
 .article-preview {
   width: 120rem;
   height: 13.8rem;
+  box-sizing: border-box;
   background-color: var(--alabaster-color);
   border-bottom: 0.1rem solid var(--gray200-color);
 }
@@ -24,16 +25,13 @@
   margin-bottom: 2.4rem;
 }
 
-.bottom-bar-owner-date {
+.bottom-bar-nickname-date {
   gap: 0.8rem;
 }
 
-.bottom-bar-owner {
-  gap: 0.8rem;
-}
-
-.owner-name {
+.nickname-name {
   font-size: 1.4rem;
+  line-height: 1.71428em;
   color: var(--gray600-color);
 }
 
@@ -56,6 +54,7 @@
 @media (min-width: 375px) and (max-width: 743px) {
   .article-preview {
     width: 34.3rem;
+    height: 13.6rem;
   }
 
   .top-bar {
