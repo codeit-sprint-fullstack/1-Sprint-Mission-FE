@@ -7,9 +7,11 @@
 
 .noPostsMessage {
   font-size: 20px; 
-  margin-left: 60px;
+  padding: 80px 16px;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
   color: #000000; 
-  margin-top: 20px;
 }
 
 
