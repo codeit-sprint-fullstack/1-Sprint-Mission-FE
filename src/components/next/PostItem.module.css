@@ -9,6 +9,11 @@
     justify-content: space-between;
     align-items: flex-start;
     margin: auto;
+    transition: transform 0.3s ease; 
+}
+
+.postItem.moveDown {
+    transform: translateY(300px);
 }
 
 .postTitle {
@@ -67,5 +72,4 @@
 .postLikes img {
     margin-right: 5px;
 }
-
 

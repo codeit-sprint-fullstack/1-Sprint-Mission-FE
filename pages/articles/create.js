@@ -2,36 +2,26 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { createArticle } from '../../src/api/api';
 import styles from '../../styles/create.module.css';
+import RegisterButton from '../../src/components/next/RegisterButton';
 
 const CreateArticle = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      // createArticle 함수 호출로 API 요청
-      const article = await createArticle({ title, content });
-      // 게시글이 생성되면 상세 페이지로 이동
-      router.push(`/articles/${article.id}`);
-    } catch (error) {
-      console.error('Failed to create article:', error);
-    }
+  const handleNewPost = (newPost) => {
+    console.log('새로 작성된 게시글: ', newPost);
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.registrationForm}>
+    <form className={styles.registrationForm}>
       <div className={styles.formHeader}>
         <h2>게시글 쓰기</h2>
-        <button
-          type="submit"
-          className={styles.submitButton}
-          disabled={!title || !content}
-        >
-          등록
-        </button>
+        <RegisterButton
+          title={title}
+          content={content}
+          addNewPost={handleNewPost}
+        />
       </div>
       <div className={styles.formGroup}>
         <label htmlFor="title">*제목</label>
