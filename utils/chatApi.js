@@ -4,82 +4,63 @@ const baseUrl = "https://thrift-shop.onrender.com/articleComments";
 
 export async function fetchComments(id, page, size) {
   return apiHandler(async () => {
-    try {
-      const response = await fetch(
-        `${baseUrl}/${id}?page=${page}&size=${size}`
-      );
+    const response = await fetch(`${baseUrl}/${id}?page=${page}&size=${size}`);
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch comments");
-      }
-
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("API error:", error);
-      return { data: [], total: 0 };
+    if (!response.ok) {
+      throw new Error("Failed to fetch comments");
     }
+
+    const data = await response.json();
+    return data;
   });
 }
 
 export async function deleteComments(id) {
   return apiHandler(async () => {
-    try {
-      const response = await fetch(`${baseUrl}/${id}`, {
-        method: "DELETE",
-      });
-      if (!response.ok) {
-        throw new Error("Failed to delete comments");
-      }
-      return response;
-    } catch (error) {
-      console.error("API error:", error);
+    const response = await fetch(`${baseUrl}/${id}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      throw new Error("Failed to delete comments");
     }
+    return response;
   });
 }
 
 export async function createComments(id, formData) {
   return apiHandler(async () => {
-    try {
-      const dataToSend = { ...formData };
+    const dataToSend = { ...formData };
 
-      const response = await fetch(`${baseUrl}/${id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dataToSend),
-      });
+    const response = await fetch(`${baseUrl}/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToSend),
+    });
 
-      if (!response.ok) {
-        throw new Error("Failed to create comments");
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error("API error:", error);
+    if (!response.ok) {
+      throw new Error("Failed to create comments");
     }
+
+    return await response.json();
   });
 }
 
 export async function updateComments(id, formData) {
   return apiHandler(async () => {
-    try {
-      const dataToSend = { ...formData };
-      const response = await fetch(`${baseUrl}/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dataToSend),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to update comments");
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error("API error:", error);
+    const dataToSend = { ...formData };
+    const response = await fetch(`${baseUrl}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToSend),
+    });
+    if (!response.ok) {
+      throw new Error("Failed to update comments");
     }
+
+    return await response.json();
   });
 }

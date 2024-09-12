@@ -14,20 +14,13 @@ export async function fetchArticle(id) {
 
 export async function fetchArticles({ sort, keyword, page, size }) {
   return apiHandler(async () => {
-    try {
-      const res = await fetch(
-        `${baseUrl}?sort=${sort}&search=${keyword}&page=${page}&size=${size}`
-      );
-      if (!res.ok) {
-        throw new Error("Failed to fetch articles");
-      }
-      const data = await res.json();
-
-      return data;
-    } catch (error) {
-      console.error("Error fetching articles:", error);
-      return [];
+    const res = await fetch(
+      `${baseUrl}?sort=${sort}&search=${keyword}&page=${page}&size=${size}`
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch articles");
     }
+    return await res.json();
   });
 }
 
@@ -38,9 +31,7 @@ export async function fetchBestArticles(size) {
     if (!res.ok) {
       throw new Error("Failed to fetch best articles");
     }
-
-    const data = await res.json();
-    return data;
+    return await res.json();
   });
 }
 
@@ -57,7 +48,6 @@ export async function updateArticle(id, formData) {
     if (!res.ok) {
       throw new Error("Failed to update article");
     }
-
     return res.json();
   });
 }
@@ -71,41 +61,29 @@ export async function deleteArticle(id) {
     if (!res.ok) {
       throw new Error("Failed to delete article");
     }
-
     const text = await res.text();
     if (text) {
-      try {
-        return JSON.parse(text);
-      } catch (error) {
-        console.error("Failed to parse JSON response:", error);
-      }
+      return JSON.parse(text);
     }
-
     return {};
   });
 }
 
 export async function createArticle(formData) {
   return apiHandler(async () => {
-    try {
-      const res = await fetch(baseUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+    const res = await fetch(baseUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
 
-      if (!res.ok) {
-        const errorText = await res.text();
-        console.error("Server error response:", errorText);
-        throw new Error("Failed to create article");
-      }
-
-      return await res.json();
-    } catch (error) {
-      console.error("Error during article creation:", error.message);
-      throw error;
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error("Server error response:", errorText);
+      throw new Error("Failed to create article");
     }
+    return await res.json();
   });
 }

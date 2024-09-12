@@ -75,13 +75,13 @@ export default function BoardChat({
     }, 200);
 
     window.addEventListener("scroll", handleScroll);
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, [loadMoreComments, hasMore, loading]);
 
   return (
     <div className={styles.container}>
       <ToastContainer position="top-right" autoClose={2000} />
-
       <div className={styles.inputContainer}>
         <p className={styles.chatTitle}>댓글달기</p>
         <textarea
