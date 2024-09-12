@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import axios from "@/lib/axios";
 import KebabDropdown from "@components/KebabDropdown";
+import { useRouter } from "next/router";
 
 import kebabIcon from "@images/ic_kebab.svg";
 import profileImage from "@images/ic_profile.svg";
@@ -30,6 +31,7 @@ export async function getServerSideProps(context) {
 
 const PostDetail = ({ post }) => {
   const [comment, setComment] = useState("");
+  const router = useRouter();
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +40,15 @@ const PostDetail = ({ post }) => {
   };
 
   const handleEdit = () => {
-    console.log("수정 버튼 클릭");
+    router.push({
+      pathname: "/create-post",
+      query: {
+        id: post.id,
+        createMode: "게시글 수정하기",
+        title: post.title,
+        content: post.content,
+      },
+    });
   };
 
   const handleDelete = () => {

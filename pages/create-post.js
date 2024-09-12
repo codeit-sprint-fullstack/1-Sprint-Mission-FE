@@ -3,11 +3,18 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "@/lib/axios";
 
-export default function CreatePost({ createMode = "게시글 쓰기" }) {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+export default function CreatePost() {
   const router = useRouter();
+  const {
+    id,
+    createMode = "게시글 쓰기",
+    title: queryTitle,
+    content: queryContent,
+  } = router.query;
+
+  const [title, setTitle] = useState(queryTitle || "");
+  const [content, setContent] = useState(queryContent || "");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,12 +23,18 @@ export default function CreatePost({ createMode = "게시글 쓰기" }) {
     setIsLoading(true);
 
     try {
-      const res = await axios.post("/articles", { title, content });
-      const postId = res.data.id;
+      if (createMode === "게시글 쓰기") {
+        const res = await axios.post("/articles", { title, content });
+        const postId = res.data.id;
 
-      router.push(`/community/${postId}`);
+        router.push(`/community/${postId}`);
+      } else if (createMode === "게시글 수정하기") {
+        await axios.patch(`/articles/${id}`, { title, content });
+
+        router.push(`/community/${id}`);
+      }
     } catch (error) {
-      console.error("게시글 등록에 실패했습니다:", error);
+      console.error("게시글 등록/수정에 실패했습니다:", error);
     } finally {
       setIsLoading(false);
     }
@@ -40,7 +53,11 @@ export default function CreatePost({ createMode = "게시글 쓰기" }) {
           } text-lg semibold`}
           disabled={!isFormValid || isLoading}
         >
-          {isLoading ? "로딩중..." : "등록"}
+          {isLoading
+            ? "로딩중..."
+            : createMode === "게시글 쓰기"
+            ? "등록"
+            : "수정"}
         </button>
       </div>
       <div className={`${styles.formGroup} text-2lg bold`}>
