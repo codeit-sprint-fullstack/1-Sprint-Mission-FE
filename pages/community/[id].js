@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import axios from "@/lib/axios";
 import KebabDropdown from "@components/KebabDropdown";
+import Comment from "@components/Comment";
 import { useRouter } from "next/router";
 
 import profileImage from "@images/ic_profile.svg";
@@ -111,6 +112,13 @@ const PostDetail = ({ post }) => {
           등록
         </button>
       </form>
+      <Comment />
+      <button
+        className={styles.backButton}
+        onClick={() => router.push("/community")}
+      >
+        목록으로 돌아가기
+      </button>
     </div>
   );
 };
