@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import styles from './Navbar.module.css'; // CSS 모듈로 스타일링
+import styles from './Navbar.module.css'; 
 
 const Navbar = () => {
   const [logoSrc, setLogoSrc] = useState('/image/logo.svg');
@@ -25,7 +25,7 @@ const Navbar = () => {
   }, []);
 
   // 모듈 방식으로 클래스 적용
-  const navbarClass = router.pathname === '/registration' ? styles.navbar + ' ' + styles.registrationPage : styles.navbar;
+  const navbarClass = router.pathname === '/registration' ? `${styles.navbar} ${styles.registrationPage}` : styles.navbar;
 
   return (
     <nav className={navbarClass}>
