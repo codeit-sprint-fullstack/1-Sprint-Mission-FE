@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { fetchArticleById } from '../../src/api/api';
 import styles from '../../styles/post-detail.module.css';
-import CommentForm from '../../src/components/next/CommentForm';
+import CommentList from '../../src/components/next/CommentList';
 
 const PostDetail = () => {
   const router = useRouter();
@@ -55,15 +55,11 @@ const PostDetail = () => {
         <p className={styles.postContent}>{post.content}</p>
       </div>
 
-      <div className={styles.commentFormContainer}>
-        <CommentForm articleId={id} />
+      <div className={styles.commentListContainer}>
+        <CommentList initialComments={post.comments || []} /> {/* 댓글 리스트 컴포넌트 추가 */}
       </div>
 
       <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
-
-      <p className={styles.noCommentsText}>
-        아직 댓글이 없어요, <br /> 지금 댓글을 달아보세요!
-      </p>
     </div>
   );
 };

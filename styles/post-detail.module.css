@@ -1,123 +1,88 @@
 .postDetailContainer {
-  padding: 80px ;
+  padding: 40px 16px;
   width: 100%;
   max-width: 1200px;
   margin: auto;
-  position: relative; 
-}
-
-.postTitle {
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 32px;
-  margin-bottom: 16px;
-  position: relative;
 }
 
 .titleContainer {
   display: flex;
   justify-content: space-between;
-  align-items: center; 
-  margin-bottom: 16px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.postTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
 }
 
 .kebabIcon {
-  margin-left: auto; 
+  width: 24px;
+  height: 24px;
 }
 
 .postInfo {
-  margin-bottom: 30px;
-  border-bottom: 1px solid #E5E7EB;
-  padding-bottom: 40px;
   display: flex;
   align-items: center;
+  margin-bottom: 16px;
 }
 
 .profileIcon {
-  margin-right: 20px;
-  vertical-align: middle;
-}
-
-.postAuthor {
-  font-size: 14px;
-  color: #4B5563;
-  margin-right: 20px;
-}
-
-.postDate {
-  font-size: 14px;
-  color: #9CA3AF;
-  margin-right: 30px; /* 날짜와 line.svg 사이 간격 */
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
 }
 
 .author {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
   margin-right: 15px;
 }
 
 .date {
-  margin-right: 25px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #9ca3af;
+  margin-right: 15px;
 }
 
 .lineIcon {
-  margin-right: 25px; /* line.svg와 하트 사이 간격 */
-}
-
-.heartIcon {
+  width: 16px;
   margin-right: 10px;
 }
 
-.postLikes {
-  font-size: 16px;
-  color: #6B7280;
+.heartIcon {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+}
+
+.likes {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ef4444;
+}
+
+.contentContainer {
+  margin-bottom: 40px;
 }
 
 .postContent {
-  font-size: 18px;
-  font-weight: 400;
-  color: #1F2937;
-  margin-top: 40px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #374151;
 }
 
-
-.commentFormContainer {
-  margin-top: 35px; /* 본문으로부터 35px 아래 */
-  margin-bottom: 30px;
+.commentListContainer {
+  margin-top: 30px; /* 댓글이 댓글 리스트 컨테이너 밑에서 30px 아래로 시작 */
 }
 
 .replyIcon {
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 10px; /* reply.svg 아래에 10px 간격 */
-}
-
-.noCommentsText {
-  text-align: center;
-  font-size: 16px;
-  font-weight: 400;
-  color: #9CA3AF;
-  line-height: 26px;
-}
-
-/* 미디어 쿼리 유지 */
-@media (min-width: 744px) and (max-width: 1199px) {
-  .postDetailContainer {
-    padding: 0 16px;
-    width: 100%;
-    max-width: 696px;
-    margin: auto;
-  }
-}
-
-@media (max-width: 743px) {
-  .postDetailContainer {
-    padding: 0 16px;
-    width: 100%;
-    margin: auto;
-  }
-
-  .postInfo {
-    flex-direction: column;
-    gap: 8px;
-  }
+  width: 40px;
+  height: 40px;
+  margin-top: 20px;
 }
 
