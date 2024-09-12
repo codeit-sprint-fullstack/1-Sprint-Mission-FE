@@ -4,15 +4,30 @@ import {
   HttpStatus,
   ExceptionCode,
 } from "@/errors";
-import { getPosts, addPost } from "@/data/postData";
+import { getPosts, addPost, getTotalPostsCount } from "@/data/postData";
 import { handleError } from "@/utils/handleError";
 
 export default async function handler(req, res) {
   try {
     switch (req.method) {
       case "GET":
-        const posts = await getPosts();
-        res.status(HttpStatus.OK).json(posts);
+        const page = parseInt(req.query.page) || 0;
+        const limit = parseInt(req.query.limit) || 10;
+
+        if (isNaN(page) || isNaN(limit) || page < 0 || limit < 1) {
+          throw new BadRequestException("잘못된 페이지 또는 한계값입니다.");
+        }
+
+        const posts = await getPosts(page, limit);
+        const totalCount = await getTotalPostsCount();
+
+        res.status(HttpStatus.OK).json({
+          posts,
+          totalCount,
+          currentPage: page,
+          totalPages: Math.ceil(totalCount / limit),
+          hasNextPage: (page + 1) * limit < totalCount,
+        });
         break;
       case "POST":
         if (!req.body.title || !req.body.content) {
