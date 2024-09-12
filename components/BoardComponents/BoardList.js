@@ -3,13 +3,18 @@ import SearchBar from "@/components/BoardComponents/SearchBar";
 import BoardListItems from "@/components/BoardComponents/BoardListItems";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ROUTES } from "@/utils/rotues";
 
 export default function BoardList({ articles }) {
   const router = useRouter();
   const [keyword, setKeyword] = useState(router.query.keyword || "");
   const [sortOrder, setSortOrder] = useState(router.query.sort || "createdAt");
+
+  useEffect(() => {
+    setKeyword(router.query.keyword || "");
+    setSortOrder(router.query.sort || "createdAt");
+  }, [router.query]);
 
   const handleSortChange = (value) => {
     setSortOrder(value);
