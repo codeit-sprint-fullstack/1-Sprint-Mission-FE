@@ -12,9 +12,13 @@ export default function App({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <GNB />
-        <Component {...pageProps} />
-        <Footer />
+        <div className="flex">
+          <GNB />
+          <main className="flex-grow">
+            <Component {...pageProps} />
+          </main>
+          <Footer />
+        </div>
         {process.env.NODE_ENV !== "production" && (
           <ReactQueryDevtools initialIsOpen={false} />
         )}

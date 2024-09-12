@@ -9,6 +9,7 @@
 
 * {
   font-family: "Pretendard", sans-serif !important;
+  box-sizing: border-box !important;
 }
 
 body {
@@ -16,6 +17,8 @@ body {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  height: auto;
+  min-height: 100%;
 }
 
 :root {
@@ -38,4 +41,14 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 75px);
+}
+
+.flex-grow {
+  flex-grow: 1;
 }

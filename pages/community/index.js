@@ -1,46 +1,57 @@
-import React, { useState, useMemo } from "react";
-import { useQuery, dehydrate, QueryClient } from "react-query";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
+import { useInfiniteQuery, dehydrate, QueryClient } from "react-query";
 import Link from "next/link";
-import { Select, Input } from "../components/ui/Input.jsx";
-import styles from "./community.module.css";
+import { Select, Input } from "../../components/ui/Input.jsx";
+import styles from "./index.module.css";
 import { formatDate } from "@/utils/dateUtils";
-import SmallButton from "../components/ui/SmallButton.jsx";
+import SmallButton from "../../components/ui/SmallButton.jsx";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
   CardAuthor,
-} from "../components/ui/Card.jsx";
+} from "@/components/ui/Card.jsx";
 import {
   BestCard,
   BestCardContent,
   BestCardHeader,
   BestCardTitle,
   BestCardAuthor,
-} from "../components/ui/BestCard.jsx";
+} from "@/components/ui/BestCard.jsx";
 
-const fetchPosts = async () => {
+const POSTS_PER_PAGE = 3;
+
+const fetchPosts = async ({ pageParam = 0 }) => {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-  const response = await fetch(`${baseUrl}/api/community/posts`);
+  const response = await fetch(
+    `${baseUrl}/api/community/posts?page=${pageParam}&limit=${POSTS_PER_PAGE}`
+  );
   if (!response.ok) {
     throw new Error("게시글 조회를 실패했습니다");
   }
-  return response.json();
+  const data = await response.json();
+  return {
+    posts: data.posts,
+    nextPage: data.hasNextPage ? pageParam + 1 : null,
+    totalPages: data.totalPages,
+  };
 };
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
 
   try {
-    await queryClient.prefetchQuery("posts", fetchPosts);
+    await queryClient.prefetchInfiniteQuery("posts", fetchPosts, {
+      getNextPageParam: (lastPage) => lastPage.nextPage,
+    });
   } catch (error) {
-    console.error("Failed to prefetch posts:", error);
+    console.error("조회 실패:", error);
   }
 
   return {
     props: {
-      dehydratedState: dehydrate(queryClient),
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
   };
 }
@@ -50,14 +61,22 @@ const Community = () => {
   const [search, setSearch] = useState("");
 
   const {
-    data: allPosts,
+    data,
+    fetchNextPage,
+    hasNextPage,
     isLoading,
     isError,
     error,
-  } = useQuery("posts", fetchPosts, {
+    isFetchingNextPage,
+  } = useInfiniteQuery("posts", fetchPosts, {
+    getNextPageParam: (lastPage) => lastPage.nextPage,
     staleTime: 60000,
     retry: 3,
   });
+
+  const allPosts = useMemo(() => {
+    return data ? data.pages.flatMap((page) => page.posts) : [];
+  }, [data]);
 
   const filteredAndSortedPosts = useMemo(() => {
     if (!allPosts) return [];
@@ -74,7 +93,7 @@ const Community = () => {
 
     result.sort((a, b) => {
       if (sort === "latest") {
-        return new Date(b.createdAt) - new Date(a.createdAt);
+        return new Date(b.created_at) - new Date(a.created_at);
       } else if (sort === "likes") {
         return b.likes - a.likes;
       }
@@ -83,6 +102,21 @@ const Community = () => {
 
     return result;
   }, [allPosts, sort, search]);
+
+  const handleScroll = useCallback(() => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+        document.documentElement.offsetHeight &&
+      hasNextPage
+    ) {
+      fetchNextPage();
+    }
+  }, [fetchNextPage, hasNextPage]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
 
   if (isLoading) return <div>로딩 중...</div>;
   if (isError) return <div>에러가 발생했습니다: {error.message}</div>;
@@ -121,7 +155,7 @@ const Community = () => {
       </div>
 
       <div className={styles.buttonSectionHug}>
-        게시글 <SmallButton>글쓰기</SmallButton>
+        게시글 <SmallButton href="/community/write">글쓰기</SmallButton>
       </div>
 
       <div className={styles.searchSectionHug}>
@@ -143,7 +177,7 @@ const Community = () => {
 
       <div className={styles.postCardContainer}>
         {filteredAndSortedPosts.map((post) => (
-          <Link href={`/posts/${post.id}`} key={post.id}>
+          <Link href={`/community/posts/${post.id}`} key={post.id}>
             <Card>
               <CardHeader>
                 <CardTitle>{post.title}</CardTitle>
@@ -168,6 +202,7 @@ const Community = () => {
             </Card>
           </Link>
         ))}
+        {isFetchingNextPage && <div className={styles.spinner}></div>}
       </div>
     </div>
   );

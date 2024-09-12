@@ -1,9 +1,18 @@
 import db from "../lib/db";
 import { NotFoundException } from "../errors/CustomExceptions";
 
-export async function getPosts() {
-  const result = await db.query("SELECT * FROM posts ORDER BY created_at DESC");
+export async function getPosts(page = 0, limit = 10) {
+  const offset = page * limit;
+  const result = await db.query(
+    "SELECT * FROM posts ORDER BY created_at DESC LIMIT $1 OFFSET $2",
+    [limit, offset]
+  );
   return result.rows;
+}
+
+export async function getTotalPostsCount() {
+  const result = await db.query("SELECT COUNT(*) FROM posts");
+  return parseInt(result.rows[0].count);
 }
 
 export async function addPost(postData) {
