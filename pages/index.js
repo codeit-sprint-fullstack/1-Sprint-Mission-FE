@@ -1,6 +1,6 @@
 import BestPosts from '../src/components/next/BestPosts';
 import PostList from '../src/components/next/PostList';
-import { fetchArticles, fetchBestArticles } from '../src/api/api'; // api.js에서 함수 가져오기
+import { fetchArticles, fetchBestArticles } from '../src/api/api'; //
 
 const BoardPage = ({ initialPosts, bestPosts }) => {
   return (
@@ -14,16 +14,19 @@ const BoardPage = ({ initialPosts, bestPosts }) => {
 // 서버 사이드에서 게시글 목록과 베스트 게시글을 모두 가져옴
 export async function getServerSideProps() {
   try {
-    // api.js 파일에서 함수 호출
-    const [initialPosts, bestPosts] = await Promise.all([
+    const [articlesResult, bestPostsResult] = await Promise.allSettled([
       fetchArticles({ orderBy: 'recent' }),
       fetchBestArticles(),
     ]);
 
+    const initialPosts = articlesResult.status === 'fulfilled' ? articlesResult.value.list : [];
+
+    const bestPosts = bestPostsResult.status === 'fulfilled' ? bestPostsResult.value : [];
+
     return {
       props: {
-        initialPosts: initialPosts.list || [], // 초기 게시글
-        bestPosts: bestPosts || [], // 베스트 게시글
+        initialPosts, // 초기 게시글
+        bestPosts,    // 베스트 게시글
       },
     };
   } catch (error) {
