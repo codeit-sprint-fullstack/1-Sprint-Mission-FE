@@ -38,18 +38,21 @@ const PostDetail = ({ post, initialComments }) => {
   const [comments, setComments] = useState(initialComments);
   const router = useRouter();
 
-  const handleCommentSubmit = (e) => {
+  const handleCommentSubmit = async (e) => {
     e.preventDefault();
-    console.log("댓글 등록:", comment);
 
-    const newComment = {
-      id: Date.now().toString(),
-      content: comment,
-      createdAt: new Date(),
-    };
+    try {
+      const res = await axios.post(`/comments/articles/${post.id}/comments`, {
+        content: comment,
+      });
 
-    setComments([...comments, newComment]);
-    setComment("");
+      const newComment = res.data;
+
+      setComments([...comments, newComment]);
+      setComment("");
+    } catch (error) {
+      console.error("댓글 등록에 실패했습니다:", error);
+    }
   };
 
   const handleEdit = () => {
