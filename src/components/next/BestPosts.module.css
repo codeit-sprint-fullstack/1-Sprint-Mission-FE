@@ -5,6 +5,14 @@
   margin-bottom: 16px;
 }
 
+.noPostsMessage {
+  font-size: 1.5rem; 
+  font-weight: 500; 
+  color: #000000; 
+  margin-top: 20px;
+}
+
+
 .bestPostsContainer {
   padding: 0 16px;
   width: 100%;

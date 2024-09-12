@@ -43,7 +43,9 @@ const PostDetail = () => {
       <div className={styles.postInfo}>
         <img src="/image/mini_profile.svg" alt="Mini Profile" className={styles.profileIcon} />
         <span className={styles.author}>{post.author || '푸바오'}</span>
-        <span className={styles.date}>{new Date(post.createdAt).toLocaleDateString()}</span>
+        <span className={styles.date}>
+          {new Date(post.createdAt).toISOString().slice(0, 10).replace(/-/g, ':')}
+        </span>
         <img src="/image/line.svg" alt="Line" className={styles.lineIcon} />
         <img src="/image/heart.svg" alt="Likes" className={styles.heartIcon} />
         <span className={styles.likes}>{likes}</span> {/* 랜덤 좋아요 표시 */}

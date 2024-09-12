@@ -13,7 +13,7 @@ const PostItem = ({ id = 0, title, author, date, likes, image }) => {
   // 테스트용 기본값 객체 설정
   const defaultData = {
     title: '맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?',
-    author: '익명의 사용자',
+    author: '푸바오',
     date: '2024.04.16',
     likes: Math.floor(Math.random() * 10000), 
     image: '/image/default.svg'

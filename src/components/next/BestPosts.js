@@ -53,7 +53,7 @@ const BestPosts = ({ bestPosts }) => {
 
   // 베스트 게시글 데이터가 없을 경우 처리
   if (!Array.isArray(bestPosts) || bestPosts.length === 0) {
-    return <div>베스트 게시글이 없습니다.</div>;
+    return <div className={styles.noPostsMessage}>베스트 게시글이 없습니다.</div>;
   }
 
   return (
