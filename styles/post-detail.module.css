@@ -3,7 +3,7 @@
   width: 100%;
   max-width: 1200px;
   margin: auto;
-  position: relative; /* 제목과 kebab.svg를 함께 배치하기 위해 */
+  position: relative; 
 }
 
 .postTitle {
@@ -14,10 +14,15 @@
   position: relative;
 }
 
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  margin-bottom: 16px;
+}
+
 .kebabIcon {
-  position: absolute;
-  right: 0;
-  top: 20px;
+  margin-left: auto; 
 }
 
 .postInfo {
