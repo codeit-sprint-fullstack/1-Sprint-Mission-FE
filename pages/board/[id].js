@@ -6,6 +6,9 @@ import Link from "next/link";
 import { fetchArticle } from "@/utils/articleApi";
 import { fetchComments } from "@/utils/chatApi";
 import { ROUTES } from "@/utils/rotues";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
@@ -22,12 +25,14 @@ export async function getServerSideProps(context) {
         totalComments: comments.total || 0,
         initialPage: page,
         pageSize: size,
+        error: null,
       },
     };
   } catch (error) {
     console.error("Error fetching article:", error);
     return {
       notFound: true,
+      error: "게시글을 불러오는 중 문제가 발생했습니다.",
     };
   }
 }
@@ -37,8 +42,14 @@ export default function BoardDetail({
   initialComments,
   totalComments,
   pageSize,
+  error,
 }) {
   const router = useRouter();
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
 
   if (router.isFallback) {
     return <div>Loading...</div>;

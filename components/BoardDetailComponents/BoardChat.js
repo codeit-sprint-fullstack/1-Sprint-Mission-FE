@@ -3,6 +3,8 @@ import styles from "./BoardChat.module.css";
 import ChatItem from "./ChatItem";
 import { useComments } from "@/hooks/useComments";
 import { throttle } from "@/utils/throttle";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function BoardChat({
   initialComments = [],
@@ -57,6 +59,7 @@ export default function BoardChat({
   };
 
   useEffect(() => {
+    let load = true;
     const handleScroll = throttle(() => {
       if (
         window.innerHeight + document.documentElement.scrollTop >=
@@ -65,6 +68,9 @@ export default function BoardChat({
         !loading
       ) {
         loadMoreComments();
+      } else if (!hasMore && load) {
+        load = false;
+        toast.info("모든 댓글을 불러왔습니다.");
       }
     }, 200);
 
@@ -74,6 +80,8 @@ export default function BoardChat({
 
   return (
     <div className={styles.container}>
+      <ToastContainer position="top-right" autoClose={2000} />
+
       <div className={styles.inputContainer}>
         <p className={styles.chatTitle}>댓글달기</p>
         <textarea
