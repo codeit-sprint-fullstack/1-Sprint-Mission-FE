@@ -1,19 +1,24 @@
 .backButton {
   display: flex;
+  align-items: center; /* 아이콘과 텍스트 모두 수직 가운데 정렬 */
   justify-content: center;
   width: 240px;
   height: 48px;
   border-radius: 40px;
   padding: 12px 64px;
-  background-color: #3692FF; 
+  background-color: #3692ff;
   cursor: pointer;
   border: none;
 }
 
 .text {
   color: #f3f4f6;
-  font-size: 16px;
+  font-size: 18px; /* 글자 크기 변경 */
   line-height: 26px;
   margin-right: 13px;
 }
 
+.icon {
+  width: 24px; /* 아이콘 크기 설정 */
+  height: 24px;
+}

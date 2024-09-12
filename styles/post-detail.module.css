@@ -74,6 +74,8 @@
 .commentFormContainer {
   margin-top: 35px;
   margin-bottom: 30px;
+  max-width: 1200px; /* 최대 너비 설정 */
+  width: 100%;
 }
 
 .replyIcon {
