@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { fetchArticleById, fetchComments } from '../../src/api/api';
 import styles from '../../styles/post-detail.module.css';
 import CommentItem from '../../src/components/next/CommentItem';
-import CommentForm from '../../src/components/next/CommentForm'; // CommentForm 가져오기
+import CommentForm from '../../src/components/next/CommentForm'; 
 
 const PostDetail = () => {
   const router = useRouter();
@@ -62,7 +62,7 @@ const PostDetail = () => {
 
       <CommentForm articleId={id} addNewComment={addNewComment} />
 
-      <div className={styles.commentSection}>
+      <div className={styles.commentsContainer}>
         {comments.length === 0 ? (
           <>
             <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
@@ -76,7 +76,7 @@ const PostDetail = () => {
               key={comment.id}
               author={comment.author}
               content={comment.content}
-              date={comment.createdAt}
+              createdAt={comment.createdAt}
             />
           ))
         )}
@@ -86,4 +86,3 @@ const PostDetail = () => {
 };
 
 export default PostDetail;
-
