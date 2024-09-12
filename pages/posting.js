@@ -15,7 +15,7 @@ export default function Posting() {
   // 입력값이 모두 채워졌는지 확인
   const isFormValid = title.trim() !== '' && content.trim() !== '';
 
-  // 게시글 등록 핸들러
+  // 게시글 등록
   const handleSubmit = async () => {
     if (!isFormValid) return;
 

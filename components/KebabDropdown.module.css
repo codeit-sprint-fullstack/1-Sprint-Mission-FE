@@ -1,0 +1,47 @@
+.kebabMenuWrapper {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 365px;
+  border: 1px solid #ccc;
+  width: 139px;
+  z-index: 30;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.item {
+  cursor: pointer;
+  background-color: var(--white);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--grey-500);
+  padding: 16px 0 12px 0;
+  transition: background-color 0.5s ease;
+}
+
+.item:hover {
+  background-color: var(--grey-100);
+}
+
+.item:first-child {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.item:last-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}

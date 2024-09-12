@@ -1,0 +1,32 @@
+.deleteModal::backdrop {
+  background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+}
+
+.deleteModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  padding: 24px;
+  background-color: var(--grey-200);
+  border-radius: 16px;
+  width: 93.5%;
+  max-width: 496px;
+  border: none;
+}
+
+.modalTitle {
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--grey-800);
+}
+
+.buttonGroup {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}

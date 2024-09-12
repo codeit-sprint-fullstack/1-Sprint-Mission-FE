@@ -10,11 +10,11 @@ export default function BestPost({ posts = [] }) {
       <h4 className={styles.bestTitle}>베스트 게시글</h4>
       <ul className={styles.bestContainer}>
         {posts.map((post) => (
-          <div className={styles.bestListBox}>
+          <div className={styles.bestListBox} key={post.id}>
             <div className={styles.bestBanner}>
               <Image src={bestBanner} alt="베스트 게시글 배너 이미지" />
             </div>
-            <li key={post.id}>
+            <li>
               <div className={styles.bestTop}>
                 <h4>{post.title}</h4>
                 <div className={styles.postImgWrapper}>
