@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import { createComment } from '../../api/api'; 
 import styles from './CommentForm.module.css';
 
-const CommentForm = ({ articleId }) => {
-  const [content, setContent] = useState(''); 
-  const [isSubmitting, setIsSubmitting] = useState(false); 
-  const router = useRouter();
+const CommentForm = ({ articleId, addNewComment }) => {
+  const [content, setContent] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +19,8 @@ const CommentForm = ({ articleId }) => {
     try {
       const newComment = await createComment(articleId, { content });
       alert('댓글이 등록되었습니다.');
-      router.reload();
+      addNewComment(newComment);
+      setContent(''); // 댓글 입력 필드 초기화
     } catch (error) {
       console.error('댓글 등록 실패:', error);
       alert('댓글 등록 중 오류가 발생했습니다.');

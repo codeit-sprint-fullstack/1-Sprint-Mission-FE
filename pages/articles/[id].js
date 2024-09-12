@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { fetchArticleById } from '../../src/api/api';
+import { fetchArticleById, fetchComments } from '../../src/api/api';
 import styles from '../../styles/post-detail.module.css';
 import CommentForm from '../../src/components/next/CommentForm';
+import CommentItem from '../../src/components/next/CommentItem';
 
 const PostDetail = () => {
   const router = useRouter();
   const { id } = router.query;
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [likes, setLikes] = useState(Math.floor(Math.random() * 10000)); // 랜덤 좋아요 상태 생성
+  const [likes, setLikes] = useState(Math.floor(Math.random() * 10000));
+  const [comments, setComments] = useState([]);
+  const [hasComments, setHasComments] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -22,8 +25,22 @@ const PostDetail = () => {
           console.error('Error fetching article:', error);
           setLoading(false);
         });
+
+      fetchComments(id)
+        .then((data) => {
+          setComments(data);
+          setHasComments(data.length > 0);
+        })
+        .catch((error) => {
+          console.error('Error fetching comments:', error);
+        });
     }
-  }, [id]); // ID 변경 시마다 호출
+  }, [id]);
+
+  const handleNewComment = (newComment) => {
+    setComments([newComment, ...comments]);
+    setHasComments(true);
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -48,7 +65,7 @@ const PostDetail = () => {
         </span>
         <img src="/image/line.svg" alt="Line" className={styles.lineIcon} />
         <img src="/image/heart.svg" alt="Likes" className={styles.heartIcon} />
-        <span className={styles.likes}>{likes}</span> {/* 랜덤 좋아요 표시 */}
+        <span className={styles.likes}>{likes}</span>
       </div>
 
       <div className={styles.contentContainer}>
@@ -56,14 +73,29 @@ const PostDetail = () => {
       </div>
 
       <div className={styles.commentFormContainer}>
-        <CommentForm articleId={id} />
+        <CommentForm articleId={id} addNewComment={handleNewComment} />
       </div>
 
-      <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
-
-      <p className={styles.noCommentsText}>
-        아직 댓글이 없어요, <br /> 지금 댓글을 달아보세요!
-      </p>
+      <div className={styles.commentsContainer}>
+        {hasComments ? (
+          comments.map((comment) => (
+            <CommentItem
+              key={comment.id}
+              id={comment.id}
+              content={comment.content}
+              author={comment.author}
+              createdAt={comment.createdAt}
+            />
+          ))
+        ) : (
+          <>
+            <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
+            <p className={styles.noCommentsText}>
+              아직 댓글이 없어요, <br /> 지금 댓글을 달아보세요!
+            </p>
+          </>
+        )}
+      </div>
     </div>
   );
 };

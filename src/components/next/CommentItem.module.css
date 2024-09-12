@@ -1,0 +1,35 @@
+.commentItem {
+  background-color: #fcfcfc;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px;
+  max-width: 1170px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: auto;
+}
+
+.commentContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.commentDetails {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.commentDetails span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.commentDetails span:first-child {
+  font-weight: 500;
+  color: #1f2937;
+}
