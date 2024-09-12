@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { fetchArticleById, fetchComments, createComment } from '../../src/api/api';
+import { fetchArticleById, fetchComments } from '../../src/api/api';
 import styles from '../../styles/post-detail.module.css';
-import CommentItem from '../../src/components/next/CommentItem';
+import CommentForm from '../../src/components/next/CommentForm';
+import CommentItem from '../../src/components/next/CommentItem'; // 댓글 컴포넌트 추가
 
 const PostDetail = () => {
   const router = useRouter();
   const { id } = router.query;
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [likes, setLikes] = useState(Math.floor(Math.random() * 10000)); // 랜덤 좋아요 상태 생성
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState('');
+  const [likes, setLikes] = useState(Math.floor(Math.random() * 10000));
+  const [comments, setComments] = useState([]); // 댓글 상태 추가
 
+  // 게시글 데이터 가져오기
   useEffect(() => {
     if (id) {
       fetchArticleById(id)
@@ -25,25 +26,24 @@ const PostDetail = () => {
           setLoading(false);
         });
 
-      fetchComments(id).then(setComments).catch(console.error); // 댓글 목록 가져오기
+      // 댓글 데이터 가져오기
+      fetchComments(id)
+        .then((data) => {
+          setComments(data); // 댓글 데이터 설정
+        })
+        .catch((error) => {
+          console.error('Error fetching comments:', error);
+        });
     }
   }, [id]);
 
-  const handleNewComment = async (e) => {
-    e.preventDefault();
-    if (!newComment) return;
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-    try {
-      const addedComment = await createComment(id, { content: newComment });
-      setComments([addedComment, ...comments]); // 새 댓글을 기존 댓글 목록 위에 추가
-      setNewComment(''); // 입력창 초기화
-    } catch (error) {
-      console.error('댓글 등록 실패:', error);
-    }
-  };
-
-  if (loading) return <div>Loading...</div>;
-  if (!post) return <div>게시글을 불러오는 중 오류가 발생했습니다.</div>;
+  if (!post) {
+    return <div>게시글을 불러오는 중 오류가 발생했습니다.</div>;
+  }
 
   return (
     <div className={styles.postDetailContainer}>
@@ -67,32 +67,31 @@ const PostDetail = () => {
         <p className={styles.postContent}>{post.content}</p>
       </div>
 
-      <div className={styles.commentSection}>
-        <form onSubmit={handleNewComment} className={styles.commentForm}>
-          <textarea
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            placeholder="댓글을 입력해주세요."
-            className={styles.commentInput}
-          />
-          <button type="submit" className={styles.submitButton} disabled={!newComment}>
-            댓글 등록
-          </button>
-        </form>
-
-        {comments.length === 0 ? (
-          <>
-            <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
-            <p className={styles.noCommentsText}>
-              아직 댓글이 없어요, <br /> 지금 댓글을 달아보세요!
-            </p>
-          </>
-        ) : (
-          comments.map((comment) => (
-            <CommentItem key={comment.id} author={comment.author} content={comment.content} date={comment.createdAt} />
-          ))
-        )}
+      <div className={styles.commentFormContainer}>
+        <CommentForm articleId={id} />
       </div>
+
+      {/* 댓글이 없으면 메시지와 아이콘 표시 */}
+      {comments.length === 0 ? (
+        <>
+          <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
+          <p className={styles.noCommentsText}>
+            아직 댓글이 없어요, <br /> 지금 댓글을 달아보세요!
+          </p>
+        </>
+      ) : (
+        // 댓글이 있으면 댓글 리스트 표시
+        <div className={styles.commentsContainer}>
+          {comments.map((comment, index) => (
+            <CommentItem
+              key={index}
+              author={comment.author}
+              content={comment.content}
+              date={comment.createdAt}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

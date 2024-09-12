@@ -3,7 +3,7 @@
   width: 100%;
   max-width: 1200px;
   margin: auto;
-  position: relative; 
+  position: relative;
 }
 
 .postTitle {
@@ -17,12 +17,12 @@
 .titleContainer {
   display: flex;
   justify-content: space-between;
-  align-items: center; 
+  align-items: center;
   margin-bottom: 16px;
 }
 
 .kebabIcon {
-  margin-left: auto; 
+  margin-left: auto;
 }
 
 .postInfo {
@@ -38,27 +38,35 @@
   vertical-align: middle;
 }
 
-.author {
+.postAuthor {
   font-size: 14px;
   color: #4B5563;
+  margin-right: 20px;
+}
+
+.postDate {
+  font-size: 14px;
+  color: #9CA3AF;
+  margin-right: 30px; /* 날짜와 line.svg 사이 간격 */
+}
+
+.author {
   margin-right: 15px;
 }
 
 .date {
-  font-size: 14px;
-  color: #9CA3AF;
-  margin-right: 30px;
+  margin-right: 25px;
 }
 
 .lineIcon {
-  margin-right: 25px;
+  margin-right: 25px; /* line.svg와 하트 사이 간격 */
 }
 
 .heartIcon {
   margin-right: 10px;
 }
 
-.likes {
+.postLikes {
   font-size: 16px;
   color: #6B7280;
 }
@@ -70,39 +78,65 @@
   margin-top: 40px;
 }
 
-.commentSection {
+.commentFormContainer {
   margin-top: 35px;
+  margin-bottom: 30px;
 }
 
-.commentForm {
-  margin-bottom: 30px;
+/* 댓글 영역 추가 */
+.commentsContainer {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px; /* 댓글 간격 설정 */
+  margin-bottom: 30px; /* 댓글 목록 아래 여백 */
 }
 
-.commentInput {
-  width: 100%;
-  height: 100px;
-  padding: 10px;
-  border: 1px solid #E5E7EB;
+.commentItem {
+  background-color: #f9fafb;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
   border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px; /* 댓글 높이 100px로 설정 */
+  transition: transform 0.3s ease;
+}
+
+.commentTitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #1f2937;
+  margin: 0;
+}
+
+.commentDetails {
+  display: flex;
+  align-items: center;
+}
+
+.author {
   font-size: 14px;
+  font-weight: 400;
+  color: #4b5563;
+  margin-right: 15px;
 }
 
-.submitButton {
-  align-self: flex-end;
-  padding: 10px 20px;
-  background-color: #3B82F6;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+.date {
+  font-size: 14px;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+.commentKebab {
+  display: flex;
+  align-items: center;
 }
 
 .replyIcon {
   display: block;
-  margin: 0 auto 10px auto;
+  margin: 0 auto;
+  margin-bottom: 10px; /* reply.svg 아래에 10px 간격 */
 }
 
 .noCommentsText {
@@ -113,11 +147,30 @@
   line-height: 26px;
 }
 
-/* 미디어 쿼리 */
+/* 미디어 쿼리 유지 */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .postDetailContainer {
+    padding: 0 16px;
+    width: 100%;
+    max-width: 696px;
+    margin: auto;
+  }
+}
+
 @media (max-width: 743px) {
+  .postDetailContainer {
+    padding: 0 16px;
+    width: 100%;
+    margin: auto;
+  }
+
   .postInfo {
     flex-direction: column;
     gap: 8px;
+  }
+
+  .commentItem {
+    height: 80px;
   }
 }
 
