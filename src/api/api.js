@@ -81,12 +81,13 @@ export async function deleteArticle(id) {
 export async function fetchComments(articleId) {
   try {
     const response = await api.get(`/api/comments/articles/${articleId}/comments`);  // 경로 수정
-    return response.data;
+    return response.data.list;  // 'list' 배열만 반환
   } catch (error) {
     console.error('댓글 목록 조회 실패:', error);
     throw error;
   }
 }
+
 
 // 댓글 등록
 export async function createComment(articleId, commentData) {

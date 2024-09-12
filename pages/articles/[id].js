@@ -26,7 +26,9 @@ const PostDetail = () => {
         });
 
       fetchComments(id)
-        .then((data) => setComments(Array.isArray(data) ? data : [])) // 댓글 데이터가 배열인지 확인
+        .then((data) => {
+          setComments(data || []); // 댓글 데이터를 설정
+        })
         .catch(console.error);
     }
   }, [id]);
@@ -86,3 +88,4 @@ const PostDetail = () => {
 };
 
 export default PostDetail;
+
