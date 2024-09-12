@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { fetchArticleById, fetchComments } from '../../src/api/api';
 import styles from '../../styles/post-detail.module.css';
 import CommentItem from '../../src/components/next/CommentItem';
-import CommentForm from '../../src/components/next/CommentForm'; // CommentForm 가져오기
+import CommentForm from '../../src/components/next/CommentForm'; 
 
 const PostDetail = () => {
   const router = useRouter();
@@ -25,9 +25,13 @@ const PostDetail = () => {
           setLoading(false);
         });
 
+      // 전체 댓글을 가져오기
       fetchComments(id)
-        .then((data) => setComments(Array.isArray(data.list) ? data.list : [])) // 댓글 데이터가 배열인지 확인
-        .catch(console.error);
+        .then((data) => {
+          console.log('Fetched comments:', data.list); // 불러온 댓글 데이터 확인
+          setComments(Array.isArray(data.list) ? data.list : []); // 댓글 리스트를 상태로 설정
+        })
+        .catch((error) => console.error('Error fetching comments:', error));
     }
   }, [id]);
 
@@ -49,7 +53,7 @@ const PostDetail = () => {
         <img src="/image/mini_profile.svg" alt="Mini Profile" className={styles.profileIcon} />
         <span className={styles.author}>{post.author || '푸바오'}</span>
         <span className={styles.date}>
-          {new Date(post.createdAt).toISOString().slice(0, 10).replace(/-/g, ':')}
+          {new Date(post.createdAt).toISOString().slice(0, 10).replace(/-/g, '.')}
         </span>
         <img src="/image/line.svg" alt="Line" className={styles.lineIcon} />
         <img src="/image/heart.svg" alt="Likes" className={styles.heartIcon} />
@@ -74,7 +78,7 @@ const PostDetail = () => {
           comments.map((comment, index) => (
             <CommentItem
               key={comment.id}
-              author={`[${comments.length - index}]번 사용자`}
+              author={`${comments.length - index}번 사용자`}
               content={comment.content}
               date={comment.createdAt}
             />
