@@ -4,14 +4,14 @@ import Image from "next/image";
 
 import profileImage from "@images/ic_profile.svg";
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment, onDelete }) => {
   return (
     <div className={styles.comment}>
       <div className={styles.commentHeader}>
         <span className={`${styles.commentContent} text-md regular`}>
           {comment.content}
         </span>
-        <KebabDropdown />
+        <KebabDropdown onDelete={onDelete} />
       </div>
       <div className={styles.commentInfo}>
         <Image src={profileImage} alt="profile image" width={32} height={32} />

@@ -74,6 +74,15 @@ const PostDetail = ({ post, initialComments }) => {
     }
   };
 
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await axios.delete(`/comments/${commentId}`);
+      setComments(comments.filter((comment) => comment.id !== commentId));
+    } catch (error) {
+      console.error("댓글 삭제에 실패했습니다.", error);
+    }
+  };
+
   const isFormValid = comment !== "";
 
   const { title, content, createdAt } = post;
@@ -128,7 +137,11 @@ const PostDetail = ({ post, initialComments }) => {
       <div className={styles.commentsContainer}>
         {comments.length > 0 ? (
           comments.map((comment) => (
-            <Comment key={comment.id} comment={comment} />
+            <Comment
+              key={comment.id}
+              comment={comment}
+              onDelete={() => handleDeleteComment(comment.id)}
+            />
           ))
         ) : (
           <p>댓글이 없습니다.</p>
