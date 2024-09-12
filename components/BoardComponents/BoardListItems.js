@@ -3,6 +3,7 @@ import Image from "next/image";
 import productImg from "@/images/product.png";
 import profile from "@/images/ic_profile.png";
 import Link from "next/link";
+import { ROUTES } from "@/utils/rotues";
 
 export default function BoardListItems({ articles }) {
   return (
@@ -10,7 +11,7 @@ export default function BoardListItems({ articles }) {
       <div className={styles.boardListContainer}>
         {articles.length > 0 ? (
           articles.map((article) => (
-            <Link href={`/board/${article.id}`} passHref key={article.id}>
+            <Link href={ROUTES.ARTICLE(article.id)} passHref key={article.id}>
               <div className={styles.boardList}>
                 <div className={styles.titleContainer}>
                   <p className={styles.title}>{article.title}</p>

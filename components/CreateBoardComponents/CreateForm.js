@@ -3,6 +3,7 @@ import { useState } from "react";
 import { createArticle } from "@/utils/articleApi";
 import { validateForm } from "@/hooks/useValidation";
 import { useRouter } from "next/router";
+import { ROUTES } from "@/utils/rotues";
 
 export default function CreateForm() {
   const [formData, setFormData] = useState({ title: "", content: "" });
@@ -48,7 +49,7 @@ export default function CreateForm() {
       });
 
       if (newArticle && newArticle.id) {
-        router.push(`/board/${newArticle.id}`);
+        router.push(ROUTES.ARTICLE(newArticle.id));
       }
 
       setFormData({ title: "", content: "" });

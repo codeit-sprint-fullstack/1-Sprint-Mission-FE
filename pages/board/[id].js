@@ -5,6 +5,7 @@ import styles from "./[id].module.css";
 import Link from "next/link";
 import { fetchArticle } from "@/utils/articleApi";
 import { fetchComments } from "@/utils/chatApi";
+import { ROUTES } from "@/utils/rotues";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
@@ -56,7 +57,7 @@ export default function BoardDetail({
         totalComments={totalComments}
         pageSize={pageSize}
       />
-      <Link href="/board" passHref>
+      <Link href={ROUTES.BOARD} passHref>
         <button className={styles.backBtn}>목록으로 돌아가기</button>
       </Link>
     </div>

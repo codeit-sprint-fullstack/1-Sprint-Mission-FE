@@ -4,6 +4,7 @@ import BoardListItems from "@/components/BoardComponents/BoardListItems";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { ROUTES } from "@/utils/rotues";
 
 export default function BoardList({ articles }) {
   const router = useRouter();
@@ -47,7 +48,7 @@ export default function BoardList({ articles }) {
     <>
       <div className={styles.createContainer}>
         <h3>게시글</h3>
-        <Link href="/createBoard">
+        <Link href={ROUTES.CREATE_BOARD}>
           <button className={styles.createBtn}>글쓰기</button>
         </Link>
       </div>

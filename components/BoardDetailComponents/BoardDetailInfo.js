@@ -6,6 +6,7 @@ import Image from "next/image";
 import profile from "@/images/ic_profile.png";
 import kebab from "@/images/ic_kebab.png";
 import Link from "next/link";
+import { ROUTES } from "@/utils/rotues";
 
 export default function BoardDetailInfo({ article }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +17,7 @@ export default function BoardDetailInfo({ article }) {
   const handleDelete = async (id) => {
     try {
       await deleteArticle(id);
-      router.push("/board");
+      router.push(BOARD);
     } catch (error) {
       console.error("Error deleting article:", error);
     }
@@ -35,7 +36,7 @@ export default function BoardDetailInfo({ article }) {
       </div>
       {isOpen && (
         <div className={styles.dropdown}>
-          <Link href="/board/edit/[id]" as={`/board/edit/${article.id}`}>
+          <Link href={ROUTES.BOARD_EDIT(article.id)}>
             <div className={styles.dropdownItem}>수정하기</div>
           </Link>
           <div

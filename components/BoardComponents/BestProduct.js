@@ -3,6 +3,7 @@ import styles from "./BestProduct.module.css";
 import Image from "next/image";
 import ProductImg from "../../images/product.png";
 import Link from "next/link";
+import { ROUTES } from "@/utils/rotues";
 
 export default function BestProduct({ articles }) {
   const [bestArticles, setBestArticles] = useState([]);
@@ -42,7 +43,7 @@ export default function BestProduct({ articles }) {
         {bestArticles.length > 0 ? (
           bestArticles.map((article) => (
             <div className={styles.productItem} key={article.id}>
-              <Link href={`/board/${article.id}`} passHref>
+              <Link href={ROUTES.ARTICLE(article.id)} passHref>
                 <div className={styles.badge}>Best</div>
                 <div className={styles.titleContainer}>
                   <p className={styles.title}>{article.title}</p>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import EditBoard from "@/components/EditBoardComponents/EditBoard";
 import { fetchArticle, updateArticle } from "@/utils/articleApi";
 import styles from "./[id].module.css";
+import { ROUTES } from "@/utils/rotues";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
@@ -34,7 +35,7 @@ export default function EditArticlePage({ article }) {
     if (!isFormValid) return;
     try {
       await updateArticle(id, formData);
-      router.push(`/board/${id}`);
+      router.push(ROUTES.ARTICLE(id));
     } catch (error) {
       console.error("Error updating article:", error);
     }
