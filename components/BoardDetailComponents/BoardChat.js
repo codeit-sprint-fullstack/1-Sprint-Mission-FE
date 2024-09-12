@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./BoardChat.module.css";
 import ChatItem from "./ChatItem";
 import { useComments } from "@/hooks/useComments";
+import { throttle } from "@/utils/throttle";
 
 export default function BoardChat({
   initialComments = [],
@@ -56,7 +57,7 @@ export default function BoardChat({
   };
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       if (
         window.innerHeight + document.documentElement.scrollTop >=
           document.documentElement.offsetHeight - 100 &&
@@ -65,7 +66,7 @@ export default function BoardChat({
       ) {
         loadMoreComments();
       }
-    };
+    }, 200);
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);

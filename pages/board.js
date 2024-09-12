@@ -6,6 +6,7 @@ import { useArticles } from "@/hooks/useArticles";
 import styles from "@/styles/board.module.css";
 import { fetchArticles, fetchBestArticles } from "@/utils/articleApi";
 import { useEffect } from "react";
+import { throttle } from "@/utils/throttle";
 
 export async function getServerSideProps(context) {
   const {
@@ -57,7 +58,7 @@ export default function Board({
   );
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       if (
         window.innerHeight + document.documentElement.scrollTop >=
           document.documentElement.offsetHeight - 100 &&
@@ -66,7 +67,7 @@ export default function Board({
       ) {
         loadMoreArticles();
       }
-    };
+    }, 200);
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -76,7 +77,6 @@ export default function Board({
     <div className={styles.boardContainer}>
       <BestProduct articles={bestArticles} />
       <BoardList articles={articles} />
-      {loading && <div>로딩중...</div>}
     </div>
   );
 }

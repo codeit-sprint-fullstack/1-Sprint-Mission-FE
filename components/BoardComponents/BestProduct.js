@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import styles from "./BestProduct.module.css";
 import Image from "next/image";
-import ProductImg from "../../images/product.png";
+import ProductImg from "@/images/product.png";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
+import { throttle } from "@/utils/throttle";
 
 export default function BestProduct({ articles }) {
   const [bestArticles, setBestArticles] = useState([]);
@@ -29,7 +30,8 @@ export default function BestProduct({ articles }) {
 
     updateBestArticles();
 
-    window.addEventListener("resize", updateBestArticles);
+    const throttledUpdate = throttle(updateBestArticles, 200);
+    window.addEventListener("resize", throttledUpdate);
 
     return () => {
       window.removeEventListener("resize", updateBestArticles);
