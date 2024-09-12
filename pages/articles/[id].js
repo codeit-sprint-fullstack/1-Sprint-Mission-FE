@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { fetchArticleById, fetchComments } from '../../src/api/api';
+import { fetchArticleById } from '../../src/api/api';
 import styles from '../../styles/post-detail.module.css';
 import CommentForm from '../../src/components/next/CommentForm';
-import CommentItem from '../../src/components/next/CommentItem'; // 댓글 컴포넌트 추가
 
 const PostDetail = () => {
   const router = useRouter();
   const { id } = router.query;
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [likes, setLikes] = useState(Math.floor(Math.random() * 10000));
-  const [comments, setComments] = useState([]); // 댓글 상태 추가
+  const [likes, setLikes] = useState(Math.floor(Math.random() * 10000)); // 랜덤 좋아요 상태 생성
 
-  // 게시글 데이터 가져오기
   useEffect(() => {
     if (id) {
       fetchArticleById(id)
@@ -25,17 +22,8 @@ const PostDetail = () => {
           console.error('Error fetching article:', error);
           setLoading(false);
         });
-
-      // 댓글 데이터 가져오기
-      fetchComments(id)
-        .then((data) => {
-          setComments(data); // 댓글 데이터 설정
-        })
-        .catch((error) => {
-          console.error('Error fetching comments:', error);
-        });
     }
-  }, [id]);
+  }, [id]); // ID 변경 시마다 호출
 
   if (loading) {
     return <div>Loading...</div>;
@@ -60,7 +48,7 @@ const PostDetail = () => {
         </span>
         <img src="/image/line.svg" alt="Line" className={styles.lineIcon} />
         <img src="/image/heart.svg" alt="Likes" className={styles.heartIcon} />
-        <span className={styles.likes}>{likes}</span>
+        <span className={styles.likes}>{likes}</span> {/* 랜덤 좋아요 표시 */}
       </div>
 
       <div className={styles.contentContainer}>
@@ -71,27 +59,11 @@ const PostDetail = () => {
         <CommentForm articleId={id} />
       </div>
 
-      {/* 댓글이 없으면 메시지와 아이콘 표시 */}
-      {comments.length === 0 ? (
-        <>
-          <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
-          <p className={styles.noCommentsText}>
-            아직 댓글이 없어요, <br /> 지금 댓글을 달아보세요!
-          </p>
-        </>
-      ) : (
-        // 댓글이 있으면 댓글 리스트 표시
-        <div className={styles.commentsContainer}>
-          {comments.map((comment, index) => (
-            <CommentItem
-              key={index}
-              author={comment.author}
-              content={comment.content}
-              date={comment.createdAt}
-            />
-          ))}
-        </div>
-      )}
+      <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
+
+      <p className={styles.noCommentsText}>
+        아직 댓글이 없어요, <br /> 지금 댓글을 달아보세요!
+      </p>
     </div>
   );
 };

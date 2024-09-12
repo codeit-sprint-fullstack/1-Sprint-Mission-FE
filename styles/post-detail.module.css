@@ -3,7 +3,7 @@
   width: 100%;
   max-width: 1200px;
   margin: auto;
-  position: relative;
+  position: relative; 
 }
 
 .postTitle {
@@ -17,12 +17,12 @@
 .titleContainer {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; 
   margin-bottom: 16px;
 }
 
 .kebabIcon {
-  margin-left: auto;
+  margin-left: auto; 
 }
 
 .postInfo {
@@ -78,59 +78,10 @@
   margin-top: 40px;
 }
 
+
 .commentFormContainer {
-  margin-top: 35px;
+  margin-top: 35px; /* 본문으로부터 35px 아래 */
   margin-bottom: 30px;
-}
-
-/* 댓글 영역 추가 */
-.commentsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* 댓글 간격 설정 */
-  margin-bottom: 30px; /* 댓글 목록 아래 여백 */
-}
-
-.commentItem {
-  background-color: #f9fafb;
-  padding: 16px;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100px; /* 댓글 높이 100px로 설정 */
-  transition: transform 0.3s ease;
-}
-
-.commentTitle {
-  font-size: 16px;
-  font-weight: 400;
-  color: #1f2937;
-  margin: 0;
-}
-
-.commentDetails {
-  display: flex;
-  align-items: center;
-}
-
-.author {
-  font-size: 14px;
-  font-weight: 400;
-  color: #4b5563;
-  margin-right: 15px;
-}
-
-.date {
-  font-size: 14px;
-  font-weight: 400;
-  color: #9ca3af;
-}
-
-.commentKebab {
-  display: flex;
-  align-items: center;
 }
 
 .replyIcon {
@@ -167,10 +118,6 @@
   .postInfo {
     flex-direction: column;
     gap: 8px;
-  }
-
-  .commentItem {
-    height: 80px;
   }
 }
 
