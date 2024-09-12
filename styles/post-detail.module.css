@@ -45,8 +45,16 @@
   margin-right: 30px; /* 날짜와 line.svg 사이 간격 */
 }
 
+.author {
+  margin-right: 15px;
+}
+
+.date {
+  margin-right: 25px;
+}
+
 .lineIcon {
-  margin-right: 30px; /* line.svg와 하트 사이 간격 */
+  margin-right: 25px; /* line.svg와 하트 사이 간격 */
 }
 
 .heartIcon {
