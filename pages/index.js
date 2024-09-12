@@ -54,8 +54,8 @@ export default function Home() {
     setKeyword(event.target.value);
   };
   const postClick = () => {
-    console.log("클릭했음");
-    router.push("/addpost");
+    // console.log("클릭했음");
+    router.push("post/addpost");
   };
 
   const contentarticle = async () => {

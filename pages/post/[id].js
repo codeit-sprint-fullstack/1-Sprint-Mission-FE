@@ -21,7 +21,7 @@ export async function getServerSideProps(path) {
     },
   };
 }
-export default function post({ id }) {
+export default function Post({ id }) {
   // 수정하기, 삭제하기 기능 추가해야 함 삭제하기 완료
   // 페이지네이션 어떤 방식으로 구현할지 생각해 보기..
   const [isModalOpen, setIsModalOpen] = useState(false);

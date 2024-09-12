@@ -43,13 +43,13 @@
   position: absolute;
   left: 44px;
 }
-.active {
+.Active {
   color: #3692ff;
   font-size: 18px;
   font-weight: 700;
   text-decoration-line: none;
 }
-.notactive {
+.NotActive {
   text-decoration-line: none;
   color: #4b5563;
   font-size: 18px;

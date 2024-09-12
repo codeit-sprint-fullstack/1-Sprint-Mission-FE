@@ -18,14 +18,14 @@ export default function Header() {
       <div className={styles.HeaderMenu}>
         <Link
           href="/"
-          className={router.pathname === "/" ? styles.active : styles.notactive}
+          className={router.pathname === "/" ? styles.Active : styles.NotActive}
         >
           <p>자유 게시판</p>
         </Link>
         <Link
           href="/market"
           className={
-            router.pathname === "/market" ? styles.active : styles.notactive
+            router.pathname === "/market" ? styles.Active : styles.NotActive
           }
         >
           <p>중고마켓</p>

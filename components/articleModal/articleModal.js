@@ -6,16 +6,13 @@ import { useRouter } from "next/router";
 
 const Modal = ({ isOpen, closeModal, id }) => {
   const [btnState, setbtnState] = useState("commentBtnfalse");
-  const [title, settitle] = useState("");
+  const [title, setTitle] = useState("");
   const [content, setcontent] = useState("");
-  if (!isOpen) {
-    return null; // 모달이 열려있지 않으면 아무것도 렌더링하지 않음
-  }
 
   const router = useRouter();
 
   const titleHandle = (e) => {
-    settitle(e.target.value);
+    setTitle(e.target.value);
     if (title.length > 0 && content.length > 0) {
       setbtnState("addbtn");
     } else {
@@ -36,7 +33,7 @@ const Modal = ({ isOpen, closeModal, id }) => {
     e.preventDefault();
     const data = {
       title: title,
-      content: content,
+      content,
     };
     try {
       await patcharticle(id, data);
@@ -46,6 +43,9 @@ const Modal = ({ isOpen, closeModal, id }) => {
     }
     router.reload();
   };
+  if (!isOpen) {
+    return null; // 모달이 열려있지 않으면 아무것도 렌더링하지 않음
+  }
 
   return (
     <div className={styles.modalContainer}>

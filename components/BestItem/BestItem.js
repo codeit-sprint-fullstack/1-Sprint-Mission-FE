@@ -2,7 +2,7 @@ import styles from "@/components/BestItem/BestItem.module.css";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-export default function Home(article) {
+export default function BestItem(article) {
   const router = useRouter();
   const pagemove = () => {
     router.push(`/post/${article.article.id}`);

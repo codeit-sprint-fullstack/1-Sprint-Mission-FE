@@ -1,8 +1,8 @@
-import styles from "../styles/addpost.module.css";
+import styles from "./create.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { postArticles } from "./api/api";
-export default function addpost() {
+import { postArticles } from "../api/api";
+export default function create() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [btnState, setbtnState] = useState("addpostBtnfalse");
