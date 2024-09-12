@@ -3,20 +3,18 @@ import { useRouter } from 'next/router';
 import { fetchArticleById, fetchComments } from '../../src/api/api';
 import styles from '../../styles/post-detail.module.css';
 import CommentItem from '../../src/components/next/CommentItem';
-import CommentForm from '../../src/components/next/CommentForm'; 
+import CommentForm from '../../src/components/next/CommentForm'; // CommentForm 가져오기
 
 const PostDetail = () => {
   const router = useRouter();
-  const { id } = router.query; // URL에서 article ID 가져오기
+  const { id } = router.query;
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [likes, setLikes] = useState(Math.floor(Math.random() * 10000)); // 랜덤 좋아요 상태 생성
-  const [comments, setComments] = useState([]); // 댓글 목록 상태
+  const [comments, setComments] = useState([]); // 댓글을 빈 배열로 초기화
 
-  // 게시글 및 댓글 불러오기
   useEffect(() => {
     if (id) {
-      // 게시글 정보 불러오기
       fetchArticleById(id)
         .then((data) => {
           setPost(data);
@@ -27,27 +25,21 @@ const PostDetail = () => {
           setLoading(false);
         });
 
-      // 댓글 목록 불러오기
       fetchComments(id)
         .then((data) => {
-          console.log('Fetched comments:', data);  // API 응답 확인
-          setComments(Array.isArray(data.list) ? data.list : []);
+          const commentList = Array.isArray(data.list) ? data.list : [];
+          setComments(commentList);
+          console.log("Fetched comments: ", commentList);
         })
-        .catch((error) => {
-          console.error('Error fetching comments:', error);
-        });
+        .catch(console.error);
     }
   }, [id]);
 
-  // 새로운 댓글 추가
   const addNewComment = (newComment) => {
-    setComments([newComment, ...comments]); // 새로운 댓글을 최상단에 추가
+    setComments([newComment, ...comments]); // 새로운 댓글을 추가
   };
 
-  // 로딩 중일 때 표시
   if (loading) return <div>Loading...</div>;
-
-  // 게시글 정보가 없을 때 표시
   if (!post) return <div>게시글을 불러오는 중 오류가 발생했습니다.</div>;
 
   return (
@@ -74,7 +66,7 @@ const PostDetail = () => {
 
       <CommentForm articleId={id} addNewComment={addNewComment} />
 
-      <div className={styles.commentsContainer}>
+      <div className={styles.commentSection}>
         {comments.length === 0 ? (
           <>
             <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
@@ -83,14 +75,17 @@ const PostDetail = () => {
             </p>
           </>
         ) : (
-          comments.map((comment, index) => (
-            <CommentItem
-              key={comment.id}
-              author={`[${comments.length - index}]번 사용자`}
-              content={comment.content}
-              createdAt={comment.createdAt}
-            />
-          ))
+          comments.map((comment, index) => {
+            console.log("Rendering comment: ", comment); // 콘솔에서 comment 데이터를 확인
+            return (
+              <CommentItem
+                key={comment.id}
+                author={`[${comments.length - index}]번 사용자`}
+                content={comment.content}
+                createdAt={comment.createdAt}
+              />
+            );
+          })
         )}
       </div>
     </div>
