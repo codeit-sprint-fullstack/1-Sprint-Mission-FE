@@ -2,15 +2,15 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { createArticle } from '../../src/api/api';
 import styles from '../../styles/create.module.css';
-import RegisterButton from '../../src/components/next/RegisterButton';
+import RegisterButton from '../../src/components/next/RegisterButton'; 
 
 const CreateArticle = () => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState('');  
+  const [content, setContent] = useState(''); 
   const router = useRouter();
 
   const handleNewPost = (newPost) => {
-    console.log('새로 작성된 게시글: ', newPost);
+    console.log('New Post Created: ', newPost);
   };
 
   return (

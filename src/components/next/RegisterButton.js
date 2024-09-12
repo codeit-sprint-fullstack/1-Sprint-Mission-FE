@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { createArticle } from '../../api/api';
+import { createArticle } from '../../src/api/api';
 import styles from './RegisterButton.module.css';
 
 const RegisterButton = ({ title, content, addNewPost }) => {
@@ -18,6 +18,7 @@ const RegisterButton = ({ title, content, addNewPost }) => {
     try {
       const newPost = await createArticle({ title, content });
 
+      console.log('새로 등록된 게시글:', newPost); 
       addNewPost(newPost);
 
       router.replace(`/articles/${newPost.id}`);
