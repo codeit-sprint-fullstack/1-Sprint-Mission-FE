@@ -5,7 +5,6 @@ import axios from "@/lib/axios";
 import KebabDropdown from "@components/KebabDropdown";
 import { useRouter } from "next/router";
 
-import kebabIcon from "@images/ic_kebab.svg";
 import profileImage from "@images/ic_profile.svg";
 import emptyHeart from "@images/favoriteEmptyHeart-small.png";
 
@@ -51,8 +50,14 @@ const PostDetail = ({ post }) => {
     });
   };
 
-  const handleDelete = () => {
-    console.log("삭제 버튼 클릭");
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/articles/${post.id}`);
+
+      router.push("/community");
+    } catch (error) {
+      console.error("게시글 삭제에 실패했습니다.", error);
+    }
   };
 
   const isFormValid = comment !== "";
