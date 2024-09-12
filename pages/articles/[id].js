@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { fetchArticleById } from '../../src/api/api';
+import { fetchArticleById, fetchComments, createComment } from '../../src/api/api';
 import styles from '../../styles/post-detail.module.css';
-import CommentList from '../../src/components/next/CommentList';
+import CommentItem from '../../src/components/next/CommentItem';
 
 const PostDetail = () => {
   const router = useRouter();
@@ -10,6 +10,8 @@ const PostDetail = () => {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [likes, setLikes] = useState(Math.floor(Math.random() * 10000)); // 랜덤 좋아요 상태 생성
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState('');
 
   useEffect(() => {
     if (id) {
@@ -22,16 +24,26 @@ const PostDetail = () => {
           console.error('Error fetching article:', error);
           setLoading(false);
         });
+
+      fetchComments(id).then(setComments).catch(console.error); // 댓글 목록 가져오기
     }
-  }, [id]); // ID 변경 시마다 호출
+  }, [id]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const handleNewComment = async (e) => {
+    e.preventDefault();
+    if (!newComment) return;
 
-  if (!post) {
-    return <div>게시글을 불러오는 중 오류가 발생했습니다.</div>;
-  }
+    try {
+      const addedComment = await createComment(id, { content: newComment });
+      setComments([addedComment, ...comments]); // 새 댓글을 기존 댓글 목록 위에 추가
+      setNewComment(''); // 입력창 초기화
+    } catch (error) {
+      console.error('댓글 등록 실패:', error);
+    }
+  };
+
+  if (loading) return <div>Loading...</div>;
+  if (!post) return <div>게시글을 불러오는 중 오류가 발생했습니다.</div>;
 
   return (
     <div className={styles.postDetailContainer}>
@@ -48,18 +60,39 @@ const PostDetail = () => {
         </span>
         <img src="/image/line.svg" alt="Line" className={styles.lineIcon} />
         <img src="/image/heart.svg" alt="Likes" className={styles.heartIcon} />
-        <span className={styles.likes}>{likes}</span> {/* 랜덤 좋아요 표시 */}
+        <span className={styles.likes}>{likes}</span>
       </div>
 
       <div className={styles.contentContainer}>
         <p className={styles.postContent}>{post.content}</p>
       </div>
 
-      <div className={styles.commentListContainer}>
-        <CommentList initialComments={post.comments || []} /> {/* 댓글 리스트 컴포넌트 추가 */}
-      </div>
+      <div className={styles.commentSection}>
+        <form onSubmit={handleNewComment} className={styles.commentForm}>
+          <textarea
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            placeholder="댓글을 입력해주세요."
+            className={styles.commentInput}
+          />
+          <button type="submit" className={styles.submitButton} disabled={!newComment}>
+            댓글 등록
+          </button>
+        </form>
 
-      <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
+        {comments.length === 0 ? (
+          <>
+            <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
+            <p className={styles.noCommentsText}>
+              아직 댓글이 없어요, <br /> 지금 댓글을 달아보세요!
+            </p>
+          </>
+        ) : (
+          comments.map((comment) => (
+            <CommentItem key={comment.id} author={comment.author} content={comment.content} date={comment.createdAt} />
+          ))
+        )}
+      </div>
     </div>
   );
 };

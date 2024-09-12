@@ -3,86 +3,121 @@
   width: 100%;
   max-width: 1200px;
   margin: auto;
+  position: relative; 
+}
+
+.postTitle {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  margin-bottom: 16px;
+  position: relative;
 }
 
 .titleContainer {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.postTitle {
-  font-size: 28px;
-  font-weight: 700;
-  color: #1f2937;
-}
-
-.kebabIcon {
-  width: 24px;
-  height: 24px;
-}
-
-.postInfo {
-  display: flex;
-  align-items: center;
+  align-items: center; 
   margin-bottom: 16px;
 }
 
+.kebabIcon {
+  margin-left: auto; 
+}
+
+.postInfo {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #E5E7EB;
+  padding-bottom: 40px;
+  display: flex;
+  align-items: center;
+}
+
 .profileIcon {
-  width: 32px;
-  height: 32px;
-  margin-right: 10px;
+  margin-right: 20px;
+  vertical-align: middle;
 }
 
 .author {
   font-size: 14px;
-  font-weight: 500;
-  color: #4b5563;
+  color: #4B5563;
   margin-right: 15px;
 }
 
 .date {
   font-size: 14px;
-  font-weight: 400;
-  color: #9ca3af;
-  margin-right: 15px;
+  color: #9CA3AF;
+  margin-right: 30px;
 }
 
 .lineIcon {
-  width: 16px;
-  margin-right: 10px;
+  margin-right: 25px;
 }
 
 .heartIcon {
-  width: 24px;
-  height: 24px;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .likes {
-  font-size: 14px;
-  font-weight: 600;
-  color: #ef4444;
-}
-
-.contentContainer {
-  margin-bottom: 40px;
+  font-size: 16px;
+  color: #6B7280;
 }
 
 .postContent {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #374151;
+  font-size: 18px;
+  font-weight: 400;
+  color: #1F2937;
+  margin-top: 40px;
 }
 
-.commentListContainer {
-  margin-top: 30px; /* 댓글이 댓글 리스트 컨테이너 밑에서 30px 아래로 시작 */
+.commentSection {
+  margin-top: 35px;
+}
+
+.commentForm {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.commentInput {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.submitButton {
+  align-self: flex-end;
+  padding: 10px 20px;
+  background-color: #3B82F6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .replyIcon {
-  width: 40px;
-  height: 40px;
-  margin-top: 20px;
+  display: block;
+  margin: 0 auto 10px auto;
+}
+
+.noCommentsText {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  color: #9CA3AF;
+  line-height: 26px;
+}
+
+/* 미디어 쿼리 */
+@media (max-width: 743px) {
+  .postInfo {
+    flex-direction: column;
+    gap: 8px;
+  }
 }
 
