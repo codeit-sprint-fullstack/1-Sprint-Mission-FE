@@ -61,6 +61,7 @@ export default function BoardDetail({
 
   return (
     <div className={styles.container}>
+      <ToastContainer position="top-right" autoClose={3000} />
       <BoardDetailInfo article={article} />
       <BoardChat
         initialComments={initialComments}
