@@ -15,7 +15,7 @@ export default function Post() {
   async function getArticle(targetId) {
     try {
       const res = await axios.get(
-        `https://sprint-be-h8kw.onrender.com/articles/${targetId}`
+        `https://sprint-be-k938.onrender.com/articles/${targetId}`
       );
       const nextArticle = res.data;
       setTitleValue(nextArticle.title);
@@ -28,13 +28,15 @@ export default function Post() {
   async function patchArticle(targetId) {
     try {
       const res = await axios.patch(
-        `https://sprint-be-h8kw.onrender.com/articles/${targetId}`,
+        `https://sprint-be-k938.onrender.com/articles/${targetId}`,
         {
           title: titleValue,
           content: contentValue,
         }
       );
+
       const nextArticle = res.data;
+      console.log(nextArticle);
       setTitleValue(nextArticle.title);
       setContentValue(nextArticle.content);
     } catch (error) {

@@ -14,12 +14,12 @@ export default function Post() {
   async function postArticle() {
     try {
       const res = await axios.post(
-        'https://sprint-be-h8kw.onrender.com/articles',
+        'https://sprint-be-k938.onrender.com/articles',
         {
           title: titleValue,
           content: contentValue,
           category: 'freeboard',
-          userId: '3160c83b-8dcc-4ca2-9d51-717c5246d414',
+          userId: '9cda174e-2e9e-4523-97cd-362e85a39ebf',
         }
       );
       router.push(`/article/${res.data.id}`);

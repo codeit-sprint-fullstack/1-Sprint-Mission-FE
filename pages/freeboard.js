@@ -17,7 +17,7 @@ export default function FreeBoard() {
   async function getArticles() {
     try {
       const res = await axios.get(
-        `https://sprint-be-h8kw.onrender.com/articles/freeboard`,
+        `https://sprint-be-k938.onrender.com/articles/freeboard`,
         {
           params: { keyword, orderBy },
         }
@@ -32,10 +32,7 @@ export default function FreeBoard() {
   async function getBestArticles() {
     try {
       const res = await axios.get(
-        `https://sprint-be-h8kw.onrender.com/articles/freeboard`,
-        {
-          params: { orderBy },
-        }
+        `https://sprint-be-k938.onrender.com/articles/freeboard`
       );
       const nextArticles = res.data;
       setBestArticles(nextArticles.slice(0, 3));
@@ -46,16 +43,14 @@ export default function FreeBoard() {
 
   useEffect(() => {
     getBestArticles();
-    getArticles();
-  }, [keyword]);
+    getArticles(keyword);
+  }, [keyword, , getArticles]);
 
   return (
     <>
       <div className={styles.body}>
         <BestArticleList articles={bestArticles} />
-
         <ArticleListHeard keyword={keyword} setOrderBy={setOrderBy} />
-
         <ArticleList articles={articles} />
       </div>
     </>

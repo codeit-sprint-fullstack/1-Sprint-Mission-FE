@@ -18,7 +18,7 @@ export default function Article() {
   async function getArticle(targetId) {
     try {
       const res = await axios.get(
-        `https://sprint-be-h8kw.onrender.com/articles/${targetId}`
+        `https://sprint-be-k938.onrender.com/articles/${targetId}`
       );
       const nextArticle = res.data;
       setArticle(nextArticle);
@@ -31,7 +31,7 @@ export default function Article() {
   async function deleteArticle(targetId) {
     try {
       const res = await axios.delete(
-        `https://sprint-be-h8kw.onrender.com/articles/${targetId}`
+        `https://sprint-be-k938.onrender.com/articles/${targetId}`
       );
       router.push('/freeboard');
     } catch (error) {

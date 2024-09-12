@@ -2,7 +2,7 @@ import axios from 'axios';
 import Button from '@/utils/Button';
 import styles from '@/styles/Comment.module.css';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function CommentList({
   id,
@@ -16,7 +16,7 @@ export default function CommentList({
   async function patchComment(id) {
     try {
       const res = await axios.patch(
-        `https://sprint-be-h8kw.onrender.com/comments/${id}`,
+        `https://sprint-be-k938.onrender.com/comments/${id}`,
         {
           content: editComment,
         }
@@ -33,11 +33,9 @@ export default function CommentList({
     setEditComment(event.target.value);
   };
 
-  function handleSubmit() {
-    patchComment(id);
-  }
-
-  console.log(Boolean(editComment));
+  const handleSubmit = async () => {
+    await patchComment(id);
+  };
 
   return (
     <>
