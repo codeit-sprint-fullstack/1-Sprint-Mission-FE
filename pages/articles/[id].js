@@ -26,8 +26,8 @@ const PostDetail = () => {
         });
 
       fetchComments(id)
-        .then((data) => setComments(data || [])) // 댓글 데이터를 배열로 설정
-        .catch(console.error); 
+        .then((data) => setComments(Array.isArray(data) ? data : [])) // 댓글 데이터가 배열인지 확인
+        .catch(console.error);
     }
   }, [id]);
 
@@ -39,11 +39,7 @@ const PostDetail = () => {
       const addedComment = await createComment(id, { content: newComment });
       
       // 첫 댓글일 때도 정상적으로 배열에 추가
-      if (Array.isArray(comments)) {
-        setComments([addedComment, ...comments]);
-      } else {
-        setComments([addedComment]);
-      }
+      setComments([addedComment, ...comments]);
 
       setNewComment(''); // 입력창 초기화
     } catch (error) {
