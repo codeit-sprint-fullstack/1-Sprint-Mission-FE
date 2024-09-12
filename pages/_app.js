@@ -10,7 +10,9 @@ function MyApp({ Component, pageProps }) {
       <main style={{ paddingBottom: "16rem" }}>
         <Component {...pageProps} />
       </main>
-      <Footer />
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }

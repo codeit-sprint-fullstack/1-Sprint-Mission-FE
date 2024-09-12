@@ -184,3 +184,11 @@ html {
 .regular {
   font-weight: 400;
 }
+main {
+  margin-bottom: 16rem;
+}
+footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
