@@ -14,7 +14,6 @@ const SearchSection = ({ search, setSearch, sort, setSort }) => (
       defaultValue="recent"
       onChange={(e) => {
         setSort(e.target.value);
-        console.log(e.target.value);
       }}
     >
       <option value="recent">최신순</option>

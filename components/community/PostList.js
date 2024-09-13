@@ -38,7 +38,6 @@ const PostList = ({ posts, isFetchingNextPage }) => (
         </Card>
       </Link>
     ))}
-    {isFetchingNextPage && <div className={styles.spinner}></div>}
   </div>
 );
 
