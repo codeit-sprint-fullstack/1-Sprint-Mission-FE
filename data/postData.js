@@ -79,10 +79,10 @@ export async function getCommentById(postId, commentId) {
   return result.rows[0];
 }
 
-export async function updateComment(postId, commentId, commentData) {
+export async function updateComment(postId, commentId, content) {
   const result = await db.query(
     "UPDATE comments SET content = $1, updated_at = NOW() WHERE id = $2 AND post_id = $3 RETURNING *",
-    [commentData.content, commentId, postId]
+    [content, commentId, postId]
   );
   if (result.rows.length === 0) {
     throw new NotFoundException("해당 댓글을 찾을 수 없습니다.");

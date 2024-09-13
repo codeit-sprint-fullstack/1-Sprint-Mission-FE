@@ -9,7 +9,7 @@ export default function Document() {
         content="판다마켓, 당신의 물건을 사고 팔아보세요!"
       />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <meta charset="utf-8" />
+      <meta charSet="utf-8" />
       <link rel="icon" href="/favicon.ico" />
       <Head />
       <body>

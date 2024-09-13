@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "react-query";
 import { useRouter } from "next/router";
-import SmallButton from "@/components/ui/SmallButton.jsx";
+import SmallButton from "@/components/common/SmallButton.jsx";
 import styles from "./index.module.css";
 
 const postOrUpdateArticle = async ({ id, title, content, isEditing }) => {
