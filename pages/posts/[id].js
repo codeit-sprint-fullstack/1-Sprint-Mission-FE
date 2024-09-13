@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from '@/lib/axios';
 import Image from 'next/image';
 import styles from '@/styles/Post.module.css';
@@ -13,32 +13,76 @@ import Head from 'next/head';
 import profile from '@/public/ic_profile.svg';
 import emptyComment from '@/public/Img_reply_empty.svg';
 import backImg from '@/public/ic_back.svg';
+import Spinner from '@/components/Spinner';
 
 export default function Post() {
-  const [post, setPost] = useState(null);
-  const [comments, setComments] = useState([]);
-  const [inputComment, setInputComment] = useState('');
+  const [post, setPost] = useState(null); // 게시글 상태
+  const [comments, setComments] = useState([]); // 댓글 목록 상태
+  const [inputComment, setInputComment] = useState(''); // 사용자로부터 입력된 댓글 상태
+  const [hasMore, setHasMore] = useState(true); // 더 불로올 댓글이 있는지 확인
+  const [loading, setLoading] = useState(false); //  댓글 로딩 상태
+  const [error, setError] = useState(null); // 에러 상태
+  const observerRef = useRef(null); // IntersectionObserver 참조
+  const lastCommentRef = useRef(null); // 마지막 댓글 요소 참조
+
   const router = useRouter();
   const { id } = router.query;
 
+  // 댓글 입력 처리 함수
   const handleInputComment = (event) => {
     setInputComment(event.target.value);
   };
 
+  // 댓글 등록 버튼 활성화 여부
   const isFormValid = inputComment.trim() !== '';
 
+  // 게시글 불러오기 함수
   async function getPost(targetId) {
-    const res = await axios.get(`/posts/${targetId}`);
-    const result = res.data;
-    setPost(result);
+    setError(null);
+
+    try {
+      const res = await axios.get(`/posts/${targetId}`);
+      const currentPost = res.data;
+      setPost(currentPost);
+    } catch (err) {
+      console.error('게시글을 불러오는 중 오류 발생: ', err);
+      setError('게시글을 불러오는 중 문제가 발생했습니다.');
+    }
   }
 
-  async function getComments(targetId) {
-    const res = await axios.get(`/comments/free-board/${targetId}`);
-    const result = res.data.comments ?? [];
-    setComments(result);
+  // 댓글 불러오기(무한 스크롤 기반)
+  async function getComments(targetId, cursor = null) {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await axios.get(`/comments/free-board/${targetId}`, {
+        params: {
+          cursor: cursor, // 마지막 댓글 ID
+          take: 2, // 한 번에 불러올 댓글 수
+        },
+      });
+      const nextComments = res.data.comments ?? [];
+
+      // 중복된 댓글을 제거하여 댓글 목록을 업데이트
+      setComments((prevComments) => {
+        // set: 중복 허용하지 않음, 여기서 이전에 불러온 댓글들의 id 값만을 모아서 배열을 만듬
+        const commentIds = new Set(prevComments.map((comment) => comment.id));
+        // 새롭게 가져온 댓글이 기존 댓글 목록에 있는지 확인, true면 제외, false면 유지
+        const newComments = nextComments.filter((comment) => !commentIds.has(comment.id));
+        return [...prevComments, ...newComments];
+      });
+
+      setHasMore(nextComments.length > 0); // 더 불러올 댓글이 있는지 확인
+    } catch (err) {
+      console.error('댓글을 불러오는 중 오류 발생:', err);
+      setError('댓글을 불러오는 중 문제가 발생했습니다.');
+    } finally {
+      setLoading(false); // 로딩 상태 종료
+    }
   }
 
+  // 페이지 로드 시 게시글과 첫 번째 댓글 그룹 불러옴
   useEffect(() => {
     if (!id) return;
 
@@ -46,9 +90,35 @@ export default function Post() {
     getComments(id);
   }, [id]);
 
+  // 목록으로 돌아가기 버튼을 눌렀을 때 자유게시판 페이지로 이동
   const handleBackButton = () => {
     router.push('/freeboard');
   };
+
+  // 무한 스크롤을 위한 IntersectionObserver 설정
+  useEffect(() => {
+    if (loading || !hasMore) return; // 로딩 중이거나 더 불러올 댓글이 없으면 중지
+
+    if (observerRef.current) observerRef.current.disconnect(); // 기존 옵저버 해제
+
+    observerRef.current = new IntersectionObserver((entires) => {
+      if (entires[0].isIntersecting) {
+        // 마지막 댓글이 화면에 보일 때 추가 댓글 요청
+        const lastComment = comments[comments.length - 1];
+        if (lastComment) {
+          getComments(id, lastComment.id); // 마지막 댓글 ID를 cursor로 전달
+        }
+      }
+    });
+
+    if (lastCommentRef.current) {
+      observerRef.current.observe(lastCommentRef.current); // 마지막 댓글 요소에 옵저버 연결
+    }
+
+    return () => {
+      if (observerRef.current) observerRef.current.disconnect(); // 컴포넌트 언마운트 시 옵저버 해제
+    };
+  }, [comments, loading, hasMore]);
 
   // 새로운 댓글 전송 및 상태 업데이트
   const handleSubmitComment = async () => {
@@ -56,7 +126,7 @@ export default function Post() {
       // 서버에 새 댓글 전송
       const res = await axios.post(`/comments/free-board/${id}`, {
         content: inputComment,
-        userId: '723f8545-890d-4e0a-accc-4f1995122868',
+        userId: '723f8545-890d-4e0a-accc-4f1995122868', // 테스트용 userId
       });
       const newComment = res.data; // 서버에서 반환된 새 댓글 데이터
 
@@ -65,8 +135,9 @@ export default function Post() {
 
       // 댓글 입력란 초기화
       setInputComment('');
-    } catch (error) {
-      console.error('댓글 등록에 실패했습니다.', error);
+    } catch (err) {
+      console.error('댓글 등록에 실패했습니다.', err);
+      setError('댓글 등록에 실패했습니다.');
     }
   };
 
@@ -75,8 +146,8 @@ export default function Post() {
     try {
       setPost((prevPost) => ({ ...prevPost, title, content })); // 로컬 상태 업데이트
       await axios.patch(`/posts/${id}`, { title, content }); // 서버로 수정된 게시글 업데이트 요청
-    } catch (error) {
-      console.error('게시글 업데이트에 실패했습니다.', error);
+    } catch (err) {
+      console.error('게시글 업데이트에 실패했습니다.', err);
     }
   };
 
@@ -99,8 +170,8 @@ export default function Post() {
       await axios.patch(`/comments/${commentId}`, {
         content: updatedComment,
       });
-    } catch (error) {
-      console.error('댓글 업데이트에 실패했습니다.', error);
+    } catch (err) {
+      console.error('댓글 업데이트에 실패했습니다.', err);
     }
   };
 
@@ -109,8 +180,8 @@ export default function Post() {
     try {
       await axios.delete(`/posts/${id}`);
       router.push('/freeboard');
-    } catch (error) {
-      console.error('게시글 삭제에 실패했습니다.', error);
+    } catch (err) {
+      console.error('게시글 삭제에 실패했습니다.', err);
     }
   };
 
@@ -124,7 +195,7 @@ export default function Post() {
     }
   };
 
-  if (!post) return null;
+  if (!post) return;
 
   return (
     <>
@@ -205,7 +276,11 @@ export default function Post() {
           </div>
         ) : (
           comments.map((comment, index) => (
-            <div className={styles.commentBox} key={index}>
+            <div
+              className={styles.commentBox}
+              key={index}
+              ref={index === comments.length - 1 ? lastCommentRef : null}
+            >
               <div className={styles.commentContent}>
                 <li>{comment.content}</li>
                 <KebabDropdown
@@ -229,6 +304,9 @@ export default function Post() {
           ))
         )}
       </ul>
+
+      {loading && <Spinner />}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
     </>
   );
 }

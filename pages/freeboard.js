@@ -21,7 +21,7 @@ export default function Freeboard() {
   const [page, setPage] = useState(1);
   const [loadingBestPosts, setLoadingBestPosts] = useState(false); // 베스트 게시글 로딩 상태
   const [loadingPosts, setLoadingPosts] = useState(false); // 게시글 로딩 상태
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(true); // 더 불러올 게시글이 있는 확인
   const [totalPosts, setTotalPosts] = useState(0); // 전체 게시글 수 추가
   const [error, setError] = useState(null); // 에러 상태 관리
 
