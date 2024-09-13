@@ -15,13 +15,43 @@ import emptyComment from '@/public/Img_reply_empty.svg';
 import backImg from '@/public/ic_back.svg';
 import Spinner from '@/components/Spinner';
 
-export default function Post() {
-  const [post, setPost] = useState(null); // 게시글 상태
-  const [comments, setComments] = useState([]); // 댓글 목록 상태
+export async function getServerSideProps(context) {
+  const { id } = context.params;
+
+  try {
+    const postRes = await axios.get(`/posts/${id}`);
+    const post = postRes.data;
+
+    const commentsRes = await axios.get(`/comments/free-board/${id}`, {
+      params: {
+        take: 5, // 초기 댓글 로드 개수
+      },
+    });
+    const initialComments = commentsRes.data.comments ?? [];
+
+    return {
+      props: {
+        post,
+        initialComments,
+      },
+    };
+  } catch (err) {
+    console.error('데이터를 불러오는 중 오류가 발생했습니다(게시글 상세 페이지).', err);
+    return {
+      post: null,
+      initialComments: [],
+      error: '데이터를 불러오는 중 오류가 발생했습니다(게시글 상세 페이지).',
+    };
+  }
+}
+
+export default function Post({ post: initialPost, initialComments, error: initialError }) {
+  const [post, setPost] = useState(initialPost); // 게시글 상태
+  const [comments, setComments] = useState(initialComments || []); // 댓글 목록 상태
   const [inputComment, setInputComment] = useState(''); // 사용자로부터 입력된 댓글 상태
   const [hasMore, setHasMore] = useState(true); // 더 불로올 댓글이 있는지 확인
   const [loading, setLoading] = useState(false); //  댓글 로딩 상태
-  const [error, setError] = useState(null); // 에러 상태
+  const [error, setError] = useState(initialError || null); // 에러 상태
   const observerRef = useRef(null); // IntersectionObserver 참조
   const lastCommentRef = useRef(null); // 마지막 댓글 요소 참조
 
@@ -36,19 +66,10 @@ export default function Post() {
   // 댓글 등록 버튼 활성화 여부
   const isFormValid = inputComment.trim() !== '';
 
-  // 게시글 불러오기 함수
-  async function getPost(targetId) {
-    setError(null);
-
-    try {
-      const res = await axios.get(`/posts/${targetId}`);
-      const currentPost = res.data;
-      setPost(currentPost);
-    } catch (err) {
-      console.error('게시글을 불러오는 중 오류 발생: ', err);
-      setError('게시글을 불러오는 중 문제가 발생했습니다.');
-    }
-  }
+  // 목록으로 돌아가기 버튼을 눌렀을 때 자유게시판 페이지로 이동
+  const handleBackButton = () => {
+    router.push('/freeboard');
+  };
 
   // 댓글 불러오기(무한 스크롤 기반)
   async function getComments(targetId, cursor = null) {
@@ -59,7 +80,7 @@ export default function Post() {
       const res = await axios.get(`/comments/free-board/${targetId}`, {
         params: {
           cursor: cursor, // 마지막 댓글 ID
-          take: 2, // 한 번에 불러올 댓글 수
+          take: 5, // 한 번에 불러올 댓글 수
         },
       });
       const nextComments = res.data.comments ?? [];
@@ -81,19 +102,6 @@ export default function Post() {
       setLoading(false); // 로딩 상태 종료
     }
   }
-
-  // 페이지 로드 시 게시글과 첫 번째 댓글 그룹 불러옴
-  useEffect(() => {
-    if (!id) return;
-
-    getPost(id);
-    getComments(id);
-  }, [id]);
-
-  // 목록으로 돌아가기 버튼을 눌렀을 때 자유게시판 페이지로 이동
-  const handleBackButton = () => {
-    router.push('/freeboard');
-  };
 
   // 무한 스크롤을 위한 IntersectionObserver 설정
   useEffect(() => {
@@ -195,7 +203,7 @@ export default function Post() {
     }
   };
 
-  if (!post) return;
+  if (!post) return null;
 
   return (
     <>

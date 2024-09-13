@@ -30,7 +30,7 @@ export async function getStaticProps() {
     });
 
     const posts = postRes.data.posts ?? [];
-    const totalPosts = posts.data.totalPosts ?? 0;
+    const totalPosts = postRes.data.totalPosts ?? 0;
 
     // 서버에서 가져온 데이터를 props로 전달
     return {
@@ -39,15 +39,16 @@ export async function getStaticProps() {
         posts,
         totalPosts,
       },
+      revalidate: 300, // 5분마다 페이지를 재생성
     };
   } catch (err) {
-    console.error('서버에서 데이터를 가져오는 중 오류 발생:', err);
+    console.error('데이터를 불러오는 중 오류가 발생했습니다(자유게시판).', err);
     return {
       props: {
         bestPosts: [],
         posts: [],
         totalPosts: 0,
-        err: '데이터를 가져오는 중 오류가 발생했습니다.',
+        error: '데이터를 불러오는 중 오류가 발생했습니다(자유게시판).',
       },
     };
   }
@@ -72,37 +73,10 @@ export default function Freeboard({
   const [loadingPosts, setLoadingPosts] = useState(false); // 게시글 로딩 상태
   const [hasMore, setHasMore] = useState(initialPosts.length < initialTotalPosts); // 더 불러올 게시글이 있는 확인
   const [totalPosts, setTotalPosts] = useState(initialTotalPosts); // 전체 게시글 수 추가
-  const [error, setError] = useState(initialError); // 에러 상태 관리
+  const [error, setError] = useState(initialError || null); // 에러 상태 관리
 
   const observerRef = useRef(null); // IntersectionObserver 참조
   const lastPostRef = useRef(null); // 마지막 게시글을 참조할 ref
-
-  // const getBestPosts = async (order, limit) => {
-  //   if (loadingBestPosts) return; // 이미 로딩 중이면 중복 요청 방지
-  //   setLoadingBestPosts(true);
-  //   setError(null); // 이전 에러 초기화
-
-  //   try {
-  //     const res = await axios.get('/posts', {
-  //       params: {
-  //         order: 'recent', // 최신순으로 3개의 베스트 게시글 요청
-  //         limit: 3,
-  //       },
-  //     });
-  //     const bestPosts = res.data.posts ?? [];
-  //     setBestPosts(bestPosts); // 서버에서 받은 베스트 게시글 목록을 상태에 저장
-  //   } catch (error) {
-  //     console.error('베스트 게시글을 가져오는 중 오류 발생:', err);
-  //     setError('베스트 게시글을 가져오는 중 문제가 발생했습니다.');
-  //   } finally {
-  //     setLoadingBestPosts(false);
-  //   }
-  // };
-
-  // // 페이지 로드 시 최신 게시글 3개를 가져옴
-  // useEffect(() => {
-  //   getBestPosts();
-  // }, []);
 
   // 검색 및 전체 게시글 조회
   // 검색어나 정렬 기준, 페이지에 따라 게시글 목록을 서버에서 가져오는 함수
