@@ -51,6 +51,10 @@
   color: var(--grey-800);
 }
 
+.commentCount {
+  color: var(--blue);
+}
+
 .userName {
   font-weight: 400;
   font-size: 14px;

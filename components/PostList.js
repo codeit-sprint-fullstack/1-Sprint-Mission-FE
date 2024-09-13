@@ -20,7 +20,10 @@ export default function PostList({ posts }) {
             <Link href={`/posts/${post.id}`} className={styles.link}>
               <div className={styles.postContainer}>
                 <div className={styles.postTop}>
-                  <h4 className={styles.postTitle}>{post.title}</h4>
+                  <h4 className={styles.postTitle}>
+                    {post.title}
+                    <span className={styles.commentCount}> [{post.commentCount || 0}]</span>
+                  </h4>
                   <div className={styles.postImgWrapper}>
                     <Image src={default_img} alt="기본 이미지" />
                   </div>
