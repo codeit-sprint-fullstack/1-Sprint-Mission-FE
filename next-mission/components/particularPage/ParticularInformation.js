@@ -11,7 +11,7 @@ export default function ParticularInformation({ data }) {
   const router = useRouter();
 
   // 날짜 계산
-  const stringDay = useTimeCalculation(data.createdAt)
+  const stringDay = useTimeCalculation(data.createdAt);
 
   // 설정 드롭다운 온/오프 함수
   const dropDownHandler = () => {
@@ -36,7 +36,7 @@ export default function ParticularInformation({ data }) {
         >
           <div className={style.ParticularInformation_title}>{data.title}</div>
           <Image
-          className={style.ParticularInformation_setting_img}
+            className={style.ParticularInformation_setting_img}
             src={"/images/ic_vertical_point_3.svg"}
             width={24}
             height={24}
@@ -45,7 +45,7 @@ export default function ParticularInformation({ data }) {
           />
           {hideDropDown || (
             <div className={style.ParticularInformation_drop_down}>
-              <Link href={`/freeNoticeBoard/pacthArticle/${data.id}`}>
+              <Link href={`/freeNoticeBoard/patchArticle/${data.id}`}>
                 <div className={`${style.drop_down_button} ${style.font16}`}>
                   수정하기
                 </div>

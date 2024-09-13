@@ -1,4 +1,4 @@
-.flex_column{
+.flex_column {
   display: flex;
   flex-direction: column;
 }
@@ -6,7 +6,7 @@
 .CommentList_no_comment {
   width: 151px;
   height: 208px;
-  margin-bottom: 48px;
+  margin: 40px 0 48px;
   justify-content: space-between;
   align-items: center;
 }
@@ -31,7 +31,7 @@
   overflow: scroll;
 }
 
-.CommentList_ul::-webkit-scrollbar{
+.CommentList_ul::-webkit-scrollbar {
   display: none;
 }
 
@@ -67,4 +67,56 @@
   position: absolute;
   top: 12px;
   right: 39.5px;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .CommentList_no_comment {
+    margin: 32px 0 56px;
+  }
+  
+  .CommentList_ul {
+    width: 696px;
+    height: 339px;
+    margin: 32px 0 47px 0;
+  }
+  
+  .CommentList_li {
+    width: 696px;
+  }
+  
+  .yes_list_button {
+    margin-bottom: 291px;
+  }
+  
+  .no_list_button {
+    margin-bottom: 561px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+  .CommentList_no_comment {
+    width: 151px;
+    height: 208px;
+    margin: 24px 0 40px;
+  }
+  
+  .CommentList_ul {
+    width: 343px;
+    height: 320px;
+    margin: 24px 0 40px ;
+    gap: 16px;
+  }
+  
+  .CommentList_li {
+    width: 343px;
+    height: 96px;
+  }
+  
+  .yes_list_button {
+    margin-bottom: 139px;
+  }
+  
+  .no_list_button {
+    margin-bottom: 234px;
+  }
 }

@@ -11,7 +11,7 @@
   position: relative;
 }
 
-.CommentListBody_setting_img{
+.CommentListBody_setting_img {
   cursor: pointer;
 }
 
@@ -72,4 +72,42 @@
   width: auto;
   height: 18px;
   color: #9ca3af;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .CommentListBody_comment {
+    width: 696px;
+  }
+  
+  .CommentListBody_drop_down {
+    height: 94px;
+  }
+  
+  .drop_down_text {
+    height: 47px;
+    line-height: 19.09px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+  .CommentListBody_comment {
+    width: 343px;
+  }
+  
+  .CommentListBody_drop_down {
+    width: 102px;
+    height: 90px;
+    right: 5px;
+  }
+  
+  .drop_down_text {
+    width: 102px;
+    height: 45px;
+    font-size: 14px;
+    line-height: 24px;
+  }
+  
+  .CommentListBody_additional_information {
+    margin: 24px 0 8px;
+  }
 }

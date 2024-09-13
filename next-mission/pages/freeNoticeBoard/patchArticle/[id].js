@@ -21,13 +21,13 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function pacthArticle({data}) {
+export default function patchArticle({ data }) {
   return (
     <>
       <Head>
         <title>게시글 수정 - 자유게시판 | 판다마켓</title>
       </Head>
-      <PatchForm data={data}/>
+      <PatchForm data={data} />
     </>
   );
 }

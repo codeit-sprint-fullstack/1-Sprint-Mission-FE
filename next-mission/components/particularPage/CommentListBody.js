@@ -59,7 +59,7 @@ export default function CommentListBody({
       <div className={style.CommentListBody_comment}>
         <div>{comment.content}</div>
         <Image
-        className={style.CommentListBody_setting_img}
+          className={style.CommentListBody_setting_img}
           src={"/images/ic_vertical_point_3.svg"}
           width={24}
           height={24}

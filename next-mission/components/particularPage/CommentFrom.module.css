@@ -1,4 +1,4 @@
-.font16{
+.font16 {
   font-size: 16px;
   line-height: 26px;
 }
@@ -65,4 +65,32 @@
 
 .button_on {
   background-color: #3692ff;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .CommentFrom_form {
+    width: 696px;
+  }
+
+  .CommentFrom_input {
+    width: 696px;
+  }
+
+  .CommentFrom_button_cotaner {
+    width: 696px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+  .CommentFrom_form {
+    width: 343px;
+  }
+
+  .CommentFrom_input {
+    width: 343px;
+  }
+
+  .CommentFrom_button_cotaner {
+    width: 343px;
+  }
 }
