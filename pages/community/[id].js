@@ -67,6 +67,24 @@ const PostDetail = ({ post, initialComments }) => {
     });
   };
 
+  const handleCommentEdit = async (commentId, updatedContent) => {
+    try {
+      const res = await axios.patch(`/comments/${commentId}`, {
+        content: updatedContent,
+      });
+
+      const updatedComment = res.data;
+
+      setComments(
+        comments.map((comment) =>
+          comment.id === commentId ? updatedComment : comment
+        )
+      );
+    } catch (error) {
+      console.error("댓글 수정에 실패했습니다:", error);
+    }
+  };
+
   const handleDelete = async () => {
     try {
       await axios.delete(`/articles/${post.id}`);
@@ -144,6 +162,7 @@ const PostDetail = ({ post, initialComments }) => {
               key={comment.id}
               comment={comment}
               onDelete={() => handleDeleteComment(comment.id)}
+              onEdit={handleCommentEdit}
             />
           ))
         ) : (

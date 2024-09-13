@@ -1,17 +1,44 @@
+import { useState } from "react";
 import styles from "@styles/Comment.module.css";
 import KebabDropdown from "./KebabDropdown";
 import Image from "next/image";
 
 import profileImage from "@images/ic_profile.svg";
 
-const Comment = ({ comment, onDelete }) => {
+const Comment = ({ comment, onDelete, onEdit }) => {
+  const [isEdit, setIsEdit] = useState(false);
+  const [editContent, setEditContent] = useState(comment.content);
+
+  const handleEdit = () => {
+    setIsEdit(true);
+  };
+
+  const handleSaveEdit = () => {
+    onEdit(comment.id, editContent);
+    setIsEdit(false);
+  };
+
+  const handleCancelEdit = () => {
+    setEditContent(comment.content);
+    setIsEdit(false);
+  };
+
   return (
     <div className={styles.comment}>
       <div className={styles.commentHeader}>
-        <span className={`${styles.commentContent} text-md regular`}>
-          {comment.content}
-        </span>
-        <KebabDropdown onDelete={onDelete} />
+        {isEdit ? (
+          <textarea
+            value={editContent}
+            onChange={(e) => setEditContent(e.target.value)}
+            className={styles.editArea}
+          />
+        ) : (
+          <span className={`${styles.commentContent} text-md regular`}>
+            {comment.content}
+          </span>
+        )}
+
+        <KebabDropdown onDelete={onDelete} onEdit={handleEdit} />
       </div>
       <div className={styles.commentInfo}>
         <Image src={profileImage} alt="profile image" width={32} height={32} />
@@ -24,6 +51,17 @@ const Comment = ({ comment, onDelete }) => {
           </span>
         </div>
       </div>
+
+      {isEdit && (
+        <div className={styles.editActions}>
+          <button onClick={handleSaveEdit} className={styles.saveButton}>
+            저장
+          </button>
+          <button onClick={handleCancelEdit} className={styles.cancelButton}>
+            취소
+          </button>
+        </div>
+      )}
     </div>
   );
 };
