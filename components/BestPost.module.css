@@ -19,6 +19,10 @@
   border-radius: 8px;
 }
 
+.link {
+  text-decoration: none;
+}
+
 .bestBanner {
   position: relative;
   width: 102px;
