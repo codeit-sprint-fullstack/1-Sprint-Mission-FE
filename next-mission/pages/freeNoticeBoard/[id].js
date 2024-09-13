@@ -17,6 +17,7 @@ export async function getServerSideProps(context) {
     const noticeBoardData = res.data;
     const commentData = resComment.data.list ?? [];
     const cursorData = resComment.data.cursorInfo.NextCusor;
+    console.log(commentData)
     return {
       props: {
         noticeBoardData,
@@ -31,7 +32,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function particularPage({
+export default function ParticularPage({
   noticeBoardData,
   commentData,
   cursorData,

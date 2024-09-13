@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import useTimeCalculation from "../hook/useTimeCalculation";
 
 export default function ParticularInformation({ data }) {
-  const [hideDropDown, setHideDropDown] = useState(true);
+  const [showDropDown, setShowDropDown] = useState(false);
   const router = useRouter();
 
   // 날짜 계산
@@ -15,10 +15,10 @@ export default function ParticularInformation({ data }) {
 
   // 설정 드롭다운 온/오프 함수
   const dropDownHandler = () => {
-    if (!hideDropDown) {
-      setHideDropDown(true);
-    } else if (hideDropDown) {
-      setHideDropDown(false);
+    if (!showDropDown) {
+      setShowDropDown(true);
+    } else if (showDropDown) {
+      setShowDropDown(false);
     }
   };
 
@@ -31,9 +31,7 @@ export default function ParticularInformation({ data }) {
   return (
     <div className={style.contaner}>
       <div className={style.keyInformation}>
-        <div
-          className={`${style.subject} ${style.flexRow}`}
-        >
+        <div className={`${style.subject} ${style.flexRow}`}>
           <div className={style.title}>{data.title}</div>
           <Image
             className={style.settingImg}
@@ -43,7 +41,7 @@ export default function ParticularInformation({ data }) {
             alt="설정"
             onClick={dropDownHandler}
           />
-          {hideDropDown || (
+          {showDropDown && (
             <div className={style.dropDown}>
               <Link href={`/freeNoticeBoard/patchArticle/${data.id}`}>
                 <div className={`${style.dropDownText} ${style.font16}`}>
@@ -59,9 +57,7 @@ export default function ParticularInformation({ data }) {
             </div>
           )}
         </div>
-        <div
-          className={`${style.additionalInformation} ${style.flexRow}`}
-        >
+        <div className={`${style.additionalInformation} ${style.flexRow}`}>
           <Image
             className={style.userImg}
             src={"/images/ic_user.svg"}
@@ -69,20 +65,10 @@ export default function ParticularInformation({ data }) {
             height={40}
             alt="유저 이미지"
           />
-          <div
-            className={`${style.userName} ${style.font14}`}
-          >
-            코드잇
-          </div>
-          <div
-            className={`${style.date} ${style.font14}`}
-          >
-            {stringDay}
-          </div>
+          <div className={`${style.userName} ${style.font14}`}>코드잇</div>
+          <div className={`${style.date} ${style.font14}`}>{stringDay}</div>
           <div className={style.separationLine} />
-          <div
-            className={`${style.favorite} ${style.flexRow} ${style.font16}`}
-          >
+          <div className={`${style.favorite} ${style.flexRow} ${style.font16}`}>
             <Image
               src={"/images/ic_heart.svg"}
               width={32}

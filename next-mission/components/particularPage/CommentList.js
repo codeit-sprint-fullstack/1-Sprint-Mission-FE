@@ -12,7 +12,6 @@ export default function CommentList({
   patchCommend,
   setPatchCommend,
 }) {
-  const [noList, setNoList] = useState(false);
   const [buttonMargin, setButtonMargin] = useState(style.yesListButton); //(style.noListButton);
   const observerRef = useRef();
 
@@ -33,17 +32,15 @@ export default function CommentList({
   // 댓글이 없을 시 이미지 보여주는 로직
   useEffect(() => {
     if (!comment[0]) {
-      setNoList(true);
       setButtonMargin(style.noListButton);
     } else {
-      setNoList(false);
       setButtonMargin(style.yesListButton);
     }
   }, [comment]);
 
   return (
     <>
-      {noList && (
+      {comment[0] || (
         <div className={`${style.noComment} ${style.flexColumn}`}>
           <Image
             src={"/images/Img_speech_bubble.svg"}
@@ -57,7 +54,7 @@ export default function CommentList({
           </div>
         </div>
       )}
-      {noList || (
+      {comment[0] && (
         <ul className={`${style.CommentListUl} ${style.flexColumn}`}>
           {comment.map((data, idx) => {
             if (idx === comment.length - 1) {

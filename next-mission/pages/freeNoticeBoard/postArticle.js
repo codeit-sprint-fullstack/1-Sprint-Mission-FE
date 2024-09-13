@@ -1,7 +1,7 @@
 import PostForm from "@/components/postArticle/PostForm";
 import Head from "next/head";
 
-export default function postArticle() {
+export default function PostArticle() {
   return (
     <>
       <Head>

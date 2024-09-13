@@ -17,7 +17,7 @@ export async function getServerSideProps() {
   };
 }
 
-export default function freeNoticeBoard({ data, total }) {
+export default function FreeNoticeBoard({ data, total }) {
   const [list, setList] = useState(data);
   const [page, setPage] = useState(1); // 현재 페이지
   const [hasMore, setHasMore] = useState(true); // 더 불러올 데이터가 있는지 여부

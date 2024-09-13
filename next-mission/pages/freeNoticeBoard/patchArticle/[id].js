@@ -21,7 +21,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function patchArticle({ data }) {
+export default function PatchArticle({ data }) {
   return (
     <>
       <Head>

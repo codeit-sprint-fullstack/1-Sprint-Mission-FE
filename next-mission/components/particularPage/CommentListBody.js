@@ -9,14 +9,14 @@ export default function CommentListBody({
   patchCommend,
   setPatchCommend,
 }) {
-  const [hideDropDown, setHideDropDown] = useState(true);
+  const [showDropDown, setShowDropDown] = useState(false);
 
   // 설정 드롭다운 온/오프 함수
   const dropDownHandler = () => {
-    if (!hideDropDown) {
-      setHideDropDown(true);
-    } else if (hideDropDown) {
-      setHideDropDown(false);
+    if (!showDropDown) {
+      setShowDropDown(true);
+    } else if (showDropDown) {
+      setShowDropDown(false);
     }
   };
 
@@ -29,7 +29,7 @@ export default function CommentListBody({
         id: comment.id,
         idx,
       });
-      setHideDropDown(true);
+      setShowDropDown(false);
     }
   };
 
@@ -66,7 +66,7 @@ export default function CommentListBody({
           alt="설정"
           onClick={dropDownHandler}
         />
-        {hideDropDown || (
+        {showDropDown && (
           <div className={style.dropDown}>
             <div className={style.dropDownText} onClick={patchHandler}>
               수정하기
