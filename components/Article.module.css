@@ -1,0 +1,30 @@
+.article {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.button {
+  width: 88px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: #3692ff;
+  color: #ffffff;
+  padding: 12px, 23px, 12px, 23px;
+  font-size: 16px;
+  font-weight: 600;
+  border-style: none;
+}
