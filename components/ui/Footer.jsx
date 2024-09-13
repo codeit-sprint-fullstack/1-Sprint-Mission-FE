@@ -1,10 +1,10 @@
 import styles from "./Footer.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import facebookLogo from "../public/images/ic_facebook.svg";
-import youtubeLogo from "../public/images/ic_youtube.svg";
-import twitterLogo from "../public/images/ic_twitter.svg";
-import instagramLogo from "../public/images/ic_instagram.svg";
+import facebookLogo from "@/public/images/ic_facebook.svg";
+import youtubeLogo from "@/public/images/ic_youtube.svg";
+import twitterLogo from "@/public/images/ic_twitter.svg";
+import instagramLogo from "@/public/images/ic_instagram.svg";
 
 const COMPANY_NAME = "codeit";
 const CURRENT_YEAR = new Date().getFullYear();

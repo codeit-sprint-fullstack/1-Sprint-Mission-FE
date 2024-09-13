@@ -4,9 +4,9 @@ import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./GNB.module.css";
-import normalLogo from "../public/images/headerLogo.svg";
-import smallLogo from "../public/images/headerSmallLogo.svg";
-import SmallButton from "./ui/SmallButton";
+import normalLogo from "@/public/images/headerLogo.svg";
+import smallLogo from "@/public/images/headerSmallLogo.svg";
+import SmallButton from "@/components/common/SmallButton";
 
 const NAV_ITEMS = [
   { href: "/community", text: "자유게시판" },

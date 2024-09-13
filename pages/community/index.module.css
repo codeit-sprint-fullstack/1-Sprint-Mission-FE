@@ -96,6 +96,45 @@
   align-self: center;
 }
 
+.selectWrapper {
+  position: relative;
+  width: 200px;
+}
+
+.selectHeader {
+  padding: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.optionList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.optionItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.optionItem:hover {
+  background-color: #f0f0f0;
+}
+
+.hiddenSelect {
+  display: none;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
