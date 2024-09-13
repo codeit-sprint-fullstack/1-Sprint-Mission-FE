@@ -8,52 +8,101 @@ import { useRouter } from 'next/router';
 import { useState, useEffect, useRef } from 'react';
 import Spinner from '@/components/Spinner';
 
-export default function Freeboard() {
+// 정적 생성시 데이터도 함께 가져오기 위한 함수
+export async function getStaticProps() {
+  try {
+    // 베스트 게시글을 서버에서 가져옴
+    const bestPostRes = await axios.get('/posts', {
+      params: {
+        order: 'recent',
+        limit: 3,
+      },
+    });
+
+    const bestPosts = bestPostRes.data.posts ?? [];
+
+    // 첫 페이지의 게시글을 서버에서 가져옴
+    const postRes = await axios.get('/posts', {
+      params: {
+        order: 'recent',
+        page: 1,
+      },
+    });
+
+    const posts = postRes.data.posts ?? [];
+    const totalPosts = posts.data.totalPosts ?? 0;
+
+    // 서버에서 가져온 데이터를 props로 전달
+    return {
+      props: {
+        bestPosts,
+        posts,
+        totalPosts,
+      },
+    };
+  } catch (err) {
+    console.error('서버에서 데이터를 가져오는 중 오류 발생:', err);
+    return {
+      props: {
+        bestPosts: [],
+        posts: [],
+        totalPosts: 0,
+        err: '데이터를 가져오는 중 오류가 발생했습니다.',
+      },
+    };
+  }
+}
+
+export default function Freeboard({
+  bestPosts: initialBestPosts,
+  posts: initialPosts = [],
+  totalPosts: initialTotalPosts = 0,
+  error: initialError,
+}) {
   // 자유게시판 페이지
   // 등록된 게시글 중 최신순으로 3개를 정렬해서 서버로부터 가져온다.
   // BestList 컴포넌트를 통해 렌더링 한다.
   const router = useRouter();
   const { q } = router.query;
 
-  const [bestPosts, setBestPosts] = useState([]);
-  const [posts, setPosts] = useState([]);
+  const [bestPosts, setBestPosts] = useState(initialBestPosts);
+  const [posts, setPosts] = useState(initialPosts);
   const [order, setOrder] = useState('recent'); // 드롭다운에서 선택된 order 값을 관리
   const [page, setPage] = useState(1);
-  const [loadingBestPosts, setLoadingBestPosts] = useState(false); // 베스트 게시글 로딩 상태
   const [loadingPosts, setLoadingPosts] = useState(false); // 게시글 로딩 상태
-  const [hasMore, setHasMore] = useState(true); // 더 불러올 게시글이 있는 확인
-  const [totalPosts, setTotalPosts] = useState(0); // 전체 게시글 수 추가
-  const [error, setError] = useState(null); // 에러 상태 관리
+  const [hasMore, setHasMore] = useState(initialPosts.length < initialTotalPosts); // 더 불러올 게시글이 있는 확인
+  const [totalPosts, setTotalPosts] = useState(initialTotalPosts); // 전체 게시글 수 추가
+  const [error, setError] = useState(initialError); // 에러 상태 관리
 
   const observerRef = useRef(null); // IntersectionObserver 참조
   const lastPostRef = useRef(null); // 마지막 게시글을 참조할 ref
 
-  const getBestPosts = async (order, limit) => {
-    if (loadingBestPosts) return; // 이미 로딩 중이면 중복 요청 방지
-    setLoadingBestPosts(true);
-    setError(null); // 이전 에러 초기화
+  // const getBestPosts = async (order, limit) => {
+  //   if (loadingBestPosts) return; // 이미 로딩 중이면 중복 요청 방지
+  //   setLoadingBestPosts(true);
+  //   setError(null); // 이전 에러 초기화
 
-    try {
-      const res = await axios.get('/posts', {
-        params: {
-          order: 'recent', // 최신순으로 3개의 베스트 게시글 요청
-          limit: 3,
-        },
-      });
-      const bestPosts = res.data.posts ?? [];
-      setBestPosts(bestPosts); // 서버에서 받은 베스트 게시글 목록을 상태에 저장
-    } catch (error) {
-      console.error('베스트 게시글을 가져오는 중 오류 발생:', err);
-      setError('베스트 게시글을 가져오는 중 문제가 발생했습니다.');
-    } finally {
-      setLoadingBestPosts(false);
-    }
-  };
+  //   try {
+  //     const res = await axios.get('/posts', {
+  //       params: {
+  //         order: 'recent', // 최신순으로 3개의 베스트 게시글 요청
+  //         limit: 3,
+  //       },
+  //     });
+  //     const bestPosts = res.data.posts ?? [];
+  //     setBestPosts(bestPosts); // 서버에서 받은 베스트 게시글 목록을 상태에 저장
+  //   } catch (error) {
+  //     console.error('베스트 게시글을 가져오는 중 오류 발생:', err);
+  //     setError('베스트 게시글을 가져오는 중 문제가 발생했습니다.');
+  //   } finally {
+  //     setLoadingBestPosts(false);
+  //   }
+  // };
 
-  // 페이지 로드 시 최신 게시글 3개를 가져옴
-  useEffect(() => {
-    getBestPosts();
-  }, []);
+  // // 페이지 로드 시 최신 게시글 3개를 가져옴
+  // useEffect(() => {
+  //   getBestPosts();
+  // }, []);
 
   // 검색 및 전체 게시글 조회
   // 검색어나 정렬 기준, 페이지에 따라 게시글 목록을 서버에서 가져오는 함수
@@ -71,7 +120,7 @@ export default function Freeboard() {
       });
 
       const newPosts = res.data.posts ?? []; // 서버에서 받은 게시글
-      const total = res.data.totalPosts ?? []; // 전체 게시글 수
+      const total = res.data.totalPosts ?? 0; // 전체 게시글 수
 
       // 페이지 1이면 기존 게시글을 덮어쓰고, 그렇지 않으면 기존 게시글에 새로 불러온 게시글 추가
       setPosts((prevPosts) => (page === 1 ? newPosts : [...prevPosts, ...newPosts]));
@@ -136,7 +185,7 @@ export default function Freeboard() {
       <WriteButton />
       <SearchForm onOrderChange={handleOrderChange} />
       <PostList posts={posts} />
-      {(loadingBestPosts || loadingPosts) && <Spinner />}
+      {loadingPosts && <Spinner />}
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <div ref={lastPostRef} />
     </>

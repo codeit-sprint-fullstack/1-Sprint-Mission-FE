@@ -31,6 +31,10 @@
   position: relative;
 }
 
+.active {
+  color: var(--blue) !important;
+}
+
 .menu {
   flex-grow: 1;
   display: flex;

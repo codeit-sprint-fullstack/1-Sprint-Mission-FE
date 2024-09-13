@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from './Header.module.css';
 import Logo from '@/public/pandaMarketLogo.svg';
 import Button from './Button';
+import { useRouter } from 'next/router';
 
 // Header component
 // 해당 컴포넌트는 로고, 메뉴, 로그인 버튼으로 구성한다.
@@ -13,6 +14,8 @@ import Button from './Button';
 // 로그인 버튼을 누르면 로그인 페이지로 이동한다. (이번 미션에서는 구현하지 않음)
 
 export default function Header() {
+  const router = useRouter();
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -20,10 +23,18 @@ export default function Header() {
           <Image src={Logo} alt="판다 마켓 로고" fill priority />
         </Link>
         <div className={`${styles.menu} ${styles.font}`}>
-          <Link className={styles.freeboard} href="/freeboard">
+          <Link
+            className={`${styles.freeboard} ${
+              router.pathname === '/freeboard' ? styles.active : ''
+            }`}
+            href="/freeboard"
+          >
             <span>자유게시판</span>
           </Link>
-          <Link className={styles.market} href="/market">
+          <Link
+            className={`${styles.market} ${router.pathname === '/market' ? styles.active : ''}`}
+            href="/market"
+          >
             <span>중고마켓</span>
           </Link>
         </div>
