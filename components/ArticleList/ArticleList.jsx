@@ -10,8 +10,7 @@ export default function ArticleList({ data }) {
   return (
     <ul className={styles.ArticleList}>
       {data.map((page) => {
-        const { list } = page;
-        return list.map((article) => {
+        return page.list.map((article) => {
           return (
             <li key={article.id}>
               <div className={styles.top}>
@@ -46,7 +45,7 @@ export default function ArticleList({ data }) {
                     width={24}
                     height={24}
                   />
-                  <span>{likeFormat(article.favoriteCount)}</span>
+                  <span>{likeFormat(article.likeCount)}</span>
                 </div>
               </div>
             </li>

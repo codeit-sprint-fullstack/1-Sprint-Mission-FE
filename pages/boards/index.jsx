@@ -3,16 +3,18 @@ import {
   dehydrate,
   useInfiniteQuery,
 } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import { getArticleList } from "@/lib/api";
 import BestArticles from "@/components/BestArticles/BestArticles";
 import Head from "next/head";
+import Link from "next/link";
+import styles from "@/styles/pages/Board.module.scss";
 import Button from "@/components/ui/Button";
 import ArticleList from "@/components/ArticleList/ArticleList";
-import { getArticleList } from "@/lib/api";
-import styles from "@/styles/pages/Board.module.scss";
-import Link from "next/link";
-import { useState } from "react";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import DropDown from "@/components/ui/DropDown";
+import { PAGE_SIZE } from "@/var";
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
@@ -21,16 +23,12 @@ export async function getServerSideProps() {
     await Promise.all([
       queryClient.prefetchQuery({
         queryKey: ["bestArticles"],
-        queryFn: () => getArticleList({ pageSize: 3, orderBy: "best" }),
+        queryFn: () => getArticleList({ pageSize: 3, orderBy: "like" }),
       }),
-      queryClient.prefetchQuery({
-        queryKey: ["articles", { orderBy: "recent" }],
-        queryFn: () => {
-          getArticleList({ orderBy: "recent" });
-          return {
-            pages: [data],
-          };
-        },
+      queryClient.prefetchInfiniteQuery({
+        queryKey: ["articles", { orderBy: "recent", keyword: "" }],
+        queryFn: () => getArticleList({ orderBy: "recent" }),
+        initialPageParam: 1,
       }),
     ]);
 
@@ -44,6 +42,8 @@ export async function getServerSideProps() {
     if (err.response) {
       console.log(err.response.status);
       console.log(err.response.data);
+    } else {
+      console.error("Error", err);
     }
   }
 }
@@ -51,21 +51,48 @@ export async function getServerSideProps() {
 export default function Boards() {
   const [keyword, setKeyword] = useState("");
   const [orderBy, setOrderBy] = useState("recent");
+  const { ref, inView } = useInView();
 
   const {
     data: articleData,
-    isFetching,
+    isFetchingNextPage,
+    isPending,
     isError,
+    isFetching,
+    hasNextPage,
+    fetchNextPage,
   } = useInfiniteQuery({
     queryKey: ["articles", { orderBy, keyword }],
-    queryFn: ({ pageParams = 0 }) =>
-      getArticleList({ keyword, orderBy, pageParams }),
-    getNextPageParam: (lastPage) => {
-      return lastPage.nextCursor || undefined;
+    queryFn: ({ pageParam = 1 }) =>
+      getArticleList({
+        keyword,
+        orderBy,
+        page: pageParam,
+        pageSize: PAGE_SIZE.DEFAULT,
+      }),
+
+    getNextPageParam: (lastPage, allPages) => {
+      if (!lastPage || !Array.isArray(lastPage.list)) {
+        return undefined;
+      }
+      if (!lastPage || !lastPage.list) {
+        return undefined;
+      }
+      if (lastPage.list.length < PAGE_SIZE.DEFAULT) {
+        return undefined;
+      }
+      return allPages.length + 1;
     },
     keepPreviousData: true,
   });
-  if (isFetching) return <p>로딩중</p>;
+
+  useEffect(() => {
+    if (inView) {
+      !isFetching && hasNextPage && fetchNextPage();
+    }
+  }, [fetchNextPage, inView, hasNextPage, isFetching]);
+
+  if (isPending) return <p>로딩중</p>;
   if (isError) return <p>에러</p>;
 
   const pages = articleData?.pages || [];
@@ -81,7 +108,9 @@ export default function Boards() {
       </section>
       <section className={styles["article-section"]}>
         <div className={styles["article-section-topbar"]}>
-          <h2>게시글</h2>
+          <h2>
+            전체 게시글 <span>{`(${pages[0].totalCount})`}</span>
+          </h2>
           <Link href="/boards/create-article" passHref>
             <Button type="primary">글쓰기</Button>
           </Link>
@@ -91,6 +120,14 @@ export default function Boards() {
           <DropDown setOrderBy={setOrderBy} orderBy={orderBy} />
         </div>
         <ArticleList data={pages} />
+
+        <div ref={ref}>
+          {isFetchingNextPage
+            ? "더 불러오는중"
+            : hasNextPage
+            ? "새 게시물 불러오기"
+            : "더 불러올 게시물이 없습니다"}
+        </div>
       </section>
     </>
   );

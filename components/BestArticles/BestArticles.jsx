@@ -34,7 +34,7 @@ function ArticleCard({ article, userName }) {
             <button>
               <Image src={likeImg} alt="like icon" />
             </button>
-            <span>{likeFormat(article.favoriteCount)}</span>
+            <span>{likeFormat(article.likeCount)}</span>
           </div>
         </div>
 
@@ -47,7 +47,7 @@ function ArticleCard({ article, userName }) {
 export default function BestArticles() {
   const { data } = useQuery({
     queryKey: ["bestArticles"],
-    queryFn: () => getArticleList({ pageSize: 3, orderBy: "best" }),
+    queryFn: () => getArticleList({ page: 1, pageSize: 3, orderBy: "like" }),
   });
 
   const { list } = data;

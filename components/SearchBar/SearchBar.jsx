@@ -21,6 +21,7 @@ export default function SearchBar({
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.nativeEvent.isComposing) {
       setKeyword(search);
+      console.log(search);
     }
   };
 
