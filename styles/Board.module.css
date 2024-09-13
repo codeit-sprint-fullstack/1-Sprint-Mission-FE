@@ -1,0 +1,12 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  margin-top: 24px;
+}
+
+/* .container {
+  display: flex;
+  flex-direction: column;
+} */
