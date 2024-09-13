@@ -4,7 +4,7 @@ import sortIcon from "../../public/assets/icons/ic_sort.svg";
 import arrowDownIcon from "../../public/assets/icons/ic_arrow_down.svg";
 import Image from "next/image";
 
-export default function DropDown({ setSortBy, sortBy }) {
+export default function DropDown({ setOrderBy, orderBy }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropDownRef = useRef(0);
 
@@ -13,7 +13,7 @@ export default function DropDown({ setSortBy, sortBy }) {
   };
 
   const handleSorting = (order) => {
-    setSortBy(order);
+    setOrderBy(order);
     setIsOpen(false);
   };
 
@@ -34,7 +34,7 @@ export default function DropDown({ setSortBy, sortBy }) {
     <div className={styles.DropDown}>
       <button onClick={toggleDropDown} ref={dropDownRef}>
         <div>
-          {sortBy === "recent" ? "최신순" : "인기순"}
+          {orderBy === "recent" ? "최신순" : "인기순"}
           <Image src={arrowDownIcon} alt="arrow down icon" />
         </div>
         <div className={styles["mobile-only"]}>

@@ -3,7 +3,7 @@ import defaultImg from "../../public/assets/img_default.svg";
 import inactiveHeart from "../../public/assets/icons/ic_heart_inactive.svg";
 import activeHeart from "../../public/assets/icons/ic_heart_active.svg";
 import bestBadge from "../../public/assets/icons/ic_medal.svg";
-import ImageContainer from "../ImgContainer/ImgContainer";
+import ImageContainer from "../ui/ImgContainer";
 import styles from "./BestArticles.module.scss";
 import { formatDate, likeFormat } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
@@ -47,7 +47,7 @@ function ArticleCard({ article, userName }) {
 export default function BestArticles() {
   const { data } = useQuery({
     queryKey: ["bestArticles"],
-    queryFn: () => getArticleList({ limit: 3, sortBy: "best" }),
+    queryFn: () => getArticleList({ pageSize: 3, orderBy: "best" }),
   });
 
   const { list } = data;

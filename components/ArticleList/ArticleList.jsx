@@ -3,7 +3,7 @@ import Image from "next/image";
 import defaultProfile from "../../public/assets/icons/ic_profile.svg";
 import defaultArticleImg from "../../public/assets/img_default.svg";
 import inactiveHeart from "../../public/assets/icons/ic_heart_inactive.svg";
-import ImageContainer from "../ImgContainer/ImgContainer";
+import ImageContainer from "../ui/ImgContainer";
 import { formatDate, likeFormat } from "@/lib/utils";
 
 export default function ArticleList({ data }) {

@@ -5,14 +5,14 @@ import {
 } from "@tanstack/react-query";
 import BestArticles from "@/components/BestArticles/BestArticles";
 import Head from "next/head";
-import Button from "@/components/Button/Button";
+import Button from "@/components/ui/Button";
 import ArticleList from "@/components/ArticleList/ArticleList";
 import { getArticleList } from "@/lib/api";
 import styles from "@/styles/pages/Board.module.scss";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SearchBar from "@/components/SearchBar/SearchBar";
-import DropDown from "@/components/DropDown/DropDown";
+import DropDown from "@/components/ui/DropDown";
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
@@ -21,12 +21,12 @@ export async function getServerSideProps() {
     await Promise.all([
       queryClient.prefetchQuery({
         queryKey: ["bestArticles"],
-        queryFn: () => getArticleList({ limit: 3, sortBy: "best" }),
+        queryFn: () => getArticleList({ pageSize: 3, orderBy: "best" }),
       }),
       queryClient.prefetchQuery({
-        queryKey: ["articles", "recent"],
+        queryKey: ["articles", { orderBy: "recent" }],
         queryFn: () => {
-          getArticleList({ sortBy: "recent" });
+          getArticleList({ orderBy: "recent" });
           return {
             pages: [data],
           };
@@ -50,16 +50,16 @@ export async function getServerSideProps() {
 
 export default function Boards() {
   const [keyword, setKeyword] = useState("");
-  const [sortBy, setSortBy] = useState("recent");
+  const [orderBy, setOrderBy] = useState("recent");
 
   const {
     data: articleData,
     isFetching,
     isError,
   } = useInfiniteQuery({
-    queryKey: ["articles", sortBy, keyword],
-    queryFn: ({ pageParams = null }) =>
-      getArticleList({ keyword, sortBy, lastId: pageParams }),
+    queryKey: ["articles", { orderBy, keyword }],
+    queryFn: ({ pageParams = 0 }) =>
+      getArticleList({ keyword, orderBy, pageParams }),
     getNextPageParam: (lastPage) => {
       return lastPage.nextCursor || undefined;
     },
@@ -67,6 +67,7 @@ export default function Boards() {
   });
   if (isFetching) return <p>로딩중</p>;
   if (isError) return <p>에러</p>;
+
   const pages = articleData?.pages || [];
 
   return (
@@ -87,7 +88,7 @@ export default function Boards() {
         </div>
         <div className={styles["article-section-secondbar"]}>
           <SearchBar setKeyword={setKeyword} />
-          <DropDown setSortBy={setSortBy} sortBy={sortBy} />
+          <DropDown setOrderBy={setOrderBy} orderBy={orderBy} />
         </div>
         <ArticleList data={pages} />
       </section>

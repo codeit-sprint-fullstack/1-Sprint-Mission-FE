@@ -1,7 +1,7 @@
-import Nav from "../Nav/Nav";
+import Nav from "./Nav";
 import styles from "./Header.module.scss";
 import Link from "next/link";
-import Button from "../Button/Button";
+import Button from "../ui/Button";
 
 export default function Header() {
   const pages = [
