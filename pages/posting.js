@@ -1,5 +1,6 @@
 import CreatePostForm from '@/components/CreatePostForm';
 import axios from '@/lib/axios';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -40,13 +41,18 @@ export default function Posting() {
   };
 
   return (
-    <CreatePostForm
-      title={title}
-      content={content}
-      setTitle={setTitle}
-      setContent={setContent}
-      isFormValid={isFormValid}
-      onSubmit={handleSubmit}
-    />
+    <>
+      <Head>
+        <title>판다마켓 - 게시글 쓰기</title>
+      </Head>
+      <CreatePostForm
+        title={title}
+        content={content}
+        setTitle={setTitle}
+        setContent={setContent}
+        isFormValid={isFormValid}
+        onSubmit={handleSubmit}
+      />
+    </>
   );
 }

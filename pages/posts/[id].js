@@ -8,10 +8,11 @@ import formatTimeDifference from '@/lib/formatTimeDifference';
 import KebabDropdown from '@/components/KebabDropdown';
 import Textarea from '@/components/Textarea';
 import Button from '@/components/Button';
+import Link from 'next/link';
+import Head from 'next/head';
 import profile from '@/public/ic_profile.svg';
 import emptyComment from '@/public/Img_reply_empty.svg';
 import backImg from '@/public/ic_back.svg';
-import Link from 'next/link';
 
 export default function Post() {
   const [post, setPost] = useState(null);
@@ -127,6 +128,9 @@ export default function Post() {
 
   return (
     <>
+      <Head>
+        <title>판다마켓 - 게시글 상페 페이지</title>
+      </Head>
       <div className={styles.topContainer}>
         <div className={styles.titleContainer}>
           <h4 className={styles.titleName}>{post.title}</h4>

@@ -1,4 +1,5 @@
 import axios from '@/lib/axios';
+import Head from 'next/head';
 import BestPost from '@/components/BestPost';
 import WriteButton from '@/components/WriteButton';
 import SearchForm from '@/components/SearchForm';
@@ -51,6 +52,9 @@ export default function Freeboard() {
 
   return (
     <>
+      <Head>
+        <title>판다마켓 - 자유게시판</title>
+      </Head>
       <BestPost posts={bestPosts} />
       <WriteButton />
       <SearchForm onOrderChange={handleOrderChange} />
