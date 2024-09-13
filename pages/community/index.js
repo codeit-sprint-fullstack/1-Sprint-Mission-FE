@@ -1,5 +1,5 @@
-import React from "react";
-import { dehydrate, QueryClient, useQueryClient } from "react-query";
+import React, { useEffect } from "react";
+import { dehydrate, QueryClient } from "react-query";
 import { useCommunityPosts } from "@/hooks/useCommunityPosts";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import BestPosts from "@/components/community/BestPosts";
@@ -12,26 +12,28 @@ import SmallButton from "@/components/common/SmallButton";
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchInfiniteQuery(["posts"], () => fetchPosts(0));
+  try {
+    await queryClient.prefetchInfiniteQuery(["posts", "latest", ""], () =>
+      fetchPosts(0, "latest", "")
+    );
 
-  const dehydratedState = dehydrate(queryClient);
-
-  dehydratedState.queries.forEach((query) => {
-    if (query.state.data?.pageParams) {
-      query.state.data.pageParams = query.state.data.pageParams.filter(
-        (param) => param !== undefined
-      );
-    }
-  });
-
-  return {
-    props: {
-      dehydratedState,
-    },
-  };
+    return {
+      props: {
+        dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+      },
+    };
+  } catch (error) {
+    console.error("Error in getServerSideProps:", error);
+    return {
+      props: {
+        dehydratedState: null,
+      },
+    };
+  } finally {
+    queryClient.clear();
+  }
 }
 const Community = () => {
-  const queryClient = useQueryClient();
   const {
     posts,
     isLoading,
@@ -41,7 +43,6 @@ const Community = () => {
     setSort,
     search,
     setSearch,
-    filteredAndSortedPosts,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
@@ -49,11 +50,26 @@ const Community = () => {
 
   useInfiniteScroll(fetchNextPage, hasNextPage);
 
-  if (isLoading) return <div>로딩 중...</div>;
-  if (isError) return <div>에러가 발생했습니다: {error.message}</div>;
-  if (!posts) return null;
+  if (isLoading) {
+    return (
+      <div className={styles.communityContainer}>
+        <div className={styles.spinnerContainer}>
+          <div className={styles.spinner}></div>
+        </div>
+      </div>
+    );
+  }
 
-  const bestPosts = filteredAndSortedPosts.slice(0, 3);
+  if (isError)
+    return (
+      <div className={styles.communityContainer}>
+        에러가 발생했습니다: {error.message}
+      </div>
+    );
+  if (!posts || posts.length === 0)
+    return <div className={styles.communityContainer}>게시글이 없습니다.</div>;
+
+  const bestPosts = posts.slice(0, 3);
 
   return (
     <div className={styles.communityContainer}>
@@ -67,10 +83,13 @@ const Community = () => {
         sort={sort}
         setSort={setSort}
       />
-      <PostList
-        posts={filteredAndSortedPosts}
-        isFetchingNextPage={isFetchingNextPage}
-      />
+      <PostList posts={posts} isFetchingNextPage={isFetchingNextPage} />
+      {isFetchingNextPage && (
+        <div className={styles.spinnerContainer}>
+          <div className={styles.spinner}></div>
+        </div>
+      )}
+      {!hasNextPage && posts.length > 0 && null}
     </div>
   );
 };

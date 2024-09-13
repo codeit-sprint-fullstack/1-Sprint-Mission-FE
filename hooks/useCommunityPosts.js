@@ -1,10 +1,17 @@
-import { useState, useMemo } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useInfiniteQuery } from "react-query";
 import { fetchPosts } from "@/utils/communityAPI";
 
 export const useCommunityPosts = () => {
   const [sort, setSort] = useState("latest");
   const [search, setSearch] = useState("");
+
+  const fetchPostsWithParams = useCallback(
+    ({ pageParam = 0 }) => {
+      return fetchPosts(pageParam, sort, search);
+    },
+    [sort, search]
+  );
 
   const {
     data,
@@ -14,44 +21,28 @@ export const useCommunityPosts = () => {
     isError,
     error,
     isFetchingNextPage,
-  } = useInfiniteQuery(
-    ["posts"],
-    ({ pageParam = 0 }) => fetchPosts(pageParam),
-    {
-      getNextPageParam: (lastPage) => lastPage.nextPage,
-      staleTime: 60000,
-      retry: 3,
-    }
-  );
+    refetch,
+  } = useInfiniteQuery(["posts", sort, search], fetchPostsWithParams, {
+    getNextPageParam: (lastPage) => {
+      return lastPage.nextPage ?? undefined;
+    },
+    staleTime: 60000,
+    retry: 3,
+  });
 
-  const posts = useMemo(() => {
-    return data ? data.pages.flatMap((page) => page.posts) : [];
-  }, [data]);
+  const posts = data ? data.pages.flatMap((page) => page.posts) : [];
 
-  const filteredAndSortedPosts = useMemo(() => {
-    if (!posts) return [];
+  const handleSortChange = useCallback((newSort) => {
+    setSort(newSort);
+  }, []);
 
-    let result = posts;
+  const handleSearchChange = useCallback((newSearch) => {
+    setSearch(newSearch);
+  }, []);
 
-    if (search) {
-      result = result.filter(
-        (post) =>
-          post.title.toLowerCase().includes(search.toLowerCase()) ||
-          post.content.toLowerCase().includes(search.toLowerCase())
-      );
-    }
-
-    result.sort((a, b) => {
-      if (sort === "latest") {
-        return new Date(b.created_at) - new Date(a.created_at);
-      } else if (sort === "likes") {
-        return b.likes - a.likes;
-      }
-      return 0;
-    });
-
-    return result;
-  }, [posts, sort, search]);
+  useEffect(() => {
+    refetch();
+  }, [sort, search, refetch]);
 
   return {
     posts,
@@ -59,10 +50,9 @@ export const useCommunityPosts = () => {
     isError,
     error,
     sort,
-    setSort,
+    setSort: handleSortChange,
     search,
-    setSearch,
-    filteredAndSortedPosts,
+    setSearch: handleSearchChange,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,

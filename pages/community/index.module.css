@@ -79,11 +79,13 @@
   text-decoration: none;
 }
 
-.spinner-container {
-  width: 100%;
+.spinnerContainer {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 48px;
 }
 
 .spinner {
@@ -93,12 +95,11 @@
   width: 40px;
   height: 40px;
   animation: spin 1s linear infinite;
-  align-self: center;
 }
 
 .selectWrapper {
   position: relative;
-  width: 200px;
+  width: 100%;
 }
 
 .selectHeader {

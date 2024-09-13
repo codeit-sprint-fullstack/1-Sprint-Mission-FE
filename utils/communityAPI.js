@@ -24,11 +24,18 @@ const handleResponse = async (response) => {
   }
 };
 
-export const fetchPosts = async (pageParam = 0) => {
+export const fetchPosts = async (
+  pageParam = 0,
+  sort = "latest",
+  search = ""
+) => {
   const response = await fetch(
-    `${API_URL}/api/community/posts?page=${pageParam}&limit=${POSTS_PER_PAGE}`
+    `${API_URL}/api/community/posts?page=${pageParam}&sort=${sort}&search=${search}&limit=${POSTS_PER_PAGE}`
   );
-  const data = await handleResponse(response);
+  if (!response.ok) {
+    throw new Error("게시글 조회를 실패했습니다");
+  }
+  const data = await response.json();
   return {
     posts: data.posts,
     nextPage: data.hasNextPage ? pageParam + 1 : null,
