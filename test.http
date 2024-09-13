@@ -1,0 +1,26 @@
+### 새 게시글 작성하기
+POST http://localhost:3000/articles
+Content-Type: application/json
+
+{
+  "title": "거의 새 것 같은 자전거 팝니다!",
+  "content": "거의 새 것 같은 자전거 팝니다! 저렴하게 팝니다.",
+  "author": "박주환 판다",
+  "date": "2024-9-5",
+  "likes": 15
+}
+
+### 다른 게시글 작성하기
+POST http://localhost:3000/articles
+Content-Type: application/json
+
+{
+  "title": "깨끗한 중고 소파 팔아요",
+  "content": "깨끗한 중고 소파 팔아요. 상태 아주 좋아요!",
+  "author": "이상우 판다",
+  "date": "2024-9-5",
+  "likes": 10
+}
+
+### 게시글 목록 조회하기
+GET http://localhost:3000/articles

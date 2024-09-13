@@ -1,0 +1,21 @@
+/* styles/global.css 또는 레이아웃 파일의 CSS */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* 화면 전체를 차지하도록 설정 */
+}
+
+#__next {
+  display: flex;
+  flex-direction: column; /* 수직 정렬 */
+  min-height: 100vh; /* 화면 전체 높이를 채우도록 설정 */
+}
+
+.main-content {
+  flex: 1; /* 나머지 공간을 채우도록 설정 */
+}
+
+a {
+  color: #f9f9f9;
+}
