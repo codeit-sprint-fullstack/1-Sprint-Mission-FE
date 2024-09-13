@@ -8,7 +8,7 @@ export default function CommentFrom({
   setPatchCommend,
 }) {
   const [value, setValue] = useState("");
-  const [activateButton, setActivateButton] = useState(style.button_off);
+  const [activateButton, setActivateButton] = useState(style.buttonOff);
   const [title, setTitle] = useState("댓글달기");
   const [button, setButton] = useState("등록");
 
@@ -21,7 +21,7 @@ export default function CommentFrom({
       setValue(patchCommend.contentValue);
       setTitle("댓글수정");
       setButton("수정");
-      setActivateButton(style.button_on);
+      setActivateButton(style.buttonOn);
     }
   }, []);
 
@@ -30,16 +30,16 @@ export default function CommentFrom({
     setValue(e.target.value);
 
     if (value !== "") {
-      setActivateButton(style.button_on);
+      setActivateButton(style.buttonOn);
     }
   };
 
   // 버튼 비/활성화 함수
   const buttonChangeHAndler = () => {
     if (value === "") {
-      setActivateButton(style.button_off);
+      setActivateButton(style.buttonOff);
     } else {
-      setActivateButton(style.button_on);
+      setActivateButton(style.buttonOn);
     }
   };
 
@@ -47,10 +47,10 @@ export default function CommentFrom({
   const buttonHandler = (e) => {
     e.preventDefault();
 
-    if (activateButton === style.button_on && mode === "등록") {
+    if (activateButton === style.buttonOn && mode === "등록") {
       Handler(value);
       setValue("");
-    } else if (activateButton === style.button_on && mode === "수정") {
+    } else if (activateButton === style.buttonOn && mode === "수정") {
       if (patchCommend.contentValue === value) {
         setPatchCommend({
           boolinValue: false,
@@ -71,24 +71,24 @@ export default function CommentFrom({
   };
 
   return (
-    <form className={style.CommentFrom_form}>
+    <form className={style.CommentFromForm}>
       <label
-        className={`${style.CommentFrom_label} ${style.font16}`}
+        className={`${style.CommentFromLabel} ${style.font16}`}
         htmlFor="comment"
       >
         {title}
       </label>
       <textarea
-        className={`${style.CommentFrom_input} ${style.font16}`}
+        className={`${style.CommentFromInput} ${style.font16}`}
         id="comment"
         value={value}
         onChange={valueChangeHandler}
         onKeyUp={buttonChangeHAndler}
         placeholder="댓글을 입력해주세요."
       />
-      <div className={style.CommentFrom_button_cotaner}>
+      <div className={style.buttonCotaner}>
         <button
-          className={`${style.CommentFrom_button} ${style.font16} ${activateButton}`}
+          className={`${style.CommentFromButton} ${style.font16} ${activateButton}`}
           onClick={buttonHandler}
         >
           {button}

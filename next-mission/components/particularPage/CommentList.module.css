@@ -1,9 +1,9 @@
-.flex_column {
+.flexColumn {
   display: flex;
   flex-direction: column;
 }
 
-.CommentList_no_comment {
+.noComment {
   width: 151px;
   height: 208px;
   margin: 40px 0 48px;
@@ -11,7 +11,7 @@
   align-items: center;
 }
 
-.CommentList_no_comment_text {
+.noCommentText {
   width: 151px;
   height: 52px;
   font-size: 16px;
@@ -21,7 +21,7 @@
   text-align: center;
 }
 
-.CommentList_ul {
+.CommentListUl {
   width: 1200px;
   height: 348px;
   margin: 40px 0 64px 0;
@@ -31,18 +31,18 @@
   overflow: scroll;
 }
 
-.CommentList_ul::-webkit-scrollbar {
+.CommentListUl::-webkit-scrollbar {
   display: none;
 }
 
-.CommentList_li {
+.CommentListLi {
   width: 1200px;
   height: 100px;
   border-bottom: 1px solid #e5e7eb;
   background-color: #fcfcfc;
 }
 
-.CommentList_button {
+.CommentListButton {
   width: 240px;
   height: 48px;
   border-radius: 40px;
@@ -55,68 +55,68 @@
   position: relative;
 }
 
-.yes_list_button {
+.yesListButton {
   margin-bottom: 193px;
 }
 
-.no_list_button {
+.noListButton {
   margin-bottom: 481px;
 }
 
-.CommentList_arrow_img {
+.arrowImg {
   position: absolute;
   top: 12px;
   right: 39.5px;
 }
 
 @media (min-width: 744px) and (max-width: 1199px) {
-  .CommentList_no_comment {
+  .noComment {
     margin: 32px 0 56px;
   }
-  
-  .CommentList_ul {
+
+  .CommentListUl {
     width: 696px;
     height: 339px;
     margin: 32px 0 47px 0;
   }
-  
-  .CommentList_li {
+
+  .CommentListLi {
     width: 696px;
   }
-  
-  .yes_list_button {
+
+  .yesListButton {
     margin-bottom: 291px;
   }
-  
-  .no_list_button {
+
+  .noListButton {
     margin-bottom: 561px;
   }
 }
 
 @media (min-width: 375px) and (max-width: 743px) {
-  .CommentList_no_comment {
+  .noComment {
     width: 151px;
     height: 208px;
     margin: 24px 0 40px;
   }
-  
-  .CommentList_ul {
+
+  .CommentListUl {
     width: 343px;
     height: 320px;
-    margin: 24px 0 40px ;
+    margin: 24px 0 40px;
     gap: 16px;
   }
-  
-  .CommentList_li {
+
+  .CommentListLi {
     width: 343px;
     height: 96px;
   }
-  
-  .yes_list_button {
+
+  .yesListButton {
     margin-bottom: 139px;
   }
-  
-  .no_list_button {
+
+  .noListButton {
     margin-bottom: 234px;
   }
 }

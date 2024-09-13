@@ -1,15 +1,15 @@
-.flex_row {
+.flexRow {
   display: flex;
   flex-direction: row;
 }
 
-.ArticleBody_subject {
+.subject {
   width: 1200px;
   height: 72px;
   justify-content: space-between;
 }
 
-.ArticleBody_title {
+.title {
   width: 1120px;
   height: 32px;
   font-size: 20px;
@@ -18,19 +18,19 @@
   color: #1f2937;
 }
 
-.ArticleBody_product_img {
+.productImg {
   border: 1px solid #f3f4f6;
   border-radius: 8px;
 }
 
-.ArticleBody_additional_information {
+.additionalInformation {
   width: 1200px;
   height: 26px;
   margin: 16px 0 24px;
   justify-content: space-between;
 }
 
-.ArticleBody_box {
+.additionalInformationBox {
   width: auto;
   height: 26px;
   font-size: 14px;
@@ -38,27 +38,27 @@
   line-height: 24px;
 }
 
-.ArticleBody_user_img {
+.userImg {
   border-radius: 50%;
   background-color: #d1d5db;
   margin: 1px 0;
 }
 
-.ArticleBody_user {
+.userName {
   width: auto;
   height: 26px;
   margin-left: 8px;
   color: #4b5563;
 }
 
-.ArticleBody_date {
+.date {
   width: auto;
   height: 26px;
   margin-left: 8px;
   color: #9ca3af;
 }
 
-.ArticleBody_favorite {
+.favorite {
   width: auto;
   height: 26px;
   font-size: 16px;
@@ -70,53 +70,53 @@
 }
 
 @media (min-width: 744px) and (max-width: 1199px) {
-  .ArticleBody_subject {
+  .subject {
     width: 696px;
   }
 
-  .ArticleBody_title {
+  .title {
     width: 616px;
   }
 
-  .ArticleBody_additional_information {
+  .additionalInformation {
     width: 696px;
   }
 }
 
 @media (min-width: 375px) and (max-width: 743px) {
-  .ArticleBody_subject {
+  .subject {
     width: 343px;
   }
 
-  .ArticleBody_title {
+  .title {
     width: 283px;
     height: 72px;
     font-size: 18px;
     line-height: 26px;
   }
 
-  .ArticleBody_additional_information {
+  .additionalInformation {
     width: 343px;
     height: 24px;
   }
 
-  .ArticleBody_box {
+  .additionalInformationBox {
     height: 24px;
   }
 
-  .ArticleBody_user_img {
+  .userImg {
     margin: 0;
   }
 
-  .ArticleBody_user {
+  .userName {
     height: 24px;
   }
 
-  .ArticleBody_date {
+  .date {
     height: 24px;
   }
 
-  .ArticleBody_favorite {
+  .favorite {
     height: 24px;
   }
 }

@@ -56,10 +56,10 @@ export default function CommentListBody({
 
   return (
     <>
-      <div className={style.CommentListBody_comment}>
+      <div className={style.contaner}>
         <div>{comment.content}</div>
         <Image
-          className={style.CommentListBody_setting_img}
+          className={style.settingImg}
           src={"/images/ic_vertical_point_3.svg"}
           width={24}
           height={24}
@@ -67,27 +67,27 @@ export default function CommentListBody({
           onClick={dropDownHandler}
         />
         {hideDropDown || (
-          <div className={style.CommentListBody_drop_down}>
-            <div className={style.drop_down_text} onClick={patchHandler}>
+          <div className={style.dropDown}>
+            <div className={style.dropDownText} onClick={patchHandler}>
               수정하기
             </div>
-            <div className={style.drop_down_text} onClick={deleteHandler}>
+            <div className={style.dropDownText} onClick={deleteHandler}>
               삭제하기
             </div>
           </div>
         )}
       </div>
-      <div className={style.CommentListBody_additional_information}>
+      <div className={style.additionalInformation}>
         <Image
-          className={style.CommentListBody_user_img}
+          className={style.userImg}
           src={"/images/ic_user.svg"}
           width={32}
           height={32}
           alt="유저 이미지"
         />
-        <div className={style.CommentListBody_box}>
-          <div className={style.CommentListBody_user}>코드잇</div>
-          <div className={style.CommentListBody_date}>{stringTime}</div>
+        <div className={style.additionalInformationBox}>
+          <div className={style.userName}>코드잇</div>
+          <div className={style.date}>{stringTime}</div>
         </div>
       </div>
     </>

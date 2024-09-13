@@ -1,4 +1,4 @@
-.CommentListBody_comment {
+.contaner {
   width: 1200px;
   height: 24px;
   display: flex;
@@ -11,11 +11,11 @@
   position: relative;
 }
 
-.CommentListBody_setting_img {
+.settingImg {
   cursor: pointer;
 }
 
-.CommentListBody_drop_down {
+.dropDown {
   width: 139px;
   height: 92px;
   border: 1px solid #d1d5db;
@@ -27,7 +27,7 @@
   cursor: pointer;
 }
 
-.drop_down_text {
+.dropDownText {
   width: 139px;
   height: 46px;
   font-size: 16px;
@@ -39,7 +39,7 @@
   align-items: center;
 }
 
-.CommentListBody_additional_information {
+.additionalInformation {
   width: auto;
   height: 40px;
   margin: 24px 0 12px;
@@ -47,12 +47,12 @@
   flex-direction: row;
 }
 
-.CommentListBody_user_img {
+.userImg {
   border-radius: 50%;
   background-color: #d1d5db;
 }
 
-.CommentListBody_box {
+.additionalInformationBox {
   width: auto;
   height: 40px;
   margin-left: 8px;
@@ -61,53 +61,53 @@
   line-height: 18px;
 }
 
-.CommentListBody_user {
+.userName {
   width: auto;
   height: 18px;
   margin-bottom: 4px;
   color: #4b5563;
 }
 
-.CommentListBody_date {
+.date {
   width: auto;
   height: 18px;
   color: #9ca3af;
 }
 
 @media (min-width: 744px) and (max-width: 1199px) {
-  .CommentListBody_comment {
+  .contaner {
     width: 696px;
   }
-  
-  .CommentListBody_drop_down {
+
+  .dropDown {
     height: 94px;
   }
-  
-  .drop_down_text {
+
+  .dropDownText {
     height: 47px;
     line-height: 19.09px;
   }
 }
 
 @media (min-width: 375px) and (max-width: 743px) {
-  .CommentListBody_comment {
+  .contaner {
     width: 343px;
   }
-  
-  .CommentListBody_drop_down {
+
+  .dropDown {
     width: 102px;
     height: 90px;
     right: 5px;
   }
-  
-  .drop_down_text {
+
+  .dropDownText {
     width: 102px;
     height: 45px;
     font-size: 14px;
     line-height: 24px;
   }
-  
-  .CommentListBody_additional_information {
+
+  .additionalInformation {
     margin: 24px 0 8px;
   }
 }

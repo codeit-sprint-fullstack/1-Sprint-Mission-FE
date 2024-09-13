@@ -51,32 +51,32 @@ export default function Article({ list, hasMore, loadMore, searchValue }) {
   };
 
   return (
-    <div className={style.Article_contaner}>
-      <div className={`${style.Article_subject_button} ${style.flex_row}`}>
-        <div className={style.Article_subject}>게시글</div>
+    <div className={style.contaner}>
+      <div className={`${style.subjectAndButton} ${style.flexRow}`}>
+        <div className={style.subject}>게시글</div>
         <Link href={"/freeNoticeBoard/postArticle"}>
-          <div className={style.Article_button}>글쓰기</div>
+          <div className={style.ArticleButton}>글쓰기</div>
         </Link>
       </div>
-      <div className={`${style.Article_search_form} ${style.flex_row}`}>
+      <div className={`${style.searchForm} ${style.flexRow}`}>
         <Image
-          className={style.Article_search_img}
+          className={style.searchImg}
           src={"/images/ic_search.svg"}
           width={24}
           height={24}
           alt="돋보기"
         />
         <input
-          className={`${style.Article_search_input} ${style.search_form_font}`}
+          className={`${style.searchInput} ${style.searchFormFont}`}
           placeholder="검색할 상품을 입력해주세요"
           value={value}
           onChange={onChangeHandler}
           onKeyUp={onKeyUpHandler}
         />
-        <div className={`${style.Article_drop_down} ${style.search_form_font}`}>
+        <div className={`${style.dropDown} ${style.searchFormFont}`}>
           {hideText || <div>최신순</div>}
           <Image
-            className={style.Article_drop_down_arrow}
+            className={style.dropDownArrow}
             src={dropDown}
             width={24}
             height={24}
@@ -84,17 +84,17 @@ export default function Article({ list, hasMore, loadMore, searchValue }) {
           />
         </div>
       </div>
-      <ul className={style.Article_ul}>
+      <ul className={style.ArticleUl}>
         {list.map((data, idx) => {
           if (idx === list.length - 1) {
             return (
-              <li className={style.Article_li} ref={lastItemRef} key={data.id}>
+              <li className={style.ArticleLi} ref={lastItemRef} key={data.id}>
                 <ArticleBody data={data} />
               </li>
             );
           } else {
             return (
-              <li className={style.Article_li} key={data.id}>
+              <li className={style.ArticleLi} key={data.id}>
                 <ArticleBody data={data} />
               </li>
             );

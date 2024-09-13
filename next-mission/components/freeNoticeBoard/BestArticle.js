@@ -25,12 +25,12 @@ export default function BestArticle({ list }) {
   }
 
   return (
-    <div className={style.BestArticle_contaner}>
-      <div className={style.BestArticle_title}>베스트 게시글</div>
-      <ul className={style.BestArticle_ul}>
+    <div className={style.contaner}>
+      <div className={style.title}>베스트 게시글</div>
+      <ul className={style.BestArticleUl}>
         {idx.map((idx) => {
           return (
-            <li className={style.BestArticle_li} key={idx}>
+            <li className={style.BestArticleLi} key={idx}>
               <BestArticleBody list={list[idx]} />
             </li>
           );

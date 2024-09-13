@@ -4,7 +4,7 @@ import axios from "@/lib/axios";
 import { useRouter } from "next/router";
 
 export default function PostForm() {
-  const [activateButton, setActivateButton] = useState(style.button_off);
+  const [activateButton, setActivateButton] = useState(style.buttonOff);
   const [value, setValue] = useState({ title: "", content: "" });
   const router = useRouter();
 
@@ -22,9 +22,9 @@ export default function PostForm() {
   // 버튼 비/활성화 함수
   const onKetUpHandler = () => {
     if (value.title !== "" && value.content !== "") {
-      setActivateButton(style.button_on);
+      setActivateButton(style.buttonOn);
     } else {
-      setActivateButton(style.button_off);
+      setActivateButton(style.buttonOff);
     }
   };
 
@@ -32,7 +32,7 @@ export default function PostForm() {
   const postNoticeBoard = async (e) => {
     e.preventDefault();
 
-    if (activateButton === style.button_on) {
+    if (activateButton === style.buttonOn) {
       const res = await axios.post("/noticeBoards", value);
       const id = res.data.id;
       router.push(`/freeNoticeBoard/${id}`);
@@ -40,32 +40,32 @@ export default function PostForm() {
   };
 
   return (
-    <form className={style.PostForm_form}>
-      <div className={style.PostForm_subject}>
-        <div className={style.PostForm_title}>게시글 쓰기</div>
+    <form className={style.PostFormForm}>
+      <div className={style.subject}>
+        <div className={style.title}>게시글 쓰기</div>
         <button
-          className={`${style.PostForm_button} ${style.font16} ${activateButton}`}
+          className={`${style.PostFormButton} ${style.font16} ${activateButton}`}
           onClick={postNoticeBoard}
         >
           등록
         </button>
       </div>
-      <label className={style.PostForm_label} htmlFor="title">
+      <label className={style.PostFormLabel} htmlFor="title">
         *제목
       </label>
       <input
-        className={`${style.PostForm_input} ${style.input_title} ${style.font16}`}
+        className={`${style.PostFormInput} ${style.inputTitle} ${style.font16}`}
         id="title"
         name="title"
         placeholder="제목을 입력해주세요"
         onChange={onChangeHandler}
         onKeyUp={onKetUpHandler}
       />
-      <label className={style.PostForm_label} htmlFor="content">
+      <label className={style.PostFormLabel} htmlFor="content">
         *내용
       </label>
       <textarea
-        className={`${style.PostForm_input} ${style.input_contents} ${style.font16}`}
+        className={`${style.PostFormInput} ${style.inputContents} ${style.font16}`}
         id="content"
         name="content"
         placeholder="내용을 입력해주세요"

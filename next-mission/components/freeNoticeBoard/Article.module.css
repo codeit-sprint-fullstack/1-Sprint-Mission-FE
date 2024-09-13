@@ -1,23 +1,23 @@
-.flex_row {
+.flexRow {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.Article_contaner {
+.contaner {
   width: 1200px;
   height: 756px;
   margin-top: 40px;
   margin-bottom: 293px;
 }
 
-.Article_subject_button {
+.subjectAndButton {
   width: 1200px;
   height: 42px;
   align-items: center;
 }
 
-.Article_subject {
+.subject {
   width: 52px;
   height: 32px;
   font-size: 20px;
@@ -26,7 +26,7 @@
   color: #1f2937;
 }
 
-.Article_button {
+.ArticleButton {
   width: 88px;
   height: 42px;
   border-radius: 8px;
@@ -38,26 +38,26 @@
   color: #ffffff;
 }
 
-.Article_search_form {
+.searchForm {
   width: 1200px;
   height: 42px;
   margin-top: 24px;
   position: relative;
 }
 
-.search_form_font {
+.searchFormFont {
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
 }
 
-.Article_search_img {
+.searchImg {
   position: absolute;
   top: 9px;
   left: 16px;
 }
 
-.Article_search_input {
+.searchInput {
   width: 1054px;
   height: 42px;
   padding: 9px 0 9px 44px;
@@ -67,12 +67,12 @@
   color: #9ca3af;
 }
 
-.Article_search_input:focus {
+.searchInput:focus {
   outline: none;
   border: 1px solid #3692ff;
 }
 
-.Article_drop_down {
+.dropDown {
   width: 130px;
   height: 42px;
   border: 1px solid #e5e7eb;
@@ -82,13 +82,13 @@
   position: relative;
 }
 
-.Article_drop_down_arrow {
+.dropDownArrow {
   position: absolute;
   top: 9px;
   right: 20px;
 }
 
-.Article_ul {
+.ArticleUl {
   width: 1200px;
   height: 624px;
   margin: 24px 0 0 0;
@@ -100,11 +100,11 @@
   overflow: scroll;
 }
 
-.Article_ul::-webkit-scrollbar {
+.ArticleUl::-webkit-scrollbar {
   display: none;
 }
 
-.Article_li {
+.ArticleLi {
   width: 1200px;
   height: 138px;
   border-bottom: 1px solid #e5e7eb;
@@ -112,84 +112,84 @@
 }
 
 @media (min-width: 744px) and (max-width: 1199px) {
-  .Article_contaner {
+  .contaner {
     width: 696px;
     height: 1094px;
     margin-top: 24px;
     margin-bottom: 19px;
   }
 
-  .Article_subject_button {
+  .subjectAndButton {
     width: 696px;
   }
 
-  .Article_search_form {
+  .searchForm {
     width: 696px;
     margin-top: 48px;
   }
 
-  .Article_search_input {
+  .searchInput {
     width: 560px;
   }
 
-  .Article_ul {
+  .ArticleUl {
     width: 696px;
     height: 922px;
     margin: 40px 0 0 0;
   }
 
-  .Article_li {
+  .ArticleLi {
     width: 696px;
   }
 }
 
 @media (min-width: 375px) and (max-width: 743px) {
-  .Article_contaner {
+  .contaner {
     width: 343px;
     height: 572px;
     margin-top: 24px;
     margin-bottom: 91px;
   }
 
-  .Article_subject_button {
+  .subjectAndButton {
     width: 343px;
   }
 
-  .Article_subject {
+  .subject {
     width: 47px;
     height: 26px;
     font-size: 18px;
     line-height: 26px;
   }
 
-  .Article_search_form {
+  .searchForm {
     width: 343px;
     margin-top: 16px;
   }
 
-  .Article_search_input {
+  .searchInput {
     width: 288px;
   }
 
-  .Article_drop_down {
+  .dropDown {
     width: 42px;
     padding: 0;
     position: relative;
   }
 
-  .Article_drop_down_arrow {
+  .dropDownArrow {
     position: absolute;
     top: 9px;
     right: 9px;
   }
 
-  .Article_ul {
+  .ArticleUl {
     width: 343px;
     height: 456px;
     margin: 16px 0 0 0;
   }
 
-  .Article_li {
+  .ArticleLi {
     width: 343px;
     height: 136px;
   }

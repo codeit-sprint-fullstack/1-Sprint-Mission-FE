@@ -16,11 +16,11 @@ export default function BestArticleBody({ list }) {
         alt="베스트 게시글"
       />
       <div
-        className={`${style.BestArticleBody_key_information} ${style.flex_row}`}
+        className={`${style.keyInformation} ${style.flexRow}`}
       >
-        <div className={style.BestArticleBody_title}>{list.title}</div>
+        <div className={style.title}>{list.title}</div>
         <Image
-          className={style.BestArticleBody_default_img}
+          className={style.defaultImg}
           src={"/images/img_default.svg"}
           width={72}
           height={72}
@@ -28,13 +28,11 @@ export default function BestArticleBody({ list }) {
         />
       </div>
       <div
-        className={`${style.BestArticleBody_additional_information} ${style.flex_row}`}
+        className={`${style.additionalInformation} ${style.flexRow}`}
       >
-        <div className={`${style.BestArticleBody_box} ${style.flex_row}`}>
-          <div className={style.BestArticleBody_user}>코드잇</div>
-          <div
-            className={`${style.BestArticleBody_favorite} ${style.flex_row}`}
-          >
+        <div className={`${style.additionalInformationBox} ${style.flexRow}`}>
+          <div className={style.userName}>코드잇</div>
+          <div className={`${style.BestArticleBodyFavorite} ${style.flexRow}`}>
             <Image
               src={"/images/ic_heart.svg"}
               width={16}
@@ -44,7 +42,7 @@ export default function BestArticleBody({ list }) {
             <div>999+</div>
           </div>
         </div>
-        <div className={style.BestArticleBody_date}>{stringDay}</div>
+        <div className={style.BestArticleBodyDate}>{stringDay}</div>
       </div>
     </Link>
   );

@@ -13,7 +13,7 @@ export default function CommentList({
   setPatchCommend,
 }) {
   const [noList, setNoList] = useState(false);
-  const [buttonMargin, setButtonMargin] = useState(style.yes_list_button); //(style.no_list_button);
+  const [buttonMargin, setButtonMargin] = useState(style.yesListButton); //(style.noListButton);
   const observerRef = useRef();
 
   // Intersection Observer 콜백
@@ -34,36 +34,36 @@ export default function CommentList({
   useEffect(() => {
     if (!comment[0]) {
       setNoList(true);
-      setButtonMargin(style.no_list_button);
+      setButtonMargin(style.noListButton);
     } else {
       setNoList(false);
-      setButtonMargin(style.yes_list_button);
+      setButtonMargin(style.yesListButton);
     }
   }, [comment]);
 
   return (
     <>
       {noList && (
-        <div className={`${style.CommentList_no_comment} ${style.flex_column}`}>
+        <div className={`${style.noComment} ${style.flexColumn}`}>
           <Image
             src={"/images/Img_speech_bubble.svg"}
             width={140}
             height={140}
             alt="말풍선"
           />
-          <div className={style.CommentList_no_comment_text}>
+          <div className={style.noCommentText}>
             아직 댓글이 없어요, <br />
             지금 댓글을 달아보세요!
           </div>
         </div>
       )}
       {noList || (
-        <ul className={`${style.CommentList_ul} ${style.flex_column}`}>
+        <ul className={`${style.CommentListUl} ${style.flexColumn}`}>
           {comment.map((data, idx) => {
             if (idx === comment.length - 1) {
               return (
                 <li
-                  className={style.CommentList_li}
+                  className={style.CommentListLi}
                   ref={lastItemRef}
                   key={data.id}
                 >
@@ -78,7 +78,7 @@ export default function CommentList({
               );
             } else {
               return (
-                <li className={style.CommentList_li} key={data.id}>
+                <li className={style.CommentListLi} key={data.id}>
                   <CommentListBody
                     comment={data}
                     deleteCommentHandler={deleteCommentHandler}
@@ -93,10 +93,10 @@ export default function CommentList({
         </ul>
       )}
       <Link href="/freeNoticeBoard">
-        <div className={`${style.CommentList_button} ${buttonMargin}`}>
+        <div className={`${style.CommentListButton} ${buttonMargin}`}>
           <div>목록으로 돌아가기</div>
           <Image
-            className={style.CommentList_arrow_img}
+            className={style.arrowImg}
             src={"/images/ic_back_arrow.svg"}
             width={24}
             height={24}

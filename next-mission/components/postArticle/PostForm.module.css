@@ -3,7 +3,7 @@
   line-height: 26px;
 }
 
-.PostForm_form {
+.PostFormForm {
   width: 1200px;
   height: 512px;
   margin: 24px 0 794px;
@@ -11,7 +11,7 @@
   flex-direction: column;
 }
 
-.PostForm_subject {
+.subject {
   width: 1200px;
   height: 42px;
   margin-bottom: 32px;
@@ -20,7 +20,7 @@
   justify-content: space-between;
 }
 
-.PostForm_title {
+.title {
   width: 92px;
   height: 42px;
   font-size: 20px;
@@ -32,7 +32,7 @@
   align-items: center;
 }
 
-.PostForm_button {
+.PostFormButton {
   width: 74px;
   height: 42px;
   border: none;
@@ -41,15 +41,15 @@
   color: #f3f4f6;
 }
 
-.button_off {
+.buttonOff {
   background-color: #9ca3af;
 }
 
-.button_on {
+.buttonOn {
   background-color: #3692ff;
 }
 
-.PostForm_label {
+.PostFormLabel {
   width: 1200px;
   height: 26px;
   margin-bottom: 12px;
@@ -59,7 +59,7 @@
   color: #1f2937;
 }
 
-.PostForm_input {
+.PostFormInput {
   width: 1200px;
   border: none;
   border-radius: 12px;
@@ -68,90 +68,90 @@
   color: #9ca3af;
 }
 
-.input_title {
+.inputTitle {
   height: 56px;
   padding: 16px 0 14px 24px;
   margin-bottom: 24px;
 }
 
-.input_contents {
+.inputContents {
   height: 282px;
   padding: 16px 24px 240px 24px;
   resize: none;
 }
 
-.input_contents::-webkit-scrollbar {
+.inputContents::-webkit-scrollbar {
   display: none;
 }
 
-.PostForm_input:focus {
+.PostFormInput:focus {
   outline: none;
   border: 1px solid #3692ff;
 }
 
 @media (min-width: 744px) and (max-width: 1199px) {
-  .PostForm_form {
+  .PostFormForm {
     width: 696px;
     margin: 16px 0 879px;
   }
 
-  .PostForm_subject {
+  .subject {
     width: 696px;
   }
 
-  .PostForm_title {
+  .title {
     line-height: 23.87px;
   }
 
-  .PostForm_button {
+  .PostFormButton {
     line-height: 19.09px;
   }
 
-  .PostForm_label {
+  .PostFormLabel {
     width: 696px;
   }
 
-  .PostForm_input {
+  .PostFormInput {
     width: 696px;
   }
 }
 
 @media (min-width: 375px) and (max-width: 743px) {
-  .PostForm_form {
+  .PostFormForm {
     width: 345px;
     height: 410px;
     margin: 16px 0 965px;
   }
 
-  .PostForm_subject {
+  .subject {
     width: 345px;
     margin-bottom: 24px;
   }
 
-  .PostForm_title {
+  .title {
     line-height: 23.87px;
   }
 
-  .PostForm_button {
+  .PostFormButton {
     line-height: 19.09px;
   }
 
-  .PostForm_label {
+  .PostFormLabel {
     width: 345px;
     height: 24px;
     font-size: 14px;
     line-height: 24px;
   }
 
-  .PostForm_input {
+  .PostFormInput {
     width: 345px;
   }
 
-  .input_title {
+  .inputTitle {
     margin-bottom: 16px;
   }
 
-  .input_contents {
+  .inputContents {
     height: 200px;
     padding: 16px 24px 158px 24px;
   }

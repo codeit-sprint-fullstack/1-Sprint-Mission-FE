@@ -3,21 +3,21 @@
   line-height: 26px;
 }
 
-.CommentFrom_form {
+.CommentFromForm {
   width: 1200px;
   height: 197px;
   display: flex;
   flex-direction: column;
 }
 
-.CommentFrom_label {
+.CommentFromLabel {
   width: 56px;
   height: 26px;
   font-weight: 600;
   color: #111827;
 }
 
-.CommentFrom_input {
+.CommentFromInput {
   width: 1200px;
   height: 104px;
   padding: 16px 24px;
@@ -30,16 +30,16 @@
   resize: none;
 }
 
-.CommentFrom_input:focus {
+.CommentFromInput:focus {
   outline: none;
   border: 1px solid #3692ff;
 }
 
-.CommentFrom_input::-webkit-scrollbar {
+.CommentFromInput::-webkit-scrollbar {
   display: none;
 }
 
-.CommentFrom_button_cotaner {
+.buttonCotaner {
   width: 1200px;
   height: 42px;
   margin-top: 16px;
@@ -48,7 +48,7 @@
   align-items: end;
 }
 
-.CommentFrom_button {
+.CommentFromButton {
   width: 74px;
   height: 42px;
   border: none;
@@ -59,38 +59,38 @@
   cursor: pointer;
 }
 
-.button_off {
+.buttonOff {
   background-color: #9ca3af;
 }
 
-.button_on {
+.buttonOn {
   background-color: #3692ff;
 }
 
 @media (min-width: 744px) and (max-width: 1199px) {
-  .CommentFrom_form {
+  .CommentFromForm {
     width: 696px;
   }
 
-  .CommentFrom_input {
+  .CommentFromInput {
     width: 696px;
   }
 
-  .CommentFrom_button_cotaner {
+  .buttonCotaner {
     width: 696px;
   }
 }
 
 @media (min-width: 375px) and (max-width: 743px) {
-  .CommentFrom_form {
+  .CommentFromForm {
     width: 343px;
   }
 
-  .CommentFrom_input {
+  .CommentFromInput {
     width: 343px;
   }
 
-  .CommentFrom_button_cotaner {
+  .buttonCotaner {
     width: 343px;
   }
 }

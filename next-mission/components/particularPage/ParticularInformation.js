@@ -29,14 +29,14 @@ export default function ParticularInformation({ data }) {
   };
 
   return (
-    <div className={style.ParticularInformation_contaner}>
-      <div className={style.ParticularInformation_key_information}>
+    <div className={style.contaner}>
+      <div className={style.keyInformation}>
         <div
-          className={`${style.ParticularInformation_subject} ${style.flex_row}`}
+          className={`${style.subject} ${style.flexRow}`}
         >
-          <div className={style.ParticularInformation_title}>{data.title}</div>
+          <div className={style.title}>{data.title}</div>
           <Image
-            className={style.ParticularInformation_setting_img}
+            className={style.settingImg}
             src={"/images/ic_vertical_point_3.svg"}
             width={24}
             height={24}
@@ -44,14 +44,14 @@ export default function ParticularInformation({ data }) {
             onClick={dropDownHandler}
           />
           {hideDropDown || (
-            <div className={style.ParticularInformation_drop_down}>
+            <div className={style.dropDown}>
               <Link href={`/freeNoticeBoard/patchArticle/${data.id}`}>
-                <div className={`${style.drop_down_button} ${style.font16}`}>
+                <div className={`${style.dropDownText} ${style.font16}`}>
                   수정하기
                 </div>
               </Link>
               <div
-                className={`${style.drop_down_button} ${style.font16}`}
+                className={`${style.dropDownText} ${style.font16}`}
                 onClick={deleteHandler}
               >
                 삭제하기
@@ -60,28 +60,28 @@ export default function ParticularInformation({ data }) {
           )}
         </div>
         <div
-          className={`${style.ParticularInformation_additional_information} ${style.flex_row}`}
+          className={`${style.additionalInformation} ${style.flexRow}`}
         >
           <Image
-            className={style.ParticularInformation_ArticleBody_user_img}
+            className={style.userImg}
             src={"/images/ic_user.svg"}
             width={40}
             height={40}
             alt="유저 이미지"
           />
           <div
-            className={`${style.ParticularInformation_user} ${style.font14}`}
+            className={`${style.userName} ${style.font14}`}
           >
             코드잇
           </div>
           <div
-            className={`${style.ParticularInformation_date} ${style.font14}`}
+            className={`${style.date} ${style.font14}`}
           >
             {stringDay}
           </div>
-          <div className={style.ParticularInformation_line} />
+          <div className={style.separationLine} />
           <div
-            className={`${style.ParticularInformation_favorite} ${style.flex_row} ${style.font16}`}
+            className={`${style.favorite} ${style.flexRow} ${style.font16}`}
           >
             <Image
               src={"/images/ic_heart.svg"}
@@ -93,7 +93,7 @@ export default function ParticularInformation({ data }) {
           </div>
         </div>
       </div>
-      <div className={style.ParticularInformation_contents}>{data.content}</div>
+      <div className={style.contents}>{data.content}</div>
     </div>
   );
 }
