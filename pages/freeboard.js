@@ -5,7 +5,8 @@ import WriteButton from '@/components/WriteButton';
 import SearchForm from '@/components/SearchForm';
 import PostList from '@/components/PostList';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import Spinner from '@/components/Spinner';
 
 export default function Freeboard() {
   // 자유게시판 페이지
@@ -17,34 +18,110 @@ export default function Freeboard() {
   const [bestPosts, setBestPosts] = useState([]);
   const [posts, setPosts] = useState([]);
   const [order, setOrder] = useState('recent'); // 드롭다운에서 선택된 order 값을 관리
+  const [page, setPage] = useState(1);
+  const [loadingBestPosts, setLoadingBestPosts] = useState(false); // 베스트 게시글 로딩 상태
+  const [loadingPosts, setLoadingPosts] = useState(false); // 게시글 로딩 상태
+  const [hasMore, setHasMore] = useState(true);
+  const [totalPosts, setTotalPosts] = useState(0); // 전체 게시글 수 추가
+  const [error, setError] = useState(null); // 에러 상태 관리
+
+  const observerRef = useRef(null); // IntersectionObserver 참조
+  const lastPostRef = useRef(null); // 마지막 게시글을 참조할 ref
 
   const getBestPosts = async (order, limit) => {
-    const res = await axios.get('/posts', {
-      params: {
-        order: 'recent', // 베스트 게시글은 최신순으로 고정
-        limit: 3,
-      },
-    });
-    const posts = res.data;
-    setBestPosts(posts);
+    if (loadingBestPosts) return; // 이미 로딩 중이면 중복 요청 방지
+    setLoadingBestPosts(true);
+    setError(null); // 이전 에러 초기화
+
+    try {
+      const res = await axios.get('/posts', {
+        params: {
+          order: 'recent', // 최신순으로 3개의 베스트 게시글 요청
+          limit: 3,
+        },
+      });
+      const bestPosts = res.data.posts ?? [];
+      setBestPosts(bestPosts); // 서버에서 받은 베스트 게시글 목록을 상태에 저장
+    } catch (error) {
+      console.error('베스트 게시글을 가져오는 중 오류 발생:', err);
+      setError('베스트 게시글을 가져오는 중 문제가 발생했습니다.');
+    } finally {
+      setLoadingBestPosts(false);
+    }
   };
 
+  // 페이지 로드 시 최신 게시글 3개를 가져옴
   useEffect(() => {
     getBestPosts();
-  }, []); // 페이지 로드 시 최신 게시글 3개를 가져옴
+  }, []);
 
   // 검색 및 전체 게시글 조회
-  // 검색어가 있으면 검새 결과, 없으면 모든 게시글 조회
-  const getPosts = async (query, selectedOrder) => {
-    const res = await axios.get('/posts', {
-      params: query ? { search: query } : { order: selectedOrder },
-    });
-    setPosts(res.data ?? []); // 검색어와 선택된 order 값에 따라 게시글 조회
+  // 검색어나 정렬 기준, 페이지에 따라 게시글 목록을 서버에서 가져오는 함수
+  const getPosts = async (query, selectedOrder, page = 1) => {
+    if (loadingPosts) return; // 이미 로딩 중이면 중복 요청 방지
+
+    setLoadingPosts(true);
+    setError(null); // 이전 에러 초기화
+
+    try {
+      const res = await axios.get('/posts', {
+        params: query
+          ? { search: query, page } // 검색어가 있으면 검색어와 페이지 기준으로 요청
+          : { order: selectedOrder, page }, // 검색어가 없으면 정렬 기준과 페이지로 요청
+      });
+
+      const newPosts = res.data.posts ?? []; // 서버에서 받은 게시글
+      const total = res.data.totalPosts ?? []; // 전체 게시글 수
+
+      // 페이지 1이면 기존 게시글을 덮어쓰고, 그렇지 않으면 기존 게시글에 새로 불러온 게시글 추가
+      setPosts((prevPosts) => (page === 1 ? newPosts : [...prevPosts, ...newPosts]));
+      setHasMore(newPosts.length > 0 && posts.length < total); // 더 불러올 게시글이 있는지 확인
+      setTotalPosts(total);
+    } catch (error) {
+      console.error('게시글을 가져오는 중 오류 발생:', err);
+      setError('게시글을 가져오는 중 문제가 발생했습니다.');
+    } finally {
+      setLoadingPosts(false); // 게시글 로딩 종료
+    }
   };
 
+  // 검색어나 정렬 순서가 바뀔 때마다 게시글 목록을 초기화하고 처음부터 다시 가져옴
   useEffect(() => {
-    getPosts(q, order);
+    setPage(1);
+    getPosts(q, order, 1);
   }, [q, order]);
+
+  // 페이지가 바뀌거나 새로운 게시글을 불러올 때 실행
+  useEffect(() => {
+    if (!hasMore || loadingPosts) return; // 더 불러올 게시글이 없거나 로딩 중이면 중지
+
+    if (observerRef.current) observerRef.current.disconnect();
+
+    // IntersectionObserver 설정
+    // 마지막 게시글이 화면에 나타나면 페이지 번호 증가
+    observerRef.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setPage((prevPage) => prevPage + 1); // 페이지를 증가시켜 다음 데이터를 요청할 준비
+      }
+    });
+
+    // 마지막 게시글 요소에 옵저버 연결
+    if (lastPostRef.current) {
+      observerRef.current.observe(lastPostRef.current);
+    }
+
+    // 컴포넌트 언마운트 시 옵저버 해제
+    return () => {
+      if (observerRef.current) observerRef.current.disconnect();
+    };
+  }, [posts, hasMore, loadingPosts]);
+
+  // 페이지가 변경될 때마다 새로운 게시글 요청
+  useEffect(() => {
+    if (page > 1) {
+      getPosts(q, order, page);
+    }
+  }, [page]);
 
   const handleOrderChange = (newOrder) => {
     setOrder(newOrder); // 드롭다운에서 선택된 order 값 업데이트
@@ -59,6 +136,9 @@ export default function Freeboard() {
       <WriteButton />
       <SearchForm onOrderChange={handleOrderChange} />
       <PostList posts={posts} />
+      {(loadingBestPosts || loadingPosts) && <Spinner />}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <div ref={lastPostRef} />
     </>
   );
 }

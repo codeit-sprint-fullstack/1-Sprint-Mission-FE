@@ -17,7 +17,7 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.container}>
         <Link className={styles.logoWrapper} href="/">
-          <Image src={Logo} alt="판다 마켓 로고" fill />
+          <Image src={Logo} alt="판다 마켓 로고" fill priority />
         </Link>
         <div className={`${styles.menu} ${styles.font}`}>
           <Link className={styles.freeboard} href="/freeboard">

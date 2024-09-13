@@ -6,6 +6,12 @@ import bestBanner from '@/public/bestBanner.svg';
 import formatDate from '@/lib/formatDate';
 
 export default function BestPost({ posts = [] }) {
+  // posts가 배열인지 확인
+  if (!Array.isArray(posts)) {
+    console.error('posts is not an array:', posts);
+    return null; // 배열이 아니면 컴포넌트를 렌더링하지 않음
+  }
+
   return (
     <>
       <h4 className={styles.bestTitle}>베스트 게시글</h4>
