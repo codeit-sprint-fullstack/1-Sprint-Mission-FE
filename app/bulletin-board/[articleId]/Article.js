@@ -54,7 +54,7 @@ export function Article({
         <Divider />
         <Favorite type={ARTICLE_DETAIL} favoriteCount={favoriteCount} />
       </div>
-      <div className={contentClass}>{content}</div>
+      <div className={contentClass}>{content} </div>
     </div>
   );
 }

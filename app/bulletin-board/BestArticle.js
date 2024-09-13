@@ -30,8 +30,6 @@ export function BestArticle({
   const handleClickArticle = () => {};
   const link = `/bulletin-board/${articleId}`;
 
-  console.log("myFavorite : ", myFavorite);
-
   return (
     <Link href={link}>
       <div className={bestArticleClass}>

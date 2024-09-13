@@ -1,11 +1,11 @@
-import PostRegistration from "./articleRegistration";
+import ArticleRegistration from "./articleRegistration";
 
-export function PostRegistrationPage() {
+export function ArticleRegistrationPage() {
   return (
     <div>
-      <PostRegistration />
+      <ArticleRegistration />
     </div>
   );
 }
 
-export default PostRegistrationPage;
+export default ArticleRegistrationPage;

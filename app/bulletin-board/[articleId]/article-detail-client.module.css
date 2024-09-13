@@ -19,3 +19,25 @@
   background-image: url(../../../public/buttons/btn_medium.svg);
   margin: 0 auto;
 }
+
+/* ===== Tablet - width : 744px ~ 1199px ===== */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .comment-maker-frame {
+    margin-top: 3.2rem;
+  }
+
+  .btn-to-list-frame {
+    width: 69.6rem;
+  }
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .comment-list-frame {
+    margin-top: 2.4rem;
+  }
+
+  .btn-to-list-frame {
+    width: 34.3rem;
+  }
+}

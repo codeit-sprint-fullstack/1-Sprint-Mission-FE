@@ -23,7 +23,7 @@ export function Header() {
         </span>
       </a> */}
       <Link className={style["btn-home-frame"]} href="/" target="_self">
-        <img className={style["img-home"]} alt="홈 버튼" />
+        <button className={style["btn-home"]} />
       </Link>
       <Nav>
         <NavItem linkto="/bulletin-board">자유게시판</NavItem>

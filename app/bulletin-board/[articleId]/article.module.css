@@ -45,6 +45,8 @@
 .content {
   margin-top: 2.4rem;
   width: 120rem;
+  max-height: 100rem;
+  white-space: pre-wrap;
   font-size: 1.8rem;
   line-height: 1.44444em;
   color: var(--gray800-color);
@@ -104,7 +106,7 @@
 
   .content {
     margin-top: 1.6rem;
-    width: 69.6rem;
+    width: 34.3rem;
     font-size: 1.6rem;
     line-height: 1.625em;
   }

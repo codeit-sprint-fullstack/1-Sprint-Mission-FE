@@ -17,6 +17,7 @@ import style from "./comment-maker.module.css";
 export function CommentMaker({ articleId, registComment }) {
   const [comment, setComment] = useState("");
   const [commentValid, setCommentValid] = useState(undefined);
+  const [registBtnDisable, setRegistBtnDisable] = useState(true);
 
   const commentMakerLabelClass = `font-semibold ${style["comment-maker-label"]}`;
   const commentBottomBarClass = `flex-row justify-end ${style["comment-bottom-bar"]}`;
@@ -26,14 +27,14 @@ export function CommentMaker({ articleId, registComment }) {
       return;
     }
 
+    setRegistBtnDisable(true);
+
     createArticleComment(articleId, comment).then((data) => {
       setComment("");
       setCommentValid(undefined);
       registComment();
     });
   };
-
-  let btnRegistCommentDisabled = commentValid !== VALID_VALUE;
 
   const validtateComment = (comment) => {
     if (!comment) {
@@ -43,10 +44,13 @@ export function CommentMaker({ articleId, registComment }) {
     const castedComment = comment.toString();
 
     if (castedComment.length < MIN_COMMENT_LENGTH) {
+      setRegistBtnDisable(true);
       return WARN_MIN_COMMENT_LENGTH;
     } else if (MAX_COMMENT_LENGTH < castedComment.length) {
+      setRegistBtnDisable(true);
       return WARN_MAX_COMMENT_LENGTH;
     } else {
+      setRegistBtnDisable(false);
       return VALID_VALUE;
     }
   };
@@ -66,7 +70,7 @@ export function CommentMaker({ articleId, registComment }) {
       );
     } else if (commentValid === WARN_MAX_COMMENT_LENGTH) {
       return (
-        <p className="text-warn">{MAX_COMMENT_LENGHTH}자 이하로 입력해주세요</p>
+        <p className="text-warn">{MAX_COMMENT_LENGTH}자 이하로 입력해주세요</p>
       );
     } else {
       return undefined;
@@ -90,7 +94,7 @@ export function CommentMaker({ articleId, registComment }) {
         <button
           className={style["btn-regist"]}
           onClick={handleRegistComment}
-          disabled={btnRegistCommentDisabled}
+          disabled={registBtnDisable}
         />
       </div>
     </div>

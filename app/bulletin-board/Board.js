@@ -50,6 +50,7 @@ export function Board() {
           return (
             <ArticlePreview
               key={index}
+              articleId={article.id}
               title={article.title}
               profileImgUrl={article.user.image}
               nickname={article.user.nickname}

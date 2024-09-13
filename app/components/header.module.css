@@ -26,14 +26,14 @@
   min-width: 15.3rem;
 }
 
-.img-home {
+.btn-home {
   object-fit: cover;
   width: 15.3rem;
   height: 5.1rem;
   margin: 0px;
   padding: 0px;
   cursor: pointer;
-  content: url(../../public/buttons/btn_home.svg);
+  background-image: url(../../public/buttons/btn_home.svg);
 }
 
 .profile-frame {
@@ -94,10 +94,10 @@
     height: 77.1rem;
   }
 
-  .img-home {
+  .btn-home {
     width: 15.3rem;
     height: 5.1rem;
-    content: url(../../public/buttons/btn_home.svg);
+    background-image: url(../../public/buttons/btn_home.svg);
   }
 
   .height_article {
@@ -118,7 +118,8 @@
   /* 판다마켓 로고 왼쪽 여백 16px */
   .btn-home-frame {
     margin-left: 1.6rem;
-    margin-right: 0.8rem;
+    margin-right: 1.6rem;
+    min-width: 8.1rem;
   }
 
   .profile-frame {
@@ -133,10 +134,10 @@
     margin-right: 1.6rem;
   }
 
-  .img-home {
+  .btn-home {
     width: 8.1rem;
     height: 4rem;
-    content: url(../../public/buttons/btn_home_small.svg);
+    background-image: url(../../public/buttons/btn_home_small.svg);
   }
 
   .list {

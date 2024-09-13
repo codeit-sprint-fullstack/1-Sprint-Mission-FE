@@ -16,12 +16,18 @@
   text-wrap: nowrap;
   justify-content: center;
   align-items: center;
-
+  font-size: 1.8rem;
+  /* line-height: 26px; */
+  line-height: 1.44444em;
   cursor: pointer;
 }
 
 .text {
   color: var(--gray600-color);
+}
+
+.text-current-page {
+  color: var(--blue100-color);
 }
 
 .item:hover {
@@ -45,5 +51,6 @@
 
   .item {
     width: 7rem;
+    font-size: 1.6rem;
   }
 }

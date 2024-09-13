@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import { createArticle } from "@/lib/axios";
+import { setArticle } from "@/lib/axios";
 import Input from "@/app/components/input";
 import TextArea from "@/app/components/TextArea";
 
@@ -21,10 +21,10 @@ import {
 
 import style from "./article-registration.module.css";
 
-export function ArticleRegistration() {
+export function ArticleEdit() {
   const [titleValid, setTitleValid] = useState(undefined);
   const [contentValid, setContentValid] = useState(undefined);
-  const [registBtnDisable, setRegistBtnDisable] = useState(true);
+  const [registBtnDisable, setRegistBtnDisable] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const registBtnClass = `${style["btn-regist"]}`;
@@ -41,7 +41,7 @@ export function ArticleRegistration() {
 
     setRegistBtnDisable(true);
 
-    createArticle(title, content).then((data) => {
+    setArticle(articleId, title, content).then((data) => {
       const path = `/bulletin-board/${data.id}`;
       router.push(path);
     });
@@ -139,7 +139,7 @@ export function ArticleRegistration() {
     <div className={style.main}>
       <div className={style.content}>
         <div className={topBarClass}>
-          <p className={topBarTextClass}>게시글 쓰기</p>
+          <p className={topBarTextClass}>게시글 수정하기</p>
           <button
             className={registBtnClass}
             onClick={handleRegistArticle}
@@ -175,4 +175,4 @@ export function ArticleRegistration() {
   );
 }
 
-export default ArticleRegistration;
+export default ArticleEdit;
