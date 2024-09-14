@@ -6,6 +6,14 @@ import styles from '@/styles/BestArticleList.module.css';
 import DateFormat from '@/utils/DateFormat.js';
 
 export default function BestArticleList({ articles = [] }) {
+  if (articles.length === 0) {
+    return (
+      <div className={styles.articleList}>
+        <span>둘러볼 게시글이 없습니다</span>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className={styles.mainText}>베스트 게시글</div>
