@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import styles from './PostKebabMenu.module.css';
 
 const PostKebabMenu = ({ postId, onDelete }) => {
-  const [showMenu, setShowMenu] = useState(false); // 메뉴 상태 관리
+  const [showMenu, setShowMenu] = useState(false);
 
   const handleKebabClick = () => {
     setShowMenu(!showMenu); // 케밥 버튼 클릭 시 토글
   };
 
   const handleEditClick = () => {
-    // 게시글 수정
+    // 게시글 수정 동작
     console.log('게시글 수정');
   };
 
@@ -32,4 +32,3 @@ const PostKebabMenu = ({ postId, onDelete }) => {
 };
 
 export default PostKebabMenu;
-
