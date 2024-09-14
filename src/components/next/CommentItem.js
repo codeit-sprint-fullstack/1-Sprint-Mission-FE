@@ -1,13 +1,11 @@
-import React from "react";
-import styles from "./CommentItem.module.css";
+import React, { useState } from "react";
 import CommentKebabMenu from './CommentKebabMenu'; // CommentKebabMenu 추가
+import { updateComment } from '../../api/api'; // 댓글 수정 API 불러오기
+import styles from "./CommentItem.module.css";
 
-const CommentItem = ({ id, content, author, createdAt }) => {
-  const defaultData = {
-    content: "저는 푸바오의 엄마 아이바오 입니다",
-    author: "아이바오",
-    createdAt: new Date().toLocaleString(), // 기본값도 시간을 포함한 형식으로
-  };
+const CommentItem = ({ id, content, author, createdAt, refreshComments }) => {
+  const [isEditMode, setIsEditMode] = useState(false); // 수정 모드 상태
+  const [editedContent, setEditedContent] = useState(content); // 수정 중인 댓글 내용
 
   // createdAt을 날짜와 시간까지 표시하도록 처리
   const displayDate = createdAt
@@ -19,23 +17,57 @@ const CommentItem = ({ id, content, author, createdAt }) => {
         minute: "numeric",
         second: "numeric",
       })
-    : defaultData.createdAt;
+    : new Date().toLocaleString();
+
+  // 댓글 저장 처리
+  const handleSaveClick = async () => {
+    try {
+      await updateComment(id, { content: editedContent }); // 댓글 수정 API 호출
+      alert('댓글이 수정되었습니다.');
+      setIsEditMode(false); // 수정 모드 종료
+      refreshComments(); // 댓글 목록 갱신
+    } catch (error) {
+      console.error('댓글 수정 중 오류가 발생했습니다:', error);
+      alert('댓글 수정 중 오류가 발생했습니다.');
+    }
+  };
 
   return (
     <div className={styles.commentItem}>
-      <div className={styles.commentContent}>
-        <p>{content || defaultData.content}</p>
-        <div className={styles.commentDetails}>
-          <img
-            src="/image/profile.svg"
-            alt="Profile Icon"
-            className={styles.profileIcon}
+      {isEditMode ? (
+        // 수정 모드일 때 보여줄 텍스트 영역과 버튼들
+        <div className={styles.editMode}>
+          <textarea
+            value={editedContent}
+            onChange={(e) => setEditedContent(e.target.value)}
+            rows="3"
+            className={styles.textarea}
           />
-          <span className={styles.author}>{author || defaultData.author}</span>
-          <span className={styles.date}>{displayDate}</span>
+          <button onClick={handleSaveClick}>저장</button>
+          <button onClick={() => setIsEditMode(false)}>취소</button>
         </div>
-      </div>
-      <CommentKebabMenu commentId={id} /> {/* CommentKebabMenu로 변경 */}
+      ) : (
+        // 일반 모드일 때 보여줄 댓글 내용
+        <div className={styles.commentContent}>
+          <p>{content}</p>
+          <div className={styles.commentDetails}>
+            <img
+              src="/image/profile.svg"
+              alt="Profile Icon"
+              className={styles.profileIcon}
+            />
+            <span className={styles.author}>{author}</span>
+            <span className={styles.date}>{displayDate}</span>
+          </div>
+        </div>
+      )}
+
+      {/* CommentKebabMenu 추가 - 수정/삭제 메뉴 */}
+      <CommentKebabMenu
+        commentId={id}
+        onEdit={() => setIsEditMode(true)} // 수정 모드 활성화
+        refreshComments={refreshComments} // 삭제 후 댓글 목록 갱신
+      />
     </div>
   );
 };
