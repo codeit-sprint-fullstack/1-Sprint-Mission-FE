@@ -14,6 +14,8 @@ const EditArticle = () => {
   useEffect(() => {
     if (articleId) {
       // 기존 게시글 데이터 불러오기
+      console.log("게시글 ID 확인:", articleId); // articleId 확인
+      
       fetchArticleById(articleId)
         .then((article) => {
           setTitle(article.title);

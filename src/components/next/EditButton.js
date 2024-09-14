@@ -8,6 +8,9 @@ const EditButton = ({ articleId, title, content }) => {
   const router = useRouter();
 
   const handleSubmit = async () => {
+    // articleId 값이 제대로 전달되고 있는지 확인
+    console.log('수정 요청 게시글 ID:', articleId);
+
     if (!title || !content) {
       alert('제목과 내용을 입력해주세요.');
       return;
@@ -25,7 +28,7 @@ const EditButton = ({ articleId, title, content }) => {
       // 수정된 게시글 상세 페이지로 이동
       router.replace(`/articles/${articleId}`);
     } catch (error) {
-      console.error('게시글 수정 중 오류가 발생했습니다.', error);
+      console.error('게시글 수정 중 오류가 발생했습니다:', error);
       alert('게시글 수정 중 오류가 발생했습니다.');
     } finally {
       setIsSubmitting(false);
