@@ -9,6 +9,28 @@
   justify-content: space-between;
   align-items: center;
 }
+.editArea {
+  width: 100%;
+  background-color: var(--gray100);
+  margin-right: 2.4rem;
+  margin-bottom: 0.4rem;
+  border: none;
+}
+.editActions {
+  display: flex;
+  gap: 0.4rem;
+}
+.saveButton,
+.cancelButton {
+  background-color: var(--primary100);
+  color: var(--white);
+  padding: 0.3rem 1rem;
+  border: none;
+  border-radius: 0.8rem;
+  &:hover {
+    cursor: pointer;
+  }
+}
 .commentContent {
   color: var(--gray800);
 }

@@ -40,6 +40,16 @@ const Comment = ({ comment, onDelete, onEdit }) => {
 
         <KebabDropdown onDelete={onDelete} onEdit={handleEdit} />
       </div>
+      {isEdit && (
+        <div className={styles.editActions}>
+          <button onClick={handleSaveEdit} className={styles.saveButton}>
+            저장
+          </button>
+          <button onClick={handleCancelEdit} className={styles.cancelButton}>
+            취소
+          </button>
+        </div>
+      )}
       <div className={styles.commentInfo}>
         <Image src={profileImage} alt="profile image" width={32} height={32} />
         <div className={styles.infoContent}>
@@ -51,17 +61,6 @@ const Comment = ({ comment, onDelete, onEdit }) => {
           </span>
         </div>
       </div>
-
-      {isEdit && (
-        <div className={styles.editActions}>
-          <button onClick={handleSaveEdit} className={styles.saveButton}>
-            저장
-          </button>
-          <button onClick={handleCancelEdit} className={styles.cancelButton}>
-            취소
-          </button>
-        </div>
-      )}
     </div>
   );
 };
