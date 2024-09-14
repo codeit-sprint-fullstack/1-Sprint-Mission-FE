@@ -7,6 +7,7 @@
 
 .articleList {
   display: flex;
+  height: 169px;
 }
 
 .list {
@@ -46,7 +47,7 @@
   line-height: 32px;
 }
 
-.footer {
+.userInfo {
   display: flex;
   justify-content: space-between;
   pointer-events: none;
@@ -63,4 +64,14 @@
   font-size: 14px;
   font-weight: 400;
   color: #9ca3af;
+}
+
+.noArticleList {
+  margin: 0, auto;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 1200px;
+  font-size: 20px;
+  margin-top: 70px;
 }

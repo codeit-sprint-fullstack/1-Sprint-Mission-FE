@@ -1,12 +1,15 @@
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import ArticleList from '@/components/FreeBoard/ArticleList.js';
 import BestArticleList from '@/components/FreeBoard/BestArticleList.js';
 import ArticleListHeard from '@/components/FreeBoard/ArticleListHeard.js';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useRouter } from 'next/router';
+import {
+  fetchFreeBoardArticles,
+  fetchFreeBoardBestArticles,
+} from '@/utils/api/articleApi.js';
 import styles from '@/styles/FreeBoard.module.css';
 
-export default function FreeBoard() {
+export default function FreeBoardPage() {
   const [bestArticles, setBestArticles] = useState([]);
   const [articles, setArticles] = useState([]);
   const [orderBy, setOrderBy] = useState('recent');
@@ -18,54 +21,30 @@ export default function FreeBoard() {
 
   const fetchArticles = async (page) => {
     setLoading(true);
-    try {
-      const res = await axios.get(
-        `https://sprint-be-k938.onrender.com/articles/freeboard`,
-        {
-          params: {
-            keyword: keyword || '',
-            orderBy: orderBy,
-            page: page,
-            limit: 5,
-          },
-        }
+    const { data, pages } = await fetchFreeBoardArticles({
+      keyword,
+      orderBy,
+      page,
+    });
+
+    setLoading(false);
+
+    setArticles((prevArticles) => {
+      const mergedItems = [...prevArticles, ...data];
+      const uniqueArticles = Array.from(
+        new Map(mergedItems.map((item) => [item.id, item])).values()
       );
-      const { data, pages } = res.data;
+      return uniqueArticles;
+    });
 
-      setArticles((prevArticles) => {
-        const mergedItems = [...prevArticles, ...data];
-        const uniqueArticles = Array.from(
-          new Map(mergedItems.map((item) => [item.id, item])).values()
-        );
-        return uniqueArticles;
-      });
-
-      if (page >= pages) {
-        setHasMore(false);
-      }
-    } catch (error) {
-      console.error('Error fetching articles:', error);
-    } finally {
-      setLoading(false);
+    if (page >= pages) {
+      setHasMore(false);
     }
   };
 
   const getBestArticles = async () => {
-    try {
-      const res = await axios.get(
-        `https://sprint-be-k938.onrender.com/articles/freeboard`,
-        {
-          params: {
-            orderBy: 'recent',
-            limit: 3,
-          },
-        }
-      );
-      const { data } = res.data;
-      setBestArticles(data.slice(0, 3));
-    } catch (error) {
-      console.error('Error fetching best articles:', error);
-    }
+    const { data } = await fetchFreeBoardBestArticles();
+    setBestArticles(data);
   };
 
   useEffect(() => {

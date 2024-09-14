@@ -1,17 +1,16 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import styles from '@/styles/Article.module.css';
+import Image from 'next/image';
+import line from '@/public/heartLine.png';
 import profileIcon from '@/public/ic_profile.png';
 import heartIcon from '@/public/ic_heart.png';
 import dotIcon from '@/public/ic_dot.png';
-import Image from 'next/image';
 import DateFormat from '@/utils/DateFormat.js';
 import DropDown from '@/utils/DropDown.js';
+import { deleteArticle } from '@/utils/api/articleApi.js';
+import styles from '@/styles/Article.module.css';
 
-import line from '@/public/heartLine.png';
-
-export default function ArticleDetail({ article, deleteArticle }) {
+export default function ArticleDetail({ article }) {
   const [openOptions, setOpenOptions] = useState(false);
 
   const router = useRouter();
@@ -23,8 +22,13 @@ export default function ArticleDetail({ article, deleteArticle }) {
     setOpenOptions((prev) => !prev);
   };
 
-  const handleDelete = () => {
-    deleteArticle(id);
+  const handleDelete = async () => {
+    try {
+      await deleteArticle(id);
+      router.push('/freeboard');
+    } catch (error) {
+      console.error('Error deleting article:', error);
+    }
   };
 
   const handleEdit = () => {

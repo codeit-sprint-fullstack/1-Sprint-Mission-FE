@@ -1,36 +1,27 @@
-import ArticleFormFields from '@/utils/ArticleFormFields';
 import { useState } from 'react';
-import axios from 'axios';
 import { useRouter } from 'next/router';
-import Button from '@/utils/Button';
+import ArticleFormFields from '@/utils/ArticleFormFields';
+import { postArticle } from '@/utils/api/articleApi.js';
 
-export default function Post() {
+export default function PostArticlePage() {
   const [titleValue, setTitleValue] = useState('');
   const [contentValue, setContentValue] = useState('');
   const [canSubmit, setCanSubmit] = useState(false);
 
   const router = useRouter();
 
-  async function postArticle() {
+  const handleSubmit = async () => {
     try {
-      const res = await axios.post(
-        'https://sprint-be-k938.onrender.com/articles',
-        {
-          title: titleValue,
-          content: contentValue,
-          category: 'freeboard',
-          userId: '9cda174e-2e9e-4523-97cd-362e85a39ebf',
-        }
-      );
-      router.push(`/article/${res.data.id}`);
+      const res = await postArticle({
+        titleValue,
+        contentValue,
+      });
+
+      router.push(`/article/${res.id}`);
     } catch (error) {
       console.error('Error posting data:', error);
     }
-  }
-
-  function handleSubmit() {
-    postArticle();
-  }
+  };
 
   return (
     <>

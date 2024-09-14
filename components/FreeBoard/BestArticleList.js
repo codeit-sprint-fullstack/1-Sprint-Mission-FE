@@ -8,9 +8,12 @@ import DateFormat from '@/utils/DateFormat.js';
 export default function BestArticleList({ articles = [] }) {
   if (articles.length === 0) {
     return (
-      <div className={styles.articleList}>
-        <span>둘러볼 게시글이 없습니다</span>
-      </div>
+      <>
+        <div className={styles.mainText}>베스트 게시글</div>
+        <div className={styles.articleList}>
+          <div className={styles.noArticleList}>둘러볼 게시글이 없습니다</div>
+        </div>
+      </>
     );
   }
 
@@ -31,7 +34,7 @@ export default function BestArticleList({ articles = [] }) {
                 />
               </div>
 
-              <div className={styles.footer}>
+              <div className={styles.userInfo}>
                 <span className={styles.userName}>{article.user.name}</span>
                 <span className={styles.date}>
                   <DateFormat createDate={article} />

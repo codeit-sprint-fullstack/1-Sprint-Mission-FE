@@ -10,7 +10,7 @@ export default function ArticleList({ articles = [] }) {
   if (articles.length === 0) {
     return (
       <div className={styles.articleList}>
-        <span>둘러볼 게시글이 없습니다</span>
+        <div className={styles.noArticleList}>둘러볼 게시글이 없습니다</div>
       </div>
     );
   }
@@ -26,7 +26,7 @@ export default function ArticleList({ articles = [] }) {
                 <Image src={articleImage} alt='기본이미지' />
               </div>
 
-              <div className={styles.footer}>
+              <div className={styles.userInfo}>
                 <div>
                   <Image src={profileIcon} alt='프로필 이미지' />
                   <span className={styles.userName}>{article.user.name}</span>

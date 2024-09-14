@@ -1,3 +1,7 @@
+.articleList {
+  margin-bottom: 60px;
+}
+
 .list {
   max-width: 1200px;
   border-bottom: 1px solid #f3f4f6;
@@ -28,7 +32,7 @@
   white-space: nowrap;
 }
 
-.footer {
+.userInfo {
   margin-top: 16px;
   margin-right: 20px;
   margin-bottom: 24px;
@@ -49,4 +53,14 @@
   font-size: 14px;
   font-weight: 400;
   color: #9ca3af;
+}
+
+.noArticleList {
+  margin: 0, auto;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 1200px;
+  font-size: 20px;
+  margin-top: 70px;
 }
