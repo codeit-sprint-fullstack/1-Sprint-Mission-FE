@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { updateArticle, fetchArticleById } from '../../../src/api/api';
-import styles from '../../../styles/post-detail.module.css'; // 게시글 등록 페이지와 동일한 CSS 파일 적용
+import styles from '../../../styles/create.module.css'; // 게시글 등록 페이지와 동일한 CSS 파일 적용
 import EditButton from '../../../src/components/next/EditButton'; // 새로 만든 EditButton 사용
 
 const EditArticle = () => {
