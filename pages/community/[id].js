@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 
 import profileImage from "@images/ic_profile.svg";
 import emptyHeart from "@images/favoriteEmptyHeart-small.png";
+import emptyReply from "@images/Img_reply_empty.svg";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
@@ -166,7 +167,18 @@ const PostDetail = ({ post, initialComments }) => {
             />
           ))
         ) : (
-          <p>댓글이 없습니다.</p>
+          <div className={styles.replyEmpty}>
+            <Image
+              src={emptyReply}
+              alt="empty image"
+              width={140}
+              height={140}
+            />
+            <p className={`${styles.replyEmptyText} text-lg regular`}>
+              아직 댓글이 없어요,
+              <br /> 지금 댓글을 달아보세요!
+            </p>
+          </div>
         )}
       </div>
       <button
