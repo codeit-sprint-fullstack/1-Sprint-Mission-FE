@@ -32,18 +32,14 @@ export default function FreeBoardPage() {
   }, [apiLoading]);
 
   useEffect(() => {
-    if (!searchPosts.trim()) {
-      fetchPosts(); // 초기 로드
+    // 검색어가 있을 때 검색 실행
+    if (searchPosts.trim()) {
+      handleSearchClick();
     } else {
-      handleSearchClick(); // 검색어가 있을 때 검색 실행
+      // 검색어가 없을 때는 게시글 목록을 가져옵니다.
+      fetchPosts();
     }
   }, [searchPosts, order]);
-
-  useEffect(() => {
-    if (!searchPosts.trim()) {
-      fetchPosts(); // 초기 로드
-    }
-  }, [order]);
 
   // 스크롤 이벤트 핸들러 추가
   useEffect(() => {
