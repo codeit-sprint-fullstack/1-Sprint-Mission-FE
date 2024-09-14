@@ -18,68 +18,78 @@ export default function PostDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchPostAndComments = async () => {
-      try {
-        if (!id) return;
+  // 게시글을 불러오는 함수
+  const fetchPost = async () => {
+    try {
+      if (!id) return;
+      const postData = await fetchArticleById(id);
+      setPost(postData);
+    } catch (err) {
+      console.error("게시글 불러오기 오류:", err);
+      setError("게시글을 불러오는 데 실패했습니다.");
+    }
+  };
 
-        // 게시글 데이터 불러오기
-        const postData = await fetchArticleById(id);
-        setPost(postData);
+  // 댓글을 불러오는 함수
+  const fetchCommentsData = async () => {
+    try {
+      if (!id) return;
+      const allComments = await fetchComments(id);
+      setComments(allComments);
+      filterComments(allComments);
+    } catch (err) {
+      console.error("댓글 불러오기 오류:", err);
+      setError("댓글을 불러오는 데 실패했습니다.");
+    }
+  };
 
-        // 댓글 데이터 불러오기
-        const allComments = await fetchComments(id);
-        setComments(allComments);
+  // 댓글 필터링 함수
+  const filterComments = (allComments) => {
+    const postComments = allComments.filter(
+      (comment) => comment.postId === parseInt(id)
+    );
+    setFilteredComments(postComments);
+  };
 
-        // 게시물 ID와 일치하는 댓글만 가져오도록 필터링
-        const postComments = allComments.filter(
-          (comment) => comment.postId === parseInt(id)
-        );
-        setFilteredComments(postComments);
-
-        setLoading(false);
-      } catch (err) {
-        console.error("게시글 및 댓글 불러오는 중 오류 발생:", err);
-        setError("게시글 및 댓글을 불러오는 데 실패했습니다.");
-        setLoading(false);
-      }
-    };
-
-    fetchPostAndComments();
-  }, [id]);
-
+  // 댓글 등록 핸들러
   const handleCommentSubmit = async (commentData) => {
     try {
       await createComment(commentData);
       const allComments = await fetchComments(id);
-      const postComments = allComments.filter(
-        (comment) => comment.postId === parseInt(id)
-      );
       setComments(allComments);
-      setFilteredComments(postComments);
+      filterComments(allComments);
     } catch (error) {
       console.error("댓글 등록 실패:", error);
       setError("댓글 등록에 실패했습니다.");
     }
   };
 
-  // 댓글 수정 및 삭제후 상태 업데이트 하는 함수
+  // 댓글 수정 및 삭제 후 상태 업데이트 함수
   const handleCommentUpdate = async () => {
     await updateComments();
   };
 
+  // 댓글 목록 갱신 함수
   const updateComments = async () => {
     try {
       const allComments = await fetchComments(id);
       setComments(allComments);
-      const postComments = allComments.filter(
-        (comment) => comment.postId === parseInt(id)
-      );
-      setFilteredComments(postComments);
+      filterComments(allComments);
     } catch (error) {
       console.error("댓글 목록 갱신 실패:", error);
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      await fetchPost();
+      await fetchCommentsData();
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [id]);
 
   if (loading) return <Spinner />; // 스피너 컴포넌트 사용
   if (error) return <div>{error}</div>;
