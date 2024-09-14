@@ -3,23 +3,12 @@ import { useRouter } from 'next/router';
 import styles from './BestPosts.module.css';
 import { fetchBestArticles } from '../../api/api';
 
-// 날짜를 YYYY.MM.DD 형식으로 변환하는 함수
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('ko-KR', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).replace(/\./g, '.');
-};
-
-// 개별 베스트 게시글을 나타내는 컴포넌트
 const BestBox = ({ id, title, author, likes, date, image }) => {
   const router = useRouter();
 
   // 게시글 클릭 시 호출되는 함수
   const handleClick = () => {
-    router.push(`/articles/${id}`); // 해당 게시글의 id를 기반으로 상세 페이지로 이동
+    router.push(`/articles/${id}`);
   };
 
   return (
@@ -33,17 +22,16 @@ const BestBox = ({ id, title, author, likes, date, image }) => {
         <span className={styles.bestAuthor}>{author || '푸바오'}</span>
         <div className={styles.bestLikes}>
           <img src="/image/heart.svg" alt="Heart Icon" />
-          <span>{likes || '0'}</span> {/* 전달된 좋아요 사용 */}
+          <span>{likes || '0'}</span>
         </div>
-        <span className={styles.bestDate}>{date ? formatDate(date) : '2024.04.16'}</span> {/* 날짜 변환 */}
+        <span className={styles.bestDate}>{date}</span> {/* 날짜는 변환된 형태 그대로 사용 */}
       </div>
     </div>
   );
 };
 
-// 베스트 게시글 목록을 나타내는 컴포넌트
 const BestPosts = ({ bestPosts }) => {
-  const [columns, setColumns] = useState(null);
+  const [columns, setColumns] = useState(3);
 
   useEffect(() => {
     const handleResize = () => {
@@ -69,7 +57,6 @@ const BestPosts = ({ bestPosts }) => {
     };
   }, []);
 
-  // 베스트 게시글 데이터가 없을 경우 처리
   if (!Array.isArray(bestPosts) || bestPosts.length === 0) {
     return <div className={styles.noPostsMessage}>베스트 게시글이 없습니다.</div>;
   }
@@ -81,7 +68,7 @@ const BestPosts = ({ bestPosts }) => {
         {bestPosts.map((post) => (
           <BestBox
             key={post.id}
-            id={post.id}  // 게시글 ID 전달
+            id={post.id} /* 게시글 id 전달 */
             title={post.title}
             author={post.author}
             likes={post.likes}
