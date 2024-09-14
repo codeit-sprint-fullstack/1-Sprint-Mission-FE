@@ -82,9 +82,11 @@ const PostDetail = () => {
             {comments.map((comment, index) => (
               <CommentItem
                 key={comment.id}
+                id={comment.id}  // 댓글의 id를 전달
                 author={`${comments.length - index}번 바오`}
                 content={comment.content}
                 createdAt={comment.createdAt}
+                refreshComments={() => {}} // 댓글 갱신 함수
               />
             ))}
             <div className={styles.buttonContainer}>
@@ -98,3 +100,4 @@ const PostDetail = () => {
 };
 
 export default PostDetail;
+
