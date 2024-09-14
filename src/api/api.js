@@ -1,16 +1,16 @@
 import axios from "axios";
 
-//const BASE_URL = 'https://panda-market-api.vercel.app/products';
+// Axios 클라이언트 인스턴스 생성
+const apiClient = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
-//로컬 개발 서버
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-console.log("BASE_URL:", BASE_URL);
-
-// 게시글 API 호출
-const articlesUrl = `${BASE_URL}/articles`;
-
-// 댓글 API 호출
-const commentsUrl = `${BASE_URL}/board/comments`;
+// 기본 URL 및 API 엔드포인트 설정
+const articlesUrl = "/articles";
+const commentsUrl = "/board/comments";
 
 /*----------------------상품 관련 API ---------------------------*/
 
@@ -25,7 +25,7 @@ export async function getProductList({
       limit,
       cursor: cursor || "",
     }).toString();
-    const response = await axios.get(`${BASE_URL}?${query}`);
+    const response = await apiClient.get(`/products?${query}`);
     const body = response.data;
     console.log("API 응답 데이터:", body);
     return body;
@@ -34,7 +34,6 @@ export async function getProductList({
   }
 }
 
-// 새 상품 등록
 export async function createProduct(product) {
   try {
     const { name, description, price, tags } = product;
@@ -43,20 +42,13 @@ export async function createProduct(product) {
       throw new Error("상품 이름과 설명, 판매가격은 필수로 적어주세요.");
     }
 
-    const response = await axios.post(
-      BASE_URL,
-      {
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        tags: product.tags, // 이 부분은 이미 배열 형태로 전달됨
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await apiClient.post("/products", {
+      name,
+      description,
+      price,
+      tags,
+    });
+
     return response.data;
   } catch (error) {
     if (error.response) {
@@ -71,7 +63,6 @@ export async function createProduct(product) {
   }
 }
 
-/* 제품 목록을 필터링하는 함수 */
 export function filterProductsByName(products, query) {
   return products.filter((product) =>
     product.name.toLowerCase().includes(query.toLowerCase())
@@ -79,21 +70,29 @@ export function filterProductsByName(products, query) {
 }
 
 /*---------------------게시글 관련 API 호출--------------------*/
-// 게시글 목록 조회
-export const fetchArticles = async (params = {}) => {
+
+export async function fetchArticles({
+  order = "createdAt",
+  cursor = null,
+  limit = 10,
+} = {}) {
   try {
-    const response = await axios.get(articlesUrl, { params });
+    const query = new URLSearchParams({
+      order,
+      limit,
+      cursor: cursor || "",
+    }).toString();
+    const response = await apiClient.get(`${articlesUrl}?${query}`);
     return response.data;
   } catch (error) {
     console.error("게시글 목록 조회 실패:", error);
     throw error;
   }
-};
+}
 
-// 게시글 상세 조회
 export const fetchArticleById = async (id) => {
   try {
-    const response = await axios.get(`${articlesUrl}/${id}`);
+    const response = await apiClient.get(`${articlesUrl}/${id}`);
     return response.data;
   } catch (error) {
     console.error("게시글 상세 조회 실패:", error);
@@ -101,10 +100,9 @@ export const fetchArticleById = async (id) => {
   }
 };
 
-// 게시글 등록
 export const createArticle = async (articleData) => {
   try {
-    const response = await axios.post(articlesUrl, articleData);
+    const response = await apiClient.post(articlesUrl, articleData);
     return response.data;
   } catch (error) {
     console.error("게시글 등록 실패:", error);
@@ -112,10 +110,9 @@ export const createArticle = async (articleData) => {
   }
 };
 
-// 게시글 수정
 export const updateArticle = async (id, articleData) => {
   try {
-    const response = await axios.patch(`${articlesUrl}/${id}`, articleData);
+    const response = await apiClient.patch(`${articlesUrl}/${id}`, articleData);
     return response.data;
   } catch (error) {
     console.error("게시글 수정 실패:", error);
@@ -123,10 +120,9 @@ export const updateArticle = async (id, articleData) => {
   }
 };
 
-// 게시글 삭제
 export const deleteArticle = async (id) => {
   try {
-    const response = await axios.delete(`${articlesUrl}/${id}`);
+    const response = await apiClient.delete(`${articlesUrl}/${id}`);
     return response.data;
   } catch (error) {
     console.error("게시글 삭제 실패:", error);
@@ -134,26 +130,25 @@ export const deleteArticle = async (id) => {
   }
 };
 
-/* 게시글 목록을 필터링하는 함수 */
 export function filterPostsByName(posts, searchPosts) {
   return posts.filter((post) => post.title.includes(searchPosts));
 }
 
 /*---------------------댓글 관련 API 호출--------------------*/
-// 댓글 목록 조회
+
 export async function fetchComments() {
   try {
-    const response = await axios.get(commentsUrl);
+    const response = await apiClient.get(commentsUrl);
     return response.data;
   } catch (error) {
     console.error("댓글 목록 조회 실패:", error);
     throw error;
   }
 }
-// 댓글 등록 API
+
 export const createComment = async (commentData) => {
   try {
-    const response = await axios.post(commentsUrl, commentData);
+    const response = await apiClient.post(commentsUrl, commentData);
     return response.data;
   } catch (error) {
     console.error("댓글 등록 실패:", error);
@@ -161,10 +156,13 @@ export const createComment = async (commentData) => {
   }
 };
 
-// 댓글 수정 API
 export const updateComment = async (id, commentData) => {
+  if (!id) {
+    throw new Error("댓글 ID가 필요합니다.");
+  }
+
   try {
-    const response = await axios.patch(`${commentsUrl}/${id}`, commentData);
+    const response = await apiClient.patch(`${commentsUrl}/${id}`, commentData);
     return response.data;
   } catch (error) {
     console.error("댓글 수정 실패:", error);
@@ -172,10 +170,13 @@ export const updateComment = async (id, commentData) => {
   }
 };
 
-// 댓글 삭제 API
 export const deleteComment = async (id) => {
+  if (!id) {
+    throw new Error("댓글 ID가 필요합니다.");
+  }
+
   try {
-    const response = await axios.delete(`${commentsUrl}/${id}`);
+    const response = await apiClient.delete(`${commentsUrl}/${id}`);
     return response.data;
   } catch (error) {
     console.error("댓글 삭제 실패:", error);
