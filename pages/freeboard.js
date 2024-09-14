@@ -46,9 +46,6 @@ export default function Freeboard({
   totalPosts: initialTotalPosts = 0,
   error: initialError,
 }) {
-  // 자유게시판 페이지
-  // 등록된 게시글 중 최신순으로 3개를 정렬해서 서버로부터 가져온다.
-  // BestList 컴포넌트를 통해 렌더링 한다.
   const router = useRouter();
   const { q } = router.query;
 
@@ -89,28 +86,27 @@ export default function Freeboard({
 
   // 검색 및 전체 게시글 조회
   // 검색어나 정렬 기준, 페이지에 따라 게시글 목록을 서버에서 가져오는 함수
-  const getPosts = async (query, selectedOrder, page = 1) => {
-    if (loadingPosts) return; // 이미 로딩 중이면 중복 요청 방지
+  const getPosts = async (query = '', selectedOrder = 'recent', page = 1) => {
+    // 이미 로딩 중이면 중복 요청 방지
+    if (loadingPosts) return;
 
     setLoadingPosts(true);
     setError(null); // 이전 에러 초기화
 
     try {
-      const res = await axios.get('/posts', {
-        params: query
-          ? { search: query, page } // 검색어가 있으면 검색어와 페이지 기준으로 요청
-          : { order: selectedOrder, page }, // 검색어가 없으면 정렬 기준과 페이지로 요청
-      });
+      // fetchPosts 함수를 통해 API 호출 -> query가 빈 값이면 전체 게시글을 불러옴
+      const { posts: newPosts, totalPosts: total } = await fetchPosts(query, selectedOrder, page);
 
-      const newPosts = res.data.posts ?? []; // 서버에서 받은 게시글
-      const total = res.data.totalPosts ?? 0; // 전체 게시글 수
+      // 전체 게시글 수를 상태로 저장
       setTotalPosts(total);
 
       // 페이지 1이면 기존 게시글을 덮어쓰고, 그렇지 않으면 기존 게시글에 새로 불러온 게시글 추가
       setPosts((prevPosts) => (page === 1 ? newPosts : [...prevPosts, ...newPosts]));
-      setHasMore(newPosts.length > 0 && posts.length < totalPosts); // 더 불러올 게시글이 있는지 확인
+
+      // 더 불러올 게시글이 있는지 확인
+      setHasMore(newPosts.length > 0 && posts.length < totalPosts);
     } catch (error) {
-      console.error('게시글을 가져오는 중 오류 발생:', err);
+      console.error('게시글을 가져오는 중 오류 발생:', error);
       setError('게시글을 가져오는 중 문제가 발생했습니다.');
     } finally {
       setLoadingPosts(false); // 게시글 로딩 종료
