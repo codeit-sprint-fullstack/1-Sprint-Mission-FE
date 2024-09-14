@@ -165,7 +165,8 @@
   }
 
   .freeSearchInput::placeholder {
-    padding-left: 25px; /* 플레이스홀더가 검색 아이콘과 겹치지 않도록 여백 설정 */
+    font-size: 8px;
+    /* padding-left: 5px; 플레이스홀더가 검색 아이콘과 겹치지 않도록 여백 설정 */
     color: #999;
     font-size: 16px;
   }
