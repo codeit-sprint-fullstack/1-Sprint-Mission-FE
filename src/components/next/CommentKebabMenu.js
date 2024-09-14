@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { deleteComment } from '../../api/api'; // 댓글 삭제 API 불러오기
+import { deleteComment } from '../../api/api';
 import styles from './CommentKebabMenu.module.css';
 
 const CommentKebabMenu = ({ commentId, onEdit, refreshComments }) => {
   const [showMenu, setShowMenu] = useState(false);
+
+  console.log("전달된 댓글 ID:", commentId); 
 
   const handleKebabClick = () => {
     setShowMenu(!showMenu); // 케밥 버튼 클릭 시 토글
@@ -16,7 +18,7 @@ const CommentKebabMenu = ({ commentId, onEdit, refreshComments }) => {
     try {
       await deleteComment(commentId); // 댓글 삭제 API 호출
       alert('댓글이 삭제되었습니다.');
-      console.log("댓글 삭제 성공"); // 한국어 로그 추가
+      console.log("댓글 삭제 성공");
       refreshComments(); // 댓글 목록 갱신
       setShowMenu(false); // 메뉴 닫기
     } catch (error) {
@@ -45,3 +47,4 @@ const CommentKebabMenu = ({ commentId, onEdit, refreshComments }) => {
 };
 
 export default CommentKebabMenu;
+
