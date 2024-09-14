@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { updateArticle, fetchArticleById } from '../../api/api'; // API 추가
-import styles from './EditArticle.module.css'; // CSS 모듈 파일 적용
-import RegisterButton from '../../components/next/RegisterButton';
+import { updateArticle, fetchArticleById } from '../../../src/api/api'; // API 추가
+import styles from '../../../styles/EditArticle.module.css'; // CSS 모듈 파일 적용
+import RegisterButton from '../../../src/components/next/RegisterButton';
 
 const EditArticle = ({ articleId }) => {
   const [title, setTitle] = useState('');  
