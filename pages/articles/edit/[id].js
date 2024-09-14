@@ -1,21 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { updateArticle, fetchArticleById } from '../../../src/api/api'; // API 불러오기
-import styles from '../../../styles/create.module.css'; // 게시글 등록 페이지와 동일한 CSS 파일 적용
+import { updateArticle, fetchArticleById } from '../../../src/api/api';
+import styles from '../../../styles/post-detail.module.css'; // 게시글 등록 페이지와 동일한 CSS 파일 적용
 import EditButton from '../../../src/components/next/EditButton'; // 새로 만든 EditButton 사용
 
 const EditArticle = () => {
   const router = useRouter();
-  const { articleId } = router.query; // URL에서 articleId 가져오기
+  const { id: articleId } = router.query; // URL에서 id를 articleId로 가져오기
 
   const [title, setTitle] = useState('');  
   const [content, setContent] = useState(''); 
 
   useEffect(() => {
     if (articleId) {
-      // 기존 게시글 데이터 불러오기
       console.log("게시글 ID 확인:", articleId); // articleId 확인
-      
       fetchArticleById(articleId)
         .then((article) => {
           setTitle(article.title);
@@ -48,7 +46,7 @@ const EditArticle = () => {
   return (
     <form className={styles.registrationForm}>
       <div className={styles.formHeader}>
-        <h2>게시글 수정하기</h2> {/* "게시글 등록하기" 대신 "게시글 수정하기" */}
+        <h2>게시글 수정하기</h2>
         <EditButton
           articleId={articleId}  // articleId를 EditButton에 전달
           title={title}
@@ -64,6 +62,7 @@ const EditArticle = () => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="제목을 입력해주세요"
+          style={{ height: '30px' }}
         />
       </div>
       <div className={styles.formGroup}>
@@ -73,6 +72,7 @@ const EditArticle = () => {
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="내용을 입력해주세요"
+          style={{ height: '252px' }}
         />
       </div>
     </form>
