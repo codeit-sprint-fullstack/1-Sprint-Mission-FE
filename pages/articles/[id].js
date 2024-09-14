@@ -5,7 +5,7 @@ import styles from '../../styles/post-detail.module.css';
 import CommentItem from '../../src/components/next/CommentItem';
 import CommentForm from '../../src/components/next/CommentForm';
 import BackButton from '../../src/components/next/BackButton';
-import PostKebabMenu from '../../src/components/next/PostKebabMenu'; // PostKebabMenu 추가
+import PostKebabMenu from '../../src/components/next/PostKebabMenu';
 
 const PostDetail = () => {
   const router = useRouter();
@@ -14,6 +14,16 @@ const PostDetail = () => {
   const [loading, setLoading] = useState(true);
   const [likes, setLikes] = useState(Math.floor(Math.random() * 10000)); // 랜덤 좋아요 생성
   const [comments, setComments] = useState([]); // 댓글 초기화
+
+  // 댓글 목록을 다시 불러오는 함수
+  const loadComments = async () => {
+    try {
+      const data = await fetchComments(id);
+      setComments(Array.isArray(data) ? data : []); // 댓글 목록 상태 업데이트
+    } catch (error) {
+      console.error('댓글 목록 불러오기 실패:', error);
+    }
+  };
 
   useEffect(() => {
     if (id) {
@@ -27,11 +37,7 @@ const PostDetail = () => {
           setLoading(false);
         });
 
-      fetchComments(id)
-        .then((data) => {
-          setComments(Array.isArray(data) ? data : []);
-        })
-        .catch(console.error);
+      loadComments(); // 초기 댓글 목록 불러오기
     }
   }, [id]);
 
@@ -46,7 +52,7 @@ const PostDetail = () => {
     <div className={styles.postDetailContainer}>
       <div className={styles.titleContainer}>
         <h1 className={styles.postTitle}>{post.title}</h1>
-        <PostKebabMenu postId={id} /> {/* PostKebabMenu로 변경 */}
+        <PostKebabMenu postId={id} />
       </div>
 
       <div className={styles.postInfo}>
@@ -86,7 +92,7 @@ const PostDetail = () => {
                 author={`${comments.length - index}번 바오`}
                 content={comment.content}
                 createdAt={comment.createdAt}
-                refreshComments={() => {}} // 댓글 갱신 함수
+                refreshComments={loadComments}  // 댓글 수정 후 목록 갱신
               />
             ))}
             <div className={styles.buttonContainer}>

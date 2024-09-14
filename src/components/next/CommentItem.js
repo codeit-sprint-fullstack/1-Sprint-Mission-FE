@@ -30,8 +30,9 @@ const CommentItem = ({ id, content, author, createdAt, refreshComments }) => {
       await updateComment(id, { content: editedContent }); // 댓글 수정 API 호출
       alert('댓글이 수정되었습니다.');
       console.log("댓글 수정 성공");
+
       setIsEditMode(false); // 수정 모드 종료
-      refreshComments(); // 댓글 목록 갱신
+      refreshComments(); // 댓글 목록 갱신 - 수정 후 목록을 다시 불러오기
     } catch (error) {
       console.error('댓글 수정 중 오류가 발생했습니다:', error);
       alert('댓글 수정 중 오류가 발생했습니다.');
@@ -56,7 +57,7 @@ const CommentItem = ({ id, content, author, createdAt, refreshComments }) => {
       ) : (
         // 일반 모드일 때
         <div className={styles.commentContent}>
-          <p>{content}</p>
+          <p>{editedContent}</p> {/* 수정된 댓글 내용을 반영 */}
           <div className={styles.commentDetails}>
             <img
               src="/image/profile.svg"
