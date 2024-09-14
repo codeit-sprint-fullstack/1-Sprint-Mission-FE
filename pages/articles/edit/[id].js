@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { updateArticle, fetchArticleById } from '../../../src/api/api'; // API 불러오기
-import styles from '../../../styles/post-detail.module.css'; // 게시글 등록 페이지와 동일한 CSS 파일 적용
-import RegisterButton from '../../../src/components/next/RegisterButton'; // 등록 버튼 재사용
+import styles from '../../../styles/create.module.css'; // 게시글 등록 페이지와 동일한 CSS 파일 적용
+import EditButton from '../../../src/components/next/EditButton'; // 새로 만든 EditButton 사용
 
 const EditArticle = () => {
   const router = useRouter();
@@ -46,8 +46,9 @@ const EditArticle = () => {
   return (
     <form className={styles.registrationForm}>
       <div className={styles.formHeader}>
-        <h2>게시글 수정하기</h2>
-        <RegisterButton
+        <h2>게시글 수정하기</h2> {/* "게시글 등록하기" 대신 "게시글 수정하기" */}
+        <EditButton
+          articleId={articleId}  // articleId를 EditButton에 전달
           title={title}
           content={content}
           onClick={handleSavePost} // 수정 버튼 클릭 시 저장 처리
