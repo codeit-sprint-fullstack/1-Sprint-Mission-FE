@@ -6,7 +6,7 @@ const PostItem = ({ id, title, author, date, likes, image }) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/articles/${id}`); // 해당 게시글의 상세 페이지로 이동
+    router.push(`/articles/${id}`);
   };
 
   const defaultData = {
@@ -24,14 +24,14 @@ const PostItem = ({ id, title, author, date, likes, image }) => {
         <div className={styles.postDetails}>
           <img src="/image/profile.svg" alt="Profile Icon" className={styles.profileIcon} />
           <span className={styles.author}>{author || defaultData.author}</span>
-          <span className={styles.date}>{date || defaultData.date}</span> {/* 변환된 날짜를 그대로 사용 */}
+          <span className={styles.date}>{date || defaultData.date}</span> {/* 날짜 변환 없이 그대로 사용 */}
         </div>
       </div>
       <div className={styles.postImageContainer}>
         <img src={image || defaultData.image} alt="게시글 이미지" className={styles.postImage} />
         <div className={styles.postLikes}>
           <img src="/image/heart.svg" alt="Likes" />
-          <span>{likes !== undefined ? likes : defaultData.likes}</span> {/* 전달된 좋아요 수 사용 */}
+          <span>{likes !== undefined ? likes : defaultData.likes}</span>
         </div>
       </div>
     </div>

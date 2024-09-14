@@ -2,22 +2,17 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { createArticle } from '../../src/api/api';
 import styles from '../../styles/create.module.css';
-import RegisterButton from '../../src/components/next/RegisterButton'; 
+import RegisterButton from '../../src/components/next/RegisterButton';
 
 // 날짜를 YYYY.MM.DD 형식으로 변환하는 함수
 const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('ko-KR', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).replace(/\./g, '.');
+  return new Date(dateString).toISOString().slice(0, 10).replace(/-/g, '.');
 };
 
 const CreateArticle = () => {
   const [title, setTitle] = useState('');  
   const [content, setContent] = useState(''); 
-  const [createdAt] = useState(formatDate(new Date().toISOString())); // 날짜 변환 후 저장
+  const [createdAt] = useState(formatDate(new Date()));  // 날짜 변환 후 저장
   const router = useRouter();
 
   const handleNewPost = (newPost) => {

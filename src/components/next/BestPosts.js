@@ -6,7 +6,6 @@ import { fetchBestArticles } from '../../api/api';
 const BestBox = ({ id, title, author, likes, date, image }) => {
   const router = useRouter();
 
-  // 게시글 클릭 시 호출되는 함수
   const handleClick = () => {
     router.push(`/articles/${id}`);
   };
@@ -24,7 +23,7 @@ const BestBox = ({ id, title, author, likes, date, image }) => {
           <img src="/image/heart.svg" alt="Heart Icon" />
           <span>{likes || '0'}</span>
         </div>
-        <span className={styles.bestDate}>{date}</span> {/* 날짜는 변환된 형태 그대로 사용 */}
+        <span className={styles.bestDate}>{date}</span> {/* 변환된 날짜 그대로 사용 */}
       </div>
     </div>
   );
@@ -68,11 +67,11 @@ const BestPosts = ({ bestPosts }) => {
         {bestPosts.map((post) => (
           <BestBox
             key={post.id}
-            id={post.id} /* 게시글 id 전달 */
+            id={post.id}
             title={post.title}
             author={post.author}
             likes={post.likes}
-            date={post.createdAt}
+            date={post.createdAt} 
             image={post.image}
           />
         ))}
