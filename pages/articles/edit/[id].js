@@ -1,56 +1,66 @@
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { fetchArticleById, updateArticle } from '../../../src/api/api'; // api.js에서 함수 가져오기
+import { updateArticle, fetchArticleById } from '../../api/api'; // API 추가
+import styles from './EditArticle.module.css'; // CSS 모듈 파일 적용
+import RegisterButton from '../../components/next/RegisterButton';
 
-const EditArticle = () => {
-  const router = useRouter();
-  const { id } = router.query;
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+const EditArticle = ({ articleId }) => {
+  const [title, setTitle] = useState('');  
+  const [content, setContent] = useState(''); 
+  const [createdAt, setCreatedAt] = useState(''); 
 
   useEffect(() => {
-    if (id) {
-      const fetchData = async () => {
-        try {
-          // api.js의 fetchArticleById 함수 사용
-          const data = await fetchArticleById(id);
-          setTitle(data.title);
-          setContent(data.content);
-        } catch (error) {
-          console.error('Failed to fetch article:', error);
-        }
-      };
-      fetchData();
-    }
-  }, [id]);
+    // 기존 게시글 데이터 불러오기
+    fetchArticleById(articleId).then((article) => {
+      setTitle(article.title);
+      setContent(article.content);
+      setCreatedAt(article.createdAt);
+    });
+  }, [articleId]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSavePost = async () => {
+    if (!title || !content) {
+      alert('제목과 내용을 입력해주세요.');
+      return;
+    }
+
     try {
-      // api.js의 updateArticle 함수 사용
-      await updateArticle(id, { title, content });
-      router.push(`/articles/${id}`);
+      await updateArticle(articleId, { title, content });
+      alert('게시글이 수정되었습니다.');
     } catch (error) {
-      console.error('Failed to update article:', error);
+      console.error('게시글 수정 중 오류가 발생했습니다:', error);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="제목을 입력하세요"
-      />
-      <textarea
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        placeholder="내용을 입력하세요"
-      />
-      <button type="submit" disabled={!title || !content}>
-        수정
-      </button>
+    <form className={styles.postDetailContainer}>
+      <div className={styles.titleContainer}>
+        <h2>게시글 수정하기</h2>
+        <RegisterButton
+          title={title}
+          content={content}
+          createdAt={createdAt}
+          onClick={handleSavePost}
+        />
+      </div>
+      <div className={styles.formGroup}>
+        <label htmlFor="title">*제목</label>
+        <input
+          type="text"
+          id="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="제목을 입력해주세요"
+        />
+      </div>
+      <div className={styles.formGroup}>
+        <label htmlFor="content">*내용</label>
+        <textarea
+          id="content"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          placeholder="내용을 입력해주세요"
+        />
+      </div>
     </form>
   );
 };

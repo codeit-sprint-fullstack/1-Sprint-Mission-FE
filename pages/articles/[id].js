@@ -4,19 +4,19 @@ import { fetchArticleById, fetchComments } from '../../src/api/api';
 import styles from '../../styles/post-detail.module.css';
 import CommentItem from '../../src/components/next/CommentItem';
 import CommentForm from '../../src/components/next/CommentForm';
-import BackButton from '../../src/components/next/BackButton'; // BackButton 추가
+import BackButton from '../../src/components/next/BackButton';
+import PostKebabMenu from '../../src/components/next/PostKebabMenu'; // PostKebabMenu 추가
 
 const PostDetail = () => {
   const router = useRouter();
   const { id } = router.query;
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [likes, setLikes] = useState(Math.floor(Math.random() * 10000)); // 랜덤 좋아요 상태 생성
-  const [comments, setComments] = useState([]); // 댓글을 빈 배열로 초기화
+  const [likes, setLikes] = useState(Math.floor(Math.random() * 10000)); // 랜덤 좋아요 생성
+  const [comments, setComments] = useState([]); // 댓글 초기화
 
   useEffect(() => {
     if (id) {
-      // 게시글 불러오기
       fetchArticleById(id)
         .then((data) => {
           setPost(data);
@@ -27,11 +27,9 @@ const PostDetail = () => {
           setLoading(false);
         });
 
-      // 댓글 불러오기
       fetchComments(id)
         .then((data) => {
-          console.log("Fetched comments: ", data);
-          setComments(Array.isArray(data) ? data : []); // 데이터가 배열인지 확인 후 상태 설정
+          setComments(Array.isArray(data) ? data : []);
         })
         .catch(console.error);
     }
@@ -48,7 +46,7 @@ const PostDetail = () => {
     <div className={styles.postDetailContainer}>
       <div className={styles.titleContainer}>
         <h1 className={styles.postTitle}>{post.title}</h1>
-        <img src="/image/kebab.svg" alt="Kebab Icon" className={styles.kebabIcon} />
+        <PostKebabMenu postId={id} /> {/* PostKebabMenu로 변경 */}
       </div>
 
       <div className={styles.postInfo}>
@@ -100,4 +98,3 @@ const PostDetail = () => {
 };
 
 export default PostDetail;
-

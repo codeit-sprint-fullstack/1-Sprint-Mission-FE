@@ -7,7 +7,7 @@
   height: 100px; /* 댓글은 높이가 더 낮음 */
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; /* content와 kebab 모두 상단 정렬 */
+  align-items: flex-start; /* content와 CommentKebabMenu 모두 상단 정렬 */
   margin: auto;
   transition: transform 0.3s ease;
 }
@@ -45,13 +45,10 @@
   margin-left: 15px; /* author에서 15px 오른쪽에 위치 */
 }
 
-.kebabIcon {
+/* CommentKebabMenu에 대한 스타일 */
+.commentKebabMenu {
   display: flex;
-  align-items: flex-start; /* 아이콘을 상단에 맞추기 */
+  align-items: flex-start; /* CommentKebabMenu를 상단에 맞추기 */
   justify-content: flex-end;
 }
 
-.kebabIcon img {
-  width: 24px;
-  height: 24px;
-}

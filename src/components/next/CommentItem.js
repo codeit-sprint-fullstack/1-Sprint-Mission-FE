@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./CommentItem.module.css";
+import CommentKebabMenu from './CommentKebabMenu'; // CommentKebabMenu 추가
 
 const CommentItem = ({ id, content, author, createdAt }) => {
   const defaultData = {
@@ -34,12 +35,9 @@ const CommentItem = ({ id, content, author, createdAt }) => {
           <span className={styles.date}>{displayDate}</span>
         </div>
       </div>
-      <div className={styles.kebabIcon}>
-        <img src="/image/kebab.svg" alt="Kebab Icon" />
-      </div>
+      <CommentKebabMenu commentId={id} /> {/* CommentKebabMenu로 변경 */}
     </div>
   );
 };
 
 export default CommentItem;
-

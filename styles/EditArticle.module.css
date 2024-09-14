@@ -19,14 +19,13 @@
   margin-bottom: 16px;
 }
 
-/* kebabIcon 부분을 제거하고 PostKebabMenu를 대신 사용 */
 .kebabIcon {
   margin-left: auto;
 }
 
 .postInfo {
   margin-bottom: 30px;
-  border-bottom: 1px solid #E5E7EB;
+  border-bottom: 1px solid #e5e7eb;
   padding-bottom: 40px;
   display: flex;
   align-items: center;
@@ -39,13 +38,13 @@
 
 .author {
   font-size: 14px;
-  color: #4B5563;
+  color: #4b5563;
   margin-right: 20px;
 }
 
 .date {
   font-size: 14px;
-  color: #9CA3AF;
+  color: #9ca3af;
   margin-right: 30px;
 }
 
@@ -59,7 +58,7 @@
 
 .postLikes {
   font-size: 16px;
-  color: #6B7280;
+  color: #6b7280;
 }
 
 .contentContainer {
@@ -69,13 +68,13 @@
 .postContent {
   font-size: 18px;
   font-weight: 400;
-  color: #1F2937;
+  color: #1f2937;
 }
 
 .commentFormContainer {
   margin-top: 20px;
   margin-bottom: 30px;
-  max-width: 1200px;
+  max-width: 1200px; /* 최대 너비 설정 */
   width: 100%;
 }
 
@@ -89,7 +88,7 @@
   text-align: center;
   font-size: 16px;
   font-weight: 400;
-  color: #9CA3AF;
+  color: #9ca3af;
   line-height: 26px;
   margin-bottom: 30px;
 }
@@ -97,7 +96,7 @@
 .commentsContainer {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 20px; /* 댓글 간 간격 */
   margin-top: 20px;
 }
 
