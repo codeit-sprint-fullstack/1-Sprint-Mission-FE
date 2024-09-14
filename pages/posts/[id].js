@@ -14,20 +14,23 @@ import profile from '@/public/ic_profile.svg';
 import emptyComment from '@/public/Img_reply_empty.svg';
 import backImg from '@/public/ic_back.svg';
 import Spinner from '@/components/Spinner';
+import {
+  fetchPost,
+  fetchComments,
+  submitComment,
+  updatePost,
+  updateComment,
+  deletePost,
+  deleteComment,
+} from '@/lib/api';
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
 
   try {
-    const postRes = await axios.get(`/posts/${id}`);
-    const post = postRes.data;
+    const post = await fetchPost(id);
 
-    const commentsRes = await axios.get(`/comments/free-board/${id}`, {
-      params: {
-        take: 5, // 초기 댓글 로드 개수
-      },
-    });
-    const initialComments = commentsRes.data.comments ?? [];
+    const initialComments = await fetchComments(id);
 
     return {
       props: {
@@ -131,17 +134,12 @@ export default function Post({ post: initialPost, initialComments, error: initia
   // 새로운 댓글 전송 및 상태 업데이트
   const handleSubmitComment = async () => {
     try {
-      // 서버에 새 댓글 전송
-      const res = await axios.post(`/comments/free-board/${id}`, {
-        content: inputComment,
-        userId: '723f8545-890d-4e0a-accc-4f1995122868', // 테스트용 userId
-      });
-      const newComment = res.data; // 서버에서 반환된 새 댓글 데이터
-
-      // 로컬 상태 업데이트 (새로운 댓글 추가)
+      const newComment = await submitComment(
+        id,
+        inputComment,
+        '723f8545-890d-4e0a-accc-4f1995122868'
+      ); // 테스트용 userId
       setComments((prevComments) => [newComment, ...prevComments]);
-
-      // 댓글 입력란 초기화
       setInputComment('');
     } catch (err) {
       console.error('댓글 등록에 실패했습니다.', err);
@@ -152,8 +150,8 @@ export default function Post({ post: initialPost, initialComments, error: initia
   // 게시글 수정 내용 저장
   const handleSavePost = async ({ title, content }) => {
     try {
-      setPost((prevPost) => ({ ...prevPost, title, content })); // 로컬 상태 업데이트
-      await axios.patch(`/posts/${id}`, { title, content }); // 서버로 수정된 게시글 업데이트 요청
+      setPost((prevPost) => ({ ...prevPost, title, content }));
+      await updatePost(id, title, content);
     } catch (err) {
       console.error('게시글 업데이트에 실패했습니다.', err);
     }
@@ -162,22 +160,12 @@ export default function Post({ post: initialPost, initialComments, error: initia
   // 댓글 수정 내용 저장
   const handleSaveComment = async (commentId, updatedComment) => {
     try {
-      // 로컬 상태 업데이트
-      // 기존 댓글 목록을 순회하면서
       setComments((prevComments) =>
         prevComments.map((comment) =>
-          // 수정하려는 댓글 ID와 일치하는 댓글을 찾으면
-          comment.id === commentId
-            ? // 해당 댓글의 content만 수정하여 새 객체 반환
-              { ...comment, content: updatedComment }
-            : // ID가 일치하지 않으면 기존 댓글 반환
-              comment
+          comment.id === commentId ? { ...comment, content: updatedComment } : comment
         )
       );
-
-      await axios.patch(`/comments/${commentId}`, {
-        content: updatedComment,
-      });
+      await updateComment(commentId, updatedComment);
     } catch (err) {
       console.error('댓글 업데이트에 실패했습니다.', err);
     }
@@ -186,7 +174,7 @@ export default function Post({ post: initialPost, initialComments, error: initia
   // 게시글 삭제 처리
   const handleDeletePost = async () => {
     try {
-      await axios.delete(`/posts/${id}`);
+      await deletePost(id);
       router.push('/freeboard');
     } catch (err) {
       console.error('게시글 삭제에 실패했습니다.', err);
@@ -196,7 +184,7 @@ export default function Post({ post: initialPost, initialComments, error: initia
   // 댓글 삭제 처리
   const handleDeleteComment = async (commentId) => {
     try {
-      await axios.delete(`/comments/${commentId}`);
+      await deleteComment(commentId);
       setComments((prevComments) => prevComments.filter((comment) => comment.id !== commentId));
     } catch (error) {
       console.error('댓글 삭제에 실패했습니다.', error);

@@ -7,30 +7,16 @@ import PostList from '@/components/PostList';
 import { useRouter } from 'next/router';
 import { useState, useEffect, useRef } from 'react';
 import Spinner from '@/components/Spinner';
+import { fetchBestPosts, fetchPosts } from '@/lib/api';
 
 // 정적 생성시 데이터도 함께 가져오기 위한 함수
 export async function getStaticProps() {
   try {
     // 베스트 게시글을 서버에서 가져옴
-    const bestPostRes = await axios.get('/posts', {
-      params: {
-        order: 'recent',
-        limit: 3,
-      },
-    });
-
-    const bestPosts = bestPostRes.data.posts ?? [];
+    const bestPosts = await fetchBestPosts();
 
     // 첫 페이지의 게시글을 서버에서 가져옴
-    const postRes = await axios.get('/posts', {
-      params: {
-        order: 'recent',
-        page: 1,
-      },
-    });
-
-    const posts = postRes.data.posts ?? [];
-    const totalPosts = postRes.data.totalPosts ?? 0;
+    const { posts, totalPosts } = await fetchPosts();
 
     // 서버에서 가져온 데이터를 props로 전달
     return {
