@@ -1,20 +1,29 @@
 import { useState, useEffect } from 'react';
-import { updateArticle, fetchArticleById } from '../../../src/api/api'; // API 추가
-import styles from '../../../styles/EditArticle.module.css'; // CSS 모듈 파일 적용
+import { useRouter } from 'next/router';
+import { updateArticle, fetchArticleById } from '../../../src/api/api'; 
+import styles from '../../../styles/EditArticle.module.css'; 
 import RegisterButton from '../../../src/components/next/RegisterButton';
 
-const EditArticle = ({ articleId }) => {
+const EditArticle = () => {
+  const router = useRouter();
+  const { articleId } = router.query; // URL에서 articleId를 가져옴
+
   const [title, setTitle] = useState('');  
   const [content, setContent] = useState(''); 
-  const [createdAt, setCreatedAt] = useState(''); 
 
   useEffect(() => {
-    // 기존 게시글 데이터 불러오기
-    fetchArticleById(articleId).then((article) => {
-      setTitle(article.title);
-      setContent(article.content);
-      setCreatedAt(article.createdAt);
-    });
+    if (articleId) {
+      // 기존 게시글 데이터 불러오기
+      fetchArticleById(articleId)
+        .then((article) => {
+          setTitle(article.title);
+          setContent(article.content);
+          console.log("게시글 불러오기 성공:", article);
+        })
+        .catch((error) => {
+          console.error('게시글 불러오기 중 오류 발생:', error);
+        });
+    }
   }, [articleId]);
 
   const handleSavePost = async () => {
@@ -26,8 +35,11 @@ const EditArticle = ({ articleId }) => {
     try {
       await updateArticle(articleId, { title, content });
       alert('게시글이 수정되었습니다.');
+      console.log("게시글 수정 성공, 게시글 ID:", articleId);
+      router.replace(`/articles/${articleId}`); // 수정 후 다시 게시글 상세 페이지로 이동
     } catch (error) {
       console.error('게시글 수정 중 오류가 발생했습니다:', error);
+      alert('게시글 수정 중 오류가 발생했습니다.');
     }
   };
 
@@ -38,8 +50,7 @@ const EditArticle = ({ articleId }) => {
         <RegisterButton
           title={title}
           content={content}
-          createdAt={createdAt}
-          onClick={handleSavePost}
+          onClick={handleSavePost} // 수정 버튼 클릭 시 저장 처리
         />
       </div>
       <div className={styles.formGroup}>
@@ -66,3 +77,4 @@ const EditArticle = ({ articleId }) => {
 };
 
 export default EditArticle;
+
