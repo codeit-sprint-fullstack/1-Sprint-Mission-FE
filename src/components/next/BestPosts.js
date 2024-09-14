@@ -3,6 +3,11 @@ import { useRouter } from 'next/router';
 import styles from './BestPosts.module.css';
 import { fetchBestArticles } from '../../api/api';
 
+// 날짜를 YYYY.MM.DD 형식으로 변환하는 함수
+const formatDate = (dateString) => {
+  return new Date(dateString).toISOString().slice(0, 10).replace(/-/g, '.');
+};
+
 const BestBox = ({ id, title, author, likes, date, image }) => {
   const router = useRouter();
 
@@ -23,7 +28,7 @@ const BestBox = ({ id, title, author, likes, date, image }) => {
           <img src="/image/heart.svg" alt="Heart Icon" />
           <span>{likes || '0'}</span>
         </div>
-        <span className={styles.bestDate}>{date}</span> {/* 변환된 날짜 그대로 사용 */}
+        <span className={styles.bestDate}>{formatDate(date)}</span> {/* 변환된 날짜 출력 */}
       </div>
     </div>
   );
@@ -71,7 +76,7 @@ const BestPosts = ({ bestPosts }) => {
             title={post.title}
             author={post.author}
             likes={post.likes}
-            date={post.createdAt} 
+            date={post.createdAt}
             image={post.image}
           />
         ))}

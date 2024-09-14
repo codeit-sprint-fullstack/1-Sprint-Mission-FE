@@ -2,6 +2,11 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import styles from './PostItem.module.css';
 
+// 날짜를 YYYY.MM.DD 형식으로 변환하는 함수
+const formatDate = (dateString) => {
+  return new Date(dateString).toISOString().slice(0, 10).replace(/-/g, '.');
+};
+
 const PostItem = ({ id, title, author, date, likes, image }) => {
   const router = useRouter();
 
@@ -24,7 +29,7 @@ const PostItem = ({ id, title, author, date, likes, image }) => {
         <div className={styles.postDetails}>
           <img src="/image/profile.svg" alt="Profile Icon" className={styles.profileIcon} />
           <span className={styles.author}>{author || defaultData.author}</span>
-          <span className={styles.date}>{date || defaultData.date}</span> {/* 날짜 변환 없이 그대로 사용 */}
+          <span className={styles.date}>{formatDate(date || defaultData.date)}</span> {/* 변환된 날짜 출력 */}
         </div>
       </div>
       <div className={styles.postImageContainer}>
