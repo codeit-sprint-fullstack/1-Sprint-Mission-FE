@@ -75,3 +75,15 @@
   line-height: 26px;
   color: var(--grey-400);
 }
+
+@media (max-width: 1199px) {
+  .postContainer {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 743px) {
+  .postContainer {
+    margin-top: 16px;
+  }
+}

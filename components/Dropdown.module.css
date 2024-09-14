@@ -1,13 +1,14 @@
 .dropdown {
   position: relative;
   display: inline-block;
-  width: 12%;
+  width: 15%;
 }
 
 .dropdownButton {
   background-color: var(--white);
   padding: 12px 20px;
   width: 100%;
+  height: 42px;
   border-radius: 12px;
   border: 1px solid var(--grey-200);
   font-weight: 400;
@@ -61,4 +62,14 @@
 .dropdownItem:last-child {
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
+}
+
+@media (max-width: 743px) {
+  .mobileDropdownImgWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
 }

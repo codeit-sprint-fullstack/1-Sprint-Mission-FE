@@ -7,6 +7,7 @@
 
 .header {
   width: 100%;
+  min-width: 375px;
   height: 70px;
   padding: 10px 200px;
   border-bottom: 1px solid #dfdfdf;
@@ -56,4 +57,39 @@
 .freeboard:hover,
 .market:hover {
   color: #3692ff;
+}
+
+@media (max-width: 1199px) {
+  .header {
+    padding: 10px 24px;
+  }
+
+  .container {
+    gap: 35px;
+  }
+}
+
+@media (max-width: 743px) {
+  .font {
+    font-size: 16px;
+    line-height: 19.09px;
+  }
+
+  .header {
+    padding: 10px 16px;
+  }
+
+  .container {
+    gap: 15px;
+  }
+
+  .logoWrapper {
+    width: 81px;
+    height: 40px;
+  }
+
+  .menu {
+    gap: 8px;
+    justify-content: space-evenly;
+  }
 }

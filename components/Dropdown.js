@@ -2,11 +2,27 @@ import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import styles from './Dropdown.module.css';
 import arrow from '@/public/arrow.svg';
+import sortMobile from '@/public/ic_sort.svg';
 
 export default function Dropdown({ options, onOptionSelect }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const dropdownRef = useRef(null);
+
+  const checkMobile = () => {
+    setIsMobile(window.innerWidth <= 743);
+  };
+
+  // 화면 크기 변경을 감지하여 로고를 동적으로 변경
+  useEffect(() => {
+    checkMobile(); // 컴포넌트가 마운트될 때 실행
+    window.addEventListener('resize', checkMobile); // 화면 크기 변경 시 실행
+
+    return () => {
+      window.removeEventListener('resize', checkMobile); // 컴포넌트 언마운트 시 이벤트 제거
+    };
+  }, []);
 
   // 드롭다운 외부를 클릭하면 닫히는 로직
   useEffect(() => {
@@ -37,10 +53,18 @@ export default function Dropdown({ options, onOptionSelect }) {
   return (
     <div className={styles.dropdown} ref={dropdownRef}>
       <button className={styles.dropdownButton} onClick={toggleDropdown} type="button">
-        {selectedOption || '정렬기준'}
-        <div className={`${styles.dropdownImgWrapper} ${isOpen ? styles.open : ''}`}>
-          <Image src={arrow} alt="화살표 이미지" />
-        </div>
+        {!isMobile ? (
+          <>
+            {selectedOption || '정렬기준'}
+            <div className={`${styles.dropdownImgWrapper} ${isOpen ? styles.open : ''}`}>
+              <Image src={arrow} alt="화살표 이미지" />
+            </div>
+          </>
+        ) : (
+          <div className={`${styles.mobileDropdownImgWrapper} ${isOpen ? styles.open : ''}`}>
+            <Image responsive src={sortMobile} alt="모바일 정렬 이미지" />
+          </div>
+        )}
       </button>
       {isOpen && (
         <ul className={styles.dropdownMenu}>

@@ -77,3 +77,32 @@
 .bestFormatDate {
   color: var(--grey-500);
 }
+
+@media (max-width: 1199px) {
+  .bestTop {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .bestContainer {
+    gap: 16px;
+  }
+
+  .bottomLeft {
+    gap: 40px;
+  }
+
+  .bestListBox {
+    width: 50%;
+  }
+}
+
+@media (max-width: 743px) {
+  .bestTitle {
+    margin-bottom: 16px;
+  }
+
+  .bestListBox {
+    width: 100%;
+  }
+}

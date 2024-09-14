@@ -15,6 +15,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* 화면의 100% 높이 차지 */
+  overflow: hidden;
 }
 
 main {

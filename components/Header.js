@@ -2,8 +2,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Header.module.css';
 import Logo from '@/public/pandaMarketLogo.svg';
+import LogoMobile from '@/public/pandaMarketLogoMobile.svg';
 import Button from './Button';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 // Header component
 // 해당 컴포넌트는 로고, 메뉴, 로그인 버튼으로 구성한다.
@@ -15,12 +17,27 @@ import { useRouter } from 'next/router';
 
 export default function Header() {
   const router = useRouter();
+  const [isMobile, setIsMobile] = useState(false);
+
+  const checkMobile = () => {
+    setIsMobile(window.innerWidth <= 743);
+  };
+
+  // 화면 크기 변경을 감지하여 로고를 동적으로 변경
+  useEffect(() => {
+    checkMobile(); // 컴포넌트가 마운트될 때 실행
+    window.addEventListener('resize', checkMobile); // 화면 크기 변경 시 실행
+
+    return () => {
+      window.removeEventListener('resize', checkMobile); // 컴포넌트 언마운트 시 이벤트 제거
+    };
+  }, []);
 
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         <Link className={styles.logoWrapper} href="/">
-          <Image src={Logo} alt="판다 마켓 로고" fill priority />
+          <Image src={isMobile ? LogoMobile : Logo} alt="판다 마켓 로고" fill priority />
         </Link>
         <div className={`${styles.menu} ${styles.font}`}>
           <Link
@@ -29,13 +46,13 @@ export default function Header() {
             }`}
             href="/freeboard"
           >
-            <span>자유게시판</span>
+            <p>자유게시판</p>
           </Link>
           <Link
             className={`${styles.market} ${router.pathname === '/market' ? styles.active : ''}`}
             href="/market"
           >
-            <span>중고마켓</span>
+            <p>중고마켓</p>
           </Link>
         </div>
         <Link className={styles.loginBtn} href="/login">

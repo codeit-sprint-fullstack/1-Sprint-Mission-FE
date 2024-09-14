@@ -6,8 +6,9 @@
 }
 
 .searchInput {
-  width: 88%;
-  padding: 9px 16px;
+  width: 87%;
+  height: 42px;
+  padding: 9px 20px 9px 16px;
   background-color: var(--grey-100);
   border: none;
   border-radius: 12px;
@@ -25,4 +26,18 @@
   font-size: 16px;
   line-height: 26px;
   color: var(--grey-400);
+}
+
+@media (max-width: 1199px) {
+  .searchForm {
+    margin-top: 48px;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 743px) {
+  .searchForm {
+    margin-top: 16px;
+    gap: 13px;
+  }
 }

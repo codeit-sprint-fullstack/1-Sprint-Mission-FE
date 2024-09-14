@@ -68,6 +68,7 @@ export default function Freeboard({
 
   const [bestPosts, setBestPosts] = useState(initialBestPosts);
   const [posts, setPosts] = useState(initialPosts);
+  const [visibleBestPosts, setVisibleBestPosts] = useState(initialBestPosts); // 표시할 베스트 게시글
   const [order, setOrder] = useState('recent'); // 드롭다운에서 선택된 order 값을 관리
   const [page, setPage] = useState(1);
   const [loadingPosts, setLoadingPosts] = useState(false); // 게시글 로딩 상태
@@ -77,6 +78,28 @@ export default function Freeboard({
 
   const observerRef = useRef(null); // IntersectionObserver 참조
   const lastPostRef = useRef(null); // 마지막 게시글을 참조할 ref
+
+  // 클라이언트에서 화면 크기에 따라 베스트 게시글 표시 수를 조정
+  useEffect(() => {
+    const updateVisibleBestPosts = () => {
+      const width = window.innerWidth;
+
+      if (width <= 743) {
+        setVisibleBestPosts(bestPosts.slice(0, 1)); // 화면이 743px 이하이면 1개만 표시
+      } else if (width <= 1199) {
+        setVisibleBestPosts(bestPosts.slice(0, 2)); // 744px ~ 1199px 사이에서는 2개만 표시
+      } else {
+        setVisibleBestPosts(bestPosts); // 1200px 이상이면 모든 게시글 표시
+      }
+    };
+
+    updateVisibleBestPosts(); // 초기 렌더링 시 실행
+    window.addEventListener('resize', updateVisibleBestPosts); // 창 크기 변경 시 실행
+
+    return () => {
+      window.removeEventListener('resize', updateVisibleBestPosts); // 컴포넌트 언마운트 시 이벤트 제거
+    };
+  }, [bestPosts]); // 베스트 게시글이 바뀔 때마다 다시 설정
 
   // 검색 및 전체 게시글 조회
   // 검색어나 정렬 기준, 페이지에 따라 게시글 목록을 서버에서 가져오는 함수
@@ -95,11 +118,11 @@ export default function Freeboard({
 
       const newPosts = res.data.posts ?? []; // 서버에서 받은 게시글
       const total = res.data.totalPosts ?? 0; // 전체 게시글 수
+      setTotalPosts(total);
 
       // 페이지 1이면 기존 게시글을 덮어쓰고, 그렇지 않으면 기존 게시글에 새로 불러온 게시글 추가
       setPosts((prevPosts) => (page === 1 ? newPosts : [...prevPosts, ...newPosts]));
-      setHasMore(newPosts.length > 0 && posts.length < total); // 더 불러올 게시글이 있는지 확인
-      setTotalPosts(total);
+      setHasMore(newPosts.length > 0 && posts.length < totalPosts); // 더 불러올 게시글이 있는지 확인
     } catch (error) {
       console.error('게시글을 가져오는 중 오류 발생:', err);
       setError('게시글을 가져오는 중 문제가 발생했습니다.');
@@ -155,7 +178,7 @@ export default function Freeboard({
       <Head>
         <title>판다마켓 - 자유게시판</title>
       </Head>
-      <BestPost posts={bestPosts} />
+      <BestPost posts={visibleBestPosts} />
       <WriteButton />
       <SearchForm onOrderChange={handleOrderChange} />
       <PostList posts={posts} />
