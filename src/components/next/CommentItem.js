@@ -21,14 +21,19 @@ const CommentItem = ({ id, content, author, createdAt, refreshComments }) => {
 
   // 댓글 저장 처리
   const handleSaveClick = async () => {
+    console.log("댓글 저장 버튼 클릭됨"); // 한국어 로그 추가
+    console.log("수정된 댓글 내용:", editedContent); // 수정된 댓글 내용 출력
+
     try {
       await updateComment(id, { content: editedContent }); // 댓글 수정 API 호출
       alert('댓글이 수정되었습니다.');
+      console.log("댓글 수정 성공"); 
       setIsEditMode(false); // 수정 모드 종료
       refreshComments(); // 댓글 목록 갱신
     } catch (error) {
       console.error('댓글 수정 중 오류가 발생했습니다:', error);
       alert('댓글 수정 중 오류가 발생했습니다.');
+      console.log("댓글 수정 실패"); 
     }
   };
 
@@ -65,7 +70,10 @@ const CommentItem = ({ id, content, author, createdAt, refreshComments }) => {
       {/* CommentKebabMenu 추가 - 수정/삭제 메뉴 */}
       <CommentKebabMenu
         commentId={id}
-        onEdit={() => setIsEditMode(true)} // 수정 모드 활성화
+        onEdit={() => {
+          console.log("댓글 수정 모드 활성화됨"); 
+          setIsEditMode(true);
+        }} // 수정 모드 활성화
         refreshComments={refreshComments} // 삭제 후 댓글 목록 갱신
       />
     </div>
