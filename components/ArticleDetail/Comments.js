@@ -1,8 +1,12 @@
-import styles from '@/styles/Comment.module.css';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import Button from '@/utils/Button';
+import {
+  fetchComments,
+  postComment,
+  deleteComment,
+} from '@/utils/api/commentApi.js';
 import CommentList from './CommentList';
+import styles from '@/styles/Comment.module.css';
 
 export default function Comments({ articleId }) {
   const [comment, setComment] = useState('');
@@ -11,80 +15,34 @@ export default function Comments({ articleId }) {
   const [canEdit, setCanEdit] = useState(false);
   const [canSubmit, setCanSubmit] = useState(false);
   const [canScroll, setCanScroll] = useState(false);
-  const [cursorId, setCursorId] = useState(0);
+  const [cursorId, setCursorId] = useState(null);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    async function getComments() {
-      setLoading(true);
-      try {
-        const res = await axios.get(
-          `https://sprint-be-k938.onrender.com/comments/${articleId}`,
-          {
-            params: {
-              limit: 6,
-              cursor: cursorId,
-            },
-          }
-        );
+  async function getComments(articleId) {
+    setLoading(true);
+    try {
+      const res = await fetchComments(articleId, cursorId);
+      const { comments, totalCount } = res;
 
-        const { comments, totalCount } = res.data;
+      setCursorId(
+        comments.length > 0 ? comments[comments.length - 1].id : null
+      );
 
-        setCursorId(
-          comments.length > 0 ? comments[comments.length - 1].id : null
-        );
+      const mergedItems = [...commentsList, ...comments.slice(0, 5)];
+      const uniqueComments = Array.from(
+        new Map(mergedItems.map((item) => [item.id, item])).values()
+      );
 
-        console.log(res.data);
-
-        const mergedItems = [...commentsList, ...comments.slice(0, 5)];
-        const uniqueComments = Array.from(
-          new Map(mergedItems.map((item) => [item.id, item])).values()
-        );
-
-        if (uniqueComments.length >= totalCount) {
-          setHasMore(false);
-        }
-
-        setCommentsList(uniqueComments);
-      } catch (error) {
-        console.error('Error posting data:', error);
-      } finally {
-        setLoading(false);
+      if (uniqueComments.length >= totalCount) {
+        setHasMore(false);
       }
-    }
 
-    getComments(articleId);
-  }, [articleId, canEdit, canScroll]);
-
-  async function postComment() {
-    try {
-      const res = await axios.post(
-        `https://sprint-be-k938.onrender.com/comments`,
-        {
-          content: comment,
-          articleId: articleId,
-          userId: '9cda174e-2e9e-4523-97cd-362e85a39ebf',
-        }
-      );
-
-      setCommentsList([res.data, ...commentsList]);
-    } catch (error) {
-      console.error('Error posting data:', error);
-    }
-  }
-
-  async function deleteComment(commentId) {
-    try {
-      const res = await axios.delete(
-        `https://sprint-be-k938.onrender.com/comments/${commentId}`
-      );
-      setCursorId(null);
-      setCommentsList([]);
-      setCanEdit((prev) => !prev);
+      setCommentsList(uniqueComments);
     } catch (error) {
       console.error('Error posting data:', error);
     } finally {
+      setLoading(false);
     }
   }
 
@@ -92,34 +50,27 @@ export default function Comments({ articleId }) {
     setComment(event.target.value);
   };
 
-  const handleCommentDeleteId = (id) => {
-    deleteComment(id);
+  const handleCommentDeleteId = async (id) => {
+    try {
+      const res = await deleteComment(id);
+      setCursorId(null);
+      setCommentsList([]);
+      setCanEdit((prev) => !prev);
+    } catch (error) {
+      console.error('Error posting data:', error);
+    }
   };
 
-  useEffect(() => {
-    if (comment) {
-      setCanSubmit(true);
-    } else {
-      setCanSubmit(false);
+  const handleSubmit = async () => {
+    try {
+      const res = await postComment(articleId, comment);
+
+      setCommentsList([res, ...commentsList]);
+    } catch (error) {
+      console.error('Error posting data:', error);
     }
-  }, [comment]);
-
-  useEffect(() => {
-    setCursorId(null);
-    setCommentsList([]);
-  }, [articleId, canEdit]);
-
-  function handleSubmit() {
-    postComment();
     setComment('');
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [cursorId]);
+  };
 
   const handleScroll = () => {
     if (loading || !hasMore) return;
@@ -133,6 +84,34 @@ export default function Comments({ articleId }) {
       setCanScroll(false);
     }
   };
+
+  useEffect(() => {
+    if (comment) {
+      setCanSubmit(true);
+    } else {
+      setCanSubmit(false);
+    }
+  }, [comment]);
+
+  useEffect(() => {
+    getComments(articleId);
+  }, []);
+
+  useEffect(() => {
+    getComments(articleId);
+  }, [articleId, canEdit, canScroll]);
+
+  useEffect(() => {
+    setCursorId(null);
+    setCommentsList([]);
+  }, [articleId, canEdit]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [cursorId]);
 
   return (
     <div className={styles.submit}>

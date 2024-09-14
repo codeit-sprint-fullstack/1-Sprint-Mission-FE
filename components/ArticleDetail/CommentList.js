@@ -1,11 +1,12 @@
+import { useState } from 'react';
+import Image from 'next/image';
+import EditComment from '@/components/ArticleDetail/EditComment.js';
+import DropDown from '@/utils/DropDown.js';
 import dotIcon from '@/public/ic_dot.png';
 import profileIcon from '@/public/ic_profile.png';
 import noComment from '@/public/no_comment.png';
-import Image from 'next/image';
-import EditComment from '@/components/ArticleDetail/EditComment.js';
+
 import styles from '@/styles/Comment.module.css';
-import { useState } from 'react';
-import DropDown from '@/utils/DropDown.js';
 
 function CreateDate({ createDate }) {
   const createdDate = new Date(createDate.createdAt);

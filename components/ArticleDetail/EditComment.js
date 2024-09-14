@@ -1,8 +1,8 @@
-import axios from 'axios';
 import Button from '@/utils/Button';
 import styles from '@/styles/Comment.module.css';
 
 import { useState } from 'react';
+import { patchComment } from '@/utils/api/commentApi.js';
 
 export default function CommentList({
   id,
@@ -13,14 +13,13 @@ export default function CommentList({
 }) {
   const [editComment, setEditComment] = useState(content);
 
-  async function patchComment(id) {
+  const handleCommentChange = (event) => {
+    setEditComment(event.target.value);
+  };
+
+  const handleSubmit = async () => {
     try {
-      const res = await axios.patch(
-        `https://sprint-be-k938.onrender.com/comments/${id}`,
-        {
-          content: editComment,
-        }
-      );
+      const res = await patchComment(id, editComment);
 
       setComments((prev) =>
         prev.map((comment) =>
@@ -33,14 +32,6 @@ export default function CommentList({
     } catch (error) {
       console.error('Error posting data:', error);
     }
-  }
-
-  const handleCommentChange = (event) => {
-    setEditComment(event.target.value);
-  };
-
-  const handleSubmit = () => {
-    patchComment(id);
   };
 
   return (
