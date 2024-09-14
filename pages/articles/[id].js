@@ -31,6 +31,9 @@ const PostDetail = () => {
         .then((data) => {
           setPost(data);
           setLoading(false);
+
+        // 수정된 게시글 정보
+        console.log("게시글 수정하기 성공:", data);
         })
         .catch((error) => {
           console.error('Error fetching article:', error);
