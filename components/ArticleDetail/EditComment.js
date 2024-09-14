@@ -21,7 +21,13 @@ export default function CommentList({
           content: editComment,
         }
       );
-      setComments(res.data);
+
+      setComments((prev) =>
+        prev.map((comment) =>
+          comment.id === id ? { ...comment, content: editComment } : comment
+        )
+      );
+
       setEditId(null);
       setOpenOptions(false);
     } catch (error) {
@@ -33,8 +39,8 @@ export default function CommentList({
     setEditComment(event.target.value);
   };
 
-  const handleSubmit = async () => {
-    await patchComment(id);
+  const handleSubmit = () => {
+    patchComment(id);
   };
 
   return (

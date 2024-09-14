@@ -6,54 +6,57 @@ import CommentList from './CommentList';
 
 export default function Comments({ articleId }) {
   const [comment, setComment] = useState('');
-  const [comments, setComments] = useState([]);
-  const [edit, setEdit] = useState(null);
+  const [commentsList, setCommentsList] = useState([]);
+
+  const [canEdit, setCanEdit] = useState(false);
   const [canSubmit, setCanSubmit] = useState(false);
-  const [scroll, setScroll] = useState(false);
+  const [canScroll, setCanScroll] = useState(false);
+  const [cursorId, setCursorId] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  const [lastPostInResults, setLastPostInResults] = useState(0);
-  const [limit, setLimit] = useState(6);
+  useEffect(() => {
+    async function getComments() {
+      setLoading(true);
+      try {
+        const res = await axios.get(
+          `https://sprint-be-k938.onrender.com/comments/${articleId}`,
+          {
+            params: {
+              limit: 6,
+              cursor: cursorId,
+            },
+          }
+        );
 
-  const handleComment = (event) => {
-    setComment(event.target.value);
-  };
+        const { comments, totalCount } = res.data;
 
-  async function getComments(articleId) {
-    try {
-      const res = await axios.get(
-        `https://sprint-be-k938.onrender.com/comments/${articleId}`,
-        {
-          params: {
-            limit: limit,
-            cursor: lastPostInResults,
-          },
+        setCursorId(
+          comments.length > 0 ? comments[comments.length - 1].id : null
+        );
+
+        console.log(res.data);
+
+        const mergedItems = [...commentsList, ...comments.slice(0, 5)];
+        const uniqueComments = Array.from(
+          new Map(mergedItems.map((item) => [item.id, item])).values()
+        );
+
+        if (uniqueComments.length >= totalCount) {
+          setHasMore(false);
         }
-      );
 
-      const nextComment = res.data.comments;
-      const totalCount = res.data.totalCount;
-
-      setLastPostInResults(
-        nextComment.length > 0 ? nextComment[nextComment.length - 1].id : null
-      );
-
-      const mergedItems = [...comments, ...nextComment.slice(0, 5)];
-      const uniqueComments = Array.from(
-        new Map(mergedItems.map((item) => [item.id, item])).values()
-      );
-
-      setComments(uniqueComments);
-      console.log('nextComment :', nextComment);
-
-      // if (totalCount - uniqueComments.length < 5) {
-      //   setLimit(Math.max(totalCount - uniqueComments.length - 1, 0));
-      // }
-    } catch (error) {
-      console.error('Error posting data:', error);
+        setCommentsList(uniqueComments);
+      } catch (error) {
+        console.error('Error posting data:', error);
+      } finally {
+        setLoading(false);
+      }
     }
-  }
 
-  console.log('comments :', comments);
+    getComments(articleId);
+  }, [articleId, canEdit, canScroll]);
+
   async function postComment() {
     try {
       const res = await axios.post(
@@ -64,29 +67,30 @@ export default function Comments({ articleId }) {
           userId: '9cda174e-2e9e-4523-97cd-362e85a39ebf',
         }
       );
-      setComments([res.data, ...comments]);
+
+      setCommentsList([res.data, ...commentsList]);
     } catch (error) {
       console.error('Error posting data:', error);
     }
   }
-
-  console.log('lastPostInResults :', lastPostInResults);
-  console.log('limit :', limit);
 
   async function deleteComment(commentId) {
     try {
       const res = await axios.delete(
         `https://sprint-be-k938.onrender.com/comments/${commentId}`
       );
+      setCursorId(null);
+      setCommentsList([]);
+      setCanEdit((prev) => !prev);
     } catch (error) {
       console.error('Error posting data:', error);
     } finally {
-      await getComments(articleId);
-      setLastPostInResults(null);
-      setLimit(6);
-      setComments([]);
     }
   }
+
+  const handleComment = (event) => {
+    setComment(event.target.value);
+  };
 
   const handleCommentDeleteId = (id) => {
     deleteComment(id);
@@ -101,10 +105,11 @@ export default function Comments({ articleId }) {
   }, [comment]);
 
   useEffect(() => {
-    getComments(articleId);
-  }, [articleId, edit, scroll, limit, lastPostInResults]);
+    setCursorId(null);
+    setCommentsList([]);
+  }, [articleId, canEdit]);
 
-  function handleSubmit(e) {
+  function handleSubmit() {
     postComment();
     setComment('');
   }
@@ -114,16 +119,18 @@ export default function Comments({ articleId }) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [lastPostInResults]);
+  }, [cursorId]);
 
   const handleScroll = () => {
+    if (loading || !hasMore) return;
+
     const scrollPosition = window.scrollY + window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
 
-    if (scrollPosition >= documentHeight - 2000 && !scroll) {
-      setScroll(true);
+    if (scrollPosition >= documentHeight - 100 && !canScroll) {
+      setCanScroll(true);
     } else {
-      setScroll(false);
+      setCanScroll(false);
     }
   };
 
@@ -140,10 +147,11 @@ export default function Comments({ articleId }) {
       <Button disabled={!canSubmit} onClick={handleSubmit} label={'등록'} />
 
       <CommentList
-        comments={comments}
+        comments={commentsList}
         onCommentDeleteId={handleCommentDeleteId}
-        setComments={setEdit}
+        setComments={setCommentsList}
       />
+      {loading && <div>Loading...</div>}
     </div>
   );
 }

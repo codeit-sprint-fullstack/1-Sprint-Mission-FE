@@ -67,8 +67,8 @@ export default function CommentList({
                 id={comment.id}
                 content={comment.content}
                 setEditId={setEditId}
-                setComments={setComments}
                 setOpenOptions={setOpenOptions}
+                setComments={setComments}
               />
             ) : (
               <>
