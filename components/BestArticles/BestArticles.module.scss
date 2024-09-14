@@ -6,6 +6,13 @@
   max-height: 169px;
   height: 100%;
 
+  li {
+    background-color: g.$grey-50;
+    &:hover {
+      background-color: darken(g.$grey-50, 1.5%);
+    }
+  }
+
   @include g.device-size(tablet) {
     li:nth-child(n + 3) {
       display: none;
@@ -21,14 +28,13 @@
 
 .ArticleCard {
   @include g.flex-box(column, center, center);
-  background-color: g.$grey-50;
   position: relative;
   max-width: 384px;
   width: 100%;
   padding: 46px 24px 16px;
   border-radius: 8px;
 
-  h4 {
+  h3 {
     @include g.font(20, 600);
     line-height: 32px;
     color: g.$grey-900;

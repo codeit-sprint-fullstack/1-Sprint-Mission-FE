@@ -6,13 +6,13 @@ import {
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { getArticleList } from "@/lib/api";
-import BestArticles from "@/components/BestArticles/BestArticles";
+import BestArticles from "@/components/BestArticles";
 import Head from "next/head";
 import Link from "next/link";
-import styles from "@/styles/pages/Board.module.scss";
+import styles from "@/styles/pages/Forum.module.scss";
 import Button from "@/components/ui/Button";
-import ArticleList from "@/components/ArticleList/ArticleList";
-import SearchBar from "@/components/SearchBar/SearchBar";
+import ArticleList from "@/components/ArticleList";
+import SearchBar from "@/components/form/SearchBar";
 import DropDown from "@/components/ui/DropDown";
 import { PAGE_SIZE } from "@/var";
 
@@ -48,7 +48,7 @@ export async function getServerSideProps() {
   }
 }
 
-export default function Boards() {
+export default function ForumPage() {
   const [keyword, setKeyword] = useState("");
   const [orderBy, setOrderBy] = useState("recent");
   const { ref, inView } = useInView();
@@ -111,7 +111,7 @@ export default function Boards() {
           <h2>
             전체 게시글 <span>{`(${pages[0].totalCount})`}</span>
           </h2>
-          <Link href="/boards/create-article" passHref>
+          <Link href="/forum/create-article" passHref>
             <Button type="primary">글쓰기</Button>
           </Link>
         </div>

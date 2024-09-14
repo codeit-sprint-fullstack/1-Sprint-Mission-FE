@@ -5,7 +5,7 @@ import Button from "../ui/Button";
 
 export default function Header() {
   const pages = [
-    { label: "자유게시판", path: "/boards" },
+    { label: "자유게시판", path: "/forum" },
     { label: "중고마켓", path: "/products" },
   ];
   return (

@@ -1,6 +1,6 @@
 import Button from "@/components/ui/Button";
 
-export default function createArticle() {
+export default function CreateArticle() {
   return (
     <>
       <div className={styles["top-bar"]}>

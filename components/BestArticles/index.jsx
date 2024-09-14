@@ -1,24 +1,25 @@
 import Image from "next/image";
+import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+import { formatDate, formatLikes } from "@/lib/utils";
 import defaultImg from "../../public/assets/img_default.svg";
 import inactiveHeart from "../../public/assets/icons/ic_heart_inactive.svg";
 import activeHeart from "../../public/assets/icons/ic_heart_active.svg";
 import bestBadge from "../../public/assets/icons/ic_medal.svg";
 import ImageContainer from "../ui/ImgContainer";
 import styles from "./BestArticles.module.scss";
-import { formatDate, likeFormat } from "@/lib/utils";
-import { useQuery } from "@tanstack/react-query";
 
 function ArticleCard({ article, userName }) {
   const articleImg = article.productImg ? article.productImg : defaultImg;
   const likeImg = userName ? activeHeart : inactiveHeart;
   return (
-    <li className={styles.ArticleCard}>
+    <>
       <div className={styles.top}>
         <Image src={bestBadge} alt="best badge icon" />
         <span>Best</span>
       </div>
       <div className={styles.middle}>
-        <h4>{article.title}</h4>
+        <h3>{article.title}</h3>
         <ImageContainer
           src={articleImg}
           width="72px"
@@ -34,13 +35,13 @@ function ArticleCard({ article, userName }) {
             <button>
               <Image src={likeImg} alt="like icon" />
             </button>
-            <span>{likeFormat(article.likeCount)}</span>
+            <span>{formatLikes(article.likeCount)}</span>
           </div>
         </div>
 
         <span className={styles.date}>{formatDate(article.updatedAt)}</span>
       </div>
-    </li>
+    </>
   );
 }
 
@@ -59,7 +60,13 @@ export default function BestArticles() {
   return (
     <ul className={styles.BestArticles}>
       {list.map((article) => {
-        return <ArticleCard article={article} key={article.id} />;
+        return (
+          <li className={styles.ArticleCard} key={article.id}>
+            <Link href={`forum/${article.id}`}>
+              <ArticleCard article={article} />
+            </Link>
+          </li>
+        );
       })}
     </ul>
   );

@@ -12,7 +12,14 @@
     padding-bottom: 24px;
     background-color: #fcfcfc;
 
-    h4 {
+    &:hover {
+      background-color: darken(#fcfcfc, 1.5%);
+    }
+
+    a {
+      width: 100%;
+    }
+    h3 {
       @include g.font(20, 600);
       color: g.$grey-800;
     }

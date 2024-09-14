@@ -1,0 +1,30 @@
+@use "@/styles/globals/shared" as g;
+
+.CommentList {
+  @include g.flex-box(column, center, center, 24px);
+  width: 100%;
+  padding-bottom: 100px;
+
+  li {
+    @include g.flex-box(column, center, center, 24px);
+    border-bottom: 1px solid g.$grey-200;
+    width: 100%;
+    padding-bottom: 12px;
+    background-color: #fcfcfc;
+
+    h4 {
+      @include g.font(14, 400);
+      color: g.$grey-800;
+    }
+  }
+}
+
+.top {
+  @include g.flex-box(row, space-between, center);
+  width: 100%;
+}
+
+.bottom {
+  @include g.flex-box(row, center, center, 8px);
+  align-self: left;
+}
