@@ -18,8 +18,8 @@ const CommentKebabMenu = ({ commentId, onEdit, onDelete }) => {
       />
       {showMenu && ( // showMenu가 true일 때만 메뉴 보여줌
         <div className={styles.kebabMenu}>
-          <button className={styles.menuItem} onClick={onEdit}>댓글 수정</button>
-          <button className={styles.menuItem} onClick={onDelete}>댓글 삭제</button>
+          <div className={styles.menuItem} onClick={onEdit}>댓글 수정</div>
+          <div className={styles.menuItem} onClick={onDelete}>댓글 삭제</div>
         </div>
       )}
     </div>
@@ -27,4 +27,3 @@ const CommentKebabMenu = ({ commentId, onEdit, onDelete }) => {
 };
 
 export default CommentKebabMenu;
-
