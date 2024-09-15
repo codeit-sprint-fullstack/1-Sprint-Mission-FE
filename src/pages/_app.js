@@ -1,3 +1,4 @@
+import '../globals/global.css'
 import '../components/BestPosts.module.css';
 import '../components/PostList.module.css';
 import Navbar from '../components/Navbar';
