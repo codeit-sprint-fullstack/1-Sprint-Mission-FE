@@ -39,20 +39,20 @@ export default function CommentListBody({
   };
 
   // 시간 계산
-  const today = new Date().getTime();
-  const commentDate = new Date(comment.createdAt).getTime();
+  // const today = new Date().getTime();
+  // const commentDate = new Date(comment.createdAt).getTime();
 
-  const timeDifference = Math.floor((today - commentDate) / (1000 * 60));
-  let stringTime;
-  if (timeDifference === -1) {
-    stringTime = `0분 전`;
-  } else if (timeDifference < 60) {
-    stringTime = `${timeDifference}분 전`;
-  } else if (timeDifference / 60 < 24) {
-    stringTime = `${Math.floor(timeDifference / 60)}시간 전`;
-  } else {
-    stringTime = `${Math.floor(timeDifference / (60 * 24))}일 전`;
-  }
+  // const timeDifference = Math.floor((today - commentDate) / (1000 * 60));
+  // let stringTime;
+  // if (timeDifference === -1) {
+  //   stringTime = `0분 전`;
+  // } else if (timeDifference < 60) {
+  //   stringTime = `${timeDifference}분 전`;
+  // } else if (timeDifference / 60 < 24) {
+  //   stringTime = `${Math.floor(timeDifference / 60)}시간 전`;
+  // } else {
+  //   stringTime = `${Math.floor(timeDifference / (60 * 24))}일 전`;
+  // }
 
   return (
     <>
@@ -87,7 +87,7 @@ export default function CommentListBody({
         />
         <div className={style.additionalInformationBox}>
           <div className={style.userName}>코드잇</div>
-          <div className={style.date}>{stringTime}</div>
+          {/* <div className={style.date}>{stringTime}</div> */}
         </div>
       </div>
     </>
