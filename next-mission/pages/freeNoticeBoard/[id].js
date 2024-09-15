@@ -121,15 +121,6 @@ export default function ParticularPage({
     });
   };
 
-  if (!noticeBoardData) {
-    return (
-      <div className={styles.loading}>
-        <Spinner />
-        <p>로딩중입니다. 잠시만 기다려주세요.</p>
-      </div>
-    );
-  }
-
   return (
     <>
       <Head>
