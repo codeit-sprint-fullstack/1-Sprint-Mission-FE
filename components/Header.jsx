@@ -18,6 +18,7 @@ function Header() {
     };
   };
 
+  const user = "";
   return (
     <header>
       <div className={styles.header_box}>
@@ -41,6 +42,16 @@ function Header() {
             </Link>
           </div>
         </div>
+        {user ? (
+          <div>
+            <Image />
+            <span>{user?.name}</span>
+          </div>
+        ) : (
+          <Link href={"Login"}>
+            <button className={styles.login_btn}>로그인</button>
+          </Link>
+        )}
       </div>
     </header>
   );

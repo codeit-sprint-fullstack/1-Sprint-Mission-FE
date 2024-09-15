@@ -2,6 +2,14 @@ import { useState } from "react";
 
 const validateField = (name, value) => {
   switch (name) {
+    case "email":
+      return value.length >= 1 //이메일 타입검사 필요함
+        ? ""
+        : "이메일을 입력해주세요";
+    case "password":
+      return value.length >= 1 //이메일 타입검사 필요함
+        ? ""
+        : "비밀번호를 입력해주세요";
     case "title":
       return value.length >= 1 && value.length <= 15
         ? ""
@@ -43,6 +51,7 @@ const useFormValidation = (initialValues, callback) => {
       [name]: error,
     });
     setDisabled(!!error);
+    console.log(values);
   };
 
   const handleSubmit = (event) => {
