@@ -11,6 +11,7 @@
 .list {
   width: 120rem;
   height: 16.9rem;
+  overflow: hidden;
   margin-top: 2.4rem;
   gap: 2.4rem;
 }
