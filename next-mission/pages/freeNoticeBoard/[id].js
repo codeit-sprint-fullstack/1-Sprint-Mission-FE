@@ -1,6 +1,8 @@
 import CommentFrom from "@/components/particularPage/CommentFrom";
 import CommentList from "@/components/particularPage/CommentList";
 import ParticularInformation from "@/components/particularPage/ParticularInformation";
+import Spinner from "@/components/public/Spinner";
+import styles from '@/styles/FreeNoticeBoard.module.css'
 import instance from "@/lib/axios";
 import Head from "next/head";
 import { notFound } from "next/navigation";
@@ -17,7 +19,6 @@ export async function getServerSideProps(context) {
     const noticeBoardData = res.data;
     const commentData = resComment.data.list ?? [];
     const cursorData = resComment.data.cursorInfo.NextCusor;
-    console.log(commentData)
     return {
       props: {
         noticeBoardData,
@@ -95,7 +96,10 @@ export default function ParticularPage({
     const subject = {
       content: value,
     };
-    const res = await instance.patch(`/freeCommends/${patchCommend.id}`, subject);
+    const res = await instance.patch(
+      `/freeCommends/${patchCommend.id}`,
+      subject
+    );
     const data = res.data;
 
     const newComment = [...comment];
@@ -114,8 +118,17 @@ export default function ParticularPage({
       contentValue: "",
       id: "",
       idx: "",
-    })
+    });
   };
+
+  if (!noticeBoardData) {
+    return (
+      <div className={styles.loading}>
+        <Spinner />
+        <p>로딩중입니다. 잠시만 기다려주세요.</p>
+      </div>
+    );
+  }
 
   return (
     <>

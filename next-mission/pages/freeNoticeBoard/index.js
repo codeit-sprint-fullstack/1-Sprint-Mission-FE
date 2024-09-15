@@ -3,6 +3,8 @@ import BestArticle from "@/components/freeNoticeBoard/BestArticle";
 import Head from "next/head";
 import instance from "@/lib/axios.js";
 import { useEffect, useState } from "react";
+import Spinner from "@/components/public/Spinner";
+import styles from "@/styles/FreeNoticeBoard.module.css";
 
 export async function getServerSideProps() {
   const res = await instance.get(`/noticeBoards?page=1&pageSize=7`);
@@ -60,6 +62,15 @@ export default function FreeNoticeBoard({ data, total }) {
   const loadMoreItems = () => {
     setPage((prevPage) => prevPage + 1);
   };
+
+  if (!data) {
+    return (
+      <div className={styles.loading}>
+        <Spinner />
+        <p>로딩중입니다. 잠시만 기다려주세요.</p>
+      </div>
+    );
+  }
 
   return (
     <>

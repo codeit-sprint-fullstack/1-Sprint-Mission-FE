@@ -2,7 +2,7 @@ import { useState } from "react";
 import style from "./ParticularInformation.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import axios from "@/lib/axios";
+import instance from "@/lib/axios";
 import { useRouter } from "next/router";
 import useTimeCalculation from "../hook/useTimeCalculation";
 
@@ -24,7 +24,7 @@ export default function ParticularInformation({ data }) {
 
   // 삭제 함수
   const deleteHandler = async () => {
-    await axios.delete(`/noticeBoards/${data.id}`);
+    await instance.delete(`/noticeBoards/${data.id}`);
     router.push("/freeNoticeBoard");
   };
 

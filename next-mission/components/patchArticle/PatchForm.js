@@ -2,9 +2,10 @@ import { useState } from "react";
 import style from "../postArticle/PostForm.module.css";
 import { useRouter } from "next/router";
 import instance from "@/lib/axios";
+import { notFound } from "next/navigation";
 
 export default function PatchForm({ data }) {
-  const [activateButton, setActivateButton] = useState(style.button_on);
+  const [activateButton, setActivateButton] = useState(style.buttonOff);
   const [value, setValue] = useState({
     title: data.title,
     content: data.content,
@@ -23,16 +24,16 @@ export default function PatchForm({ data }) {
     }));
 
     if (value.title !== "" && value.content !== "") {
-      setActivateButton(style.button_on);
+      setActivateButton(style.buttonOn);
     }
   };
 
   // 버튼 비/활성화 함수
   const onKetUpHandler = () => {
     if (value.title !== "" && value.content !== "") {
-      setActivateButton(style.button_on);
+      setActivateButton(style.buttonOn);
     } else {
-      setActivateButton(style.button_off);
+      setActivateButton(style.buttonOff);
     }
   };
 
@@ -46,27 +47,33 @@ export default function PatchForm({ data }) {
     ) {
       router.push(`/freeNoticeBoard/${data.id}`);
     } else {
-      await instance.patch(`/noticeBoards/${data.id}`, value);
-      router.push(`/freeNoticeBoard/${data.id}`);
+      try {
+        await instance.patch(`/noticeBoards/${data.id}`, value);
+        router.push(`/freeNoticeBoard/${data.id}`);
+      } catch {
+        return {
+          notFound: true,
+        };
+      }
     }
   };
 
   return (
-    <form className={style.PostForm_form}>
-      <div className={style.PostForm_subject}>
-        <div className={style.PostForm_title}>게시글 수정</div>
+    <form className={style.PostFormForm}>
+      <div className={style.subject}>
+        <div className={style.title}>게시글 수정</div>
         <button
-          className={`${style.PostForm_button} ${style.font16} ${activateButton}`}
+          className={`${style.PostFormButton} ${style.font16} ${activateButton}`}
           onClick={onClickHandler}
         >
           수정
         </button>
       </div>
-      <label className={style.PostForm_label} htmlFor="title">
+      <label className={style.PostFormLabel} htmlFor="title">
         *제목
       </label>
       <input
-        className={`${style.PostForm_input} ${style.input_title} ${style.font16}`}
+        className={`${style.PostFormInput} ${style.inputTitle} ${style.font16}`}
         id="title"
         placeholder="제목을 입력해주세요"
         name="title"
@@ -74,11 +81,11 @@ export default function PatchForm({ data }) {
         onChange={onChangeHandler}
         onKeyUp={onKetUpHandler}
       />
-      <label className={style.PostForm_label} htmlFor="content">
+      <label className={style.PostFormLabel} htmlFor="content">
         *내용
       </label>
       <textarea
-        className={`${style.PostForm_input} ${style.input_contents} ${style.font16}`}
+        className={`${style.PostFormInput} ${style.inputContents} ${style.font16}`}
         id="content"
         placeholder="내용을 입력해주세요"
         name="content"
