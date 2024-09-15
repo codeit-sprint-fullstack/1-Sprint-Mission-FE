@@ -34,6 +34,7 @@ export async function getServerSideProps() {
 export default function Community({ posts }) {
   const [searchValue, setSearchValue] = useState("");
   const [visibleCount, setVisibleCount] = useState(4);
+  const [sortOption, setSortOption] = useState("최신순");
 
   const handleSearchChange = (value) => {
     setSearchValue(value);
@@ -47,9 +48,21 @@ export default function Community({ posts }) {
     setVisibleCount((prevCount) => prevCount + 4);
   };
 
-  const searchedPosts = posts.filter((post) =>
-    post.title.toLowerCase().includes(searchValue.toLowerCase())
-  );
+  const handleSortChange = (option) => {
+    setSortOption(option);
+  };
+
+  const searchedPosts = posts
+    .filter((post) =>
+      post.title.toLowerCase().includes(searchValue.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (sortOption === "최신순") {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      } else {
+        return new Date(a.createdAt) - new Date(b.createdAt);
+      }
+    });
 
   const bestPosts = posts.slice(0, 3);
 
@@ -85,7 +98,7 @@ export default function Community({ posts }) {
           onChange={handleSearchChange}
           onClear={handleClear}
         />
-        <Dropdown />
+        <Dropdown onSortChange={handleSortChange} />
       </div>
       <div className={styles.mainPostContainer}>
         {searchedPosts.slice(0, visibleCount).map((post) => (
