@@ -38,6 +38,7 @@ export default function ArticleDetailPage() {
   } = useQuery({
     queryKey: ["article", { articleId }],
     queryFn: () => getArticleById(articleId),
+    enabled: !!articleId,
   });
 
   if (isPending) return <Loader />;

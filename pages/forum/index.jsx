@@ -8,7 +8,7 @@ import { useInView } from "react-intersection-observer";
 import Head from "next/head";
 import Link from "next/link";
 import { getArticleList } from "@/lib/api";
-import { PAGE_SIZE } from "@/var";
+import { PAGE_SIZE } from "@/variables/var";
 import BestArticles from "@/components/article/BestArticles";
 import ArticleList from "@/components/article/ArticleList";
 import SearchBar from "@/components/form/SearchBar";
@@ -109,6 +109,7 @@ export default function ForumPage() {
       <Head>
         <title>자유 게시판</title>
       </Head>
+
       <section className={styles["best-section"]}>
         <h2>베스트 게시글</h2>
         <BestArticles />
@@ -119,13 +120,14 @@ export default function ForumPage() {
             전체 게시글 <span>{`(${pages[0].totalCount})`}</span>
           </h2>
           <Link href="/forum/create-article" passHref>
-            <Button type="primary">글쓰기</Button>
+            <Button variant="primary">글쓰기</Button>
           </Link>
         </div>
         <div className={styles["article-section-secondbar"]}>
           <SearchBar setKeyword={setKeyword} />
           <DropDown setOrderBy={setOrderBy} orderBy={orderBy} />
         </div>
+
         <ArticleList data={pages} />
 
         <div ref={ref}>

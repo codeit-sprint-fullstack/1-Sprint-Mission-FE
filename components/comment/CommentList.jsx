@@ -38,6 +38,7 @@ export default function CommentList() {
     },
     initialPageParam: null,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
+    enabled: !!articleId,
   });
 
   if (isPending) return <div>로딩중</div>;

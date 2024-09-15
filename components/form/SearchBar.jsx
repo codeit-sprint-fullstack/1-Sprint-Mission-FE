@@ -28,14 +28,14 @@ export default function SearchBar({
   return (
     <form className={styles.SearchBar}>
       <input
-        placeholder={placeHolder}
+        placeHolder={placeHolder}
         value={search}
         name="search"
         onKeyDown={handleKeyDown}
         onChange={handleValueChange}
         autoComplete="off"
       />
-      <Button type="icon" onClick={handleClick}>
+      <Button variant="icon" onClick={handleClick}>
         <Image src={searchIcon} width={24} height={24} alt="search icon" />
       </Button>
     </form>

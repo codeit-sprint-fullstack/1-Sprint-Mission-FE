@@ -27,7 +27,7 @@ export default function KebabMenu() {
 
   return (
     <div className={styles.KebabMenu} ref={dropDownRef}>
-      <Button onClick={toggleDropDown} type="icon">
+      <Button onClick={toggleDropDown} variant="icon">
         <Image src={kebabIcon} width={24} height={24} alt="kebab menu icon" />
       </Button>
       {isOpen && (

@@ -10,6 +10,7 @@ import Head from "next/head";
 import Footer from "@/components/layout/Footer";
 import Main from "@/components/layout/Main";
 import React from "react";
+import { useForm, FormProvider } from "react-hook-form";
 
 export default function App({ Component, pageProps }) {
   const [queryClient] = React.useState(
@@ -23,6 +24,8 @@ export default function App({ Component, pageProps }) {
       })
   );
 
+  const methods = useForm();
+
   return (
     <>
       <Head>
@@ -32,7 +35,9 @@ export default function App({ Component, pageProps }) {
       <Main>
         <QueryClientProvider client={queryClient}>
           <HydrationBoundary state={pageProps.dehydratedState ?? {}}>
-            <Component {...pageProps} />
+            <FormProvider {...methods}>
+              <Component {...pageProps} />
+            </FormProvider>
           </HydrationBoundary>
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
