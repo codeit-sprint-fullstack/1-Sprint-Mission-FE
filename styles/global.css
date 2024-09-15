@@ -1,21 +1,198 @@
-/* styles/global.css 또는 레이아웃 파일의 CSS */
-body,
-html {
+/* Reset Styles */
+* {
   margin: 0;
   padding: 0;
-  height: 100%; /* 화면 전체를 차지하도록 설정 */
+  box-sizing: border-box;
+  font-family: "Pretendard", sans-serif;
 }
 
-#__next {
-  display: flex;
-  flex-direction: column; /* 수직 정렬 */
-  min-height: 100vh; /* 화면 전체 높이를 채우도록 설정 */
+:root {
+  --primary100: #3692ff;
+  --primary200: #196797d6;
+  --primary300: #1251aa;
+  --errorRed: #f74747;
+  --gray900: #111827;
+  --gray800: #1f2937;
+  --gray700: #374151;
+  --gray600: #4b5563;
+  --gray500: #6b7280;
+  --gray400: #9ca3af;
+  --gray300: #d1d5db;
+  --gray200: #e5e7eb;
+  --gray100: #f3f4f6;
+  --gray50: #f9fafb;
+  --borderGray: #dfdfdf;
+  --backGray: #fcfcfc;
+  --white: #ffffff;
+  --footColor: #111827;
 }
 
-.main-content {
-  flex: 1; /* 나머지 공간을 채우도록 설정 */
+html,
+body {
+  font-size: 62.5%; /* 1rem = 10px */
+  line-height: 1.5;
 }
 
-a {
-  color: #f9f9f9;
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+/* HTML5 block element display settings */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: "";
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.text-xs {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
+.text-md {
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+}
+.text-lg {
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+}
+.text-2lg {
+  font-size: 1.8rem;
+  line-height: 2.6rem;
+}
+.text-xl {
+  font-size: 2rem;
+  line-height: 3.2rem;
+}
+
+.bold {
+  font-weight: 700;
+}
+.semibold {
+  font-weight: 600;
+}
+.medium {
+  font-weight: 500;
+}
+.regular {
+  font-weight: 400;
+}
+
+footer {
+  position: relative;
+  width: 100%;
+  bottom: 0;
+  background-color: var(--footColor);
 }

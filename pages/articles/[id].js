@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import axios from "@/pages/api/axios";
-import { useEffect } from "react";
-import Nav from "../../components/Nav";
-import Footer from "../../components/Footer";
+import {
+  getArticle,
+  getComment,
+  deleteArticle,
+} from "@/services/articleService"; // 함수들을 import
 
 export default function Article() {
   const [article, setArticle] = useState();

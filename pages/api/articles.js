@@ -1,6 +1,6 @@
 import instance from "./axios.js";
 
-export async function getArticles(params = {}, cursor = "") {
+export async function getArticle(params = {}, cursor = "") {
   try {
     const res = await instance.get("/articles", {
       params: { ...params, cursor },
@@ -8,11 +8,11 @@ export async function getArticles(params = {}, cursor = "") {
     return res.data;
   } catch (error) {
     console.error("Failed to fetch articles:", error);
-    return null; // 혹은 적절한 기본값을 리턴
+    throw error; // 혹은 적절한 기본값을 리턴
   }
 }
 
-export async function getBestArticles(
+export async function getBestArticle(
   params = {
     orderBy: "favorite",
     limit: 3,
@@ -25,7 +25,7 @@ export async function getBestArticles(
     return res.data;
   } catch (error) {
     console.error("Failed to fetch best articles:", error);
-    return null;
+    throw error;
   }
 }
 
@@ -35,7 +35,7 @@ export async function getArticle(id) {
     return res.data;
   } catch (error) {
     console.error(`Failed to fetch article with id ${id}:`, error);
-    return null;
+    throw error;
   }
 }
 
@@ -45,7 +45,7 @@ export async function updateArticle(id, item) {
     return res.data;
   } catch (error) {
     console.error(`Failed to update article with id ${id}:`, error);
-    return null;
+    throw error;
   }
 }
 
@@ -55,7 +55,7 @@ export async function createArticle(item) {
     return res.data;
   } catch (error) {
     console.error("Failed to create article:", error);
-    return null;
+    throw error;
   }
 }
 
@@ -65,6 +65,6 @@ export async function deleteArticle(id) {
     return res.status;
   } catch (error) {
     console.error(`Failed to delete article with id ${id}:`, error);
-    return null; // 여기서는 에러 상태에 따라 다르게 처리할 수 있습니다.
+    throw error; // 여기서는 에러 상태에 따라 다르게 처리할 수 있습니다.
   }
 }
