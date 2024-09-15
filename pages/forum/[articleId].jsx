@@ -1,15 +1,17 @@
-import KebabMenu from "@/components/ui/KebabMenu";
 import Head from "next/head";
-import ProfileImg from "@/components/ui/ProfileImg";
-import { getArticleById } from "@/lib/api";
-import { QueryClient, useQuery, dehydrate } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { formatDate, formatLikes } from "@/lib/utils";
-import returnIcon from "../../public/assets/icons/ic_arrow_return.svg";
+import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { QueryClient, useQuery, dehydrate } from "@tanstack/react-query";
+import { formatDate, formatLikes } from "@/lib/utils";
+import { getArticleById } from "@/lib/api";
+import KebabMenu from "@/components/ui/KebabMenu";
+import ProfileImg from "@/components/ui/ProfileImg";
 import inactiveHeart from "@/public/assets/icons/ic_heart_inactive.svg";
 import CommentList from "@/components/CommentList";
-
+import returnIcon from "../../public/assets/icons/ic_arrow_return.svg";
+import Msg from "@/components/ui/Msg";
+import Loader from "@/components/ui/Loader";
 import styles from "@/styles/pages/forum/articleId.module.scss";
 
 export async function getServerSideProps(context) {
@@ -41,10 +43,10 @@ export default function ArticleDetailPage() {
     queryFn: () => getArticleById(articleId),
   });
 
-  if (isPending) return <div>로딩중</div>;
+  if (isPending) return <Loader />;
   if (isError) {
     const errMsg = error?.message;
-    return <div>{errMsg}</div>;
+    return <Msg type="error" msg={errMsg} />;
   }
 
   return (
@@ -85,10 +87,12 @@ export default function ArticleDetailPage() {
 
         <CommentList />
 
-        <button className={styles["return-btn"]}>
-          <span>목록으로 돌아가기</span>
-          <Image src={returnIcon} alt="returnIcon" width={24} height={24} />
-        </button>
+        <Link href="/forum">
+          <button className={styles["return-btn"]}>
+            <span>목록으로 돌아가기</span>
+            <Image src={returnIcon} alt="returnIcon" width={24} height={24} />
+          </button>
+        </Link>
       </section>
     </>
   );

@@ -1,0 +1,29 @@
+@use "@/styles/globals/shared" as g;
+
+.Loader {
+  @include g.flex-box(column, center, center, 16px);
+  align-self: center;
+  padding: 30px;
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 8px solid g.$primary-color;
+    border-top: 8px solid g.$grey-300;
+    border-radius: 50%;
+    animation: spin 1s infinite linear;
+  }
+
+  .msg {
+    color: g.$grey-500;
+    text-align: center;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

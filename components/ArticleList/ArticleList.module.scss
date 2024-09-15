@@ -3,7 +3,7 @@
 .ArticleList {
   @include g.flex-box(column, center, center, 24px);
   width: 100%;
-  padding-bottom: 100px;
+  padding-bottom: 48px;
 
   li {
     @include g.flex-box(column, center, center, 16px);

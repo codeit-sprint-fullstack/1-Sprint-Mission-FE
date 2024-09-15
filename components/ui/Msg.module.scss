@@ -1,0 +1,17 @@
+@use "@/styles/globals/shared" as g;
+
+.Msg {
+  align-self: center;
+  padding: 30px;
+  @include g.font(16, 400);
+  color: g.$grey-400;
+}
+
+.Msg.error {
+  @include g.font(16, 400);
+  color: g.$grey-600;
+  span {
+    color: g.$error-red;
+    font-weight: 600;
+  }
+}

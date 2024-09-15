@@ -36,3 +36,13 @@ body {
 
   color: g.$grey-800;
 }
+
+#__next {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+}

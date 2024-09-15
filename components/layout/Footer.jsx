@@ -13,10 +13,10 @@ export default function Footer() {
         <p>&copy;codeit - 2024</p>
         <ul className={styles.extras}>
           <li>
-            <Link href="./privacy">Privacy Policy</Link>
+            <Link href="/privacy">Privacy Policy</Link>
           </li>
           <li>
-            <a href="./faq">FAQ</a>
+            <Link href="/faq">FAQ</Link>
           </li>
         </ul>
 

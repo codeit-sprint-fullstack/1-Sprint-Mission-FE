@@ -5,15 +5,17 @@ import {
 } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import Head from "next/head";
+import Link from "next/link";
 import { getArticleList } from "@/lib/api";
 import { PAGE_SIZE } from "@/var";
 import BestArticles from "@/components/BestArticles";
-import Head from "next/head";
-import Link from "next/link";
 import Button from "@/components/ui/Button";
 import ArticleList from "@/components/ArticleList";
 import SearchBar from "@/components/form/SearchBar";
 import DropDown from "@/components/ui/DropDown";
+import Msg from "@/components/ui/Msg";
+import Loader from "@/components/ui/Loader";
 
 import styles from "@/styles/pages/forum/main.module.scss";
 
@@ -61,6 +63,7 @@ export default function ForumPage() {
     isError,
     isFetching,
     hasNextPage,
+    error,
     fetchNextPage,
   } = useInfiniteQuery({
     queryKey: ["articles", { orderBy, keyword }],
@@ -93,8 +96,11 @@ export default function ForumPage() {
     }
   }, [fetchNextPage, inView, hasNextPage, isFetching]);
 
-  if (isPending) return <p>로딩중</p>;
-  if (isError) return <p>에러</p>;
+  if (isPending) return <Loader />;
+  if (isError) {
+    const errMsg = error?.message;
+    return <Msg type="error" msg={errMsg} />;
+  }
 
   const pages = articleData?.pages || [];
 
@@ -123,11 +129,13 @@ export default function ForumPage() {
         <ArticleList data={pages} />
 
         <div ref={ref}>
-          {isFetchingNextPage
-            ? "더 불러오는중"
-            : hasNextPage
-            ? "새 게시물 불러오기"
-            : "더 불러올 게시물이 없습니다"}
+          {isFetchingNextPage ? (
+            <Loader msg="더 불러오는중" />
+          ) : hasNextPage ? (
+            <Loader msg="새 게시물 불러오는 중" />
+          ) : (
+            <Msg msg="더 불러올 게시물이 없습니다" />
+          )}
         </div>
       </section>
     </>
