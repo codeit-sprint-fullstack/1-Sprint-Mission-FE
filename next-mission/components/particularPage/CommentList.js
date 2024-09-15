@@ -40,7 +40,7 @@ export default function CommentList({
 
   return (
     <>
-      {comment[0] || (
+      {comment.length > 0 || (
         <div className={`${style.noComment} ${style.flexColumn}`}>
           <Image
             src={"/images/Img_speech_bubble.svg"}
@@ -54,7 +54,7 @@ export default function CommentList({
           </div>
         </div>
       )}
-      {comment[0] && (
+      {comment.length > 0 && (
         <ul className={`${style.CommentListUl} ${style.flexColumn}`}>
           {comment.map((data, idx) => {
             if (idx === comment.length - 1) {
