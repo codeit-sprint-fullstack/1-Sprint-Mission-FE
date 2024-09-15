@@ -1,60 +1,69 @@
 // components/Footer.js
-import Image from "next/image";
-import styles from "./Footer.module.css"; // 스타일 파일 추가
+import React from "react";
+import Image from "next/image"; // Next.js의 Image 컴포넌트 사용
+import styles from "./Footer.module.css"; // CSS Module을 사용하여 스타일링
 
-export default function Footer() {
+const Footer = () => {
   return (
     <footer className={styles.footer}>
-      {/* 수정: .footerContent 클래스명을 사용하여 컨텐츠 전체를 감싸는 div 추가 */}
-      <div className={styles.footerContent}>
-        {/* 회사명과 연도를 표시하는 부분 */}
-        <div>© Codeit - 2024</div>
-
-        {/* 수정: 정책 링크를 포함하는 div에 .policy 클래스명 추가 */}
-        <div className={styles.policy}>
-          <a href="/privacy-policy">Privacy Policy</a>
-          <a href="/faq">FAQ</a>
-        </div>
-
-        {/* 수정: 소셜 아이콘을 포함하는 div에 .socialIcons 클래스명 추가 */}
-        <div className={styles.socialIcons}>
-          {/* 각각의 소셜 미디어 아이콘을 이미지로 추가 */}
-          <a
-            href="https://www.facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {/* 수정: 이미지 크기를 작게 조정 (24x24) */}
-            <Image
-              src="/ic_facebook.png"
-              alt="Facebook"
-              width={20}
-              height={20}
-            />
-          </a>
-          <a
-            href="https://www.twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image src="/ic_twitter.png" alt="Twitter" width={20} height={16} />
-          </a>
-          <a
-            href="https://www.youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image src="/ic_youtube.png" alt="YouTube" width={20} height={14} />
-          </a>
-          <a
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image src="/ic_insta.png" alt="Instagram" width={17} height={18} />
-          </a>
-        </div>
+      <div>©codeit - 2024</div>
+      <div className={styles.footerMenu}>
+        <a href="/privacy">Privacy Policy</a>{" "}
+        {/* Next.js의 라우팅 시스템에 맞게 수정 */}
+        <a href="/faq">FAQ</a> {/* Next.js의 라우팅 시스템에 맞게 수정 */}
+      </div>
+      <div className={styles.socialMedia}>
+        <a
+          href="https://www.facebook.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src="/images/social/facebook-logo.svg"
+            alt="페이스북"
+            width={20}
+            height={20}
+          />
+        </a>
+        <a
+          href="https://twitter.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src="/images/social/twitter-logo.svg"
+            alt="트위터"
+            width={20}
+            height={20}
+          />
+        </a>
+        <a
+          href="https://www.youtube.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src="/images/social/youtube-logo.svg"
+            alt="유튜브"
+            width={20}
+            height={20}
+          />
+        </a>
+        <a
+          href="https://www.instagram.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src="/images/social/instagram-logo.svg"
+            alt="인스타그램"
+            width={20}
+            height={20}
+          />
+        </a>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

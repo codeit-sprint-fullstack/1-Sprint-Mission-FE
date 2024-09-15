@@ -1,32 +1,22 @@
-/* styles/Footer.module.css */
+/* components/Footer.module.css */
 
 .footer {
-  display: flex; /* Flexbox 컨테이너 설정 */
-  justify-content: space-between; /* 좌우 공간을 최대한 벌림 */
-  align-items: center; /* 세로축 중앙 정렬 */
-  padding: 10px 200px; /* Nav의 상하 좌우 여백 */
-  background-color: #000000; /* Nav 배경색 */
-  color: #ffffff;
+  background-color: #111827;
+  color: #9ca3af;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3.2rem 20rem 10.8rem 20rem;
+  font-size: 1.6rem;
 }
 
-.footerContent {
-  display: flex; /* Flexbox 설정 */
-  justify-content: space-between; /* 수정: 각 요소를 양 끝으로 정렬 */
-  width: 100%; /* 수정: 전체 너비를 차지하도록 설정 */
+.footerMenu {
+  display: flex;
+  gap: 3rem;
+  color: var(--gray-200);
 }
 
-.policy {
-  display: flex; /* Flexbox 설정 */
-  gap: 10px; /* 수정: 링크들 간의 간격 설정 */
-}
-
-.footer a {
-  margin: 0 10px;
-  color: #ffffff; /* 수정: 링크 색상을 흰색으로 변경 */
-  text-decoration: none;
-}
-
-.socialIcons {
-  display: flex; /* Flexbox 설정 */
-  gap: 10px; /* 수정: 아이콘들 간의 간격 설정 */
+.socialMedia {
+  display: flex;
+  gap: 1.2rem;
 }
