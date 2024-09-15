@@ -28,6 +28,11 @@ export default function Footer() {
             <Image src={instaLogo} alt='인스타 로고' />
           </div>
         </div>
+        <Image
+          src={footerLogo}
+          alt='코드잇 로고'
+          className={styles.codeitLogoMobile}
+        />
       </div>
     </>
   );

@@ -3,13 +3,7 @@ import styles from '@/styles/DropDown.module.css';
 export default function DropDown({ firstAction, secondAction }) {
   return (
     <>
-      <div
-        className={
-          firstAction.label === '최신순'
-            ? styles.freeBoardDropDown
-            : styles.dropDown
-        }
-      >
+      <div className={styles.dropDown}>
         <div
           className={
             firstAction.label === '최신순'

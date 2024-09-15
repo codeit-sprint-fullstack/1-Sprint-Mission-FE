@@ -10,6 +10,7 @@
   display: flex;
   justify-content: space-between;
   margin: auto;
+  gap: 10px;
 }
 
 .codeitLogo {
@@ -30,4 +31,28 @@
   display: flex;
   gap: 12px;
   align-items: center;
+}
+
+.codeitLogoMobile {
+  display: none;
+}
+
+@media screen and (max-width: 1199px) {
+  .footerList {
+    margin: 0 24px;
+  }
+}
+
+@media screen and (max-width: 743px) {
+  .footerList {
+    margin: 0 16px;
+  }
+  .codeitLogo {
+    display: none;
+  }
+
+  .codeitLogoMobile {
+    display: block;
+    margin: 16px;
+  }
 }

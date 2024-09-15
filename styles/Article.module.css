@@ -83,8 +83,23 @@
   cursor: pointer;
 }
 
-
 .link {
   text-decoration: none;
   color: inherit;
+}
+
+@media screen and (max-width: 1199px) {
+  .article {
+    padding: 0 25px;
+    max-width: 1200px;
+    min-height: 1200px;
+  }
+}
+
+@media screen and (max-width: 743px) {
+  .article {
+    padding: 0 25px;
+    max-width: 1200px;
+    min-height: 1200px;
+  }
 }

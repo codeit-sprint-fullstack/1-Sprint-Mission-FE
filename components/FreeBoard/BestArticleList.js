@@ -4,9 +4,27 @@ import bestBadge from '@/public/best_badge.png';
 import Image from 'next/image';
 import styles from '@/styles/BestArticleList.module.css';
 import DateFormat from '@/utils/DateFormat.js';
+import { useEffect, useState } from 'react';
 
-export default function BestArticleList({ articles = [] }) {
-  if (articles.length === 0) {
+export default function BestArticleList({ articles }) {
+  const [bestArticles, setBestArticles] = useState(articles);
+
+  useEffect(() => {
+    const screenWidth = window.innerWidth;
+    let maxArticles;
+
+    if (screenWidth <= 743) {
+      maxArticles = 1;
+    } else if (screenWidth <= 1199) {
+      maxArticles = 2;
+    } else {
+      maxArticles = 3;
+    }
+
+    setBestArticles(articles.slice(0, maxArticles));
+  }, [articles]);
+
+  if (bestArticles.length === 0) {
     return (
       <>
         <div className={styles.mainText}>베스트 게시글</div>
@@ -21,7 +39,7 @@ export default function BestArticleList({ articles = [] }) {
     <>
       <div className={styles.mainText}>베스트 게시글</div>
       <div className={styles.articleList}>
-        {articles.map((article) => (
+        {bestArticles.map((article) => (
           <div key={article.id} className={styles.list}>
             <Link href={`/article/${article.id}`} className={styles.link}>
               <Image src={bestBadge} alt='베스트 뱃지' />

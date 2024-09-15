@@ -15,7 +15,7 @@ export const getServerSideProps = async (context) => {
 
   try {
     const bestArticles = await fetchFreeBoardBestArticlesApi();
-    const articles = await fetchFreeBoardBestArticlesApi({
+    const articles = await fetchFreeBoardArticlesApi({
       keyword,
       orderBy,
       page,
@@ -55,6 +55,7 @@ export default function FreeBoardPage({ bestArticlesData, initialArticles }) {
       const scrollPosition = window.scrollY + window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
 
+      console.log(window);
       if (scrollPosition >= documentHeight - 100) {
         setPagesValue((prev) => prev + 1);
       }

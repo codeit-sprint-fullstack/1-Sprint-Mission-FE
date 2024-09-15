@@ -23,11 +23,16 @@
 }
 
 .dropDownBoxLayout {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.webDropDOnwBox {
   width: 130px;
   height: 42px;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
-  position: relative;
 }
 
 .dropDownBoxText {
@@ -43,7 +48,71 @@
   position: relative;
 }
 
+.dropDownMobile {
+  display: none;
+}
+
 .dropDownLayout {
   margin-left: 119px;
   margin-top: 20px;
+}
+
+.submit {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  top: 9px;
+  left: 16px;
+}
+
+.searchInput {
+  width: 100%;
+  min-width: 1055px;
+  height: 42px;
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 12px;
+  padding-left: 44px;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+}
+
+@media screen and (max-width: 1199px) {
+  .body {
+    margin: 0 24px;
+  }
+
+  .searchInput {
+    min-width: 560px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 743px) {
+  .body {
+    margin: 0 16px;
+  }
+  .webDropDOnwBox {
+    display: none;
+  }
+
+  .dropDownBoxLayout {
+    width: 42px;
+  }
+
+  .dropDownMobile {
+    display: block;
+    margin-left: 10px;
+  }
+
+  .dropDownLayout {
+    margin-left: 40px;
+    margin-top: 10px;
+  }
+
+  .searchInput {
+    min-width: 288px;
+  }
 }

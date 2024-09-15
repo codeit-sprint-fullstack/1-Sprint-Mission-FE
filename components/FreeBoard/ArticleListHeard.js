@@ -1,6 +1,7 @@
 import SearchForm from '@/components/FreeBoard/SearchForm.js';
 import postBtn from '@/public/post_btn.png';
 import arrowDown from '@/public/ic_arrow_down.png';
+import mobileDropDown from '@/public/btn_mobile_sort.png';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '@/styles/FreeBoard.module.css';
@@ -34,11 +35,18 @@ export default function ArticleListHeard({ keyword, setOrderBy }) {
       <div className={styles.menu}>
         <SearchForm keyword={keyword} />
         <div className={styles.dropDownBoxLayout} onClick={handleDropDown}>
-          <div className={styles.dropDownBoxText}>{orderByText}</div>
+          <div className={styles.webDropDOnwBox}>
+            <div className={styles.dropDownBoxText}>{orderByText}</div>
+            <Image
+              src={arrowDown}
+              alt='아래 화살표'
+              className={styles.dropDownArrow}
+            />
+          </div>
           <Image
-            src={arrowDown}
-            alt='아래 화살표'
-            className={styles.dropDownArrow}
+            src={mobileDropDown}
+            alt='모바일 드롭다운 버튼'
+            className={styles.dropDownMobile}
           />
           {showDropDown && (
             <div className={styles.dropDownLayout}>
