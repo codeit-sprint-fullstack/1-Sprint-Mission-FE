@@ -31,9 +31,9 @@ export default function EditArticlePage({ article }) {
   const handleSubmit = async () => {
     try {
       const res = await editArticleApi(titleValue, contentValue, id);
-      const nextArticle = res;
-      setTitleValue(nextArticle.title);
-      setContentValue(nextArticle.content);
+      const article = res;
+      setTitleValue(article.title);
+      setContentValue(article.content);
       router.push(`/article/${id}`); // 페이지 이동
     } catch (error) {
       console.error('Error editing article:', error);
