@@ -8,7 +8,7 @@ import noComment from '@/public/no_comment.png';
 
 import styles from '@/styles/Comment.module.css';
 
-function CreateDate({ createDate }) {
+function DateFormat({ createDate }) {
   const createdDate = new Date(createDate.createdAt);
   const nowDate = new Date();
 
@@ -114,7 +114,7 @@ export default function CommentList({
                           {comment.user.name}
                         </span>
                         <span className={styles.createdDate}>
-                          <CreateDate createDate={comment} />
+                          <DateFormat createDate={comment} />
                         </span>
                       </div>
                     </div>
