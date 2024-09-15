@@ -5,18 +5,20 @@ import { getArticleById } from "@/lib/api";
 import { QueryClient, useQuery, dehydrate } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { formatDate, formatLikes } from "@/lib/utils";
-import inactiveHeart from "@/public/assets/icons/ic_heart_inactive.svg";
+import returnIcon from "../../public/assets/icons/ic_arrow_return.svg";
 import Image from "next/image";
+import inactiveHeart from "@/public/assets/icons/ic_heart_inactive.svg";
 import CommentList from "@/components/CommentList";
-import styles from "@/styles/pages/Forum.module.scss";
+
+import styles from "@/styles/pages/forum/articleId.module.scss";
 
 export async function getServerSideProps(context) {
   const queryClient = new QueryClient();
 
-  const { id } = context.params;
+  const { articleId } = context.params;
   await queryClient.prefetchQuery({
-    queryKey: ["article", { id }],
-    queryFn: () => getArticleById(id),
+    queryKey: ["article", { articleId }],
+    queryFn: () => getArticleById(articleId),
   });
   return {
     props: {
@@ -27,19 +29,23 @@ export async function getServerSideProps(context) {
 
 export default function ArticleDetailPage() {
   const router = useRouter();
-  const { id } = router.query;
+  const { articleId } = router.query;
 
   const {
     isPending,
     isError,
+    error,
     data: article,
   } = useQuery({
-    queryKey: ["article", { id }],
-    queryFn: () => getArticleById(id),
+    queryKey: ["article", { articleId }],
+    queryFn: () => getArticleById(articleId),
   });
 
   if (isPending) return <div>로딩중</div>;
-  if (isError) return <div>로딩중</div>;
+  if (isError) {
+    const errMsg = error?.message;
+    return <div>{errMsg}</div>;
+  }
 
   return (
     <>
@@ -53,26 +59,36 @@ export default function ArticleDetailPage() {
             <h3>{article.title}</h3>
             <KebabMenu />
           </div>
-          <div className={styles.bottom}>
+          <div className={styles.middle}>
             <div className={styles.user}>
               <ProfileImg width="40px" src={article.image} />
-              <span>{article.writer?.name || "총명한 판다"}</span>
+              <span className={styles.name}>
+                {article.writer?.nickname || "총명한 판다"}
+              </span>
               <span>{formatDate(article.createdAt)}</span>
             </div>
+
             <div className={styles["vertical-line"]}></div>
-            <div className={styles.likes}>
+
+            <button className={styles.likes}>
               <Image
                 src={inactiveHeart}
                 alt="heart icon"
                 width={32}
                 height={32}
               />
-              {formatLikes(article.likeCount)}
-            </div>
+              <span>{formatLikes(article.likeCount)}</span>
+            </button>
           </div>
+          <p className={styles.bottom}>{article.content}</p>
         </article>
 
         <CommentList />
+
+        <button className={styles["return-btn"]}>
+          <span>목록으로 돌아가기</span>
+          <Image src={returnIcon} alt="returnIcon" width={24} height={24} />
+        </button>
       </section>
     </>
   );

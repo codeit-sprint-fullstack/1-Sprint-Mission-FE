@@ -6,15 +6,16 @@ import {
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { getArticleList } from "@/lib/api";
+import { PAGE_SIZE } from "@/var";
 import BestArticles from "@/components/BestArticles";
 import Head from "next/head";
 import Link from "next/link";
-import styles from "@/styles/pages/Forum.module.scss";
 import Button from "@/components/ui/Button";
 import ArticleList from "@/components/ArticleList";
 import SearchBar from "@/components/form/SearchBar";
 import DropDown from "@/components/ui/DropDown";
-import { PAGE_SIZE } from "@/var";
+
+import styles from "@/styles/pages/forum/main.module.scss";
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();

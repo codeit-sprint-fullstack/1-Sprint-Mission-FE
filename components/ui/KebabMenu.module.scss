@@ -6,6 +6,8 @@
   position: relative;
   ul {
     @include g.flex-box(column, center, center);
+    @include g.font(16, 400);
+    color: g.$grey-500;
     position: absolute;
     margin-top: 26px;
     z-index: 99;

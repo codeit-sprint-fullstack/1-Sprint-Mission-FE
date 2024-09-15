@@ -13,7 +13,6 @@
     border: 1px solid g.$grey-200;
     padding: 8px 20px;
     border-radius: 12px;
-    color: g.$grey-800;
 
     @include g.device-size(mobile) {
       display: none;

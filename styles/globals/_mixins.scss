@@ -1,5 +1,5 @@
 @mixin font($px, $weight: 400) {
-  font-size: $px / 16 * 1rem;
+  font-size: #{$px / 16}rem;
   font-weight: $weight;
 }
 
@@ -23,11 +23,11 @@
   }
 }
 
-@mixin button($bg: transparent, $padding: 11.5px 23px) {
+@mixin button($bg: transparent, $padding: 11.5px 23px, $radius: 8px) {
   color: #fff;
   @include font(16, 600);
   background-color: $bg;
-  border-radius: 8px;
+  border-radius: $radius;
   padding: $padding;
 }
 

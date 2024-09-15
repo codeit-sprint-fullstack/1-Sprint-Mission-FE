@@ -3,9 +3,9 @@
 .CommentList {
   @include g.flex-box(column, center, center, 24px);
   width: 100%;
-  padding-bottom: 100px;
+  padding-bottom: 48px;
 
-  li {
+  .list {
     @include g.flex-box(column, center, center, 24px);
     border-bottom: 1px solid g.$grey-200;
     width: 100%;
@@ -14,7 +14,6 @@
 
     h4 {
       @include g.font(14, 400);
-      color: g.$grey-800;
     }
   }
 }
@@ -26,5 +25,16 @@
 
 .bottom {
   @include g.flex-box(row, center, center, 8px);
-  align-self: left;
+  align-self: flex-start;
+  &-right {
+    @include g.font(12, 400);
+
+    p {
+      color: g.$grey-600;
+      margin-bottom: 4px;
+    }
+    time {
+      color: g.$grey-400;
+    }
+  }
 }
