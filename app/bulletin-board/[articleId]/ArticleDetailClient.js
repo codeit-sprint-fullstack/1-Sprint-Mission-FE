@@ -53,6 +53,7 @@ export function ArticleDetailClient({ articleId }) {
   return (
     <>
       <Article
+        articleId={articleId}
         title={title}
         content={content}
         profileImgUrl={profileImgUrl}

@@ -19,14 +19,14 @@ import {
   VALID_VALUE,
 } from "@/app/constants/article";
 
-import style from "./article-registration.module.css";
+import style from "./article-edit.module.css";
 
-export function ArticleEdit() {
-  const [titleValid, setTitleValid] = useState(undefined);
-  const [contentValid, setContentValid] = useState(undefined);
+export function ArticleEdit({ articleId, data }) {
+  const [newTitleValid, setNewTitleValid] = useState(VALID_VALUE);
+  const [contentValid, setContentValid] = useState(VALID_VALUE);
   const [registBtnDisable, setRegistBtnDisable] = useState(false);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [newTitle, setNewTitle] = useState(data.title);
+  const [content, setContent] = useState(data.content);
   const registBtnClass = `${style["btn-regist"]}`;
   const topBarClass = `flex flex-row items-center justify-between ${style["top-bar"]}`;
   const topBarTextClass = `font-bold ${style["top-bar-text"]}`;
@@ -34,28 +34,28 @@ export function ArticleEdit() {
 
   const router = useRouter();
 
-  const handleRegistArticle = () => {
-    if (titleValid !== 0 || contentValid !== 0) {
+  const handleModifyArticle = () => {
+    if (newTitleValid !== 0 || contentValid !== 0) {
       return;
     }
 
-    setRegistBtnDisable(true);
+    setRegistBtnDisable(false);
 
-    setArticle(articleId, title, content).then((data) => {
+    setArticle(articleId, newTitle, content).then((data) => {
       const path = `/bulletin-board/${data.id}`;
       router.push(path);
     });
   };
 
   const validateRegistValue = () => {
-    if (titleValid === VALID_VALUE && contentValid === VALID_VALUE) {
+    if (newTitleValid === VALID_VALUE && contentValid === VALID_VALUE) {
       setRegistBtnDisable(false);
     } else {
       setRegistBtnDisable(true);
     }
   };
 
-  const validateTitle = (value) => {
+  const validatenewTitle = (value) => {
     if (!value) {
       return undefined;
     }
@@ -71,20 +71,20 @@ export function ArticleEdit() {
     }
   };
 
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
+  const handleNewTitleChange = (e) => {
+    setNewTitle(e.target.value);
   };
 
-  const getTitleValid = (valid) => {
-    setTitleValid(valid);
+  const getNewTitleValid = (valid) => {
+    setNewTitleValid(valid);
   };
 
-  const getTitleWarn = () => {
-    if (titleValid === WARN_MIN_TITLE_LENGTH) {
+  const getnewTitleWarn = () => {
+    if (newTitleValid === WARN_MIN_TITLE_LENGTH) {
       return (
         <p className="text-warn">{MIN_TITLE_LENGTH}자 이상 입력해주세요</p>
       );
-    } else if (titleValid === WARN_MAX_TITLE_LENGHT) {
+    } else if (newTitleValid === WARN_MAX_TITLE_LENGHT) {
       return (
         <p className="text-warn">{MAX_TITLE_LENGHT}자 이하로 입력해주세요</p>
       );
@@ -133,7 +133,7 @@ export function ArticleEdit() {
 
   useEffect(() => {
     validateRegistValue();
-  }, [titleValid, contentValid]);
+  }, [newTitleValid, contentValid]);
 
   return (
     <div className={style.main}>
@@ -142,20 +142,21 @@ export function ArticleEdit() {
           <p className={topBarTextClass}>게시글 수정하기</p>
           <button
             className={registBtnClass}
-            onClick={handleRegistArticle}
+            onClick={handleModifyArticle}
             disabled={registBtnDisable}
           />
         </div>
-        <div className={style["title-input-set"]}>
+        <div className={style["newTitle-input-set"]}>
           <p className={labelClass}>*제목</p>
           <div className={style["input-frame"]}>
             <Input
-              validateFunc={validateTitle}
-              onChange={handleTitleChange}
-              getValid={getTitleValid}
+              validateFunc={validatenewTitle}
+              onChange={handleNewTitleChange}
+              getValid={getNewTitleValid}
               placeholder={"제목을 입력해주세요"}
+              value={newTitle}
             ></Input>
-            {getTitleWarn()}
+            {getnewTitleWarn()}
           </div>
         </div>
         <div className={style["content-text-area-set"]}>
@@ -166,6 +167,7 @@ export function ArticleEdit() {
               onChange={handleContentChange}
               getValid={getContentValid}
               placeholder={"내용을 입력해주세요"}
+              value={content}
             ></TextArea>
             {getContentWarn()}
           </div>

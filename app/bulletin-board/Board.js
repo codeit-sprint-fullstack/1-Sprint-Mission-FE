@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
 
@@ -77,6 +79,7 @@ export function Board() {
         return (
           <ArticlePreview
             key={index}
+            articleId={article.id}
             title={article.title}
             profileImgUrl={article.user.image}
             nickname={article.user.nickname}
@@ -96,6 +99,7 @@ export function Board() {
         return (
           <ArticlePreview
             key={index}
+            articleId={article.id}
             title={article.title}
             profileImgUrl={article.user.image}
             nickname={article.user.nickname}

@@ -28,6 +28,7 @@ export function BestArticle({
   const articleBottomNicknameClass = `flex items-center font-normal text-gray-600 align-middle ${style["article-bottom-nickname"]}`;
 
   const handleClickArticle = () => {};
+  console.log("BestArticle articleId : ", articleId);
   const link = `/bulletin-board/${articleId}`;
 
   return (

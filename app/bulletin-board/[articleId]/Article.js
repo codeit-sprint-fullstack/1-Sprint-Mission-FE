@@ -6,10 +6,12 @@ import Favorite from "@/app/components/Favorite";
 import { ARTICLE_DETAIL } from "@/app/constants/Favorite";
 import { PROFILE_H40 } from "@/app/constants/Profile";
 import { DATE } from "@/app/constants/date";
+import DropDownKebabArticle from "@/app/components/DropDownKebabArticle";
 
 import style from "./article.module.css";
 
 export function Article({
+  articleId,
   title,
   content,
   profileImgUrl,
@@ -19,7 +21,7 @@ export function Article({
 }) {
   const topBarClass = `flex flex-row justify-between ${style["top-bar"]}`;
   const topBarTextClass = `font-bold ${style["top-bar-text"]}`;
-  const topBarBtnEllipsis = `${style["top-bar-btn-ellipsis"]}`;
+  // const topBarBtnEllipsis = `${style["top-bar-btn-ellipsis"]}`;
   const middleBarClass = `flex flex-row items-center ${style["middle-bar"]}`;
   const middleBarOwnerDateSetClass = `flex flex-row items-center ${style["middle-bar-owner-data-set"]}`;
   const middleBarOwnerClass = `font-medium ${style["middle-bar-owner"]}`;
@@ -38,12 +40,12 @@ export function Article({
     );
   };
 
-  // 임시로 <button className={topBarBtnEllipsis} /> 사용. dropdown으로 기획 후 변경 예정
   return (
     <div className={style.article}>
       <div className={topBarClass}>
         <div className={topBarTextClass}>{title}</div>
-        <button className={topBarBtnEllipsis} />
+        {/* <button className={topBarBtnEllipsis} /> */}
+        <DropDownKebabArticle articleId={articleId} />
       </div>
       <div className={middleBarClass}>
         <Profile type={PROFILE_H40} profileImgUrl={profileImgUrl} />

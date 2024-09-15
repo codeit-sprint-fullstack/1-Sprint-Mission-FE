@@ -27,6 +27,7 @@ export function ArticlePreview({
   const articlePreviewBottomBarNicknameDateClass = `flex flex-row items-center ${style["bottom-bar-nickname-date"]}`;
   const articlePreviewBottomNicknameClass = `font-normal ${style["nickname-name"]}`;
 
+  console.log("ArticlePreview articleId : ", articleId);
   const link = `/bulletin-board/${articleId}`;
 
   return (
