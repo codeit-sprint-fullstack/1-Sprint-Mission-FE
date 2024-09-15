@@ -48,7 +48,7 @@ export default function ArticleListHeard({ keyword, setOrderBy }) {
                   label: '최신순',
                 }}
                 secondAction={{
-                  onClickHandler: () => handleOrderByClick('old'),
+                  onClickHandler: () => handleOrderByClick('favorite'),
                   label: '좋아요순',
                 }}
               />

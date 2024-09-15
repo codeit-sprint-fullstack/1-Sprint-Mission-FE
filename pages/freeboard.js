@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import ArticleList from '@/components/FreeBoard/ArticleList.js';
 import BestArticleList from '@/components/FreeBoard/BestArticleList.js';
@@ -8,83 +8,58 @@ import {
   fetchFreeBoardBestArticles,
 } from '@/utils/api/articleApi.js';
 import styles from '@/styles/FreeBoard.module.css';
+import useArticles from '@/hooks/useArticles';
 
-export default function FreeBoardPage() {
-  const [bestArticles, setBestArticles] = useState([]);
-  const [articles, setArticles] = useState([]);
-  const [orderBy, setOrderBy] = useState('recent');
-  const [pagesValue, setPagesValue] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
-  const { keyword } = router.query;
+export const getServerSideProps = async (context) => {
+  const { keyword = '', orderBy = 'recent', page = 1 } = context.query;
 
-  const fetchArticles = async (page) => {
-    setLoading(true);
-    const { data, pages } = await fetchFreeBoardArticles({
+  try {
+    const bestArticles = await fetchFreeBoardBestArticles();
+    const articles = await fetchFreeBoardArticles({
       keyword,
       orderBy,
       page,
     });
 
-    setLoading(false);
-
-    setArticles((prevArticles) => {
-      const mergedItems = [...prevArticles, ...data];
-      const uniqueArticles = Array.from(
-        new Map(mergedItems.map((item) => [item.id, item])).values()
-      );
-      return uniqueArticles;
-    });
-
-    if (page >= pages) {
-      setHasMore(false);
-    }
-  };
-
-  const getBestArticles = async () => {
-    const { data } = await fetchFreeBoardBestArticles();
-    setBestArticles(data);
-  };
-
-  useEffect(() => {
-    getBestArticles();
-    fetchArticles();
-  }, []);
-
-  useEffect(() => {
-    setPagesValue(1);
-    setArticles([]);
-    setHasMore(true);
-    fetchArticles(1);
-  }, [keyword, orderBy]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (loading || !hasMore) return;
-
-      const scrollPosition = window.scrollY + window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-
-      if (scrollPosition >= documentHeight - 100) {
-        setPagesValue((prev) => prev + 1);
-      }
+    return {
+      props: {
+        bestArticlesData: bestArticles.data,
+        initialArticles: articles.data || [],
+        articlesTotal: articles.total,
+        articlesPages: articles.pages || 0,
+        initialOrderBy: orderBy,
+        initialKeyword: keyword,
+      },
     };
+  } catch (error) {
+    console.error('Error fetching article:', error);
+    return {
+      props: {
+        bestArticlesData: [],
+        initialArticles: [],
+        articlesTotal: 0,
+        articlesPages: 0,
+        initialOrderBy: 'recent',
+        initialKeyword: '',
+      },
+    };
+  }
+};
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasMore, loading]);
+export default function FreeBoardPage({ bestArticlesData, initialArticles }) {
+  const [orderBy, setOrderBy] = useState('recent');
+  const router = useRouter();
+  const { keyword } = router.query;
 
-  useEffect(() => {
-    if (pagesValue > 0) {
-      fetchArticles(pagesValue);
-    }
-  }, [pagesValue]);
+  const { articles, loading } = useArticles({
+    initialArticles,
+    orderBy,
+  });
 
   return (
     <>
       <div className={styles.body}>
-        <BestArticleList articles={bestArticles} />
+        <BestArticleList articles={bestArticlesData} />
         <ArticleListHeard keyword={keyword} setOrderBy={setOrderBy} />
         <ArticleList articles={articles} />
         {loading && <div>Loading...</div>}
