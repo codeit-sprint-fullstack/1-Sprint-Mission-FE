@@ -16,8 +16,7 @@ export default function Comments({ articleId }) {
     canEdit,
     canSubmit,
     loading,
-    cursorId,
-    setCursorId,
+    cursorIdRef,
     hasMore,
   } = useComments({
     articleId,
@@ -48,7 +47,7 @@ export default function Comments({ articleId }) {
   }, [articleId, canEdit, canScroll]);
 
   useEffect(() => {
-    setCursorId(null);
+    cursorIdRef.current === null;
     setCommentsList([]);
   }, [articleId, canEdit]);
 
@@ -70,7 +69,7 @@ export default function Comments({ articleId }) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [cursorId]);
+  }, [comment]);
 
   return (
     <div className={styles.submit}>

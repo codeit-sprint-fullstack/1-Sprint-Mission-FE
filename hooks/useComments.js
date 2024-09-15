@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import {
   fetchCommentsApi,
   postCommentApi,
@@ -13,19 +13,18 @@ export default function useComments({
 }) {
   const [canEdit, setCanEdit] = useState(false);
   const [canSubmit, setCanSubmit] = useState(false);
-  const [cursorId, setCursorId] = useState(null);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
+  let cursorIdRef = useRef(null);
 
   async function getComments(articleId) {
     setLoading(true);
     try {
-      const res = await fetchCommentsApi(articleId, cursorId);
+      const res = await fetchCommentsApi(articleId, cursorIdRef.current);
       const { comments, totalCount } = res;
 
-      setCursorId(
-        comments.length > 0 ? comments[comments.length - 1].id : null
-      );
+      cursorIdRef.current =
+        comments.length > 0 ? comments[comments.length - 1].id : null;
 
       const mergedItems = [...commentsList, ...comments.slice(0, 5)];
       const uniqueComments = Array.from(
@@ -47,7 +46,7 @@ export default function useComments({
   async function deleteComments(targetId) {
     try {
       const res = await deleteCommentApi(targetId);
-      setCursorId(null);
+      cursorIdRef.current = null;
       setCommentsList([]);
       setHasMore(true);
       setCanEdit((prev) => !prev);
@@ -81,8 +80,7 @@ export default function useComments({
     canEdit,
     canSubmit,
     loading,
-    cursorId,
-    setCursorId,
+    cursorIdRef,
     hasMore,
   };
 }
