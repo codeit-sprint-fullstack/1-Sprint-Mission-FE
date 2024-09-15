@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Image from 'next/image';
 import line from '@/public/heartLine.png';
 import profileIcon from '@/public/ic_profile.png';
@@ -7,33 +7,36 @@ import heartIcon from '@/public/ic_heart.png';
 import dotIcon from '@/public/ic_dot.png';
 import DateFormat from '@/utils/DateFormat.js';
 import DropDown from '@/utils/DropDown.js';
-import { deleteArticle } from '@/utils/api/articleApi.js';
+import { deleteArticleApi } from '@/utils/api/articleApi.js';
 import styles from '@/styles/Article.module.css';
 
 export default function ArticleDetail({ article }) {
   const [openOptions, setOpenOptions] = useState(false);
-
   const router = useRouter();
   const { id } = router.query;
 
   // useCallback 사용
 
-  const handleDropDown = () => {
+  const handleDropDown = useCallback(() => {
     setOpenOptions((prev) => !prev);
-  };
+  }, []);
 
-  const handleDelete = async () => {
-    try {
-      await deleteArticle(id);
-      router.push('/freeboard');
-    } catch (error) {
-      console.error('Error deleting article:', error);
+  const buttonEvent = async () => {
+    if (confirm('정말 삭제하시겠습니까??') == true) {
+      try {
+        await deleteArticleApi(article.id);
+        router.push('/freeboard');
+      } catch (error) {
+        console.error('Error deleting article:', error);
+      }
+    } else {
+      return;
     }
   };
 
-  const handleEdit = () => {
+  const handleEdit = useCallback(() => {
     router.push(`/article/edit/${id}`);
-  };
+  }, [id, router]);
 
   return (
     <>
@@ -53,7 +56,7 @@ export default function ArticleDetail({ article }) {
                 label: '수정하기',
               }}
               secondAction={{
-                onClickHandler: handleDelete,
+                onClickHandler: buttonEvent,
                 label: '삭제하기',
               }}
             />
