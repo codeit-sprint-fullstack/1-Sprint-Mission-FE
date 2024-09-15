@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { formatDate, formatLikes } from "@/lib/utils";
+import ImageContainer from "../ui/ImgContainer";
 import defaultImg from "../../public/assets/img_default.svg";
 import inactiveHeart from "../../public/assets/icons/ic_heart_inactive.svg";
 import activeHeart from "../../public/assets/icons/ic_heart_active.svg";
 import bestBadge from "../../public/assets/icons/ic_medal.svg";
-import ImageContainer from "../ui/ImgContainer";
 import styles from "./BestArticles.module.scss";
 
 function ArticleCard({ article, userName }) {
