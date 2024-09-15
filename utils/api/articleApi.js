@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const baseUrl = 'https://sprint-be-k938.onrender.com/articles';
 
-export async function fetchFreeBoardArticles({ orderBy, keyword, page }) {
+export async function fetchFreeBoardArticlesApi({ orderBy, keyword, page }) {
   try {
     const res = await axios.get(`${baseUrl}/freeboard`, {
       params: {
@@ -19,7 +19,7 @@ export async function fetchFreeBoardArticles({ orderBy, keyword, page }) {
   }
 }
 
-export async function fetchFreeBoardBestArticles() {
+export async function fetchFreeBoardBestArticlesApi() {
   try {
     const res = await axios.get(`${baseUrl}/freeboard`, {
       params: {
@@ -34,7 +34,7 @@ export async function fetchFreeBoardBestArticles() {
   }
 }
 
-export async function fetchArticle(targetId) {
+export async function fetchArticleApi(targetId) {
   try {
     const res = await axios.get(`${baseUrl}/${targetId}`);
     return res.data;
@@ -43,7 +43,7 @@ export async function fetchArticle(targetId) {
   }
 }
 
-export async function postArticle({ titleValue, contentValue }) {
+export async function postArticleApi({ titleValue, contentValue }) {
   try {
     const res = await axios.post(`${baseUrl}`, {
       title: titleValue,
@@ -58,7 +58,7 @@ export async function postArticle({ titleValue, contentValue }) {
   }
 }
 
-export async function editArticle(titleValue, contentValue, targetId) {
+export async function editArticleApi(titleValue, contentValue, targetId) {
   try {
     const res = await axios.patch(`${baseUrl}/${targetId}`, {
       title: titleValue,
@@ -71,7 +71,7 @@ export async function editArticle(titleValue, contentValue, targetId) {
   }
 }
 
-export async function deleteArticle(targetId) {
+export async function deleteArticleApi(targetId) {
   try {
     const res = await axios.delete(`${baseUrl}/${targetId}`);
 

@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import ArticleList from '@/components/FreeBoard/ArticleList.js';
 import BestArticleList from '@/components/FreeBoard/BestArticleList.js';
 import ArticleListHeard from '@/components/FreeBoard/ArticleListHeard.js';
 import {
-  fetchFreeBoardArticles,
-  fetchFreeBoardBestArticles,
+  fetchFreeBoardArticlesApi,
+  fetchFreeBoardBestArticlesApi,
 } from '@/utils/api/articleApi.js';
 import styles from '@/styles/FreeBoard.module.css';
 import useArticles from '@/hooks/useArticles';
@@ -14,8 +14,8 @@ export const getServerSideProps = async (context) => {
   const { keyword = '', orderBy = 'recent', page = 1 } = context.query;
 
   try {
-    const bestArticles = await fetchFreeBoardBestArticles();
-    const articles = await fetchFreeBoardArticles({
+    const bestArticles = await fetchFreeBoardBestArticlesApi();
+    const articles = await fetchFreeBoardBestArticlesApi({
       keyword,
       orderBy,
       page,
@@ -25,10 +25,6 @@ export const getServerSideProps = async (context) => {
       props: {
         bestArticlesData: bestArticles.data,
         initialArticles: articles.data || [],
-        articlesTotal: articles.total,
-        articlesPages: articles.pages || 0,
-        initialOrderBy: orderBy,
-        initialKeyword: keyword,
       },
     };
   } catch (error) {
@@ -37,10 +33,6 @@ export const getServerSideProps = async (context) => {
       props: {
         bestArticlesData: [],
         initialArticles: [],
-        articlesTotal: 0,
-        articlesPages: 0,
-        initialOrderBy: 'recent',
-        initialKeyword: '',
       },
     };
   }
@@ -51,10 +43,26 @@ export default function FreeBoardPage({ bestArticlesData, initialArticles }) {
   const router = useRouter();
   const { keyword } = router.query;
 
-  const { articles, loading } = useArticles({
+  const { articles, loading, hasMore, setPagesValue } = useArticles({
     initialArticles,
     orderBy,
   });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (loading || !hasMore) return;
+
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      if (scrollPosition >= documentHeight - 100) {
+        setPagesValue((prev) => prev + 1);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [hasMore, loading]);
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { fetchFreeBoardArticles } from '@/utils/api/articleApi.js';
+import { fetchFreeBoardArticlesApi } from '@/utils/api/articleApi.js';
 
 export default function useArticles({ orderBy, initialArticles }) {
   const [articles, setArticles] = useState(initialArticles);
@@ -15,7 +15,7 @@ export default function useArticles({ orderBy, initialArticles }) {
   const fetchArticles = async (page) => {
     setLoading(true);
     try {
-      const { data, pages } = await fetchFreeBoardArticles({
+      const { data, pages } = await fetchFreeBoardArticlesApi({
         keyword,
         orderBy,
         page,
@@ -49,26 +49,10 @@ export default function useArticles({ orderBy, initialArticles }) {
   }, [keyword, orderBy]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (loading || !hasMore) return;
-
-      const scrollPosition = window.scrollY + window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-
-      if (scrollPosition >= documentHeight - 100) {
-        setPagesValue((prev) => prev + 1);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasMore, loading]);
-
-  useEffect(() => {
     if (pagesValue > 0) {
       fetchArticles(pagesValue);
     }
   }, [pagesValue]);
 
-  return { articles, loading };
+  return { articles, loading, hasMore, setPagesValue };
 }

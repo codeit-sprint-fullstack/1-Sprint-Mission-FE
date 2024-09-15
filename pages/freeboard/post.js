@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import ArticleFormFields from '@/utils/ArticleFormFields';
-import { postArticle } from '@/utils/api/articleApi.js';
+import { postArticleApi } from '@/utils/api/articleApi.js';
 
 export default function PostArticlePage() {
   const [titleValue, setTitleValue] = useState('');
@@ -12,7 +12,7 @@ export default function PostArticlePage() {
 
   const handleSubmit = async () => {
     try {
-      const res = await postArticle({
+      const res = await postArticleApi({
         titleValue,
         contentValue,
       });

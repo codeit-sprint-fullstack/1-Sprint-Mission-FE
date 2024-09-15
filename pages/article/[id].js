@@ -6,13 +6,13 @@ import Comments from '@/components/ArticleDetail/Comments.js';
 import ArticleDetailInfo from '@/components/ArticleDetail/ArticleDetailInfo';
 import styles from '@/styles/Article.module.css';
 
-import { fetchArticle } from '@/utils/api/articleApi.js';
+import { fetchArticleApi } from '@/utils/api/articleApi.js';
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
 
   try {
-    const article = await fetchArticle(id);
+    const article = await fetchArticleApi(id);
     return {
       props: { article },
     };

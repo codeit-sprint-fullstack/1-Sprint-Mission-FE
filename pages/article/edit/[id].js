@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import ArticleFormFields from '@/utils/ArticleFormFields';
 
-import { fetchArticle, editArticle } from '@/utils/api/articleApi.js';
+import { fetchArticleApi, editArticleApi } from '@/utils/api/articleApi.js';
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
 
   try {
-    const article = await fetchArticle(id);
+    const article = await fetchArticleApi(id);
     return {
       props: { article },
     };
@@ -30,7 +30,7 @@ export default function EditArticlePage({ article }) {
 
   const handleSubmit = async () => {
     try {
-      const res = await editArticle(titleValue, contentValue, id);
+      const res = await editArticleApi(titleValue, contentValue, id);
       const nextArticle = res;
       setTitleValue(nextArticle.title);
       setContentValue(nextArticle.content);
