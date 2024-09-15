@@ -13,7 +13,6 @@ export default function useComments({
 }) {
   const [canEdit, setCanEdit] = useState(false);
   const [canSubmit, setCanSubmit] = useState(false);
-  const [canScroll, setCanScroll] = useState(false);
   const [cursorId, setCursorId] = useState(null);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -81,10 +80,9 @@ export default function useComments({
     postComment,
     canEdit,
     canSubmit,
-    canScroll,
     loading,
     cursorId,
     setCursorId,
-    setCanScroll,
+    hasMore,
   };
 }
