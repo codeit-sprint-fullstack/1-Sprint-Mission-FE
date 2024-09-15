@@ -80,7 +80,7 @@ export async function deleteArticle(id) {
 // 댓글 목록 조회
 export async function fetchComments(articleId) {
   try {
-    const response = await api.get(`/api/comments/articles/${articleId}/comments`);  // 경로 수정
+    const response = await api.get(`/api/comments/articles/${articleId}/comments`);
     return response.data.list;  // 'list' 배열만 반환
   } catch (error) {
     console.error('댓글 목록 조회 실패:', error);
@@ -92,7 +92,7 @@ export async function fetchComments(articleId) {
 // 댓글 등록
 export async function createComment(articleId, commentData) {
   try {
-    const response = await api.post(`/api/comments/articles/${articleId}/comments`, commentData);  // 경로 수정
+    const response = await api.post(`/api/comments/articles/${articleId}/comments`, commentData);
     return response.data;
   } catch (error) {
     console.error('댓글 등록 실패:', error);
@@ -103,7 +103,7 @@ export async function createComment(articleId, commentData) {
 // 댓글 수정
 export async function updateComment(commentId, commentData) {
   try {
-    const response = await api.patch(`/api/comments/${commentId}`, commentData);  // 경로 수정
+    const response = await api.patch(`/api/comments/${commentId}`, commentData);
     return response.data;
   } catch (error) {
     console.error('댓글 수정 실패:', error);
@@ -114,7 +114,7 @@ export async function updateComment(commentId, commentData) {
 // 댓글 삭제
 export async function deleteComment(commentId) {
   try {
-    const response = await api.delete(`/api/comments/${commentId}`);  // 경로 수정
+    const response = await api.delete(`/api/comments/${commentId}`);
     return response.data;
   } catch (error) {
     console.error('댓글 삭제 실패:', error);

@@ -1,6 +1,6 @@
-import BestPosts from '../src/components/next/BestPosts';
-import PostList from '../src/components/next/PostList';
-import { fetchArticles, fetchBestArticles } from '../src/api/api'; //
+import BestPosts from '../components/BestPosts';
+import PostList from '../components/PostList';
+import { fetchArticles, fetchBestArticles } from '../api/api'; //
 
 const BoardPage = ({ initialPosts, bestPosts }) => {
   return (

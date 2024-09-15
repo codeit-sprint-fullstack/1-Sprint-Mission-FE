@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { createArticle } from '../../src/api/api';
+import { createArticle } from '../../api/api';
 import styles from '../../styles/create.module.css';
-import RegisterButton from '../../src/components/next/RegisterButton';
+import RegisterButton from '../../components/RegisterButton';
 
 // 날짜를 YYYY.MM.DD 형식으로 변환하는 함수
 const formatDate = (dateString) => {
@@ -10,8 +10,8 @@ const formatDate = (dateString) => {
 };
 
 const CreateArticle = () => {
-  const [title, setTitle] = useState('');  
-  const [content, setContent] = useState(''); 
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const [createdAt] = useState(formatDate(new Date()));  // 날짜 변환 후 저장
   const router = useRouter();
 

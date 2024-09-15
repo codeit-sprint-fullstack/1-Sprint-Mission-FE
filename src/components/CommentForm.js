@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createComment } from '../../api/api'; 
+import { createComment } from '../api/api';
 import styles from './CommentForm.module.css';
 
 const CommentForm = ({ articleId, addNewComment }) => {

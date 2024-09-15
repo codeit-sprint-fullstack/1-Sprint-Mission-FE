@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { updateArticle, fetchArticleById } from '../../../src/api/api';
+import { updateArticle, fetchArticleById } from '../../../api/api';
 import styles from '../../../styles/create.module.css'; // 게시글 등록 페이지와 동일한 CSS 파일 적용
-import EditButton from '../../../src/components/next/EditButton'; // 새로 만든 EditButton 사용
+import EditButton from '../../../components/EditButton';
 
 const EditArticle = () => {
   const router = useRouter();
   const { id: articleId } = router.query; // URL에서 id를 articleId로 가져오기
 
-  const [title, setTitle] = useState('');  
-  const [content, setContent] = useState(''); 
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
 
   useEffect(() => {
     if (articleId) {

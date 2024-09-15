@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import SearchBar from './SearchBar';
 import SortOptions from './SortOptions';
 import PostItem from './PostItem';
-import WriteButton from './WriteButton';  // 글쓰기 버튼 복원
+import WriteButton from './WriteButton';
 import styles from './PostList.module.css';
-import { fetchArticles } from '../../api/api';
+import { fetchArticles } from '../api/api';
 
 const PostList = ({ initialPosts }) => {
   const [posts, setPosts] = useState(initialPosts || []);
@@ -12,15 +12,15 @@ const PostList = ({ initialPosts }) => {
   const [sortOrder, setSortOrder] = useState('recent');
 
   const addNewPost = (newPost) => {
-    setPosts([newPost, ...posts]); 
-    console.log('New Post Added:', posts);  
+    setPosts([newPost, ...posts]);
+    console.log('New Post Added:', posts);
   };
 
   // 키워드 검색을 통한 필터링된 게시글 목록
   const filteredPosts = posts.filter(post =>
     post.title.toLowerCase().includes(keyword.toLowerCase())
   );
-  console.log('Filtered posts:', filteredPosts);  
+  console.log('Filtered posts:', filteredPosts);
 
   return (
     <div className={styles.postList}>
@@ -59,14 +59,14 @@ const PostList = ({ initialPosts }) => {
 export async function getServerSideProps() {
   try {
     const data = await fetchArticles({ page: 1, pageSize: 10, orderBy: 'recent' });
-    console.log('Fetched articles data:', data); 
+    console.log('Fetched articles data:', data);
     return {
-      props: { initialPosts: data.list }, 
+      props: { initialPosts: data.list },
     };
   } catch (error) {
     console.error('Error fetching posts:', error);
     return {
-      props: { initialPosts: [] }, 
+      props: { initialPosts: [] },
     };
   }
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from './BestPosts.module.css';
-import { fetchBestArticles } from '../../api/api';
+import { fetchBestArticles } from '../api/api';
 
 // 날짜를 YYYY.MM.DD 형식으로 변환하는 함수
 const formatDate = (dateString) => {
@@ -41,7 +41,7 @@ const BestPosts = ({ bestPosts }) => {
     const handleResize = () => {
       const width = window.innerWidth;
       if (width < 744) {
-        setColumns(1); 
+        setColumns(1);
       } else if (width >= 744 && width < 1200) {
         setColumns(2);
       } else {

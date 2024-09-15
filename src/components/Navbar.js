@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import styles from './Navbar.module.css'; 
+import styles from './Navbar.module.css';
 
 const Navbar = () => {
   const [logoSrc, setLogoSrc] = useState('/image/logo.svg');
@@ -24,7 +24,6 @@ const Navbar = () => {
     };
   }, []);
 
-  // 모듈 방식으로 클래스 적용
   const navbarClass = router.pathname === '/registration' ? `${styles.navbar} ${styles.registrationPage}` : styles.navbar;
 
   return (
@@ -32,11 +31,11 @@ const Navbar = () => {
       <img
         src={logoSrc}
         alt="Panda"
-        className={styles.panda} // CSS 모듈 방식으로 클래스 적용
+        className={styles.panda}
         onClick={() => router.push('/')}
         style={{ cursor: 'pointer' }}
       />
-      <div className={styles.navLinks}> {/* CSS 모듈 방식으로 클래스 적용 */}
+      <div className={styles.navLinks}>
         <Link href="/" passHref>
           <span className={styles.boardLink}>자유게시판</span>
         </Link>

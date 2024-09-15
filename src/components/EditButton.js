@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { updateArticle } from '../../api/api'; // 게시글 수정 API 호출
+import { updateArticle } from '../api/api'; // 게시글 수정 API 호출
 import styles from './RegisterButton.module.css'; // 동일한 CSS 파일 사용
 
 const EditButton = ({ articleId, title, content }) => {

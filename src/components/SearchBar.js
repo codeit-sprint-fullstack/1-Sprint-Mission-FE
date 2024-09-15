@@ -7,7 +7,7 @@ const SearchBar = ({ setKeyword }) => {
   };
 
   return (
-    <div className={styles.searchBar}> 
+    <div className={styles.searchBar}>
       <img src="/image/glass.svg" alt="Search Icon" className={styles.searchIcon} />
       <input
         type="text"

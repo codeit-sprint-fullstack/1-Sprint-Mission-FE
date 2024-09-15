@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CommentKebabMenu from './CommentKebabMenu';
-import { updateComment } from '../../api/api';
+import { updateComment } from '../api/api';
 import styles from "./CommentItem.module.css";
 
 const CommentItem = ({ id, content, author, createdAt, refreshComments }) => {

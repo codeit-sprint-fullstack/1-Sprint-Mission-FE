@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { fetchArticleById, fetchComments } from '../../src/api/api';
-import styles from '../../styles/post-detail.module.css';
-import CommentItem from '../../src/components/next/CommentItem';
-import CommentForm from '../../src/components/next/CommentForm';
-import BackButton from '../../src/components/next/BackButton';
-import PostKebabMenu from '../../src/components/next/PostKebabMenu';
+import { fetchArticleById, fetchComments } from '../../api/api';
+import styles from '../../styles/postdetail.module.css';
+import CommentItem from '../../components/CommentItem';
+import CommentForm from '../../components/CommentForm';
+import BackButton from '../../components/BackButton';
+import PostKebabMenu from '../../components/PostKebabMenu';
 
 const PostDetail = () => {
   const router = useRouter();

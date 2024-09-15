@@ -18,7 +18,7 @@ const PostItem = ({ id, title, author, date, likes, image }) => {
     title: '맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?',
     author: '푸바오',
     date: '2024.04.16',
-    likes: Math.floor(Math.random() * 10000), 
+    likes: Math.floor(Math.random() * 10000),
     image: '/image/default.svg'
   };
 

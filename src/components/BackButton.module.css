@@ -13,12 +13,13 @@
 
 .text {
   color: #f3f4f6;
-  font-size: 18px; /* 글자 크기 변경 */
+  font-size: 18px;
   line-height: 26px;
   margin-right: 13px;
 }
 
 .icon {
-  width: 24px; /* 아이콘 크기 설정 */
+  width: 24px;
   height: 24px;
 }
+

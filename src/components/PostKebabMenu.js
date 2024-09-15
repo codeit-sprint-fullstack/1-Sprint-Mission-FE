@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { deleteArticle } from '../../api/api'; // 게시글 삭제 API 호출
+import { deleteArticle } from '../api/api';
 import styles from './PostKebabMenu.module.css';
 
 const PostKebabMenu = ({ postId }) => {
   const [showMenu, setShowMenu] = useState(false);
-  const router = useRouter(); 
+  const router = useRouter();
 
   const handleKebabClick = () => {
     setShowMenu(!showMenu);
