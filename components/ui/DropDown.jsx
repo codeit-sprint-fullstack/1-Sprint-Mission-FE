@@ -45,7 +45,7 @@ export default function DropDown({ setOrderBy, orderBy }) {
       {isOpen && (
         <ul>
           <li onClick={() => handleSorting("recent")}>최신순</li>
-          <li onClick={() => handleSorting("best")}>인기순</li>
+          <li onClick={() => handleSorting("like")}>인기순</li>
         </ul>
       )}
     </div>
