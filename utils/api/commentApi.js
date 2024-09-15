@@ -31,22 +31,22 @@ export async function postCommentApi(articleId, comment) {
   }
 }
 
-export async function deleteCommentApi(commentId) {
-  try {
-    const res = await axios.delete(`${baseUrl}/${commentId}`);
-    return {};
-  } catch (error) {
-    console.error('Error posting data:', error);
-  } finally {
-  }
-}
-
 export async function editCommentApi(id, editComment) {
   try {
     const res = await axios.patch(`${baseUrl}/${id}`, {
       content: editComment,
     });
   } catch (error) {
-    console.error('Error posting data:', error);
+    console.error('Error editing data:', error);
+  }
+}
+
+export async function deleteCommentApi(commentId) {
+  try {
+    const res = await axios.delete(`${baseUrl}/${commentId}`);
+    return {};
+  } catch (error) {
+    console.error('Error deleting data:', error);
+  } finally {
   }
 }

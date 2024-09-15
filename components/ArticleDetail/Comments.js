@@ -7,6 +7,7 @@ import useComments from '@/hooks/useComments';
 export default function Comments({ articleId }) {
   const [comment, setComment] = useState('');
   const [commentsList, setCommentsList] = useState([]);
+  const [canScroll, setCanScroll] = useState(false);
 
   const {
     getComments,
@@ -14,11 +15,10 @@ export default function Comments({ articleId }) {
     postComment,
     canEdit,
     canSubmit,
-    canScroll,
     loading,
     cursorId,
     setCursorId,
-    setCanScroll,
+    hasMore,
   } = useComments({
     articleId,
     comment,
