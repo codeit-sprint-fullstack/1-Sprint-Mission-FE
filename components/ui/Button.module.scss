@@ -8,7 +8,7 @@
   }
 
   &:disabled {
-    background-color: lighten(g.$primary-color, 20%);
+    background-color: g.$grey-400;
     cursor: not-allowed;
   }
 }

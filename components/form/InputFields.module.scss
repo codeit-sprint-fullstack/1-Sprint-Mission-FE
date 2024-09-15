@@ -17,4 +17,12 @@
   textarea {
     padding: 16px 24px;
   }
+  .error-text {
+    color: g.$error-red;
+    padding: 4px 16px;
+  }
+
+  .error {
+    outline: 1px solid g.$error-red;
+  }
 }

@@ -16,7 +16,11 @@ export default function ArticleForm({
     : `${styles.ArticleForm}`;
 
   const heading = isEditMode ? "게시글 수정하기" : "게시글 쓰기";
-  const { setValue, handleSubmit } = useFormContext();
+  const {
+    setValue,
+    handleSubmit,
+    formState: { isValid },
+  } = useFormContext();
 
   //수정하기면 폼 데이터 prefill
   useEffect(() => {
@@ -30,7 +34,7 @@ export default function ArticleForm({
     <form onSubmit={handleSubmit(onSubmit)} className={classNames}>
       <div className={styles["top-bar"]}>
         <h2>{heading}</h2>
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" disabled={!isValid}>
           등록
         </Button>
       </div>

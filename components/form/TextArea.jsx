@@ -10,20 +10,34 @@ export default function TextArea({
   const {
     register,
     formState: { errors },
+    trigger,
+    clearErrors,
   } = useFormContext();
 
-  return label ? (
+  const addError = errors[name] && styles.error;
+
+  return (
     <div className={styles.TextArea}>
-      <label htmlFor={name} className={styles["TextArea-label"]}>
-        {label}
-      </label>
-      <textarea {...register(name, validations)} placeholder={placeholder} />
-      {errors && errors[name] && <span>{errors[name].message}</span>}
-    </div>
-  ) : (
-    <div className={styles.TextArea}>
-      <textarea {...register(name, validations)} placeholder={placeholder} />
-      {errors && errors[name] && <span>{errors[name].message}</span>}
+      {label && (
+        <label htmlFor={name} className={styles["TextArea-label"]}>
+          {label}
+        </label>
+      )}
+      <textarea
+        className={`${styles["TextArea-textarea"]} ${addError}`}
+        {...register(name, {
+          ...validations,
+          onBlur: () => trigger(name),
+          onChange: () => trigger(name),
+        })}
+        onFocus={() => {
+          clearErrors(name);
+        }}
+        placeholder={placeholder}
+      />
+      {errors && errors[name] && (
+        <span className={styles["error-text"]}>{errors[name].message}</span>
+      )}
     </div>
   );
 }

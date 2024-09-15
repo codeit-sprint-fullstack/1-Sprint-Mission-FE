@@ -11,6 +11,7 @@ export default function EmptyComments() {
         height="140px"
         src={emptyCommentImg}
         className={styles.img}
+        isPriority={true}
       />
       <p>아직 댓글이 없어요, 지금 댓글을 달아보세요!</p>
     </div>

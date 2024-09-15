@@ -10,28 +10,32 @@ export default function Input({
   const {
     register,
     formState: { errors },
+    trigger,
+    clearErrors,
   } = useFormContext();
 
-  return label ? (
+  const addError = errors[name] && styles.error;
+
+  return (
     <div className={styles.Input}>
-      <label className={styles["Input-label"]} htmlFor={name}>
-        {label}
-      </label>
+      {label && (
+        <label className={styles["Input-label"]} htmlFor={name}>
+          {label}
+        </label>
+      )}
       <input
-        className={styles["Input-input"]}
-        {...register(name, validations)}
+        className={`${styles["Input-input"]} ${addError}`}
+        {...register(name, {
+          ...validations,
+          onBlur: () => trigger(name),
+          onChange: () => trigger(name),
+        })}
+        onFocus={() => clearErrors(name)}
         placeholder={placeholder}
       />
-      {errors && errors[name] && <span>{errors[name].message}</span>}
-    </div>
-  ) : (
-    <div className={styles.Input}>
-      <input
-        className={styles["Input-input"]}
-        {...register(name, validations)}
-        placeholder={placeholder}
-      />
-      {errors && errors[name] && <span>{errors[name].message}</span>}
+      {errors && errors[name] && (
+        <span className={styles["error-text"]}>{errors[name].message}</span>
+      )}
     </div>
   );
 }

@@ -8,6 +8,7 @@ export default function ImageContainer({
   height = "auto",
   radius = "4px",
   borderColor = "transparent",
+  isPriority,
 }) {
   return (
     <div
@@ -19,7 +20,7 @@ export default function ImageContainer({
         "--border-color": borderColor,
       }}
     >
-      <Image src={src} alt={alt} fill />
+      <Image src={src} alt={alt} fill priority={isPriority} />
     </div>
   );
 }
