@@ -32,6 +32,12 @@
   white-space: nowrap;
 }
 
+.commentCount {
+  font-size: 17px;
+  margin-left: 10px;
+  color: rebeccapurple;
+}
+
 .userInfo {
   margin-top: 16px;
   margin-right: 20px;
@@ -53,6 +59,16 @@
   font-size: 14px;
   font-weight: 400;
   color: #9ca3af;
+}
+
+.favorite {
+  display: flex;
+}
+
+.favoriteCount {
+  color: #9ca3af;
+  margin-top: 4px;
+  margin-left: 5px;
 }
 
 .noArticleList {

@@ -7,7 +7,7 @@
 
 .articleList {
   display: flex;
-  justify-content: center;
+
   height: 169px;
 }
 
@@ -95,6 +95,7 @@
 @media screen and (max-width: 743px) {
   .articleList {
     height: 198px;
+    justify-content: center;
   }
 
   .list {

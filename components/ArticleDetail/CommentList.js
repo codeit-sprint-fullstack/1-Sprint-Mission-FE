@@ -60,69 +60,71 @@ export default function CommentList({
 
   return (
     <>
-      {comments.map((comment) => (
-        <div key={comment.id}>
-          <div>
-            {editId === comment.id ? (
-              <EditComment
-                id={comment.id}
-                content={comment.content}
-                setEditId={setEditId}
-                setOpenOptions={setOpenOptions}
-                setComments={setComments}
-              />
-            ) : (
-              <>
-                <div className={styles.comments}>
-                  <div className={styles.commentMain}>
-                    <span className={styles.commentText}>
-                      {comment.content}
-                    </span>
-                    <div>
-                      <Image
-                        onClick={() => handleDropDown(comment.id)}
-                        src={dotIcon}
-                        className={styles.dotImage}
-                        alt='수정삭제 버튼'
-                        width={24}
-                        height={24}
-                      />
-                      {commentId === comment.id && openOptions && (
-                        <DropDown
-                          firstAction={{
-                            onClickHandler: () => handleEdit(comment.id),
-                            label: '수정하기',
-                          }}
-                          secondAction={{
-                            onClickHandler: handleDelete,
-                            label: '삭제하기',
-                          }}
+      <div className={styles.commentListLayout}>
+        {comments.map((comment) => (
+          <div key={comment.id}>
+            <div>
+              {editId === comment.id ? (
+                <EditComment
+                  id={comment.id}
+                  content={comment.content}
+                  setEditId={setEditId}
+                  setOpenOptions={setOpenOptions}
+                  setComments={setComments}
+                />
+              ) : (
+                <>
+                  <div className={styles.comments}>
+                    <div className={styles.commentMain}>
+                      <span className={styles.commentText}>
+                        {comment.content}
+                      </span>
+                      <div>
+                        <Image
+                          onClick={() => handleDropDown(comment.id)}
+                          src={dotIcon}
+                          className={styles.dotImage}
+                          alt='수정삭제 버튼'
+                          width={24}
+                          height={24}
                         />
-                      )}
+                        {commentId === comment.id && openOptions && (
+                          <DropDown
+                            firstAction={{
+                              onClickHandler: () => handleEdit(comment.id),
+                              label: '수정하기',
+                            }}
+                            secondAction={{
+                              onClickHandler: handleDelete,
+                              label: '삭제하기',
+                            }}
+                          />
+                        )}
+                      </div>
+                    </div>
+                    <div className={styles.profile}>
+                      <Image
+                        src={profileIcon}
+                        alt='프로필 사진'
+                        width={32}
+                        height={32}
+                      />
+                      <div className={styles.name}>
+                        <span className={styles.userName}>
+                          {comment.user.name}
+                        </span>
+                        <span className={styles.createdDate}>
+                          <CreateDate createDate={comment} />
+                        </span>
+                      </div>
                     </div>
                   </div>
-                  <div className={styles.profile}>
-                    <Image
-                      src={profileIcon}
-                      alt='프로필 사진'
-                      width={32}
-                      height={32}
-                    />
-                    <div className={styles.name}>
-                      <span className={styles.userName}>
-                        {comment.user.name}
-                      </span>
-                      <span className={styles.createdDate}>
-                        <CreateDate createDate={comment} />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
+                </>
+              )}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </>
   );
 }

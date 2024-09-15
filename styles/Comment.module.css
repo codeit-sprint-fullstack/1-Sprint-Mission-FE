@@ -18,8 +18,11 @@
   resize: none;
 }
 
-.comments {
+.commentListLayout {
   margin-top: 100px;
+}
+
+.comments {
   border-bottom: 1px solid #e5e7eb;
   height: auto;
 }

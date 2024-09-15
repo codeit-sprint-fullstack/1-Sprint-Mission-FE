@@ -22,7 +22,12 @@ export default function ArticleList({ articles }) {
           <div key={article.id} className={styles.list}>
             <Link href={`/article/${article.id}`} className={styles.link}>
               <div className={styles.main}>
-                <span className={styles.title}>{article.title}</span>
+                <span className={styles.title}>
+                  {article.title}
+                  <span className={styles.commentCount}>
+                    [{article.comment.length}]
+                  </span>
+                </span>
                 <Image src={articleImage} alt='기본이미지' />
               </div>
 
@@ -34,7 +39,10 @@ export default function ArticleList({ articles }) {
                     <DateFormat createDate={article} />
                   </span>
                 </div>
-                <Image src={heartIcon} alt='하트 아이콘' />
+                <div className={styles.favorite}>
+                  <Image src={heartIcon} alt='하트 아이콘' />
+                  <span className={styles.favoriteCount}>188</span>
+                </div>
               </div>
             </Link>
           </div>
