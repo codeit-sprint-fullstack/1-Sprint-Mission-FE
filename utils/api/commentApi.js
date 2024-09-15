@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const baseUrl = 'https://sprint-be-k938.onrender.com/comments';
 
-export async function fetchComments(articleId, cursorId) {
+export async function fetchCommentsApi(articleId, cursorId) {
   try {
     const res = await axios.get(`${baseUrl}/${articleId}`, {
       params: {
@@ -17,7 +17,7 @@ export async function fetchComments(articleId, cursorId) {
   }
 }
 
-export async function postComment(articleId, comment) {
+export async function postCommentApi(articleId, comment) {
   try {
     const res = await axios.post(`${baseUrl}`, {
       content: comment,
@@ -31,7 +31,7 @@ export async function postComment(articleId, comment) {
   }
 }
 
-export async function deleteComment(commentId) {
+export async function deleteCommentApi(commentId) {
   try {
     const res = await axios.delete(`${baseUrl}/${commentId}`);
     return {};
@@ -41,7 +41,7 @@ export async function deleteComment(commentId) {
   }
 }
 
-export async function patchComment(id, editComment) {
+export async function editCommentApi(id, editComment) {
   try {
     const res = await axios.patch(`${baseUrl}/${id}`, {
       content: editComment,

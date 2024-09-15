@@ -2,7 +2,7 @@ import Button from '@/utils/Button';
 import styles from '@/styles/Comment.module.css';
 
 import { useState } from 'react';
-import { patchComment } from '@/utils/api/commentApi.js';
+import { editCommentApi } from '@/utils/api/commentApi.js';
 
 export default function CommentList({
   id,
@@ -19,7 +19,7 @@ export default function CommentList({
 
   const handleSubmit = async () => {
     try {
-      const res = await patchComment(id, editComment);
+      const res = await editCommentApi(id, editComment);
 
       setComments((prev) =>
         prev.map((comment) =>
