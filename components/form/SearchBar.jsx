@@ -6,7 +6,7 @@ import Button from "../ui/Button";
 
 export default function SearchBar({
   setKeyword,
-  placeHolder = "검색어를 입력해 주세요",
+  placeholder = "검색어를 입력해 주세요",
 }) {
   const [search, setSearch] = useState("");
 
@@ -28,7 +28,7 @@ export default function SearchBar({
   return (
     <form className={styles.SearchBar}>
       <input
-        placeHolder={placeHolder}
+        placeholder={placeholder}
         value={search}
         name="search"
         onKeyDown={handleKeyDown}

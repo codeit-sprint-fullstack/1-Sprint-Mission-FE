@@ -8,7 +8,7 @@ import { useInView } from "react-intersection-observer";
 import Head from "next/head";
 import Link from "next/link";
 import { getArticleList } from "@/lib/api";
-import { PAGE_SIZE } from "@/variables/var";
+import { articleKey, PAGE_SIZE } from "@/variables/queryKeys";
 import BestArticles from "@/components/article/BestArticles";
 import ArticleList from "@/components/article/ArticleList";
 import SearchBar from "@/components/form/SearchBar";
@@ -16,7 +16,6 @@ import Button from "@/components/ui/Button";
 import DropDown from "@/components/ui/DropDown";
 import Msg from "@/components/ui/Msg";
 import Loader from "@/components/ui/Loader";
-
 import styles from "@/styles/pages/forum/main.module.scss";
 
 export async function getServerSideProps() {
@@ -25,11 +24,11 @@ export async function getServerSideProps() {
   try {
     await Promise.all([
       queryClient.prefetchQuery({
-        queryKey: ["bestArticles"],
+        queryKey: articleKey.list({ pageSize: 3, orderBy: "like" }),
         queryFn: () => getArticleList({ pageSize: 3, orderBy: "like" }),
       }),
       queryClient.prefetchInfiniteQuery({
-        queryKey: ["articles", { orderBy: "recent", keyword: "" }],
+        queryKey: articleKey.list({ orderBy: "recent", keyword: "" }),
         queryFn: () => getArticleList({ orderBy: "recent" }),
         initialPageParam: 1,
       }),
@@ -66,7 +65,7 @@ export default function ForumPage() {
     error,
     fetchNextPage,
   } = useInfiniteQuery({
-    queryKey: ["articles", { orderBy, keyword }],
+    queryKey: articleKey.list({ orderBy, keyword }),
     queryFn: ({ pageParam = 1 }) =>
       getArticleList({
         keyword,

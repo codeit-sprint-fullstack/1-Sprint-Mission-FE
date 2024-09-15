@@ -4,7 +4,7 @@ import styles from "./InputFields.module.scss";
 export default function Input({
   name,
   label = false,
-  placeHolder = "입력해 주세요",
+  placeholder = "입력해 주세요",
   validations = {},
 }) {
   const {
@@ -20,7 +20,7 @@ export default function Input({
       <input
         className={styles["Input-input"]}
         {...register(name, validations)}
-        placeHolder={placeHolder}
+        placeholder={placeholder}
       />
       {errors && errors[name] && <span>{errors[name].message}</span>}
     </div>
@@ -29,7 +29,7 @@ export default function Input({
       <input
         className={styles["Input-input"]}
         {...register(name, validations)}
-        placeHolder={placeHolder}
+        placeholder={placeholder}
       />
       {errors && errors[name] && <span>{errors[name].message}</span>}
     </div>

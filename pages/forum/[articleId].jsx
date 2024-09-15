@@ -10,13 +10,14 @@ import Msg from "@/components/ui/Msg";
 import Loader from "@/components/ui/Loader";
 import returnIcon from "@/public/assets/icons/ic_arrow_return.svg";
 import styles from "@/styles/pages/forum/articleId.module.scss";
+import { articleKey } from "@/variables/queryKeys";
 
 export async function getServerSideProps(context) {
   const queryClient = new QueryClient();
 
   const { articleId } = context.params;
   await queryClient.prefetchQuery({
-    queryKey: ["article", { articleId }],
+    queryKey: articleKey.detail(articleId),
     queryFn: () => getArticleById(articleId),
   });
   return {
@@ -36,7 +37,7 @@ export default function ArticleDetailPage() {
     error,
     data: article,
   } = useQuery({
-    queryKey: ["article", { articleId }],
+    queryKey: articleKey.detail(articleId),
     queryFn: () => getArticleById(articleId),
     enabled: !!articleId,
   });

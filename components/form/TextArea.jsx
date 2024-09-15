@@ -4,7 +4,7 @@ import styles from "./InputFields.module.scss";
 export default function TextArea({
   name,
   label = false,
-  placeHolder = "내용을 입력해 주세요",
+  placeholder = "내용을 입력해 주세요",
   validations,
 }) {
   const {
@@ -17,12 +17,12 @@ export default function TextArea({
       <label htmlFor={name} className={styles["TextArea-label"]}>
         {label}
       </label>
-      <textarea {...register(name, validations)} placeHolder={placeHolder} />
+      <textarea {...register(name, validations)} placeholder={placeholder} />
       {errors && errors[name] && <span>{errors[name].message}</span>}
     </div>
   ) : (
     <div className={styles.TextArea}>
-      <textarea {...register(name, validations)} placeHolder={placeHolder} />
+      <textarea {...register(name, validations)} placeholder={placeholder} />
       {errors && errors[name] && <span>{errors[name].message}</span>}
     </div>
   );

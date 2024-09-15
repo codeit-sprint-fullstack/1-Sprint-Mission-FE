@@ -2,6 +2,7 @@ import { createArticle } from "@/lib/api";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import ArticleForm from "@/components/form/ArticleForm";
 import { useRouter } from "next/router";
+import { articleKey } from "@/variables/queryKeys";
 import Msg from "@/components/ui/Msg";
 
 export default function CreateArticle() {
@@ -14,7 +15,7 @@ export default function CreateArticle() {
     error,
     data: article,
   } = useQuery({
-    queryKey: ["article", { articleId }],
+    queryKey: articleKey.detail(articleId),
     queryFn: () => getArticleById(articleId),
     enabled: !!articleId,
   });

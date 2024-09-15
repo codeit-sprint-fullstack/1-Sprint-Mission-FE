@@ -37,13 +37,13 @@ export default function ArticleForm({
       <Input
         label="*제목"
         name="title"
-        placeHolder="제목을 입력해 주세요"
+        placeholder="제목을 입력해 주세요"
         validations={ARTICLE.TITLE}
       />
       <TextArea
         label="*내용"
         name="content"
-        placeHolder="내용을 입력해 주세요"
+        placeholder="내용을 입력해 주세요"
         validations={ARTICLE.CONTENT}
       />
     </form>
