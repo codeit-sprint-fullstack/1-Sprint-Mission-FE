@@ -5,8 +5,6 @@ import style from "./BestArticle.module.css";
 
 export default function BestArticle({ list }) {
   const [idx, setIdx] = useState([0, 1, 2]);
-
-  if (list[0]) {
     // 스크린 크기에 따른 베스트 게시물 갯수 변경
     const handleResize = useCallback(() => {
       const length = window.innerWidth;
@@ -21,7 +19,6 @@ export default function BestArticle({ list }) {
     }, []);
 
     useResize(handleResize);
-  }
 
   return (
     <div className={style.contaner}>
