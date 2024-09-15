@@ -1,5 +1,5 @@
 import PatchForm from "@/components/patchArticle/PatchForm";
-import axios from "@/lib/axios";
+import instance from "@/lib/axios";
 import Head from "next/head";
 import { notFound } from "next/navigation";
 
@@ -7,7 +7,7 @@ export async function getServerSideProps(context) {
   const id = context.params["id"];
 
   try {
-    const res = await axios.get(`/noticeBoards/${id}`);
+    const res = await instance.get(`/noticeBoards/${id}`);
     const data = res.data;
     return {
       props: {

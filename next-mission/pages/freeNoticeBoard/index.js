@@ -1,11 +1,11 @@
 import Article from "@/components/freeNoticeBoard/Article";
 import BestArticle from "@/components/freeNoticeBoard/BestArticle";
 import Head from "next/head";
-import axios from "@/lib/axios.js";
+import instance from "@/lib/axios.js";
 import { useEffect, useState } from "react";
 
 export async function getServerSideProps() {
-  const res = await axios.get(`/noticeBoards?page=1&pageSize=7`);
+  const res = await instance.get(`/noticeBoards?page=1&pageSize=7`);
   const data = res.data.list ?? [];
   const total = res.data.total ?? 0;
 
@@ -25,7 +25,7 @@ export default function FreeNoticeBoard({ data, total }) {
 
   // 검색에 따른 게시물 변경 함수
   async function searchValue(value) {
-    const res = await axios.get(`/noticeBoards?keyWord=${value}`);
+    const res = await instance.get(`/noticeBoards?keyWord=${value}`);
     setList(res.data.list);
     setKeyWord(value);
   }
@@ -33,7 +33,7 @@ export default function FreeNoticeBoard({ data, total }) {
   // API를 통해 데이터를 가져오는 함수
   const fetchItems = async (pageNumber) => {
     try {
-      const res = await axios.get(
+      const res = await instance.get(
         `/noticeBoards?page=${pageNumber}&pageSize=7&keyWord=${keyWord}`
       );
       const data = res.data.list;

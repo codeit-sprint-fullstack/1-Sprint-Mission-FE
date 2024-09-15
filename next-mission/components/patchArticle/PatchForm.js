@@ -1,7 +1,7 @@
 import { useState } from "react";
 import style from "../postArticle/PostForm.module.css";
 import { useRouter } from "next/router";
-import axios from "@/lib/axios";
+import instance from "@/lib/axios";
 
 export default function PatchForm({ data }) {
   const [activateButton, setActivateButton] = useState(style.button_on);
@@ -46,7 +46,7 @@ export default function PatchForm({ data }) {
     ) {
       router.push(`/freeNoticeBoard/${data.id}`);
     } else {
-      await axios.patch(`/noticeBoards/${data.id}`, value);
+      await instance.patch(`/noticeBoards/${data.id}`, value);
       router.push(`/freeNoticeBoard/${data.id}`);
     }
   };

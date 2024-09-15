@@ -39,6 +39,7 @@
   border-radius: 8px;
   font-weight: 600;
   color: #f3f4f6;
+  cursor: pointer;
 }
 
 .buttonOff {

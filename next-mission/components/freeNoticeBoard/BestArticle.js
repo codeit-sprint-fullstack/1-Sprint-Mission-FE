@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import useResize from "../hook/useResize";
 import BestArticleBody from "./BestArticleBody";
 import style from "./BestArticle.module.css";
-import instance from "@/lib/axios";
 
 export default function BestArticle({ list }) {
   const [idx, setIdx] = useState([0, 1, 2]);

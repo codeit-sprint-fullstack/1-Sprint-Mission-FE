@@ -1,6 +1,6 @@
 import { useState } from "react";
 import style from "./PostForm.module.css";
-import axios from "@/lib/axios";
+import instance from "@/lib/axios";
 import { useRouter } from "next/router";
 
 export default function PostForm() {
@@ -33,7 +33,7 @@ export default function PostForm() {
     e.preventDefault();
 
     if (activateButton === style.buttonOn) {
-      const res = await axios.post("/noticeBoards", value);
+      const res = await instance.post("/noticeBoards", value);
       const id = res.data.id;
       router.push(`/freeNoticeBoard/${id}`);
     }

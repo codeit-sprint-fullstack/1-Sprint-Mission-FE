@@ -1,7 +1,7 @@
 import CommentFrom from "@/components/particularPage/CommentFrom";
 import CommentList from "@/components/particularPage/CommentList";
 import ParticularInformation from "@/components/particularPage/ParticularInformation";
-import axios from "@/lib/axios";
+import instance from "@/lib/axios";
 import Head from "next/head";
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -10,8 +10,8 @@ export async function getServerSideProps(context) {
   const id = context.params["id"];
 
   try {
-    const res = await axios.get(`/noticeBoards/${id}`);
-    const resComment = await axios.get(
+    const res = await instance.get(`/noticeBoards/${id}`);
+    const resComment = await instance.get(
       `/noticeBoards/${id}/freeCommends?pageSize=5`
     );
     const noticeBoardData = res.data;
@@ -51,7 +51,7 @@ export default function ParticularPage({
   // API를 통해 데이터를 가져오는 함수
   const fetchItems = async (cursor) => {
     try {
-      const res = await axios.get(
+      const res = await instance.get(
         `/noticeBoards/${noticeBoardData.id}/freeCommends?cursor=${cursor}&pageSize=5`
       );
       const data = res.data;
@@ -84,7 +84,7 @@ export default function ParticularPage({
       noticeBoardId: noticeBoardData.id,
     };
 
-    const res = await axios.post("/freeCommends", subject);
+    const res = await instance.post("/freeCommends", subject);
     const comment = res.data;
 
     setComment((prevComment) => [comment, ...prevComment]);
@@ -95,7 +95,7 @@ export default function ParticularPage({
     const subject = {
       content: value,
     };
-    const res = await axios.patch(`/freeCommends/${patchCommend.id}`, subject);
+    const res = await instance.patch(`/freeCommends/${patchCommend.id}`, subject);
     const data = res.data;
 
     const newComment = [...comment];
@@ -105,7 +105,7 @@ export default function ParticularPage({
 
   // 댓글 삭제 함수
   const deleteCommentHandler = async (id, idx) => {
-    await axios.delete(`/freeCommends/${id}`);
+    await instance.delete(`/freeCommends/${id}`);
     const nextComment = [...comment];
     nextComment.splice(idx, 1);
     setComment(nextComment);
