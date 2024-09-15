@@ -25,7 +25,7 @@ import style from "./board.module.css";
 
 // 임시로 기존 figma 요구사항에 맞춘 값 > page_size 동일하게 변경 예정
 const BOARD_INFINITY_SCROLL_Y = [313, 29, 101];
-const PAGE_SIZE_BY_DEVICE = [4, 6, 3];
+const PAGE_SIZE_BY_DEVICE = [4, 4, 4];
 
 export function Board() {
   const [list, setList] = useState([]);
@@ -133,10 +133,28 @@ export function Board() {
     if (!addingList) {
       return;
     }
+    getArticles(page + 1, PAGE_SIZE_BY_DEVICE[device], recentOrder).then(
+      (data) => {
+        const newList = data.articles.map((article, index) => {
+          return (
+            <ArticlePreview
+              key={index}
+              articleId={article.id}
+              title={article.title}
+              profileImgUrl={article.user.image}
+              nickname={article.user.nickname}
+              myFavorite={article.myFavorite}
+              favoriteCount={article.favorite}
+              createdDate={article.createdAt}
+            />
+          );
+        });
 
-    setList([...list, addingList]);
-    setPage(page + 1);
-    setAddingList(false);
+        setPage(page + 1);
+        setList([...list, newList]);
+        setAddingList(false);
+      }
+    );
   }, [addingList]);
 
   return (

@@ -26,7 +26,7 @@ export function ArticleDetailClient({ articleId }) {
   const router = useRouter();
 
   const handleBack = () => {
-    // router.back();
+    router.push("/bulletin-board");
   };
 
   const handleRegistComment = () => {
