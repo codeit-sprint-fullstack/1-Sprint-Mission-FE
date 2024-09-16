@@ -1,0 +1,21 @@
+@use "@/styles/globals/shared" as g;
+
+.Modal {
+  width: clamp(540px, 100%, 220px);
+  height: 250px;
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+
+  @include g.flex-box(column, center, center, 40px);
+
+  &-text {
+    @include g.font(18, 500);
+  }
+
+  &-btn {
+    max-width: 165px;
+    width: 100%;
+    min-width: 48px;
+  }
+}
