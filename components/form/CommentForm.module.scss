@@ -1,0 +1,10 @@
+@use "@/styles/globals/shared" as g;
+
+.CommentForm {
+  @include g.flex-box(column, center, flex-end, 9px);
+  &-heading {
+    @include g.font(16, 600);
+    text-align: left;
+    width: 100%;
+  }
+}

@@ -4,10 +4,10 @@ import ProfileImg from "../ui/ProfileImg";
 import styles from "./CommentList.module.scss";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getArticleComments } from "@/lib/api";
-import { useRouter } from "next/router";
 import EmptyComments from "../ui/EmptyComment";
 import Loader from "../ui/Loader";
 import Msg from "../ui/Msg";
+import { articleKey } from "@/variables/queryKeys";
 
 function CommentContent({ comment }) {
   return (
@@ -28,14 +28,11 @@ function CommentContent({ comment }) {
   );
 }
 
-export default function CommentList() {
-  const router = useRouter();
-  const { articleId } = router.query;
-
+export default function CommentList({ articleId }) {
   const { isPending, isError, error, data } = useInfiniteQuery({
-    queryKey: ["comments", articleId],
+    queryKey: articleKey.comments(articleId),
     queryFn: ({ queryKey, pageParam = null }) => {
-      const articleId = queryKey[1];
+      const articleId = queryKey[2];
       return getArticleComments(articleId, { cursor: pageParam });
     },
     initialPageParam: null,

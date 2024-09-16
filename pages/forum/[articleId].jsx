@@ -11,6 +11,7 @@ import Loader from "@/components/ui/Loader";
 import returnIcon from "@/public/assets/icons/ic_arrow_return.svg";
 import styles from "@/styles/pages/forum/articleId.module.scss";
 import { articleKey } from "@/variables/queryKeys";
+import CommentForm from "@/components/form/CommentForm";
 
 export async function getServerSideProps(context) {
   const queryClient = new QueryClient();
@@ -57,7 +58,9 @@ export default function ArticleDetailPage() {
       <section className={styles["article-section"]}>
         <ArticleDetail article={article} />
 
-        <CommentList />
+        <CommentForm articleId={article.id} />
+
+        <CommentList articleId={article.id} />
 
         <Link href="/forum">
           <button className={styles["return-btn"]}>

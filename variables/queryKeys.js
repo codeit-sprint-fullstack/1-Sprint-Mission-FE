@@ -4,7 +4,7 @@ export const articleKey = {
   list: (params = {}) => [...articleKey.lists(), { ...params }],
   details: () => [...articleKey.all, "detail"],
   detail: (articleId) => [...articleKey.details(), articleId],
-  comments: () => [...articleKey.detail(), "comments"],
+  comments: (articleId) => [...articleKey.detail(articleId), "comments"],
 };
 
 export const commentKey = {

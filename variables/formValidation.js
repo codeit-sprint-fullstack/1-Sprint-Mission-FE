@@ -10,3 +10,11 @@ export const ARTICLE = {
     minLength: { value: 10, message: "최소 10자 이상 입력해주세요" },
   },
 };
+
+export const COMMENT = {
+  CONTENT: {
+    required: "내용을 입력해 주세요",
+    maxLength: { value: 150, message: "최대 500자까지 입력 할 수 있습니다" },
+    minLength: { value: 1, message: "최소 10자 이상 입력해주세요" },
+  },
+};
