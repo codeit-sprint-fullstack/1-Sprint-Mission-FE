@@ -3,8 +3,12 @@ import Button from "./Button";
 import { useState, useEffect, useRef } from "react";
 import styles from "./KebabMenu.module.scss";
 import kebabIcon from "../../public/assets/icons/ic_kebab.svg";
-export default function KebabMenu() {
+import { useRouter } from "next/router";
+
+export default function KebabMenu({ idPath }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const router = useRouter();
 
   const dropDownRef = useRef(0);
 
@@ -16,6 +20,10 @@ export default function KebabMenu() {
     if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
       setIsOpen(false);
     }
+  };
+
+  const handleClickEdit = () => {
+    router.push(`/forum/edit-article/${idPath}`);
   };
 
   useEffect(() => {
@@ -32,7 +40,7 @@ export default function KebabMenu() {
       </Button>
       {isOpen && (
         <ul>
-          <li>수정하기</li>
+          <li onClick={handleClickEdit}>수정하기</li>
           <li>삭제하기</li>
         </ul>
       )}

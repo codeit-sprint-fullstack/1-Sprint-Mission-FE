@@ -11,27 +11,34 @@ export default function ArticleForm({
   isEditMode = false,
   initialData = {},
 }) {
-  const classNames = isEditMode
-    ? `${styles.ArticleForm} ${edit}`
-    : `${styles.ArticleForm}`;
-
   const heading = isEditMode ? "게시글 수정하기" : "게시글 쓰기";
   const {
-    setValue,
     handleSubmit,
+    reset,
     formState: { isValid },
   } = useFormContext();
 
   //수정하기면 폼 데이터 prefill
   useEffect(() => {
     if (isEditMode && initialData) {
-      setValue("title", initialData.title);
-      setValue("content", initialData.content);
+      reset({
+        title: initialData.title || "",
+        content: initialData.content || "",
+      });
     }
-  }, [setValue, isEditMode, initialData]);
+  }, [reset, isEditMode, initialData]);
+
+  //submit 후 form reset
+  const handleResetAfterSubmit = (data) => {
+    onSubmit(data);
+    reset();
+  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={classNames}>
+    <form
+      onSubmit={handleSubmit(handleResetAfterSubmit)}
+      className={styles.ArticleForm}
+    >
       <div className={styles["top-bar"]}>
         <h2>{heading}</h2>
         <Button type="submit" variant="primary" disabled={!isValid}>

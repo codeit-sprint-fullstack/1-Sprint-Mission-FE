@@ -10,7 +10,7 @@ export default function ArticleDetail({ article }) {
     <article className={styles.ArticleDetail}>
       <div className={styles.top}>
         <h3>{article.title}</h3>
-        <KebabMenu />
+        <KebabMenu idPath={article.id} />
       </div>
       <div className={styles.middle}>
         <div className={styles.user}>

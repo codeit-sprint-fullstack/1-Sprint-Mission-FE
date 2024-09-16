@@ -1,30 +1,26 @@
 import { createArticle } from "@/lib/api";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import ArticleForm from "@/components/form/ArticleForm";
 import { useRouter } from "next/router";
 import { articleKey } from "@/variables/queryKeys";
+import Loader from "@/components/ui/Loader";
 import Msg from "@/components/ui/Msg";
 
 export default function CreateArticle() {
+  const queryClient = useQueryClient();
   const router = useRouter();
-  const { articleId } = router.query;
-
-  const {
-    isPending,
-    isError,
-    error,
-    data: article,
-  } = useQuery({
-    queryKey: articleKey.detail(articleId),
-    queryFn: () => getArticleById(articleId),
-    enabled: !!articleId,
-  });
 
   const articleMutation = useMutation({
     mutationFn: (newArticle) => createArticle(newArticle),
+    onSuccess: (data) => {
+      if (data.id) {
+        router.push(`/forum/${data.id}`);
+      }
+
+      queryClient.invalidateQueries(articleKey.list());
+    },
     onError: (error) => {
-      console.error(error);
-      <Msg type="error" msg={error} />;
+      console.error(error.message);
     },
   });
 
@@ -33,9 +29,15 @@ export default function CreateArticle() {
 
     formData.append("title", data.title);
     formData.append("content", data.content);
-    console.log(data);
+
     articleMutation.mutate(formData);
   };
+
+  if (articleMutation.isPending) return <Loader />;
+  if (articleMutation.isError) {
+    const errMsg = articleMutation.error?.message;
+    return <Msg type="error" msg={errMsg} />;
+  }
 
   return <ArticleForm onSubmit={handleNewArticleSubmit} />;
 }

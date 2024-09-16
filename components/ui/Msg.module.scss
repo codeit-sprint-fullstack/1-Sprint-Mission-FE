@@ -5,13 +5,20 @@
   padding: 30px;
   @include g.font(16, 400);
   color: g.$grey-400;
+  text-align: center;
+  p {
+    span {
+      color: g.$grey-600;
+      font-weight: 600;
+      padding-right: 10px;
+    }
+  }
 }
-
 .Msg.error {
-  @include g.font(16, 400);
-  color: g.$grey-600;
-  span {
-    color: g.$error-red;
-    font-weight: 600;
+  p {
+    span {
+      color: g.$error-red;
+      font-weight: 600;
+    }
   }
 }
