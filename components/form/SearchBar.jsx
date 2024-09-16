@@ -15,10 +15,12 @@ export default function SearchBar({
     setSearch(value);
   };
   const handleClick = () => {
+    e.preventDefault();
     setKeyword(search);
   };
 
   const handleKeyDown = (e) => {
+    e.preventDefault();
     if (e.key === "Enter" && !e.nativeEvent.isComposing) {
       setKeyword(search);
       console.log(search);
@@ -35,7 +37,7 @@ export default function SearchBar({
         onChange={handleValueChange}
         autoComplete="off"
       />
-      <Button variant="icon" onClick={handleClick}>
+      <Button type="button" variant="icon" onClick={handleClick}>
         <Image src={searchIcon} width={24} height={24} alt="search icon" />
       </Button>
     </form>

@@ -14,22 +14,26 @@ export default function KebabMenu({ idPath, deleteApi, entity }) {
   const router = useRouter();
   const dropDownRef = useRef(0);
   const queryClient = useQueryClient();
-  const { onModalOpen, modalRef, onModalClose, isModalOpen } =
-    useModal(`/forum`);
+
+  const { onModalOpen, modalRef, isModalOpen, onModalClose } =
+    useModal("/forum");
 
   const deleteMutation = useMutation({
     mutationFn: (idPath) => deleteApi(idPath),
     onSuccess: () => {
-      let queryKey;
+      let key;
+
       if (entity === "article") {
-        queryKey = articleKey.all;
+        key = articleKey.details();
       } else if (entity === "comment") {
-        queryKey = commentKey.all;
+        key = commentKey.all;
+      }
+      if (key) {
+        queryClient.invalidateQueries({ queryKey: key });
+        console.log(key);
       }
 
-      queryClient.invalidateQueries(queryKey);
-
-      onModalOpen();
+      onModalClose();
     },
   });
 
@@ -48,6 +52,10 @@ export default function KebabMenu({ idPath, deleteApi, entity }) {
   };
 
   const handleClickDelete = () => {
+    onModalOpen();
+  };
+
+  const handleConfirmDelete = () => {
     deleteMutation.mutate(idPath);
   };
 
@@ -61,6 +69,13 @@ export default function KebabMenu({ idPath, deleteApi, entity }) {
 
   return (
     <>
+      {isModalOpen && (
+        <Modal
+          ref={modalRef}
+          msg="게시글을 삭제 하시겠습니까?."
+          onClose={handleConfirmDelete}
+        />
+      )}
       <div className={styles.KebabMenu} ref={dropDownRef}>
         <Button onClick={toggleDropDown} variant="icon">
           <Image src={kebabIcon} width={24} height={24} alt="kebab menu icon" />
@@ -72,13 +87,6 @@ export default function KebabMenu({ idPath, deleteApi, entity }) {
           </ul>
         )}
       </div>
-      {isModalOpen && (
-        <Modal
-          ref={modalRef}
-          msg="게시글이 삭제되었습니다."
-          onClose={onModalClose}
-        />
-      )}
     </>
   );
 }

@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { formatDate, formatLikes } from "@/lib/utils";
+import { deleteArticleById } from "@/lib/api";
 import ProfileImg from "@/components/ui/ProfileImg";
 import KebabMenu from "@/components/ui/KebabMenu";
 import inactiveHeart from "../../public/assets/icons/ic_heart_inactive.svg";
 import styles from "./ArticleDetail.module.scss";
-import { deleteArticleById } from "@/lib/api";
 
 export default function ArticleDetail({ article }) {
   return (

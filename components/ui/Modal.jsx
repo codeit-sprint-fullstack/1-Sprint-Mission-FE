@@ -3,7 +3,7 @@ import Button from "./Button";
 import styles from "./Modal.module.scss";
 import { createPortal } from "react-dom";
 
-const Modal = forwardRef(({ msg, onClose }, ref) => {
+function Modal({ msg, onClose }, ref) {
   return createPortal(
     <dialog ref={ref} className={styles.Modal}>
       <p className={styles["Modal-msg"]}>{msg}</p>
@@ -15,10 +15,8 @@ const Modal = forwardRef(({ msg, onClose }, ref) => {
         <span>확인</span>
       </Button>
     </dialog>,
-    document.body
+    document.getElementById("portal-root")
   );
-});
+}
 
-Modal.displayName = "Modal";
-
-export default Modal;
+export default forwardRef(Modal);

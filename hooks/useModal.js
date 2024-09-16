@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 
 export function useModal(redirectPath) {
@@ -6,22 +6,25 @@ export function useModal(redirectPath) {
   const modalRef = useRef(null);
   const router = useRouter();
 
-  const onModalOpen = () => {
-    if (modalRef.current) {
-      setIsModalOpen(true);
+  useEffect(() => {
+    if (isModalOpen && modalRef.current) {
       modalRef.current.showModal();
     }
+  }, [isModalOpen, modalRef.current]);
+
+  const onModalOpen = () => {
+    setIsModalOpen(true);
   };
 
   const onModalClose = () => {
     if (modalRef.current) {
       modalRef.current.close();
+      setIsModalOpen(false);
     }
-    setIsModalOpen(false);
     if (redirectPath) {
       router.push(redirectPath);
     }
   };
 
-  return { modalRef, onModalOpen, onModalClose, isModalOpen };
+  return { modalRef, onModalOpen, onModalClose, isModalOpen, setIsModalOpen };
 }

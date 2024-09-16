@@ -1,13 +1,16 @@
 export const articleKey = {
   all: ["articles"],
-  list: (params = {}) => [...articleKey.all, { ...params }],
-  detail: (articleId) => ["article", articleId],
-  commentList: (articleId) => [...articleKey.detail(articleId), "comments"],
+  lists: () => [...articleKey.all, "list"],
+  list: (params = {}) => [...articleKey.lists(), { ...params }],
+  details: () => [...articleKey.all, "detail"],
+  detail: (articleId) => [...articleKey.details(), articleId],
+  comments: () => [...articleKey.detail(), "comments"],
 };
 
 export const commentKey = {
   all: ["comments"],
-  detail: (commentId) => ["comment", commentId],
+  details: () => [...commentKey.all, "detail"],
+  detail: (commentId) => [...commentKey.details(), commentId],
 };
 
 export const PAGE_SIZE = {

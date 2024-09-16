@@ -28,7 +28,7 @@ export default function EditArticle() {
       if (data.id) {
         router.push(`/forum/${data.id}`);
       }
-      queryClient.invalidateQueries({ queryKey: articleKey.detail(articleId) });
+      queryClient.invalidateQueries({ queryKey: articleKey.lists() });
     },
     onError: (error) => {
       console.error(error.message);

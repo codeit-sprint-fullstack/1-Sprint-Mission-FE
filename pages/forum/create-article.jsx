@@ -17,7 +17,7 @@ export default function CreateArticle() {
         router.push(`/forum/${data.id}`);
       }
 
-      queryClient.invalidateQueries(articleKey.list());
+      queryClient.invalidateQueries(articleKey.lists());
     },
     onError: (error) => {
       console.error(error.message);
