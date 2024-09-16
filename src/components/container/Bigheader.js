@@ -3,9 +3,9 @@ import styles from "./Bigheader.module.css";
 
 export const Bigheader = ({ children }) => {
   return (
-    <section className={styles.bigheaderSection}>
+    <header className={styles.bigheaderSection}>
       {children}
-    </section>
+    </header>
   )
 }
 

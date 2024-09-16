@@ -1,3 +1,23 @@
+.bestProductSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px 0px;
+}
+
+.sellingProductSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px 0px;
+}
+
+.functions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0px 12px;
+}
+
 .bgSet {
   display: flex;
   align-items: center;

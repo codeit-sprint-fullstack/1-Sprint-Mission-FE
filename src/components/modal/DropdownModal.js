@@ -6,24 +6,22 @@ function DropdownModal({
   options,
 
   //OnClick 핸들
-  handleOnClick = () => {},
+  onClick = () => {},
 
   //커스텀 스타일
-  customWidth,
-  customMarginTop,
-  customBorderRadius,
+  style
 }) {
   return (
     <ul
       className={styles.dropdownBox}
       style={{
-        width: customWidth ? customWidth : "",
-        marginTop: customMarginTop ? customMarginTop : "",
-        borderRadius: customBorderRadius ? customBorderRadius : "",
+        width: style?.width,
+        marginTop: style?.marginTop,
+        borderRadius: style?.borderRadius
       }}
     >
       {options.map((option) => (
-        <li key={option} className={styles.optionList} onClick={handleOnClick}>
+        <li key={option} className={styles.optionList} onClick={onClick}>
           {option}
         </li>
       ))}

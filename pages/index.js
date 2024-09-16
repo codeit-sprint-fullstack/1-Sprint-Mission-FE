@@ -36,7 +36,7 @@ export default function RandingPage() {
           <div className={styles.ctaBtnbox}>
             <RenderTopCTA mainCTA={["일상의 모든 물건을", "거래해 보세요"]} />
             <div className={styles.btnStyleControl}>
-              <Link href={"/market"}>
+              <Link href={"/items"}>
                 <BtnRound innerText={"구경하러 가기"} />
               </Link>
             </div>

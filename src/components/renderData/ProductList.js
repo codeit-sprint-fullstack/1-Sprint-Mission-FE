@@ -4,17 +4,18 @@ import styles from "./ProductList.module.css";
 //리소스
 const iconHeart = "/images/icon/ic_heart.svg";
 
-function ProductList({ dataList }) {
+export const ProductList = React.memo(({ dataList }) => {
   const ProductRender = ({ dataObject }) => {
     if (dataObject) {
       const { images, name, description, price, favoriteCount } = dataObject;
-      const img= images[0];
-
 
       return (
         <figure className={styles.ProductBox}>
           <div className={styles.imgSizeControl}>
-            <img src={img} alt={name} />
+            <img
+              src={images ? images[0] : "/images/default/default_product.png"}
+              alt={name}
+            />
           </div>
           <figcaption className={styles.ProductInfoBox}>
             <p className={styles.description}>{description}</p>
@@ -33,7 +34,7 @@ function ProductList({ dataList }) {
             <img src="/images/default/default_product.png" alt="상품 준비 중" />
           </div>
           <figcaption className={styles.productReady}>
-            <p >상품 준비 중</p>
+            <p>상품 준비 중</p>
           </figcaption>
         </figure>
       );
@@ -47,6 +48,6 @@ function ProductList({ dataList }) {
       ))}
     </article>
   );
-}
+});
 
 export default ProductList;
