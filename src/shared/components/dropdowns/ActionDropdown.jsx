@@ -2,33 +2,39 @@
 import Image from 'next/image';
 import styles from '@shared/components/dropdowns/ActionDropdown.module.css';
 import { useState } from 'react';
+import DeleteButton from '../Buttons/CRUDButtons/DeleteButton';
+import { useCommentIdStore } from '@shared/store/article/commentId';
+import ActionButton from '../Buttons/ActionButton';
 
-export default function ActionDropdown(onClick) {
+export default function ActionDropdown({ id, option }) {
   const [dropdown, setDropdown] = useState(false);
+  const { setCommentId } = useCommentIdStore();
 
-  const handleDropdownClick = () => {
-    if (dropdown) {
-      setDropdown(false);
-    } else setDropdown(true);
+  const toggle = () => {
+    setDropdown(!dropdown);
+    if (!dropdown) {
+      setCommentId(id);
+    }
   };
 
   return (
     <>
       <div className={styles['dropdown-container']}>
-        <div
-          className={styles['kebab-dropdown-image']}
-          onClick={handleDropdownClick}
-        >
+        <div className={styles['kebab-dropdown-image']} onClick={toggle}>
           <Image src={'/kebab-dropdown.svg'} fill />
         </div>
         {dropdown ? (
           <div className={styles['options']}>
-            <button className={styles['patch']} onClick={onClick}>
-              수정하기
-            </button>
-            <button className={styles['delete']} onClick={onClick}>
-              삭제하기
-            </button>
+            <ActionButton
+              content={'수정하기'}
+              style={'patch-button'}
+              type={'article-patch'}
+            />
+            <DeleteButton
+              content={'삭제하기'}
+              type={'delete-button'}
+              option={option}
+            />
           </div>
         ) : null}
       </div>

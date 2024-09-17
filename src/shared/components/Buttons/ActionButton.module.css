@@ -48,3 +48,14 @@
   color: var(--color-white);
   font-size: 1rem;
 }
+
+.patch-button {
+  width: 139px;
+  height: 46px;
+  border-radius: 8px 8px 0px 0px;
+  border: 1px solid var(--color-cool-gray-300);
+  color: var(--color-gray-200);
+  font-size: 1rem;
+  font-weight: 400;
+  background-color: #ffffff;
+}
