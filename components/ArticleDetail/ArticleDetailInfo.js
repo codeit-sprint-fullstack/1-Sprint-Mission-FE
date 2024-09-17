@@ -22,7 +22,7 @@ export default function ArticleDetail({ article }) {
   }, []);
 
   const buttonEvent = async () => {
-    if (confirm('정말 삭제하시겠습니까??') == true) {
+    if (confirm('정말 삭제하시겠습니까??') === true) {
       try {
         await deleteArticleApi(article.id);
         router.push('/freeboard');
