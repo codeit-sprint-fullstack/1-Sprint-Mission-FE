@@ -1,24 +1,25 @@
 'use client';
 import { getArticleList } from '@utils/api/api';
 import ArticleTemplate from './ArticleTemplate';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SortDropdown from '@shared/components/dropdowns/SortDropdown';
 import SearchInput from '@shared/components/inputs/SearchInput';
 import styles from '@shared/components/article/ArticlesList.module.css';
+import { useQuery } from '@tanstack/react-query';
 
-export default function ArticlesList({ article }) {
-  const [searchArticles, setSearchArticles] = useState(article);
+export default function GeneralArticles({ article }) {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const getSearchArticle = async () => {
-    const query = { orderBy: 'recent', limit: 5, search: searchQuery };
-    const response = await getArticleList(query);
-    setSearchArticles(response);
-  };
-
-  useEffect(() => {
-    getSearchArticle();
-  }, [searchQuery]);
+  const {
+    data: searchArticles = article,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['searchArticles', searchQuery],
+    queryFn: () =>
+      getArticleList({ orderBy: 'recent', limit: 5, search: searchQuery }),
+    keepPreviousData: true,
+  });
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -33,9 +34,13 @@ export default function ArticlesList({ article }) {
         />
         <SortDropdown option={'최신순'} />
       </div>
-      {searchArticles.map((article) => {
-        return <ArticleTemplate article={article} isBest={false} />;
-      })}
+      {isLoading && <>로딩중입니다.</>}
+      {error && <>데이터를 불러오지 못했습니다.</>}
+      {!isLoading &&
+        !error &&
+        searchArticles.map((article) => {
+          return <ArticleTemplate article={article} isBest={false} />;
+        })}
     </>
   );
 }

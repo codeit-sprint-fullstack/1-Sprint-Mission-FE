@@ -1,21 +1,29 @@
-import styles from '@app/articles/[id]/page.module.css';
+import styles from '@app/articles/[articleId]/page.module.css';
 import moment from 'moment';
 import Image from 'next/image';
 import { getArticleList, getArticle } from '@utils/api/api';
 import ActionDropdown from '@shared/components/dropdowns/ActionDropdown';
-import { ArticleComment } from '@shared/components/article/ArticleComment';
+import { ArticleComment } from '@shared/components/article/comment/ArticleComment';
 import ImageActionButton from '@shared/components/Buttons/ImageActionButton';
 
 export async function generateStaticParams() {
   const response = await getArticleList();
   const ArticlesId = response.map((article) => ({
-    id: article.id.toString(),
+    articleId: article.id.toString(),
   }));
   return ArticlesId;
 }
 
+export async function generateMetadata({ params }) {
+  const response = await getArticle(params.articleId);
+  return {
+    title: response.title,
+    description: response.description,
+  };
+}
+
 export default async function ArticleDetail({ params }) {
-  const response = await getArticle(params.id);
+  const response = await getArticle(params.articleId);
   const article = response;
 
   return (
@@ -23,7 +31,7 @@ export default async function ArticleDetail({ params }) {
       <div className={styles['container']}>
         <div className={styles['article-title']}>
           {article.title}
-          <ActionDropdown />
+          <ActionDropdown id={params.articleId} option={'article'} />
         </div>
         <div className={styles['article-info']}>
           <div className={styles['article-meta']}>
@@ -48,7 +56,10 @@ export default async function ArticleDetail({ params }) {
           </div>
         </div>
         <div className={styles['article-content']}>{article.content}</div>
-        <ArticleComment />
+        <ArticleComment
+          commentData={article.comment}
+          articleId={params.articleId}
+        />
         <ImageActionButton content={'목록으로 돌아가기'} type={'return'} />
       </div>
     </>

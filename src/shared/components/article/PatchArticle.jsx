@@ -2,11 +2,11 @@
 import Input from '@shared/components/inputs/Input';
 import styles from '@shared/components/article/CreateArticle.module.css';
 import { useEffect, useState } from 'react';
-import { usePostArticleStore } from '@shared/store/article/article';
-import PostButton from '../Buttons/CRUDButtons/PostButton';
+import { usePatchArticleStore } from '@shared/store/article/article';
+import PatchButton from '../Buttons/CRUDButtons/PatchButton';
 
-export default function CreateArticle() {
-  const { title, content, setTitle, setContent } = usePostArticleStore();
+export default function PatchArticle() {
+  const { title, content, setTitle, setContent } = usePatchArticleStore();
   const [inputValid, setInputValid] = useState(true);
 
   const handleChange = (e) => {
@@ -27,10 +27,10 @@ export default function CreateArticle() {
   return (
     <div className={styles['container']}>
       <div className={styles['create-header']}>
-        <div className={styles['create-title']}>게시글 쓰기</div>
-        <PostButton
-          content={'등록'}
-          style={'post-button'}
+        <div className={styles['create-title']}>게시글 수정</div>
+        <PatchButton
+          content={'수정'}
+          style={'patch-button'}
           disabled={inputValid}
           type={'article'}
         />
