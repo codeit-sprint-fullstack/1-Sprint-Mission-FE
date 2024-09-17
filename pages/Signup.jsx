@@ -179,13 +179,22 @@ function SignUp() {
           <div className={styles.sns_login_box}>
             <span>간편 로그인하기</span>
             <div className={styles.sns_ic_box}>
-              <Image
-                src={ic_kakao}
-                width={42}
-                height={42}
-                alt="카카오톡 로그인"
-              />
-              <Image src={ic_google} width={42} height={42} alt="구글 로그인" />
+              <Link href={"https://www.kakaocorp.com/page"}>
+                <Image
+                  src={ic_kakao}
+                  width={42}
+                  height={42}
+                  alt="카카오톡 로그인"
+                />
+              </Link>
+              <Link href={"https://www.google.com"}>
+                <Image
+                  src={ic_google}
+                  width={42}
+                  height={42}
+                  alt="구글 로그인"
+                />
+              </Link>
             </div>
           </div>
           <div className={styles.sign_up_box}>
