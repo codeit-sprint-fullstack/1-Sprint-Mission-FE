@@ -1,12 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  dehydrate,
-} from "react-query";
+import { useQuery, useQueryClient, QueryClient, dehydrate } from "react-query";
 import Error from "next/error";
 import Link from "next/link";
 import { formatDate } from "@/utils/dateUtils";
@@ -14,14 +8,8 @@ import { formatRelativeTime } from "@/utils/dateRelativeUtils";
 import styles from "./style.module.css";
 import CommentForm from "@/components/commentForm";
 import KebabMenu from "@/components/postDetail/KebabMenu";
-import {
-  fetchPost,
-  fetchComments,
-  updatePost,
-  deletePost,
-  updateComment,
-  deleteComment,
-} from "@/utils/communityAPI";
+import usePostMutation from "@/hooks/usePostMutation";
+import { fetchPost, fetchComments } from "@/utils/communityAPI";
 
 const PostDetail = ({ initialPostData, initialCommentsData }) => {
   const router = useRouter();
@@ -47,29 +35,37 @@ const PostDetail = ({ initialPostData, initialCommentsData }) => {
     enabled: !!id,
   });
 
-  const updatePostMutation = useMutation(updatePost, {
-    onSuccess: () => {
+  const { mutate: updatePostMutate } = usePostMutation(
+    "updatePost",
+    () => {
       queryClient.invalidateQueries(["post", id]);
     },
-  });
+    (error) => console.error("게시글 수정 실패:", error)
+  );
 
-  const deletePostMutation = useMutation(deletePost, {
-    onSuccess: () => {
+  const { mutate: deletePostMutate } = usePostMutation(
+    "deletePost",
+    () => {
       router.push("/community");
     },
-  });
+    (error) => console.error("게시글 삭제 실패:", error)
+  );
 
-  const updateCommentMutation = useMutation(updateComment, {
-    onSuccess: () => {
+  const { mutate: updateCommentMutate } = usePostMutation(
+    "updateComment",
+    () => {
       queryClient.invalidateQueries(["comments", id]);
     },
-  });
+    (error) => console.error("댓글 수정 실패:", error)
+  );
 
-  const deleteCommentMutation = useMutation(deleteComment, {
-    onSuccess: () => {
+  const { mutate: deleteCommentMutate } = usePostMutation(
+    "deleteComment",
+    () => {
       queryClient.invalidateQueries(["comments", id]);
     },
-  });
+    (error) => console.error("댓글 삭제 실패:", error)
+  );
 
   if (isPostLoading || isCommentsLoading) return <div>로딩 중...</div>;
   if (isPostError || isCommentsError) return <Error statusCode={500} />;
@@ -80,13 +76,13 @@ const PostDetail = ({ initialPostData, initialCommentsData }) => {
     const newContent = prompt("수정할 내용을 입력하세요:", post.content);
 
     if (newTitle !== null && newContent !== null) {
-      updatePostMutation.mutate({ id, title: newTitle, content: newContent });
+      updatePostMutate({ id, title: newTitle, content: newContent });
     }
   };
 
   const handleDelete = () => {
     if (window.confirm("삭제 하시겠습니까?")) {
-      deletePostMutation.mutate(id);
+      deletePostMutate(id);
     }
   };
 
@@ -98,7 +94,7 @@ const PostDetail = ({ initialPostData, initialCommentsData }) => {
     );
 
     if (newContent !== null && newContent !== comment.content) {
-      updateCommentMutation.mutate({
+      updateCommentMutate({
         postId: id,
         commentId,
         content: newContent,
@@ -108,7 +104,7 @@ const PostDetail = ({ initialPostData, initialCommentsData }) => {
 
   const handleDeleteComment = (commentId) => {
     if (window.confirm("댓글을 삭제하시겠습니까?")) {
-      deleteCommentMutation.mutate({ postId: id, commentId });
+      deleteCommentMutate({ postId: id, commentId });
     }
   };
 

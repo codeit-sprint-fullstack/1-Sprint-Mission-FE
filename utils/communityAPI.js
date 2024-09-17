@@ -43,6 +43,17 @@ export const fetchPosts = async (
   };
 };
 
+export const createPost = async ({ title, content }) => {
+  const response = await fetch(`${API_URL}/api/community/posts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ title, content, author_name: "익명의 판다" }),
+  });
+  return handleResponse(response);
+};
+
 export const fetchPost = async (postId) => {
   const response = await fetch(`${API_URL}/api/community/posts/${postId}`);
   return handleResponse(response);

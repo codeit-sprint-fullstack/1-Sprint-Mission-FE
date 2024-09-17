@@ -7,21 +7,26 @@ const CommentForm = ({ postId, onCommentAdded }) => {
   const [comment, setComment] = useState("");
   const [error, setError] = useState("");
 
-  const { mutateComment, isLoading } = usePostMutation(
-    () => {
-      setComment("");
-      setError("");
-      onCommentAdded();
-    },
-    () => {
-      setError("댓글 등록에 실패했습니다. 다시 시도해 주세요.");
-    }
+  const onSuccess = () => {
+    setComment("");
+    setError("");
+    onCommentAdded();
+  };
+
+  const onError = () => {
+    setError("댓글 등록에 실패했습니다. 다시 시도해 주세요.");
+  };
+
+  const { mutate, isLoading } = usePostMutation(
+    "createComment",
+    onSuccess,
+    onError
   );
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (comment.trim()) {
-      mutateComment({ postId, content: comment });
+      mutate({ postId, content: comment });
     } else {
       setError("댓글 내용을 입력해 주세요.");
     }
