@@ -9,25 +9,44 @@ import ic_visible from "@/public/images/btn_visibility_on_24px.png";
 import main_logo from "@/public/images/logo.png";
 import ic_kakao from "@/public/images/kakaoicon.png";
 import ic_google from "@/public/images/googleicon.png";
+import * as api from "@/pages/api/user";
+import { useRouter } from "next/router";
 
 function SignUp() {
+  const router = useRouter();
   const [alertMessage, setAlertMessage] = useState("");
   const [openAlert, setOpenAlert] = useState(false);
-  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [passwordVisible, setPasswordVisible] = useState({
     password: false,
-    passwordConfirm: false,
+    passwordConfirmation: false,
   });
 
   const handleOpenAlert = () => setOpenAlert(true);
   const handleCloseAlert = () => setOpenAlert(false);
 
-  const onSubmit = (value) => {
+  const createUser = async (value) => {
     console.log(value);
+    // return;
+    try {
+      const data = await api.createUser(value);
+      if (data) {
+        router.push("/Products");
+      } else {
+        setAlertMessage("회원가입에 실패했습니다.");
+        handleOpenAlert();
+      }
+    } catch (error) {
+      console.log(error.name);
+      setAlertMessage("회원가입에 실패했습니다." + error.name);
+      handleOpenAlert();
+    }
   };
 
   const { values, errors, handleChange, handleSubmit, disabled } =
-    useFormValidation({ email: "", password: "", name: "" }, onSubmit);
+    useFormValidation(
+      { email: "", password: "", passwordConfirmation: "", nickname: "" },
+      createUser
+    );
 
   const toggleVisible = (e) => {
     const { name } = e.target;
@@ -35,16 +54,6 @@ function SignUp() {
       ...prev,
       [name]: !prev[name],
     }));
-  };
-
-  const handleConfirm = (e) => {
-    const { value } = e.target;
-    setPasswordConfirm(value);
-    if (values.password !== value) {
-      errors.passwordConfirm = "비밀번호가 일치하지 않습니다";
-    } else {
-      errors.passwordConfirm = "";
-    }
   };
 
   return (
@@ -86,18 +95,18 @@ function SignUp() {
             닉네임
             <div>
               <input
-                name="name"
-                value={values.name || ""}
+                name="nickname"
+                value={values.nickname || ""}
                 onChange={handleChange}
                 className={`${styles.input} ${
-                  errors.name && styles.err_border
+                  errors.nickname && styles.err_border
                 }`}
                 placeholder="닉네임을 입력해주세요"
                 autoComplete="off"
               />
-              {errors.name && (
+              {errors.nickname && (
                 <p className={styles.err_mes} style={{ color: "red" }}>
-                  {errors.name}
+                  {errors.nickname}
                 </p>
               )}
             </div>
@@ -135,29 +144,29 @@ function SignUp() {
             비밀번호 확인
             <div>
               <input
-                type={passwordVisible.passwordConfirm ? "text" : "password"}
-                name="passwordConfirm"
-                onKeyUp={(e) => {
-                  handleConfirm(e);
-                }}
+                type={
+                  passwordVisible.passwordConfirmation ? "text" : "password"
+                }
+                name="passwordConfirmation"
+                onChange={handleChange}
                 className={`${styles.input} ${
-                  errors.passwordConfirm && styles.err_border
+                  errors.passwordConfirmation && styles.err_border
                 }`}
                 placeholder="비밀번호를 다시 한 번 입력해주세요"
                 autoComplete="off"
               />
               <Image
                 onClick={toggleVisible}
-                name="passwordConfirm"
+                name="passwordConfirmation"
                 className={styles.ic_visible}
                 src={ic_visible}
                 width={24}
                 height={24}
                 alt="비밀번호보기"
               />
-              {errors.passwordConfirm && (
+              {errors.passwordConfirmation && (
                 <p className={styles.err_mes} style={{ color: "red" }}>
-                  {errors.passwordConfirm}
+                  {errors.passwordConfirmation}
                 </p>
               )}
             </div>
@@ -176,18 +185,13 @@ function SignUp() {
                 height={42}
                 alt="카카오톡 로그인"
               />
-              <Image
-                src={ic_google}
-                width={42}
-                height={42}
-                alt="카카오톡 로그인"
-              />
+              <Image src={ic_google} width={42} height={42} alt="구글 로그인" />
             </div>
           </div>
           <div className={styles.sign_up_box}>
-            <span>판다마켓이 처음이신가요? </span>
-            <Link href={"/Signup"}>
-              <span className={styles.sign_up_href}>회원가입</span>
+            <span>이미 판다마켓 회원이신가요? </span>
+            <Link href={"/Login"}>
+              <span className={styles.sign_up_href}>로그인</span>
             </Link>
           </div>
         </form>
