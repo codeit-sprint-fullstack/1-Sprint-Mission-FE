@@ -8,9 +8,11 @@ import ic_visible from "@/public/images/btn_visibility_on_24px.png";
 import main_logo from "@/public/images/logo.png";
 import ic_kakao from "@/public/images/kakaoicon.png";
 import ic_google from "@/public/images/googleicon.png";
-import useAuth from "@/contexts/userContext";
+import useAuth from "@/contexts/authContext";
+import { useRouter } from "next/router";
 
 function Login() {
+  const router = useRouter();
   const { login } = useAuth();
   const [alertMessage, setAlertMessage] = useState("");
   const [openAlert, setOpenAlert] = useState(false);
@@ -20,6 +22,7 @@ function Login() {
 
   const handleLogin = async (value) => {
     await login(value);
+    // router.push("/Products");
   };
 
   const { values, errors, handleChange, handleSubmit, disabled } =

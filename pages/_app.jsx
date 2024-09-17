@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { AuthProvider } from "@/contexts/userContext";
+import { AuthProvider } from "@/contexts/authContext";
 import "@/styles/globals.css";
 import { createContext, useRef } from "react";
 

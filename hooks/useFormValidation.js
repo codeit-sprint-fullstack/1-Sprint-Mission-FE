@@ -76,7 +76,6 @@ const useFormValidation = (initialValues, callback) => {
 
     Object.keys(values).forEach((key) => {
       const error = validateField(key, values[key]);
-      console.log(error);
       if (error) {
         newErrors[key] = error;
         hasErrors = true;
