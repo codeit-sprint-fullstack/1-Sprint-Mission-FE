@@ -1,4 +1,3 @@
-import { useForm } from "react-hook-form";
 import Image from "next/image";
 import Link from "next/link";
 import AlertModal from "@/components/Modals/AlertModal";
@@ -9,26 +8,22 @@ import ic_visible from "@/public/images/btn_visibility_on_24px.png";
 import main_logo from "@/public/images/logo.png";
 import ic_kakao from "@/public/images/kakaoicon.png";
 import ic_google from "@/public/images/googleicon.png";
+import useAuth from "@/contexts/userContext";
 
 function Login() {
-  const { register, handleSubmit } = useForm();
+  const { login } = useAuth();
   const [alertMessage, setAlertMessage] = useState("");
   const [openAlert, setOpenAlert] = useState(false);
 
   const handleOpenAlert = () => setOpenAlert(true);
   const handleCloseAlert = () => setOpenAlert(false);
 
-  const onSubmit = (value) => {
-    console.log(value);
+  const handleLogin = async (value) => {
+    await login(value);
   };
 
-  const {
-    values,
-    errors,
-    handleChange,
-    handleSubmit: hookSubmit,
-    disabled,
-  } = useFormValidation({ email: "", password: "" }, onSubmit);
+  const { values, errors, handleChange, handleSubmit, disabled } =
+    useFormValidation({ email: "", password: "" }, handleLogin);
 
   return (
     <>
@@ -38,7 +33,7 @@ function Login() {
         onClose={handleCloseAlert}
       />
       <main>
-        <form className={styles.login_form} onSubmit={handleSubmit(onSubmit)}>
+        <form className={styles.login_form} onSubmit={handleSubmit}>
           <Image
             className={styles.main_logo}
             src={main_logo}
@@ -50,7 +45,7 @@ function Login() {
             <div>
               <input
                 name="email"
-                // value={values.email || ""}
+                value={values.email || ""}
                 onChange={handleChange}
                 className={styles.input}
                 placeholder="이메일을 입력해주세요"

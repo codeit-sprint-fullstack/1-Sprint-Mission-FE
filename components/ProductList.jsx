@@ -34,7 +34,7 @@ function ProductList({ items, favorite }) {
   return (
     <div className={favorite ? styles.best_Products : styles.Products}>
       {items.map((item) => (
-        <Product key={item._id} itemValues={item} favorite={favorite} />
+        <Product key={item.id} itemValues={item} favorite={favorite} />
       ))}
     </div>
   );

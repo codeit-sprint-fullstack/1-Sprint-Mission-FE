@@ -1,6 +1,7 @@
 import styles from "@/styles/header.module.css";
 import mainLog from "../public/images/mainlogo.png";
 import mb_Log from "../public/images/mb_logo.png";
+import ic_profile from "@/public/images/ic_profile.png";
 import Link from "next/link";
 import Image from "next/image";
 import useWindowResize from "@/hooks/useWindowResize";
@@ -44,7 +45,7 @@ function Header() {
         </div>
         {user ? (
           <div>
-            <Image />
+            <Image src={ic_profile} width={20} height={20} alt="유저이미지" />
             <span>{user?.name}</span>
           </div>
         ) : (

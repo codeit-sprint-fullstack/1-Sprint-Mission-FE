@@ -1,14 +1,6 @@
 import instance from "./axios.js";
 
-export async function getUser() {}
-
-export async function getUsers() {}
-
-export async function updateUser(id) {}
-
-export async function createUser(items) {
-  const res = await instance.post("/auth/signUp", items);
+export async function getUserMe() {
+  const res = await instance.get("/users/me");
   return res.data;
 }
-
-export async function deleteUser(id) {}

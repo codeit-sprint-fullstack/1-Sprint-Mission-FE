@@ -1,16 +1,15 @@
-import { useForm } from "react-hook-form";
 import Image from "next/image";
 import Link from "next/link";
-import AlertModal from "@/components/Modals/AlertModal";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import styles from "@/styles/signup.module.css";
-import useFormValidation from "@/hooks/useFormValidation";
 import ic_visible from "@/public/images/btn_visibility_on_24px.png";
 import main_logo from "@/public/images/logo.png";
 import ic_kakao from "@/public/images/kakaoicon.png";
 import ic_google from "@/public/images/googleicon.png";
-import * as api from "@/pages/api/user";
-import { useRouter } from "next/router";
+import * as api from "@/pages/api/auth";
+import useFormValidation from "@/hooks/useFormValidation";
+import AlertModal from "@/components/Modals/AlertModal";
 
 function SignUp() {
   const router = useRouter();
@@ -25,8 +24,6 @@ function SignUp() {
   const handleCloseAlert = () => setOpenAlert(false);
 
   const createUser = async (value) => {
-    console.log(value);
-    // return;
     try {
       const data = await api.createUser(value);
       if (data) {
