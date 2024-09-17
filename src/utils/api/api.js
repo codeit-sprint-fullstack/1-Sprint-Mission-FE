@@ -53,7 +53,6 @@ export async function getComment(id) {
     return response.data;
   } catch (error) {
     console.error(error.response ? error.response.status : error.message);
-    return [];
   }
 }
 

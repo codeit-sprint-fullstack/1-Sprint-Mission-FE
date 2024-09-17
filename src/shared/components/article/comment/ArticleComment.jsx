@@ -54,7 +54,7 @@ export function ArticleComment({ commentData, articleId }) {
       <div className={styles['comment-list-container']}>
         {isLoading ? <>로딩중입니다.</> : null}
         {error ? <>로딩중입니다.</> : null}
-        {articleComments ? (
+        {articleComments && articleComments.length > 0 ? (
           articleComments.map((comment) => {
             return <CommentList comment={comment} />;
           })
