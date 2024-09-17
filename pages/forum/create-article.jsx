@@ -4,7 +4,7 @@ import ArticleForm from "@/components/form/ArticleForm";
 import { useRouter } from "next/router";
 import { articleKey } from "@/variables/queryKeys";
 import Loader from "@/components/ui/Loader";
-import Msg from "@/components/ui/Msg";
+import Message from "@/components/ui/Message";
 
 export default function CreateArticle() {
   const queryClient = useQueryClient();
@@ -36,7 +36,7 @@ export default function CreateArticle() {
   if (articleMutation.isPending) return <Loader />;
   if (articleMutation.isError) {
     const errMsg = articleMutation.error?.message;
-    return <Msg type="error" msg={errMsg} />;
+    return <Message type="error" msg={errMsg} />;
   }
 
   return <ArticleForm onSubmit={handleNewArticleSubmit} />;

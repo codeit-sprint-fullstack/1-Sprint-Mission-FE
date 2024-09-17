@@ -6,7 +6,7 @@ import { QueryClient, useQuery, dehydrate } from "@tanstack/react-query";
 import { getArticleById } from "@/lib/api";
 import ArticleDetail from "@/components/article/ArticleDetail";
 import CommentList from "@/components/comment/CommentList";
-import Msg from "@/components/ui/Msg";
+import Message from "@/components/ui/Message";
 import Loader from "@/components/ui/Loader";
 import returnIcon from "@/public/assets/icons/ic_arrow_return.svg";
 import styles from "@/styles/pages/forum/articleId.module.scss";
@@ -46,7 +46,7 @@ export default function ArticleDetailPage() {
   if (isPending) return <Loader />;
   if (isError) {
     const errMsg = error?.message;
-    return <Msg type="error" msg={errMsg} />;
+    return <Message type="error" msg={errMsg} />;
   }
 
   return (

@@ -14,9 +14,9 @@ import ArticleList from "@/components/article/ArticleList";
 import SearchBar from "@/components/form/SearchBar";
 import Button from "@/components/ui/Button";
 import DropDown from "@/components/ui/DropDown";
-import Msg from "@/components/ui/Msg";
 import Loader from "@/components/ui/Loader";
 import styles from "@/styles/pages/forum/main.module.scss";
+import Message from "@/components/ui/Message";
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
@@ -98,7 +98,7 @@ export default function ForumPage() {
   if (isPending) return <Loader />;
   if (isError) {
     const errMsg = error?.message;
-    return <Msg type="error" msg={errMsg} />;
+    return <Message type="error" msg={errMsg} />;
   }
 
   const pages = articleData?.pages || [];
@@ -135,7 +135,7 @@ export default function ForumPage() {
           ) : hasNextPage ? (
             <Loader msg="새 게시물 불러오는 중" />
           ) : (
-            <Msg msg="더 불러올 게시물이 없습니다" />
+            <Message msg="더 불러올 게시물이 없습니다" />
           )}
         </div>
       </section>

@@ -1,6 +1,6 @@
 @use "@/styles/globals/shared" as g;
 
-.Msg {
+.Message {
   align-self: center;
   padding: 30px;
   @include g.font(16, 400);
@@ -14,7 +14,7 @@
     }
   }
 }
-.Msg.error {
+.Message.error {
   p {
     span {
       color: g.$error-red;

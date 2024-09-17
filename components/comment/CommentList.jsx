@@ -6,8 +6,8 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { getArticleComments } from "@/lib/api";
 import EmptyComments from "../ui/EmptyComment";
 import Loader from "../ui/Loader";
-import Msg from "../ui/Msg";
 import { articleKey } from "@/variables/queryKeys";
+import Message from "../ui/Message";
 
 function CommentContent({ comment }) {
   return (
@@ -43,7 +43,7 @@ export default function CommentList({ articleId }) {
   if (isPending) return <Loader />;
   if (isError) {
     const errMsg = error?.message;
-    return <Msg type="error" msg={errMsg} />;
+    return <Message type="error" msg={errMsg} />;
   }
 
   if (!data) return <div> comment data가 없음</div>;

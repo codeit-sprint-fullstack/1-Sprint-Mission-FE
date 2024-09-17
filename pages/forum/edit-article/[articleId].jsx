@@ -4,7 +4,7 @@ import ArticleForm from "@/components/form/ArticleForm";
 import { useRouter } from "next/router";
 import { articleKey } from "@/variables/queryKeys";
 import Loader from "@/components/ui/Loader";
-import Msg from "@/components/ui/Msg";
+import Message from "@/components/ui/Message";
 
 export default function EditArticle() {
   const router = useRouter();
@@ -38,7 +38,7 @@ export default function EditArticle() {
   if (isPending) return <Loader />;
   if (isError) {
     const errMsg = error?.message;
-    return <Msg type="error" msg={errMsg} />;
+    return <Message type="error" msg={errMsg} />;
   }
 
   const handleNewArticleSubmit = (data) => {
