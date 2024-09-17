@@ -1,38 +1,12 @@
-import React, { useEffect } from "react";
-import { dehydrate, QueryClient } from "react-query";
+import React from "react";
 import { useCommunityPosts } from "@/hooks/useCommunityPosts";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import BestPosts from "@/components/community/BestPosts";
 import PostList from "@/components/community/PostList";
 import SearchSection from "@/components/community/SearchSection";
-import { fetchPosts } from "@/utils/communityAPI";
 import styles from "@/pages/community/index.module.css";
 import SmallButton from "@/components/common/SmallButton";
 
-export async function getServerSideProps() {
-  const queryClient = new QueryClient();
-
-  try {
-    await queryClient.prefetchInfiniteQuery(["posts", "latest", ""], () =>
-      fetchPosts(0, "latest", "")
-    );
-
-    return {
-      props: {
-        dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
-      },
-    };
-  } catch (error) {
-    console.error("Error in getServerSideProps:", error);
-    return {
-      props: {
-        dehydratedState: null,
-      },
-    };
-  } finally {
-    queryClient.clear();
-  }
-}
 const Community = () => {
   const {
     posts,

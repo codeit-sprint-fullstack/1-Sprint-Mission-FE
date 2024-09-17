@@ -4,8 +4,8 @@ import {
   HttpStatus,
   ExceptionCode,
 } from "@/errors";
-import { getCommentById, updateComment, deleteComment } from "@/data/postData";
 import { handleError } from "@/utils/handleError";
+import { getCommentById, updateComment, deleteComment } from "@/data/postData";
 
 export default async function handler(req, res) {
   const { postId, commentId } = req.query;
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
         res.setHeader("Allow", ["GET", "PATCH", "DELETE"]);
         throw new CommonException({
           status: HttpStatus.METHOD_NOT_ALLOWED,
-          message: `${req.method} 메소드는 허용되지 않습니다`,
+          message: `${req.method} 메소드는 사용할 수 없습니다`,
           code: ExceptionCode.BUSINESS_LOGIC_ERROR,
         });
     }
@@ -54,9 +54,6 @@ export default async function handler(req, res) {
 
 async function handleGetComment(postId, commentId, res) {
   const comment = await getCommentById(postId, commentId);
-  if (!comment) {
-    throw new NotFoundException("댓글을 찾을 수 없습니다.");
-  }
   return res.status(HttpStatus.OK).json(comment);
 }
 

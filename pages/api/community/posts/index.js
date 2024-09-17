@@ -4,8 +4,8 @@ import {
   HttpStatus,
   ExceptionCode,
 } from "@/errors";
-import { getPosts, addPost, getTotalPostsCount } from "@/data/postData";
 import { handleError } from "@/utils/handleError";
+import { getPosts, getTotalPostsCount, addPost } from "@/data/postData";
 
 export default async function handler(req, res) {
   try {
@@ -18,8 +18,10 @@ export default async function handler(req, res) {
           throw new BadRequestException("잘못된 페이지 또는 한계값입니다.");
         }
 
-        const posts = await getPosts(page, limit);
-        const totalCount = await getTotalPostsCount();
+        const [posts, totalCount] = await Promise.all([
+          getPosts(page, limit),
+          getTotalPostsCount(),
+        ]);
 
         res.status(HttpStatus.OK).json({
           posts,
@@ -29,15 +31,18 @@ export default async function handler(req, res) {
           hasNextPage: (page + 1) * limit < totalCount,
         });
         break;
+
       case "POST":
         if (!req.body.title || !req.body.content) {
           throw new BadRequestException(
             "게시글 제목과 내용을 입력해야 합니다."
           );
         }
+
         const newPost = await addPost(req.body);
         res.status(HttpStatus.CREATED).json(newPost);
         break;
+
       default:
         res.setHeader("Allow", ["GET", "POST"]);
         throw new CommonException({

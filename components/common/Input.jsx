@@ -21,7 +21,9 @@ export const Select = React.forwardRef(
       const handleClickOutside = (event) => {
         if (
           dropdownRef.current &&
-          !dropdownRef.current.contains(event.target)
+          !dropdownRef.current.contains(event.target) &&
+          !event.target.closest("button") &&
+          !event.target.closest(`.${styles.selectWrapper}`)
         ) {
           closeDropdown();
         }
@@ -84,11 +86,7 @@ export const Select = React.forwardRef(
           />
         </div>
         {isOpen && (
-          <ul
-            className={`${styles.optionList} ${
-              isClosing ? styles.closing : ""
-            }`}
-          >
+          <ul className={`${styles.optionList} ${isClosing && styles.closing}`}>
             {React.Children.map(children, (child) => (
               <li
                 key={child.props.value}

@@ -4,8 +4,8 @@ import {
   HttpStatus,
   ExceptionCode,
 } from "@/errors";
-import { getCommentsByPostId, addComment } from "@/data/postData";
 import { handleError } from "@/utils/handleError";
+import { getCommentsByPostId, addComment } from "@/data/postData";
 
 export default async function handler(req, res) {
   try {
@@ -16,6 +16,7 @@ export default async function handler(req, res) {
         const comments = await getCommentsByPostId(postId);
         res.status(HttpStatus.OK).json(comments);
         break;
+
       case "POST":
         if (!req.body.content) {
           throw new BadRequestException("댓글 내용을 입력해야 합니다.");
@@ -23,6 +24,7 @@ export default async function handler(req, res) {
         const newComment = await addComment(postId, req.body);
         res.status(HttpStatus.CREATED).json(newComment);
         break;
+
       default:
         res.setHeader("Allow", ["GET", "POST"]);
         throw new CommonException({
