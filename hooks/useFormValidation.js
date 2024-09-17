@@ -17,7 +17,7 @@ const validateField = (name, value) => {
     case "name":
       return value.length >= 1 && value.length <= 10
         ? ""
-        : "상품명은 1자리 이상 10자리 이내 입니다.";
+        : "이름은 1자리 이상 10자리 이내 입니다.";
     case "description" || "content":
       return value.length >= 10 && value.length <= 100
         ? ""
@@ -44,14 +44,15 @@ const useFormValidation = (initialValues, callback) => {
       [name]: value,
     });
 
+    console.log(name);
     // 유효성 검사
     const error = validateField(name, value);
+
     setErrors({
       ...errors,
       [name]: error,
     });
     setDisabled(!!error);
-    console.log(values);
   };
 
   const handleSubmit = (event) => {

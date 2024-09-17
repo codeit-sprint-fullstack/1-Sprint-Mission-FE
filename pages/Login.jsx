@@ -112,7 +112,7 @@ function Login() {
           </div>
           <div className={styles.sign_up_box}>
             <span>판다마켓이 처음이신가요? </span>
-            <Link href={"/Signup"}>
+            <Link href={"/SignUp"}>
               <span className={styles.sign_up_href}>회원가입</span>
             </Link>
           </div>
