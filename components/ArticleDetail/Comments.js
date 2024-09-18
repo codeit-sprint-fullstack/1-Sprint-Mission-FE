@@ -3,11 +3,11 @@ import Button from '@/utils/Button';
 import CommentList from './CommentList';
 import styles from '@/styles/Comment.module.css';
 import useComments from '@/hooks/useComments';
+import useScroll from '@/hooks/useScroll';
 
 export default function Comments({ articleId }) {
   const [comment, setComment] = useState('');
   const [commentsList, setCommentsList] = useState([]);
-  const [canScroll, setCanScroll] = useState(false);
 
   const {
     getComments,
@@ -23,6 +23,12 @@ export default function Comments({ articleId }) {
     comment,
     setCommentsList,
     commentsList,
+  });
+
+  const { canScroll } = useScroll({
+    comment,
+    loading,
+    hasMore,
   });
 
   const handleComment = (event) => {
@@ -43,33 +49,15 @@ export default function Comments({ articleId }) {
   };
 
   useEffect(() => {
-    getComments(articleId);
+    if (canScroll === true) {
+      getComments(articleId);
+    }
   }, [articleId, canEdit, canScroll]);
 
   useEffect(() => {
     cursorIdRef.current === null;
     setCommentsList([]);
   }, [articleId, canEdit]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (loading || !hasMore) return;
-
-      const scrollPosition = window.scrollY + window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-
-      if (scrollPosition >= documentHeight - 100 && !canScroll) {
-        setCanScroll(true);
-      } else {
-        setCanScroll(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [comment]);
 
   return (
     <div className={styles.submit}>
