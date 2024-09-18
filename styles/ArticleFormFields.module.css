@@ -1,0 +1,87 @@
+.postLayout {
+  max-width: 1200px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  min-height: 1200px;
+}
+
+.header {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  align-items: center;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #1f2937;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.titleInput {
+  width: 100%;
+  border: none;
+  height: 56px;
+  background-color: #f3f4f6;
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+}
+
+.contentInput {
+  width: 100%;
+  border: none;
+  height: 282px;
+  background-color: #f3f4f6;
+  padding: 16px 24px;
+  box-sizing: border-box;
+  resize: none;
+  border-radius: 12px;
+  margin-bottom: 300px;
+}
+
+@media screen and (max-width: 1199px) {
+  .postLayout {
+    padding: 15px;
+  }
+
+  .header {
+    text-align: center;
+  }
+
+  .main {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 743px) {
+  .articleList {
+    height: 198px;
+  }
+
+  .list {
+    margin: 0 16px;
+    width: 343px;
+  }
+
+  .main {
+    margin-top: 0;
+  }
+
+  .logo {
+    display: none;
+  }
+  .logoMobile {
+    display: block;
+  }
+}

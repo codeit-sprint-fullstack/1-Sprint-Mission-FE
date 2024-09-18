@@ -1,0 +1,49 @@
+.dropDownRecent {
+  padding: 14px 0 12px 0;
+  border-bottom: 1px solid #d1d5db;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.dropDownFavorite {
+  padding: 14px 0 12px 0;
+  border-bottom: none;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.dropDown {
+  position: absolute;
+  width: 139px;
+  height: 92px;
+  border: 1px solid #d1d5db;
+  background-color: #ffff;
+  text-align: center;
+  border-radius: 8px;
+  margin-left: -120px;
+  cursor: pointer;
+}
+
+.dropDownEdit {
+  padding: 14px 0 12px 0;
+  border-bottom: 1px solid #d1d5db;
+  font-size: 16px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.dropDownDelete {
+  padding: 14px 0 12px 0;
+  border-bottom: none;
+  font-size: 16px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+@media screen and (max-width: 743px) {
+  .dropDown {
+    width: 102px;
+    height: 90px;
+    margin-left: -80px;
+  }
+}
