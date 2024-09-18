@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { throttle } from 'lodash';
 import ArticleList from '@/components/FreeBoard/ArticleList.js';
 import BestArticleList from '@/components/FreeBoard/BestArticleList.js';
 import ArticleListHeard from '@/components/FreeBoard/ArticleListHeard.js';
@@ -49,7 +50,7 @@ export default function FreeBoardPage({ bestArticlesData, initialArticles }) {
   });
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       if (loading || !hasMore) return;
 
       const scrollPosition = window.scrollY + window.innerHeight;
@@ -58,7 +59,7 @@ export default function FreeBoardPage({ bestArticlesData, initialArticles }) {
       if (scrollPosition >= documentHeight - 100) {
         setPagesValue((prev) => prev + 1);
       }
-    };
+    }, 200);
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
