@@ -19,7 +19,7 @@ const Footer = () => {
           rel="noopener noreferrer"
         >
           <Image
-            src="/images/social/facebook-logo.svg"
+            src="facebook-logo.svg"
             alt="페이스북"
             width={20}
             height={20}
@@ -30,24 +30,14 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            src="/images/social/twitter-logo.svg"
-            alt="트위터"
-            width={20}
-            height={20}
-          />
+          <Image src="twitter-logo.svg" alt="트위터" width={20} height={20} />
         </a>
         <a
           href="https://www.youtube.com/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            src="/images/social/youtube-logo.svg"
-            alt="유튜브"
-            width={20}
-            height={20}
-          />
+          <Image src="youtube-logo.svg" alt="유튜브" width={20} height={20} />
         </a>
         <a
           href="https://www.instagram.com/"
@@ -55,7 +45,7 @@ const Footer = () => {
           rel="noopener noreferrer"
         >
           <Image
-            src="/images/social/instagram-logo.svg"
+            src="instagram-logo.svg"
             alt="인스타그램"
             width={20}
             height={20}

@@ -1,36 +1,29 @@
-// components/Nav.js
-import Link from "next/link";
+// Nav.jsx
 import Image from "next/image";
 import styles from "./Nav.module.css";
+import Link from "next/link";
 
-const Nav = () => {
+export default function Nav() {
   return (
-    <nav className={styles.navbar}>
-      <div className={styles.navbarLeftContainer}>
-        <div className={styles.navbarLogo}>
+    <div className={styles.header}>
+      <div className={styles.headerContent}>
+        <div className={styles.headerContainer}>
           <Link href="/">
             <Image
               src="/group19.png"
-              alt="판다마켓 로고"
               width={153}
               height={51}
+              alt="logo"
+              className={styles.logo}
             />
           </Link>
+          <div className={styles.linkContainer}>
+            <div className={styles.link}>자유게시판</div>
+            <div className={styles.link}>중고마켓</div>
+          </div>
         </div>
-        <ul className={styles.navbarLinks}>
-          <li>
-            <Link href="/board">자유게시판</Link>
-          </li>
-          <li>
-            <Link href="/articles/new">중고마켓</Link>
-          </li>
-        </ul>
+        <div className={styles.loginButton}>로그인</div>
       </div>
-      <div className={styles.navbarAuth}>
-        <button className={styles.loginBtn}>로그인</button>
-      </div>
-    </nav>
+    </div>
   );
-};
-
-export default Nav;
+}

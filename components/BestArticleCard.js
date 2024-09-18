@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "@/styles/BestArticle.module.css";
+import styles from "./BestArticleCard.module.css";
 import Link from "next/link";
 
 export default function BestArticleCard({ article }) {
