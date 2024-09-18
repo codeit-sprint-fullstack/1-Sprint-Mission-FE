@@ -7,7 +7,6 @@
 
 .articleList {
   display: flex;
-
   height: 169px;
 }
 
@@ -81,6 +80,7 @@
   .articleList {
     height: 198px;
     margin: 0 24px;
+    justify-content: center;
   }
 
   .list {
