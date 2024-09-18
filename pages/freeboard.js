@@ -55,7 +55,6 @@ export default function FreeBoardPage({ bestArticlesData, initialArticles }) {
       const scrollPosition = window.scrollY + window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
 
-      console.log(window);
       if (scrollPosition >= documentHeight - 100) {
         setPagesValue((prev) => prev + 1);
       }

@@ -4,25 +4,10 @@ import bestBadge from '@/public/best_badge.png';
 import Image from 'next/image';
 import styles from '@/styles/BestArticleList.module.css';
 import DateFormat from '@/utils/DateFormat.js';
-import { useEffect, useState } from 'react';
+import useDevice from '@/hooks/useDevice';
 
 export default function BestArticleList({ articles }) {
-  const [bestArticles, setBestArticles] = useState(articles);
-
-  useEffect(() => {
-    const screenWidth = window.innerWidth;
-    let maxArticles;
-
-    if (screenWidth <= 743) {
-      maxArticles = 1;
-    } else if (screenWidth <= 1199) {
-      maxArticles = 2;
-    } else {
-      maxArticles = 3;
-    }
-
-    setBestArticles(articles.slice(0, maxArticles));
-  }, [articles]);
+  const { bestArticles } = useDevice({ articles });
 
   if (bestArticles.length === 0) {
     return (
