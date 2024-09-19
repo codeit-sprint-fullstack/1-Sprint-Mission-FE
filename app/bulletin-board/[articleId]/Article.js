@@ -10,6 +10,18 @@ import DropDownKebabArticle from "@/app/components/DropDownKebabArticle";
 
 import style from "./article.module.css";
 
+function Owner({ middleBarOwnerClass, nickname }) {
+  return <p className={middleBarOwnerClass}>{nickname}</p>;
+}
+
+function Divider({ dividerClass }) {
+  return (
+    <div className={dividerClass}>
+      <Image src="/images/divider_h40.svg" width={2} height={34} alt="분리" />
+    </div>
+  );
+}
+
 export function Article({
   articleId,
   title,
@@ -28,17 +40,17 @@ export function Article({
   const dividerClass = `flex flex-row items-center justify-center ${style.divider}`;
   const contentClass = `font-normal ${style.content}`;
 
-  const Owner = () => {
-    return <p className={middleBarOwnerClass}>{nickname}</p>;
-  };
+  // const Owner = () => {
+  //   return <p className={middleBarOwnerClass}>{nickname}</p>;
+  // };
 
-  const Divider = () => {
-    return (
-      <div className={dividerClass}>
-        <Image src="/images/divider_h40.svg" width={2} height={34} alt="분리" />
-      </div>
-    );
-  };
+  // const Divider = () => {
+  //   return (
+  //     <div className={dividerClass}>
+  //       <Image src="/images/divider_h40.svg" width={2} height={34} alt="분리" />
+  //     </div>
+  //   );
+  // };
 
   return (
     <div className={style.article}>
@@ -50,10 +62,10 @@ export function Article({
       <div className={middleBarClass}>
         <Profile type={PROFILE_H40} profileImgUrl={profileImgUrl} />
         <div className={middleBarOwnerDateSetClass}>
-          <Owner />
+          <Owner dividerClass={dividerClass} nickname={nickname} />
           <Date type={DATE} dbDate={createdDate} />
         </div>
-        <Divider />
+        <Divider dividerClass={dividerClass} />
         <Favorite type={ARTICLE_DETAIL} favoriteCount={favoriteCount} />
       </div>
       <div className={contentClass}>{content} </div>

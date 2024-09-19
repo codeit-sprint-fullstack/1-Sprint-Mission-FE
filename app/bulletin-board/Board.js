@@ -43,24 +43,28 @@ export function Board() {
   const boardMiddleBarClass = `flex flex-row justify-between ${style["middle-bar"]}`;
   const boardListClass = `flex flex-col ${style.list}`;
 
+  const getArticleTag = (article, index) => {
+    return (
+      <ArticlePreview
+        key={index}
+        articleId={article.id}
+        title={article.title}
+        profileImgUrl={article.user.image}
+        nickname={article.user.nickname}
+        myFavorite={article.myFavorite}
+        favoriteCount={article.favorite}
+        createdDate={article.createdAt}
+      />
+    );
+  };
+
   const handleSortByRecent = () => {
     setRecentOrder(ORDER_TEXT[ORDER_BY_RECENT]);
     setPage(1);
     getArticles(1, PAGE_SIZE_BY_DEVICE[device], ORDER_BY[ORDER_BY_RECENT]).then(
       (data) => {
         const newList = data.articles.map((article, index) => {
-          return (
-            <ArticlePreview
-              key={index}
-              articleId={article.id}
-              title={article.title}
-              profileImgUrl={article.user.image}
-              nickname={article.user.nickname}
-              myFavorite={article.myFavorite}
-              favoriteCount={article.favorite}
-              createdDate={article.createdAt}
-            />
-          );
+          return getArticleTag(article, index);
         });
         setList(newList);
       }
@@ -76,18 +80,7 @@ export function Board() {
       ORDER_BY[ORDER_BY_FAVORITE]
     ).then((data) => {
       const newList = data.articles.map((article, index) => {
-        return (
-          <ArticlePreview
-            key={index}
-            articleId={article.id}
-            title={article.title}
-            profileImgUrl={article.user.image}
-            nickname={article.user.nickname}
-            myFavorite={article.myFavorite}
-            favoriteCount={article.favorite}
-            createdDate={article.createdAt}
-          />
-        );
+        return getArticleTag(article, index);
       });
       setList(newList);
     });
@@ -96,18 +89,7 @@ export function Board() {
   useEffect(() => {
     getArticles(1, PAGE_SIZE_BY_DEVICE[device], recentOrder).then((data) => {
       const newList = data.articles.map((article, index) => {
-        return (
-          <ArticlePreview
-            key={index}
-            articleId={article.id}
-            title={article.title}
-            profileImgUrl={article.user.image}
-            nickname={article.user.nickname}
-            myFavorite={article.myFavorite}
-            favoriteCount={article.favorite}
-            createdDate={article.createdAt}
-          />
-        );
+        return getArticleTag(article, index);
       });
 
       setList(newList);
@@ -136,18 +118,7 @@ export function Board() {
     getArticles(page + 1, PAGE_SIZE_BY_DEVICE[device], recentOrder).then(
       (data) => {
         const newList = data.articles.map((article, index) => {
-          return (
-            <ArticlePreview
-              key={index}
-              articleId={article.id}
-              title={article.title}
-              profileImgUrl={article.user.image}
-              nickname={article.user.nickname}
-              myFavorite={article.myFavorite}
-              favoriteCount={article.favorite}
-              createdDate={article.createdAt}
-            />
-          );
+          return getArticleTag(article, index);
         });
 
         setPage(page + 1);
