@@ -6,6 +6,7 @@ import CommentItem from '../../components/CommentItem';
 import CommentForm from '../../components/CommentForm';
 import BackButton from '../../components/BackButton';
 import PostKebabMenu from '../../components/PostKebabMenu';
+import EmptyComments from '../../components/EmptyComments'; // EmptyComments 컴포넌트 추가
 
 const PostDetail = () => {
   const router = useRouter();
@@ -31,9 +32,7 @@ const PostDetail = () => {
         .then((data) => {
           setPost(data);
           setLoading(false);
-
-        // 수정된 게시글 정보
-        console.log("게시글 수정하기 성공:", data);
+          console.log("게시글 수정하기 성공:", data);
         })
         .catch((error) => {
           console.error('Error fetching article:', error);
@@ -77,15 +76,7 @@ const PostDetail = () => {
 
       <div className={styles.commentsContainer}>
         {comments.length === 0 ? (
-          <>
-            <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
-            <p className={styles.noCommentsText}>
-              아직 댓글이 없어요, <br /> 지금 댓글을 달아보세요!
-            </p>
-            <div className={styles.buttonContainer}>
-              <BackButton />
-            </div>
-          </>
+          <EmptyComments />
         ) : (
           <>
             {comments.map((comment, index) => (
