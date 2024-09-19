@@ -2,7 +2,7 @@ import CommentFrom from "@/components/particularPage/CommentFrom";
 import CommentList from "@/components/particularPage/CommentList";
 import ParticularInformation from "@/components/particularPage/ParticularInformation";
 import Spinner from "@/components/public/Spinner";
-import styles from '@/styles/FreeNoticeBoard.module.css'
+import styles from "@/styles/FreeNoticeBoard.module.css";
 import instance from "@/lib/axios";
 import Head from "next/head";
 import { notFound } from "next/navigation";
@@ -120,7 +120,6 @@ export default function ParticularPage({
       idx: "",
     });
   };
-
 
   return (
     <>
