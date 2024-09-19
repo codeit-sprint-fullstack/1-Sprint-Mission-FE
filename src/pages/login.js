@@ -69,6 +69,9 @@ export default function Login() {
     }
   };
 
+  // 로그인 버튼 활성화
+  const isButtonDisabled = !email || !password;
+
   return (
     <main className={styles.main}>
       <header className={styles.header}>
@@ -109,7 +112,11 @@ export default function Login() {
             />
             {passwordError && <p className={styles.error}>{passwordError}</p>}
           </div>
-          <button type="submit" className={styles.button}>
+          <button
+            type="submit"
+            className={styles.button}
+            disabled={isButtonDisabled}
+          >
             로그인
           </button>
         </form>
