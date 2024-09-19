@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
 import styles from "./CreateAccount.module.css";
@@ -8,8 +9,10 @@ import {
   validatePassword,
   validatename,
 } from "../lib/vaildate_function.mjs";
+import { registerUser } from "../api/api"; // API 호출 함수 임포트
 
 export default function CreateAccount() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +25,7 @@ export default function CreateAccount() {
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [modalMessage, setModalMessage] = useState(""); // 모달 메시지 상태
-  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열기 상태
+  const [showModal, setShowModal] = useState(false); // 모달 표시 상태
 
   const validateInputs = () => {
     let isValid = true; // 유효성 검사 상태 초기화
@@ -83,7 +86,7 @@ export default function CreateAccount() {
     validateInputs(); // 입력할 때마다 유효성 검사
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     validateInputs(); // 제출 시에도 유효성 검사
 
@@ -93,22 +96,35 @@ export default function CreateAccount() {
       passwordError === "" &&
       confirmPasswordError === ""
     ) {
-      console.log("회원가입 요청:", { email, name, password });
-      // 여기서 실제 회원가입 요청 처리
-      const isSuccess = true; // API 요청 성공 여부에 따라 변경
+      try {
+        const response = await registerUser({
+          email,
+          nickname: name,
+          password,
+          passwordConfirmation: confirmPassword,
+        });
 
-      if (isSuccess) {
-        setModalMessage("회원가입이 성공적으로 완료되었습니다.");
-      } else {
-        setModalMessage("회원가입에 실패하였습니다. 다시 시도해 주세요.");
+        setModalMessage("회원가입이 성공적으로 완료되었습니다!");
+        setShowModal(true);
+        console.log("회원가입 요청:", response);
+
+        // 회원가입 성공 시 중고마켓 페이지로 이동
+        router.push("/items"); // 중고마켓 페이지로 이동
+      } catch (error) {
+        if (error.response) {
+          console.error("회원가입 요청 실패:", error.response.data); // 오류 응답 데이터 출력
+        } else {
+          console.error("회원가입 요청 실패:", error.message);
+        }
+        setModalMessage("회원가입에 실패했습니다. 다시 시도해 주세요.");
+        setShowModal(true);
+        console.error("회원가입 요청 실패:", error);
       }
-      setIsModalOpen(true); // 모달 열기
     }
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setModalMessage(""); // 메시지 초기화
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -221,7 +237,7 @@ export default function CreateAccount() {
         </div>
       </div>
 
-      {isModalOpen && <Modal message={modalMessage} onClose={closeModal} />}
+      {showModal && <Modal message={modalMessage} onClose={handleCloseModal} />}
     </main>
   );
 }
