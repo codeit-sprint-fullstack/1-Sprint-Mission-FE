@@ -127,8 +127,9 @@ export default function ParticularPage({
         <title>{noticeBoardData.title} - 자유게시판 | 판다마켓</title>
       </Head>
       <ParticularInformation data={noticeBoardData} />
-      <CommentFrom Handler={postCommentHandler} mode={"등록"} />
+      <CommentFrom Handler={postCommentHandler} mode={"자유게시판"} />
       <CommentList
+        mode={"자유게시판"}
         comment={comment} // 불러온 데이터 배열
         hasMore={hasMore} // 추가 데이터 여부
         loadMore={loadMoreItems} // 페이지를 로드하는 함수
