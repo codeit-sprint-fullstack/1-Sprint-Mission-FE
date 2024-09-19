@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 import { loginUser } from "../api/api"; // api.js에서 임포트
 import styles from "./Login.module.css";
 
@@ -10,11 +11,14 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(""); // 이메일 에러 상태
   const [passwordError, setPasswordError] = useState(""); // 비밀번호 에러 상태
+  const router = useRouter(); // useRouter 훅 초기화
 
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
       console.log("로그인 성공:", data);
+      // 로그인 성공 시 중고 마켓 페이지로 이동
+      router.push("/item");
     },
     onError: (error) => {
       console.error("로그인 실패:", error);
