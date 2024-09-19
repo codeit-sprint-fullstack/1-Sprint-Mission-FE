@@ -36,7 +36,7 @@ const Navbar = () => {
         style={{ cursor: 'pointer' }}
       />
       <div className={styles.navLinks}>
-        <Link href="/board" passHref> {/* 자유게시판을 /board 페이지로 변경 */}
+        <Link href="/board" passHref>
           <span className={styles.boardLink}>자유게시판</span>
         </Link>
         <Link href="/items" passHref>
@@ -45,11 +45,10 @@ const Navbar = () => {
           </span>
         </Link>
       </div>
-      {router.pathname === '/registration' ? (
-        <button className={styles.loginButton}>로그인</button>
-      ) : (
-        <img src="/image/profile.svg" alt="Profile" className={styles.profile} />
-      )}
+      {/* 모든 페이지에서 로그인 버튼을 나타내기  => 일단 */}
+      <button className={styles.loginButton}>로그인</button>
+      {/* 아래 코드는 일단 주석 처리 */}
+      {/* <img src="/image/profile.svg" alt="Profile" className={styles.profile} /> */}
     </nav>
   );
 };
