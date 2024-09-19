@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { loginUser } from "../api/api"; // api.js에서 임포트
+import Modal from "../components/Modal"; // 모달 컴포넌트 임포트
 import styles from "./Login.module.css";
 
 export default function Login() {
@@ -11,6 +12,10 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(""); // 이메일 에러 상태
   const [passwordError, setPasswordError] = useState(""); // 비밀번호 에러 상태
+
+  const [showModal, setShowModal] = useState(false); // 모달 표시 상태
+  const [modalMessage, setModalMessage] = useState(""); // 모달 메시지
+
   const router = useRouter(); // useRouter 훅 초기화
 
   const mutation = useMutation({
@@ -25,16 +30,14 @@ export default function Login() {
       // 이메일과 비밀번호 에러 메시지 설정
       if (error.response) {
         if (error.response.status === 401) {
-          setEmailError("이메일을 확인해 주세요.");
-          setPasswordError("비밀번호를 확인해 주세요.");
+          setModalMessage("비밀번호가 일치하지 않습니다.");
         } else {
-          setEmailError("로그인에 실패했습니다.");
-          setPasswordError("로그인에 실패했습니다.");
+          setModalMessage("로그인에 실패했습니다.");
         }
       } else {
-        setEmailError("로그인에 실패했습니다.");
-        setPasswordError("로그인에 실패했습니다.");
+        setModalMessage("로그인에 실패했습니다.");
       }
+      setShowModal(true); // 모달 표시
     },
   });
 
@@ -74,6 +77,11 @@ export default function Login() {
 
   return (
     <main className={styles.main}>
+      {/* 모달 표시 */}
+      {showModal && (
+        <Modal message={modalMessage} onClose={() => setShowModal(false)} />
+      )}
+
       <header className={styles.header}>
         <div className={styles.logoContainer}>
           <Image
