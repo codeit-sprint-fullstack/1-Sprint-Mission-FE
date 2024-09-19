@@ -93,7 +93,7 @@ export default function Login() {
 
         <div className={styles.first_ingayo}>
           판다마켓이 처음이신가요?
-          <Link href="/create_account" className={styles.signupLink}>
+          <Link href="/create-account" className={styles.signupLink}>
             회원가입
           </Link>
         </div>
