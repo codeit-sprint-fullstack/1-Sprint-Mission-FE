@@ -109,3 +109,11 @@
   color: #1f2937;
   gap: 4px;
 }
+
+/* 에러메시지 */
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: -5px;
+  margin-bottom: 14px;
+}

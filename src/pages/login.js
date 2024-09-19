@@ -8,6 +8,8 @@ import styles from "./Login.module.css";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState(""); // 이메일 에러 상태
+  const [passwordError, setPasswordError] = useState(""); // 비밀번호 에러 상태
 
   const mutation = useMutation({
     mutationFn: loginUser,
@@ -16,12 +18,51 @@ export default function Login() {
     },
     onError: (error) => {
       console.error("로그인 실패:", error);
+      // 이메일과 비밀번호 에러 메시지 설정
+      if (error.response) {
+        if (error.response.status === 401) {
+          setEmailError("이메일을 확인해 주세요.");
+          setPasswordError("비밀번호를 확인해 주세요.");
+        } else {
+          setEmailError("로그인에 실패했습니다.");
+          setPasswordError("로그인에 실패했습니다.");
+        }
+      } else {
+        setEmailError("로그인에 실패했습니다.");
+        setPasswordError("로그인에 실패했습니다.");
+      }
     },
   });
 
   const handleLogin = (e) => {
     e.preventDefault();
-    mutation.mutate({ email, password }); // 로그인 요청
+
+    // 에러 메시지 초기화
+    setEmailError("");
+    setPasswordError("");
+
+    // 이메일 유효성 검사
+    if (!email) {
+      setEmailError("이메일을 입력해 주세요.");
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setEmailError("유효한 이메일을 입력해 주세요.");
+    }
+
+    // 비밀번호 유효성 검사
+    if (!password) {
+      setPasswordError("비밀번호를 입력해 주세요.");
+    } else if (password.length < 8) {
+      setPasswordError("비밀번호는 8자 이상이어야 합니다.");
+    } else if (!/[A-Z]/.test(password)) {
+      setPasswordError("비밀번호에는 대문자가 하나 이상 포함되어야 합니다.");
+    } else if (!/[0-9]/.test(password)) {
+      setPasswordError("비밀번호에는 숫자가 하나 이상 포함되어야 합니다.");
+    }
+
+    // 유효성 검사 통과
+    if (email && password && !emailError && !passwordError) {
+      mutation.mutate({ email, password }); // 로그인 요청
+    }
   };
 
   return (
@@ -40,7 +81,7 @@ export default function Login() {
       </header>
 
       <div className={styles.form_box}>
-        <form className={styles.form} onSubmit={handleLogin}>
+        <form className={styles.form} onSubmit={handleLogin} noValidate>
           <label className={styles.label}>이메일</label>
           <input
             className={styles.input}
@@ -50,6 +91,7 @@ export default function Login() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+          {emailError && <p className={styles.error}>{emailError}</p>}
 
           <label className={styles.label}>비밀번호</label>
           <div className={styles.ps_confirm}>
@@ -61,8 +103,8 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+            {passwordError && <p className={styles.error}>{passwordError}</p>}
           </div>
-
           <button type="submit" className={styles.button}>
             로그인
           </button>
