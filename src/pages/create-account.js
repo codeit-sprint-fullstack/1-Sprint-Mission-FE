@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
-import styles from "./CreateAccount.module.css"; // CSS 모듈 임포트
+import styles from "./CreateAccount.module.css";
 import {
   validateEmail,
   validatePassword,
   validatename,
-} from "../lib/vaildate_function.mjs"; // 유효성 검사 함수 임포트
+} from "../lib/vaildate_function.mjs";
 
 export default function CreateAccount() {
   const [email, setEmail] = useState("");
@@ -19,48 +19,79 @@ export default function CreateAccount() {
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-    // 에러 초기화
-    setEmailError("");
-    setNameError("");
-    setPasswordError("");
-    setConfirmPasswordError("");
+  const validateInputs = () => {
+    let isValid = true; // 유효성 검사 상태 초기화
 
     // 이메일 유효성 검사
-    if (!validateEmail(email)) {
+    if (email && !validateEmail(email)) {
       setEmailError("유효한 이메일을 입력해 주세요.");
+      isValid = false;
+    } else {
+      setEmailError("");
     }
 
     // 닉네임 유효성 검사
-    if (!validatename(name)) {
+    if (name && !validatename(name)) {
       setNameError("닉네임은 한글로만 작성해 주세요.");
+      isValid = false;
+    } else {
+      setNameError("");
     }
 
     // 비밀번호 유효성 검사
-    if (!validatePassword(password)) {
-      setPasswordError(
-        "비밀번호는 숫자, 소문자, 특수문자가 포함되어야 합니다."
-      );
-    } else if (password.length < 8) {
-      setPasswordError("비밀번호는 8자 이상이어야 합니다.");
+    if (password) {
+      if (!validatePassword(password)) {
+        setPasswordError(
+          "비밀번호는 숫자, 소문자, 특수문자가 포함되어야 합니다."
+        );
+        isValid = false;
+      } else if (password.length < 8) {
+        setPasswordError("비밀번호는 8자 이상이어야 합니다.");
+        isValid = false;
+      } else {
+        setPasswordError("");
+      }
+    } else {
+      setPasswordError("비밀번호를 입력해 주세요.");
+      isValid = false;
     }
 
     // 비밀번호 확인 유효성 검사
-    if (confirmPassword !== password) {
-      setConfirmPasswordError("비밀번호가 일치하지 않습니다.");
+    if (confirmPassword) {
+      if (confirmPassword !== password) {
+        setConfirmPasswordError("비밀번호가 일치하지 않습니다.");
+        isValid = false;
+      } else {
+        setConfirmPasswordError("");
+      }
+    } else {
+      setConfirmPasswordError("비밀번호 확인을 입력해 주세요.");
+      isValid = false;
     }
 
-    // 모든 유효성 검사 통과 시
+    // 버튼 활성화 상태 설정
+    setIsButtonDisabled(!isValid);
+  };
+
+  const handleInputChange = (setter) => (e) => {
+    setter(e.target.value);
+    validateInputs(); // 입력할 때마다 유효성 검사
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    validateInputs(); // 제출 시에도 유효성 검사
+
     if (
-      validateEmail(email) &&
-      validatename(name) &&
-      validatePassword(password) &&
-      password.length >= 8 &&
-      confirmPassword === password
+      emailError === "" &&
+      nameError === "" &&
+      passwordError === "" &&
+      confirmPasswordError === ""
     ) {
       console.log("회원가입 요청:", { email, name, password });
+      // 회원가입 요청 처리
     }
   };
 
@@ -88,11 +119,11 @@ export default function CreateAccount() {
             type="email"
             placeholder="이메일을 입력해주세요"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleInputChange(setEmail)}
             required
           />
-          {emailError && <p className={styles.error}>{emailError}</p>}{" "}
-          {/* 이메일 에러 메시지 */}
+          {emailError && <p className={styles.error}>{emailError}</p>}
+
           <label className={styles.label}>닉네임</label>
           <input
             className={styles.input}
@@ -100,11 +131,11 @@ export default function CreateAccount() {
             type="text"
             placeholder="닉네임을 입력해주세요"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={handleInputChange(setName)}
             required
           />
-          {nameError && <p className={styles.error}>{nameError}</p>}{" "}
-          {/* 닉네임 에러 메시지 */}
+          {nameError && <p className={styles.error}>{nameError}</p>}
+
           <label className={styles.label}>비밀번호</label>
           <div className={styles.ps_confirm}>
             <input
@@ -113,12 +144,12 @@ export default function CreateAccount() {
               type="password"
               placeholder="비밀번호를 입력해주세요"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handleInputChange(setPassword)}
               required
             />
             {passwordError && <p className={styles.error}>{passwordError}</p>}
-            {/* 비밀번호 에러 메시지 */}
           </div>
+
           <label className={styles.label}>비밀번호 확인</label>
           <div className={styles.ps_confirm}>
             <input
@@ -127,14 +158,14 @@ export default function CreateAccount() {
               type="password"
               placeholder="비밀번호를 다시 한 번 입력해주세요"
               value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              onChange={handleInputChange(setConfirmPassword)}
               required
             />
             {confirmPasswordError && (
               <p className={styles.error}>{confirmPasswordError}</p>
             )}
-            {/* 비밀번호 확인 에러 메시지 */}
           </div>
+
           <button
             className={styles.button}
             type="submit"
