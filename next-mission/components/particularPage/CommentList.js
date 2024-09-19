@@ -59,13 +59,13 @@ export default function CommentList({
 
   return (
     <>
-      {comment.length > 0 || (
+      {comment.length !== 0 || (
         <div className={`${style.noComment} ${style.flexColumn}`}>
           <Image src={noListImage} width={140} height={140} alt={alt} />
           <div className={style.noCommentText}>{noListText}</div>
         </div>
       )}
-      {comment.length > 0 && (
+      {comment.length !== 0 && (
         <ul className={`${style.CommentListUl} ${style.flexColumn}`}>
           {comment.map((data, idx) => {
             if (idx === comment.length - 1) {

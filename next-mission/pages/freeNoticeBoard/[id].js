@@ -1,6 +1,6 @@
-import CommentFrom from "@/components/public/CommentFrom";
-import CommentList from "@/components/public/CommentList";
-import ParticularInformation from "@/components/particularPage/ParticularInformation";
+import CommentFrom from "@/components/particularPage/CommentFrom";
+import CommentList from "@/components/particularPage/CommentList";
+import NoticeBoardParticularInformation from "@/components/particularPage/NoticeBoardParticularInfo";
 import Spinner from "@/components/public/Spinner";
 import styles from "@/styles/FreeNoticeBoard.module.css";
 import instance from "@/lib/axios";
@@ -33,7 +33,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function ParticularPage({
+export default function NoticeBoardParticularPage({
   noticeBoardData,
   commentData,
   cursorData,
@@ -126,7 +126,7 @@ export default function ParticularPage({
       <Head>
         <title>{noticeBoardData.title} - 자유게시판 | 판다마켓</title>
       </Head>
-      <ParticularInformation data={noticeBoardData} />
+      <NoticeBoardParticularInformation data={noticeBoardData} />
       <CommentFrom Handler={postCommentHandler} mode={"자유게시판"} />
       <CommentList
         mode={"자유게시판"}
