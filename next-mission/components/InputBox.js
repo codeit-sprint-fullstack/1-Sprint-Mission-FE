@@ -79,7 +79,7 @@ export default function Inputbox({
           setShowEorrorMasage(false);
         }
       } else if (name === "passwordConfirmation") {
-        if (!value === checkpassword) {
+        if (value !== checkpassword) {
           setShowEorrorMasage(true);
         } else {
           setShowEorrorMasage(false);
