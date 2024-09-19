@@ -13,6 +13,15 @@ export const commentKey = {
   detail: (commentId) => [...commentKey.details(), commentId],
 };
 
+export const productKey = {
+  all: ["products"],
+  lists: () => [...productKey.all, "list"],
+  list: (params = {}) => [...productKey.lists(), { ...params }],
+  details: () => [...productKey.all, "detail"],
+  detail: (productId) => [...productKey.details(), productId],
+  comments: (productId) => [...productKey.detail(productId), "comments"],
+};
+
 export const PAGE_SIZE = {
   DEFAULT: 10,
 };

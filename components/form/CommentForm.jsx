@@ -2,33 +2,21 @@ import { COMMENT } from "@/variables/formValidation";
 import styles from "./CommentForm.module.scss";
 import TextArea from "./TextArea";
 import Button from "../ui/Button";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { articleKey } from "@/variables/queryKeys";
-import { createArticleComment } from "@/lib/api";
 import { useFormContext } from "react-hook-form";
+import { useCreateComment } from "@/service/mutations";
 
-export default function CommentForm({ articleId }) {
+export default function CommentForm({ idPath }) {
   const {
     handleSubmit,
     reset,
     formState: { isValid },
   } = useFormContext();
 
-  const queryClient = useQueryClient();
-
-  const createCommentMutation = useMutation({
-    mutationFn: (data) => createArticleComment(articleId, data),
-    onSuccess: () => {
-      console.log("onSuccess in createCommentMutation");
-      queryClient.invalidateQueries({
-        queryKey: articleKey.comments(articleId),
-      });
-    },
-  });
+  const { mutate } = useCreateComment(idPath);
 
   const handleNewCommentSubmit = (data) => {
     const newComment = { content: data.content };
-    createCommentMutation.mutate(newComment);
+    mutate(newComment);
   };
 
   const handleResetAfterSubmit = (data) => {

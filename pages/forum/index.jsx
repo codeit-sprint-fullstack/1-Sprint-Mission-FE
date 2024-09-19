@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import Head from "next/head";
 import Link from "next/link";
-import { getArticleList } from "@/lib/api";
+import { getArticleList } from "@/service/api";
 import { articleKey, PAGE_SIZE } from "@/variables/queryKeys";
 import BestArticles from "@/components/article/BestArticles";
 import ArticleList from "@/components/article/ArticleList";

@@ -1,14 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useQuery } from "@tanstack/react-query";
-import { formatDate, formatLikes } from "@/lib/utils";
+import { formatDate, formatLikes } from "@/utils/formatFn";
 import ImageContainer from "../ui/ImgContainer";
 import defaultImg from "../../public/assets/img_default.svg";
 import inactiveHeart from "../../public/assets/icons/ic_heart_inactive.svg";
 import activeHeart from "../../public/assets/icons/ic_heart_active.svg";
 import bestBadge from "../../public/assets/icons/ic_medal.svg";
 import styles from "./BestArticles.module.scss";
-import { articleKey } from "@/variables/queryKeys";
+import { useBestArticles } from "@/service/queries";
 
 function ArticleCard({ article, userName }) {
   const articleImg = article.productImg ? article.productImg : defaultImg;
@@ -47,10 +46,7 @@ function ArticleCard({ article, userName }) {
 }
 
 export default function BestArticles() {
-  const { data } = useQuery({
-    queryKey: articleKey.list({ pageSize: 3, orderBy: "like" }),
-    queryFn: () => getArticleList({ page: 1, pageSize: 3, orderBy: "like" }),
-  });
+  const { data } = useBestArticles({ pageSize: 3, orderBy: "like" });
 
   const { list } = data;
 

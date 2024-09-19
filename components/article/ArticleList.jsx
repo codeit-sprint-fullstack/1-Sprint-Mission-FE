@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { formatDate, formatLikes } from "@/lib/utils";
+import { formatDate, formatLikes } from "@/utils/formatFn";
 import defaultArticleImg from "../../public/assets/img_default.svg";
 import inactiveHeart from "../../public/assets/icons/ic_heart_inactive.svg";
 import ImageContainer from "../ui/ImgContainer";

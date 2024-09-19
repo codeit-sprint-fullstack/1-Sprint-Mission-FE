@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { QueryClient, useQuery, dehydrate } from "@tanstack/react-query";
-import { getArticleById } from "@/lib/api";
+import { getArticleById } from "@/service/api";
 import ArticleDetail from "@/components/article/ArticleDetail";
 import CommentList from "@/components/comment/CommentList";
 import Message from "@/components/ui/Message";
@@ -58,9 +58,9 @@ export default function ArticleDetailPage() {
       <section className={styles["article-section"]}>
         <ArticleDetail article={article} />
 
-        <CommentForm articleId={article.id} />
+        <CommentForm idPath={article.id} />
 
-        <CommentList articleId={article.id} />
+        <CommentList idPath={article.id} isArticle={true} />
 
         <Link href="/forum">
           <button className={styles["return-btn"]}>

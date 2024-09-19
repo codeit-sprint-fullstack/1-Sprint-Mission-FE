@@ -1,12 +1,10 @@
-import { calculateTimeAgo } from "@/lib/utils";
+import { calculateTimeAgo } from "@/utils/formatFn";
+import { useCommentList } from "@/service/queries";
 import KebabMenu from "../ui/KebabMenu";
 import ProfileImg from "../ui/ProfileImg";
 import styles from "./CommentList.module.scss";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { getArticleComments } from "@/lib/api";
 import EmptyComments from "../ui/EmptyComment";
 import Loader from "../ui/Loader";
-import { articleKey } from "@/variables/queryKeys";
 import Message from "../ui/Message";
 
 function CommentContent({ comment }) {
@@ -28,16 +26,10 @@ function CommentContent({ comment }) {
   );
 }
 
-export default function CommentList({ articleId }) {
-  const { isPending, isError, error, data } = useInfiniteQuery({
-    queryKey: articleKey.comments(articleId),
-    queryFn: ({ queryKey, pageParam = null }) => {
-      const articleId = queryKey[2];
-      return getArticleComments(articleId, { cursor: pageParam });
-    },
-    initialPageParam: null,
-    getNextPageParam: (lastPage) => lastPage.nextCursor,
-    enabled: !!articleId,
+export default function CommentList({ idPath, isArticle }) {
+  const { isPending, isError, error, data } = useCommentList({
+    idPath,
+    whichId: isArticle ? "article" : "product",
   });
 
   if (isPending) return <Loader />;
