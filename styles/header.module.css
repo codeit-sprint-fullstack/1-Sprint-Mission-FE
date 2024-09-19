@@ -29,9 +29,13 @@
   line-height: 21.48px;
 }
 
+.profile_box {
+  margin-right: 200px;
+}
+
 .login_btn {
   box-sizing: border-box;
-  margin-right: 200px;
+
   width: 88px;
   height: 42px;
   padding: 12px 23px;
@@ -46,6 +50,9 @@
 @media screen and (max-width: 1200px) {
   .logo_img {
     margin-left: 24px;
+  }
+  .profile_box {
+    margin-right: 24px;
   }
 }
 

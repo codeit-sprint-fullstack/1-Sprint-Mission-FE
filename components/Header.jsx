@@ -43,16 +43,18 @@ function Header() {
             </Link>
           </div>
         </div>
-        {user ? (
-          <div>
-            <Image src={ic_profile} width={20} height={20} alt="유저이미지" />
-            <span>{user?.name}</span>
-          </div>
-        ) : (
-          <Link href={"Login"}>
-            <button className={styles.login_btn}>로그인</button>
-          </Link>
-        )}
+        <div className={styles.profile_box}>
+          {user ? (
+            <div>
+              <Image src={ic_profile} width={20} height={20} alt="유저이미지" />
+              <span>{user?.name}</span>
+            </div>
+          ) : (
+            <Link href={"Login"}>
+              <button className={styles.login_btn}>로그인</button>
+            </Link>
+          )}
+        </div>
       </div>
     </header>
   );
