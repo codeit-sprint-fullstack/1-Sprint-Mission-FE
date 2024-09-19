@@ -10,9 +10,11 @@ import ic_google from "@/public/images/googleicon.png";
 import * as api from "@/pages/api/auth";
 import useFormValidation from "@/hooks/useFormValidation";
 import AlertModal from "@/components/Modals/AlertModal";
+import useAuth from "@/contexts/authContext";
 
 function SignUp() {
   const router = useRouter();
+  const { getMe } = useAuth();
   const [alertMessage, setAlertMessage] = useState("");
   const [openAlert, setOpenAlert] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState({
@@ -26,15 +28,20 @@ function SignUp() {
   const createUser = async (value) => {
     try {
       const data = await api.createUser(value);
+      //리스폰스로 생성된 유저의 password를 안줌
       if (data) {
+        localStorage.setItem("codeit-accessToken", data.accessToken);
+        localStorage.setItem("codeit-refreshToken", data.refreshToken);
+        getMe();
         router.push("/Items");
       } else {
         setAlertMessage("회원가입에 실패했습니다.");
         handleOpenAlert();
       }
     } catch (error) {
-      console.log(error.name);
-      setAlertMessage("회원가입에 실패했습니다." + error.name);
+      console.log(error);
+      //서버에서 에러의 리스폰스로 메시지를 주고 있음
+      setAlertMessage(error.response.data.message);
       handleOpenAlert();
     }
   };

@@ -20,6 +20,7 @@ export function AuthProvider({ children }) {
   };
 
   const login = async (loginValue) => {
+    console.log(loginValue);
     const data = await authApi.login(loginValue);
     if (data) {
       localStorage.setItem("codeit-accessToken", data.accessToken);
@@ -33,7 +34,7 @@ export function AuthProvider({ children }) {
   const updateMe = () => {};
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, updateMe }}>
+    <AuthContext.Provider value={{ user, login, logout, updateMe, getMe }}>
       {children}
     </AuthContext.Provider>
   );

@@ -30,7 +30,19 @@
 }
 
 .profile_box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin-right: 200px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  color: #4b5563;
+}
+
+.header_profile_image {
+  width: 40px;
+  height: 40px;
 }
 
 .login_btn {

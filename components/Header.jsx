@@ -6,8 +6,13 @@ import Link from "next/link";
 import Image from "next/image";
 import useWindowResize from "@/hooks/useWindowResize";
 import { useRouter } from "next/router";
+import { useContext } from "react";
+import useAuth from "@/contexts/authContext";
 
 function Header() {
+  const { user } = useAuth();
+  const userProfileImage = user?.image ? user.image : ic_profile;
+  console.log(user);
   const view = useWindowResize();
   const router = useRouter();
   const path = router.pathname;
@@ -19,7 +24,6 @@ function Header() {
     };
   };
 
-  const user = "";
   return (
     <header>
       <div className={styles.header_box}>
@@ -43,18 +47,20 @@ function Header() {
             </Link>
           </div>
         </div>
-        <div className={styles.profile_box}>
-          {user ? (
-            <div>
-              <Image src={ic_profile} width={20} height={20} alt="유저이미지" />
-              <span>{user?.name}</span>
-            </div>
-          ) : (
-            <Link href={"Login"}>
-              <button className={styles.login_btn}>로그인</button>
-            </Link>
-          )}
-        </div>
+        {user ? (
+          <div className={styles.profile_box}>
+            <Image
+              className={styles.header_profile_image}
+              src={userProfileImage}
+              alt="유저이미지"
+            />
+            <span>{user?.nickname}</span>
+          </div>
+        ) : (
+          <Link href={"Login"}>
+            <button className={styles.login_btn}>로그인</button>
+          </Link>
+        )}
       </div>
     </header>
   );
