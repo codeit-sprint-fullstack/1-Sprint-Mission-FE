@@ -1,18 +1,35 @@
 import Link from "next/link";
 import { useState } from "react";
-import Image from "next/image"; // Next.js의 Image 컴포넌트 임포트
+import Image from "next/image";
+import { useMutation } from "@tanstack/react-query";
+import { loginUser } from "../api/api"; // api.js에서 임포트
+import styles from "./Login.module.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const mutation = useMutation({
+    mutationFn: loginUser,
+    onSuccess: (data) => {
+      console.log("로그인 성공:", data);
+    },
+    onError: (error) => {
+      console.error("로그인 실패:", error);
+    },
+  });
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    mutation.mutate({ email, password }); // 로그인 요청
+  };
+
   return (
-    <main>
+    <main className={styles.main}>
       <header className={styles.header}>
-        {/* 로고와 판다 마켓 로고를 담는 컨테이너 */}
         <div className={styles.logoContainer}>
           <Image
-            src="/images/img_login_panda_logo.png" // public/images 폴더에서 이미지 접근
+            src="/images/img_login_panda_logo.png"
             alt="Panda Logo"
             layout="fixed"
             width={396}
@@ -20,47 +37,35 @@ export default function Login() {
             className={styles.logo}
           />
         </div>
-
-        {/* 로그인 버튼 */}
-        <Link href="/login" className={styles.loginButton}>
-          로그인
-        </Link>
       </header>
 
       <div className={styles.form_box}>
-        <form onSubmit={handleLogin}>
-          <label htmlFor="email">이메일</label>
+        <form className={styles.form} onSubmit={handleLogin}>
+          <label className={styles.label}>이메일</label>
           <input
-            id="email"
-            name="email"
+            className={styles.input}
             type="email"
             placeholder="이메일을 입력해주세요"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
 
-          <label htmlFor="password">비밀번호</label>
+          <label className={styles.label}>비밀번호</label>
           <div className={styles.ps_confirm}>
             <input
-              id="password"
-              name="password"
+              className={styles.input}
               type="password"
               placeholder="비밀번호를 입력해주세요"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
-            <div className={styles.eyes}>
-              <Image
-                className={styles.eyss_img}
-                src="/images/비밀번호눈.png"
-                alt="비밀번호 보기"
-                width={24}
-                height={24}
-              />
-            </div>
           </div>
 
-          <button type="submit">로그인</button>
+          <button type="submit" className={styles.button}>
+            로그인
+          </button>
         </form>
 
         <div className={styles.easy_login_box}>
@@ -88,7 +93,7 @@ export default function Login() {
 
         <div className={styles.first_ingayo}>
           판다마켓이 처음이신가요?
-          <Link href="/create_account" style={{ color: "#3182F6" }}>
+          <Link href="/create_account" className={styles.signupLink}>
             회원가입
           </Link>
         </div>
