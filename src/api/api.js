@@ -11,6 +11,7 @@ const apiClient = axios.create({
 // 기본 URL 및 API 엔드포인트 설정
 const articlesUrl = "/articles";
 const commentsUrl = "/board/comments";
+const authUrl = "/auth"; // 로그인 및 회원가입 엔드포인트
 
 /*----------------------상품 관련 API ---------------------------*/
 
@@ -180,6 +181,30 @@ export const deleteComment = async (id) => {
     return response.data;
   } catch (error) {
     console.error("댓글 삭제 실패:", error);
+    throw error;
+  }
+};
+
+/*---------------------로그인 및 회원가입 API 호출--------------------*/
+
+/* 로그인 API */
+export const loginUser = async (credentials) => {
+  try {
+    const response = await apiClient.post(`${authUrl}/login`, credentials);
+    return response.data;
+  } catch (error) {
+    console.error("로그인 실패:", error);
+    throw error;
+  }
+};
+
+/* 회원가입 API */
+export const registerUser = async (userData) => {
+  try {
+    const response = await apiClient.post(`${authUrl}/register`, userData);
+    return response.data;
+  } catch (error) {
+    console.error("회원가입 실패:", error);
     throw error;
   }
 };
