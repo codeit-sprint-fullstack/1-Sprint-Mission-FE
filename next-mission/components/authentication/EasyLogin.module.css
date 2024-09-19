@@ -1,0 +1,24 @@
+.contaner{
+    width: 640px;
+    height: 74px;
+    border-radius: 8px;
+    padding: 16px 23px;
+    margin-bottom: 24px;
+    background-color: #E6F2FF;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
+    color: #1F2937;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.loginIcon{
+    width: 100px;
+    height: 42px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
