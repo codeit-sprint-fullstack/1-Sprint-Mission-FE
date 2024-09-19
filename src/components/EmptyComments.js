@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/postdetail.module.css'; // 기존 스타일을 가져옴
+import styles from '../styles/postdetail.module.css'; // 기존 스타일을 가져옴
 import BackButton from './BackButton';
 
 const EmptyComments = () => {
