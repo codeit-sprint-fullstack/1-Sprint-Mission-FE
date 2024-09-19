@@ -29,6 +29,19 @@
     font-size: 16px;
     font-weight: 400;
   }
+  .passwordContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    .btn_pw {
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      right: 24px;
+      top: 16px;
+      cursor: pointer;
+    }
+  }
   .loginBtn {
     width: 100%;
     background-color: #9ca3af;
