@@ -30,7 +30,9 @@ export default function Header() {
           </Link>
         </div>
         <div className={styles.login_btn}>
-          <button>로그인</button>
+          <Link href={ROUTES.LOGIN} passHref>
+            <button>로그인</button>
+          </Link>
         </div>
       </div>
     </>

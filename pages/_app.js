@@ -5,8 +5,12 @@ import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter();
+  const noHeaderFooter = ["/login", "/signin"];
+  const hideHeaderFooter = noHeaderFooter.includes(router.pathname);
   return (
     <>
       <Head>
@@ -15,11 +19,11 @@ export default function App({ Component, pageProps }) {
       <main>
         <div id="page-container">
           <div id="content-wrap">
-            <Header />
+            {!hideHeaderFooter && <Header />}
             <ToastContainer position="top-right" autoClose={2000} />
             <Component {...pageProps} />
           </div>
-          <Footer />
+          {!hideHeaderFooter && <Footer />}
         </div>
       </main>
     </>
