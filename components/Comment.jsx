@@ -143,7 +143,7 @@ function Comment({ item, openAlert, setAlertMessage }) {
                 onClick={updateComment}
                 className={styles.comment_data_save_btn}
               >
-                수정
+                수정 완료
               </button>
             </div>
           )}

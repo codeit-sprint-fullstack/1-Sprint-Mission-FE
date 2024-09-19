@@ -1,10 +1,16 @@
-.product_container {
+.product_box {
   display: flex;
   width: 100%;
   margin-top: 24px;
+  gap: 24px;
 }
 
-.product_values_container {
+.product_image {
+  width: 486px;
+  height: 486px;
+}
+
+.product_values_box {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -13,7 +19,7 @@
   color: #4b5563;
 }
 
-.product_values_top_container {
+.product_values_top_box {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -25,7 +31,18 @@
   border-bottom: 1px solid #e5e7eb;
 }
 
-.product_values_mid_container {
+.product_price {
+  font-size: 40px;
+  line-height: 47.73px;
+}
+
+.product_kebab_image {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.product_values_mid_box {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -33,6 +50,10 @@
   font-size: 16px;
   line-height: 26px;
   color: #4b5563;
+}
+
+.product_description {
+  font-weight: 400;
 }
 
 .chips_box {
@@ -52,29 +73,14 @@
   color: #1f2937;
 }
 
-.product_description {
-  font-weight: 400;
-}
-
-.product_price {
-  font-size: 40px;
-  line-height: 47.73px;
-}
-
-.product_kebab_image {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-}
-
-.product_row_container {
+.product_row_box {
   display: flex;
   align-items: center;
   width: 100%;
   gap: 16px;
 }
 
-.product_row_sub_container {
+.product_row_sub_box {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -83,11 +89,6 @@
   font-weight: 500;
   line-height: 24px;
   border-right: 1px solid #e5e7eb;
-}
-
-.product_owner_name {
-  font-size: 14px;
-  font-weight: 500;
 }
 
 .product_createdAt {
@@ -112,6 +113,11 @@
   padding: 4px 12px;
   border-radius: 35px;
   border: 1px solid #e5e7eb;
+}
+
+.product_ic_heart {
+  width: 32px;
+  height: 32px;
 }
 
 .products_comment_box {
@@ -193,4 +199,33 @@
   width: 100%;
   margin-bottom: 18px;
   gap: 24px;
+}
+
+@media screen and (max-width: 1200px) {
+  .product_ic_heart {
+    width: 24px;
+    height: 24px;
+  }
+  .product_image {
+    width: 340px;
+    height: 340px;
+  }
+  .product_values_top_box {
+    font-size: 20px;
+  }
+  .product_price {
+    font-size: 32px;
+    line-height: 42px;
+  }
+  .product_values_mid_box {
+    font-size: 14px;
+    line-height: 24px;
+  }
+}
+
+@media screen and (max-width: 773px) {
+  .product_box {
+    flex-direction: column;
+    align-items: center;
+  }
 }

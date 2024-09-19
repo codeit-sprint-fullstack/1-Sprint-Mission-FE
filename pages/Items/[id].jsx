@@ -13,7 +13,7 @@ import ic_profile from "@/public/images/ic_profile.png";
 import ic_heart from "@/public/images/ic_heart.png";
 import ic_heart_liked from "@/public/images/ic_heart_liked.png";
 import ic_kebab from "@/public/images/ic_kebab.png";
-import img_reply_empty from "@/public/images/img_reply_empty.png";
+import Img_inquiry_empty from "@/public/images/Img_inquiry_empty.png";
 import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
 
 export async function getServerSideProps(context) {
@@ -138,16 +138,17 @@ function DetailProduct({ product, comments }) {
         message={confirmMessage}
       />
       <main>
-        <div className={styles.product_container}>
+        <div className={styles.product_box}>
           <Image
-            src={productsImage}
+            className={styles.product_image}
             width={486}
             height={486}
+            src={productsImage}
             alt="상품이미지"
             unoptimized={true}
           />
-          <div className={styles.product_values_container}>
-            <div className={styles.product_values_top_container}>
+          <div className={styles.product_values_box}>
+            <div className={styles.product_values_top_box}>
               <span>{name}</span>
               <Image
                 className={styles.product_kebab_image}
@@ -158,7 +159,7 @@ function DetailProduct({ product, comments }) {
               />
               <span className={styles.product_price}>{numFormat}원</span>
             </div>
-            <div className={styles.product_values_mid_container}>
+            <div className={styles.product_values_mid_box}>
               <span>상품 소개</span>
               <p className={styles.product_description}>{description}</p>
               <span>삼품 태그</span>
@@ -170,23 +171,22 @@ function DetailProduct({ product, comments }) {
                 ))}
               </div>
             </div>
-            <div className={styles.product_row_container}>
+            <div className={styles.product_row_box}>
               <Image
                 src={ic_profile}
                 width={40}
                 height={40}
                 alt="작성자이미지"
               />
-              <div className={styles.product_row_sub_container}>
-                <span className={styles.product_owner_name}>{ownerId}</span>
+              <div className={styles.product_row_sub_box}>
+                <span>{ownerId}</span>
                 <span className={styles.product_createdAt}>{date}</span>
               </div>
               <div>
                 <button className={styles.product_favorite_btn}>
                   <Image
+                    className={styles.product_ic_heart}
                     src={isFavorite ? ic_heart_liked : ic_heart}
-                    width={32}
-                    height={32}
                     alt="좋아요이미지"
                   />
                   {favoriteCount}
@@ -228,16 +228,13 @@ function DetailProduct({ product, comments }) {
             {comments.length < 1 && (
               <>
                 <Image
-                  src={img_reply_empty}
+                  src={Img_inquiry_empty}
                   width={140}
                   height={140}
                   alt="댓글이없습니다"
                   priority
                 />
-                <p>
-                  아직 댓글이 없어요, <br />
-                  지금 댓글을 달아보세요!
-                </p>
+                <p>아직 문의가 없어요</p>
               </>
             )}
           </div>
