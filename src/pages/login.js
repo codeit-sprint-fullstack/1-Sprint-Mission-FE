@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { loginUser } from "../api/api"; // api.js에서 임포트
 import Modal from "../components/Modal"; // 모달 컴포넌트 임포트
+import { validateEmail, validatePassword } from "../lib/vaildate_function.mjs"; // 유효성 검사 함수 임포트
 import styles from "./Login.module.css";
 
 export default function Login() {
@@ -22,8 +23,7 @@ export default function Login() {
     mutationFn: loginUser,
     onSuccess: (data) => {
       console.log("로그인 성공:", data);
-      // 로그인 성공 시 중고 마켓 페이지로 이동
-      router.push("/item");
+      router.push("/items"); // 로그인 성공 시 중고 마켓 페이지로 이동
     },
     onError: (error) => {
       console.error("로그인 실패:", error);
@@ -49,25 +49,19 @@ export default function Login() {
     setPasswordError("");
 
     // 이메일 유효성 검사
-    if (!email) {
-      setEmailError("이메일을 입력해 주세요.");
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
+    if (!validateEmail(email)) {
       setEmailError("유효한 이메일을 입력해 주세요.");
     }
 
     // 비밀번호 유효성 검사
-    if (!password) {
-      setPasswordError("비밀번호를 입력해 주세요.");
-    } else if (password.length < 8) {
-      setPasswordError("비밀번호는 8자 이상이어야 합니다.");
-    } else if (!/[A-Z]/.test(password)) {
-      setPasswordError("비밀번호에는 대문자가 하나 이상 포함되어야 합니다.");
-    } else if (!/[0-9]/.test(password)) {
-      setPasswordError("비밀번호에는 숫자가 하나 이상 포함되어야 합니다.");
+    if (!validatePassword(password)) {
+      setPasswordError(
+        "비밀번호는 최소 8자 이상, 숫자, 소문자, 특수문자를 포함해야 합니다."
+      );
     }
 
     // 유효성 검사 통과
-    if (email && password && !emailError && !passwordError) {
+    if (!emailError && !passwordError) {
       mutation.mutate({ email, password }); // 로그인 요청
     }
   };
@@ -154,7 +148,7 @@ export default function Login() {
 
         <div className={styles.first_ingayo}>
           판다마켓이 처음이신가요?
-          <Link href="/create-account" className={styles.signupLink}>
+          <Link href="/sign-up" className={styles.signupLink}>
             회원가입
           </Link>
         </div>
