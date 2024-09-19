@@ -1,0 +1,60 @@
+.contaner{
+    width: 640px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.InputBoxLavel{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    margin-bottom: 16px;
+}
+
+.InputboxInput{
+    width: 640px;
+    height: 56px;
+    border: none;
+    border-radius: 12px;
+    background-color: #F3F4F6;
+    padding: 15px 24px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #1F2937;
+}
+
+.margin24{
+    margin-bottom: 24px;
+}
+
+.margin8 {
+    margin-bottom: 8px;
+}
+
+.InputboxInput::placeholder{
+    color: #9CA3AF;
+}
+
+.InputboxInput:focus {
+    outline: none;
+    border: 1px solid #3692FF;
+}
+
+.errorMasage{
+    width: auto;
+    height: 24px;
+    margin: 0 0 18px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    color: #F74747;
+}
+
+.eyesIcon{
+    position: absolute;
+    top: 58px;
+    right: 24px;
+}
