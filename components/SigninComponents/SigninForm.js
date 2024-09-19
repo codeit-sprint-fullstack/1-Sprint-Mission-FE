@@ -8,14 +8,35 @@ import btn_hide from "@/images/btn_hide.png";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 import { useState } from "react";
+import useFormValidation from "@/hooks/useFormValidation";
+import validate from "@/utils/validationRules";
+
 export default function LoginForm() {
   const [isVisible, setIsVisible] = useState(false);
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
+
   const togglePasswordVisibility = () => {
     setIsVisible(!isVisible);
   };
   const toggleConfirmPasswordVisibility = () => {
     setIsConfirmVisible(!isConfirmVisible);
+  };
+
+  const initialState = {
+    email: "",
+    nickname: "",
+    password: "",
+    confirmPassword: "",
+  };
+  const { handleChange, values, errors, handleBlur, touched } =
+    useFormValidation(initialState, validate);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!errors.email && !errors.password) {
+      setIsSubmitting(true);
+      // 서버로 전송 등의 추가 로직 작성
+    }
   };
   return (
     <>
@@ -29,14 +50,26 @@ export default function LoginForm() {
           type="email"
           name="email"
           placeholder="이메일을 입력해주세요"
+          value={values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
+        {touched.email && errors.email && (
+          <p className={styles.error}>{errors.email}</p>
+        )}
         <label className={styles.label}>닉네임</label>
         <input
           className={styles.input}
           type="text"
-          name="text"
+          name="nickname"
           placeholder="닉네임를 입력해주세요"
+          value={values.nickname}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
+        {touched.nickname && errors.nickname && (
+          <p className={styles.error}>{errors.nickname}</p>
+        )}
         <label className={styles.label}>비밀번호</label>
         <div className={styles.passwordContainer}>
           <input
@@ -44,6 +77,9 @@ export default function LoginForm() {
             type={isVisible ? "text" : "password"}
             name="password"
             placeholder="비밀번호를 입력해주세요"
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
           <Image
             src={isVisible ? btn_visibility : btn_hide}
@@ -52,13 +88,19 @@ export default function LoginForm() {
             onClick={togglePasswordVisibility}
           />
         </div>
+        {touched.password && errors.password && (
+          <p className={styles.error}>{errors.password}</p>
+        )}
         <label className={styles.label}>비밀번호 확인</label>
         <div className={styles.passwordContainer}>
           <input
             className={styles.input}
             type={isConfirmVisible ? "text" : "password"}
-            name="password"
+            name="confirmPassword"
             placeholder="비밀번호를 다시 한 번 입력해주세요"
+            value={values.confirmPassword}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
           <Image
             src={isConfirmVisible ? btn_visibility : btn_hide}
@@ -67,7 +109,21 @@ export default function LoginForm() {
             onClick={toggleConfirmPasswordVisibility}
           />
         </div>
-        <button className={styles.loginBtn}>회원가입</button>
+        {touched.confirmPassword && errors.confirmPassword && (
+          <p className={styles.error}>{errors.confirmPassword}</p>
+        )}
+        <button
+          className={styles.signinBtn}
+          onClick={handleSubmit}
+          disabled={
+            errors.email ||
+            errors.password ||
+            errors.confirmPassword ||
+            errors.nickname
+          }
+        >
+          회원가입
+        </button>
       </form>
       <div className={styles.easyLogin}>
         <p className={styles.easyLoginText}>간편로그인하기</p>

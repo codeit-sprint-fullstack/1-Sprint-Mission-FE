@@ -8,11 +8,29 @@ import btn_hide from "@/images/btn_hide.png";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 import { useState } from "react";
+import useFormValidation from "@/hooks/useFormValidation";
+import validate from "@/utils/validationRules";
+
 export default function LoginForm() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
+  const initialState = {
+    email: "",
+    password: "",
+  };
+  const { handleChange, values, errors, handleBlur, touched } =
+    useFormValidation(initialState, validate);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!errors.email && !errors.password) {
+      setIsSubmitting(true);
+      // 서버로 전송 등의 추가 로직 작성
+    }
+  };
+
   return (
     <>
       <Link href={ROUTES.HOME} passHref>
@@ -25,8 +43,13 @@ export default function LoginForm() {
           type="email"
           name="email"
           placeholder="이메일을 입력해주세요"
+          value={values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
-
+        {touched.email && errors.email && (
+          <p className={styles.error}>{errors.email}</p>
+        )}
         <label className={styles.label}>비밀번호</label>
         <div className={styles.passwordContainer}>
           <input
@@ -34,6 +57,9 @@ export default function LoginForm() {
             type={isPasswordVisible ? "text" : "password"}
             name="password"
             placeholder="비밀번호를 입력해주세요"
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
           <Image
             src={isPasswordVisible ? btn_visibility : btn_hide}
@@ -42,8 +68,17 @@ export default function LoginForm() {
             onClick={togglePasswordVisibility}
           />
         </div>
-
-        <button className={styles.loginBtn}>로그인</button>
+        {touched.password && errors.password && (
+          <p className={styles.error}>{errors.password}</p>
+        )}
+        <button
+          className={styles.loginBtn}
+          type="submit"
+          disabled={errors.email || errors.password}
+          onClick={handleSubmit}
+        >
+          로그인
+        </button>
       </form>
       <div className={styles.easyLogin}>
         <p className={styles.easyLoginText}>간편로그인하기</p>
