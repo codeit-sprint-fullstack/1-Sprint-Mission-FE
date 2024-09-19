@@ -8,10 +8,11 @@ const instance = axios.create({
 // 요청 전 인터셉터 추가
 instance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("codeit-accessToken"); // 로컬스토리지에서 토큰을 가져옴
-    console.log(token);
-    if (token) {
-      config.headers["Authorization"] = `Bearer ` + token; // Authorization 헤더에 토큰 추가
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("codeit-accessToken"); // 로컬스토리지에서 토큰을 가져옴
+      if (token) {
+        config.headers["Authorization"] = `Bearer ` + token; // Authorization 헤더에 토큰 추가
+      }
     }
     return config;
   },

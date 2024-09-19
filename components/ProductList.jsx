@@ -2,12 +2,14 @@ import Image from "next/image";
 import icHeart from "../public/images/ic_heart.png";
 import imgDefault from "../public/images/img_default.png";
 import styles from "@/styles/products.module.css";
+import Link from "next/link";
 
 function Product({ itemValues, favorite }) {
-  const { name, price, favoriteCount } = itemValues;
+  const { name, price, favoriteCount, id } = itemValues;
   const numFormat = price.toLocaleString();
   return (
-    <div
+    <Link
+      href={`/Items/${id}`}
       className={favorite ? styles.favorite_product_item : styles.product_item}
     >
       <Image
@@ -26,7 +28,7 @@ function Product({ itemValues, favorite }) {
         ></Image>
         <p className={styles.favorite_count}>{favoriteCount}</p>
       </div>
-    </div>
+    </Link>
   );
 }
 

@@ -27,7 +27,7 @@ function SignUp() {
     try {
       const data = await api.createUser(value);
       if (data) {
-        router.push("/Products");
+        router.push("/Items");
       } else {
         setAlertMessage("회원가입에 실패했습니다.");
         handleOpenAlert();

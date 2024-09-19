@@ -75,7 +75,7 @@ function ArticleItems({ item }) {
               src={ic_profile}
               alt="사용자프로필이미지"
             />
-            <span className={styles.item_data_user_name}>{user.name}</span>
+            <span className={styles.item_data_user_name}>{user?.name}</span>
             <span className={styles.create_time}>{date}</span>
           </div>
           <div className={styles.item_data_box}>

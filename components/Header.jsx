@@ -38,7 +38,7 @@ function Header() {
             </Link>
           </div>
           <div className={styles.nav_content}>
-            <Link href="/Products" style={getLinkStyle("/Products") || {}}>
+            <Link href="/Items" style={getLinkStyle("/Items") || {}}>
               중고마켓
             </Link>
           </div>

@@ -178,6 +178,12 @@ button {
   background-color: #3692ff;
 }
 
+hr {
+  width: 100%;
+  border-width: 1px;
+  color: #dfdfdf;
+}
+
 html {
   font-family: "Pretendard Variable", Pretendard, -apple-system,
     BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",

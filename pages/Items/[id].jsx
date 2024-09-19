@@ -1,34 +1,34 @@
-import Image from "next/image";
-import Link from "next/link";
+import * as productsApi from "@/pages/api/products";
+import * as commentApi from "@/pages/api/comment";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
-import * as commentApi from "@/pages/api/comment";
-import * as articleApi from "@/pages/api/articles";
+import Link from "next/link";
+import Image from "next/image";
+import Comment from "@/components/Comment";
 import AlertModal from "@/components/Modals/AlertModal";
-import DropdownData from "@/components/DropdownList/DropdownData";
 import ConfirmModal from "@/components/Modals/ConfirmModal";
-import ic_kebab from "@/public/images/ic_kebab.png";
+import styles from "@/styles/detailProduct.module.css";
+import ic_back from "@/public/images/ic_back.png";
 import ic_profile from "@/public/images/ic_profile.png";
 import ic_heart from "@/public/images/ic_heart.png";
+import ic_heart_liked from "@/public/images/ic_heart_liked.png";
+import ic_kebab from "@/public/images/ic_kebab.png";
 import img_reply_empty from "@/public/images/img_reply_empty.png";
-import ic_back from "@/public/images/ic_back.png";
-import styles from "@/styles/detailArticle.module.css";
-import Comment from "@/components/Comment";
+import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
 
 export async function getServerSideProps(context) {
-  const { id } = context.query;
+  const { id } = context.params;
 
-  let article = {};
+  let product = {};
   let comments = [];
   try {
-    const data = await articleApi.getArticle(id);
-    article = data;
+    const data = await productsApi.getProduct(id);
+    product = data;
   } catch (error) {
     console.log(error);
   }
   try {
-    const { list } = await commentApi.getArticleComments(id);
+    const { list } = await commentApi.getProductComments(id);
     comments = list;
   } catch (error) {
     console.log(error);
@@ -36,21 +36,32 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      article,
+      product,
       comments,
     },
   };
 }
 
-function DetailArticle({ article, comments }) {
+function DetailProduct({ product, comments }) {
   const router = useRouter();
-  const { title, content, favorite, writer, createAt } = article;
+  const {
+    name,
+    description,
+    price,
+    tags,
+    ownerId,
+    favoriteCount,
+    createdAt,
+    isFavorite,
+  } = product;
   //날짜 포멧
-  const date = dateFormatYYYYMMDD(createAt);
+  const productsImage = product.images[0];
+  const date = dateFormatYYYYMMDD(createdAt);
+  const numFormat = price.toLocaleString();
   const defaultUser = {
     //유저관리를 안하고 있음 기본 유저를 설정 추후 유저관리의 로그인계정으로 변경해야 함
-    userId: writer?.id,
-    articleId: article.id,
+    userId: ownerId,
+    productId: product.id,
   };
   const [values, setValues] = useState(defaultUser);
   const [Alert, setAlert] = useState(false);
@@ -64,16 +75,20 @@ function DetailArticle({ article, comments }) {
   const openConfirmModal = () => setConfirm(true);
   const closeConfirmModal = () => setConfirm(false);
 
-  //수정/삭제 드롭다운오픈 상태 값
-  const [openDropdown, setOpenDropdown] = useState(false);
-  const openArticleDropdown = () => setOpenDropdown(!openDropdown);
-
-  // 게시글수정을 선택시 Registration 페이지의 쿼리로 게시글의 id를 전달한다.
-  const updateArticle = () => {
-    router.push(`/Articles/Registration?id=${article.id}`);
+  const handleChangeValues = (name, value) => {
+    setValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const deleteArticle = () => {
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    handleChangeValues(name, value);
+  };
+
+  const deleteProduct = () => {
     try {
       const res = articleApi.deleteArticle(article.id);
       if (res) {
@@ -93,7 +108,7 @@ function DetailArticle({ article, comments }) {
 
   const createComment = () => {
     try {
-      const data = commentApi.createComment(values);
+      const data = commentApi.createProductComment(values, product.id);
       if (data) {
         router.reload();
       } else {
@@ -108,25 +123,6 @@ function DetailArticle({ article, comments }) {
     }
   };
 
-  const handleDeleteArticle = () => {
-    //삭제의 경우 confirm 모달을 통하여 확인하여 진행한다.
-    setConfirmMessage("게시글이 영구적으로 삭제됩니다. 삭제하시겠습니까?");
-    openConfirmModal();
-  };
-
-  const handleChangeValues = (name, value) => {
-    setValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    handleChangeValues(name, value);
-  };
-
   return (
     <>
       {/* 모달을 콘텐츠의 최상위에 위치하기 위함 */}
@@ -136,65 +132,81 @@ function DetailArticle({ article, comments }) {
         message={alertMessage}
       />
       <ConfirmModal
-        onConfirm={deleteArticle}
+        onConfirm={deleteProduct}
         onClose={closeConfirmModal}
         isOpen={Confirm}
         message={confirmMessage}
       />
       <main>
-        <div className={styles.article_item_box}>
-          <div className={styles.article_item_title_box}>
-            <h1 className={styles.article_title}>{title}</h1>
-            <Image
-              onClick={openArticleDropdown}
-              src={ic_kebab}
-              width={24}
-              height={24}
-              alt="수정/삭제이미지"
-            />
-            {openDropdown && (
-              <DropdownData
-                handleUpdate={updateArticle}
-                handleDelete={handleDeleteArticle}
+        <div className={styles.product_container}>
+          <Image
+            src={productsImage}
+            width={486}
+            height={486}
+            alt="상품이미지"
+            unoptimized={true}
+          />
+          <div className={styles.product_values_container}>
+            <div className={styles.product_values_top_container}>
+              <span>{name}</span>
+              <Image
+                className={styles.product_kebab_image}
+                src={ic_kebab}
+                width={24}
+                height={24}
+                alt="상품 수정/삭제이미지"
               />
-            )}
-          </div>
-          <div className={styles.article_data_box}>
-            <div className={styles.article_data}>
+              <span className={styles.product_price}>{numFormat}원</span>
+            </div>
+            <div className={styles.product_values_mid_container}>
+              <span>상품 소개</span>
+              <p className={styles.product_description}>{description}</p>
+              <span>삼품 태그</span>
+              <div className={styles.chips_box}>
+                {tags.map((el, index) => (
+                  <div key={index} className={styles.chip}>
+                    #{el}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className={styles.product_row_container}>
               <Image
                 src={ic_profile}
                 width={40}
                 height={40}
-                alt="사용자프로필이미지"
+                alt="작성자이미지"
               />
-              <span className={styles.article_user}>{writer?.name}</span>
-              <span className={styles.article_createAt}>{date}</span>
-            </div>
-            <div className={styles.article_favorite_box}>
-              <button className={styles.article_favorite_btn}>
-                <Image
-                  src={ic_heart}
-                  width={32}
-                  height={32}
-                  alt="좋아요이미지"
-                />
-                {favorite}
-              </button>
+              <div className={styles.product_row_sub_container}>
+                <span className={styles.product_owner_name}>{ownerId}</span>
+                <span className={styles.product_createdAt}>{date}</span>
+              </div>
+              <div>
+                <button className={styles.product_favorite_btn}>
+                  <Image
+                    src={isFavorite ? ic_heart_liked : ic_heart}
+                    width={32}
+                    height={32}
+                    alt="좋아요이미지"
+                  />
+                  {favoriteCount}
+                </button>
+              </div>
             </div>
           </div>
         </div>
-        <p className={styles.article_content}>{content}</p>
-        <div className={styles.article_comment_box}>
-          <h3>댓글달기</h3>
+        <p></p>
+        <div className={styles.products_comment_box}>
+          <h3>문의하기</h3>
           <textarea
             name="content"
             onChange={handleChange}
-            className={styles.article_comment_textarea}
-            placeholder="댓글을 입력해주세요."
+            className={styles.products_comment_textarea}
+            placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
           />
           <button
             onClick={createComment}
-            className={`${styles.article_create_comment_btn} ${
+            className={`${styles.products_create_comment_btn} ${
               !values.content && styles.disabled
             }`}
             disabled={!values.content}
@@ -202,8 +214,8 @@ function DetailArticle({ article, comments }) {
             등록
           </button>
         </div>
-        <div className={styles.article_comments_box}>
-          <div className={styles.article_comments}>
+        <div className={styles.products_comments_box}>
+          <div className={styles.products_comments}>
             {comments.map((item) => (
               <Comment
                 key={item.id}
@@ -230,7 +242,7 @@ function DetailArticle({ article, comments }) {
             )}
           </div>
           <Link href={"/Articles"}>
-            <button className={styles.return_articles_page_btn}>
+            <button className={styles.return_products_page_btn}>
               목록으로 돌아가기
               <Image src={ic_back} width={24} height={24} alt="돌아가기" />
             </button>
@@ -241,4 +253,4 @@ function DetailArticle({ article, comments }) {
   );
 }
 
-export default DetailArticle;
+export default DetailProduct;

@@ -50,7 +50,7 @@ function Registration() {
 
     try {
       const data = await api.createProduct(postValues);
-      router.push(`/DetailProduct/${data.id}`);
+      router.push(`/Items/${data.id}`);
     } catch (e) {
       console.log(e.name);
       console.log(e.message);
