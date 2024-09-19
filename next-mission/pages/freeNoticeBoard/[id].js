@@ -1,5 +1,5 @@
-import CommentFrom from "@/components/particularPage/CommentFrom";
-import CommentList from "@/components/particularPage/CommentList";
+import CommentFrom from "@/components/public/CommentFrom";
+import CommentList from "@/components/public/CommentList";
 import ParticularInformation from "@/components/particularPage/ParticularInformation";
 import Spinner from "@/components/public/Spinner";
 import styles from "@/styles/FreeNoticeBoard.module.css";
@@ -42,7 +42,7 @@ export default function ParticularPage({
   const [cursor, setCursor] = useState(""); // 현재 커서
   const [hasMore, setHasMore] = useState(true); // 더 불러올 데이터가 있는지 여부
   const [nextCursor, setNextCursor] = useState(cursorData);
-  const [patchCommend, setPatchCommend] = useState({
+  const [patchComment, setPatchComment] = useState({
     boolinValue: false,
     contentValue: "",
     id: "",
@@ -97,13 +97,13 @@ export default function ParticularPage({
       content: value,
     };
     const res = await instance.patch(
-      `/freeCommends/${patchCommend.id}`,
+      `/freeCommends/${patchComment.id}`,
       subject
     );
     const data = res.data;
 
     const newComment = [...comment];
-    newComment.splice(patchCommend.idx, 1, data);
+    newComment.splice(patchComment.idx, 1, data);
     setComment(newComment);
   };
 
@@ -113,7 +113,7 @@ export default function ParticularPage({
     const nextComment = [...comment];
     nextComment.splice(idx, 1);
     setComment(nextComment);
-    setPatchCommend({
+    setPatchComment({
       boolinValue: false,
       contentValue: "",
       id: "",
@@ -127,29 +127,15 @@ export default function ParticularPage({
         <title>{noticeBoardData.title} - 자유게시판 | 판다마켓</title>
       </Head>
       <ParticularInformation data={noticeBoardData} />
-      {patchCommend.boolinValue || (
-        <CommentFrom
-          Handler={postCommentHandler}
-          mode={"등록"}
-          patchCommend={patchCommend}
-          setPatchCommend={setPatchCommend}
-        />
-      )}
-      {patchCommend.boolinValue && (
-        <CommentFrom
-          Handler={patchcomment}
-          mode={"수정"}
-          patchCommend={patchCommend}
-          setPatchCommend={setPatchCommend}
-        />
-      )}
+      <CommentFrom Handler={postCommentHandler} mode={"등록"} />
       <CommentList
         comment={comment} // 불러온 데이터 배열
         hasMore={hasMore} // 추가 데이터 여부
         loadMore={loadMoreItems} // 페이지를 로드하는 함수
         deleteCommentHandler={deleteCommentHandler}
-        patchCommend={patchCommend}
-        setPatchCommend={setPatchCommend}
+        patchComment={patchComment}
+        setPatchComment={setPatchComment}
+        patchCommentHandler={patchcomment}
       />
     </>
   );

@@ -4,8 +4,6 @@ import style from "./CommentFrom.module.css";
 export default function CommentFrom({
   Handler,
   mode,
-  patchCommend,
-  setPatchCommend,
 }) {
   const [value, setValue] = useState("");
   const [activateButton, setActivateButton] = useState(style.buttonOff);
@@ -18,7 +16,7 @@ export default function CommentFrom({
       setTitle("댓글달기");
       setButton("등록");
     } else if (mode === "수정") {
-      setValue(patchCommend.contentValue);
+      setValue('');
       setTitle("댓글수정");
       setButton("수정");
       setActivateButton(style.buttonOn);
@@ -50,23 +48,6 @@ export default function CommentFrom({
     if (activateButton === style.buttonOn && mode === "등록") {
       Handler(value);
       setValue("");
-    } else if (activateButton === style.buttonOn && mode === "수정") {
-      if (patchCommend.contentValue === value) {
-        setPatchCommend({
-          boolinValue: false,
-          contentValue: "",
-          id: "",
-          idx: "",
-        });
-      } else {
-        Handler(value);
-        setPatchCommend({
-          boolinValue: false,
-          contentValue: "",
-          id: "",
-          idx: "",
-        });
-      }
     }
   };
 

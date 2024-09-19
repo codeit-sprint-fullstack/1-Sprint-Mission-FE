@@ -37,7 +37,7 @@
 
 .CommentListLi {
   width: 1200px;
-  height: 100px;
+  height: auto;
   border-bottom: 1px solid #e5e7eb;
   background-color: #fcfcfc;
 }
@@ -109,7 +109,6 @@
 
   .CommentListLi {
     width: 343px;
-    height: 96px;
   }
 
   .yesListButton {

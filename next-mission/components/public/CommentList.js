@@ -1,16 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import CommentListBody from "./CommentListBody";
 import style from "./CommentList.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import CommentListBody from './CommentListBody'
 
 export default function CommentList({
   comment,
   hasMore,
   loadMore,
   deleteCommentHandler,
-  patchCommend,
-  setPatchCommend,
+  patchComment,
+  setPatchComment,
+  patchCommentHandler
 }) {
   const [buttonMargin, setButtonMargin] = useState(style.yesListButton); //(style.noListButton);
   const observerRef = useRef();
@@ -68,8 +69,9 @@ export default function CommentList({
                     comment={data}
                     deleteCommentHandler={deleteCommentHandler}
                     idx={idx}
-                    patchCommend={patchCommend}
-                    setPatchCommend={setPatchCommend}
+                    patchComment={patchComment}
+                    setPatchComment={setPatchComment}
+                    patchCommentHandler={patchCommentHandler}
                   />
                 </li>
               );
@@ -80,8 +82,9 @@ export default function CommentList({
                     comment={data}
                     deleteCommentHandler={deleteCommentHandler}
                     idx={idx}
-                    patchCommend={patchCommend}
-                    setPatchCommend={setPatchCommend}
+                    patchComment={patchComment}
+                    setPatchComment={setPatchComment}
+                    patchCommentHandler={patchCommentHandler}
                   />
                 </li>
               );
