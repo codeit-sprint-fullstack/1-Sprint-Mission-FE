@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 import styles from "./CreateAccount.module.css";
+import Modal from "../components/Modal"; // 모달 컴포넌트 임포트
 import {
   validateEmail,
   validatePassword,
@@ -20,6 +21,8 @@ export default function CreateAccount() {
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [modalMessage, setModalMessage] = useState(""); // 모달 메시지 상태
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열기 상태
 
   const validateInputs = () => {
     let isValid = true; // 유효성 검사 상태 초기화
@@ -91,8 +94,21 @@ export default function CreateAccount() {
       confirmPasswordError === ""
     ) {
       console.log("회원가입 요청:", { email, name, password });
-      // 회원가입 요청 처리
+      // 여기서 실제 회원가입 요청 처리
+      const isSuccess = true; // API 요청 성공 여부에 따라 변경
+
+      if (isSuccess) {
+        setModalMessage("회원가입이 성공적으로 완료되었습니다.");
+      } else {
+        setModalMessage("회원가입에 실패하였습니다. 다시 시도해 주세요.");
+      }
+      setIsModalOpen(true); // 모달 열기
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalMessage(""); // 메시지 초기화
   };
 
   return (
@@ -204,6 +220,8 @@ export default function CreateAccount() {
           </Link>
         </div>
       </div>
+
+      {isModalOpen && <Modal message={modalMessage} onClose={closeModal} />}
     </main>
   );
 }
