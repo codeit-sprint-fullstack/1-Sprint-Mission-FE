@@ -36,7 +36,7 @@ const Navbar = () => {
         style={{ cursor: 'pointer' }}
       />
       <div className={styles.navLinks}>
-        <Link href="/" passHref>
+        <Link href="/board" passHref> {/* 자유게시판을 /board 페이지로 변경 */}
           <span className={styles.boardLink}>자유게시판</span>
         </Link>
         <Link href="/items" passHref>

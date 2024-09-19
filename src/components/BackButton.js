@@ -6,7 +6,7 @@ const BackButton = () => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push('/'); // 루트 페이지인 index.js로 이동
+    router.push('/board');  // board 경로로 이동
   };
 
   return (
