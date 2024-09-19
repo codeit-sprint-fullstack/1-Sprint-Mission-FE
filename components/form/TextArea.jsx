@@ -24,7 +24,7 @@ export default function TextArea({
         </label>
       )}
       <textarea
-        className={`${styles["TextArea-textarea"]} ${addError}`}
+        className={addError}
         {...register(name, {
           ...validations,
           onBlur: () => trigger(name),

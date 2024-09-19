@@ -2,6 +2,7 @@
 
 .button-primary {
   @include g.button(g.$primary-color);
+  color: #fff;
 
   &:hover {
     background-color: darken(g.$primary-color, 10%);
@@ -15,4 +16,17 @@
 
 .button-icon {
   background-color: transparent;
+}
+
+.button-cancel {
+  @include g.button(transparent);
+  color: g.$grey-500;
+  &:hover {
+    background-color: g.$error-red;
+    color: #fff;
+  }
+}
+
+.small {
+  padding: 8px 23px;
 }

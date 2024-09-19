@@ -1,6 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createArticle, createArticleComment } from "./api";
-import { articleKey } from "@/variables/queryKeys";
+import {
+  createArticle,
+  createArticleComment,
+  deleteArticleById,
+  deleteCommentById,
+  updateCommentById,
+} from "./api";
+import { articleKey, commentKey, productKey } from "@/variables/queryKeys";
 import { useRouter } from "next/router";
 
 export function useCreateArticle() {
@@ -27,9 +33,54 @@ export function useCreateComment(id) {
   return useMutation({
     mutationFn: (data) => createArticleComment(id, data),
     onSuccess: () => {
-      console.log("onSuccess in createCommentMutation");
+      console.log("successMutation: create an comment");
       queryClient.invalidateQueries({
         queryKey: articleKey.comments(id),
+      });
+    },
+    onError: (error) => {
+      console.error(error.message);
+    },
+  });
+}
+
+export function useDeleteMutation({ entity, onModalClose }) {
+  const queryClient = useQueryClient();
+
+  let queryKey;
+  let deleteApi;
+
+  if (entity === "comment") {
+    queryKey = commentKey.all;
+    deleteApi = deleteCommentById;
+  } else if (entity === "article") {
+    queryKey = articleKey.details();
+    deleteApi = deleteArticleById;
+  }
+
+  return useMutation({
+    mutationFn: (idPath) => deleteApi(idPath),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey });
+      if (onModalClose) {
+        onModalClose();
+      }
+      console.log(queryKey);
+    },
+    onError: (error) => {
+      console.error("Error deleting:", error.message);
+    },
+  });
+}
+
+export function useUpdateComment(id) {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data) => updateCommentById(id, data),
+    onSuccess: () => {
+      console.log("successMutation:  update an comment");
+      queryClient.invalidateQueries({
+        queryKey: commentKey.all,
       });
     },
     onError: (error) => {

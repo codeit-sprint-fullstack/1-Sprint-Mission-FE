@@ -24,7 +24,7 @@ export default function Input({
         </label>
       )}
       <input
-        className={`${styles["Input-input"]} ${addError}`}
+        className={addError}
         {...register(name, {
           ...validations,
           onBlur: () => trigger(name),

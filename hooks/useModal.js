@@ -10,7 +10,7 @@ export function useModal(redirectPath) {
     if (isModalOpen && modalRef.current) {
       modalRef.current.showModal();
     }
-  }, [isModalOpen, modalRef.current]);
+  }, [isModalOpen]);
 
   const onModalOpen = () => {
     setIsModalOpen(true);

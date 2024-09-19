@@ -5,37 +5,25 @@ import styles from "./KebabMenu.module.scss";
 import kebabIcon from "../../public/assets/icons/ic_kebab.svg";
 import { useRouter } from "next/router";
 import Modal from "./Modal";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useModal } from "@/hooks/useModal";
-import { articleKey, commentKey } from "@/variables/queryKeys";
+import { useDeleteMutation } from "@/service/mutations";
 
-export default function KebabMenu({ idPath, deleteApi, entity }) {
+export default function KebabMenu({ idPath, entity, setIsEditMode }) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const dropDownRef = useRef(0);
-  const queryClient = useQueryClient();
+
+  let pathAfterDeletion = "";
+  if (entity === "article") {
+    pathAfterDeletion = "/forum";
+  } else if (entity === "product") {
+    pathAfterDeletion = "/products";
+  }
 
   const { onModalOpen, modalRef, isModalOpen, onModalClose } =
-    useModal("/forum");
+    useModal(pathAfterDeletion);
 
-  const deleteMutation = useMutation({
-    mutationFn: (idPath) => deleteApi(idPath),
-    onSuccess: () => {
-      let key;
-
-      if (entity === "article") {
-        key = articleKey.details();
-      } else if (entity === "comment") {
-        key = commentKey.all;
-      }
-      if (key) {
-        queryClient.invalidateQueries({ queryKey: key });
-        console.log(key);
-      }
-
-      onModalClose();
-    },
-  });
+  const { mutate } = useDeleteMutation({ entity, onModalClose });
 
   const toggleDropDown = () => {
     setIsOpen(!isOpen);
@@ -48,7 +36,13 @@ export default function KebabMenu({ idPath, deleteApi, entity }) {
   };
 
   const handleClickEdit = () => {
-    router.push(`/forum/edit-article/${idPath}`);
+    if (entity === "comment") {
+      setIsEditMode(true);
+    } else if (entity === "article") {
+      router.push(`/forum/edit-article/${idPath}`);
+    } else if (entity === "product") {
+      router.push(`/products/edit-product/${idPath}`);
+    }
   };
 
   const handleClickDelete = () => {
@@ -56,7 +50,7 @@ export default function KebabMenu({ idPath, deleteApi, entity }) {
   };
 
   const handleConfirmDelete = () => {
-    deleteMutation.mutate(idPath);
+    mutate(idPath);
   };
 
   //드롭다운 메뉴 외부 클릭 감지

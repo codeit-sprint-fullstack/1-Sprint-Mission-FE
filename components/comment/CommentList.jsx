@@ -1,30 +1,9 @@
-import { calculateTimeAgo } from "@/utils/formatFn";
 import { useCommentList } from "@/service/queries";
-import KebabMenu from "../ui/KebabMenu";
-import ProfileImg from "../ui/ProfileImg";
 import styles from "./CommentList.module.scss";
 import EmptyComments from "../ui/EmptyComment";
 import Loader from "../ui/Loader";
 import Message from "../ui/Message";
-
-function CommentContent({ comment }) {
-  return (
-    <>
-      <div className={styles.top}>
-        <h4>{comment.content}</h4>
-        <KebabMenu />
-      </div>
-
-      <div className={styles.bottom}>
-        <ProfileImg width="32px" />
-        <div className={styles["bottom-right"]}>
-          <p>{comment.writer?.nickname || "똑똑한 판다"}</p>
-          <time>{calculateTimeAgo(comment.createdAt)}</time>
-        </div>
-      </div>
-    </>
-  );
-}
+import CommentContent from "./CommentContent";
 
 export default function CommentList({ idPath, isArticle }) {
   const { isPending, isError, error, data } = useCommentList({
@@ -50,11 +29,7 @@ export default function CommentList({ idPath, isArticle }) {
     <ul className={styles.CommentList}>
       {pages.map((page) => {
         return page.list.map((comment) => {
-          return (
-            <li className={styles.list} key={comment.id}>
-              <CommentContent comment={comment} />
-            </li>
-          );
+          return <CommentContent comment={comment} key={comment.id} />;
         });
       })}
     </ul>

@@ -71,10 +71,31 @@ export async function getArticleComments(articleId, params = {}) {
   }
 }
 
-export async function createArticleComment(articleId, editedComment) {
+export async function createArticleComment(articleId, newComment) {
   try {
     const res = await instance.post(
       `/api/articles/${articleId}/comments`,
+      newComment
+    );
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function deleteCommentById(commentId) {
+  try {
+    const res = await instance.delete(`/api/comments/${commentId}`);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function updateCommentById(commentId, editedComment) {
+  try {
+    const res = await instance.patch(
+      `/api/comments/${commentId}`,
       editedComment
     );
     return res.data;

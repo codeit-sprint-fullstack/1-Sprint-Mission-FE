@@ -23,8 +23,13 @@
   }
 }
 
-@mixin button($bg: transparent, $padding: 11.5px 23px, $radius: 8px) {
-  color: #fff;
+@mixin button(
+  $bg: transparent,
+  $padding: 12px 23px,
+  $radius: 8px,
+  $font-color: #fff
+) {
+  color: $font-color;
   @include font(16, 600);
   background-color: $bg;
   border-radius: $radius;

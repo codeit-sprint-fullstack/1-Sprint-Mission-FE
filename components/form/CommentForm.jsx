@@ -15,7 +15,7 @@ export default function CommentForm({ idPath }) {
   const { mutate } = useCreateComment(idPath);
 
   const handleNewCommentSubmit = (data) => {
-    const newComment = { content: data.content };
+    const newComment = { content: data["create-comment-content"] };
     mutate(newComment);
   };
 
@@ -32,9 +32,14 @@ export default function CommentForm({ idPath }) {
       <TextArea
         placeholder="댓글을 입력해주세요"
         validations={COMMENT.CONTENT}
-        name="content"
+        name="create-comment-content"
       />
-      <Button variant="primary" type="submit" disabled={!isValid}>
+      <Button
+        variant="primary"
+        type="submit"
+        disabled={!isValid}
+        className="small"
+      >
         등록
       </Button>
     </form>

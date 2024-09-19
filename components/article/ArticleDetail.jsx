@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { formatDate, formatLikes } from "@/utils/formatFn";
-import { deleteArticleById } from "@/service/api";
 import ProfileImg from "@/components/ui/ProfileImg";
 import KebabMenu from "@/components/ui/KebabMenu";
 import inactiveHeart from "../../public/assets/icons/ic_heart_inactive.svg";
@@ -11,11 +10,7 @@ export default function ArticleDetail({ article }) {
     <article className={styles.ArticleDetail}>
       <div className={styles.top}>
         <h3>{article.title}</h3>
-        <KebabMenu
-          idPath={article.id}
-          deleteApi={deleteArticleById}
-          entity="article"
-        />
+        <KebabMenu idPath={article.id} entity="article" />
       </div>
       <div className={styles.middle}>
         <div className={styles.user}>

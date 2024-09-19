@@ -4,37 +4,4 @@
   @include g.flex-box(column, center, center, 24px);
   width: 100%;
   padding-bottom: 48px;
-
-  .list {
-    @include g.flex-box(column, center, center, 24px);
-    border-bottom: 1px solid g.$grey-200;
-    width: 100%;
-    padding-bottom: 12px;
-    background-color: #fcfcfc;
-
-    h4 {
-      @include g.font(14, 400);
-    }
-  }
-}
-
-.top {
-  @include g.flex-box(row, space-between, center);
-  width: 100%;
-}
-
-.bottom {
-  @include g.flex-box(row, center, center, 8px);
-  align-self: flex-start;
-  &-right {
-    @include g.font(12, 400);
-
-    p {
-      color: g.$grey-600;
-      margin-bottom: 4px;
-    }
-    time {
-      color: g.$grey-400;
-    }
-  }
 }
