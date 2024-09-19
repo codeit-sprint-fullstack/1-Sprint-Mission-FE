@@ -14,7 +14,7 @@ export default function Inputbox({
   const [inputType, setInputType] = useState("text");
   const [showErrorMasage, setShowEorrorMasage] = useState(false);
   const [errorMasage, setErrorMasage] = useState("");
-  const [inputMargin, setInputMargin] = useState(style.margin24)
+  const [inputMargin, setInputMargin] = useState(style.margin24);
   const [eyesIcon, setEyesIcon] = useState("/images/ic_slash_eyes.svg");
   const [showEyesIcon, setShowEyesIcon] = useState(false);
 
@@ -65,28 +65,28 @@ export default function Inputbox({
         const email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
         if (!email_regex.test(value)) {
           setShowEorrorMasage(true);
-          setInputMargin(style.margin8)
+          setInputMargin(style.margin8);
         } else {
           setShowEorrorMasage(false);
         }
       } else if (name === "nickname") {
         if (value === "") {
           setShowEorrorMasage(true);
-          setInputMargin(style.margin8)
+          setInputMargin(style.margin8);
         } else {
           setShowEorrorMasage(false);
         }
       } else if (name === "password") {
         if (value.length < 8) {
           setShowEorrorMasage(true);
-          setInputMargin(style.margin8)
+          setInputMargin(style.margin8);
         } else {
           setShowEorrorMasage(false);
         }
       } else if (name === "passwordConfirmation") {
         if (value !== checkpassword) {
           setShowEorrorMasage(true);
-          setInputMargin(style.margin8)
+          setInputMargin(style.margin8);
         } else {
           setShowEorrorMasage(false);
         }
@@ -116,10 +116,12 @@ export default function Inputbox({
         placeholder={placeholder}
         type={inputType}
       />
-      {showErrorMasage && <div className={style.errorMasage}>{errorMasage}</div>}
+      {showErrorMasage && (
+        <div className={style.errorMasage}>{errorMasage}</div>
+      )}
       {showEyesIcon && (
         <Image
-        className={style.eyesIcon}
+          className={style.eyesIcon}
           src={eyesIcon}
           width={24}
           height={24}
