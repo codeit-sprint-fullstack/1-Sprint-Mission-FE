@@ -23,8 +23,8 @@ export default function Header() {
               자유게시판
             </p>
           </Link>
-          <Link href={ROUTES.MARKET} passHref>
-            <p className={router.pathname === "/market" ? styles.active : ""}>
+          <Link href={ROUTES.ITEMS} passHref>
+            <p className={router.pathname === "/items" ? styles.active : ""}>
               중고마켓
             </p>
           </Link>

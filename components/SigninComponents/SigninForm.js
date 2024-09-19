@@ -1,26 +1,28 @@
 import styles from "./SigninForm.module.css";
 import Image from "next/image";
 import logoImg from "@/images/desktop_logo.png";
-import ic_google from "@/images/ic_google.png";
-import ic_kakao from "@/images/ic_kakao.png";
 import btn_visibility from "@/images/btn_visibility.png";
 import btn_hide from "@/images/btn_hide.png";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useFormValidation from "@/hooks/useFormValidation";
 import validate from "@/utils/validationRules";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/router";
+import { signup } from "@/utils/signinApi";
+import FormFooter from "./FormFooter";
+import Modal from "../ModalComponents/Modal";
 
-export default function LoginForm() {
+export default function SigninForm() {
   const [isVisible, setIsVisible] = useState(false);
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
-  const togglePasswordVisibility = () => {
-    setIsVisible(!isVisible);
-  };
-  const toggleConfirmPasswordVisibility = () => {
+  const togglePasswordVisibility = () => setIsVisible(!isVisible);
+  const toggleConfirmPasswordVisibility = () =>
     setIsConfirmVisible(!isConfirmVisible);
-  };
 
   const initialState = {
     email: "",
@@ -28,22 +30,49 @@ export default function LoginForm() {
     password: "",
     confirmPassword: "",
   };
-  const { handleChange, values, errors, handleBlur, touched } =
+
+  const { handleChange, values, errors, handleBlur, touched, setErrors } =
     useFormValidation(initialState, validate);
+
+  const router = useRouter();
+
+  const mutation = useMutation({
+    mutationFn: signup,
+    onSuccess: (data) => {
+      localStorage.setItem("accessToken", data.accessToken);
+      router.push(ROUTES.ITEMS);
+    },
+    onError: (error) => {
+      setModalMessage(error.message);
+      setShowModal(true);
+    },
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!errors.email && !errors.password) {
-      setIsSubmitting(true);
-      // 서버로 전송 등의 추가 로직 작성
+
+    if (
+      !errors.email &&
+      !errors.password &&
+      !errors.confirmPassword &&
+      !errors.nickname
+    ) {
+      mutation.mutate({
+        email: values.email,
+        nickname: values.nickname,
+        password: values.password,
+        passwordConfirmation: values.confirmPassword,
+      });
     }
   };
+
   return (
     <>
       <Link href={ROUTES.HOME} passHref>
         <Image src={logoImg} alt="logo" className={styles.logo} />
       </Link>
-      <form className={styles.loginForm}>
+
+      <form className={styles.loginForm} onSubmit={handleSubmit}>
         <label className={styles.label}>이메일</label>
         <input
           className={styles.input}
@@ -57,12 +86,13 @@ export default function LoginForm() {
         {touched.email && errors.email && (
           <p className={styles.error}>{errors.email}</p>
         )}
+
         <label className={styles.label}>닉네임</label>
         <input
           className={styles.input}
           type="text"
           name="nickname"
-          placeholder="닉네임를 입력해주세요"
+          placeholder="닉네임을 입력해주세요"
           value={values.nickname}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -70,6 +100,7 @@ export default function LoginForm() {
         {touched.nickname && errors.nickname && (
           <p className={styles.error}>{errors.nickname}</p>
         )}
+
         <label className={styles.label}>비밀번호</label>
         <div className={styles.passwordContainer}>
           <input
@@ -91,6 +122,7 @@ export default function LoginForm() {
         {touched.password && errors.password && (
           <p className={styles.error}>{errors.password}</p>
         )}
+
         <label className={styles.label}>비밀번호 확인</label>
         <div className={styles.passwordContainer}>
           <input
@@ -112,9 +144,10 @@ export default function LoginForm() {
         {touched.confirmPassword && errors.confirmPassword && (
           <p className={styles.error}>{errors.confirmPassword}</p>
         )}
+
         <button
           className={styles.signinBtn}
-          onClick={handleSubmit}
+          type="submit"
           disabled={
             errors.email ||
             errors.password ||
@@ -125,21 +158,12 @@ export default function LoginForm() {
           회원가입
         </button>
       </form>
-      <div className={styles.easyLogin}>
-        <p className={styles.easyLoginText}>간편로그인하기</p>
-        <div className={styles.easyLoginImg}>
-          <Image className={styles.img} src={ic_google} alt="google" />
-          <Image className={styles.img} src={ic_kakao} alt="kakao" />
-        </div>
-      </div>
-      <div className={styles.signinContainer}>
-        <p className={styles.signinText}>
-          이미 회원이신가요?{" "}
-          <Link href={ROUTES.LOGIN} passHref>
-            <span className={styles.signinLink}>로그인</span>
-          </Link>
-        </p>
-      </div>
+
+      <FormFooter />
+
+      {showModal && (
+        <Modal text={modalMessage} onClose={() => setShowModal(false)} />
+      )}
     </>
   );
 }

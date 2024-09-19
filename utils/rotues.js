@@ -4,7 +4,7 @@ export const ROUTES = {
   CREATE_BOARD: "/createBoard",
   BOARD_EDIT: (id) => `/board/edit/${id}`,
   ARTICLE: (id) => `/board/${id}`,
-  MARKET: "/market",
+  ITEMS: "/items",
   LOGIN: "/login",
   SIGNIN: "/signin",
 };

@@ -4,7 +4,7 @@
   grid-template-columns: 1fr 640px 1fr;
 }
 
-.loginContainer {
+.signinContainer {
   width: 100%;
   grid-column: 2;
   margin-top: 231px;

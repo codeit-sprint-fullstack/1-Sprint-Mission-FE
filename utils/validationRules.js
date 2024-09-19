@@ -9,14 +9,14 @@ export default function validate(values) {
 
   if (!values.nickname) {
     errors.nickname = "닉네임을 입력해주세요.";
-  } else if (values.nickname.length < 2) {
-    errors.nickname = "닉네임는 2자리 이상이어야 합니다.";
+  } else if (values.nickname.length < 1) {
+    errors.nickname = "닉네임는 1자리 이상이어야 합니다.";
   }
 
   if (!values.password) {
     errors.password = "비밀번호를 입력해주세요.";
-  } else if (values.password.length < 3) {
-    errors.password = "비밀번호는 3자리 이상이어야 합니다.";
+  } else if (values.password.length < 8) {
+    errors.password = "비밀번호는 8자리 이상이어야 합니다.";
   }
 
   if (!values.confirmPassword) {

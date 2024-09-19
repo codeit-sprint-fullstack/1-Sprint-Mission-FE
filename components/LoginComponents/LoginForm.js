@@ -1,8 +1,6 @@
 import styles from "./LoginForm.module.css";
 import Image from "next/image";
 import logoImg from "@/images/desktop_logo.png";
-import ic_google from "@/images/ic_google.png";
-import ic_kakao from "@/images/ic_kakao.png";
 import btn_visibility from "@/images/btn_visibility.png";
 import btn_hide from "@/images/btn_hide.png";
 import Link from "next/link";
@@ -10,6 +8,7 @@ import { ROUTES } from "@/utils/rotues";
 import { useState } from "react";
 import useFormValidation from "@/hooks/useFormValidation";
 import validate from "@/utils/validationRules";
+import FormFooter from "./FormFooter";
 
 export default function LoginForm() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -26,7 +25,6 @@ export default function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!errors.email && !errors.password) {
-      setIsSubmitting(true);
       // 서버로 전송 등의 추가 로직 작성
     }
   };
@@ -80,21 +78,7 @@ export default function LoginForm() {
           로그인
         </button>
       </form>
-      <div className={styles.easyLogin}>
-        <p className={styles.easyLoginText}>간편로그인하기</p>
-        <div className={styles.easyLoginImg}>
-          <Image className={styles.img} src={ic_google} alt="google" />
-          <Image className={styles.img} src={ic_kakao} alt="kakao" />
-        </div>
-      </div>
-      <div className={styles.signinContainer}>
-        <p className={styles.signinText}>
-          판다마켓이 처음이신가요?{" "}
-          <Link href={ROUTES.SIGNIN} passHref>
-            <span className={styles.signinLink}>회원가입</span>
-          </Link>
-        </p>
-      </div>
+      <FormFooter />
     </>
   );
 }
