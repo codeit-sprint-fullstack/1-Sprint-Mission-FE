@@ -1,0 +1,9 @@
+.btn-login {
+  object-fit: cover;
+  width: 8.8rem;
+  height: 4.2rem;
+  margin: 0px;
+  padding: 0px;
+  cursor: pointer;
+  background-image: url(../../public/buttons/btn_login.svg);
+}

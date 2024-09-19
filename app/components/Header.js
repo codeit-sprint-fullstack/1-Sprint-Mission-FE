@@ -1,49 +1,59 @@
 import Link from "next/link";
+import classNames from "classnames";
 
 import { Nav, NavItem } from "@/app/components/Nav";
-import Profile from "@/app/components/Profile";
-import { PROFILE_H40 } from "../constants/Profile";
+import { HeaderUser } from "./HeaderUser";
 
 import style from "@/app/components/header.module.css";
 
 export function Header() {
-  const tempIsSignin = false;
-
-  const handleProfileClick = () => {
-    alert("아직 구현되지 않은 기능입니다");
-  };
-
-  const handleLoginBtnClick = () => {};
+  const headerClass = classNames(
+    "top-0",
+    "fixed",
+    "flex",
+    "flex-row",
+    "flex-nowrap",
+    "items-center",
+    "mt-0",
+    "mx-auto",
+    "w-full",
+    "h-header",
+    "bg-white",
+    "border-b-1",
+    "border-b-alto",
+    "z-50",
+    "pl-pc-header",
+    "pr-pc-header",
+    "tablet:pl-tablet-header",
+    "tablet:pr-tablet-header",
+    "mobile:pl-mobile-header",
+    "mobile:pr-mobile-header",
+    style.header
+  );
+  const btnHomeFrame = classNames(
+    "mr-3.2rem",
+    "tablet:mr-2rem",
+    "mobile:mr-1.6rem"
+  );
+  const btnHome = classNames(
+    "object-cover",
+    "w-pc-btn-home",
+    "h-pc-btn-home",
+    "mobile:w-mobile-btn-home",
+    "mobile:h-mobile-btn-home",
+    style["btn-home"]
+  );
 
   return (
-    <div className={style.header}>
-      {/* <a className={btn-home-frame" href="/" target="_self">
-        <span>
-          <img className={img-home" alt="홈 버튼" />
-        </span>
-      </a> */}
-      <Link className={style["btn-home-frame"]} href="/" target="_self">
-        <button className={style["btn-home"]} />
+    <div className={headerClass}>
+      <Link className={btnHomeFrame} href="/" target="_self">
+        <button className={btnHome} />
       </Link>
       <Nav>
         <NavItem linkto="/bulletin-board">자유게시판</NavItem>
         <NavItem linkto="/flea-market">중고마켓</NavItem>
       </Nav>
-      <div className={style["profile-frame"]}>
-        {tempIsSignin ? (
-          <Profile type={PROFILE_H40} onClick={handleProfileClick} />
-        ) : (
-          <Link
-            className={style["btn-login-frame"]}
-            href="/login"
-            target="_self"
-          >
-            <div>
-              <img className={style["img-login"]} alt="로그인 버튼" />
-            </div>
-          </Link>
-        )}
-      </div>
+      <HeaderUser />
     </div>
   );
 }

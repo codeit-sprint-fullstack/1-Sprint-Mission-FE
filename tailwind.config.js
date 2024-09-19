@@ -38,12 +38,19 @@ module.exports = {
         "pc-content": "120rem",
         "tablet-content": "69.6rem",
         "mobile-content": "34.3rem",
+        // header-btn-home
+        "pc-btn-home": "15.3rem",
+        "mobile-btn-home": "8.1rem",
+        // best-post
         "pc-bestpost": "38.4rem",
         "tablet-bestpost": "34rem",
         "mobile-bestport": "34.3rem",
       },
       height: {
-        header: "7rem",
+        // header-btn-home
+        "pc-btn-home": "5.1rem",
+        "mobile-btn-home": "4rem",
+        // best-post
         "pc-bestpost": "16.9rem",
         "tablet-bestpost": "19.8rem",
         "mobile-bestport": "19.8rem",
@@ -67,6 +74,22 @@ module.exports = {
         lh22: "2.2rem",
         lh20: "2rem",
         lh18: "1.8rem",
+      },
+      borderWidth: {
+        1: "0.1rem",
+      },
+      padding: {
+        "pc-header": "20rem",
+        "tablet-header": "2.4rem",
+        "mobile-header": "1.6rem",
+      },
+      spacing: {
+        "20rem": "20rem",
+        header: "7rem",
+        "3.2rem": "3.2rem",
+        "2.4rem": "2.4rem",
+        "2rem": "2rem",
+        "1.6rem": "1.6rem",
       },
     },
   },
