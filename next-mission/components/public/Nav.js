@@ -40,8 +40,8 @@ function Nav() {
           </p>
         </Link>
       </div>
-      <Link href='/login'>
-      <div className={style.login}>로그인</div>
+      <Link href="/login">
+        <div className={style.login}>로그인</div>
       </Link>
     </nav>
   );

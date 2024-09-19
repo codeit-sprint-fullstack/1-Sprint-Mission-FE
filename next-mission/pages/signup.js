@@ -1,5 +1,6 @@
 import EasyLogin from "@/components/EasyLogin";
 import Inputbox from "@/components/InputBox";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -19,12 +20,17 @@ export default function Signup() {
   };
   return (
     <>
-      <Image
-        src={"/images/pandaLogo.svg"}
-        width={396}
-        height={132}
-        alt="판다 로고"
-      />
+      <Head>
+        <title>회원가입 | 판다마켓</title>
+      </Head>
+      <Link href="/">
+        <Image
+          src={"/images/pandaLogo.svg"}
+          width={396}
+          alt="판다 로고"
+          height={132}
+        />
+      </Link>
       <Inputbox
         mode={"signup"}
         name={"email"}
@@ -53,8 +59,8 @@ export default function Signup() {
       <button>회원가입</button>
       <EasyLogin />
       <div>
-      이미 회원이신가요?
-      <Link href='/login'>로그인</Link>
+        이미 회원이신가요?
+        <Link href="/login">로그인</Link>
       </div>
     </>
   );
