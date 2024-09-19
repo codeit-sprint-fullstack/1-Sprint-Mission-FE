@@ -33,36 +33,22 @@ export function Article({
 }) {
   const topBarClass = `flex flex-row justify-between ${style["top-bar"]}`;
   const topBarTextClass = `font-bold ${style["top-bar-text"]}`;
-  // const topBarBtnEllipsis = `${style["top-bar-btn-ellipsis"]}`;
   const middleBarClass = `flex flex-row items-center ${style["middle-bar"]}`;
   const middleBarOwnerDateSetClass = `flex flex-row items-center ${style["middle-bar-owner-data-set"]}`;
   const middleBarOwnerClass = `font-medium ${style["middle-bar-owner"]}`;
   const dividerClass = `flex flex-row items-center justify-center ${style.divider}`;
   const contentClass = `font-normal ${style.content}`;
 
-  // const Owner = () => {
-  //   return <p className={middleBarOwnerClass}>{nickname}</p>;
-  // };
-
-  // const Divider = () => {
-  //   return (
-  //     <div className={dividerClass}>
-  //       <Image src="/images/divider_h40.svg" width={2} height={34} alt="분리" />
-  //     </div>
-  //   );
-  // };
-
   return (
     <div className={style.article}>
       <div className={topBarClass}>
         <div className={topBarTextClass}>{title}</div>
-        {/* <button className={topBarBtnEllipsis} /> */}
         <DropDownKebabArticle articleId={articleId} />
       </div>
       <div className={middleBarClass}>
         <Profile type={PROFILE_H40} profileImgUrl={profileImgUrl} />
         <div className={middleBarOwnerDateSetClass}>
-          <Owner dividerClass={dividerClass} nickname={nickname} />
+          <Owner dividerClass={middleBarOwnerClass} nickname={nickname} />
           <Date type={DATE} dbDate={createdDate} />
         </div>
         <Divider dividerClass={dividerClass} />
