@@ -114,6 +114,7 @@ const useFormValidation = (initialValues, callback) => {
     handleSubmit,
     handleChips,
     handleRemoveChip,
+    setErrors,
   };
 };
 

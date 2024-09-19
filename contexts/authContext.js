@@ -13,26 +13,18 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState();
 
   const getMe = async () => {
-    try {
-      const data = await userApi.getUserMe();
-      if (data) {
-        setUser(data);
-      }
-    } catch (error) {
-      console.log(error);
+    const data = await userApi.getUserMe();
+    if (data) {
+      setUser(data);
     }
   };
 
   const login = async (loginValue) => {
-    try {
-      const data = await authApi.login(loginValue);
-      if (data) {
-        localStorage.setItem("codeit-accessToken", data.accessToken);
-        localStorage.setItem("codeit-refreshToken", data.refreshToken);
-      }
+    const data = await authApi.login(loginValue);
+    if (data) {
+      localStorage.setItem("codeit-accessToken", data.accessToken);
+      localStorage.setItem("codeit-refreshToken", data.refreshToken);
       getMe();
-    } catch (error) {
-      console.log(error);
     }
   };
 

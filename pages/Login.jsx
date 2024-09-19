@@ -16,17 +16,41 @@ function Login() {
   const { login } = useAuth();
   const [alertMessage, setAlertMessage] = useState("");
   const [openAlert, setOpenAlert] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState({
+    password: false,
+    passwordConfirmation: false,
+  });
 
   const handleOpenAlert = () => setOpenAlert(true);
   const handleCloseAlert = () => setOpenAlert(false);
 
-  const handleLogin = async (value) => {
-    await login(value);
-    // router.push("/Products");
+  const toggleVisible = (e) => {
+    const { name } = e.target;
+    setPasswordVisible((prev) => ({
+      ...prev,
+      [name]: !prev[name],
+    }));
   };
 
-  const { values, errors, handleChange, handleSubmit, disabled } =
+  const { values, errors, handleChange, handleSubmit, disabled, setErrors } =
     useFormValidation({ email: "", password: "" }, handleLogin);
+
+  //스코프를 이용하기 위해서 화살표함수가 아닌 함수로 정의
+  async function handleLogin(value) {
+    try {
+      await login(value);
+      router.push("/Items");
+    } catch (error) {
+      console.log(error);
+      setErrors({
+        email: "이메일을 확인해 주세요",
+        password: "비밀번호를 확인해 주세요",
+      });
+      //서버에서 에러의 리스폰스로 메시지를 주고 있음
+      setAlertMessage(error.response.data.message);
+      handleOpenAlert();
+    }
+  }
 
   return (
     <>
@@ -40,7 +64,7 @@ function Login() {
           <Image
             className={styles.main_logo}
             src={main_logo}
-            alt="비밀번호보기"
+            alt="판다마켓 메인로고"
             priority
           />
           <label className={styles.input_label}>
@@ -65,7 +89,7 @@ function Login() {
             비밀번호
             <div>
               <input
-                type="password"
+                type={passwordVisible.password ? "text" : "password"}
                 name="password"
                 onChange={handleChange}
                 className={styles.input}
@@ -73,6 +97,8 @@ function Login() {
                 autoComplete="off"
               />
               <Image
+                onClick={toggleVisible}
+                name="password"
                 className={styles.ic_visible}
                 src={ic_visible}
                 width={24}
