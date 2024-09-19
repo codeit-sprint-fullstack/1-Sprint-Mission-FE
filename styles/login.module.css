@@ -1,0 +1,131 @@
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 640px;
+  height: 618px;
+  gap: 16px;
+}
+.passwordToggle {
+  position: absolute;
+  right: 10px;
+  top: 70%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.error {
+  color: #f74747;
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 16px;
+  width: 100%;
+  margin-left: 16px;
+}
+
+.logoImg {
+  position: relative;
+  width: 396px;
+  height: 132px;
+}
+.simpleLogin {
+  width: 100%;
+  height: 74px;
+  border-radius: 8px;
+  background-color: #e6f2ff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 23px;
+  padding-right: 23px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.inputFrom {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  position: relative;
+  color: #1f2937;
+}
+.inputEmail {
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  padding: 16px 24px 16px 24px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #9ca3af;
+  box-sizing: border-box;
+}
+.inputPassword {
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  padding: 16px 24px 16px 24px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #9ca3af;
+  box-sizing: border-box;
+}
+.loginBtn {
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #9ca3af;
+  color: #f3f4f6;
+  font-size: 20px;
+  font-weight: 600;
+}
+.loginBtn2 {
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3692ff;
+  color: #f3f4f6;
+  font-size: 20px;
+  font-weight: 600;
+}
+.loginIcon {
+  display: flex;
+
+  gap: 16px;
+}
+.formfooter {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+}
+.formfooter a {
+  color: #3692ff;
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+}
