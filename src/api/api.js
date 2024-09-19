@@ -190,7 +190,7 @@ export const deleteComment = async (id) => {
 /* 로그인 API */
 export const loginUser = async (credentials) => {
   try {
-    const response = await apiClient.post(`${authUrl}/login`, credentials);
+    const response = await apiClient.post("/users/login", credentials);
     return response.data;
   } catch (error) {
     console.error("로그인 실패:", error);
