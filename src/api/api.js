@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Axios 클라이언트 인스턴스 생성
 const apiClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: process.env.NEXT_PUBLIC_AUTH_API_URL, // 인증 관련 API URL
   headers: {
     "Content-Type": "application/json",
   },
@@ -190,7 +190,7 @@ export const deleteComment = async (id) => {
 /* 로그인 API */
 export const loginUser = async (credentials) => {
   try {
-    const response = await apiClient.post("/users/login", credentials);
+    const response = await apiClient.post(`${authUrl}/signIn`, credentials);
     return response.data;
   } catch (error) {
     console.error("로그인 실패:", error);
@@ -201,7 +201,7 @@ export const loginUser = async (credentials) => {
 /* 회원가입 API */
 export const registerUser = async (userData) => {
   try {
-    const response = await apiClient.post(`${authUrl}/register`, userData);
+    const response = await apiClient.post(`${authUrl}/signUp`, userData);
     return response.data;
   } catch (error) {
     console.error("회원가입 실패:", error);
