@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import ItemsPageHeader from "../../components/ItemsPageHeader";
 import ProductDetail from "../../components/ProductDetail";
-import FreeBoardCommentItem from "../../components/FreeBoardCommentItem";
+import ProductCommentItem from "../../components/ProductCommentItem";
 import Footer from "../../components/Footer";
 import styles from "../PostDetailPage.module.css";
 import {
@@ -38,8 +38,12 @@ export default function ProductDetailPage() {
   // 댓글을 불러오는 함수
   const fetchCommentsData = async () => {
     try {
-      if (!id) return;
-      const allComments = await fetchCommentsByProductId(id); // API 호출
+      if (!itemId) return;
+      const response = await fetchCommentsByProductId(itemId);
+      const allComments = response.list.map((comment) => ({
+        ...comment,
+        productId: itemId, // 상품 ID 추가
+      }));
       setComments(allComments);
       filterComments(allComments);
     } catch (err) {
@@ -49,22 +53,27 @@ export default function ProductDetailPage() {
 
   // 댓글 필터링 함수
   const filterComments = (allComments) => {
-    const postComments = allComments.filter(
-      (comment) => comment.postId === parseInt(itemId)
+    const productComments = allComments.filter(
+      (comment) => comment.productId === parseInt(itemId)
     );
-    setFilteredComments(postComments);
+    setFilteredComments(productComments);
   };
 
   // 댓글 등록 핸들러
   const handleCommentSubmit = async (commentData) => {
     try {
-      await createCommentForProduct(id, commentData); // API 호출
-      const allComments = await fetchCommentsByProductId(id); // 댓글 목록 재조회
+      await createCommentForProduct(itemId, commentData); // API 호출
+      const allComments = await fetchCommentsByProductId(itemId); // 댓글 목록 재조회
       setComments(allComments);
       filterComments(allComments);
     } catch (error) {
       console.error("댓글 등록 실패:", error);
     }
+  };
+
+  // 댓글 수정 및 삭제 후 상태 업데이트 함수
+  const handleCommentUpdate = async () => {
+    await updateComments();
   };
 
   useEffect(() => {
@@ -92,7 +101,7 @@ export default function ProductDetailPage() {
             <NoComments />
           ) : (
             filteredComments.map((comment) => (
-              <FreeBoardCommentItem
+              <ProductCommentItem
                 key={comment.id}
                 comment={comment}
                 onCommentUpdate={handleCommentUpdate}
