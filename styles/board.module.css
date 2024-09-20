@@ -1,0 +1,18 @@
+.boardContainer {
+  width: 1200px;
+  margin: 104px auto 64px auto;
+  position: relative;
+}
+
+@media (max-width: 1199px) {
+  .boardContainer {
+    width: 696px;
+  }
+}
+
+@media (max-width: 743px) {
+  .boardContainer {
+    width: 100%;
+    padding: 0 16px;
+  }
+}

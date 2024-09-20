@@ -1,0 +1,95 @@
+.container {
+  width: 1200px;
+  margin-top: 104px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 64px;
+}
+
+.titleContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2937;
+  }
+
+  .addBtn {
+    width: 72px;
+    height: 42px;
+    border-radius: 8px;
+    padding: 12px 23px;
+    background-color: #3692ff;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .addBtn:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+  }
+}
+
+.createForm {
+  width: 100%;
+
+  .inputContainer {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+
+    .formLabel {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 12px;
+    }
+
+    .formInput {
+      width: 100%;
+      height: 56px;
+      border-radius: 12px;
+      padding: 16px 24px;
+      background-color: #f3f4f6;
+      font-size: 16px;
+      font-weight: 400;
+
+      &::placeholder {
+        color: #9ca3af;
+      }
+
+      textarea& {
+        height: 282px;
+        resize: none;
+      }
+    }
+  }
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+@media (max-width: 1199px) {
+  .container {
+    width: 696px;
+  }
+}
+
+@media (max-width: 743px) {
+  .container {
+    width: 100%;
+    padding: 0 16px;
+    overflow: hidden;
+  }
+}

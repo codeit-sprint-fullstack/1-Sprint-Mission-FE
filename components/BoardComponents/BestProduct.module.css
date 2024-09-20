@@ -1,0 +1,119 @@
+.bestProducts h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 24px;
+}
+
+.product {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3개의 열을 설정 */
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.productItem {
+  width: 384px;
+  height: 100%;
+  border-radius: 8px;
+  padding: 0 24px 16px 24px;
+  background-color: #f9fafb;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  width: 102px;
+  padding: 4px 0 0 44px;
+  border-radius: 0 0 16px 16px;
+  background-color: #3692ff;
+  color: #ffffff;
+  background-image: url("../../images/ic_medal.png");
+  background-repeat: no-repeat;
+  background-position: 24px;
+  background-size: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  top: 0;
+}
+
+.titleContainer {
+  width: 100%;
+  margin-top: 46px;
+  display: flex;
+  flex-direction: row;
+
+  .title {
+    width: 256px;
+    word-break: break-all;
+    white-space: pre-wrap;
+    margin-right: 12px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2937;
+  }
+}
+
+.productImgContainer {
+  width: 72px;
+  height: 72px;
+  background-color: #ffffff;
+  padding: 13px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+}
+
+.productImg {
+  width: 48px;
+  height: 44.57px;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 18px;
+  .user {
+    font-size: 14px;
+    font-weight: 400;
+    color: #4b5563;
+  }
+  .date {
+    font-size: 14px;
+    font-weight: 400;
+    color: #9ca3af;
+  }
+}
+
+@media (max-width: 1199px) {
+  .product {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .productItem {
+    width: 340px;
+  }
+}
+
+@media (max-width: 743px) {
+  .product {
+    grid-template-columns: repeat(1, 1fr);
+    width: 100%;
+  }
+  .productItem {
+    width: 100%;
+  }
+
+  .titleContainer {
+    justify-content: space-between;
+    .title {
+      font-size: 18px;
+    }
+  }
+
+  .bestProducts h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+}

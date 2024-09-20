@@ -1,0 +1,165 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* 모든 요소의 기본 마진과 패딩 제거 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Pretendard", sans-serif;
+  white-space: nowrap;
+}
+
+/* HTML5 요소의 기본 스타일 제거 */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+/* HTML5 요소의 기본 스타일 제거 */
+audio,
+canvas,
+video {
+  display: inline-block;
+}
+
+/* 비표준 요소의 기본 스타일 제거 */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/* SVG 요소의 기본 스타일 제거 */
+svg,
+img,
+embed,
+object {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 리스트 스타일 제거 */
+ol,
+ul {
+  list-style: none;
+}
+
+/* 인용문 스타일 제거 */
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: "";
+  content: none;
+}
+
+/* 테이블 요소의 기본 스타일 제거 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* HTML 문서의 기본 글꼴 설정 */
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* 기본 링크 스타일 제거 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 기본 버튼 스타일 제거 */
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+}
+
+/* HTML5 요소의 기본 스타일 제거 */
+mark {
+  background-color: transparent;
+  color: inherit;
+}
+
+/* 기본 표 스타일 제거 */
+th {
+  font-weight: inherit;
+}
+
+/* 기본 수직 정렬 설정 */
+body {
+  line-height: 1.5;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  margin: 0;
+  height: 100%;
+}
+
+/* main {
+  height: 100%;
+} */
+
+#page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 화면 전체 높이를 채우도록 설정 */
+}
+
+#content-wrap {
+  flex: 1; /* 메인 콘텐츠가 차지할 공간을 flex로 설정 */
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* 폼 요소 스타일 초기화 */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+}
+
+/* 이미지 드래그 방지 */
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+}

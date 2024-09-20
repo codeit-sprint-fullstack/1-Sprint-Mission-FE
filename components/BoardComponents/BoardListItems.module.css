@@ -1,0 +1,79 @@
+.boardListContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.boardList {
+  width: 100%;
+  background-color: #fcfcfc;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2937;
+    word-break: break-all;
+    white-space: pre-wrap;
+    width: 100%;
+  }
+
+  .productImgContainer {
+    width: 72px;
+    height: 72px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #f3f4f6;
+    padding: 13px;
+  }
+
+  .productImg {
+    width: 48px;
+    height: 44.57px;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 24px;
+
+  .profileImg {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+
+  .infoContainer {
+    display: flex;
+    flex-direction: row;
+
+    .user {
+      font-size: 14px;
+      font-weight: 400;
+      color: #4b5563;
+      margin-right: 8px;
+    }
+
+    .date {
+      font-size: 14px;
+      font-weight: 400;
+      color: #9ca3af;
+    }
+  }
+
+  .like {
+    font-size: 16px;
+    font-weight: 400;
+    color: #6b7280;
+  }
+}
