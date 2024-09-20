@@ -20,7 +20,6 @@ export function AuthProvider({ children }) {
   };
 
   const login = async (loginValue) => {
-    console.log(loginValue);
     const data = await authApi.login(loginValue);
     if (data) {
       localStorage.setItem("codeit-accessToken", data.accessToken);

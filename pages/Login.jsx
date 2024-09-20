@@ -4,7 +4,8 @@ import AlertModal from "@/components/Modals/AlertModal";
 import { useState } from "react";
 import styles from "@/styles/login.module.css";
 import useFormValidation from "@/hooks/useFormValidation";
-import ic_visible from "@/public/images/btn_visibility_on_24px.png";
+import ic_visibility_on from "@/public/images/btn_visibility_on_24px.png";
+import ic_visibility from "@/public/images/btn_visibility_24px.png";
 import main_logo from "@/public/images/logo.png";
 import ic_kakao from "@/public/images/kakaoicon.png";
 import ic_google from "@/public/images/googleicon.png";
@@ -100,7 +101,9 @@ function Login() {
                 onClick={toggleVisible}
                 name="password"
                 className={styles.ic_visible}
-                src={ic_visible}
+                src={
+                  passwordVisible.password ? ic_visibility_on : ic_visibility
+                }
                 width={24}
                 height={24}
                 alt="비밀번호보기"
