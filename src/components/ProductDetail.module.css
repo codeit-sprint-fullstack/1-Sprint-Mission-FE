@@ -206,7 +206,7 @@
 }
 
 /* 등록 버튼 비활성화*/
-.postCommentDalki button:disabled {
+.registrationBtn:disabled {
   background: #9ca3af;
   cursor: not-allowed;
 }
