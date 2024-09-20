@@ -1,0 +1,80 @@
+.registContainer {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.registNav {
+  display: flex;
+  justify-content: space-between;
+  margin: 24px 0 32px;
+}
+
+.registNavTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.registNavBtn {
+  width: 74px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  background-color: #1f2937;
+  color: #f3f4f6;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.registSection {
+  margin-top: 24px;
+}
+
+.registSectionTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.registInputField {
+  width: 100%;
+  padding: 14px 24px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+}
+
+.registInputField:focus {
+  outline: 1px solid #3b82f6; /* 브랜드 블루 색상 */
+}
+
+.registInputField::placeholder {
+  color: #9ca3af;
+}
+
+.registTextareaField {
+  height: 282px;
+  resize: none;
+}
+
+.registErrorMessage {
+  color: #f50e0e;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.registInputValid {
+  outline: 1px solid #3b82f6;
+}
+
+.registInputInvalid {
+  outline: 2px solid #f50e0e;
+}
+
+.registInputInvalid:focus {
+  outline: 2px solid #f50e0e;
+}

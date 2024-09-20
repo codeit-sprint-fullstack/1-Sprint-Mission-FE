@@ -1,0 +1,22 @@
+/* components/Footer.module.css */
+
+.footer {
+  background-color: #111827;
+  color: #9ca3af;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3.2rem 20rem 10.8rem 20rem;
+  font-size: 1.6rem;
+}
+
+.footerMenu {
+  display: flex;
+  gap: 3rem;
+  color: var(--gray-200);
+}
+
+.socialMedia {
+  display: flex;
+  gap: 1.2rem;
+}

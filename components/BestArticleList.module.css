@@ -1,0 +1,18 @@
+.bestArticle {
+  margin-top: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px; /* width 대신 max-width 사용 */
+}
+
+.bestArticleText {
+  font-weight: bold; /* 700 대신 bold 키워드 사용 */
+  font-size: 1.25rem; /* 20px 대신 rem 단위 사용 */
+  line-height: 1.5; /* line-height를 비율로 지정 */
+  color: var(--gray900); /* #111827 대신 변수 사용 */
+}
+
+.bestArticleCardContainer {
+  display: flex;
+  gap: 1.5rem; /* 24px 대신 rem 단위 사용 */
+}
