@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { QueryClient, useQuery, dehydrate } from "@tanstack/react-query";
-import { getArticleById } from "@/service/api";
+import { getArticleById } from "@/service/api/article";
 import ArticleDetail from "@/components/article/ArticleDetail";
 import CommentList from "@/components/comment/CommentList";
 import Message from "@/components/ui/Message";

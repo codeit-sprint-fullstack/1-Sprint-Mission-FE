@@ -1,4 +1,4 @@
-import { useCommentList } from "@/service/queries";
+import { useGetCommentList } from "@/service/queries";
 import styles from "./CommentList.module.scss";
 import EmptyComments from "../ui/EmptyComment";
 import Loader from "../ui/Loader";
@@ -19,7 +19,7 @@ export default function CommentList({ idPath, isArticle }) {
     isError,
     error,
     data,
-  } = useCommentList({
+  } = useGetCommentList({
     idPath,
     whichId: isArticle ? "article" : "product",
   });

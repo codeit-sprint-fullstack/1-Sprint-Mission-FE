@@ -7,7 +7,7 @@ import inactiveHeart from "../../public/assets/icons/ic_heart_inactive.svg";
 import activeHeart from "../../public/assets/icons/ic_heart_active.svg";
 import bestBadge from "../../public/assets/icons/ic_medal.svg";
 import styles from "./BestArticles.module.scss";
-import { useBestArticles } from "@/service/queries";
+import { useGetBestArticles } from "@/service/queries";
 
 function ArticleCard({ article, userName }) {
   const articleImg = article.productImg ? article.productImg : defaultImg;
@@ -46,7 +46,7 @@ function ArticleCard({ article, userName }) {
 }
 
 export default function BestArticles() {
-  const { data } = useBestArticles({ pageSize: 3, orderBy: "like" });
+  const { data } = useGetBestArticles({ pageSize: 3, orderBy: "like" });
 
   const { list } = data;
 

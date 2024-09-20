@@ -1,11 +1,6 @@
-import axios from "axios";
+import axios from "./axios";
 
-const API_URL = process.env.NEXT_PUBLIC_LOCAL_API_URL;
-
-const instance = axios.create({
-  baseURL: API_URL,
-  headers: { "Content-type": "application/json" },
-});
+const ENDPOINT = "/articles";
 
 export async function getArticleList({
   pageSize = 10,
@@ -14,7 +9,7 @@ export async function getArticleList({
   page = 1,
 }) {
   try {
-    const res = await instance.get("/api/articles", {
+    const res = await axios.get(ENDPOINT, {
       params: { pageSize, keyword, orderBy, page },
     });
     return res.data;
@@ -25,7 +20,7 @@ export async function getArticleList({
 
 export async function getArticleById(articleId) {
   try {
-    const res = await instance.get(`/api/articles/${articleId}`);
+    const res = await axios.get(`${ENDPOINT}/${articleId}`);
     return res.data;
   } catch (error) {
     throw error;
@@ -34,7 +29,7 @@ export async function getArticleById(articleId) {
 
 export async function createArticle(formData) {
   try {
-    const res = await instance.post(`/api/articles`, formData);
+    const res = await axios.post(ENDPOINT, formData);
     return res.data;
   } catch (error) {
     throw error;
@@ -43,7 +38,7 @@ export async function createArticle(formData) {
 
 export async function updateArticle(articleId, formData) {
   try {
-    const res = await instance.patch(`/api/articles/${articleId}`, formData);
+    const res = await axios.patch(`${ENDPOINT}/${articleId}`, formData);
     return res.data;
   } catch (error) {
     throw error;
@@ -52,7 +47,7 @@ export async function updateArticle(articleId, formData) {
 
 export async function deleteArticleById(articleId) {
   try {
-    const res = await instance.delete(`/api/articles/${articleId}`);
+    const res = await axios.delete(`${ENDPOINT}/${articleId}`);
     return res.data;
   } catch (error) {
     throw error;
@@ -62,7 +57,7 @@ export async function deleteArticleById(articleId) {
 export async function getArticleComments(articleId, params = {}) {
   const { limit = 5, cursor = null } = params;
   try {
-    const res = await instance.get(`/api/articles/${articleId}/comments`, {
+    const res = await axios.get(`${ENDPOINT}/${articleId}/comments`, {
       params: { limit, cursor },
     });
     return res.data;
@@ -73,30 +68,9 @@ export async function getArticleComments(articleId, params = {}) {
 
 export async function createArticleComment(articleId, newComment) {
   try {
-    const res = await instance.post(
-      `/api/articles/${articleId}/comments`,
+    const res = await axios.post(
+      `${ENDPOINT}/${articleId}/comments`,
       newComment
-    );
-    return res.data;
-  } catch (error) {
-    throw error;
-  }
-}
-
-export async function deleteCommentById(commentId) {
-  try {
-    const res = await instance.delete(`/api/comments/${commentId}`);
-    return res.data;
-  } catch (error) {
-    throw error;
-  }
-}
-
-export async function updateCommentById(commentId, editedComment) {
-  try {
-    const res = await instance.patch(
-      `/api/comments/${commentId}`,
-      editedComment
     );
     return res.data;
   } catch (error) {

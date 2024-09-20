@@ -5,7 +5,7 @@ import {
   deleteArticleById,
   deleteCommentById,
   updateCommentById,
-} from "./api";
+} from "./api/article";
 import { articleKey, commentKey, productKey } from "@/variables/queryKeys";
 import { useRouter } from "next/router";
 import { useParams, usePathname } from "next/navigation";
