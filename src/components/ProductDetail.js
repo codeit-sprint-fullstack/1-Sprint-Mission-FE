@@ -36,8 +36,9 @@ export default function ProductDetail({ productId }) {
   // 댓글 데이터 가져오기
   const getComments = async () => {
     try {
-      const data = await fetchCommentsByProductId(productId); // 변경
-      setComments(data);
+      const data = await fetchCommentsByProductId(productId, 3);
+      console.log("댓글 데이터:", data);
+      setComments(data.list);
     } catch (error) {
       console.error("댓글 목록 조회 실패:", error);
     }
