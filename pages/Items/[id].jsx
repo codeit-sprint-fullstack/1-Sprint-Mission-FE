@@ -2,6 +2,7 @@ import * as productsApi from "@/pages/api/products";
 import * as commentApi from "@/pages/api/comment";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import useAuth from "@/contexts/authContext";
 import Link from "next/link";
 import Image from "next/image";
 import Comment from "@/components/Comment";
@@ -15,6 +16,7 @@ import ic_heart_liked from "@/public/images/ic_heart_liked.png";
 import ic_kebab from "@/public/images/ic_kebab.png";
 import Img_inquiry_empty from "@/public/images/Img_inquiry_empty.png";
 import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
+import DropdownData from "@/components/DropdownList/DropdownData";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
@@ -75,6 +77,13 @@ function DetailProduct({ product, comments }) {
   const openConfirmModal = () => setConfirm(true);
   const closeConfirmModal = () => setConfirm(false);
 
+  //권한인증
+  const { user } = useAuth();
+
+  //수정/삭제 드롭다운오픈 상태 값
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const openArticleDropdown = () => setOpenDropdown(!openDropdown);
+
   const handleChangeValues = (name, value) => {
     setValues((prev) => ({
       ...prev,
@@ -88,11 +97,22 @@ function DetailProduct({ product, comments }) {
     handleChangeValues(name, value);
   };
 
+  // 상품수정을 선택시 Registration 페이지의 쿼리로 게시글의 id를 전달한다.
+  const updateArticle = () => {
+    router.push(`/Items/Registration?id=${product.id}`);
+  };
+
+  const handleDeleteArticle = () => {
+    //삭제의 경우 confirm 모달을 통하여 확인하여 진행한다.
+    setConfirmMessage("상품이 영구적으로 삭제됩니다. 삭제하시겠습니까?");
+    openConfirmModal();
+  };
+
   const deleteProduct = () => {
     try {
       const res = articleApi.deleteArticle(article.id);
       if (res) {
-        router.push("/Articles");
+        router.push("/Items");
       } else {
         setAlertMessage("게시글 삭제에 실패했습니다.");
         openAlertModal();
@@ -151,13 +171,25 @@ function DetailProduct({ product, comments }) {
           <div className={styles.product_values_box}>
             <div className={styles.product_values_top_box}>
               <span>{name}</span>
-              <Image
-                className={styles.product_kebab_image}
-                src={ic_kebab}
-                width={24}
-                height={24}
-                alt="상품 수정/삭제이미지"
-              />
+              {/* 작성자와 로그인된 사용자가 같을때 수정/삭제가 가능하다. */}
+              {user.id === ownerId && (
+                <>
+                  <Image
+                    onClick={openArticleDropdown}
+                    className={styles.product_kebab_image}
+                    src={ic_kebab}
+                    width={24}
+                    height={24}
+                    alt="상품 수정/삭제이미지"
+                  />
+                  {openDropdown && (
+                    <DropdownData
+                      handleUpdate={updateArticle}
+                      handleDelete={handleDeleteArticle}
+                    />
+                  )}
+                </>
+              )}
               <span className={styles.product_price}>{numFormat}원</span>
             </div>
             <div className={styles.product_values_mid_box}>
@@ -219,6 +251,7 @@ function DetailProduct({ product, comments }) {
           <div className={styles.products_comments}>
             {comments.map((item) => (
               <Comment
+                user={user}
                 key={item.id}
                 item={item}
                 openAlert={openAlertModal}
@@ -239,7 +272,7 @@ function DetailProduct({ product, comments }) {
               </>
             )}
           </div>
-          <Link href={"/Articles"}>
+          <Link href={"/Items"}>
             <button className={styles.return_products_page_btn}>
               목록으로 돌아가기
               <Image src={ic_back} width={24} height={24} alt="돌아가기" />

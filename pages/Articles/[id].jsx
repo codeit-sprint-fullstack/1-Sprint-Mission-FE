@@ -73,6 +73,12 @@ function DetailArticle({ article, comments }) {
     router.push(`/Articles/Registration?id=${article.id}`);
   };
 
+  const handleDeleteArticle = () => {
+    //삭제의 경우 confirm 모달을 통하여 확인하여 진행한다.
+    setConfirmMessage("게시글이 영구적으로 삭제됩니다. 삭제하시겠습니까?");
+    openConfirmModal();
+  };
+
   const deleteArticle = () => {
     try {
       const res = articleApi.deleteArticle(article.id);
@@ -106,12 +112,6 @@ function DetailArticle({ article, comments }) {
       openAlertModal();
       console.log(error);
     }
-  };
-
-  const handleDeleteArticle = () => {
-    //삭제의 경우 confirm 모달을 통하여 확인하여 진행한다.
-    setConfirmMessage("게시글이 영구적으로 삭제됩니다. 삭제하시겠습니까?");
-    openConfirmModal();
   };
 
   const handleChangeValues = (name, value) => {
