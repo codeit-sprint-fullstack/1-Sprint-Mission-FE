@@ -88,9 +88,9 @@ export default function ProductDetail({ productId }) {
   };
 
   // 수정 페이지로 이동하는 핸들러
-  //   const handleEditRedirect = () => {
-  //     router.push(/product-edit/${product.id});
-  //   };
+  const handleEditRedirect = () => {
+    router.push(`/product-edit/${product.id}`);
+  };
 
   if (!product) {
     return <div>상품 정보를 불러오는 데 실패했습니다.</div>;
@@ -109,7 +109,12 @@ export default function ProductDetail({ productId }) {
           />
         </div>
         <div className={styles.productInfo}>
-          <h3 className={styles.productTitle}>{product.name}</h3>
+          <div className={styles.productTitleMenu}>
+            <h3 className={styles.productTitle}>{product.name}</h3>
+            <button className={styles.moreMenuButton} onClick={toggleMenu}>
+              :
+            </button>
+          </div>
           <h4 className={styles.productPrice}>{product.price}원</h4>
           <div className={styles.productIntroContainer}>
             <p className={styles.productIntroduction}>상품 소개</p>

@@ -15,9 +15,16 @@
 .productInfo {
   display: flex;
   flex-direction: column;
+  width: 540px;
   gap: 10px;
   text-align: left;
   justify-content: center;
+}
+
+/* : 버튼 */
+.productTitleMenu {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* 판매 제목 */
