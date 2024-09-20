@@ -1,0 +1,157 @@
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 16px;
+}
+
+.noPostsMessage {
+  padding: 40px;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  color: #000000; 
+}
+
+
+.bestPostsContainer {
+  padding: 0 16px;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.bestPosts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.bestBox {
+  max-width: 384px;
+  height: 169px; 
+  background-color: #f9fafb;
+  padding: 0px 24px;
+  display: grid;
+  grid-template-columns: 1fr 72px;
+  align-items: center;
+  column-gap: 16px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.bestIcon {
+  position: absolute;
+  top: 0;
+  left: 16px;
+}
+
+.bestTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 30px 0 0 0;
+  line-height: 32px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.bestImage {
+  width: 72px;
+  height: 72px;
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+  margin-top: 30px;
+  align-self: center;
+}
+
+.bestFooter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+  margin-top: 15px;
+}
+
+.bestAuthor {
+  font-size: 14px;
+  font-weight: 400;
+  color: #4b5563;
+  transform: translateY(-10px);
+}
+
+.bestLikes {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #6b7280;
+  margin-left: 20px;
+  transform: translateY(-10px);
+}
+
+.bestLikes img {
+  margin-right: 3px;
+}
+
+.bestDate {
+  font-size: 14px;
+  color: #9ca3af;
+  margin-left: auto;
+  transform: translateY(-10px);
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .bestPostsContainer {
+    padding: 0 16px;
+    width: auto;
+    min-width: 696px;
+    margin: auto;
+  }
+
+  .bestPosts {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .bestBox {
+    width: 100%;
+    min-width: 340px;
+    max-height: 198px;
+    padding: 0px 24px;
+  }
+
+  .bestTitle {
+    font-size: 18px;
+    line-height: 26px;
+    margin: 30px 0 0 0;
+  }
+}
+
+@media (max-width: 743px) {
+  .bestPostsContainer {
+    width: 100%;
+    padding: 10px 16px 40px;
+    margin: auto;
+  }
+
+  .bestPosts {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+  }
+
+  .bestBox {
+    min-width: 343px;
+    max-height: 198px;
+    padding: 0px 24px 16px 24px;
+  }
+
+  .bestTitle {
+    font-size: 18px;
+    line-height: 26px;
+    margin: 30px 0 0 0;
+  }
+}
+

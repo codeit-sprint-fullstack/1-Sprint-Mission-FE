@@ -1,0 +1,85 @@
+.postList {
+  padding: 80px 16px;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.titleWriteContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.postTitle {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.noPosts {
+  margin-top: 3px;
+  color: red;
+  font-weight: bold;
+  font-size: 18px;
+  transform: translateX(15px);
+}
+
+.searchSortContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.sortOptions {
+  transform: translateY(-10px);
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+}
+
+.postItem {
+  background-color: #f9fafb;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  transition: all 0.3s ease; 
+}
+
+.postItem.newPost {
+  transform: none;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .postList {
+    padding: 0 16px;
+    width: 100%;
+    max-width: 696px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 743px) {
+  .postList {
+    padding: 0 16px;
+    width: 100%;
+    margin: auto;
+  }
+
+  .searchSortContainer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .titleWriteContainer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+}
+

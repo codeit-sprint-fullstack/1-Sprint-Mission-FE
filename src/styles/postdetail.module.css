@@ -1,0 +1,130 @@
+.postDetailContainer {
+  padding: 40px 16px;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.postTitle {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  margin-bottom: 16px;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* kebabIcon 부분을 제거하고 PostKebabMenu를 대신 사용 */
+.kebabIcon {
+  margin-left: auto;
+}
+
+.postInfo {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #E5E7EB;
+  padding-bottom: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.profileIcon {
+  margin-right: 20px;
+  vertical-align: middle;
+}
+
+.author {
+  font-size: 14px;
+  color: #4B5563;
+  margin-right: 20px;
+}
+
+.date {
+  font-size: 14px;
+  color: #9CA3AF;
+  margin-right: 30px;
+}
+
+.lineIcon {
+  margin-right: 25px;
+}
+
+.heartIcon {
+  margin-right: 10px;
+}
+
+.postLikes {
+  font-size: 16px;
+  color: #6B7280;
+}
+
+.contentContainer {
+  margin-top: 40px;
+}
+
+.postContent {
+  font-size: 18px;
+  font-weight: 400;
+  color: #1F2937;
+}
+
+.commentFormContainer {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.replyIcon {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.noCommentsText {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  color: #9CA3AF;
+  line-height: 26px;
+  margin-bottom: 30px;
+}
+
+.commentsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .postDetailContainer {
+    padding: 0 16px;
+    width: 100%;
+    max-width: 696px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 743px) {
+  .postDetailContainer {
+    padding: 0 16px;
+    width: 100%;
+    margin: auto;
+  }
+
+  .postInfo {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

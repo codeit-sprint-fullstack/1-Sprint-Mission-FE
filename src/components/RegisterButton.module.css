@@ -1,0 +1,41 @@
+.registerButton {
+  width: 74px;
+  height: 42px;
+  padding: 12px 23px;
+  background-color: #9ca3af;
+  border: none;
+  border-radius: 8px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #f3f4f6;
+  cursor: pointer;
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .registerButton {
+    transform: translateX(-6px);
+  }
+}
+
+@media (max-width: 743px) and (min-width: 375px) {
+  .registerButton {
+    width: 75px;
+    height: 36px;
+    font-size: 14px;
+    line-height: 16.09px;
+    transform: translateX(50px);
+  }
+}
+
+.registerButton:enabled {
+  background-color: #3692FF; /* 활성화 시 색상 */
+  color: white;
+}
+
+.registerButton:disabled {
+  background-color: #9ca3af; /* 비활성화 시 색상 */
+  cursor: not-allowed;
+}
+
