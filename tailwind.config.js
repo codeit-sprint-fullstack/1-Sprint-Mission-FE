@@ -44,6 +44,8 @@ module.exports = {
         // nav
         "pc-nav-item": "10.9rem",
         "mobile-nav-item": "7rem",
+        // btn-sigb-in
+        "btn-sign-in": "8.8rem",
         // footer-icon
         "footer-icon": "2rem",
         // dropdown
@@ -60,6 +62,8 @@ module.exports = {
         "mobile-btn-home": "4rem",
         // nav
         nav: "6.8rem",
+        // btn-sigb-in
+        "btn-sign-in": "4.2rem",
         // footer
         footer: "16rem",
         // footer-icon

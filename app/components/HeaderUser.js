@@ -1,15 +1,24 @@
 "use client";
 
 import Link from "next/link";
+import classNames from "classnames";
+
 import Profile from "@/app/components/Profile";
 import { PROFILE_H40 } from "../constants/Profile";
 
 import style from "./header-user.module.css";
 
 function BtnLogin() {
+  const btnSignInClass = classNames(
+    "w-btn-sign-in",
+    "h-btn-sign-in",
+    "object-cover",
+    style["btn-login"]
+  );
+
   return (
     <Link href="/login" target="_self">
-      <button className={style["btn-login"]} />
+      <button className={btnSignInClass} />
     </Link>
   );
 }
