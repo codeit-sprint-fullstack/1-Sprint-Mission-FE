@@ -1,4 +1,5 @@
 import axios from "axios";
+import { refreshToken } from "./auth";
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -25,10 +26,11 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (res) => res,
   async (error) => {
+    const refreshToken = localStorage.getItem("codeit-accessToken"); // 로컬스토리지에서 토큰을 가져옴
     const originalRequest = error.config;
     const response = error.response; // 가로 챈 리스폰스
     if (response === 401 && !originalRequest._retry) {
-      await instance.post("/auth/refresh-token");
+      await refreshToken();
       originalRequest._retry = true;
       return instance(originalRequest);
     }

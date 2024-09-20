@@ -10,12 +10,11 @@ export async function login(item) {
   return res.data;
 }
 
-export async function refreshToken(item) {
+export async function refreshToken() {
   const refreshToken = localStorage.getItem("codeit-refreshToken");
   const res = await instance.post("/auth/refresh-token", {
-    params: item,
-    headers: {
-      Authorization: `Bearer ` + refreshToken,
+    params: {
+      refreshToken,
     },
   });
   return res.data;

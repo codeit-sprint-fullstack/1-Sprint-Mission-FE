@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import AlertModal from "@/components/Modals/AlertModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/styles/login.module.css";
 import useFormValidation from "@/hooks/useFormValidation";
 import ic_visibility_on from "@/public/images/btn_visibility_on_24px.png";
@@ -52,6 +52,14 @@ function Login() {
       handleOpenAlert();
     }
   }
+
+  useEffect(() => {
+    //요구사항은 로컬스토리지에 값이 있으면 리다이렉트 이지만...토큰은 있는데 상용자정보가 없을수 있다 의문..
+    const token = localStorage.getItem("codeit-accessToken");
+    if (token) {
+      router.push("/Folder");
+    }
+  });
 
   return (
     <>

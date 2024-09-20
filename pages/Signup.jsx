@@ -61,6 +61,14 @@ function SignUp() {
     }));
   };
 
+  useEffect(() => {
+    //요구사항은 로컬스토리지에 값이 있으면 리다이렉트 이지만...토큰은 있는데 상용자정보가 없을수 있다 의문..
+    const token = localStorage.getItem("codeit-accessToken");
+    if (token) {
+      router.push("/Folder");
+    }
+  });
+
   return (
     <>
       <AlertModal
