@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import * as authApi from "@/pages/api/auth";
 import * as userApi from "@/pages/api/user";
 
@@ -24,13 +24,19 @@ export function AuthProvider({ children }) {
     if (data) {
       localStorage.setItem("codeit-accessToken", data.accessToken);
       localStorage.setItem("codeit-refreshToken", data.refreshToken);
-      getMe();
+      await getMe();
     }
   };
 
   const logout = () => {};
 
   const updateMe = () => {};
+
+  useEffect(() => {
+    const token = localStorage.getItem("codeit-accessToken");
+    if (!token) return;
+    getMe();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, login, logout, updateMe, getMe }}>

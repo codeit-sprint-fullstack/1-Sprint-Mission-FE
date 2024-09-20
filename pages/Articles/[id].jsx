@@ -93,7 +93,7 @@ function DetailArticle({ article, comments }) {
 
   const createComment = () => {
     try {
-      const data = commentApi.createComment(values);
+      const data = commentApi.createArticlesComment(values);
       if (data) {
         router.reload();
       } else {
