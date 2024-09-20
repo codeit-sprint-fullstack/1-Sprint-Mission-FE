@@ -26,6 +26,10 @@ const Navbar = () => {
 
   const navbarClass = router.pathname === '/registration' ? `${styles.navbar} ${styles.registrationPage}` : styles.navbar;
 
+  const handleLoginClick = () => {
+    router.push('/login'); // 로그인 페이지로 이동
+  };
+
   return (
     <nav className={navbarClass}>
       <img
@@ -46,7 +50,7 @@ const Navbar = () => {
         </Link>
       </div>
       {/* 모든 페이지에서 로그인 버튼을 나타내기  => 일단 */}
-      <button className={styles.loginButton}>로그인</button>
+      <button className={styles.loginButton} onClick={handleLoginClick}>로그인</button>
       {/* 아래 코드는 일단 주석 처리 */}
       {/* <img src="/image/profile.svg" alt="Profile" className={styles.profile} /> */}
     </nav>
