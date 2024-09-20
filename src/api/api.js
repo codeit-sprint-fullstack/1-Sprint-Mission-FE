@@ -151,9 +151,11 @@ export function filterPostsByName(posts, searchPosts) {
 /*---------------------댓글 관련 API 호출--------------------*/
 
 // 중고마켓 상품 상세페이지 댓글 목록 조회 API
-export async function fetchCommentsByProductId(productId) {
+export async function fetchCommentsByProductId(productId, limit = 3) {
   try {
-    const response = await apiClient.get(`/products/${productId}/comments`);
+    const response = await apiClient.get(`/products/${productId}/comments`, {
+      params: { limit },
+    });
     return response.data;
   } catch (error) {
     console.error("댓글 목록 조회 실패:", error);
