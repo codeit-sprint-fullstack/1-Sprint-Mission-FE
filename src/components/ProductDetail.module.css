@@ -16,10 +16,9 @@
 .productInfo {
   display: flex;
   flex-direction: column;
-  width: 540px;
+  width: 690px;
   gap: 10px;
   text-align: left;
-  justify-content: center;
 }
 
 /* : 버튼 */
@@ -91,9 +90,9 @@
 .productFooter {
   display: flex;
   gap: 20px;
+  justify-content: space-between;
   align-items: center;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #e5e7eb;
+  margin-top: auto;
 }
 
 /* 프로필이미지, 작성자, 작성날짜 */
@@ -264,11 +263,11 @@
 }
 
 .tag {
-  background: #f3f4f6; /* 배경색 */
-  border-radius: 20px; /* 둥글게 */
-  padding: 6px 16px; /* 패딩 */
-  font-size: 14px; /* 폰트 크기 */
-  font-weight: 500; /* 폰트 두께 */
-  color: #4b5563; /* 글자 색상 */
-  display: inline-block; /* 인라인 블록으로 설정 */
+  background: #f3f4f6;
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+  display: inline-block;
 }

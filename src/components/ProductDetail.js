@@ -131,6 +131,7 @@ export default function ProductDetail({ productId }) {
               ))}
             </div>
           </div>
+
           <div className={styles.productFooter}>
             <div className={styles.authorInfo}>
               <Image
@@ -168,7 +169,9 @@ export default function ProductDetail({ productId }) {
             value={comment}
             onChange={handleCommentChange}
             className={styles.commentInput}
-            placeholder="개인정보를 공유 및 요청하거나 명예훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제 될 수 있습니다."
+            placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.
+
+"
           />
         </label>
         <div className={styles.registrationContainer}>
@@ -180,17 +183,6 @@ export default function ProductDetail({ productId }) {
             등록
           </button>
         </div>
-      </div>
-
-      {/* 댓글 목록 */}
-      <div className={styles.commentsSection}>
-        {comments.map((c) => (
-          <div key={c.id} className={styles.commentItem}>
-            <span>
-              {c.author}: {c.content}
-            </span>
-          </div>
-        ))}
       </div>
 
       {/* 수정/삭제 메뉴 */}
