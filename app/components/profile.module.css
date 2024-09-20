@@ -1,0 +1,32 @@
+.profile {
+  box-sizing: border-box;
+  border: 0.1rem solid;
+  border-color: var(--gray300-color);
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.h40 {
+  width: 4rem;
+  height: 4rem;
+}
+
+.h32 {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+.h24 {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+/* ===== Tablet - width : 744px ~ 1199px ===== */
+@media (min-width: 744px) and (max-width: 1199px) {
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+}

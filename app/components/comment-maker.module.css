@@ -1,0 +1,61 @@
+.comment-maker {
+  width: 120rem;
+  /* height: 19.7rem; */
+}
+
+.comment-maker-label {
+  font-size: 1.6rem;
+  line-height: 1.625em;
+}
+
+.comment-text-area-frame {
+  width: 120rem;
+  height: 10.4rem;
+  margin-top: 0.9rem;
+}
+
+.comment-bottom-bar {
+  width: 120rem;
+  height: 4.2rem;
+  margin-top: 1.6rem;
+}
+
+.btn-regist {
+  width: 7.4rem;
+  height: 4.2rem;
+  background-image: url(../../public/buttons/btn_registration_w74.svg);
+}
+
+.btn-regist:disabled {
+  background-image: url(../../public/buttons/btn_registration_w74_disabled.svg);
+}
+
+/* ===== Tablet - width : 744px ~ 1199px ===== */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .comment-maker {
+    width: 69.6rem;
+  }
+
+  .comment-text-area-frame {
+    width: 69.6rem;
+  }
+
+  .comment-bottom-bar {
+    width: 69.6rem;
+  }
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .comment-maker {
+    width: 34.3rem;
+  }
+
+  .comment-text-area-frame {
+    width: 34.3rem;
+  }
+
+  .comment-bottom-bar {
+    width: 34.3rem;
+  }
+}

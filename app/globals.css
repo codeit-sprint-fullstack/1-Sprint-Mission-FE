@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-size: 62.5%;
+}
+
+:root {
+  --gray900-color: #111827;
+  --gray800-color: #1f2937;
+  --gray700-color: #374151;
+  --gray600-color: #4b5563;
+  --gray500-color: #6b7280;
+  --gray400-color: #9ca3af;
+  --gray300-color: #d1d5db;
+  --gray200-color: #e5e7eb;
+  --gray100-color: #f3f4f6;
+  --gray50-color: #f9fafb;
+
+  --blue100-color: #3692ff;
+  --blue200-color: #1967d6;
+  --blue300-color: #1251aa;
+  --red-color: #f74747;
+
+  /* to name color, use
+  https://chir.ag/projects/name-that-color/#6195ED */
+  --alto-color: #dfdfdf;
+  --onahau-color: #cfe5ff;
+  --white-color: #ffffff;
+  --royal-blue-color: #2f80ed;
+  --alabaster-color: #fcfcfc;
+
+  --background: #ffffff;
+  --foreground: #171717;
+
+  --header-height: 7rem;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  outline: none;
+  font-family: "Pretendard";
+}
+
+*::placeholder {
+  font-family: "Pretendard";
+  color: var(--gray400-color);
+}
+
+a,
+a:hover,
+a:active,
+a:visited {
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.Bold {
+  font-weight: 700;
+}
+
+.Semibold {
+  font-weight: 600;
+}
+
+.Medium {
+  font-weight: 500;
+}
+
+.Regular {
+  font-weight: 400;
+}
+
+.Text-3xl {
+  font-family: "Pretendard";
+  font-size: 3.2rem;
+  /* line-height: 42px; */
+  line-height: 1.3125em;
+}
+
+.Text-2xl {
+  font-family: "Pretendard";
+  font-size: 2.4rem;
+  /* line-height: 32px; */
+  line-height: 1.33333em;
+}
+
+.Text-xl {
+  font-family: "Pretendard";
+  font-size: 2rem;
+  /* line-height: 32px; */
+  line-height: 1.6em;
+}
+
+.Text-2lg {
+  font-family: "Pretendard";
+  font-size: 1.8rem;
+  /* line-height: 26px; */
+  line-height: 1.44444em;
+}
+
+.Text-lg {
+  font-family: "Pretendard";
+  font-size: 1.6rem;
+  /* line-height: 26px; */
+  line-height: 1.625em;
+}
+
+.Text-lg-line-height24 {
+  font-family: "Pretendard";
+  font-size: 1.6rem;
+  /* line-height: 24px; */
+  line-height: 1.5em;
+}
+
+.Text-md {
+  font-family: "Pretendard";
+  font-size: 1.4rem;
+  /* line-height: 24px; */
+  line-height: 1.71428em;
+}
+
+.Text-sm {
+  font-family: "Pretendard";
+  font-size: 1.3rem;
+  /* line-height: 22px; */
+  line-height: 1.6923em;
+}
+
+.Text-xs-line-height20 {
+  font-family: "Pretendard";
+  font-size: 1.2rem;
+  /* line-height: 20px; */
+  line-height: 1.66666em;
+}
+
+.Text-xs-line-height18 {
+  font-family: "Pretendard";
+  font-size: 1.2rem;
+  /* line-height: 18px; */
+  line-height: 1.5em;
+}
+
+/* custom css for design */
+.text-overflow-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.grid {
+  display: grid;
+}
+
+.margin-left4 {
+  margin-left: 0.4rem;
+}
+
+.margin-top43 {
+  margin-top: 4rem;
+}
+
+.text-warn {
+  margin-top: 0.2rem;
+  padding-left: 0.4rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--red-color);
+}
