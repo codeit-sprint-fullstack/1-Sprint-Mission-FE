@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/login.module.css";
 import { validateEmail, validatePassword, validateConfirmPassword } from "../utils/validation"; // 유효성 검사 불러오기
+import SocialLogin from "../components/SocialLogin";
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -193,20 +195,7 @@ const LoginPage = () => {
         </form>
 
         {/* 간편 로그인하기 섹션 */}
-        <div className={styles.socialLogin}>
-          <span>간편 로그인하기</span>
-          <div className={styles.socialIcons}>
-            <a href="https://www.google.com/" className={styles.googleLogin}>
-              <img src="/image/google.svg" alt="Google Login" />
-            </a>
-            <a
-              href="https://www.kakaocorp.com/page/"
-              className={styles.kakaoLogin}
-            >
-              <img src="/image/kakao.svg" alt="Kakao Login" />
-            </a>
-          </div>
-        </div>
+        <SocialLogin />
 
         <div className={styles.signupLink}>
           판다마켓이 처음이신가요? <a href="/signup">회원가입</a>
