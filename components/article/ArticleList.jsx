@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { formatDate, formatLikes } from "@/utils/formatFn";
-import defaultArticleImg from "../../public/assets/img_default.svg";
+import defaultImg from "../../public/assets/img_default.svg";
 import inactiveHeart from "../../public/assets/icons/ic_heart_inactive.svg";
 import ImageContainer from "../ui/ImgContainer";
 import Link from "next/link";
@@ -8,13 +8,15 @@ import ProfileImg from "../ui/ProfileImg";
 import styles from "./ArticleList.module.scss";
 
 function ArticleContent({ article }) {
+  const { writer } = article;
+  const articleImg = article?.image ? article.image : defaultImg;
   return (
     <>
       <div className={styles.top}>
         <h3>{article.title}</h3>
 
         <ImageContainer
-          src={defaultArticleImg}
+          src={articleImg}
           width="72px"
           height="72px"
           radius="6px"
@@ -23,7 +25,7 @@ function ArticleContent({ article }) {
       </div>
       <div className={styles.bottom}>
         <div className={styles["bottom-left"]}>
-          <ProfileImg />
+          <ProfileImg src={writer.image} />
           <span className={styles["user-name"]}>총명한 판다</span>
           <span className={styles["date"]}>
             {formatDate(article.updatedAt)}

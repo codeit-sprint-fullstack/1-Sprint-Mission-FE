@@ -6,6 +6,8 @@ import inactiveHeart from "../../public/assets/icons/ic_heart_inactive.svg";
 import styles from "./ArticleDetail.module.scss";
 
 export default function ArticleDetail({ article }) {
+  const { writer } = article;
+
   return (
     <article className={styles.ArticleDetail}>
       <div className={styles.top}>
@@ -14,9 +16,9 @@ export default function ArticleDetail({ article }) {
       </div>
       <div className={styles.middle}>
         <div className={styles.user}>
-          <ProfileImg width="40px" src={article.image} />
+          <ProfileImg width="40px" src={writer.image} />
           <span className={styles.name}>
-            {article.writer?.nickname || "총명한 판다"}
+            {writer?.nickname || "총명한 판다"}
           </span>
           <span>{formatDate(article.createdAt)}</span>
         </div>

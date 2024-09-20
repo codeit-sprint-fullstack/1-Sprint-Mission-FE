@@ -1,4 +1,4 @@
-import { updateArticle, getArticleById } from "@/service/api";
+import { updateArticle, getArticleById } from "@/service/api/article";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import ArticleForm from "@/components/form/ArticleForm";
 import { useRouter } from "next/router";

@@ -1,12 +1,11 @@
-import defaultProfile from "../../public/assets/icons/ic_profile.svg";
 import ImageContainer from "./ImgContainer";
 
-export default function ProfileImg({ width = "24px", src }) {
-  const profileImg = src || defaultProfile;
+const defaultProfileImg = "/assets/img_default_profile.svg";
 
+export default function ProfileImg({ width = "24px", src }) {
   return (
     <ImageContainer
-      src={profileImg}
+      src={src || defaultProfileImg}
       width={width}
       height={width}
       radius="50%"

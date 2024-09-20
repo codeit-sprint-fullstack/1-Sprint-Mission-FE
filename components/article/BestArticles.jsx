@@ -10,7 +10,7 @@ import styles from "./BestArticles.module.scss";
 import { useGetBestArticles } from "@/service/queries";
 
 function ArticleCard({ article, userName }) {
-  const articleImg = article.productImg ? article.productImg : defaultImg;
+  const articleImg = article.image ? article.image : defaultImg;
   const likeImg = userName ? activeHeart : inactiveHeart;
   return (
     <>

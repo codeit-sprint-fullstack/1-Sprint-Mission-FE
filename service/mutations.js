@@ -3,12 +3,11 @@ import {
   createArticle,
   createArticleComment,
   deleteArticleById,
-  deleteCommentById,
-  updateCommentById,
 } from "./api/article";
 import { articleKey, commentKey, productKey } from "@/variables/queryKeys";
 import { useRouter } from "next/router";
 import { useParams, usePathname } from "next/navigation";
+import { deleteCommentById, updateCommentById } from "./api/comments";
 
 export function useCreateArticle() {
   const queryClient = useQueryClient();
