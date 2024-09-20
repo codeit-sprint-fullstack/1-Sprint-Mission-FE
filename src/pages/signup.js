@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/signup.module.css";
 import { validateEmail, validatePassword, validateConfirmPassword, validateNickname } from "../utils/validation"; // 유효성 검사 불러오기
+import SocialLogin from "../components/SocialLogin";
 
 const SignupPage = () => {
   const [email, setEmail] = useState("");
@@ -229,20 +230,7 @@ const SignupPage = () => {
         </form>
 
         {/* 간편 로그인하기 섹션 */}
-        <div className={styles.socialLogin}>
-          <span>간편 로그인하기</span>
-          <div className={styles.socialIcons}>
-            <a href="https://www.google.com/" className={styles.googleLogin}>
-              <img src="/image/google.svg" alt="Google Login" />
-            </a>
-            <a
-              href="https://www.kakaocorp.com/page/"
-              className={styles.kakaoLogin}
-            >
-              <img src="/image/kakao.svg" alt="Kakao Login" />
-            </a>
-          </div>
-        </div>
+        <SocialLogin />
 
         <div className={styles.loginLink}>
           이미 회원이신가요? <a href="/login">로그인</a>
