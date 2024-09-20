@@ -34,6 +34,7 @@ function Nav() {
           <p
             className={`${style.listFont} ${style.usedFont} ${getLinkStyle([
               "/items",
+              `/items/${id}`,
             ])}`}
           >
             중고마켓

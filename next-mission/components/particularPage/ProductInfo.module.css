@@ -1,0 +1,40 @@
+.contaner{
+    width: 690px;
+    height: 112px;
+    border-bottom: 1px solid #E5E7EB;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.productName{
+    width: 690px;
+    height: auto;
+    min-height: 32px;
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    color: #1F2937;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.settingButton{
+    cursor: pointer;
+}
+
+.price{
+    width: auto;
+    height: 48px;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 47.73px;
+    color: #1F2937;
+}
+
+.dropDwonLocation{
+    position: absolute;
+    top: 5px;
+    right: -137px;
+}

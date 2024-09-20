@@ -1,6 +1,6 @@
 import CommentFrom from "@/components/particularPage/CommentFrom";
 import CommentList from "@/components/particularPage/CommentList";
-import ProductParticularInfo from "@/components/particularPage/ProducParticularInfo";
+import ProductParticularInfo from "@/components/particularPage/ProductParticularInfo";
 import Head from "next/head";
 
 export default function ItemsParticularPage() {

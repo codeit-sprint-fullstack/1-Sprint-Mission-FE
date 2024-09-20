@@ -1,0 +1,21 @@
+.contaner{
+    width: 139px;
+    height: 92px;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+}
+
+.dropdoenText{
+    width: 139px;
+    height: 46px;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #6B7280;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
