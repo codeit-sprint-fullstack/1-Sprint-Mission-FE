@@ -4,7 +4,7 @@ import Inputbox from "@/components/authentication/InputBox";
 import Head from "next/head";
 import { useState } from "react";
 
-export default function Login() {
+export default function Signin() {
   const [value, setValue] = useState({ email: "", password: "" });
 
   const changeHandler = (e) => {

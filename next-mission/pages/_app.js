@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 export default function App({ Component, pageProps }) {
   const router = useRouter();
   const mainOnly =
-    router.asPath === "/login" || router.asPath === "/signup" ? true : false;
+    router.asPath === "/signin" || router.asPath === "/signup" ? true : false;
 
   return (
     <>

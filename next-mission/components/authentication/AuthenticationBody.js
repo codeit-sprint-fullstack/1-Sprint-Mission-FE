@@ -16,7 +16,7 @@ export default function AuthenticationBody({ children, mode }) {
       setAdviceLinkText("회원가입");
     } else if (mode === "signup") {
       setadviceText("이미 회원이신가요?");
-      setAdviceLink("/login");
+      setAdviceLink("/signin");
       setAdviceLinkText("로그인");
     }
   }, [mode]);
