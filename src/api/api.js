@@ -163,14 +163,22 @@ export async function fetchCommentsByProductId(productId) {
 
 // 중고마켓 상품 상세페이지 댓글 등록 API
 export const createCommentForProduct = async (productId, commentData) => {
+  const requestData = {
+    ...commentData,
+    limit: 3,
+  };
+
   try {
     const response = await apiClient.post(
       `/products/${productId}/comments`,
-      commentData
+      requestData
     );
     return response.data;
   } catch (error) {
-    console.error("댓글 등록 실패:", error);
+    console.error(
+      "댓글 등록 실패:",
+      error.response ? error.response.data : error.message
+    );
     throw error;
   }
 };
