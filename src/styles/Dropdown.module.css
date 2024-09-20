@@ -1,0 +1,33 @@
+.dropdown {
+  width: 13rem;
+  height: 4.2rem;
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--gray200);
+  border-radius: 1.2rem;
+  position: relative;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.dropdownContent {
+  color: var(--gray800);
+  white-space: nowrap;
+}
+.dropdownMenu {
+  width: 13rem;
+  position: absolute;
+  top: 5rem;
+  left: 0;
+  text-align: center;
+  background-color: var(--white);
+  z-index: 10;
+  border: 1px solid var(--gray200);
+  border-radius: 1.2rem;
+}
+.dropdownOption {
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}

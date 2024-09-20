@@ -1,0 +1,78 @@
+.registration-form {
+  color: var(--gray800);
+}
+.register-title-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2.4rem;
+}
+.register {
+  width: 7.4rem;
+  height: 4.2rem;
+  background-color: var(--primary100);
+  color: var(--white);
+  border: none;
+  border-radius: 0.8rem;
+  &:hover {
+    cursor: pointer;
+  }
+  &:disabled {
+    background-color: var(--gray400);
+  }
+}
+.input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.4rem;
+}
+.registration-form input,
+.registration-form textarea {
+  background-color: var(--gray100);
+  border: none;
+  border-radius: 1.2rem;
+  text-indent: 2.4rem;
+  margin-top: 1.2rem;
+}
+input {
+  height: 5.6rem;
+}
+textarea {
+  height: 28.2rem;
+  padding-top: 1.6rem;
+}
+.input input::placeholder,
+.input textarea::placeholder {
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.tag-container {
+  margin-top: 1.2rem;
+  display: flex;
+  gap: 1.2rem;
+}
+.tag-item {
+  padding: 0.6rem 1.2rem;
+  background-color: var(--gray100);
+  border: none;
+  border-radius: 1.2rem;
+}
+.tag-remove {
+  margin-left: 0.8rem;
+  background-color: var(--gray400);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.error-message {
+  color: var(--errorRed);
+  padding-top: 0.8rem;
+  padding-left: 1.6rem;
+}
+.input.error input,
+.input.error textarea {
+  border: 1px solid var(--errorRed);
+}

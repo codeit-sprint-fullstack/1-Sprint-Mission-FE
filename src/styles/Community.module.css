@@ -1,0 +1,67 @@
+.body {
+  max-width: 160rem;
+  color: var(--gray800);
+  margin-top: 2.4rem;
+  padding-left: 20rem;
+  padding-right: 20rem;
+}
+.postTitle {
+  margin: 2.4rem 0;
+}
+.bestPostContainer {
+  display: flex;
+  gap: 2.4rem;
+}
+.linkPost {
+  text-decoration: none;
+  color: inherit;
+}
+.mainTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mainTitle a {
+  text-decoration: none;
+}
+.postButton {
+  width: 8.8rem;
+  height: 4.2rem;
+  border-radius: 0.8rem;
+  background-color: var(--primary100);
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.mainOption {
+  display: flex;
+  gap: 1.6rem;
+  margin-bottom: 2.4rem;
+}
+.mainPostContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  margin-bottom: 2.4rem;
+}
+.loadMoreButton {
+  margin-left: 50%;
+  transform: translate(-50%, 0);
+  margin-bottom: 2.4rem;
+  width: 8.8rem;
+  height: 4.2rem;
+  border: none;
+  border-radius: 0.8rem;
+  background-color: var(--primary100);
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
+}

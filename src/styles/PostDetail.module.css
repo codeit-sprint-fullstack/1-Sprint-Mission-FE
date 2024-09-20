@@ -1,0 +1,110 @@
+.postDetail {
+  margin-top: 3.4rem;
+  padding-left: 36rem;
+  padding-right: 36rem;
+}
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.profileContainer {
+  margin-top: 1.6rem;
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid var(--gray200);
+  display: flex;
+  align-items: center;
+}
+.nickname {
+  margin-left: 1.6rem;
+  margin-right: 0.8rem;
+  color: var(--gray600);
+}
+.date {
+  padding-right: 3.2rem;
+  color: var(--gray400);
+  border-right: 1px solid var(--gray200);
+}
+.likeBox {
+  margin-left: 3.2rem;
+  padding: 0.4rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid var(--gray200);
+  border-radius: 3.5rem;
+}
+.likes {
+  color: var(--gray500);
+}
+.contentContainer {
+  padding-top: 2.4rem;
+}
+.content {
+  color: var(--gray800);
+}
+.commentInputContainer {
+  margin-top: 3.2rem;
+  display: flex;
+  flex-direction: column;
+}
+.textarea {
+  margin-top: 0.9rem;
+  margin-bottom: 1.6rem;
+  padding: 1.6rem 2.4rem;
+  height: 10.4rem;
+  border: none;
+  border-radius: 1.2rem;
+  background-color: var(--gray100);
+  &::placeholder {
+    font-family: "Pretendard", sans-serif;
+    color: var(--gray400);
+  }
+}
+.submitButton {
+  width: 7.4rem;
+  height: 4.2rem;
+  border: none;
+  border-radius: 0.8rem;
+  background-color: var(--gray400);
+  color: var(--gray100);
+  margin-left: auto;
+}
+.active {
+  background-color: var(--primary100);
+  &:hover {
+    cursor: pointer;
+  }
+}
+.commentsContainer {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+.replyEmpty {
+  margin-left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.8rem;
+}
+.replyEmptyText {
+  text-align: center;
+  color: var(--gray400);
+}
+.backButton {
+  width: 24rem;
+  height: 4.8rem;
+  margin-top: 6.4rem;
+  margin-left: 50%;
+  transform: translate(-50%, 0);
+  background-color: var(--primary100);
+  color: var(--white);
+  border: none;
+  border-radius: 4rem;
+  &:hover {
+    cursor: pointer;
+  }
+}

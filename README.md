@@ -1,0 +1,25 @@
+- **public/**
+  - **index.html**
+- **src/**
+  - **components/**
+    - **BestProducts.js**
+    - **Footer.js**
+    - **Navigation.js**
+    - **Product.js**
+    - **Registration.js**
+    - **SaleProducts.js**
+  - **hooks/**
+    - **usePageSize.js**
+    - **useFormValid.js**
+  - **styles/**
+    - **BestProducts.css**
+    - **Footer.css**
+    - **Navigation.css**
+    - **Product.css**
+    - **SaleProducts.css**
+    - **Registration.css**
+    - **reset.css**
+  - **App.js**
+  - **App.css**
+  - **api.js**
+  - **index.js**
