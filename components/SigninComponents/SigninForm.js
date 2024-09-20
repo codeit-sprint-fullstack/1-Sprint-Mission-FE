@@ -10,7 +10,7 @@ import useFormValidation from "@/hooks/useFormValidation";
 import validate from "@/utils/validationRules";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { signup } from "@/utils/signinApi";
+import { signup } from "@/utils/authApi";
 import FormFooter from "./FormFooter";
 import Modal from "../ModalComponents/Modal";
 
@@ -40,6 +40,7 @@ export default function SigninForm() {
     mutationFn: signup,
     onSuccess: (data) => {
       localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("refreshToken", data.refreshToken);
       router.push(ROUTES.ITEMS);
     },
     onError: (error) => {

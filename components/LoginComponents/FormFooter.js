@@ -10,8 +10,12 @@ export default function FormFooter() {
       <div className={styles.easyLogin}>
         <p className={styles.easyLoginText}>간편로그인하기</p>
         <div className={styles.easyLoginImg}>
-          <Image className={styles.img} src={ic_google} alt="google" />
-          <Image className={styles.img} src={ic_kakao} alt="kakao" />
+          <Link href="https://www.google.com">
+            <Image className={styles.img} src={ic_google} alt="google" />
+          </Link>
+          <Link href="https://www.kakaocorp.com/page">
+            <Image className={styles.img} src={ic_kakao} alt="kakao" />
+          </Link>
         </div>
       </div>
       <div className={styles.signinContainer}>

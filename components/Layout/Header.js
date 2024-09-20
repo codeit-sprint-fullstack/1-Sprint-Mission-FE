@@ -1,13 +1,38 @@
 import Desktop_logo from "@/images/desktop_logo.png";
 import Mobile_logo from "@/images/mobile_logo.png";
+import ic_profile from "@/images/ic_profile.png";
 import styles from "./Header.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ROUTES } from "@/utils/rotues";
+import { getUserProfile } from "@/utils/authApi";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // 사용자 인증 상태
+  const [userInfo, setUserInfo] = useState(null); // 유저 정보
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+
+    if (token) {
+      const fetchUserData = async () => {
+        try {
+          const userData = await getUserProfile(token);
+          setUserInfo(userData);
+          setIsAuthenticated(true);
+        } catch (error) {
+          console.error("유저 정보를 불러오는 데 실패했습니다:", error);
+          setIsAuthenticated(false);
+          localStorage.removeItem("accessToken");
+        }
+      };
+
+      fetchUserData();
+    }
+  }, []);
   return (
     <>
       <div className={styles.headerContainer}>
@@ -29,11 +54,23 @@ export default function Header() {
             </p>
           </Link>
         </div>
-        <div className={styles.login_btn}>
-          <Link href={ROUTES.LOGIN} passHref>
-            <button>로그인</button>
-          </Link>
-        </div>
+
+        {isAuthenticated ? (
+          <div className={styles.userInfo}>
+            <Image
+              src={ic_profile}
+              alt="profile"
+              className={styles.userProfile}
+            />
+            <p className={styles.userNickname}>{userInfo?.nickname}</p>
+          </div>
+        ) : (
+          <div className={styles.login_btn}>
+            <Link href={ROUTES.LOGIN} passHref>
+              <button>로그인</button>
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );

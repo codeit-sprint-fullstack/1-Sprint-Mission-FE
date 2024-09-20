@@ -12,7 +12,7 @@
     width: 540px;
     height: 250px;
     border-radius: 8px;
-    padding: 40px 187px;
+    padding: 40px 0;
     background-color: #ffffff;
     .modalText {
       font-size: 18px;
@@ -31,6 +31,7 @@
       font-weight: 600;
       color: #f3f4f6;
       margin-top: 40px;
+      margin-left: 187.5px;
     }
   }
 }
