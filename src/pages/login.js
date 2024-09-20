@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { useState } from "react";
 import Image from "next/image";
+import Modal from "../components/Modal"; // 모달 컴포넌트 임포트
+import { useState, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { loginUser } from "../api/api"; // api.js에서 임포트
-import Modal from "../components/Modal"; // 모달 컴포넌트 임포트
 import { validateEmail, validatePassword } from "../lib/vaildate_function.mjs"; // 유효성 검사 함수 임포트
 import styles from "./Login.module.css";
 
@@ -23,7 +23,9 @@ export default function Login() {
     mutationFn: loginUser,
     onSuccess: (data) => {
       console.log("로그인 성공:", data);
-      router.push("/items"); // 로그인 성공 시 중고 마켓 페이지로 이동
+      // 로그인 성공 시 accessToken을 로컬 스토리지에 저장 및 중고 마켓 페이지로 이동
+      localStorage.setItem("accessToken", data.accessToken);
+      router.push("/items");
     },
     onError: (error) => {
       console.error("로그인 실패:", error);
@@ -68,6 +70,14 @@ export default function Login() {
 
   // 로그인 버튼 활성화
   const isButtonDisabled = !email || !password;
+
+  // accessToken 확인
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      router.push("/folder"); // accessToken이 있다면 /folder로 이동
+    }
+  }, [router]);
 
   return (
     <main className={styles.main}>
