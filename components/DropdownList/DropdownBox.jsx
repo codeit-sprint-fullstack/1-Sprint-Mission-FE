@@ -1,0 +1,61 @@
+import { useState } from "react";
+import ic_arrow_down from "@/public/images/ic_arrow_down.png";
+import ic_sort from "@/public/images/ic_sort.png";
+import styles from "@/styles/searchBar.module.css";
+import Image from "next/image";
+import useWindowResize from "@/hooks/useWindowResize";
+
+function DropdownBox({ onOrderChange, orderBy }) {
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const handleChangeDropbox = () => {
+    setOpenDropdown((e) => !e);
+  };
+  const handleChangeOrder = (e) => {
+    onOrderChange(e);
+    handleChangeDropbox();
+  };
+  const dropDownBox = {
+    recent: "최신순",
+    favorite: "좋아요순",
+  };
+  //클라이언트 뷰 사이즈를 리턴받는다. 예 : isDesktop
+  const view = useWindowResize();
+
+  return (
+    <div>
+      <div
+        className={styles.search_order_container}
+        onClick={handleChangeDropbox}
+      >
+        <button className={styles.order_drop_btn}>
+          {view !== "isMobile" && dropDownBox[orderBy]}
+        </button>
+        <Image
+          className={styles.ic_arrow_down}
+          src={view === "isMobile" ? ic_sort : ic_arrow_down}
+          alt="드롭다운아이콘"
+        ></Image>
+      </div>
+      {openDropdown && (
+        <div className={styles.dropbox_list}>
+          <button
+            className={styles.firstdrop}
+            value="recent"
+            onClick={handleChangeOrder}
+          >
+            {dropDownBox.recent}
+          </button>
+          <button
+            className={styles.lastdrop}
+            value="favorite"
+            onClick={handleChangeOrder}
+          >
+            {dropDownBox.favorite}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default DropdownBox;

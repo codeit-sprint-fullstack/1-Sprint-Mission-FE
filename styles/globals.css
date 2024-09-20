@@ -1,0 +1,233 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+textarea,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+input,
+button,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+a {
+  color: #4b5563;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+header {
+  margin: auto;
+  background-color: white;
+  z-index: 3;
+  width: 1920px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+main {
+  margin: auto;
+  width: 1200px;
+  min-height: 1200px;
+  min-width: 376px;
+}
+
+.products_container {
+  margin-top: 24px;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  text-align: left;
+  margin-bottom: 16px;
+  color: #1f2937;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: left;
+  color: #1f2937;
+}
+
+button {
+  border: none;
+  background-color: #3692ff;
+}
+
+html {
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+label {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21.48px;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+form {
+  width: 100%;
+}
+
+textarea {
+  resize: none;
+}
+
+input:focus,
+textarea:focus {
+  outline: 1px solid #3692ff;
+}
+
+dialog {
+  position: relative;
+  margin: auto;
+  padding: 24px;
+  border-radius: 16px;
+  min-width: 500px;
+  height: 206px;
+  border: none;
+}
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+}
+
+@media screen and (max-width: 1920px) {
+  header {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  main {
+    width: auto;
+    margin: 0 24px;
+  }
+}
