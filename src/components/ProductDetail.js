@@ -9,8 +9,8 @@ import { useRouter } from "next/router";
 import {
   fetchProductById,
   deleteProduct,
-  createComment,
-  fetchComments,
+  createCommentForProduct,
+  fetchCommentsByProductId,
 } from "../api/api"; // API 호출 추가
 
 export default function ProductDetail({ productId }) {
@@ -36,7 +36,7 @@ export default function ProductDetail({ productId }) {
   // 댓글 데이터 가져오기
   const getComments = async () => {
     try {
-      const data = await fetchComments();
+      const data = await fetchCommentsByProductId(productId); // 변경
       setComments(data);
     } catch (error) {
       console.error("댓글 목록 조회 실패:", error);
@@ -72,12 +72,12 @@ export default function ProductDetail({ productId }) {
     if (comment.trim()) {
       try {
         const commentData = {
-          productId: product.id, // 상품 ID
           content: comment,
           author: "작성자 판다",
           createdAt: new Date().toISOString(),
+          limit: 3,
         };
-        await createComment(commentData); // 댓글 등록 API 호출
+        await createCommentForProduct(product.id, commentData); // 댓글 등록 API 호출
         setComment(""); // 입력 필드 초기화
         setIsCommentButtonEnabled(false); // 버튼 비활성화
         getComments(); // 댓글 목록 새로고침
