@@ -7,6 +7,8 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // 비밀번호 가시성 상태
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // 비밀번호 확인 가시성 상태
   const router = useRouter();
 
   const handleSubmit = (event) => {
@@ -56,32 +58,52 @@ const LoginPage = () => {
             <label htmlFor="password" className={styles.label}>
               비밀번호
             </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="비밀번호를 입력해주세요"
-              className={styles.input}
-              required
-            />
+            <div className={styles.inputWrapper}>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="비밀번호를 입력해주세요"
+                className={styles.input}
+                required
+              />
+              <img
+                src={showPassword ? "/image/invisible.svg" : "/image/visible.svg"}
+                alt="Toggle visibility"
+                className={styles.visibilityIcon}
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            </div>
           </div>
 
           <div className={styles.formGroup}>
             <label htmlFor="confirmPassword" className={styles.label}>
               비밀번호 확인
             </label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="비밀번호를 다시 입력해주세요"
-              className={styles.input}
-              required
-            />
+            <div className={styles.inputWrapper}>
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                id="confirmPassword"
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="비밀번호를 다시 입력해주세요"
+                className={styles.input}
+                required
+              />
+              <img
+                src={
+                  showConfirmPassword
+                    ? "/image/invisible.svg"
+                    : "/image/visible.svg"
+                }
+                alt="Toggle visibility"
+                className={styles.visibilityIcon}
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              />
+            </div>
             {errorMessage && (
               <div className={styles.errorMessage}>{errorMessage}</div>
             )}
@@ -92,7 +114,6 @@ const LoginPage = () => {
           </button>
         </form>
 
-        {/* 간편 로그인하기 섹션 */}
         <div className={styles.socialLogin}>
           <span>간편 로그인하기</span>
           <div className={styles.socialIcons}>
@@ -117,4 +138,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
