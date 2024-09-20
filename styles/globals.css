@@ -1,0 +1,54 @@
+@import "reset-css/reset.css";
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../pages/fonts/Pretendard-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "Pretendard", sans-serif !important;
+  box-sizing: border-box !important;
+}
+
+body {
+  margin: 75px 0px 0px 0px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 100%;
+}
+
+:root {
+  --blue-100: #3692ff;
+  --blue-200: #1967d6;
+  --blue-300: #1251aa;
+  --error-red: #f74747;
+  --gray-900: #111827;
+  --gray-800: #1f2937;
+  --gray-700: #374151;
+  --gray-600: #4b5563;
+  --gray-500: #6b7280;
+  --gray-400: #9ca3af;
+  --gray-200: #e5e7eb;
+  --gray-100: #f3f4f6;
+  --gray-50: #f9fafb;
+  --white: #ffffff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 75px);
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
