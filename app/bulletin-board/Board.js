@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
+import classNames from "classnames";
 
 import { DeviceContext } from "../components/DeviceProvider";
 import { getArticles } from "@/lib/axios";
@@ -138,7 +139,7 @@ export function Board() {
       </div>
       <div className={boardMiddleBarClass}>
         <Search />
-        <Dropdown>
+        <Dropdown minimise={true}>
           <DropdownToggle>{recentOrder}</DropdownToggle>
           <DropdownMenu>
             <DropdownItem onClick={handleSortByRecent}>

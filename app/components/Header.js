@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { Nav, NavItem } from "@/app/components/Nav";
 import { HeaderUser } from "./HeaderUser";
 
-import style from "@/app/components/header.module.css";
+import style from "./header.module.css";
 
 export function Header() {
   const headerClass = classNames(

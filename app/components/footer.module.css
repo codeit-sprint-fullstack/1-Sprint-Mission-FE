@@ -1,67 +1,9 @@
 /* ===== footer ===== */
-.footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  max-width: 192rem;
-  width: 100%;
-  height: 16rem;
-  background-color: var(--gray900-color);
-  margin: 0 auto;
-}
-
-.block {
-  width: 192rem;
-  height: 2rem;
-  margin-top: 3.2rem;
-  margin-left: 20rem;
-  margin-right: 20rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.text-extra {
-  /* line-height: 19.09px; */
-  line-height: 1.193125em;
-  color: var(--gray400-color);
-}
-
-.link-texts {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 3rem;
-}
-
-.link-text {
-  text-decoration: none;
-  color: var(--gray400-color);
-}
-
-.link-icons {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 1.2rem;
-}
-
-.link-icon {
-  height: 2rem;
-  width: 2rem;
-  background-size: cover;
-  /* cursor : pointer; */
-}
-
-.link-icon:hover {
-  opacity: 0.75;
-}
-
 .facebook-icon {
   content: url(../../public/icons/ic_facebook.svg);
 }
 
-.twitter-icon {
+.x-icon {
   content: url(../../public/icons/ic_twitter.svg);
 }
 
@@ -71,30 +13,4 @@
 
 .instagram-icon {
   content: url(../../public/icons/ic_instagram.svg);
-}
-
-/* ===== Tablet - width : 744px ~ 1199px ===== */
-@media (min-width: 744px) and (max-width: 1199px) {
-  /* foot 좌우 여백 24px */
-  .block {
-    margin-left: 2.4rem;
-    margin-right: 2.4rem;
-  }
-}
-
-/* ===== Mobile-width : 375px ~ 743px ====== */
-@media (min-width: 375px) and (max-width: 743px) {
-  /* ===== footer ====+ */
-  /* foot 좌우 여백 16px */
-  .block {
-    flex-wrap: wrap-reverse;
-    gap: 2.4rem;
-    margin-top: 7.6rem;
-    margin-left: 1.6rem;
-    margin-right: 1.6rem;
-  }
-
-  .text-extra--mobile {
-    flex-basis: 100%;
-  }
 }
