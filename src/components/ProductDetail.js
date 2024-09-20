@@ -102,7 +102,7 @@ export default function ProductDetail({ productId }) {
       <div className={styles.productHeaderContainer}>
         <div className={styles.imageContainer}>
           <Image
-            src={img_default}
+            src={product.images.length > 0 ? product.images[0] : img_default}
             alt="상품 이미지"
             width={486}
             height={486}
