@@ -1,0 +1,52 @@
+@use "@/styles/globals/shared" as g;
+
+.ArticleDetail {
+  @include g.flex-box(column, center, center, 16px);
+  width: 100%;
+}
+
+.top {
+  @include g.flex-box(row, space-between, center);
+  @include g.font(20, 700);
+  width: 100%;
+}
+
+.middle {
+  @include g.flex-box(row, flex-start, center, 32px);
+  @include g.font(14, 400);
+  width: 100%;
+
+  .user {
+    @include g.flex-box(row, center, center, 8px);
+
+    span {
+      color: g.$grey-400;
+    }
+    .name {
+      font-weight: 500;
+      color: g.$grey-600;
+      margin-left: 8px;
+    }
+  }
+
+  .vertical-line {
+    height: 30px;
+    width: 1px;
+    background-color: g.$grey-200;
+  }
+  .likes {
+    @include g.flex-box(row, center, center, 4px);
+    @include g.font(16, 500);
+    color: g.$grey-500;
+    border: 1px solid g.$grey-200;
+    border-radius: 35px;
+    padding: 4px 12px;
+  }
+}
+
+.bottom {
+  width: 100%;
+  padding-top: 24px;
+  padding-bottom: 32px;
+  border-top: 1px solid g.$grey-200;
+}

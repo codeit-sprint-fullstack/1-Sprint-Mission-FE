@@ -1,0 +1,7 @@
+@use "@/styles/globals/shared" as g;
+
+.CommentList {
+  @include g.flex-box(column, center, center, 24px);
+  width: 100%;
+  padding-bottom: 48px;
+}

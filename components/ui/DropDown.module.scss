@@ -1,0 +1,50 @@
+@use "@/styles/globals/shared" as g;
+
+.DropDown {
+  display: flex;
+  flex-direction: row-reverse;
+  max-width: 130px;
+  width: 100%;
+  @include g.font(16, 400);
+
+  button div {
+    @include g.flex-box(row, center, center, 24px);
+    width: 100%;
+    border: 1px solid g.$grey-200;
+    padding: 8px 20px;
+    border-radius: 12px;
+
+    @include g.device-size(mobile) {
+      display: none;
+    }
+  }
+
+  button div.mobile-only {
+    display: none;
+    @include g.device-size(mobile) {
+      display: block;
+    }
+  }
+
+  ul {
+    @include g.flex-box(column, center, center);
+    position: absolute;
+    margin-top: 48px;
+    z-index: 99;
+    border-radius: 12px;
+    border: 1px solid g.$grey-200;
+    background-color: #ffff;
+    overflow: hidden;
+
+    li {
+      padding: 9px 44px;
+
+      &:hover {
+        background-color: g.$grey-100;
+      }
+    }
+    li:first-child {
+      border-bottom: 1px solid g.$grey-200;
+    }
+  }
+}

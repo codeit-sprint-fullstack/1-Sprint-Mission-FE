@@ -1,0 +1,30 @@
+@use "@/styles/globals/shared" as g;
+
+// forum index page
+.best-section,
+.article-section {
+  margin-bottom: 40px;
+}
+
+.best-section {
+  h2 {
+    margin-bottom: 24px;
+  }
+}
+
+.article-section {
+  @include g.flex-box(column, center, center, 24px);
+  width: 100%;
+
+  &-topbar {
+    @include g.flex-box(row, space-between, center);
+    width: 100%;
+  }
+  &-secondbar {
+    @include g.flex-box(row, space-between, center, 16px);
+    width: 100%;
+    height: 42px;
+  }
+}
+
+// forum id page

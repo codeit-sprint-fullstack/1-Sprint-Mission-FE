@@ -1,0 +1,21 @@
+@use "@/styles/globals/shared" as g;
+
+.Input,
+.TextArea {
+  width: 100%;
+  @include g.flex-box(column, flex-start, none, 8px);
+
+  &-label {
+    @include g.font(18, 700);
+    margin-bottom: 8px;
+  }
+
+  .error-text {
+    color: g.$error-red;
+    padding: 4px 16px;
+  }
+
+  .error {
+    outline: 1px solid g.$error-red;
+  }
+}

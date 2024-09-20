@@ -1,0 +1,14 @@
+@use "@/styles/globals/shared" as g;
+
+.UpdateCommentForm {
+  position: relative;
+  textarea {
+    height: 80px;
+  }
+  .btns {
+    @include g.flex-box(row, center, center, 4px);
+    position: absolute;
+    right: 0;
+    transform: translateY(30%);
+  }
+}

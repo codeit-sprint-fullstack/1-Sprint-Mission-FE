@@ -1,0 +1,68 @@
+@use "./globals/reset";
+@use "./globals/shared" as g;
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+input:focus,
+textarea:focus {
+  outline: 1px solid g.$primary-color;
+}
+
+input,
+textarea {
+  background-color: g.$grey-100;
+  width: 100%;
+  border-radius: 12px;
+  padding: 16px 24px;
+}
+
+::placeholder {
+  font-size: 1rem;
+  font-weight: 400;
+  color: g.$grey-400;
+}
+
+h2 {
+  color: g.$grey-900;
+  @include g.font(20, 700);
+  @include g.device-size(mobile) {
+    @include g.font(18, 700);
+  }
+}
+
+form {
+  width: 100%;
+}
+body {
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+
+  color: g.$grey-800;
+}
+
+#__next {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+}
+
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  padding: 24px;
+  border-radius: 16px;
+  width: 93.5%;
+  max-width: 496px;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}

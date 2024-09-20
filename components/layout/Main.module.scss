@@ -1,0 +1,11 @@
+@use "@/styles/globals/shared" as g;
+
+.Main {
+  max-width: 1200px;
+  width: 100%;
+  padding: 24px;
+  margin: 0 auto;
+  @include g.device-size(mobile) {
+    padding: 16px;
+  }
+}

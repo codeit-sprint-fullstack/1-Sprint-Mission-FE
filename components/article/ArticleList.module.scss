@@ -1,0 +1,54 @@
+@use "@/styles/globals/shared" as g;
+
+.ArticleList {
+  @include g.flex-box(column, center, center, 24px);
+  width: 100%;
+  padding-bottom: 48px;
+
+  li {
+    @include g.flex-box(column, center, center, 16px);
+    border-bottom: 1px solid g.$grey-200;
+    width: 100%;
+    padding-bottom: 24px;
+    background-color: #fcfcfc;
+
+    &:hover {
+      background-color: darken(#fcfcfc, 1.5%);
+    }
+
+    a {
+      width: 100%;
+    }
+    h3 {
+      @include g.font(20, 600);
+      color: g.$grey-800;
+    }
+  }
+}
+
+.top,
+.bottom {
+  @include g.flex-box(row, space-between, center, 16px);
+  width: 100%;
+}
+
+.bottom-left,
+.bottom-right {
+  @include g.flex-box(row, center, center, 8px);
+  @include g.font(14, 400);
+}
+
+.user-name {
+  color: g.$grey-500;
+}
+
+.date {
+  color: g.$grey-400;
+}
+
+.bottom-right {
+  span {
+    @include g.font(16, 400);
+    color: g.$grey-500;
+  }
+}

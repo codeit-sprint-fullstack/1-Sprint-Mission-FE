@@ -1,0 +1,27 @@
+@use "@/styles/globals/shared" as g;
+
+.KebabMenu {
+  display: flex;
+  flex-direction: row-reverse;
+  position: relative;
+  ul {
+    @include g.flex-box(column, center, center);
+    @include g.font(16, 400);
+    color: g.$grey-500;
+    position: absolute;
+    margin-top: 26px;
+    z-index: 99;
+    border-radius: 12px;
+    border: 1px solid g.$grey-200;
+    background-color: #ffff;
+    overflow: hidden;
+
+    li {
+      padding: 9px 41.5px;
+
+      &:hover {
+        background-color: g.$grey-100;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@use "@/styles/globals/shared" as g;
+
+.Nav {
+  @include g.flex-box(row, center, center);
+
+  ul {
+    @include g.font(18, 700);
+    @include g.flex-box(row, center, center, 39px);
+    font-weight: 700;
+    flex-shrink: 0;
+    color: g.$grey-600;
+
+    a {
+      color: g.$grey-600;
+    }
+
+    .active {
+      color: g.$primary-color;
+    }
+  }
+  @include g.device-size(tablet) {
+    ul {
+      gap: 30px;
+    }
+  }
+
+  @include g.device-size(mobile) {
+    ul {
+      @include g.font(16, 700);
+      gap: 8px;
+    }
+  }
+}

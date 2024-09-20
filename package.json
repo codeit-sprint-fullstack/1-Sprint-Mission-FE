@@ -1,0 +1,27 @@
+{
+  "name": "www",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.55.2",
+    "@tanstack/react-query-devtools": "^5.55.2",
+    "axios": "^1.7.7",
+    "next": "14.2.7",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hook-form": "^7.53.0",
+    "react-intersection-observer": "^9.13.1"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.2.7",
+    "sass": "^1.78.0"
+  }
+}

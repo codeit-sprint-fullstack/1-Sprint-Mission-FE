@@ -1,0 +1,18 @@
+@use "@/styles/globals/shared" as g;
+
+.SearchBar {
+  width: 100%;
+
+  position: relative;
+
+  .searchIcon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 16px;
+  }
+
+  input {
+    padding: 9px 16px 9px 44px;
+  }
+}

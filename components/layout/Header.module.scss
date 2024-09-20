@@ -1,0 +1,54 @@
+@use "@/styles/globals/shared" as g;
+
+.Header {
+  @include g.flex-box(row, center, center);
+  height: 70px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  z-index: 999;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+
+  .container {
+    @include g.flex-box(row, space-between, center);
+    width: 100%;
+    max-width: 1920px;
+    padding: 0 200px;
+    height: 100%;
+  }
+
+  .left {
+    @include g.flex-box(row, center, center, 47px);
+  }
+
+  .logo {
+    background-image: url("/assets/logo.svg");
+    width: 153px;
+    height: 51px;
+  }
+
+  @include g.device-size(tablet) {
+    .container {
+      padding: 0 24px;
+    }
+    .left {
+      gap: 35px;
+    }
+  }
+  @include g.device-size(mobile) {
+    .container {
+      padding: 0 16px;
+    }
+    .logo {
+      max-width: 81px;
+      background-image: url("/assets/logo_mobile.svg");
+      width: 81px;
+      height: 40px;
+    }
+    .left {
+      gap: 16px;
+    }
+  }
+}
