@@ -7,7 +7,7 @@ import SignupForm from "../component/SignupForm.js";
 export default function Signup() {
   return (
     <>
-      <div className={styles.loginContainer}>
+      <div className={styles.signupContainer}>
         <div className={styles.signupForm}>
           <div className={styles.logoImg}>
             <Image src="./logo.svg" alt="logo" fill={true} />

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import useForm from "../hook/form";
+import styles from "./LoginForm.module.css";
+import Image from "next/image";
 
 const LoginForm = () => {
   const { values, handleChange, handleSubmit, resetForm, isSubmitting } =
@@ -9,21 +11,26 @@ const LoginForm = () => {
     });
 
   const [errors, setErrors] = useState({});
+  const [showpassword, setShowpassword] = useState(false);
+
+  const passwordToggleHandler = () => {
+    setShowpassword(!showpassword);
+  };
 
   // 유효성 검사 함수
   const validate = () => {
     let validationErrors = {};
 
     if (!values.email) {
-      validationErrors.email = "Email is required";
+      validationErrors.email = "이메일을 입력해주세요.";
     } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-      validationErrors.email = "Email address is invalid";
+      validationErrors.email = "잘못된 이메일입니다.";
     }
 
     if (!values.password) {
-      validationErrors.password = "Password is required";
-    } else if (values.password.length < 6) {
-      validationErrors.password = "Password must be at least 6 characters";
+      validationErrors.password = "비밀번호를 입력해주세요.";
+    } else if (values.password.length < 8) {
+      validationErrors.password = "비밀번호를 8자 이상 입력해주세요.";
     }
 
     return validationErrors;
@@ -41,28 +48,39 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(submitForm)}>
-      <div>
-        <label>Email</label>
+    <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
+      <div className={styles.formGroup}>
+        <label className={styles.label}>이메일</label>
         <input
           type="email"
           name="email"
           value={values.email}
           onChange={handleChange}
+          className={styles.input}
         />
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className={styles.error}>{errors.email}</p>}
       </div>
-      <div>
-        <label>Password</label>
+      <div className={styles.formGroup}>
+        <label className={styles.label}>비밀번호</label>
         <input
-          type="password"
+          type={showpassword ? "text" : "password"}
           name="password"
           value={values.password}
           onChange={handleChange}
+          className={styles.input}
         />
-        {errors.password && <p>{errors.password}</p>}
+        <span className={styles.passwordToggle} onClick={passwordToggleHandler}>
+          {!showpassword ? (
+            <Image src="./eyeClose.svg" alt="Close" width={24} height={24} />
+          ) : (
+            <Image src="./eyeOpen.svg" alt="open" width={24} height={24} />
+          )}
+        </span>
+        {errors.password && <p className={styles.error}>{errors.password}</p>}
       </div>
-      <button type="submit">Submit</button>
+      <button className={styles.button} type="submit">
+        로그인
+      </button>
     </form>
   );
 };
