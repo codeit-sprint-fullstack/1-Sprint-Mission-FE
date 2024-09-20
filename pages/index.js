@@ -85,7 +85,7 @@ export default function Login() {
                   height={24}
                 />
               ) : (
-                <Image src="./eyeOpen.svg" alt="Oepn" width={24} height={24} />
+                <Image src="./eyeOpen.svg" alt="open" width={24} height={24} />
               )}
             </span>
           </div>
@@ -112,7 +112,7 @@ export default function Login() {
               </a>
             </div>
           </div>
-          <p className={styles.formfooter}>
+          <p className={styles.fromFooter}>
             판다마켓이 처음이신가요? <a href="/signup">회원가입</a>
           </p>
         </from>
