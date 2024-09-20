@@ -1,13 +1,13 @@
 import Image from "next/image";
 import styles from "./SearchBar.module.scss";
 import searchIcon from "../../public/assets/icons/ic_search.svg";
-import { useFormContext } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 export default function SearchBar({
   setKeyword,
   placeholder = "검색어를 입력해 주세요",
 }) {
-  const { register } = useFormContext();
+  const { register } = useForm();
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.nativeEvent.isComposing) {
@@ -19,7 +19,7 @@ export default function SearchBar({
   return (
     <form className={styles.SearchBar}>
       <input
-        {...register("articleKeyword")}
+        {...register("keyword")}
         placeholder={placeholder}
         onKeyDown={handleKeyDown}
       />

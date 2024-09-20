@@ -4,12 +4,31 @@ import EmptyComments from "../ui/EmptyComment";
 import Loader from "../ui/Loader";
 import Message from "../ui/Message";
 import CommentContent from "./CommentContent";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
 
 export default function CommentList({ idPath, isArticle }) {
-  const { isPending, isError, error, data } = useCommentList({
+  const { ref, inView } = useInView();
+
+  const {
+    isFetchingNextPage,
+    fetchNextPage,
+    isFetching,
+    hasNextPage,
+    isPending,
+    isError,
+    error,
+    data,
+  } = useCommentList({
     idPath,
     whichId: isArticle ? "article" : "product",
   });
+
+  useEffect(() => {
+    if (inView) {
+      !isFetching && hasNextPage && fetchNextPage();
+    }
+  }, [isFetching, inView, hasNextPage, fetchNextPage]);
 
   if (isPending) return <Loader />;
   if (isError) {
@@ -26,12 +45,29 @@ export default function CommentList({ idPath, isArticle }) {
   return isEmpty ? (
     <EmptyComments />
   ) : (
-    <ul className={styles.CommentList}>
-      {pages.map((page) => {
-        return page.list.map((comment) => {
-          return <CommentContent comment={comment} key={comment.id} />;
-        });
-      })}
-    </ul>
+    <>
+      <ul className={styles.CommentList}>
+        {pages.map((page) => {
+          return page.list.map((comment) => {
+            return (
+              <CommentContent
+                comment={comment}
+                key={comment.id}
+                idPath={idPath}
+              />
+            );
+          });
+        })}
+      </ul>
+      <div ref={ref}>
+        {isFetchingNextPage ? (
+          <Loader msg="더 불러오는중" />
+        ) : hasNextPage ? (
+          <Loader msg="새 게시물 불러오는 중" />
+        ) : (
+          <Message msg="더 불러올 게시물이 없습니다" />
+        )}
+      </div>
+    </>
   );
 }

@@ -58,7 +58,6 @@ export default function ForumPage() {
   const {
     data: articleData,
     isFetchingNextPage,
-    isPending,
     isError,
     isFetching,
     hasNextPage,
@@ -95,7 +94,6 @@ export default function ForumPage() {
     }
   }, [fetchNextPage, inView, hasNextPage, isFetching]);
 
-  if (isPending) return <Loader />;
   if (isError) {
     const errMsg = error?.message;
     return <Message type="error" msg={errMsg} />;

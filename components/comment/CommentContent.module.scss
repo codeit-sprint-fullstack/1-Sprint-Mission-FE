@@ -31,21 +31,4 @@
       }
     }
   }
-
-  &.edit {
-    textarea {
-      height: 80px;
-    }
-
-    .UpdateCommentForm {
-      position: relative;
-
-      .btns {
-        @include g.flex-box(row, center, center, 4px);
-        position: absolute;
-        right: 0;
-        transform: translateY(30%);
-      }
-    }
-  }
 }

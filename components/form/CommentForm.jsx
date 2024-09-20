@@ -1,16 +1,18 @@
 import { COMMENT } from "@/variables/formValidation";
 import styles from "./CommentForm.module.scss";
-import TextArea from "./TextArea";
+import TextArea from "./comm/TextArea";
 import Button from "../ui/Button";
-import { useFormContext } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { useCreateComment } from "@/service/mutations";
 
 export default function CommentForm({ idPath }) {
+  const formMethods = useForm();
+
   const {
     handleSubmit,
     reset,
     formState: { isValid },
-  } = useFormContext();
+  } = formMethods;
 
   const { mutate } = useCreateComment(idPath);
 
@@ -24,24 +26,26 @@ export default function CommentForm({ idPath }) {
     reset();
   };
   return (
-    <form
-      className={styles.CommentForm}
-      onSubmit={handleSubmit(handleResetAfterSubmit)}
-    >
-      <h3 className={styles["CommentForm-heading"]}>댓글달기</h3>
-      <TextArea
-        placeholder="댓글을 입력해주세요"
-        validations={COMMENT.CONTENT}
-        name="create-comment-content"
-      />
-      <Button
-        variant="primary"
-        type="submit"
-        disabled={!isValid}
-        className="small"
+    <FormProvider {...formMethods}>
+      <form
+        className={styles.CommentForm}
+        onSubmit={handleSubmit(handleResetAfterSubmit)}
       >
-        등록
-      </Button>
-    </form>
+        <h3 className={styles["CommentForm-heading"]}>댓글달기</h3>
+        <TextArea
+          placeholder="댓글을 입력해주세요"
+          validations={COMMENT.CONTENT}
+          name="create-comment-content"
+        />
+        <Button
+          variant="primary"
+          type="submit"
+          disabled={!isValid}
+          className="small"
+        >
+          등록
+        </Button>
+      </form>
+    </FormProvider>
   );
 }

@@ -8,6 +8,7 @@ import {
 } from "./api";
 import { articleKey, commentKey, productKey } from "@/variables/queryKeys";
 import { useRouter } from "next/router";
+import { useParams, usePathname } from "next/navigation";
 
 export function useCreateArticle() {
   const queryClient = useQueryClient();
@@ -73,15 +74,23 @@ export function useDeleteMutation({ entity, onModalClose }) {
   });
 }
 
-export function useUpdateComment(id) {
+export function useUpdateComment(commentId) {
   const queryClient = useQueryClient();
+  const params = useParams();
+  const pathName = usePathname();
+
+  const isArticle = pathName.startsWith("/forum");
+  const whichId = isArticle ? params.articleId : params.productId;
+  const queryKey = isArticle ? articleKey.comments : productKey.comments;
+
   return useMutation({
-    mutationFn: (data) => updateCommentById(id, data),
+    mutationFn: (data) => updateCommentById(commentId, data),
     onSuccess: () => {
       console.log("successMutation:  update an comment");
       queryClient.invalidateQueries({
-        queryKey: commentKey.all,
+        queryKey: queryKey(whichId),
       });
+      console.log(queryKey(whichId));
     },
     onError: (error) => {
       console.error(error.message);

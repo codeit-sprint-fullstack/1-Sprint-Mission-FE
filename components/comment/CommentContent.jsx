@@ -2,54 +2,9 @@ import styles from "./CommentContent.module.scss";
 import { calculateTimeAgo } from "@/utils/formatFn";
 import KebabMenu from "../ui/KebabMenu";
 import ProfileImg from "../ui/ProfileImg";
-import { useState, useEffect } from "react";
-import { useFormContext } from "react-hook-form";
-import Button from "../ui/Button";
+import { useState } from "react";
 import { useUpdateComment } from "@/service/mutations";
-import { COMMENT } from "@/variables/formValidation";
-import TextArea from "../form/TextArea";
-
-export function UpdateCommentForm({ onSubmit, setIsEditMode, initialData }) {
-  const {
-    formState: { isValid },
-    handleSubmit,
-    reset,
-  } = useFormContext();
-
-  const handleCancelClick = () => {
-    setIsEditMode(false);
-  };
-
-  useEffect(() => {
-    if (initialData) {
-      reset({
-        "article-comment": initialData.content || "",
-      });
-    }
-  }, [reset, initialData]);
-
-  return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className={styles.UpdateCommentForm}
-    >
-      <TextArea name="article-comment" validations={COMMENT.CONTENT} />
-      <div className={styles.btns}>
-        <Button variant="cancel" onClick={handleCancelClick} className="small">
-          취소
-        </Button>
-        <Button
-          variant="primary"
-          disabled={!isValid}
-          type="submit"
-          className="small"
-        >
-          수정 완료
-        </Button>
-      </div>
-    </form>
-  );
-}
+import UpdateCommentForm from "../form/UpdateCommentForm";
 
 export default function CommentContent({ comment }) {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -61,9 +16,10 @@ export default function CommentContent({ comment }) {
   const { mutate } = useUpdateComment(comment.id);
 
   const handleUpdateSubmit = (data) => {
-    const updateComment = { content: data["article-comment"] };
+    const updateComment = { content: data.content };
     mutate(updateComment, {
       onSuccess: () => {
+        console.log("successUpdateComment", updateComment);
         setIsEditMode(false);
       },
     });

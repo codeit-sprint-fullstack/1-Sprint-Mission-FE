@@ -11,18 +11,22 @@ export function useBestArticles(params = {}) {
 
 export function useCommentList({ idPath, whichId }) {
   const queryKey =
-    whichId === "article"
-      ? articleKey.comments(idPath)
-      : productKey.comments(idPath);
+    whichId === "article" ? articleKey.comments : productKey.comments;
 
   return useInfiniteQuery({
-    queryKey: queryKey,
+    queryKey: queryKey(idPath),
     queryFn: ({ queryKey, pageParam = null }) => {
       const idPath = queryKey[2];
       return getArticleComments(idPath, { cursor: pageParam });
     },
     initialPageParam: null,
-    getNextPageParam: (lastPage) => lastPage.nextCursor,
+    getNextPageParam: (lastPage) => {
+      if (!lastPage.nextCursor) {
+        return undefined;
+      }
+      return lastPage.nextCursor;
+    },
+    keepPreviousData: true,
     enabled: !!idPath,
   });
 }

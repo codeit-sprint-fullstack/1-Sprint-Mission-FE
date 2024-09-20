@@ -7,7 +7,6 @@ import { getArticleById } from "@/service/api";
 import ArticleDetail from "@/components/article/ArticleDetail";
 import CommentList from "@/components/comment/CommentList";
 import Message from "@/components/ui/Message";
-import Loader from "@/components/ui/Loader";
 import returnIcon from "@/public/assets/icons/ic_arrow_return.svg";
 import styles from "@/styles/pages/forum/articleId.module.scss";
 import { articleKey } from "@/variables/queryKeys";
@@ -33,7 +32,6 @@ export default function ArticleDetailPage() {
   const { articleId } = router.query;
 
   const {
-    isPending,
     isError,
     error,
     data: article,
@@ -43,7 +41,6 @@ export default function ArticleDetailPage() {
     enabled: !!articleId,
   });
 
-  if (isPending) return <Loader />;
   if (isError) {
     const errMsg = error?.message;
     return <Message type="error" msg={errMsg} />;
