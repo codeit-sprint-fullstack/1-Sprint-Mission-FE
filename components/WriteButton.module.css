@@ -1,0 +1,18 @@
+.container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  color: var(--grey-800);
+}
+
+@media (max-width: 1199px) {
+  .container {
+    margin-top: 24px;
+  }
+}

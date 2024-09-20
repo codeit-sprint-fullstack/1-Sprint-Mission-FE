@@ -1,0 +1,172 @@
+import axios from '@/lib/axios';
+import Head from 'next/head';
+import BestPost from '@/components/BestPost';
+import WriteButton from '@/components/WriteButton';
+import SearchForm from '@/components/SearchForm';
+import PostList from '@/components/PostList';
+import { useRouter } from 'next/router';
+import { useState, useEffect, useRef } from 'react';
+import Spinner from '@/components/Spinner';
+import { fetchBestPosts, fetchPosts } from '@/lib/api';
+
+// 정적 생성시 데이터도 함께 가져오기 위한 함수
+export async function getStaticProps() {
+  try {
+    // 베스트 게시글을 서버에서 가져옴
+    const bestPosts = await fetchBestPosts();
+
+    // 첫 페이지의 게시글을 서버에서 가져옴
+    const { posts, totalPosts } = await fetchPosts();
+
+    // 서버에서 가져온 데이터를 props로 전달
+    return {
+      props: {
+        bestPosts,
+        posts,
+        totalPosts,
+      },
+      revalidate: 300, // 5분마다 페이지를 재생성
+    };
+  } catch (err) {
+    console.error('데이터를 불러오는 중 오류가 발생했습니다(자유게시판).', err);
+    return {
+      props: {
+        bestPosts: [],
+        posts: [],
+        totalPosts: 0,
+        error: '데이터를 불러오는 중 오류가 발생했습니다(자유게시판).',
+      },
+    };
+  }
+}
+
+export default function Freeboard({
+  bestPosts: initialBestPosts,
+  posts: initialPosts = [],
+  totalPosts: initialTotalPosts = 0,
+  error: initialError,
+}) {
+  const router = useRouter();
+  const { q } = router.query;
+
+  const [bestPosts, setBestPosts] = useState(initialBestPosts);
+  const [posts, setPosts] = useState(initialPosts);
+  const [visibleBestPosts, setVisibleBestPosts] = useState(initialBestPosts); // 표시할 베스트 게시글
+  const [order, setOrder] = useState('recent'); // 드롭다운에서 선택된 order 값을 관리
+  const [page, setPage] = useState(1);
+  const [loadingPosts, setLoadingPosts] = useState(false); // 게시글 로딩 상태
+  const [hasMore, setHasMore] = useState(initialPosts.length < initialTotalPosts); // 더 불러올 게시글이 있는 확인
+  const [totalPosts, setTotalPosts] = useState(initialTotalPosts); // 전체 게시글 수 추가
+  const [error, setError] = useState(initialError || null); // 에러 상태 관리
+
+  const observerRef = useRef(null); // IntersectionObserver 참조
+  const lastPostRef = useRef(null); // 마지막 게시글을 참조할 ref
+
+  // 클라이언트에서 화면 크기에 따라 베스트 게시글 표시 수를 조정
+  useEffect(() => {
+    const updateVisibleBestPosts = () => {
+      const width = window.innerWidth;
+
+      if (width <= 743) {
+        setVisibleBestPosts(bestPosts.slice(0, 1)); // 화면이 743px 이하이면 1개만 표시
+      } else if (width <= 1199) {
+        setVisibleBestPosts(bestPosts.slice(0, 2)); // 744px ~ 1199px 사이에서는 2개만 표시
+      } else {
+        setVisibleBestPosts(bestPosts); // 1200px 이상이면 모든 게시글 표시
+      }
+    };
+
+    updateVisibleBestPosts(); // 초기 렌더링 시 실행
+    window.addEventListener('resize', updateVisibleBestPosts); // 창 크기 변경 시 실행
+
+    return () => {
+      window.removeEventListener('resize', updateVisibleBestPosts); // 컴포넌트 언마운트 시 이벤트 제거
+    };
+  }, [bestPosts]); // 베스트 게시글이 바뀔 때마다 다시 설정
+
+  // 검색 및 전체 게시글 조회
+  // 검색어나 정렬 기준, 페이지에 따라 게시글 목록을 서버에서 가져오는 함수
+  const getPosts = async (query = '', selectedOrder = 'recent', page = 1) => {
+    // 이미 로딩 중이면 중복 요청 방지
+    if (loadingPosts) return;
+
+    setLoadingPosts(true);
+    setError(null); // 이전 에러 초기화
+
+    try {
+      // fetchPosts 함수를 통해 API 호출 -> query가 빈 값이면 전체 게시글을 불러옴
+      const { posts: newPosts, totalPosts: total } = await fetchPosts(query, selectedOrder, page);
+
+      // 전체 게시글 수를 상태로 저장
+      setTotalPosts(total);
+
+      // 페이지 1이면 기존 게시글을 덮어쓰고, 그렇지 않으면 기존 게시글에 새로 불러온 게시글 추가
+      setPosts((prevPosts) => (page === 1 ? newPosts : [...prevPosts, ...newPosts]));
+
+      // 더 불러올 게시글이 있는지 확인
+      setHasMore(newPosts.length > 0 && posts.length < totalPosts);
+    } catch (error) {
+      console.error('게시글을 가져오는 중 오류 발생:', error);
+      setError('게시글을 가져오는 중 문제가 발생했습니다.');
+    } finally {
+      setLoadingPosts(false); // 게시글 로딩 종료
+    }
+  };
+
+  // 검색어나 정렬 순서가 바뀔 때마다 게시글 목록을 초기화하고 처음부터 다시 가져옴
+  useEffect(() => {
+    setPage(1);
+    getPosts(q, order, 1);
+  }, [q, order]);
+
+  // 페이지가 바뀌거나 새로운 게시글을 불러올 때 실행
+  useEffect(() => {
+    if (!hasMore || loadingPosts) return; // 더 불러올 게시글이 없거나 로딩 중이면 중지
+
+    if (observerRef.current) observerRef.current.disconnect();
+
+    // IntersectionObserver 설정
+    // 마지막 게시글이 화면에 나타나면 페이지 번호 증가
+    observerRef.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setPage((prevPage) => prevPage + 1); // 페이지를 증가시켜 다음 데이터를 요청할 준비
+      }
+    });
+
+    // 마지막 게시글 요소에 옵저버 연결
+    if (lastPostRef.current) {
+      observerRef.current.observe(lastPostRef.current);
+    }
+
+    // 컴포넌트 언마운트 시 옵저버 해제
+    return () => {
+      if (observerRef.current) observerRef.current.disconnect();
+    };
+  }, [posts, hasMore, loadingPosts]);
+
+  // 페이지가 변경될 때마다 새로운 게시글 요청
+  useEffect(() => {
+    if (page > 1) {
+      getPosts(q, order, page);
+    }
+  }, [page]);
+
+  const handleOrderChange = (newOrder) => {
+    setOrder(newOrder); // 드롭다운에서 선택된 order 값 업데이트
+  };
+
+  return (
+    <>
+      <Head>
+        <title>판다마켓 - 자유게시판</title>
+      </Head>
+      <BestPost posts={visibleBestPosts} />
+      <WriteButton />
+      <SearchForm onOrderChange={handleOrderChange} />
+      <PostList posts={posts} />
+      {loadingPosts && <Spinner />}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <div ref={lastPostRef} />
+    </>
+  );
+}

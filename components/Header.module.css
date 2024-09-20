@@ -1,0 +1,95 @@
+.font {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21.48px;
+  color: #4b5563;
+}
+
+.header {
+  width: 100%;
+  min-width: 375px;
+  height: 70px;
+  padding: 10px 200px;
+  border-bottom: 1px solid #dfdfdf;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #fff;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 47px;
+}
+
+.logoWrapper {
+  width: 151px;
+  height: 53px;
+  position: relative;
+}
+
+.active {
+  color: var(--blue) !important;
+}
+
+.menu {
+  flex-grow: 1;
+  display: flex;
+  gap: 39px;
+  cursor: pointer;
+}
+.freeboard,
+.market {
+  text-decoration: none;
+}
+.freeboard:visited,
+.market:visited {
+  color: #4b5563;
+}
+.freeboard:link,
+.market:link {
+  color: #4b5563;
+}
+.freeboard:hover,
+.market:hover {
+  color: #3692ff;
+}
+
+@media (max-width: 1199px) {
+  .header {
+    padding: 10px 24px;
+  }
+
+  .container {
+    gap: 35px;
+  }
+}
+
+@media (max-width: 743px) {
+  .font {
+    font-size: 16px;
+    line-height: 19.09px;
+  }
+
+  .header {
+    padding: 10px 16px;
+  }
+
+  .container {
+    gap: 15px;
+  }
+
+  .logoWrapper {
+    width: 81px;
+    height: 40px;
+  }
+
+  .menu {
+    gap: 8px;
+    justify-content: space-evenly;
+  }
+}

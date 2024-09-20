@@ -1,0 +1,108 @@
+.bestTitle {
+  margin-bottom: 24px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23.87px;
+  color: var(--grey-900);
+}
+
+.bestContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.bestListBox {
+  width: 33.3%;
+  background-color: var(--grey-50);
+  padding: 0 24px;
+  border-radius: 8px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.bestBanner {
+  position: relative;
+  width: 102px;
+  height: 30px;
+}
+
+.bestContainer li {
+  list-style: none;
+}
+
+.bestTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 32px;
+  color: var(--grey-800);
+}
+
+.postImgWrapper {
+  position: relative;
+  width: 72px;
+  height: 72px;
+}
+
+.bestBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.bottomLeft {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.userName {
+  color: var(--grey-600);
+}
+
+.like {
+  color: var(--grey-400);
+}
+
+.bestFormatDate {
+  color: var(--grey-500);
+}
+
+@media (max-width: 1199px) {
+  .bestTop {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .bestContainer {
+    gap: 16px;
+  }
+
+  .bottomLeft {
+    gap: 40px;
+  }
+
+  .bestListBox {
+    width: 50%;
+  }
+}
+
+@media (max-width: 743px) {
+  .bestTitle {
+    margin-bottom: 16px;
+  }
+
+  .bestListBox {
+    width: 100%;
+  }
+}

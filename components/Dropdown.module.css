@@ -1,0 +1,75 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 15%;
+}
+
+.dropdownButton {
+  background-color: var(--white);
+  padding: 12px 20px;
+  width: 100%;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--grey-200);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--grey-800);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dropdownImgWrapper {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+.open {
+  transform: rotate(0deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  list-style: none;
+  width: 100%;
+  z-index: 20;
+  text-align: center;
+}
+
+.dropdownItem {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.dropdownItem:hover {
+  background-color: var(--grey-100);
+}
+
+/* 첫 번째 항목에만 적용 */
+.dropdownItem:first-child {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* 마지막 항목에만 적용 */
+.dropdownItem:last-child {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+@media (max-width: 743px) {
+  .mobileDropdownImgWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+}
