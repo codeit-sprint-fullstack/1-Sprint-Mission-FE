@@ -162,15 +162,13 @@ export async function fetchCommentsByProductId(productId) {
 }
 
 // 중고마켓 상품 상세페이지 댓글 등록 API
-// 중고마켓 상품 상세페이지 댓글 등록 API
 export const createCommentForProduct = async (productId, commentData) => {
   const requestData = {
-    ...commentData,
-    limit: 3,
+    content: commentData.content, // content 필드만 포함
   };
 
   // 인증 토큰을 localStorage에서 가져오는 경우
-  const authToken = localStorage.getItem("authToken");
+  const authToken = localStorage.getItem("accessToken");
 
   try {
     const response = await apiClient.post(
