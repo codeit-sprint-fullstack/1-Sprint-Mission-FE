@@ -255,3 +255,20 @@
   display: flex;
   justify-content: flex-end; /* 버튼을 오른쪽 끝으로 이동 */
 }
+
+/* 태그 */
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap; /* 여러 줄로 표시되도록 설정 */
+  gap: 10px; /* 태그 사이 간격 */
+}
+
+.tag {
+  background: #f3f4f6; /* 배경색 */
+  border-radius: 20px; /* 둥글게 */
+  padding: 6px 16px; /* 패딩 */
+  font-size: 14px; /* 폰트 크기 */
+  font-weight: 500; /* 폰트 두께 */
+  color: #4b5563; /* 글자 색상 */
+  display: inline-block; /* 인라인 블록으로 설정 */
+}

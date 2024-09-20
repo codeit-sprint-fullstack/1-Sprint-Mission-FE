@@ -122,7 +122,13 @@ export default function ProductDetail({ productId }) {
           </div>
           <div className={styles.productTags}>
             <p className={styles.tagsmungoo}>상품 태그</p>
-            <p className={styles.tags}>{product.tags.join(", ")}</p>
+            <div className={styles.tagsContainer}>
+              {product.tags.map((tag, index) => (
+                <span key={index} className={styles.tag}>
+                  #{tag}
+                </span>
+              ))}
+            </div>
           </div>
           <div className={styles.productFooter}>
             <div className={styles.authorInfo}>
