@@ -100,7 +100,10 @@ export default function ProductDetailPage() {
             ))
           )}
         </div>
-        <button className={styles.BackBtn} onClick={() => router.back()}>
+        <button
+          className={styles.BackBtn}
+          onClick={() => router.push("/items")}
+        >
           목록으로 돌아가기 ↩
         </button>
       </main>
