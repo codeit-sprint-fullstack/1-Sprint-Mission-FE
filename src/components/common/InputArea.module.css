@@ -1,0 +1,64 @@
+.AreaContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.headerText {
+  color: #1F2937;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.defaultBox, 
+.inputError {
+  border: none;
+  background-color: #F3F4F6;
+  width: 100%;
+  height: 282px;
+  padding: 16px 24px;
+  font-size: 1rem;
+  text-align: left;
+  border-radius: 12px;
+  white-space: pre-wrap; 
+  word-wrap: break-word; 
+  overflow-wrap: break-word;
+  overflow-y: auto;
+  resize: none;
+}
+.defaultBox {
+  border: none;
+}
+
+.inputError {
+  border: 1px solid #F74747;
+}
+
+.AreaContainer > textarea:focus {
+  outline: none;
+}
+
+.inputError {
+  border: 1px solid #F74747;
+}
+
+.errorText {
+  color: #F74747;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-left: 16px;
+}
+
+@media (max-width: 744px) {
+  .headerText {
+    font-size: 0.875rem;
+  }
+
+  .defaultBox,
+  .inputError {
+    height: 200px;
+  }
+}

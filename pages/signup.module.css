@@ -1,0 +1,76 @@
+.logoBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 122px 40px 122px;
+}
+
+.logoBox img {
+  width: 100%;
+}
+
+.inputSection {
+ max-width: 640px;
+ min-width: 300px;
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ padding: 0px 24px;
+ gap: 24px 0px;
+}
+
+.btnSizeControl {
+  width: 100%;
+  height: 56px;
+}
+
+.snsLoginContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #E6F2FF;
+  border-radius: 8px;
+  padding: 16px 25px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.snsIconContainer {
+  height: 42px;
+  display: flex;
+  justify-content: space-between;
+  gap: 0px 16px;
+}
+
+.snsIconContainer img{
+  height: 100%;
+}
+
+.bottomText {
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.link {
+  color: #3182F6;
+  text-decoration: underline;
+}
+
+@media (max-width: 744px) {
+  .logoBox {
+    padding: 48px 71px 40px 71px;
+  }
+  .inputSection {
+    padding: 0px 16px;
+  }
+
+}
+
+@media (max-width: 500px) {
+  .logoBox {
+    padding: 24px 71px 24px 71px;
+  }
+}

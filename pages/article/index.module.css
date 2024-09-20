@@ -1,0 +1,56 @@
+.bgSet {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.navSet {
+  width: 100%;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1248px;
+  padding: 24px 24px;
+  gap: 40px 0px
+}
+
+
+
+.bestSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px 0px;
+
+}
+
+.headerText {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.commonSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px 0px;
+}
+
+.commonHeader, 
+.seachSection {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0px 16px;
+}
+
+@media (max-width: 744px) {
+  .mainContainer {
+   padding: 40px 16px;
+  }
+ }

@@ -1,0 +1,13 @@
+.contentBanner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 720px;
+}
+
+@media (max-width: 1024px) {
+  .contentBanner {
+    height: 100%;
+  }
+}

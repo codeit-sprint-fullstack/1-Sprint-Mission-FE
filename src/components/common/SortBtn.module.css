@@ -1,0 +1,32 @@
+.btnStyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #E5E7EB;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+
+}
+
+.largeBtnBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 130px;
+  padding: 10px 20px;
+}
+
+.smallBtnBox {
+ padding: 9px;
+}
+
+@media (min-width: 746px) {
+  .smallBtnBox {
+    display: none;
+   }
+}
+@media (max-width: 745px) {
+  .largeBtnBox {
+    display: none;
+  }
+}

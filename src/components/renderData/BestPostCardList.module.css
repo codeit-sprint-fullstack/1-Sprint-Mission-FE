@@ -1,0 +1,124 @@
+.cardContainer {
+  min-width: 343px;
+  max-width: 384px;
+  width: 100%;
+  min-height: 169px;
+  max-height: 198px;
+  background-color: #F9FAFB;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0px 24px 16px 24px;
+}
+
+.badge {
+  height: 30px;
+}
+
+.cardMain {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 8px;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  max-width: 256px;
+  text-align: left;
+  white-space: pre-wrap; 
+  word-wrap: break-word; 
+}
+
+.imgSizeControl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  padding: 12px;
+  width: 72px;
+  height: 72px;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.imgSizeControl > img {
+  display: flex;
+  width: 105%;
+  height: 105%;
+  object-fit: cover;
+}
+
+.cardInfo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+}
+
+.writerProduckLike {
+  display: flex;
+  justify-content: space-between;
+  gap: 0px 8px;
+  font-weight: 400;
+  color: #4B5563;
+}
+
+.ProductLike {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0px 4px;
+  color: #6B7280;
+}
+
+.date {
+  color: #9CA3AF;
+}
+
+.listContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0px 16px;
+  overflow: auto;
+}
+
+.listContainer::-webkit-scrollbar {
+  height: 10px;
+}
+
+.listContainer::-webkit-scrollbar-track {
+  margin-top: 12px;
+  background: #cfcfcf;
+  border-radius: 10px;
+}
+
+.listContainer::-webkit-scrollbar-thumb {
+  min-width: 101px;
+  background-color: #aaaaaa;
+  border-radius: 10px;
+  border: 2px solid #b3b3b3;
+
+}
+
+.listContainer::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+
+@media (max-width: 1200px) {
+  .cardMain {
+    font-size: 1.125rem;
+  }
+}

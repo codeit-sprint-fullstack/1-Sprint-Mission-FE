@@ -1,0 +1,22 @@
+
+.tagBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0px 8px;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 6px 16px;
+  border-radius: 26px;
+  border: none;
+  background-color: #F3F4F6;
+}
+
+.tagListContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 12px 12px;
+  flex-wrap: wrap;
+}

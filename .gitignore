@@ -1,0 +1,68 @@
+# 의존성 패키지
+node_modules          # 프로젝트의 의존성 패키지가 저장되는 폴더
+node_modules/
+
+# 빌드 출력물
+.next                # Next.js에서 빌드된 결과물이 저장되는 디렉토리
+.next/
+out                  # Next.js에서 내보내기(export) 시 생성되는 디렉토리
+
+# 환경 변수
+.env                  # 환경 변수 파일 (환경에 따른 설정, API 키 등)
+.env.local            # 로컬 환경 변수 파일
+
+# 로그 파일
+npm-debug.log*        # npm 오류 로그 파일
+yarn-debug.log*       # yarn 오류 로그 파일
+yarn-error.log*       # yarn 오류 로그 파일
+
+# 운영체제별 불필요한 파일
+Thumbs.db             # Windows에서 생성되는 시스템 파일
+.DS_Store             # macOS에서 생성되는 디렉토리 메타데이터 파일
+
+# 에디터 및 IDE 설정 파일
+.vscode              # VSCode 개인설정 폴더 
+.idea                # JetBrains IDE 설정 파일
+*.swp                 # Vim에서 생성되는 swap 파일
+
+# 기존 gitignore 항목
+temp                 # 임시 파일
+scripts/flow/*/.flowconfig # Flow 설정 관련 임시 파일
+.flowconfig           # Flow 설정 파일
+*~                    # 편집기에서 생성되는 임시 파일
+*.pyc                 # Python 컴파일된 파일
+.grunt                # Grunt 빌드 관련 파일
+_SpecRunner.html      # 테스트 스펙 실행 파일
+__benchmarks__        # 벤치마크 테스트 관련 폴더
+build                 # 빌드 파일
+remote-repo           # 원격 저장소 디렉토리
+coverage              # 테스트 커버리지 보고서
+.module-cache         # 모듈 캐시
+fixtures/dom/public/react-dom.js # React DOM fixture 파일
+fixtures/dom/public/react.js     # React fixture 파일
+test/the-files-to-test.generated.js # 테스트 파일
+
+# 로그 파일 (중복 포함)
+*.log*
+
+# 개발 도구 관련 파일
+chrome-user-data     # Chrome 사용자 데이터
+*.sublime-project     # Sublime Text 프로젝트 파일
+*.sublime-workspace   # Sublime Text 워크스페이스 파일
+*.iml                 # IntelliJ IDEA 모듈 파일
+*.swo                 # Vim에서 생성된 swap 파일
+
+# React DevTools 관련 빌드 파일
+packages/react-devtools-core/dist
+packages/react-devtools-extensions/chrome/build
+packages/react-devtools-extensions/chrome/*.crx
+packages/react-devtools-extensions/chrome/*.pem
+packages/react-devtools-extensions/firefox/build
+packages/react-devtools-extensions/firefox/*.xpi
+packages/react-devtools-extensions/firefox/*.pem
+packages/react-devtools-extensions/shared/build
+packages/react-devtools-extensions/.tempUserDataDir
+packages/react-devtools-fusebox/dist
+packages/react-devtools-inline/dist
+packages/react-devtools-shell/dist
+packages/react-devtools-timeline/dist

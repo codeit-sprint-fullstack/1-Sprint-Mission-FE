@@ -1,0 +1,22 @@
+.containerContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1248px;
+  width: 100%;
+  padding: 26px 24px;
+  gap: 40px 0px
+}
+
+@media (max-width: 1024px) {
+  .mainContainer {
+    padding: 18px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContainer {
+    padding: 24px 16px;
+  }
+}
