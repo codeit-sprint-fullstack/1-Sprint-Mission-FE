@@ -98,7 +98,7 @@ function Comment({ item, openAlert, setAlertMessage, user }) {
           {!updateContent && (
             <>
               {/* 작성자와 로그인 사용자가 같을때 수정/삭제 가능함 */}
-              {user.id === writer.id && (
+              {user?.id === writer.id && (
                 <Image
                   onClick={handleOpenDropdown}
                   src={ic_kebab}

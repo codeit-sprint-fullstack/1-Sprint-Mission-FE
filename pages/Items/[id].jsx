@@ -1,7 +1,7 @@
 import * as productsApi from "@/pages/api/products";
 import * as commentApi from "@/pages/api/comment";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useAuth from "@/contexts/authContext";
 import Link from "next/link";
 import Image from "next/image";
@@ -17,18 +17,27 @@ import ic_kebab from "@/public/images/ic_kebab.png";
 import Img_inquiry_empty from "@/public/images/Img_inquiry_empty.png";
 import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
 import DropdownData from "@/components/DropdownList/DropdownData";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+  useQuery,
+} from "@tanstack/react-query";
+import { useFieldArray } from "react-hook-form";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
 
   let product = {};
   let comments = [];
+
   try {
     const data = await productsApi.getProduct(id);
     product = data;
   } catch (error) {
     console.log(error);
   }
+
   try {
     const { list } = await commentApi.getProductComments(id);
     comments = list;
@@ -47,26 +56,22 @@ export async function getServerSideProps(context) {
 function DetailProduct({ product, comments }) {
   const router = useRouter();
   const {
-    name,
-    description,
-    price,
-    tags,
-    ownerId,
-    favoriteCount,
     createdAt,
+    favoriteCount,
+    ownerId,
+    tags,
+    price,
+    description,
+    name,
     isFavorite,
   } = product;
+
   //날짜 포멧
   const productsImage = product.images[0];
   const date = dateFormatYYYYMMDD(createdAt);
   const numFormat = price.toLocaleString();
-  const defaultUser = {
-    //유저관리를 안하고 있음 기본 유저를 설정 추후 유저관리의 로그인계정으로 변경해야 함
-    userId: ownerId,
-    productId: product.id,
-  };
-  const [values, setValues] = useState(defaultUser);
-  const [Alert, setAlert] = useState(false);
+  const [content, setContent] = useState("");
+  const [alert, setAlert] = useState(false);
   const [Confirm, setConfirm] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [confirmMessage, setConfirmMessage] = useState("");
@@ -84,17 +89,9 @@ function DetailProduct({ product, comments }) {
   const [openDropdown, setOpenDropdown] = useState(false);
   const openArticleDropdown = () => setOpenDropdown(!openDropdown);
 
-  const handleChangeValues = (name, value) => {
-    setValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
   const handleChange = (e) => {
-    const name = e.target.name;
     const value = e.target.value;
-    handleChangeValues(name, value);
+    setContent(value);
   };
 
   // 상품수정을 선택시 Registration 페이지의 쿼리로 게시글의 id를 전달한다.
@@ -128,9 +125,9 @@ function DetailProduct({ product, comments }) {
 
   const createComment = () => {
     try {
-      const data = commentApi.createProductComment(values, product.id);
+      const data = commentApi.createProductComment(content, product.id);
       if (data) {
-        router.reload();
+        // router.reload();
       } else {
         //모달 오픈
         setAlertMessage("댓글생성에 실패했습니다.");
@@ -148,7 +145,7 @@ function DetailProduct({ product, comments }) {
       {/* 모달을 콘텐츠의 최상위에 위치하기 위함 */}
       <AlertModal
         onClose={closeAlertModal}
-        isOpen={Alert}
+        isOpen={alert}
         message={alertMessage}
       />
       <ConfirmModal
@@ -172,7 +169,7 @@ function DetailProduct({ product, comments }) {
             <div className={styles.product_values_top_box}>
               <span>{name}</span>
               {/* 작성자와 로그인된 사용자가 같을때 수정/삭제가 가능하다. */}
-              {user.id === ownerId && (
+              {user?.id === ownerId && (
                 <>
                   <Image
                     onClick={openArticleDropdown}
@@ -240,9 +237,9 @@ function DetailProduct({ product, comments }) {
           <button
             onClick={createComment}
             className={`${styles.products_create_comment_btn} ${
-              !values.content && styles.disabled
+              !content && styles.disabled
             }`}
-            disabled={!values.content}
+            disabled={!content}
           >
             등록
           </button>

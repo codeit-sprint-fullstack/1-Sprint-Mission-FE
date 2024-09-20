@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
       localStorage.setItem("codeit-accessToken", data.accessToken);
       localStorage.setItem("codeit-refreshToken", data.refreshToken);
       //사용자정보 갱신
-      getMe();
+      await getMe();
     }
   };
 
@@ -79,6 +79,5 @@ export default function useAuth(required = true) {
       router.push("/Login");
     }
   }, [required, context.user, router]);
-
   return context;
 }

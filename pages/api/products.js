@@ -24,3 +24,13 @@ export async function deleteProduct(id) {
   const res = await instance.delete(`/products/${id}`);
   return res.status;
 }
+
+export async function likeProduct(id) {
+  const res = await instance.post(`/products/${id}/favorite`);
+  return res.data;
+}
+
+export async function unlikeProduct(id) {
+  const res = await instance.delete(`/products/${id}/favorite`);
+  return res.data;
+}

@@ -23,13 +23,17 @@ export async function updateComment(id, item) {
   return res.data;
 }
 
-export async function createArticlesComment(item = {}, id) {
-  const res = await instance.post(`articles/${id}/comments`, item);
+export async function createArticlesComment(content = "", id) {
+  const res = await instance.post(`articles/${id}/comments`, {
+    content,
+  });
   return res.data;
 }
 
-export async function createProductComment(item = {}, id) {
-  const res = await instance.post(`products/${id}/comments`, item);
+export async function createProductComment(content = "", id) {
+  const res = await instance.post(`products/${id}/comments`, {
+    content,
+  });
   return res.data;
 }
 
