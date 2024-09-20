@@ -159,13 +159,15 @@ export default function ProductDetail({ productId }) {
             placeholder="개인정보를 공유 및 요청하거나 명예훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제 될 수 있습니다."
           />
         </label>
-        <button
-          className={styles.registrationBtn}
-          onClick={handleCommentSubmit}
-          disabled={!isCommentButtonEnabled}
-        >
-          등록
-        </button>
+        <div className={styles.registrationContainer}>
+          <button
+            className={styles.registrationBtn}
+            onClick={handleCommentSubmit}
+            disabled={!isCommentButtonEnabled}
+          >
+            등록
+          </button>
+        </div>
       </div>
 
       {/* 댓글 목록 */}

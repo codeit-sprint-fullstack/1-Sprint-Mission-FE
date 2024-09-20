@@ -241,3 +241,9 @@
 .menuButton:hover {
   background: #e5e7eb;
 }
+
+/* 등록 버튼 위치 */
+.registrationContainer {
+  display: flex;
+  justify-content: flex-end; /* 버튼을 오른쪽 끝으로 이동 */
+}
