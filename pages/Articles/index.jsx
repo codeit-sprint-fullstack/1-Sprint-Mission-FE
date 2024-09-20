@@ -1,6 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useCallback, useContext, useEffect, useState } from "react";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+  useQuery,
+} from "@tanstack/react-query";
 import * as api from "@/pages/api/articles";
 import DropDownBox from "@/components/DropdownList/DropdownBox";
 import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
@@ -14,7 +20,7 @@ import { RefContext } from "../_app";
 import useAuth from "@/contexts/authContext";
 
 function BestArticles({ item }) {
-  const { user, title, createAt, favorite } = item;
+  const { writer, title, createAt, favorite } = item;
   const date = dateFormatYYYYMMDD(createAt);
 
   return (
@@ -34,7 +40,7 @@ function BestArticles({ item }) {
         </div>
         <div className={styles.item_data_box}>
           <div className={styles.item_data_box}>
-            <span>{user.name}</span>
+            <span>{writer.nickname}</span>
             <Image
               width={16}
               height={16}
@@ -54,7 +60,7 @@ function BestArticles({ item }) {
 }
 
 function ArticleItems({ item }) {
-  const { user, title, createAt, favorite } = item;
+  const { writer, title, createAt, favorite } = item;
   const date = dateFormatYYYYMMDD(createAt);
 
   return (
@@ -76,7 +82,9 @@ function ArticleItems({ item }) {
               src={ic_profile}
               alt="사용자프로필이미지"
             />
-            <span className={styles.item_data_user_name}>{user?.name}</span>
+            <span className={styles.item_data_user_name}>
+              {writer.nickname}
+            </span>
             <span className={styles.create_time}>{date}</span>
           </div>
           <div className={styles.item_data_box}>
@@ -95,67 +103,67 @@ function ArticleItems({ item }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
   const defaultParams = {
     orderBy: "recent",
     keyword: "",
-    limit: 5,
+    pageSize: 5,
+    page: 1,
   };
 
-  let bestItems = [];
-  let Items = [];
-  try {
-    const { list } = await api.getBestArticles();
-    bestItems = list;
-  } catch (error) {
-    console.log(error);
-  }
+  await queryClient.prefetchQuery({
+    queryKey: ["bestArticles"],
+    queryFn: () => api.getBestArticles(),
+  });
 
-  try {
-    const { list } = await api.getArticles(defaultParams);
-    Items = list;
-  } catch (error) {
-    console.log(error);
-  }
+  await queryClient.prefetchQuery({
+    queryKey: ["Articles"],
+    queryFn: api.getArticles(defaultParams),
+  });
 
   return {
     props: {
-      Items,
-      bestItems,
+      dehydratedState: dehydrate(queryClient),
       defaultParams,
     },
   };
 }
 
-function Articles({ bestItems, defaultParams, Items }) {
+function ArticlesRouter({ dehydratedState, defaultParams }) {
+  return (
+    <HydrationBoundary state={dehydratedState}>
+      <Articles defaultParams={defaultParams} />
+    </HydrationBoundary>
+  );
+}
+
+function Articles({ defaultParams }) {
   const globalDivRef = useContext(RefContext);
   const [params, setParams] = useState(defaultParams);
-  const [articles, setArticles] = useState(Items);
+  const [articles, setArticles] = useState([]);
   const [cursor, setCursor] = useState("");
   const [keyword, setKeyword] = useState("");
 
   const { user } = useAuth();
 
-  const getArticles = useCallback(async () => {
-    try {
-      const { list, nextCursor } = await api.getArticles(params);
-      setArticles(list);
-      setCursor(nextCursor);
-    } catch (error) {
-      console.log(error);
-    }
-  }, [params]);
+  const {
+    data: articlesData,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["articles", params],
+    queryFn: () => api.getArticles(params, cursor),
+  });
 
-  const getMoreArticles = useCallback(async () => {
-    if (!cursor) return;
-    try {
-      const { list, nextCursor } = await api.getArticles(params, cursor);
-      setArticles((prev) => [...prev, ...list]);
-      setCursor(nextCursor);
-    } catch (error) {
-      console.log(error);
-    }
-  }, [params, cursor]);
+  if (isError) {
+    console.log(error);
+  }
+
+  const { data: bestArticlesData } = useQuery({
+    queryKey: ["bestArticles"],
+    queryFn: () => api.getBestArticles(),
+  });
 
   const handleChangeParams = (name, value) => {
     setParams((prev) => ({
@@ -180,15 +188,18 @@ function Articles({ bestItems, defaultParams, Items }) {
   };
 
   useEffect(() => {
-    getArticles();
-  }, [getArticles]);
+    setArticles((prev) => [...prev, ...(articlesData?.list || [])]);
+  }, [articlesData]);
 
   useEffect(() => {
     if (globalDivRef.current) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            getMoreArticles();
+            setParams((prev) => ({
+              ...prev,
+              page: prev.page + 1,
+            }));
           }
         });
       });
@@ -197,14 +208,14 @@ function Articles({ bestItems, defaultParams, Items }) {
         observer.disconnect();
       };
     }
-  }, [globalDivRef, getMoreArticles]);
+  }, [globalDivRef]);
 
   return (
     <main>
       <div className={styles.best_articles}>
         <h2>베스트 게시글</h2>
         <div className={styles.best_articles_item}>
-          {bestItems.map((item) => (
+          {bestArticlesData?.list.map((item) => (
             <BestArticles key={item.id} item={item} />
           ))}
         </div>
@@ -247,4 +258,4 @@ function Articles({ bestItems, defaultParams, Items }) {
     </main>
   );
 }
-export default Articles;
+export default ArticlesRouter;

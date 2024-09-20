@@ -9,7 +9,7 @@ export async function getArticles(params = {}, cursor = "") {
 
 export async function getBestArticles(
   params = {
-    orderBy: "favorite",
+    orderBy: "like",
     limit: 3,
   }
 ) {

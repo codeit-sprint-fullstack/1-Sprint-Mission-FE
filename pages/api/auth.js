@@ -13,9 +13,7 @@ export async function login(item) {
 export async function refreshToken() {
   const refreshToken = localStorage.getItem("codeit-refreshToken");
   const res = await instance.post("/auth/refresh-token", {
-    params: {
-      refreshToken,
-    },
+    refreshToken,
   });
   return res.data;
 }
