@@ -13,7 +13,8 @@
 }
 
 .formGroup {
-  margin-bottom: 20px;
+  margin-bottom: 35px;
+  position: relative; /* 에러 메시지가 절대 위치로 고정되도록 설정 */
 }
 
 .label {
@@ -40,7 +41,13 @@
   font-size: 16px;
   line-height: 24px;
   color: #9ca3af;
-  border: none;
+  border: 1px solid #e5e7eb;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  border-color: #3692ff;
 }
 
 .visibilityIcon {
@@ -66,9 +73,13 @@
 }
 
 .errorMessage {
-  color: red;
+  color: #f74747;
   font-size: 14px;
+  position: absolute;
+  top: 100%; /* 입력 박스 바로 아래에 배치 */
+  left: 0;
   margin-top: 5px;
+  white-space: nowrap;
 }
 
 /* 간편 로그인하기 스타일 */
