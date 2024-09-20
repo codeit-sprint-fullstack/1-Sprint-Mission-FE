@@ -1,0 +1,79 @@
+/* Header 스타일 */
+.header {
+  display: flex;
+  height: 70px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+/* 로고와 마켓 로고를 담는 컨테이너 스타일 */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 200px;
+  margin-right: 20px;
+}
+
+/* 판다 마켓 로고의 스타일 */
+.pandaMarketLogo {
+  height: auto;
+  width: 103px;
+}
+
+/* 일반 로고의 스타일 */
+.logo {
+  height: 40px;
+}
+
+/* 네비게이션 스타일 */
+.nav {
+  margin-right: auto; /* 네비게이션을 오른쪽으로 정렬 */
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  text-align: center;
+}
+
+/* 네비게이션의 리스트 스타일 */
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px; /* 네비게이션 링크 간의 간격 */
+  padding: 0;
+  margin: 0;
+}
+
+/* 네비게이션 링크의 스타일 */
+.nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+/* 프로필 스타일 */
+.profile {
+  height: 40px;
+  margin-right: 200px;
+}
+
+/* 중고마켓 페이지의 상단바 '중고마켓 버튼색' */
+.itemPageMarket {
+  color: #3692ff;
+}
+
+/* 중고마켓 페이지의 로그인 버튼 스타일 */
+.loginButton {
+  width: 74px;
+  height: 42px;
+  border-radius: 8px;
+  background: #3692ff;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  margin-right: 200px;
+  font-family: Pretendard;
+}

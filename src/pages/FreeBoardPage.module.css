@@ -1,0 +1,107 @@
+.App {
+  text-align: center;
+}
+
+/* main 태그 */
+.bestPostsContainer {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box; /* 패딩과 테두리를 너비에 포함 */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* h1 문구 */
+.freeBoardH1 {
+  text-align: left;
+  font-weight: 700;
+  font-size: 20px;
+  color: #111827;
+  margin: 0; /* h1 태그의 기본 여백 제거 */
+}
+
+/* 게시글과 글쓰기 버튼 */
+.postsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* 버튼과 텍스트를 수직 정렬 */
+  flex-wrap: wrap; /* 화면 크기에 따라 요소가 다음 줄로 넘어가도록 설정 */
+  max-width: 100%;
+  box-sizing: border-box; /* 패딩과 테두리를 너비에 포함 */
+}
+
+/* 버튼 */
+.postBtn {
+  font-size: 16px;
+  font-weight: 600;
+  width: 88px;
+  height: 42px;
+  border-radius: 8px;
+  border: none;
+  color: #ffffff;
+  background-color: #3692ff;
+  margin: 10px;
+  cursor: pointer;
+}
+
+/* 검색 결과 */
+.searchResults {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  margin-bottom: 293px;
+  font-weight: 700;
+}
+
+.searchResults h3 {
+  margin-bottom: 10px;
+}
+
+.searchResults ul {
+  list-style-type: none;
+  padding: 0;
+  color: #1249e2;
+}
+
+.searchResults li {
+  padding: 10px 0;
+}
+
+.searchResults li:last-child {
+  border-bottom: none;
+}
+
+/*-------------------반응형 디자인 ---------------------------*/
+/* Tablet */
+@media only screen and (min-width: 744px) and (max-width: 1199px) {
+  .bestPostsContainer {
+    padding: 10px; /* 패딩 조정 */
+  }
+
+  .searchResults {
+    margin-bottom: 20px;
+  }
+}
+
+/* Mobile */
+@media only screen and (min-width: 375px) and (max-width: 743px) {
+  .bestPostsContainer {
+    box-sizing: border-box;
+  }
+
+  .searchResults {
+    margin-bottom: 20px;
+  }
+}
+
+/* 더 이상 게시물이 없습니다 문구 */
+.noMorePosts {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #005ccc;
+  font-weight: 800;
+  padding: 20px;
+}

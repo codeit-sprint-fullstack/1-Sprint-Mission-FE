@@ -1,0 +1,52 @@
+.inputDrop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-width: 100%;
+  box-sizing: border-box; /* 패딩과 테두리를 너비에 포함 */
+}
+
+/* 검색 입력창 */
+.freeSearchInput {
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 12px;
+  height: 42px;
+  padding: 0 40px;
+  flex: 1;
+  min-width: 220px;
+  max-width: 100%;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 20px 20px;
+}
+
+.freeSearchInput::placeholder {
+  padding-left: 5px; /* 플레이스홀더가 검색 아이콘과 겹치지 않도록 여백 설정 */
+  color: #999;
+  font-size: 16px;
+}
+
+/* 드롭다운 */
+.sortDropDown {
+  width: 130px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  color: #1f2937;
+  font-size: 16px;
+  font-weight: 400;
+  border: 1px solid #e5e7eb;
+  background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cpath d="M7 10l5 5 5-5z" fill="%23333"/%3E%3C/svg%3E'); /* 삼각형 이모티콘 SVG */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 30px;
+}
+
+/* 에러 메시지 */
+.searchError {
+  color: #ff4d4f;
+  font-size: 14px;
+  margin-top: 10px;
+}

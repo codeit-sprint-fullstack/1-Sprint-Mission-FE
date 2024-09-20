@@ -1,0 +1,185 @@
+import axios from "axios";
+
+// Axios 클라이언트 인스턴스 생성
+const apiClient = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+// 기본 URL 및 API 엔드포인트 설정
+const articlesUrl = "/articles";
+const commentsUrl = "/board/comments";
+
+/*----------------------상품 관련 API ---------------------------*/
+
+export async function getProductList({
+  order = "createdAt",
+  cursor = null,
+  limit = 3,
+} = {}) {
+  try {
+    const query = new URLSearchParams({
+      order,
+      limit,
+      cursor: cursor || "",
+    }).toString();
+    const response = await apiClient.get(`/products?${query}`);
+    const body = response.data;
+    console.log("API 응답 데이터:", body);
+    return body;
+  } catch (error) {
+    throw new Error("상품을 불러오는데 실패했습니다");
+  }
+}
+
+export async function createProduct(product) {
+  try {
+    const { name, description, price, tags } = product;
+
+    if (!name || !description || !price) {
+      throw new Error("상품 이름과 설명, 판매가격은 필수로 적어주세요.");
+    }
+
+    const response = await apiClient.post("/products", {
+      name,
+      description,
+      price,
+      tags,
+    });
+
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      console.error(
+        "상품 생성 실패 - 서버에서 반환한 오류:",
+        error.response.data
+      );
+    } else {
+      console.error("상품 생성 실패 - 네트워크 오류:", error.message);
+    }
+    throw error;
+  }
+}
+
+export function filterProductsByName(products, query) {
+  return products.filter((product) =>
+    product.name.toLowerCase().includes(query.toLowerCase())
+  );
+}
+
+/*---------------------게시글 관련 API 호출--------------------*/
+
+export async function fetchArticles({
+  order = "createdAt",
+  cursor = null,
+  limit = 10,
+} = {}) {
+  try {
+    const query = new URLSearchParams({
+      order,
+      limit,
+      cursor: cursor || "",
+    }).toString();
+    const response = await apiClient.get(`${articlesUrl}?${query}`);
+    return response.data;
+  } catch (error) {
+    console.error("게시글 목록 조회 실패:", error);
+    throw error;
+  }
+}
+
+export const fetchArticleById = async (id) => {
+  try {
+    const response = await apiClient.get(`${articlesUrl}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("게시글 상세 조회 실패:", error);
+    throw error;
+  }
+};
+
+export const createArticle = async (articleData) => {
+  try {
+    const response = await apiClient.post(articlesUrl, articleData);
+    return response.data;
+  } catch (error) {
+    console.error("게시글 등록 실패:", error);
+    throw error;
+  }
+};
+
+export const updateArticle = async (id, articleData) => {
+  try {
+    const response = await apiClient.patch(`${articlesUrl}/${id}`, articleData);
+    return response.data;
+  } catch (error) {
+    console.error("게시글 수정 실패:", error);
+    throw error;
+  }
+};
+
+export const deleteArticle = async (id) => {
+  try {
+    const response = await apiClient.delete(`${articlesUrl}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("게시글 삭제 실패:", error);
+    throw error;
+  }
+};
+
+export function filterPostsByName(posts, searchPosts) {
+  return posts.filter((post) => post.title.includes(searchPosts));
+}
+
+/*---------------------댓글 관련 API 호출--------------------*/
+
+export async function fetchComments() {
+  try {
+    const response = await apiClient.get(commentsUrl);
+    return response.data;
+  } catch (error) {
+    console.error("댓글 목록 조회 실패:", error);
+    throw error;
+  }
+}
+
+export const createComment = async (commentData) => {
+  try {
+    const response = await apiClient.post(commentsUrl, commentData);
+    return response.data;
+  } catch (error) {
+    console.error("댓글 등록 실패:", error);
+    throw error;
+  }
+};
+
+export const updateComment = async (id, commentData) => {
+  if (!id) {
+    throw new Error("댓글 ID가 필요합니다.");
+  }
+
+  try {
+    const response = await apiClient.patch(`${commentsUrl}/${id}`, commentData);
+    return response.data;
+  } catch (error) {
+    console.error("댓글 수정 실패:", error);
+    throw error;
+  }
+};
+
+export const deleteComment = async (id) => {
+  if (!id) {
+    throw new Error("댓글 ID가 필요합니다.");
+  }
+
+  try {
+    const response = await apiClient.delete(`${commentsUrl}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("댓글 삭제 실패:", error);
+    throw error;
+  }
+};

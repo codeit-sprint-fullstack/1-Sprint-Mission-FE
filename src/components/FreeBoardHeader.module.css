@@ -1,0 +1,106 @@
+.header {
+  display: flex;
+  height: 70px;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 10px 20px; */
+  background-color: #ffffff;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 200px;
+  margin-right: 20px;
+}
+
+.pandaMarketLogo {
+  height: auto;
+  width: 103px;
+}
+
+.logo {
+  height: 40px;
+}
+
+.nav {
+  margin-right: auto; /* 네비게이션을 오른쪽으로 정렬 */
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  text-align: center;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px; /* 네비게이션 링크 간의 간격 */
+  padding: 0;
+  margin: 0;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+.profile {
+  height: 40px;
+  margin-right: 200px;
+}
+
+/* 자유게시판 페이지의 로그인 버튼*/
+.loginButton {
+  width: 74px;
+  height: 42px;
+  /* padding: 12px 23px; */
+  border-radius: 8px;
+  background: #3692ff;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  margin-right: 200px;
+  font-family: Pretendard;
+}
+
+/* 자유게시판 페이지의 상단바 '자유게시판 버튼색'*/
+.freeBoard {
+  color: #3692ff !important;
+}
+
+/* Tablet */
+@media only screen and (min-width: 744px) and (max-width: 1199px) {
+  .header {
+    padding: 10px;
+  }
+
+  .logoContainer {
+    margin-left: 20px;
+    margin-right: 10px;
+  }
+
+  .loginButton {
+    margin-right: 20px;
+  }
+}
+
+/* Mobile */
+@media only screen and (min-width: 375px) and (max-width: 743px) {
+  /* 헤더 */
+  .logoContainer {
+    margin-left: 10px;
+    margin-right: 20px;
+  }
+
+  .loginButton {
+    margin-right: 20px;
+  }
+
+  .logo:first-child {
+    display: none;
+  }
+}
