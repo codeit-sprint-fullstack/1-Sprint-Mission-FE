@@ -1,0 +1,116 @@
+.body {
+  margin: 0 auto;
+  height: auto;
+  max-width: 1200px;
+  min-height: 1200px;
+}
+
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 45px;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.menu {
+  display: flex;
+  width: 100%;
+}
+
+.submit {
+  position: relative;
+  margin-right: auto;
+  flex-grow: 0.98;
+}
+
+.icon {
+  position: absolute;
+  top: 9px;
+  left: 16px;
+}
+
+.searchInput {
+  width: 100%;
+  height: 42px;
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 12px;
+  padding-left: 44px;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+  margin-right: 100px;
+}
+
+.dropDownBoxLayout {
+  margin-left: 0;
+  padding: 0;
+  position: relative;
+  margin-left: auto;
+}
+
+.webDropDOnwBox {
+  width: 130px;
+  height: 42px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.dropDownBoxText {
+  position: absolute;
+  margin-left: 20px;
+  margin-top: 12px;
+}
+
+.dropDownArrow {
+  position: absolute;
+  margin-left: 90px;
+  margin-top: 10px;
+  position: relative;
+}
+
+.dropDownMobile {
+  display: none;
+}
+
+.dropDownLayout {
+  margin-left: 119px;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 1199px) {
+  .body {
+    margin: 0 24px;
+  }
+
+  .submit {
+    flex-grow: 0.92;
+  }
+}
+
+@media screen and (max-width: 743px) {
+  .body {
+    margin: 0 16px;
+  }
+  .webDropDOnwBox {
+    display: none;
+  }
+
+  .dropDownBoxLayout {
+    width: 42px;
+  }
+
+  .dropDownMobile {
+    display: block;
+    margin-left: 10px;
+  }
+
+  .dropDownLayout {
+    margin-left: 40px;
+    margin-top: 10px;
+  }
+}

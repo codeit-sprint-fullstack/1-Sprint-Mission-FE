@@ -1,0 +1,83 @@
+.comment {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 9px;
+}
+
+.inputComment {
+  width: 100%;
+  height: 104px;
+  border-radius: 12px;
+  padding: 16px 24px;
+  border: none;
+  background-color: #f3f4f6;
+  box-sizing: border-box;
+  align-items: start;
+  text-align: start;
+  resize: none;
+}
+
+.commentListLayout {
+  margin-top: 100px;
+}
+
+.comments {
+  border-bottom: 1px solid #e5e7eb;
+  height: auto;
+}
+
+.commentMain {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 34px;
+  margin-bottom: 16px;
+}
+
+.commentText {
+  font-size: 14px;
+  font-weight: 400;
+  color: #1f2937;
+  word-wrap: break-word;
+  width: 1100px;
+}
+
+.profile {
+  display: flex;
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.userName {
+  margin-bottom: 4px;
+  color: #4b5563;
+}
+
+.createdDate {
+  color: #9ca3af;
+}
+
+.noComment {
+  display: flex;
+  margin: 120px auto;
+  height: auto;
+}
+
+.dotImage {
+  cursor: pointer;
+}
+
+.buttonTest {
+  position: relative;
+}
+
+.editSubmit {
+  margin-top: 90px;
+}

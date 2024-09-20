@@ -1,0 +1,105 @@
+.article {
+  margin: 0 auto;
+  max-width: 1200px;
+  min-height: 1200px;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 34px;
+  margin-bottom: 16px;
+}
+
+.titleText {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  word-wrap: break-word;
+  width: 1100px;
+}
+
+.profile {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 16px;
+}
+
+.userName {
+  margin-left: 16px;
+  margin-right: 8px;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.date {
+  color: #9ca3af;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.line {
+  margin: 0 32px;
+}
+
+.heart {
+  border: 1px solid #e5e7eb;
+  border-radius: 35px;
+  padding: 4px 12px;
+  align-items: center;
+  display: flex;
+  align-items: center;
+}
+
+.heartCount {
+  color: #6b7280;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 5px;
+  margin-top: 4px;
+}
+
+.content {
+  margin-top: 24px;
+  margin-bottom: 32px;
+  line-height: 26px;
+  color: #1f2937;
+  font-size: 18px;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.backBtn {
+  display: flex;
+  justify-content: center;
+  margin: 64px auto 463px;
+}
+
+.dotImage {
+  position: relative;
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media screen and (max-width: 1199px) {
+  .article {
+    padding: 0 25px;
+    max-width: 1200px;
+    min-height: 1200px;
+  }
+}
+
+@media screen and (max-width: 743px) {
+  .article {
+    padding: 0 25px;
+    max-width: 1200px;
+    min-height: 1200px;
+  }
+}
