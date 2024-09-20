@@ -26,11 +26,14 @@
   margin-bottom: 15px; /* label과 input 사이의 간격 */
 }
 
+.inputWrapper {
+  position: relative;
+}
+
 .input {
   width: 100%;
   border-radius: 12px;
   padding: 16px 24px;
-  gap: 10px;
   background-color: #f3f4f6;
   font-family: "Pretendard", sans-serif;
   font-weight: 400;
@@ -40,8 +43,16 @@
   border: none;
 }
 
+.visibilityIcon {
+  position: absolute;
+  right: 20px;
+  top: 40%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
 .loginButton {
-  width: 100%; /* 입력 박스와 동일한 넓이로 설정 */
+  width: 100%;
   min-height: 56px;
   border-radius: 40px;
   padding: 16px;
