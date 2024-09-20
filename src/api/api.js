@@ -8,6 +8,8 @@ const apiClient = axios.create({
   },
 });
 
+console.log("API URL:", process.env.NEXT_PUBLIC_AUTH_API_URL);
+
 // 기본 URL 및 API 엔드포인트 설정
 const articlesUrl = "/articles";
 const commentsUrl = "/board/comments";
@@ -63,6 +65,17 @@ export async function createProduct(product) {
     throw error;
   }
 }
+
+/* 상품 상세조회 API */
+export const fetchProductById = async (id) => {
+  try {
+    const response = await apiClient.get(`/products/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("상품 상세 조회 실패:", error);
+    throw error;
+  }
+};
 
 export function filterProductsByName(products, query) {
   return products.filter((product) =>
@@ -137,6 +150,32 @@ export function filterPostsByName(posts, searchPosts) {
 
 /*---------------------댓글 관련 API 호출--------------------*/
 
+// 중고마켓 상품 상세페이지 댓글 목록 조회 API
+export async function fetchCommentsByProductId(productId) {
+  try {
+    const response = await apiClient.get(`/products/${productId}/comments`);
+    return response.data;
+  } catch (error) {
+    console.error("댓글 목록 조회 실패:", error);
+    throw error;
+  }
+}
+
+// 중고마켓 상품 상세페이지 댓글 등록 API
+export const createCommentForProduct = async (productId, commentData) => {
+  try {
+    const response = await apiClient.post(
+      `/products/${productId}/comments`,
+      commentData
+    );
+    return response.data;
+  } catch (error) {
+    console.error("댓글 등록 실패:", error);
+    throw error;
+  }
+};
+
+// 자유게시판 페이지 댓글 조회 API
 export async function fetchComments() {
   try {
     const response = await apiClient.get(commentsUrl);
@@ -147,6 +186,7 @@ export async function fetchComments() {
   }
 }
 
+// 자유게시판 댓글 등록 API
 export const createComment = async (commentData) => {
   try {
     const response = await apiClient.post(commentsUrl, commentData);
@@ -157,6 +197,7 @@ export const createComment = async (commentData) => {
   }
 };
 
+// 댓글 수정
 export const updateComment = async (id, commentData) => {
   if (!id) {
     throw new Error("댓글 ID가 필요합니다.");
@@ -171,6 +212,7 @@ export const updateComment = async (id, commentData) => {
   }
 };
 
+// 댓글 삭제
 export const deleteComment = async (id) => {
   if (!id) {
     throw new Error("댓글 ID가 필요합니다.");
