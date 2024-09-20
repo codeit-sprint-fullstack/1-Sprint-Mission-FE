@@ -7,18 +7,18 @@ const api = axios.create({
   },
 });
 
-export async function postsignup(data) {
+export async function PostSignup(data) {
   try {
-    const response = await api.post("/Auth/signUp", { params: data });
+    const response = await api.post("/Auth/signUp", data);
     return response;
   } catch (error) {
     return error.response;
   }
 }
 
-export async function postlogin(data) {
+export async function PostLogin(data) {
   try {
-    const response = await api.post("/Auth/signIn", { params: data });
+    const response = await api.post("/Auth/signIn", data);
     return response;
   } catch (error) {
     return error.response;

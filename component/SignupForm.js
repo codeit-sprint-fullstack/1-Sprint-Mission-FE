@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useForm from "../hook/form";
 import styles from "./SignupForm.module.css";
 import Image from "next/image";
+import { PostSignup } from "../pages/api/user.js";
 
 const SignupForm = () => {
   const { values, handleChange, handleSubmit, resetForm, isSubmitting } =
@@ -51,13 +52,27 @@ const SignupForm = () => {
     return validationErrors;
   };
 
-  const submitForm = () => {
+  const submitForm = async () => {
     const validationErrors = validate();
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      console.log(values);
-      resetForm();
+      try {
+        const res = await PostSignup({
+          email: values.email,
+          nickname: values.nickname,
+          password: values.password,
+          passwordConfirmation: values.password2,
+        });
+        if (res && res.status === 201) {
+          resetForm();
+          console.log("회원가입 성공", res.data);
+        } else {
+          console.log("회원가입 실패", res.data);
+        }
+      } catch (e) {
+        console.log("에러", e);
+      }
     }
   };
 

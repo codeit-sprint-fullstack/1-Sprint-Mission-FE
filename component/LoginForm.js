@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useForm from "../hook/form";
 import styles from "./LoginForm.module.css";
 import Image from "next/image";
+import { PostLogin } from "../pages/api/user.js";
 
 const LoginForm = () => {
   const { values, handleChange, handleSubmit, resetForm, isSubmitting } =
@@ -37,13 +38,27 @@ const LoginForm = () => {
   };
 
   // 폼 제출 시 처리하는 함수
-  const submitForm = () => {
+  const submitForm = async () => {
     const validationErrors = validate();
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      console.log("Form submitted successfully:", values);
-      resetForm(); // 폼 리셋
+      // console.log(values.email, values.password);
+      try {
+        const res = await PostLogin({
+          email: values.email,
+          password: values.password,
+        });
+
+        if (res && res.status === 200) {
+          resetForm(); // 폼 리셋
+          console.log("로그인 성공", res.data);
+        } else {
+          console.log("로그인실패", res.data);
+        }
+      } catch (e) {
+        console.log("에러", e);
+      }
     }
   };
 

@@ -3,8 +3,8 @@ POST https://panda-market-api.vercel.app/auth/signup
 Content-Type: application/json
 
 {
-  "email" : "dafda@naver.com",
-  "nickname" : "name",
+  "email" : "4321a3221da@naver.com",
+  "nickname" : "na3322me",
   "password" : "12341234",
   "passwordConfirmation" : "12341234"
 }
