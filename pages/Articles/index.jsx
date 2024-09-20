@@ -11,6 +11,7 @@ import ic_medal from "@/public/images/ic_medal.png";
 import ic_profile from "@/public/images/ic_profile.png";
 import styles from "@/styles/articles.module.css";
 import { RefContext } from "../_app";
+import useAuth from "@/contexts/authContext";
 
 function BestArticles({ item }) {
   const { user, title, createAt, favorite } = item;
@@ -132,6 +133,8 @@ function Articles({ bestItems, defaultParams, Items }) {
   const [articles, setArticles] = useState(Items);
   const [cursor, setCursor] = useState("");
   const [keyword, setKeyword] = useState("");
+
+  const { user } = useAuth();
 
   const getArticles = useCallback(async () => {
     try {

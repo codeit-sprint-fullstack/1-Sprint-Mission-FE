@@ -145,6 +145,7 @@ function DetailProduct({ product, comments }) {
             height={486}
             src={productsImage}
             alt="상품이미지"
+            priority
             unoptimized={true}
           />
           <div className={styles.product_values_box}>

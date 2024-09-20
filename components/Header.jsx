@@ -10,7 +10,7 @@ import { useContext } from "react";
 import useAuth from "@/contexts/authContext";
 
 function Header() {
-  const { user } = useAuth();
+  const { user } = useAuth(false);
   const userProfileImage = user?.image ? user.image : ic_profile;
   const view = useWindowResize();
   const router = useRouter();
