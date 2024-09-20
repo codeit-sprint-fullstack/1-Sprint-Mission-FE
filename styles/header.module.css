@@ -34,9 +34,9 @@
   align-items: center;
   gap: 6px;
   margin-right: 200px;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 21.78px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
   color: #4b5563;
 }
 
@@ -47,7 +47,6 @@
 
 .login_btn {
   box-sizing: border-box;
-
   width: 88px;
   height: 42px;
   padding: 12px 23px;

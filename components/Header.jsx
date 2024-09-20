@@ -12,7 +12,6 @@ import useAuth from "@/contexts/authContext";
 function Header() {
   const { user } = useAuth();
   const userProfileImage = user?.image ? user.image : ic_profile;
-  console.log(user);
   const view = useWindowResize();
   const router = useRouter();
   const path = router.pathname;
@@ -47,20 +46,22 @@ function Header() {
             </Link>
           </div>
         </div>
-        {user ? (
-          <div className={styles.profile_box}>
-            <Image
-              className={styles.header_profile_image}
-              src={userProfileImage}
-              alt="유저이미지"
-            />
-            <span>{user?.nickname}</span>
-          </div>
-        ) : (
-          <Link href={"Login"}>
-            <button className={styles.login_btn}>로그인</button>
-          </Link>
-        )}
+        <div className={styles.profile_box}>
+          {user ? (
+            <>
+              <Image
+                className={styles.header_profile_image}
+                src={userProfileImage}
+                alt="유저이미지"
+              />
+              <span>{user?.nickname}</span>
+            </>
+          ) : (
+            <Link href={"Login"}>
+              <button className={styles.login_btn}>로그인</button>
+            </Link>
+          )}
+        </div>
       </div>
     </header>
   );
