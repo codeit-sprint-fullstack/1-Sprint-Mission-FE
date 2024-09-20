@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./CreateAccount.module.css";
 import Modal from "../components/Modal"; // 모달 컴포넌트 임포트
@@ -26,6 +26,15 @@ export default function CreateAccount() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [modalMessage, setModalMessage] = useState(""); // 모달 메시지 상태
   const [showModal, setShowModal] = useState(false); // 모달 표시 상태
+
+  // accessToken 확인
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      // 회원가입 페이지에서는 로그인 상태일 경우만 리디렉션
+      router.push("/folder");
+    }
+  }, [router]);
 
   const validateInputs = () => {
     let isValid = true; // 유효성 검사 상태 초기화
@@ -104,6 +113,9 @@ export default function CreateAccount() {
           passwordConfirmation: confirmPassword,
         });
 
+        // accessToken을 로컬 스토리지에 저장
+        localStorage.setItem("accessToken", response.accessToken);
+
         setModalMessage("회원가입이 성공적으로 완료되었습니다!");
         setShowModal(true);
         console.log("회원가입 요청:", response);
@@ -118,7 +130,6 @@ export default function CreateAccount() {
         }
         setModalMessage("회원가입에 실패했습니다. 다시 시도해 주세요.");
         setShowModal(true);
-        console.error("회원가입 요청 실패:", error);
       }
     }
   };
