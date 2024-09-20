@@ -1,0 +1,34 @@
+.comment-title {
+  width: 1200px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 32px;
+  margin-bottom: 9px;
+  color: var(--color-cool-gray-900);
+}
+
+.button-container {
+  width: 1200px;
+  display: flex;
+  justify-content: right;
+  margin-top: 16px;
+}
+
+.not-found-comment-image {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin-top: 40px;
+}
+
+.not-found-content {
+  margin-top: 16px;
+  font-size: 1rem;
+  line-height: 26px;
+  text-align: center;
+  color: var(--color-gray-100);
+}
+
+.comment-list-container {
+  margin-bottom: 64px;
+}
