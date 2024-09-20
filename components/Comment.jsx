@@ -8,31 +8,30 @@ import * as commentApi from "@/pages/api/comment";
 import styles from "@/styles/comment.module.css";
 import ic_kebab from "@/public/images/ic_kebab.png";
 import ic_profile from "@/public/images/ic_profile.png";
-import ic_heart from "@/public/images/ic_heart.png";
 
 function Comment({ item, openAlert, setAlertMessage, user }) {
-  const { content, writer, createAt, updateAt } = item;
+  const { content, writer, createAt, updateAt, id } = item;
   const router = useRouter();
   //날짜 포멧
   const createDate = elapsedTime(createAt);
   const updateDate = elapsedTime(updateAt);
 
   const [openDropdown, setOpenDropdown] = useState(false);
-  const [updateContent, setUpdateContent] = useState(false);
-  const [value, setValue] = useState(content);
-  const [confirmModal, setConfirmModal] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [updateContent, setUpdateContent] = useState(content);
+  const [isConfirmModal, setIsConfirmModal] = useState(false);
   const [confirmMessage, setConfirmMessage] = useState(false);
 
   const handleChangeValue = (e) => {
-    setValue(e.target.value);
+    setUpdateContent(e.target.value);
   };
 
   const handleUpdateComment = () => {
-    setUpdateContent(true);
+    setIsUpdating(true);
     setOpenDropdown(false);
   };
   const handleUpdateCancel = () => {
-    setUpdateContent(false);
+    setIsUpdating(false);
   };
   const handleDeleteComment = () => {
     setOpenDropdown(false);
@@ -42,14 +41,16 @@ function Comment({ item, openAlert, setAlertMessage, user }) {
   };
 
   const handleOpenDropdown = () => setOpenDropdown(!openDropdown);
-  const handleOpenConfirmModal = () => setConfirmModal(true);
-  const handleCloseConfirmModal = () => setConfirmModal(false);
+  const handleOpenConfirmModal = () => setIsConfirmModal(true);
+  const handleCloseConfirmModal = () => setIsConfirmModal(false);
 
   const updateComment = async () => {
     try {
-      const res = await commentApi.updateComment(item.id, { content: value });
+      const res = await commentApi.updateComment(id, {
+        content: updateContent,
+      });
       if (res) {
-        setUpdateContent(false);
+        setIsUpdating(false);
         router.reload();
       }
     } catch (error) {
@@ -61,7 +62,7 @@ function Comment({ item, openAlert, setAlertMessage, user }) {
 
   const deleteComment = async () => {
     try {
-      const res = await commentApi.deleteComment(item.id);
+      const res = await commentApi.deleteComment(id);
       if (res) {
         setAlertMessage("댓글이 삭제 되었습니다.");
         handleCloseConfirmModal();
@@ -80,22 +81,22 @@ function Comment({ item, openAlert, setAlertMessage, user }) {
       <ConfirmModal
         onConfirm={deleteComment}
         onClose={handleCloseConfirmModal}
-        isOpen={confirmModal}
+        isOpen={isConfirmModal}
         message={confirmMessage}
       />
       <div className={styles.comment_item_box}>
         <div className={styles.comment_item_content_box}>
-          {updateContent ? (
+          {isUpdating ? (
             <textarea
               className={styles.comment_content_textarea}
               name="content"
               onChange={handleChangeValue}
-              value={value || ""}
+              value={updateContent || ""}
             />
           ) : (
             <p className={styles.comment_content}>{content}</p>
           )}
-          {!updateContent && (
+          {!isUpdating && (
             <>
               {/* 작성자와 로그인 사용자가 같을때 수정/삭제 가능함 */}
               {user?.id === writer.id && (
@@ -135,7 +136,7 @@ function Comment({ item, openAlert, setAlertMessage, user }) {
             </div>
           </div>
 
-          {updateContent && (
+          {isUpdating && (
             <div className={styles.comment_update_box}>
               <button
                 onClick={handleUpdateCancel}

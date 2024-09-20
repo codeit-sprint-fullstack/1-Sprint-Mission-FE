@@ -23,7 +23,6 @@ import {
   QueryClient,
   useQuery,
 } from "@tanstack/react-query";
-import { useFieldArray } from "react-hook-form";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
