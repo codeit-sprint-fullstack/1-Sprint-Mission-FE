@@ -1,0 +1,243 @@
+.productDetailItem {
+  max-width: 1200px; /* PC 버전에서 최대 너비 설정 */
+  margin: 0 auto; /* 중앙 정렬 */
+  padding: 20px 0;
+  height: 536px;
+}
+
+.productHeaderContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+/* 이미지 옆 판매 내용 */
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+  justify-content: center;
+}
+
+/* 판매 제목 */
+.productTitle {
+  text-align: left;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+/* 가격 */
+.productPrice {
+  text-align: left;
+  font-size: 40px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  border-bottom: 1px solid #e5e7eb; /* 회색 줄 추가 */
+  padding-bottom: 10px;
+}
+
+/* 문의하기 */
+.productQuestion {
+  margin-top: 20px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 20px;
+}
+
+/* 상품 소개 */
+.productIntroduction {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+/* 상품 소개 글 */
+.productDescription {
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left;
+  color: #4b5563;
+}
+
+/* 상풉 태그 문구 */
+.tagsmungoo {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+/* 태그 낱개 */
+.tags {
+  width: 125px;
+  height: 36px;
+  padding: 6px 16px;
+  gap: 10px;
+  border-radius: 26px;
+  background: #f3f4f6;
+}
+
+/* 프로필이미지, 작성자, 작성날짜와 좋아요 수*/
+.productFooter {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* 프로필이미지, 작성자, 작성날짜 */
+.authorInfo {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* 작성자와 작성 날짜 */
+.authorDate {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+/* 좋아요 수 버튼 */
+.likeCount {
+  width: 87px;
+  height: 40px;
+  padding: 4px 12px;
+  border-radius: 35px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+
+/* 좋아요 수 */
+.likeCount {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+/* 작성자 */
+.authorName {
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 작성 날짜 */
+.postDate {
+  font-size: 14px;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+/* 댓글 달기 컨테이너 */
+.postCommentDalki {
+  display: flex;
+  flex-direction: column;
+  height: auto; /* 고정 높이에서 auto로 변경 */
+  margin-top: 20px; /* 여백 추가 */
+}
+
+/* 댓글 달기 문구 */
+.commentDalkiH3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* 댓글 내용 textarea */
+.detailCommentContainer {
+  display: flex;
+  gap: 16px;
+}
+
+/* 댓글 textarea */
+.commentInput {
+  height: 104px;
+  padding: 16px 24px;
+  background: #f3f4f6;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+/* 포커스 시 테두리 색상 변경 */
+.commentInput:focus {
+  border-color: #3692ff;
+  border-width: 4px;
+  outline: none;
+}
+
+/* placeholder */
+.commentInput::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  color: #9ca3af;
+}
+
+/* 댓글 등록 버튼 */
+.registrationBtn {
+  padding: 12px 0;
+  border-radius: 8px;
+  background: #3692ff;
+  width: 74px;
+  height: 42px;
+  border: none;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 700;
+  align-self: flex-end;
+}
+
+/* 등록 버튼 비활성화*/
+.postCommentDalki button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* 수정/삭제를 위한 : 버튼 */
+.moreMenuButton {
+  position: relative;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: none;
+  color: #9ca3af;
+}
+
+/* 수정/삭제 메뉴 */
+.menu {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  border: 1px solid #d1d5db;
+  display: flex;
+  flex-direction: column;
+  width: 139px;
+}
+
+/* 메뉴 버튼 스타일 */
+.menuButton {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #6b7280;
+  cursor: pointer;
+  text-align: center;
+}
+
+.menuButton:hover {
+  background: #e5e7eb;
+}
