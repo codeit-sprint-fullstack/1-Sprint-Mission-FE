@@ -1,8 +1,8 @@
 import "@/styles/globals.css";
 import "@/styles/Home.module.css";
 import Head from "next/head";
-import Header from "@/components/Layout/Header";
-import Footer from "@/components/Layout/Footer";
+import Header from "@/components/Layout/Header.jsx";
+import Footer from "@/components/Layout/Footer.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";

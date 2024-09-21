@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ItemList from "@/components/ItemComponents/ItemList";
-import Pagination from "@/components/ItemComponents/Pagination";
+import ItemList from "@/components/ItemComponents/ItemList.jsx";
+import Pagination from "@/components/ItemComponents/Pagination.jsx";
 import { useProducts } from "@/hooks/useProducts";
 import styles from "@/styles/items.module.css";
 import { fetchProducts } from "@/utils/productApi";
