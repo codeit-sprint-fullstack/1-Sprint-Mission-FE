@@ -5,6 +5,7 @@ export const ROUTES = {
   BOARD_EDIT: (id) => `/board/edit/${id}`,
   ARTICLE: (id) => `/board/${id}`,
   ITEMS: "/items",
+  ITEMS_DETAIL: (id) => `/items/${id}`,
   LOGIN: "/login",
   SIGNIN: "/signin",
 };

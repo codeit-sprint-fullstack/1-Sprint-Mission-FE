@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { formatPrice } from "@/utils/price";
 import styles from "./ItemList.module.css";
 import Image from "next/image";
