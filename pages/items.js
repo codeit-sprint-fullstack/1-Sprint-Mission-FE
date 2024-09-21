@@ -11,6 +11,7 @@ export default function Items({ initialProducts, initialTotalCount }) {
     totalCount,
     currentPage,
     handlePageChange,
+    handleSortChange,
     loading,
     error,
     itemsPerPage,
@@ -19,7 +20,12 @@ export default function Items({ initialProducts, initialTotalCount }) {
   return (
     <>
       <div className={styles.productContainer}>
-        <ItemList products={products} itemsPerPage={itemsPerPage} />
+        <ItemList
+          products={products}
+          itemsPerPage={itemsPerPage}
+          sortOrder="recent"
+          onSortChange={handleSortChange}
+        />
       </div>
 
       <Pagination

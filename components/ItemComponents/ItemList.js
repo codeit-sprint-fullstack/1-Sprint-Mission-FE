@@ -7,7 +7,7 @@ import { MobileSearchBar } from "./MobileSearchBar";
 import { DesktopSearchBar } from "./DesktopSearchBar";
 
 export default function ItemList({
-  products, // 부모로부터 이미 필터링된 제품 목록을 받음
+  products,
   sortOrder,
   keyword,
   onKeywordChange,

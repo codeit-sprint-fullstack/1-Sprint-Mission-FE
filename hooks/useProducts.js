@@ -12,8 +12,10 @@ export const useProducts = (
   const [itemsPerPage, setItemsPerPage] = useState(initialItemsPerPage);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [orderBy, setOrderBy] = useState("recent"); // 정렬 기준 추가
 
-  const handlePageChange = async (newPage) => {
+  // 페이지 변경 및 정렬 변경 처리 함수
+  const fetchAndSetProducts = async (newPage, sortOrder) => {
     setLoading(true);
     setCurrentPage(newPage);
 
@@ -22,8 +24,8 @@ export const useProducts = (
         await fetchProducts({
           pageSize: itemsPerPage,
           page: newPage,
-          keyword: "",
-          orderBy: "recent",
+          keyword: "", // 검색어가 필요할 경우 추가 가능
+          orderBy: sortOrder || orderBy, // 정렬 기준 사용
         });
 
       setProducts(newProducts);
@@ -36,6 +38,18 @@ export const useProducts = (
     }
   };
 
+  // 페이지 변경 처리 함수
+  const handlePageChange = (newPage) => {
+    fetchAndSetProducts(newPage);
+  };
+
+  // 정렬 기준 변경 처리 함수
+  const handleSortChange = (newSortOrder) => {
+    setOrderBy(newSortOrder);
+    fetchAndSetProducts(currentPage, newSortOrder); // 정렬 기준에 맞게 데이터를 다시 불러옴
+  };
+
+  // 화면 크기별 itemsPerPage 업데이트 함수
   const updateItemsPerPage = () => {
     const screenWidth = window.innerWidth;
 
@@ -52,14 +66,13 @@ export const useProducts = (
     updateItemsPerPage();
     window.addEventListener("resize", updateItemsPerPage);
 
+    // 최초 데이터 로드
+    fetchAndSetProducts(currentPage);
+
     return () => {
       window.removeEventListener("resize", updateItemsPerPage);
     };
-  }, []);
-
-  useEffect(() => {
-    handlePageChange(currentPage);
-  }, [itemsPerPage]);
+  }, [itemsPerPage, orderBy]); // itemsPerPage 또는 orderBy가 변경될 때마다 호출
 
   return {
     products,
@@ -68,6 +81,7 @@ export const useProducts = (
     loading,
     error,
     handlePageChange,
+    handleSortChange, // 정렬 변경 핸들러 반환
     itemsPerPage,
   };
 };
