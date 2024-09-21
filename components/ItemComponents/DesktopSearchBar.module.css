@@ -1,0 +1,51 @@
+.searchBar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  position: relative;
+  top: 0;
+}
+
+.fontStyle {
+  margin-top: 5px;
+  width: 113px;
+  height: 32px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.inputSearch {
+  width: 325px;
+  height: 42px;
+  border-radius: 12px;
+  padding: 9px 20px 9px 40px;
+  border: none;
+  margin-left: auto;
+  outline: none;
+  background: url("../../images/ic_search.png") calc(16px) center no-repeat;
+  background-size: 24px;
+  background-color: #f3f4f6;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.inputSearch::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+.btnAdd {
+  width: 133px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: #3692ff;
+  border: none;
+  color: #f3f4f6;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 12px;
+  cursor: pointer;
+}
