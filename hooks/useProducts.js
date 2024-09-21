@@ -1,19 +1,18 @@
-// hooks/useProducts.js
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { fetchProducts } from "@/utils/productApi";
 
 export const useProducts = (
   initialProducts,
   initialTotalCount,
-  pageSize = 10
+  initialItemsPerPage = 10
 ) => {
   const [products, setProducts] = useState(initialProducts);
   const [totalCount, setTotalCount] = useState(initialTotalCount);
   const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(initialItemsPerPage);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // 페이지 변경 처리 함수
   const handlePageChange = async (newPage) => {
     setLoading(true);
     setCurrentPage(newPage);
@@ -21,10 +20,10 @@ export const useProducts = (
     try {
       const { list: newProducts, totalCount: newTotalCount } =
         await fetchProducts({
-          pageSize,
+          pageSize: itemsPerPage,
           page: newPage,
-          keyword: "", // 추가로 검색 기능을 추가할 수 있습니다.
-          orderBy: "recent", // 정렬 조건도 추가할 수 있습니다.
+          keyword: "",
+          orderBy: "recent",
         });
 
       setProducts(newProducts);
@@ -37,6 +36,31 @@ export const useProducts = (
     }
   };
 
+  const updateItemsPerPage = () => {
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth <= 743) {
+      setItemsPerPage(4);
+    } else if (screenWidth <= 1199) {
+      setItemsPerPage(6);
+    } else {
+      setItemsPerPage(10);
+    }
+  };
+
+  useEffect(() => {
+    updateItemsPerPage();
+    window.addEventListener("resize", updateItemsPerPage);
+
+    return () => {
+      window.removeEventListener("resize", updateItemsPerPage);
+    };
+  }, []);
+
+  useEffect(() => {
+    handlePageChange(currentPage);
+  }, [itemsPerPage]);
+
   return {
     products,
     totalCount,
@@ -44,5 +68,6 @@ export const useProducts = (
     loading,
     error,
     handlePageChange,
+    itemsPerPage,
   };
 };

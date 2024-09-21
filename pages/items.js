@@ -1,13 +1,11 @@
-// pages/Items.js
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ItemList from "@/components/ItemComponents/ItemList";
 import Pagination from "@/components/ItemComponents/Pagination";
-import { useProducts } from "@/hooks/useProducts";
 import { fetchProducts } from "@/utils/productApi";
+import { useProducts } from "@/hooks/useProducts";
 import styles from "@/styles/items.module.css";
 
 export default function Items({ initialProducts, initialTotalCount }) {
-  // useProducts 훅을 사용하여 상품 및 페이지네이션 관리
   const {
     products,
     totalCount,
@@ -15,16 +13,18 @@ export default function Items({ initialProducts, initialTotalCount }) {
     handlePageChange,
     loading,
     error,
+    itemsPerPage,
   } = useProducts(initialProducts, initialTotalCount);
 
   return (
     <>
       <div className={styles.productContainer}>
-        <ItemList products={products} />
+        <ItemList products={products} itemsPerPage={itemsPerPage} />
       </div>
+
       <Pagination
         totalCount={totalCount}
-        itemsPerPage={10}
+        itemsPerPage={itemsPerPage}
         currentPage={currentPage}
         onPageChange={handlePageChange}
       />
@@ -32,7 +32,6 @@ export default function Items({ initialProducts, initialTotalCount }) {
   );
 }
 
-// getServerSideProps로 초기 데이터 패칭
 export async function getServerSideProps(context) {
   try {
     const { list: initialProducts, totalCount: initialTotalCount } =
