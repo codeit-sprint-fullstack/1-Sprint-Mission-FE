@@ -13,9 +13,6 @@ export default function ItemList({ products }) {
   const [keyword, setKeyword] = useState(""); // 검색어 상태 추가
   const [searchKeyword, setSearchKeyword] = useState(""); // 실제 검색에 사용될 상태
 
-  console.log(products);
-
-  // 윈도우 사이즈에 맞춰 보여줄 상품 개수 조정
   useEffect(() => {
     const updateProducts = () => {
       const screenWidth = window.innerWidth;
@@ -31,14 +28,12 @@ export default function ItemList({ products }) {
 
       let filteredProducts = products.slice(0, maxProducts);
 
-      // 검색어 필터링
       if (searchKeyword) {
         filteredProducts = filteredProducts.filter((product) =>
           product.name.toLowerCase().includes(searchKeyword.toLowerCase())
         );
       }
 
-      // 정렬
       if (sortOrder === "favorite") {
         filteredProducts = filteredProducts.sort(
           (a, b) => b.favoriteCount - a.favoriteCount
@@ -48,7 +43,6 @@ export default function ItemList({ products }) {
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
       }
-
       setProductsList(filteredProducts);
     };
 

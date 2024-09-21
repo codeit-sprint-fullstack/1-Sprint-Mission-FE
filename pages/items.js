@@ -1,39 +1,27 @@
-import React, { useState } from "react";
+// pages/Items.js
+import React from "react";
 import ItemList from "@/components/ItemComponents/ItemList";
+import Pagination from "@/components/ItemComponents/Pagination";
+import { useProducts } from "@/hooks/useProducts";
 import { fetchProducts } from "@/utils/productApi";
 import styles from "@/styles/items.module.css";
-import Pagination from "@/components/ItemComponents/Pagination";
 
 export default function Items({ initialProducts, initialTotalCount }) {
-  // 페이지 상태 관리
-  const [currentPage, setCurrentPage] = useState(1);
-  const [products, setProducts] = useState(initialProducts);
-  const [totalCount, setTotalCount] = useState(initialTotalCount);
-
-  // 페이지 변경 처리 함수
-  const handlePageChange = async (newPage) => {
-    setCurrentPage(newPage);
-    try {
-      // 새 페이지의 데이터를 가져옴
-      const { list: newProducts, totalCount: newTotalCount } =
-        await fetchProducts({
-          pageSize: 10,
-          page: newPage,
-          keyword: "",
-        });
-      setProducts(newProducts);
-      setTotalCount(newTotalCount);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
+  // useProducts 훅을 사용하여 상품 및 페이지네이션 관리
+  const {
+    products,
+    totalCount,
+    currentPage,
+    handlePageChange,
+    loading,
+    error,
+  } = useProducts(initialProducts, initialTotalCount);
 
   return (
     <>
       <div className={styles.productContainer}>
         <ItemList products={products} />
       </div>
-      {/* Pagination에 현재 페이지와 페이지 변경 함수 전달 */}
       <Pagination
         totalCount={totalCount}
         itemsPerPage={10}
@@ -44,6 +32,7 @@ export default function Items({ initialProducts, initialTotalCount }) {
   );
 }
 
+// getServerSideProps로 초기 데이터 패칭
 export async function getServerSideProps(context) {
   try {
     const { list: initialProducts, totalCount: initialTotalCount } =
@@ -51,6 +40,7 @@ export async function getServerSideProps(context) {
         pageSize: 10,
         page: 1,
         keyword: "",
+        orderBy: "recent",
       });
 
     return {
