@@ -34,7 +34,7 @@ export default function BestProduct({ articles }) {
     window.addEventListener("resize", throttledUpdate);
 
     return () => {
-      window.removeEventListener("resize", updateBestArticles);
+      window.removeEventListener("resize", throttledUpdate);
     };
   }, [articles]);
 

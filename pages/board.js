@@ -52,7 +52,7 @@ export default function Board({
   pageSize,
 }) {
   const router = useRouter();
-  const { articles, loadMoreArticles, hasMore, loading } = useArticles(
+  const { articles, loadMoreArticles, hasMore } = useArticles(
     initialArticles,
     totalArticles,
     pageSize,
@@ -65,8 +65,7 @@ export default function Board({
       if (
         window.innerHeight + document.documentElement.scrollTop >=
           document.documentElement.offsetHeight - 100 &&
-        hasMore &&
-        !loading
+        hasMore
       ) {
         loadMoreArticles();
       } else if (!hasMore && load) {
@@ -77,7 +76,7 @@ export default function Board({
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [loadMoreArticles, hasMore, loading]);
+  }, [loadMoreArticles, hasMore]);
 
   return (
     <div className={styles.boardContainer}>

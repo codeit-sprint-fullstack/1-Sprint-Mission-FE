@@ -74,7 +74,9 @@ export default function SigninForm() {
       </Link>
 
       <form className={styles.loginForm} onSubmit={handleSubmit}>
-        <label className={styles.label}>이메일</label>
+        <label className={styles.label} htmlFor="email">
+          이메일
+        </label>
         <input
           className={styles.input}
           type="email"
@@ -83,12 +85,15 @@ export default function SigninForm() {
           value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
+          id="email"
         />
         {touched.email && errors.email && (
           <p className={styles.error}>{errors.email}</p>
         )}
 
-        <label className={styles.label}>닉네임</label>
+        <label className={styles.label} htmlFor="nickname">
+          닉네임
+        </label>
         <input
           className={styles.input}
           type="text"
@@ -97,12 +102,15 @@ export default function SigninForm() {
           value={values.nickname}
           onChange={handleChange}
           onBlur={handleBlur}
+          id="nickname"
         />
         {touched.nickname && errors.nickname && (
           <p className={styles.error}>{errors.nickname}</p>
         )}
 
-        <label className={styles.label}>비밀번호</label>
+        <label className={styles.label} htmlFor="password">
+          비밀번호
+        </label>
         <div className={styles.passwordContainer}>
           <input
             className={styles.input}
@@ -112,6 +120,7 @@ export default function SigninForm() {
             value={values.password}
             onChange={handleChange}
             onBlur={handleBlur}
+            id="password"
           />
           <Image
             src={isVisible ? btn_visibility : btn_hide}
@@ -124,7 +133,9 @@ export default function SigninForm() {
           <p className={styles.error}>{errors.password}</p>
         )}
 
-        <label className={styles.label}>비밀번호 확인</label>
+        <label className={styles.label} htmlFor="confirmPassword">
+          비밀번호 확인
+        </label>
         <div className={styles.passwordContainer}>
           <input
             className={styles.input}
@@ -134,6 +145,7 @@ export default function SigninForm() {
             value={values.confirmPassword}
             onChange={handleChange}
             onBlur={handleBlur}
+            id="confirmPassword"
           />
           <Image
             src={isConfirmVisible ? btn_visibility : btn_hide}

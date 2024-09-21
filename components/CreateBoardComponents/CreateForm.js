@@ -13,6 +13,7 @@ export default function CreateForm() {
 
   const router = useRouter();
 
+  // 유효성 검사 및 formValid 설정
   const validateAndSetFormValid = (name, value) => {
     const newFormData = { ...formData, [name]: value };
     const validationErrors = validateForm(newFormData);
@@ -25,6 +26,7 @@ export default function CreateForm() {
     setFormValid(isFormValid);
   };
 
+  // 입력 변경 처리
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -37,9 +39,15 @@ export default function CreateForm() {
     validateAndSetFormValid(name, value);
   };
 
+  // 최종 submit 시 유효성 검사 추가
   const handleSubmit = async () => {
     const validationErrors = validateForm(formData);
     setErrors(validationErrors);
+
+    // 모든 필드를 'touched'로 설정
+    setTouched({ title: true, content: true });
+
+    // 유효성 검사에 실패하면 return
     if (Object.keys(validationErrors).length > 0) return;
 
     try {
@@ -75,26 +83,32 @@ export default function CreateForm() {
       </div>
       <form id="createForm" className={styles.createForm}>
         <div className={styles.inputContainer}>
-          <label className={styles.formLabel}>*제목</label>
+          <label className={styles.formLabel} htmlFor="title">
+            *제목
+          </label>
           <input
             className={styles.formInput}
             name="title"
             placeholder="제목을 입력해주세요"
             value={formData.title}
             onChange={handleChange}
+            id="title"
           />
           {touched.title && errors.title && (
             <p className={styles.error}>{errors.title}</p>
           )}
         </div>
         <div className={styles.inputContainer}>
-          <label className={styles.formLabel}>*내용</label>
+          <label className={styles.formLabel} htmlFor="content">
+            *내용
+          </label>
           <textarea
             className={styles.formInput}
             name="content"
             placeholder="내용을 입력해주세요"
             value={formData.content}
             onChange={handleChange}
+            id="content"
           />
           {touched.content && errors.content && (
             <p className={styles.error}>{errors.content}</p>

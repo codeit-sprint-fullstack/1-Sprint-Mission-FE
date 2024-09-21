@@ -7,7 +7,7 @@ export function Pagination({
   currentPage,
   onPageChange,
 }) {
-  const totalPages = Math.ceil(totalCount / itemsPerPage);
+  const totalPages = Math.ceil(totalCount / itemsPerPage); // 페이지 수 계산
   const pagesPerGroup = 5;
   const currentGroup = Math.floor((currentPage - 1) / pagesPerGroup);
   const currentGroupPages = Array.from(
