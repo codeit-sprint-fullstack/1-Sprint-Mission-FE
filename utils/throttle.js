@@ -1,20 +1,19 @@
 export function throttle(func, limit) {
   let lastFunc;
   let lastRan;
-  const now = Date.now();
   return function (...args) {
     const context = this;
     if (!lastRan) {
       func.apply(context, args);
-      lastRan = now;
+      lastRan = Date.now();
     } else {
       clearTimeout(lastFunc);
       lastFunc = setTimeout(function () {
-        if (now - lastRan >= limit) {
+        if (Date.now() - lastRan >= limit) {
           func.apply(context, args);
-          lastRan = now;
+          lastRan = Date.now();
         }
-      }, limit - (now - lastRan));
+      }, limit - (Date.now() - lastRan));
     }
   };
 }

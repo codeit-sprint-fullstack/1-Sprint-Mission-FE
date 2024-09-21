@@ -1,42 +1,51 @@
-<<<<<<< HEAD:pages/items.jsx
 import React, { useState } from "react";
-import ItemList from "@/components/ItemComponents/ItemList.jsx";
-import Pagination from "@/components/ItemComponents/Pagination.jsx";
-=======
-import React, { useState, useEffect } from "react";
 import ItemList from "@/components/ItemComponents/ItemList";
 import Pagination from "@/components/ItemComponents/Pagination";
-import { fetchProducts } from "@/utils/productApi";
->>>>>>> parent of 2028e77 (chore: 중고마켓 수정 및 상세 페이지 연결):pages/items.js
 import { useProducts } from "@/hooks/useProducts";
 import styles from "@/styles/items.module.css";
+import { fetchProducts } from "@/utils/productApi";
 
 export default function Items({ initialProducts, initialTotalCount }) {
+  const [keyword, setKeyword] = useState(""); // 검색어 상태
   const {
     products,
-    totalCount,
+    totalPages,
+    totalCount, // totalCount 가져오기
+    itemsPerPage, // itemsPerPage 가져오기
     currentPage,
     handlePageChange,
     handleSortChange,
+    handleKeywordSearch,
     loading,
     error,
-    itemsPerPage,
   } = useProducts(initialProducts, initialTotalCount);
+
+  const handleKeywordChange = (e) => {
+    setKeyword(e.target.value);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleKeywordSearch(keyword);
+    }
+  };
 
   return (
     <>
       <div className={styles.productContainer}>
         <ItemList
           products={products}
-          itemsPerPage={itemsPerPage}
           sortOrder="recent"
+          keyword={keyword}
+          onKeywordChange={handleKeywordChange}
+          onKeyDown={handleKeyDown}
           onSortChange={handleSortChange}
         />
       </div>
-
       <Pagination
-        totalCount={totalCount}
-        itemsPerPage={itemsPerPage}
+        totalPages={totalPages}
+        totalCount={totalCount} // totalCount 전달
+        itemsPerPage={itemsPerPage} // itemsPerPage 전달
         currentPage={currentPage}
         onPageChange={handlePageChange}
       />

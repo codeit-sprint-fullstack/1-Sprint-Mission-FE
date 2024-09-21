@@ -3,7 +3,8 @@ import { ROUTES } from "@/utils/rotues";
 import Image from "next/image";
 import ic_google from "@/images/ic_google.png";
 import ic_kakao from "@/images/ic_kakao.png";
-import styles from "./LoginForm.module.css";
+import styles from "./FormFooter.module.css";
+
 export default function FormFooter() {
   return (
     <>
@@ -18,11 +19,12 @@ export default function FormFooter() {
           </Link>
         </div>
       </div>
+
       <div className={styles.signinContainer}>
         <p className={styles.signinText}>
-          판다마켓이 처음이신가요?{" "}
-          <Link href={ROUTES.SIGNIN} passHref>
-            <span className={styles.signinLink}>회원가입</span>
+          이미 회원이신가요?{" "}
+          <Link href={ROUTES.LOGIN} passHref>
+            <span className={styles.signinLink}>로그인</span>
           </Link>
         </p>
       </div>

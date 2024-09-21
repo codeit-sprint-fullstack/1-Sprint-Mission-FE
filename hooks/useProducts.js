@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { fetchProducts } from "@/utils/productApi";
-import { throttle } from "@/utils/throttle"; // throttle 함수 임포트
 
 export const useProducts = (
   initialProducts,
@@ -13,32 +12,24 @@ export const useProducts = (
   const [itemsPerPage, setItemsPerPage] = useState(initialItemsPerPage);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [orderBy, setOrderBy] = useState("recent"); // Default order
-  const [keyword, setKeyword] = useState(""); // Search keyword
+  const [orderBy, setOrderBy] = useState("recent"); // 정렬 기준 추가
 
-  const calculateTotalPages = (totalCount, itemsPerPage) => {
-    return Math.ceil(totalCount / itemsPerPage);
-  };
-
-  const fetchAndSetProducts = async (
-    newPage,
-    sortOrder,
-    searchKeyword,
-    itemsPerPage
-  ) => {
+  // 페이지 변경 및 정렬 변경 처리 함수
+  const fetchAndSetProducts = async (newPage, sortOrder) => {
     setLoading(true);
     setCurrentPage(newPage);
+
     try {
       const { list: newProducts, totalCount: newTotalCount } =
         await fetchProducts({
           pageSize: itemsPerPage,
           page: newPage,
-          keyword: searchKeyword || keyword,
-          orderBy: sortOrder || orderBy,
+          keyword: "", // 검색어가 필요할 경우 추가 가능
+          orderBy: sortOrder || orderBy, // 정렬 기준 사용
         });
 
       setProducts(newProducts);
-      setTotalCount(newTotalCount); // Set totalCount from the API response
+      setTotalCount(newTotalCount);
     } catch (err) {
       setError("상품을 불러오는 중 에러가 발생했습니다.");
       console.error("Error fetching products:", err);
@@ -47,58 +38,50 @@ export const useProducts = (
     }
   };
 
+  // 페이지 변경 처리 함수
   const handlePageChange = (newPage) => {
-    fetchAndSetProducts(newPage, orderBy, keyword, itemsPerPage);
+    fetchAndSetProducts(newPage);
   };
 
+  // 정렬 기준 변경 처리 함수
   const handleSortChange = (newSortOrder) => {
     setOrderBy(newSortOrder);
-    fetchAndSetProducts(1, newSortOrder, keyword, itemsPerPage);
+    fetchAndSetProducts(currentPage, newSortOrder); // 정렬 기준에 맞게 데이터를 다시 불러옴
   };
 
-  const handleKeywordSearch = (newKeyword) => {
-    setKeyword(newKeyword);
-    fetchAndSetProducts(1, orderBy, newKeyword, itemsPerPage);
-  };
-
-  // 화면 크기에 따라 itemsPerPage 업데이트 (throttle 적용)
+  // 화면 크기별 itemsPerPage 업데이트 함수
   const updateItemsPerPage = () => {
     const screenWidth = window.innerWidth;
-    let newItemsPerPage;
 
     if (screenWidth <= 743) {
-      newItemsPerPage = 4;
+      setItemsPerPage(4);
     } else if (screenWidth <= 1199) {
-      newItemsPerPage = 6;
+      setItemsPerPage(6);
     } else {
-      newItemsPerPage = 10;
+      setItemsPerPage(10);
     }
-
-    setItemsPerPage(newItemsPerPage);
-    fetchAndSetProducts(1, orderBy, keyword, newItemsPerPage);
   };
 
-  const throttledUpdateItemsPerPage = throttle(updateItemsPerPage, 200);
-
   useEffect(() => {
-    throttledUpdateItemsPerPage();
-    window.addEventListener("resize", throttledUpdateItemsPerPage);
+    updateItemsPerPage();
+    window.addEventListener("resize", updateItemsPerPage);
+
+    // 최초 데이터 로드
+    fetchAndSetProducts(currentPage);
 
     return () => {
-      window.removeEventListener("resize", throttledUpdateItemsPerPage);
+      window.removeEventListener("resize", updateItemsPerPage);
     };
-  }, [throttledUpdateItemsPerPage]);
+  }, [itemsPerPage, orderBy]); // itemsPerPage 또는 orderBy가 변경될 때마다 호출
 
   return {
     products,
-    totalCount, // totalCount 포함
-    itemsPerPage, // itemsPerPage 포함
+    totalCount,
     currentPage,
-    totalPages: calculateTotalPages(totalCount, itemsPerPage), // 페이지 수 계산
     loading,
     error,
     handlePageChange,
-    handleSortChange,
-    handleKeywordSearch,
+    handleSortChange, // 정렬 변경 핸들러 반환
+    itemsPerPage,
   };
 };

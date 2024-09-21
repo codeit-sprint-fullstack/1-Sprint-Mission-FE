@@ -3,7 +3,7 @@ import { ROUTES } from "@/utils/rotues";
 import Image from "next/image";
 import ic_google from "@/images/ic_google.png";
 import ic_kakao from "@/images/ic_kakao.png";
-import styles from "./FormFooter.module.css";
+import styles from "./SigninForm.module.css";
 
 export default function FormFooter() {
   return (

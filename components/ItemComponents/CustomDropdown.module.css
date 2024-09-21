@@ -52,7 +52,7 @@
   background-color: #ffffff;
 }
 
-@media (max-width: 743px) {
+@media (max-width: 768px) {
   .custom-dropdown {
     width: auto;
     position: absolute;

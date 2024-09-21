@@ -4,6 +4,8 @@ import Image from "next/image";
 import img_default from "@/images/img_default.png";
 import { MobileSearchBar } from "./MobileSearchBar";
 import { DesktopSearchBar } from "./DesktopSearchBar";
+import Link from "next/link";
+import { ROUTES } from "@/utils/rotues";
 
 export default function ItemList({
   products,
@@ -41,18 +43,22 @@ export default function ItemList({
             const { id, name, price, favoriteCount, images } = item ?? {};
             return (
               <div key={id} className={styles.sellProductItem}>
-                <Image
-                  className={styles.sellProduct}
-                  src={img_default}
-                  alt={name ?? "Product image"}
-                  width={150}
-                  height={150}
-                />
-                <p className={styles.itemName}>{name}</p>
-                <p className={styles.itemPrice}>{`${formatPrice(price)} 원`}</p>
-                <p className={styles.itemFavoriteCnt}>
-                  ♡ {favoriteCount ?? "0"}
-                </p>
+                <Link href={ROUTES.ITEMS_DETAIL(id)}>
+                  <Image
+                    className={styles.sellProduct}
+                    src={img_default}
+                    alt={name ?? "Product image"}
+                    width={150}
+                    height={150}
+                  />
+                  <p className={styles.itemName}>{name}</p>
+                  <p className={styles.itemPrice}>{`${formatPrice(
+                    price
+                  )} 원`}</p>
+                  <p className={styles.itemFavoriteCnt}>
+                    ♡ {favoriteCount ?? "0"}
+                  </p>
+                </Link>
               </div>
             );
           })

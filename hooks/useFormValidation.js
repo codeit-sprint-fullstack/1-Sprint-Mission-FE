@@ -10,12 +10,15 @@ export default function useFormValidation(initialState, validate) {
       ...values,
       [e.target.name]: e.target.value,
     });
+    // 실시간 검사
+    const validationErrors = validate(values);
+    setErrors(validationErrors);
   };
 
   const handleBlur = (e) => {
     setTouched({
       ...touched,
-      [e.target.name]: true,
+      [e.target.name]: true, // 필드가 포커스를 잃으면 true로 설정
     });
   };
 
@@ -24,17 +27,9 @@ export default function useFormValidation(initialState, validate) {
     setErrors(validationErrors);
   }, [values, validate]);
 
-  const handleSubmit = () => {
-    const validationErrors = validate(values);
-    setErrors(validationErrors);
-
-    return Object.keys(validationErrors).length === 0;
-  };
-
   return {
     handleChange,
     handleBlur,
-    handleSubmit, // 제출 시 유효성 검사
     values,
     errors,
     touched,

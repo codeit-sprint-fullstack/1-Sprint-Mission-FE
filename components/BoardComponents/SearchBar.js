@@ -12,6 +12,11 @@ export default function SearchBar({
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
+  const options = [
+    { value: "createdAt", label: "최신순" },
+    { value: "favorite", label: "좋아요순" },
+  ];
+
   const handleOptionClick = (value) => {
     onSortChange(value);
     setIsOpen(false);
@@ -34,23 +39,21 @@ export default function SearchBar({
           onClick={toggleDropdown}
         >
           <span className={styles.customDropdown__text}>
-            {sortOrder === "favorite" ? "좋아요순" : "최신순"}
+            {options.find((option) => option.value === sortOrder)?.label ||
+              "정렬 기준"}
           </span>
         </button>
         {isOpen && (
           <div className={styles.customDropdown__options}>
-            <div
-              className={styles.option}
-              onClick={() => handleOptionClick("createdAt")}
-            >
-              최신순
-            </div>
-            <div
-              className={styles.option}
-              onClick={() => handleOptionClick("favorite")}
-            >
-              좋아요순
-            </div>
+            {options.map((option) => (
+              <div
+                key={option.value}
+                className={styles.option}
+                onClick={() => handleOptionClick(option.value)}
+              >
+                {option.label}
+              </div>
+            ))}
           </div>
         )}
       </div>

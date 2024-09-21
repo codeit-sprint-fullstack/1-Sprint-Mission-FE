@@ -5,6 +5,10 @@ export const CustomDropdown = ({ selectedOption, onOptionChange }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
+  const options = [
+    { value: "recent", label: "최신순" },
+    { value: "favorite", label: "좋아요순" },
+  ];
 
   const handleOptionClick = (value) => {
     onOptionChange(value);
@@ -24,18 +28,15 @@ export const CustomDropdown = ({ selectedOption, onOptionChange }) => {
         </button>
         {isOpen && (
           <div className={styles.customDropdownOptions}>
-            <div
-              className={styles.option}
-              onClick={() => handleOptionClick("recent")}
-            >
-              최신순
-            </div>
-            <div
-              className={styles.option}
-              onClick={() => handleOptionClick("favorite")}
-            >
-              좋아요순
-            </div>
+            {options.map((option) => (
+              <div
+                key={option.value}
+                className={styles.option}
+                onClick={() => handleOptionClick(option.value)}
+              >
+                {option.label}
+              </div>
+            ))}
           </div>
         )}
       </div>

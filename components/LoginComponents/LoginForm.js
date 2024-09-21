@@ -65,7 +65,9 @@ export default function LoginForm() {
         <Image src={logoImg} alt="logo" className={styles.logo} />
       </Link>
       <form className={styles.loginForm} onSubmit={handleSubmit}>
-        <label className={styles.label}>이메일</label>
+        <label className={styles.label} htmlFor="email">
+          이메일
+        </label>
         <input
           className={styles.input}
           type="email"
@@ -74,12 +76,15 @@ export default function LoginForm() {
           value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
+          id="email"
         />
         {touched.email && errors.email && (
           <p className={styles.error}>{errors.email}</p>
         )}
 
-        <label className={styles.label}>비밀번호</label>
+        <label className={styles.label} htmlFor="password">
+          비밀번호
+        </label>
         <div className={styles.passwordContainer}>
           <input
             className={styles.input}
@@ -89,6 +94,7 @@ export default function LoginForm() {
             value={values.password}
             onChange={handleChange}
             onBlur={handleBlur}
+            id="password"
           />
           <Image
             src={isPasswordVisible ? btn_visibility : btn_hide}
