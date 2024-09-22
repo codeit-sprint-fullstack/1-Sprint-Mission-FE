@@ -12,20 +12,27 @@ import styles from '@/styles/FreeBoard.module.css';
 import useArticles from '@/hooks/useArticles';
 
 export const getServerSideProps = async (context) => {
-  const { keyword = '', orderBy = 'recent', page = 1 } = context.query;
+  const {
+    keyword = '',
+    orderBy = 'recent',
+    page = 1,
+    category = 'freeboard',
+  } = context.query;
 
   try {
-    const bestArticles = await fetchFreeBoardBestArticlesApi();
+    const bestArticles = await fetchFreeBoardBestArticlesApi({ category });
     const articles = await fetchFreeBoardArticlesApi({
       keyword,
       orderBy,
       page,
+      category,
     });
 
     return {
       props: {
         bestArticlesData: bestArticles.data,
         initialArticles: articles.data || [],
+        initialCategory: 'freeboard',
       },
     };
   } catch (error) {
@@ -34,12 +41,17 @@ export const getServerSideProps = async (context) => {
       props: {
         bestArticlesData: [],
         initialArticles: [],
+        initialCategory: 'freeboard',
       },
     };
   }
 };
 
-export default function FreeBoardPage({ bestArticlesData, initialArticles }) {
+export default function FreeBoardPage({
+  bestArticlesData,
+  initialArticles,
+  initialCategory,
+}) {
   const [orderBy, setOrderBy] = useState('recent');
   const router = useRouter();
   const { keyword } = router.query;
@@ -47,6 +59,7 @@ export default function FreeBoardPage({ bestArticlesData, initialArticles }) {
   const { articles, loading, hasMore, setPagesValue } = useArticles({
     initialArticles,
     orderBy,
+    category: initialCategory,
   });
 
   useEffect(() => {

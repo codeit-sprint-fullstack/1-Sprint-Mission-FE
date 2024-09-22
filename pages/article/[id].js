@@ -7,6 +7,7 @@ import ArticleDetailInfo from '@/components/ArticleDetail/ArticleDetailInfo';
 import styles from '@/styles/Article.module.css';
 
 import { fetchArticleApi } from '@/utils/api/articleApi.js';
+import { useAuth } from '../../utils/AuthProvider';
 
 export async function getServerSideProps(context) {
   const { id } = context.params;

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import { fetchFreeBoardArticlesApi } from '@/utils/api/articleApi.js';
 
-export default function useArticles({ orderBy, initialArticles }) {
+export default function useArticles({ orderBy, initialArticles, category }) {
   const [articles, setArticles] = useState(initialArticles);
   const [pagesValue, setPagesValue] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -19,6 +19,7 @@ export default function useArticles({ orderBy, initialArticles }) {
         keyword,
         orderBy,
         page,
+        category,
       });
 
       setLoading(false);

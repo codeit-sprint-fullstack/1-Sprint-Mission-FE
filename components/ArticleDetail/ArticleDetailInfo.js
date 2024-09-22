@@ -80,6 +80,8 @@ export default function ArticleDetail({ article }) {
         </div>
       </div>
       <div className={styles.content}>{article.content}</div>
+      <div>{article.images}</div>
+      <Image src={article.image} width={150} height={150} alt='이미지' />
     </>
   );
 }

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import ArticleFormFields from '@/utils/ArticleFormFields';
 
 import { fetchArticleApi, editArticleApi } from '@/utils/api/articleApi.js';
+import { useAuth } from '../../../utils/AuthProvider';
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
@@ -24,9 +25,9 @@ export default function EditArticlePage({ article }) {
   const [titleValue, setTitleValue] = useState(article.title);
   const [contentValue, setContentValue] = useState(article.content);
   const [canSubmit, setCanSubmit] = useState(true);
-
   const router = useRouter();
   const { id } = router.query;
+  useAuth(true);
 
   const handleSubmit = async () => {
     try {

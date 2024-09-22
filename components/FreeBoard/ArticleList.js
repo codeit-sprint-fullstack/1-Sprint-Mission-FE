@@ -41,7 +41,9 @@ export default function ArticleList({ articles }) {
                 </div>
                 <div className={styles.favorite}>
                   <Image src={heartIcon} alt='하트 아이콘' />
-                  <span className={styles.favoriteCount}>188</span>
+                  <span className={styles.favoriteCount}>
+                    {article.favorite}
+                  </span>
                 </div>
               </div>
             </Link>

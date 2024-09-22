@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://sprint-be-k938.onrender.com/comments';
+const baseUrl = 'https://sprint-be-ztdn.onrender.com/comments';
 
 export async function fetchCommentsApi(articleId, cursorId) {
   try {
@@ -22,7 +22,7 @@ export async function postCommentApi(articleId, comment) {
     const res = await axios.post(`${baseUrl}`, {
       content: comment,
       articleId: Number(articleId),
-      userId: '9cda174e-2e9e-4523-97cd-362e85a39ebf',
+      userId: '86d761e4-a9d0-4082-96dd-cf6f2c931673',
     });
 
     return res.data;

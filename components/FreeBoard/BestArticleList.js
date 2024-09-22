@@ -5,6 +5,7 @@ import Image from 'next/image';
 import styles from '@/styles/BestArticleList.module.css';
 import DateFormat from '@/utils/DateFormat.js';
 import useDevice from '@/hooks/useDevice';
+import heartIcon from '@/public/ic_heart.png';
 
 export default function BestArticleList({ articles }) {
   const { bestArticles } = useDevice({ articles });
@@ -26,7 +27,7 @@ export default function BestArticleList({ articles }) {
       <div className={styles.articleList}>
         {bestArticles.map((article) => (
           <div key={article.id} className={styles.list}>
-            <Link href={`/article/${article.id}`} className={styles.link}>
+            <Link href={`/articles/${article.id}`} className={styles.link}>
               <Image src={bestBadge} alt='베스트 뱃지' />
               <div className={styles.main}>
                 <div className={styles.title}>{article.title}</div>
@@ -38,7 +39,19 @@ export default function BestArticleList({ articles }) {
               </div>
 
               <div className={styles.userInfo}>
-                <span className={styles.userName}>{article.user.name}</span>
+                <div className={styles.userInfo}>
+                  <span className={styles.userName}>{article.user.name}</span>
+                  <Image
+                    src={heartIcon}
+                    alt='하트 아이콘'
+                    width={16}
+                    height={16}
+                    className={styles.heartIcon}
+                  />
+                  <span className={styles.favoriteCount}>
+                    {article.favorite}
+                  </span>
+                </div>
                 <span className={styles.date}>
                   <DateFormat createDate={article} />
                 </span>
