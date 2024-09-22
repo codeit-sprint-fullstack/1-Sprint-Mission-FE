@@ -93,6 +93,30 @@ export const deleteProduct = async (productId) => {
   });
 };
 
+// 상품 좋아요 API
+export const likeProduct = async (productId) => {
+  const authToken = localStorage.getItem("accessToken");
+  await apiClient.post(
+    `/products/${productId}/favorite`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    }
+  );
+};
+
+// 상품 좋아요 취소 API
+export const unlikeProduct = async (productId) => {
+  const authToken = localStorage.getItem("accessToken");
+  await apiClient.delete(`/products/${productId}/favorite`, {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  });
+};
+
 /*---------------------게시글 관련 API 호출--------------------*/
 
 export async function fetchArticles({
