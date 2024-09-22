@@ -9,19 +9,25 @@ import {
   fetchProductById,
   fetchCommentsByProductId,
   createCommentForProduct,
+  updateProduct,
+  deleteProduct,
+  likeProduct,
+  unlikeProduct,
 } from "../../api/api"; // 상품 및 댓글 API 호출
 import NoComments from "../../components/NoComments"; // NoComments 컴포넌트 import
 import Spinner from "../../components/Spinner"; // Spinner 컴포넌트 import
+import ConfirmationModal from "../../components/ConfirmationModal"; // 상품 삭제 확인모달 컴포넌트
 
 export default function ProductDetailPage() {
   const router = useRouter();
   const { itemId } = router.query; // URL에서 itemId를 추출
-  console.log("ID from router:", itemId);
+  console.log("itemId:", itemId);
   const [product, setProduct] = useState(null);
   const [comments, setComments] = useState([]);
   const [filteredComments, setFilteredComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   // 상품 정보를 불러오는 함수
   const fetchProduct = async () => {
@@ -40,12 +46,8 @@ export default function ProductDetailPage() {
     try {
       if (!itemId) return;
       const response = await fetchCommentsByProductId(itemId);
-      const allComments = response.list.map((comment) => ({
-        ...comment,
-        productId: itemId, // 상품 ID 추가
-      }));
-      setComments(allComments);
-      filterComments(allComments);
+      setComments(response.list);
+      filterComments(response.list);
     } catch (err) {
       console.error("댓글 불러오기 오류:", err);
     }
@@ -63,17 +65,40 @@ export default function ProductDetailPage() {
   const handleCommentSubmit = async (commentData) => {
     try {
       await createCommentForProduct(itemId, commentData); // API 호출
-      const allComments = await fetchCommentsByProductId(itemId); // 댓글 목록 재조회
-      setComments(allComments);
-      filterComments(allComments);
+      fetchCommentsData(); // 댓글 목록 재조회
     } catch (error) {
       console.error("댓글 등록 실패:", error);
     }
   };
 
-  // 댓글 수정 및 삭제 후 상태 업데이트 함수
-  const handleCommentUpdate = async () => {
-    await updateComments();
+  // 상품 삭제 핸들러
+  const handleDeleteProduct = async () => {
+    try {
+      await deleteProduct(itemId);
+      router.push("/items"); // 목록 페이지로 리다이렉트
+    } catch (error) {
+      console.error("상품 삭제 실패:", error);
+    }
+  };
+
+  // 상품 좋아요 핸들러
+  const handleLikeProduct = async () => {
+    try {
+      await likeProduct(itemId);
+      fetchProduct(); // 상품 정보 재조회
+    } catch (error) {
+      console.error("상품 좋아요 실패:", error);
+    }
+  };
+
+  // 상품 좋아요 취소 핸들러
+  const handleUnlikeProduct = async () => {
+    try {
+      await unlikeProduct(itemId);
+      fetchProduct(); // 상품 정보 재조회
+    } catch (error) {
+      console.error("상품 좋아요 취소 실패:", error);
+    }
   };
 
   useEffect(() => {
@@ -95,7 +120,11 @@ export default function ProductDetailPage() {
       <ItemsPageHeader />
       <main className={styles.main}>
         {/* 상품 상세 컴포넌트에 productId 전달 */}
-        <ProductDetail productId={itemId} />
+        <ProductDetail
+          productId={itemId}
+          onLike={handleLikeProduct}
+          onUnlike={handleUnlikeProduct}
+        />
         <div className={styles.commentsList}>
           {filteredComments.length === 0 ? (
             <NoComments />
@@ -115,6 +144,17 @@ export default function ProductDetailPage() {
         >
           목록으로 돌아가기 ↩
         </button>
+        <button
+          className={styles.DeleteBtn}
+          onClick={() => setShowConfirmModal(true)}
+        >
+          삭제
+        </button>
+        <ConfirmationModal
+          isOpen={showConfirmModal}
+          onConfirm={handleDeleteProduct}
+          onCancel={() => setShowConfirmModal(false)}
+        />
       </main>
       <Footer />
     </div>
