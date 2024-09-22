@@ -1,7 +1,6 @@
 .itemContainer {
   display: flex;
   margin-top: 101px;
-  grid-column: 2;
   gap: 24px;
   width: 100%;
 }

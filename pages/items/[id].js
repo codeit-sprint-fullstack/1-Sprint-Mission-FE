@@ -1,12 +1,19 @@
 import { fetchProduct } from "@/utils/productApi";
 import ItemInfo from "@/components/ItemDetailComponents/ItemInfo";
 import styles from "./[id].module.css";
+import Link from "next/link";
+import { ROUTES } from "@/utils/rotues";
 
 export default function productDetail(product) {
   return (
-    <div className={styles.container}>
-      <ItemInfo product={product} />
-    </div>
+    <>
+      <div className={styles.container}>
+        <ItemInfo product={product} />
+        <Link href={ROUTES.ITEMS} passHref>
+          <button className={styles.backBtn}>목록으로 돌아가기</button>
+        </Link>
+      </div>
+    </>
   );
 }
 

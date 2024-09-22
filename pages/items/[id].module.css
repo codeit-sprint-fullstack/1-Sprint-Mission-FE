@@ -1,4 +1,24 @@
 .container {
-  display: grid;
-  grid-template-columns: 1fr 1200px 1fr;
+  display: flex;
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  flex-direction: column;
+}
+.backBtn {
+  width: 240px;
+  height: 48px;
+  padding: 12px 64px 12px 32px;
+  border-radius: 40px;
+  background-color: #3692ff;
+  color: #f3f4f6;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  background-image: url("../../images/ic_back.png");
+  background-repeat: no-repeat;
+  background-position: 177px;
 }
