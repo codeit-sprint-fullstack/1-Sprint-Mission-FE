@@ -54,7 +54,7 @@ export default function LogInPage() {
         password: data.password,
       });
 
-      router.push(`/mypage`);
+      router.push(`/fleamarket`);
     } catch {}
   };
 
