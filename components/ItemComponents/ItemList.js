@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { formatPrice } from "@/utils/price";
 import styles from "./ItemList.module.css";
-import Image from "next/image";
 import img_default from "@/images/img_default.png";
 import { MobileSearchBar } from "./MobileSearchBar";
 import { DesktopSearchBar } from "./DesktopSearchBar";
@@ -45,12 +44,10 @@ export default function ItemList({
             return (
               <div key={id} className={styles.sellProductItem}>
                 <Link href={ROUTES.ITEMS_DETAIL(id)}>
-                  <Image
+                  <img
                     className={styles.sellProduct}
-                    src={img_default}
+                    src={images ? images : img_default}
                     alt={name ?? "Product image"}
-                    width={150}
-                    height={150}
                   />
                   <p className={styles.itemName}>{name}</p>
                   <p className={styles.itemPrice}>{`${formatPrice(

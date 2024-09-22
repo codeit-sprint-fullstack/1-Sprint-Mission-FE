@@ -7,11 +7,12 @@ import { fetchProducts } from "@/utils/productApi";
 
 export default function Items({ initialProducts, initialTotalCount }) {
   const [keyword, setKeyword] = useState(""); // 검색어 상태
+
   const {
     products,
     totalPages,
-    totalCount, // totalCount 가져오기
-    itemsPerPage, // itemsPerPage 가져오기
+    totalCount,
+    itemsPerPage,
     currentPage,
     handlePageChange,
     handleSortChange,
@@ -30,6 +31,9 @@ export default function Items({ initialProducts, initialTotalCount }) {
     }
   };
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
   return (
     <>
       <div className={styles.productContainer}>
@@ -44,8 +48,8 @@ export default function Items({ initialProducts, initialTotalCount }) {
       </div>
       <Pagination
         totalPages={totalPages}
-        totalCount={totalCount} // totalCount 전달
-        itemsPerPage={itemsPerPage} // itemsPerPage 전달
+        totalCount={totalCount}
+        itemsPerPage={itemsPerPage}
         currentPage={currentPage}
         onPageChange={handlePageChange}
       />
