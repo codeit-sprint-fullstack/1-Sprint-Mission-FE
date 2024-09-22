@@ -13,6 +13,7 @@ console.log("API URL:", process.env.NEXT_PUBLIC_AUTH_API_URL);
 // 기본 URL 및 API 엔드포인트 설정
 const articlesUrl = "/articles";
 const commentsUrl = "/board/comments";
+const marketCommentsUrl = "/products"; // 중고마켓 댓글
 const authUrl = "/auth"; // 로그인 및 회원가입 엔드포인트
 
 /*----------------------상품 관련 API ---------------------------*/
@@ -187,44 +188,93 @@ export function filterPostsByName(posts, searchPosts) {
 // 중고마켓 상품 상세페이지 댓글 목록 조회 API
 export async function fetchCommentsByProductId(productId, limit = 3) {
   try {
-    const response = await apiClient.get(`/products/${productId}/comments`, {
-      params: { limit },
-    });
+    const response = await apiClient.get(
+      `${marketCommentsUrl}/${productId}/comments`,
+      {
+        params: { limit },
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("댓글 목록 조회 실패:", error);
     throw error;
   }
 }
-
 // 중고마켓 상품 상세페이지 댓글 등록 API
 export const createCommentForProduct = async (productId, commentData) => {
   const requestData = {
-    content: commentData.content, // content 필드만 포함
+    content: commentData.content,
   };
 
-  // 인증 토큰을 localStorage에서 가져오는 경우
   const authToken = localStorage.getItem("accessToken");
 
   try {
     const response = await apiClient.post(
-      `/products/${productId}/comments`,
+      `${marketCommentsUrl}/${productId}/comments`,
       requestData,
       {
         headers: {
-          Authorization: `Bearer ${authToken}`, // 토큰을 Authorization 헤더에 추가
+          Authorization: `Bearer ${authToken}`,
         },
       }
     );
     return response.data;
   } catch (error) {
-    console.error(
-      "댓글 등록 실패:",
-      error.response ? error.response.data : error.message
-    );
+    console.error("댓글 등록 실패:", error);
     throw error;
   }
 };
+
+// 중고마켓 댓글 수정 API
+export const updateMarketComment = async (
+  productId,
+  commentId,
+  commentData
+) => {
+  const requestData = {
+    content: commentData.content,
+  };
+
+  const authToken = localStorage.getItem("accessToken");
+
+  try {
+    const response = await apiClient.put(
+      `${marketCommentsUrl}/${productId}/comments/${commentId}`,
+      requestData,
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("댓글 수정 실패:", error);
+    throw error;
+  }
+};
+
+// 중고마켓 댓글 삭제 API
+export const deleteMarketComment = async (productId, commentId) => {
+  const authToken = localStorage.getItem("accessToken");
+
+  try {
+    const response = await apiClient.delete(
+      `${marketCommentsUrl}/${productId}/comments/${commentId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("댓글 삭제 실패:", error);
+    throw error;
+  }
+};
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 
 // 자유게시판 페이지 댓글 조회 API
 export async function fetchComments() {
