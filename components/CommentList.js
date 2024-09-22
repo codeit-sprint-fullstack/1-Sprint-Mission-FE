@@ -2,7 +2,7 @@
 import styles from "@/styles/CommentList.module.css";
 import { useState } from "react";
 import Image from "next/image";
-import axios from "@/pages/api/axios";
+import axios from "@/lib/axios.js";
 
 export default function Comment({ comment }) {
   const [isOpen, setIsOpen] = useState(false);

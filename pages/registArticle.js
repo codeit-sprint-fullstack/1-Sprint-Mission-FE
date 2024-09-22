@@ -1,6 +1,6 @@
 import styles from "@/styles/registPage.module.css";
 import { useState, useEffect } from "react";
-import axios from "@/pages/api/axios";
+import axios from "@/lib/axios.js";
 import { useRouter } from "next/router";
 
 export default function RegisterArticle() {
