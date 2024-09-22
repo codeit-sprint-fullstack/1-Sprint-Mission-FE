@@ -5,7 +5,7 @@ import kebab from "@/images/ic_kebab.png";
 import { timeAgo } from "@/utils/timeAgo";
 import { useState } from "react";
 
-export default function Chat({ comments }) {
+export default function Chat({ comments, onEdit }) {
   const [isOpen, setIsOpen] = useState(null);
 
   const toggleDropdown = (id) => {
@@ -13,8 +13,8 @@ export default function Chat({ comments }) {
   };
 
   const handleEdit = (comment) => {
-    console.log("Editing comment:", comment);
     setIsOpen(null);
+    onEdit(comment);
   };
 
   const handleDelete = (id) => {
@@ -32,6 +32,7 @@ export default function Chat({ comments }) {
               src={kebab}
               className={styles.kebab}
               onClick={() => toggleDropdown(comment.id)}
+              alt="kebab"
             />
           </div>
           {isOpen === comment.id && (
@@ -51,7 +52,11 @@ export default function Chat({ comments }) {
             </div>
           )}
           <div className={styles.profileContainer}>
-            <Image src={profile} className={styles.profile} alt="profile" />
+            <Image
+              src={profile}
+              className={styles.profile}
+              alt="profile image"
+            />
             <div className={styles.profileInfo}>
               <p className={styles.name}>{comment.writer.nickname}</p>
               <p className={styles.date}>{timeAgo(comment.createdAt)}</p>

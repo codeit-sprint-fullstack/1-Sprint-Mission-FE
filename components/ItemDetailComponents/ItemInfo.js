@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./ItemInfo.module.css";
 import defaultImage from "@/images/img_default.png";
 import { formatPrice } from "@/utils/price";
+import { addFavorite, removeFavorite } from "@/utils/productApi";
 import ic_profile from "@/images/ic_profile.png";
 import ic_active_favorite from "@/images/ic_active_favorite.png";
 import ic_empty_favorite from "@/images/ic_empty_favorite.png";
@@ -13,17 +14,35 @@ import { ROUTES } from "@/utils/rotues";
 export default function ItemInfo(product) {
   const item = product.product;
   const [isOpen, setIsOpen] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(item.isFavorite);
+  const [isFavoriteCount, setIsFavoriteCount] = useState(item.favoriteCount);
+
   const toggleDropdown = () => setIsOpen(!isOpen);
   const handleDelete = async (id) => {
     // TODO: Delete item logic
   };
 
+  const handleFavoriteToggle = async () => {
+    try {
+      if (isFavorite) {
+        await removeFavorite(item.id);
+        setIsFavorite(false);
+        setIsFavoriteCount(isFavoriteCount - 1);
+      } else {
+        await addFavorite(item.id);
+        setIsFavorite(true);
+        setIsFavoriteCount(isFavoriteCount + 1);
+      }
+    } catch (error) {
+      console.error("Error updating favorite status:", error);
+    }
+  };
   return (
     <div className={styles.itemContainer}>
       <img
         className={styles.itemImg}
         src={item.images?.[0] || defaultImage}
-        alt="product image"
+        alt="productImage"
       />
       <div className={styles.infoContainer}>
         <div className={styles.infoName}>
@@ -32,6 +51,7 @@ export default function ItemInfo(product) {
             className={styles.kebab}
             src={ic_kebab}
             onClick={toggleDropdown}
+            alt="kebab"
           />
         </div>
         {isOpen && (
@@ -60,7 +80,11 @@ export default function ItemInfo(product) {
           ))}
         </div>
         <div className={styles.userContainer}>
-          <Image src={ic_profile} className={styles.profile} />
+          <Image
+            src={ic_profile}
+            className={styles.profile}
+            alt="profile image"
+          />
           <div>
             <p className={styles.ownerId}>총명한판다{item.ownerId}</p>
             <p className={styles.createdAt}>
@@ -69,20 +93,22 @@ export default function ItemInfo(product) {
           </div>
           <div className={styles.favorite}>
             <div className={styles.favoriteInfo}>
-              {item.isFavorite ? (
+              {isFavorite ? (
                 <Image
                   className={styles.ic_favorite}
                   src={ic_active_favorite}
                   alt="active favorite"
+                  onClick={handleFavoriteToggle}
                 />
               ) : (
                 <Image
                   className={styles.ic_favorite}
                   src={ic_empty_favorite}
                   alt="empty favorite"
+                  onClick={handleFavoriteToggle}
                 />
               )}
-              <p className={styles.favoriteCount}>{item.favoriteCount}</p>
+              <p className={styles.favoriteCount}>{isFavoriteCount}</p>
             </div>
           </div>
         </div>
