@@ -153,8 +153,12 @@ export default function LogInPage() {
       <div className={styles.otherLogin}>
         <span>간편 로그인하기</span>
         <div className={styles.snsIcon}>
-          <Image src={googleIcon} alt='구글 로그인' />
-          <Image src={kakaoIcon} alt='카카오 로그인' />
+          <Link href='https://www.google.com/'>
+            <Image src={googleIcon} alt='구글 로그인' />
+          </Link>
+          <Link href='https://www.kakaocorp.com/page'>
+            <Image src={kakaoIcon} alt='카카오 로그인' />
+          </Link>
         </div>
       </div>
       <div className={styles.footer}>
