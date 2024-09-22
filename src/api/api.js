@@ -83,6 +83,16 @@ export function filterProductsByName(products, query) {
   );
 }
 
+// 상품 삭제 API
+export const deleteProduct = async (productId) => {
+  const authToken = localStorage.getItem("accessToken");
+  await apiClient.delete(`/products/${productId}`, {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  });
+};
+
 /*---------------------게시글 관련 API 호출--------------------*/
 
 export async function fetchArticles({
