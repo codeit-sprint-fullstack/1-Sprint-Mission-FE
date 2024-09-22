@@ -1,5 +1,9 @@
 import { useState, useCallback } from "react";
-import { fetchComments, createComments, updateComments } from "@/utils/chatApi";
+import {
+  fetchComments,
+  createComments,
+  updateComments,
+} from "@/utils/articleChatApi";
 
 export function useComments(
   articleId,

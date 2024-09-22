@@ -1,10 +1,10 @@
 import { apiHandler } from "./apiHandler";
 
-const baseUrl = "https://thrift-shop.onrender.com/articles";
+const baseUrl = "https://thrift-shop.onrender.com";
 
 export async function fetchArticle(id) {
   return apiHandler(async () => {
-    const res = await fetch(`${baseUrl}/${id}`);
+    const res = await fetch(`${baseUrl}/articles/${id}`);
     if (!res.ok) {
       throw new Error("Failed to fetch article");
     }
@@ -15,7 +15,7 @@ export async function fetchArticle(id) {
 export async function fetchArticles({ sort, keyword, page, size }) {
   return apiHandler(async () => {
     const res = await fetch(
-      `${baseUrl}?sort=${sort}&search=${keyword}&page=${page}&size=${size}`
+      `${baseUrl}/articles?sort=${sort}&search=${keyword}&page=${page}&size=${size}`
     );
     if (!res.ok) {
       throw new Error("Failed to fetch articles");
@@ -26,7 +26,7 @@ export async function fetchArticles({ sort, keyword, page, size }) {
 
 export async function fetchBestArticles(size) {
   return apiHandler(async () => {
-    const res = await fetch(`${baseUrl}?sort=createdAt&size=${size}`);
+    const res = await fetch(`${baseUrl}/articles?sort=createdAt&size=${size}`);
 
     if (!res.ok) {
       throw new Error("Failed to fetch best articles");
@@ -37,7 +37,7 @@ export async function fetchBestArticles(size) {
 
 export async function updateArticle(id, formData) {
   return apiHandler(async () => {
-    const res = await fetch(`${baseUrl}/${id}`, {
+    const res = await fetch(`${baseUrl}/articles/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +54,7 @@ export async function updateArticle(id, formData) {
 
 export async function deleteArticle(id) {
   return apiHandler(async () => {
-    const res = await fetch(`${baseUrl}/${id}`, {
+    const res = await fetch(`${baseUrl}/articles/${id}`, {
       method: "DELETE",
     });
 
@@ -71,7 +71,7 @@ export async function deleteArticle(id) {
 
 export async function createArticle(formData) {
   return apiHandler(async () => {
-    const res = await fetch(baseUrl, {
+    const res = await fetch(`${baseUrl}/articles`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

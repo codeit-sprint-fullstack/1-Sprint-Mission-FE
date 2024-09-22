@@ -11,11 +11,9 @@ import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 
 export default function ItemInfo(product) {
-  const item = product.product.product;
+  const item = product.product;
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleDropdown = () => setIsOpen(!isOpen);
-
   const handleDelete = async (id) => {
     // TODO: Delete item logic
   };

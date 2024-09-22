@@ -1,0 +1,57 @@
+.container {
+  width: 1200px;
+  .item {
+    width: 100%;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0 0 12px 0;
+    margin-bottom: 24px;
+    position: relative;
+    .contentContainer {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      .content {
+        font-size: 14px;
+        font-weight: 400;
+        color: #1f2937;
+      }
+    }
+    .profileContainer {
+      display: flex;
+      gap: 8px;
+      .profile {
+        width: 32px;
+        height: 32px;
+      }
+      .name {
+        font-size: 12px;
+        font-weight: 400;
+        color: #4b5563;
+      }
+      .date {
+        font-size: 12px;
+        font-weight: 400;
+        color: #9ca3af;
+      }
+    }
+  }
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 35px;
+  width: 139px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #ffffff;
+  .dropdownItem {
+    color: #6b7280;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    padding: 16px 0 12px 0;
+    height: 46px;
+    cursor: pointer;
+  }
+}

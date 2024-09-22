@@ -1,10 +1,12 @@
 import { apiHandler } from "./apiHandler";
 
-const baseUrl = "https://thrift-shop.onrender.com/articleComments";
+const baseUrl = "https://thrift-shop.onrender.com";
 
 export async function fetchComments(id, page, size) {
   return apiHandler(async () => {
-    const response = await fetch(`${baseUrl}/${id}?page=${page}&size=${size}`);
+    const response = await fetch(
+      `${baseUrl}/articleComments/${id}?page=${page}&size=${size}`
+    );
 
     if (!response.ok) {
       throw new Error("Failed to fetch comments");
@@ -17,7 +19,7 @@ export async function fetchComments(id, page, size) {
 
 export async function deleteComments(id) {
   return apiHandler(async () => {
-    const response = await fetch(`${baseUrl}/${id}`, {
+    const response = await fetch(`${baseUrl}/articleComments/${id}`, {
       method: "DELETE",
     });
     if (!response.ok) {
@@ -31,7 +33,7 @@ export async function createComments(id, formData) {
   return apiHandler(async () => {
     const dataToSend = { ...formData };
 
-    const response = await fetch(`${baseUrl}/${id}`, {
+    const response = await fetch(`${baseUrl}/articleComments/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +52,7 @@ export async function createComments(id, formData) {
 export async function updateComments(id, formData) {
   return apiHandler(async () => {
     const dataToSend = { ...formData };
-    const response = await fetch(`${baseUrl}/${id}`, {
+    const response = await fetch(`${baseUrl}/articleComments/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

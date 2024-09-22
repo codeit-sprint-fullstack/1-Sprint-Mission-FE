@@ -4,7 +4,7 @@ import BoardChat from "@/components/BoardDetailComponents/BoardChat";
 import styles from "./[id].module.css";
 import Link from "next/link";
 import { fetchArticle } from "@/utils/articleApi";
-import { fetchComments } from "@/utils/chatApi";
+import { fetchComments } from "@/utils/articleChatApi";
 import { ROUTES } from "@/utils/rotues";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

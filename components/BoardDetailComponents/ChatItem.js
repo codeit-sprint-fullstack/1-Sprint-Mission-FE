@@ -4,7 +4,7 @@ import kebab from "@/images/ic_kebab.png";
 import reply_empty from "@/images/img_reply_empty.png";
 import styles from "./ChatItem.module.css";
 import { useState } from "react";
-import { deleteComments } from "@/utils/chatApi";
+import { deleteComments } from "@/utils/articleChatApi";
 import { timeAgo } from "@/utils/timeAgo";
 
 export default function ChatItem({ comments, onEdit }) {
