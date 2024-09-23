@@ -26,8 +26,14 @@
   border-radius: 8px;
   font-weight: 600;
   font-size: 16px;
-  color: #F3F4F6;
-  background-color: #9CA3AF;
+  color: #f3f4f6;
+  background-color: #3692ff;
+}
+
+/* button disabled 이용 */
+.postButton:disabled {
+  cursor: default;
+  background-color: #9ca3af;
 }
 
 .inputContainer {
@@ -45,11 +51,11 @@
 }
 
 .inputHeader {
-  font-weight: 700;
-  font-size: 18px;
+  font-weight: 600;
+  font-size: 16px;
 }
 
-.inputTitle{
+.inputTitle {
   width: 1200px;
   height: 56px;
 }

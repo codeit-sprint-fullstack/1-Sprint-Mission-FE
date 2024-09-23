@@ -1,8 +1,21 @@
 import Link from "next/link";
 import styles from "./Article.module.css";
 import ArticleList from "./ArticleList";
+import Search from "./Search";
+import DropDown from "./DropDown";
+import { useState } from "react";
 
 export default function Article({ articles }) {
+  const [filteredArticles, setFilteredArticles] = useState(articles);
+
+  // 검색 기능 구현(자세하게 알아놓기)
+  const handleSearch = (keyword) => {
+    const filtered = articles.filter((article) =>
+      article.title.toLowerCase().includes(keyword.toLowerCase())
+    );
+    setFilteredArticles(filtered);
+  };
+
   return (
     <div className={styles.article}>
       <div className={styles.container}>
@@ -12,11 +25,11 @@ export default function Article({ articles }) {
         </Link>
       </div>
       <div className={styles.searchContainer}>
-        {/* 서치 컴포넌트 제작 후 여기 투입 */}
-        {/* DropDown 컴포넌트 제작 후 여기 투입 */}
+        <Search onSearch={handleSearch} />
+        <DropDown />
       </div>
       <div>
-        <ArticleList articles={articles} />
+        <ArticleList articles={filteredArticles} />
       </div>
     </div>
   );

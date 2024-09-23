@@ -28,3 +28,8 @@
   font-weight: 600;
   border-style: none;
 }
+
+.searchContainer {
+  display: flex;
+  gap: 16px;
+}

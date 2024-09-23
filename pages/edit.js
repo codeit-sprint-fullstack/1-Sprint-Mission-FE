@@ -18,7 +18,7 @@ export default function Post() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/articles", {
+      const res = await axios.patch("/articles", {
         title: formData.title,
         content: formData.content,
       });
@@ -34,9 +34,9 @@ export default function Post() {
   return (
     <form className={styles.post} onSubmit={handleSubmit}>
       <div className={styles.titleContainer}>
-        <div className={styles.postHeader}>게시글 쓰기</div>
+        <div className={styles.postHeader}>게시글 수정</div>
         <button className={styles.postButton} type="submit" disabled={isValid}>
-          등록
+          수정
         </button>
       </div>
       <div className={styles.inputContainer}>
