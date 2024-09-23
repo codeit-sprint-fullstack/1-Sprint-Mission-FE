@@ -22,6 +22,13 @@ export const productKey = {
   comments: (productId) => [...productKey.detail(productId), "comments"],
 };
 
+export const userKey = {
+  all: ["users"],
+  detail: (userId) => [...userKey.all, userId],
+  products: () => [...userKey.detail(), "product"],
+  product: (productId) => [...userKey.products(), productId],
+};
+
 export const PAGE_SIZE = {
   DEFAULT: 10,
 };

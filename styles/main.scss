@@ -20,7 +20,10 @@ textarea {
   font-weight: 400;
   color: g.$grey-400;
 }
-
+section,
+article {
+  width: 100%;
+}
 h2 {
   color: g.$grey-900;
   @include g.font(20, 700);

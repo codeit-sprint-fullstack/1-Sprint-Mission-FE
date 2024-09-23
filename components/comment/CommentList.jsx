@@ -63,9 +63,9 @@ export default function CommentList({ idPath, isArticle }) {
         {isFetchingNextPage ? (
           <Loader msg="더 불러오는중" />
         ) : hasNextPage ? (
-          <Loader msg="새 게시물 불러오는 중" />
+          <Loader msg="새 댓글 불러오는 중" />
         ) : (
-          <Message msg="더 불러올 게시물이 없습니다" />
+          <Message msg="더 불러올 댓글이 없습니다" />
         )}
       </div>
     </>

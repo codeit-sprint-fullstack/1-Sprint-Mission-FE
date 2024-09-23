@@ -48,7 +48,7 @@ export default function ArticleForm({
         className={styles.ArticleForm}
       >
         <div className={styles["top-bar"]}>
-          <h2>{heading}</h2>
+          <h1>{heading}</h1>
           <Button type="submit" variant="primary" disabled={!isValid}>
             등록
           </Button>

@@ -27,7 +27,7 @@ export default function ImageContainer({
         "--width": width,
         "--height": height,
         "--radius": radius,
-        "--border-color": borderColor,
+        "--borderColor": borderColor,
       }}
     >
       <Image

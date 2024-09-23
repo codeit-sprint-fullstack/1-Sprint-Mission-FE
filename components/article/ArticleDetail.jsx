@@ -1,9 +1,8 @@
-import Image from "next/image";
-import { formatDate, formatLikes } from "@/utils/formatFn";
+import { formatDate } from "@/utils/formatFn";
 import ProfileImg from "@/components/ui/ProfileImg";
 import KebabMenu from "@/components/ui/KebabMenu";
-import inactiveHeart from "../../public/assets/icons/ic_heart_inactive.svg";
 import styles from "./ArticleDetail.module.scss";
+import LikeButton from "../user/LikeButton";
 
 export default function ArticleDetail({ article }) {
   const { writer } = article;
@@ -25,10 +24,7 @@ export default function ArticleDetail({ article }) {
 
         <div className={styles["vertical-line"]}></div>
 
-        <button className={styles.likes}>
-          <Image src={inactiveHeart} alt="heart icon" width={32} height={32} />
-          <span>{formatLikes(article.likeCount)}</span>
-        </button>
+        <LikeButton data={article} />
       </div>
       <p className={styles.bottom}>{article.content}</p>
     </article>

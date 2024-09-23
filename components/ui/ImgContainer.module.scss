@@ -1,15 +1,13 @@
 @use "@/styles/globals/shared" as g;
 
 .container {
-  position: relative;
-  aspect-ratio: 1/1;
-  background-color: #fff;
-  max-width: var(--width);
-  width: 100%;
-  height: var(--height);
-  border-radius: var(--radius);
-  border: 1px solid var(--border-color);
-
+  @include g.imgContainer(
+    $width: var(--width),
+    $height: var(--height),
+    $radius: var(--radius),
+    $borderColor: var(--borderColor)
+  );
+  overflow: hidden;
   img {
     width: 100%;
     height: auto;

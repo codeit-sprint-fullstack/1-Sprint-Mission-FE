@@ -5,7 +5,7 @@ import Button from "../ui/Button";
 import { FormProvider, useForm } from "react-hook-form";
 import { useCreateComment } from "@/service/mutations";
 
-export default function CommentForm({ idPath }) {
+export default function CommentForm({ idPath, isArticle }) {
   const formMethods = useForm();
 
   const {
@@ -15,7 +15,7 @@ export default function CommentForm({ idPath }) {
   } = formMethods;
 
   const { mutate } = useCreateComment(idPath);
-
+  const heading = isArticle ? "댓글달기" : "문의하기";
   const handleNewCommentSubmit = (data) => {
     const newComment = { content: data["create-comment-content"] };
     mutate(newComment);
@@ -31,7 +31,7 @@ export default function CommentForm({ idPath }) {
         className={styles.CommentForm}
         onSubmit={handleSubmit(handleResetAfterSubmit)}
       >
-        <h3 className={styles["CommentForm-heading"]}>댓글달기</h3>
+        <h3 className={styles["CommentForm-heading"]}>{heading}</h3>
         <TextArea
           placeholder="댓글을 입력해주세요"
           validations={COMMENT.CONTENT}

@@ -14,21 +14,4 @@
     @include g.flex-box(row, space-between, center);
     width: 100%;
   }
-
-  .bottom {
-    @include g.flex-box(row, center, center, 8px);
-    align-self: flex-start;
-
-    &-right {
-      @include g.font(12, 400);
-
-      p {
-        color: g.$grey-600;
-        margin-bottom: 4px;
-      }
-      time {
-        color: g.$grey-400;
-      }
-    }
-  }
 }

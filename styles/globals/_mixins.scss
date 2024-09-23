@@ -3,7 +3,12 @@
   font-weight: $weight;
 }
 
-@mixin flex-box($direction: row, $justify: center, $align: center, $gap: 0) {
+@mixin flex-box(
+  $direction: row,
+  $justify: flex-start,
+  $align: flex-start,
+  $gap: 0
+) {
   display: flex;
   flex-direction: $direction;
   justify-content: $justify;
@@ -40,5 +45,23 @@
   color: $text-color;
   &:hover {
     color: lighten($text-color, 30%);
+  }
+}
+
+@mixin line-horizontal($color: #e5e7eb) {
+  width: 100%;
+  border-bottom: 1px solid $color;
+}
+
+@mixin imgContainer($width, $height, $radius, $borderColor) {
+  position: relative;
+  aspect-ratio: 1/1;
+  background-color: #fff;
+  max-width: $width;
+  width: 100%;
+  height: $height;
+  border-radius: $radius;
+  @if $borderColor != transparent {
+    border: 1px solid #e5e7eb;
   }
 }

@@ -1,0 +1,51 @@
+@use "@/styles/globals/shared" as g;
+
+.ProductDetail {
+  @include g.flex-box(row, space-between, flex-start, 16px);
+  height: 486px;
+  .details {
+    width: 100%;
+    height: 100%;
+    @include g.flex-box($direction: column, $gap: 24px);
+    .title {
+      width: 100%;
+      color: g.$grey-800;
+      @include g.flex-box(row, space-between, center);
+      h1 {
+        @include g.font(24, 600);
+      }
+    }
+    .price {
+      @include g.font(40, 600);
+      color: g.$grey-800;
+    }
+    .description {
+      @include g.flex-box(column, center, flex-start, 16px);
+      h2 {
+        @include g.font(16, 600);
+        color: g.$grey-600;
+      }
+      p {
+        color: g.$grey-600;
+      }
+      .tags {
+        @include g.flex-box(row, center, center, 8px);
+        li {
+          background-color: g.$grey-100;
+          border-radius: 26px;
+          padding: 5px 16px;
+        }
+      }
+    }
+
+    .writer {
+      width: 100%;
+      @include g.flex-box(row, space-between, center);
+      align-self: flex-end;
+    }
+  }
+}
+
+.line {
+  @include g.line-horizontal();
+}

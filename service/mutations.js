@@ -8,6 +8,7 @@ import { articleKey, commentKey, productKey } from "@/variables/queryKeys";
 import { useRouter } from "next/router";
 import { useParams, usePathname } from "next/navigation";
 import { deleteCommentById, updateCommentById } from "./api/comments";
+import { createProductComment, deleteProductById } from "./api/product";
 
 export function useCreateArticle() {
   const queryClient = useQueryClient();
@@ -28,14 +29,19 @@ export function useCreateArticle() {
   });
 }
 
-export function useCreateComment(id) {
+export function useCreateComment({ idPath, whichId }) {
   const queryClient = useQueryClient();
+  const queryKey =
+    whichId === "article" ? articleKey.comments : productKey.comments;
+  const apiFunction =
+    whichId === "article" ? createArticleComment : createProductComment;
+
   return useMutation({
-    mutationFn: (data) => createArticleComment(id, data),
+    mutationFn: (data) => apiFunction(idPath, data),
     onSuccess: () => {
       console.log("successMutation: create an comment");
       queryClient.invalidateQueries({
-        queryKey: articleKey.comments(id),
+        queryKey: queryKey(idPath),
       });
     },
     onError: (error) => {
@@ -56,6 +62,9 @@ export function useDeleteMutation({ entity, onModalClose }) {
   } else if (entity === "article") {
     queryKey = articleKey.details();
     deleteApi = deleteArticleById;
+  } else if (entity == "product") {
+    queryKey = productKey.details();
+    deleteApi = deleteProductById;
   }
 
   return useMutation({

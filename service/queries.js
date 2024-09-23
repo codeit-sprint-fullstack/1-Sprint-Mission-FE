@@ -1,6 +1,7 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { getArticleList, getArticleComments } from "./api/article";
 import { articleKey, PAGE_SIZE, productKey } from "@/variables/queryKeys";
+import { getProductComments } from "./api/product";
 
 export function useGetBestArticles(params = {}) {
   return useQuery({
@@ -12,12 +13,14 @@ export function useGetBestArticles(params = {}) {
 export function useGetCommentList({ idPath, whichId }) {
   const queryKey =
     whichId === "article" ? articleKey.comments : productKey.comments;
+  const apiFunction =
+    whichId === "article" ? getArticleComments : getProductComments;
 
   return useInfiniteQuery({
     queryKey: queryKey(idPath),
     queryFn: ({ queryKey, pageParam = null }) => {
       const idPath = queryKey[2];
-      return getArticleComments(idPath, { cursor: pageParam });
+      return apiFunction(idPath, { cursor: pageParam });
     },
     initialPageParam: null,
     getNextPageParam: (lastPage) => {

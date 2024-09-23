@@ -1,16 +1,14 @@
 import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { QueryClient, useQuery, dehydrate } from "@tanstack/react-query";
 import { getArticleById } from "@/service/api/article";
 import ArticleDetail from "@/components/article/ArticleDetail";
 import CommentList from "@/components/comment/CommentList";
 import Message from "@/components/ui/Message";
-import returnIcon from "@/public/assets/icons/ic_arrow_return.svg";
-import styles from "@/styles/pages/forum/articleId.module.scss";
 import { articleKey } from "@/variables/queryKeys";
 import CommentForm from "@/components/form/CommentForm";
+import ReturnToListBtn from "@/components/ui/ReturnToListBtn";
+import styles from "@/styles/pages/forum/main.module.scss";
 
 export async function getServerSideProps(context) {
   const queryClient = new QueryClient();
@@ -52,19 +50,13 @@ export default function ArticleDetailPage() {
         <title>자유 게시판</title>
       </Head>
 
-      <section className={styles["article-section"]}>
+      <section className={styles.ArticleDetailPage}>
         <ArticleDetail article={article} />
 
         <CommentForm idPath={article.id} />
 
         <CommentList idPath={article.id} isArticle={true} />
-
-        <Link href="/forum">
-          <button className={styles["return-btn"]}>
-            <span>목록으로 돌아가기</span>
-            <Image src={returnIcon} alt="returnIcon" width={24} height={24} />
-          </button>
-        </Link>
+        <ReturnToListBtn />
       </section>
     </>
   );

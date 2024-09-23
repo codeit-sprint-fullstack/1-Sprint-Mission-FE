@@ -5,6 +5,7 @@ import ProfileImg from "../ui/ProfileImg";
 import { useState } from "react";
 import { useUpdateComment } from "@/service/mutations";
 import UpdateCommentForm from "../form/UpdateCommentForm";
+import UserInfo from "../user/UserInfo";
 
 export default function CommentContent({ comment }) {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -36,13 +37,7 @@ export default function CommentContent({ comment }) {
         />
       </div>
 
-      <div className={styles.bottom}>
-        <ProfileImg width="32px" />
-        <div className={styles["bottom-right"]}>
-          <p>{comment.writer?.nickname || "똑똑한 판다"}</p>
-          <time>{calculateTimeAgo(comment.createdAt)}</time>
-        </div>
-      </div>
+      <UserInfo variant="comment" user={comment} />
     </li>
   ) : (
     <li className={classNames}>
@@ -54,13 +49,7 @@ export default function CommentContent({ comment }) {
         />
       </div>
 
-      <div className={styles.bottom}>
-        <ProfileImg width="32px" />
-        <div className={styles["bottom-right"]}>
-          <p>{comment.writer?.nickname || "똑똑한 판다"}</p>
-          <time>{calculateTimeAgo(comment.createdAt)}</time>
-        </div>
-      </div>
+      <UserInfo variant="comment" user={comment} />
     </li>
   );
 }

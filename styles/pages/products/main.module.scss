@@ -1,0 +1,8 @@
+@use "@/styles/globals/shared" as g;
+
+.ProductDetailPage {
+  @include g.flex-box(column, center, center, 40px);
+  .line {
+    @include g.line-horizontal();
+  }
+}
