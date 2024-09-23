@@ -45,12 +45,6 @@
   margin-left: 15px;
 }
 
-.kebabIcon {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-}
-
 .editMode {
   display: flex;
   flex-direction: column;
@@ -64,3 +58,4 @@
   border-radius: 4px;
   border: 1px solid #e5e7eb;
 }
+
