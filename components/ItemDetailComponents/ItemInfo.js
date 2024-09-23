@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "./ItemInfo.module.css";
 import defaultImage from "@/images/img_default.png";
 import { formatPrice } from "@/utils/price";
-import { addFavorite, removeFavorite } from "@/utils/productApi";
+import { addFavorite, removeFavorite, deleteProduct } from "@/utils/productApi";
 import ic_profile from "@/images/ic_profile.png";
 import ic_active_favorite from "@/images/ic_active_favorite.png";
 import ic_empty_favorite from "@/images/ic_empty_favorite.png";
@@ -10,8 +10,10 @@ import ic_kebab from "@/images/ic_kebab.png";
 import { useState } from "react";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
+import { useRouter } from "next/router";
 
 export default function ItemInfo(product) {
+  const router = useRouter();
   const item = product.product;
   const [isOpen, setIsOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(item.isFavorite);
@@ -19,7 +21,8 @@ export default function ItemInfo(product) {
 
   const toggleDropdown = () => setIsOpen(!isOpen);
   const handleDelete = async (id) => {
-    // TODO: Delete item logic
+    await deleteProduct(id);
+    router.push(ROUTES.ITEMS);
   };
 
   const handleFavoriteToggle = async () => {
@@ -56,12 +59,12 @@ export default function ItemInfo(product) {
         </div>
         {isOpen && (
           <div className={styles.dropdown}>
-            <Link href={ROUTES.BOARD_EDIT(product.id)}>
+            <Link href={ROUTES.ITEMS_EDIT(item.id)}>
               <div className={styles.dropdownItem}>수정하기</div>
             </Link>
             <div
               className={styles.dropdownItem}
-              onClick={() => handleDelete(product.id)}
+              onClick={() => handleDelete(item.id)}
             >
               삭제하기
             </div>

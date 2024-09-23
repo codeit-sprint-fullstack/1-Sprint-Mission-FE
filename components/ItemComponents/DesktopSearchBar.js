@@ -2,6 +2,7 @@ import React from "react";
 import CustomDropdown from "./CustomDropdown";
 import Link from "next/link";
 import styles from "./DesktopSearchBar.module.css";
+import { ROUTES } from "@/utils/rotues";
 
 export function DesktopSearchBar({
   keyword,
@@ -21,7 +22,7 @@ export function DesktopSearchBar({
         onChange={onKeywordChange}
         onKeyDown={onKeyDown}
       />
-      <Link href={"/create"}>
+      <Link href={ROUTES.CREATE_PRODUCT}>
         <button className={styles.btnAdd}>상품 등록하기</button>
       </Link>
 

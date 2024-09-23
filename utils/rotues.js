@@ -8,4 +8,6 @@ export const ROUTES = {
   ITEMS_DETAIL: (id) => `/items/${id}`,
   LOGIN: "/login",
   SIGNIN: "/signin",
+  CREATE_PRODUCT: "/createProduct",
+  ITEMS_EDIT: (id) => `/items/edit/${id}`,
 };
