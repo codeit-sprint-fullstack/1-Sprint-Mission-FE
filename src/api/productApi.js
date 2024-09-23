@@ -52,6 +52,30 @@ export const updateProduct = async (productId, productData, accessToken) => {
   }
 };
 
+// 상품 삭제
+export const deleteProduct = async (productId, accessToken) => {
+  try {
+    const response = await axios({
+      method: "delete",
+      url: `${baseUrl}/products/${productId}`,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    console.log("상품 삭제 성공:", response.data);
+
+    return response.data;
+  } catch (error) {
+    console.error(
+      "상품 삭제 중 오류 발생:",
+      error.response ? error.response.data : error.message
+    );
+    throw error;
+  }
+};
+
+
 // 상품 목록 조회
 export const getProducts = async (
   page = 1,
