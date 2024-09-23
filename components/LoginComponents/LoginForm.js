@@ -116,7 +116,7 @@ export default function LoginForm() {
       </form>
       <FormFooter />
       {showModal && (
-        <Modal text={modalMessage} onClose={() => setShowModal(false)} />
+        <Modal text={modalMessage} onConfirm={() => setShowModal(false)} />
       )}
     </>
   );

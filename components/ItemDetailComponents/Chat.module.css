@@ -14,6 +14,7 @@
         font-size: 14px;
         font-weight: 400;
         color: #1f2937;
+        white-space: break-spaces;
       }
     }
     .profileContainer {
@@ -53,5 +54,19 @@
     padding: 16px 0 12px 0;
     height: 46px;
     cursor: pointer;
+  }
+}
+
+@media (max-width: 1199px) {
+  .container {
+    width: 696px;
+  }
+}
+
+@media (max-width: 743px) {
+  .container {
+    width: 100%;
+    margin-left: 16px;
+    padding-right: 16px;
   }
 }

@@ -1,11 +1,26 @@
 .container {
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 640px 1fr;
+  display: flex;
+  width: 640px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .signinContainer {
   width: 100%;
-  grid-column: 2;
-  margin-top: 231px;
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 743px) {
+  .container {
+    width: 100%;
+    margin-left: 16px;
+    padding-right: 16px;
+  }
+  .signinContainer {
+    margin-top: 24px;
+  }
 }

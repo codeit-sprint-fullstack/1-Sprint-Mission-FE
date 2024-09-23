@@ -1,7 +1,6 @@
 .logo {
   width: 396px;
   height: 132px;
-  margin-left: 122px;
   margin-bottom: 40px;
 }
 
@@ -63,5 +62,13 @@
   .signinBtn:disabled {
     background-color: #9ca3af;
     cursor: not-allowed;
+  }
+}
+
+@media (max-width: 743px) {
+  .logo {
+    width: 198px;
+    height: 66px;
+    margin-bottom: 24px;
   }
 }

@@ -47,6 +47,7 @@
     font-weight: 400;
     color: #4b5563;
     margin-bottom: 24px;
+    white-space: break-spaces;
   }
   .itemTag {
     font-size: 16px;
@@ -129,5 +130,26 @@
     padding: 16px 0 12px 0;
     height: 46px;
     cursor: pointer;
+  }
+}
+
+@media (max-width: 1199px) {
+  .itemImg {
+    width: 340px;
+    height: 340px;
+  }
+}
+
+@media (max-width: 743px) {
+  .itemContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 101px;
+    gap: 24px;
+    width: 100%;
+  }
+  .itemImg {
+    width: 344px;
+    height: 343px;
   }
 }

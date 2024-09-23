@@ -27,6 +27,7 @@
 .signinContainer {
   width: 100%;
   text-align: center;
+  margin-bottom: 24px;
   .signinText {
     font-size: 14px;
     font-weight: 500;

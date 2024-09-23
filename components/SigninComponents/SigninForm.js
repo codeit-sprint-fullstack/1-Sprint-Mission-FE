@@ -175,7 +175,7 @@ export default function SigninForm() {
       <FormFooter />
 
       {showModal && (
-        <Modal text={modalMessage} onClose={() => setShowModal(false)} />
+        <Modal text={modalMessage} onConfirm={() => setShowModal(false)} />
       )}
     </>
   );

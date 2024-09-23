@@ -22,3 +22,17 @@
   background-repeat: no-repeat;
   background-position: 177px;
 }
+
+@media (max-width: 1199px) {
+  .container {
+    width: 696px;
+  }
+}
+
+@media (max-width: 743px) {
+  .container {
+    width: 100%;
+    margin-left: 16px;
+    padding-right: 16px;
+  }
+}

@@ -12,15 +12,20 @@ import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 import { useRouter } from "next/router";
 import useAuth from "@/hooks/useAuth";
+import Modal from "../ModalComponents/Modal";
 
 export default function ItemInfo(product) {
   const router = useRouter();
   const item = product.product;
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isItemFavorite, setIsItemFavorite] = useState(item.isFavorite);
   const [isFavoriteCount, setIsFavoriteCount] = useState(item.favoriteCount);
 
   const isAuthenticated = useAuth(item.ownerId);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
   const handleDelete = async (id) => {
@@ -68,10 +73,7 @@ export default function ItemInfo(product) {
             <Link href={ROUTES.ITEMS_EDIT(item.id)}>
               <div className={styles.dropdownItem}>수정하기</div>
             </Link>
-            <div
-              className={styles.dropdownItem}
-              onClick={() => handleDelete(item.id)}
-            >
+            <div className={styles.dropdownItem} onClick={openModal}>
               삭제하기
             </div>
           </div>
@@ -113,6 +115,15 @@ export default function ItemInfo(product) {
           </div>
         </div>
       </div>
+      {isModalOpen && (
+        <Modal
+          text="삭제하시겠습니까?"
+          onConfirm={() => {
+            handleDelete(item.id);
+            closeModal();
+          }}
+        />
+      )}
     </div>
   );
 }

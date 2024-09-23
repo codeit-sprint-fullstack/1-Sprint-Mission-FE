@@ -13,7 +13,7 @@ const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
-  const noHeaderFooter = ["/login", "/signip"]; // '/signin' 대신 '/signup' 사용
+  const noHeaderFooter = ["/login", "/signin"]; // '/signin' 대신 '/signup' 사용
   const hideHeaderFooter = noHeaderFooter.includes(router.pathname);
 
   return (

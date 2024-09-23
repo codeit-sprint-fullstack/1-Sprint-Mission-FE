@@ -5,8 +5,6 @@ const AuthGuard = ({ children }) => {
   const router = useRouter();
   const token =
     typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
-  console.log(token);
-
   useEffect(() => {
     if (
       token &&

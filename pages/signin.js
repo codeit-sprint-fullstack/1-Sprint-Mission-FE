@@ -1,5 +1,5 @@
 import SigninForm from "../components/SigninComponents/SigninForm";
-import styles from "../styles/Signin.module.css";
+import styles from "../styles/signin.module.css";
 
 export default function Signin() {
   return (

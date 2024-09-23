@@ -1,13 +1,13 @@
 .logo {
   width: 396px;
   height: 132px;
-  margin-left: 122px;
-  margin-bottom: 16px;
+  margin-bottom: 40px;
 }
 
 .loginForm {
   display: flex;
   flex-direction: column;
+
   width: 100%;
   .label {
     font-size: 18px;
@@ -65,4 +65,12 @@
   font-size: 14px;
   font-weight: 400;
   margin-top: 8px;
+}
+
+@media (max-width: 743px) {
+  .logo {
+    width: 198px;
+    height: 66px;
+    margin-bottom: 24px;
+  }
 }

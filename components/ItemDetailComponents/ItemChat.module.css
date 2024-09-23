@@ -21,6 +21,7 @@
     resize: none;
     color: #111827;
     margin-bottom: 16px;
+    white-space: break-spaces;
   }
   .input::placeholder {
     color: #9ca3af;
