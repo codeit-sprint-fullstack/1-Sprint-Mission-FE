@@ -65,8 +65,8 @@ export const refreshToken = async () => {
     }
 
     const data = await response.json();
-    localStorage.setItem("accessToken", data.accessToken); // 새로운 액세스 토큰 저장
-    localStorage.setItem("refreshToken", data.refreshToken); // 새로운 리프레시 토큰 저장
+    localStorage.setItem("accessToken", data.accessToken);
+    localStorage.setItem("refreshToken", data.refreshToken);
 
     return data.accessToken;
   } catch (error) {
@@ -76,17 +76,14 @@ export const refreshToken = async () => {
 };
 
 export const fetchWithAuth = async (url, options = {}) => {
-  // localStorage에서 JWT 토큰 가져오기
   const token = localStorage.getItem("accessToken");
 
-  // 기본 헤더에 Authorization 헤더를 추가
   const headers = {
     ...options.headers,
-    Authorization: `Bearer ${token}`, // JWT를 'Bearer '로 포함
+    Authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
   };
 
-  // fetch 요청에 JWT를 포함한 새 options 객체를 사용
   const response = await fetch(url, {
     ...options,
     headers,
@@ -95,7 +92,6 @@ export const fetchWithAuth = async (url, options = {}) => {
   return response;
 };
 
-// 액세스 토큰이 필요한 API 요청
 export const getUserProfile = async () => {
   try {
     const response = await fetchWithAuth(`${baseUrl}/users/me`);

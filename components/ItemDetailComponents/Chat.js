@@ -13,13 +13,13 @@ export default function Chat({ comments, onEdit, setComments }) {
 
   useEffect(() => {
     const fetchAuthStatuses = async () => {
-      const token = localStorage.getItem("accessToken"); // 토큰을 로컬 스토리지에서 가져옴
-      if (!token) return; // 토큰이 없으면 인증하지 않음
+      const token = localStorage.getItem("accessToken");
+      if (!token) return;
 
       const statuses = await Promise.all(
         comments.map(async (comment) => {
           try {
-            const userProfile = await getUserProfile(token);
+            const userProfile = await getUserProfile();
             const isAuthenticated = userProfile.id === comment.writer.id; // 작성자와 현재 사용자를 비교
             return { id: comment.id, isAuthenticated };
           } catch (error) {

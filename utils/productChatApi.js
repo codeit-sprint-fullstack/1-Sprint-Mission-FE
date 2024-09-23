@@ -13,6 +13,17 @@ export async function fetchComments(id, cursor = 0) {
   });
 }
 
+export async function fetchMoreComments(productId, cursor) {
+  try {
+    const response = await axios.get(
+      `${baseUrl}/products/${productId}/comments?limit=4&cursor=${cursor}`
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch more comments");
+  }
+}
+
 export async function addComment(id, comment) {
   const accessToken = localStorage.getItem("accessToken");
   return apiHandler(async () => {

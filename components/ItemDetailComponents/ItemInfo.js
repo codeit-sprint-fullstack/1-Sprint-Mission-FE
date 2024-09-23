@@ -7,7 +7,7 @@ import ic_profile from "@/images/ic_profile.png";
 import ic_active_favorite from "@/images/ic_active_favorite.png";
 import ic_empty_favorite from "@/images/ic_empty_favorite.png";
 import ic_kebab from "@/images/ic_kebab.png";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 import { useRouter } from "next/router";

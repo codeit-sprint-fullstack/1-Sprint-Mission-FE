@@ -1,4 +1,5 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { throttle } from "@/utils/throttle";
 import {
   fetchComments,
   createComments,
@@ -92,3 +93,23 @@ export function useComments(
     editComment,
   };
 }
+
+export const useInfiniteScroll = ({ loadMore, hasMore, isLoading }) => {
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+          document.documentElement.offsetHeight - 50 &&
+        !isLoading &&
+        hasMore
+      ) {
+        loadMore();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [loadMore, hasMore, isLoading]);
+};
