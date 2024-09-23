@@ -1,6 +1,8 @@
+"use client";
+
 import Image from "next/image";
 
-import style from "@/app/components/profile.module.css";
+import style from "./profile.module.css";
 
 import { PROFILE_H40, PROFILE_H32, PROFILE_H24 } from "../constants/Profile";
 

@@ -10,4 +10,6 @@ export const WARN_MAX_CONTENT_LENGHT = 600;
 
 export const VALID_VALUE = 0;
 
-export const BEST_ARTICLE_PAGE_SIZE = [3, 2, 1];
+export const BEST_ARTICLE_PAGE_SIZE = 3;
+
+export const PAGE_SIZE = 4;

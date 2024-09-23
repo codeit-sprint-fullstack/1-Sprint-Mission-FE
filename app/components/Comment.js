@@ -6,10 +6,10 @@ import { LAST_TIME } from "../constants/date";
 import style from "./comment.module.css";
 
 export function Comment({ content, profileImgUrl, nickname, date }) {
-  const topBarClass = `flex-row justify-between`;
+  const topBarClass = `flex flex-row justify-between`;
   const contentClass = `font-normal ${style.content}`;
-  const bottomBarClass = `flex-row ${style["bottom-bar"]}`;
-  const bottomBarNicknameDateSetClass = `flex-col ${style["nickname-last-time-set"]}`;
+  const bottomBarClass = `flex flex-row ${style["bottom-bar"]}`;
+  const bottomBarNicknameDateSetClass = `flex flex-col ${style["nickname-last-time-set"]}`;
   const nicknameClass = `${style.nickname}`;
 
   return (

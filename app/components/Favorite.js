@@ -14,19 +14,19 @@ export function Favorite({ type, myFavorite, favoriteCount }) {
     heart = `${style["heart-full"]}`;
   }
 
-  const bestPostFavoriteClass = `flex-row items-center ${style["best-post-favorite"]}`;
+  const bestPostFavoriteClass = `flex flex-row items-center ${style["best-post-favorite"]}`;
   let bestPostFavoriteImgClass = heart + ` ${style["best-post-favorite-img"]}`;
-  const bestPostFavoriteCountClass = `flex-row items-center font-normal text-gray-500 ${style["best-post-favorite-count"]}`;
+  const bestPostFavoriteCountClass = `flex flex-row items-center font-normal text-gray-500 ${style["best-post-favorite-count"]}`;
 
-  const postPreviewFavoriteClass = `flex-row items-center ${style["post-preview-favorite"]}`;
+  const postPreviewFavoriteClass = `flex flex-row items-center ${style["post-preview-favorite"]}`;
   let postPreviewFavoriteImgClass =
     heart + ` ${style["post-preview-favorite-img"]}`;
-  const postPreviewFavoriteCountClass = `flex-row items-center font-normal text-gray-500 ${style["post-preview-favorite-count"]}`;
+  const postPreviewFavoriteCountClass = `flex flex-row items-center font-normal text-gray-500 ${style["post-preview-favorite-count"]}`;
 
-  const postDetailFavoriteClass = `flex-row items-center ${style["post-detail-favorite"]}`;
+  const postDetailFavoriteClass = `flex flex-row items-center ${style["post-detail-favorite"]}`;
   let postDetailFavoriteImgClass =
     heart + ` ${style["post-detail-favorite-img"]}`;
-  const postDetailFavoriteCountClass = `flex-row items-center font-medium text-gray-500 ${style["post-detail-favorite-count"]}`;
+  const postDetailFavoriteCountClass = `flex flex-row items-center font-medium text-gray-500 ${style["post-detail-favorite-count"]}`;
 
   let favoriteCountText = favoriteCount < 9999 ? favoriteCount : "9999+";
 

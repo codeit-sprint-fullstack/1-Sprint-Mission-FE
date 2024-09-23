@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import throttle from "lodash/throttle";
 import classNames from "classnames";
 
-import { DeviceContext } from "../components/DeviceProvider";
-import { getArticles } from "@/lib/axios";
+import { getPosts } from "@/lib/api-post";
 import ArticlePreview from "./ArticlePreview";
 import Search from "../components/Search";
 import {
@@ -14,6 +15,7 @@ import {
   DropdownItem,
   DropdownMenu,
 } from "../components/DropDown";
+import Loading from "../components/Loading";
 
 import {
   ORDER_BY_RECENT,
@@ -21,20 +23,14 @@ import {
   ORDER_BY,
   ORDER_TEXT,
 } from "../constants/sort";
+import { PAGE_SIZE } from "../constants/article";
 
 import style from "./board.module.css";
 
-// 임시로 기존 figma 요구사항에 맞춘 값 > page_size 동일하게 변경 예정
-const BOARD_INFINITY_SCROLL_Y = [313, 29, 101];
-const PAGE_SIZE_BY_DEVICE = [4, 4, 4];
+const BOARD_INFINITY_SCROLL_Y = 100;
 
 export function Board() {
-  const [list, setList] = useState([]);
   const [recentOrder, setRecentOrder] = useState(ORDER_TEXT[ORDER_BY_RECENT]);
-  const [page, setPage] = useState(1);
-  const [addingList, setAddingList] = useState(false);
-
-  const { device } = useContext(DeviceContext);
 
   const boardClass = `${style.board}`;
   const boardTopBarClass = `flex flex-row items-center justify-between ${style["top-bar"]}`;
@@ -44,90 +40,75 @@ export function Board() {
   const boardMiddleBarClass = `flex flex-row justify-between ${style["middle-bar"]}`;
   const boardListClass = `flex flex-col ${style.list}`;
 
-  const getArticleTag = (article, index) => {
-    return (
-      <ArticlePreview
-        key={index}
-        articleId={article.id}
-        title={article.title}
-        profileImgUrl={article.user.image}
-        nickname={article.user.nickname}
-        myFavorite={article.myFavorite}
-        favoriteCount={article.favorite}
-        createdDate={article.createdAt}
-      />
-    );
-  };
-
   const handleSortByRecent = () => {
-    setRecentOrder(ORDER_TEXT[ORDER_BY_RECENT]);
-    setPage(1);
-    getArticles(1, PAGE_SIZE_BY_DEVICE[device], ORDER_BY[ORDER_BY_RECENT]).then(
-      (data) => {
-        const newList = data.articles.map((article, index) => {
-          return getArticleTag(article, index);
-        });
-        setList(newList);
-      }
-    );
+    setRecentOrder(ORDER_BY[ORDER_BY_RECENT]);
   };
 
   const handleSortByFavorite = () => {
-    setRecentOrder(ORDER_TEXT[ORDER_BY_FAVORITE]);
-    setPage(1);
-    getArticles(
-      1,
-      PAGE_SIZE_BY_DEVICE[device],
-      ORDER_BY[ORDER_BY_FAVORITE]
-    ).then((data) => {
-      const newList = data.articles.map((article, index) => {
-        return getArticleTag(article, index);
-      });
-      setList(newList);
-    });
+    setRecentOrder(ORDER_BY[ORDER_BY_FAVORITE]);
   };
 
-  useEffect(() => {
-    getArticles(1, PAGE_SIZE_BY_DEVICE[device], recentOrder).then((data) => {
-      const newList = data.articles.map((article, index) => {
-        return getArticleTag(article, index);
-      });
+  let page = 1;
 
-      setList(newList);
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ["free-post", { PAGE_SIZE, recentOrder }],
+      queryFn: ({ pageParam = page }) =>
+        getPosts(pageParam, PAGE_SIZE, recentOrder),
+      getNextPageParam: (lastPage, allPages) => {
+        const totalFetchedPosts = allPages.flatMap(
+          (page) => page.articles
+        ).length;
+        const totalCount = lastPage.totalCount;
+
+        if (totalFetchedPosts < totalCount) {
+          return allPages.length + 1;
+        } else {
+          return undefined;
+        }
+      },
     });
-  }, []);
+
+  const tempList = (
+    <div className={boardListClass}>
+      {data?.pages.map((page, pageIndex) =>
+        page.articles.map((post, index) => (
+          <ArticlePreview
+            key={`${pageIndex}-${index}`}
+            articleId={post.id}
+            title={post.title}
+            profileImgUrl={post.user.image}
+            nickname={post.user.nickname}
+            myFavorite={post.myFavorite}
+            favoriteCount={post.favorite}
+            createdDate={post.createdAt}
+          />
+        ))
+      )}
+      {isFetchingNextPage && <Loading />}
+    </div>
+  );
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.innerHeight + window.scrollY >=
-          document.body.offsetHeight - BOARD_INFINITY_SCROLL_Y[device] &&
-        !addingList
-      ) {
-        setAddingList(true);
+    const handleScroll = throttle(() => {
+      const scrollPosition = Math.ceil(
+        window.innerHeight + document.documentElement.scrollTop
+      );
+      const documentHeight = document.documentElement.offsetHeight;
+      const threshold = BOARD_INFINITY_SCROLL_Y;
+
+      const isBottom = scrollPosition >= documentHeight - threshold;
+
+      if (isBottom && hasNextPage && !isFetchingNextPage) {
+        fetchNextPage();
       }
-    };
+    }, 200);
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [device]);
-
-  useEffect(() => {
-    if (!addingList) {
-      return;
-    }
-    getArticles(page + 1, PAGE_SIZE_BY_DEVICE[device], recentOrder).then(
-      (data) => {
-        const newList = data.articles.map((article, index) => {
-          return getArticleTag(article, index);
-        });
-
-        setPage(page + 1);
-        setList([...list, newList]);
-        setAddingList(false);
-      }
-    );
-  }, [addingList]);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   return (
     <div className={boardClass}>
@@ -151,7 +132,7 @@ export function Board() {
           </DropdownMenu>
         </Dropdown>
       </div>
-      <div className={boardListClass}>{list}</div>
+      {tempList}
     </div>
   );
 }

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import { createArticle } from "@/lib/axios";
+import { createPost } from "@/lib/api-post";
 import Input from "@/app/components/input";
 import TextArea from "@/app/components/TextArea";
 
@@ -41,7 +41,7 @@ export function ArticleRegistration() {
 
     setRegistBtnDisable(true);
 
-    createArticle(title, content).then((data) => {
+    createPost(title, content).then((data) => {
       const path = `/bulletin-board/${data.id}`;
       router.push(path);
     });

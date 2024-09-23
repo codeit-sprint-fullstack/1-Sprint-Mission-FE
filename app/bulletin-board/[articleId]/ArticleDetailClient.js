@@ -1,54 +1,38 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { getArticle, getArticleComment } from "@/lib/axios";
+import Link from "next/link";
+import classNames from "classnames";
+import { getPost } from "@/lib/api-post";
 
 import Article from "./Article";
-import CommentMaker from "@/app/components/CommentMaker";
-import CommentList from "@/app/components/CommentList";
-
-import { ARTICLE } from "@/app/constants/comment";
+import CommentSection from "@/app/components/CommentSection";
 
 import style from "./article-detail-client.module.css";
 
-export function ArticleDetailClient({ articleId }) {
-  const [title, setTitle] = useState("게시글 제목");
-  const [profileImgUrl, setProfileImgUrl] = useState(null);
-  const [nickname, setNickname] = useState("작성자");
-  const [createDate, setCreateDate] = useState("2024-09-10T00:00:00.000Z");
-  const [favorite, setFavorite] = useState(0);
-  const [content, setContent] = useState(0);
-  const [commentList, setCommentList] = useState([]);
+export async function ArticleDetailClient({ articleId }) {
+  const btnFrameClass = classNames(
+    "flex",
+    "flex-row",
+    "w-pc-content",
+    "h-4.8rem",
+    "mt-btn-to-list-frame-mt",
+    "mb-btn-to-list-frame-mb",
+    "tablet:w-tablet-content",
+    "mobile:w-mobile-content"
+  );
+  const linkClass = classNames("my-0", "mx-auto");
+  const btnToBulletinBoardClass = classNames(
+    "w-btn-to-list",
+    "h-btn-to-list",
+    style["btn-to-list"]
+  );
 
-  const btnFrameClass = `flex-row ${style["btn-to-list-frame"]}`;
+  const postData = await getPost(articleId);
 
-  const router = useRouter();
-
-  const handleBack = () => {
-    router.push("/bulletin-board");
-  };
-
-  const handleRegistComment = () => {
-    getArticleComment(articleId).then((data) => {
-      setCommentList(data);
-    });
-  };
-
-  useEffect(() => {
-    getArticle(articleId).then((data) => {
-      setTitle(data.title);
-      setProfileImgUrl(data.user.image);
-      setNickname(data.user.nickname);
-      setCreateDate(data.createdAt);
-      setFavorite(data.favorite);
-      setContent(data.content);
-    });
-
-    getArticleComment(articleId).then((data) => {
-      setCommentList(data);
-    });
-  }, [articleId]);
+  const title = postData.title;
+  const profileImgUrl = postData.user.image;
+  const nickname = postData.user.nickname;
+  const createDate = postData.createdAt;
+  const favorite = postData.favorite;
+  const content = postData.content;
 
   return (
     <>
@@ -61,17 +45,11 @@ export function ArticleDetailClient({ articleId }) {
         createdDate={createDate}
         favoriteCount={favorite}
       />
-      <div className={style["comment-maker-frame"]}>
-        <CommentMaker
-          articleId={articleId}
-          registComment={handleRegistComment}
-        />
-      </div>
-      <div className={style["comment-list-frame"]}>
-        <CommentList list={commentList} />
-      </div>
+      <CommentSection postId={articleId} />
       <div className={btnFrameClass}>
-        <button className={style["btn-to-list"]} onClick={handleBack} />
+        <Link href="/bulletin-board" className={linkClass}>
+          <button className={btnToBulletinBoardClass} />
+        </Link>
       </div>
     </>
   );

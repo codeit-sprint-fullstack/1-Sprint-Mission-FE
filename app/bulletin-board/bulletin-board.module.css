@@ -2,7 +2,7 @@
   width: 120rem;
   margin: 0 auto;
   margin-top: var(--header-height);
-  padding: 2.4rem;
+  padding-top: 2.4rem;
 }
 
 /* ===== Tablet - width : 744px ~ 1199px ===== */
@@ -16,6 +16,6 @@
 @media (min-width: 375px) and (max-width: 743px) {
   .main {
     width: 34.4rem;
-    padding: 1.6rem;
+    padding-top: 1.6rem;
   }
 }

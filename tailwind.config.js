@@ -48,13 +48,19 @@ module.exports = {
         "btn-sign-in": "8.8rem",
         // footer-icon
         "footer-icon": "2rem",
+        // loading
+        loading: "12rem",
         // dropdown
         dropdown: "13rem",
         "mobile-dropdown-toggle": "4.2rem",
         // best-post
-        "pc-bestpost": "38.4rem",
-        "tablet-bestpost": "34rem",
-        "mobile-bestport": "34.3rem",
+        "pc-best-post": "38.4rem",
+        "tablet-best-post": "34rem",
+        "mobile-best-post": "34.3rem",
+        // btn-to-list
+        "btn-to-list": "24rem",
+        // btn-regist
+        "btn-regist": "7.4rem",
       },
       height: {
         // header-btn-home
@@ -68,12 +74,25 @@ module.exports = {
         footer: "16rem",
         // footer-icon
         "footer-icon": "2rem",
+        // loading
+        loading: "6rem",
         // dropdown
         dropdown: "4.2rem",
+        // best-board
+        "pc-best-board": "21.7rem",
+        "tablet-best-board": "24.6rem",
+        "mobile-best-board": "24rem",
+        "pc-best-board-list": "16.9rem",
+        "tablet-best-board-list": "19.8rem",
+        "mobile-best-board-list": "19.8rem",
         // best-post
-        "pc-bestpost": "16.9rem",
-        "tablet-bestpost": "19.8rem",
-        "mobile-bestport": "19.8rem",
+        "pc-best-post": "16.9rem",
+        "tablet-best-post": "19.8rem",
+        "mobile-best-post": "19.8rem",
+        // btn-to-list
+        "btn-to-list": "4.8rem",
+        // comment-text-area-frame
+        "comment-text-area-frame": "10.4rem",
       },
       fontSize: {
         base: "10px",
@@ -100,6 +119,17 @@ module.exports = {
       },
       margin: {
         "mobile-footer": "7.6rem",
+        // btn-to-list-frame
+        "btn-to-list-frame-mt": "6.4rem",
+        "btn-to-list-frame-mb": "32.5rem",
+        // comment-maker-frame
+        "comment-maker-frame": "3.2rem",
+        "tablet-comment-maker-frame": "4rem",
+        // comment-list-frame
+        "comment-list-frame": "4rem",
+        "mobile-comment-list-frame": "2.4rem",
+        // comment-text-area-frame
+        "comment-text-area-frame": "0.9rem",
       },
       padding: {
         "pc-header": "20rem",
@@ -111,10 +141,13 @@ module.exports = {
         "footer-icons": "1.2rem",
       },
       spacing: {
+        loading: "35rem",
         "20rem": "20rem",
         header: "7rem",
+        "4.8rem": "4.8rem",
         "4.2rem": "4.2rem",
         "3.2rem": "3.2rem",
+        "2.6rem": "2.6rem",
         "2.4rem": "2.4rem",
         "2rem": "2rem",
         "1.6rem": "1.6rem",

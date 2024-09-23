@@ -10,7 +10,7 @@ import { ProductImg } from "../components/ProductImg";
 import style from "./best-article.module.css";
 
 export function BestArticle({
-  articleId,
+  postId,
   title = "게시글 제목",
   imgUrl,
   nickname = "작성자",
@@ -28,8 +28,8 @@ export function BestArticle({
   const articleBottomNicknameClass = `flex items-center font-normal text-gray-600 align-middle ${style["article-bottom-nickname"]}`;
 
   const handleClickArticle = () => {};
-  console.log("BestArticle articleId : ", articleId);
-  const link = `/bulletin-board/${articleId}`;
+  // console.log("BestArticle postId : ", postId);
+  const link = `/bulletin-board/${postId}`;
 
   return (
     <Link href={link}>

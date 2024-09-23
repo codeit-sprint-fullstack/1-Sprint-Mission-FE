@@ -2,10 +2,10 @@ import Comment from "./Comment";
 
 import style from "./comment-list.module.css";
 
-export function CommentList({ list }) {
-  const commentListClass = `flex-col ${style["comment-list"]}`;
+export function CommentList({ list = [] }) {
+  const commentListClass = `flex flex-col ${style["comment-list"]}`;
   const emptyListClass = `${style["empty-list"]}`;
-  const emptyMarkTextSetClass = `flex-col items-center justify-between ${style["empty-list-mark-text-set"]}`;
+  const emptyMarkTextSetClass = `flex flex-col items-center justify-between ${style["empty-list-mark-text-set"]}`;
   const emptyMarkFrameClass = `${style["empty-list-mark"]}`;
   const emptyTextClass = `${style["empty-list-text"]}`;
 
