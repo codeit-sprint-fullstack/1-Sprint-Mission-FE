@@ -49,6 +49,9 @@
 
 /* 문의하기 */
 .productQuestion {
+  display: flex;
+  flex-direction: column;
+  height: 197px;
   margin-top: 20px;
   border-top: 1px solid #e5e7eb;
   padding-top: 20px;
@@ -141,14 +144,6 @@
   font-size: 14px;
   font-weight: 400;
   color: #9ca3af;
-}
-
-/* 댓글 달기 컨테이너 */
-.postCommentDalki {
-  display: flex;
-  flex-direction: column;
-  height: auto; /* 고정 높이에서 auto로 변경 */
-  margin-top: 20px; /* 여백 추가 */
 }
 
 /* 댓글 달기 문구 */

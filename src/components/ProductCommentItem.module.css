@@ -1,10 +1,9 @@
 /* 댓글 전체 컨테이너 */
 .commentContainer {
   position: relative;
-  height: auto; /* 높이를 자동으로 조정 */
   background: #fcfcfc;
   border-bottom: 1px solid #e5e7eb;
-  margin: 40px 0 20px 0;
+  margin: 220px 0 20px 0;
   padding: 12px; /* 안쪽 여백 조정 */
 }
 
@@ -74,6 +73,7 @@
   padding: 8px; /* 텍스트 영역의 패딩 */
   border: 1px solid #f3f4f6; /* 테두리 스타일 */
   margin-bottom: 8px; /* 아래 여백 조정 */
+  margin-right: 10px;
 }
 
 /* 댓글 수정 후 저장버튼 */
