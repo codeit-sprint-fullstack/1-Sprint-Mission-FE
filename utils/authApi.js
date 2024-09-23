@@ -23,7 +23,7 @@ export const login = async (userData) => {
 // 회원가입 API 호출
 export const signup = async (userData) => {
   try {
-    const response = await axios.post(`${baseUrl}/auth/signup`, userData);
+    const response = await axios.post(`${baseUrl}/auth/signUp`, userData);
     return response.data;
   } catch (error) {
     console.error("회원가입 API 에러:", error);

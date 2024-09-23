@@ -25,11 +25,14 @@ export default function ItemInfo(product) {
   const isAuthenticated = useAuth(item.ownerId);
 
   const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setIsOpen(!isOpen);
+  };
 
   const toggleDropdown = () => setIsOpen(!isOpen);
-  const handleDelete = async (id) => {
-    await deleteProduct(id);
+  const handleDelete = async () => {
+    await deleteProduct(item.id);
     router.push(ROUTES.ITEMS);
   };
 
@@ -117,11 +120,9 @@ export default function ItemInfo(product) {
       </div>
       {isModalOpen && (
         <Modal
-          text="삭제하시겠습니까?"
-          onConfirm={() => {
-            handleDelete(product.id);
-            closeModal();
-          }}
+          text="정말로 상품을 삭제하시겠어요?"
+          onConfirm={handleDelete}
+          onClose={closeModal}
         />
       )}
     </div>

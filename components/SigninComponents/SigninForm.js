@@ -5,7 +5,7 @@ import btn_visibility from "@/images/btn_visibility.png";
 import btn_hide from "@/images/btn_hide.png";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useFormValidation from "@/hooks/useFormValidation";
 import validate from "@/utils/validationRules";
 import { useMutation } from "@tanstack/react-query";
@@ -19,6 +19,7 @@ export default function SigninForm() {
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
+  const [modalType, setModalType] = useState("error"); // 성공/실패 모달 구분
 
   const togglePasswordVisibility = () => setIsVisible(!isVisible);
   const toggleConfirmPasswordVisibility = () =>
@@ -41,10 +42,13 @@ export default function SigninForm() {
     onSuccess: (data) => {
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken);
-      router.push(ROUTES.ITEMS);
+      setModalMessage("가입이 완료되었습니다!");
+      setModalType("success");
+      setShowModal(true);
     },
     onError: (error) => {
       setModalMessage(error.message);
+      setModalType("error");
       setShowModal(true);
     },
   });
@@ -64,6 +68,13 @@ export default function SigninForm() {
         password: values.password,
         passwordConfirmation: values.confirmPassword,
       });
+    }
+  };
+
+  const handleModalConfirm = () => {
+    setShowModal(false);
+    if (modalType === "success") {
+      router.push(ROUTES.ITEMS);
     }
   };
 
@@ -175,7 +186,7 @@ export default function SigninForm() {
       <FormFooter />
 
       {showModal && (
-        <Modal text={modalMessage} onConfirm={() => setShowModal(false)} />
+        <Modal text={modalMessage} onConfirm={handleModalConfirm} />
       )}
     </>
   );
