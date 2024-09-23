@@ -12,6 +12,7 @@ import {
   deleteProduct,
   createCommentForProduct,
   fetchCommentsByProductId,
+  toggleFavorite, // 좋아요 API
 } from "../api/api"; // API 호출 추가
 
 export default function ProductDetail({ productId }) {
@@ -87,7 +88,7 @@ export default function ProductDetail({ productId }) {
           createdAt: new Date().toISOString(),
         };
         await createCommentForProduct(product.id, commentData);
-        setComments((prevComments) => [...prevComments, newComment]);
+        setComments((prevComments) => [...prevComments, commentData]);
         setComment("");
         setIsCommentButtonEnabled(false);
       } catch (error) {
@@ -99,6 +100,27 @@ export default function ProductDetail({ productId }) {
   // 수정 페이지로 이동하는 핸들러
   const handleEditRedirect = () => {
     router.push(`/product-edit/${product.id}`);
+  };
+
+  // 좋아요 핸들러
+  const handleFavorite = async () => {
+    if (!product) return;
+    try {
+      const method = product.isFavorite ? "DELETE" : "POST"; // 현재 상태에 따라 메서드 설정
+      const updatedProduct = await toggleFavorite(product.id, method);
+      console.log("업데이트된 상품 데이터:", updatedProduct);
+
+      // 여기에서 favoriteCount를 기존 값에 +1 또는 -1 해주기
+      setProduct((prevProduct) => ({
+        ...prevProduct,
+        isFavorite: !prevProduct.isFavorite,
+        favoriteCount: product.isFavorite
+          ? prevProduct.favoriteCount - 1
+          : prevProduct.favoriteCount + 1,
+      }));
+    } catch (error) {
+      console.error("좋아요 실패:", error);
+    }
   };
 
   if (!product) {
@@ -156,15 +178,17 @@ export default function ProductDetail({ productId }) {
                 </span>
               </div>
             </div>
-            <div className={styles.likeCount}>
-              <Image
-                src={Heart}
-                alt="Heart"
-                className={styles.heartIcon}
-                width={26.8}
-                height={23.3}
-              />
-              {product.likeCount}
+            <div className={styles.likeContainer}>
+              <button onClick={handleFavorite} className={styles.likeButton}>
+                <Image
+                  src={Heart}
+                  alt="Heart"
+                  className={styles.heartIcon}
+                  width={26.8}
+                  height={23.3}
+                />
+                <p className={styles.likeCount}>{product.favoriteCount}</p>
+              </button>
             </div>
           </div>
         </div>

@@ -112,7 +112,11 @@
   gap: 16px;
 }
 /* 좋아요 수 버튼 */
-.likeCount {
+.likeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
   width: 87px;
   height: 40px;
   padding: 4px 12px;
@@ -121,15 +125,12 @@
   background: #ffffff;
 }
 
-/* 좋아요 수 */
-.likeCount {
+/* 좋아요 버튼 */
+.llikeCount {
   display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
   font-size: 16px;
   font-weight: 500;
-  color: #6b7280;
+  color: #1159e7;
 }
 
 /* 작성자 */
