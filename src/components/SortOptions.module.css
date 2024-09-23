@@ -64,8 +64,16 @@
   }
 
   .dropdownIcon {
-    width: 12px; 
+    width: 12px;
     height: 5px;
+  }
+
+  .sortOptions {
+    display: none;
+  }
+
+  .sortOptions.active {
+    display: block;
   }
 }
 
