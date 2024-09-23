@@ -5,6 +5,7 @@ import AuthorProfile from "../../public/images/profile-image.png";
 import Heart from "../../public/images/ic_heart.png";
 import img_default from "../../public/images/img_default.png";
 import UpdateDeleteButton from "./UpdateDeleteButton"; // 수정/삭제 컴포넌트
+import ConfirmationModal from "./ConfirmationModal"; // 상품 삭제 확인모달 컴포넌트
 import { useRouter } from "next/router";
 import {
   fetchProductById,
@@ -14,19 +15,18 @@ import {
 } from "../api/api"; // API 호출 추가
 
 export default function ProductDetail({ productId }) {
-  console.log("productId:", productId);
   const router = useRouter();
   const [product, setProduct] = useState(null);
   const [menuVisible, setMenuVisible] = useState(false);
   const [comment, setComment] = useState("");
   const [isCommentButtonEnabled, setIsCommentButtonEnabled] = useState(false);
   const [comments, setComments] = useState([]);
+  const [showConfirmModal, setShowConfirmModal] = useState(false); // 삭제 확인 모달 상태
 
   // 상품 데이터 가져오기
   const getProductDetails = async () => {
     try {
       const data = await fetchProductById(productId);
-      console.log("상품 데이터:", data);
       setProduct(data);
     } catch (error) {
       console.error("상품 상세 조회 실패:", error);
@@ -37,7 +37,6 @@ export default function ProductDetail({ productId }) {
   const getComments = async () => {
     try {
       const data = await fetchCommentsByProductId(productId, 3);
-      console.log("댓글 데이터:", data);
       setComments(data.list);
     } catch (error) {
       console.error("댓글 목록 조회 실패:", error);
@@ -61,11 +60,21 @@ export default function ProductDetail({ productId }) {
     }
   };
 
+  // 삭제 버튼 클릭 핸들러
+  const handleDeleteClick = () => {
+    setShowConfirmModal(true); // 모달 열기
+  };
+
+  // 모달에서 취소 버튼 클릭 핸들러
+  const handleCancel = () => {
+    setShowConfirmModal(false); // 모달 닫기
+  };
+
   // 댓글 입력 핸들러
   const handleCommentChange = (e) => {
     const value = e.target.value;
     setComment(value);
-    setIsCommentButtonEnabled(value.trim().length > 0); // 입력값이 있으면 버튼 활성화
+    setIsCommentButtonEnabled(value.trim().length > 0);
   };
 
   // 댓글 등록 핸들러
@@ -76,12 +85,11 @@ export default function ProductDetail({ productId }) {
           content: comment,
           author: "작성자 판다",
           createdAt: new Date().toISOString(),
-          limit: 3,
         };
-        await createCommentForProduct(product.id, commentData); // 댓글 등록 API 호출
-        setComment(""); // 입력 필드 초기화
-        setIsCommentButtonEnabled(false); // 버튼 비활성화
-        getComments(); // 댓글 목록 새로고침
+        await createCommentForProduct(product.id, commentData);
+        setComments((prevComments) => [...prevComments, newComment]);
+        setComment("");
+        setIsCommentButtonEnabled(false);
       } catch (error) {
         console.error("댓글 등록 실패:", error);
       }
@@ -169,9 +177,7 @@ export default function ProductDetail({ productId }) {
             value={comment}
             onChange={handleCommentChange}
             className={styles.commentInput}
-            placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.
-
-"
+            placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
           />
         </label>
         <div className={styles.registrationContainer}>
@@ -189,9 +195,17 @@ export default function ProductDetail({ productId }) {
       {menuVisible && (
         <UpdateDeleteButton
           onEdit={handleEditRedirect}
-          onDelete={handleDelete}
+          onDelete={handleDeleteClick} // 수정: 삭제 클릭 시 모달 열기
         />
       )}
+
+      {/* 삭제 확인 모달 */}
+      <ConfirmationModal
+        isOpen={showConfirmModal}
+        onClose={handleCancel} // 취소 클릭 시 모달 닫기
+        onConfirm={handleDelete} // 확인 클릭 시 삭제
+      />
+
       <button className={styles.moreMenuButton} onClick={toggleMenu}>
         :
       </button>
