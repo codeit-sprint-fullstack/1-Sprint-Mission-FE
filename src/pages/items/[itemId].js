@@ -1,11 +1,6 @@
 import { useRouter } from "next/router";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import {
-  getProductById,
-  favoriteProduct,
-  unfavoriteProduct,
-  updateProduct, // 상품 업데이트 API 추가
-} from "../../api/productApi";
+import { getProductById, favoriteProduct, unfavoriteProduct, updateProduct } from "../../api/productApi";
 import { getComments } from "../../api/commentApi";
 import Modal from "../../components/Modal";
 import ProductCommentForm from "../../components/ProductCommentForm";
@@ -29,6 +24,7 @@ const ProductDetailPage = () => {
     name: "",
     price: "",
     description: "",
+    tags: [], // 태그 추가
   });
 
   // 페이지가 로드될 때 accessToken을 localStorage에서 가져옴
@@ -49,6 +45,7 @@ const ProductDetailPage = () => {
         name: data.name,
         price: data.price,
         description: data.description,
+        tags: data.tags || [], // 태그 상태 업데이트
       });
     },
   });
@@ -83,10 +80,9 @@ const ProductDetailPage = () => {
     },
   });
 
-  // 상품 수정 저장
   const updateProductMutation = useMutation({
     mutationFn: (updatedData) =>
-      updateProduct(itemId, updatedData, accessToken), // 상품 업데이트 API 호출
+      updateProduct(itemId, updatedData, accessToken),
     onSuccess: () => {
       setIsEditMode(false); // 수정 완료 후 수정 모드 비활성화
     },
@@ -96,14 +92,31 @@ const ProductDetailPage = () => {
     },
   });
 
-  // 수정 모드 활성화/비활성화
+  // 태그 삭제 함수
+  const handleDeleteTag = (deleteTag) => {
+    setEditedProduct({
+      ...editedProduct,
+      tags: editedProduct.tags.filter((tag) => tag !== deleteTag),
+    });
+  };
+
+  // 태그 추가 함수
+  const handleTagKeyPress = (e) => {
+    if (e.key === "Enter" && e.target.value.trim()) {
+      setEditedProduct({
+        ...editedProduct,
+        tags: [...editedProduct.tags, e.target.value.trim()],
+      });
+      e.target.value = ""; // 입력 필드 초기화
+    }
+  };
+
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode);
   };
 
-  // 수정된 상품 정보 저장
   const handleSave = () => {
-    updateProductMutation.mutate(editedProduct); // 수정된 데이터 전송
+    updateProductMutation.mutate(editedProduct);
   };
 
   const handleLikeToggle = () => {
@@ -159,7 +172,10 @@ const ProductDetailPage = () => {
                   type="number"
                   value={editedProduct.price}
                   onChange={(e) =>
-                    setEditedProduct({ ...editedProduct, price: e.target.value })
+                    setEditedProduct({
+                      ...editedProduct,
+                      price: e.target.value,
+                    })
                   }
                   className={styles.inputField}
                 />
@@ -189,6 +205,39 @@ const ProductDetailPage = () => {
                 {productData?.description}
               </div>
             )}
+          </div>
+
+          <div className={`${styles.infoBox} ${styles.thirdBox}`}>
+            <div className={styles.tagTitle}>상품 태그</div>
+            <div className={styles.tags}>
+              {isEditMode ? (
+                <>
+                  <input
+                    type="text"
+                    onKeyPress={handleTagKeyPress}
+                    placeholder="태그를 추가하세요 (Enter)"
+                    className={styles.inputField}
+                  />
+                  <div>
+                    {editedProduct.tags.map((tag, index) => (
+                      <span key={index} className={styles.tag}>
+                        #{tag}{" "}
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteTag(tag)}
+                        >
+                          X
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                productData?.tags?.map((tag, index) => (
+                  <span key={index} className={styles.tag}>#{tag}</span>
+                ))
+              )}
+            </div>
           </div>
 
           <div className={`${styles.infoBox} ${styles.fourthBox}`}>
@@ -240,7 +289,7 @@ const ProductDetailPage = () => {
                 id={comment.id}
                 content={comment.content}
                 createdAt={comment.createdAt}
-                author={comment.writer?.nickname || "푸바오"} // 다른 유저의 닉네임을 출력
+                author={comment.writer?.nickname || "푸바오"}
                 refreshComments={() => {}}
               />
             ))
