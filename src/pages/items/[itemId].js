@@ -50,19 +50,29 @@ export default function ProductDetailPage() {
         return;
       }
       const response = await fetchCommentsByProductId(itemId, 10);
-      setComments(response.list);
+      setComments(response.list); // 댓글 목록 업데이트
     } catch (err) {
       console.error("댓글 불러오기 오류:", err);
     }
   };
 
   // 댓글 등록 핸들러
-  const handleCommentSubmit = async (commentData) => {
-    try {
-      await createCommentForProduct(itemId, commentData); // API 호출
-      fetchCommentsData(); // 댓글 목록 재조회
-    } catch (error) {
-      console.error("댓글 등록 실패:", error);
+  const handleCommentSubmit = async () => {
+    if (comment.trim()) {
+      try {
+        const commentData = {
+          content: comment,
+          author: "작성자 판다",
+          createdAt: new Date().toISOString(),
+          limit: 3,
+        };
+        await createCommentForProduct(product.id, commentData);
+        setComment(""); // 입력 필드 초기화
+        setIsCommentButtonEnabled(false); // 버튼 비활성화
+        fetchCommentsData(); // 댓글 목록 재조회
+      } catch (error) {
+        console.error("댓글 등록 실패:", error);
+      }
     }
   };
 
@@ -129,6 +139,7 @@ export default function ProductDetailPage() {
           productId={itemId}
           onLike={handleLikeProduct}
           onUnlike={handleUnlikeProduct}
+          onCommentSubmit={handleCommentSubmit}
         />
         <div className={styles.commentsList}>
           {comments.length === 0 ? (
@@ -140,6 +151,7 @@ export default function ProductDetailPage() {
                 comment={comment}
                 itemId={itemId} // productId를 itemId로 변경
                 onCommentUpdate={handleCommentUpdate}
+                fetchCommentsData={fetchCommentsData}
               />
             ))
           )}
@@ -150,12 +162,7 @@ export default function ProductDetailPage() {
         >
           목록으로 돌아가기 ↩
         </button>
-        <button
-          className={styles.DeleteBtn}
-          onClick={() => setShowConfirmModal(true)}
-        >
-          삭제
-        </button>
+
         <ConfirmationModal
           isOpen={showConfirmModal}
           onConfirm={handleDeleteProduct}

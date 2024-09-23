@@ -9,6 +9,7 @@ export default function ProductCommentItem({
   comment,
   itemId,
   onCommentUpdate,
+  fetchCommentsData,
 }) {
   const [menuVisible, setMenuVisible] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -43,7 +44,8 @@ export default function ProductCommentItem({
     try {
       await deleteMarketComment(comment.id);
       setMenuVisible(false);
-      onCommentUpdate(comment.id); // 댓글 ID를 통해 업데이트
+      // 댓글 목록을 다시 불러오기
+      fetchCommentsData(); // 부모 컴포넌트에서 이 함수를 props로 전달받아 사용
     } catch (error) {
       console.error("댓글 삭제 실패:", error);
     }
