@@ -48,12 +48,26 @@ export async function getServerSideProps(context) {
     props: {
       product,
       comments,
+      id,
     },
   };
 }
 
-function DetailProduct({ product, comments }) {
+function DetailProduct({ product, comments, id }) {
   const router = useRouter();
+
+  const { data: productData } = useQuery({
+    queryKey: ["product"],
+    queryFn: () => productsApi.getProduct(id),
+    initialData: product,
+  });
+
+  const { data: commentsData } = useQuery({
+    queryKey: ["comments"],
+    queryFn: () => productsApi.getProductComments(id),
+    initialData: comments,
+  });
+
   const {
     createdAt,
     favoriteCount,
@@ -63,7 +77,7 @@ function DetailProduct({ product, comments }) {
     description,
     name,
     isFavorite,
-  } = product;
+  } = productData;
 
   //날짜 포멧
   const productsImage = product.images[0];
@@ -93,9 +107,9 @@ function DetailProduct({ product, comments }) {
     setContent(value);
   };
 
-  // 상품수정을 선택시 Registration 페이지의 쿼리로 게시글의 id를 전달한다.
+  // 상품수정을 선택시 Registration 페이지의 쿼리로 상품의 id를 전달한다.
   const updateArticle = () => {
-    router.push(`/Items/Registration?id=${product.id}`);
+    router.push(`/Items/Registration?id=${id}`);
   };
 
   const handleDeleteArticle = () => {
@@ -106,16 +120,16 @@ function DetailProduct({ product, comments }) {
 
   const deleteProduct = () => {
     try {
-      const res = articleApi.deleteArticle(article.id);
+      const res = productsApi.deleteProduct(id);
       if (res) {
         router.push("/Items");
       } else {
-        setAlertMessage("게시글 삭제에 실패했습니다.");
+        setAlertMessage("상품 삭제에 실패했습니다.");
         openAlertModal();
         closeConfirmModal();
       }
     } catch (error) {
-      setAlertMessage("게시글 삭제에 실패했습니다." + error.name);
+      setAlertMessage("상품 삭제에 실패했습니다." + error.name);
       openAlertModal();
       closeConfirmModal();
       console.log(error);
@@ -126,7 +140,7 @@ function DetailProduct({ product, comments }) {
     try {
       const data = commentApi.createProductComment(content, product.id);
       if (data) {
-        // router.reload();
+        router.reload();
       } else {
         //모달 오픈
         setAlertMessage("댓글생성에 실패했습니다.");
@@ -245,7 +259,7 @@ function DetailProduct({ product, comments }) {
         </div>
         <div className={styles.products_comments_box}>
           <div className={styles.products_comments}>
-            {comments.map((item) => (
+            {commentsData.map((item) => (
               <Comment
                 user={user}
                 key={item.id}
@@ -255,7 +269,7 @@ function DetailProduct({ product, comments }) {
               />
             ))}
             {/* 게시글의 등록된 댓글이 없다면 아래의 내용을 렌더링한다. */}
-            {comments.length < 1 && (
+            {commentsData.length < 1 && (
               <>
                 <Image
                   src={Img_inquiry_empty}

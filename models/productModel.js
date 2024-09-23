@@ -1,4 +1,4 @@
 export function productModel(values = {}, tags = []) {
-  values.tag = tags;
+  values.tags = tags;
   return values;
 }

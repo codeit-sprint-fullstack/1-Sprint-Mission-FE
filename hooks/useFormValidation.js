@@ -43,7 +43,7 @@ const useFormValidation = (initialValues, callback) => {
           : "내용은 10자리 이상 100자리 이내 입니다.";
       case "price":
         return value > 0 ? "" : "판매 가격은 1원 이상입니다.";
-      case "tag":
+      case "tags":
         return value.length <= 5 ? "" : "각 태그는 5자리 이내 입니다.";
       default:
         return "";
@@ -69,7 +69,6 @@ const useFormValidation = (initialValues, callback) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     // 모든 필드 유효성 검사
     const newErrors = {};
     let hasErrors = false;
@@ -96,7 +95,7 @@ const useFormValidation = (initialValues, callback) => {
       e.preventDefault();
       if (e.target.value.trim() !== "") {
         setChips((prev) => [...prev, e.target.value]);
-        values.tag = "";
+        values.tags = "";
       }
     }
   };
