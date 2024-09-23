@@ -1,0 +1,66 @@
+.commentItem {
+  background-color: #fcfcfc;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px;
+  max-width: 1170px;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: auto;
+  transition: transform 0.3s ease;
+}
+
+.commentContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.commentDetails {
+  display: flex;
+  align-items: flex-end;
+  flex-grow: 1;
+}
+
+.profileIcon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.author {
+  font-size: 14px;
+  font-weight: 400;
+  color: #4b5563;
+  margin-right: 15px;
+}
+
+.date {
+  font-size: 14px;
+  font-weight: 400;
+  color: #9ca3af;
+  margin-left: 15px;
+}
+
+.kebabIcon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.editMode {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #e5e7eb;
+}
