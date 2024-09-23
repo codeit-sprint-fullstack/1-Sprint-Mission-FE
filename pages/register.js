@@ -80,7 +80,7 @@ export default function LogInPage() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.registerForm}>
-      <Image src={logo} alt='로고' className={styles.logo} property />
+      <Image src={logo} alt='로고' className={styles.logo} property='true' />
       <div className={styles.text}>이메일</div>
       <input
         className={errors.email ? styles.inputError : styles.input}

@@ -6,9 +6,11 @@ import Image from 'next/image';
 import styles from '@/styles/Navbar.module.css';
 import Link from 'next/link';
 import { useAuth } from '../utils/AuthProvider';
+import { useRouter } from 'next/router';
 
 export default function Navbar() {
   const { user } = useAuth();
+  const router = useRouter(); // 현재 경로 가져오기
 
   return (
     <>
@@ -25,10 +27,26 @@ export default function Navbar() {
               />
             </Link>
             <Link href='/freeboard' className={styles.link}>
-              <span className={styles.freeboard}>자유게시판</span>
+              <span
+                className={
+                  router.pathname === '/freeboard'
+                    ? styles.selectBoard
+                    : styles.none
+                }
+              >
+                자유게시판
+              </span>
             </Link>
             <Link href='/fleamarket' className={styles.link}>
-              <span className={styles.fleamarket}>중고마켓</span>
+              <span
+                className={
+                  router.pathname === '/fleamarket'
+                    ? styles.selectBoard
+                    : styles.none
+                }
+              >
+                중고마켓
+              </span>
             </Link>
           </div>
           {user ? (

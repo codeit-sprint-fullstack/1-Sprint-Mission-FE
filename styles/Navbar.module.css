@@ -22,19 +22,18 @@
 .menu {
   display: flex;
   flex-direction: row;
+  gap: 22px;
   align-items: center;
   font-size: 18px;
   font-weight: 700;
 }
 
-.freeboard {
+.selectBoard {
   color: #3692ff;
-  margin-left: 32px;
 }
 
-.fleamarket {
+.none {
   color: #4b5563;
-  margin-left: 16px;
 }
 
 .logoMobile {
