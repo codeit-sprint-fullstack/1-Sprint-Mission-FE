@@ -8,6 +8,7 @@ import styles from '@/styles/Article.module.css';
 
 import { fetchArticleApi } from '@/utils/api/articleApi.js';
 import { useAuth } from '../../utils/AuthProvider';
+import { useState } from 'react';
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
@@ -39,8 +40,11 @@ export default function ArticlePage({ article }) {
           id={id}
           handleDeleteArticle={() => handleDeleteArticle(id)}
         />
-        <Comments articleId={id} />
-        <Link href='/freeboard'>
+        <Comments articleId={id} category={article.category} />
+
+        <Link
+          href={article.category === 'freeboard' ? '/freeboard' : '/fleamarket'}
+        >
           <Image
             src={backBtn}
             alt='목록으로 돌아가기 버튼'

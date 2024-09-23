@@ -5,7 +5,7 @@ import styles from '@/styles/Comment.module.css';
 import useComments from '@/hooks/useComments';
 import useScroll from '@/hooks/useScroll';
 
-export default function Comments({ articleId }) {
+export default function Comments({ articleId, category }) {
   const [comment, setComment] = useState('');
   const [commentsList, setCommentsList] = useState([]);
 
@@ -61,9 +61,15 @@ export default function Comments({ articleId }) {
 
   return (
     <div className={styles.submit}>
-      <div className={styles.comment}>댓글달기</div>
+      <div className={styles.comment}>
+        {category === 'freeboard' ? '댓글달기' : '문의하기'}
+      </div>
       <textarea
-        placeholder='댓글을 입력해 주세요.'
+        placeholder={
+          category === 'freeboard'
+            ? '댓글을 입력해 주세요.'
+            : '개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.'
+        }
         type='text'
         value={comment}
         onChange={handleComment}
@@ -75,6 +81,7 @@ export default function Comments({ articleId }) {
         comments={commentsList}
         onCommentDeleteId={handleCommentDeleteId}
         setComments={setCommentsList}
+        category={category}
       />
       {loading && <div>Loading...</div>}
     </div>

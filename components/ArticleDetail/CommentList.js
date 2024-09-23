@@ -5,7 +5,7 @@ import DropDown from '@/utils/DropDown.js';
 import dotIcon from '@/public/ic_dot.png';
 import profileIcon from '@/public/ic_profile.png';
 import noComment from '@/public/no_comment.png';
-
+import noAsk from '@/public/no_ask.png';
 import styles from '@/styles/Comment.module.css';
 
 function DateFormat({ createDate }) {
@@ -28,6 +28,7 @@ export default function CommentList({
   comments,
   onCommentDeleteId,
   setComments,
+  category,
 }) {
   const [commentId, setCommentId] = useState('');
   const [openOptions, setOpenOptions] = useState(false);
@@ -50,7 +51,7 @@ export default function CommentList({
   if (comments.length === 0) {
     return (
       <Image
-        src={noComment}
+        src={category === 'freeboard' ? noComment : noAsk}
         alt='댓글이 없습니다'
         className={styles.noComment}
         priority
