@@ -14,13 +14,26 @@
   margin-right: 10px;
 }
 
-.profile {
-  height: 40px;
-  margin-left: auto;
-  margin-right: 0;
+.profileContainer {
+  display: flex;
+  align-items: center;
 }
 
-.navLinks { 
+.profile {
+  height: 40px;
+  margin-right: 12px;
+}
+
+.nickname {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.78px;
+  color: #4b5563;
+  margin-right: 12px;
+}
+
+.navLinks {
   display: flex;
   align-items: center;
   flex-grow: 1;
@@ -37,11 +50,11 @@
   color: #4b5563;
 }
 
-.boardLink { 
+.boardLink {
   margin-right: 25px;
 }
 
-.marketLink.active { 
+.marketLink.active {
   color: #3692ff;
 }
 
@@ -52,7 +65,7 @@
     padding: 0 20px;
   }
 
-  .navbar.registrationPage { 
+  .navbar.registrationPage {
     padding-left: 20px;
     width: 100%;
   }
@@ -82,7 +95,7 @@
     padding: 0 20px;
   }
 
-  .navbar.registrationPage { 
+  .navbar.registrationPage {
     padding-left: 0px;
     width: 115%;
   }
@@ -123,3 +136,19 @@
   cursor: pointer;
   transform: translateX(20px);
 }
+
+.logoutButton {
+  width: 105px;
+  height: 42px;
+  padding: 12px 23px;
+  background-color: #3692ff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #f3f4f6;
+  cursor: pointer;
+}
+
