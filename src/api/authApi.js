@@ -102,3 +102,6 @@ export const refreshToken = async (refreshToken) => {
   }
 };
 
+export const getAccessToken = () => {
+  return localStorage.getItem("accessToken");
+};

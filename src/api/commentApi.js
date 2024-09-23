@@ -36,7 +36,7 @@ export const updateComment = async (commentId, content, accessToken) => {
     method: "patch",
     url: `${baseUrl}/comments/${commentId}`,
     headers: {
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `Bearer ${accessToken}`, // Bearer 토큰으로 accessToken 전달
     },
     data: {
       content: content,
@@ -51,9 +51,8 @@ export const deleteComment = async (commentId, accessToken) => {
     method: "delete",
     url: `${baseUrl}/comments/${commentId}`,
     headers: {
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `Bearer ${accessToken}`, // Bearer 토큰으로 accessToken 전달
     },
   });
   return response.data;
 };
-

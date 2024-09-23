@@ -31,7 +31,7 @@ export const createProduct = async (productData, accessToken) => {
 export const updateProduct = async (productId, productData, accessToken) => {
   try {
     const response = await axios({
-      method: "put",
+      method: "patch",
       url: `${baseUrl}/products/${productId}`,
       headers: {
         Authorization: `Bearer ${accessToken}`,
