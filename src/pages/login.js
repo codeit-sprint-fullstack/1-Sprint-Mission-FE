@@ -1,69 +1,33 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/login.module.css";
-import { validateEmail, validatePassword, validateConfirmPassword } from "../utils/validation"; // 유효성 검사 불러오기
+import { signIn } from "../api/authApi"; // 로그인 API 함수 가져오기
 import SocialLogin from "../components/SocialLogin";
-
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // 비밀번호 가시성 상태
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // 비밀번호 확인 가시성 상태
-  const [errorMessage, setErrorMessage] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const [touched, setTouched] = useState({
-    email: false,
-    password: false,
-    confirmPassword: false,
-  });
-  const [focusedField, setFocusedField] = useState(""); // 현재 포커스된 필드 상태
+  const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
-  const handleBlur = (field) => {
-    setTouched({ ...touched, [field]: true });
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // 기본 form 제출 동작 방지
 
-    if (field === "email") {
-      const emailError = validateEmail(email);
-      setErrorMessage((prev) => ({ ...prev, email: emailError }));
-    }
+    try {
+      // 로그인 API 요청
+      const response = await signIn(email, password);
+      console.log("로그인 성공:", response);
 
-    if (field === "password") {
-      const passwordError = validatePassword(password);
-      setErrorMessage((prev) => ({ ...prev, password: passwordError }));
-    }
-
-    if (field === "confirmPassword") {
-      const confirmPasswordError = validateConfirmPassword(password, confirmPassword);
-      setErrorMessage((prev) => ({ ...prev, confirmPassword: confirmPasswordError }));
-    }
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (password !== confirmPassword) {
-      setErrorMessage((prev) => ({
-        ...prev,
-        confirmPassword: "비밀번호가 일치하지 않습니다",
-      }));
-      return;
-    }
-
-    const USER_DATA = [{ email: "test@test.com", password: "123456" }];
-    const user = USER_DATA.find((user) => user.email === email);
-
-    if (!user || user.password !== password) {
-      setErrorMessage((prev) => ({
-        ...prev,
-        email: "이메일 또는 비밀번호가 일치하지 않습니다.",
-      }));
-    } else {
-      router.push("/items");
+      // JWT 토큰을 로컬 스토리지에 저장
+      if (response.accessToken) {
+        localStorage.setItem("accessToken", response.accessToken);
+        // 로그인 성공 시 "/items" 페이지로 리다이렉트
+        router.push("/items");
+      }
+    } catch (error) {
+      console.error("로그인 오류:", error);
+      setErrorMessage("이메일 또는 비밀번호가 일치하지 않습니다.");
     }
   };
 
@@ -88,22 +52,12 @@ const LoginPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="이메일을 입력해주세요"
               className={`${styles.input} ${
-                touched.email && errorMessage.email ? styles.inputError : ""
+                errorMessage ? styles.inputError : ""
               }`}
-              onBlur={() => handleBlur("email")}
-              onFocus={() => setFocusedField("email")}
-              style={{
-                borderColor:
-                  focusedField === "email"
-                    ? "#3692FF"
-                    : errorMessage.email
-                    ? "#F74747"
-                    : "#E5E7EB",
-              }}
               required
             />
-            {errorMessage.email && (
-              <div className={styles.errorMessage}>{errorMessage.email}</div>
+            {errorMessage && (
+              <div className={styles.errorMessage}>{errorMessage}</div>
             )}
           </div>
 
@@ -120,72 +74,21 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="비밀번호를 입력해주세요"
                 className={`${styles.input} ${
-                  touched.password && errorMessage.password ? styles.inputError : ""
+                  errorMessage ? styles.inputError : ""
                 }`}
-                onBlur={() => handleBlur("password")}
-                onFocus={() => setFocusedField("password")}
-                style={{
-                  borderColor:
-                    focusedField === "password"
-                      ? "#3692FF"
-                      : errorMessage.password
-                      ? "#F74747"
-                      : "#E5E7EB",
-                }}
                 required
               />
               <img
-                src={showPassword ? "/image/invisible.svg" : "/image/visible.svg"}
+                src={
+                  showPassword ? "/image/invisible.svg" : "/image/visible.svg"
+                }
                 alt="Toggle visibility"
                 className={styles.visibilityIcon}
                 onClick={() => setShowPassword(!showPassword)}
               />
             </div>
-            {errorMessage.password && (
-              <div className={styles.errorMessage}>{errorMessage.password}</div>
-            )}
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="confirmPassword" className={styles.label}>
-              비밀번호 확인
-            </label>
-            <div className={styles.inputWrapper}>
-              <input
-                type={showConfirmPassword ? "text" : "password"}
-                id="confirmPassword"
-                name="confirmPassword"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="비밀번호를 다시 입력해주세요"
-                className={`${styles.input} ${
-                  touched.confirmPassword && errorMessage.confirmPassword
-                    ? styles.inputError
-                    : ""
-                }`}
-                onBlur={() => handleBlur("confirmPassword")}
-                onFocus={() => setFocusedField("confirmPassword")}
-                style={{
-                  borderColor:
-                    focusedField === "confirmPassword"
-                      ? "#3692FF"
-                      : errorMessage.confirmPassword
-                      ? "#F74747"
-                      : "#E5E7EB",
-                }}
-                required
-              />
-              <img
-                src={showConfirmPassword ? "/image/invisible.svg" : "/image/visible.svg"}
-                alt="Toggle visibility"
-                className={styles.visibilityIcon}
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              />
-            </div>
-            {errorMessage.confirmPassword && (
-              <div className={styles.errorMessage}>
-                {errorMessage.confirmPassword}
-              </div>
+            {errorMessage && (
+              <div className={styles.errorMessage}>{errorMessage}</div>
             )}
           </div>
 
@@ -194,7 +97,6 @@ const LoginPage = () => {
           </button>
         </form>
 
-        {/* 간편 로그인하기 섹션 */}
         <SocialLogin />
 
         <div className={styles.signupLink}>
