@@ -4,15 +4,19 @@ import postImage from '@/public/post_imge.png';
 
 export default function FileInput({ value, setValues }) {
   const [preview, setPreview] = useState();
-
   const imageRef = useRef();
 
   const handleChange = (e) => {
     const imageValue = e.target.files[0];
     setValues((prev) => ({
       ...prev,
-      images: imageValue,
+      image: imageValue,
     }));
+
+    if (imageValue) {
+      const uploadPreview = URL.createObjectURL(imageValue);
+      setPreview(uploadPreview);
+    }
   };
 
   const handleClearClick = () => {
@@ -22,18 +26,10 @@ export default function FileInput({ value, setValues }) {
     inputNode.value = '';
     setValues((prev) => ({
       ...prev,
-      images: null,
+      image: null,
     }));
+    setPreview('');
   };
-
-  useEffect(() => {
-    if (value.length === 0) return;
-
-    const nextPreview = URL.createObjectURL(value);
-    setPreview(nextPreview);
-  }, [value]);
-
-  console.log(value);
 
   return (
     <div>
@@ -46,6 +42,7 @@ export default function FileInput({ value, setValues }) {
         type='file'
         onChange={handleChange}
         ref={imageRef}
+        multiple
         style={{ display: 'none' }}
       />
 
@@ -53,9 +50,13 @@ export default function FileInput({ value, setValues }) {
         onClick={() => imageRef.current.click()}
         style={{ cursor: 'pointer' }}
       >
-        <Image src={postImage} alt='이미지 넣기 버튼' />
+        <Image
+          src={postImage}
+          alt='이미지 넣기 버튼'
+          style={{ display: preview ? 'none' : 'block' }}
+        />
       </div>
-      {value.length !== 0 && <button onClick={handleClearClick}>X</button>}
+      {preview && <button onClick={handleClearClick}>X</button>}
     </div>
   );
 }
