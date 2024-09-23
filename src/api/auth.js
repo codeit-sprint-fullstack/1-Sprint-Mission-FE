@@ -11,9 +11,9 @@ export const signUp = async (userData) => {
     });
 
     const data = await response.json();
+    console.log("서버 응답 전체:", data);
 
     if (!response.ok) {
-      console.error("서버 응답:", data);
       throw new Error(data.message || "회원가입 실패");
     }
 

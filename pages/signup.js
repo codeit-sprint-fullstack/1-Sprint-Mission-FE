@@ -31,10 +31,20 @@ const Signup = () => {
   const password = watch("password");
 
   const onSubmit = async (data) => {
+    // 서버에 보낼 데이터 형식 맞추기
+    const signUpData = {
+      email: data.email,
+      nickname: data.nickname,
+      password: data.password,
+      passwordConfirmation: data.confirmPassword, // 이 부분 주의
+    };
+
+    console.log("서버로 보내는 데이터:", signUpData);
+
     try {
-      const response = await signUp(data);
+      const response = await signUp(signUpData);
       localStorage.setItem("accessToken", response.accessToken);
-      router.push("/market");
+      router.push("/items");
     } catch (error) {
       console.error("회원가입 실패:", error);
       setModalMessage("사용 중인 이메일입니다.");

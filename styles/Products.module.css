@@ -1,0 +1,41 @@
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.productList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.productItem {
+  border: 1px solid #dfdfdf;
+  padding: 20px;
+  width: calc(33.333% - 40px);
+  box-sizing: border-box;
+}
+
+.productItem h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.productItem p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .productItem {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .productItem {
+    width: 100%;
+  }
+}

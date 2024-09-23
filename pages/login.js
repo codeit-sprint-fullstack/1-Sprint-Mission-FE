@@ -20,18 +20,18 @@ const Login = () => {
   const [modalMessage, setModalMessage] = useState("");
   const router = useRouter();
 
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      router.push("/folder");
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("accessToken");
+  //   if (token) {
+  //     router.push("/folder");
+  //   }
+  // }, []);
 
   const onSubmit = async (data) => {
     try {
-      const response = await logIn(data);
+      const response = await logIn(data); // data는 이미 {email, password} 형식
       localStorage.setItem("accessToken", response.accessToken);
-      router.push("/market");
+      router.push("/items");
     } catch (error) {
       console.error("로그인 실패:", error);
       setModalMessage(
@@ -150,7 +150,7 @@ const Login = () => {
             판다마켓이 처음이신가요? <span>회원가입</span>
           </Link>
           <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-            <p className={styles.modalText}>{modalMessage}</p>
+            <p>{modalMessage}</p>
           </Modal>
         </div>
       </div>
