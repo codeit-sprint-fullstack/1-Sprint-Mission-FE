@@ -15,19 +15,19 @@ function EditForm({ onFormChange, onFormValuesChange, item }) {
         productIntro: item.description,
         productPrice: item.price,
         productTag: "",
+        productImage: item.images,
       });
-      setTags(item.tags || []); // Set tags only once when the item changes
+      setTags(item.tags || []);
     }
   }, [item, setValues]);
 
   useEffect(() => {
-    // 모든 필드가 채워져 있는지 확인하고, 오류가 없을 때만 폼을 유효하다고 판단합니다.
     const isFormValid =
-      Object.values(errors).every((error) => error === "") && // 에러가 없는지 확인
+      Object.values(errors).every((error) => error === "") &&
       values.productName.trim() !== "" &&
       values.productIntro.trim() !== "" &&
       String(values.productPrice).trim() !== "" &&
-      tags.length > 0; // 태그가 비어 있지 않은지 확인
+      tags.length > 0;
 
     onFormChange(isFormValid);
     onFormValuesChange({ ...values, tags });
@@ -64,6 +64,20 @@ function EditForm({ onFormChange, onFormValuesChange, item }) {
 
   return (
     <form className={styles.productForm} onSubmit={handleSubmit}>
+      <label htmlFor="productImage" className={styles.labelText}>
+        상품 이미지
+      </label>
+      <input
+        type="text"
+        className={`${styles.inputStyle} ${
+          errors.productName ? styles.inputError : ""
+        }`}
+        id="productImage"
+        name="productImage"
+        placeholder="이미지 링크를 첨부해주세요."
+        value={values.productImage}
+        onChange={handleChange}
+      />
       <label htmlFor="productName" className={styles.labelText}>
         상품명
       </label>

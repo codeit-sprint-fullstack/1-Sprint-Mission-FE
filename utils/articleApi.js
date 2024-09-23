@@ -1,4 +1,4 @@
-import { apiHandler } from "./apiHandler";
+import apiHandler from "./apiHandler";
 
 const baseUrl = "https://thrift-shop.onrender.com";
 

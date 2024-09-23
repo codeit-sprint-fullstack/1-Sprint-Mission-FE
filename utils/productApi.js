@@ -1,5 +1,6 @@
+import apiClient from "./apiClient";
+import apiHandler from "./apiHandler";
 import axios from "axios";
-import { apiHandler } from "./apiHandler";
 
 const baseUrl = "https://panda-market-api.vercel.app";
 
@@ -8,16 +9,20 @@ export async function fetchProducts({ pageSize, page, keyword, orderBy }) {
     const response = await axios.get(`${baseUrl}/products`, {
       params: { pageSize, page, keyword, orderBy },
     });
+
+    if (!response.data) {
+      throw new Error("API 응답 데이터가 비어 있습니다.");
+    }
+
     return response.data;
   });
 }
 
+// 제품 생성하기
 export async function createProduct(data) {
   return apiHandler(async () => {
-    const accessToken = localStorage.getItem("accessToken");
-    const response = await axios.post(`${baseUrl}/products`, data, {
+    const response = await apiClient.post("/products", data, {
       headers: {
-        Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
       },
     });
@@ -25,12 +30,35 @@ export async function createProduct(data) {
   });
 }
 
+// 제품 삭제하기
 export async function deleteProduct(id) {
   return apiHandler(async () => {
-    const accessToken = localStorage.getItem("accessToken");
-    const response = await axios.delete(`${baseUrl}/products/${id}`, {
+    const response = await apiClient.delete(`/products/${id}`);
+    return response.data;
+  });
+}
+
+// 특정 제품 정보 가져오기
+export async function fetchProduct(id) {
+  return apiHandler(async () => {
+    const response = await apiClient.get(`/products/${id}`);
+    return response.data;
+  });
+}
+
+// 즐겨찾기 추가
+export async function addFavorite(productId) {
+  return apiHandler(async () => {
+    const response = await apiClient.post(`/products/${productId}/favorite`);
+    return response.data;
+  });
+}
+
+// 제품 수정하기
+export async function editProduct(productId, data) {
+  return apiHandler(async () => {
+    const response = await apiClient.patch(`/products/${productId}`, data, {
       headers: {
-        Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
       },
     });
@@ -38,58 +66,10 @@ export async function deleteProduct(id) {
   });
 }
 
-export async function fetchProduct(id) {
-  return apiHandler(async () => {
-    const response = await axios.get(`${baseUrl}/products/${id}`);
-    return response.data;
-  });
-}
-
-export async function addFavorite(productId) {
-  return apiHandler(async () => {
-    const accessToken = localStorage.getItem("accessToken");
-    const response = await axios.post(
-      `${baseUrl}/products/${productId}/favorite`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-    return response.data;
-  });
-}
-
-export async function editProduct(productId, data) {
-  return apiHandler(async () => {
-    const accessToken = localStorage.getItem("accessToken");
-
-    const response = await axios.patch(
-      `${baseUrl}/products/${productId}`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    return response.data;
-  });
-}
-
+// 즐겨찾기 삭제
 export async function removeFavorite(productId) {
   return apiHandler(async () => {
-    const accessToken = localStorage.getItem("accessToken");
-    const response = await axios.delete(
-      `${baseUrl}/products/${productId}/favorite`,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    const response = await apiClient.delete(`/products/${productId}/favorite`);
     return response.data;
   });
 }

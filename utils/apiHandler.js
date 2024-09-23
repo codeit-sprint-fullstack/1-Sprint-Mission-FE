@@ -1,12 +1,9 @@
-import { toast } from "react-toastify";
-
-export async function apiHandler(requestFunction, ...args) {
+// apiHandler.js
+export default async function apiHandler(apiCall) {
   try {
-    const response = await requestFunction(...args);
-    return response;
+    return await apiCall();
   } catch (error) {
-    toast.error("요청을 실패했습니다. 잠시 후 다시 시도해주세요.");
-    console.error("API 호출 실패:", error);
+    console.error("API 호출 오류:", error);
     throw error;
   }
 }

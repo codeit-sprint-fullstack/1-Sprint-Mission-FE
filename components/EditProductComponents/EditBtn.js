@@ -18,7 +18,7 @@ export default function EditBtn({ item }) {
           description: formValues.productIntro,
           price: formValues.productPrice,
           tags: formValues.tags || [],
-          images: ["https://example.com/..."],
+          images: formValues.productImage,
         });
         router.push(ROUTES.ITEMS_DETAIL(id));
       } catch (error) {

@@ -25,6 +25,7 @@ export async function getServerSideProps(context) {
   try {
     const productDetail = await fetchProduct(id);
     const productComment = await fetchComments(id);
+
     return {
       props: {
         product: productDetail,
@@ -33,6 +34,7 @@ export async function getServerSideProps(context) {
       },
     };
   } catch (error) {
+    console.error("Error in getServerSideProps:", error);
     return {
       props: {
         error: "상품을 불러오는 중 문제가 발생했습니다.",

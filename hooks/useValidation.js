@@ -18,6 +18,7 @@ export function validateCreateForm(formData) {
     productIntro: "",
     productPrice: "",
     productTag: "",
+    productImage: "",
   };
 
   const validations = {
@@ -37,6 +38,9 @@ export function validateCreateForm(formData) {
     },
     productTag: {
       maxLength: 5,
+    },
+    productImage: {
+      required: true,
     },
   };
 

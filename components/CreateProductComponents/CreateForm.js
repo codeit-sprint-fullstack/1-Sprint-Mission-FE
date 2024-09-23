@@ -52,6 +52,20 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
 
   return (
     <form className={styles.productForm} onSubmit={handleSubmit}>
+      <label htmlFor="productImage" className={styles.labelText}>
+        상품 이미지
+      </label>
+      <input
+        type="text"
+        className={`${styles.inputStyle} ${
+          errors.productName ? styles.inputError : ""
+        }`}
+        id="productImage"
+        name="productImage"
+        placeholder="이미지 링크를 첨부해주세요."
+        value={values.productImage}
+        onChange={handleChange}
+      />
       <label htmlFor="productName" className={styles.labelText}>
         상품명
       </label>

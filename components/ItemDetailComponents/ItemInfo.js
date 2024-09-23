@@ -15,8 +15,8 @@ import useAuth from "@/hooks/useAuth";
 import Modal from "../ModalComponents/Modal";
 
 export default function ItemInfo(product) {
-  const router = useRouter();
   const item = product.product;
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isItemFavorite, setIsItemFavorite] = useState(item.isFavorite);
@@ -97,7 +97,7 @@ export default function ItemInfo(product) {
             alt="profile image"
           />
           <div>
-            <p className={styles.ownerId}>총명한판다{item.ownerId}</p>
+            <p className={styles.ownerId}>{item.ownerNickname}</p>
             <p className={styles.createdAt}>
               {new Date(item.createdAt).toLocaleDateString()}
             </p>
@@ -119,7 +119,7 @@ export default function ItemInfo(product) {
         <Modal
           text="삭제하시겠습니까?"
           onConfirm={() => {
-            handleDelete(item.id);
+            handleDelete(product.id);
             closeModal();
           }}
         />

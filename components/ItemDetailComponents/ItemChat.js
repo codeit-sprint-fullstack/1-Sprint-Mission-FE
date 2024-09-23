@@ -54,7 +54,7 @@ export default function ItemChat({ initialComments, id }) {
   };
 
   const loadMoreComments = useCallback(async () => {
-    if (!hasMore) return;
+    if (!hasMore && cursor == null) return;
 
     setLoading(true);
     try {
@@ -66,10 +66,10 @@ export default function ItemChat({ initialComments, id }) {
         setCursor(newCommentsData.nextCursor);
       } else {
         setHasMore(false);
-        toast.info("모든 댓글을 불러왔습니다.");
       }
     } catch (error) {
       setHasMore(false);
+      toast.info("모든 댓글을 불러왔습니다.");
     }
     setLoading(false);
   }, [id, cursor, hasMore]);

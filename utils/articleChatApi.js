@@ -1,4 +1,4 @@
-import { apiHandler } from "./apiHandler";
+import apiHandler from "./apiHandler";
 
 const baseUrl = "https://thrift-shop.onrender.com";
 
@@ -25,7 +25,7 @@ export async function deleteComments(id) {
     if (!response.ok) {
       throw new Error("Failed to delete comments");
     }
-    return response;
+    return response.data;
   });
 }
 

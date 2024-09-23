@@ -14,7 +14,7 @@ export default function CreateBtn() {
     if (isFormValid) {
       try {
         const newProduct = await createProduct({
-          images: ["https://example.com/..."],
+          images: formValues.productImage,
           name: formValues.productName,
           description: formValues.productIntro,
           price: formValues.productPrice,

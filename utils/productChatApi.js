@@ -1,5 +1,5 @@
 import axios from "axios";
-import { apiHandler } from "./apiHandler";
+import apiHandler from "./apiHandler";
 
 const baseUrl = "https://panda-market-api.vercel.app";
 
@@ -8,7 +8,6 @@ export async function fetchComments(id, cursor = 0) {
     const response = await axios.get(
       `${baseUrl}/products/${id}/comments?limit=4&cursor=${cursor}`
     );
-
     return response.data;
   });
 }
@@ -18,7 +17,6 @@ export async function fetchMoreComments(productId, cursor) {
     const response = await axios.get(
       `${baseUrl}/products/${productId}/comments?limit=4&cursor=${cursor}`
     );
-    return response.data;
   } catch (error) {
     throw new Error("Failed to fetch more comments");
   }
