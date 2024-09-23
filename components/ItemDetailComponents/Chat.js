@@ -20,7 +20,7 @@ export default function Chat({ comments, onEdit, setComments }) {
         comments.map(async (comment) => {
           try {
             const userProfile = await getUserProfile();
-            const isAuthenticated = userProfile.id === comment.writer.id; // 작성자와 현재 사용자를 비교
+            const isAuthenticated = userProfile.id === comment.writer.id;
             return { id: comment.id, isAuthenticated };
           } catch (error) {
             console.error("Error fetching user profile", error);
@@ -29,7 +29,6 @@ export default function Chat({ comments, onEdit, setComments }) {
         })
       );
 
-      // 인증 상태를 객체로 변환해 상태 업데이트
       const statusObj = statuses.reduce((acc, { id, isAuthenticated }) => {
         acc[id] = isAuthenticated;
         return acc;
@@ -64,7 +63,7 @@ export default function Chat({ comments, onEdit, setComments }) {
   return (
     <div className={styles.container}>
       {comments.map((comment) => {
-        const isAuthenticated = authStatuses[comment.id]; // 현재 사용자와 댓글 작성자 비교
+        const isAuthenticated = authStatuses[comment.id];
 
         return (
           <div key={comment.id} className={styles.item}>
