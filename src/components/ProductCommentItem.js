@@ -1,20 +1,28 @@
 import React, { useState } from "react";
 import { updateComment } from '../api/commentApi';
+import { getAccessToken } from '../api/authApi'; 
 import { formatDate } from '../utils/formatDate';
+import ProductCommentKebabMenu from './ProductCommentKebabMenu';
 import styles from "./ProductCommentItem.module.css";
 
-const ProductCommentItem = ({ id, content, createdAt, author, refreshComments }) => {  // author를 props로 받음
+const ProductCommentItem = ({ id, content, createdAt, author, refreshComments }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [editedContent, setEditedContent] = useState(content);
 
   const displayDate = formatDate(createdAt);
 
   const handleSaveClick = async () => {
+    const accessToken = getAccessToken();
+    if (!accessToken) {
+      alert("인증 토큰이 없습니다. 다시 로그인해주세요.");
+      return;
+    }
+
     try {
-      await updateComment(id, editedContent);
+      await updateComment(id, editedContent, accessToken);
       alert('댓글이 수정되었습니다.');
       setIsEditMode(false);
-      refreshComments();
+      refreshComments(); // 수정 후 댓글 목록 갱신
     } catch (error) {
       console.error('댓글 수정 중 오류가 발생했습니다:', error);
       alert('댓글 수정 중 오류가 발생했습니다.');
@@ -49,11 +57,10 @@ const ProductCommentItem = ({ id, content, createdAt, author, refreshComments })
         </div>
       )}
 
-      <img
-        src="/image/kebab.svg"
-        alt="Kebab Menu"
-        className={styles.kebabIcon}
-        onClick={() => setIsEditMode(true)}
+      <ProductCommentKebabMenu 
+        commentId={id} 
+        onEdit={() => setIsEditMode(true)} 
+        refreshComments={refreshComments}  // 삭제 후 목록 갱신 처리
       />
     </div>
   );
