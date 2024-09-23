@@ -7,17 +7,19 @@ import ic_profile from "@/images/ic_profile.png";
 import ic_active_favorite from "@/images/ic_active_favorite.png";
 import ic_empty_favorite from "@/images/ic_empty_favorite.png";
 import ic_kebab from "@/images/ic_kebab.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 import { useRouter } from "next/router";
+import { getUserProfile } from "@/utils/authApi";
 
 export default function ItemInfo(product) {
   const router = useRouter();
   const item = product.product;
   const [isOpen, setIsOpen] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(item.isFavorite);
+  const [isItemFavorite, setIsItemFavorite] = useState(item.isFavorite);
   const [isFavoriteCount, setIsFavoriteCount] = useState(item.favoriteCount);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
   const handleDelete = async (id) => {
@@ -25,15 +27,38 @@ export default function ItemInfo(product) {
     router.push(ROUTES.ITEMS);
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+
+    if (token) {
+      const fetchUserData = async () => {
+        try {
+          const userData = await getUserProfile(token);
+          if (item.ownerId === userData.id) {
+            setIsAuthenticated(true);
+          } else {
+            setIsAuthenticated(false);
+          }
+        } catch (error) {
+          console.error("유저 정보를 불러오는 데 실패했습니다:", error);
+          setIsAuthenticated(false);
+          localStorage.removeItem("accessToken");
+        }
+      };
+
+      fetchUserData();
+    }
+  }, []);
+
   const handleFavoriteToggle = async () => {
     try {
-      if (isFavorite) {
+      if (isItemFavorite) {
         await removeFavorite(item.id);
-        setIsFavorite(false);
+        setIsItemFavorite(false);
         setIsFavoriteCount(isFavoriteCount - 1);
       } else {
         await addFavorite(item.id);
-        setIsFavorite(true);
+        setIsItemFavorite(true);
         setIsFavoriteCount(isFavoriteCount + 1);
       }
     } catch (error) {
@@ -50,12 +75,14 @@ export default function ItemInfo(product) {
       <div className={styles.infoContainer}>
         <div className={styles.infoName}>
           <p className={styles.itemName}>{item.name}</p>
-          <Image
-            className={styles.kebab}
-            src={ic_kebab}
-            onClick={toggleDropdown}
-            alt="kebab"
-          />
+          {isAuthenticated && (
+            <Image
+              className={styles.kebab}
+              src={ic_kebab}
+              onClick={toggleDropdown}
+              alt="kebab"
+            />
+          )}
         </div>
         {isOpen && (
           <div className={styles.dropdown}>
@@ -96,21 +123,12 @@ export default function ItemInfo(product) {
           </div>
           <div className={styles.favorite}>
             <div className={styles.favoriteInfo}>
-              {isFavorite ? (
-                <Image
-                  className={styles.ic_favorite}
-                  src={ic_active_favorite}
-                  alt="active favorite"
-                  onClick={handleFavoriteToggle}
-                />
-              ) : (
-                <Image
-                  className={styles.ic_favorite}
-                  src={ic_empty_favorite}
-                  alt="empty favorite"
-                  onClick={handleFavoriteToggle}
-                />
-              )}
+              <Image
+                className={styles.ic_favorite}
+                src={isItemFavorite ? ic_active_favorite : ic_empty_favorite}
+                alt={isItemFavorite ? "active favorite" : "empty favorite"}
+                onClick={handleFavoriteToggle}
+              />
               <p className={styles.favoriteCount}>{isFavoriteCount}</p>
             </div>
           </div>

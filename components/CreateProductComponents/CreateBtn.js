@@ -13,14 +13,14 @@ export default function CreateBtn() {
   const handleProductPost = async () => {
     if (isFormValid) {
       try {
-        await createProduct({
+        const newProduct = await createProduct({
           images: ["https://example.com/..."],
           name: formValues.productName,
           description: formValues.productIntro,
           price: formValues.productPrice,
           tags: formValues.tags || [],
         });
-        router.push(ROUTES.ITEMS); // navigate 대신 router.push 사용
+        router.push(ROUTES.ITEMS_DETAIL(newProduct.id)); // navigate 대신 router.push 사용
       } catch (error) {
         console.error("Failed to create product:", error);
       }
