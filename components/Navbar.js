@@ -29,7 +29,7 @@ export default function Navbar() {
             <Link href='/freeboard' className={styles.link}>
               <span
                 className={
-                  router.pathname === '/freeboard'
+                  router.pathname.startsWith('/freeboard')
                     ? styles.selectBoard
                     : styles.none
                 }
@@ -40,7 +40,7 @@ export default function Navbar() {
             <Link href='/fleamarket' className={styles.link}>
               <span
                 className={
-                  router.pathname === '/fleamarket'
+                  router.pathname.startsWith('/fleamarket')
                     ? styles.selectBoard
                     : styles.none
                 }
