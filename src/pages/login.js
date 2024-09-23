@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/login.module.css";
-import { signIn } from "../api/authApi"; // 로그인 API 함수 가져오기
+import { signIn } from "../api/authApi";
 import SocialLogin from "../components/SocialLogin";
 
 const LoginPage = () => {
@@ -9,20 +9,29 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isButtonActive, setIsButtonActive] = useState(false);
   const router = useRouter();
 
+  useEffect(() => {
+    if (email && password) {
+      setIsButtonActive(true); // 이메일과 비밀번호가 모두 있으면 버튼 활성화
+    } else {
+      setIsButtonActive(false); // 둘 중 하나라도 없으면 버튼 비활성화
+    }
+  }, [email, password]); // email 또는 password가 변경될 때마다 확인
+
   const handleSubmit = async (event) => {
-    event.preventDefault(); // 기본 form 제출 동작 방지
+    event.preventDefault();
 
     try {
-      // 로그인 API 요청
       const response = await signIn(email, password);
       console.log("로그인 성공:", response);
 
-      // JWT 토큰을 로컬 스토리지에 저장
       if (response.accessToken) {
         localStorage.setItem("accessToken", response.accessToken);
-        // 로그인 성공 시 "/items" 페이지로 리다이렉트
+
+        window.dispatchEvent(new Event("storage"));
+
         router.push("/items");
       }
     } catch (error) {
@@ -92,7 +101,12 @@ const LoginPage = () => {
             )}
           </div>
 
-          <button type="submit" className={styles.loginButton}>
+          <button
+            type="submit"
+            className={styles.loginButton}
+            style={{ backgroundColor: isButtonActive ? "#3692FF" : "#9CA3AF" }}
+            disabled={!isButtonActive}
+          >
             로그인
           </button>
         </form>
