@@ -1,0 +1,15 @@
+.form {
+  width: 640px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container > :nth-child(2) {
+  margin-top: 16px;
+}
+
+.input-container > :nth-child(3) {
+  margin-top: 8px;
+  margin-left: 16px;
+}
