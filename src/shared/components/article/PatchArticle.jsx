@@ -40,8 +40,8 @@ export default function PatchArticle() {
         <Input
           name={'title'}
           placeholder={'제목을 입력해주세요'}
-          type={'text'}
-          label={'title'}
+          option={'text'}
+          page={'patch-article-title'}
           onChange={handleChange}
         />
       </div>
@@ -50,8 +50,8 @@ export default function PatchArticle() {
         <Input
           name={'content'}
           placeholder={'내용을 입력해주세요'}
-          type={'textarea'}
-          label={'content'}
+          option={'textarea'}
+          page={'patch-article-content'}
           onChange={handleChange}
         />
       </div>

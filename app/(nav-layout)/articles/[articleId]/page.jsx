@@ -1,4 +1,4 @@
-import styles from '@app/articles/[articleId]/page.module.css';
+import styles from '@app/(nav-layout)/articles/[articleId]/page.module.css';
 import moment from 'moment';
 import Image from 'next/image';
 import { getArticleList, getArticle } from '@utils/api/api';

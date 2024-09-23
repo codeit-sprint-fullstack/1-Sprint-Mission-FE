@@ -13,12 +13,13 @@ export function ArticleComment({ commentData, articleId }) {
   const { content, setContent } = useCommentContentStore();
   const [inputValid, setInputValid] = useState(true);
   const {
-    data: articleComments = commentData,
+    data: articleComments,
     isLoading,
     error,
   } = useQuery({
     queryKey: ['articleComments'],
     queryFn: async () => getComment(articleId),
+    initialData: commentData,
     keepPreviousData: true,
     retry: 3,
     retryDelay: 2000,
@@ -39,8 +40,8 @@ export function ArticleComment({ commentData, articleId }) {
       <div className={styles['comment-title']}>댓글달기</div>
       <Input
         placeholder={'댓글을 입력해주세요.'}
-        type={'textarea'}
-        label={'comment'}
+        option={'textarea'}
+        page={'create-comment-content'}
         onChange={handleContentOnChange}
       />
       <div className={styles['button-container']}>

@@ -3,7 +3,14 @@ import classNames from 'classnames';
 import styles from '@shared/components/Buttons/ActionButton.module.css';
 import { useParams, useRouter } from 'next/navigation';
 
-export default function ActionButton({ content, style, path, disabled, type }) {
+export default function ActionButton({
+  content,
+  style,
+  path,
+  disabled,
+  type,
+  onClick,
+}) {
   const router = useRouter();
   const { articleId } = useParams();
 
@@ -26,6 +33,12 @@ export default function ActionButton({ content, style, path, disabled, type }) {
     if (path) {
       return (
         <button className={buttonClass} onClick={() => handleNavigate(path)}>
+          {content}
+        </button>
+      );
+    } else if (onClick) {
+      return (
+        <button className={buttonClass} onClick={onClick}>
           {content}
         </button>
       );

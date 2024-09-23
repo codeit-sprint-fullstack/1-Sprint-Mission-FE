@@ -1,0 +1,14 @@
+.container {
+  height: 1080px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 396px;
+  height: 132px;
+  position: relative;
+  margin-bottom: 40px;
+}
