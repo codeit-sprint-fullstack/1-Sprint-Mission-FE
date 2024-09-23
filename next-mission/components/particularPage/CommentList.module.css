@@ -1,0 +1,122 @@
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.noComment {
+  width: 151px;
+  height: 208px;
+  margin: 40px 0 48px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.noCommentText {
+  width: 151px;
+  height: 52px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.CommentListUl {
+  width: 1200px;
+  height: 348px;
+  margin: 40px 0 64px 0;
+  padding: 0;
+  gap: 24px;
+  list-style-type: none;
+  overflow: scroll;
+}
+
+.CommentListUl::-webkit-scrollbar {
+  display: none;
+}
+
+.CommentListLi {
+  width: 1200px;
+  height: 100px;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #fcfcfc;
+}
+
+.CommentListButton {
+  width: 240px;
+  height: 48px;
+  border-radius: 40px;
+  padding: 11px 0 11px 39.5px;
+  background-color: #3692ff;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+  color: #f3f4f6;
+  position: relative;
+}
+
+.yesListButton {
+  margin-bottom: 193px;
+}
+
+.noListButton {
+  margin-bottom: 481px;
+}
+
+.arrowImg {
+  position: absolute;
+  top: 12px;
+  right: 39.5px;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .noComment {
+    margin: 32px 0 56px;
+  }
+
+  .CommentListUl {
+    width: 696px;
+    height: 339px;
+    margin: 32px 0 47px 0;
+  }
+
+  .CommentListLi {
+    width: 696px;
+  }
+
+  .yesListButton {
+    margin-bottom: 291px;
+  }
+
+  .noListButton {
+    margin-bottom: 561px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+  .noComment {
+    width: 151px;
+    height: 208px;
+    margin: 24px 0 40px;
+  }
+
+  .CommentListUl {
+    width: 343px;
+    height: 320px;
+    margin: 24px 0 40px;
+    gap: 16px;
+  }
+
+  .CommentListLi {
+    width: 343px;
+    height: 96px;
+  }
+
+  .yesListButton {
+    margin-bottom: 139px;
+  }
+
+  .noListButton {
+    margin-bottom: 234px;
+  }
+}

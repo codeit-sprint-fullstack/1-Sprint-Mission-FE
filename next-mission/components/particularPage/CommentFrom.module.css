@@ -1,0 +1,96 @@
+.font16 {
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.CommentFromForm {
+  width: 1200px;
+  height: 197px;
+  display: flex;
+  flex-direction: column;
+}
+
+.CommentFromLabel {
+  width: 56px;
+  height: 26px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.CommentFromInput {
+  width: 1200px;
+  height: 104px;
+  padding: 16px 24px;
+  margin-top: 9px;
+  border: none;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  font-weight: 400;
+  color: #9ca3af;
+  resize: none;
+}
+
+.CommentFromInput:focus {
+  outline: none;
+  border: 1px solid #3692ff;
+}
+
+.CommentFromInput::-webkit-scrollbar {
+  display: none;
+}
+
+.buttonCotaner {
+  width: 1200px;
+  height: 42px;
+  margin-top: 16px;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+.CommentFromButton {
+  width: 74px;
+  height: 42px;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 23px;
+  font-weight: 600;
+  color: #f3f4f6;
+  cursor: pointer;
+}
+
+.buttonOff {
+  background-color: #9ca3af;
+}
+
+.buttonOn {
+  background-color: #3692ff;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .CommentFromForm {
+    width: 696px;
+  }
+
+  .CommentFromInput {
+    width: 696px;
+  }
+
+  .buttonCotaner {
+    width: 696px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+  .CommentFromForm {
+    width: 343px;
+  }
+
+  .CommentFromInput {
+    width: 343px;
+  }
+
+  .buttonCotaner {
+    width: 343px;
+  }
+}

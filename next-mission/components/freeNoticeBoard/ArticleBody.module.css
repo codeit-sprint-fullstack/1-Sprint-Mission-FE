@@ -1,0 +1,122 @@
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.subject {
+  width: 1200px;
+  height: 72px;
+  justify-content: space-between;
+}
+
+.title {
+  width: 1120px;
+  height: 32px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+  color: #1f2937;
+}
+
+.productImg {
+  border: 1px solid #f3f4f6;
+  border-radius: 8px;
+}
+
+.additionalInformation {
+  width: 1200px;
+  height: 26px;
+  margin: 16px 0 24px;
+  justify-content: space-between;
+}
+
+.additionalInformationBox {
+  width: auto;
+  height: 26px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.userImg {
+  border-radius: 50%;
+  background-color: #d1d5db;
+  margin: 1px 0;
+}
+
+.userName {
+  width: auto;
+  height: 26px;
+  margin-left: 8px;
+  color: #4b5563;
+}
+
+.date {
+  width: auto;
+  height: 26px;
+  margin-left: 8px;
+  color: #9ca3af;
+}
+
+.favorite {
+  width: auto;
+  height: 26px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #6b7280;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .subject {
+    width: 696px;
+  }
+
+  .title {
+    width: 616px;
+  }
+
+  .additionalInformation {
+    width: 696px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+  .subject {
+    width: 343px;
+  }
+
+  .title {
+    width: 283px;
+    height: 72px;
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .additionalInformation {
+    width: 343px;
+    height: 24px;
+  }
+
+  .additionalInformationBox {
+    height: 24px;
+  }
+
+  .userImg {
+    margin: 0;
+  }
+
+  .userName {
+    height: 24px;
+  }
+
+  .date {
+    height: 24px;
+  }
+
+  .favorite {
+    height: 24px;
+  }
+}

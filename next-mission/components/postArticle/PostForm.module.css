@@ -1,0 +1,159 @@
+.font16 {
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.PostFormForm {
+  width: 1200px;
+  height: 512px;
+  margin: 24px 0 794px;
+  display: flex;
+  flex-direction: column;
+}
+
+.subject {
+  width: 1200px;
+  height: 42px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title {
+  width: 92px;
+  height: 42px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #1f2937;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.PostFormButton {
+  width: 74px;
+  height: 42px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #f3f4f6;
+  cursor: pointer;
+}
+
+.buttonOff {
+  background-color: #9ca3af;
+}
+
+.buttonOn {
+  background-color: #3692ff;
+}
+
+.PostFormLabel {
+  width: 1200px;
+  height: 26px;
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  color: #1f2937;
+}
+
+.PostFormInput {
+  width: 1200px;
+  border: none;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+.inputTitle {
+  height: 56px;
+  padding: 16px 0 14px 24px;
+  margin-bottom: 24px;
+}
+
+.inputContents {
+  height: 282px;
+  padding: 16px 24px 240px 24px;
+  resize: none;
+}
+
+.inputContents::-webkit-scrollbar {
+  display: none;
+}
+
+.PostFormInput:focus {
+  outline: none;
+  border: 1px solid #3692ff;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .PostFormForm {
+    width: 696px;
+    margin: 16px 0 879px;
+  }
+
+  .subject {
+    width: 696px;
+  }
+
+  .title {
+    line-height: 23.87px;
+  }
+
+  .PostFormButton {
+    line-height: 19.09px;
+  }
+
+  .PostFormLabel {
+    width: 696px;
+  }
+
+  .PostFormInput {
+    width: 696px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+  .PostFormForm {
+    width: 345px;
+    height: 410px;
+    margin: 16px 0 965px;
+  }
+
+  .subject {
+    width: 345px;
+    margin-bottom: 24px;
+  }
+
+  .title {
+    line-height: 23.87px;
+  }
+
+  .PostFormButton {
+    line-height: 19.09px;
+  }
+
+  .PostFormLabel {
+    width: 345px;
+    height: 24px;
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .PostFormInput {
+    width: 345px;
+  }
+
+  .inputTitle {
+    margin-bottom: 16px;
+  }
+
+  .inputContents {
+    height: 200px;
+    padding: 16px 24px 158px 24px;
+  }
+}

@@ -1,0 +1,79 @@
+.contaner {
+  width: 1200px;
+  height: 217px;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  width: 109px;
+  height: 24px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23.87px;
+  color: #111827;
+}
+
+.BestArticleUl {
+  width: 1200px;
+  height: 169px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+
+.BestArticleLi {
+  width: 384px;
+  height: 169px;
+  background-color: #f9fafb;
+  padding: 0 24px 16px;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .contaner {
+    width: 696px;
+    height: 246px;
+    margin-top: 24px;
+  }
+
+  .BestArticleUl {
+    width: 696px;
+    height: 198px;
+    gap: 16px;
+  }
+
+  .BestArticleLi {
+    width: 340px;
+    height: 198px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+  .contaner {
+    width: 343px;
+    height: 240px;
+    margin-top: 16px;
+  }
+
+  .title {
+    height: 26px;
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .BestArticleUl {
+    width: 343px;
+    height: 198px;
+    display: block;
+  }
+
+  .BestArticleLi {
+    width: 343px;
+    height: 198px;
+  }
+}
