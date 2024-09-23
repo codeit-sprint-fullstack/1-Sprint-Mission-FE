@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import styles from "./ProductCommentItem.module.css"; // 스타일을 별도로 설정
+import styles from "./ProductCommentItem.module.css";
 import AuthorProfile from "../../public/images/profile-image.png";
 import UpdateDeleteButton from "../components/UpdateDeleteButton"; // 수정/삭제 버튼 컴포넌트
-import { updateComment, deleteComment } from "../api/api"; // API 호출 함수
+import { updateMarketComment, deleteMarketComment } from "../api/api"; // API 호출 함수
 
-export default function ProductCommentItem({ comment, onCommentUpdate }) {
+export default function ProductCommentItem({
+  comment,
+  itemId,
+  onCommentUpdate,
+}) {
   const [menuVisible, setMenuVisible] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(comment.content);
@@ -14,23 +18,32 @@ export default function ProductCommentItem({ comment, onCommentUpdate }) {
 
   const toggleMenu = () => setMenuVisible(!menuVisible);
 
+  // 댓글 수정 핸들러
   const handleEdit = async () => {
     if (editedContent.trim()) {
       try {
-        await updateComment(comment.id, { content: editedContent });
+        console.log("댓글 ID:", comment.id);
+
+        await updateMarketComment(comment.id, {
+          content: editedContent,
+        });
         setIsEditing(false);
-        onCommentUpdate(); // 상위 컴포넌트에 알림
+        onCommentUpdate(comment.id, { content: editedContent });
       } catch (error) {
-        console.error("댓글 수정 실패:", error);
+        console.error(
+          "댓글 수정 실패:",
+          error.response ? error.response.data : error.message
+        );
       }
     }
   };
 
+  // 댓글 삭제 핸들러
   const handleDelete = async () => {
     try {
-      await deleteComment(comment.id);
+      await deleteMarketComment(comment.id);
       setMenuVisible(false);
-      onCommentUpdate(); // 부모 컴포넌트에 삭제 알림
+      onCommentUpdate(comment.id); // 댓글 ID를 통해 업데이트
     } catch (error) {
       console.error("댓글 삭제 실패:", error);
     }

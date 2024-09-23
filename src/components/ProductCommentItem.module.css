@@ -1,10 +1,10 @@
 /* 댓글 전체 컨테이너 */
 .commentContainer {
   position: relative;
+  height: 100px;
   background: #fcfcfc;
   border-bottom: 1px solid #e5e7eb;
   margin: 220px 0 20px 0;
-  padding: 12px; /* 안쪽 여백 조정 */
 }
 
 /* 댓글 내용과 : 버튼 */
@@ -13,7 +13,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: auto; /* 높이를 자동으로 조정 */
+  height: 32px;
   font-size: 20px;
   font-weight: 700;
   color: #1f2937;
@@ -22,6 +22,7 @@
 
 /* 수정/삭제를 위한 : 버튼 */
 .moreMenuButton {
+  position: relative;
   font-size: 20px;
   cursor: pointer;
   background-color: #ffffff;
@@ -65,19 +66,22 @@
 
 /* 댓글 수정 input창 */
 .editTextarea {
+  top: 0;
+  left: 0;
   box-sizing: border-box;
   border-radius: 8px;
-  width: 100%; /* 너비를 100%로 조정 */
-  height: 60px; /* 높이 조정 */
+  width: 1200px;
+  height: 32px;
   background: #f3f4f6;
   padding: 8px; /* 텍스트 영역의 패딩 */
   border: 1px solid #f3f4f6; /* 테두리 스타일 */
-  margin-bottom: 8px; /* 아래 여백 조정 */
-  margin-right: 10px;
 }
 
 /* 댓글 수정 후 저장버튼 */
 .saveButton {
+  position: absolute;
+  bottom: 0;
+  right: 0;
   padding: 12px 0;
   border-radius: 8px;
   background: #3692ff;
@@ -88,6 +92,7 @@
   font-size: 1rem;
   cursor: pointer;
   font-weight: 700;
+  align-self: flex-end;
 }
 
 /* 버튼 호버 시 배경색 변경 */
