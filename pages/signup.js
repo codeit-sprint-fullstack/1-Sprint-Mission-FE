@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import styles from "../styles/Signup.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { signUp } from "../src/api/auth";
+import { useRouter } from "next/router";
+import Modal from "../components/Modal";
 
 const Signup = () => {
   const {
@@ -15,6 +17,16 @@ const Signup = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      router.push("/folder");
+    }
+  }, []);
 
   const password = watch("password");
 
@@ -22,16 +34,23 @@ const Signup = () => {
     try {
       const response = await signUp(data);
       localStorage.setItem("accessToken", response.accessToken);
-      // 여기에 회원가입 성공 후 처리 로직 추가 (예: 리다이렉트)
+      router.push("/market");
     } catch (error) {
       console.error("회원가입 실패:", error);
-      // 여기에 에러 처리 로직 추가
+      setModalMessage("사용 중인 이메일입니다.");
+      setIsModalOpen(true);
     }
   };
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const toggleConfirmPasswordVisibility = () =>
     setShowConfirmPassword(!showConfirmPassword);
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter" && isValid) {
+      handleSubmit(onSubmit)();
+    }
+  };
 
   return (
     <div className="page-container">
@@ -51,6 +70,7 @@ const Signup = () => {
                   errors.email ? styles.error : ""
                 }`}
                 placeholder="이메일을 입력해주세요."
+                onKeyPress={handleKeyPress}
               />
               {errors.email && (
                 <span className={styles.errorMessage}>
@@ -67,6 +87,7 @@ const Signup = () => {
                   errors.nickname ? styles.error : ""
                 }`}
                 placeholder="닉네임을 입력해주세요."
+                onKeyPress={handleKeyPress}
               />
               {errors.nickname && (
                 <span className={styles.errorMessage}>
@@ -93,13 +114,14 @@ const Signup = () => {
                   })}
                   className={styles.input}
                   placeholder="비밀번호를 입력해주세요."
+                  onKeyPress={handleKeyPress}
                 />
                 <button
                   type="button"
                   onClick={togglePasswordVisibility}
                   className={styles.passwordToggle}
                 >
-                  {showPassword ? "👁️" : "👁️‍🗨️"}
+                  {showPassword ? "👀" : "👁️‍🗨️"}
                 </button>
               </div>
               {errors.password && (
@@ -125,13 +147,14 @@ const Signup = () => {
                   })}
                   className={styles.input}
                   placeholder="비밀번호를 다시 한 번 입력해주세요."
+                  onKeyPress={handleKeyPress}
                 />
                 <button
                   type="button"
                   onClick={toggleConfirmPasswordVisibility}
                   className={styles.passwordToggle}
                 >
-                  {showConfirmPassword ? "👁️" : "👁️‍🗨️"}
+                  {showConfirmPassword ? "👀" : "👁️‍🗨️"}
                 </button>
               </div>
               {errors.confirmPassword && (
@@ -180,11 +203,14 @@ const Signup = () => {
               </Link>
             </div>
           </div>
-          <a href="#" className={styles.loginLink}>
+          <Link href="/login" className={styles.loginLink}>
             이미 회원이신가요? <span>로그인</span>
-          </a>
+          </Link>
         </div>
       </div>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <p className={styles.modalText}>{modalMessage}</p>
+      </Modal>
     </div>
   );
 };
