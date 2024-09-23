@@ -1,0 +1,34 @@
+.FooterContainer {
+  background-color: #111827;
+  width: 100%;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  color: aliceblue;
+  position: fixed;
+  bottom: 0;
+}
+
+.FooterContent {
+  width: 1120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.FooterTitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #9ca3af;
+}
+.FooterMenu {
+  display: flex;
+  gap: 30px;
+  color: #e5e7eb;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.FooterIcon {
+  display: flex;
+  gap: 17.28px;
+}
