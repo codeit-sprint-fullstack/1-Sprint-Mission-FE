@@ -1,0 +1,33 @@
+.registerButton {
+  width: 133px;
+  height: 42px;
+  padding: 12px 23px;
+  background-color: #3692ff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #f3f4f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* 태블릿 버전 */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .registerButton {
+    width: 115px;
+    height: 42px;
+    font-size: 12px;
+  }
+}
+
+/* 모바일 버전 */
+@media (max-width: 743px) {
+  .registerButton {
+    font-size: 12px;
+  }
+}
+
