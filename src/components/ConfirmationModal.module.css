@@ -6,11 +6,13 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
+/* 모달 안 요소 */
 .modalContent {
   width: 298px; /* 고정 너비 */
   height: auto; /* 자동 높이 */
@@ -34,9 +36,9 @@
 /* 버튼 컨테이너 */
 .buttonContainer {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   margin-top: 32px;
-  gap: 10px;
+  gap: 30px;
 }
 
 .cancelButton,

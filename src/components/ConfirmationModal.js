@@ -7,14 +7,14 @@ export default function ConfirmationModal({ isOpen, onClose, onConfirm }) {
 
   return (
     <div className={styles.modalOverlay}>
-      <Image
-        src={"/images/ic_check.png"}
-        alt="체크 아이콘"
-        width={24}
-        height={24}
-        className={styles.checkIcon}
-      />
       <div className={styles.modalContent}>
+        <Image
+          src={"/images/ic_check.png"}
+          alt="체크 아이콘"
+          width={24}
+          height={24}
+          className={styles.checkIcon}
+        />
         <h3 className={styles.deleteH3}>정말로 상품을 삭제하시겠어요?</h3>
         <div className={styles.buttonContainer}>
           <button onClick={onClose} className={styles.cancelButton}>
