@@ -1,6 +1,8 @@
 import styles from '@/styles/ArticleFormFields.module.css';
 import Button from './Button.js';
 import FileInput from '../components/FleaMarket/FileInput.js';
+import tagRemove from '@/public/ic_tag_delete.png';
+import Image from 'next/image.js';
 
 export default function FleaMarketForm({ title, button, content }) {
   const onChange = (name) => (event) => {
@@ -16,6 +18,23 @@ export default function FleaMarketForm({ title, button, content }) {
         content.values.content.trim() !== '' &&
         content.values.price.trim() !== ''
     );
+  };
+
+  const removeTags = (indexToRemove) => {
+    const filter = content.tags.filter((el, index) => index !== indexToRemove);
+    content.setTags(filter);
+  };
+
+  const addTags = (event) => {
+    const inputVal = event.target.value;
+    if (
+      event.key === 'Enter' &&
+      inputVal !== '' &&
+      !content.tags.includes(inputVal)
+    ) {
+      content.setTags([...content.tags, inputVal]);
+      event.target.value = '';
+    }
   };
 
   return (
@@ -50,6 +69,7 @@ export default function FleaMarketForm({ title, button, content }) {
           value={content.values.image}
           setValues={content.setValues}
           onChange={onChange('imges')}
+          className={styles.fileInput}
         />
         <div className={styles.sectionTitle}>판매가격</div>
         <input
@@ -62,12 +82,27 @@ export default function FleaMarketForm({ title, button, content }) {
         />
         <div className={styles.sectionTitle}>태그</div>
         <input
-          name='tags'
-          placeholder='태그를 입력해 주세요'
-          value={content.values.tags}
-          onChange={onChange('tags')}
           className={styles.titleInput}
+          type='text'
+          onKeyUp={(e) => {
+            {
+              addTags(e);
+            }
+          }}
+          placeholder='태그를 입력하세요'
         />
+        <ul id='tags'>
+          {content.tags.map((tag, index) => (
+            <li key={index} className={styles.hashtags}>
+              <span className={styles.hashtagTitle}>{tag}</span>
+              <Image
+                src={tagRemove}
+                alt='remove_tag'
+                className={styles.removeIcon}
+              />
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   );

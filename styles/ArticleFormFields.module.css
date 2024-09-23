@@ -4,6 +4,7 @@
   height: auto;
   margin: 0 auto;
   min-height: 1200px;
+  margin-bottom: 300px;
 }
 
 .header {
@@ -47,7 +48,32 @@
   box-sizing: border-box;
   resize: none;
   border-radius: 12px;
-  margin-bottom: 300px;
+  margin-bottom: 24px;
+}
+
+.fileInput {
+  margin-bottom: 24px;
+}
+
+.hashtags {
+  display: flex;
+  flex-wrap: wrap;
+  float: left;
+  padding: 6px 12px;
+  background-color: #f3f4f6;
+  border-radius: 26px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+.hashtagTitle {
+  margin-left: 8px;
+}
+
+.removeIcon {
+  margin-left: 10px;
 }
 
 @media screen and (max-width: 1199px) {

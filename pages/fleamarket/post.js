@@ -5,12 +5,12 @@ import { postArticleApi } from '@/utils/api/articleApi.js';
 import { useAuth } from '../../utils/AuthProvider';
 
 export default function PostFleaArticlePage() {
+  const [tags, setTags] = useState([]);
   const [values, setValues] = useState({
     title: '',
     content: '',
     image: [],
     price: '',
-    tags: [],
   });
   const [canSubmit, setCanSubmit] = useState(false);
   useAuth(true);
@@ -25,7 +25,7 @@ export default function PostFleaArticlePage() {
         content: values.content,
         image: values.image,
         price: values.price,
-        tags: values.tags,
+        tags: tags,
         category: categoryValue,
       });
 
@@ -52,6 +52,8 @@ export default function PostFleaArticlePage() {
         content={{
           values,
           setValues,
+          tags,
+          setTags,
         }}
       />
     </>

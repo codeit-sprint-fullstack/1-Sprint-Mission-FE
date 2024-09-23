@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import postImage from '@/public/post_imge.png';
 
 export default function FileInput({ value, setValues }) {
   const [preview, setPreview] = useState();
@@ -36,12 +37,25 @@ export default function FileInput({ value, setValues }) {
 
   return (
     <div>
-      {value.length > 0 && (
+      {preview && (
         <Image src={preview} width={300} height={300} alt='이미지 미리보기' />
       )}
 
-      <input name='image' type='file' onChange={handleChange} ref={imageRef} />
-      {value && <button onClick={handleClearClick}>X</button>}
+      <input
+        name='image'
+        type='file'
+        onChange={handleChange}
+        ref={imageRef}
+        style={{ display: 'none' }}
+      />
+
+      <div
+        onClick={() => imageRef.current.click()}
+        style={{ cursor: 'pointer' }}
+      >
+        <Image src={postImage} alt='이미지 넣기 버튼' />
+      </div>
+      {value.length !== 0 && <button onClick={handleClearClick}>X</button>}
     </div>
   );
 }
