@@ -59,6 +59,7 @@ export const signIn = async (email, password) => {
       localStorage.setItem("userId", response.data.user.id);
       console.log("닉네임 저장 완료:", response.data.user.nickname);
       console.log("사용자 ID 저장 완료:", response.data.user.id);
+      console.log("저장된 accessToken: ", response.data.accessToken);
 
       window.dispatchEvent(new Event("storage"));
     } else {
