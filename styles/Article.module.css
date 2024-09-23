@@ -1,0 +1,168 @@
+.article_page {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.article_header {
+  margin-top: 32px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 16px;
+}
+
+.article_title_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.article_title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  color: #1f2937;
+}
+
+.article_information {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.article_nickname {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #4b5563;
+}
+
+.article_created_date {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #9ca3af;
+  padding-right: 32px;
+  border-right: 1px solid #e5e7eb;
+}
+
+.article_favorite_btn {
+  margin-left: 24px;
+  cursor: pointer;
+}
+
+.article_body {
+  margin-top: 24px;
+  margin-bottom: 32px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #1f2937;
+  white-space: pre-wrap;
+}
+
+.article_comment {
+  position: relative;
+}
+
+.article_comment_label {
+  font-weight: 600;
+  line-height: 26px;
+  color: #111827;
+}
+
+.article_comment_input {
+  width: 100%;
+  height: 104px;
+  margin-top: 9px;
+
+  padding: 16px 24px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 12px;
+  resize: none;
+}
+
+.article_comment_input:focus {
+  outline: 0.1px solid var(--brand-blue);
+}
+
+.article_comment_btn {
+  margin-top: 16px;
+  position: absolute;
+  right: 0;
+  width: 74px;
+  height: 42px;
+  border: none;
+  border-radius: 8px;
+  background: #9ca3af;
+  font-weight: 600;
+  line-height: 26px;
+  color: #f3f4f6;
+  cursor: pointer;
+}
+
+.article_no_comment {
+  margin: 98px auto 481px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  gap: 48px;
+}
+
+.article_title_dropdown {
+  position: relative;
+}
+
+.article_title_dropdown_box {
+  position: absolute;
+  width: 139px;
+  display: flex;
+  flex-direction: column;
+  right: 8px;
+  z-index: 0.5;
+}
+
+.article_title_dropdown_box_modify {
+  border-radius: 8px 8px 0 0;
+  border: 1px solid #d1d5db;
+  border-bottom: none;
+  padding: 12.5px 0 8.5px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #6b7280;
+  background-color: white;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.article_title_dropdown_box_delete {
+  border-radius: 0 0 8px 8px;
+  border: 1px solid #d1d5db;
+  padding: 8.5px 0 12.5px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #6b7280;
+  background-color: white;
+  cursor: pointer;
+}
+
+.article_title_dropdown_btn {
+  cursor: pointer;
+}
+
+.comment_list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 98px;
+  align-items: center;
+}
+
+.comment_list_btn {
+  margin-top: 64px;
+  width: fit-content;
+  margin-bottom: 193px;
+}

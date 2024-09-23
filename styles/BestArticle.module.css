@@ -1,0 +1,82 @@
+.best_article {
+  margin: 24px auto 0;
+  width: 1200px;
+}
+
+.best_article_container_text {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23.87px;
+  color: #111827;
+}
+
+.best_article_card_container {
+  display: flex;
+  gap: 24px;
+}
+
+.best_article_card {
+  background-color: #f9fafb;
+  width: 384px;
+  margin-top: 24px;
+  height: 169px;
+  padding: 0 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  position: relative;
+}
+
+.best_article_card:focus {
+  outline: 0.5px solid var(--brand-blue);
+}
+
+.best_article_default_img {
+  border: solid 1px #e5e7eb;
+  position: absolute;
+  right: 24px;
+  top: 46px;
+}
+
+.best_article_card_etc {
+  display: flex;
+  position: absolute;
+  bottom: 9px;
+  gap: 4px;
+  align-items: center;
+  color: #4b5563;
+  line-height: 24px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.best_article_title {
+  max-width: calc(100% - 80px);
+  word-wrap: break-word;
+  font-weight: 700;
+  font-size: 20px;
+  color: #1f2937;
+  line-height: 32px;
+  margin-top: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  white-space: normal;
+}
+
+.best_article_card_etc_heart {
+  margin-left: 4px;
+  margin-top: 1px;
+}
+
+.best_article_date {
+  position: absolute;
+  bottom: 9px;
+  right: 24px;
+  color: #9ca3af;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+}
