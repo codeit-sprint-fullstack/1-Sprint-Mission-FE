@@ -52,3 +52,8 @@
     }
   }
 }
+
+.AuthHeader {
+  margin: 60px 0 40px;
+  @include g.flex-box($justify: center, $align: center);
+}

@@ -1,0 +1,5 @@
+@use "@/styles/globals/shared" as g;
+
+.AuthForm {
+  @include g.flex-box(column, center, center, 24px);
+}

@@ -30,3 +30,13 @@
 .small {
   padding: 8px 23px;
 }
+
+.button-auth {
+  @include g.button(
+    $bg: g.$primary-color,
+    $padding: 16px 23px,
+    $radius: 40px,
+    $font-color: #fff
+  );
+  width: 100%;
+}

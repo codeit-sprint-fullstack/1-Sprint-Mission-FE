@@ -16,6 +16,7 @@ export default function CommentForm({ idPath, isArticle }) {
 
   const { mutate } = useCreateComment(idPath);
   const heading = isArticle ? "댓글달기" : "문의하기";
+
   const handleNewCommentSubmit = (data) => {
     const newComment = { content: data["create-comment-content"] };
     mutate(newComment);
