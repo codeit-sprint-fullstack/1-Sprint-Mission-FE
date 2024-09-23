@@ -21,14 +21,14 @@ function EditForm({ onFormChange, onFormValuesChange, item }) {
   }, [item, setValues]);
 
   useEffect(() => {
+    // 모든 필드가 채워져 있는지 확인하고, 오류가 없을 때만 폼을 유효하다고 판단합니다.
     const isFormValid =
-      Object.values(errors).every((error) => error === "") &&
-      Object.entries(values).every(([key, value]) => {
-        if (key === "productTag") return true;
-        return typeof value === "string" ? value.trim() !== "" : false;
-      }) &&
-      tags.length > 0 &&
-      values.productTag.trim() === "";
+      Object.values(errors).every((error) => error === "") && // 에러가 없는지 확인
+      values.productName.trim() !== "" &&
+      values.productIntro.trim() !== "" &&
+      String(values.productPrice).trim() !== "" &&
+      tags.length > 0; // 태그가 비어 있지 않은지 확인
+
     onFormChange(isFormValid);
     onFormValuesChange({ ...values, tags });
   }, [errors, values, tags, onFormChange, onFormValuesChange]);

@@ -74,8 +74,6 @@ export async function editProduct(productId, data) {
   console.log(productId, data);
   try {
     const accessToken = localStorage.getItem("accessToken");
-    console.log("Token: ", accessToken);
-    console.log("Data to send: ", data);
 
     const response = await axios.patch(
       `${baseUrl}/products/${productId}`,
