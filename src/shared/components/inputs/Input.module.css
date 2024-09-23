@@ -1,4 +1,5 @@
-.text-input-title {
+.create-article-title,
+.patch-article-title {
   width: 1200px;
   height: 56px;
   border-radius: 12px;
@@ -10,11 +11,13 @@
   font-size: 1rem;
 }
 
-.text-input-title:focus {
+.create-article-title:focus,
+.patch-article-title:focus {
   outline: 1px solid var(--color-blue-100);
 }
 
-.textarea-input-content {
+.create-article-content,
+.patch-article-content {
   width: 1200px;
   height: 282px;
   border-radius: 12px;
@@ -27,12 +30,12 @@
   resize: none;
 }
 
-.textarea-input-content:focus,
-.textarea-input-comment:focus {
+.create-article-content:focus,
+.patch-article-content:focus {
   outline: 1px solid var(--color-blue-100);
 }
 
-.textarea-input-comment {
+.create-comment-content {
   width: 1200px;
   height: 104px;
   border-radius: 12px;
@@ -43,4 +46,34 @@
   font-weight: 400;
   font-size: 1rem;
   resize: none;
+}
+
+.login-email,
+.login-password,
+.login-nickname,
+.login-password-confirmation {
+  width: 640px;
+  height: 56px;
+  border-radius: 12px;
+  padding: 16px 24px 16px 24px;
+  background-color: #f3f4f6;
+  border: 0;
+  color: var(--color-gray-100);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.password-container-login-password,
+.password-container-login-password-confirmation {
+  position: relative;
+  width: 640px;
+}
+
+.visibility-on,
+.visibility-off {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  width: 24px;
+  height: 24px;
 }
