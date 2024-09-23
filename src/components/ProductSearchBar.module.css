@@ -1,0 +1,52 @@
+.searchBar {
+  position: relative;
+  width: 325px;
+  height: 42px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 23px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+
+.searchBarInput {
+  width: 100%;
+  padding: 9px 30px 9px 50px;
+  border: none;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #9ca3af;
+}
+
+/* 태블릿 */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .searchBar {
+    width: 242px;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 743px) {
+  .searchBar {
+    width: 100%;
+    height: 40px;
+    margin-right: 0;
+  }
+
+  .searchIcon {
+    top: 70%;
+  }
+
+  .searchBarInput {
+    padding: 9px 30px 9px 50px;
+  }
+}
+
