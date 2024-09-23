@@ -6,12 +6,12 @@ import styles from "./[id].module.css";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 
-export default function ProductDetail({ product, comments, id }) {
+export default function ProductDetail({ product, initialComments, id }) {
   return (
     <>
       <div className={styles.container}>
         <ItemInfo product={product} />
-        <ItemChat comments={comments} id={id} />
+        <ItemChat initialComments={initialComments} id={id} />
         <Link href={ROUTES.ITEMS} passHref>
           <button className={styles.backBtn}>목록으로 돌아가기</button>
         </Link>
@@ -28,7 +28,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         product: productDetail,
-        comments: productComment,
+        initialComments: productComment,
         id,
       },
     };

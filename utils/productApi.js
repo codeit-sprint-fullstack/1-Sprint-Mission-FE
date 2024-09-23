@@ -1,20 +1,19 @@
 import axios from "axios";
+import { apiHandler } from "./apiHandler";
 
 const baseUrl = "https://panda-market-api.vercel.app";
 
 export async function fetchProducts({ pageSize, page, keyword, orderBy }) {
-  try {
+  return apiHandler(async () => {
     const response = await axios.get(`${baseUrl}/products`, {
       params: { pageSize, page, keyword, orderBy },
     });
     return response.data;
-  } catch (error) {
-    throw new Error("Failed to fetch products");
-  }
+  });
 }
 
 export async function createProduct(data) {
-  try {
+  return apiHandler(async () => {
     const accessToken = localStorage.getItem("accessToken");
     const response = await axios.post(`${baseUrl}/products`, data, {
       headers: {
@@ -23,13 +22,11 @@ export async function createProduct(data) {
       },
     });
     return response.data;
-  } catch (error) {
-    throw new Error("Failed to create product");
-  }
+  });
 }
 
 export async function deleteProduct(id) {
-  try {
+  return apiHandler(async () => {
     const accessToken = localStorage.getItem("accessToken");
     const response = await axios.delete(`${baseUrl}/products/${id}`, {
       headers: {
@@ -38,22 +35,18 @@ export async function deleteProduct(id) {
       },
     });
     return response.data;
-  } catch (error) {
-    throw new Error("Failed to delete product");
-  }
+  });
 }
 
 export async function fetchProduct(id) {
-  try {
+  return apiHandler(async () => {
     const response = await axios.get(`${baseUrl}/products/${id}`);
     return response.data;
-  } catch (error) {
-    throw new Error("Failed to fetch product");
-  }
+  });
 }
 
 export async function addFavorite(productId) {
-  try {
+  return apiHandler(async () => {
     const accessToken = localStorage.getItem("accessToken");
     const response = await axios.post(
       `${baseUrl}/products/${productId}/favorite`,
@@ -65,14 +58,11 @@ export async function addFavorite(productId) {
       }
     );
     return response.data;
-  } catch (error) {
-    throw new Error("Failed to add favorite");
-  }
+  });
 }
 
 export async function editProduct(productId, data) {
-  console.log(productId, data);
-  try {
+  return apiHandler(async () => {
     const accessToken = localStorage.getItem("accessToken");
 
     const response = await axios.patch(
@@ -86,17 +76,11 @@ export async function editProduct(productId, data) {
       }
     );
     return response.data;
-  } catch (error) {
-    console.error(
-      "Error during edit product:",
-      error.response || error.message
-    );
-    throw new Error("Failed to edit product");
-  }
+  });
 }
 
 export async function removeFavorite(productId) {
-  try {
+  return apiHandler(async () => {
     const accessToken = localStorage.getItem("accessToken");
     const response = await axios.delete(
       `${baseUrl}/products/${productId}/favorite`,
@@ -107,7 +91,5 @@ export async function removeFavorite(productId) {
       }
     );
     return response.data;
-  } catch (error) {
-    throw new Error("Failed to remove favorite");
-  }
+  });
 }

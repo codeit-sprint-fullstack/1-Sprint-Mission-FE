@@ -11,7 +11,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 import { useRouter } from "next/router";
-import { getUserProfile } from "@/utils/authApi";
+import useAuth from "@/hooks/useAuth";
 
 export default function ItemInfo(product) {
   const router = useRouter();
@@ -19,36 +19,14 @@ export default function ItemInfo(product) {
   const [isOpen, setIsOpen] = useState(false);
   const [isItemFavorite, setIsItemFavorite] = useState(item.isFavorite);
   const [isFavoriteCount, setIsFavoriteCount] = useState(item.favoriteCount);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const isAuthenticated = useAuth(item.ownerId);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
   const handleDelete = async (id) => {
     await deleteProduct(id);
     router.push(ROUTES.ITEMS);
   };
-
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-
-    if (token) {
-      const fetchUserData = async () => {
-        try {
-          const userData = await getUserProfile(token);
-          if (item.ownerId === userData.id) {
-            setIsAuthenticated(true);
-          } else {
-            setIsAuthenticated(false);
-          }
-        } catch (error) {
-          console.error("유저 정보를 불러오는 데 실패했습니다:", error);
-          setIsAuthenticated(false);
-          localStorage.removeItem("accessToken");
-        }
-      };
-
-      fetchUserData();
-    }
-  }, []);
 
   const handleFavoriteToggle = async () => {
     try {
@@ -65,6 +43,7 @@ export default function ItemInfo(product) {
       console.error("Error updating favorite status:", error);
     }
   };
+
   return (
     <div className={styles.itemContainer}>
       <img
