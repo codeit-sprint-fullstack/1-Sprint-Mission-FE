@@ -77,3 +77,20 @@
   margin-right: 200px;
   font-family: Pretendard;
 }
+
+/* 인가된 경우, 유저 정보 API를 활용 */
+
+/* 프로필 이미지와 닉네임 */
+.loginprofile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 200px;
+}
+
+/* 닉네임 */
+.username {
+  font-size: 18px;
+  font-weight: 400;
+  color: #4b5563;
+}
