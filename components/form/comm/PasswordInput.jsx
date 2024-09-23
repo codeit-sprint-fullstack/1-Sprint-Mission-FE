@@ -17,11 +17,14 @@ export function PasswordInput({
     formState: { errors },
     trigger,
     clearErrors,
+    watch,
   } = useFormContext();
 
   const [isVisible, setIsVisible] = useState(false);
 
   const addError = errors[name] && styles.error;
+  const isConfirming = name === "passwordConfirmation";
+  const password = watch("password");
 
   const handlePasswordVisibility = () => {
     setIsVisible((prevState) => !prevState);
@@ -39,11 +42,15 @@ export function PasswordInput({
             ...validations,
             onBlur: () => trigger(name),
             onChange: () => trigger(name),
+            validate: isConfirming
+              ? (value) => value === password || "비밀번호가 일치하지 않습니다."
+              : undefined,
           })}
           onFocus={() => clearErrors(name)}
           placeholder={placeholder}
           type={isVisible ? "text" : "password"}
         />
+
         <button
           onClick={handlePasswordVisibility}
           type="button"

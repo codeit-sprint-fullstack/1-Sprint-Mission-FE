@@ -39,4 +39,12 @@
     $font-color: #fff
   );
   width: 100%;
+
+  &:hover {
+    background-color: darken(g.$primary-color, 10%);
+  }
+  &:disabled {
+    background-color: g.$grey-400;
+    cursor: not-allowed;
+  }
 }

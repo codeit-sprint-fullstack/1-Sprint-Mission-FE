@@ -1,4 +1,4 @@
-import LoginForm from "@/components/form/auth/LoginForm";
+import LoginForm from "@/components/form/auth/LogInForm";
 import styles from "@/styles/pages/auth/main.module.scss";
 import Image from "next/image";
 import Link from "next/link";

@@ -43,4 +43,12 @@ export const AUTH = {
     required: "닉네임을 입력해 주세요",
     ...minMaxLength(1, 20),
   },
+  CONFIRM_PW: {
+    required: "확인 비밀번호를 입력해 주세요",
+    pattern: {
+      value: /^([a-z]|[A-Z]|[0-9]|[!@#$%^&*])+$/,
+      message: "영문 대소문자, 숫자, 특수문자(!@#$%^&*) 입력 가능합니다",
+    },
+    ...minMaxLength(8, 14),
+  },
 };
