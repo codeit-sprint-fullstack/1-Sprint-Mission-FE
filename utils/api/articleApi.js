@@ -76,30 +76,30 @@ export async function fetchArticleApi(targetId) {
 // }
 
 export async function postArticleApi({
-  titleValue,
-  contentValue,
-  imageValue,
-  priceValue,
-  tagsValue,
-  categoryValue,
+  title,
+  content,
+  image,
+  price,
+  tags,
+  category,
 }) {
   try {
     const formData = new FormData();
 
-    formData.append('title', titleValue);
-    formData.append('content', contentValue);
-    formData.append('category', categoryValue);
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('category', category);
     formData.append('userId', '86d761e4-a9d0-4082-96dd-cf6f2c931673');
 
-    formData.append('images', imageValue);
+    formData.append('images', image);
 
-    // if (tagsValue) {
-    //   tagsValue.forEach((tag) => {
+    // if (tags) {
+    //   tags.forEach((tag) => {
     //     formData.append('tags', tag);
     //   });
     // }
     // if (priceValue) {
-    //   formData.append('price', priceValue || null);
+    //   formData.append('price', price || null);
     // }
     for (let [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`);

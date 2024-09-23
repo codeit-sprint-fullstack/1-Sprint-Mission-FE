@@ -5,11 +5,13 @@ import { postArticleApi } from '@/utils/api/articleApi.js';
 import { useAuth } from '../../utils/AuthProvider';
 
 export default function PostFleaArticlePage() {
-  const [titleValue, setTitleValue] = useState('');
-  const [contentValue, setContentValue] = useState('');
-  const [priceValue, setPriceValue] = useState('');
-  const [imageValue, setImageValue] = useState([]);
-  const [tagsValue, setTagsValue] = useState([]);
+  const [values, setValues] = useState({
+    title: '',
+    content: '',
+    image: [],
+    price: '',
+    tags: [],
+  });
   const [canSubmit, setCanSubmit] = useState(false);
   useAuth(true);
   const router = useRouter();
@@ -19,12 +21,12 @@ export default function PostFleaArticlePage() {
   const handleSubmit = async () => {
     try {
       const res = await postArticleApi({
-        titleValue,
-        contentValue,
-        imageValue,
-        priceValue,
-        tagsValue,
-        categoryValue,
+        title: values.title,
+        content: values.content,
+        image: values.image,
+        price: values.price,
+        tags: values.tags,
+        category: categoryValue,
       });
 
       // console.log(res);
@@ -48,16 +50,8 @@ export default function PostFleaArticlePage() {
           setCanSubmit: setCanSubmit,
         }}
         content={{
-          titleValue: titleValue,
-          setTitleValue: setTitleValue,
-          contentValue: contentValue,
-          setContentValue: setContentValue,
-          imageValue: imageValue,
-          setImageValue: setImageValue,
-          priceValue: priceValue,
-          setPriceValue: setPriceValue,
-          tagsValue: tagsValue,
-          setTagsValue: setTagsValue,
+          values,
+          setValues,
         }}
       />
     </>

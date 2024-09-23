@@ -3,43 +3,19 @@ import Button from './Button.js';
 import FileInput from '../components/FleaMarket/FileInput.js';
 
 export default function FleaMarketForm({ title, button, content }) {
-  const titleChange = (event) => {
+  const onChange = (name) => (event) => {
     const value = event.target.value;
-    content.setTitleValue(value);
+
+    content.setValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
     button.setCanSubmit(
-      value.trim() !== '' &&
-        content.contentValue.trim() !== '' &&
-        content.priceValue.trim() !== ''
+      content.values.title.trim() !== '' &&
+        content.values.content.trim() !== '' &&
+        content.values.price.trim() !== ''
     );
-  };
-
-  const contentChange = (event) => {
-    const value = event.target.value;
-    content.setContentValue(value);
-    button.setCanSubmit(
-      value.trim() !== '' &&
-        content.titleValue.trim() !== '' &&
-        content.priceValue.trim() !== ''
-    );
-  };
-
-  const priceChange = (event) => {
-    const value = event.target.value;
-    content.setPriceValue(value);
-    button.setCanSubmit(
-      value.trim() !== '' &&
-        content.contentValue.trim() !== '' &&
-        content.titleValue.trim() !== ''
-    );
-  };
-
-  const tagsChange = (event) => {
-    const value = event.target.value;
-    content.setTagsValue(value);
-  };
-
-  const handleChange = (value) => {
-    content.setImageValue(value);
   };
 
   return (
@@ -55,33 +31,41 @@ export default function FleaMarketForm({ title, button, content }) {
         </div>
         <div className={styles.sectionTitle}>상품명</div>
         <input
+          name='title'
           placeholder='상품명을 입력해 주세요'
-          value={content.titleValue}
-          onChange={titleChange}
+          value={content.values.title}
+          onChange={onChange('title')}
           className={styles.titleInput}
         />
         <div className={styles.sectionTitle}>상품 소개</div>
         <textarea
+          name='content'
           placeholder='내용을 입력해 주세요 '
-          value={content.contentValue}
-          onChange={contentChange}
+          value={content.values.content}
+          onChange={onChange('content')}
           className={styles.contentInput}
         />
         <div className={styles.sectionTitle}>이미지</div>
-        <FileInput value={content.imageValue} onChange={handleChange} />
+        <FileInput
+          value={content.values.image}
+          setValues={content.setValues}
+          onChange={onChange('imges')}
+        />
         <div className={styles.sectionTitle}>판매가격</div>
         <input
+          name='price'
           placeholder='판매 가격을 입력해 주세요'
           type='number'
-          value={content.priceValue}
-          onChange={priceChange}
+          value={content.values.price}
+          onChange={onChange('price')}
           className={styles.titleInput}
         />
         <div className={styles.sectionTitle}>태그</div>
         <input
+          name='tags'
           placeholder='태그를 입력해 주세요'
-          value={content.tagsValue}
-          onChange={tagsChange}
+          value={content.values.tags}
+          onChange={onChange('tags')}
           className={styles.titleInput}
         />
       </div>

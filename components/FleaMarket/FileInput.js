@@ -1,16 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
-export default function FileInput({ value, onChange }) {
+export default function FileInput({ value, setValues }) {
   const [preview, setPreview] = useState();
 
   const imageRef = useRef();
 
   const handleChange = (e) => {
     const imageValue = e.target.files[0];
-    onChange(imageValue);
-
-    console.log(imageValue);
+    setValues((prev) => ({
+      ...prev,
+      images: imageValue,
+    }));
   };
 
   const handleClearClick = () => {
@@ -18,7 +19,10 @@ export default function FileInput({ value, onChange }) {
     if (!inputNode) return;
 
     inputNode.value = '';
-    onChange(null);
+    setValues((prev) => ({
+      ...prev,
+      images: null,
+    }));
   };
 
   useEffect(() => {
@@ -36,7 +40,7 @@ export default function FileInput({ value, onChange }) {
         <Image src={preview} width={300} height={300} alt='이미지 미리보기' />
       )}
 
-      <input type='file' onChange={handleChange} ref={imageRef} />
+      <input name='image' type='file' onChange={handleChange} ref={imageRef} />
       {value && <button onClick={handleClearClick}>X</button>}
     </div>
   );
