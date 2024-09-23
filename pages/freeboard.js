@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { throttle } from 'lodash';
 import ArticleList from '@/components/FreeBoard/ArticleList.js';
 import BestArticleList from '@/components/FreeBoard/BestArticleList.js';
-import ArticleListHeard from '@/components/FreeBoard/ArticleListHeard.js';
+import ArticleListHeader from '@/components/FreeBoard/ArticleListHeader.js';
 import {
   fetchFreeBoardArticlesApi,
   fetchFreeBoardBestArticlesApi,
@@ -82,7 +82,7 @@ export default function FreeBoardPage({
     <>
       <div className={styles.body}>
         <BestArticleList articles={bestArticlesData} />
-        <ArticleListHeard keyword={keyword} setOrderBy={setOrderBy} />
+        <ArticleListHeader keyword={keyword} setOrderBy={setOrderBy} />
         <ArticleList articles={articles} />
         {loading && <div>Loading...</div>}
       </div>

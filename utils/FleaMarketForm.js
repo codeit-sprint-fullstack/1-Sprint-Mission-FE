@@ -68,7 +68,7 @@ export default function FleaMarketForm({ title, button, content }) {
         <FileInput
           value={content.values.image}
           setValues={content.setValues}
-          onChange={onChange('imges')}
+          onChange={onChange('image')}
           className={styles.fileInput}
         />
         <div className={styles.sectionTitle}>판매가격</div>

@@ -8,7 +8,7 @@ import styles from '@/styles/FreeBoard.module.css';
 import DropDown from '@/utils/DropDown.js';
 import { useState } from 'react';
 
-export default function FleaMarketArticleListHeard({ keyword, setOrderBy }) {
+export default function ArticleListHeader({ keyword, setOrderBy }) {
   const [showDropDown, setShowDropDOwn] = useState(false);
   const [orderByText, setOrderByText] = useState('최신순');
   const handleDropDown = () => {
