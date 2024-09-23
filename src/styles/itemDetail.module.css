@@ -1,0 +1,311 @@
+.itemDetail {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.image {
+  width: calc(100% - 690px - 30px);
+  height: auto;
+  border-radius: 20px;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 690px;
+  margin-left: 30px;
+}
+
+.firstBox {
+  height: 105px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.firstBox .namePriceContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.firstBox .name {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: #1f2937;
+}
+
+.firstBox .price {
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 48px;
+  color: #1f2937;
+  padding-bottom: 10px;
+}
+
+.kebabIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.secondBox {
+  width: 690px;
+  height: 146px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.secondBox .descriptionTitle {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  color: #4b5563;
+  margin-top: 20px;
+}
+
+.secondBox .descriptionContent {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #4b5563;
+  margin-bottom: 20px;
+}
+
+.thirdBox {
+  width: 690px;
+  height: 78px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.thirdBox .tagTitle {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  color: #4b5563;
+}
+
+.thirdBox .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.tag {
+  background-color: #f3f4f6;
+  border-radius: 26px;
+  padding: 6px 16px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #1f2937;
+}
+
+.fourthBox {
+  margin-top: 30px;
+  width: 690px;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.profileIcon {
+  width: 36px;
+  height: 36px;
+}
+
+.ownerId {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #4b5563;
+  margin-left: 5px;
+}
+
+.createdAt {
+  margin-left: 15px;
+}
+
+.lineIcon {
+  width: 16px;
+  height: 16px;
+  margin-left: auto;
+}
+
+.heartIcon {
+  width: 24px;
+  height: 24px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.favoriteCount {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  color: #6b7280;
+  margin-left: 5px;
+}
+
+.commentsSection {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding: 20px 0;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.commentsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  height: 48px;
+  background-color: #3692ff;
+  color: white;
+  border-radius: 40px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.backButton img {
+  margin-left: 10px;
+}
+
+.commentFormContainer {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.formGroup label {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #1f2937;
+}
+
+.formGroup textarea {
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background-color: #f3f4f6;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #1f2937;
+}
+
+.submitButton {
+  width: 74px;
+  height: 42px;
+  padding: 12px 23px;
+  background-color: #9ca3af;
+  border: none;
+  border-radius: 8px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #f3f4f6;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.submitButton:enabled {
+  background-color: #3692ff;
+  color: white;
+}
+
+.submitButton:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.commentItem {
+  background-color: #fcfcfc;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px;
+  max-width: 1170px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: transform 0.3s ease;
+}
+
+.commentContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.commentDetails {
+  display: flex;
+  align-items: flex-end;
+  flex-grow: 1;
+}
+
+.profileIcon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.author {
+  font-size: 14px;
+  font-weight: 400;
+  color: #4b5563;
+  margin-right: 15px;
+}
+
+.date {
+  font-size: 14px;
+  font-weight: 400;
+  color: #9ca3af;
+  margin-left: 15px;
+}
+
+.kebabIcon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
