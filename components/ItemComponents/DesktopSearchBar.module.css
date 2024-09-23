@@ -49,3 +49,9 @@
   margin: 0 12px;
   cursor: pointer;
 }
+
+@media (max-width: 1199px) {
+  .inputSearch {
+    width: 242px;
+  }
+}

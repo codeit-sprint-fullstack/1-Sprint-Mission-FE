@@ -6,6 +6,7 @@ import { MobileSearchBar } from "./MobileSearchBar";
 import { DesktopSearchBar } from "./DesktopSearchBar";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
+import { useDeviceType } from "@/hooks/useDeviceType";
 
 export default function ItemList({
   products,
@@ -15,10 +16,11 @@ export default function ItemList({
   onKeyDown,
   onSortChange,
 }) {
+  const deviceType = useDeviceType();
   return (
     <div className={styles.sell}>
-      {products.length > 4 ? (
-        <DesktopSearchBar
+      {deviceType === "mobile" ? (
+        <MobileSearchBar
           keyword={keyword}
           onKeywordChange={onKeywordChange}
           onKeyDown={onKeyDown}
@@ -26,7 +28,7 @@ export default function ItemList({
           onSortChange={onSortChange}
         />
       ) : (
-        <MobileSearchBar
+        <DesktopSearchBar
           keyword={keyword}
           onKeywordChange={onKeywordChange}
           onKeyDown={onKeyDown}
