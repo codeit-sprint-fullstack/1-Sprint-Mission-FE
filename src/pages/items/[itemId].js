@@ -4,6 +4,7 @@ import {
   getProductById,
   favoriteProduct,
   unfavoriteProduct,
+  updateProduct, // 상품 업데이트 API 추가
 } from "../../api/productApi";
 import { getComments } from "../../api/commentApi";
 import Modal from "../../components/Modal";
@@ -11,6 +12,7 @@ import ProductCommentForm from "../../components/ProductCommentForm";
 import ProductCommentItem from "../../components/ProductCommentItem";
 import ProductEmptyComments from "../../components/ProductEmptyComments";
 import ProductBackButton from "../../components/ProductBackButton";
+import ProductKebabMenu from "../../components/ProductKebabMenu";
 import styles from "../../styles/itemDetail.module.css";
 import { useState, useEffect } from "react";
 
@@ -22,6 +24,12 @@ const ProductDetailPage = () => {
   const [accessToken, setAccessToken] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const [comments, setComments] = useState([]);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [editedProduct, setEditedProduct] = useState({
+    name: "",
+    price: "",
+    description: "",
+  });
 
   // 페이지가 로드될 때 accessToken을 localStorage에서 가져옴
   useEffect(() => {
@@ -31,23 +39,26 @@ const ProductDetailPage = () => {
     }
   }, []);
 
-  // 상품 정보 가져오기 (서버에서 좋아요 수 포함)
   const { data: productData, error: productError } = useQuery({
     queryKey: ["product", itemId],
     queryFn: () => getProductById(itemId),
     enabled: !!itemId,
     onSuccess: (data) => {
-      setIsLiked(data.isFavorited); // 초기 좋아요 상태 설정
+      setIsLiked(data.isFavorited);
+      setEditedProduct({
+        name: data.name,
+        price: data.price,
+        description: data.description,
+      });
     },
   });
 
-  // 댓글 목록 불러오기
   useEffect(() => {
     if (itemId) {
       const loadComments = async () => {
         try {
-          const data = await getComments(itemId); // 서버에서 댓글 목록 불러오기
-          setComments(data.list || []); // 댓글 목록 상태 업데이트
+          const data = await getComments(itemId);
+          setComments(data.list || []);
         } catch (error) {
           console.error("댓글 목록 불러오기 실패:", error);
         }
@@ -56,16 +67,15 @@ const ProductDetailPage = () => {
     }
   }, [itemId]);
 
-  // 좋아요 토글
   const likeMutation = useMutation({
     mutationFn: isLiked
-      ? () => unfavoriteProduct(itemId, accessToken) // 좋아요 취소
-      : () => favoriteProduct(itemId, accessToken), // 좋아요
+      ? () => unfavoriteProduct(itemId, accessToken)
+      : () => favoriteProduct(itemId, accessToken),
     onSuccess: () => {
-      setIsLiked(!isLiked); // 좋아요 상태 토글
+      setIsLiked(!isLiked);
       productData.favoriteCount = isLiked
         ? productData.favoriteCount - 1
-        : productData.favoriteCount + 1; // 좋아요 갯수 업데이트
+        : productData.favoriteCount + 1;
     },
     onError: () => {
       setModalMessage("좋아요 처리 중 오류가 발생했습니다.");
@@ -73,7 +83,29 @@ const ProductDetailPage = () => {
     },
   });
 
-  // 좋아요 버튼 클릭 시 처리
+  // 상품 수정 저장
+  const updateProductMutation = useMutation({
+    mutationFn: (updatedData) =>
+      updateProduct(itemId, updatedData, accessToken), // 상품 업데이트 API 호출
+    onSuccess: () => {
+      setIsEditMode(false); // 수정 완료 후 수정 모드 비활성화
+    },
+    onError: () => {
+      setModalMessage("상품 수정 중 오류가 발생했습니다.");
+      setIsModalOpen(true);
+    },
+  });
+
+  // 수정 모드 활성화/비활성화
+  const toggleEditMode = () => {
+    setIsEditMode(!isEditMode);
+  };
+
+  // 수정된 상품 정보 저장
+  const handleSave = () => {
+    updateProductMutation.mutate(editedProduct); // 수정된 데이터 전송
+  };
+
   const handleLikeToggle = () => {
     if (accessToken) {
       likeMutation.mutate();
@@ -83,7 +115,6 @@ const ProductDetailPage = () => {
     }
   };
 
-  // 새로운 댓글을 추가하는 함수
   const addNewComment = (newComment) => {
     setComments([newComment, ...comments]);
   };
@@ -102,36 +133,62 @@ const ProductDetailPage = () => {
         <div className={styles.infoContainer}>
           <div className={`${styles.infoBox} ${styles.firstBox}`}>
             <div className={styles.namePriceContainer}>
-              <span className={styles.name}>{productData?.name}</span>
-              <img
-                src="/image/kebab.svg"
-                alt="Kebab Icon"
-                className={styles.kebabIcon}
+              {isEditMode ? (
+                <input
+                  type="text"
+                  value={editedProduct.name}
+                  onChange={(e) =>
+                    setEditedProduct({ ...editedProduct, name: e.target.value })
+                  }
+                  className={styles.inputField}
+                />
+              ) : (
+                <span className={styles.name}>{productData?.name}</span>
+              )}
+
+              <ProductKebabMenu
+                productId={itemId}
+                onEdit={toggleEditMode}
+                refreshProducts={() => router.push("/items")}
               />
             </div>
+
             <div>
-              <span className={styles.price}>
-                {productData?.price.toLocaleString("ko-KR")}원
-              </span>
+              {isEditMode ? (
+                <input
+                  type="number"
+                  value={editedProduct.price}
+                  onChange={(e) =>
+                    setEditedProduct({ ...editedProduct, price: e.target.value })
+                  }
+                  className={styles.inputField}
+                />
+              ) : (
+                <span className={styles.price}>
+                  {productData?.price.toLocaleString("ko-KR")}원
+                </span>
+              )}
             </div>
           </div>
 
           <div className={`${styles.infoBox} ${styles.secondBox}`}>
             <div className={styles.descriptionTitle}>상품 소개</div>
-            <div className={styles.descriptionContent}>
-              {productData?.description}
-            </div>
-          </div>
-
-          <div className={`${styles.infoBox} ${styles.thirdBox}`}>
-            <div className={styles.tagTitle}>상품 태그</div>
-            <div className={styles.tags}>
-              {productData?.tags?.map((tag, index) => (
-                <span key={index} className={styles.tag}>
-                  #{tag}
-                </span>
-              ))}
-            </div>
+            {isEditMode ? (
+              <textarea
+                value={editedProduct.description}
+                onChange={(e) =>
+                  setEditedProduct({
+                    ...editedProduct,
+                    description: e.target.value,
+                  })
+                }
+                className={styles.textArea}
+              />
+            ) : (
+              <div className={styles.descriptionContent}>
+                {productData?.description}
+              </div>
+            )}
           </div>
 
           <div className={`${styles.infoBox} ${styles.fourthBox}`}>
@@ -192,7 +249,18 @@ const ProductDetailPage = () => {
       </div>
 
       <div className={styles.buttonContainer}>
-        <ProductBackButton />
+        {isEditMode ? (
+          <>
+            <button onClick={handleSave} className={styles.saveButton}>
+              저장
+            </button>
+            <button onClick={toggleEditMode} className={styles.cancelButton}>
+              취소
+            </button>
+          </>
+        ) : (
+          <ProductBackButton />
+        )}
       </div>
 
       {isModalOpen && (
