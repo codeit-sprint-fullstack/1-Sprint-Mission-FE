@@ -1,8 +1,9 @@
+import styles from '@/styles/ArticleFormFields.module.css';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import postImage from '@/public/post_imge.png';
 
-export default function FileInput({ value, setValues }) {
+export default function FileInput({ setValues }) {
   const [preview, setPreview] = useState();
   const imageRef = useRef();
 
@@ -33,6 +34,7 @@ export default function FileInput({ value, setValues }) {
 
   return (
     <div>
+      <div className={styles.sectionTitle}>이미지</div>
       {preview && (
         <Image src={preview} width={300} height={300} alt='이미지 미리보기' />
       )}

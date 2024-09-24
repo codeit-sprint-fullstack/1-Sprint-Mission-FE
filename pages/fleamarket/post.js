@@ -1,10 +1,17 @@
+import styles from '@/styles/ArticleFormFields.module.css';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import FleaMarketForm from '@/utils/FleaMarketForm';
 import { postArticleApi } from '@/utils/api/articleApi.js';
 import { useAuth } from '../../utils/AuthProvider';
+import Button from '@/utils/Button.js';
+import TitleInput from '@/components/Post/TitleInput';
+import FileInput from '@/components/Post/FileInput';
+import ContentInput from '@/components/Post/ContentInput';
+import PriceInput from '@/components/Post/PriceInput';
+import TagsInput from '@/components/Post/TagsInput';
 
 export default function PostFleaArticlePage() {
+  const [canSubmit, setCanSubmit] = useState(false);
   const [tags, setTags] = useState([]);
   const [values, setValues] = useState({
     title: '',
@@ -12,11 +19,8 @@ export default function PostFleaArticlePage() {
     image: [],
     price: '',
   });
-  const [canSubmit, setCanSubmit] = useState(false);
-  useAuth(true);
-  const router = useRouter();
 
-  const categoryValue = 'fleamarket';
+  const router = useRouter();
 
   const handleSubmit = async () => {
     try {
@@ -26,7 +30,7 @@ export default function PostFleaArticlePage() {
         image: values.image,
         price: values.price,
         tags: tags,
-        category: categoryValue,
+        category: 'fleamarket',
       });
 
       // console.log(res);
@@ -37,25 +41,38 @@ export default function PostFleaArticlePage() {
     }
   };
 
+  const onChange = (event) => {
+    const { name, value } = event.target;
+
+    setValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    setCanSubmit(
+      values.title.trim() !== '' &&
+        values.content.trim() !== '' &&
+        values.price.trim() !== ''
+    );
+  };
+
   return (
     <>
-      <FleaMarketForm
-        title={{
-          label: '상품 등록하기',
-        }}
-        button={{
-          disabled: !canSubmit,
-          label: '등록',
-          onClick: handleSubmit,
-          setCanSubmit: setCanSubmit,
-        }}
-        content={{
-          values,
-          setValues,
-          tags,
-          setTags,
-        }}
-      />
+      <div className={styles.postLayout}>
+        <div className={styles.header}>
+          <span className={styles.title}>상품 등록</span>
+          <Button disabled={!canSubmit} label='등록' onClick={handleSubmit} />
+        </div>
+        <TitleInput values={values} onChange={onChange} />
+        <ContentInput
+          values={values}
+          setValues={setValues}
+          onChange={onChange}
+        />
+        <FileInput setValues={setValues} />
+        <PriceInput values={values} onChange={onChange} />
+        <TagsInput tags={tags} setTags={setTags} />
+      </div>
     </>
   );
 }
