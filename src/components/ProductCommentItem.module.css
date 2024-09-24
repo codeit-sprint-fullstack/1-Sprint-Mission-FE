@@ -4,9 +4,7 @@
   height: 100px;
   background: #fcfcfc;
   border-bottom: 1px solid #e5e7eb;
-  /* margin: 40px 0 20px 0; */
-  margin: 230px 0 20px 0;
-  margin-bottom: 20px;
+  margin: 40px 0 20px 0;
   box-sizing: border-box;
 }
 
@@ -108,6 +106,7 @@
 /* Tablet */
 @media only screen and (min-width: 744px) and (max-width: 1199px) {
   .commentContainer {
+    margin: 0 auto;
     padding: 12px; /* 안쪽 여백 조정 */
   }
 
@@ -134,6 +133,7 @@
 /* Mobile */
 @media only screen and (min-width: 375px) and (max-width: 743px) {
   .commentContainer {
+    margin: 0 auto;
     padding: 12px; /* 안쪽 여백 조정 */
   }
 
