@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.inputHeader {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.inputComment {
+  height: 104px;
+}
+
+.postButton {
+  width: 74px;
+  height: 42px;
+  padding: 12px 23px;
+  margin-top: 7px;
+  margin-left: auto;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #f3f4f6;
+  background-color: #3692ff;
+}
+
+.postButton:disabled {
+  background-color: #9ca3af;
+  cursor: default;
+}

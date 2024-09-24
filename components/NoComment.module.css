@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-self: center;
+}
+
+.emptyComment {
+  text-align: center;
+  color: #9CA3AF;
+}
