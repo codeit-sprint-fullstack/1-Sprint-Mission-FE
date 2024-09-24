@@ -1,0 +1,121 @@
+/* 기본 스타일 (PC 버전) */
+.main {
+  max-width: 1200px; /* PC 버전에서 최대 너비 설정 */
+  margin: 0 auto; /* 중앙 정렬 */
+  padding: 0 20px; /* 양쪽 여백 */
+}
+/* 전체 페이지 스타일 */
+.RegistrationPage {
+  text-align: center;
+}
+
+/* 상품 수정 폼 스타일 */
+.productForm {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 24px;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 379px;
+}
+
+/* 폼 상단 스타일 */
+.FormTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* 상품 수정 문구 */
+.ProductEditH1 {
+  text-align: left;
+  font-weight: 700;
+  font-size: 20px;
+  color: #111827;
+}
+
+/* 수정 버튼 */
+.FormTop button {
+  width: 74px;
+  height: 42px;
+  border: none;
+  border-radius: 8px;
+  background: #3692ff;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: Pretendard;
+  font-weight: 700;
+}
+
+/* 라벨 스타일 */
+.label1,
+.label2,
+.label3 {
+  display: block;
+  font-weight: 700;
+  font-size: 18px;
+  color: #1f2937;
+  font-family: Pretendard;
+  margin-bottom: 8px;
+}
+
+/* 입력 필드 스타일 */
+.RegistrationInput {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 1rem;
+  margin: 12px 0 24px 0;
+  height: 56px;
+}
+
+/* 내용 필드 스타일 */
+textarea.RegistrationInput {
+  resize: vertical;
+  min-height: 282px;
+  background: #f3f4f6;
+  padding-top: 20px;
+  font-family: Pretendard;
+}
+
+/* 포커스 시 테두리 색상 변경 */
+.RegistrationInput:focus {
+  border-color: #3692ff;
+  border-width: 4px;
+  outline: none;
+}
+
+/* placeholder */
+.RegistrationInput::placeholder,
+textarea.RegistrationInput::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  color: #9ca3af;
+  font-family: Pretendard;
+}
+
+/* 오류 메시지 스타일 */
+.errorMessage {
+  color: #ff0000;
+  font-size: 0.875rem;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+/* 오류가 있는 필드의 테두리 색상 */
+.error {
+  border-color: #ff0000;
+  border-width: 2px;
+}
+
+/* 수정 버튼 비활성화 */
+.FormTop button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
