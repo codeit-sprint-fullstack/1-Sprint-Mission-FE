@@ -26,6 +26,7 @@ export async function deleteProduct(id) {
 }
 
 export async function likeProduct(id) {
+  console.log("확인");
   const res = await instance.post(`/products/${id}/favorite`);
   return res.data;
 }

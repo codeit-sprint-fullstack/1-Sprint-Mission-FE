@@ -21,7 +21,9 @@ import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
+  useMutation,
   useQuery,
+  useQueryClient,
 } from "@tanstack/react-query";
 
 export async function getServerSideProps(context) {
@@ -55,6 +57,7 @@ export async function getServerSideProps(context) {
 
 function DetailProduct({ product, comments, id }) {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const { data: productData } = useQuery({
     queryKey: ["product"],
@@ -72,6 +75,7 @@ function DetailProduct({ product, comments, id }) {
     createdAt,
     favoriteCount,
     ownerId,
+    ownerNickname,
     tags,
     price,
     description,
@@ -153,6 +157,47 @@ function DetailProduct({ product, comments, id }) {
     }
   };
 
+  const likeMutation = useMutation({
+    mutationFn: async ({ id }) => {
+      if (isFavorite) {
+        await productsApi.unlikeProduct(id);
+      } else {
+        await productsApi.likeProduct(id);
+      }
+    },
+    onMutate: async () => {
+      await queryClient.cancelQueries({
+        queryKey: ["product"],
+      });
+      const prevProduct = queryClient.getQueryData(["product"]);
+      queryClient.setQueryData(["product"], (prev) => ({
+        ...prev,
+        data: {
+          isFavorite: !prev.isFavorite,
+          favoriteCount: prev.isFavorite
+            ? prev.favoriteCount - 1
+            : prev.favoriteCount + 1,
+        },
+      }));
+      return { prevProduct };
+    },
+    onError: (error, {}, context) => {
+      console.log(error);
+      queryClient.setQueryData(["product"], context.prevProduct);
+    },
+    onSettled: (data, err) => {
+      queryClient.invalidateQueries({
+        queryKey: ["product"],
+      });
+    },
+  });
+
+  const handleLikeButtonClick = () => {
+    if (!user) return; //로그인이 되어 있지 않으면 뮤테이션을 실행하지 않게 리턴한다.
+    console.log("확인" + isFavorite, id);
+    likeMutation.mutate({ id });
+  };
+
   return (
     <>
       {/* 모달을 콘텐츠의 최상위에 위치하기 위함 */}
@@ -222,11 +267,14 @@ function DetailProduct({ product, comments, id }) {
                 alt="작성자이미지"
               />
               <div className={styles.product_row_sub_box}>
-                <span>{ownerId}</span>
+                <span>{ownerNickname}</span>
                 <span className={styles.product_createdAt}>{date}</span>
               </div>
               <div>
-                <button className={styles.product_favorite_btn}>
+                <button
+                  onClick={handleLikeButtonClick}
+                  className={styles.product_favorite_btn}
+                >
                   <Image
                     className={styles.product_ic_heart}
                     src={isFavorite ? ic_heart_liked : ic_heart}

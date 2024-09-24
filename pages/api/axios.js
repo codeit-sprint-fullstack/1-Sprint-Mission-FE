@@ -23,6 +23,7 @@ instance.interceptors.request.use(
   }
 );
 
+// 리스퐅스로 권한 에러가 돌아오면 토큰을 갱신한다
 instance.interceptors.response.use(
   (res) => res,
   async (error) => {
