@@ -35,7 +35,7 @@ function BtnLogin() {
   // };
 
   return (
-    <Link href="/login" target="_self">
+    <Link href="/sign-in" target="_self">
       <button className={btnSignInClass} /* onClick={tempSignUp}  */ />
     </Link>
   );

@@ -48,6 +48,9 @@ module.exports = {
         "btn-sign-in": "8.8rem",
         // footer-icon
         "footer-icon": "2rem",
+        // btn-logo
+        "btn-logo": "39.6rem",
+        "mobile-btn-logo": "19.8rem",
         // loading
         loading: "12rem",
         // dropdown
@@ -94,6 +97,9 @@ module.exports = {
         footer: "16rem",
         // footer-icon
         "footer-icon": "2rem",
+        // btn-logo
+        "btn-logo": "13.2rem",
+        "mobile-btn-logo": "6.6rem",
         // loading
         loading: "6rem",
         // dropdown
@@ -150,6 +156,13 @@ module.exports = {
       },
       margin: {
         "mobile-footer": "7.6rem",
+        // sign-in
+        "sign-in-mt": "23.1rem",
+        "sign-in-mb": "23.1rem",
+        "tablet-sign-in-mt": "19rem",
+        "tablet-sign-in-mb": "32.5rem",
+        "mobile-sign-in-mt": "8rem",
+        "mobile-sign-in-mb": "23.1rem",
         // btn-to-list-frame
         "btn-to-list-frame-mt": "6.4rem",
         "btn-to-list-frame-mb": "32.5rem",
@@ -201,5 +214,43 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        ".btn-sign-in-frame": {
+          display: "flex",
+          flexDirection: "column",
+          width: "64rem",
+          margin: "23.1rem auto 23.1rem auto",
+          "@screen tablet": {
+            margin: "19rem auto 32.5rem auto",
+          },
+          "@screen mobile": {
+            width: "34.3rem",
+            margin: "8rem auto 23.1rem auto",
+          },
+        },
+        ".btn-sign-in-logo-frame": {
+          width: "39.6rem",
+          height: "13.2rem",
+          margin: "0 auto",
+          "@screen mobile": {
+            width: "19.8rem",
+            height: "6.6rem",
+          },
+        },
+        ".btn-sign-in-logo": {
+          width: "39.6rem",
+          height: "13.2rem",
+          backgroundImage: "url(/buttons/btn-logo.svg)",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          "@screen mobile": {
+            width: "19.8rem",
+            height: "6.6rem",
+          },
+        },
+      });
+    },
+  ],
 };
