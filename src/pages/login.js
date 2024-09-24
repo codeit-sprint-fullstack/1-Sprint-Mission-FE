@@ -6,14 +6,17 @@ import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { loginUser } from "../api/api"; // api.js에서 임포트
 import { validateEmail, validatePassword } from "../lib/vaildate_function.mjs"; // 유효성 검사 함수 임포트
+import { useForm } from "react-hook-form"; // React Hook Form 임포트
 import styles from "./Login.module.css";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState(""); // 이메일 에러 상태
-  const [passwordError, setPasswordError] = useState(""); // 비밀번호 에러 상태
-
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid }, // isValid 추가
+  } = useForm({
+    mode: "onChange", // 변경사항이 있을 때마다 유효성 검사
+  }); // useForm 초기화
   const [showModal, setShowModal] = useState(false); // 모달 표시 상태
   const [modalMessage, setModalMessage] = useState(""); // 모달 메시지
 
@@ -43,33 +46,9 @@ export default function Login() {
     },
   });
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    // 에러 메시지 초기화
-    setEmailError("");
-    setPasswordError("");
-
-    // 이메일 유효성 검사
-    if (!validateEmail(email)) {
-      setEmailError("유효한 이메일을 입력해 주세요.");
-    }
-
-    // 비밀번호 유효성 검사
-    if (!validatePassword(password)) {
-      setPasswordError(
-        "비밀번호는 최소 8자 이상, 숫자, 소문자, 특수문자를 포함해야 합니다."
-      );
-    }
-
-    // 유효성 검사 통과
-    if (!emailError && !passwordError) {
-      mutation.mutate({ email, password }); // 로그인 요청
-    }
+  const onSubmit = (data) => {
+    mutation.mutate(data); // 로그인 요청
   };
-
-  // 로그인 버튼 활성화
-  const isButtonDisabled = !email || !password;
 
   // accessToken 확인
   useEffect(() => {
@@ -100,35 +79,42 @@ export default function Login() {
       </header>
 
       <div className={styles.form_box}>
-        <form className={styles.form} onSubmit={handleLogin} noValidate>
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+        >
           <label className={styles.label}>이메일</label>
           <input
             className={styles.input}
             type="email"
             placeholder="이메일을 입력해주세요"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
+            {...register("email", {
+              required: "이메일을 입력해 주세요.",
+              validate: validateEmail,
+            })} // react-hook-form으로 이메일 등록
           />
-          {emailError && <p className={styles.error}>{emailError}</p>}
-
+          {errors.email && (
+            <p className={styles.error}>{errors.email.message}</p>
+          )}{" "}
           <label className={styles.label}>비밀번호</label>
           <div className={styles.ps_confirm}>
             <input
               className={styles.input}
               type="password"
               placeholder="비밀번호를 입력해주세요"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
+              {...register("password", {
+                required: "비밀번호를 입력해 주세요.",
+                validate: validatePassword,
+              })} // react-hook-form으로 비밀번호 등록
             />
-            {passwordError && <p className={styles.error}>{passwordError}</p>}
+            {errors.password && (
+              <p className={styles.error}>{errors.password.message}</p>
+            )}{" "}
           </div>
-          <button
-            type="submit"
-            className={styles.button}
-            disabled={isButtonDisabled}
-          >
+          <button type="submit" className={styles.button} disabled={!isValid}>
+            {" "}
+            {/* disabled 속성 추가 */}
             로그인
           </button>
         </form>

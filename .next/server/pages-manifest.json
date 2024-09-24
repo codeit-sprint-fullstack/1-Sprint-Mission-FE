@@ -2,8 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/items/[itemId]": "pages/items/[itemId].js",
-  "/product-edit/[id]": "pages/product-edit/[id].js",
   "/login": "pages/login.js",
-  "/items": "pages/items.js"
+  "/items": "pages/items.js",
+  "/items/[itemId]": "pages/items/[itemId].js"
 }
