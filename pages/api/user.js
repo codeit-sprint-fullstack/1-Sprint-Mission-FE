@@ -36,6 +36,8 @@ export async function refreshAccessToken() {
     return response.data.accessToken; // 새로운 accessToken 반환
   } catch (error) {
     console.error("토큰 재발급 실패", error);
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
     throw error;
   }
 }

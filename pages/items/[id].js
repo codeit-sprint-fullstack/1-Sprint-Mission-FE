@@ -1,24 +1,33 @@
-import styles from "../../styles/market.module.css";
+import styles from "./id.module.css";
 import Image from "next/image";
 import { getProduct } from "../api/products";
 import { useEffect, useState } from "react";
 import { getComments, postComment } from "../api/comments";
-import { getProfile } from "../api/user";
+// import { getProfile } from "../api/user";
 import { useRouter } from "next/router";
-export default function Market() {
+export async function getServerSideProps(path) {
+  const { id } = path.params;
+  return {
+    props: {
+      id,
+    },
+  };
+}
+export default function Market({ id }) {
   const [product, setProduct] = useState([]);
   const [comment, setComment] = useState([]);
-  const [userData, setUserData] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
+  // const [userData, setUserData] = useState({});
   const [commentData, setCommentData] = useState({});
 
   const router = useRouter();
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await getProduct(197); // 비동기 API 호출
+        const response = await getProduct(id); // 비동기 API 호출
         setProduct(response.data); // API 호출 후 데이터를 상태로 저장
-        const profile = await getProfile(); // 비동기 함수 호출
-        setUserData(profile); // 프로필 데이터를 상태로 저장
+        // const profile = await getProfile(); // 비동기 함수 호출
+        // setUserData(profile); // 프로필 데이터를 상태로 저장
       } catch (error) {
         console.error("제품 정보를 가져오는 중 오류 발생:", error);
       }
@@ -30,7 +39,7 @@ export default function Market() {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await getComments(197, 10); // 비동기 API 호출
+        const response = await getComments(id, 10); // 비동기 API 호출
         setComment(response.data.list); // API 호출 후 데이터의 data 부분만 상태로 저장
       } catch (error) {
         console.error("댓글 오류", error);
@@ -42,6 +51,10 @@ export default function Market() {
 
   const handleContentChange = (event) => {
     setCommentData(event.target.value);
+  };
+
+  const handletoggle = () => {
+    setIsOpen(!isOpen);
   };
 
   const getTimeDifference = (createdAt) => {
@@ -83,7 +96,19 @@ export default function Market() {
           <div className={styles.marketProductTitle}>
             <div className={styles.marketTitle}>
               <p>{product.name}</p>
-              <Image src="/kebab-btn.svg" width={20} height={20} />
+              <Image
+                onClick={handletoggle}
+                src="/kebab-btn.svg"
+                width={24}
+                height={24}
+                className={styles.menuBtn}
+              ></Image>
+              {isOpen && (
+                <ul className={styles.menu}>
+                  <li onClick={() => handlepatch(data.id)}>수정 하기</li>
+                  <li onClick={() => handleDelete(data.id)}>삭제 하기</li>
+                </ul>
+              )}
             </div>
             <div className={styles.marketPrice}>
               {parseInt(product.price).toLocaleString() + "원"}
@@ -130,7 +155,7 @@ export default function Market() {
             className={styles.marketArticleBtn}
             onClick={() => {
               postComment(product.id, { content: commentData });
-              router.push(`/market/${product.id}`);
+              router.push(`/items/${product.id}`);
             }}
           >
             등록
@@ -159,6 +184,14 @@ export default function Market() {
                 </div>
               </div>
             ))}
+          </div>
+          <div className={styles.marketArticleFooter}>
+            <button
+              className={styles.marketArticleFooterBtn}
+              onClick={() => router.push(`/market`)}
+            >
+              목록으로 돌아가기
+            </button>
           </div>
         </div>
       </div>
