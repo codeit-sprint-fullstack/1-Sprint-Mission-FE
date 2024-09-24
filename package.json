@@ -19,5 +19,9 @@
     "react-dom": "^18",
     "react-query": "^3.39.3",
     "reset-css": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.6.1",
+    "typescript": "5.6.2"
   }
 }
