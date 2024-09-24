@@ -5,6 +5,7 @@ import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
+  useInfiniteQuery,
   useQuery,
 } from "@tanstack/react-query";
 import * as api from "@/pages/api/articles";
@@ -161,9 +162,38 @@ function Articles({ defaultParams }) {
     queryFn: () => api.getArticles(params),
   });
 
+  // const {
+  //   data: articlesData2,
+  //   fetchStatus,
+  //   error: moreErr,
+  //   fetchNextPage,
+  // } = useInfiniteQuery({
+  //   queryKey: ["articles22"],
+  //   queryFn: ({ pageParams }) => {
+  //     console.log(pageParams);
+  //     api.getArticles(params, pageParams);
+  //   },
+  //   initialPageParam: 0,
+  //   getNextPageParam: (lastPage, lastPageParams) => {
+  //     // if (!(lastPage.totalCount - lastPageParams.data * params.pageSize > 0)) {
+  //     lastPageParams + 1;
+  //     // setParams((prev) => ({
+  //     //   ...prev,
+  //     //   page: prev.page + 1,
+  //     // }));
+  //     // } else {
+  //     //   undefined;
+  //     // }
+  //   },
+  // });
+
   if (isError) {
-    console.log(error);
+    console.log(isError);
   }
+
+  const moreData = () => {
+    fetchNextPage();
+  };
 
   const { data: bestArticlesData } = useQuery({
     queryKey: ["bestArticles"],
@@ -259,6 +289,7 @@ function Articles({ defaultParams }) {
             <ArticleItems key={item.id} item={item} />
           ))}
         </ul>
+        <button onClick={moreData}>더불러오기</button>
       </div>
     </main>
   );

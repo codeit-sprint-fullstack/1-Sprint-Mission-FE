@@ -73,7 +73,7 @@ function DetailArticle({ article, comments, id }) {
     },
   });
 
-  const { title, content, favorite, writer, createAt } = articleData;
+  const { title, content, likeCount, writer, createAt } = articleData;
   //날짜 포멧
   const date = dateFormatYYYYMMDD(createAt);
   const defaultUser = {
@@ -221,7 +221,7 @@ function DetailArticle({ article, comments, id }) {
                   height={32}
                   alt="좋아요이미지"
                 />
-                {favorite}
+                {likeCount}
               </button>
             </div>
           </div>
@@ -260,7 +260,6 @@ function DetailArticle({ article, comments, id }) {
             {fetchStatus === "fetching" && (
               <div className={styles.loader}></div>
             )}
-            <button onClick={fetchNextPage}>더불러오기</button>
             {/* 게시글의 등록된 댓글이 없다면 아래의 내용을 렌더링한다. */}
             {commentData?.pages.length < 1 && (
               <>
