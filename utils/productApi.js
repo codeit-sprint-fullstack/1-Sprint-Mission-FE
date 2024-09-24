@@ -1,11 +1,9 @@
 import apiClient from "./apiClient";
 import apiHandler from "./apiHandler";
 
-const baseUrl = "https://panda-market-api.vercel.app";
-
 export async function fetchProducts({ pageSize, page, keyword, orderBy }) {
   return apiHandler(async () => {
-    const response = await apiClient.get(`${baseUrl}/products`, {
+    const response = await apiClient.get(`/products`, {
       params: { pageSize, page, keyword, orderBy },
     });
 

@@ -16,24 +16,16 @@ export default function Chat({ comments, onEdit, setComments }) {
       const token = localStorage.getItem("accessToken");
       if (!token) return;
 
-      const statuses = await Promise.all(
-        comments.map(async (comment) => {
-          try {
-            const userProfile = await getUserProfile();
-            const isAuthenticated = userProfile.id === comment.writer.id;
-            return { id: comment.id, isAuthenticated };
-          } catch (error) {
-            console.error("Error fetching user profile", error);
-            return { id: comment.id, isAuthenticated: false };
-          }
-        })
-      );
-
-      const statusObj = statuses.reduce((acc, { id, isAuthenticated }) => {
-        acc[id] = isAuthenticated;
-        return acc;
-      }, {});
-      setAuthStatuses(statusObj);
+      try {
+        const userProfile = await getUserProfile();
+        const statuses = comments.reduce((acc, comment) => {
+          acc[comment.id] = userProfile.id === comment.writer.id;
+          return acc;
+        }, {});
+        setAuthStatuses(statuses);
+      } catch (error) {
+        console.error("Error fetching user profile", error);
+      }
     };
 
     fetchAuthStatuses();

@@ -1,11 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import styles from "./ItemChat.module.css";
 import Chat from "./Chat";
-import {
-  editComment,
-  addComment,
-  fetchMoreComments,
-} from "@/utils/productChatApi";
+import { editComment, addComment, fetchComments } from "@/utils/productChatApi";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useInfiniteScroll } from "@/hooks/useComments";
@@ -58,7 +54,7 @@ export default function ItemChat({ initialComments, id }) {
 
     setLoading(true);
     try {
-      const newCommentsData = await fetchMoreComments(id, cursor);
+      const newCommentsData = await fetchComments(id, cursor);
       const newComments = newCommentsData?.list || [];
 
       if (newComments.length > 0) {
