@@ -69,14 +69,16 @@ export default function ProductCommentItem({
       <div className={styles.commentHeader}>
         {isEditing ? (
           <>
-            <textarea
-              value={editedContent}
-              onChange={handleChange}
-              className={styles.editTextarea}
-            />
-            <button onClick={handleEdit} className={styles.saveButton}>
-              저장
-            </button>
+            <div className={styles.editMode}>
+              <textarea
+                value={editedContent}
+                onChange={handleChange}
+                className={styles.editTextarea}
+              />
+              <button onClick={handleEdit} className={styles.saveButton}>
+                저장
+              </button>
+            </div>
           </>
         ) : (
           <p className={styles.content}>{comment.content}</p>

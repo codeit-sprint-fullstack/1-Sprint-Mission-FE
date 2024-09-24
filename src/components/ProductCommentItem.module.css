@@ -4,7 +4,10 @@
   height: 100px;
   background: #fcfcfc;
   border-bottom: 1px solid #e5e7eb;
-  margin: 220px 0 20px 0;
+  /* margin: 40px 0 20px 0; */
+  margin: 230px 0 20px 0;
+  margin-bottom: 20px;
+  box-sizing: border-box;
 }
 
 /* 댓글 내용과 : 버튼 */
@@ -66,6 +69,7 @@
 
 /* 댓글 수정 input창 */
 .editTextarea {
+  position: absolute;
   top: 0;
   left: 0;
   box-sizing: border-box;

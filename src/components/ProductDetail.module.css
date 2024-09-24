@@ -6,10 +6,13 @@
   height: 536px;
 }
 
+/* 판매 사진과 판매 내용 컨테이내 */
 .productHeaderContainer {
   display: flex;
   flex-direction: row;
   gap: 40px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 20px;
 }
 
 /* 이미지 옆 판매 내용 */
@@ -52,11 +55,8 @@
   display: flex;
   flex-direction: column;
   height: 242px;
-  /* margin-top: 20px;
+  margin-top: 20px;
   margin-bottom: 40px;
-  border-top: 1px solid #e5e7eb;
-  padding-top: 20px;
-  z-index: 10; */
 }
 
 /* 상품 소개 */
