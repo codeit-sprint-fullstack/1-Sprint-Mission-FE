@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react"; // useRef 추가
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import styles from "./ProductDetail.module.css";
 import AuthorProfile from "../../public/images/profile-image.png";
@@ -26,7 +26,7 @@ export default function ProductDetail({ productId }) {
   const [favoriteCount, setFavoriteCount] = useState(0); // 좋아요 수 상태
   const [isFavorite, setIsFavorite] = useState(false); // 좋아요 상태
 
-  const menuRef = useRef(null); // 메뉴 ref 생성
+  const menuRef = useRef(null);
 
   // 상품 데이터 가져오기
   const {
@@ -52,20 +52,6 @@ export default function ProductDetail({ productId }) {
 
   const toggleMenu = () => setMenuVisible(!menuVisible);
 
-  // 메뉴 외부 클릭 감지
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setMenuVisible(false); // 메뉴 외부 클릭 시 메뉴 닫기
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [menuRef]);
-
   // 상품 삭제 핸들러
   const handleDelete = async () => {
     try {
@@ -73,6 +59,13 @@ export default function ProductDetail({ productId }) {
       router.push("/items"); // 삭제 후, 상품 리스트 페이지로 이동
     } catch (error) {
       console.error("상품 삭제 실패:", error);
+    }
+  };
+
+  // 메뉴 닫기
+  const closeMenu = (e) => {
+    if (menuRef.current && !menuRef.current.contains(e.target)) {
+      setMenuVisible(false);
     }
   };
 
@@ -113,7 +106,7 @@ export default function ProductDetail({ productId }) {
 
   // 수정 페이지로 이동하는 핸들러
   const handleEditRedirect = () => {
-    router.push(`/product-edit/${product.id}`);
+    router.push("/product-edit/${product.id}");
   };
 
   // 좋아요 핸들러
@@ -151,6 +144,11 @@ export default function ProductDetail({ productId }) {
       </div>
     );
   if (productError) return <div>상품 정보를 불러오는 데 실패했습니다.</div>;
+
+  useEffect(() => {
+    document.addEventListener("mousedown", closeMenu);
+    return () => document.removeEventListener("mousedown", closeMenu);
+  }, []);
 
   return (
     <div className={styles.productDetailItem}>
@@ -245,8 +243,8 @@ export default function ProductDetail({ productId }) {
       {menuVisible && (
         <div className={styles.menuContainer} ref={menuRef}>
           <UpdateDeleteButton
-            onEditClick={handleEditRedirect}
-            onDeleteClick={handleDeleteClick}
+            onEdit={handleEditRedirect}
+            onDelete={handleDeleteClick}
           />
         </div>
       )}
