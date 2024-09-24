@@ -20,7 +20,7 @@ import { RefContext } from "../_app";
 import useAuth from "@/contexts/authContext";
 
 function BestArticles({ item }) {
-  const { writer, title, createAt, favorite } = item;
+  const { writer, title, createAt, likeCount } = item;
   const date = dateFormatYYYYMMDD(createAt);
 
   return (
@@ -48,7 +48,7 @@ function BestArticles({ item }) {
               src={ic_heart}
               alt="좋아요이미지"
             />
-            <span>{favorite}</span>
+            <span>{likeCount}</span>
           </div>
           <div className={styles.item_data_box}>
             <span className={styles.create_time}>{date}</span>
@@ -60,7 +60,7 @@ function BestArticles({ item }) {
 }
 
 function ArticleItems({ item }) {
-  const { writer, title, createAt, favorite } = item;
+  const { writer, title, createAt, likeCount } = item;
   const date = dateFormatYYYYMMDD(createAt);
 
   return (
@@ -95,7 +95,7 @@ function ArticleItems({ item }) {
               src={ic_heart}
               alt="좋아요이미지"
             />
-            <span>{favorite}</span>
+            <span>{likeCount}</span>
           </div>
         </div>
       </li>
@@ -142,7 +142,6 @@ function Articles({ defaultParams }) {
   const globalDivRef = useContext(RefContext);
   const [params, setParams] = useState(defaultParams);
   const [articles, setArticles] = useState([]);
-  const [cursor, setCursor] = useState("");
   const [keyword, setKeyword] = useState("");
 
   const { user } = useAuth();

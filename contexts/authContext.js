@@ -56,11 +56,7 @@ export function AuthProvider({ children }) {
   const updateMe = () => {};
 
   useEffect(() => {
-    const token = localStorage.getItem("codeit-accessToken");
-    //로컬스토리지에 해당 토큰이 있을때만 사용자정보를 가지고온다.
-    if (token) {
-      getMe();
-    }
+    getMe();
   }, []);
 
   return (
@@ -84,6 +80,6 @@ export default function useAuth(required = true) {
     if (required && !context.user && !context.isPending) {
       router.push("/Login");
     }
-  }, [required, context.user, router]);
+  }, [required, context.user]);
   return context;
 }

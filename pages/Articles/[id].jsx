@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
 import * as commentApi from "@/pages/api/comment";
 import * as articleApi from "@/pages/api/articles";
@@ -15,7 +15,9 @@ import img_reply_empty from "@/public/images/img_reply_empty.png";
 import ic_back from "@/public/images/ic_back.png";
 import styles from "@/styles/detailArticle.module.css";
 import Comment from "@/components/Comment";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
+import { RefContext } from "@/pages/_app";
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
@@ -29,8 +31,8 @@ export async function getServerSideProps(context) {
     console.log(error);
   }
   try {
-    const { list } = await commentApi.getArticleComments(id);
-    comments = list;
+    const response = await commentApi.getArticleComments(id);
+    comments = response;
   } catch (error) {
     console.log(error);
   }
@@ -46,25 +48,35 @@ export async function getServerSideProps(context) {
 
 function DetailArticle({ article, comments, id }) {
   const router = useRouter();
+  const globalDivRef = useContext(RefContext); //무한 스크롤 쿼리용 Ref
 
+  //게시글  SSR initialData
   const { data: articleData } = useQuery({
     queryKey: ["article"],
     queryFn: articleApi.getArticle(id),
     initialData: article,
   });
 
-  const { data: commentData } = useQuery({
-    queryKey: ["comments"],
-    queryFn: commentApi.getArticleComments(id),
-    initialData: comments,
+  //무한스크롤 쿼리를 통한 react-query관리
+  const {
+    data: commentData,
+    fetchStatus, //로딩 에니메이션용
+    fetchNextPage,
+  } = useInfiniteQuery({
+    queryKey: ["comments", id],
+    queryFn: ({ pageParam }) => commentApi.getArticleComments(id, pageParam),
+    getNextPageParam: (lastPage) =>
+      lastPage.nextCursor ? lastPage.nextCursor : undefined,
+    initialData: {
+      pages: [comments], // comments 배열을 pages로 감싸서 전달
+      pageParams: [comments.nextCursor], // pageParams 기본값 설정
+    },
   });
 
   const { title, content, favorite, writer, createAt } = articleData;
   //날짜 포멧
   const date = dateFormatYYYYMMDD(createAt);
   const defaultUser = {
-    //유저관리를 안하고 있음 기본 유저를 설정 추후 유저관리의 로그인계정으로 변경해야 함
-    userId: writer?.id,
     articleId: article.id,
   };
   const [values, setValues] = useState(defaultUser);
@@ -141,6 +153,22 @@ function DetailArticle({ article, comments, id }) {
     const value = e.target.value;
     handleChangeValues(name, value);
   };
+
+  useEffect(() => {
+    if (globalDivRef.current) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            fetchNextPage();
+          }
+        });
+      });
+      observer.observe(globalDivRef.current);
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, [globalDivRef]);
 
   return (
     <>
@@ -219,16 +247,22 @@ function DetailArticle({ article, comments, id }) {
         </div>
         <div className={styles.article_comments_box}>
           <div className={styles.article_comments}>
-            {commentData.map((item) => (
-              <Comment
-                key={item.id}
-                item={item}
-                openAlert={openAlertModal}
-                setAlertMessage={setAlertMessage}
-              />
-            ))}
+            {commentData?.pages.map((items) =>
+              items.list.map((item) => (
+                <Comment
+                  key={item.id}
+                  item={item}
+                  openAlert={openAlertModal}
+                  setAlertMessage={setAlertMessage}
+                />
+              ))
+            )}
+            {fetchStatus === "fetching" && (
+              <div className={styles.loader}></div>
+            )}
+            <button onClick={fetchNextPage}>더불러오기</button>
             {/* 게시글의 등록된 댓글이 없다면 아래의 내용을 렌더링한다. */}
-            {commentData.length < 1 && (
+            {commentData?.pages.length < 1 && (
               <>
                 <Image
                   src={img_reply_empty}

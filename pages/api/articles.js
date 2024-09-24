@@ -10,7 +10,7 @@ export async function getArticles(params = {}, cursor = "") {
 export async function getBestArticles(
   params = {
     orderBy: "like",
-    limit: 3,
+    pageSize: 3,
   }
 ) {
   const res = await instance.get("/articles", {

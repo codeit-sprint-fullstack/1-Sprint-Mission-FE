@@ -1,9 +1,10 @@
 import instance from "./axios.js";
 
-export async function getArticleComments(id, limit = 5) {
+export async function getArticleComments(id, cursor = 0, limit = 5) {
   const res = await instance.get(`articles/${id}/comments`, {
     params: {
       limit,
+      cursor,
     },
   });
   return res.data;

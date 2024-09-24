@@ -15,7 +15,7 @@ import useAuth from "@/contexts/authContext";
 
 function SignUp() {
   const router = useRouter();
-  const { getMe } = useAuth();
+  const { getMe } = useAuth(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [openAlert, setOpenAlert] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState({
