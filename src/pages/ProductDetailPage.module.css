@@ -119,3 +119,54 @@ textarea.RegistrationInput::placeholder {
   background: #9ca3af;
   cursor: not-allowed;
 }
+
+/* 반응형 스타일 */
+
+@media only screen and (max-width: 1199px) {
+  .main {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+
+  .productForm {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .ProductEditH1 {
+    font-size: 18px;
+  }
+
+  .RegistrationInput,
+  textarea.RegistrationInput {
+    height: 48px; /* 입력 필드 높이 조정 */
+  }
+
+  .FormTop button {
+    width: 60px; /* 수정 버튼 너비 조정 */
+    height: 36px; /* 수정 버튼 높이 조정 */
+    font-size: 0.9rem; /* 버튼 글자 크기 조정 */
+  }
+}
+
+@media only screen and (max-width: 743px) {
+  .main {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .ProductEditH1 {
+    font-size: 16px; /* 글자 크기 조정 */
+  }
+
+  .RegistrationInput,
+  textarea.RegistrationInput {
+    height: 40px; /* 모바일 입력 필드 높이 조정 */
+  }
+
+  .FormTop button {
+    width: 50px; /* 버튼 너비 조정 */
+    height: 30px; /* 버튼 높이 조정 */
+    font-size: 0.8rem; /* 버튼 글자 크기 조정 */
+  }
+}
