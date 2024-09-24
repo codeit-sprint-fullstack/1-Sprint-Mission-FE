@@ -11,7 +11,6 @@ import useAuth from "@/contexts/authContext";
 
 function Header() {
   const { user, logout } = useAuth(false);
-  console.log(user);
   const userProfileImage = user?.image ? user.image : ic_profile;
   const view = useWindowResize();
   const router = useRouter();
@@ -63,7 +62,7 @@ function Header() {
             </Link>
           )}
           {/* 테스트용 임시 로그아웃 버튼 */}
-          <button onClick={logout}>로그아웃</button>
+          {/* <button onClick={logout}>로그아웃</button> */}
         </div>
       </div>
     </header>

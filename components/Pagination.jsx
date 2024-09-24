@@ -7,11 +7,11 @@ import Image from "next/image";
 function MidPagingBtn({ num, onChange, pageNum }) {
   const handlePage = (e) => {
     const name = e.target.name;
-    onChange({ name: num });
+    onChange({ [name]: num });
   };
   return (
     <button
-      name="offset"
+      name="page"
       onClick={handlePage}
       className={[styles.mid_btn, pageNum === num ? styles.on_btn : ""].join(
         " "
@@ -27,19 +27,19 @@ function Pagination({ onChange, params, totalCount }) {
 
   //현재의 페이지에서 더 불러올 데이터가 있는지를 판별합니다.
   const moreData = (last) => {
-    return totalCount - last * params.limit > 0;
+    return totalCount - last * params.pageSize > 0;
   };
 
   //상품의 페이징을 5개로 제한 하고 싶은 의도가 있었습니다.
   //예 ) 페이지당 6개 표시하는데 60개가 있다면 페이지 번호가 1~10 이 아닌 1~5
   const makeArrNum = useCallback(() => {
-    const num = Math.ceil(totalCount / params.limit);
+    const num = Math.ceil(totalCount / params.pageSize);
     let keyboard = Array.from({ length: num }, (v, i) => i + 1);
     if (keyboard.length > 5) {
       keyboard = keyboard.slice(0, 5);
     }
     setPagingNum(keyboard);
-  }, [totalCount, params.limit]);
+  }, [totalCount, params.pageSize]);
 
   //페이지의 정보를 변경합니다. 예 ) 현재 2~6 버튼 클릭시 1~5
   const prevBtn = () => {
@@ -72,7 +72,7 @@ function Pagination({ onChange, params, totalCount }) {
       </button>
       {pagingNum.map((e) => (
         <MidPagingBtn
-          pageNum={params.offset}
+          pageNum={params.page}
           onChange={onChange}
           key={e}
           num={e}

@@ -7,6 +7,57 @@
   min-height: 100vh;
 }
 
+.products_container {
+  margin-top: 24px;
+}
+
+.best_Products {
+  box-sizing: border-box;
+  display: flex;
+  gap: 24px;
+  height: 426px;
+  margin-top: 16px;
+  justify-content: space-evenly;
+}
+
+.Products {
+  box-sizing: border-box;
+  display: flex;
+  overflow: hidden;
+  gap: 0 23.5px;
+  height: 674px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+@media screen and (max-width: 1200px) {
+  .best_Products {
+    margin: auto;
+    gap: 0 16px;
+    overflow: hidden;
+    height: 443px;
+  }
+  .Products {
+    margin: auto;
+    gap: 0 16px;
+    width: 700px;
+  }
+}
+
+@media screen and (max-width: 773px) {
+  .product_item {
+    width: 168px;
+    height: 264px;
+  }
+
+  .Products {
+    height: 560px;
+    gap: 0 8px;
+    width: 344px;
+  }
+}
+
 .description {
   display: inherit;
   justify-content: inherit;

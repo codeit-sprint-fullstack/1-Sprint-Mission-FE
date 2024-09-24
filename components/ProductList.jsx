@@ -5,8 +5,9 @@ import styles from "@/styles/products.module.css";
 import Link from "next/link";
 
 function Product({ itemValues, favorite }) {
-  const { name, price, favoriteCount, id } = itemValues;
+  const { name, price, favoriteCount, id, images } = itemValues;
   const numFormat = price.toLocaleString();
+  const productImage = images ? images[0] : imgDefault;
   return (
     <Link
       href={`/Items/${id}`}
@@ -14,10 +15,13 @@ function Product({ itemValues, favorite }) {
     >
       <Image
         className={styles.normal}
-        src={imgDefault}
+        src={productImage}
         alt="상품이미지"
-        priority={true}
-      ></Image>
+        width={282}
+        height={426}
+        priority
+        unoptimized={true}
+      />
       <p className={styles.name}>{name}</p>
       <p className={styles.price}>{`${numFormat}원`}</p>
       <div className={styles.favorite_container}>
@@ -32,14 +36,16 @@ function Product({ itemValues, favorite }) {
   );
 }
 
-function ProductList({ items, favorite }) {
-  return (
-    <div className={favorite ? styles.best_Products : styles.Products}>
-      {items.map((item) => (
-        <Product key={item.id} itemValues={item} favorite={favorite} />
-      ))}
-    </div>
-  );
-}
+//코드 수정 확인후 삭제예정
+// function ProductList({ items, favorite }) {
+//   console.log(items);
+//   return (
+//     <div className={favorite ? styles.best_Products : styles.Products}>
+//       {items.map((item) => (
+//         <Product key={item.id} itemValues={item} favorite={favorite} />
+//       ))}
+//     </div>
+//   );
+// }
 
-export default ProductList;
+export default Product;

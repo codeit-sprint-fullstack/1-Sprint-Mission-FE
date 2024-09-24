@@ -2,64 +2,67 @@ import Head from "next/head";
 import { useCallback, useEffect, useState } from "react";
 import useWindowResize from "@/hooks/useWindowResize";
 import ProductList from "@/components/ProductList";
+import Product from "@/components/ProductList";
 import Pagination from "@/components/Pagination";
 import SearchBar from "@/components/SearchBar";
 import * as api from "@/pages/api/products";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+  useQuery,
+} from "@tanstack/react-query";
+import styles from "@/styles/Home.module.css";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+
   const productsQuery = {
     orderBy: "recent",
-    offset: 1,
-    limit: 10,
+    page: 1,
+    pageSize: 10,
+    keyword: "",
   };
 
   const bestProductsQuery = {
     orderBy: "favorite",
-    limit: 4,
+    pageSize: 4,
   };
 
-  let items = [];
-  let productsTotalCount = 0;
-  let bestItems = [];
+  await queryClient.prefetchQuery({
+    queryKey: ["bestProducts"],
+    queryFn: () => api.getProducts(bestProductsQuery),
+  });
 
-  try {
-    const { list, totalCount } = await api.getProducts(productsQuery);
-    items = list;
-    productsTotalCount = totalCount;
-  } catch (e) {
-    console.log(e.message);
-  }
-
-  try {
-    const { list } = await api.getProducts(bestProductsQuery);
-    bestItems = list;
-  } catch (e) {
-    console.log(e.message);
-  }
+  await queryClient.prefetchQuery({
+    queryKey: ["Products"],
+    queryFn: () => api.getProducts(productsQuery),
+  });
 
   return {
     props: {
-      items,
-      bestItems,
-      productsTotalCount,
+      dehydratedState: dehydrate(queryClient),
       productsQuery,
       bestProductsQuery,
     },
   };
 }
 
-export default function Home({
-  items,
-  bestItems,
-  productsTotalCount,
-  productsQuery,
-  bestProductsQuery,
-}) {
+function HomeRouter({ dehydratedState, productsQuery, bestProductsQuery }) {
+  return (
+    <HydrationBoundary state={dehydratedState}>
+      <Home
+        productsQuery={productsQuery}
+        bestProductsQuery={bestProductsQuery}
+      />
+    </HydrationBoundary>
+  );
+}
+
+function Home({ productsQuery, bestProductsQuery }) {
   const [params, setParams] = useState(productsQuery);
   const [bestParams, setBestParams] = useState(bestProductsQuery);
-  const [products, setProducts] = useState(items);
-  const [bestProducts, setBestProducts] = useState(bestItems);
-  const [totalDataCount, setTotalDataCount] = useState(productsTotalCount);
+  const [totalDataCount, setTotalDataCount] = useState(0);
 
   const handleChangeParams = (obj) => {
     setParams((prev) => ({
@@ -75,52 +78,42 @@ export default function Home({
     }));
   };
 
-  const loadProducts = useCallback(async () => {
-    try {
-      const { list, totalCount } = await api.getProducts(params);
-      setProducts(list);
-      setTotalDataCount(totalCount);
-    } catch (e) {
-      console.log(e.message);
-    }
-  }, [params]);
+  const { data: bestProductData } = useQuery({
+    queryKey: ["bestProduct", bestParams],
+    queryFn: () => api.getProducts(bestParams),
+  });
 
-  const loadBestProducts = useCallback(async () => {
-    try {
-      const { list } = await api.getProducts(bestParams);
-      setBestProducts(list);
-    } catch (e) {
-      console.log(e.message);
-    }
-  }, [bestParams]);
+  const { data: productData } = useQuery({
+    queryKey: ["Product", params],
+    queryFn: () => api.getProducts(params),
+  });
 
   const view = useWindowResize();
-
-  useEffect(() => {
-    loadProducts();
-    loadBestProducts();
-  }, [loadProducts, loadBestProducts]);
 
   useEffect(() => {
     const changeFromNextView = () => {
       switch (view) {
         case "isDesktop":
-          handleChangeParams({ limit: 10, offset: 1 });
-          handleChangeBestParams("limit", 4);
+          handleChangeParams({ pageSize: 10, page: 1 });
+          handleChangeBestParams("pageSize", 4);
           break;
         case "isTablet":
-          handleChangeParams({ limit: 6, offset: 1 });
-          handleChangeBestParams("limit", 2);
+          handleChangeParams({ pageSize: 6, page: 1 });
+          handleChangeBestParams("pageSize", 2);
           break;
         case "isMobile":
-          handleChangeParams({ limit: 4, offset: 1 });
-          handleChangeBestParams("limit", 1);
+          handleChangeParams({ pageSize: 4, page: 1 });
+          handleChangeBestParams("pageSize", 1);
           break;
         default:
       }
     };
     changeFromNextView();
   }, [view]);
+
+  useEffect(() => {
+    setTotalDataCount(productData?.totalCount);
+  }, [productData]);
 
   return (
     <>
@@ -131,17 +124,25 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="products_container">
+        <div className={styles.products_container}>
           <h2>베스트 상품</h2>
-          <ProductList items={bestProducts} favorite={true} />
+          <div className={styles.best_Products}>
+            {bestProductData?.list.map((item) => (
+              <Product key={item.id} itemValues={item} favorite={true} />
+            ))}
+          </div>
         </div>
-        <div className="products_container">
+        <div className={styles.products_container}>
           <SearchBar
             isMobile={view === "isMobile" ? true : false}
             orderBy={params.orderBy}
             onChange={handleChangeParams}
           />
-          <ProductList items={products} favorite={false} />
+          <div className={styles.Products}>
+            {productData?.list.map((item) => (
+              <Product key={item.id} itemValues={item} favorite={false} />
+            ))}
+          </div>
         </div>
         <Pagination
           onChange={handleChangeParams}
@@ -152,3 +153,5 @@ export default function Home({
     </>
   );
 }
+
+export default HomeRouter;
