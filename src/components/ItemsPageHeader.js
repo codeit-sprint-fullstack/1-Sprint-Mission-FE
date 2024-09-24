@@ -112,9 +112,9 @@ function ItemsPageHeader() {
           <span className={styles.username}>{user.nickname}</span>
         </div>
       ) : (
-        <button className={styles.loginButton} onClick={handleLogin}>
-          로그인
-        </button>
+        <Link href="/login">
+          <button className={styles.loginButton}>로그인</button>
+        </Link>
       )}
     </header>
   );
