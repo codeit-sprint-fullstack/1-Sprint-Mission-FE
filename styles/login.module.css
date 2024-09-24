@@ -15,6 +15,9 @@
   width: 640px;
   height: 618px;
   gap: 16px;
+  margin-top: 74px;
+  padding-top: 74px;
+  padding-bottom: 160px;
 }
 
 .logoImg {
