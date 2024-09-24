@@ -13,7 +13,7 @@ export async function getProductList({
     });
     return res.data;
   } catch (error) {
-    throw error;
+    console.error("Api error", error.message, error?.status);
   }
 }
 
@@ -22,7 +22,7 @@ export async function getProductById(productId) {
     const res = await axios.get(`${ENDPOINT}/${productId}`);
     return res.data;
   } catch (error) {
-    throw error;
+    console.error("Api error", error.message, error?.status);
   }
 }
 
@@ -31,7 +31,7 @@ export async function deleteProductById(productId) {
     const res = await axios.delete(`${ENDPOINT}/${productId}`);
     return res.data;
   } catch (error) {
-    throw error;
+    console.error("Api error", error.message, error?.status);
   }
 }
 
@@ -43,7 +43,7 @@ export async function getProductComments(productId, params = {}) {
     });
     return res.data;
   } catch (error) {
-    throw error;
+    console.error("Api error", error.message, error?.status);
   }
 }
 
@@ -55,6 +55,6 @@ export async function createProductComment(productId, newComment) {
     );
     return res.data;
   } catch (error) {
-    throw error;
+    console.error("Api error", error.message, error?.status);
   }
 }

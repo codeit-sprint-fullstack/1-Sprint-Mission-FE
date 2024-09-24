@@ -14,7 +14,7 @@ export async function getArticleList({
     });
     return res.data;
   } catch (error) {
-    throw error;
+    console.error("Api error", error.message, error?.status);
   }
 }
 
@@ -23,7 +23,7 @@ export async function getArticleById(articleId) {
     const res = await axios.get(`${ENDPOINT}/${articleId}`);
     return res.data;
   } catch (error) {
-    throw error;
+    console.error("Api error", error.message, error?.status);
   }
 }
 
@@ -32,7 +32,7 @@ export async function createArticle(formData) {
     const res = await axios.post(ENDPOINT, formData);
     return res.data;
   } catch (error) {
-    throw error;
+    console.error("Api error", error.message, error?.status);
   }
 }
 
@@ -41,7 +41,7 @@ export async function updateArticle(articleId, formData) {
     const res = await axios.patch(`${ENDPOINT}/${articleId}`, formData);
     return res.data;
   } catch (error) {
-    throw error;
+    console.error("Api error", error.message, error?.status);
   }
 }
 
@@ -50,7 +50,7 @@ export async function deleteArticleById(articleId) {
     const res = await axios.delete(`${ENDPOINT}/${articleId}`);
     return res.data;
   } catch (error) {
-    throw error;
+    console.error("Api error", error.message, error?.status);
   }
 }
 
@@ -62,7 +62,7 @@ export async function getArticleComments(articleId, params = {}) {
     });
     return res.data;
   } catch (error) {
-    throw error;
+    console.error("Api error", error.message, error?.status);
   }
 }
 
@@ -74,6 +74,6 @@ export async function createArticleComment(articleId, newComment) {
     );
     return res.data;
   } catch (error) {
-    throw error;
+    console.error("Api error", error.message, error?.status);
   }
 }

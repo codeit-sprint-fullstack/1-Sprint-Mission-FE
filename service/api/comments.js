@@ -7,7 +7,7 @@ export async function deleteCommentById(commentId) {
     const res = await axios.delete(`${ENDPOINT}${commentId}`);
     return res.data;
   } catch (error) {
-    throw error;
+    console.error("Api error", error.message, error?.status);
   }
 }
 
@@ -16,6 +16,6 @@ export async function updateCommentById(commentId, editedComment) {
     const res = await axios.patch(`${ENDPOINT}${commentId}`, editedComment);
     return res.data;
   } catch (error) {
-    throw error;
+    console.error("Api error", error.message, error?.status);
   }
 }

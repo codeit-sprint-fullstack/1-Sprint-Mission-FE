@@ -1,7 +1,5 @@
 import styles from "./CommentContent.module.scss";
-import { calculateTimeAgo } from "@/utils/formatFn";
 import KebabMenu from "../ui/KebabMenu";
-import ProfileImg from "../ui/ProfileImg";
 import { useState } from "react";
 import { useUpdateComment } from "@/service/mutations";
 import UpdateCommentForm from "../form/UpdateCommentForm";
