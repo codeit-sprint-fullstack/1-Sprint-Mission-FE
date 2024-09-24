@@ -89,6 +89,26 @@
   transition: background-color 0.2s;
 }
 
+.authErrorModal {
+  background-color: var(--white);
+  padding: 40px 140px 40px 140px;
+}
+
+.authErrorModal button {
+  background-color: var(--blue-100);
+  border: none;
+  width: 165px;
+  height: 48px;
+}
+
+.authErrorModal p {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 26px;
+  margin-bottom: 40px;
+  color: var(--gray-800);
+}
+
 .submitButton:hover {
   background-color: #2563eb;
 }
