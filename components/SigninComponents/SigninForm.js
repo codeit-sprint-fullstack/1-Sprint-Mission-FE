@@ -27,7 +27,6 @@ export default function SigninForm() {
 
   const router = useRouter();
 
-  // react-hook-form 사용
   const {
     register,
     handleSubmit,

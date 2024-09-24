@@ -1,7 +1,7 @@
 import apiClient from "./apiClient";
 import apiHandler from "./apiHandler";
+import { API_ENDPOINTS } from "./apiEndpoint";
 
-// 토큰을 로컬스토리지에 저장하는 함수
 const saveAccessToken = (accessToken) => {
   if (accessToken) {
     localStorage.setItem("accessToken", accessToken);
@@ -11,8 +11,8 @@ const saveAccessToken = (accessToken) => {
 // 로그인 API 호출
 export const login = async (userData) => {
   return apiHandler(async () => {
-    const { data } = await apiClient.post("/auth/signIn", userData);
-    saveAccessToken(data.accessToken); // 토큰 저장
+    const { data } = await apiClient.post(API_ENDPOINTS.AUTH.SIGN_IN, userData);
+    saveAccessToken(data.accessToken);
     return data;
   });
 };
@@ -20,8 +20,8 @@ export const login = async (userData) => {
 // 회원가입 API 호출
 export const signup = async (userData) => {
   return apiHandler(async () => {
-    const { data } = await apiClient.post("/auth/signUp", userData);
-    saveAccessToken(data.accessToken); // 토큰 저장
+    const { data } = await apiClient.post(API_ENDPOINTS.AUTH.SIGN_UP, userData);
+    saveAccessToken(data.accessToken);
     return data;
   });
 };
@@ -29,7 +29,7 @@ export const signup = async (userData) => {
 // 유저 프로필 가져오기
 export const getUserProfile = async () => {
   return apiHandler(async () => {
-    const { data } = await apiClient.get("/users/me");
+    const { data } = await apiClient.get(API_ENDPOINTS.USERS.ME);
     return data;
   });
 };

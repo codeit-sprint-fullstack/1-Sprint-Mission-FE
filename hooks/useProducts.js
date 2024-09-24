@@ -23,6 +23,7 @@ export const useProducts = (
         keyword,
         orderBy,
       }),
+    staleTime: 3000,
     keepPreviousData: true, // 페이지 변경 시 이전 데이터를 유지
     initialData: {
       list: initialProducts,

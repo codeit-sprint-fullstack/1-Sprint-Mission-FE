@@ -1,10 +1,11 @@
 import apiHandler from "./apiHandler";
 import apiClient from "./apiClient";
+import { API_ENDPOINTS } from "./apiEndpoint";
 
 export async function fetchComments(id, cursor = 0) {
   return apiHandler(async () => {
     const response = await apiClient.get(
-      `/products/${id}/comments?limit=4&cursor=${cursor}`
+      API_ENDPOINTS.PRODUCTS.FETCH_COMMENTS(id, cursor)
     );
     return response.data;
   });
@@ -12,7 +13,10 @@ export async function fetchComments(id, cursor = 0) {
 
 export async function addComment(id, comment) {
   return apiHandler(async () => {
-    const response = await apiClient.post(`/products/${id}/comments`, comment);
+    const response = await apiClient.post(
+      API_ENDPOINTS.PRODUCTS.ADD_COMMENT(id),
+      comment
+    );
 
     return response.data;
   });
@@ -20,7 +24,10 @@ export async function addComment(id, comment) {
 
 export async function editComment(id, comment) {
   return apiHandler(async () => {
-    const response = await apiClient.patch(`/comments/${id}`, comment);
+    const response = await apiClient.patch(
+      API_ENDPOINTS.PRODUCTS.DETAIL_COMMENT(id),
+      comment
+    );
 
     return response.data;
   });
@@ -28,7 +35,9 @@ export async function editComment(id, comment) {
 
 export async function deleteComment(id) {
   return apiHandler(async () => {
-    const response = await apiClient.delete(`/comments/${id}`);
+    const response = await apiClient.delete(
+      API_ENDPOINTS.PRODUCTS.DETAIL_COMMENT(id)
+    );
 
     return response.data;
   });
