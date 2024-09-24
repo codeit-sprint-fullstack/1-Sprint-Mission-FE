@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 import { getProductById, favoriteProduct, unfavoriteProduct, updateProduct } from "../../api/productApi";
 import { getComments } from "../../api/commentApi";
 import Modal from "../../components/Modal";
@@ -9,7 +10,6 @@ import ProductEmptyComments from "../../components/ProductEmptyComments";
 import ProductBackButton from "../../components/ProductBackButton";
 import ProductKebabMenu from "../../components/ProductKebabMenu";
 import styles from "../../styles/itemDetail.module.css";
-import { useState, useEffect } from "react";
 
 const ProductDetailPage = () => {
   const router = useRouter();
@@ -45,22 +45,23 @@ const ProductDetailPage = () => {
         name: data.name,
         price: data.price,
         description: data.description,
-        tags: data.tags || [], // 태그 상태 업데이트
+        tags: data.tags || [],
       });
     },
   });
 
+  const loadComments = async () => {
+    try {
+      const data = await getComments(itemId);
+      setComments(data.list || []);
+    } catch (error) {
+      console.error("댓글 목록 불러오기 실패:", error);
+    }
+  };
+
   useEffect(() => {
     if (itemId) {
-      const loadComments = async () => {
-        try {
-          const data = await getComments(itemId);
-          setComments(data.list || []);
-        } catch (error) {
-          console.error("댓글 목록 불러오기 실패:", error);
-        }
-      };
-      loadComments();
+      loadComments(); // 댓글 목록 불러오기
     }
   }, [itemId]);
 
@@ -84,7 +85,7 @@ const ProductDetailPage = () => {
     mutationFn: (updatedData) =>
       updateProduct(itemId, updatedData, accessToken),
     onSuccess: () => {
-      setIsEditMode(false); // 수정 완료 후 수정 모드 비활성화
+      setIsEditMode(false);
     },
     onError: () => {
       setModalMessage("상품 수정 중 오류가 발생했습니다.");
@@ -92,7 +93,6 @@ const ProductDetailPage = () => {
     },
   });
 
-  // 태그 삭제 함수
   const handleDeleteTag = (deleteTag) => {
     setEditedProduct({
       ...editedProduct,
@@ -100,14 +100,13 @@ const ProductDetailPage = () => {
     });
   };
 
-  // 태그 추가 함수
   const handleTagKeyPress = (e) => {
     if (e.key === "Enter" && e.target.value.trim()) {
       setEditedProduct({
         ...editedProduct,
         tags: [...editedProduct.tags, e.target.value.trim()],
       });
-      e.target.value = ""; // 입력 필드 초기화
+      e.target.value = "";
     }
   };
 
@@ -290,7 +289,7 @@ const ProductDetailPage = () => {
                 content={comment.content}
                 createdAt={comment.createdAt}
                 author={comment.writer?.nickname || "푸바오"}
-                refreshComments={() => {}}
+                refreshComments={loadComments} // 댓글 갱신 처리
               />
             ))
           )}
