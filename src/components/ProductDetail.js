@@ -14,40 +14,39 @@ import {
   fetchCommentsByProductId,
   toggleFavorite, // 좋아요 API
 } from "../api/api"; // API 호출 추가
+import { useQuery } from "@tanstack/react-query"; // react-query 추가
+import Spinner from "./Spinner"; // Spinner 컴포넌트 import
 
 export default function ProductDetail({ productId }) {
   const router = useRouter();
-  const [product, setProduct] = useState(null);
   const [menuVisible, setMenuVisible] = useState(false);
   const [comment, setComment] = useState("");
   const [isCommentButtonEnabled, setIsCommentButtonEnabled] = useState(false);
-  const [comments, setComments] = useState([]);
   const [showConfirmModal, setShowConfirmModal] = useState(false); // 삭제 확인 모달 상태
+  const [favoriteCount, setFavoriteCount] = useState(0); // 좋아요 수 상태
+  const [isFavorite, setIsFavorite] = useState(false); // 좋아요 상태
 
   // 상품 데이터 가져오기
-  const getProductDetails = async () => {
-    try {
-      const data = await fetchProductById(productId);
-      setProduct(data);
-    } catch (error) {
-      console.error("상품 상세 조회 실패:", error);
-    }
-  };
+  const {
+    data: product,
+    error: productError,
+    isLoading: productLoading,
+  } = useQuery({
+    queryKey: ["product", productId],
+    queryFn: () => fetchProductById(productId),
+    enabled: !!productId, // productId가 있을 때만 실행
+    onSuccess: (data) => {
+      setFavoriteCount(data.favoriteCount);
+      setIsFavorite(data.isFavorite);
+    },
+  });
 
   // 댓글 데이터 가져오기
-  const getComments = async () => {
-    try {
-      const data = await fetchCommentsByProductId(productId, 3);
-      setComments(data.list);
-    } catch (error) {
-      console.error("댓글 목록 조회 실패:", error);
-    }
-  };
-
-  useEffect(() => {
-    getProductDetails();
-    getComments();
-  }, [productId]);
+  const { data: comments, error: commentsError } = useQuery({
+    queryKey: ["comments", productId],
+    queryFn: () => fetchCommentsByProductId(productId, 3),
+    enabled: !!productId, // productId가 있을 때만 실행
+  });
 
   const toggleMenu = () => setMenuVisible(!menuVisible);
 
@@ -80,7 +79,7 @@ export default function ProductDetail({ productId }) {
 
   // 댓글 등록 핸들러
   const handleCommentSubmit = async () => {
-    if (comment.trim()) {
+    if (comment.trim() && product) {
       try {
         const commentData = {
           content: comment,
@@ -88,9 +87,8 @@ export default function ProductDetail({ productId }) {
           createdAt: new Date().toISOString(),
         };
         await createCommentForProduct(product.id, commentData);
-        setComments((prevComments) => [...prevComments, commentData]);
-        setComment("");
-        setIsCommentButtonEnabled(false);
+        setComment(""); // 댓글 입력 초기화
+        setIsCommentButtonEnabled(false); // 버튼 비활성화
       } catch (error) {
         console.error("댓글 등록 실패:", error);
       }
@@ -105,27 +103,38 @@ export default function ProductDetail({ productId }) {
   // 좋아요 핸들러
   const handleFavorite = async () => {
     if (!product) return;
+
+    // 현재 상태에 따라 메서드 설정
+    const method = isFavorite ? "DELETE" : "POST";
+
     try {
-      const method = product.isFavorite ? "DELETE" : "POST"; // 현재 상태에 따라 메서드 설정
       const updatedProduct = await toggleFavorite(product.id, method);
       console.log("업데이트된 상품 데이터:", updatedProduct);
 
-      // 여기에서 favoriteCount를 기존 값에 +1 또는 -1 해주기
-      setProduct((prevProduct) => ({
-        ...prevProduct,
-        isFavorite: !prevProduct.isFavorite,
-        favoriteCount: product.isFavorite
-          ? prevProduct.favoriteCount - 1
-          : prevProduct.favoriteCount + 1,
-      }));
+      // favoriteCount 업데이트
+      setFavoriteCount((prevCount) =>
+        isFavorite ? prevCount - 1 : prevCount + 1
+      );
+      setIsFavorite((prevState) => !prevState); // 상태 토글
     } catch (error) {
-      console.error("좋아요 실패:", error);
+      // 에러 메시지 처리
+      if (error.response && error.response.data) {
+        console.error("좋아요 실패:", error.response.data.message);
+        alert(error.response.data.message); // 사용자에게 알림
+      } else {
+        console.error("좋아요 실패:", error);
+        alert("좋아요 요청에 실패했습니다."); // 기본 에러 메시지
+      }
     }
   };
 
-  if (!product) {
-    return <div>상품 정보를 불러오는 데 실패했습니다.</div>;
-  }
+  if (productLoading)
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
+  if (productError) return <div>상품 정보를 불러오는 데 실패했습니다.</div>;
 
   return (
     <div className={styles.productDetailItem}>
@@ -187,7 +196,8 @@ export default function ProductDetail({ productId }) {
                   width={26.8}
                   height={23.3}
                 />
-                <p className={styles.likeCount}>{product.favoriteCount}</p>
+                <p className={styles.likeCount}>{favoriteCount}</p>{" "}
+                {/* 업데이트된 상태 사용 */}
               </button>
             </div>
           </div>
