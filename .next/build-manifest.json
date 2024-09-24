@@ -27,10 +27,20 @@
       "static/chunks/main.js",
       "static/chunks/pages/items.js"
     ],
-    "/sign-up": [
+    "/items/[itemId]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/sign-up.js"
+      "static/chunks/pages/items/[itemId].js"
+    ],
+    "/login": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/login.js"
+    ],
+    "/product-edit/[id]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/product-edit/[id].js"
     ]
   },
   "ampFirstPages": []
