@@ -5,9 +5,9 @@ import defaultUserImg from "@/images/defaultUserImg.png";
 import borderLine from "@/images/borderLine.png";
 import goBack from "@/images/ic_back.png";
 import Link from "next/link";
-import CommentList from "@/components/CommentList";
-import ArticleDropDown from "@/components/ArticleDropDown";
-import PostComment from "@/components/PostComment";
+import CommentList from "@/components/BoardDetail/CommentList";
+import ArticleDropDown from "@/components/BoardDetail/ArticleDropDown";
+import PostComment from "@/components/BoardDetail/PostComment";
 import { useState } from "react";
 
 export async function getServerSideProps(context) {
@@ -65,7 +65,7 @@ export default function BoardDetail(article) {
           <div className={styles.titleHeader}>
             <span className={styles.title}>{detailArticle.title}</span>
             {/* DropDown 넣을 공간 */}
-            <ArticleDropDown articleId={detailArticle.id}/>
+            <ArticleDropDown articleId={detailArticle.id} />
           </div>
           <div className={styles.articleInfoContainer}>
             <div className={styles.articleInfo}>
