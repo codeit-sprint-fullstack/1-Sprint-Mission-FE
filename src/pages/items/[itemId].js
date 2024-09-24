@@ -79,7 +79,7 @@ export default function ProductDetailPage() {
   };
 
   // 댓글 등록 핸들러
-  const handleCommentSubmit = async () => {
+  const handleCommentSubmit = async (comment) => {
     if (comment.trim()) {
       try {
         const commentData = {
@@ -88,10 +88,14 @@ export default function ProductDetailPage() {
           createdAt: new Date().toISOString(),
           limit: 3,
         };
-        await createCommentForProduct(product.id, commentData);
-        setComment(""); // 입력 필드 초기화
-        setIsCommentButtonEnabled(false); // 버튼 비활성화
-        fetchCommentsData(); // 댓글 목록 재조회
+        // 서버에 댓글을 등록하고 응답을 받아옴
+        const newComment = await createCommentForProduct(
+          product.id,
+          commentData
+        );
+
+        // 새로 등록된 댓글을 상태에 추가
+        setComments((prevComments) => [...prevComments, newComment]);
       } catch (error) {
         console.error("댓글 등록 실패:", error);
       }

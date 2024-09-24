@@ -12,12 +12,12 @@ import {
   deleteProduct,
   createCommentForProduct,
   fetchCommentsByProductId,
-  toggleFavorite, // 좋아요 API
+  toggleFavorite,
 } from "../api/api"; // API 호출 추가
 import { useQuery } from "@tanstack/react-query"; // react-query 추가
 import Spinner from "./Spinner"; // Spinner 컴포넌트 import
 
-export default function ProductDetail({ productId }) {
+export default function ProductDetail({ productId, onCommentSubmit }) {
   const router = useRouter();
   const [menuVisible, setMenuVisible] = useState(false);
   const [comment, setComment] = useState("");
@@ -25,7 +25,6 @@ export default function ProductDetail({ productId }) {
   const [showConfirmModal, setShowConfirmModal] = useState(false); // 삭제 확인 모달 상태
   const [favoriteCount, setFavoriteCount] = useState(0); // 좋아요 수 상태
   const [isFavorite, setIsFavorite] = useState(false); // 좋아요 상태
-
   const menuRef = useRef(null);
 
   // 상품 데이터 가져오기
@@ -36,7 +35,7 @@ export default function ProductDetail({ productId }) {
   } = useQuery({
     queryKey: ["product", productId],
     queryFn: () => fetchProductById(productId),
-    enabled: !!productId, // productId가 있을 때만 실행
+    enabled: !!productId,
     onSuccess: (data) => {
       setFavoriteCount(data.favoriteCount);
       setIsFavorite(data.isFavorite);
@@ -47,7 +46,7 @@ export default function ProductDetail({ productId }) {
   const { data: comments, error: commentsError } = useQuery({
     queryKey: ["comments", productId],
     queryFn: () => fetchCommentsByProductId(productId, 3),
-    enabled: !!productId, // productId가 있을 때만 실행
+    enabled: !!productId,
   });
 
   const toggleMenu = () => setMenuVisible(!menuVisible);
@@ -62,90 +61,44 @@ export default function ProductDetail({ productId }) {
     }
   };
 
-  // 메뉴 닫기
-  const closeMenu = (e) => {
-    if (menuRef.current && !menuRef.current.contains(e.target)) {
-      setMenuVisible(false);
-    }
-  };
-
-  // 삭제 버튼 클릭 핸들러
-  const handleDeleteClick = () => {
-    setShowConfirmModal(true); // 모달 열기
-  };
-
-  // 모달에서 취소 버튼 클릭 핸들러
-  const handleCancel = () => {
-    setShowConfirmModal(false); // 모달 닫기
-  };
-
-  // 댓글 입력 핸들러
-  const handleCommentChange = (e) => {
-    const value = e.target.value;
-    setComment(value);
-    setIsCommentButtonEnabled(value.trim().length > 0);
-  };
-
   // 댓글 등록 핸들러
   const handleCommentSubmit = async () => {
     if (comment.trim() && product) {
-      try {
-        const commentData = {
-          content: comment,
-          author: "작성자 판다",
-          createdAt: new Date().toISOString(),
-        };
-        await createCommentForProduct(product.id, commentData);
-        setComment(""); // 댓글 입력 초기화
-        setIsCommentButtonEnabled(false); // 버튼 비활성화
-      } catch (error) {
-        console.error("댓글 등록 실패:", error);
-      }
+      await onCommentSubmit(comment); // props로 받은 댓글 등록 핸들러 호출
+      setComment(""); // 댓글 입력 초기화
+      setIsCommentButtonEnabled(false); // 버튼 비활성화
     }
-  };
-
-  // 수정 페이지로 이동하는 핸들러
-  const handleEditRedirect = () => {
-    router.push("/product-edit/${product.id}");
   };
 
   // 좋아요 핸들러
   const handleFavorite = async () => {
     if (!product) return;
-
-    // 현재 상태에 따라 메서드 설정
     const method = isFavorite ? "DELETE" : "POST";
 
     try {
-      const updatedProduct = await toggleFavorite(product.id, method);
-      console.log("업데이트된 상품 데이터:", updatedProduct);
-
-      // favoriteCount 업데이트
+      await toggleFavorite(product.id, method);
       setFavoriteCount((prevCount) =>
         isFavorite ? prevCount - 1 : prevCount + 1
       );
       setIsFavorite((prevState) => !prevState); // 상태 토글
     } catch (error) {
-      // 에러 메시지 처리
-      if (error.response && error.response.data) {
-        console.error("좋아요 실패:", error.response.data.message);
-        alert(error.response.data.message); // 사용자에게 알림
-      } else {
-        console.error("좋아요 실패:", error);
-        alert("좋아요 요청에 실패했습니다."); // 기본 에러 메시지
-      }
+      console.error("좋아요 실패:", error);
+      alert("좋아요 요청에 실패했습니다."); // 기본 에러 메시지
     }
   };
 
-  if (productLoading)
-    return (
-      <div>
-        <Spinner />
-      </div>
-    );
-  if (productError) return <div>상품 정보를 불러오는 데 실패했습니다.</div>;
+  // 로딩 및 에러 처리
+  if (productLoading) return <Spinner />;
+  if (productError || commentsError)
+    return <div>상품 정보를 불러오는 데 실패했습니다.</div>;
 
   useEffect(() => {
+    const closeMenu = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuVisible(false);
+      }
+    };
+
     document.addEventListener("mousedown", closeMenu);
     return () => document.removeEventListener("mousedown", closeMenu);
   }, []);
@@ -210,8 +163,7 @@ export default function ProductDetail({ productId }) {
                   width={26.8}
                   height={23.3}
                 />
-                <p className={styles.likeCount}>{favoriteCount}</p>{" "}
-                {/* 업데이트된 상태 사용 */}
+                <p className={styles.likeCount}>{favoriteCount}</p>
               </button>
             </div>
           </div>
@@ -223,7 +175,10 @@ export default function ProductDetail({ productId }) {
           <textarea
             name="content"
             value={comment}
-            onChange={handleCommentChange}
+            onChange={(e) => {
+              setComment(e.target.value);
+              setIsCommentButtonEnabled(e.target.value.trim().length > 0);
+            }}
             className={styles.commentInput}
             placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
           />
@@ -243,8 +198,8 @@ export default function ProductDetail({ productId }) {
       {menuVisible && (
         <div className={styles.menuContainer} ref={menuRef}>
           <UpdateDeleteButton
-            onEdit={handleEditRedirect}
-            onDelete={handleDeleteClick}
+            onEdit={() => router.push(`/product-edit/${product.id}`)} // 수정 페이지로 이동
+            onDelete={() => setShowConfirmModal(true)} // 삭제 확인 모달 열기
           />
         </div>
       )}
@@ -252,13 +207,9 @@ export default function ProductDetail({ productId }) {
       {/* 삭제 확인 모달 */}
       <ConfirmationModal
         isOpen={showConfirmModal}
-        onClose={handleCancel} // 취소 클릭 시 모달 닫기
+        onClose={() => setShowConfirmModal(false)} // 취소 클릭 시 모달 닫기
         onConfirm={handleDelete} // 확인 클릭 시 삭제
       />
-
-      <button className={styles.moreMenuButton} onClick={toggleMenu}>
-        :
-      </button>
     </div>
   );
 }
