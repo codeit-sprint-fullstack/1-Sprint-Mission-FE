@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import useAuth from "@/hooks/useAuth";
 import Modal from "../ModalComponents/Modal";
 import { ROUTES } from "@/utils/rotues";
+import Link from "next/link";
 
 export default function ItemInfo(product) {
   const item = product.product;
@@ -34,11 +35,6 @@ export default function ItemInfo(product) {
   };
 
   const toggleDropdown = () => setIsOpen(!isOpen);
-
-  // 수정하기 클릭 시 router.push로 이동
-  const handleEdit = () => {
-    router.push(ROUTES.ITEMS_EDIT(item.id));
-  };
 
   const handleDelete = async () => {
     await deleteProduct(item.id);
@@ -82,9 +78,9 @@ export default function ItemInfo(product) {
         </div>
         {isOpen && (
           <div className={styles.dropdown}>
-            <div className={styles.dropdownItem} onClick={handleEdit}>
-              수정하기
-            </div>
+            <Link href={ROUTES.ITEMS_EDIT(item.id)}>
+              <div className={styles.dropdownItem}>수정하기</div>
+            </Link>
             <div className={styles.dropdownItem} onClick={openModal}>
               삭제하기
             </div>

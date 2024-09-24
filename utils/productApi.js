@@ -59,11 +59,13 @@ export async function addFavorite(productId) {
 }
 
 // 제품 수정하기
-export async function editProduct(productId, data) {
+export async function editProduct(productId, data, token) {
+  console.log(token);
   return apiHandler(async () => {
     const response = await apiClient.patch(`/products/${productId}`, data, {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     });
     return response.data;

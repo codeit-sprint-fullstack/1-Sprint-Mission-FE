@@ -11,15 +11,20 @@ export default function EditBtn({ item }) {
   const router = useRouter(); // useNavigate 대신 useRouter
 
   const handleProductPost = async (id) => {
+    const token = localStorage.getItem("accessToken");
     if (isFormValid) {
       try {
-        await editProduct(id, {
-          name: formValues.productName,
-          description: formValues.productIntro,
-          price: formValues.productPrice,
-          tags: formValues.tags || [],
-          images: formValues.productImage,
-        });
+        await editProduct(
+          id,
+          {
+            name: formValues.productName,
+            description: formValues.productIntro,
+            price: formValues.productPrice,
+            tags: formValues.tags || [],
+            images: formValues.productImage,
+          },
+          token
+        );
         router.push(ROUTES.ITEMS_DETAIL(id));
       } catch (error) {
         console.error("Failed to create product:", error);
