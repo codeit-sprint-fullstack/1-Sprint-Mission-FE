@@ -14,7 +14,6 @@ export default function ProductDetail({ initialComments, id }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 클라이언트에서 토큰을 로컬 스토리지에서 가져옴
         const token = localStorage.getItem("accessToken");
 
         if (!token) {
@@ -22,7 +21,6 @@ export default function ProductDetail({ initialComments, id }) {
           return;
         }
 
-        // 토큰으로 상품 정보 불러오기
         const productDetail = await fetchProduct(id, token);
         setProduct(productDetail);
       } catch (error) {
