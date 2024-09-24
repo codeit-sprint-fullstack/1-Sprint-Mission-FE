@@ -25,6 +25,20 @@ const commentsUrl = "/board/comments";
 const marketCommentsUrl = "/products"; // 중고마켓 댓글
 const authUrl = "/auth"; // 로그인 및 회원가입 엔드포인트
 
+// 요청 인터셉터 추가
+apiClient.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 /*----------------------상품 관련 API ---------------------------*/
 
 export async function getProductList({
