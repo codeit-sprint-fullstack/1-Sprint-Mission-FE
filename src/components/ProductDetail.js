@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react"; // useRef 추가
 import Image from "next/image";
 import styles from "./ProductDetail.module.css";
 import AuthorProfile from "../../public/images/profile-image.png";
@@ -26,6 +26,8 @@ export default function ProductDetail({ productId }) {
   const [favoriteCount, setFavoriteCount] = useState(0); // 좋아요 수 상태
   const [isFavorite, setIsFavorite] = useState(false); // 좋아요 상태
 
+  const menuRef = useRef(null); // 메뉴 ref 생성
+
   // 상품 데이터 가져오기
   const {
     data: product,
@@ -49,6 +51,20 @@ export default function ProductDetail({ productId }) {
   });
 
   const toggleMenu = () => setMenuVisible(!menuVisible);
+
+  // 메뉴 외부 클릭 감지
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuVisible(false); // 메뉴 외부 클릭 시 메뉴 닫기
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuRef]);
 
   // 상품 삭제 핸들러
   const handleDelete = async () => {
@@ -227,10 +243,12 @@ export default function ProductDetail({ productId }) {
 
       {/* 수정/삭제 메뉴 */}
       {menuVisible && (
-        <UpdateDeleteButton
-          onEdit={handleEditRedirect}
-          onDelete={handleDeleteClick} // 수정: 삭제 클릭 시 모달 열기
-        />
+        <div className={styles.menuContainer} ref={menuRef}>
+          <UpdateDeleteButton
+            onEditClick={handleEditRedirect}
+            onDeleteClick={handleDeleteClick}
+          />
+        </div>
       )}
 
       {/* 삭제 확인 모달 */}
