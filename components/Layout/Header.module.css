@@ -8,7 +8,7 @@
   position: sticky;
   top: 0;
   z-index: 9999;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 .container {
@@ -29,6 +29,10 @@
   color: #3692ff;
 }
 
+.buttonContainer {
+  margin-right: 200px;
+}
+
 .login {
   width: 88px;
   height: 42px;
@@ -38,5 +42,4 @@
   padding: 12px, 23px;
   font-size: 16px;
   font-weight: 600;
-  margin-right: 200px;
 }

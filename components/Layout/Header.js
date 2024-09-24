@@ -32,9 +32,11 @@ export default function Header() {
           </Link>
         </div>
       </div>
-      <Link href="/login">
-        <button className={styles.login}>로그인</button>
-      </Link>
+      <div className={styles.buttonContainer}>
+        <Link href="/login">
+          <button className={styles.login}>로그인</button>
+        </Link>
+      </div>
     </header>
   );
 }
