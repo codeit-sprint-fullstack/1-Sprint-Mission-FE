@@ -12,10 +12,14 @@ export default function Nav() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get("/user");
+        const response = await axios.get("/users/me");
         setUser(response.data);
       } catch (error) {
         console.error("유저 정보 조회 실패:", error);
+        // 토큰이 만료되었거나 유효하지 않은 경우 로그아웃 처리
+        if (error.response && error.response.status === 401) {
+          handleLogout();
+        }
       }
     };
 
@@ -27,6 +31,7 @@ export default function Nav() {
 
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
     setUser(null);
     router.push("/login");
   };

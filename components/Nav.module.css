@@ -50,6 +50,7 @@
   cursor: pointer;
   transition: color 0.3s; /* 호버 시 부드러운 색상 전환 */
   color: #1f2937;
+  text-decoration: none; /* 밑줄 제거 */
 }
 
 .link:hover {
@@ -84,6 +85,7 @@
   cursor: pointer;
   border: none; /* 테두리 제거 */
   transition: background-color 0.3s; /* 호버 시 부드러운 배경색 전환 */
+  text-decoration: none; /* 밑줄 제거 */
 }
 
 .logoutButton:hover {
