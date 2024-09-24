@@ -158,7 +158,7 @@ function DetailProduct({ product, comments, id }) {
   };
 
   const likeMutation = useMutation({
-    mutationFn: async ({ id }) => {
+    mutationFn: async () => {
       if (isFavorite) {
         await productsApi.unlikeProduct(id);
       } else {
@@ -194,8 +194,7 @@ function DetailProduct({ product, comments, id }) {
 
   const handleLikeButtonClick = () => {
     if (!user) return; //로그인이 되어 있지 않으면 뮤테이션을 실행하지 않게 리턴한다.
-    console.log("확인" + isFavorite, id);
-    likeMutation.mutate({ id });
+    likeMutation.mutate();
   };
 
   return (
