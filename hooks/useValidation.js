@@ -1,46 +1,21 @@
 import { useState } from "react";
 
-export function validateForm(formData) {
-  const errors = {};
-  if (!formData.title || formData.title.trim() === "") {
-    errors.title = "제목을 입력해주세요";
-  }
-  if (!formData.content || formData.content.trim() === "") {
-    errors.content = "내용을 입력해주세요";
-  }
-
-  return errors;
-}
-
-export function validateCreateForm(formData) {
+export function useValidateForm() {
   const initialState = {
-    productName: "",
-    productIntro: "",
-    productPrice: "",
-    productTag: "",
-    productImage: "",
+    title: "",
+    content: "",
   };
 
   const validations = {
-    productName: {
+    title: {
       required: true,
       minLength: 1,
-      maxLength: 10,
+      maxLength: 50,
     },
-    productIntro: {
+    content: {
       required: true,
       minLength: 10,
-      maxLength: 100,
-    },
-    productPrice: {
-      required: true,
-      pattern: /^[0-9]+$/,
-    },
-    productTag: {
-      maxLength: 5,
-    },
-    productImage: {
-      required: true,
+      maxLength: 1000,
     },
   };
 
@@ -50,7 +25,9 @@ export function validateCreateForm(formData) {
   const validate = (name, value) => {
     let error = "";
     if (validations[name]) {
-      if (
+      if (validations[name].required && !value) {
+        error = "필수 입력 항목입니다.";
+      } else if (
         validations[name].minLength &&
         value.length < validations[name].minLength
       ) {
@@ -60,11 +37,6 @@ export function validateCreateForm(formData) {
         value.length > validations[name].maxLength
       ) {
         error = `${validations[name].maxLength}자 이하로 입력해주세요`;
-      } else if (
-        validations[name].pattern &&
-        !validations[name].pattern.test(value)
-      ) {
-        error = "숫자로 입력해주세요";
       }
     }
     setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));

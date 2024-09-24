@@ -1,68 +1,24 @@
 import styles from "./CreateForm.module.css";
-import { useState } from "react";
+import { useValidateForm } from "@/hooks/useValidation";
 import { createArticle } from "@/utils/articleApi";
-import { validateForm } from "@/hooks/useValidation";
 import { useRouter } from "next/router";
 import { ROUTES } from "@/utils/rotues";
 
 export default function CreateForm() {
-  const [formData, setFormData] = useState({ title: "", content: "" });
-  const [formValid, setFormValid] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({ title: false, content: false });
-
+  const { values, errors, handleChange, handleSubmit } = useValidateForm(); // useValidateForm 사용
   const router = useRouter();
 
-  // 유효성 검사 및 formValid 설정
-  const validateAndSetFormValid = (name, value) => {
-    const newFormData = { ...formData, [name]: value };
-    const validationErrors = validateForm(newFormData);
-    setErrors(validationErrors);
-
-    const isFormValid =
-      newFormData.title &&
-      newFormData.content &&
-      Object.keys(validationErrors).length === 0;
-    setFormValid(isFormValid);
-  };
-
-  // 입력 변경 처리
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-
-    setTouched((prevTouched) => ({
-      ...prevTouched,
-      [name]: true,
-    }));
-
-    validateAndSetFormValid(name, value);
-  };
-
-  // 최종 submit 시 유효성 검사 추가
-  const handleSubmit = async () => {
-    const validationErrors = validateForm(formData);
-    setErrors(validationErrors);
-
-    // 모든 필드를 'touched'로 설정
-    setTouched({ title: true, content: true });
-
-    // 유효성 검사에 실패하면 return
-    if (Object.keys(validationErrors).length > 0) return;
-
+  // 폼 제출 함수
+  const onSubmit = async () => {
     try {
       const newArticle = await createArticle({
-        title: formData.title,
-        content: formData.content,
+        title: values.title,
+        content: values.content,
       });
 
       if (newArticle && newArticle.id) {
         router.push(ROUTES.ARTICLE(newArticle.id));
       }
-
-      setFormData({ title: "", content: "" });
-      setFormValid(false);
-      document.getElementById("createForm").reset();
     } catch (error) {
       console.error("Error creating article:", error);
     }
@@ -75,8 +31,8 @@ export default function CreateForm() {
         <button
           type="button"
           className={styles.addBtn}
-          disabled={!formValid}
-          onClick={handleSubmit}
+          disabled={Object.keys(errors).some((key) => errors[key])} // 유효성 검사 결과에 따라 버튼 비활성화
+          onClick={handleSubmit(onSubmit)} // 유효성 검사 후 제출
         >
           등록
         </button>
@@ -90,13 +46,11 @@ export default function CreateForm() {
             className={styles.formInput}
             name="title"
             placeholder="제목을 입력해주세요"
-            value={formData.title}
+            value={values.title}
             onChange={handleChange}
             id="title"
           />
-          {touched.title && errors.title && (
-            <p className={styles.error}>{errors.title}</p>
-          )}
+          {errors.title && <p className={styles.error}>{errors.title}</p>}
         </div>
         <div className={styles.inputContainer}>
           <label className={styles.formLabel} htmlFor="content">
@@ -106,13 +60,11 @@ export default function CreateForm() {
             className={styles.formInput}
             name="content"
             placeholder="내용을 입력해주세요"
-            value={formData.content}
+            value={values.content}
             onChange={handleChange}
             id="content"
           />
-          {touched.content && errors.content && (
-            <p className={styles.error}>{errors.content}</p>
-          )}
+          {errors.content && <p className={styles.error}>{errors.content}</p>}
         </div>
       </form>
     </div>

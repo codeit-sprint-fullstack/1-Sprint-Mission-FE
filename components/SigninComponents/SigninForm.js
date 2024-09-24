@@ -1,41 +1,41 @@
-import styles from "./SigninForm.module.css";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import Image from "next/image";
+import Link from "next/link";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/router";
+import styles from "./SigninForm.module.css";
 import logoImg from "@/images/desktop_logo.png";
 import btn_visibility from "@/images/btn_visibility.png";
 import btn_hide from "@/images/btn_hide.png";
-import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
-import { useState } from "react";
-import useFormValidation from "@/hooks/useFormValidation";
-import validate from "@/utils/validationRules";
-import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/router";
+import Modal from "../ModalComponents/Modal";
 import { signup } from "@/utils/authApi";
 import FormFooter from "./FormFooter";
-import Modal from "../ModalComponents/Modal";
+import { validationRules } from "@/utils/validationRules";
 
 export default function SigninForm() {
   const [isVisible, setIsVisible] = useState(false);
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
-  const [modalType, setModalType] = useState("error"); // 성공/실패 모달 구분
+  const [modalType, setModalType] = useState("error");
 
   const togglePasswordVisibility = () => setIsVisible(!isVisible);
   const toggleConfirmPasswordVisibility = () =>
     setIsConfirmVisible(!isConfirmVisible);
 
-  const initialState = {
-    email: "",
-    nickname: "",
-    password: "",
-    confirmPassword: "",
-  };
-
-  const { handleChange, values, errors, handleBlur, touched, setErrors } =
-    useFormValidation(initialState, validate);
-
   const router = useRouter();
+
+  // react-hook-form 사용
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "onChange",
+  });
 
   const mutation = useMutation({
     mutationFn: signup,
@@ -45,28 +45,22 @@ export default function SigninForm() {
       setShowModal(true);
     },
     onError: (error) => {
-      setModalMessage(error.message);
+      const serverErrorMessage =
+        error.response?.data?.message || "회원가입에 실패했습니다.";
+      setModalMessage(serverErrorMessage);
       setModalType("error");
       setShowModal(true);
     },
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (
-      !errors.email &&
-      !errors.password &&
-      !errors.confirmPassword &&
-      !errors.nickname
-    ) {
-      mutation.mutate({
-        email: values.email,
-        nickname: values.nickname,
-        password: values.password,
-        passwordConfirmation: values.confirmPassword,
-      });
-    }
+  const onSubmit = (data) => {
+    const formattedData = {
+      email: data.email,
+      nickname: data.nickname,
+      password: data.password,
+      passwordConfirmation: data.confirmPassword,
+    };
+    mutation.mutate(formattedData);
   };
 
   const handleModalConfirm = () => {
@@ -82,7 +76,7 @@ export default function SigninForm() {
         <Image src={logoImg} alt="logo" className={styles.logo} />
       </Link>
 
-      <form className={styles.loginForm} onSubmit={handleSubmit}>
+      <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.label} htmlFor="email">
           이메일
         </label>
@@ -91,14 +85,9 @@ export default function SigninForm() {
           type="email"
           name="email"
           placeholder="이메일을 입력해주세요"
-          value={values.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          id="email"
+          {...register("email", validationRules.email)}
         />
-        {touched.email && errors.email && (
-          <p className={styles.error}>{errors.email}</p>
-        )}
+        {errors.email && <p className={styles.error}>{errors.email.message}</p>}
 
         <label className={styles.label} htmlFor="nickname">
           닉네임
@@ -108,13 +97,10 @@ export default function SigninForm() {
           type="text"
           name="nickname"
           placeholder="닉네임을 입력해주세요"
-          value={values.nickname}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          id="nickname"
+          {...register("nickname", validationRules.nickname)}
         />
-        {touched.nickname && errors.nickname && (
-          <p className={styles.error}>{errors.nickname}</p>
+        {errors.nickname && (
+          <p className={styles.error}>{errors.nickname.message}</p>
         )}
 
         <label className={styles.label} htmlFor="password">
@@ -126,10 +112,7 @@ export default function SigninForm() {
             type={isVisible ? "text" : "password"}
             name="password"
             placeholder="비밀번호를 입력해주세요"
-            value={values.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            id="password"
+            {...register("password", validationRules.password)}
           />
           <Image
             src={isVisible ? btn_visibility : btn_hide}
@@ -138,8 +121,8 @@ export default function SigninForm() {
             onClick={togglePasswordVisibility}
           />
         </div>
-        {touched.password && errors.password && (
-          <p className={styles.error}>{errors.password}</p>
+        {errors.password && (
+          <p className={styles.error}>{errors.password.message}</p>
         )}
 
         <label className={styles.label} htmlFor="confirmPassword">
@@ -151,10 +134,10 @@ export default function SigninForm() {
             type={isConfirmVisible ? "text" : "password"}
             name="confirmPassword"
             placeholder="비밀번호를 다시 한 번 입력해주세요"
-            value={values.confirmPassword}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            id="confirmPassword"
+            {...register(
+              "confirmPassword",
+              validationRules.confirmPassword(getValues)
+            )}
           />
           <Image
             src={isConfirmVisible ? btn_visibility : btn_hide}
@@ -163,20 +146,11 @@ export default function SigninForm() {
             onClick={toggleConfirmPasswordVisibility}
           />
         </div>
-        {touched.confirmPassword && errors.confirmPassword && (
-          <p className={styles.error}>{errors.confirmPassword}</p>
+        {errors.confirmPassword && (
+          <p className={styles.error}>{errors.confirmPassword.message}</p>
         )}
 
-        <button
-          className={styles.signinBtn}
-          type="submit"
-          disabled={
-            errors.email ||
-            errors.password ||
-            errors.confirmPassword ||
-            errors.nickname
-          }
-        >
+        <button className={styles.signinBtn} type="submit" disabled={!isValid}>
           회원가입
         </button>
       </form>

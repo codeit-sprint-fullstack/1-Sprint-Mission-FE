@@ -1,37 +1,36 @@
-import styles from "./LoginForm.module.css";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import Image from "next/image";
+import Link from "next/link";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/router";
+import styles from "./LoginForm.module.css";
 import logoImg from "@/images/desktop_logo.png";
 import btn_visibility from "@/images/btn_visibility.png";
 import btn_hide from "@/images/btn_hide.png";
-import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
-import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import useFormValidation from "@/hooks/useFormValidation";
-import validate from "@/utils/validationRules";
-import FormFooter from "./FormFooter";
 import Modal from "../ModalComponents/Modal";
 import { login } from "@/utils/authApi";
+import FormFooter from "./FormFooter";
+import { validationRules } from "@/utils/validationRules";
 
 export default function LoginForm() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
-  const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = () =>
     setIsPasswordVisible(!isPasswordVisible);
-  };
-
-  const initialState = {
-    email: "",
-    password: "",
-  };
-
-  const { handleChange, values, errors, handleBlur, touched } =
-    useFormValidation(initialState, validate);
 
   const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "onChange",
+  });
 
   const mutation = useMutation({
     mutationFn: login,
@@ -47,14 +46,8 @@ export default function LoginForm() {
     },
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!errors.email && !errors.password) {
-      mutation.mutate({
-        email: values.email,
-        password: values.password,
-      });
-    }
+  const onSubmit = (data) => {
+    mutation.mutate(data);
   };
 
   return (
@@ -62,7 +55,7 @@ export default function LoginForm() {
       <Link href={ROUTES.HOME} passHref>
         <Image src={logoImg} alt="logo" className={styles.logo} />
       </Link>
-      <form className={styles.loginForm} onSubmit={handleSubmit}>
+      <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.label} htmlFor="email">
           이메일
         </label>
@@ -71,14 +64,9 @@ export default function LoginForm() {
           type="email"
           name="email"
           placeholder="이메일을 입력해주세요"
-          value={values.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          id="email"
+          {...register("email", validationRules.email)}
         />
-        {touched.email && errors.email && (
-          <p className={styles.error}>{errors.email}</p>
-        )}
+        {errors.email && <p className={styles.error}>{errors.email.message}</p>}
 
         <label className={styles.label} htmlFor="password">
           비밀번호
@@ -89,10 +77,7 @@ export default function LoginForm() {
             type={isPasswordVisible ? "text" : "password"}
             name="password"
             placeholder="비밀번호를 입력해주세요"
-            value={values.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            id="password"
+            {...register("password", validationRules.password)}
           />
           <Image
             src={isPasswordVisible ? btn_visibility : btn_hide}
@@ -101,14 +86,11 @@ export default function LoginForm() {
             onClick={togglePasswordVisibility}
           />
         </div>
-        {touched.password && errors.password && (
-          <p className={styles.error}>{errors.password}</p>
+        {errors.password && (
+          <p className={styles.error}>{errors.password.message}</p>
         )}
-        <button
-          className={styles.loginBtn}
-          type="submit"
-          disabled={errors.email || errors.password}
-        >
+
+        <button className={styles.loginBtn} type="submit" disabled={!isValid}>
           로그인
         </button>
       </form>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router"; // useRouter로 변경
-import styles from "./CreateBtn.module.css"; // CSS 모듈 사용
+import { useRouter } from "next/router";
+import styles from "./CreateBtn.module.css";
 import CreateForm from "./CreateForm";
 import { createProduct } from "@/utils/productApi";
 import { ROUTES } from "@/utils/rotues";
@@ -8,7 +8,7 @@ import { ROUTES } from "@/utils/rotues";
 export default function CreateBtn() {
   const [isFormValid, setIsFormValid] = useState(false);
   const [formValues, setFormValues] = useState({});
-  const router = useRouter(); // useNavigate 대신 useRouter
+  const router = useRouter();
 
   const handleProductPost = async () => {
     if (isFormValid) {
@@ -20,7 +20,7 @@ export default function CreateBtn() {
           price: formValues.productPrice,
           tags: formValues.tags || [],
         });
-        router.push(ROUTES.ITEMS_DETAIL(newProduct.id)); // navigate 대신 router.push 사용
+        router.push(ROUTES.ITEMS_DETAIL(newProduct.id));
       } catch (error) {
         console.error("Failed to create product:", error);
       }
