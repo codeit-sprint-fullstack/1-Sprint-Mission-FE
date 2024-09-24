@@ -57,7 +57,7 @@ const LoginForm = () => {
           console.log("로그인 성공", res.data);
           localStorage.setItem("accessToken", res.data.accessToken);
           localStorage.setItem("refereshToken", res.data.refreshToken);
-          router.push("/");
+          router.push("/market");
         } else {
           console.log("로그인실패", res.data);
         }

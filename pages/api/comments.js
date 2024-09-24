@@ -22,9 +22,15 @@ export async function getComments(productId, limit) {
   }
 }
 
-export async function postComment(data, productId) {
+export async function postComment(productId, data) {
   try {
-    const response = await api.post(`/products/${productId}/comments`, data);
+    const token = localStorage.getItem("accessToken");
+    const response = await api.post(`/products/${productId}/comments`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response;
   } catch (error) {
     console.log(error);

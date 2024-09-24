@@ -14,10 +14,13 @@ export default function Login() {
           <div className={styles.simpleLogin}>
             <p>간편 로그인하기</p>
             <div className={styles.loginIcon}>
-              <a className={styles.googleLogin}>
+              <a href="https://www.google.com/" className={styles.googleLogin}>
                 <Image src="./google.svg" alt="google" width={42} height={42} />
               </a>
-              <a className={styles.kakaoLogin}>
+              <a
+                className={styles.kakaoLogin}
+                href="https://www.kakaocorp.com/page"
+              >
                 <Image src="./kakao.svg" alt="kakao" width={42} height={42} />
               </a>
             </div>

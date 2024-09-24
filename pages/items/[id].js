@@ -1,11 +1,11 @@
-import styles from "../styles/market.module.css";
+import styles from "../../styles/market.module.css";
 import Image from "next/image";
-import { getProduct } from "./api/products";
+import { getProduct } from "../api/products";
 import { useEffect, useState } from "react";
-import { getComments, postComment } from "./api/comments";
-import { getProfile } from "./api/user";
+import { getComments, postComment } from "../api/comments";
+import { getProfile } from "../api/user";
 import { useRouter } from "next/router";
-export default function Market({ id }) {
+export default function Market() {
   const [product, setProduct] = useState([]);
   const [comment, setComment] = useState([]);
   const [userData, setUserData] = useState({});
@@ -130,7 +130,7 @@ export default function Market({ id }) {
             className={styles.marketArticleBtn}
             onClick={() => {
               postComment(product.id, { content: commentData });
-              router.push(`/items/${product.id}`);
+              router.push(`/market/${product.id}`);
             }}
           >
             등록

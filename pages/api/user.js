@@ -33,7 +33,6 @@ export async function getProfile() {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response.data);
     return response.data;
   } catch (error) {
     return error.response;
