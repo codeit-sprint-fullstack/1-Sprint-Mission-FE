@@ -26,23 +26,27 @@ export default function ProductDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [comments, setComments] = useState([]);
+  const [product, setProduct] = useState(null); // product 상태 추가
 
   // 상품 정보를 가져오는 useQuery
-  const { data: product, error: productError } = useQuery({
+  const { data: productData, error: productError } = useQuery({
     queryKey: ["product", itemId],
     queryFn: () => fetchProductById(itemId),
     enabled: !!itemId,
     staleTime: 10000, // 10초 동안 데이터 유효
     refetchInterval: 30000, // 30초마다 데이터 새로 고침
+    onSuccess: (data) => setProduct(data), // 성공적으로 데이터 가져온 후 product 상태 업데이트
   });
 
   // 댓글을 가져오는 useQuery
-  const { data: comments, error: commentsError } = useQuery({
+  const { data: commentsData, error: commentsError } = useQuery({
     queryKey: ["comments", itemId],
     queryFn: () => fetchCommentsByProductId(itemId, 10),
     enabled: !!itemId,
-    staleTime: 10000, // 10초 동안 데이터 유효
-    refetchInterval: 30000, // 30초마다 데이터 새로 고침
+    staleTime: 10000,
+    refetchInterval: 30000,
+    onSuccess: (data) => setComments(data.list), // 댓글 데이터를 성공적으로 가져왔을 때 업데이트
   });
 
   // 상품 정보를 불러오는 함수
@@ -147,13 +151,15 @@ export default function ProductDetailPage() {
   }, [itemId]);
 
   if (loading) return <Spinner />;
-  if (error) return <div>{error}</div>;
+  if (error || productError || commentsError)
+    return <div>{error || productError || commentsError}</div>;
 
   return (
     <div>
       <ItemsPageHeader />
       <main className={styles.main}>
         <ProductDetail
+          product={product} // product 상태를 ProductDetail에 전달
           productId={itemId}
           onLike={handleLikeProduct}
           onUnlike={handleUnlikeProduct}
@@ -163,15 +169,19 @@ export default function ProductDetailPage() {
           {comments.length === 0 ? (
             <MarketNoComments />
           ) : (
-            comments.map((comment) => (
-              <ProductCommentItem
-                key={comment.id}
-                comment={comment}
-                itemId={itemId} // productId를 itemId로 변경
-                onCommentUpdate={handleCommentUpdate}
-                fetchCommentsData={fetchCommentsData}
-              />
-            ))
+            comments.map(
+              (
+                comment // commentsData를 제거하고 comments 배열 사용
+              ) => (
+                <ProductCommentItem
+                  key={comment.id}
+                  comment={comment}
+                  itemId={itemId} // productId를 itemId로 변경
+                  onCommentUpdate={handleCommentUpdate}
+                  fetchCommentsData={fetchCommentsData}
+                />
+              )
+            )
           )}
         </div>
         <button
