@@ -2,7 +2,7 @@ import styles from "@/styles/signup.module.css";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { postsignup } from "./api/user";
-import SignupForm from "../component/SignupForm.js";
+import SignupForm from "../components/SignupForm.js";
 
 export default function Signup() {
   return (

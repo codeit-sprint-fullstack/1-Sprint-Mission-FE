@@ -24,3 +24,18 @@ export async function PostLogin(data) {
     return error.response;
   }
 }
+
+export async function getProfile() {
+  try {
+    const token = localStorage.getItem("accessToken");
+    const response = await api.get("/users/me", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    return error.response;
+  }
+}
