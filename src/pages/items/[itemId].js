@@ -1,10 +1,12 @@
 import { useRouter } from "next/router";
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import ItemsPageHeader from "../../components/ItemsPageHeader";
 import ProductDetail from "../../components/ProductDetail";
 import ProductCommentItem from "../../components/ProductCommentItem";
 import Footer from "../../components/Footer";
 import styles from "../PostDetailPage.module.css";
+
 import {
   fetchProductById,
   fetchCommentsByProductId,
@@ -21,11 +23,27 @@ import ConfirmationModal from "../../components/ConfirmationModal"; // 상품 �
 export default function ProductDetailPage() {
   const router = useRouter();
   const { itemId } = router.query; // URL에서 itemId를 추출
-  const [product, setProduct] = useState(null);
-  const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+
+  // 상품 정보를 가져오는 useQuery
+  const { data: product, error: productError } = useQuery({
+    queryKey: ["product", itemId],
+    queryFn: () => fetchProductById(itemId),
+    enabled: !!itemId,
+    staleTime: 10000, // 10초 동안 데이터 유효
+    refetchInterval: 30000, // 30초마다 데이터 새로 고침
+  });
+
+  // 댓글을 가져오는 useQuery
+  const { data: comments, error: commentsError } = useQuery({
+    queryKey: ["comments", itemId],
+    queryFn: () => fetchCommentsByProductId(itemId, 10),
+    enabled: !!itemId,
+    staleTime: 10000, // 10초 동안 데이터 유효
+    refetchInterval: 30000, // 30초마다 데이터 새로 고침
+  });
 
   // 상품 정보를 불러오는 함수
   const fetchProduct = async () => {
