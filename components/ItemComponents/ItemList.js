@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { formatPrice } from "@/utils/price";
 import styles from "./ItemList.module.css";
 import img_default from "@/images/img_default.png";
@@ -8,6 +8,7 @@ import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 import { useDeviceType } from "@/hooks/useDeviceType";
 
+// 프레젠테이션 컴포넌트는 UI 렌더링만 처리
 export default function ItemList({
   products,
   sortOrder,

@@ -13,6 +13,22 @@
 .sellProductItem {
   width: 100%;
   position: relative;
+  .itemName {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1f2937;
+  }
+  .itemPrice {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-top: 6px;
+  }
+  .itemFavoriteCnt {
+    font-size: 12px;
+    font-weight: 500;
+    color: #4b5563;
+  }
 }
 
 .sellProductList {
@@ -27,9 +43,6 @@
 
 /* 태블릿 크기 */
 @media (max-width: 1199px) {
-  .searchBar {
-    top: 40px;
-  }
   .sellProductList {
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
@@ -44,18 +57,15 @@
 
 /* 모바일 크기 */
 @media (max-width: 743px) {
-  .searchBar {
-    display: none;
-  }
-
   .sellProductList {
-    grid-template-columns: repeat(2, 1fr); /* Tablet layout */
+    grid-template-columns: repeat(2, 1fr);
     gap: 8px;
   }
 
   .sellProduct {
     width: 100%;
     border-radius: 12px;
+    height: auto;
   }
 
   .sell {

@@ -9,6 +9,7 @@ export const API_ENDPOINTS = {
   },
   PRODUCTS: {
     BASE: "/products",
+    FETCH_PRODUCTS: (params) => `/products?${params}`,
     DETAIL: (id) => `/products/${id}`,
     FAVORITE: (productId) => `/products/${productId}/favorite`,
     FETCH_COMMENTS: (id, cursor) =>

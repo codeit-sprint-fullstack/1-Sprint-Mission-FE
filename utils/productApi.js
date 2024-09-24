@@ -4,9 +4,15 @@ import { API_ENDPOINTS } from "./apiEndpoint";
 
 export async function fetchProducts({ pageSize, page, keyword, orderBy }) {
   return apiHandler(async () => {
-    const response = await apiClient.get(API_ENDPOINTS.PRODUCTS.BASE, {
-      params: { pageSize, page, keyword, orderBy },
+    const params = new URLSearchParams({
+      orderBy: orderBy,
+      keyword: keyword,
+      page: page,
+      pageSize: pageSize,
     });
+    const response = await apiClient.get(
+      API_ENDPOINTS.PRODUCTS.FETCH_PRODUCTS(params)
+    );
 
     if (!response.data) {
       throw new Error("API 응답 데이터가 비어 있습니다.");

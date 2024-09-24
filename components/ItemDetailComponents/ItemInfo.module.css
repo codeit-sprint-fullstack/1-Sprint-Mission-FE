@@ -59,6 +59,7 @@
     display: flex;
     gap: 8px;
     margin-bottom: 62px;
+    flex-wrap: wrap;
     .tagText {
       padding: 6px 16px;
       border-radius: 26px;
@@ -149,7 +150,7 @@
     width: 100%;
   }
   .itemImg {
-    width: 344px;
-    height: 343px;
+    width: 100%;
+    height: auto;
   }
 }

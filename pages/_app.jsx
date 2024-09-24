@@ -1,8 +1,8 @@
 import "@/styles/globals.css";
 import "@/styles/Home.module.css";
 import Head from "next/head";
-import Header from "@/components/Layout/Header";
-import Footer from "@/components/Layout/Footer";
+import Header from "@/components/Layout/Header.jsx";
+import Footer from "@/components/Layout/Footer.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
@@ -13,7 +13,7 @@ const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
-  const noHeaderFooter = ["/login", "/signin"]; // '/signin' 대신 '/signup' 사용
+  const noHeaderFooter = ["/login", "/signin"];
   const hideHeaderFooter = noHeaderFooter.includes(router.pathname);
 
   return (

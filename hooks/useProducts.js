@@ -23,8 +23,7 @@ export const useProducts = (
         keyword,
         orderBy,
       }),
-    staleTime: 3000,
-    keepPreviousData: true, // 페이지 변경 시 이전 데이터를 유지
+    keepPreviousData: true,
     initialData: {
       list: initialProducts,
       totalCount: initialTotalCount,
@@ -74,7 +73,6 @@ export const useProducts = (
       window.removeEventListener("resize", throttledUpdateItemsPerPage);
     };
   }, []);
-
   return {
     products: data?.list || [],
     totalCount: data?.totalCount || 0,

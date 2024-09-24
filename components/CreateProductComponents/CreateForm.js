@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "./CreateForm.module.css";
-import { validateCreateForm } from "@/hooks/useValidation";
+import { useValidateForm } from "@/hooks/useValidation";
 
 function CreateForm({ onFormChange, onFormValuesChange }) {
   const { values, errors, handleChange, handleSubmit, setValues } =
-    validateCreateForm();
+    useValidateForm();
   const [tags, setTags] = useState([]);
   const [isComposing, setIsComposing] = useState(false); // 한글 입력 조합
 
@@ -57,9 +57,7 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
       </label>
       <input
         type="text"
-        className={`${styles.inputStyle} ${
-          errors.productName ? styles.inputError : ""
-        }`}
+        className={styles.inputStyle}
         id="productImage"
         name="productImage"
         placeholder="이미지 링크를 첨부해주세요."
@@ -71,9 +69,7 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
       </label>
       <input
         type="text"
-        className={`${styles.inputStyle} ${
-          errors.productName ? styles.inputError : ""
-        }`}
+        className={styles.inputStyle}
         id="productName"
         name="productName"
         placeholder="상품명을 입력해주세요"
@@ -88,9 +84,7 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
         상품 소개
       </label>
       <textarea
-        className={`${styles.inputStyle} ${styles.textareaStyle} ${
-          errors.productIntro ? styles.inputError : ""
-        }`}
+        className={styles.inputStyle}
         id="productIntro"
         name="productIntro"
         placeholder="상품 소개를 입력해주세요"
@@ -106,9 +100,7 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
       </label>
       <input
         type="text"
-        className={`${styles.inputStyle} ${
-          errors.productPrice ? styles.inputError : ""
-        }`}
+        className={styles.inputStyle}
         id="productPrice"
         name="productPrice"
         placeholder="판매 가격을 입력해주세요"
@@ -124,9 +116,7 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
       </label>
       <input
         type="text"
-        className={`${styles.inputStyle} ${
-          errors.productTag ? styles.inputError : ""
-        }`}
+        className={styles.inputStyle}
         id="productTag"
         name="productTag"
         placeholder="태그를 입력해주세요"

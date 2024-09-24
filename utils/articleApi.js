@@ -14,9 +14,14 @@ export async function fetchArticle(id) {
 
 export async function fetchArticles({ sort, keyword, page, size }) {
   return apiHandler(async () => {
-    const res = await fetch(
-      `${baseUrl}/articles?sort=${sort}&search=${keyword}&page=${page}&size=${size}`
-    );
+    const params = new URLSearchParams({
+      sort,
+      search: keyword,
+      page: page.toString(),
+      size: size.toString(),
+    });
+
+    const res = await fetch(`${baseUrl}/articles?${params}`);
     if (!res.ok) {
       throw new Error("Failed to fetch articles");
     }

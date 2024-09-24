@@ -1,4 +1,3 @@
-// pages/Board.js
 import { useRouter } from "next/router";
 import BestProduct from "@/components/BoardComponents/BestProduct";
 import BoardList from "@/components/BoardComponents/BoardList";

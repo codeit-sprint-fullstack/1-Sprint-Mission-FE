@@ -1,0 +1,34 @@
+import React, { useState } from "react";
+import { useProducts } from "@/hooks/useProducts"; // API 호출 및 데이터 상태 관리
+import ItemList from "./ItemList";
+
+export default function ItemListContainer() {
+  const [keyword, setKeyword] = useState("");
+  const [sortOrder, setSortOrder] = useState("recent");
+
+  // 데이터 페칭 및 상태 관리
+  const { products, loading, error, handleSortChange, handleKeywordSearch } =
+    useProducts();
+
+  const handleKeywordChange = (e) => setKeyword(e.target.value);
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleKeywordSearch(keyword);
+    }
+  };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  return (
+    <ItemList
+      products={products}
+      sortOrder={sortOrder}
+      keyword={keyword}
+      onKeywordChange={handleKeywordChange}
+      onKeyDown={handleKeyDown}
+      onSortChange={handleSortChange}
+    />
+  );
+}

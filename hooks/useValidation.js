@@ -2,20 +2,33 @@ import { useState } from "react";
 
 export function useValidateForm() {
   const initialState = {
-    title: "",
-    content: "",
+    productName: "",
+    productIntro: "",
+    productPrice: "",
+    productTag: "",
+    productImage: "",
   };
 
   const validations = {
-    title: {
+    productName: {
       required: true,
       minLength: 1,
-      maxLength: 50,
+      maxLength: 10,
     },
-    content: {
+    productIntro: {
       required: true,
       minLength: 10,
-      maxLength: 1000,
+      maxLength: 100,
+    },
+    productPrice: {
+      required: true,
+      pattern: /^[0-9]+$/,
+    },
+    productTag: {
+      maxLength: 5,
+    },
+    productImage: {
+      required: true,
     },
   };
 
@@ -25,9 +38,7 @@ export function useValidateForm() {
   const validate = (name, value) => {
     let error = "";
     if (validations[name]) {
-      if (validations[name].required && !value) {
-        error = "필수 입력 항목입니다.";
-      } else if (
+      if (
         validations[name].minLength &&
         value.length < validations[name].minLength
       ) {
@@ -37,6 +48,11 @@ export function useValidateForm() {
         value.length > validations[name].maxLength
       ) {
         error = `${validations[name].maxLength}자 이하로 입력해주세요`;
+      } else if (
+        validations[name].pattern &&
+        !validations[name].pattern.test(value)
+      ) {
+        error = "숫자로 입력해주세요";
       }
     }
     setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
