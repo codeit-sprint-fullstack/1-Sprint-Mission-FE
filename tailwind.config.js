@@ -217,7 +217,7 @@ module.exports = {
   plugins: [
     function ({ addComponents }) {
       addComponents({
-        ".btn-sign-in-frame": {
+        ".sign-in__main": {
           display: "flex",
           flexDirection: "column",
           width: "64rem",
@@ -230,7 +230,7 @@ module.exports = {
             margin: "8rem auto 23.1rem auto",
           },
         },
-        ".btn-sign-in-logo-frame": {
+        ".sign-in__btn-logo-frame": {
           width: "39.6rem",
           height: "13.2rem",
           margin: "0 auto",
@@ -239,7 +239,7 @@ module.exports = {
             height: "6.6rem",
           },
         },
-        ".btn-sign-in-logo": {
+        ".sign-in__btn-logo": {
           width: "39.6rem",
           height: "13.2rem",
           backgroundImage: "url(/buttons/btn-logo.svg)",
@@ -249,6 +249,59 @@ module.exports = {
             width: "19.8rem",
             height: "6.6rem",
           },
+        },
+        ".sign-in__input-set": {
+          display: "flex",
+          flexDirection: "column",
+          marginBottom: "2.4rem",
+          width: "100%",
+        },
+        ".sign-in__label": {
+          height: "2.6rem",
+          marginBottom: "1.6rem",
+          fontSize: "1.8rem",
+          fontWeight: "700",
+          color: "#1f2937",
+          "@screen mobile": {
+            fontSize: "1.4rem",
+            marginBottom: "0.8rem",
+          },
+        },
+        ".sign-in__input-frame": {
+          width: "100%",
+          height: "5.6rem",
+          position: "relative",
+        },
+        ".sign-in__input": {
+          width: "100%",
+          height: "5.6rem",
+          paddingLeft: "1.6rem",
+          boxSizing: "border-box",
+          border: "0.1rem solid",
+          borderRadius: "0.75em",
+          borderColor: "#f3f4f6",
+          backgroundColor: "#f3f4f6",
+          fontSize: "1.6rem",
+          fontWeight: "400",
+          color: "#1f2937",
+        },
+        ".input-visible": {
+          width: "2.4rem",
+          height: "2.4rem",
+          position: "absolute",
+          top: "50%",
+          transform: "translateY(-50%)",
+          right: "1.6rem",
+          content: "url(/buttons/btn-visible.svg)",
+        },
+        ".sign-in__warn": {
+          paddingLeft: "1.6rem",
+          fontSize: "1.5rem",
+          fontWeight: "600",
+          color: "#F74747",
+        },
+        ".invalid-border": {
+          borderColor: "#F74747",
         },
       });
     },
