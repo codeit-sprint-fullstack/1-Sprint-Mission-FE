@@ -20,7 +20,8 @@ import { RefContext } from "../_app";
 import useAuth from "@/contexts/authContext";
 
 function BestArticles({ item }) {
-  const { writer, title, createAt, likeCount } = item;
+  const { writer, title, createAt, likeCount, image } = item;
+  const articleImage = image ? image : imgDefault;
   const date = dateFormatYYYYMMDD(createAt);
 
   return (
@@ -34,7 +35,9 @@ function BestArticles({ item }) {
           <span className={styles.best_article_title}>{title}</span>
           <Image
             className={styles.best_article_image}
-            src={imgDefault}
+            src={articleImage}
+            width={72}
+            height={72}
             alt="게시글이미지"
           />
         </div>
@@ -60,7 +63,8 @@ function BestArticles({ item }) {
 }
 
 function ArticleItems({ item }) {
-  const { writer, title, createAt, likeCount } = item;
+  const { writer, title, createAt, likeCount, image } = item;
+  const articleImage = image ? image : imgDefault;
   const date = dateFormatYYYYMMDD(createAt);
 
   return (
@@ -70,7 +74,9 @@ function ArticleItems({ item }) {
           <span className={styles.article_item_title}>{title}</span>
           <Image
             className={styles.article_item_image}
-            src={imgDefault}
+            width={72}
+            height={72}
+            src={articleImage}
             alt="게시글이미지"
           />
         </div>
@@ -152,7 +158,7 @@ function Articles({ defaultParams }) {
     error,
   } = useQuery({
     queryKey: ["articles", params],
-    queryFn: () => api.getArticles(params, cursor),
+    queryFn: () => api.getArticles(params),
   });
 
   if (isError) {
