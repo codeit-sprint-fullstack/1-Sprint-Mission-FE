@@ -22,11 +22,6 @@
   gap: 24px;
 }
 
-/* 폼 */
-.form {
-  width: 640px;
-}
-
 /* 레이블 */
 .label {
   margin-bottom: 14px;
@@ -123,4 +118,72 @@
 .button:disabled {
   background: #9ca3af;
   cursor: not-allowed;
+}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ반응형 디자인ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+
+/* Mobile Styles */
+@media only screen and (min-width: 375px) and (max-width: 767px) {
+  .pandamarket_logo {
+    width: 198px;
+    height: 66px;
+    margin: 16px auto;
+  }
+
+  .form_box {
+    width: 90%;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  .button {
+    padding: 12px auto;
+    font-size: 16px;
+  }
+
+  .easy_login_box {
+    padding: 12px;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+  .pandamarket_logo {
+    width: 70%;
+  }
+
+  .form_box {
+    width: 90%;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  .loginForm input {
+    width: 60%;
+  }
+
+  .modal-content {
+    width: 70%;
+  }
+
+  .button {
+    box-sizing: border-box;
+  }
+}
+
+/* PC Styles */
+@media only screen and (min-width: 1200px) {
+  .pandamarket_logo {
+    width: 50%;
+  }
+  /* 폼 */
+  .form {
+    width: 640px;
+  }
 }
