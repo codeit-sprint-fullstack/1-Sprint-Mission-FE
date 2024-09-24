@@ -40,8 +40,6 @@ export default function SigninForm() {
   const mutation = useMutation({
     mutationFn: signup,
     onSuccess: (data) => {
-      localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem("refreshToken", data.refreshToken);
       setModalMessage("가입이 완료되었습니다!");
       setModalType("success");
       setShowModal(true);

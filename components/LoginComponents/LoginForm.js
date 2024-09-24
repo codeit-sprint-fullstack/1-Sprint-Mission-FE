@@ -36,8 +36,6 @@ export default function LoginForm() {
   const mutation = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
-      localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem("refreshToken", data.refreshToken);
       router.push(ROUTES.ITEMS);
     },
     onError: (error) => {

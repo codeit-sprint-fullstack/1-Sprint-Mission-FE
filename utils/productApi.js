@@ -41,7 +41,9 @@ export async function deleteProduct(id) {
 // 특정 제품 정보 가져오기
 export async function fetchProduct(id) {
   return apiHandler(async () => {
-    const response = await apiClient.get(`/products/${id}`);
+    const response = await apiClient.get(`/products/${id}`, {
+      headers: { "Content-Type": "application/json" },
+    });
     return response.data;
   });
 }

@@ -24,6 +24,8 @@ export const login = async (userData) => {
 export const signup = async (userData) => {
   try {
     const response = await axios.post(`${baseUrl}/auth/signUp`, userData);
+    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("refreshToken", refreshToken);
     return response.data;
   } catch (error) {
     console.error("회원가입 API 에러:", error);
