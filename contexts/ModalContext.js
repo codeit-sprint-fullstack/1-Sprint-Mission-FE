@@ -27,9 +27,6 @@ export const ModalProvider = ({ children }) => {
           confirmText={modal.confirmText}
           cancelText={modal.cancelText}
           customClass={modal.customClass}
-          showCancel={modal.showCancel}
-          showImage={modal.showImage}
-          imageSrc={modal.imageSrc}
         />
       )}
     </ModalContext.Provider>
@@ -39,7 +36,7 @@ export const ModalProvider = ({ children }) => {
 export const useModal = () => {
   const context = useContext(ModalContext);
   if (!context) {
-    throw new Error("useModal must be used within a ModalProvider");
+    throw new Error("콘텍스트 밖에서 사용못함");
   }
   return context;
 };
@@ -52,9 +49,6 @@ const ModalComponent = ({
   confirmText = "확인",
   cancelText = "취소",
   customClass = "",
-  showCancel = true,
-  showImage = true,
-  imageSrc = "/images/ic_delete.svg",
 }) => {
   if (!isOpen) return null;
 
@@ -72,22 +66,18 @@ const ModalComponent = ({
         onClick={(e) => e.stopPropagation()}
       >
         <div className={styles.modalContentHug}>
-          {showImage && (
-            <img
-              src={imageSrc}
-              alt="modal_icon"
-              className={styles.modalImage}
-            />
-          )}
+          <img
+            src="/images/ic_delete.svg"
+            alt="delete_icon"
+            className={styles.modalImage}
+          />
           <p className={styles.modalBody}>{content}</p>
         </div>
 
         <div className={styles.modalActions}>
-          {showCancel && (
-            <button onClick={onClose} className={styles.cancelButton}>
-              {cancelText}
-            </button>
-          )}
+          <button onClick={onClose} className={styles.cancelButton}>
+            {cancelText}
+          </button>
           <button onClick={handleConfirm} className={styles.confirmButton}>
             {confirmText}
           </button>
