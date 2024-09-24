@@ -63,6 +63,19 @@
     font-size: 16px;
     font-weight: 400;
     color: #4b5563;
+    margin-right: 8px;
+  }
+  .logout_btn {
+    width: 66px;
+    height: 42px;
+    border-radius: 8px;
+    text-align: center;
+    padding: 11px 0;
+    background-color: #3692ff;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    cursor: pointer;
   }
 }
 

@@ -9,9 +9,8 @@ export const login = async (userData) => {
     const response = await axios.post(`${baseUrl}/auth/signIn`, userData);
 
     // 토큰을 로컬스토리지에 저장
-    const { accessToken, refreshToken } = response.data;
+    const { accessToken } = response.data;
     localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
 
     return response.data;
   } catch (error) {
@@ -24,8 +23,8 @@ export const login = async (userData) => {
 export const signup = async (userData) => {
   try {
     const response = await axios.post(`${baseUrl}/auth/signUp`, userData);
+    const { accessToken } = response.data;
     localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
     return response.data;
   } catch (error) {
     console.error("회원가입 API 에러:", error);
@@ -37,7 +36,6 @@ export const signup = async (userData) => {
 export const getUserProfile = async () => {
   try {
     const response = await apiClient.get("/users/me");
-
     return response.data;
   } catch (error) {
     console.error("API 호출 실패:", error);

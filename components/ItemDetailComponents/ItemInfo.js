@@ -8,19 +8,22 @@ import ic_active_favorite from "@/images/ic_active_favorite.png";
 import ic_empty_favorite from "@/images/ic_empty_favorite.png";
 import ic_kebab from "@/images/ic_kebab.png";
 import { useState } from "react";
-import Link from "next/link";
-import { ROUTES } from "@/utils/rotues";
 import { useRouter } from "next/router";
 import useAuth from "@/hooks/useAuth";
 import Modal from "../ModalComponents/Modal";
+import { ROUTES } from "@/utils/rotues";
 
 export default function ItemInfo(product) {
   const item = product.product;
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isItemFavorite, setIsItemFavorite] = useState(item.isFavorite);
-  const [isFavoriteCount, setIsFavoriteCount] = useState(item.favoriteCount);
+  const [isItemFavorite, setIsItemFavorite] = useState(
+    item?.isFavorite || false
+  );
+  const [isFavoriteCount, setIsFavoriteCount] = useState(
+    item?.favoriteCount || 0
+  );
 
   const isAuthenticated = useAuth(item.ownerId);
 
@@ -31,6 +34,12 @@ export default function ItemInfo(product) {
   };
 
   const toggleDropdown = () => setIsOpen(!isOpen);
+
+  // 수정하기 클릭 시 router.push로 이동
+  const handleEdit = () => {
+    router.push(ROUTES.ITEMS_EDIT(item.id));
+  };
+
   const handleDelete = async () => {
     await deleteProduct(item.id);
     router.push(ROUTES.ITEMS);
@@ -73,9 +82,9 @@ export default function ItemInfo(product) {
         </div>
         {isOpen && (
           <div className={styles.dropdown}>
-            <Link href={ROUTES.ITEMS_EDIT(item.id)}>
-              <div className={styles.dropdownItem}>수정하기</div>
-            </Link>
+            <div className={styles.dropdownItem} onClick={handleEdit}>
+              수정하기
+            </div>
             <div className={styles.dropdownItem} onClick={openModal}>
               삭제하기
             </div>

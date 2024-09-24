@@ -1,12 +1,11 @@
 import apiClient from "./apiClient";
 import apiHandler from "./apiHandler";
-import axios from "axios";
 
 const baseUrl = "https://panda-market-api.vercel.app";
 
 export async function fetchProducts({ pageSize, page, keyword, orderBy }) {
   return apiHandler(async () => {
-    const response = await axios.get(`${baseUrl}/products`, {
+    const response = await apiClient.get(`${baseUrl}/products`, {
       params: { pageSize, page, keyword, orderBy },
     });
 
@@ -39,10 +38,13 @@ export async function deleteProduct(id) {
 }
 
 // 특정 제품 정보 가져오기
-export async function fetchProduct(id) {
+export async function fetchProduct(id, token) {
   return apiHandler(async () => {
     const response = await apiClient.get(`/products/${id}`, {
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
     return response.data;
   });

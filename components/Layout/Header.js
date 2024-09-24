@@ -33,6 +33,13 @@ export default function Header() {
       fetchUserData();
     }
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    setIsAuthenticated(false);
+    setUserInfo(null);
+    router.push(ROUTES.LOGIN);
+  };
   return (
     <>
       <div className={styles.headerContainer}>
@@ -63,6 +70,9 @@ export default function Header() {
               className={styles.userProfile}
             />
             <p className={styles.userNickname}>{userInfo?.nickname}</p>
+            <div className={styles.logout_btn}>
+              <button onClick={handleLogout}>로그아웃</button>
+            </div>
           </div>
         ) : (
           <div className={styles.login_btn}>
