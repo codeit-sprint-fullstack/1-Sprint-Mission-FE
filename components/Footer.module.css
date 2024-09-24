@@ -6,17 +6,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3.2rem 20rem 10.8rem 20rem;
-  font-size: 1.6rem;
+  width: 100%; /* 화면 전체 너비로 변경 */
+  height: 160px;
+  padding: 32px 200px; /* 상하 32px, 좌우 200px */
+  font-size: 16px;
+  margin-top: auto;
 }
 
 .footerMenu {
   display: flex;
-  gap: 3rem;
+  gap: 10px; /* 간격 10px로 수정 */
   color: var(--gray-200);
 }
 
 .socialMedia {
   display: flex;
-  gap: 1.2rem;
+  gap: 10px; /* 간격 10px로 수정 */
 }

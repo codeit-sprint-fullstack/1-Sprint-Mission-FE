@@ -9,6 +9,8 @@ const nextConfig = {
       "store.ardanlabs.com",
       "sprint-fe-project.s3.ap-northeast-2.amazonaws.com",
       "example.com",
+      "images.samsung.com",
+      "localhost:3000",
     ],
   },
 };

@@ -1,6 +1,7 @@
 // components/Footer.js
 import React from "react";
 import Image from "next/image"; // Next.js의 Image 컴포넌트 사용
+import Link from "next/link"; // Next.js의 Link 컴포넌트 사용
 import styles from "./Footer.module.css"; // CSS Module을 사용하여 스타일링
 
 const Footer = () => {

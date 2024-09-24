@@ -1,51 +1,149 @@
 .container {
-  padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.button {
-  margin: 5px;
+.imageGallery {
+  width: 50%;
+  padding-right: 20px;
 }
 
-.title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+.mainImage {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
 }
 
-.description {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
+.thumbnails {
+  display: flex;
+  gap: 10px;
+}
+
+.thumbnail {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.activeThumbnail {
+  border: 2px solid #4caf50;
+}
+
+.itemInfo {
+  width: 50%;
+}
+
+.itemName {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.itemPrice {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4caf50;
+  margin-bottom: 20px;
+}
+
+.itemDescription {
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.itemMeta {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.favoriteButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.itemTags {
+  margin-bottom: 20px;
+}
+
+.tag {
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.commentSection {
+  width: 100%;
+  margin-top: 40px;
+}
+
+.commentForm {
+  margin-bottom: 20px;
+}
+
+.commentInput {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.commentSubmit {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 .comments {
-  margin-top: 2rem;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
 }
 
 .comment {
-  border-top: 1px solid #dfdfdf;
-  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
 }
 
-.commentText {
-  margin: 0;
+.commentContent {
+  margin-bottom: 5px;
 }
 
-/* 반응형 디자인 */
+.commentMeta {
+  font-size: 12px;
+  color: #666;
+}
+
+.commentDelete {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
 @media (max-width: 768px) {
-  .container {
-    padding: 10px;
+  .imageGallery,
+  .itemInfo {
+    width: 100%;
   }
 
-  .title {
-    font-size: 1.5rem;
-  }
-
-  .description {
-    font-size: 1rem;
-  }
-
-  .button {
-    margin: 3px;
+  .imageGallery {
+    padding-right: 0;
+    margin-bottom: 20px;
   }
 }
