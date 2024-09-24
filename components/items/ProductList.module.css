@@ -1,0 +1,98 @@
+.container {
+  padding-top: 24px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.controlsContainer {
+  margin-bottom: 1rem;
+}
+
+.select {
+  margin-right: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.25rem;
+}
+
+.input {
+  padding: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.25rem;
+  margin-right: 0.5rem;
+}
+
+.button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+}
+
+.error {
+  color: #ef4444;
+}
+
+.productList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.productItem {
+  border: 1px solid #e2e8f0;
+  padding: 1rem;
+  border-radius: 0.375rem;
+}
+
+.productName {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.productDescription {
+  color: #4b5563;
+}
+
+.productPrice {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.productImage {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+  border-radius: 0.375rem;
+}
+
+.productTags {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+.loading {
+  margin-top: 1rem;
+}
+
+.loadMoreButton {
+  margin-top: 1rem;
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+}
+
+.pageInfo {
+  margin-top: 0.5rem;
+}

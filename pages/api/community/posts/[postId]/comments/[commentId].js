@@ -4,7 +4,7 @@ import {
   HttpStatus,
   ExceptionCode,
 } from "@/errors";
-import { handleError } from "@/utils/handleError";
+import { handleError } from "@utils/apiErrorHandler";
 import { getCommentById, updateComment, deleteComment } from "@/data/postData";
 
 export default async function handler(req, res) {
@@ -58,7 +58,6 @@ async function handleGetComment(postId, commentId, res) {
 }
 
 async function handleUpdateComment(postId, commentId, body, res) {
-  console.log("Request Body:", body);
   const { content } = body;
 
   if (!content) {

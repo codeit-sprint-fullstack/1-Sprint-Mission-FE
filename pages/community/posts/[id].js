@@ -191,7 +191,6 @@ export async function getServerSideProps(context) {
     const commentsData = await fetchComments(id);
 
     if (!postData) {
-      console.log(`${id} 번 게시글을 찾을 수 없습니다.`);
       return { notFound: true };
     }
 

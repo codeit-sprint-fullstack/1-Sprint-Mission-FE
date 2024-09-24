@@ -37,6 +37,25 @@
   align-items: center;
 }
 
+.profileImage {
+  width: 40px;
+  height: 40px;
+}
+
+.userInfoHug {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.userInfo {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--gray-600);
+  cursor: pointer;
+}
+
 .headerTextHug {
   display: flex;
   flex-direction: row;

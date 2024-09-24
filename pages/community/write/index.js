@@ -29,9 +29,6 @@ export default function WriteOrEditArticle() {
   );
 
   const onSuccess = () => {
-    console.log(
-      `게시글이 성공적으로 ${isEditing ? "수정" : "등록"}되었습니다.`
-    );
     router.push("/community");
   };
 
