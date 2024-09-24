@@ -61,8 +61,28 @@ module.exports = {
         "btn-to-list": "24rem",
         // btn-regist
         "btn-regist": "7.4rem",
+        // best-product-preview
+        "pc-best-product-preview": "28.2rem",
+        "tablet-best-product-preview": "34.3rem",
+        "mobile-best-product-preview": "34.3rem",
+        // product-preview
+        "product-preview": "22.1rem",
+        "mobile-product-preview": "16.8rem",
+        // board-search
+        "board-search": "105.4rem",
+        "tablet-board-search": "56rem",
+        "mobile-board-search": "28.2rem",
+        // product-search
+        "product-search": "32.5rem",
+        "tablet-product-search": "24.2rem",
+        "mobile-product-search": "28.8rem",
+        // btn-link-regist
+        "btn-link-regist": "13.3rem",
+        // btn-page
+        "btn-page": "4rem",
       },
       height: {
+        tool42: "4.2rem",
         // header-btn-home
         "pc-btn-home": "5.1rem",
         "mobile-btn-home": "4rem",
@@ -93,6 +113,17 @@ module.exports = {
         "btn-to-list": "4.8rem",
         // comment-text-area-frame
         "comment-text-area-frame": "10.4rem",
+        // best-product-preview
+        "pc-best-product-preview": "37.8rem",
+        "tablet-best-product-preview": "43.4rem",
+        "mobile-best-product-preview": "43.4rem",
+        // product-preview
+        "product-preview": "31.7rem",
+        "mobile-product-preview": "26.4rem",
+        // product-preview-info
+        "product-preview-info": "8rem",
+        // btn-page
+        "btn-page": "4rem",
       },
       fontSize: {
         base: "10px",
@@ -130,6 +161,8 @@ module.exports = {
         "mobile-comment-list-frame": "2.4rem",
         // comment-text-area-frame
         "comment-text-area-frame": "0.9rem",
+        // pagination
+        "pagination-mt": "4.3rem",
       },
       padding: {
         "pc-header": "20rem",
@@ -143,18 +176,28 @@ module.exports = {
       spacing: {
         loading: "35rem",
         "20rem": "20rem",
+        "8.4rem": "8.4rem",
         header: "7rem",
         "4.8rem": "4.8rem",
         "4.2rem": "4.2rem",
+        "4rem": "4rem",
         "3.2rem": "3.2rem",
         "2.6rem": "2.6rem",
         "2.4rem": "2.4rem",
         "2rem": "2rem",
         "1.6rem": "1.6rem",
         "0.8rem": "0.8rem",
+        "0.4rem": "0.4rem",
         "0.1rem": "0.1rem",
         "mobile-dropdown-menu-top": "-2.4rem",
         "mobile-dropdown-menu-left": "-8.8rem",
+        // best-product-preview-image
+        "pc-best-product-preview-image": "28.2rem",
+        "tablet-best-product-preview-image": "34.3rem",
+        "mobibest-product-preview-image": "34.3rem",
+        // product-preview-image
+        "product-preview-image": "22.1rem",
+        "mobile-product-preview-image": "16.8rem",
       },
     },
   },

@@ -38,6 +38,11 @@ export function Board() {
   const boardTopBarBtnWriteArticleClass = `${style["top-bar-btn-write-article"]}`;
 
   const boardMiddleBarClass = `flex flex-row justify-between ${style["middle-bar"]}`;
+  const searchFrameClass = classNames(
+    "w-board-search",
+    "tablet:w-tablet-board-search",
+    "mobile:w-mobile-board-search"
+  );
   const boardListClass = `flex flex-col ${style.list}`;
 
   const handleSortByRecent = () => {
@@ -119,7 +124,9 @@ export function Board() {
         </Link>
       </div>
       <div className={boardMiddleBarClass}>
-        <Search />
+        <div className={searchFrameClass}>
+          <Search />
+        </div>
         <Dropdown minimise={true}>
           <DropdownToggle>{recentOrder}</DropdownToggle>
           <DropdownMenu>

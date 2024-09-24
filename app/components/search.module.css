@@ -1,11 +1,11 @@
 .search {
-  width: 105.4rem;
+  width: 100%;
   height: 4.2rem;
   position: relative;
 }
 
 .input {
-  width: 105.4rem;
+  width: 100%;
   height: 4.2rem;
   padding-left: 4.4rem;
   background-color: var(--gray100-color);
@@ -22,18 +22,4 @@
   top: 50%;
   transform: translateY(-50%);
   left: 1.6rem;
-}
-
-/* ===== Tablet - width : 744px ~ 1199px ===== */
-@media (min-width: 744px) and (max-width: 1199px) {
-  .input {
-    width: 56rem;
-  }
-}
-
-/* ===== Mobile-width : 375px ~ 743px ====== */
-@media (min-width: 375px) and (max-width: 743px) {
-  .input {
-    width: 28.8rem;
-  }
 }
