@@ -2,6 +2,7 @@ import React, { useState, useMemo, memo } from "react";
 import KebabMenu from "@/components/postDetail/KebabMenu";
 import { formatRelativeTime } from "@/utils/dateRelativeUtils";
 import styles from "./CommentSection.module.css";
+import Image from "next/image";
 
 const CommentItem = memo(
   ({
@@ -72,9 +73,11 @@ const CommentItem = memo(
           </div>
         )}
         <div className={styles.commentProfileTextHug}>
-          <img
+          <Image
             src="/images/ic_profile.svg"
             alt="프로필 아이콘"
+            width={32}
+            height={32}
             className={styles.commentProfile}
           />
           <div className={styles.commentMeta}>

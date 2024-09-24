@@ -18,6 +18,12 @@ const ProductList = () => {
     fetchProducts(true);
   }, [orderBy, keyword]);
 
+  useEffect(() => {
+    if (currentPage > 1) {
+      fetchProducts(false);
+    }
+  }, [currentPage]);
+
   const fetchProducts = async (resetList = false) => {
     try {
       setLoading(true);
@@ -27,17 +33,16 @@ const ProductList = () => {
         orderBy,
         keyword,
       });
+
       if (resetList) {
         setProducts(response.products);
         setCurrentPage(1);
       } else {
         setProducts((prevProducts) => [...prevProducts, ...response.products]);
       }
+
       setTotalCount(response.totalCount);
       setTotalPages(response.totalPages);
-      if (!resetList) {
-        setCurrentPage((prev) => prev + 1);
-      }
     } catch (err) {
       console.error("Error fetching products:", err);
       setError(err.message);
@@ -48,7 +53,7 @@ const ProductList = () => {
 
   const loadMore = () => {
     if (currentPage < totalPages) {
-      fetchProducts(false);
+      setCurrentPage((prev) => prev + 1);
     }
   };
 
@@ -124,7 +129,7 @@ const ProductList = () => {
       )}
 
       {loading && <div className={styles.loading}>로딩 중...</div>}
-      {!loading && currentPage <= totalPages && (
+      {!loading && currentPage < totalPages && (
         <button onClick={loadMore} className={styles.loadMoreButton}>
           더 보기
         </button>

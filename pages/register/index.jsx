@@ -8,7 +8,7 @@ const register = () => {
   return (
     <div className={styles.Container}>
       <a href="/">
-        <Image.default
+        <Image
           src="/images/loginLogo.svg"
           alt="Icon"
           width={400}

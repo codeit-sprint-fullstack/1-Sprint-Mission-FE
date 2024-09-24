@@ -44,6 +44,7 @@
   width: 100%;
   padding-bottom: 40px;
   border-bottom: 1px solid var(--gray-200);
+  justify-content: ;
 }
 
 .imageContainer {
@@ -176,6 +177,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 56%;
 }
 
 .favoriteButtonWrapper {

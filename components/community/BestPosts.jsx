@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { formatDate } from "@/utils/dateUtils";
 import {
   BestCard,
@@ -18,14 +19,25 @@ const BestPosts = ({ posts }) => (
           <BestCardHeader>
             <BestCardTitle>{post.title}</BestCardTitle>
             <BestCardContent>
-              <img src="/images/defaultImage.svg" alt="defaultImage" />
+              <Image
+                src="/images/defaultImage.svg"
+                alt="defaultImage"
+                width={100}
+                height={100}
+                layout="responsive"
+              />
             </BestCardContent>
           </BestCardHeader>
           <div className={styles.BottomHug}>
             <div className={styles.authorImageHug}>
               <BestCardAuthor>{post.author_name}</BestCardAuthor>
               <div className={styles.likesHug}>
-                <img src="/images/ic_heart.svg" alt="heart_icon" />
+                <Image
+                  src="/images/ic_heart.svg"
+                  alt="heart_icon"
+                  width={16}
+                  height={16}
+                />
                 9999+
               </div>
             </div>
