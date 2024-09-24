@@ -1,7 +1,7 @@
 import * as productsApi from "@/pages/api/products";
 import * as commentApi from "@/pages/api/comment";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import useAuth from "@/contexts/authContext";
 import Link from "next/link";
 import Image from "next/image";
@@ -27,6 +27,7 @@ import {
 } from "@tanstack/react-query";
 
 export async function getServerSideProps(context) {
+  //다이나믹 라우팅인 관계로 SSG의 방식으로 react-query를 사용하지 않고 SSR 방식을 사용
   const { id } = context.params;
 
   let product = {};
@@ -67,7 +68,7 @@ function DetailProduct({ product, comments, id }) {
 
   const { data: commentsData } = useQuery({
     queryKey: ["comments"],
-    queryFn: () => productsApi.getProductComments(id),
+    queryFn: () => commentApi.getProductComments(id),
     initialData: comments,
   });
 
@@ -159,6 +160,7 @@ function DetailProduct({ product, comments, id }) {
 
   const likeMutation = useMutation({
     mutationFn: async () => {
+      //해당 상품의 사용자 좋아요상태의 따라 호출하는 API를 달리 한다.
       if (isFavorite) {
         await productsApi.unlikeProduct(id);
       } else {
@@ -166,20 +168,24 @@ function DetailProduct({ product, comments, id }) {
       }
     },
     onMutate: async () => {
+      //만약 refetch를 진행중이라면 mutation의 값을 덮어쓸수 있기 때문에 취소해준다
       await queryClient.cancelQueries({
         queryKey: ["product"],
       });
+
+      //실패할 경유의 대비하여 이전의 상태를 저장한다
       const prevProduct = queryClient.getQueryData(["product"]);
+
       queryClient.setQueryData(["product"], (prev) => ({
         ...prev,
         data: {
-          isFavorite: !prev.isFavorite,
+          isFavorite: !prev.isFavorite, //isFavorite 값을 반전
           favoriteCount: prev.isFavorite
-            ? prev.favoriteCount - 1
+            ? prev.favoriteCount - 1 //현재 좋아요 상품이라면 취소되면서 count down
             : prev.favoriteCount + 1,
         },
       }));
-      return { prevProduct };
+      return { prevProduct }; //실패할 경우 반환되는 값은 onError의 context로 전달 된다
     },
     onError: (error, {}, context) => {
       console.log(error);
