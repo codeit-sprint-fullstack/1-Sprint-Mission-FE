@@ -15,6 +15,7 @@ import img_reply_empty from "@/public/images/img_reply_empty.png";
 import ic_back from "@/public/images/ic_back.png";
 import styles from "@/styles/detailArticle.module.css";
 import Comment from "@/components/Comment";
+import { useQuery } from "@tanstack/react-query";
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
@@ -38,13 +39,27 @@ export async function getServerSideProps(context) {
     props: {
       article,
       comments,
+      id,
     },
   };
 }
 
-function DetailArticle({ article, comments }) {
+function DetailArticle({ article, comments, id }) {
   const router = useRouter();
-  const { title, content, favorite, writer, createAt } = article;
+
+  const { data: articleData } = useQuery({
+    queryKey: ["article"],
+    queryFn: articleApi.getArticle(id),
+    initialData: article,
+  });
+
+  const { data: commentData } = useQuery({
+    queryKey: ["comments"],
+    queryFn: commentApi.getArticleComments(id),
+    initialData: comments,
+  });
+
+  const { title, content, favorite, writer, createAt } = articleData;
   //날짜 포멧
   const date = dateFormatYYYYMMDD(createAt);
   const defaultUser = {
@@ -204,7 +219,7 @@ function DetailArticle({ article, comments }) {
         </div>
         <div className={styles.article_comments_box}>
           <div className={styles.article_comments}>
-            {comments.map((item) => (
+            {commentData.map((item) => (
               <Comment
                 key={item.id}
                 item={item}
@@ -213,7 +228,7 @@ function DetailArticle({ article, comments }) {
               />
             ))}
             {/* 게시글의 등록된 댓글이 없다면 아래의 내용을 렌더링한다. */}
-            {comments.length < 1 && (
+            {commentData.length < 1 && (
               <>
                 <Image
                   src={img_reply_empty}

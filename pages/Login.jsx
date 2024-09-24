@@ -62,7 +62,7 @@ function Login() {
     if (user) {
       router.push("/Folder");
     }
-  });
+  }, []);
 
   return (
     <>

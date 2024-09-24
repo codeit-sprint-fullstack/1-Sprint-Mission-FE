@@ -90,7 +90,7 @@ const useFormValidation = (initialValues, callback) => {
   };
 
   const handleChips = (e) => {
-    if (errors.tag) return;
+    if (errors.tags) return;
     if (e.key === "Enter") {
       e.preventDefault();
       if (e.target.value.trim() !== "") {
