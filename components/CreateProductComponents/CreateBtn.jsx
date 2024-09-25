@@ -22,19 +22,18 @@ export default function CreateBtn() {
   });
 
   const handleProductPost = () => {
-    if (isFormValid) {
-      const productData = {
-        images: formValues.productImage,
-        name: formValues.productName,
-        description: formValues.productIntro,
-        price: formValues.productPrice,
-        tags: formValues.tags || [],
-      };
-
-      console.log("Sending data to server:", productData);
-
-      mutation.mutate(productData);
+    if (!isFormValid) {
+      return;
     }
+    const productData = {
+      images: formValues.productImage,
+      name: formValues.productName,
+      description: formValues.productIntro,
+      price: formValues.productPrice,
+      tags: formValues.tags || [],
+    };
+
+    mutation.mutate(productData);
   };
 
   return (
