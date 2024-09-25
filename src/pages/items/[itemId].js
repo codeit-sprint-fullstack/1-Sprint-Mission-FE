@@ -3,6 +3,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { getProductById, favoriteProduct, unfavoriteProduct, updateProduct } from "../../api/productApi";
 import { getComments } from "../../api/commentApi";
+import { getAccessToken } from "../../api/authApi";
 import Modal from "../../components/Modal";
 import ProductCommentForm from "../../components/ProductCommentForm";
 import ProductCommentItem from "../../components/ProductCommentItem";
@@ -27,10 +28,10 @@ const ProductDetailPage = () => {
     tags: [], // 태그 추가
   });
 
-  // 페이지가 로드될 때 accessToken을 localStorage에서 가져옴
+  // 페이지가 로드될 때 accessToken을 getAccessToken 함수로 가져옴
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const token = localStorage.getItem("accessToken");
+      const token = getAccessToken(); // getAccessToken 함수 사용
       setAccessToken(token);
     }
   }, []);
