@@ -44,6 +44,8 @@ export default function Market({ id }) {
   const [CheckModal, setCheckModal] = useState(false);
   const [isCommentsModalOpen, setIsCommentsModalOpen] = useState(false);
   const [commentId, setCommentId] = useState();
+  const [isProductDeleteModalOpen, setIsProductDeleteModalOpen] =
+    useState(false);
 
   const router = useRouter();
   useEffect(() => {
@@ -83,12 +85,7 @@ export default function Market({ id }) {
   };
 
   const handleDelete = async () => {
-    try {
-      await deleteProduct(id);
-      router.push("/market");
-    } catch (error) {
-      console.error("제품 삭제 오류", error);
-    }
+    setIsProductDeleteModalOpen(true);
   };
 
   const getTimeDifference = (createdAt) => {
@@ -215,6 +212,31 @@ export default function Market({ id }) {
       >
         <p>성공 했습니다.</p>
         <button onClick={() => setCheckModal(!CheckModal)}>확인</button>
+      </Modal>
+      <Modal
+        isModalOpen={isProductDeleteModalOpen}
+        onClose={() => setIsProductDeleteModalOpen(!isProductDeleteModalOpen)}
+      >
+        <p>정말 삭제 하시겠습니까!!?</p>
+        <button
+          style={{ width: "50%", height: "50px" }}
+          onClick={async () => {
+            try {
+              await deleteProduct(id);
+              router.push("/market");
+            } catch (error) {
+              console.error("제품 삭제 오류", error);
+            }
+          }}
+        >
+          확인
+        </button>
+        <button
+          style={{ width: "50%", height: "50px" }}
+          onClick={() => setIsProductDeleteModalOpen(!isProductDeleteModalOpen)}
+        >
+          취소
+        </button>
       </Modal>
       <div className={styles.marketContainer}>
         <div className={styles.marketProductContainer}>
