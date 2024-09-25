@@ -30,6 +30,7 @@ export const ModalProvider = ({ children }) => {
           showCancel={modal.showCancel}
           showImage={modal.showImage}
           imageSrc={modal.imageSrc}
+          mode={modal.mode} // 새로 추가된 mode prop
         />
       )}
     </ModalContext.Provider>
@@ -39,7 +40,7 @@ export const ModalProvider = ({ children }) => {
 export const useModal = () => {
   const context = useContext(ModalContext);
   if (!context) {
-    throw new Error("useModal must be used within a ModalProvider");
+    throw new Error("Provider 밖에선 사용 안됨");
   }
   return context;
 };
@@ -55,6 +56,7 @@ const ModalComponent = ({
   showCancel = false,
   showImage = true,
   imageSrc = "/images/ic_delete.svg",
+  mode = "error",
 }) => {
   if (!isOpen) return null;
 
@@ -65,10 +67,12 @@ const ModalComponent = ({
     onClose();
   };
 
+  const modeClass = styles[mode] || "";
+
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div
-        className={`${styles.modalContent} ${customClass}`}
+        className={`${styles.modalContent} ${modeClass} ${customClass}`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className={styles.modalContentHug}>

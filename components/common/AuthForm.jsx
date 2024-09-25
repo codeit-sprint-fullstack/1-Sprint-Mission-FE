@@ -4,11 +4,11 @@ import { useRouter } from "next/router";
 import { useMutation } from "react-query";
 import { signIn, signUp } from "@/utils/auth";
 import styles from "./AuthForm.module.css";
-import { useModal } from "@/contexts/ModalContext"; // 이 부분을 추가하세요
+import { useModal } from "@/contexts/ModalContext";
 
 const AuthForm = ({ mode = "login" }) => {
   const router = useRouter();
-  const { showModal } = useModal(); // 이 부분을 추가하세요
+  const { showModal } = useModal();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -41,7 +41,7 @@ const AuthForm = ({ mode = "login" }) => {
           content: error.message,
           confirmText: "확인",
           showCancel: false,
-          customClass: styles.authErrorModal,
+          mode: "auth",
         });
       },
     }
