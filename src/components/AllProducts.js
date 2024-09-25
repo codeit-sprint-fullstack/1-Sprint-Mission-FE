@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
-import { useQuery } from "@tanstack/react-query";
-import { getProducts } from "../api/productApi"; // 상품 목록 API 호출 함수
+import { useGetProducts } from "../hooks/useGetProducts"; // 커스텀 훅 import
 import ProductSearchBar from '../components/ProductSearchBar';
 import RegisterButton from '../components/RegisterButton';
 import SortOptions from '../components/SortOptions';
@@ -19,16 +18,8 @@ const AllProducts = ({
 }) => {
   const router = useRouter();
 
-  // 상품 목록 데이터 가져오기
-  const { data, isLoading, error } = useQuery(
-    ['products', page],
-    () => getProducts(page),
-    {
-      keepPreviousData: true,
-    }
-  );
-
-  const products = Array.isArray(data?.list) ? data.list : [];
+  // 커스텀 훅 사용해서 데이터 가져오기
+  const { products, isLoading, error } = useGetProducts(page);
 
   const handleProductClick = (id) => {
     router.push(`/products/${id}`);
