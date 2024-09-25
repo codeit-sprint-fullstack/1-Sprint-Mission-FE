@@ -14,6 +14,7 @@ const AuthContext = createContext({
 export function AuthProvider({ children }) {
   const queryClient = useQueryClient();
   const router = useRouter();
+  // const accessToken = localStorage.getItem("accessToken");
 
   const {
     data: user,
@@ -24,6 +25,7 @@ export function AuthProvider({ children }) {
     queryFn: getUserMe,
     staleTime: Infinity,
     cacheTime: Infinity,
+    enabled: false,
   });
 
   const logInMutation = useMutation({

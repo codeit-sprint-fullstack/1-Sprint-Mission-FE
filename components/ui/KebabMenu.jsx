@@ -11,7 +11,7 @@ import { useDeleteMutation } from "@/service/mutations";
 export default function KebabMenu({ idPath, entity, setIsEditMode }) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
-  const dropDownRef = useRef(0);
+  const dropDownRef = useRef(null);
 
   let pathAfterDeletion = "";
   if (entity === "article") {
@@ -23,7 +23,7 @@ export default function KebabMenu({ idPath, entity, setIsEditMode }) {
   const { onModalOpen, modalRef, isModalOpen, onModalClose } =
     useModal(pathAfterDeletion);
 
-  const { mutate } = useDeleteMutation({ entity, onModalClose });
+  const { mutate } = useDeleteMutation(entity);
 
   const toggleDropDown = () => {
     setIsOpen(!isOpen);

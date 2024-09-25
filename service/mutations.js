@@ -50,7 +50,7 @@ export function useCreateComment({ idPath, whichId }) {
   });
 }
 
-export function useDeleteMutation({ entity, onModalClose }) {
+export function useDeleteMutation(entity) {
   const queryClient = useQueryClient();
 
   let queryKey;
@@ -71,10 +71,8 @@ export function useDeleteMutation({ entity, onModalClose }) {
     mutationFn: (idPath) => deleteApi(idPath),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey });
-      if (onModalClose) {
-        onModalClose();
-      }
-      console.log(queryKey);
+
+      console.log("queryKey:", queryKey);
     },
     onError: (error) => {
       console.error("Error deleting:", error.message);

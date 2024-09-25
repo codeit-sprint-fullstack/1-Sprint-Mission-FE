@@ -1,9 +1,21 @@
 import LoginForm from "@/components/form/auth/LogInForm";
+import { useAuth } from "@/context/AuthProvider";
 import styles from "@/styles/pages/auth/main.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function LoginPage() {
+  const { user } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+    }
+  });
+
   return (
     <section className={styles.AuthPage}>
       <LoginForm />

@@ -1,9 +1,20 @@
 import SignUpForm from "@/components/form/auth/SignUpForm";
+import { useAuth } from "@/context/AuthProvider";
 import styles from "@/styles/pages/auth/main.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function SignUpPage() {
+  const { user } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+    }
+  });
   return (
     <section className={styles.AuthPage}>
       <SignUpForm />

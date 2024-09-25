@@ -4,7 +4,7 @@ const ENDPOINT = "/users/me";
 
 export async function getUserMe() {
   try {
-    const res = await axios.post(ENDPOINT);
+    const res = await axios.get(ENDPOINT);
     return res.data;
   } catch (error) {
     console.error("Api error", error.message, error?.status);

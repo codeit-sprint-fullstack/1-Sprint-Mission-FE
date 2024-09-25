@@ -5,8 +5,9 @@ import Button from "../ui/Button";
 import { usePathname } from "next/navigation";
 import logo from "../../public/assets/logo.svg";
 import Image from "next/image";
+import { useAuth } from "@/context/AuthProvider";
 
-export function AuthHeader() {
+export function LoginHeader() {
   return (
     <header className={styles.AuthHeader}>
       <Link href="/">
@@ -20,11 +21,15 @@ export function AuthHeader() {
 
 export default function Header() {
   const pathname = usePathname();
+  const { user } = useAuth();
+  const isLoginHeader = pathname.includes("/auth");
 
-  const isAuthHeader = pathname.includes("/auth");
+  if (isLoginHeader) {
+    return <LoginHeader />;
+  }
 
-  if (isAuthHeader) {
-    return <AuthHeader />;
+  if (user) {
+    return;
   }
 
   const pages = [
@@ -41,9 +46,17 @@ export default function Header() {
           <Nav links={pages} />
         </div>
 
-        <Button>
-          <Link href="/auth/login">로그인</Link>
-        </Button>
+        {!user && (
+          <Button>
+            <Link href="/auth/login">로그인</Link>
+          </Button>
+        )}
+        {user && (
+          <Link className={styles.userProfile} href="/my-page">
+            <Image src={user.image} className={styles.userImg} />
+            <span className={styles.userName}>{user.nickname}</span>
+          </Link>
+        )}
       </div>
     </header>
   );

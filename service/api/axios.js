@@ -31,20 +31,22 @@ instance.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        const refreshToken = localStorage.getItem("refreshToken");
-        if (!refreshToken) {
-          return Promise.reject("No refresh token stored");
+        if (typeof window !== "undefined") {
+          const refreshToken = localStorage.getItem("refreshToken");
+          if (!refreshToken) {
+            return Promise.reject("No refresh token stored");
+          }
+
+          const response = await instance.post("/auth/refresh-token", {
+            refreshToken,
+          });
+          const { accessToken } = response.data;
+
+          localStorage.setItem("accessToken", accessToken);
+
+          originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
+          return instance(originalRequest);
         }
-
-        const response = await instance.post("/auth/refresh-token", {
-          refreshToken,
-        });
-        const { accessToken } = response.data;
-
-        localStorage.setItem("accessToken", accessToken);
-
-        originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
-        return instance(originalRequest);
       } catch (error) {
         console.error(
           "token refresh error:",
@@ -54,11 +56,13 @@ instance.interceptors.response.use(
         return Promise.reject({ status: error.response?.status });
       }
     }
-
     // response error handle
     if (error.response) {
       console.error("error.response", error.response.data);
-      return Promise.reject({ status: error.response?.status });
+      return Promise.reject({
+        message: error.response?.data.message,
+        status: error.response?.status,
+      });
     }
 
     //request error handle
