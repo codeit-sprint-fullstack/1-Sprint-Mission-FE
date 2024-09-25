@@ -112,7 +112,7 @@ export default function Market({ id }) {
   };
 
   const commentSubmitForm = async () => {
-    console.log(commentId);
+    // console.log(commentId);
     try {
       const res = await patchComment(commentId, {
         content: values.content,

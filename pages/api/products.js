@@ -26,7 +26,7 @@ export async function getProduct(productId) {
 }
 
 export async function postProduct(data) {
-  console.log(data);
+  // console.log(data);
   try {
     const token = localStorage.getItem("accessToken");
     const response = await api.post("/products", data, {
