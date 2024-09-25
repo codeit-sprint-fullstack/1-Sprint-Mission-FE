@@ -28,6 +28,13 @@
     width: 153px;
     height: 51px;
   }
+  .userProfile {
+    @include g.flex-box(row, center, center, 6px);
+    .userName {
+      @include g.font(18, 400);
+      color: g.$grey-600;
+    }
+  }
 
   @include g.device-size(tablet) {
     .container {

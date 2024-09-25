@@ -7,7 +7,7 @@ import CommentContent from "./CommentContent";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 
-export default function CommentList({ idPath, isArticle }) {
+export default function CommentList({ idPath, entity }) {
   const { ref, inView } = useInView();
 
   const {
@@ -21,7 +21,7 @@ export default function CommentList({ idPath, isArticle }) {
     data,
   } = useGetCommentList({
     idPath,
-    whichId: isArticle ? "article" : "product",
+    entity,
   });
 
   useEffect(() => {

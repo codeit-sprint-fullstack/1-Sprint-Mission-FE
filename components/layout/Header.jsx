@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import logo from "../../public/assets/logo.svg";
 import Image from "next/image";
 import { useAuth } from "@/context/AuthProvider";
+import ProfileImg from "../ui/ProfileImg";
 
 export function LoginHeader() {
   return (
@@ -26,10 +27,6 @@ export default function Header() {
 
   if (isLoginHeader) {
     return <LoginHeader />;
-  }
-
-  if (user) {
-    return;
   }
 
   const pages = [
@@ -53,7 +50,7 @@ export default function Header() {
         )}
         {user && (
           <Link className={styles.userProfile} href="/my-page">
-            <Image src={user.image} className={styles.userImg} />
+            <ProfileImg width="40px" src={user.image} />
             <span className={styles.userName}>{user.nickname}</span>
           </Link>
         )}

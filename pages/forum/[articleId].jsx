@@ -9,6 +9,8 @@ import { articleKey } from "@/variables/queryKeys";
 import CommentForm from "@/components/form/CommentForm";
 import ReturnToListBtn from "@/components/ui/ReturnToListBtn";
 import styles from "@/styles/pages/forum/main.module.scss";
+import { useEffect } from "react";
+import { useAuth } from "@/context/AuthProvider";
 
 export async function getServerSideProps(context) {
   const queryClient = new QueryClient();
@@ -27,6 +29,7 @@ export async function getServerSideProps(context) {
 
 export default function ArticleDetailPage() {
   const router = useRouter();
+  const { user } = useAuth(true);
   const { articleId } = router.query;
 
   const {
@@ -44,6 +47,10 @@ export default function ArticleDetailPage() {
     return <Message type="error" msg={errMsg} />;
   }
 
+  if (!user) {
+    return null;
+  }
+
   return (
     <>
       <Head>
@@ -53,9 +60,9 @@ export default function ArticleDetailPage() {
       <section className={styles.ArticleDetailPage}>
         <ArticleDetail article={article} />
 
-        <CommentForm idPath={article.id} />
+        <CommentForm idPath={article.id} entity="article" />
 
-        <CommentList idPath={article.id} isArticle={true} />
+        <CommentList idPath={article.id} entity="article" />
         <ReturnToListBtn />
       </section>
     </>

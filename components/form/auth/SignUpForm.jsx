@@ -5,8 +5,8 @@ import Button from "../../ui/Button";
 import { PasswordInput } from "../comm/PasswordInput";
 import { AUTH } from "@/variables/formValidation";
 import { useModal } from "@/hooks/useModal";
-import { useSignUp } from "@/service/authMutations";
 import Modal from "@/components/ui/Modal";
+import { useAuth } from "@/context/AuthProvider";
 
 export default function SignUpForm() {
   const formMethods = useForm();
@@ -18,7 +18,7 @@ export default function SignUpForm() {
     onModalClose,
     modalMsg,
   } = useModal();
-  const { mutate, isError } = useSignUp();
+  const { signUp } = useAuth();
 
   const {
     handleSubmit,
@@ -27,8 +27,7 @@ export default function SignUpForm() {
   } = formMethods;
 
   const handleLoginSubmit = (data) => {
-    console.log(data);
-    mutate(data, {
+    signUp.mutate(data, {
       onSuccess: () => {
         onModalOpen("가입이 완료되었습니다.");
         reset();
@@ -47,7 +46,9 @@ export default function SignUpForm() {
           ref={modalRef}
           msg={modalMsg}
           onClose={
-            isError ? () => onModalClose() : () => onModalConfirm("/products")
+            signUp.isError
+              ? () => onModalClose()
+              : () => onModalConfirm("/auth/login")
           }
         />
       )}

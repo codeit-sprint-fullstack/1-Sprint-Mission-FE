@@ -29,12 +29,12 @@ export function useCreateArticle() {
   });
 }
 
-export function useCreateComment({ idPath, whichId }) {
+export function useCreateComment({ idPath, entity }) {
   const queryClient = useQueryClient();
   const queryKey =
-    whichId === "article" ? articleKey.comments : productKey.comments;
+    entity === "article" ? articleKey.comments : productKey.comments;
   const apiFunction =
-    whichId === "article" ? createArticleComment : createProductComment;
+    entity === "article" ? createArticleComment : createProductComment;
 
   return useMutation({
     mutationFn: (data) => apiFunction(idPath, data),

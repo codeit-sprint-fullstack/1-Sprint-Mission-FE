@@ -33,17 +33,17 @@ export default function App({ Component, pageProps }) {
       <Head>
         <link rel="icon" href="/favicon.svg" />
       </Head>
-      <Header />
-      <Main>
-        <QueryClientProvider client={queryClient}>
-          <HydrationBoundary state={pageProps.dehydratedState ?? {}}>
-            <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <HydrationBoundary state={pageProps.dehydratedState ?? {}}>
+          <AuthProvider>
+            <Header />
+            <Main>
               <Component {...pageProps} />
-            </AuthProvider>
-          </HydrationBoundary>
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
-      </Main>
+            </Main>
+          </AuthProvider>
+        </HydrationBoundary>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
       <Footer />
     </>
   );

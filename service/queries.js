@@ -10,16 +10,15 @@ export function useGetBestArticles(params = {}) {
   });
 }
 
-export function useGetCommentList({ idPath, whichId }) {
+export function useGetCommentList({ idPath, entity }) {
   const queryKey =
-    whichId === "article" ? articleKey.comments : productKey.comments;
+    entity === "article" ? articleKey.comments : productKey.comments;
   const apiFunction =
-    whichId === "article" ? getArticleComments : getProductComments;
+    entity === "article" ? getArticleComments : getProductComments;
 
   return useInfiniteQuery({
     queryKey: queryKey(idPath),
-    queryFn: ({ queryKey, pageParam = null }) => {
-      const idPath = queryKey[2];
+    queryFn: ({ pageParam = null }) => {
       return apiFunction(idPath, { cursor: pageParam });
     },
     initialPageParam: null,

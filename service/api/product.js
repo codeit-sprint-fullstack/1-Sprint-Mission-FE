@@ -14,12 +14,8 @@ export async function getProductList({
 }
 
 export async function getProductById(productId) {
-  try {
-    const res = await axios.get(`${ENDPOINT}/${productId}`);
-    return res.data;
-  } catch (error) {
-    console.error("Api error", error.message, error?.status);
-  }
+  const res = await axios.get(`${ENDPOINT}/${productId}`);
+  return res.data;
 }
 
 export async function deleteProductById(productId) {

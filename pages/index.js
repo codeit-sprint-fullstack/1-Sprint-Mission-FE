@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>자유 게시판</title>
+        <title>판다 마켓</title>
       </Head>
     </>
   );

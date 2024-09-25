@@ -5,7 +5,7 @@ import Button from "../ui/Button";
 import { FormProvider, useForm } from "react-hook-form";
 import { useCreateComment } from "@/service/mutations";
 
-export default function CommentForm({ idPath, isArticle }) {
+export default function CommentForm({ idPath, entity }) {
   const formMethods = useForm();
 
   const {
@@ -14,8 +14,8 @@ export default function CommentForm({ idPath, isArticle }) {
     formState: { isValid },
   } = formMethods;
 
-  const { mutate } = useCreateComment(idPath);
-  const heading = isArticle ? "댓글달기" : "문의하기";
+  const { mutate } = useCreateComment({ idPath, entity });
+  const heading = entity === "article" ? "댓글달기" : "문의하기";
 
   const handleNewCommentSubmit = (data) => {
     const newComment = { content: data["create-comment-content"] };

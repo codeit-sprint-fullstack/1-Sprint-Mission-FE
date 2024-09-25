@@ -1,8 +1,8 @@
-import { createLogIn } from "@/service/api/auth";
+import { createLogIn, createUser } from "@/service/api/auth";
 import { getUserMe } from "@/service/api/user";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext({
   user: null,
@@ -14,10 +14,14 @@ const AuthContext = createContext({
 export function AuthProvider({ children }) {
   const queryClient = useQueryClient();
   const router = useRouter();
-  // const accessToken = localStorage.getItem("accessToken");
+  let accessToken;
+
+  if (typeof window !== "undefined") {
+    accessToken = localStorage.getItem("accessToken");
+  }
 
   const {
-    data: user,
+    data,
     refetch: getMe,
     isLoading,
   } = useQuery({
@@ -25,7 +29,9 @@ export function AuthProvider({ children }) {
     queryFn: getUserMe,
     staleTime: Infinity,
     cacheTime: Infinity,
-    enabled: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    enabled: !!accessToken,
   });
 
   const logInMutation = useMutation({
@@ -35,6 +41,7 @@ export function AuthProvider({ children }) {
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
 
+      queryClient.invalidateQueries("user");
       getMe();
       router.push("/products");
     },
@@ -43,17 +50,38 @@ export function AuthProvider({ children }) {
     },
   });
 
+  const signUpMutation = useMutation({
+    mutationFn: (data) => createUser(data),
+    onSuccess: (data) => {
+      console.log(data);
+      const { accessToken, refreshToken } = data;
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+      queryClient.invalidateQueries("user");
+    },
+    onError: (error) => {
+      console.error(error.message);
+    },
+  });
+
   const logOut = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-    queryClient.invalidateQueries({ queryKey: ["user"] });
+    queryClient.setQueriesData(["user"], null);
+    console.log("로그아웃 됨");
 
     router.push("/");
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, isLoading, logIn: logInMutation.mutate, logOut }}
+      value={{
+        user: data,
+        isLoading,
+        logIn: logInMutation,
+        signUp: signUpMutation,
+        logOut,
+      }}
     >
       {children}
     </AuthContext.Provider>
@@ -70,7 +98,8 @@ export function useAuth(required) {
 
   useEffect(() => {
     if (required && !context.user && !context.isLoading) {
-      router.push("/login");
+      router.push("/auth/login");
+      console.log("로그인 필요함");
     }
   }, [context.user, context.isLoading, router, required]);
   return context;
