@@ -101,3 +101,30 @@
 .submitButtonInvalid:hover {
   background-color: #9ca3af;
 }
+
+.authErrorModal {
+  background-color: var(--white);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 540px;
+  height: 250px;
+}
+
+.authErrorModal p {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+  color: var(--gray-800);
+}
+
+.authErrorModal button {
+  background-color: var(--blue-100);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 23px;
+  width: 165px;
+  height: 48px;
+}

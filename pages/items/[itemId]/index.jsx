@@ -10,7 +10,7 @@ import styles from "./index.module.css";
 import ProductInfo from "./ProductInfo";
 import ProductMetadata from "./ProductMetadata";
 
-const ProductDetail = () => {
+const ProductDetail = ({ initialProduct }) => {
   const router = useRouter();
   const { itemId } = router.query;
   const cleanItemId = itemId ? itemId.split(":")[0] : null;
@@ -23,6 +23,7 @@ const ProductDetail = () => {
     isLoading,
     isError,
   } = useQuery(["product", cleanItemId], () => getProductDetails(cleanItemId), {
+    initialData: initialProduct,
     enabled: !!cleanItemId,
   });
 
@@ -36,22 +37,54 @@ const ProductDetail = () => {
 
   const handleSave = useCallback(() => {
     updateMutation.mutate(editedProduct, {
-      onSuccess: () => setIsEditing(false),
+      onSuccess: () => {
+        setIsEditing(false);
+      },
+      onError: (error) => {
+        showModal({
+          content: `
+          ${error.message}`,
+          confirmText: "확인",
+          showCancel: false,
+          customClass: styles.errorModal,
+        });
+      },
     });
-  }, [updateMutation, editedProduct]);
+  }, [updateMutation, editedProduct, showModal]);
 
   const handleDeleteProduct = useCallback(() => {
     showModal({
-      content: "정말로 이 상품을 삭제하시겠습니까?",
-      onConfirm: () => deleteMutation.mutate(),
+      content: "정말로 상품을 삭제하시겠어요?",
+      onConfirm: () =>
+        deleteMutation.mutate(null, {
+          onSuccess: () => router.push("/items"),
+          onError: (error) => {
+            showModal({
+              content: `${error.message}`,
+              confirmText: "확인",
+              showCancel: false,
+              customClass: styles.errorModal,
+            });
+          },
+        }),
       confirmText: "삭제",
       cancelText: "취소",
+      showCancel: true,
     });
-  }, [showModal, deleteMutation]);
+  }, [showModal, deleteMutation, router]);
 
   const handleFavorite = useCallback(() => {
-    favoriteMutation.mutate();
-  }, [favoriteMutation]);
+    favoriteMutation.mutate(null, {
+      onError: (error) => {
+        showModal({
+          content: `${error.message}`,
+          confirmText: "확인",
+          showCancel: false,
+          customClass: styles.errorModal,
+        });
+      },
+    });
+  }, [favoriteMutation, product, showModal]);
 
   const kebabMenuOptions = useMemo(
     () => [
@@ -101,5 +134,24 @@ const ProductDetail = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(context) {
+  const { itemId } = context.params;
+  const cleanItemId = itemId ? itemId.split(":")[0] : null;
+
+  const token = context.req.cookies.token;
+
+  try {
+    const initialProduct = await getProductDetails(cleanItemId, token);
+    return {
+      props: { initialProduct },
+    };
+  } catch (error) {
+    console.error("Failed to fetch product:", error);
+    return {
+      props: { initialProduct: null },
+    };
+  }
+}
 
 export default ProductDetail;

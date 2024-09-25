@@ -11,6 +11,8 @@ import { useModal } from "@/contexts/ModalContext";
 import CommentList from "./CommentList";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import { COMMENTS_PER_PAGE } from "@/constants/pagination";
+import Image from "next/image";
+import noContentPanda from "@/public/images/Img_inquiry_empty.svg";
 
 const CommentSection = ({ productId }) => {
   const queryClient = useQueryClient();
@@ -132,7 +134,15 @@ const CommentSection = ({ productId }) => {
           deleteMutation={deleteMutation}
         />
       ) : (
-        <p className={styles.noComments}>댓글이 없습니다.</p>
+        <div className={styles.noComments}>
+          <Image
+            src={noContentPanda}
+            alt="문의가 없는 판다"
+            width={196}
+            height={196}
+          />
+          <div className={styles.noCommentsText}>아직 문의가 없어요</div>
+        </div>
       )}
       {isFetchingNextPage && (
         <div className={styles.spinnerContainer}>
