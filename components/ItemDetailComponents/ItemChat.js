@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
 import styles from "./ItemChat.module.css";
 import Chat from "./Chat";
-import { editComment, addComment, fetchComments } from "@/utils/productChatApi";
+import { fetchComments, addComment, editComment } from "@/utils/productChatApi";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useInfiniteScroll } from "@/hooks/useComments";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export default function ItemChat({ initialComments, id }) {
   const [input, setInput] = useState("");
@@ -12,41 +13,57 @@ export default function ItemChat({ initialComments, id }) {
   const [isEditing, setIsEditing] = useState(false);
   const [currentEditId, setCurrentEditId] = useState(null);
   const [comments, setComments] = useState(initialComments?.list || []);
-  const [cursor, setCursor] = useState(initialComments?.nextCursor || null); // 커서값을 초기값으로 설정
+  const [cursor, setCursor] = useState(initialComments?.nextCursor || null);
   const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true); // 더 가져올 데이터가 있는지 확인하는 상태
+  const [hasMore, setHasMore] = useState(true);
+
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     setFormValid(input.trim().length > 0);
   }, [input]);
 
-  const handleSubmit = async (e) => {
+  const addCommentMutation = useMutation({
+    mutationFn: (newComment) => addComment(id, newComment),
+    onSuccess: (addedComment) => {
+      setComments((prevComments) => [addedComment, ...prevComments]);
+      setInput("");
+      queryClient.invalidateQueries(["comments", id]);
+    },
+    onError: (error) => {
+      console.error("Error adding comment:", error);
+    },
+  });
+
+  const editCommentMutation = useMutation({
+    mutationFn: (updatedComment) => editComment(currentEditId, updatedComment),
+    onSuccess: (editedComment) => {
+      setComments((prevComments) =>
+        prevComments.map((comment) =>
+          comment.id === currentEditId ? editedComment : comment
+        )
+      );
+      setIsEditing(false);
+      setCurrentEditId(null);
+      setInput("");
+      queryClient.invalidateQueries(["comments", id]);
+    },
+    onError: (error) => {
+      console.error("Error editing comment:", error);
+    },
+  });
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!formValid) return;
 
     const newComment = { content: input };
 
     if (isEditing) {
-      try {
-        const updatedComment = await editComment(currentEditId, newComment);
-        setComments((prevComments) =>
-          prevComments.map((comment) =>
-            comment.id === currentEditId ? updatedComment : comment
-          )
-        );
-        setIsEditing(false);
-        setCurrentEditId(null);
-      } catch (error) {}
+      editCommentMutation.mutate(newComment);
     } else {
-      try {
-        const addedComment = await addComment(id, newComment);
-        setComments((prevComments) => [addedComment, ...prevComments]);
-      } catch (error) {
-        console.error("Error adding comment:", error);
-      }
+      addCommentMutation.mutate(newComment);
     }
-
-    setInput("");
   };
 
   const loadMoreComments = useCallback(async () => {
@@ -75,6 +92,7 @@ export default function ItemChat({ initialComments, id }) {
     hasMore,
     isLoading: loading,
   });
+
   const handleEdit = (comment) => {
     setInput(comment.content);
     setIsEditing(true);

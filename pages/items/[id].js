@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { fetchProduct } from "@/utils/productApi";
 import { fetchComments } from "@/utils/productChatApi";
 import ItemInfo from "@/components/ItemDetailComponents/ItemInfo";
@@ -8,36 +8,31 @@ import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 
 export default function ProductDetail({ initialComments, id }) {
-  const [product, setProduct] = useState(null);
-  const [error, setError] = useState(null);
+  // React Query로 제품 정보 가져오기
+  const {
+    data: product,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["product", id],
+    queryFn: () => {
+      const token = localStorage.getItem("accessToken");
+      if (!token) throw new Error("인증 토큰이 없습니다.");
+      return fetchProduct(id, token);
+    },
+  });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem("accessToken");
-
-        if (!token) {
-          setError("인증 토큰이 없습니다.");
-          return;
-        }
-
-        const productDetail = await fetchProduct(id, token);
-        setProduct(productDetail);
-      } catch (error) {
-        setError("상품을 불러오는 중 문제가 발생했습니다.");
-      }
-    };
-
-    fetchData();
-  }, [id]);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div>{error.message}</div>;
   }
 
   return (
     <div className={styles.container}>
-      {product && <ItemInfo product={product} />}
+      <ItemInfo product={product} />
       <ItemChat initialComments={initialComments} id={id} />
       <Link href={ROUTES.ITEMS} passHref>
         <button className={styles.backBtn}>목록으로 돌아가기</button>

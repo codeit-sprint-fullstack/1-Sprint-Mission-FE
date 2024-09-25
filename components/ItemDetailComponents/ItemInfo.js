@@ -13,6 +13,7 @@ import useAuth from "@/hooks/useAuth";
 import Modal from "../ModalComponents/Modal";
 import { ROUTES } from "@/utils/rotues";
 import Link from "next/link";
+import { useMutation } from "@tanstack/react-query";
 
 export default function ItemInfo(product) {
   const item = product.product;
@@ -36,24 +37,47 @@ export default function ItemInfo(product) {
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const handleDelete = async () => {
-    await deleteProduct(item.id);
-    router.push(ROUTES.ITEMS);
+  const deleteProductMutation = useMutation({
+    mutationFn: (id) => deleteProduct(id),
+    onSuccess: () => {
+      router.push(ROUTES.ITEMS);
+    },
+    onError: (error) => {
+      console.error("Error deleting product:", error);
+    },
+  });
+
+  const handleDelete = () => {
+    deleteProductMutation.mutate(item.id);
   };
 
-  const handleFavoriteToggle = async () => {
-    try {
-      if (isItemFavorite) {
-        await removeFavorite(item.id);
-        setIsItemFavorite(false);
-        setIsFavoriteCount(isFavoriteCount - 1);
-      } else {
-        await addFavorite(item.id);
-        setIsItemFavorite(true);
-        setIsFavoriteCount(isFavoriteCount + 1);
-      }
-    } catch (error) {
-      console.error("Error updating favorite status:", error);
+  const addFavoriteMutate = useMutation({
+    mutationFn: (id) => addFavorite(id),
+    onSuccess: () => {
+      setIsItemFavorite(true);
+      setIsFavoriteCount(isFavoriteCount + 1);
+    },
+    onError: (error) => {
+      console.error("Error deleting product:", error);
+    },
+  });
+
+  const removeFavoriteMutate = useMutation({
+    mutationFn: (id) => removeFavorite(id),
+    onSuccess: () => {
+      setIsItemFavorite(false);
+      setIsFavoriteCount(isFavoriteCount - 1);
+    },
+    onError: (error) => {
+      console.error("Error deleting product:", error);
+    },
+  });
+
+  const handleFavoriteToggle = () => {
+    if (isItemFavorite) {
+      removeFavoriteMutate.mutate(item.id);
+    } else {
+      addFavoriteMutate.mutate(item.id);
     }
   };
 

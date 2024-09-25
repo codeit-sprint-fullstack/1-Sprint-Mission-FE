@@ -7,6 +7,7 @@ import profile from "@/images/ic_profile.png";
 import kebab from "@/images/ic_kebab.png";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
+import { useMutation } from "@tanstack/react-query";
 
 export default function BoardDetailInfo({ article }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,13 +15,18 @@ export default function BoardDetailInfo({ article }) {
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const handleDelete = async (id) => {
-    try {
-      await deleteArticle(id);
+  const mutation = useMutation({
+    mutationFn: (id) => deleteArticle(id),
+    onSuccess: () => {
       router.push(ROUTES.BOARD);
-    } catch (error) {
+    },
+    onError: (error) => {
       console.error("Error deleting article:", error);
-    }
+    },
+  });
+
+  const handleDelete = () => {
+    mutation.mutate(article.id);
   };
 
   return (
@@ -39,10 +45,7 @@ export default function BoardDetailInfo({ article }) {
           <Link href={ROUTES.BOARD_EDIT(article.id)}>
             <div className={styles.dropdownItem}>수정하기</div>
           </Link>
-          <div
-            className={styles.dropdownItem}
-            onClick={() => handleDelete(article.id)}
-          >
+          <div className={styles.dropdownItem} onClick={handleDelete}>
             삭제하기
           </div>
         </div>

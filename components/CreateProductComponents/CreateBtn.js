@@ -4,26 +4,36 @@ import styles from "./CreateBtn.module.css";
 import CreateForm from "./CreateForm";
 import { createProduct } from "@/utils/productApi";
 import { ROUTES } from "@/utils/rotues";
+import { useMutation } from "@tanstack/react-query";
 
 export default function CreateBtn() {
   const [isFormValid, setIsFormValid] = useState(false);
   const [formValues, setFormValues] = useState({});
   const router = useRouter();
 
-  const handleProductPost = async () => {
+  const mutation = useMutation({
+    mutationFn: createProduct,
+    onSuccess: (newProduct) => {
+      router.push(ROUTES.ITEMS_DETAIL(newProduct.id));
+    },
+    onError: (error) => {
+      console.error("Failed to create product:", error.response || error);
+    },
+  });
+
+  const handleProductPost = () => {
     if (isFormValid) {
-      try {
-        const newProduct = await createProduct({
-          images: formValues.productImage,
-          name: formValues.productName,
-          description: formValues.productIntro,
-          price: formValues.productPrice,
-          tags: formValues.tags || [],
-        });
-        router.push(ROUTES.ITEMS_DETAIL(newProduct.id));
-      } catch (error) {
-        console.error("Failed to create product:", error);
-      }
+      const productData = {
+        images: formValues.productImage,
+        name: formValues.productName,
+        description: formValues.productIntro,
+        price: formValues.productPrice,
+        tags: formValues.tags || [],
+      };
+
+      console.log("Sending data to server:", productData);
+
+      mutation.mutate(productData);
     }
   };
 

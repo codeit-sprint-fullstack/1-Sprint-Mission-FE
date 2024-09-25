@@ -1,60 +1,25 @@
 import { useState } from "react";
 
-export function useValidateForm() {
-  const initialState = {
-    productName: "",
-    productIntro: "",
-    productPrice: "",
-    productTag: "",
-    productImage: "",
-  };
-
-  const validations = {
-    productName: {
-      required: true,
-      minLength: 1,
-      maxLength: 10,
-    },
-    productIntro: {
-      required: true,
-      minLength: 10,
-      maxLength: 100,
-    },
-    productPrice: {
-      required: true,
-      pattern: /^[0-9]+$/,
-    },
-    productTag: {
-      maxLength: 5,
-    },
-    productImage: {
-      required: true,
-    },
-  };
-
+export function useValidateForm(initialState, validations) {
   const [values, setValues] = useState(initialState);
   const [errors, setErrors] = useState({});
 
   const validate = (name, value) => {
     let error = "";
-    if (validations[name]) {
-      if (
-        validations[name].minLength &&
-        value.length < validations[name].minLength
-      ) {
-        error = `${validations[name].minLength}자 이상 입력해주세요`;
-      } else if (
-        validations[name].maxLength &&
-        value.length > validations[name].maxLength
-      ) {
-        error = `${validations[name].maxLength}자 이하로 입력해주세요`;
-      } else if (
-        validations[name].pattern &&
-        !validations[name].pattern.test(value)
-      ) {
-        error = "숫자로 입력해주세요";
+    const rules = validations[name];
+
+    if (rules) {
+      if (rules.required && !value) {
+        error = "필수 항목입니다.";
+      } else if (rules.minLength && value.length < rules.minLength) {
+        error = `${rules.minLength}자 이상 입력해주세요`;
+      } else if (rules.maxLength && value.length > rules.maxLength) {
+        error = `${rules.maxLength}자 이하로 입력해주세요`;
+      } else if (rules.pattern && !rules.pattern.test(value)) {
+        error = "유효한 형식이 아닙니다.";
       }
     }
+
     setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
     return error;
   };

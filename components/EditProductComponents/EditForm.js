@@ -1,10 +1,29 @@
 import React, { useEffect, useState } from "react";
 import styles from "./EditForm.module.css";
-import { validateCreateForm } from "@/hooks/useValidation";
+import { useValidateForm } from "@/hooks/useValidation";
 
 function EditForm({ onFormChange, onFormValuesChange, item }) {
-  const { values, errors, handleChange, handleSubmit, setValues } =
-    validateCreateForm();
+  const initialFormState = {
+    productName: "",
+    productIntro: "",
+    productPrice: "",
+    productTag: "",
+    productImage: "",
+  };
+
+  const validationRules = {
+    productName: { required: true, minLength: 3 },
+    productIntro: { required: true, minLength: 10, maxLength: 100 },
+    productPrice: { required: true, pattern: /^[0-9]+$/ },
+    productTag: { maxLength: 5 },
+    productImage: { required: true },
+  };
+
+  const { values, errors, handleChange, setValues } = useValidateForm(
+    initialFormState,
+    validationRules
+  );
+
   const [tags, setTags] = useState([]);
   const [isComposing, setIsComposing] = useState(false);
 
@@ -63,14 +82,14 @@ function EditForm({ onFormChange, onFormValuesChange, item }) {
   };
 
   return (
-    <form className={styles.productForm} onSubmit={handleSubmit}>
+    <form className={styles.productForm}>
       <label htmlFor="productImage" className={styles.labelText}>
         상품 이미지
       </label>
       <input
         type="text"
         className={`${styles.inputStyle} ${
-          errors.productName ? styles.inputError : ""
+          errors.productImage ? styles.inputError : ""
         }`}
         id="productImage"
         name="productImage"
@@ -78,6 +97,10 @@ function EditForm({ onFormChange, onFormValuesChange, item }) {
         value={values.productImage}
         onChange={handleChange}
       />
+      {errors.productImage && (
+        <p className={styles.inputCheck}>{errors.productImage}</p>
+      )}
+
       <label htmlFor="productName" className={styles.labelText}>
         상품명
       </label>
@@ -152,6 +175,7 @@ function EditForm({ onFormChange, onFormValuesChange, item }) {
       {errors.productTag && (
         <p className={styles.inputCheck}>{errors.productTag}</p>
       )}
+
       <div className={styles.tagsContainer}>
         {tags.map((tag, index) => (
           <div key={index} className={styles.tag}>

@@ -3,25 +3,50 @@ import { useValidateForm } from "@/hooks/useValidation";
 import { createArticle } from "@/utils/articleApi";
 import { useRouter } from "next/router";
 import { ROUTES } from "@/utils/rotues";
+import { useMutation } from "@tanstack/react-query";
 
 export default function CreateForm() {
-  const { values, errors, handleChange, handleSubmit } = useValidateForm(); // useValidateForm 사용
+  const initialState = {
+    title: "",
+    content: "",
+  };
+
+  const validations = {
+    title: {
+      required: true,
+      minLength: 3,
+      maxLength: 10,
+    },
+    content: {
+      required: true,
+      minLength: 10,
+    },
+  };
+
+  const { values, errors, handleChange, handleSubmit } = useValidateForm(
+    initialState,
+    validations
+  );
+
   const router = useRouter();
 
-  // 폼 제출 함수
-  const onSubmit = async () => {
-    try {
-      const newArticle = await createArticle({
-        title: values.title,
-        content: values.content,
-      });
-
+  const mutation = useMutation({
+    mutationFn: createArticle,
+    onSuccess: (newArticle) => {
       if (newArticle && newArticle.id) {
         router.push(ROUTES.ARTICLE(newArticle.id));
       }
-    } catch (error) {
+    },
+    onError: (error) => {
       console.error("Error creating article:", error);
-    }
+    },
+  });
+
+  const onSubmit = () => {
+    mutation.mutate({
+      title: values.title,
+      content: values.content,
+    });
   };
 
   return (
@@ -31,8 +56,8 @@ export default function CreateForm() {
         <button
           type="button"
           className={styles.addBtn}
-          disabled={Object.keys(errors).some((key) => errors[key])} // 유효성 검사 결과에 따라 버튼 비활성화
-          onClick={handleSubmit(onSubmit)} // 유효성 검사 후 제출
+          disabled={Object.keys(errors).some((key) => errors[key])}
+          onClick={handleSubmit(onSubmit)}
         >
           등록
         </button>

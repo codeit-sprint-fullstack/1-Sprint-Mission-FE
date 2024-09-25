@@ -6,6 +6,7 @@ import styles from "./ChatItem.module.css";
 import { useState } from "react";
 import { deleteComments } from "@/utils/articleChatApi";
 import { timeAgo } from "@/utils/timeAgo";
+import { useMutation } from "@tanstack/react-query";
 
 export default function ChatItem({ comments, onEdit }) {
   const [openDropdownId, setOpenDropdownId] = useState(null);
@@ -14,18 +15,18 @@ export default function ChatItem({ comments, onEdit }) {
     setOpenDropdownId(openDropdownId === id ? null : id);
   };
 
-  const handleDelete = async (id) => {
-    try {
-      const res = await deleteComments(id);
-      if (res.ok) {
-        window.location.reload();
-      } else {
-        console.error("Failed to delete comment");
-      }
-      setOpenDropdownId(null);
-    } catch (error) {
+  const mutation = useMutation({
+    mutationFn: (id) => deleteComments(id),
+    onSuccess: () => {
+      window.location.reload();
+    },
+    onError: (error) => {
       console.error("Error deleting comment:", error);
-    }
+    },
+  });
+
+  const handleDelete = (id) => {
+    mutation.mutate(id);
   };
 
   const handleEdit = (chatItem) => {

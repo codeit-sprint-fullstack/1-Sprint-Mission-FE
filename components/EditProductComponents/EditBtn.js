@@ -1,47 +1,55 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router"; // useRouter로 변경
-import styles from "./EditBtn.module.css"; // CSS 모듈 사용
+import { useRouter } from "next/router";
+import styles from "./EditBtn.module.css";
 import EditForm from "./EditForm";
 import { editProduct } from "@/utils/productApi";
 import { ROUTES } from "@/utils/rotues";
+import { useMutation } from "@tanstack/react-query";
 
 export default function EditBtn({ item }) {
   const [isFormValid, setIsFormValid] = useState(false);
   const [formValues, setFormValues] = useState({});
-  const router = useRouter(); // useNavigate 대신 useRouter
+  const router = useRouter();
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
 
-  const handleProductPost = async (id) => {
-    const token = localStorage.getItem("accessToken");
+  const mutation = useMutation({
+    mutationFn: (id) =>
+      editProduct(
+        id,
+        {
+          name: formValues.productName,
+          description: formValues.productIntro,
+          price: formValues.productPrice,
+          tags: formValues.tags || [],
+          images: formValues.productImage,
+        },
+        token
+      ),
+    onSuccess: () => {
+      router.push(ROUTES.ITEMS_DETAIL(item.id));
+    },
+    onError: (error) => {
+      console.error("Failed to edit product:", error);
+    },
+  });
+
+  const handleProductPost = () => {
     if (isFormValid) {
-      try {
-        await editProduct(
-          id,
-          {
-            name: formValues.productName,
-            description: formValues.productIntro,
-            price: formValues.productPrice,
-            tags: formValues.tags || [],
-            images: formValues.productImage,
-          },
-          token
-        );
-        router.push(ROUTES.ITEMS_DETAIL(id));
-      } catch (error) {
-        console.error("Failed to create product:", error);
-      }
+      mutation.mutate(item.id);
     }
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.addBar}>
-        <p className={styles.textStyleHead}>상품 등록하기</p>
+        <p className={styles.textStyleHead}>상품 수정하기</p>
         <button
           className={`${styles.addBtn} ${
             isFormValid ? styles.addBtnActive : ""
           }`}
           disabled={!isFormValid}
-          onClick={() => handleProductPost(item.id)}
+          onClick={handleProductPost}
         >
           수정
         </button>

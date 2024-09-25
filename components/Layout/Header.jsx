@@ -24,7 +24,7 @@ export default function Header() {
           setUserInfo(userData);
           setIsAuthenticated(true);
         } catch (error) {
-          console.error("유저 정보를 불러오는 데 실패했습니다:", error);
+          router.push(ROUTES.LOGIN);
           setIsAuthenticated(false);
           localStorage.removeItem("accessToken");
         }

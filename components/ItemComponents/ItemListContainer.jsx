@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { useProducts } from "@/hooks/useProducts"; // API 호출 및 데이터 상태 관리
+import { useProducts } from "@/hooks/useProducts";
 import ItemList from "./ItemList";
 
 export default function ItemListContainer() {
   const [keyword, setKeyword] = useState("");
   const [sortOrder, setSortOrder] = useState("recent");
 
-  // 데이터 페칭 및 상태 관리
   const { products, loading, error, handleSortChange, handleKeywordSearch } =
     useProducts();
 

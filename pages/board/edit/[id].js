@@ -1,9 +1,10 @@
-import { useRouter } from "next/router";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import EditBoard from "@/components/EditBoardComponents/EditBoard";
 import { fetchArticle, updateArticle } from "@/utils/articleApi";
 import styles from "./[id].module.css";
 import { ROUTES } from "@/utils/rotues";
+import { useMutation } from "@tanstack/react-query";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
@@ -31,22 +32,19 @@ export default function EditArticlePage({ article }) {
   });
   const [isFormValid, setFormValid] = useState(false);
 
-  const handleSubmit = async () => {
-    if (!isFormValid) return;
-    try {
-      await updateArticle(id, formData);
+  const mutation = useMutation({
+    mutationFn: (newData) => updateArticle(id, newData),
+    onSuccess: () => {
       router.push(ROUTES.ARTICLE(id));
-    } catch (error) {
+    },
+    onError: (error) => {
       console.error("Error updating article:", error);
-    }
-  };
+    },
+  });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const handleSubmit = () => {
+    if (!isFormValid) return;
+    mutation.mutate(formData);
   };
 
   return (
@@ -63,7 +61,7 @@ export default function EditArticlePage({ article }) {
       </div>
       <EditBoard
         formData={formData}
-        onChange={handleChange}
+        setFormData={setFormData}
         setFormValid={setFormValid}
       />
     </div>

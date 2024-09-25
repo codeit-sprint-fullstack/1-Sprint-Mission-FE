@@ -6,30 +6,52 @@ import kebab from "@/images/ic_kebab.png";
 import { timeAgo } from "@/utils/timeAgo";
 import { deleteComment } from "@/utils/productChatApi";
 import { getUserProfile } from "@/utils/authApi";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export default function Chat({ comments, onEdit, setComments }) {
   const [isOpen, setIsOpen] = useState(null);
   const [authStatuses, setAuthStatuses] = useState({});
+  const queryClient = useQueryClient();
+
+  const { data: userProfile } = useQuery({
+    queryKey: ["userProfile"],
+    queryFn: getUserProfile,
+    enabled: !!localStorage.getItem("accessToken"),
+    refetchOnWindowFocus: false,
+  });
+
+  const deleteCommentMutation = useMutation({
+    mutationFn: (id) => deleteComment(id),
+    onMutate: async (id) => {
+      await queryClient.cancelQueries(["comments"]);
+      const previousComments = queryClient.getQueryData(["comments"]);
+
+      setComments((prevComments) =>
+        prevComments.filter((comment) => comment.id !== id)
+      );
+
+      return { previousComments };
+    },
+    onError: (error, id, context) => {
+      console.error("Error deleting comment:", error);
+      if (context?.previousComments) {
+        setComments(context.previousComments);
+      }
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries(["comments"]);
+    },
+  });
 
   useEffect(() => {
-    const fetchAuthStatuses = async () => {
-      const token = localStorage.getItem("accessToken");
-      if (!token) return;
-
-      try {
-        const userProfile = await getUserProfile();
-        const statuses = comments.reduce((acc, comment) => {
-          acc[comment.id] = userProfile.id === comment.writer.id;
-          return acc;
-        }, {});
-        setAuthStatuses(statuses);
-      } catch (error) {
-        console.error("Error fetching user profile", error);
-      }
-    };
-
-    fetchAuthStatuses();
-  }, [comments]);
+    if (userProfile && comments.length > 0) {
+      const statuses = comments.reduce((acc, comment) => {
+        acc[comment.id] = userProfile.id === comment.writer.id;
+        return acc;
+      }, {});
+      setAuthStatuses(statuses);
+    }
+  }, [userProfile, comments]);
 
   const toggleDropdown = (id) => {
     setIsOpen(isOpen === id ? null : id);
@@ -40,16 +62,8 @@ export default function Chat({ comments, onEdit, setComments }) {
     onEdit(comment);
   };
 
-  const handleDelete = async (id) => {
-    try {
-      await deleteComment(id);
-      setComments((prevComments) =>
-        prevComments.filter((comment) => comment.id !== id)
-      );
-    } catch (error) {
-      console.error("Error deleting comment:", error);
-    }
-    setIsOpen(null);
+  const handleDelete = (id) => {
+    deleteCommentMutation.mutate(id);
   };
 
   return (
