@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchProduct } from "@/utils/productApi";
 import { fetchComments } from "@/utils/productChatApi";
-import ItemInfo from "@/components/ItemDetailComponents/ItemInfo";
-import ItemChat from "@/components/ItemDetailComponents/ItemChat";
+import ItemInfo from "@/components/ItemDetailComponents/ItemInfo.jsx";
+import ItemChat from "@/components/ItemDetailComponents/ItemChat.jsx";
 import styles from "./[id].module.css";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";

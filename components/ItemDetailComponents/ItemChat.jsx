@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import styles from "./ItemChat.module.css";
-import Chat from "./Chat";
+import Chat from "./Chat.jsx";
 import { fetchComments, addComment, editComment } from "@/utils/productChatApi";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

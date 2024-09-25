@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "./CreateBtn.module.css";
-import CreateForm from "./CreateForm";
+import CreateForm from "./CreateForm.jsx";
 import { createProduct } from "@/utils/productApi";
 import { ROUTES } from "@/utils/rotues";
 import { useMutation } from "@tanstack/react-query";

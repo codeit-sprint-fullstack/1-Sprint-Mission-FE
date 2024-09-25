@@ -7,7 +7,7 @@
 
 .product {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3개의 열을 설정 */
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   align-items: center;
   justify-content: center;
@@ -43,9 +43,9 @@
   margin-top: 46px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 
   .title {
-    width: 256px;
     word-break: break-all;
     white-space: pre-wrap;
     margin-right: 12px;

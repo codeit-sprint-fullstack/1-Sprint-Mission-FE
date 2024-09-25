@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "./BoardChat.module.css";
-import ChatItem from "./ChatItem";
+import ChatItem from "./ChatItem.jsx";
 import { useComments } from "@/hooks/useComments";
 import { throttle } from "@/utils/throttle";
 import { toast, ToastContainer } from "react-toastify";

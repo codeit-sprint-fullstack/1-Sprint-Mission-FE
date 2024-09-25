@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "./EditBtn.module.css";
-import EditForm from "./EditForm";
+import EditForm from "./EditForm.jsx";
 import { editProduct } from "@/utils/productApi";
 import { ROUTES } from "@/utils/rotues";
 import { useMutation } from "@tanstack/react-query";

@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import BoardDetailInfo from "@/components/BoardDetailComponents/BoardDetailInfo";
-import BoardChat from "@/components/BoardDetailComponents/BoardChat";
+import BoardDetailInfo from "@/components/BoardDetailComponents/BoardDetailInfo.jsx";
+import BoardChat from "@/components/BoardDetailComponents/BoardChat.jsx";
 import styles from "./[id].module.css";
 import Link from "next/link";
 import { fetchArticle } from "@/utils/articleApi";

@@ -1,5 +1,5 @@
 import React from "react";
-import CustomDropdown from "./CustomDropdown";
+import CustomDropdown from "./CustomDropdown.jsx";
 import Link from "next/link";
 import styles from "./DesktopSearchBar.module.css";
 import { ROUTES } from "@/utils/rotues";

@@ -10,7 +10,7 @@ import ic_kebab from "@/images/ic_kebab.png";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import useAuth from "@/hooks/useAuth";
-import Modal from "../ModalComponents/Modal";
+import Modal from "../ModalComponents/Modal.jsx";
 import { ROUTES } from "@/utils/rotues";
 import Link from "next/link";
 import { useMutation } from "@tanstack/react-query";

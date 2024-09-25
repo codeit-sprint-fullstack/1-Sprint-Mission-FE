@@ -11,7 +11,7 @@ import btn_hide from "@/images/btn_hide.png";
 import { ROUTES } from "@/utils/rotues";
 import Modal from "../ModalComponents/Modal";
 import { login } from "@/utils/authApi";
-import FormFooter from "./FormFooter";
+import FormFooter from "./FormFooter.jsx";
 import { validationRules } from "@/utils/validationRules";
 
 export default function LoginForm() {

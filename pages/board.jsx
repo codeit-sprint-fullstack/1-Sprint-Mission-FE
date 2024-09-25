@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import BestProduct from "@/components/BoardComponents/BestProduct";
-import BoardList from "@/components/BoardComponents/BoardList";
+import BestProduct from "@/components/BoardComponents/BestProduct.jsx";
+import BoardList from "@/components/BoardComponents/BoardList.jsx";
 import { useArticles } from "@/hooks/useArticles";
 import styles from "@/styles/board.module.css";
 import { fetchArticles, fetchBestArticles } from "@/utils/articleApi";

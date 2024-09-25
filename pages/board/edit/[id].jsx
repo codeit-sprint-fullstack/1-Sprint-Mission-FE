@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import EditBoard from "@/components/EditBoardComponents/EditBoard";
+import EditBoard from "@/components/EditBoardComponents/EditBoard.jsx";
 import { fetchArticle, updateArticle } from "@/utils/articleApi";
 import styles from "./[id].module.css";
 import { ROUTES } from "@/utils/rotues";

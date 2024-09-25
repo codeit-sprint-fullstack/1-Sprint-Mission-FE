@@ -1,6 +1,6 @@
 import styles from "./BoardList.module.css";
-import SearchBar from "@/components/BoardComponents/SearchBar";
-import BoardListItems from "@/components/BoardComponents/BoardListItems";
+import SearchBar from "@/components/BoardComponents/SearchBar.jsx";
+import BoardListItems from "@/components/BoardComponents/BoardListItems.jsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";

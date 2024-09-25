@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import EditBtn from "@/components/EditProductComponents/EditBtn";
+import EditBtn from "@/components/EditProductComponents/EditBtn.jsx";
 import { fetchProduct } from "@/utils/productApi";
 import styles from "./[id].module.css";
 import { useQuery } from "@tanstack/react-query";
