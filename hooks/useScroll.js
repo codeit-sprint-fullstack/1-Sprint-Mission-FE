@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { throttle } from 'lodash';
 
-export default function useScroll({ comment, loading, hasMore }) {
+export default function useScroll({ comment, isLoading, hasMore }) {
   const [canScroll, setCanScroll] = useState(true);
 
   useEffect(() => {
     const handleScroll = throttle(() => {
-      if (loading || !hasMore) return;
+      if (isLoading || !hasMore) return;
 
       const scrollPosition = window.scrollY + window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
@@ -22,7 +22,7 @@ export default function useScroll({ comment, loading, hasMore }) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [loading, hasMore, canScroll, comment]);
+  }, [isLoading, hasMore, canScroll, comment]);
 
   return { canScroll };
 }

@@ -25,9 +25,9 @@ function DateFormat({ createDate }) {
 }
 
 export default function CommentList({
+  articleId,
   comments,
   onCommentDeleteId,
-  setComments,
   category,
 }) {
   const [commentId, setCommentId] = useState('');
@@ -67,11 +67,11 @@ export default function CommentList({
             <div>
               {editId === comment.id ? (
                 <EditComment
-                  id={comment.id}
+                  commentId={comment.id}
+                  articleId={articleId}
                   content={comment.content}
                   setEditId={setEditId}
                   setOpenOptions={setOpenOptions}
-                  setComments={setComments}
                 />
               ) : (
                 <>

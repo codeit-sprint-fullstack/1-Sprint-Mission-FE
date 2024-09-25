@@ -1,36 +1,33 @@
 import Button from '@/utils/Button';
 import styles from '@/styles/Comment.module.css';
+import useComments from '@/hooks/useComments';
 import { useState } from 'react';
 import { editCommentApi } from '@/utils/api/commentApi.js';
 
+import {
+  useMutation,
+  useQueryClient,
+  useFilterParams,
+} from '@tanstack/react-query';
+
 export default function CommentList({
-  id,
+  commentId,
+  articleId,
   content,
   setEditId,
-  setComments,
   setOpenOptions,
 }) {
   const [editComment, setEditComment] = useState(content);
-
   const handleCommentChange = (event) => {
     setEditComment(event.target.value);
   };
 
-  const handleSubmit = async () => {
-    try {
-      const res = await editCommentApi(id, editComment);
+  const { updateComment } = useComments({ articleId });
 
-      setComments((prev) =>
-        prev.map((comment) =>
-          comment.id === id ? { ...comment, content: editComment } : comment
-        )
-      );
-
-      setEditId(null);
-      setOpenOptions(false);
-    } catch (error) {
-      console.error('Error posting data:', error);
-    }
+  const handleSubmit = () => {
+    updateComment.mutate({ id: commentId, editComment, articleId });
+    setEditId(null);
+    setOpenOptions(false);
   };
 
   return (

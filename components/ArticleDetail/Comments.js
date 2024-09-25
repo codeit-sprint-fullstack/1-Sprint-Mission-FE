@@ -1,63 +1,78 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Button from '@/utils/Button';
 import CommentList from './CommentList';
 import styles from '@/styles/Comment.module.css';
 import useComments from '@/hooks/useComments';
 import useScroll from '@/hooks/useScroll';
+import toast from 'react-hot-toast';
+
+import { editCommentApi } from '@/utils/api/commentApi.js';
+
+import {
+  useMutation,
+  useInfiniteQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
+
+import {
+  fetchCommentsApi,
+  postCommentApi,
+  deleteCommentApi,
+} from '@/utils/api/commentApi.js';
 
 export default function Comments({ articleId, category }) {
   const [comment, setComment] = useState('');
-  const [commentsList, setCommentsList] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+  const [canSubmit, setCanSubmit] = useState(false);
 
   const {
-    getComments,
+    uniqueComments,
+    postCommentMutation,
     deleteComments,
-    postComment,
-    canEdit,
-    canSubmit,
-    loading,
-    cursorIdRef,
-    hasMore,
-  } = useComments({
-    articleId,
-    comment,
-    setCommentsList,
-    commentsList,
-  });
-
-  const { canScroll } = useScroll({
-    comment,
-    loading,
-    hasMore,
-  });
+    fetchNextPage,
+    isLoading,
+    totalCount,
+  } = useComments({ articleId });
 
   const handleComment = (event) => {
     setComment(event.target.value);
   };
 
-  const handleCommentDeleteId = (targetId) => {
-    deleteComments(targetId);
-  };
-
   const handleSubmit = () => {
     if (articleId && comment) {
-      postComment(articleId, comment);
+      const newComment = { articleId, comment };
+      postCommentMutation.mutate(newComment);
       setComment('');
     } else {
       console.log('Article ID or comment is missing.');
     }
   };
 
-  useEffect(() => {
-    if (canScroll === true) {
-      getComments(articleId);
-    }
-  }, [articleId, canEdit, canScroll]);
+  const { canScroll } = useScroll({
+    comment,
+    isLoading,
+    hasMore,
+  });
 
   useEffect(() => {
-    cursorIdRef.current === null;
-    setCommentsList([]);
-  }, [articleId, canEdit]);
+    if (canScroll === true) {
+      fetchNextPage();
+    }
+  }, [canScroll]);
+
+  useEffect(() => {
+    if (uniqueComments.length >= totalCount) {
+      setHasMore(false);
+    }
+  }, [uniqueComments, totalCount]);
+
+  useEffect(() => {
+    if (comment) {
+      setCanSubmit(true);
+    } else {
+      setCanSubmit(false);
+    }
+  }, [comment]);
 
   return (
     <div className={styles.submit}>
@@ -75,15 +90,19 @@ export default function Comments({ articleId, category }) {
         onChange={handleComment}
         className={styles.inputComment}
       />
-      <Button disabled={!canSubmit} onClick={handleSubmit} label={'등록'} />
+      <Button
+        disabled={postCommentMutation.isPending || !canSubmit}
+        onClick={handleSubmit}
+        label={'등록'}
+      />
 
       <CommentList
-        comments={commentsList}
-        onCommentDeleteId={handleCommentDeleteId}
-        setComments={setCommentsList}
+        articleId={articleId}
+        comments={uniqueComments}
+        onCommentDeleteId={deleteComments}
         category={category}
       />
-      {loading && <div>Loading...</div>}
+      {isLoading && <div>Loading...</div>}
     </div>
   );
 }

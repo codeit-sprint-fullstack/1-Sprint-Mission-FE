@@ -1,86 +1,90 @@
-import { useEffect, useState, useRef } from 'react';
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 import {
   fetchCommentsApi,
   postCommentApi,
   deleteCommentApi,
+  editCommentApi,
 } from '@/utils/api/commentApi.js';
 
-export default function useComments({
-  articleId,
-  comment,
-  setCommentsList,
-  commentsList,
-}) {
-  const [canEdit, setCanEdit] = useState(false);
-  const [canSubmit, setCanSubmit] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-  const [loading, setLoading] = useState(false);
-  let cursorIdRef = useRef(null);
+export default function useComments({ articleId }) {
+  const queryClient = useQueryClient();
 
-  async function getComments(articleId) {
-    setLoading(true);
-    try {
-      const res = await fetchCommentsApi(articleId, cursorIdRef.current);
-      const { comments, totalCount } = res;
+  const { data, fetchNextPage, isLoading } = useInfiniteQuery({
+    queryKey: ['comments', articleId],
+    queryFn: ({ pageParam = null }) => fetchCommentsApi(articleId, pageParam),
+    getNextPageParam: (lastPage) => {
+      const { comments } = lastPage;
+      return comments.length < 5 ? null : comments[comments.length - 1].id;
+    },
+  });
 
-      cursorIdRef.current =
-        comments.length > 0 ? comments[comments.length - 1].id : null;
+  const uniqueComments = Array.from(
+    new Map(
+      data?.pages
+        .flatMap((page) => page.comments)
+        .map((comment) => [comment.id, comment])
+    ).values() || []
+  );
 
-      const mergedItems = [...commentsList, ...comments.slice(0, 5)];
-      const uniqueComments = Array.from(
-        new Map(mergedItems.map((item) => [item.id, item])).values()
-      );
+  const totalCount = data?.pages[0].totalCount;
 
-      if (uniqueComments.length >= totalCount) {
-        setHasMore(false);
-      }
+  const deleteCommentMutation = useMutation({
+    mutationFn: (targetId) => deleteCommentApi(targetId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['comments', articleId] });
+    },
+  });
 
-      setCommentsList(uniqueComments);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    } finally {
-      setLoading(false);
-    }
-  }
+  const postCommentMutation = useMutation({
+    mutationFn: (newComment) => postCommentApi(newComment),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['comments', articleId] });
+    },
+  });
 
-  async function deleteComments(targetId) {
-    try {
-      const res = await deleteCommentApi(targetId);
-      cursorIdRef.current = null;
-      setCommentsList([]);
-      setHasMore(true);
-      setCanEdit((prev) => !prev);
-    } catch (error) {
-      console.error('Error deleting data:', error);
-    }
-  }
+  const deleteComments = (targetId) => {
+    deleteCommentMutation.mutate(targetId);
+  };
 
-  async function postComment() {
-    try {
-      const res = await postCommentApi(articleId, comment);
+  const postComment = (newComment) => {
+    postCommentMutation.mutate(newComment);
+  };
 
-      setCommentsList([res, ...commentsList]);
-    } catch (error) {
-      console.error('Error posting data:', error);
-    }
-  }
+  const updateComment = useMutation({
+    mutationFn: editCommentApi,
+    onSuccess: (newComment) => {
+      queryClient.setQueryData(['comments', articleId], (previous) => {
+        if (!previous) return [];
 
-  useEffect(() => {
-    if (comment) {
-      setCanSubmit(true);
-    } else {
-      setCanSubmit(false);
-    }
-  }, [comment]);
+        return {
+          ...previous,
+          pages: previous.pages.map((page) => ({
+            ...page,
+            comments: page.comments.map((comment) =>
+              comment.id === newComment.id ? newComment : comment
+            ),
+          })),
+        };
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: ['comments', articleId],
+      });
+    },
+  });
 
   return {
-    getComments,
+    uniqueComments,
+    postCommentMutation,
+    updateComment,
     deleteComments,
     postComment,
-    canEdit,
-    canSubmit,
-    loading,
-    cursorIdRef,
-    hasMore,
+    fetchNextPage,
+    isLoading,
+    totalCount,
   };
 }
