@@ -19,7 +19,7 @@ export default function CreateAccount() {
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm({ mode: "onBlur" }); // "onBlur"로 설정해 블러 시점에서 유효성 검사 수행
+  } = useForm({ mode: "onBlur" }); // "onBlur"로 설정, 외부영역 클릭 시 유효성 검사 수행
   const [modalMessage, setModalMessage] = useState(""); // 모달 메시지 상태
   const [showModal, setShowModal] = useState(false); // 모달 표시 상태
 
@@ -110,7 +110,7 @@ export default function CreateAccount() {
             type="text"
             placeholder="닉네임을 입력해주세요"
             {...register("name", {
-              required: "닉네임은 한글로만 작성해 주세요.",
+              required: "닉네임은 한글 3자로 작성해 주세요.",
               validate: validatename,
             })} // react-hook-form으로 닉네임 등록
           />
