@@ -5,10 +5,8 @@ import Link from "next/link";
 import classNames from "classnames";
 
 import Profile from "@/app/components/Profile";
-//temp
-// import { signUp } from "@/lib/api-codeit-auth";
-// import { setAccessToken } from "@/lib/token-codeit";
-// import { setRecentUserId } from "@/lib/user-info";
+import useAuth from "../hooks/useAuth";
+
 import { getMyInfo } from "@/lib/api-codeit-user";
 import { PROFILE_H40 } from "../constants/Profile";
 
@@ -21,22 +19,10 @@ function BtnLogin() {
     "object-cover",
     style["btn-login"]
   );
-  //temp
-  // const tempSignUp = () => {
-  //   signUp({
-  //     email: "test-codeit16@codeit.com",
-  //     nickname: "codeit16",
-  //     password: "!codeit16",
-  //     passwordConfirmation: "!codeit16",
-  //   }).then((data) => {
-  //     setRecentUserId("test-codeit16@codeit.com");
-  //     setAccessToken(data.accessToken);
-  //   });
-  // };
 
   return (
     <Link href="/sign-in" target="_self">
-      <button className={btnSignInClass} /* onClick={tempSignUp}  */ />
+      <button className={btnSignInClass} />
     </Link>
   );
 }
@@ -44,7 +30,8 @@ function BtnLogin() {
 export function HeaderUser() {
   const [profileImgUrl, setPofileImgUrl] = useState(null);
   const [nickname, setNickname] = useState("");
-  const [tempIsSignin, setTempIsSignin] = useState(false);
+
+  const { isSignedIn } = useAuth();
 
   const userInfoClass = classNames("flex", "flex-row", "items-center");
   const userNicknameClass = classNames(
@@ -58,7 +45,7 @@ export function HeaderUser() {
     alert("아직 구현되지 않은 기능입니다");
   };
 
-  const result = tempIsSignin ? (
+  const result = isSignedIn ? (
     <div className={userInfoClass} onClick={handleProfileClick}>
       <Profile type={PROFILE_H40} profileImgUrl={profileImgUrl} />
       <p className={userNicknameClass}>{nickname}</p>
@@ -70,13 +57,11 @@ export function HeaderUser() {
   useEffect(() => {
     getMyInfo()
       .then((data) => {
-        setTempIsSignin(true);
         setPofileImgUrl(data.image);
         setNickname(data.nickname);
       })
       .catch((err) => {
         console.log(err);
-        setTempIsSignin(false);
       });
   }, []);
 
