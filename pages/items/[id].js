@@ -1,8 +1,18 @@
 import styles from "./id.module.css";
 import Image from "next/image";
-import { getProduct, deleteProduct, patchProduct } from "../api/products";
+import {
+  getProduct,
+  deleteProduct,
+  patchProduct,
+  postfavorite,
+} from "../api/products";
 import { useEffect, useState } from "react";
-import { getComments, postComment, patchComment } from "../api/comments";
+import {
+  getComments,
+  postComment,
+  patchComment,
+  deleteComment,
+} from "../api/comments";
 // import { getProfile } from "../api/user";
 import { useRouter } from "next/router";
 import { Modal } from "../../components/modal";
@@ -270,8 +280,14 @@ export default function Market({ id }) {
                   <p>{getTimeDifference(product.createdAt)}</p>
                 </div>
               </div>
-              <button className={styles.favorite}>
-                {product.favoriteCount}
+              <button
+                className={styles.favorite}
+                onClick={async () => {
+                  await postfavorite(id);
+                  router.reload();
+                }}
+              >
+                {"♡" + product.favoriteCount}
               </button>
             </div>
           </div>
@@ -318,7 +334,10 @@ export default function Market({ id }) {
                         수정 하기
                       </li>
                       <li
-                        onClick={() => handleDeleteComment(index, commnetdata)}
+                        onClick={() => {
+                          deleteComment(comment.id);
+                          router.reload();
+                        }}
                       >
                         삭제 하기
                       </li>

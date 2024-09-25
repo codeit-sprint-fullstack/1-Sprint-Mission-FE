@@ -72,3 +72,38 @@ export async function deleteProduct(productId) {
     return error.response;
   }
 }
+export async function deletefavorite(productId) {
+  try {
+    const token = localStorage.getItem("accessToken");
+    const response = await api.delete(`/products/${productId}/favorite`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error.response;
+  }
+}
+export async function postfavorite(productId) {
+  try {
+    const token = localStorage.getItem("accessToken");
+    const response = await api.post(
+      `/products/${productId}/favorite`,
+      {},
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response;
+  } catch (error) {
+    deletefavorite(productId);
+    console.log(error);
+    return error.response;
+  }
+}

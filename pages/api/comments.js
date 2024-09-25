@@ -53,3 +53,19 @@ export async function patchComment(commentId, data) {
     return error.response;
   }
 }
+
+export async function deleteComment(commentId) {
+  try {
+    const token = localStorage.getItem("accessToken");
+    const response = await api.delete(`/comments/${commentId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error.response;
+  }
+}
