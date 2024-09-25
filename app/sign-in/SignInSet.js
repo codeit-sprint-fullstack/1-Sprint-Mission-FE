@@ -37,8 +37,8 @@ export default function SignInSet() {
   const password = watch("password");
 
   const handleSignInBtnClick = () => {
-    signIn({ email: email, password: password }).then((data) => {
-      login();
+    signIn({ email: email, password: password }).then((user) => {
+      login(user);
       router.push("/");
     });
   };

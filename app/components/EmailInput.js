@@ -14,7 +14,9 @@ export default function EmailInput({ label, register, errors }) {
 
   return (
     <div className="sign-in__input-set">
-      <label className="sign-in__label">이메일</label>
+      <label className="sign-in__label" for="email">
+        이메일
+      </label>
       <input
         className={inputClass}
         id="email"

@@ -28,10 +28,7 @@ function BtnLogin() {
 }
 
 export function HeaderUser() {
-  const [profileImgUrl, setPofileImgUrl] = useState(null);
-  const [nickname, setNickname] = useState("");
-
-  const { isSignedIn } = useAuth();
+  const { isSignedIn, userNickname, userProfileUrl, login } = useAuth();
 
   const userInfoClass = classNames("flex", "flex-row", "items-center");
   const userNicknameClass = classNames(
@@ -47,8 +44,8 @@ export function HeaderUser() {
 
   const result = isSignedIn ? (
     <div className={userInfoClass} onClick={handleProfileClick}>
-      <Profile type={PROFILE_H40} profileImgUrl={profileImgUrl} />
-      <p className={userNicknameClass}>{nickname}</p>
+      <Profile type={PROFILE_H40} profileImgUrl={userProfileUrl} />
+      <p className={userNicknameClass}>{userNickname}</p>
     </div>
   ) : (
     <BtnLogin />
@@ -57,8 +54,7 @@ export function HeaderUser() {
   useEffect(() => {
     getMyInfo()
       .then((data) => {
-        setPofileImgUrl(data.image);
-        setNickname(data.nickname);
+        login(data);
       })
       .catch((err) => {
         console.log(err);
