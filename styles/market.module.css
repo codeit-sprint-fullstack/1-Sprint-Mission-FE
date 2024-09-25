@@ -1,191 +1,68 @@
 .marketContainer {
-  padding-top: 70px;
-  padding-bottom: 160px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding-top: 74px;
   box-sizing: border-box;
-  width: 100%;
-}
-.itemImg {
-  width: 486px;
-  height: 486px;
-}
-.marketProductContainer {
-  display: flex;
-  flex-direction: row;
-  width: 1200px;
-  height: 536px;
-  justify-content: center;
-  align-items: center;
-  margin-top: 26px;
-  gap: 16px;
-  margin-top: 40px;
-  border-bottom: 1px solid #e5e7eb;
-}
-.marketProductTitle {
   display: flex;
   flex-direction: column;
-  width: 100%;
-}
-.marketTitle {
-  font-size: 24px;
-  font-weight: 600;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-.marketPrice {
-  font-size: 40px;
-  font-weight: 600;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #e5e7eb;
-}
-.marketContentName {
-  font-size: 16px;
-  font-weight: 600;
-  margin-top: 24px;
-  margin-bottom: 16px;
-}
-.marketContent {
-  font-size: 16px;
-  font-weight: 400;
-  width: 690px;
-  height: 104px;
-  margin-bottom: 24px;
-}
-.marketTagName {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-.marketTag {
-  display: flex;
-  font-size: 16px;
-  font-weight: 400;
-  gap: 8px;
-  margin-bottom: 62px;
-}
-.marketProfile {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
   align-items: center;
-}
-.marketProfileContainer {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.marketArticle {
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  width: 1200px;
+  width: 100%;
   height: 100%;
 }
-.marketArticleTitle {
-  font-size: 16px;
-  font-weight: 600;
-}
-.marketArticleTextarea {
+.marketContent {
   width: 100%;
-  height: 104;
-  margin-top: 9px;
-  margin-bottom: 16px;
-  font-size: 16px;
-  font-weight: 400;
-  resize: none;
-  padding: 16px 24px 16px 24px;
-  border: none;
-  background-color: #f3f4f6;
-  border-radius: 12px;
-  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
 }
 
-.marketArticleBtn {
-  width: 74px;
-  height: 42px;
-  border-radius: 8px;
-  border: none;
-  font-size: 16px;
-  font-weight: 600;
-  color: #f3f4f6;
-  background-color: #9ca3af;
-  position: relative;
-  left: 94%;
-  cursor: pointer;
-  margin-bottom: 24px;
+.marketTitle {
+  text-align: center;
+  margin-bottom: 30px;
 }
-.marketArticleContainer {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 12px;
-  gap: 24px;
-  border-bottom: 1px solid #e5e7eb;
+
+.marketTitle p {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
 }
-.marketArticleContent {
+
+.marketList {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
   justify-content: space-between;
 }
-.marketArticleContentTitle {
-  font-size: 14px;
-  font-weight: 400;
+
+.marketItem {
+  width: calc(33.333% - 20px);
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
-.marketProfileName {
-  font-size: 12px;
-  font-weight: 400;
-}
-.marketArticleProfileName {
-  font-size: 12px;
-  font-weight: 400;
+.marketImg {
+  text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-.marketProfileDate {
-  font-size: 12px;
-  font-weight: 400;
-  margin-bottom: 12px;
-  border-bottom: 1px solid #e5e7eb;
-}
-.marketArticleProfileDate {
-  font-size: 12px;
-  font-weight: 400;
+.marketImg img {
+  border-radius: 8px;
 }
 
-.marketProfileInfo {
-  display: flex;
-  flex-direction: column;
+.marketInfo {
+  padding: 15px;
+  text-align: center;
 }
-.marketArticleProfileInfo {
-  display: flex;
-  flex-direction: column;
+
+.marketInfo p {
+  margin: 10px 0;
+  font-size: 1.2rem;
+  color: #333;
 }
-.marketArticleProfileContainer {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.tag {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  width: auto;
-  font-size: 16px;
-  font-weight: 400;
-  padding: 6px 16px 6px 16px;
-  border-radius: 26px;
-  background-color: #f3f4f6;
-  color: #1f2937;
-}
-.favorite {
-  border-radius: 35px;
-  border-color: #e5e7eb;
-  border: none;
-  width: 87px;
-  height: 40px;
+
+.marketInfo p:last-child {
+  font-size: 1rem;
+  color: #888;
 }
