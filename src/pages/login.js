@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/login.module.css";
 import { signIn } from "../api/authApi";
@@ -9,16 +9,9 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [isButtonActive, setIsButtonActive] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    if (email && password) {
-      setIsButtonActive(true); // 이메일과 비밀번호가 모두 있으면 버튼 활성화
-    } else {
-      setIsButtonActive(false); // 둘 중 하나라도 없으면 버튼 비활성화
-    }
-  }, [email, password]); // email 또는 password가 변경될 때마다 확인
+  const isButtonActive = email && password;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
