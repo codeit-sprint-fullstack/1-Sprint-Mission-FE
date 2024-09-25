@@ -2,7 +2,6 @@ import axios from "axios";
 
 const baseUrl = "https://panda-market-api.vercel.app";
 
-// Axios 인스턴스 생성
 const apiClient = axios.create({
   baseURL: baseUrl,
   headers: {

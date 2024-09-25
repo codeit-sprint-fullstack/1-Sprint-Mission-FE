@@ -16,9 +16,7 @@ export default function ProductDetail({ initialComments, id }) {
   } = useQuery({
     queryKey: ["product", id],
     queryFn: () => {
-      const token = localStorage.getItem("accessToken");
-      if (!token) throw new Error("인증 토큰이 없습니다.");
-      return fetchProduct(id, token);
+      return fetchProduct(id);
     },
   });
 

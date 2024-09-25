@@ -15,9 +15,7 @@ export default function EditItems() {
   } = useQuery({
     queryKey: ["product", id],
     queryFn: () => {
-      const token = localStorage.getItem("accessToken");
-      if (!token) throw new Error("인증 토큰이 없습니다.");
-      return fetchProduct(id, token);
+      return fetchProduct(id);
     },
   });
 
@@ -25,7 +23,7 @@ export default function EditItems() {
     return <div>{error}</div>;
   }
 
-  if (!product) {
+  if (isLoading) {
     return <div>로딩 중...</div>;
   }
 
