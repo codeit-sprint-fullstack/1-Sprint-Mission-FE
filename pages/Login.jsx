@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import AlertModal from "@/components/Modals/AlertModal";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "@/styles/login.module.css";
 import useFormValidation from "@/hooks/useFormValidation";
 import ic_visibility_on from "@/public/images/btn_visibility_on_24px.png";
@@ -60,9 +60,13 @@ function Login() {
     //   router.push("/Folder");
     // }
     if (user) {
-      router.push("/Folder");
+      const interval = setInterval(() => {
+        router.push("/");
+      }, 1000);
+
+      return () => clearInterval(interval);
     }
-  }, []);
+  }, [user, router]);
 
   return (
     <>

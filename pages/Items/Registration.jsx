@@ -51,6 +51,7 @@ function Chips({ tag, onClick, index }) {
 
 function Registration({ product }) {
   const router = useRouter();
+  useAuth();
   const [openAlertModal, setOpenAlertModal] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 

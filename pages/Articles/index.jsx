@@ -151,7 +151,7 @@ function Articles({ defaultParams }) {
   const [articles, setArticles] = useState([]);
   const [keyword, setKeyword] = useState("");
 
-  const { user } = useAuth();
+  useAuth();
 
   const {
     data: articlesData,

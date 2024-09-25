@@ -18,6 +18,7 @@ import Comment from "@/components/Comment";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { RefContext } from "@/pages/_app";
+import useAuth from "@/contexts/authContext";
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
@@ -49,6 +50,7 @@ export async function getServerSideProps(context) {
 function DetailArticle({ article, comments, id }) {
   const router = useRouter();
   const globalDivRef = useContext(RefContext); //무한 스크롤 쿼리용 Ref
+  useAuth();
 
   //게시글  SSR initialData
   const { data: articleData } = useQuery({
@@ -168,7 +170,7 @@ function DetailArticle({ article, comments, id }) {
         observer.disconnect();
       };
     }
-  }, [globalDivRef]);
+  }, [globalDivRef, fetchNextPage]);
 
   return (
     <>

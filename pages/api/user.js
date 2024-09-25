@@ -1,4 +1,4 @@
-import instance from "./httpClient.js/index.js";
+import instance from "./httpClient.js";
 
 export async function getUserMe() {
   const res = await instance.get("/users/me");

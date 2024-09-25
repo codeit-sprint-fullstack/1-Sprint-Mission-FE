@@ -1,4 +1,4 @@
-import instance from "./httpClient.js/index.js";
+import instance from "./httpClient.js";
 
 export async function getArticleComments(id, cursor = 0, limit = 5) {
   const res = await instance.get(`articles/${id}/comments`, {

@@ -1,8 +1,8 @@
-import instance from "./httpClient.js/index.js";
+import instance from "./httpClient.js";
 
 export async function getArticles(params = {}) {
   const res = await instance.get("/articles", {
-    params: { ...params, cursor },
+    params: { ...params },
   });
   return res.data;
 }
