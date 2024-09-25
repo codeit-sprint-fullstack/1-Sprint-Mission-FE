@@ -1,4 +1,5 @@
 import axios from "axios";
+import axiosInstance from "./axiosInstance";
 
 const baseUrl = "https://panda-market-api.vercel.app";
 
@@ -83,11 +84,7 @@ export const logOut = () => {
 // 토큰 갱신 요청
 export const refreshToken = async (refreshToken) => {
   try {
-    const response = await axios({
-      method: "post",
-      url: `${baseUrl}/auth/refresh-token`,
-      data: { refreshToken },
-    });
+    const response = await axiosInstance.post("/auth/refresh-token", { refreshToken });
 
     // 새로 발급된 토큰 저장
     if (response.data.accessToken) {
@@ -102,6 +99,8 @@ export const refreshToken = async (refreshToken) => {
   }
 };
 
+// accessToken 가져오기
 export const getAccessToken = () => {
   return localStorage.getItem("accessToken");
 };
+

@@ -1,25 +1,14 @@
-import axios from "axios";
-
-const baseUrl = "https://panda-market-api.vercel.app";
+import axiosInstance from "./axiosInstance";
 
 // 현재 유저 정보 조회
 export const getCurrentUser = async () => {
-  const response = await axios({
-    method: "get",
-    url: `${baseUrl}/users/me`,
-  });
+  const response = await axiosInstance.get("/users/me");
   return response.data;
 };
 
 // 유저 정보 업데이트 (이미지 변경)
 export const updateUser = async (image) => {
-  const response = await axios({
-    method: "patch",
-    url: `${baseUrl}/users/me`,
-    data: {
-      image: image,
-    },
-  });
+  const response = await axiosInstance.patch("/users/me", { image: image });
   return response.data;
 };
 
@@ -29,14 +18,10 @@ export const updatePassword = async (
   password,
   passwordConfirmation
 ) => {
-  const response = await axios({
-    method: "patch",
-    url: `${baseUrl}/users/me/password`,
-    data: {
-      currentPassword: currentPassword,
-      password: password,
-      passwordConfirmation: passwordConfirmation,
-    },
+  const response = await axiosInstance.patch("/users/me/password", {
+    currentPassword: currentPassword,
+    password: password,
+    passwordConfirmation: passwordConfirmation,
   });
   return response.data;
 };
@@ -47,14 +32,8 @@ export const getUserProducts = async (
   pageSize = 10,
   keyword = ""
 ) => {
-  const response = await axios({
-    method: "get",
-    url: `${baseUrl}/users/me/products`,
-    params: {
-      page: page,
-      pageSize: pageSize,
-      keyword: keyword,
-    },
+  const response = await axiosInstance.get("/users/me/products", {
+    params: { page: page, pageSize: pageSize, keyword: keyword },
   });
   return response.data;
 };
@@ -65,14 +44,8 @@ export const getUserFavorites = async (
   pageSize = 10,
   keyword = ""
 ) => {
-  const response = await axios({
-    method: "get",
-    url: `${baseUrl}/users/me/favorites`,
-    params: {
-      page: page,
-      pageSize: pageSize,
-      keyword: keyword,
-    },
+  const response = await axiosInstance.get("/users/me/favorites", {
+    params: { page: page, pageSize: pageSize, keyword: keyword },
   });
   return response.data;
 };
