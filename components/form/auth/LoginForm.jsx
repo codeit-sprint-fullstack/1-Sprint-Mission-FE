@@ -10,20 +10,47 @@ import { useModal } from "@/hooks/useModal";
 
 export default function LoginForm() {
   const formMethods = useForm();
-  const { login } = useAuth();
-  const { isModalOpen, onModalClose, onModalOpen, onModalConfirm } = useModal();
+  const { logIn } = useAuth();
+
+  const {
+    isModalOpen,
+    modalRef,
+    onModalConfirm,
+    onModalOpen,
+    onModalClose,
+    modalMsg,
+  } = useModal();
 
   const {
     handleSubmit,
     formState: { isValid },
+    reset,
   } = formMethods;
 
-  const handleLoginSubmit = () => {
-    login();
+  const handleLoginSubmit = (data) => {
+    logIn.mutate(data, {
+      onSuccess: () => {
+        console.log("로그인 됨");
+        reset();
+      },
+      onError: (error) => {
+        console.error(error.message, error.status);
+        onModalOpen(error.message || "로그인 오류가 발생했습니다");
+      },
+    });
   };
 
   return (
     <>
+      {isModalOpen && (
+        <Modal
+          ref={modalRef}
+          msg={modalMsg}
+          onClose={
+            logIn.isError ? () => onModalClose() : () => onModalConfirm("/")
+          }
+        />
+      )}
       <FormProvider {...formMethods}>
         <form
           className={styles.AuthForm}

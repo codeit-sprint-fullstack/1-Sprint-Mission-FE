@@ -2,7 +2,7 @@ import { createLogIn, createUser } from "@/service/api/auth";
 import { getUserMe } from "@/service/api/user";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect } from "react";
 
 const AuthContext = createContext({
   user: null,
@@ -43,10 +43,9 @@ export function AuthProvider({ children }) {
 
       queryClient.invalidateQueries("user");
       getMe();
-      router.push("/products");
     },
     onError: (error) => {
-      console.log(error);
+      console.log(error.message);
     },
   });
 

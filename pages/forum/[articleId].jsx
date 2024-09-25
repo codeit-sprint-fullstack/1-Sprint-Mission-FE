@@ -9,7 +9,6 @@ import { articleKey } from "@/variables/queryKeys";
 import CommentForm from "@/components/form/CommentForm";
 import ReturnToListBtn from "@/components/ui/ReturnToListBtn";
 import styles from "@/styles/pages/forum/main.module.scss";
-import { useEffect } from "react";
 import { useAuth } from "@/context/AuthProvider";
 
 export async function getServerSideProps(context) {
