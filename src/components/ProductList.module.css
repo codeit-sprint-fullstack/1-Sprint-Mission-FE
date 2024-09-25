@@ -6,7 +6,7 @@
 
 .productList {
   display: grid;
-  gap: 24px;
-  justify-content: center;
+  grid-template-columns: repeat(5, 1fr); /* 한 줄에 5개씩 배치 */
+  gap: 40px;
   padding-inline-start: 0;
 }

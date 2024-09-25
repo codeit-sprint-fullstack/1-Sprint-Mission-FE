@@ -15,19 +15,16 @@ function useProductList(order, initialCursor) {
     try {
       setLoadingError(null);
       const response = await getProductList({ order, cursor, limit: LIMIT });
-      const { paging, list, totalCount } = response;
 
       // 응답 데이터의 구조 확인
       console.log("받아온 객체:", response);
-      console.log("list:", response.list);
-      console.log("paging:", response.paging);
-      console.log("totalCount:", response.totalCount);
 
-      if (Array.isArray(response)) {
-        setProducts(response); // 전체 상품 목록 설정
-        setCursor(paging ? paging.nextCursor : null);
-        setHasNext(paging ? paging.hasNext : false);
-        setTotalPages(totalCount ? Math.ceil(totalCount / LIMIT) : 5);
+      // response.list가 상품 목록이므로 이를 상태에 저장
+      if (Array.isArray(response.list)) {
+        setProducts(response.list); // 전체 상품 목록 설정
+        setCursor(null); // cursor는 사용하지 않음
+        setHasNext(false); // 더 이상의 페이지가 없으므로 false로 설정
+        setTotalPages(Math.ceil(response.totalCount / LIMIT)); // 전체 페이지 수 계산
       } else {
         throw new Error("상품 목록 데이터가 유효하지 않습니다.");
       }
@@ -37,7 +34,7 @@ function useProductList(order, initialCursor) {
   }, [order, cursor]);
 
   useEffect(() => {
-    fetchProducts(1); // 초기 로드
+    fetchProducts(); // 초기 로드
   }, [order, cursor, fetchProducts]);
 
   return { products, hasNext, loadingError, totalPages, fetchProducts };
