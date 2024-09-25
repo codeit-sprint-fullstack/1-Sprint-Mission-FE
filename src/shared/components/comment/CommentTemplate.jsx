@@ -1,6 +1,6 @@
 import moment from 'moment/moment';
 import Image from 'next/image';
-import styles from '@shared/components/article/comment/CommentList.module.css';
+import styles from '@shared/components/comment/CommentTemplate.module.css';
 import ActionDropdown from '@shared/components/dropdowns/ActionDropdown';
 
 export default function CommentList({ comment }) {

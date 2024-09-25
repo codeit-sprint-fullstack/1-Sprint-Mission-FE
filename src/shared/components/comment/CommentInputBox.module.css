@@ -1,0 +1,15 @@
+.comment-title {
+  width: 1200px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 32px;
+  margin-bottom: 9px;
+  color: var(--color-cool-gray-900);
+}
+
+.button-container {
+  width: 1200px;
+  display: flex;
+  justify-content: right;
+  margin-top: 16px;
+}
