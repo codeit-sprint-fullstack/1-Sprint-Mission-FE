@@ -37,3 +37,19 @@ export async function postComment(productId, data) {
     return error.response;
   }
 }
+
+export async function patchComment(commentId, data) {
+  try {
+    const token = localStorage.getItem("accessToken");
+    const response = await api.patch(`/comments/${commentId}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error.response;
+  }
+}

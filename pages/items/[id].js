@@ -2,7 +2,7 @@ import styles from "./id.module.css";
 import Image from "next/image";
 import { getProduct, deleteProduct, patchProduct } from "../api/products";
 import { useEffect, useState } from "react";
-import { getComments, postComment } from "../api/comments";
+import { getComments, postComment, patchComment } from "../api/comments";
 // import { getProfile } from "../api/user";
 import { useRouter } from "next/router";
 import { Modal } from "../../components/modal";
@@ -22,6 +22,7 @@ export default function Market({ id }) {
       description: "",
       price: "",
       tags: "",
+      content: "",
     });
   const [product, setProduct] = useState([]);
   const [comment, setComment] = useState([]);
@@ -31,6 +32,8 @@ export default function Market({ id }) {
   const [commentData, setCommentData] = useState({});
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const [CheckModal, setCheckModal] = useState(false);
+  const [isCommentsModalOpen, setIsCommentsModalOpen] = useState(false);
+  const [commentId, setCommentId] = useState();
 
   const router = useRouter();
   useEffect(() => {
@@ -97,6 +100,26 @@ export default function Market({ id }) {
       return `${diffInDays}일 전`;
     }
   };
+
+  const commentSubmitForm = async () => {
+    console.log(commentId);
+    try {
+      const res = await patchComment(commentId, {
+        content: values.content,
+      });
+      if (res && res.status === 200) {
+        resetForm();
+        console.log("수정 성공", res.data);
+        router.reload();
+        setIsCommentsModalOpen(false);
+      } else {
+        console.log("수정 실패", res.data);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const submitForm = async () => {
     try {
       const res = await patchProduct(id, {
@@ -156,6 +179,23 @@ export default function Market({ id }) {
             value={values.tags}
             onChange={handleChange}
           ></textarea>
+          <button>수정</button>
+        </form>
+      </Modal>
+      <Modal
+        isModalOpen={isCommentsModalOpen}
+        onClose={() => setIsProductModalOpen(false)}
+      >
+        <form onSubmit={handleSubmit(commentSubmitForm)}>
+          <p>댓글 수정</p>
+
+          <p>댓글 내용</p>
+          <textarea
+            name="content"
+            value={values.content}
+            onChange={handleChange}
+          ></textarea>
+
           <button>수정</button>
         </form>
       </Modal>
@@ -270,7 +310,10 @@ export default function Market({ id }) {
                   {openComments[index] && (
                     <ul className={styles.menu}>
                       <li
-                        onClick={() => handlepatchComment(index, commnetdata)}
+                        onClick={() => {
+                          setCommentId(comment.id);
+                          setIsCommentsModalOpen(!isCommentsModalOpen);
+                        }}
                       >
                         수정 하기
                       </li>
