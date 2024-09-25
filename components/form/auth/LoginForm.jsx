@@ -47,7 +47,9 @@ export default function LoginForm() {
           ref={modalRef}
           msg={modalMsg}
           onClose={
-            logIn.isError ? () => onModalClose() : () => onModalConfirm("/")
+            logIn.isError
+              ? () => onModalClose()
+              : () => onModalConfirm("/products")
           }
         />
       )}

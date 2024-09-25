@@ -7,8 +7,8 @@ import { createContext, useContext, useEffect } from "react";
 const AuthContext = createContext({
   user: null,
   isLoading: false,
-  login: () => {},
-  logout: () => {},
+  logIn: () => {},
+  logOut: () => {},
 });
 
 export function AuthProvider({ children }) {
