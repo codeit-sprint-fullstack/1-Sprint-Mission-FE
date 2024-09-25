@@ -9,7 +9,7 @@ import Comment from "@/components/comment";
 export default function Article() {
   const [article, setArticle] = useState();
   const [comment, setComment] = useState();
-  const [form, setForm] = useState({ content: "" }); // 댓글 입력 상태 관리
+  const [form, setForm] = useState({ content: "" });
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const { id } = router.query;

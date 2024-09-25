@@ -3,7 +3,7 @@
   height: 70px;
   border-bottom: solid 1px #dfdfdf;
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   background-color: white;
   top: 0;
 }
@@ -49,6 +49,7 @@
   text-align: center;
   padding: 11.5px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .logo {

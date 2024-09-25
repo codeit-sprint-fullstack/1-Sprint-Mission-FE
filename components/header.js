@@ -21,7 +21,9 @@ export default function Header() {
             <div className={styles.link}>중고마켓</div>
           </div>
         </div>
-        <div className={styles.login}>로그인</div>
+        <Link href="/login" className={styles.login}>
+          로그인
+        </Link>
       </div>
     </div>
   );
