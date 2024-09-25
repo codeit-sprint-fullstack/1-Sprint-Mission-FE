@@ -42,3 +42,18 @@ export async function postProduct(data) {
     return error.response;
   }
 }
+
+export async function deleteProduct(productId) {
+  try {
+    const token = localStorage.getItem("accessToken");
+    const response = await api.delete(`/products/${productId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+}

@@ -155,7 +155,8 @@ export default function Market({ id }) {
             className={styles.marketArticleBtn}
             onClick={() => {
               postComment(product.id, { content: commentData });
-              router.push(`/items/${product.id}`);
+              // router.push(`/items/${product.id}`);
+              router.reload();
             }}
           >
             등록

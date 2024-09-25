@@ -16,16 +16,17 @@ export default function Main() {
         style={{
           marginTop: "300px",
           marginLeft: "300px",
-          width: "100px",
-          height: "50px",
+          width: "200px",
+          height: "100px",
           backgroundColor: "black",
           border: "none",
           borderRadius: "10px",
           color: "white",
+          fontSize: "20px",
         }}
         onClick={() => postProduct(data)}
       >
-        제품 등록
+        중고마켓 상품등록
       </button>
     </div>
   );

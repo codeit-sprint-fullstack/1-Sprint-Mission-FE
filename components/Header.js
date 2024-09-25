@@ -13,22 +13,23 @@ export default function Header() {
     // 비동기 함수 정의
     const fetchProfile = async () => {
       const token = localStorage.getItem("accessToken");
-      if (token && token.length > 0) {
-        setIsLogin(true); // 로그인 상태로 변경
-        try {
-          const profile = await getProfile(); // 비동기 함수 호출
-          setUserData(profile); // 프로필 데이터를 상태로 저장
-        } catch (error) {
-          console.error("프로필 정보를 가져오는 중 오류 발생:", error);
+      try {
+        const profile = await getProfile(); // 비동기 함수 실행
+        setUserData(profile); // 프로필 데이터를 저장
+        if (profile) {
+          setIsLogin(true); // 로그인 상태로 변경
+        } else {
+          setIsLogin(false); // 로그아웃 상태로 변경
         }
-      } else {
-        setIsLogin(false); // 로그아웃 상태로 변경
+      } catch (error) {
+        console.error("개인 정보를 가져오는 중 오류 발생:", error);
       }
     };
 
     // 비동기 함수 호출
     fetchProfile();
-  }, [isLogin]);
+  }, []);
+
   return (
     <div className={styles.Header}>
       <div className={styles.HeaderImgContainer}>
