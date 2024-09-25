@@ -7,6 +7,19 @@ const api = axios.create({
   },
 });
 
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 // api/comments.js
 export async function getComments(productId, limit) {
   try {
@@ -25,12 +38,7 @@ export async function getComments(productId, limit) {
 export async function postComment(productId, data) {
   try {
     const token = localStorage.getItem("accessToken");
-    const response = await api.post(`/products/${productId}/comments`, data, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await api.post(`/products/${productId}/comments`, data);
     return response;
   } catch (error) {
     console.log(error);
@@ -41,12 +49,7 @@ export async function postComment(productId, data) {
 export async function patchComment(commentId, data) {
   try {
     const token = localStorage.getItem("accessToken");
-    const response = await api.patch(`/comments/${commentId}`, data, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await api.patch(`/comments/${commentId}`, data);
     return response;
   } catch (error) {
     console.log(error);
@@ -57,12 +60,7 @@ export async function patchComment(commentId, data) {
 export async function deleteComment(commentId) {
   try {
     const token = localStorage.getItem("accessToken");
-    const response = await api.delete(`/comments/${commentId}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await api.delete(`/comments/${commentId}`);
     return response;
   } catch (error) {
     console.log(error);

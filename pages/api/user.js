@@ -7,6 +7,19 @@ const api = axios.create({
   },
 });
 
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 export async function PostSignup(data) {
   try {
     const response = await api.post("/auth/signup", data);
@@ -45,11 +58,7 @@ export async function refreshAccessToken() {
 export async function getProfile() {
   try {
     const token = localStorage.getItem("accessToken");
-    const response = await api.get("/users/me", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await api.get("/users/me");
     return response.data;
   } catch (error) {
     if (error.response && error.response.status === 401) {
@@ -57,11 +66,7 @@ export async function getProfile() {
       try {
         const newAccessToken = await refreshAccessToken(); // 새로운 accessToken 발급
         // 새로운 토큰으로 다시 요청
-        const retryResponse = await api.get("/users/me", {
-          headers: {
-            Authorization: `Bearer ${newAccessToken}`,
-          },
-        });
+        const retryResponse = await api.get("/users/me");
         return retryResponse.data;
       } catch (refreshError) {
         console.error("재시도 중 오류 발생", refreshError);
