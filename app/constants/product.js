@@ -1,4 +1,4 @@
 /** products items count */
-const PAGE_SIZE = [10, 6, 4];
+export const PAGE_SIZE = [10, 6, 4];
 /** best products items count */
-const BEST_PAGE_SIZE = [4, 2, 1];
+export const BEST_PAGE_SIZE = [4, 2, 1];

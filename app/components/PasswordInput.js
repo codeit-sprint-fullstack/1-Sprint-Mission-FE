@@ -29,7 +29,7 @@ export default function PasswordInput({ label, register, errors }) {
 
   return (
     <div className="sign-in__input-set">
-      <label className="sign-in__label" for="password">
+      <label className="sign-in__label" htmlFor="password">
         비밀번호
       </label>
       <div className="sign-in__input-frame">

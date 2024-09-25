@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import classNames from "classnames";
 
@@ -30,7 +30,12 @@ function BtnLogin() {
 export function HeaderUser() {
   const { isSignedIn, userNickname, userProfileUrl, login } = useAuth();
 
-  const userInfoClass = classNames("flex", "flex-row", "items-center");
+  const userInfoClass = classNames(
+    "flex",
+    "flex-row",
+    "items-center",
+    "cursor-pointer"
+  );
   const userNicknameClass = classNames(
     "text-2lg",
     "leading-26",
@@ -44,7 +49,11 @@ export function HeaderUser() {
 
   const result = isSignedIn ? (
     <div className={userInfoClass} onClick={handleProfileClick}>
-      <Profile type={PROFILE_H40} profileImgUrl={userProfileUrl} />
+      <Profile
+        type={PROFILE_H40}
+        profileImgUrl={userProfileUrl}
+        onClick={handleProfileClick}
+      />
       <p className={userNicknameClass}>{userNickname}</p>
     </div>
   ) : (

@@ -51,7 +51,7 @@ export function Header() {
       </Link>
       <Nav>
         <NavItem linkto="/bulletin-board">자유게시판</NavItem>
-        <NavItem linkto="/flea-market">중고마켓</NavItem>
+        <NavItem linkto="/items">중고마켓</NavItem>
       </Nav>
       <HeaderUser />
     </div>

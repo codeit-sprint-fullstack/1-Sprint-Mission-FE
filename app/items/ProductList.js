@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import classNames from "classnames";
@@ -9,6 +9,7 @@ import Loading from "../components/Loading";
 import Search from "../components/Search";
 import ProductPreview from "./ProductPreview";
 import { getProducts } from "@/lib/api-codeit-product";
+import { deviceContext } from "./FleaMarketDetail";
 
 import {
   ORDER_TEXT,
@@ -17,11 +18,14 @@ import {
   ORDER_BY_FAVORITE,
 } from "../constants/sort";
 import { PAGE_SIZE } from "../constants/product";
+import { PC } from "../constants/device";
 
 import style from "./product-list.module.css";
 
 export default function ProductList({ initList, initTotalCount }) {
-  let device = useContext(deviceContext);
+  // let contextDevice = useContext(deviceContext);
+  // const [device, setDevice] = useState(contextDevice || 0);
+  let device = useContext(deviceContext) || PC;
   let maxPageNum = Math.ceil(initTotalCount / PAGE_SIZE[device]);
   const [keyword, setKeyword] = useState("");
   let currentOrder = ORDER_BY_RECENT;
@@ -37,7 +41,9 @@ export default function ProductList({ initList, initTotalCount }) {
     data = { list: initList, totalCount: initTotalCount },
     isLoading,
     error,
-  } = useQuery(["products", params], () => getProducts(params), {
+  } = useQuery({
+    queryKey: ["products", params],
+    queryFn: () => getProducts(params),
     keepPreviousData: true,
   });
 
@@ -89,7 +95,7 @@ export default function ProductList({ initList, initTotalCount }) {
     style["btn-link-regist"]
   );
   const dropdownClass = classNames("mobile:order-4");
-  const productListFrame = className(
+  const productListFrame = classNames(
     "mt-2.4rem",
     "grid-cols-5",
     "gap-y-4rem",

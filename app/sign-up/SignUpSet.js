@@ -27,7 +27,7 @@ export function NicknameInput({ label, register, errors }) {
 
   return (
     <div className="sign-in__input-set">
-      <label className="sign-in__label" for="nickname">
+      <label className="sign-in__label" htmlFor="nickname">
         닉네임
       </label>
       <input
@@ -77,7 +77,7 @@ function PasswordConfirmInput({ label, register, errors }) {
 
   return (
     <div className="sign-in__input-set">
-      <label className="sign-in__label" for="passwordConfirm">
+      <label className="sign-in__label" htmlFor="passwordConfirm">
         비밀번호 확인
       </label>
       <div className="sign-in__input-frame">

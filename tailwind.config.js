@@ -244,6 +244,27 @@ module.exports = {
   plugins: [
     function ({ addComponents }) {
       addComponents({
+        ".main": {
+          marginTop: "7rem",
+          marginLeft: "auto",
+          marginRight: "auto",
+          paddingTop: "3.2rem",
+          "@screen tablet": {
+            paddingTop: "2.4rem",
+          },
+          "@screen mobile": {
+            paddingTop: "2.4rem",
+          },
+        },
+        ".content": {
+          width: "120rem",
+          "@screen tablet": {
+            width: "69.6rem",
+          },
+          "@screen mobile": {
+            width: "34.3rem",
+          },
+        },
         ".sign-in__main": {
           display: "flex",
           flexDirection: "column",
