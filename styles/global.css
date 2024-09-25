@@ -40,9 +40,9 @@ body {
 
 .page-container {
   position: relative;
-  width: var(--desktop-width);
-  height: var(--desktop-height);
-  margin: 0 auto;
+  width: 1200px; /* Fixed */
+  height: 827px; /* Fixed */
+  margin: 94px auto 0; /* Top: 94px, Center horizontally */
   background-color: #f5f5f5;
 }
 
@@ -59,7 +59,7 @@ body {
   align-items: center;
 }
 
-/* PC 레이아웃 (1200px ��상) */
+/* PC 레이아웃 (1200px 상) */
 @media (min-width: 1200px) {
   .content-container {
     max-width: 1200px;

@@ -55,28 +55,35 @@
 
 .productGrid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, 1fr); /* 5개 열로 고정 */
   gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .productItem {
   text-decoration: none;
   color: inherit;
+  display: flex;
+  flex-direction: column; /* 세로 방향으로 정렬 */
+  align-items: center; /* 중앙 정렬 */
 }
 
 .imageContainer {
   position: relative;
   width: 100%;
-  padding-bottom: 100%; /* 1:1 비율 유지 */
+  overflow: hidden; /* 이미지가 컨테이너를 넘지 않도록 설정 */
 }
 
 .productName {
   font-size: 16px;
-  margin: 10px 0 5px;
+  margin-bottom: 5px; /* 세로 간격 5px 추가 */
 }
 
 .productPrice {
   font-weight: bold;
+  margin-bottom: 5px; /* 세로 간격 5px 추가 */
 }
 
 .favoriteCount {
@@ -113,4 +120,11 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+}
+
+/* 페이지네이션이 3페이지 이상일 때 이미지 크기 조정 */
+@media (max-width: 1199px) {
+  .productGrid {
+    grid-template-columns: repeat(3, 1fr); /* 3개 열로 변경 */
+  }
 }

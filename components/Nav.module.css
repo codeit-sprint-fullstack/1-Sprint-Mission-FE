@@ -7,6 +7,7 @@
   border-bottom: 1px solid #dfdfdf;
   position: fixed;
   top: 0;
+  padding: 32px 300px;
   background-color: white;
   z-index: 1; /* 다른 요소들보다 위에 표시 */
 }
@@ -16,8 +17,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px; /* 좌우 패딩을 줄여 단순화 */
-  max-width: 1200px; /* 최대 너비를 1200px로 설정 */
   margin: 0 auto;
   height: 100%;
 }

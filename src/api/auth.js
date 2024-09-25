@@ -39,6 +39,7 @@ export const logIn = async (userData) => {
     }
 
     const data = await response.json();
+    console.log("로그인 성공:", data); // 로그인 성공 시 데이터 출력
     return data;
   } catch (error) {
     console.error("로그인 요청 중 오류 발생:", error);

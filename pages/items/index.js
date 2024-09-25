@@ -123,7 +123,9 @@ const ItemsPage = () => {
                   <Image
                     src={item.images[0] || "/placeholder-image.jpg"}
                     alt={item.name}
-                    layout="fill"
+                    // layout 속성을 제거했습니다.
+                    width={220} // 고정된 너비
+                    height={220} // 고정된 높이
                     objectFit="cover"
                   />
                 </div>

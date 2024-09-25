@@ -31,6 +31,7 @@ const Login = () => {
     try {
       const response = await logIn(data); // data는 이미 {email, password} 형식
       localStorage.setItem("accessToken", response.accessToken);
+      console.log("로그인 후 accessToken 저장:", response.accessToken); // accessToken 저장 확인
       router.push("/items");
     } catch (error) {
       console.error("로그인 실패:", error);

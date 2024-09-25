@@ -3,23 +3,30 @@
 .footer {
   background-color: #111827;
   color: #9ca3af;
+  width: 100%; /* Fixed */
+  height: 160px; /* Fixed */
+  padding: 32px 200px;
+  font-size: 16px;
+  position: absolute;
+  top: 1628px;
+}
+
+.footerContent {
+  width: 1520px; /* Fill */
+  height: 20px; /* Hug */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%; /* 화면 전체 너비로 변경 */
-  height: 160px;
-  padding: 32px 200px; /* 상하 32px, 좌우 200px */
-  font-size: 16px;
-  margin-top: auto;
+  margin: 0 auto;
 }
 
 .footerMenu {
   display: flex;
-  gap: 10px; /* 간격 10px로 수정 */
+  gap: 10px;
   color: var(--gray-200);
 }
 
 .socialMedia {
   display: flex;
-  gap: 10px; /* 간격 10px로 수정 */
+  gap: 10px;
 }
