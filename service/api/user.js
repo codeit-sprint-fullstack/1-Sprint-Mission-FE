@@ -11,15 +11,6 @@ export async function getUserMe() {
   }
 }
 
-export async function updateUser(data) {
-  try {
-    const res = await axios.post(ENDPOINT, data);
-    return res.data;
-  } catch (error) {
-    console.error("Api error", error.message, error?.status);
-  }
-}
-
 export async function updateUserProfile(data) {
   try {
     const res = await axios.patch(ENDPOINT, data);
