@@ -31,6 +31,8 @@ module.exports = {
         onahau: "#cfe5ff",
         "royal-blue": "#2f80ed",
         alabaster: "#fcfcfc",
+        solitude: "#E6F2FF",
+        "dodger-blue": "#3182F6",
         background: "#ffffff",
         foreground: "#171717",
       },
@@ -83,6 +85,9 @@ module.exports = {
         "btn-link-regist": "13.3rem",
         // btn-page
         "btn-page": "4rem",
+        // simple-sign-in
+        "simple-sign-in": "64rem",
+        "mobile-simple-sign-in": "34.3rem",
       },
       height: {
         tool42: "4.2rem",
@@ -130,6 +135,8 @@ module.exports = {
         "product-preview-info": "8rem",
         // btn-page
         "btn-page": "4rem",
+        // simple-sign-in
+        "simple-sign-in": "7.4rem",
       },
       fontSize: {
         base: "10px",
@@ -138,6 +145,7 @@ module.exports = {
         xl: "2rem",
         "2lg": "1.8rem",
         lg: "1.6rem",
+        "1.5rem": "1.5rem",
         md: "1.4rem",
         sm: "1.3rem",
         xs: "1.2rem",
@@ -219,6 +227,8 @@ module.exports = {
           "url('/buttons/btn_sign_in_disabled_w640.svg')",
         "sign-in__btn--mobile--disabled":
           "url('/buttons/btn_sign_in_disabled_w343.svg')",
+        "oauth-btn__google": "url('/buttons/btn_google.svg')",
+        "oauth-btn__kakao": "url('/buttons/btn_kakao.svg')",
       },
       borderColor: {
         "input--focus": "#3692FF",
@@ -335,6 +345,11 @@ module.exports = {
         },
         ".invalid-border": {
           borderColor: "#F74747",
+        },
+        ".oauth-btn": {
+          width: "4.2rem",
+          height: "4.2rem",
+          borderRadius: "50%",
         },
       });
     },

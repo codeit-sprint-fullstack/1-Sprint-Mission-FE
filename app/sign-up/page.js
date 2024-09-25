@@ -1,38 +1,42 @@
 import Link from "next/link";
 import classNames from "classnames";
 
-import style from "./sign-up.module.css";
+import SignUpSet from "./SignUpSet";
+import SimpleSignIn from "../components/SimpleSignIn";
 
 export default function SignUpPage() {
-  const signUpClass = classNames(
+  const extraTextSetClass = classNames(
     "flex",
-    "flex-col",
-    "mt-sign-in-mt",
-    "mb-sign-in-mb",
-    "tablet:tablet-mt-sign-in-mt",
-    "tablet:tablet-mb-sign-in-mb",
-    "mobile:mobile-mt-sign-in-mt",
-    "mobile:mobile-mb-sign-in-mb",
-    "mx-auto"
+    "flex-row",
+    "items-center",
+    "justify-center",
+    "gap-0.4rem",
+    "mt-2.4rem"
   );
-  const linkBtnLogoClass = classNames(
-    "mx-auto",
-    "w-btn-logo",
-    "h-btn-logo",
-    "mobile:w-mobile-btn-logo",
-    "mobile:h-mobile-btn-logo"
+  const extraTextClass = classNames(
+    "text-1.5rem",
+    "text-gray-800",
+    "font-medium"
   );
-  const btnLogoClass = classNames(
-    "w-btn-logo",
-    "h-btn-logo",
-    "mobile:w-mobile-btn-logo",
-    "mobile:h-mobile-btn-logo"
+  const linkTextClass = classNames(
+    "text-1.5rem",
+    "font-medium",
+    "text-dodger-blue",
+    "underline"
   );
   return (
-    <div className={signUpClass}>
-      <Link className={linkBtnLogoClass}>
-        <button className="btn-sign-in-logo" />
+    <div className="sign-in__main">
+      <Link className={"sign-in__btn-logo-frame"} href="/">
+        <button className="sign-in__btn-logo" />
       </Link>
+      <SignUpSet />
+      <SimpleSignIn />
+      <div className={extraTextSetClass}>
+        <p className={extraTextClass}>이미 가입하셨나요?</p>
+        <Link className={linkTextClass} href="/sign-in">
+          로그인하기
+        </Link>
+      </div>
     </div>
   );
 }
