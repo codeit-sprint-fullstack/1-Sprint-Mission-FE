@@ -26,9 +26,11 @@ export default function Market({ id }) {
   const [product, setProduct] = useState([]);
   const [comment, setComment] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [openComments, setOpenComments] = useState({});
   // const [userData, setUserData] = useState({});
   const [commentData, setCommentData] = useState({});
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
+  const [CheckModal, setCheckModal] = useState(false);
 
   const router = useRouter();
   useEffect(() => {
@@ -107,13 +109,19 @@ export default function Market({ id }) {
         resetForm();
         console.log("수정 성공", res.data);
         setIsProductModalOpen(false);
-        router.reload();
+        setCheckModal(true);
       } else {
         console.log("수정 실패", res.data);
       }
     } catch (e) {
       console.log("에러", e);
     }
+  };
+  const handleCommentToggle = (index) => {
+    setOpenComments((prevState) => ({
+      ...prevState,
+      [index]: !prevState[index], // 클릭된 인덱스의 상태만 토글
+    }));
   };
 
   return (
@@ -150,6 +158,13 @@ export default function Market({ id }) {
           ></textarea>
           <button>수정</button>
         </form>
+      </Modal>
+      <Modal
+        isModalOpen={CheckModal}
+        onClose={() => setCheckModal(!CheckModal)}
+      >
+        <p>성공 했습니다.</p>
+        <button onClick={() => setCheckModal(!CheckModal)}>확인</button>
       </Modal>
       <div className={styles.marketContainer}>
         <div className={styles.marketProductContainer}>
@@ -245,7 +260,27 @@ export default function Market({ id }) {
                   <p className={styles.marketArticleContentTitle}>
                     {comment.content}
                   </p>{" "}
-                  <Image src="/kebab-btn.svg" width={20} height={20} />
+                  <Image
+                    onClick={() => handleCommentToggle(index)}
+                    src="/kebab-btn.svg"
+                    width={24}
+                    height={24}
+                    className={styles.commentMenu}
+                  ></Image>
+                  {openComments[index] && (
+                    <ul className={styles.menu}>
+                      <li
+                        onClick={() => handlepatchComment(index, commnetdata)}
+                      >
+                        수정 하기
+                      </li>
+                      <li
+                        onClick={() => handleDeleteComment(index, commnetdata)}
+                      >
+                        삭제 하기
+                      </li>
+                    </ul>
+                  )}
                 </div>
                 <div className={styles.marketArticleProfileContainer}>
                   <div>

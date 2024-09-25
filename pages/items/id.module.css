@@ -131,6 +131,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
 }
 .marketArticleContentTitle {
   font-size: 14px;
@@ -306,3 +307,12 @@
   cursor: pointer;
   background-color: #ffffff;
 } */
+.commentMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  position: absolute;
+  right: 0;
+}

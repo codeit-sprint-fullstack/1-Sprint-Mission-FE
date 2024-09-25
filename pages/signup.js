@@ -3,16 +3,28 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { postsignup } from "./api/user";
 import SignupForm from "../components/SignupForm.js";
+import { Modal } from "../components/modal";
 
 export default function Signup() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <>
+      <Modal
+        isModalOpen={isModalOpen}
+        onClose={() => setIsModalOpen(!isModalOpen)}
+      >
+        <p>회원가입 실패 했어요!! 아직 에러코드 못내렸어요 콘솔창확인!</p>
+        <button onClick={() => setIsModalOpen(!isModalOpen)}>확인</button>
+      </Modal>
       <div className={styles.signupContainer}>
         <div className={styles.signupForm}>
           <div className={styles.logoImg}>
             <Image src="./logo.svg" alt="logo" fill={true} />
           </div>
-          <SignupForm />
+          <SignupForm
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+          />
 
           <div className={styles.simpleLogin}>
             <p>간편 로그인하기</p>

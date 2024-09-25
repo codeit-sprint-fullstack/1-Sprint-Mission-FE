@@ -4,7 +4,7 @@ import styles from "./SignupForm.module.css";
 import Image from "next/image";
 import { PostSignup } from "../pages/api/user.js";
 
-const SignupForm = () => {
+const SignupForm = ({ isModalOpen, setIsModalOpen }) => {
   const { values, handleChange, handleSubmit, resetForm, isSubmitting } =
     useForm({
       email: "",
@@ -69,8 +69,10 @@ const SignupForm = () => {
           console.log("회원가입 성공", res.data);
         } else {
           console.log("회원가입 실패", res.data);
+          setIsModalOpen(true);
         }
       } catch (e) {
+        setIsModalOpen(true);
         console.log("에러", e);
       }
     }
@@ -145,7 +147,7 @@ const SignupForm = () => {
       </div>
 
       <button className={styles.button} type="submit">
-        로그인
+        회원가입
       </button>
     </form>
   );
