@@ -60,6 +60,8 @@ function Login() {
     //   router.push("/Folder");
     // }
     if (user) {
+      //useRouter의 의존선의 리렌더링이 많이 되는문제가 있음,
+      //navigate를 사용한다면 문제가 안 되지만 router.push를 사용할때는 interval을 주었다가 언 마운트 되면 지운다.
       const interval = setInterval(() => {
         router.push("/");
       }, 1000);
