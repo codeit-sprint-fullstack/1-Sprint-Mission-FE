@@ -212,6 +212,23 @@ module.exports = {
         "product-preview-image": "22.1rem",
         "mobile-product-preview-image": "16.8rem",
       },
+      backgroundImage: {
+        "sign-in__btn": "url('/buttons/btn_sign_in_w640.svg')",
+        "sign-in__btn--mobile": "url('/buttons/btn_sign_in_w343.svg')",
+        "sign-in__btn--disabled":
+          "url('/buttons/btn_sign_in_disabled_w640.svg')",
+        "sign-in__btn--mobile--disabled":
+          "url('/buttons/btn_sign_in_disabled_w343.svg')",
+      },
+      borderColor: {
+        "input--focus": "#3692FF",
+      },
+    },
+  },
+  variants: {
+    extend: {
+      backgroundImage: ["disabled"],
+      borderColor: ["focus"],
     },
   },
   plugins: [
@@ -242,7 +259,7 @@ module.exports = {
         ".sign-in__btn-logo": {
           width: "39.6rem",
           height: "13.2rem",
-          backgroundImage: "url(/buttons/btn-logo.svg)",
+          backgroundImage: "url(/buttons/btn_logo.svg)",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           "@screen mobile": {
@@ -285,20 +302,36 @@ module.exports = {
           fontWeight: "400",
           color: "#1f2937",
         },
-        ".input-visible": {
+        ".input--visible": {
           width: "2.4rem",
           height: "2.4rem",
           position: "absolute",
           top: "50%",
           transform: "translateY(-50%)",
           right: "1.6rem",
-          content: "url(/buttons/btn-visible.svg)",
+          content: "url(/buttons/btn_visible.svg)",
+        },
+        ".input--invisible": {
+          width: "2.4rem",
+          height: "2.4rem",
+          position: "absolute",
+          top: "50%",
+          transform: "translateY(-50%)",
+          right: "1.6rem",
+          content: "url(/buttons/btn_invisible.svg)",
         },
         ".sign-in__warn": {
           paddingLeft: "1.6rem",
           fontSize: "1.5rem",
           fontWeight: "600",
           color: "#F74747",
+        },
+        ".sign-in__btn": {
+          width: "64rem",
+          height: "5.6rem",
+          "@screen mobile": {
+            width: "34.3rem",
+          },
         },
         ".invalid-border": {
           borderColor: "#F74747",

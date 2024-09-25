@@ -1,13 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { signIn } from "@/lib/api-codeit-auth";
+import classNames from "classnames";
 
 function EmailInput({ label, register, errors }) {
-  let inputClass = "sign-in__input";
+  let inputClass = classNames("sign-in__input", "focus:border-input--focus");
   if (errors.password) {
-    inputClass = "sign-in__input invalid-border";
+    inputClass = classNames(
+      "sign-in__input",
+      "focus:border-input--focus",
+      "invalid-border"
+    );
   }
 
   return (
@@ -34,15 +40,24 @@ function EmailInput({ label, register, errors }) {
 
 function PasswordInput({ label, register, errors }) {
   const [inputType, setInputType] = useState("password");
-  const [btnVisibleClass, setBtnVisibleClass] = useState("input-visible");
+  const [btnVisibleClass, setBtnVisibleClass] = useState("input--visible");
 
-  let inputClass = "sign-in__input";
+  let inputClass = classNames("sign-in__input", "focus:border-input--focus");
   if (errors.password) {
-    inputClass = "sign-in__input invalid-border";
+    inputClass = classNames(
+      "sign-in__input",
+      "focus:border-input--focus",
+      "invalid-border"
+    );
   }
 
   const handleVisiblePassword = () => {
     setInputType(inputType === "password" ? "text" : "password");
+    setBtnVisibleClass(
+      btnVisibleClass === "input--visible"
+        ? "input--invisible"
+        : "input--visible"
+    );
   };
 
   return (
@@ -78,23 +93,32 @@ export default function SignInSet() {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
-  } = useForm();
+    formState: { errors, isValid },
+  } = useForm({ mode: "onChange" });
 
+  const btnSignInClass = classNames(
+    "sign-in__btn",
+    "bg-sign-in__btn",
+    "disabled:bg-sign-in__btn--disabled",
+    "mobile:bg-sign-in__btn--mobile",
+    "mobile:disabled:bg-sign-in__btn--mobile--disabled"
+  );
+
+  const router = useRouter();
   const email = watch("email");
   const password = watch("password");
 
   const handleSignInBtnClick = () => {
-    console.log("handleSignInBtnClick");
-    console.log({ email: email, password: password });
-    // signIn({ email: email, password: password });
+    signIn({ email: email, password: password }).then((data) => {
+      router.push("/");
+    });
   };
 
   return (
     <form onSubmit={handleSubmit(handleSignInBtnClick)}>
       <EmailInput label="email" register={register} errors={errors} />
       <PasswordInput label="password" register={register} errors={errors} />
-      <button>sign-in</button>
+      <button className={btnSignInClass} disabled={!isValid} />
     </form>
   );
 }
