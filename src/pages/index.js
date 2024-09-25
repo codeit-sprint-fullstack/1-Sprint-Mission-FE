@@ -6,7 +6,7 @@ export default function MainPage() {
     <>
       <Header />
       <div>
-        <h1>메인 페이지(임시)</h1>
+        <h1>메인 페이지(임시) 헤더포함 나중에 수정 예정</h1>
       </div>
     </>
   );
