@@ -27,10 +27,23 @@
 
 .link {
   display: inline-block;
-  width: 78px;
+  width: 109px;
   font-weight: 700;
   line-height: 21.48px;
   text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: #4b5563;
+}
+
+.active_link {
+  display: inline-block;
+  width: 109px;
+  font-weight: 700;
+  line-height: 21.48px;
+  text-align: center;
+  color: var(--brand-blue);
+  text-decoration: none;
   cursor: pointer;
 }
 

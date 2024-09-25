@@ -1,6 +1,18 @@
 import Image from "next/image";
 import styles from "@/styles/Header.module.css";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
+function NavLink({ href, children, activeClassName }) {
+  const router = useRouter();
+  const className = router.pathname === href ? activeClassName : styles.link;
+
+  return (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  );
+}
 
 export default function Header() {
   return (
@@ -17,8 +29,12 @@ export default function Header() {
             />
           </Link>
           <div className={styles.link_container}>
-            <div className={styles.link}>자유게시판</div>
-            <div className={styles.link}>중고마켓</div>
+            <NavLink href="/" activeClassName={styles.active_link}>
+              자유게시판
+            </NavLink>
+            <NavLink href="/market" activeClassName={styles.active_link}>
+              중고마켓
+            </NavLink>
           </div>
         </div>
         <Link href="/login" className={styles.login}>
