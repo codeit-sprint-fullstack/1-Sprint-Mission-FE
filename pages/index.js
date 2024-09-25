@@ -3,7 +3,7 @@ import { postProduct } from "./api/products";
 export default function Main() {
   const data = {
     images: [
-      "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDA4MTdfMjM4%2FMDAxNzIzODYzMjMzNzI5.T4Z4U_jsixqJL4UHA0dxe_rkb6iw5nvXX6UqVJjwAtgg.E_U2VriqT8_jUK_DQWeP_0kbMlJ23L937VmBfVqH-I0g.PNG%2F20240817_095427.png&type=sc960_832",
+      "https://i.namu.wiki/i/Trhh3NbX78ZqUJyFblACvejsfPNdAXXN8jQtPo10nSVq7Bk1ZvDKB9d1balCxMLeWXDbZ8U_R1XWhuIwI1dVFA.svg",
     ],
     price: 1000,
     tags: ["AI", "IT"],

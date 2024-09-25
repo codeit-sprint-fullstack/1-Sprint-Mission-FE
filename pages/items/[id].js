@@ -1,10 +1,12 @@
 import styles from "./id.module.css";
 import Image from "next/image";
-import { getProduct } from "../api/products";
+import { getProduct, deleteProduct, patchProduct } from "../api/products";
 import { useEffect, useState } from "react";
 import { getComments, postComment } from "../api/comments";
 // import { getProfile } from "../api/user";
 import { useRouter } from "next/router";
+import { Modal } from "../../components/modal";
+import useForm from "@/hook/form";
 export async function getServerSideProps(path) {
   const { id } = path.params;
   return {
@@ -14,11 +16,19 @@ export async function getServerSideProps(path) {
   };
 }
 export default function Market({ id }) {
+  const { values, handleChange, handleSubmit, resetForm, isSubmitting } =
+    useForm({
+      name: "",
+      description: "",
+      price: "",
+      tags: "",
+    });
   const [product, setProduct] = useState([]);
   const [comment, setComment] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   // const [userData, setUserData] = useState({});
   const [commentData, setCommentData] = useState({});
+  const [isProductModalOpen, setIsProductModalOpen] = useState(false);
 
   const router = useRouter();
   useEffect(() => {
@@ -57,6 +67,15 @@ export default function Market({ id }) {
     setIsOpen(!isOpen);
   };
 
+  const handleDelete = async () => {
+    try {
+      await deleteProduct(id);
+      router.push("/market");
+    } catch (error) {
+      console.error("제품 삭제 오류", error);
+    }
+  };
+
   const getTimeDifference = (createdAt) => {
     const now = new Date(); // 현재 시간
     const createdDate = new Date(createdAt); // createdAt을 Date 객체로 변환
@@ -76,9 +95,62 @@ export default function Market({ id }) {
       return `${diffInDays}일 전`;
     }
   };
+  const submitForm = async () => {
+    try {
+      const res = await patchProduct(id, {
+        name: values.name || product.name,
+        description: values.description || product.description,
+        price: values.price || product.price,
+        tags: values.tags || product.tags,
+      });
+      if (res && res.status === 200) {
+        resetForm();
+        console.log("수정 성공", res.data);
+        setIsProductModalOpen(false);
+        router.reload();
+      } else {
+        console.log("수정 실패", res.data);
+      }
+    } catch (e) {
+      console.log("에러", e);
+    }
+  };
 
   return (
     <>
+      <Modal
+        isModalOpen={isProductModalOpen}
+        onClose={() => setIsProductModalOpen(false)}
+      >
+        <form onSubmit={handleSubmit(submitForm)}>
+          <p>게시글 수정</p>
+          <p>게시글 제목</p>
+          <textarea
+            name="name"
+            value={values.name}
+            onChange={handleChange}
+          ></textarea>
+          <p>가격</p>
+          <textarea
+            name="price"
+            value={values.price}
+            onChange={handleChange}
+          ></textarea>
+          <p>내용</p>
+          <textarea
+            name="description"
+            value={values.description}
+            onChange={handleChange}
+          ></textarea>
+          <p>태그</p>
+          <textarea
+            name="tags"
+            value={values.tags}
+            onChange={handleChange}
+          ></textarea>
+          <button>수정</button>
+        </form>
+      </Modal>
       <div className={styles.marketContainer}>
         <div className={styles.marketProductContainer}>
           <div className={styles.itemImg}>
@@ -105,8 +177,13 @@ export default function Market({ id }) {
               ></Image>
               {isOpen && (
                 <ul className={styles.menu}>
-                  <li onClick={() => handlepatch(data.id)}>수정 하기</li>
-                  <li onClick={() => handleDelete(data.id)}>삭제 하기</li>
+                  <li
+                    onClick={() => setIsProductModalOpen(!isProductModalOpen)}
+                  >
+                    수정 하기
+                  </li>
+
+                  <li onClick={() => handleDelete(id)}>삭제 하기</li>
                 </ul>
               )}
             </div>

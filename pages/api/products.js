@@ -29,7 +29,7 @@ export async function postProduct(data) {
   console.log(data);
   try {
     const token = localStorage.getItem("accessToken");
-    const response = await api.post("/products", data.data, {
+    const response = await api.post("/products", data, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -39,6 +39,21 @@ export async function postProduct(data) {
     return response;
   } catch (error) {
     console.log(error.response.data);
+    return error.response;
+  }
+}
+
+export async function patchProduct(productId, data) {
+  try {
+    const token = localStorage.getItem("accessToken");
+    const response = await api.patch(`/products/${productId}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
     return error.response;
   }
 }

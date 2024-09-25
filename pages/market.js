@@ -3,6 +3,7 @@ import { getProducts } from "./api/products";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { Modal } from "../components/modal";
 export default function Market() {
   const [products, setProducts] = useState([]);
   const router = useRouter();
