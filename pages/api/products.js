@@ -1,4 +1,4 @@
-import instance from "./axios";
+import instance from "./httpClient";
 
 export async function getProducts(params = {}) {
   const res = await instance.get("/products", { params });

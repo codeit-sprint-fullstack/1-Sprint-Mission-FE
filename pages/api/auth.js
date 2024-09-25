@@ -1,4 +1,4 @@
-import instance from "./axios";
+import instance from "./httpClient";
 
 export async function createUser(item) {
   const res = await instance.post("/auth/signUp", item);

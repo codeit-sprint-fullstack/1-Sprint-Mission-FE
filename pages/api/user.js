@@ -1,4 +1,4 @@
-import instance from "./axios.js";
+import instance from "./httpClient.js/index.js";
 
 export async function getUserMe() {
   const res = await instance.get("/users/me");
