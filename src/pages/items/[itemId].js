@@ -64,7 +64,7 @@ export default function ProductDetailPage() {
     }
   };
 
-  // 댓글을 불러오는 함수
+  // 댓글을 불러오는 함수 (시간순 정렬)
   const fetchCommentsData = async () => {
     try {
       if (!itemId) {
@@ -72,7 +72,13 @@ export default function ProductDetailPage() {
         return;
       }
       const response = await fetchCommentsByProductId(itemId, 10);
-      setComments(response.list); // 댓글 목록 업데이트
+
+      // 댓글 데이터를 최신순으로 정렬해서 상태에 저장
+      setComments(
+        response.list.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        )
+      );
     } catch (err) {
       console.error("댓글 불러오기 오류:", err);
     }
@@ -86,16 +92,14 @@ export default function ProductDetailPage() {
           content: comment,
           author: "작성자 판다",
           createdAt: new Date().toISOString(),
-          limit: 3,
         };
         // 서버에 댓글을 등록하고 응답을 받아옴
         const newComment = await createCommentForProduct(
           product.id,
           commentData
         );
-
-        // 새로 등록된 댓글을 상태에 추가
-        setComments((prevComments) => [...prevComments, newComment]);
+        // 새로운 댓글을 기존 댓글 목록 앞에 추가하여 최신순으로 정렬
+        setComments((prevComments) => [newComment, ...prevComments]);
       } catch (error) {
         console.error("댓글 등록 실패:", error);
       }
