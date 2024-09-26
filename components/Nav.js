@@ -1,36 +1,45 @@
-import React, { useState, useEffect } from "react";
+// Nav.js
+import React from "react";
 import Image from "next/image";
 import styles from "./Nav.module.css";
 import Link from "next/link";
-import axios from "../lib/axios";
 import { useRouter } from "next/router";
+import { useQuery } from "@tanstack/react-query"; // useQuery를 사용하기 위해 추가
+import { fetchCurrentUser } from "../api/api"; // 사용자 정보를 가져오는 함수 import
 
 export default function Nav() {
-  const [user, setUser] = useState(null);
   const router = useRouter();
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get("/users/me"); // 엔드포인트 수정
-        setUser(response.data);
-        console.log("유저 정보 조회 성공:", response.data); // 유저 정보 조회 성공 시 데이터 출력
-      } catch (error) {
-        console.error("유저 정보 조회 실패:", error);
-      }
-    };
-
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      fetchUser();
-    }
-  }, []);
+  // useQuery를 사용하여 사용자 정보 가져오기
+  const {
+    data: user,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["currentUser"],
+    queryFn: fetchCurrentUser,
+    retry: false, // 에러 발생 시 재시도 하지 않음
+  });
 
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
-    setUser(null);
-    router.push("/login");
+    if (typeof window !== "undefined") {
+      router.push("/login");
+    }
   };
+
+  if (isLoading) return <div>로딩 중...</div>;
+
+  if (error) {
+    // 에러가 인증 오류인 경우 로그인 페이지로 리다이렉트
+    if (error.response && error.response.status === 401) {
+      if (typeof window !== "undefined") {
+        router.push("/login");
+      }
+      return null;
+    }
+    return <div>에러 발생: {error.message}</div>;
+  }
 
   return (
     <div className={styles.header}>

@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+// Login.js
+
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "../styles/Login.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { logIn } from "../src/api/auth";
+import { logIn } from "../api/api"; // api.js에서 logIn 함수 import
 import { useRouter } from "next/router";
 import Modal from "../components/Modal";
+import { useMutation } from "@tanstack/react-query"; // useMutation import
 
 const Login = () => {
   const {
@@ -20,6 +23,7 @@ const Login = () => {
   const [modalMessage, setModalMessage] = useState("");
   const router = useRouter();
 
+  // 로그인 페이지 접근 시 토큰 여부를 체크하고 리다이렉트
   // useEffect(() => {
   //   const token = localStorage.getItem("accessToken");
   //   if (token) {
@@ -27,19 +31,24 @@ const Login = () => {
   //   }
   // }, []);
 
-  const onSubmit = async (data) => {
-    try {
-      const response = await logIn(data); // data는 이미 {email, password} 형식
-      localStorage.setItem("accessToken", response.accessToken);
-      console.log("로그인 후 accessToken 저장:", response.accessToken); // accessToken 저장 확인
+  // useMutation 훅 사용
+  const mutation = useMutation({
+    mutationFn: logIn,
+    onSuccess: (data) => {
+      localStorage.setItem("accessToken", data.accessToken);
       router.push("/items");
-    } catch (error) {
+    },
+    onError: (error) => {
       console.error("로그인 실패:", error);
       setModalMessage(
         "로그인에 실패했습니다. 이메일과 비밀번호를 확인해 주세요."
       );
       setIsModalOpen(true);
-    }
+    },
+  });
+
+  const onSubmit = (data) => {
+    mutation.mutate(data); // useMutation을 통해 로그인 요청 실행
   };
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
@@ -111,9 +120,9 @@ const Login = () => {
             <button
               type="submit"
               className={styles.submitButton}
-              disabled={!isValid}
+              disabled={!isValid || mutation.isLoading}
             >
-              로그인
+              {mutation.isLoading ? "로그인 중..." : "로그인"}
             </button>
           </form>
           <div className={styles.socialLoginContainer}>

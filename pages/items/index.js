@@ -1,45 +1,41 @@
-import React, { useState, useEffect } from "react";
-import axios from "../../lib/axios";
+// /items/index.js
+import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import styles from "../../styles/Products.module.css";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
+import { fetchProducts } from "../../api/api";
 
 const ItemsPage = () => {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const [searchKeyword, setSearchKeyword] = useState("");
-  const [sortOption, setSortOption] = useState("최신순");
+  const [sortOption, setSortOption] = useState("recent");
   const router = useRouter();
   const itemsPerPage = 10; // 한 페이지에 10개 상품 표시
 
-  useEffect(() => {
-    fetchItems(currentPage, searchKeyword, sortOption);
-  }, [currentPage, searchKeyword, sortOption]);
-
-  const fetchItems = async (page, keyword = "", sort = "최신순") => {
-    setLoading(true);
-    try {
-      const response = await axios.get("/products", {
-        params: { page, pageSize: itemsPerPage, keyword, sort },
-      });
-      setItems(response.data.list);
-      setTotalPages(Math.ceil(response.data.totalCount / itemsPerPage));
-    } catch (error) {
-      console.error("상품 목록 조회 실패:", error);
-    } finally {
-      setLoading(false);
-    }
+  const params = {
+    page: currentPage,
+    pageSize: itemsPerPage,
+    orderBy: sortOption,
+    keyword: searchKeyword,
   };
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["products", params],
+    queryFn: () => fetchProducts(params),
+    keepPreviousData: true,
+  });
+
+  const totalPages = data ? Math.ceil(data.totalCount / itemsPerPage) : 1;
+
+  if (error) return <div>에러 발생: {error.message}</div>;
 
   const handleSearch = (e) => {
     e.preventDefault();
     setCurrentPage(1);
-    fetchItems(1, searchKeyword, sortOption);
   };
 
   const renderPagination = () => {
@@ -103,17 +99,17 @@ const ItemsPage = () => {
             onChange={(e) => setSortOption(e.target.value)}
             className={styles.sortSelect}
           >
-            <option value="최신순">최신순</option>
-            <option value="인기순">인기순</option>
-            <option value="가격낮은순">가격낮은순</option>
-            <option value="가격높은순">가격높은순</option>
+            <option value="recent">최신순</option>
+            <option value="favorite">인기순</option>
+            <option value="priceAsc">가격낮은순</option>
+            <option value="priceDesc">가격높은순</option>
           </select>
         </div>
-        {loading ? (
+        {isLoading ? (
           <p>로딩 중...</p>
         ) : (
           <div className={styles.productGrid}>
-            {items.map((item) => (
+            {data.list.map((item) => (
               <Link
                 href={`/items/${item.id}`}
                 key={item.id}
@@ -123,10 +119,14 @@ const ItemsPage = () => {
                   <Image
                     src={item.images[0] || "/placeholder-image.jpg"}
                     alt={item.name}
-                    // layout 속성을 제거했습니다.
-                    width={220} // 고정된 너비
-                    height={220} // 고정된 높이
+                    width={220}
+                    height={220}
                     objectFit="cover"
+                    unoptimized
+                    onError={(e) => {
+                      e.target.onerror = null; // 무한 루프 방지
+                      e.target.src = "/placeholder-image.jpg"; // 에러 시 대체 이미지
+                    }}
                   />
                 </div>
                 <h2 className={styles.productName}>{item.name}</h2>
@@ -138,7 +138,7 @@ const ItemsPage = () => {
             ))}
           </div>
         )}
-        {renderPagination()}
+        {!isLoading && renderPagination()}
       </div>
       <Footer />
     </div>

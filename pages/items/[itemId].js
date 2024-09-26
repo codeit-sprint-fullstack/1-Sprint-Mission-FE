@@ -1,131 +1,126 @@
-import React, { useState, useEffect } from "react";
+// items/[itemId].js
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import axios from "../../lib/axios";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import styles from "../../styles/ItemDetail.module.css";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
+import {
+  fetchProductById,
+  fetchProductComments,
+  postProductComment,
+  deleteComment,
+  postProductFavorite,
+  deleteProductFavorite,
+} from "../../api";
 
 const ItemDetail = () => {
   const router = useRouter();
   const { itemId } = router.query;
-  const [item, setItem] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [newComment, setNewComment] = useState("");
-  const [comments, setComments] = useState([]);
+  const [cursor, setCursor] = useState(null);
+  const COMMENTS_PER_PAGE = 10;
 
-  useEffect(() => {
-    if (itemId) {
-      fetchItemDetails();
-      fetchComments();
-    }
-  }, [itemId]);
+  const queryClient = useQueryClient();
 
-  const fetchItemDetails = async () => {
-    try {
-      const response = await axios.get(`/products/${itemId}`);
-      setItem(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.error("상품 상세 정보 조회 실패:", error);
-      setError("상품 정보를 불러오는데 실패했습니다.");
-      setLoading(false);
-    }
-  };
+  const {
+    data: itemData,
+    error: itemError,
+    isLoading: itemLoading,
+  } = useQuery({
+    queryKey: ["product", itemId],
+    queryFn: () => fetchProductById(itemId),
+    enabled: !!itemId,
+  });
 
-  const fetchComments = async () => {
-    try {
-      const response = await axios.get(`/products/${itemId}/comments`);
-      setComments(response.data);
-    } catch (error) {
-      console.error("댓글 조회 실패:", error);
-    }
-  };
+  const {
+    data: commentsData,
+    error: commentsError,
+    isLoading: commentsLoading,
+  } = useQuery({
+    queryKey: ["productComments", itemId, { limit: COMMENTS_PER_PAGE, cursor }],
+    queryFn: () =>
+      fetchProductComments(itemId, {
+        limit: COMMENTS_PER_PAGE,
+        cursor,
+      }),
+    enabled: !!itemId,
+  });
 
-  const handleCommentSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post(`/products/${itemId}/comments`, { content: newComment });
+  //댓글 작성 뮤테이션
+  const postCommentMutation = useMutation({
+    mutationFn: ({ productId, content }) =>
+      postProductComment({ productId, content }),
+    onSuccess: () => {
       setNewComment("");
-      fetchComments();
-    } catch (error) {
-      console.error("댓글 작성 실패:", error);
+      queryClient.invalidateQueries(["productComments", itemId]);
+    },
+  });
+
+  //댓글 삭제 뮤테이션
+  const deleteCommentMutation = useMutation({
+    mutationFn: (commentId) => deleteComment(commentId),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["productComments", itemId]);
+    },
+  });
+
+  //상품 좋아요 추가 뮤테이션
+  const postFavoriteMutation = useMutation({
+    mutationFn: () => postProductFavorite(itemId),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["product", itemId]);
+    },
+  });
+
+  //상품 좋아요 취소 뮤테이션
+  const deleteFavoriteMutation = useMutation({
+    mutationFn: () => deleteProductFavorite(itemId),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["product", itemId]);
+    },
+  });
+
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    postCommentMutation.mutate({ productId: itemId, content: newComment });
+  };
+
+  const handleCommentDelete = (commentId) => {
+    deleteCommentMutation.mutate(commentId);
+  };
+
+  const handleFavorite = () => {
+    if (itemData.isFavorite) {
+      deleteFavoriteMutation.mutate();
+    } else {
+      postFavoriteMutation.mutate();
     }
   };
 
-  const handleCommentDelete = async (commentId) => {
-    try {
-      await axios.delete(`/products/${itemId}/comments/${commentId}`);
-      fetchComments();
-    } catch (error) {
-      console.error("댓글 삭제 실패:", error);
+  const loadMoreComments = () => {
+    if (commentsData && commentsData.nextCursor) {
+      setCursor(commentsData.nextCursor);
     }
   };
 
-  const handleFavorite = async () => {
-    try {
-      await axios.post(`/products/${itemId}/favorite`);
-      fetchItemDetails();
-    } catch (error) {
-      console.error("좋아요 실패:", error);
-    }
-  };
-
-  if (loading) return <div>로딩 중...</div>;
-  if (error) return <div>{error}</div>;
-  if (!item) return <div>상품을 찾을 수 없습니다.</div>;
+  if (itemLoading || commentsLoading) return <div>로딩 중...</div>;
+  if (itemError || commentsError)
+    return <div>에러 발생: {(itemError || commentsError).message}</div>;
+  if (!itemData) return <div>상품을 찾을 수 없습니다.</div>;
 
   return (
     <div>
       <Nav />
       <div className={styles.container}>
-        <div className={styles.imageGallery}>
-          <Image
-            src={item.images[currentImageIndex]}
-            alt={item.name}
-            width={500}
-            height={500}
-            objectFit="cover"
-          />
-          <div className={styles.thumbnails}>
-            {item.images.map((image, index) => (
-              <Image
-                key={index}
-                src={image}
-                alt={`${item.name} ${index + 1}`}
-                width={100}
-                height={100}
-                objectFit="cover"
-                onClick={() => setCurrentImageIndex(index)}
-                className={
-                  index === currentImageIndex ? styles.activeThumbnail : ""
-                }
-              />
-            ))}
-          </div>
-        </div>
-        <div className={styles.itemInfo}>
-          <h1 className={styles.itemName}>{item.name}</h1>
-          <p className={styles.itemPrice}>{item.price.toLocaleString()}원</p>
-          <p className={styles.itemDescription}>{item.description}</p>
-          <div className={styles.itemMeta}>
-            <p>판매자: {item.seller}</p>
-            <p>등록일: {new Date(item.createdAt).toLocaleDateString()}</p>
-            <p>♥ {item.favoriteCount}</p>
-          </div>
-          <button onClick={handleFavorite} className={styles.favoriteButton}>
-            좋아요
-          </button>
-          <div className={styles.itemTags}>
-            {item.tags.map((tag, index) => (
-              <span key={index} className={styles.tag}>
-                #{tag}
-              </span>
-            ))}
-          </div>
-        </div>
+        {/* 상품 정보 표시 부분 */}
+        <h1>{itemData.name}</h1>
+        {/* ... 기타 상품 정보 표시 */}
+        <button onClick={handleFavorite}>
+          {itemData.isFavorite ? "좋아요 취소" : "좋아요"}
+        </button>
+
         <div className={styles.commentSection}>
           <h2>댓글</h2>
           <form onSubmit={handleCommentSubmit} className={styles.commentForm}>
@@ -140,22 +135,31 @@ const ItemDetail = () => {
             </button>
           </form>
           <div className={styles.comments}>
-            {comments.map((comment) => (
-              <div key={comment.id} className={styles.comment}>
-                <p className={styles.commentContent}>{comment.content}</p>
-                <p className={styles.commentMeta}>
-                  {comment.author} -{" "}
-                  {new Date(comment.createdAt).toLocaleString()}
-                  <button
-                    onClick={() => handleCommentDelete(comment.id)}
-                    className={styles.commentDelete}
-                  >
-                    삭제
-                  </button>
-                </p>
-              </div>
-            ))}
+            {commentsData &&
+              commentsData.list.map((comment) => (
+                <div key={comment.id} className={styles.comment}>
+                  <p className={styles.commentContent}>{comment.content}</p>
+                  <p className={styles.commentMeta}>
+                    {comment.writer.nickname} -{" "}
+                    {new Date(comment.createdAt).toLocaleString()}
+                    <button
+                      onClick={() => handleCommentDelete(comment.id)}
+                      className={styles.commentDelete}
+                    >
+                      삭제
+                    </button>
+                  </p>
+                </div>
+              ))}
           </div>
+          {commentsData && commentsData.nextCursor && (
+            <button
+              onClick={loadMoreComments}
+              className={styles.loadMoreButton}
+            >
+              더 보기
+            </button>
+          )}
         </div>
       </div>
       <Footer />

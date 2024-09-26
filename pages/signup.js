@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+// Signup.js
+
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "../styles/Signup.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { signUp } from "../src/api/auth";
+import { signUp } from "../api/api"; // api.js에서 signUp 함수 import
 import { useRouter } from "next/router";
 import Modal from "../components/Modal";
+import { useMutation } from "@tanstack/react-query"; // useMutation import
 
 const Signup = () => {
   const {
@@ -21,35 +24,31 @@ const Signup = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      router.push("/folder");
-    }
-  }, []);
-
   const password = watch("password");
 
-  const onSubmit = async (data) => {
-    // 서버에 보낼 데이터 형식 맞추기
+  // useMutation 훅 사용
+  const mutation = useMutation({
+    mutationFn: signUp,
+    onSuccess: (data) => {
+      localStorage.setItem("accessToken", data.accessToken);
+      router.push("/items");
+    },
+    onError: (error) => {
+      console.error("회원가입 실패:", error);
+      setModalMessage("회원가입에 실패했습니다. 입력한 정보를 확인해 주세요.");
+      setIsModalOpen(true);
+    },
+  });
+
+  const onSubmit = (data) => {
     const signUpData = {
       email: data.email,
       nickname: data.nickname,
       password: data.password,
-      passwordConfirmation: data.confirmPassword, // 이 부분 주의
+      passwordConfirmation: data.confirmPassword,
     };
 
-    console.log("서버로 보내는 데이터:", signUpData);
-
-    try {
-      const response = await signUp(signUpData);
-      localStorage.setItem("accessToken", response.accessToken);
-      router.push("/items");
-    } catch (error) {
-      console.error("회원가입 실패:", error);
-      setModalMessage("사용 중인 이메일입니다.");
-      setIsModalOpen(true);
-    }
+    mutation.mutate(signUpData); // useMutation을 통해 회원가입 요청 실행
   };
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
@@ -177,9 +176,9 @@ const Signup = () => {
             <button
               type="submit"
               className={styles.submitButton}
-              disabled={!isValid}
+              disabled={!isValid || mutation.isLoading}
             >
-              회원가입
+              {mutation.isLoading ? "회원가입 중..." : "회원가입"}
             </button>
           </form>
           <div className={styles.socialLoginContainer}>
@@ -216,11 +215,11 @@ const Signup = () => {
           <Link href="/login" className={styles.loginLink}>
             이미 회원이신가요? <span>로그인</span>
           </Link>
+          <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+            <p className={styles.modalText}>{modalMessage}</p>
+          </Modal>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <p className={styles.modalText}>{modalMessage}</p>
-      </Modal>
     </div>
   );
 };
