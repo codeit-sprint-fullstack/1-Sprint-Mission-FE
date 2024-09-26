@@ -1,31 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./KebabMenu.module.css";
+import { useClickOutside } from "@/hooks/useClickOutside";
 
 const KebabMenu = ({ options }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
-  const menuRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        closeMenu();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const toggleMenu = () => {
-    if (isOpen) {
-      closeMenu();
-    } else {
-      setIsOpen(true);
-    }
-  };
 
   const closeMenu = () => {
     setIsClosing(true);
@@ -33,6 +12,16 @@ const KebabMenu = ({ options }) => {
       setIsOpen(false);
       setIsClosing(false);
     }, 200);
+  };
+
+  const menuRef = useClickOutside(closeMenu);
+
+  const toggleMenu = () => {
+    if (isOpen) {
+      closeMenu();
+    } else {
+      setIsOpen(true);
+    }
   };
 
   const validOptions =

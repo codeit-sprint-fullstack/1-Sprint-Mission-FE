@@ -30,7 +30,7 @@ export const ModalProvider = ({ children }) => {
           showCancel={modal.showCancel}
           showImage={modal.showImage}
           imageSrc={modal.imageSrc}
-          mode={modal.mode} // 새로 추가된 mode prop
+          mode={modal.mode}
         />
       )}
     </ModalContext.Provider>

@@ -26,9 +26,7 @@ const PostList = ({ posts, isFetchingNextPage }) => (
               layout="fixed"
             />
           </CardHeader>
-          <CardContent>
-            <div className="mt-2 text-sm text-gray-500"></div>
-          </CardContent>
+          <CardContent />
           <div className={styles.BottomHug}>
             <div className={styles.authorImageHug}>
               <Image
