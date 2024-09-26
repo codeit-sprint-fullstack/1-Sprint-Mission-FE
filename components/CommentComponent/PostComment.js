@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./PostComment.module.css";
 import axios from "@/lib/axios";
 
-export default function PostComment({ addComment }) {
+export default function PostComment({ addComment, title, placehorder }) {
   // const articleId = detailArticle.article.id;
   const [content, setContent] = useState("");
 
@@ -23,10 +23,10 @@ export default function PostComment({ addComment }) {
 
   return (
     <form className={styles.container} onSubmit={handleSubmit}>
-      <div className={styles.inputHeader}>댓글달기</div>
+      <div className={styles.inputHeader}>{title}</div>
       <textarea
         className={styles.inputComment}
-        placeholder="댓글을 입력해주세요"
+        placeholder={placehorder}
         value={content}
         onChange={handleChange}
       ></textarea>

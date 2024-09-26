@@ -2,8 +2,8 @@ import styles from "./CommentList.module.css";
 import Image from "next/image";
 import axios from "@/lib/axios";
 import defaultUserImg from "@/images/defaultUserImg.png";
-import CommentDropDown from "./CommentDropDown";
 import NoComment from "./NoComment";
+import CommentDropDown from "../BoardDetail/CommentDropDown";
 
 export default function CommentList({ commentList, setCommentList }) {
   console.log(commentList);
