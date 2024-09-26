@@ -1,10 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { deleteProduct } from '../api/productApi';
-import { getAccessToken } from '../api/authApi';
-import DeleteModal from './DeleteModal';
-import styles from './ProductKebabMenu.module.css';
+import React, { useState, useRef, useEffect } from "react";
+import { deleteProduct } from "../api/productApi";
+import { getAccessToken } from "../api/authApi";
+import DeleteModal from "./DeleteModal";
+import styles from "./ProductKebabMenu.module.css";
 
-const ProductKebabMenu = ({ productId, onEdit, refreshProducts }) => {
+const ProductKebabMenu = ({
+  productId,
+  productData,
+  onEdit,
+}) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const menuRef = useRef(null);
@@ -16,20 +20,14 @@ const ProductKebabMenu = ({ productId, onEdit, refreshProducts }) => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   const handleKebabClick = () => {
     setShowMenu(!showMenu);
-    console.log("케밥 메뉴 버튼 클릭됨, 메뉴 상태:", showMenu ? "닫힘" : "열림");
-  };
-
-  const handleDeleteClick = () => {
-    setShowDeleteModal(true);
-    setShowMenu(false);
   };
 
   const handleConfirmDelete = async () => {
@@ -41,17 +39,12 @@ const ProductKebabMenu = ({ productId, onEdit, refreshProducts }) => {
 
     try {
       await deleteProduct(productId, accessToken);
-      alert('상품이 삭제되었습니다.');
-      refreshProducts();
-      setShowDeleteModal(false);
+      alert("상품이 삭제되었습니다.");
+      window.location.reload();
     } catch (error) {
-      console.error('상품 삭제 중 오류가 발생했습니다:', error);
-      alert('상품 삭제 중 오류가 발생했습니다.');
+      console.error("상품 삭제 중 오류가 발생했습니다:", error);
+      alert("상품 삭제 중 오류가 발생했습니다.");
     }
-  };
-
-  const handleCancelDelete = () => {
-    setShowDeleteModal(false);
   };
 
   return (
@@ -64,15 +57,22 @@ const ProductKebabMenu = ({ productId, onEdit, refreshProducts }) => {
       />
       {showMenu && (
         <div className={styles.kebabMenu}>
-          <div className={styles.menuItem} onClick={onEdit}>상품 수정</div>
-          <div className={styles.menuItem} onClick={handleDeleteClick}>상품 삭제</div>
+          <div className={styles.menuItem} onClick={onEdit}>
+            상품 수정
+          </div>
+          <div
+            className={styles.menuItem}
+            onClick={() => setShowDeleteModal(true)}
+          >
+            상품 삭제
+          </div>
         </div>
       )}
 
       {showDeleteModal && (
-        <DeleteModal 
+        <DeleteModal
           onConfirm={handleConfirmDelete}
-          onCancel={handleCancelDelete}
+          onCancel={() => setShowDeleteModal(false)}
         />
       )}
     </div>
