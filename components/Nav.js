@@ -66,6 +66,13 @@ export default function Nav() {
         <div className={styles.profileContainer}>
           {user ? (
             <div className={styles.userInfo}>
+              <Image
+                src="/ic_profile.png"
+                width={32}
+                height={32}
+                alt="프로필 이미지"
+                className={styles.profileImage}
+              />
               <span>{user.nickname}</span>
               <button onClick={handleLogout} className={styles.logoutButton}>
                 로그아웃

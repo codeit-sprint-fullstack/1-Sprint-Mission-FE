@@ -130,3 +130,9 @@
     margin-top: 10px;
   }
 }
+
+/* 프로필 이미지 스타일 */
+.profileImage {
+  border-radius: 50%;
+  margin-right: 8px;
+}

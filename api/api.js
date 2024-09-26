@@ -35,6 +35,14 @@ export const postProductComment = async ({ productId, content }) => {
   return response.data;
 };
 
+// 댓글 수정
+export const editComment = async (commentId, content) => {
+  const response = await axiosInstance.patch(`/comments/${commentId}`, {
+    content,
+  });
+  return response.data;
+};
+
 // 댓글 삭제
 export const deleteComment = async (commentId) => {
   const response = await axiosInstance.delete(`/comments/${commentId}`);

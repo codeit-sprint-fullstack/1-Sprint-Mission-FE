@@ -1,17 +1,19 @@
-// items/[itemId].js
+// pages/items/[itemId].js
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import styles from "../../styles/ItemDetail.module.css";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
+import CommentOptions from "../../components/CommentOptions"; // 2.1. CommentOptions 컴포넌트 임포트
 import {
   fetchProductById,
   fetchProductComments,
   postProductComment,
   deleteComment,
+  editComment, // 2.5. editComment 함수 임포트
   postProductFavorite,
   deleteProductFavorite,
 } from "../../api/api";
@@ -49,7 +51,6 @@ const ItemDetail = () => {
     enabled: !!itemId,
   });
 
-  // 댓글 작성 뮤테이션
   const postCommentMutation = useMutation({
     mutationFn: ({ productId, content }) =>
       postProductComment({ productId, content }),
@@ -59,7 +60,6 @@ const ItemDetail = () => {
     },
   });
 
-  // 댓글 삭제 뮤테이션
   const deleteCommentMutation = useMutation({
     mutationFn: (commentId) => deleteComment(commentId),
     onSuccess: () => {
@@ -67,17 +67,20 @@ const ItemDetail = () => {
     },
   });
 
-  // 상품 좋아요 추가 뮤테이션
-  const postFavoriteMutation = useMutation({
-    mutationFn: () => postProductFavorite(itemId),
+  // 2.4. editCommentMutation 추가
+  const editCommentMutation = useMutation({
+    mutationFn: ({ commentId, newContent }) =>
+      editComment(commentId, newContent),
     onSuccess: () => {
-      queryClient.invalidateQueries(["product", itemId]);
+      queryClient.invalidateQueries(["productComments", itemId]);
     },
   });
 
-  // 상품 좋아요 취소 뮤테이션
-  const deleteFavoriteMutation = useMutation({
-    mutationFn: () => deleteProductFavorite(itemId),
+  const favoriteMutation = useMutation({
+    mutationFn: () =>
+      itemData.isFavorite
+        ? deleteProductFavorite(itemId)
+        : postProductFavorite(itemId),
     onSuccess: () => {
       queryClient.invalidateQueries(["product", itemId]);
     },
@@ -95,12 +98,16 @@ const ItemDetail = () => {
     deleteCommentMutation.mutate(commentId);
   };
 
-  const handleFavorite = () => {
-    if (itemData.isFavorite) {
-      deleteFavoriteMutation.mutate();
-    } else {
-      postFavoriteMutation.mutate();
+  // 2.3. handleCommentEdit 함수 추가
+  const handleCommentEdit = (commentId) => {
+    const newContent = prompt("새로운 댓글 내용을 입력하세요:");
+    if (newContent) {
+      editCommentMutation.mutate({ commentId, newContent });
     }
+  };
+
+  const handleFavorite = () => {
+    favoriteMutation.mutate();
   };
 
   const loadMoreComments = () => {
@@ -108,6 +115,12 @@ const ItemDetail = () => {
       setCursor(commentsData.nextCursor);
     }
   };
+
+  useEffect(() => {
+    if (itemData) {
+      console.log("Item Data:", itemData);
+    }
+  }, [itemData]);
 
   if (itemLoading || commentsLoading) return <div>로딩 중...</div>;
   if (itemError || commentsError)
@@ -118,40 +131,52 @@ const ItemDetail = () => {
     <div>
       <Nav />
       <div className={styles.container}>
-        {/* 이미지 갤러리 */}
-        <div className={styles.imageGallery}>
-          <Image
-            src={itemData.images[0] || "/placeholder-image.jpg"}
-            alt={itemData.name}
-            width={500}
-            height={500}
-            className={styles.mainImage}
-          />
-          {/* 썸네일을 추가하려면 여기서 구현하세요 */}
-        </div>
-
-        {/* 상품 정보 */}
-        <div className={styles.itemInfo}>
-          <h1 className={styles.itemName}>{itemData.name}</h1>
-          <p className={styles.itemPrice}>
-            가격: {itemData.price.toLocaleString()}원
-          </p>
-          <p className={styles.itemDescription}>{itemData.description}</p>
-          <div className={styles.itemTags}>
-            {itemData.tags.map((tag, index) => (
-              <span key={index} className={styles.tag}>
-                {tag}
-              </span>
-            ))}
+        <div className={styles.contentWrapper}>
+          <div className={styles.imageGallery}>
+            <Image
+              src={itemData.images[0] || "/placeholder-image.jpg"}
+              alt={itemData.name}
+              width={486}
+              height={486}
+              className={styles.mainImage}
+            />
           </div>
-          <button onClick={handleFavorite} className={styles.favoriteButton}>
-            {itemData.isFavorite ? "좋아요 취소" : "좋아요"}
-          </button>
+
+          <div className={styles.itemInfo}>
+            <h1 className={styles.itemName}>{itemData.name}</h1>
+            <p className={styles.itemPrice}>
+              {itemData.price.toLocaleString()}원
+            </p>
+            <button
+              onClick={handleFavorite}
+              className={`${styles.favoriteButton} ${
+                itemData.isFavorite ? styles.favoriteButtonActive : ""
+              }`}
+            >
+              <Image
+                src={
+                  itemData.isFavorite ? "/product_reply.svg" : "/ic_heart.png"
+                }
+                alt="좋아요"
+                width={26.8}
+                height={23.3}
+                className={styles.favoriteIcon}
+              />
+              {itemData.favoriteCount}
+            </button>
+            <p className={styles.itemDescription}>{itemData.description}</p>
+            <div className={styles.itemTags}>
+              {itemData.tags.map((tag, index) => (
+                <span key={index} className={styles.tag}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* 댓글 섹션 */}
         <div className={styles.commentSection}>
-          <h2>댓글</h2>
+          <h3>문의하기</h3>
           <form onSubmit={handleCommentSubmit} className={styles.commentForm}>
             <textarea
               value={newComment}
@@ -163,24 +188,24 @@ const ItemDetail = () => {
               등록
             </button>
           </form>
-          <div className={styles.comments}>
-            {commentsData &&
-              commentsData.list.map((comment) => (
-                <div key={comment.id} className={styles.comment}>
-                  <p className={styles.commentContent}>{comment.content}</p>
-                  <p className={styles.commentMeta}>
-                    {comment.writer.nickname} -{" "}
-                    {new Date(comment.createdAt).toLocaleString()}
-                    <button
-                      onClick={() => handleCommentDelete(comment.id)}
-                      className={styles.commentDelete}
-                    >
-                      삭제
-                    </button>
-                  </p>
-                </div>
-              ))}
-          </div>
+          {commentsData && commentsData.list.length === 0 ? (
+            <div className={styles.emptyComments}>
+              <Image
+                src="/Img_inquiry_empty.png"
+                alt="댓글 없음"
+                width={200}
+                height={200}
+              />
+              <p>아직 댓글이 없습니다.</p>
+            </div>
+          ) : (
+            // 2.2. 댓글 렌더링 부분 수정
+            <CommentOptions
+              comments={commentsData.list}
+              onEdit={handleCommentEdit}
+              onDelete={handleCommentDelete}
+            />
+          )}
           {commentsData && commentsData.nextCursor && (
             <button
               onClick={loadMoreComments}
@@ -190,6 +215,17 @@ const ItemDetail = () => {
             </button>
           )}
         </div>
+        <button
+          onClick={() => router.push("/items")}
+          className={styles.backToListButton}
+        >
+          <Image
+            src="/btn_medium.png"
+            alt="목록으로 돌아가기"
+            width={240}
+            height={48}
+          />
+        </button>
       </div>
       <Footer />
     </div>

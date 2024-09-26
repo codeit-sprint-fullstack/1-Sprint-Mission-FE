@@ -2,41 +2,27 @@
 
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 70px auto 0;
   padding: 20px;
+}
+
+.contentWrapper {
   display: flex;
-  flex-wrap: wrap;
+  gap: 40px;
 }
 
 .imageGallery {
-  width: 50%;
-  padding-right: 20px;
+  flex: 1;
 }
 
 .mainImage {
-  width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-}
-
-.thumbnails {
-  display: flex;
-  gap: 10px;
-}
-
-.thumbnail {
-  width: 60px;
-  height: 60px;
+  width: 486px;
+  height: 486px;
   object-fit: cover;
-  cursor: pointer;
-}
-
-.activeThumbnail {
-  border: 2px solid #4caf50;
 }
 
 .itemInfo {
-  width: 50%;
+  flex: 1;
 }
 
 .itemName {
@@ -46,31 +32,29 @@
 }
 
 .itemPrice {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: bold;
-  color: #4caf50;
-  margin-bottom: 20px;
-}
-
-.itemDescription {
-  margin-bottom: 20px;
-  line-height: 1.6;
-}
-
-.itemMeta {
-  font-size: 14px;
-  color: #666;
+  color: #000;
   margin-bottom: 20px;
 }
 
 .favoriteButton {
-  background-color: #4caf50;
-  color: white;
+  background: none;
   border: none;
-  padding: 10px 20px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
   font-size: 16px;
   margin-bottom: 20px;
+}
+
+.favoriteIcon {
+  margin-right: 5px;
+}
+
+.itemDescription {
+  margin: 20px 0;
+  line-height: 1.6;
 }
 
 .itemTags {
@@ -86,66 +70,106 @@
 }
 
 .commentSection {
-  width: 100%;
   margin-top: 40px;
 }
 
 .commentForm {
-  margin-bottom: 20px;
+  width: 1200px;
+  height: 104px;
+  display: flex;
+  margin: 20px 0; /* 위아래 여백 추가 */
 }
 
 .commentInput {
-  width: 100%;
-  height: 100px;
+  flex-grow: 1;
+  height: 40px;
   padding: 10px;
-  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f3f4f6;
 }
 
 .commentSubmit {
-  background-color: #4caf50;
+  margin-left: 10px;
+  padding: 0 20px;
+  height: 40px;
+  background-color: #9ca3af;
   color: white;
   border: none;
-  padding: 10px 20px;
+  border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.comments {
-  border-top: 1px solid #ddd;
-  padding-top: 20px;
+.commentSubmit:hover {
+  background-color: #3692ff;
 }
 
 .comment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid #eee;
   padding: 10px 0;
 }
 
 .commentContent {
-  margin-bottom: 5px;
+  flex-grow: 1;
 }
 
-.commentMeta {
-  font-size: 12px;
-  color: #666;
+.commentActions {
+  position: relative;
 }
 
-.commentDelete {
-  background-color: #f44336;
-  color: white;
+.kebabButton {
+  background: none;
   border: none;
-  padding: 5px 10px;
-  margin-left: 10px;
   cursor: pointer;
-  font-size: 12px;
+}
+
+.actionMenu {
+  position: absolute;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.actionMenu.active {
+  display: block;
+}
+
+.actionMenuItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.actionMenuItem:hover {
+  background-color: #f3f4f6;
+}
+
+.emptyComments {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.backToListButton {
+  display: block;
+  margin: 20px auto;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
+  .contentWrapper {
+    flex-direction: column;
+  }
+
   .imageGallery,
   .itemInfo {
     width: 100%;
-  }
-
-  .imageGallery {
-    padding-right: 0;
-    margin-bottom: 20px;
   }
 }

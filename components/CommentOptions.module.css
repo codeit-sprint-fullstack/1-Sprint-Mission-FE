@@ -1,0 +1,63 @@
+/* components/CommentOptions.module.css */
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* 댓글 간격 */
+}
+
+.comment {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.commentContent {
+  margin-bottom: 5px;
+}
+
+.commentMeta {
+  font-size: 12px;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.commentActions {
+  position: relative;
+  margin-left: 10px;
+}
+
+.commentOptionsButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.optionsPopup {
+  position: absolute;
+  top: 25px;
+  right: 0;
+  width: 139px;
+  height: 92px;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 0; /* 패딩 제거 */
+  z-index: 1000;
+}
+
+.optionsPopup button {
+  display: block;
+  width: 139px; /* 버튼 너비 수정 */
+  height: 46px; /* 버튼 높이 추가 */
+  background: none;
+  border: none;
+  text-align: center; /* 텍스트 가운데 정렬 */
+  cursor: pointer;
+  margin: 0; /* 마진 제거 */
+}
+
+.optionsPopup button:hover {
+  background-color: #f0f0f0;
+}
