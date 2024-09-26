@@ -1,13 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { deleteComment } from '../api/commentApi';
 import { getAccessToken } from '../api/authApi';
+import CommentEditModal from './CommentEditModal';
 import styles from './ProductCommentKebabMenu.module.css';
 
-const ProductCommentKebabMenu = ({ commentId, onEdit, refreshComments }) => {
+const ProductCommentKebabMenu = ({ commentId, initialContent, refreshComments }) => {
   const [showMenu, setShowMenu] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const menuRef = useRef(null);
 
-  // 케밥 메뉴 외부 클릭 시 닫기
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -26,7 +27,6 @@ const ProductCommentKebabMenu = ({ commentId, onEdit, refreshComments }) => {
     console.log("케밥 메뉴 버튼 클릭됨, 메뉴 상태:", showMenu ? "닫힘" : "열림");
   };
 
-  // 댓글 삭제 처리
   const handleDeleteClick = async () => {
     const accessToken = getAccessToken();
     if (!accessToken) {
@@ -37,12 +37,17 @@ const ProductCommentKebabMenu = ({ commentId, onEdit, refreshComments }) => {
     try {
       await deleteComment(commentId, accessToken);
       alert('댓글이 삭제되었습니다.');
-      refreshComments(); // 삭제 후 목록 갱신 처리
-      setShowMenu(false); // 메뉴 닫기
+      refreshComments();
+      setShowMenu(false);
     } catch (error) {
       console.error('댓글 삭제 중 오류가 발생했습니다:', error);
       alert('댓글 삭제 중 오류가 발생했습니다.');
     }
+  };
+
+  const handleEditClick = () => {
+    setIsEditModalOpen(true);
+    setShowMenu(false);
   };
 
   return (
@@ -55,10 +60,18 @@ const ProductCommentKebabMenu = ({ commentId, onEdit, refreshComments }) => {
       />
       {showMenu && (
         <div className={styles.kebabMenu}>
-          <div className={styles.menuItem} onClick={onEdit}>댓글 수정</div>
+          <div className={styles.menuItem} onClick={handleEditClick}>댓글 수정</div>
           <div className={styles.menuItem} onClick={handleDeleteClick}>댓글 삭제</div>
         </div>
       )}
+
+      <CommentEditModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        commentId={commentId}
+        initialContent={initialContent}
+        refreshComments={refreshComments}
+      />
     </div>
   );
 };
