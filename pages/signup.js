@@ -130,7 +130,21 @@ const Signup = () => {
                   onClick={togglePasswordVisibility}
                   className={styles.passwordToggle}
                 >
-                  {showPassword ? "👀" : "👁️‍🗨️"}
+                  {showPassword ? (
+                    <Image
+                      src="/eye.png"
+                      alt="Show password"
+                      width={20.39}
+                      height={14}
+                    />
+                  ) : (
+                    <Image
+                      src="/eye2.png"
+                      alt="Hide password"
+                      width={20.47}
+                      height={18.07}
+                    />
+                  )}
                 </button>
               </div>
               {errors.password && (
@@ -163,7 +177,21 @@ const Signup = () => {
                   onClick={toggleConfirmPasswordVisibility}
                   className={styles.passwordToggle}
                 >
-                  {showConfirmPassword ? "👀" : "👁️‍🗨️"}
+                  {showPassword ? (
+                    <Image
+                      src="/eye.png"
+                      alt="Show password"
+                      width={20.39}
+                      height={14}
+                    />
+                  ) : (
+                    <Image
+                      src="/eye2.png"
+                      alt="Hide password"
+                      width={20.47}
+                      height={18.07}
+                    />
+                  )}
                 </button>
               </div>
               {errors.confirmPassword && (

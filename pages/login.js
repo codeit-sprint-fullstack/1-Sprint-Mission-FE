@@ -40,10 +40,11 @@ const Login = () => {
     },
     onError: (error) => {
       console.error("로그인 실패:", error);
-      setModalMessage(
-        "로그인에 실패했습니다. 이메일과 비밀번호를 확인해 주세요."
-      );
-      setIsModalOpen(true);
+      setError("email", { type: "manual", message: "이메일을 확인해 주세요." });
+      setError("password", {
+        type: "manual",
+        message: "비밀번호를 확인해 주세요.",
+      });
     },
   });
 
@@ -107,7 +108,21 @@ const Login = () => {
                   onClick={togglePasswordVisibility}
                   className={styles.passwordToggle}
                 >
-                  {showPassword ? "👀" : "👁️‍🗨️"}
+                  {showPassword ? (
+                    <Image
+                      src="/eye.png"
+                      alt="Show password"
+                      width={20.39}
+                      height={14}
+                    />
+                  ) : (
+                    <Image
+                      src="/eye2.png"
+                      alt="Hide password"
+                      width={20.47}
+                      height={18.07}
+                    />
+                  )}
                 </button>
               </div>
               {errors.password && (
