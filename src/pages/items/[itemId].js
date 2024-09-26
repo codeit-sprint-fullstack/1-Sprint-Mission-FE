@@ -1,7 +1,12 @@
 import { useRouter } from "next/router";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
-import { getProductById, favoriteProduct, unfavoriteProduct, updateProduct } from "../../api/productApi";
+import {
+  getProductById,
+  favoriteProduct,
+  unfavoriteProduct,
+  updateProduct,
+} from "../../api/productApi";
 import { getComments } from "../../api/commentApi";
 import { getAccessToken } from "../../api/authApi";
 import Modal from "../../components/Modal";
@@ -10,6 +15,7 @@ import ProductCommentItem from "../../components/ProductCommentItem";
 import ProductEmptyComments from "../../components/ProductEmptyComments";
 import ProductBackButton from "../../components/ProductBackButton";
 import ProductKebabMenu from "../../components/ProductKebabMenu";
+import ProductEditModal from "../../components/ProductEditModal";
 import styles from "../../styles/itemDetail.module.css";
 
 const ProductDetailPage = () => {
@@ -20,12 +26,12 @@ const ProductDetailPage = () => {
   const [accessToken, setAccessToken] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const [comments, setComments] = useState([]);
-  const [isEditMode, setIsEditMode] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [editedProduct, setEditedProduct] = useState({
     name: "",
     price: "",
     description: "",
-    tags: [], // 태그 추가
+    tags: [],
   });
 
   // 페이지가 로드될 때 accessToken을 getAccessToken 함수로 가져옴
@@ -82,43 +88,6 @@ const ProductDetailPage = () => {
     },
   });
 
-  const updateProductMutation = useMutation({
-    mutationFn: (updatedData) =>
-      updateProduct(itemId, updatedData, accessToken),
-    onSuccess: () => {
-      setIsEditMode(false);
-    },
-    onError: () => {
-      setModalMessage("상품 수정 중 오류가 발생했습니다.");
-      setIsModalOpen(true);
-    },
-  });
-
-  const handleDeleteTag = (deleteTag) => {
-    setEditedProduct({
-      ...editedProduct,
-      tags: editedProduct.tags.filter((tag) => tag !== deleteTag),
-    });
-  };
-
-  const handleTagKeyPress = (e) => {
-    if (e.key === "Enter" && e.target.value.trim()) {
-      setEditedProduct({
-        ...editedProduct,
-        tags: [...editedProduct.tags, e.target.value.trim()],
-      });
-      e.target.value = "";
-    }
-  };
-
-  const toggleEditMode = () => {
-    setIsEditMode(!isEditMode);
-  };
-
-  const handleSave = () => {
-    updateProductMutation.mutate(editedProduct);
-  };
-
   const handleLikeToggle = () => {
     if (accessToken) {
       likeMutation.mutate();
@@ -146,97 +115,37 @@ const ProductDetailPage = () => {
         <div className={styles.infoContainer}>
           <div className={`${styles.infoBox} ${styles.firstBox}`}>
             <div className={styles.namePriceContainer}>
-              {isEditMode ? (
-                <input
-                  type="text"
-                  value={editedProduct.name}
-                  onChange={(e) =>
-                    setEditedProduct({ ...editedProduct, name: e.target.value })
-                  }
-                  className={styles.inputField}
-                />
-              ) : (
-                <span className={styles.name}>{productData?.name}</span>
-              )}
-
+              <span className={styles.name}>{productData?.name}</span>
               <ProductKebabMenu
                 productId={itemId}
-                onEdit={toggleEditMode}
+                productData={productData}
+                onEdit={() => setShowEditModal(true)} // 수정 모달 열기
+                onProductUpdate={(updatedProduct) =>
+                  setEditedProduct(updatedProduct)
+                } // 수정된 내용 반영
                 refreshProducts={() => router.push("/items")}
               />
             </div>
-
-            <div>
-              {isEditMode ? (
-                <input
-                  type="number"
-                  value={editedProduct.price}
-                  onChange={(e) =>
-                    setEditedProduct({
-                      ...editedProduct,
-                      price: e.target.value,
-                    })
-                  }
-                  className={styles.inputField}
-                />
-              ) : (
-                <span className={styles.price}>
-                  {productData?.price.toLocaleString("ko-KR")}원
-                </span>
-              )}
-            </div>
+            <span className={styles.price}>
+              {productData?.price.toLocaleString("ko-KR")}원
+            </span>
           </div>
 
           <div className={`${styles.infoBox} ${styles.secondBox}`}>
             <div className={styles.descriptionTitle}>상품 소개</div>
-            {isEditMode ? (
-              <textarea
-                value={editedProduct.description}
-                onChange={(e) =>
-                  setEditedProduct({
-                    ...editedProduct,
-                    description: e.target.value,
-                  })
-                }
-                className={styles.textArea}
-              />
-            ) : (
-              <div className={styles.descriptionContent}>
-                {productData?.description}
-              </div>
-            )}
+            <div className={styles.descriptionContent}>
+              {productData?.description}
+            </div>
           </div>
 
           <div className={`${styles.infoBox} ${styles.thirdBox}`}>
             <div className={styles.tagTitle}>상품 태그</div>
             <div className={styles.tags}>
-              {isEditMode ? (
-                <>
-                  <input
-                    type="text"
-                    onKeyPress={handleTagKeyPress}
-                    placeholder="태그를 추가하세요 (Enter)"
-                    className={styles.inputField}
-                  />
-                  <div>
-                    {editedProduct.tags.map((tag, index) => (
-                      <span key={index} className={styles.tag}>
-                        #{tag}{" "}
-                        <button
-                          type="button"
-                          onClick={() => handleDeleteTag(tag)}
-                        >
-                          X
-                        </button>
-                      </span>
-                    ))}
-                  </div>
-                </>
-              ) : (
-                productData?.tags?.map((tag, index) => (
-                  <span key={index} className={styles.tag}>#{tag}</span>
-                ))
-              )}
+              {productData?.tags?.map((tag, index) => (
+                <span key={index} className={styles.tag}>
+                  #{tag}
+                </span>
+              ))}
             </div>
           </div>
 
@@ -252,12 +161,6 @@ const ProductDetailPage = () => {
             <span className={styles.createdAt}>
               {new Date(productData?.createdAt).toLocaleDateString()}
             </span>
-            <img
-              src="/image/line.svg"
-              alt="Line Icon"
-              className={styles.lineIcon}
-            />
-
             <img
               src={isLiked ? "/image/heart_filled.svg" : "/image/heart.svg"}
               alt="Heart Icon"
@@ -298,22 +201,22 @@ const ProductDetailPage = () => {
       </div>
 
       <div className={styles.buttonContainer}>
-        {isEditMode ? (
-          <>
-            <button onClick={handleSave} className={styles.saveButton}>
-              저장
-            </button>
-            <button onClick={toggleEditMode} className={styles.cancelButton}>
-              취소
-            </button>
-          </>
-        ) : (
-          <ProductBackButton />
-        )}
+        <ProductBackButton />
       </div>
 
       {isModalOpen && (
         <Modal message={modalMessage} onConfirm={() => setIsModalOpen(false)} />
+      )}
+
+      {showEditModal && (
+        <ProductEditModal
+          isOpen={showEditModal}
+          onClose={() => setShowEditModal(false)}
+          productData={productData}
+          onProductUpdate={(updatedProduct) =>
+            setEditedProduct(updatedProduct)
+          }
+        />
       )}
     </div>
   );
