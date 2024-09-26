@@ -8,7 +8,13 @@ export default function Header() {
   const router = useRouter();
 
   return (
-    <header className={styles.header}>
+    <header
+      className={`${styles.header} ${
+        router.pathname === "/login" || router.pathname === "/signup"
+          ? styles.none
+          : ""
+      }`}
+    >
       <div className={styles.container}>
         <Link href="/">
           <Image src={basicLogo} className={styles.logo} alt="logo" />
@@ -23,9 +29,9 @@ export default function Header() {
             자유게시판
           </Link>
           <Link
-            href="/market"
+            href="/items"
             className={`${styles.title} ${
-              router.pathname === "/market" ? styles.active : ""
+              router.pathname === "/items" ? styles.active : ""
             }`}
           >
             중고마켓
