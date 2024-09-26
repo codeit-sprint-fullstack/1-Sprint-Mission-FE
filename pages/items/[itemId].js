@@ -1,4 +1,5 @@
 // items/[itemId].js
+
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -13,7 +14,7 @@ import {
   deleteComment,
   postProductFavorite,
   deleteProductFavorite,
-} from "../../api";
+} from "../../api/api";
 
 const ItemDetail = () => {
   const router = useRouter();
@@ -48,7 +49,7 @@ const ItemDetail = () => {
     enabled: !!itemId,
   });
 
-  //댓글 작성 뮤테이션
+  // 댓글 작성 뮤테이션
   const postCommentMutation = useMutation({
     mutationFn: ({ productId, content }) =>
       postProductComment({ productId, content }),
@@ -58,7 +59,7 @@ const ItemDetail = () => {
     },
   });
 
-  //댓글 삭제 뮤테이션
+  // 댓글 삭제 뮤테이션
   const deleteCommentMutation = useMutation({
     mutationFn: (commentId) => deleteComment(commentId),
     onSuccess: () => {
@@ -66,7 +67,7 @@ const ItemDetail = () => {
     },
   });
 
-  //상품 좋아요 추가 뮤테이션
+  // 상품 좋아요 추가 뮤테이션
   const postFavoriteMutation = useMutation({
     mutationFn: () => postProductFavorite(itemId),
     onSuccess: () => {
@@ -74,7 +75,7 @@ const ItemDetail = () => {
     },
   });
 
-  //상품 좋아요 취소 뮤테이션
+  // 상품 좋아요 취소 뮤테이션
   const deleteFavoriteMutation = useMutation({
     mutationFn: () => deleteProductFavorite(itemId),
     onSuccess: () => {
@@ -84,7 +85,10 @@ const ItemDetail = () => {
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
-    postCommentMutation.mutate({ productId: itemId, content: newComment });
+    postCommentMutation.mutate({
+      productId: itemId,
+      content: newComment,
+    });
   };
 
   const handleCommentDelete = (commentId) => {
@@ -114,13 +118,38 @@ const ItemDetail = () => {
     <div>
       <Nav />
       <div className={styles.container}>
-        {/* 상품 정보 표시 부분 */}
-        <h1>{itemData.name}</h1>
-        {/* ... 기타 상품 정보 표시 */}
-        <button onClick={handleFavorite}>
-          {itemData.isFavorite ? "좋아요 취소" : "좋아요"}
-        </button>
+        {/* 이미지 갤러리 */}
+        <div className={styles.imageGallery}>
+          <Image
+            src={itemData.images[0] || "/placeholder-image.jpg"}
+            alt={itemData.name}
+            width={500}
+            height={500}
+            className={styles.mainImage}
+          />
+          {/* 썸네일을 추가하려면 여기서 구현하세요 */}
+        </div>
 
+        {/* 상품 정보 */}
+        <div className={styles.itemInfo}>
+          <h1 className={styles.itemName}>{itemData.name}</h1>
+          <p className={styles.itemPrice}>
+            가격: {itemData.price.toLocaleString()}원
+          </p>
+          <p className={styles.itemDescription}>{itemData.description}</p>
+          <div className={styles.itemTags}>
+            {itemData.tags.map((tag, index) => (
+              <span key={index} className={styles.tag}>
+                {tag}
+              </span>
+            ))}
+          </div>
+          <button onClick={handleFavorite} className={styles.favoriteButton}>
+            {itemData.isFavorite ? "좋아요 취소" : "좋아요"}
+          </button>
+        </div>
+
+        {/* 댓글 섹션 */}
         <div className={styles.commentSection}>
           <h2>댓글</h2>
           <form onSubmit={handleCommentSubmit} className={styles.commentForm}>
