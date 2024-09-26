@@ -36,7 +36,7 @@ const CommentSection = ({ productId }) => {
     ["comments", productId],
     ({ pageParam = 0 }) => getComments(productId, pageParam, COMMENTS_PER_PAGE),
     {
-      getNextPageParam: (lastPage) => lastPage.nextCursor,
+      getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
       retry: 3,
       onError: handleError,
     }
