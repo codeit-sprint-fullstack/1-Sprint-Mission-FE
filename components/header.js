@@ -5,7 +5,11 @@ import { useRouter } from "next/router";
 
 function NavLink({ href, children, activeClassName }) {
   const router = useRouter();
-  const className = router.pathname === href ? activeClassName : styles.link;
+  const className =
+    router.pathname === href ||
+    (href === "/items" && router.pathname.startsWith("/items"))
+      ? activeClassName
+      : styles.link;
 
   return (
     <Link href={href} className={className}>
@@ -26,13 +30,14 @@ export default function Header() {
               height={51}
               alt="logo"
               className={styles.logo}
+              priority
             />
           </Link>
           <div className={styles.link_container}>
             <NavLink href="/" activeClassName={styles.active_link}>
               자유게시판
             </NavLink>
-            <NavLink href="/market" activeClassName={styles.active_link}>
+            <NavLink href="/items" activeClassName={styles.active_link}>
               중고마켓
             </NavLink>
           </div>
