@@ -16,6 +16,7 @@ import ProductEmptyComments from "../../components/ProductEmptyComments";
 import ProductBackButton from "../../components/ProductBackButton";
 import ProductKebabMenu from "../../components/ProductKebabMenu";
 import ProductEditModal from "../../components/ProductEditModal";
+import Spinner from "../../components/Spinner";
 import styles from "../../styles/itemDetail.module.css";
 
 const ProductDetailPage = () => {
@@ -37,12 +38,12 @@ const ProductDetailPage = () => {
   // 페이지가 로드될 때 accessToken을 getAccessToken 함수로 가져옴
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const token = getAccessToken(); // getAccessToken 함수 사용
+      const token = getAccessToken();
       setAccessToken(token);
     }
   }, []);
 
-  const { data: productData, error: productError } = useQuery({
+  const { data: productData, error: productError, isLoading: isProductLoading } = useQuery({
     queryKey: ["product", itemId],
     queryFn: () => getProductById(itemId),
     enabled: !!itemId,
@@ -101,6 +102,10 @@ const ProductDetailPage = () => {
     setComments([newComment, ...comments]);
   };
 
+  if (isProductLoading) {
+    return <Spinner dataLoaded={!isProductLoading} />;
+  }
+
   if (productError) return <p>상품 정보를 불러오는 중 오류가 발생했습니다.</p>;
 
   return (
@@ -119,7 +124,7 @@ const ProductDetailPage = () => {
               <ProductKebabMenu
                 productId={itemId}
                 productData={productData}
-                onEdit={() => setShowEditModal(true)} // 수정 모달 열기
+                onEdit={() => setShowEditModal(true)}
                 onProductUpdate={(updatedProduct) =>
                   setEditedProduct(updatedProduct)
                 } // 수정된 내용 반영

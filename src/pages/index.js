@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import DeleteModal from "../components/DeleteModal";
+import Spinner from "../components/Spinner"; // Spinner 컴포넌트 임포트
+
 const HomePage = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isSpinnerVisible, setIsSpinnerVisible] = useState(false); // 스피너 상태 추가
 
   const handleConfirm = () => {
     console.log("상품이 삭제되었습니다.");
@@ -10,6 +13,14 @@ const HomePage = () => {
 
   const handleCancel = () => {
     setIsModalVisible(false);
+  };
+
+  const handleShowSpinner = () => {
+    setIsSpinnerVisible(true);
+  };
+
+  const handleHideSpinner = () => {
+    setIsSpinnerVisible(false);
   };
 
   return (
@@ -27,8 +38,25 @@ const HomePage = () => {
       {isModalVisible && (
         <DeleteModal onConfirm={handleConfirm} onCancel={handleCancel} />
       )}
+
+      <button
+        style={{ marginTop: "20px", marginLeft: "80px" }}
+        onClick={handleShowSpinner}
+      >
+        스피너 표시
+      </button>
+
+      <button
+        style={{ marginTop: "20px", marginLeft: "20px" }}
+        onClick={handleHideSpinner}
+      >
+        스피너 숨기기
+      </button>
+
+      {isSpinnerVisible && <Spinner />}
     </div>
   );
 };
 
 export default HomePage;
+
