@@ -1,4 +1,5 @@
-// /items/index.js
+// pages/items/index.js
+
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -116,8 +117,9 @@ const ItemsPage = () => {
                 className={styles.productItem}
               >
                 <div className={styles.imageContainer}>
+                  {/* 수정된 부분: 이미지 렌더링 */}
                   <Image
-                    src={item.images[0] || "/placeholder-image.jpg"}
+                    src={item.images[0] || "/placeholder-image.jpg"} // 상품의 첫 번째 이미지를 사용
                     alt={item.name}
                     width={220}
                     height={220}

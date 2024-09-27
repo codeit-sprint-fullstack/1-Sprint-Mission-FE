@@ -13,9 +13,30 @@ export const fetchProducts = async (params) => {
   return response.data;
 };
 
+// 상품 등록
+export const createProduct = async (productData) => {
+  const response = await axiosInstance.post("/products", productData);
+  return response.data;
+};
+
 // 상품 상세 정보 가져오기
 export const fetchProductById = async (productId) => {
   const response = await axiosInstance.get(`/products/${productId}`);
+  return response.data;
+};
+
+// 상품 수정
+export const editProduct = async (productId, productData) => {
+  const response = await axiosInstance.patch(
+    `/products/${productId}`,
+    productData
+  );
+  return response.data;
+};
+
+// 상품 삭제
+export const deleteProduct = async (productId) => {
+  const response = await axiosInstance.delete(`/products/${productId}`);
   return response.data;
 };
 

@@ -7,13 +7,17 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import styles from "../../styles/ItemDetail.module.css";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
-import CommentOptions from "../../components/CommentOptions"; // 2.1. CommentOptions 컴포넌트 임포트
+import CommentOptions from "../../components/CommentOptions";
+import ProductOptions from "../../components/ProductOptions";
 import {
   fetchProductById,
   fetchProductComments,
+  fetchCurrentUser,
   postProductComment,
   deleteComment,
-  editComment, // 2.5. editComment 함수 임포트
+  editComment,
+  editProduct,
+  deleteProduct,
   postProductFavorite,
   deleteProductFavorite,
 } from "../../api/api";
@@ -51,6 +55,16 @@ const ItemDetail = () => {
     enabled: !!itemId,
   });
 
+  // 현재 사용자 정보 가져오기
+  const {
+    data: currentUser,
+    error: userError,
+    isLoading: userLoading,
+  } = useQuery({
+    queryKey: ["currentUser"],
+    queryFn: fetchCurrentUser,
+  });
+
   const postCommentMutation = useMutation({
     mutationFn: ({ productId, content }) =>
       postProductComment({ productId, content }),
@@ -67,12 +81,26 @@ const ItemDetail = () => {
     },
   });
 
-  // 2.4. editCommentMutation 추가
   const editCommentMutation = useMutation({
     mutationFn: ({ commentId, newContent }) =>
       editComment(commentId, newContent),
     onSuccess: () => {
       queryClient.invalidateQueries(["productComments", itemId]);
+    },
+  });
+
+  const editProductMutation = useMutation({
+    mutationFn: ({ productId, productData }) =>
+      editProduct(productId, productData),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["product", itemId]);
+    },
+  });
+
+  const deleteProductMutation = useMutation({
+    mutationFn: (productId) => deleteProduct(productId),
+    onSuccess: () => {
+      router.push("/items"); // 상품 삭제 후 목록 페이지로 이동
     },
   });
 
@@ -98,11 +126,19 @@ const ItemDetail = () => {
     deleteCommentMutation.mutate(commentId);
   };
 
-  // 2.3. handleCommentEdit 함수 추가
-  const handleCommentEdit = (commentId) => {
-    const newContent = prompt("새로운 댓글 내용을 입력하세요:");
+  const handleCommentEdit = (commentId, newContent) => {
     if (newContent) {
       editCommentMutation.mutate({ commentId, newContent });
+    }
+  };
+
+  const handleProductEdit = (productId, productData) => {
+    editProductMutation.mutate({ productId, productData });
+  };
+
+  const handleProductDelete = (productId) => {
+    if (confirm("정말로 상품을 삭제하시겠습니까?")) {
+      deleteProductMutation.mutate(productId);
     }
   };
 
@@ -122,9 +158,12 @@ const ItemDetail = () => {
     }
   }, [itemData]);
 
-  if (itemLoading || commentsLoading) return <div>로딩 중...</div>;
-  if (itemError || commentsError)
-    return <div>에러 발생: {(itemError || commentsError).message}</div>;
+  if (itemLoading || commentsLoading || userLoading)
+    return <div>로딩 중...</div>;
+  if (itemError || commentsError || userError)
+    return (
+      <div>에러 발생: {(itemError || commentsError || userError).message}</div>
+    );
   if (!itemData) return <div>상품을 찾을 수 없습니다.</div>;
 
   return (
@@ -133,8 +172,9 @@ const ItemDetail = () => {
       <div className={styles.container}>
         <div className={styles.contentWrapper}>
           <div className={styles.imageGallery}>
+            {/* 수정된 부분: 상품 이미지 렌더링 */}
             <Image
-              src={itemData.images[0] || "/placeholder-image.jpg"}
+              src={itemData.images[0] || "/placeholder-image.jpg"} // 상품의 첫 번째 이미지를 사용
               alt={itemData.name}
               width={486}
               height={486}
@@ -144,6 +184,15 @@ const ItemDetail = () => {
 
           <div className={styles.itemInfo}>
             <h1 className={styles.itemName}>{itemData.name}</h1>
+
+            {/* ProductOptions 컴포넌트 추가 */}
+            <ProductOptions
+              product={itemData}
+              currentUser={currentUser}
+              onEdit={handleProductEdit}
+              onDelete={handleProductDelete}
+            />
+
             <p className={styles.itemPrice}>
               {itemData.price.toLocaleString()}원
             </p>
@@ -199,9 +248,9 @@ const ItemDetail = () => {
               <p>아직 댓글이 없습니다.</p>
             </div>
           ) : (
-            // 2.2. 댓글 렌더링 부분 수정
             <CommentOptions
               comments={commentsData.list}
+              currentUser={currentUser}
               onEdit={handleCommentEdit}
               onDelete={handleCommentDelete}
             />
