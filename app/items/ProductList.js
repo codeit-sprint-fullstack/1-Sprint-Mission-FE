@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import classNames from "classnames";
@@ -10,6 +10,13 @@ import Search from "../components/Search";
 import ProductPreview from "./ProductPreview";
 import { getProducts } from "@/lib/api-codeit-product";
 import { deviceContext } from "./FleaMarketDetail";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownItem,
+  DropdownMenu,
+} from "../components/DropDown";
+import Pagination from "../components/Pagination";
 
 import {
   ORDER_TEXT,
@@ -23,19 +30,21 @@ import { PC } from "../constants/device";
 import style from "./product-list.module.css";
 
 export default function ProductList({ initList, initTotalCount }) {
-  // let contextDevice = useContext(deviceContext);
-  // const [device, setDevice] = useState(contextDevice || 0);
-  let device = useContext(deviceContext) || PC;
-  let maxPageNum = Math.ceil(initTotalCount / PAGE_SIZE[device]);
   const [keyword, setKeyword] = useState("");
-  let currentOrder = ORDER_BY_RECENT;
-  let currentPage = 1;
   const [params, setParams] = useState({
     page: 1,
-    pageSize: 10,
+    pageSize: PAGE_SIZE[PC],
     orderBy: ORDER_BY[ORDER_BY_RECENT],
     keyword: null,
   });
+
+  const [currentOrder, setCurrentOrder] = useState(ORDER_BY_RECENT);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  let device = useContext(deviceContext) || PC;
+  const maxPageNum = useMemo(() => {
+    return Math.ceil(initTotalCount / PAGE_SIZE[device]);
+  }, [initTotalCount, device]);
 
   const {
     data = { list: initList, totalCount: initTotalCount },
@@ -46,14 +55,6 @@ export default function ProductList({ initList, initTotalCount }) {
     queryFn: () => getProducts(params),
     keepPreviousData: true,
   });
-
-  if (isLoading)
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
-  if (error) return <div>Error loading products</div>;
 
   const { list, totalCount } = data;
 
@@ -97,6 +98,7 @@ export default function ProductList({ initList, initTotalCount }) {
   const dropdownClass = classNames("mobile:order-4");
   const productListFrame = classNames(
     "mt-2.4rem",
+    "grid",
     "grid-cols-5",
     "gap-y-4rem",
     "tablet:grid-cols-3",
@@ -112,7 +114,7 @@ export default function ProductList({ initList, initTotalCount }) {
       orderBy: ORDER_BY[ORDER_BY_RECENT],
       keyword: keyword,
     });
-    currentOrder = ORDER_BY_RECENT;
+    setCurrentOrder(ORDER_BY_RECENT);
   };
 
   const sortByFavorite = () => {
@@ -122,7 +124,7 @@ export default function ProductList({ initList, initTotalCount }) {
       orderBy: ORDER_BY[ORDER_BY_FAVORITE],
       keyword: keyword,
     });
-    currentOrder = ORDER_BY_FAVORITE;
+    setCurrentOrder(ORDER_BY_FAVORITE);
   };
 
   const handleSubmit = (searchText) => {
@@ -141,14 +143,19 @@ export default function ProductList({ initList, initTotalCount }) {
   };
 
   useEffect(() => {
-    setParams({
-      page: currentPage,
+    setParams((prevParams) => ({
+      ...prevParams,
       pageSize: PAGE_SIZE[device],
-      orderBy: ORDER_BY[currentOrder],
-      keyword: keyword,
-    });
-    maxPageNum = Math.ceil(initTotalCount / PAGE_SIZE[device]);
+    }));
   }, [device]);
+
+  if (isLoading)
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  if (error) return <div>Error loading products</div>;
 
   return (
     <div className={productListClass}>
@@ -180,6 +187,7 @@ export default function ProductList({ initList, initTotalCount }) {
       <div className={productListFrame}>
         {list.map((item) => (
           <ProductPreview
+            key={item.id}
             productId={"?"}
             img={item.images[0]}
             title={item.name}

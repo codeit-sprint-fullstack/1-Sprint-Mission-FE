@@ -162,6 +162,9 @@ module.exports = {
       borderWidth: {
         1: "0.1rem",
       },
+      borderRadius: {
+        "3.5em": "3.5em",
+      },
       margin: {
         "mobile-footer": "7.6rem",
         // sign-in
@@ -199,16 +202,21 @@ module.exports = {
         "20rem": "20rem",
         "8.4rem": "8.4rem",
         header: "7rem",
+        "6.2rem": "6.2rem",
+        "5rem": "5rem",
         "4.8rem": "4.8rem",
         "4.2rem": "4.2rem",
         "4rem": "4rem",
+        "3.4rem": "3.4rem",
         "3.2rem": "3.2rem",
         "2.6rem": "2.6rem",
         "2.4rem": "2.4rem",
         "2rem": "2rem",
         "1.6rem": "1.6rem",
+        "1.2rem": "1.2rem",
         "0.8rem": "0.8rem",
         "0.4rem": "0.4rem",
+        "0.2rem": "0.2rem",
         "0.1rem": "0.1rem",
         "mobile-dropdown-menu-top": "-2.4rem",
         "mobile-dropdown-menu-left": "-8.8rem",
@@ -371,6 +379,115 @@ module.exports = {
           width: "4.2rem",
           height: "4.2rem",
           borderRadius: "50%",
+        },
+        ".product-image-list-set": {
+          width: "48.6rem",
+          height: "71rem",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          "@screen tablet": {
+            width: "34rem",
+            height: "56.4rem",
+          },
+          "@screen mobile": {
+            width: "34.4rem",
+            height: "56rem",
+          },
+        },
+        ".product-image-frame": {
+          width: "48.6rem",
+          height: "48.6rem",
+          position: "relative",
+          "@screen tablet": {
+            width: "34rem",
+            height: "34rem",
+          },
+          "@screen mobile": {
+            width: "34.4rem",
+            height: "34.4rem",
+          },
+        },
+        ".product-image-list": {
+          width: "48.6rem",
+          height: "20rem",
+          "@screen tablet": {
+            width: "34rem",
+            height: "20rem",
+          },
+          "@screen mobile": {
+            width: "34.4rem",
+            height: "20rem",
+          },
+        },
+        ".product-name": {
+          fontSize: "2.4rem",
+          fontWeight: "600",
+          lineHeight: "3.2rem",
+          color: "#1f2937",
+          "@screen tablet": {
+            fontSize: "2rem",
+          },
+          "@screen mobile": {
+            fontSize: "1.6rem",
+            lineHeight: "2.6rem",
+          },
+        },
+        ".product-price": {
+          marginTop: "1.6rem",
+          fontSize: "4rem",
+          fontWeight: "600",
+          lineHeight: "5.2rem",
+          color: "#1f2937",
+          "@screen tablet": {
+            marginTop: "0.8rem",
+            fontSize: "3.2rem",
+            lineHeight: "4.2rem",
+          },
+          "@screen mobile": {
+            marginTop: "0.8rem",
+            fontSize: "2.4rem",
+            lineHeight: "3.2rem",
+          },
+        },
+        ".product-info-label": {
+          fontSize: "1.6rem",
+          fontWeight: "600",
+          lineHeight: "2.6rem",
+          color: "#4B5563",
+          "@screen tablet": {
+            fontSize: "1.4rem",
+            lineHeight: "2.4rem",
+          },
+          "@screen mobile": {
+            fontSize: "1.4rem",
+            lineHeight: "2.4rem",
+          },
+        },
+        ".product-description": {
+          height: "100%",
+          marginTop: "1.6rem",
+          fontSize: "1.6rem",
+          fontWeight: "400",
+          lineHeight: "2.6rem",
+          color: "#4B5563",
+          "@screen tablet": {
+            marginTop: "0.8rem",
+          },
+          "@screen mobile": {
+            marginTop: "0.8rem",
+          },
+        },
+        ".product-tag-text": {
+          height: "3.6rem",
+          borderRadius: "1em",
+          boxSizing: "border-box",
+          backgroundColor: "#f3f4f6",
+          padding: "0.5rem 1.6rem",
+          fontSize: "1.6rem",
+          fontWeight: "400",
+          lineHeight: "2.6rem",
+          color: "#1f2937",
         },
       });
     },

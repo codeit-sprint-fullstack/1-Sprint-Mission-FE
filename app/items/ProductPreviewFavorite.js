@@ -26,7 +26,7 @@ export default function ProductPreviewFavorite({
   const count = favriteCount > 9999 ? "9999+" : favriteCount;
 
   const handleFavoriteClick = (e) => {
-    e.preventDefault();
+    e.stopPropagation();
     // productId 좋아요 설정
   };
 

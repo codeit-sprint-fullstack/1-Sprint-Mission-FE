@@ -17,7 +17,7 @@ import {
 
 export function NicknameInput({ label, register, errors }) {
   let inputClass = classNames("sign-in__input", "focus:border-input--focus");
-  if (errors.password) {
+  if (errors.nickname) {
     inputClass = classNames(
       "sign-in__input",
       "focus:border-input--focus",
@@ -39,16 +39,18 @@ export function NicknameInput({ label, register, errors }) {
           required: "닉네임을 입력해주세요",
           minLength: {
             value: MIN_NICKNAME_LENGTH,
-            message: `${MIN_NICKNAME_LENGTH}자 이상 비밀번호가 필요합니다`,
+            message: `${MIN_NICKNAME_LENGTH}자 이상 닉네임가 필요합니다`,
           },
           maxLength: {
             value: MAX_NICKNAME_LENGTH,
-            message: `${MAX_NICKNAME_LENGTH}자 이상 비밀번호가 필요합니다`,
+            message: `${MAX_NICKNAME_LENGTH}자 이하 닉네임가 필요합니다`,
           },
         })}
-        aria-invalid={errors.email ? "true" : "false"}
+        aria-invalid={errors.nickname ? "true" : "false"}
       />
-      {errors.email && <p className="sign-in__warn">{errors.email.message}</p>}
+      {errors.nickname && (
+        <p className="sign-in__warn">{errors.nickname.message}</p>
+      )}
     </div>
   );
 }
@@ -58,7 +60,7 @@ function PasswordConfirmInput({ label, register, errors }) {
   const [btnVisibleClass, setBtnVisibleClass] = useState("input--visible");
 
   let inputClass = classNames("sign-in__input", "focus:border-input--focus");
-  if (errors.password) {
+  if (errors.passwordConfirm) {
     inputClass = classNames(
       "sign-in__input",
       "focus:border-input--focus",
@@ -90,19 +92,19 @@ function PasswordConfirmInput({ label, register, errors }) {
             required: "비밀번호를 다시 한 번 입력해주세요",
             minLength: {
               value: MIN_PASSWORD_LENGTH,
-              message: `${MIN_PASSWORD_LENGTH}8자 이상 비밀번호가 필요합니다`,
+              message: `${MIN_PASSWORD_LENGTH}자 이상 비밀번호가 필요합니다`,
             },
             pattern: {
               value: /^([a-z]|[A-Z]|[0-9]|[!@#$%^&*])+$/,
               message: "사용하지 못하는 문자 형식이 포함되어 있습니다",
             },
           })}
-          aria-invalid={errors.password ? "true" : "false"}
+          aria-invalid={errors.passwordConfirm ? "true" : "false"}
         />
         <img className={btnVisibleClass} onClick={handleVisiblePassword} />
       </div>
       {(errors.passwordConfirm && (
-        <p className="sign-in__warn">{errors.password.message}</p>
+        <p className="sign-in__warn">{errors.passwordConfirm.message}</p>
       )) ||
         (errors.password !== errors.passwordConfirm && (
           <p className="sign-in__warn">{"비밀번호가 일치하지 않습니다"}</p>
@@ -135,7 +137,7 @@ export default function SignUpSet() {
   const password = watch("password");
   const passwordConfirm = watch("passwordConfirm");
 
-  const handleSignInBtnClick = () => {
+  const handleSignUpBtnClick = () => {
     signUp({
       email: email,
       nickname: nickname,
@@ -148,9 +150,9 @@ export default function SignUpSet() {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleSignInBtnClick)}>
+    <form onSubmit={handleSubmit(handleSignUpBtnClick)}>
       <EmailInput label="email" register={register} errors={errors} />
-      <NicknameInput label="email" register={register} errors={errors} />
+      <NicknameInput label="nickname" register={register} errors={errors} />
       <PasswordInput label="password" register={register} errors={errors} />
       <PasswordConfirmInput
         label="passwordConfirm"

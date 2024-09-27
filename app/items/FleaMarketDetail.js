@@ -11,7 +11,7 @@ export default function FleaMarketDetail({ initList, initTotalCount }) {
 
   return (
     <deviceContext.Provider value={device}>
-      <ProductList initList={initList} initTotalCount={initList} />
+      <ProductList initList={initList} initTotalCount={initTotalCount} />
     </deviceContext.Provider>
   );
 }

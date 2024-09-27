@@ -4,28 +4,30 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function ProductPreviewImage({ imageUrl }) {
-  const [validImg, setValidImg] = useState(
-    "../../../public/images/no_image.svg"
-  );
+  const [validImg, setValidImg] = useState("/images/no_image.svg");
 
   useEffect(() => {
-    const image = new Image();
+    const image = new window.Image();
 
     const handleImgLoad = () => {
       setValidImg(imageUrl);
     };
     const handleImgError = () => {
-      setValidImg("../../../public/images/no_image.svg");
+      setValidImg("/images/no_image.svg");
     };
 
-    image.addEventListener("load", handleImgLoad);
-    image.addEventListener("Error", handleImgError);
+    // image.addEventListener("load", handleImgLoad);
+    // image.addEventListener("Error", handleImgError);
 
     image.src = imageUrl;
+    image.onload = handleImgLoad;
+    image.onerror = handleImgError;
 
     return () => {
-      image.removeEventListener("load", handleImgLoad);
-      image.removeEventListener("Error", handleImgError);
+      image.onload = null;
+      image.onerror = null;
+      // image.removeEventListener("load", handleImgLoad);
+      // image.removeEventListener("Error", handleImgError);
     };
   }, [imageUrl]);
 

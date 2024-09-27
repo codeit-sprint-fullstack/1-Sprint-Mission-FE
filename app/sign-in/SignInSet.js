@@ -36,11 +36,24 @@ export default function SignInSet() {
   const email = watch("email");
   const password = watch("password");
 
-  const handleSignInBtnClick = () => {
-    signIn({ email: email, password: password }).then((user) => {
-      login(user);
-      router.push("/");
-    });
+  // const handleSignInBtnClick = () => {
+  //   signIn({ email: email, password: password }).then((user) => {
+  //     login(user);
+  //     router.push("/");
+  //   });
+  // };
+  const handleSignInBtnClick = async () => {
+    try {
+      const user = await signIn({ email, password });
+      if (user) {
+        login(user);
+        router.push("/");
+      } else {
+        console.error("Sign-in failed: No user data returned.");
+      }
+    } catch (error) {
+      console.error("Sign-in error:", error);
+    }
   };
 
   return (

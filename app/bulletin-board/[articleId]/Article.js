@@ -34,7 +34,14 @@ export function Article({
   const topBarClass = `flex flex-row justify-between ${style["top-bar"]}`;
   const topBarTextClass = `font-bold ${style["top-bar-text"]}`;
   const middleBarClass = `flex flex-row items-center ${style["middle-bar"]}`;
-  const middleBarOwnerDateSetClass = `flex flex-row items-center ${style["middle-bar-owner-data-set"]}`;
+  // const middleBarOwnerDateSetClass = `flex flex-row items-center ${style["middle-bar-owner-data-set"]}`;
+  const middleBarOwnerDateSetClass = classNames(
+    "flex",
+    "flex-row",
+    "items-center",
+    "gap-0.8rem",
+    "mobile:gap-0.2rem"
+  );
   const middleBarOwnerClass = `font-medium ${style["middle-bar-owner"]}`;
   const dividerClass = `flex flex-row items-center justify-center ${style.divider}`;
   const contentClass = `font-normal ${style.content}`;

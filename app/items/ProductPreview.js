@@ -11,7 +11,7 @@ export default function ProductPreview({
   isFavorite = false,
   favoriteCount,
 }) {
-  const linkTo = `/flea-market/${productId}`;
+  const linkTo = `/items/${productId}`;
   const productPreviewClass = classNames(
     "flex",
     "flex-col",
@@ -23,11 +23,12 @@ export default function ProductPreview({
   );
   const imageFramClass = classNames(
     "w-product-preview-image",
-    "h-product-preview-imagew",
+    "h-product-preview-image",
     "mobile:w-mobile-product-preview-image",
     "mobile:h-mobile-product-preview-image",
     "box-content",
     "rounded-1.6rem",
+    "relative",
     "overflow-hidden"
   );
   const productInfoClass = classNames(

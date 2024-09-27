@@ -11,12 +11,10 @@ export async function ArticleDetailClient({ articleId }) {
   const btnFrameClass = classNames(
     "flex",
     "flex-row",
-    "w-pc-content",
+    "content",
     "h-4.8rem",
     "mt-btn-to-list-frame-mt",
-    "mb-btn-to-list-frame-mb",
-    "tablet:w-tablet-content",
-    "mobile:w-mobile-content"
+    "mb-btn-to-list-frame-mb"
   );
   const linkClass = classNames("my-0", "mx-auto");
   const btnToBulletinBoardClass = classNames(

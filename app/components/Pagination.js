@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import "../assets/styles/Pagination.css";
 
 const SHOW_MAX_PAGINATION = 5;
 
@@ -13,29 +12,33 @@ export function Pagination({ className, maxPageNum, currentPage, onClick }) {
     "justify-center",
     "gap-0.4rem"
   );
-  const btnPageDefaultClass = classNames(
+  const btnPageCommonClass = classNames(
     "w-btn-page",
     "h-btn-page",
     "box-border",
     "shadow-none",
+    "rounded-full",
     "border-1",
-    "border-gray-200",
-    "bg-white",
-    "text-gray-500",
     "text-lg",
     "font-semibold"
   );
+  const btnPageDefaultClass = classNames(
+    btnPageCommonClass,
+    "border-gray-200",
+    "bg-white",
+    "text-gray-500"
+  );
   const btnCurrentPageClass = classNames(
-    "w-btn-page",
-    "h-btn-page",
-    "box-border",
-    "shadow-none",
-    "border-1",
+    btnPageCommonClass,
     "border-royal-blue",
     "bg-royal-blue",
-    "text-white",
-    "text-lg",
-    "font-semibold"
+    "text-white"
+  );
+  const btnMovePageClass = classNames(
+    btnPageCommonClass,
+    "flex",
+    "items-center",
+    "justify-center"
   );
   const maxButtonNumber =
     maxPageNum > SHOW_MAX_PAGINATION ? SHOW_MAX_PAGINATION : maxPageNum;
@@ -75,11 +78,8 @@ export function Pagination({ className, maxPageNum, currentPage, onClick }) {
 
   return (
     <div className={paginationFrameClass}>
-      <button className={className} onClick={leftPageButtonClick}>
-        <img
-          src={require("../assets/images/arrow_left_gray600.svg").default}
-          alt="previous page"
-        />
+      <button className={btnMovePageClass} onClick={leftPageButtonClick}>
+        <img src={"/icons/arrow_left_gray600.svg"} alt="previous page" />
       </button>
       {showPageArray.map((item) => {
         return (
@@ -92,11 +92,8 @@ export function Pagination({ className, maxPageNum, currentPage, onClick }) {
           </button>
         );
       })}
-      <button className={className} onClick={rightPageButtonClick}>
-        <img
-          src={require("../assets/images/arrow_right_gray600.svg").default}
-          alt="next page"
-        />
+      <button className={btnMovePageClass} onClick={rightPageButtonClick}>
+        <img src={"/icons/arrow_right_gray600.svg"} alt="next page" />
       </button>
     </div>
   );

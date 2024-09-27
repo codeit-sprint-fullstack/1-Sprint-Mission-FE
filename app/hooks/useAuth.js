@@ -5,12 +5,25 @@ const useAuth = create((set) => ({
   userId: "",
   userNickname: "",
   userProfileUrl: null,
+  // login: (user) =>
+  //   set({
+  //     isSignedIn: true,
+  //     userId: user.id,
+  //     userNickname: user.nickname,
+  //     userProfileUrl: user.image,
+  //   }),
   login: (user) =>
-    set({
-      isSignedIn: true,
-      userId: user.id,
-      userNickname: user.nickname,
-      userProfileUrl: user.image,
+    set((state) => {
+      if (!user || !user.id || !user.nickname) {
+        console.error("Invalid user data", user);
+        return state;
+      }
+      return {
+        isSignedIn: true,
+        userId: user.id,
+        userNickname: user.nickname,
+        userProfileUrl: user.image,
+      };
     }),
   logout: () =>
     set({
