@@ -46,7 +46,7 @@ export default function EditArticlePage() {
     setCanSubmit(
       values.title.trim() !== '' &&
         values.content.trim() !== '' &&
-        values.price.trim() !== ''
+        String(values.price).trim() !== ''
     );
   };
 
@@ -61,8 +61,6 @@ export default function EditArticlePage() {
       setTags(data.tags);
     }
   }, [data]);
-
-  console.log(tags);
 
   if (isLoading) {
     return <div>Loading...</div>;

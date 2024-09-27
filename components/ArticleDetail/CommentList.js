@@ -79,7 +79,7 @@ export default function CommentList({
                   <div className={styles.comments}>
                     <div className={styles.commentMain}>
                       <span className={styles.commentText}>
-                        {comment.content}
+                        <pre>{comment.content}</pre>
                       </span>
                       <div>
                         <Image

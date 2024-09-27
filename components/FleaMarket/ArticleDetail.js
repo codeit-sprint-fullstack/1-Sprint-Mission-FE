@@ -9,9 +9,10 @@ import DateFormat from '@/utils/DateFormat.js';
 import DropDown from '@/utils/DropDown.js';
 
 import TestImage from '@/public/testImage.png';
-import styles from '@/styles/Article.module.css';
+import styles from '@/styles/ArticleDetail.module.css';
 import { useEditArticle } from '@/hooks/useFreeBoard';
 import { useFleaMarketEditArticle } from '@/hooks/useFleaMarket';
+import { stubTrue } from 'lodash';
 export default function ArticleDetailInfo({
   article,
   category,
@@ -20,6 +21,10 @@ export default function ArticleDetailInfo({
   const [openOptions, setOpenOptions] = useState(false);
   const router = useRouter();
   const { id } = router.query;
+
+  let formattedPrice = article?.price
+    .toString()
+    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
   // useCallback 사용
 
@@ -60,7 +65,8 @@ export default function ArticleDetailInfo({
     return <div>loading...</div>;
   }
 
-  console.log(article);
+  console.log(article.tags);
+
   return (
     <>
       <div className={styles.layout}>
@@ -71,8 +77,8 @@ export default function ArticleDetailInfo({
           alt='이미지'
           className={styles.itemImage}
         />
-        <div>
-          <div>
+        <div className={styles.information}>
+          <div className={styles.titleOption}>
             <div className={styles.titleText}>{article.title}</div>
             <div className={styles.buttonTest}>
               <Image
@@ -95,28 +101,45 @@ export default function ArticleDetailInfo({
               )}
             </div>
           </div>
-          <div>{article.price}</div>
+          <div className={styles.itemPrice}>{formattedPrice}원</div>
+        </div>
+        <div className={styles.itemInformation}>
+          <div className={styles.itemTitleText}>상품 소개</div>
+          <div className={styles.itemContent}>
+            <pre>{article.content} </pre>
+          </div>
+
+          <div className={styles.itemTitleText}>상품 태그</div>
+          {article.tags.map((tag, index) => (
+            <li key={index} className={styles.hashtags}>
+              <span className={styles.hashtagTitle}># {tag}</span>
+            </li>
+          ))}
         </div>
 
-        <div>상품 소개</div>
-        <div className={styles.content}>{article.content}</div>
-        <div>상품 태그</div>
-        <div>{article.tags}</div>
-
         <div className={styles.profile}>
-          <Image src={profileIcon} alt='프로필 사진' width={40} height={40} />
-          <p className={styles.userName}>{article.user.name}</p>
-          <span className={styles.date}>
-            <DateFormat createDate={article} className={styles.profileIcon} />
-          </span>
-          <Image src={line} alt='선' className={styles.line} />
-          <div className={styles.heart}>
-            <Image
-              src={heartIcon}
-              alt='하트 아이콘'
-              className={styles.heartIcon}
-            />
-            <span className={styles.heartCount}>{article.favorite}</span>
+          <div className={styles.userInfo}>
+            <Image src={profileIcon} alt='프로필 사진' width={40} height={40} />
+            <div className={styles.articleInfo}>
+              <p className={styles.userName}>{article.user.name}</p>
+              <span className={styles.date}>
+                <DateFormat
+                  createDate={article}
+                  className={styles.profileIcon}
+                />
+              </span>
+            </div>
+          </div>
+          <div className={styles.heartCount}>
+            <Image src={line} alt='선' className={styles.line} />
+            <div className={styles.heart}>
+              <Image
+                src={heartIcon}
+                alt='하트 아이콘'
+                className={styles.heartIcon}
+              />
+              <span className={styles.heartCount}>{article.favorite}</span>
+            </div>
           </div>
         </div>
       </div>

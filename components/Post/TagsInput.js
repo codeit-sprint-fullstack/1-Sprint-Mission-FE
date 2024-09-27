@@ -37,7 +37,7 @@ export default function TagsInput({ tags, setTags }) {
       <ul id='tags'>
         {tags.map((tag, index) => (
           <li key={index} className={styles.hashtags}>
-            <span className={styles.hashtagTitle}>{tag}</span>
+            <span className={styles.hashtagTitle}>#{tag}</span>
             <Image
               src={tagRemoveIcon}
               onClick={() => removeTags(index)}

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import backBtn from '@/public/btn_back.png';
 import Comments from '@/components/ArticleDetail/Comments.js';
-import ArticleDetailInfo from '@/components/ArticleDetail/ArticleDetailInfo';
+import ArticleDetail from '@/components/FleaMarket/ArticleDetail';
 import styles from '@/styles/Article.module.css';
 import { useGetArticle } from '@/hooks/useFleaMarket';
 
@@ -18,7 +18,7 @@ export default function ArticlePage() {
   return (
     <>
       <div className={styles.article}>
-        <ArticleDetailInfo
+        <ArticleDetail
           article={article}
           category={category}
           id={id}
