@@ -7,10 +7,14 @@ import heartIcon from '@/public/ic_heart.png';
 import dotIcon from '@/public/ic_dot.png';
 import DateFormat from '@/utils/DateFormat.js';
 import DropDown from '@/utils/DropDown.js';
-import { deleteArticleApi } from '@/utils/api/articleApi.js';
-import styles from '@/styles/Article.module.css';
 
-export default function ArticleDetail({ article }) {
+import styles from '@/styles/Article.module.css';
+import { useEditArticle } from '@/hooks/useFreeBoard';
+export default function ArticleDetailInfo({
+  article,
+  category,
+  handleDeleteArticle,
+}) {
   const [openOptions, setOpenOptions] = useState(false);
   const router = useRouter();
   const { id } = router.query;
@@ -21,10 +25,12 @@ export default function ArticleDetail({ article }) {
     setOpenOptions((prev) => !prev);
   }, []);
 
-  const buttonEvent = async () => {
+  const { deleteArticle } = useEditArticle({ id });
+
+  const buttonEvent = () => {
     if (confirm('정말 삭제하시겠습니까??') === true) {
       try {
-        await deleteArticleApi(article.id);
+        deleteArticle(id);
         router.push('/freeboard');
       } catch (error) {
         console.error('Error deleting article:', error);
@@ -35,8 +41,16 @@ export default function ArticleDetail({ article }) {
   };
 
   const handleEdit = useCallback(() => {
-    router.push(`/article/edit/${id}`);
-  }, [id, router]);
+    if (category === 'freeboard') {
+      router.push(`/freeboard/edit/${id}`);
+    } else {
+      router.push(`/fleamarket/edit/${id}`);
+    }
+  }, [id, router, category]);
+
+  if (!article) {
+    return <div>loading...</div>;
+  }
 
   return (
     <>
@@ -76,7 +90,7 @@ export default function ArticleDetail({ article }) {
             alt='하트 아이콘'
             className={styles.heartIcon}
           />
-          <span className={styles.heartCount}>188</span>
+          <span className={styles.heartCount}>{article.favorite}</span>
         </div>
       </div>
       <div className={styles.content}>{article.content}</div>

@@ -14,6 +14,7 @@ export default function CommentList({
   commentId,
   articleId,
   content,
+  category,
   setEditId,
   setOpenOptions,
 }) {
@@ -22,7 +23,7 @@ export default function CommentList({
     setEditComment(event.target.value);
   };
 
-  const { updateComment } = useComments({ articleId });
+  const { updateComment } = useComments({ articleId, category });
 
   const handleSubmit = () => {
     updateComment.mutate({ id: commentId, editComment, articleId });

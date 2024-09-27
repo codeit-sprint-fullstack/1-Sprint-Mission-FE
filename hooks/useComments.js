@@ -10,15 +10,17 @@ import {
   editCommentApi,
 } from '@/utils/api/commentApi.js';
 
-export default function useComments({ articleId }) {
+export default function useComments({ articleId, category }) {
   const queryClient = useQueryClient();
 
   const { data, fetchNextPage, isLoading } = useInfiniteQuery({
     queryKey: ['comments', articleId],
-    queryFn: ({ pageParam = null }) => fetchCommentsApi(articleId, pageParam),
+    queryFn: ({ pageParam = null }) =>
+      fetchCommentsApi({ articleId, category, cursorId: pageParam }),
     getNextPageParam: (lastPage) => {
-      const { comments } = lastPage;
-      return comments.length < 5 ? null : comments[comments.length - 1].id;
+      const comments = lastPage.comments || [];
+
+      return comments.length < 4 ? undefined : comments[comments.length - 1].id;
     },
   });
 
@@ -39,6 +41,10 @@ export default function useComments({ articleId }) {
     },
   });
 
+  const deleteComments = (targetId) => {
+    deleteCommentMutation.mutate(targetId);
+  };
+
   const postCommentMutation = useMutation({
     mutationFn: (newComment) => postCommentApi(newComment),
     onSuccess: () => {
@@ -46,16 +52,13 @@ export default function useComments({ articleId }) {
     },
   });
 
-  const deleteComments = (targetId) => {
-    deleteCommentMutation.mutate(targetId);
-  };
-
   const postComment = (newComment) => {
     postCommentMutation.mutate(newComment);
   };
 
   const updateComment = useMutation({
-    mutationFn: editCommentApi,
+    mutationFn: ({ id, editComment, articleId }) =>
+      editCommentApi({ id, editComment, articleId }),
     onSuccess: (newComment) => {
       queryClient.setQueryData(['comments', articleId], (previous) => {
         if (!previous) return [];

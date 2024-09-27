@@ -3,12 +3,12 @@ import axios from 'axios';
 const baseUrl = 'https://sprint-be-ztdn.onrender.com/comments';
 
 const instance = axios.create({
-  baseURL: 'https://sprint-be-ztdn.onrender.com/comments',
+  baseURL: 'https://sprint-be-ztdn.onrender.com/comments/',
 });
 
-export async function fetchCommentsApi(articleId, cursorId) {
+export async function fetchCommentsApi({ articleId, category, cursorId }) {
   try {
-    const res = await instance.get(`/${articleId}`, {
+    const res = await instance.get(`${category}/${articleId}`, {
       params: {
         limit: 5,
         cursor: cursorId,
@@ -24,11 +24,11 @@ export async function fetchCommentsApi(articleId, cursorId) {
   }
 }
 
-export async function postCommentApi({ articleId, comment }) {
+export async function postCommentApi({ category, articleId, comment }) {
   try {
-    const res = await instance.post(`/`, {
+    const res = await instance.post(`${category}/${articleId}`, {
       content: comment,
-      articleId: Number(articleId),
+      articleId: articleId,
       userId: '86d761e4-a9d0-4082-96dd-cf6f2c931673',
     });
 
@@ -40,7 +40,7 @@ export async function postCommentApi({ articleId, comment }) {
 
 export async function editCommentApi({ id, editComment }) {
   try {
-    const res = await instance.patch(`/${id}`, {
+    const res = await instance.patch(`${id}`, {
       content: editComment,
     });
     return res.data; // 수정된 댓글 데이터를 반환
@@ -52,7 +52,7 @@ export async function editCommentApi({ id, editComment }) {
 
 export async function deleteCommentApi(commentId) {
   try {
-    const res = await instance.delete(`/${commentId}`);
+    const res = await instance.delete(`${commentId}`);
     return {};
   } catch (error) {
     console.error('Error deleting data:', error);

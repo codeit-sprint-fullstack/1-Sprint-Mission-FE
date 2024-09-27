@@ -5,25 +5,14 @@ import styles from '@/styles/Comment.module.css';
 import useComments from '@/hooks/useComments';
 import useScroll from '@/hooks/useScroll';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';
 
-import { editCommentApi } from '@/utils/api/commentApi.js';
-
-import {
-  useMutation,
-  useInfiniteQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
-
-import {
-  fetchCommentsApi,
-  postCommentApi,
-  deleteCommentApi,
-} from '@/utils/api/commentApi.js';
-
-export default function Comments({ articleId, category }) {
+export default function Comments({ category }) {
   const [comment, setComment] = useState('');
   const [hasMore, setHasMore] = useState(true);
   const [canSubmit, setCanSubmit] = useState(false);
+  const router = useRouter();
+  const { id: articleId } = router.query;
 
   const {
     uniqueComments,
@@ -32,7 +21,7 @@ export default function Comments({ articleId, category }) {
     fetchNextPage,
     isLoading,
     totalCount,
-  } = useComments({ articleId });
+  } = useComments({ articleId, category });
 
   const handleComment = (event) => {
     setComment(event.target.value);
@@ -40,7 +29,7 @@ export default function Comments({ articleId, category }) {
 
   const handleSubmit = () => {
     if (articleId && comment) {
-      const newComment = { articleId, comment };
+      const newComment = { category, articleId, comment };
       postCommentMutation.mutate(newComment);
       setComment('');
     } else {

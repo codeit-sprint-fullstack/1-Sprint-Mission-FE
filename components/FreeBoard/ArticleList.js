@@ -7,6 +7,8 @@ import DateFormat from '@/utils/DateFormat.js';
 import styles from '@/styles/ArticleList.module.css';
 
 export default function ArticleList({ articles }) {
+  const category = 'freeboard';
+
   if (articles.length === 0) {
     return (
       <div className={styles.articleList}>
@@ -20,7 +22,7 @@ export default function ArticleList({ articles }) {
       <div className={styles.articleList}>
         {articles.map((article) => (
           <div key={article.id} className={styles.list}>
-            <Link href={`/article/${article.id}`} className={styles.link}>
+            <Link href={`/freeboard/${article.id}`} className={styles.link}>
               <div className={styles.main}>
                 <span className={styles.title}>
                   {article.title}
