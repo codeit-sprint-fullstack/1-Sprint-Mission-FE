@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import DeleteModal from "../components/DeleteModal";
-import Spinner from "../components/Spinner"; // Spinner 컴포넌트 임포트
+import Spinner from "../components/Spinner";
 
 const HomePage = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isSpinnerVisible, setIsSpinnerVisible] = useState(false); // 스피너 상태 추가
+  const [isSpinnerVisible, setIsSpinnerVisible] = useState(false);
 
   const handleConfirm = () => {
     console.log("상품이 삭제되었습니다.");
