@@ -28,7 +28,7 @@ export default function BestArticleList({ articles }) {
       <div className={styles.articleList}>
         {bestArticles?.map((article) => (
           <div key={article.id} className={styles.list}>
-            <Link href={`/freeboard/${article.id}`} className={styles.link}>
+            <Link href={`/fleamarket/${article.id}`} className={styles.link}>
               <Image src={bestBadge} alt='베스트 뱃지' />
               <div className={styles.main}>
                 <div className={styles.title}>{article.title}</div>

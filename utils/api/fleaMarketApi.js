@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const baseUrl = 'https://sprint-be-ztdn.onrender.com/freeboard';
+const baseUrl = 'https://sprint-be-ztdn.onrender.com/fleamarket';
 
-export async function fetchFreeBoardBestApi() {
+export async function fetchFleaMarketBestApi() {
   try {
     const res = await axios.get(`${baseUrl}`, {
       params: {
@@ -10,14 +10,14 @@ export async function fetchFreeBoardBestApi() {
         limit: 3,
       },
     });
-    console.log('Fetched data:', res.data);
+
     return res.data;
   } catch (error) {
     console.error('Error fetching articles:', error);
   }
 }
 
-export async function fetchFreeBoardApi({ keyword, sort, page }) {
+export async function fetchFleaMarketApi({ keyword, sort, page }) {
   try {
     const res = await axios.get(`${baseUrl}`, {
       params: {
@@ -34,7 +34,7 @@ export async function fetchFreeBoardApi({ keyword, sort, page }) {
   }
 }
 
-export async function fetchFreeBoardArticleApi(id) {
+export async function fetchFleaMarketArticleApi(id) {
   try {
     const res = await axios.get(`${baseUrl}/${id}`);
     return res.data;
@@ -43,9 +43,10 @@ export async function fetchFreeBoardArticleApi(id) {
   }
 }
 
-export async function postFreeBoardArticleApi({
+export async function postFleaMarketArticleApi({
   title,
   content,
+  price,
   images,
   tags,
   userId,
@@ -54,6 +55,7 @@ export async function postFreeBoardArticleApi({
     const res = await axios.post(`${baseUrl}/post`, {
       title: title,
       content: content,
+      price: price,
       images: images || [],
       tags: tags || [],
       userId: userId,
@@ -105,7 +107,7 @@ export async function postFreeBoardArticleApi({
 //   }
 // }
 
-export async function editArticleApi({ title, content, id }) {
+export async function editFleaMarketArticleApi({ title, content, id }) {
   try {
     const res = await axios.patch(`${baseUrl}/${id}`, {
       title: title,
@@ -118,7 +120,7 @@ export async function editArticleApi({ title, content, id }) {
   }
 }
 
-export async function deleteArticleApi(id) {
+export async function deleteFleaMarketArticleApi(id) {
   try {
     const res = await axios.delete(`${baseUrl}/${id}`);
 

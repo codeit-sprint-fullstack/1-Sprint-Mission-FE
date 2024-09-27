@@ -9,13 +9,15 @@ import {
   fetchFreeBoardApi,
 } from '@/utils/api/freeBoardApi';
 import styles from '@/styles/FreeBoard.module.css';
-import { useFreeBoardArticlesList } from '@/hooks/useFreeBoard';
+import {
+  useFreeBoardArticlesList,
+  useGetBestArticle,
+} from '@/hooks/useFreeBoard';
 
 export const getServerSideProps = async (context) => {
   const { keyword = '', sort = 'recent', page = 1 } = context.query;
 
   try {
-    const bestArticles = await fetchFreeBoardBestApi();
     const articles = await fetchFreeBoardApi({
       keyword,
       sort,
@@ -24,7 +26,6 @@ export const getServerSideProps = async (context) => {
 
     return {
       props: {
-        bestArticlesData: bestArticles.data,
         initialArticles: articles.data || [],
       },
     };
@@ -32,14 +33,13 @@ export const getServerSideProps = async (context) => {
     console.error('Error fetching article:', error);
     return {
       props: {
-        bestArticlesData: [],
         initialArticles: [],
       },
     };
   }
 };
 
-export default function FreeBoardPage({ bestArticlesData, initialArticles }) {
+export default function FreeBoardPage({ initialArticles }) {
   const [orderBy, setOrderBy] = useState('recent');
   const router = useRouter();
   const { keyword } = router.query;
@@ -50,6 +50,8 @@ export default function FreeBoardPage({ bestArticlesData, initialArticles }) {
       orderBy,
       limit: 5,
     });
+
+  const { bestArticles } = useGetBestArticle();
 
   useEffect(() => {
     const handleScroll = throttle(() => {
@@ -70,7 +72,7 @@ export default function FreeBoardPage({ bestArticlesData, initialArticles }) {
   return (
     <>
       <div className={styles.body}>
-        <BestArticleList articles={bestArticlesData} />
+        <BestArticleList articles={bestArticles} />
         <ArticleListHeader keyword={keyword} setOrderBy={setOrderBy} />
         <ArticleList articles={articles} />
         {loading && <div>Loading...</div>}

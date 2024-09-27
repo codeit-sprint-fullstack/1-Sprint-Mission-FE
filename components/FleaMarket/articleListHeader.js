@@ -1,4 +1,4 @@
-import SearchForm from '@/components/FreeBoard/SearchForm.js';
+import SearchForm from '@/components/FleaMarket/SearchForm.js';
 import postBtn from '@/public/post_btn.png';
 import arrowDown from '@/public/ic_arrow_down.png';
 import mobileDropDown from '@/public/btn_mobile_sort.png';

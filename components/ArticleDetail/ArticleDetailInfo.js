@@ -10,6 +10,7 @@ import DropDown from '@/utils/DropDown.js';
 
 import styles from '@/styles/Article.module.css';
 import { useEditArticle } from '@/hooks/useFreeBoard';
+import { useFleaMarketEditArticle } from '@/hooks/useFleaMarket';
 export default function ArticleDetailInfo({
   article,
   category,
@@ -26,12 +27,18 @@ export default function ArticleDetailInfo({
   }, []);
 
   const { deleteArticle } = useEditArticle({ id });
+  const { deleteFleaMArketArticle } = useFleaMarketEditArticle({ id });
 
   const buttonEvent = () => {
     if (confirm('정말 삭제하시겠습니까??') === true) {
       try {
-        deleteArticle(id);
-        router.push('/freeboard');
+        if (category === 'freeboard') {
+          deleteArticle(id);
+          // router.push('/freeboard');
+        } else {
+          deleteFleaMArketArticle(id);
+          router.push('/fleamarket');
+        }
       } catch (error) {
         console.error('Error deleting article:', error);
       }

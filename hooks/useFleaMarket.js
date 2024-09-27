@@ -9,32 +9,32 @@ import {
 } from '@tanstack/react-query';
 
 import {
-  fetchFreeBoardApi,
-  fetchFreeBoardBestApi,
-  fetchFreeBoardArticleApi,
-  postFreeBoardArticleApi,
-  editArticleApi,
-  deleteArticleApi,
-} from '@/utils/api/freeBoardApi';
+  fetchFleaMarketApi,
+  fetchFleaMarketBestApi,
+  fetchFleaMarketArticleApi,
+  postFleaMarketArticleApi,
+  editFleaMarketArticleApi,
+  deleteFleaMarketArticleApi,
+} from '@/utils/api/fleaMarketApi';
 
 export function useGetBestArticle() {
   const { isLoading, data } = useQuery({
     queryKey: ['bestArticle'],
-    queryFn: () => fetchFreeBoardBestApi(),
+    queryFn: () => fetchFleaMarketBestApi(),
   });
 
   return { bestArticles: data, isLoading };
 }
 
-export function useFreeBoardArticlesList({ orderBy, limit }) {
+export function useFleaMarketArticlesList({ orderBy, limit }) {
   const [hasMore, setHasMore] = useState(true);
   const router = useRouter();
   const { keyword } = router.query;
 
   const { data, fetchNextPage, isLoading } = useInfiniteQuery({
-    queryKey: ['articles', orderBy, keyword, limit],
+    queryKey: ['articles', keyword],
     queryFn: ({ pageParam = 1 }) =>
-      fetchFreeBoardApi({ sort: orderBy, keyword, page: pageParam, limit }),
+      fetchFleaMarketApi({ sort: orderBy, keyword, page: pageParam, limit }),
     getNextPageParam: (lastPage, pages) => {
       const nextPage = pages.length + 1;
       return nextPage <= lastPage.totalPages ? nextPage : undefined;
@@ -68,61 +68,69 @@ export function useFreeBoardArticlesList({ orderBy, limit }) {
 export function useGetArticle(id) {
   const { isLoading, data } = useQuery({
     queryKey: ['article', id],
-    queryFn: () => fetchFreeBoardArticleApi(id),
+    queryFn: () => fetchFleaMarketArticleApi(id),
     enabled: !!id,
   });
 
   return { data, isLoading };
 }
 
-export function useEditArticle({ id }) {
+export function useFleaMarketEditArticle({ id }) {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  const postFreeBoardArticle = useMutation({
-    mutationFn: ({ title, content, userId }) =>
-      postFreeBoardArticleApi({ title, content, userId }),
-    onSuccess: (newArticle) => {
-      queryClient.setQueryData(['article', newArticle.id], newArticle);
-      router.push(`/freeboard/${newArticle.id}`);
-    },
-    onError: (error) => {
-      console.error('Error editing data:', error);
-    },
-  });
-
-  const editFreeBoardArticle = useMutation({
+  const editFleaMarketArticle = useMutation({
     mutationFn: ({ id, title, content }) =>
-      editArticleApi({ id, title, content }),
+      editFleaMarketArticleApi({ id, title, content }),
     onSuccess: (newArticle) => {
       queryClient.setQueryData(['article', newArticle.id], newArticle);
       queryClient.invalidateQueries(['article', newArticle.id]);
       queryClient.invalidateQueries(['bestArticle']);
-      router.push(`/freeboard/${id}`);
+      router.push(`/fleamarket/${id}`);
     },
     onError: (error) => {
       console.error('Error editing data:', error);
     },
   });
 
-  const deleteFreeBoardArticle = useMutation({
-    mutationFn: (id) => deleteArticleApi(id),
+  const deleteFleaMarketArticle = useMutation({
+    mutationFn: (id) => deleteFleaMarketArticleApi(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['comments', id] });
       queryClient.invalidateQueries(['bestArticle']);
     },
+
     onError: (error) => {
       console.error('Error editing data:', error);
     },
   });
 
-  const postComment = (newArticle) => {
-    postFreeBoardArticle.mutate(newArticle);
+  const deleteFleaMArketArticle = (id) => {
+    deleteFleaMarketArticle.mutate(id);
   };
 
-  const deleteArticle = (id) => {
-    deleteFreeBoardArticle.mutate(id);
+  return { editFleaMarketArticle, deleteFleaMArketArticle };
+}
+
+export function useFleaMarketPostArticle() {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  const postFleaMarketArticle = useMutation({
+    mutationFn: ({ title, content, price, image, tags, userId }) =>
+      postFleaMarketArticleApi({ title, content, price, image, tags, userId }),
+    onSuccess: (newArticle) => {
+      queryClient.setQueryData(['article', newArticle.id], newArticle);
+      queryClient.invalidateQueries(['bestArticle']);
+      router.push(`/fleamarket/${newArticle.id}`);
+    },
+    onError: (error) => {
+      console.error('Error editing data:', error);
+    },
+  });
+
+  const postArticle = (newArticle) => {
+    postFleaMarketArticle.mutate(newArticle);
   };
 
-  return { editFreeBoardArticle, deleteArticle, postComment };
+  return { postArticle };
 }

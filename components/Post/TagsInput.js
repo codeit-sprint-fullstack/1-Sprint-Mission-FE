@@ -33,6 +33,7 @@ export default function TagsInput({ tags, setTags }) {
         }}
         placeholder='태그를 입력하세요'
       />
+
       <ul id='tags'>
         {tags.map((tag, index) => (
           <li key={index} className={styles.hashtags}>

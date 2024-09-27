@@ -1,66 +1,57 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { throttle } from 'lodash';
-import ArticleList from '@/components/FreeBoard/ArticleList.js';
-import BestArticleList from '@/components/FreeBoard/BestArticleList.js';
-import ArticleListHeard from '@/components/FleaMarket/articleListHeader.js';
+import ArticleList from '@/components/FleaMarket/ArticleList.js';
+import BestArticleList from '@/components/FleaMarket/BestArticleList.js';
+import ArticleListHeader from '@/components/FleaMarket/ArticleListHeader.js';
+
 import {
-  fetchFreeBoardArticlesApi,
-  fetchFreeBoardBestArticlesApi,
-} from '@/utils/api/articleApi.js';
+  fetchFleaMarketBestApi,
+  fetchFleaMarketApi,
+} from '@/utils/api/fleaMarketApi';
 import styles from '@/styles/FreeBoard.module.css';
-import useArticles from '@/hooks/useArticles';
+import {
+  useFleaMarketArticlesList,
+  useGetBestArticle,
+} from '@/hooks/useFleaMarket';
 
 export const getServerSideProps = async (context) => {
-  const {
-    keyword = '',
-    orderBy = 'recent',
-    page = 1,
-    category = 'fleamarket',
-  } = context.query;
+  const { keyword = '', sort = 'recent', page = 1 } = context.query;
 
   try {
-    const bestArticles = await fetchFreeBoardBestArticlesApi({ category });
-    const articles = await fetchFreeBoardArticlesApi({
+    const articles = await fetchFleaMarketApi({
       keyword,
-      orderBy,
+      sort,
       page,
-      category,
     });
 
     return {
       props: {
-        bestArticlesData: bestArticles.data,
         initialArticles: articles.data || [],
-        initialCategory: 'fleamarket',
       },
     };
   } catch (error) {
     console.error('Error fetching article:', error);
     return {
       props: {
-        bestArticlesData: [],
         initialArticles: [],
-        initialCategory: 'fleamarket',
       },
     };
   }
 };
 
-export default function FleaMarket({
-  bestArticlesData,
-  initialArticles,
-  initialCategory,
-}) {
+export default function FleaMarket() {
   const [orderBy, setOrderBy] = useState('recent');
   const router = useRouter();
   const { keyword } = router.query;
 
-  const { articles, loading, hasMore, setPagesValue } = useArticles({
-    initialArticles,
-    orderBy,
-    category: initialCategory,
-  });
+  const { articles, loading, hasMore, fetchNextPage } =
+    useFleaMarketArticlesList({
+      orderBy,
+      limit: 5,
+    });
+
+  const { bestArticles } = useGetBestArticle();
 
   useEffect(() => {
     const handleScroll = throttle(() => {
@@ -70,7 +61,7 @@ export default function FleaMarket({
       const documentHeight = document.documentElement.scrollHeight;
 
       if (scrollPosition >= documentHeight - 100) {
-        setPagesValue((prev) => prev + 1);
+        fetchNextPage();
       }
     }, 200);
 
@@ -81,8 +72,8 @@ export default function FleaMarket({
   return (
     <>
       <div className={styles.body}>
-        <BestArticleList articles={bestArticlesData} />
-        <ArticleListHeard keyword={keyword} setOrderBy={setOrderBy} />
+        <BestArticleList articles={bestArticles} />
+        <ArticleListHeader keyword={keyword} setOrderBy={setOrderBy} />
         <ArticleList articles={articles} />
         {loading && <div>Loading...</div>}
       </div>
