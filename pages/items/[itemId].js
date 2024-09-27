@@ -1,8 +1,5 @@
-// pages/items/[itemId].js
-
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import styles from "../../styles/ItemDetail.module.css";
 import Nav from "../../components/Nav";
@@ -55,7 +52,6 @@ const ItemDetail = () => {
     enabled: !!itemId,
   });
 
-  // 현재 사용자 정보 가져오기
   const {
     data: currentUser,
     error: userError,
@@ -100,7 +96,7 @@ const ItemDetail = () => {
   const deleteProductMutation = useMutation({
     mutationFn: (productId) => deleteProduct(productId),
     onSuccess: () => {
-      router.push("/items"); // 상품 삭제 후 목록 페이지로 이동
+      router.push("/items");
     },
   });
 
@@ -154,7 +150,11 @@ const ItemDetail = () => {
 
   useEffect(() => {
     if (itemData) {
-      console.log("Item Data:", itemData);
+      console.log("상품명:", itemData.name);
+      console.log("판매가격:", itemData.price);
+      console.log("상품소개:", itemData.description);
+      console.log("태그:", itemData.tags);
+      console.log("외부 이미지 URL:", itemData.images);
     }
   }, [itemData]);
 
@@ -172,20 +172,21 @@ const ItemDetail = () => {
       <div className={styles.container}>
         <div className={styles.contentWrapper}>
           <div className={styles.imageGallery}>
-            {/* 수정된 부분: 상품 이미지 렌더링 */}
-            <Image
-              src={itemData.images[0] || "/placeholder-image.jpg"} // 상품의 첫 번째 이미지를 사용
-              alt={itemData.name}
-              width={486}
-              height={486}
-              className={styles.mainImage}
-            />
+            {/* 이미지가 있을 때만 렌더링 */}
+            {itemData.images.length > 0 && (
+              <img
+                src={itemData.images[0]}
+                alt={itemData.name}
+                width="486"
+                height="486"
+                className={styles.mainImage}
+              />
+            )}
           </div>
 
           <div className={styles.itemInfo}>
             <h1 className={styles.itemName}>{itemData.name}</h1>
 
-            {/* ProductOptions 컴포넌트 추가 */}
             <ProductOptions
               product={itemData}
               currentUser={currentUser}
@@ -202,13 +203,13 @@ const ItemDetail = () => {
                 itemData.isFavorite ? styles.favoriteButtonActive : ""
               }`}
             >
-              <Image
+              <img
                 src={
                   itemData.isFavorite ? "/product_reply.svg" : "/ic_heart.png"
                 }
                 alt="좋아요"
-                width={26.8}
-                height={23.3}
+                width="26.8"
+                height="23.3"
                 className={styles.favoriteIcon}
               />
               {itemData.favoriteCount}
@@ -239,11 +240,11 @@ const ItemDetail = () => {
           </form>
           {commentsData && commentsData.list.length === 0 ? (
             <div className={styles.emptyComments}>
-              <Image
+              <img
                 src="/Img_inquiry_empty.png"
                 alt="댓글 없음"
-                width={200}
-                height={200}
+                width="200"
+                height="200"
               />
               <p>아직 댓글이 없습니다.</p>
             </div>
@@ -268,11 +269,11 @@ const ItemDetail = () => {
           onClick={() => router.push("/items")}
           className={styles.backToListButton}
         >
-          <Image
+          <img
             src="/btn_medium.png"
             alt="목록으로 돌아가기"
-            width={240}
-            height={48}
+            width="240"
+            height="48"
           />
         </button>
       </div>

@@ -1,5 +1,3 @@
-// pages/items/create.js
-
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Nav from "../../components/Nav";
@@ -16,7 +14,7 @@ export default function CreateItem() {
     price: "",
     description: "",
     tags: [],
-    images: [],
+    images: [], // 이미지 배열 추가
   });
 
   // 이미지 URL 입력을 위한 상태 변수 추가
@@ -26,17 +24,20 @@ export default function CreateItem() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    console.log(`${name} 필드 입력값: ${value}`);
   };
 
   // 태그 입력 처리 함수
   const handleTagChange = (e) => {
     const tags = e.target.value.split(",").map((tag) => tag.trim());
     setFormData((prev) => ({ ...prev, tags }));
+    console.log("태그 입력값:", tags);
   };
 
   // 이미지 URL 입력 처리 함수
   const handleImageUrlChange = (e) => {
     setImageUrl(e.target.value);
+    console.log("외부 이미지 URL 입력값:", e.target.value);
   };
 
   // 이미지 URL 추가 함수
@@ -46,14 +47,9 @@ export default function CreateItem() {
         ...prev,
         images: [...prev.images, imageUrl.trim()],
       }));
+      console.log("추가된 이미지 URL:", imageUrl.trim());
       setImageUrl("");
     }
-  };
-
-  // 이미지 업로드 핸들러 (기존 코드 유지)
-  const handleImageUpload = (e) => {
-    // 이미지 업로드 로직 구현 필요
-    console.log("이미지 업로드:", e.target.files);
   };
 
   // 폼 제출 핸들러
@@ -69,14 +65,21 @@ export default function CreateItem() {
       description: formData.description.trim(),
       price,
       tags: formData.tags,
-      images: formData.images,
+      images: formData.images, // 이미지 배열을 전송
     };
 
+    console.log("전송할 데이터:", productData); // 실제 전송할 데이터 출력
+
     try {
-      await createProduct(productData);
+      const response = await createProduct(productData);
+      console.log("상품 등록 성공:", response);
       router.push("/items");
     } catch (error) {
-      console.error("상품 등록 실패:", error);
+      console.error(
+        "상품 등록 실패:",
+        error.response ? error.response.data : error.message
+      );
+      // 에러 시 백엔드에서 받은 에러 메시지 혹은 기본 에러 메시지 출력
     }
   };
 
@@ -137,19 +140,6 @@ export default function CreateItem() {
             />
           </div>
 
-          {/* 이미지 업로드 필드 (기존 코드 유지) */}
-          <div className={styles.formGroup}>
-            <label htmlFor="images">상품 이미지</label>
-            <input
-              type="file"
-              id="images"
-              name="images"
-              onChange={handleImageUpload}
-              multiple
-              accept="image/*"
-            />
-          </div>
-
           {/* 이미지 URL 입력 필드 추가 */}
           <div className={styles.formGroup}>
             <label htmlFor="imageUrl">외부 이미지 URL</label>
@@ -160,7 +150,7 @@ export default function CreateItem() {
                 name="imageUrl"
                 value={imageUrl}
                 onChange={handleImageUrlChange}
-                placeholder="https://images.app.goo.gl/MXfisjFt8Cj5Z86u9"
+                placeholder="https://pbs.twimg.com/profile_images/1597309336350380033/ub7VkPLo_400x400.jpg "
               />
               <button type="button" onClick={handleImageUrlAdd}>
                 추가

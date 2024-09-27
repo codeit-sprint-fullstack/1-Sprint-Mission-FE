@@ -117,9 +117,8 @@ const ItemsPage = () => {
                 className={styles.productItem}
               >
                 <div className={styles.imageContainer}>
-                  {/* 수정된 부분: 이미지 렌더링 */}
                   <Image
-                    src={item.images[0] || "/placeholder-image.jpg"} // 상품의 첫 번째 이미지를 사용
+                    src={item.images[0]}
                     alt={item.name}
                     width={220}
                     height={220}
@@ -127,7 +126,6 @@ const ItemsPage = () => {
                     unoptimized
                     onError={(e) => {
                       e.target.onerror = null; // 무한 루프 방지
-                      e.target.src = "/placeholder-image.jpg"; // 에러 시 대체 이미지
                     }}
                   />
                 </div>
