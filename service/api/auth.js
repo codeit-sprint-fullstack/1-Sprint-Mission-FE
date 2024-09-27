@@ -1,13 +1,13 @@
 import axios from "./axios";
 
-const ENDPOINT = "/auth";
+const PATH = "/auth";
 
 export async function createUser(data) {
-  const res = await axios.post(`${ENDPOINT}/signUp`, data);
+  const res = await axios.post(`${PATH}/signUp`, data);
   return res.data;
 }
 
 export async function createLogIn(data) {
-  const res = await axios.post(`${ENDPOINT}/signIn`, data);
+  const res = await axios.post(`${PATH}/signIn`, data);
   return res.data;
 }

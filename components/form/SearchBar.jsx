@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./SearchBar.module.scss";
-import searchIcon from "../../public/assets/icons/ic_search.svg";
+import assets from "@/variables/images";
 import { useForm } from "react-hook-form";
 
 export default function SearchBar({
@@ -24,7 +24,12 @@ export default function SearchBar({
         onKeyDown={handleKeyDown}
       />
       <div className={styles.searchIcon}>
-        <Image src={searchIcon} width={24} height={24} alt="search icon" />
+        <Image
+          src={assets.icons.search}
+          width={24}
+          height={24}
+          alt="search icon"
+        />
       </div>
     </form>
   );

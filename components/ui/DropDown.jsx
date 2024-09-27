@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import styles from "./DropDown.module.scss";
-import sortIcon from "../../public/assets/icons/ic_sort.svg";
-import arrowDownIcon from "../../public/assets/icons/ic_arrow_down.svg";
-import Image from "next/image";
+import assets from "@/variables/images";
+import { IconContainer } from "./ImgContainers";
 
 export default function DropDown({ setOrderBy, orderBy }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,12 +32,12 @@ export default function DropDown({ setOrderBy, orderBy }) {
   return (
     <div className={styles.DropDown}>
       <button onClick={toggleDropDown} ref={dropDownRef}>
-        <div>
+        <div className={styles.default}>
           {orderBy === "recent" ? "최신순" : "인기순"}
-          <Image src={arrowDownIcon} alt="arrow down icon" />
+          <IconContainer src={assets.icons.arrowDown} alt="arrow down icon" />
         </div>
         <div className={styles["mobile-only"]}>
-          <Image src={sortIcon} alt="sort icon" />
+          <IconContainer src={assets.icons.sort} alt="sort icon" />
         </div>
       </button>
 

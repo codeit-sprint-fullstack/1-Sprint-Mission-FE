@@ -5,19 +5,6 @@
   margin: 0 auto;
   width: 640px;
 
-  .social-login {
-    width: 100%;
-    @include g.flex-box(row, space-between, center);
-    @include g.font(16, 500);
-    padding: 16px 23px;
-    background-color: g.$secondary-color;
-    border-radius: 8px;
-
-    ul {
-      @include g.flex-box(row, space-between, center, 16px);
-    }
-  }
-
   .text {
     @include g.font(15, 500);
 

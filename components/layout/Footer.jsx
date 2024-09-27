@@ -1,10 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import styles from "./Footer.module.scss";
-import faceBookIcon from "../../public/assets/icons/ic_facebook.svg";
-import twitterIcon from "../../public/assets/icons/ic_twitter.svg";
-import youtubeIcon from "../../public/assets/icons/ic_youtube.svg";
-import instagramIcon from "../../public/assets/icons/ic_instagram.svg";
+import assets from "@/variables/images";
+import { IconContainer } from "../ui/ImgContainers";
 
 export default function Footer() {
   return (
@@ -19,26 +16,45 @@ export default function Footer() {
             <Link href="/faq">FAQ</Link>
           </li>
         </ul>
-
         <ul className={styles.icons}>
           <li>
             <Link href="https://www.facebook.com/" target="_blank">
-              <Image src={faceBookIcon} alt="facebook icon" />
+              <IconContainer
+                src={assets.icons.facebook}
+                width="18px"
+                alt="facebook icon"
+              />
             </Link>
           </li>
           <li>
             <Link href="https://x.com/?lang=en" target="_blank">
-              <Image src={twitterIcon} alt="twitter icon" />
+              <IconContainer
+                src={assets.icons.twitter}
+                width="18px"
+                alt="twitter icon"
+              />
             </Link>
           </li>
           <li>
             <Link href="https://www.youtube.com/" target="_blank">
-              <Image src={youtubeIcon} alt="youtube icon" />
+              <IconContainer
+                src={assets.icons.youtube}
+                width="18px"
+                alt="youtube icon"
+              />
             </Link>
           </li>
           <li>
-            <Link href="https://www.instagram.com/" target="_blank">
-              <Image src={instagramIcon} alt="instagram icon" />
+            <Link
+              href="https://www.instagram.com/"
+              width="18px"
+              target="_blank"
+            >
+              <IconContainer
+                src={assets.icons.instagram}
+                width="18px"
+                alt="instagram icon"
+              />
             </Link>
           </li>
         </ul>

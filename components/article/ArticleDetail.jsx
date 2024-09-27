@@ -15,7 +15,7 @@ export default function ArticleDetail({ article }) {
       </div>
       <div className={styles.middle}>
         <div className={styles.user}>
-          <ProfileImg width="40px" src={writer.image} />
+          <ProfileImg width="40px" src={writer?.image} />
           <span className={styles.name}>
             {writer?.nickname || "총명한 판다"}
           </span>

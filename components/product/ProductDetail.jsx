@@ -1,4 +1,4 @@
-import ImageContainer from "../ui/ImgContainer";
+import { ImageContainer } from "../ui/ImgContainers";
 import KebabMenu from "../ui/KebabMenu";
 import Message from "../ui/Message";
 import LikeButton from "../user/LikeButton";
@@ -13,10 +13,9 @@ export default function ProductDetail({ product }) {
       <ImageContainer
         src={product?.images[0]}
         width="486px"
-        height="486px"
         alt={product?.name}
         radius="16px"
-        borderColor="g.$grey-200"
+        isBorder={true}
       />
       <div className={styles.details}>
         <div className={styles.title}>

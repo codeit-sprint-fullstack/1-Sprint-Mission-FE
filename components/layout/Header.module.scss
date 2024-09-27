@@ -23,11 +23,6 @@
     @include g.flex-box(row, center, center, 47px);
   }
 
-  .logo {
-    background-image: url("/assets/logo.svg");
-    width: 153px;
-    height: 51px;
-  }
   .userProfile {
     @include g.flex-box(row, center, center, 6px);
     .userName {
@@ -48,12 +43,7 @@
     .container {
       padding: 0 16px;
     }
-    .logo {
-      max-width: 81px;
-      background-image: url("/assets/logo_mobile.svg");
-      width: 81px;
-      height: 40px;
-    }
+
     .left {
       gap: 16px;
     }

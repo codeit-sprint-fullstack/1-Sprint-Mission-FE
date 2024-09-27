@@ -15,7 +15,13 @@ export default function CommentForm({ idPath, entity }) {
   } = formMethods;
 
   const { mutate } = useCreateComment({ idPath, entity });
+
   const heading = entity === "article" ? "댓글달기" : "문의하기";
+
+  const placeholder =
+    entity === "article"
+      ? "댓글을 입력해주세요"
+      : "개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.";
 
   const handleNewCommentSubmit = (data) => {
     const newComment = { content: data["create-comment-content"] };
@@ -26,6 +32,7 @@ export default function CommentForm({ idPath, entity }) {
     handleNewCommentSubmit(data);
     reset();
   };
+
   return (
     <FormProvider {...formMethods}>
       <form
@@ -34,7 +41,7 @@ export default function CommentForm({ idPath, entity }) {
       >
         <h3 className={styles["CommentForm-heading"]}>{heading}</h3>
         <TextArea
-          placeholder="댓글을 입력해주세요"
+          placeholder={placeholder}
           validations={COMMENT.CONTENT}
           name="create-comment-content"
         />

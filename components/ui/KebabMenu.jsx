@@ -1,12 +1,12 @@
-import Image from "next/image";
 import Button from "./Button";
 import { useState, useEffect, useRef } from "react";
 import styles from "./KebabMenu.module.scss";
-import kebabIcon from "../../public/assets/icons/ic_kebab.svg";
 import { useRouter } from "next/router";
 import Modal from "./Modal";
 import { useModal } from "@/hooks/useModal";
 import { useDeleteMutation } from "@/service/mutations";
+import assets from "@/variables/images";
+import { IconContainer } from "./ImgContainers";
 
 export default function KebabMenu({ idPath, entity, setIsEditMode }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -72,7 +72,7 @@ export default function KebabMenu({ idPath, entity, setIsEditMode }) {
       )}
       <div className={styles.KebabMenu} ref={dropDownRef}>
         <Button onClick={toggleDropDown} variant="icon">
-          <Image src={kebabIcon} width={24} height={24} alt="kebab menu icon" />
+          <IconContainer src={assets.icons.kebab} alt="kebab menu icon" />
         </Button>
         {isOpen && (
           <ul>

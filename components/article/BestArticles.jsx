@@ -1,31 +1,28 @@
-import Image from "next/image";
 import Link from "next/link";
 import { formatDate, formatLikes } from "@/utils/formatFn";
-import ImageContainer from "../ui/ImgContainer";
-import defaultImg from "../../public/assets/img_default.svg";
-import inactiveHeart from "../../public/assets/icons/ic_heart_inactive.svg";
-import activeHeart from "../../public/assets/icons/ic_heart_active.svg";
-import bestBadge from "../../public/assets/icons/ic_medal.svg";
+import { IconContainer, ImageContainer } from "../ui/ImgContainers";
 import styles from "./BestArticles.module.scss";
 import { useGetBestArticles } from "@/service/queries";
+import assets from "@/variables/images";
 
 function ArticleCard({ article, userName }) {
-  const articleImg = article.image ? article.image : defaultImg;
-  const likeImg = userName ? activeHeart : inactiveHeart;
   return (
     <>
       <div className={styles.top}>
-        <Image src={bestBadge} alt="best badge icon" />
+        <IconContainer
+          src={assets.images.badge}
+          width="16px"
+          alt="best badge icon"
+        />
         <span>Best</span>
       </div>
       <div className={styles.middle}>
         <h3>{article.title}</h3>
         <ImageContainer
-          src={articleImg}
+          src={article?.image}
           width="72px"
-          height="72px"
           radius="6px"
-          borderColor="g.$grey-200"
+          isBorder={true}
         />
       </div>
       <div className={styles.bottom}>
@@ -33,7 +30,7 @@ function ArticleCard({ article, userName }) {
           <span>{userName ? userName : "총명한 판다"}</span>
           <div className={styles.like}>
             <button>
-              <Image src={likeImg} alt="like icon" />
+              <IconContainer src={assets.icons.heart} alt="like icon" />
             </button>
             <span>{formatLikes(article.likeCount)}</span>
           </div>

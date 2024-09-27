@@ -7,7 +7,7 @@
   width: 100%;
   @include g.font(16, 400);
 
-  button div {
+  button .default {
     @include g.flex-box(row, center, center, 24px);
     width: 100%;
     border: 1px solid g.$grey-200;
@@ -19,7 +19,7 @@
     }
   }
 
-  button div.mobile-only {
+  button .mobile-only {
     display: none;
     @include g.device-size(mobile) {
       display: block;

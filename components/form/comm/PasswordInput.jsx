@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import styles from "./InputFields.module.scss";
+import assets from "@/variables/images";
 import { useFormContext } from "react-hook-form";
 
-const showPassWord = "/assets/btn_visibility_on_24px.svg";
-const hidePassWord = "/assets/btn_visibility_off_24px.svg";
+const showPassWord = assets.buttons.eyeOn;
+const hidePassWord = assets.buttons.eyeOff;
 
 export function PasswordInput({
   name,

@@ -53,15 +53,18 @@
   border-bottom: 1px solid $color;
 }
 
-@mixin imgContainer($width, $height, $radius, $borderColor) {
+@mixin imgContainer($width, $radius: 0) {
   position: relative;
   aspect-ratio: 1/1;
-  background-color: #fff;
   max-width: $width;
+  height: $width;
   width: 100%;
-  height: $height;
   border-radius: $radius;
-  @if $borderColor != transparent {
-    border: 1px solid #e5e7eb;
+
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 }

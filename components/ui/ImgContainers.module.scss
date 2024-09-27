@@ -1,0 +1,15 @@
+@use "@/styles/globals/shared" as g;
+
+.ImageContainer {
+  @include g.imgContainer($width: var(--width), $radius: var(--radius));
+
+  border: var(--border);
+
+  background-color: #fff;
+}
+
+.IconContainer {
+  @include g.imgContainer($width: var(--width));
+  border: none;
+  background-color: transparent;
+}
