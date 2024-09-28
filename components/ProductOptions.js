@@ -50,7 +50,7 @@ const ProductOptions = ({ product, onEdit, onDelete }) => {
       {showOptions && (
         <div className={styles.optionsPopup}>
           <button onClick={handleEditClick}>수정하기</button>
-          <button onClick={() => onDelete(product.id)}>삭제하기</button>
+          <button onClick={() => onDelete()}>삭제하기</button>
         </div>
       )}
 

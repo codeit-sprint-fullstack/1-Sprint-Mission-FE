@@ -18,6 +18,7 @@ import {
   postProductFavorite,
   deleteProductFavorite,
 } from "../../api/api";
+import DeleteConfirmModal from "../../components/DeleteConfirmModal";
 
 const ItemDetail = () => {
   const router = useRouter();
@@ -25,6 +26,7 @@ const ItemDetail = () => {
   const [newComment, setNewComment] = useState("");
   const [cursor, setCursor] = useState(null);
   const COMMENTS_PER_PAGE = 10;
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -132,10 +134,17 @@ const ItemDetail = () => {
     editProductMutation.mutate({ productId, productData });
   };
 
-  const handleProductDelete = (productId) => {
-    if (confirm("정말로 상품을 삭제하시겠습니까?")) {
-      deleteProductMutation.mutate(productId);
-    }
+  const handleProductDelete = () => {
+    setShowDeleteModal(true);
+  };
+
+  const confirmDelete = () => {
+    deleteProductMutation.mutate(itemId);
+    setShowDeleteModal(false);
+  };
+
+  const cancelDelete = () => {
+    setShowDeleteModal(false);
   };
 
   const handleFavorite = () => {
@@ -185,14 +194,17 @@ const ItemDetail = () => {
           </div>
 
           <div className={styles.itemInfo}>
-            <h1 className={styles.itemName}>{itemData.name}</h1>
-
-            <ProductOptions
-              product={itemData}
-              currentUser={currentUser}
-              onEdit={handleProductEdit}
-              onDelete={handleProductDelete}
-            />
+            <div className={styles.itemHeader}>
+              <h1 className={styles.itemName}>{itemData.name}</h1>
+              <div className={styles.productOptions}>
+                <ProductOptions
+                  product={itemData}
+                  currentUser={currentUser}
+                  onEdit={handleProductEdit}
+                  onDelete={handleProductDelete}
+                />
+              </div>
+            </div>
 
             <p className={styles.itemPrice}>
               {itemData.price.toLocaleString()}원
@@ -249,12 +261,14 @@ const ItemDetail = () => {
               <p>아직 댓글이 없습니다.</p>
             </div>
           ) : (
-            <CommentOptions
-              comments={commentsData.list}
-              currentUser={currentUser}
-              onEdit={handleCommentEdit}
-              onDelete={handleCommentDelete}
-            />
+            <div className={styles.CommentOptions}>
+              <CommentOptions
+                comments={commentsData.list}
+                currentUser={currentUser}
+                onEdit={handleCommentEdit}
+                onDelete={handleCommentDelete}
+              />
+            </div>
           )}
           {commentsData && commentsData.nextCursor && (
             <button
@@ -276,6 +290,12 @@ const ItemDetail = () => {
             height="48"
           />
         </button>
+        {showDeleteModal && (
+          <DeleteConfirmModal
+            onConfirm={confirmDelete}
+            onCancel={cancelDelete}
+          />
+        )}
       </div>
       <Footer />
     </div>

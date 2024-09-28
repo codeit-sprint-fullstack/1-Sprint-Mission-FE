@@ -4,6 +4,8 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 1200px; /* 전체 container 사이즈를 1200으로 설정 */
+  height: 100px; /* 전체 container 사이즈를 100으로 설정 */
 }
 
 .comment {
@@ -24,7 +26,7 @@
 
 .commentActions {
   position: relative;
-  margin-left: 10px;
+  margin-left: auto; /* 오른쪽 끝에 위치시키기 위해 auto 사용 */
 }
 
 .commentOptionsButton {
@@ -32,6 +34,9 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  position: absolute; /* 절대 위치로 변경 */
+  right: 35px; /* 오른쪽 끝에서 20px 왼쪽으로 이동 */
+  bottom: 10px; /* 위쪽으로 10px 이동 */
 }
 
 .optionsPopup {

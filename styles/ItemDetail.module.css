@@ -19,16 +19,33 @@
   width: 486px;
   height: 486px;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .itemInfo {
   flex: 1;
+  position: relative; /* 추가 */
+}
+
+/* 새로 추가된 스타일 */
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .itemName {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
+  padding-right: 100px; /* 추가: ProductOptions를 위한 공간 확보 */
+}
+
+.productOptions {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .itemPrice {
@@ -108,13 +125,34 @@
 .comment {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   border-bottom: 1px solid #eee;
   padding: 10px 0;
+  position: relative;
 }
 
 .commentContent {
   flex-grow: 1;
+  padding-right: 30px; /* CommentOptions 버튼을 위한 공간 */
+}
+
+.commentOptions {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* CommentOptions 컴포넌트 내부의 버튼 스타일 */
+.commentOptions {
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 끝으로 정렬 */
+}
+
+.commentOptions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
 }
 
 .commentActions {
