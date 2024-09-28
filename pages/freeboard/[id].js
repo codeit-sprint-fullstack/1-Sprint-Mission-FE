@@ -11,8 +11,6 @@ export default function ArticlePage() {
   const router = useRouter();
   const id = router.query.id;
 
-  console.log(id);
-
   const category = 'freeboard';
 
   const { isLoading, data: article } = useGetArticle(id);

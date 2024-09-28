@@ -8,7 +8,7 @@ import heartFullIcon from '@/public/ic_heart_full.png';
 import dotIcon from '@/public/ic_dot.png';
 import DateFormat from '@/utils/DateFormat.js';
 import DropDown from '@/utils/DropDown.js';
-
+import { postFavoriteApi, deleteFavoriteApi } from '@/utils/api/favorite';
 import TestImage from '@/public/testImage.png';
 import styles from '@/styles/ArticleDetail.module.css';
 import { useEditArticle } from '@/hooks/useFreeBoard';
@@ -24,6 +24,7 @@ export default function ArticleDetailInfo({
   const [favoriteCount, setFavoriteCount] = useState(article?.favorite || 0);
   const router = useRouter();
   const { id } = router.query;
+  const articleId = article?.id || '';
 
   let formattedPrice = article?.price
     .toString()
@@ -56,12 +57,14 @@ export default function ArticleDetailInfo({
     }
   };
 
-  const handleFavorite = () => {
+  const handleFavorite = async (articleId, category) => {
     setFavorite((prev) => !prev);
-    if (favorite === false) {
+    if (!favorite) {
       setFavoriteCount((prev) => Math.max(prev + 1, 0));
+      await postFavoriteApi(articleId, category);
     } else {
       setFavoriteCount((prev) => Math.max(prev - 1, 0));
+      await deleteFavoriteApi(articleId, category);
     }
   };
 
@@ -149,7 +152,7 @@ export default function ArticleDetailInfo({
                 height={23.3}
                 alt='하트 아이콘'
                 className={styles.heartIcon}
-                onClick={handleFavorite}
+                onClick={() => handleFavorite(articleId, category)}
               />
               <span className={styles.heartCount}>{favoriteCount}</span>
             </div>
