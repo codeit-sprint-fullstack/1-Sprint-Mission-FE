@@ -36,6 +36,7 @@ export default function Header() {
 
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
     setIsAuthenticated(false);
     setUserInfo(null);
     router.push(ROUTES.LOGIN);

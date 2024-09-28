@@ -3,6 +3,7 @@ export const API_ENDPOINTS = {
   AUTH: {
     SIGN_IN: "/auth/signIn",
     SIGN_UP: "/auth/signUp",
+    REFRESH: "/auth/refresh-token",
   },
   USERS: {
     ME: "/users/me",

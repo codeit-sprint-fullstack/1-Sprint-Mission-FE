@@ -2,9 +2,10 @@ import apiClient from "./apiClient";
 import apiHandler from "./apiHandler";
 import { API_ENDPOINTS } from "./apiEndpoint";
 
-const saveAccessToken = (accessToken) => {
+const saveAccessToken = (accessToken, refreshToken) => {
   if (accessToken) {
     localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("refreshToken", refreshToken);
   }
 };
 
@@ -12,7 +13,7 @@ const saveAccessToken = (accessToken) => {
 export const login = async (userData) => {
   return apiHandler(async () => {
     const { data } = await apiClient.post(API_ENDPOINTS.AUTH.SIGN_IN, userData);
-    saveAccessToken(data.accessToken);
+    saveAccessToken(data.accessToken, data.refreshToken);
     return data;
   });
 };
@@ -21,15 +22,23 @@ export const login = async (userData) => {
 export const signup = async (userData) => {
   return apiHandler(async () => {
     const { data } = await apiClient.post(API_ENDPOINTS.AUTH.SIGN_UP, userData);
-    saveAccessToken(data.accessToken);
+    saveAccessToken(data.accessToken, data.refreshToken);
     return data;
   });
 };
 
+export async function refreshToken() {
+  const token = localStorage.getItem(refreshToken);
+  const { data } = await apiClient.post(API_ENDPOINTS.AUTH.REFRESH, token);
+  saveAccessToken(data.accessToken, data.refreshToken);
+}
+
 // 유저 프로필 가져오기
 export const getUserProfile = async () => {
-  return apiHandler(async () => {
+  try {
     const { data } = await apiClient.get(API_ENDPOINTS.USERS.ME);
     return data;
-  });
+  } catch (err) {
+    await refreshToken();
+  }
 };
