@@ -5,6 +5,12 @@ import Image from "next/image";
 import AuthForm from "@/components/common/AuthForm";
 
 const register = () => {
+  React.useEffect(() => {
+    document.body.classList.add("no-gnb-margin");
+    return () => {
+      document.body.classList.remove("no-gnb-margin");
+    };
+  }, []);
   return (
     <div className={styles.Container}>
       <a href="/">

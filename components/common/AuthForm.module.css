@@ -7,7 +7,7 @@
 
 .label {
   display: block;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   font-weight: 700;
   color: var(--gray-800);
 }
@@ -100,4 +100,18 @@
 
 .submitButtonInvalid:hover {
   background-color: #9ca3af;
+}
+
+@media (max-width: 743px) {
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .label {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
 }

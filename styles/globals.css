@@ -52,3 +52,7 @@ a {
 .flex-grow {
   flex-grow: 1;
 }
+
+.no-gnb-margin {
+  margin-top: 0 !important;
+}

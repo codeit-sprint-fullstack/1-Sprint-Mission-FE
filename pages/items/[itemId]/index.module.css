@@ -250,3 +250,36 @@
   display: flex;
   gap: 8px;
 }
+
+@media (max-width: 1199px) {
+  .imageContainer {
+    height: 340px;
+    max-width: 340px;
+  }
+
+  .productInfoMetaHug {
+    gap: 40px;
+  }
+
+  .productInfo {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 743px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .productInfoMetaHug {
+    width: 95%;
+  }
+
+  .imageContainer {
+    flex: 1;
+    position: relative;
+    height: 486px;
+    max-width: 486px;
+  }
+}
