@@ -1,4 +1,4 @@
-import { CommentButton } from '@/utils/Button';
+import { CommentButton, CommentCancelButton } from '@/utils/Button';
 import styles from '@/styles/Comment.module.css';
 import useComments from '@/hooks/useComments';
 import { useState } from 'react';
@@ -10,7 +10,7 @@ import {
   useFilterParams,
 } from '@tanstack/react-query';
 
-export default function CommentList({
+export default function EditComment({
   commentId,
   articleId,
   content,
@@ -31,6 +31,11 @@ export default function CommentList({
     setOpenOptions(false);
   };
 
+  const handleCancelSubmit = () => {
+    setEditId(null);
+    setOpenOptions(false);
+  };
+
   return (
     <>
       <div className={styles.editSubmit}>
@@ -42,6 +47,9 @@ export default function CommentList({
           type='text'
           className={styles.inputComment}
         />
+
+        <CommentCancelButton onClick={handleCancelSubmit} label='취소' />
+
         <CommentButton
           disabled={!editComment}
           onClick={handleSubmit}

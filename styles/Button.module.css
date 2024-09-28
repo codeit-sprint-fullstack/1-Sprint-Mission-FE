@@ -30,6 +30,21 @@
   right: 0%;
 }
 
+.cancelBtn {
+  border: none;
+  padding: 12px 20px;
+  color: #737373;
+  border-radius: 8px;
+  margin-top: 16px;
+  width: 68px;
+  height: 42px;
+  float: right;
+  cursor: pointer;
+  position: absolute;
+  z-index: 100;
+  right: 10%;
+}
+
 .articleBtn {
   background-color: #9ca3af;
   border: none;

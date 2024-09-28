@@ -17,6 +17,18 @@ export function CommentButton({ disabled, onClick, label }) {
   );
 }
 
+export function CommentCancelButton({ onClick, label }) {
+  return (
+    <>
+      <div className={styles.buttonLayout}>
+        <button className={styles.cancelBtn} onClick={onClick} type='button'>
+          {label}
+        </button>
+      </div>
+    </>
+  );
+}
+
 export function ArticleButton({ disabled, onClick, label }) {
   return (
     <>

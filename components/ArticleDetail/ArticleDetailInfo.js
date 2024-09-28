@@ -4,10 +4,10 @@ import Image from 'next/image';
 import line from '@/public/heartLine.png';
 import profileIcon from '@/public/ic_profile.png';
 import heartIcon from '@/public/ic_heart.png';
+import heartFullIcon from '@/public/ic_heart_full.png';
 import dotIcon from '@/public/ic_dot.png';
 import DateFormat from '@/utils/DateFormat.js';
 import DropDown from '@/utils/DropDown.js';
-
 import TestImage from '@/public/testImage.png';
 import styles from '@/styles/Article.module.css';
 import { useEditArticle } from '@/hooks/useFreeBoard';
@@ -18,6 +18,7 @@ export default function ArticleDetailInfo({
   handleDeleteArticle,
 }) {
   const [openOptions, setOpenOptions] = useState(false);
+  const [favorite, setFavorite] = useState(false);
   const router = useRouter();
   const { id } = router.query;
 
@@ -48,6 +49,10 @@ export default function ArticleDetailInfo({
     }
   };
 
+  const handleFavorite = () => {
+    setFavorite((prev) => !prev);
+  };
+
   const handleEdit = useCallback(() => {
     if (category === 'freeboard') {
       router.push(`/freeboard/edit/${id}`);
@@ -60,7 +65,6 @@ export default function ArticleDetailInfo({
     return <div>loading...</div>;
   }
 
-  console.log(article);
   return (
     <>
       <div className={styles.layout}>
@@ -112,9 +116,12 @@ export default function ArticleDetailInfo({
           <Image src={line} alt='선' className={styles.line} />
           <div className={styles.heart}>
             <Image
-              src={heartIcon}
+              src={favorite ? heartFullIcon : heartIcon}
+              width={26.8}
+              height={23.3}
               alt='하트 아이콘'
               className={styles.heartIcon}
+              onClick={handleFavorite}
             />
             <span className={styles.heartCount}>{article.favorite}</span>
           </div>

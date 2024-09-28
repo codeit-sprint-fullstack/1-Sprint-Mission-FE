@@ -39,7 +39,6 @@
   font-size: 16px;
   font-weight: 600;
   color: #4b5563;
-  margin-bottom: 16px;
 }
 
 .itemContent {
@@ -47,6 +46,7 @@
   font-weight: 400;
   line-height: 26px;
   color: #4b5563;
+  margin-top: 16px;
   margin-bottom: 24px;
 }
 
@@ -61,6 +61,7 @@
   align-items: center;
   justify-content: center;
   margin-right: 8px;
+  margin-top: 16px;
 }
 
 .hashtagTitle {
@@ -93,6 +94,7 @@
 }
 
 .heart {
+  border: 1px solid #e5e7eb;
   border-radius: 35px;
   padding: 4px 12px;
   align-items: center;

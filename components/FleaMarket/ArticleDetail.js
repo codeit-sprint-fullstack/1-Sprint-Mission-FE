@@ -4,6 +4,7 @@ import Image from 'next/image';
 import line from '@/public/heartLine.png';
 import profileIcon from '@/public/ic_profile.png';
 import heartIcon from '@/public/ic_heart.png';
+import heartFullIcon from '@/public/ic_heart_full.png';
 import dotIcon from '@/public/ic_dot.png';
 import DateFormat from '@/utils/DateFormat.js';
 import DropDown from '@/utils/DropDown.js';
@@ -12,13 +13,15 @@ import TestImage from '@/public/testImage.png';
 import styles from '@/styles/ArticleDetail.module.css';
 import { useEditArticle } from '@/hooks/useFreeBoard';
 import { useFleaMarketEditArticle } from '@/hooks/useFleaMarket';
-import { stubTrue } from 'lodash';
+
 export default function ArticleDetailInfo({
   article,
   category,
   handleDeleteArticle,
 }) {
   const [openOptions, setOpenOptions] = useState(false);
+  const [favorite, setFavorite] = useState(false);
+  const [favoriteCount, setFavoriteCount] = useState(article?.favorite || 0);
   const router = useRouter();
   const { id } = router.query;
 
@@ -40,7 +43,7 @@ export default function ArticleDetailInfo({
       try {
         if (category === 'freeboard') {
           deleteArticle(id);
-          // router.push('/freeboard');
+          router.push('/freeboard');
         } else {
           deleteFleaMArketArticle(id);
           router.push('/fleamarket');
@@ -50,6 +53,15 @@ export default function ArticleDetailInfo({
       }
     } else {
       return;
+    }
+  };
+
+  const handleFavorite = () => {
+    setFavorite((prev) => !prev);
+    if (favorite === false) {
+      setFavoriteCount((prev) => Math.max(prev + 1, 0));
+    } else {
+      setFavoriteCount((prev) => Math.max(prev - 1, 0));
     }
   };
 
@@ -64,8 +76,6 @@ export default function ArticleDetailInfo({
   if (!article) {
     return <div>loading...</div>;
   }
-
-  console.log(article.tags);
 
   return (
     <>
@@ -134,11 +144,14 @@ export default function ArticleDetailInfo({
             <Image src={line} alt='선' className={styles.line} />
             <div className={styles.heart}>
               <Image
-                src={heartIcon}
+                src={favorite ? heartFullIcon : heartIcon}
+                width={26.8}
+                height={23.3}
                 alt='하트 아이콘'
                 className={styles.heartIcon}
+                onClick={handleFavorite}
               />
-              <span className={styles.heartCount}>{article.favorite}</span>
+              <span className={styles.heartCount}>{favoriteCount}</span>
             </div>
           </div>
         </div>
