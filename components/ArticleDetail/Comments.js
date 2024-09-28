@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import Button from '@/utils/Button';
+import { CommentButton } from '@/utils/Button';
 import CommentList from './CommentList';
 import styles from '@/styles/Comment.module.css';
 import useComments from '@/hooks/useComments';
@@ -79,7 +79,7 @@ export default function Comments({ category }) {
         onChange={handleComment}
         className={styles.inputComment}
       />
-      <Button
+      <CommentButton
         disabled={postCommentMutation.isPending || !canSubmit}
         onClick={handleSubmit}
         label={'등록'}

@@ -35,7 +35,7 @@ export default function ArticleDetailInfo({
       try {
         if (category === 'freeboard') {
           deleteArticle(id);
-          // router.push('/freeboard');
+          router.push('/freeboard');
         } else {
           deleteFleaMArketArticle(id);
           router.push('/fleamarket');

@@ -26,7 +26,7 @@ export default function ArticleListHeader({ keyword, setOrderBy }) {
         {keyword ? (
           <span className={styles.title}>검색 결과</span>
         ) : (
-          <span className={styles.title}>게시글</span>
+          <span className={styles.title}>판매 중인 상품</span>
         )}
         <Link href='/fleamarket/post'>
           <Image src={postBtn} alt='글쓰기 버튼' />

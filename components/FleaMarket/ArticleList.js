@@ -4,12 +4,13 @@ import articleImage from '@/public/article_image.png';
 import profileIcon from '@/public/ic_profile.png';
 import heartIcon from '@/public/ic_heart.png';
 import DateFormat from '@/utils/DateFormat.js';
+
 import styles from '@/styles/ArticleList.module.css';
 
 export default function ArticleList({ articles }) {
   const category = 'fleamarket';
 
-  if (articles.length === 0) {
+  if (articles?.length === 0) {
     return (
       <div className={styles.articleList}>
         <div className={styles.noArticleList}>둘러볼 게시글이 없습니다</div>
@@ -20,7 +21,7 @@ export default function ArticleList({ articles }) {
   return (
     <>
       <div className={styles.articleList}>
-        {articles.map((article) => (
+        {articles?.map((article) => (
           <div key={article.id} className={styles.list}>
             <Link href={`/fleamarket/${article.id}`} className={styles.link}>
               <div className={styles.main}>

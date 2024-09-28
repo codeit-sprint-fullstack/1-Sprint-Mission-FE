@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from '@/styles/ArticleFormFields.module.css';
-import Button from '@/utils/Button.js';
+import { ArticleButton } from '@/utils/Button.js';
 import TitleInput from '@/components/Post/TitleInput';
 import ContentInput from '@/components/Post/ContentInput';
 import { useGetArticle, useEditArticle } from '@/hooks/useFreeBoard';
@@ -59,7 +59,11 @@ export default function EditArticlePage() {
         <div className={styles.header}>
           <span className={styles.title}>게시물 수정</span>
         </div>
-        <Button disabled={!canSubmit} label='수정' onClick={handleSubmit} />
+        <ArticleButton
+          disabled={!canSubmit}
+          label='수정'
+          onClick={handleSubmit}
+        />
         <TitleInput values={values} onChange={onChange} />
         <ContentInput
           values={values}

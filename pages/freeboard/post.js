@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from '@/styles/ArticleFormFields.module.css';
-import Button from '@/utils/Button.js';
+import { ArticleButton } from '@/utils/Button.js';
 import TitleInput from '@/components/Post/TitleInput';
 import ContentInput from '@/components/Post/ContentInput';
 import { useEditArticle } from '@/hooks/useFreeBoard';
@@ -50,7 +50,11 @@ export default function PostArticlePage() {
         <div className={styles.header}>
           <span className={styles.title}>게시물 등록</span>
         </div>
-        <Button disabled={!canSubmit} label='등록' onClick={handleSubmit} />
+        <ArticleButton
+          disabled={!canSubmit}
+          label='등록'
+          onClick={handleSubmit}
+        />
         <TitleInput values={values} onChange={onChange} />
         <ContentInput
           values={values}

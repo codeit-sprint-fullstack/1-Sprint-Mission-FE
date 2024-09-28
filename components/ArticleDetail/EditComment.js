@@ -1,4 +1,4 @@
-import Button from '@/utils/Button';
+import { CommentButton } from '@/utils/Button';
 import styles from '@/styles/Comment.module.css';
 import useComments from '@/hooks/useComments';
 import { useState } from 'react';
@@ -42,7 +42,11 @@ export default function CommentList({
           type='text'
           className={styles.inputComment}
         />
-        <Button disabled={!editComment} onClick={handleSubmit} label='수정' />
+        <CommentButton
+          disabled={!editComment}
+          onClick={handleSubmit}
+          label='수정'
+        />
       </div>
     </>
   );

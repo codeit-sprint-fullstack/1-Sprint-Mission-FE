@@ -4,16 +4,10 @@ import { throttle } from 'lodash';
 import ArticleList from '@/components/FleaMarket/ArticleList.js';
 import BestArticleList from '@/components/FleaMarket/BestArticleList.js';
 import ArticleListHeader from '@/components/FleaMarket/ArticleListHeader.js';
-
-import {
-  fetchFleaMarketBestApi,
-  fetchFleaMarketApi,
-} from '@/utils/api/fleaMarketApi';
+import { fetchFleaMarketApi } from '@/utils/api/fleaMarketApi';
 import styles from '@/styles/FreeBoard.module.css';
-import {
-  useFleaMarketArticlesList,
-  useGetBestArticle,
-} from '@/hooks/useFleaMarket';
+import { useGetArticleList, useGetBestArticle } from '@/hooks/useFleaMarket';
+import Pagination from '@/components/FleaMarket/Pagination';
 
 export const getServerSideProps = async (context) => {
   const { keyword = '', sort = 'recent', page = 1 } = context.query;
@@ -42,32 +36,18 @@ export const getServerSideProps = async (context) => {
 
 export default function FleaMarket() {
   const [orderBy, setOrderBy] = useState('recent');
+  const [currentPage, setCurrentPage] = useState(1);
+
   const router = useRouter();
   const { keyword } = router.query;
 
-  const { articles, loading, hasMore, fetchNextPage } =
-    useFleaMarketArticlesList({
-      orderBy,
-      limit: 5,
-    });
+  const { articles, totalPages, isLoading } = useGetArticleList({
+    page: currentPage,
+    sort: orderBy,
+    keyword,
+  });
 
   const { bestArticles } = useGetBestArticle();
-
-  useEffect(() => {
-    const handleScroll = throttle(() => {
-      if (loading || !hasMore) return;
-
-      const scrollPosition = window.scrollY + window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-
-      if (scrollPosition >= documentHeight - 100) {
-        fetchNextPage();
-      }
-    }, 200);
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasMore, loading]);
 
   return (
     <>
@@ -75,7 +55,12 @@ export default function FleaMarket() {
         <BestArticleList articles={bestArticles} />
         <ArticleListHeader keyword={keyword} setOrderBy={setOrderBy} />
         <ArticleList articles={articles} />
-        {loading && <div>Loading...</div>}
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+        {isLoading && <div>Loading...</div>}
       </div>
     </>
   );
