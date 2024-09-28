@@ -83,10 +83,12 @@ export default function ItemInfo(product) {
 
   return (
     <div className={styles.itemContainer}>
-      <img
+      <Image
         className={styles.itemImg}
-        src={item.images?.[0] || defaultImage}
-        alt="productImage"
+        src={item.images[0] ? item.images[0] : defaultImage}
+        width={486}
+        height={486}
+        alt="product"
       />
       <div className={styles.infoContainer}>
         <div className={styles.infoName}>

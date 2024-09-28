@@ -78,9 +78,7 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
       </label>
       <input
         type="text"
-        className={`${styles.inputStyle} ${
-          errors.productImage ? styles.inputError : ""
-        }`}
+        className={styles.inputStyle}
         id="productImage"
         name="productImage"
         placeholder="이미지 링크를 첨부해주세요."
@@ -96,9 +94,7 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
       </label>
       <input
         type="text"
-        className={`${styles.inputStyle} ${
-          errors.productName ? styles.inputError : ""
-        }`}
+        className={styles.inputStyle}
         id="productName"
         name="productName"
         placeholder="상품명을 입력해주세요"
@@ -113,9 +109,7 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
         상품 소개
       </label>
       <textarea
-        className={`${styles.inputStyle} ${
-          errors.productIntro ? styles.inputError : ""
-        }`}
+        className={styles.inputStyle}
         id="productIntro"
         name="productIntro"
         placeholder="상품 소개를 입력해주세요"
@@ -149,9 +143,7 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
       </label>
       <input
         type="text"
-        className={`${styles.inputStyle} ${
-          errors.productTag ? styles.inputError : ""
-        }`}
+        className={styles.inputStyle}
         id="productTag"
         name="productTag"
         placeholder="태그를 입력해주세요"

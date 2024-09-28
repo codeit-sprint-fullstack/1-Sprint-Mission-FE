@@ -7,6 +7,7 @@ import { DesktopSearchBar } from "./DesktopSearchBar.jsx";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 import { useDeviceType } from "@/hooks/useDeviceType";
+import Image from "next/image";
 
 export default function ItemList({
   products,
@@ -48,10 +49,12 @@ export default function ItemList({
             return (
               <div key={id} className={styles.sellProductItem}>
                 <Link href={ROUTES.ITEMS_DETAIL(id)}>
-                  <img
+                  <Image
                     className={styles.sellProduct}
-                    src={images ? images : img_default}
-                    alt={name ?? "Product image"}
+                    src={images[0] ? images[0] : img_default}
+                    alt={images ? name : ""}
+                    width={221}
+                    height={221}
                   />
                   <p className={styles.itemName}>{name}</p>
                   <p className={styles.itemPrice}>{`${formatPrice(
