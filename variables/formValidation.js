@@ -52,3 +52,25 @@ export const AUTH = {
     ...minMaxLength(8, 14),
   },
 };
+
+export const PRODUCT = {
+  NAME: {
+    required: "상품명을 입력해 주세요",
+    ...minMaxLength(1, 10),
+  },
+  DESCRIPTION: {
+    required: "상품소개를 입력해 주세요",
+    ...minMaxLength(10, 500),
+  },
+  PRICE: {
+    required: "상품가격을 입력해 주세요",
+    pattern: {
+      value: /^[0-9]+$/,
+      message: "숫자만 입력해 주세요",
+    },
+  },
+  TAGS: {
+    required: "상품소개를 입력해 주세요",
+    ...minMaxLength(1, 5),
+  },
+};

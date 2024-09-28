@@ -90,7 +90,7 @@ export default function ForumPage() {
           <h2>
             전체 게시글 <span>{`(${pages[0]?.totalCount})`}</span>
           </h2>
-          <Link href="/forum/create-article" passHref>
+          <Link href="/forum/registration" passHref>
             <Button variant="primary">글쓰기</Button>
           </Link>
         </div>

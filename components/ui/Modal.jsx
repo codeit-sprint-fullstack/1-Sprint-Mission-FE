@@ -11,6 +11,7 @@ function Modal({ msg, onClose }, ref) {
         variant="primary"
         className={styles["Modal-btn"]}
         onClick={onClose}
+        type="button"
       >
         <span>확인</span>
       </Button>

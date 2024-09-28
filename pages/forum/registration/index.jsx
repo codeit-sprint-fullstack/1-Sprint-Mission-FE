@@ -1,10 +1,10 @@
 import ArticleForm from "@/components/form/ArticleForm";
 import Loader from "@/components/ui/Loader";
 import Message from "@/components/ui/Message";
-import { useCreateArticle } from "@/service/mutations";
+import { useCreateMutation } from "@/service/mutations";
 
 export default function CreateArticle() {
-  const { isPending, isError, mutate, error } = useCreateArticle();
+  const { isPending, isError, mutate, error } = useCreateMutation();
 
   const handleNewArticleSubmit = (data) => {
     const formData = new FormData();

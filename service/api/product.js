@@ -36,3 +36,13 @@ export async function createProductComment(productId, newComment) {
   const res = await axios.post(`${PATH}/${productId}/comments`, newComment);
   return res.data;
 }
+
+export async function createProduct(newProduct) {
+  const res = await axios.post(PATH, newProduct);
+  return res.data;
+}
+
+export async function updateProductById(productId, productData) {
+  const res = await axios.patch(`${PATH}/${productId}`, productData);
+  return res.data;
+}

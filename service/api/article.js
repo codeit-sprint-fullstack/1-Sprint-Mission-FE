@@ -24,7 +24,7 @@ export async function createArticle(formData) {
   return res.data;
 }
 
-export async function updateArticle(articleId, formData) {
+export async function updateArticleById(articleId, formData) {
   const res = await axios.patch(`${PATH}/${articleId}`, formData);
   return res.data;
 }

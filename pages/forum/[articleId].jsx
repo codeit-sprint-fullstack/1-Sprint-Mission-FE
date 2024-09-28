@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { QueryClient, useQuery, dehydrate } from "@tanstack/react-query";
+import { QueryClient, dehydrate } from "@tanstack/react-query";
 import { getArticleById } from "@/service/api/article";
 import ArticleDetail from "@/components/article/ArticleDetail";
 import CommentList from "@/components/comment/CommentList";
@@ -10,6 +10,7 @@ import CommentForm from "@/components/form/CommentForm";
 import ReturnToListBtn from "@/components/ui/ReturnToListBtn";
 import styles from "@/styles/pages/forum/main.module.scss";
 import { useAuth } from "@/context/AuthProvider";
+import { useGetById } from "@/service/queries";
 
 export async function getServerSideProps(context) {
   const queryClient = new QueryClient();
@@ -35,10 +36,9 @@ export default function ArticleDetailPage() {
     isError,
     error,
     data: article,
-  } = useQuery({
-    queryKey: articleKey.detail(articleId),
-    queryFn: () => getArticleById(articleId),
-    enabled: !!articleId,
+  } = useGetById({
+    entity: "article",
+    id: articleId,
   });
 
   if (isError) {
@@ -59,9 +59,9 @@ export default function ArticleDetailPage() {
       <section className={styles.ArticleDetailPage}>
         <ArticleDetail article={article} />
 
-        <CommentForm idPath={article.id} entity="article" />
+        <CommentForm idPath={article.id} whichComment="article" />
 
-        <CommentList idPath={article.id} entity="article" />
+        <CommentList idPath={article.id} whichComment="article" />
         <ReturnToListBtn />
       </section>
     </>

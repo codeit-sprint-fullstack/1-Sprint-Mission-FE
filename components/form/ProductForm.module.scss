@@ -1,6 +1,6 @@
 @use "@/styles/globals/shared" as g;
 
-.ArticleForm {
+.ProductForm {
   @include g.flex-box(column, center, center, 24px);
 
   .top-bar {

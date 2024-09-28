@@ -34,3 +34,23 @@
     z-index: 999;
   }
 }
+
+.TagInput {
+  width: 100%;
+  @include g.font(16, 400);
+  @include g.flex-box(column, flex-start, none, 12px);
+  ul {
+    @include g.flex-box(row, flex-start, none, 12px);
+    font-weight: 400;
+    li {
+      @include g.flex-box(row, center, center, 9px);
+      background-color: g.$grey-100;
+      padding: 6px 12px 6px 16px;
+      border-radius: 26px;
+      button {
+        padding: 0;
+        background: none;
+      }
+    }
+  }
+}

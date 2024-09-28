@@ -53,8 +53,8 @@ export default function ProductDetailPage() {
       <section className={styles.ProductDetailPage}>
         <ProductDetail product={product} />
         <div className={styles.line}></div>
-        <CommentForm idPath={productId} isArticle={false} />
-        <CommentList idPath={productId} isArticle={false} />
+        <CommentForm idPath={productId} whichComment="product" />
+        <CommentList idPath={productId} whichComment="product" />
         <ReturnToListBtn isArticle={false} />
       </section>
     </>

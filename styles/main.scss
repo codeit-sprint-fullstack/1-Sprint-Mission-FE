@@ -24,12 +24,15 @@ section,
 article {
   width: 100%;
 }
-h2 {
+
+h1 {
   color: g.$grey-900;
   @include g.font(20, 700);
-  @include g.device-size(mobile) {
-    @include g.font(18, 700);
-  }
+}
+
+h2 {
+  color: g.$grey-900;
+  @include g.font(18, 700);
 }
 
 form {

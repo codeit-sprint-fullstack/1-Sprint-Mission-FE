@@ -1,24 +1,25 @@
 import Button from "./Button";
 import { useState, useEffect, useRef } from "react";
 import styles from "./KebabMenu.module.scss";
-import { useRouter } from "next/router";
-import { useDeleteMutation } from "@/service/mutations";
+import { useDeleteComment } from "@/service/mutations";
 import assets from "@/variables/images";
 import { IconContainer } from "./ImgContainers";
 import useGlobalModal from "@/hooks/useGlobalModal";
-import { EDIT_DELETE } from "@/variables/entities";
 
-export default function KebabMenu({ idPath, entity }) {
+export default function KebabMenuComment({
+  idPath,
+  whichComment,
+  commentId,
+  setIsEditMode,
+}) {
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();
   const dropDownRef = useRef(null);
-
-  const { pathAfterDeletion, editPath, deleteMessage, successMessage } =
-    EDIT_DELETE[entity];
-
+  console.log("commendId", commentId);
+  console.log("idPath", idPath);
+  console.log("whichComment", whichComment);
   const { onModalOpen, GlobalModal } = useGlobalModal();
 
-  const { mutate } = useDeleteMutation({ entity });
+  const { mutateAsync } = useDeleteComment({ idPath, whichComment });
 
   const toggleDropDown = () => {
     setIsOpen(!isOpen);
@@ -31,20 +32,18 @@ export default function KebabMenu({ idPath, entity }) {
   };
 
   const handleClickEdit = () => {
-    router.push(`${editPath}/${idPath}`);
+    setIsEditMode(true);
   };
 
   const handleClickDelete = () => {
-    onModalOpen(deleteMessage);
+    onModalOpen({
+      msg: "댓글을 삭제하시겠습니까?",
+      action: handleConfirmDelete,
+    });
   };
 
-  const handleConfirmDelete = () => {
-    mutate(idPath, {
-      onSuccess: () => {
-        onModalOpen(successMessage);
-        router.push(pathAfterDeletion);
-      },
-    });
+  const handleConfirmDelete = async () => {
+    await mutateAsync(commentId);
   };
 
   //드롭다운 메뉴 외부 클릭 감지
@@ -57,7 +56,7 @@ export default function KebabMenu({ idPath, entity }) {
 
   return (
     <>
-      <GlobalModal onClose={handleConfirmDelete} />
+      <GlobalModal />
 
       <div className={styles.KebabMenu} ref={dropDownRef}>
         <Button onClick={toggleDropDown} variant="icon">

@@ -16,7 +16,7 @@ export default function Input({
   } = useFormContext();
 
   const addError = errors[name] && styles.error;
-  const text = label && `${label}${placeholder}`;
+  const text = (label && placeholder) || `${label}${placeholder}`;
 
   return (
     <div className={styles.Input}>

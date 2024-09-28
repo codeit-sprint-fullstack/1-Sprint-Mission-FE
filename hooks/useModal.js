@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 export function useModal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState("");
+  const [nextAction, setNextAction] = useState(null);
 
   const modalRef = useRef(null);
   const router = useRouter();
@@ -14,26 +15,36 @@ export function useModal() {
     }
   }, [isModalOpen]);
 
-  const onModalOpen = (msg) => {
+  const onModalOpen = ({ msg, action }) => {
     setIsModalOpen(true);
     setModalMsg(msg);
+
+    if (action) {
+      setNextAction(() => action);
+    }
   };
 
   const onModalClose = () => {
     if (modalRef.current) {
       modalRef.current.close();
       setIsModalOpen(false);
+      setNextAction(null);
     }
   };
 
-  const onModalConfirm = (redirectPath) => {
+  const onModalConfirm = (redirectPath = null) => {
     if (modalRef.current) {
       modalRef.current.close();
       setIsModalOpen(false);
     }
+    if (nextAction) {
+      nextAction();
+    }
     if (redirectPath) {
       router.push(redirectPath);
     }
+
+    setNextAction(null);
   };
 
   return {
@@ -42,7 +53,7 @@ export function useModal() {
     onModalClose,
     onModalConfirm,
     isModalOpen,
-    setIsModalOpen,
     modalMsg,
+    nextAction,
   };
 }

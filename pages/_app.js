@@ -1,5 +1,6 @@
 import {
   HydrationBoundary,
+  MutationCache,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
@@ -11,8 +12,10 @@ import Footer from "@/components/layout/Footer";
 import Main from "@/components/layout/Main";
 import React from "react";
 import { AuthProvider } from "@/context/AuthProvider";
+import useGlobalModal from "@/hooks/useGlobalModal";
 
 export default function App({ Component, pageProps }) {
+  const { onModalOpen, GlobalModal } = useGlobalModal();
   const [queryClient] = React.useState(
     () =>
       new QueryClient({
@@ -25,6 +28,13 @@ export default function App({ Component, pageProps }) {
             retry: 1,
           },
         },
+        mutationCache: new MutationCache({
+          onError: (error) => {
+            console.error("Mutation Error", error.message);
+            onModalOpen(error.message);
+            console.log("글로벌에러 모달 열림");
+          },
+        }),
       })
   );
 
@@ -39,6 +49,7 @@ export default function App({ Component, pageProps }) {
             <Header />
             <Main>
               <Component {...pageProps} />
+              <GlobalModal />
             </Main>
           </AuthProvider>
         </HydrationBoundary>

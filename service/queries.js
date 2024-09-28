@@ -1,7 +1,11 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { getArticleList, getArticleComments } from "./api/article";
+import {
+  getArticleList,
+  getArticleComments,
+  getArticleById,
+} from "./api/article";
 import { articleKey, PAGE_SIZE, productKey } from "@/variables/queryKeys";
-import { getProductComments } from "./api/product";
+import { getProductById, getProductComments } from "./api/product";
 
 export function useGetBestArticles(params = {}) {
   return useQuery({
@@ -10,11 +14,10 @@ export function useGetBestArticles(params = {}) {
   });
 }
 
-export function useGetCommentList({ idPath, entity }) {
-  const queryKey =
-    entity === "article" ? articleKey.comments : productKey.comments;
-  const apiFunction =
-    entity === "article" ? getArticleComments : getProductComments;
+export function useGetCommentList({ idPath, whichComment }) {
+  const isArticle = whichComment === "article";
+  const queryKey = isArticle ? articleKey.comments : productKey.comments;
+  const apiFunction = isArticle ? getArticleComments : getProductComments;
 
   return useInfiniteQuery({
     queryKey: queryKey(idPath),
@@ -51,5 +54,15 @@ export function useGetArticleList({ orderBy, keyword }) {
       return allPages.length + 1;
     },
     keepPreviousData: true,
+  });
+}
+
+export function useGetById({ entity, id }) {
+  const queryKey = entity === "article" ? articleKey.detail : productKey.detail;
+  const apiFunction = entity === "article" ? getArticleById : getProductById;
+  return useQuery({
+    queryKey: queryKey(id),
+    queryFn: () => apiFunction(id),
+    enabled: !!id,
   });
 }

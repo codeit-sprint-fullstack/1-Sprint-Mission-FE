@@ -1,18 +1,18 @@
 import { FormProvider, useForm } from "react-hook-form";
-import styles from "./ArticleForm.module.scss";
+import styles from "./ProductForm.module.scss";
 import Input from "./comm/Input";
 import TextArea from "./comm/TextArea";
 import Button from "../ui/Button";
 import { useEffect } from "react";
-import { ARTICLE } from "@/variables/formValidation";
-import Modal from "../ui/Modal";
+import { PRODUCT } from "@/variables/formValidation";
+import TagInput from "./comm/TagInput";
 
-export default function ArticleForm({
+export default function ProductForm({
   onSubmit,
   isEditMode = false,
   initialData = {},
 }) {
-  const heading = isEditMode ? "게시글 수정하기" : "게시글 쓰기";
+  const heading = isEditMode ? "상품 등록하기" : "상품 수정하기";
 
   const formMethods = useForm({
     defaultValues: {
@@ -46,7 +46,7 @@ export default function ArticleForm({
     <FormProvider {...formMethods}>
       <form
         onSubmit={handleSubmit(handleResetAfterSubmit)}
-        className={styles.ArticleForm}
+        className={styles.ProductForm}
       >
         <div className={styles["top-bar"]}>
           <h1>{heading}</h1>
@@ -54,18 +54,19 @@ export default function ArticleForm({
             등록
           </Button>
         </div>
-        <Input
-          label="*제목"
-          name="title"
-          placeholder="제목을 입력해 주세요"
-          validations={ARTICLE.TITLE}
-        />
+        <Input label="상품명" name="name" validations={PRODUCT.NAME} />
         <TextArea
-          label="*내용"
-          name="content"
-          placeholder="내용을 입력해 주세요"
-          validations={ARTICLE.CONTENT}
+          label="상품소개"
+          name="description"
+          validations={PRODUCT.DESCRIPTION}
         />
+        <Input
+          label="판매가격"
+          name="price"
+          validations={PRODUCT.PRICE}
+          type="number"
+        />
+        <TagInput label="태그" name="price" validations={PRODUCT.TAGS} />
       </form>
     </FormProvider>
   );

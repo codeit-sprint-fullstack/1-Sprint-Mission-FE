@@ -2,23 +2,33 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   createArticle,
   createArticleComment,
+  createProduct,
   deleteArticleById,
+  updateArticleById,
 } from "./api/article";
-import { articleKey, commentKey, productKey } from "@/variables/queryKeys";
+import { articleKey, productKey } from "@/variables/queryKeys";
 import { useRouter } from "next/router";
 import { useParams, usePathname } from "next/navigation";
 import { deleteCommentById, updateCommentById } from "./api/comments";
-import { createProductComment, deleteProductById } from "./api/product";
+import {
+  createProductComment,
+  deleteProductById,
+  updateProductById,
+} from "./api/product";
 
-export function useCreateArticle() {
+//to create product or article
+export function useCreateMutation({ entity }) {
   const queryClient = useQueryClient();
   const router = useRouter();
 
+  const apiFunction = entity === "article" ? createArticle : createProduct;
+  const path = entity === "article" ? "forum" : "products";
+
   return useMutation({
-    mutationFn: (newArticle) => createArticle(newArticle),
+    mutationFn: (newArticle) => apiFunction(newArticle),
     onSuccess: (data) => {
       if (data.id) {
-        router.push(`/forum/${data.id}`);
+        router.push(`/${path}/${data.id}`);
       }
 
       queryClient.invalidateQueries(articleKey.lists());
@@ -29,23 +39,24 @@ export function useCreateArticle() {
   });
 }
 
-export function useCreateComment({ idPath, entity }) {
+//to update article or product
+
+export function useUpdateMutation({ entity, id }) {
   const queryClient = useQueryClient();
-  const queryKey =
-    entity === "article" ? articleKey.comments : productKey.comments;
+  const router = useRouter();
+
   const apiFunction =
-    entity === "article" ? createArticleComment : createProductComment;
+    entity === "article" ? updateArticleById : updateProductById;
+  const path = entity === "article" ? "forum" : "products";
+  const queryKey = entity === "article" ? articleKey.list : productKey.list;
 
   return useMutation({
-    mutationFn: (data) => apiFunction(idPath, data),
-    onSuccess: () => {
-      console.log("successMutation: create an comment");
-      queryClient.invalidateQueries({
-        queryKey: queryKey(idPath),
-      });
-    },
-    onError: (error) => {
-      console.error(error.message);
+    mutationFn: (updateData) => apiFunction(id, updateData),
+    onSuccess: (data) => {
+      if (data.id) {
+        router.push(`/${path}/${data.id}`);
+      }
+      queryClient.invalidateQueries({ queryKey: queryKey() });
     },
   });
 }
@@ -56,10 +67,7 @@ export function useDeleteMutation(entity) {
   let queryKey;
   let deleteApi;
 
-  if (entity === "comment") {
-    queryKey = commentKey.all;
-    deleteApi = deleteCommentById;
-  } else if (entity === "article") {
+  if (entity === "article") {
     queryKey = articleKey.details();
     deleteApi = deleteArticleById;
   } else if (entity == "product") {
@@ -74,8 +82,43 @@ export function useDeleteMutation(entity) {
 
       console.log("queryKey:", queryKey);
     },
-    onError: (error) => {
-      console.error("Error deleting:", error.message);
+  });
+}
+
+export function useDeleteComment({ whichComment, idPath }) {
+  const queryClient = useQueryClient();
+
+  const queryKey =
+    whichComment === "article" ? articleKey.comments : productKey.comments;
+
+  return useMutation({
+    mutationFn: (commentId) => {
+      console.log(commentId);
+
+      return deleteCommentById(commentId);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(queryKey(idPath));
+
+      console.log("queryKey:", queryKey);
+    },
+  });
+}
+
+//comments
+export function useCreateComment({ idPath, whichComment }) {
+  const queryClient = useQueryClient();
+  const isArticle = whichComment === "article";
+  const queryKey = isArticle ? articleKey.comments : productKey.comments;
+  const apiFunction = isArticle ? createArticleComment : createProductComment;
+
+  return useMutation({
+    mutationFn: (data) => apiFunction(idPath, data),
+    onSuccess: () => {
+      console.log("successMutation: create an comment");
+      queryClient.invalidateQueries({
+        queryKey: queryKey(idPath),
+      });
     },
   });
 }
@@ -97,9 +140,6 @@ export function useUpdateComment(commentId) {
         queryKey: queryKey(whichId),
       });
       console.log(queryKey(whichId));
-    },
-    onError: (error) => {
-      console.error(error.message);
     },
   });
 }

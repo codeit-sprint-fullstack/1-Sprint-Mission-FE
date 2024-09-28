@@ -5,8 +5,9 @@ import Button from "../ui/Button";
 import { FormProvider, useForm } from "react-hook-form";
 import { useCreateComment } from "@/service/mutations";
 
-export default function CommentForm({ idPath, entity }) {
+export default function CommentForm({ idPath, whichComment }) {
   const formMethods = useForm();
+  const isArticle = whichComment === "article";
 
   const {
     handleSubmit,
@@ -14,14 +15,13 @@ export default function CommentForm({ idPath, entity }) {
     formState: { isValid },
   } = formMethods;
 
-  const { mutate } = useCreateComment({ idPath, entity });
+  const { mutate } = useCreateComment({ idPath, whichComment });
 
-  const heading = entity === "article" ? "댓글달기" : "문의하기";
+  const heading = isArticle ? "댓글달기" : "문의하기";
 
-  const placeholder =
-    entity === "article"
-      ? "댓글을 입력해주세요"
-      : "개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.";
+  const placeholder = isArticle
+    ? "댓글을 입력해주세요"
+    : "개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.";
 
   const handleNewCommentSubmit = (data) => {
     const newComment = { content: data["create-comment-content"] };

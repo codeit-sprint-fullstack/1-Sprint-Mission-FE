@@ -18,7 +18,7 @@ export function LoginHeader() {
 export default function Header() {
   const pathname = usePathname();
   const { user } = useAuth();
-  const isLoginHeader = pathname.includes("/auth");
+  const isLoginHeader = pathname?.includes("/auth");
 
   if (isLoginHeader) {
     return <LoginHeader />;
