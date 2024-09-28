@@ -19,7 +19,7 @@ export default function KebabMenuComment({
   console.log("whichComment", whichComment);
   const { onModalOpen, GlobalModal } = useGlobalModal();
 
-  const { mutateAsync } = useDeleteComment({ idPath, whichComment });
+  const { mutate } = useDeleteComment({ idPath, whichComment });
 
   const toggleDropDown = () => {
     setIsOpen(!isOpen);
@@ -42,8 +42,8 @@ export default function KebabMenuComment({
     });
   };
 
-  const handleConfirmDelete = async () => {
-    await mutateAsync(commentId);
+  const handleConfirmDelete = () => {
+    mutate(commentId);
   };
 
   //드롭다운 메뉴 외부 클릭 감지

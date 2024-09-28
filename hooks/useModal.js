@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/router";
 
 export function useModal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -7,7 +6,6 @@ export function useModal() {
   const [nextAction, setNextAction] = useState(null);
 
   const modalRef = useRef(null);
-  const router = useRouter();
 
   useEffect(() => {
     if (isModalOpen && modalRef.current) {
@@ -32,16 +30,13 @@ export function useModal() {
     }
   };
 
-  const onModalConfirm = (redirectPath = null) => {
+  const onModalConfirm = () => {
     if (modalRef.current) {
       modalRef.current.close();
       setIsModalOpen(false);
     }
     if (nextAction) {
       nextAction();
-    }
-    if (redirectPath) {
-      router.push(redirectPath);
     }
 
     setNextAction(null);

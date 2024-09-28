@@ -89,17 +89,16 @@ export function useDeleteComment({ whichComment, idPath }) {
   const queryClient = useQueryClient();
 
   const queryKey =
-    whichComment === "article" ? articleKey.comments : productKey.comments;
+    whichComment === "article"
+      ? articleKey.comments(idPath)
+      : productKey.comments(idPath);
 
   return useMutation({
-    mutationFn: (commentId) => {
-      console.log(commentId);
-
-      return deleteCommentById(commentId);
+    mutationFn: async (commentId) => {
+      return await deleteCommentById(commentId);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(queryKey(idPath));
-
+      queryClient.invalidateQueries({ queryKey });
       console.log("queryKey:", queryKey);
     },
   });

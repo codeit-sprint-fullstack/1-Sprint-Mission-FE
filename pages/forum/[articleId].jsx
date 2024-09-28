@@ -59,9 +59,9 @@ export default function ArticleDetailPage() {
       <section className={styles.ArticleDetailPage}>
         <ArticleDetail article={article} />
 
-        <CommentForm idPath={article.id} whichComment="article" />
+        <CommentForm idPath={articleId} whichComment="article" />
 
-        <CommentList idPath={article.id} whichComment="article" />
+        <CommentList idPath={articleId} whichComment="article" />
         <ReturnToListBtn />
       </section>
     </>
