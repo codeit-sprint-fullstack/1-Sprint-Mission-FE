@@ -117,10 +117,11 @@ export default function Market({ id }) {
         tags: values.tags || product.tags,
       });
       if (res && res.status === 200) {
-        resetForm();
-        console.log("수정 성공", res.data);
         setIsProductModalOpen(false);
         setCheckModal(true);
+        console.log("수정 성공", res.data);
+        resetForm();
+        router.reload();
       } else {
         console.log("수정 실패", res.data);
       }
@@ -304,8 +305,8 @@ export default function Market({ id }) {
           ></textarea>
           <button
             className={styles.marketArticleBtn}
-            onClick={() => {
-              postComment(product.id, { content: commentData });
+            onClick={async () => {
+              await postComment(product.id, { content: commentData });
               // router.push(`/items/${product.id}`);
               router.reload();
             }}
@@ -337,8 +338,9 @@ export default function Market({ id }) {
                         수정 하기
                       </li>
                       <li
-                        onClick={() => {
-                          deleteComment(comment.id);
+                        onClick={async () => {
+                          await deleteComment(comment.id);
+                          console.log(comment.id);
                           router.reload();
                         }}
                       >

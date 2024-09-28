@@ -275,38 +275,6 @@
 
   box-sizing: border-box;
 }
-/* .menuBtn {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  position: absolute;
-  left: 90%;
-  right: inherit;
-  box-sizing: border-box;
-} */
-/* .menu {
-  position: relative;
-  top: 42px;
-  width: 130px;
-  height: 42px;
-  background-color: #ffffff;
-  border-color: #e5e7eb;
-  box-sizing: border-box;
-  z-index: 33;
-}
-.menu li {
-  display: flex;
-  width: 130px;
-  justify-content: center;
-  align-items: center;
-  height: 42px;
-  font-size: 16px;
-  font-weight: 400;
-  border: 1px solid #e5e7eb;
-  cursor: pointer;
-  background-color: #ffffff;
-} */
 .commentMenu {
   display: flex;
   justify-content: space-between;

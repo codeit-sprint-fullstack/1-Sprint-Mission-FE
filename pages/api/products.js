@@ -54,7 +54,7 @@ export async function postProduct(data) {
 export async function patchProduct(productId, data) {
   try {
     const token = localStorage.getItem("accessToken");
-    const response = await api.patch(`/products/${productId}`);
+    const response = await api.patch(`/products/${productId}`, data);
     return response;
   } catch (error) {
     return error.response;

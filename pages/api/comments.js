@@ -59,7 +59,6 @@ export async function patchComment(commentId, data) {
 
 export async function deleteComment(commentId) {
   try {
-    const token = localStorage.getItem("accessToken");
     const response = await api.delete(`/comments/${commentId}`);
     return response;
   } catch (error) {
