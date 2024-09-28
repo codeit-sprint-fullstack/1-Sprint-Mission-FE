@@ -1,15 +1,32 @@
 import React, { useState } from "react";
-import { useProducts } from "@/hooks/useProducts";
 import ItemList from "./ItemList.jsx";
+import Pagination from "./Pagination.jsx";
+import { useProducts } from "@/hooks/useProducts";
+import styles from "./ItemListContainer.module.css";
 
-export default function ItemListContainer() {
+export default function ItemListContainer({
+  initialProducts,
+  initialTotalCount,
+}) {
   const [keyword, setKeyword] = useState("");
   const [sortOrder, setSortOrder] = useState("recent");
 
-  const { products, loading, error, handleSortChange, handleKeywordSearch } =
-    useProducts();
+  const {
+    products,
+    totalPages,
+    totalCount,
+    itemsPerPage,
+    currentPage,
+    handlePageChange,
+    handleSortChange,
+    handleKeywordSearch,
+    loading,
+    error,
+  } = useProducts(initialProducts, initialTotalCount);
 
-  const handleKeywordChange = (e) => setKeyword(e.target.value);
+  const handleKeywordChange = (e) => {
+    setKeyword(e.target.value);
+  };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -17,17 +34,33 @@ export default function ItemListContainer() {
     }
   };
 
+  const handleSortOrderChange = (newSortOrder) => {
+    setSortOrder(newSortOrder);
+    handleSortChange(newSortOrder);
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <ItemList
-      products={products}
-      sortOrder={sortOrder}
-      keyword={keyword}
-      onKeywordChange={handleKeywordChange}
-      onKeyDown={handleKeyDown}
-      onSortChange={handleSortChange}
-    />
+    <>
+      <div className={styles.productContainer}>
+        <ItemList
+          products={products}
+          sortOrder={sortOrder}
+          keyword={keyword}
+          onKeywordChange={handleKeywordChange}
+          onKeyDown={handleKeyDown}
+          onSortChange={handleSortOrderChange}
+        />
+      </div>
+      <Pagination
+        totalPages={totalPages}
+        totalCount={totalCount}
+        itemsPerPage={itemsPerPage}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
+    </>
   );
 }

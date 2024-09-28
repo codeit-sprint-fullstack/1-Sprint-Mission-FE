@@ -1,63 +1,22 @@
-import React, { useState } from "react";
-import ItemList from "@/components/ItemComponents/ItemList.jsx";
-import Pagination from "@/components/ItemComponents/Pagination.jsx";
-import { useProducts } from "@/hooks/useProducts";
-import styles from "@/styles/items.module.css";
+import React from "react";
+import ItemListContainer from "@/components/ItemComponents/ItemListContainer.jsx";
 import { fetchProducts } from "@/utils/productApi";
+import { QueryClient, dehydrate } from "@tanstack/react-query";
 
 export default function Items({ initialProducts, initialTotalCount }) {
-  const [keyword, setKeyword] = useState(""); // 검색어 상태
-
-  const {
-    products,
-    totalPages,
-    totalCount,
-    itemsPerPage,
-    currentPage,
-    handlePageChange,
-    handleSortChange,
-    handleKeywordSearch,
-    loading,
-    error,
-  } = useProducts(initialProducts, initialTotalCount);
-
-  const handleKeywordChange = (e) => {
-    setKeyword(e.target.value);
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      handleKeywordSearch(keyword);
-    }
-  };
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
   return (
     <>
-      <div className={styles.productContainer}>
-        <ItemList
-          products={products}
-          sortOrder="recent"
-          keyword={keyword}
-          onKeywordChange={handleKeywordChange}
-          onKeyDown={handleKeyDown}
-          onSortChange={handleSortChange}
-        />
-      </div>
-      <Pagination
-        totalPages={totalPages}
-        totalCount={totalCount}
-        itemsPerPage={itemsPerPage}
-        currentPage={currentPage}
-        onPageChange={handlePageChange}
+      <ItemListContainer
+        initialProducts={initialProducts}
+        initialTotalCount={initialTotalCount}
       />
     </>
   );
 }
 
 export async function getServerSideProps(context) {
+  const queryClient = new QueryClient();
+
   try {
     const { list: initialProducts, totalCount: initialTotalCount } =
       await fetchProducts({
@@ -67,10 +26,22 @@ export async function getServerSideProps(context) {
         orderBy: "recent",
       });
 
+    await queryClient.prefetchQuery({
+      queryKey: ["products", 1],
+      queryFn: () =>
+        fetchProducts({
+          pageSize: 10,
+          page: 1,
+          keyword: "",
+          orderBy: "recent",
+        }),
+    });
+
     return {
       props: {
         initialProducts,
         initialTotalCount,
+        dehydratedState: dehydrate(queryClient),
       },
     };
   } catch (error) {
@@ -80,6 +51,7 @@ export async function getServerSideProps(context) {
       props: {
         initialProducts: [],
         initialTotalCount: 0,
+        dehydratedState: dehydrate(queryClient),
       },
     };
   }

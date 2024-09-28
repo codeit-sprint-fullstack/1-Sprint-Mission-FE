@@ -11,8 +11,8 @@ import { useState, useEffect } from "react";
 
 export default function Header() {
   const router = useRouter();
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // 사용자 인증 상태
-  const [userInfo, setUserInfo] = useState(null); // 유저 정보
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");

@@ -8,7 +8,6 @@ import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 import { useDeviceType } from "@/hooks/useDeviceType";
 
-// 프레젠테이션 컴포넌트는 UI 렌더링만 처리
 export default function ItemList({
   products,
   sortOrder,
@@ -16,6 +15,7 @@ export default function ItemList({
   onKeywordChange,
   onKeyDown,
   onSortChange,
+  onOptionChange,
 }) {
   const deviceType = useDeviceType();
   return (
@@ -27,6 +27,7 @@ export default function ItemList({
           onKeyDown={onKeyDown}
           sortOrder={sortOrder}
           onSortChange={onSortChange}
+          onOptionChange={onOptionChange}
         />
       ) : (
         <DesktopSearchBar

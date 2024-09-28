@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
 import { fetchProduct } from "@/utils/productApi";
 import { fetchComments } from "@/utils/productChatApi";
 import ItemInfo from "@/components/ItemDetailComponents/ItemInfo.jsx";
@@ -8,16 +8,13 @@ import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 
 export default function ProductDetail({ initialComments, id }) {
-  // React Query로 제품 정보 가져오기
   const {
     data: product,
     error,
     isLoading,
   } = useQuery({
     queryKey: ["product", id],
-    queryFn: () => {
-      return fetchProduct(id);
-    },
+    queryFn: () => fetchProduct(id),
   });
 
   if (isLoading) {
@@ -41,14 +38,24 @@ export default function ProductDetail({ initialComments, id }) {
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
+  const queryClient = new QueryClient();
 
   try {
-    const productComment = await fetchComments(id);
+    await queryClient.prefetchQuery({
+      queryKey: ["product", id],
+      queryFn: () => fetchProduct(id),
+    });
+    await queryClient.prefetchQuery({
+      queryKey: ["comments", id],
+      queryFn: () => fetchComments(id),
+    });
 
+    const productComment = await fetchComments(id);
     return {
       props: {
         initialComments: productComment,
         id,
+        dehydratedState: dehydrate(queryClient),
       },
     };
   } catch (error) {

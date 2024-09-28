@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { queryOptions, useQuery } from "@tanstack/react-query";
 import { fetchProducts } from "@/utils/productApi";
 import { throttle } from "@/utils/throttle";
 import { useState, useEffect } from "react";
@@ -13,9 +13,8 @@ export const useProducts = (
   const [orderBy, setOrderBy] = useState("recent");
   const [keyword, setKeyword] = useState("");
 
-  // React Query를 사용하여 데이터 패칭
   const { data, error, isLoading } = useQuery({
-    queryKey: ["products", currentPage, itemsPerPage, orderBy, keyword], // Query key
+    queryKey: ["products", currentPage, itemsPerPage, orderBy, keyword],
     queryFn: () =>
       fetchProducts({
         pageSize: itemsPerPage,
@@ -24,10 +23,13 @@ export const useProducts = (
         orderBy,
       }),
     keepPreviousData: true,
+    refetchOnWindowFocus: true,
+    refetchOnReconnect: true,
     initialData: {
       list: initialProducts,
       totalCount: initialTotalCount,
     },
+    ...queryOptions,
   });
 
   const calculateTotalPages = (totalCount, itemsPerPage) => {
