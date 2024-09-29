@@ -12,6 +12,7 @@ export default function ProductPreview({
   favoriteCount,
 }) {
   const linkTo = `/items/${productId}`;
+  console.log("linkTo : ", linkTo);
   const productPreviewClass = classNames(
     "flex",
     "flex-col",

@@ -1,5 +1,10 @@
-import { getProduct } from "@/lib/api-codeit-product";
+import Link from "next/link";
+import classNames from "classnames";
+
 import Product from "./Product";
+import ProductCommentSection from "./ProductCommentSection";
+import AuthRoute from "@/app/components/AuthRoute";
+import { getProduct } from "@/lib/api-codeit-product";
 
 export default async function ProductPage({ params }) {
   const { productId } = params;
@@ -25,9 +30,28 @@ export default async function ProductPage({ params }) {
   //   isFavorite: false,
   // };
 
+  // 게시글과 동일. tailwind.config로 정의 필요 : btnFrameClass, linkClass, btnToItemsClass
+  const btnFrameClass = classNames(
+    "flex",
+    "flex-row",
+    "content",
+    "h-4.8rem",
+    "mt-btn-to-list-frame-mt",
+    "mb-btn-to-list-frame-mb"
+  );
+  const linkClass = classNames("my-0", "mx-auto");
+
   return (
-    <div className="content main">
-      <Product product={product} />
-    </div>
+    <AuthRoute>
+      <div className="content main">
+        <Product product={product} />
+        <ProductCommentSection productId={productId} />
+        <div className={btnFrameClass}>
+          <Link href="/items" className={linkClass}>
+            <button className={"btn-to-list"} />
+          </Link>
+        </div>
+      </div>
+    </AuthRoute>
   );
 }

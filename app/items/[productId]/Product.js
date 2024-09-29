@@ -55,7 +55,11 @@ function ProductInfoDivider() {
 function ProductImageListSet({ images }) {
   const productImageListSetClass = classNames("product-image-list-set");
   const productImageClass = classNames("product-image-frame");
-  const productImageListClass = classNames("product-image-list");
+  const productImageListClass = classNames(
+    "product-image-list",
+    "bg-gray-100",
+    "text-2xl"
+  );
 
   return (
     <div className={productImageListSetClass}>
@@ -67,7 +71,9 @@ function ProductImageListSet({ images }) {
           alt="상품 이미지"
         />
       </div>
-      <div className={productImageListClass}></div>
+      <div className={productImageListClass}>
+        이미지 리스트 선택창(개발 예정)
+      </div>
     </div>
   );
 }
@@ -78,10 +84,12 @@ function ProductTag({ tag }) {
 }
 
 function ProductTagList({ tags }) {
+  const tagInfoClass = classNames("mobile:mt-2.4rem");
   const listFrameClass = classNames(
     "mt-1.6rem",
     "flex",
     "flex-row",
+    "flex-wrap",
     "gap-0.8rem",
     "tablet:mt-0.8rem",
     "mobile:mt-0.8rem"
@@ -91,7 +99,7 @@ function ProductTagList({ tags }) {
   });
 
   return (
-    <div>
+    <div className={tagInfoClass}>
       <div className="product-info-label">상품 태그</div>
       <div className={listFrameClass}>{tagList}</div>
     </div>
@@ -118,7 +126,7 @@ function ProductInfo({ product }) {
     "gap-0.2rem"
   );
 
-  const priceText = price.toLocaleString("en-US") + "원";
+  const priceText = product.price.toLocaleString("en-US") + "원";
 
   return (
     <div className={productInfoClass}>
@@ -153,7 +161,8 @@ export default function Product({ product }) {
     "w-full",
     "flex",
     "flex-row",
-    "gap-2.4rem"
+    "gap-2.4rem",
+    "mobile:flex-col"
   );
 
   const { images, ...rest } = product;

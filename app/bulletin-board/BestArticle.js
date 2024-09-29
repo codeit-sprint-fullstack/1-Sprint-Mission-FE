@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import Favorite from "../components/Favorite";
 import Date from "../components/Date";
-import { DATE } from "../constants/date";
 import { BEST_ARTICLE } from "../constants/Favorite";
 import { ProductImg } from "../components/ProductImg";
 
@@ -51,7 +50,7 @@ export function BestArticle({
                 favoriteCount={favoriteCount}
               />
             </div>
-            <Date type={DATE} dbDate={createdDate} />
+            <Date dbDate={createdDate} />
           </div>
         </div>
       </div>

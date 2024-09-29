@@ -3,18 +3,16 @@
 import { useState } from "react";
 import classNames from "classnames";
 
-import TextArea from "./TextArea";
+import TextArea from "@/app/components/TextArea";
 import {
   MIN_COMMENT_LENGTH,
   WARN_MIN_COMMENT_LENGTH,
   MAX_COMMENT_LENGTH,
   WARN_MAX_COMMENT_LENGTH,
   VALID_VALUE,
-} from "../constants/comment";
+} from "@/app/constants/comment";
 
-import style from "./comment-maker.module.css";
-
-export function CommentMaker({ registComment }) {
+export default function ProductCommentMaker({ registComment }) {
   const [comment, setComment] = useState("");
   const [commentValid, setCommentValid] = useState(undefined);
   const [registBtnDisable, setRegistBtnDisable] = useState(true);
@@ -100,11 +98,13 @@ export function CommentMaker({ registComment }) {
 
   return (
     <div className={commentMakerClass}>
-      <div className={commentMakerLabelClass}>댓글달기</div>
+      <div className={commentMakerLabelClass}>문의하기</div>
       <div className={commentTextAreaFrameClass}>
         <TextArea
           onChange={handleChangeComment}
-          placeholder={"댓글을 입력해주세요."}
+          placeholder={
+            "개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
+          }
           validateFunc={validtateComment}
           getValid={getCommentValid}
           value={comment}
@@ -121,5 +121,3 @@ export function CommentMaker({ registComment }) {
     </div>
   );
 }
-
-export default CommentMaker;

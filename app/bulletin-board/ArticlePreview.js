@@ -3,7 +3,6 @@ import Link from "next/link";
 import Favorite from "../components/Favorite";
 import { ProductImg } from "../components/ProductImg";
 import Date from "../components/Date";
-import { DATE } from "../constants/date";
 import { ARTICLE_PREVIEW } from "../constants/Favorite";
 import Profile from "../components/Profile";
 import { PROFILE_H24 } from "../constants/Profile";
@@ -42,7 +41,7 @@ export function ArticlePreview({
             <Profile type={PROFILE_H24} profileImgUrl={profileImgUrl} />
             <div className={articlePreviewBottomNicknameClass}>{nickname}</div>
 
-            <Date type={DATE} dbDate={createdDate} />
+            <Date dbDate={createdDate} />
           </div>
           <Favorite
             type={ARTICLE_PREVIEW}

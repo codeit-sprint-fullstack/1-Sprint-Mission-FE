@@ -69,20 +69,24 @@ export default function ProductList({ initList, initTotalCount }) {
     "mobile:justify-between"
   );
   const productToolsLabelClass = classNames(
+    "mr-search-label",
     "h-tool42",
     "text-left",
     "place-content-center",
     "text-xl",
     "leading-32",
     "font-bold",
+    "text-nowrap",
+    "tablet:mr-tablet-search-label",
+    "mobile:mr-0",
     "mobile:order-1"
   );
   const searchFrameClass = classNames(
     "w-product-search",
     "h-tool42",
-    "tablet:tablet-product-search",
-    "mobile:mobile-product-search",
-    // "order-2",
+    "ml-full",
+    "tablet:w-tablet-product-search",
+    "mobile:w-mobile-product-search",
     "mobile:order-3"
   );
   const btnLinkRegistFrameClass = classNames(
@@ -100,6 +104,7 @@ export default function ProductList({ initList, initTotalCount }) {
     "mt-2.4rem",
     "grid",
     "grid-cols-5",
+    "gap-x-2.4rem",
     "gap-y-4rem",
     "tablet:grid-cols-3",
     "tablet:gap-y-1.6rem",
@@ -185,10 +190,10 @@ export default function ProductList({ initList, initTotalCount }) {
         }
       </div>
       <div className={productListFrame}>
-        {list.map((item) => (
+        {list.map((item, index) => (
           <ProductPreview
-            key={item.id}
-            productId={"?"}
+            key={`${item.id}-${index}`}
+            productId={item.id}
             img={item.images[0]}
             title={item.name}
             price={item.price}

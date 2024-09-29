@@ -5,8 +5,6 @@ import { getPost } from "@/lib/api-post";
 import Article from "./Article";
 import CommentSection from "@/app/components/CommentSection";
 
-import style from "./article-detail-client.module.css";
-
 export async function ArticleDetailClient({ articleId }) {
   const btnFrameClass = classNames(
     "flex",
@@ -17,11 +15,6 @@ export async function ArticleDetailClient({ articleId }) {
     "mb-btn-to-list-frame-mb"
   );
   const linkClass = classNames("my-0", "mx-auto");
-  const btnToBulletinBoardClass = classNames(
-    "w-btn-to-list",
-    "h-btn-to-list",
-    style["btn-to-list"]
-  );
 
   const postData = await getPost(articleId);
 
@@ -46,7 +39,7 @@ export async function ArticleDetailClient({ articleId }) {
       <CommentSection postId={articleId} />
       <div className={btnFrameClass}>
         <Link href="/bulletin-board" className={linkClass}>
-          <button className={btnToBulletinBoardClass} />
+          <button className={"btn-to-list"} />
         </Link>
       </div>
     </>

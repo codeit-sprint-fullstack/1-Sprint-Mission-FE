@@ -1,3 +1,5 @@
+const { wrap } = require("lodash");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./app/**/*.{js,ts,jsx,tsx,mdx}"],
@@ -62,10 +64,6 @@ module.exports = {
         "pc-best-post": "38.4rem",
         "tablet-best-post": "34rem",
         "mobile-best-post": "34.3rem",
-        // btn-to-list
-        "btn-to-list": "24rem",
-        // btn-regist
-        "btn-regist": "7.4rem",
         // best-product-preview
         "pc-best-product-preview": "28.2rem",
         "tablet-best-product-preview": "34.3rem",
@@ -120,8 +118,6 @@ module.exports = {
         "pc-best-post": "16.9rem",
         "tablet-best-post": "19.8rem",
         "mobile-best-post": "19.8rem",
-        // btn-to-list
-        "btn-to-list": "4.8rem",
         // comment-text-area-frame
         "comment-text-area-frame": "10.4rem",
         // best-product-preview
@@ -187,6 +183,9 @@ module.exports = {
         "comment-text-area-frame": "0.9rem",
         // pagination
         "pagination-mt": "4.3rem",
+        // serch-label
+        "search-label": "46.3rem",
+        "tablet-search-label": "3.8rem",
       },
       padding: {
         "pc-header": "20rem",
@@ -399,6 +398,8 @@ module.exports = {
           width: "48.6rem",
           height: "48.6rem",
           position: "relative",
+          borderRadius: "1.6rem",
+          overflow: "hidden",
           "@screen tablet": {
             width: "34rem",
             height: "34rem",
@@ -487,7 +488,21 @@ module.exports = {
           fontSize: "1.6rem",
           fontWeight: "400",
           lineHeight: "2.6rem",
+          textWrap: "nowrap",
           color: "#1f2937",
+        },
+        ".btn-to-list": {
+          width: "24rem",
+          height: "4.8rem",
+          backgroundImage: "url(/buttons/btn_medium.svg)",
+        },
+        ".btn-comment-regist": {
+          width: "7.4rem",
+          height: "4.2rem",
+          backgroundImage: "url(/buttons/btn_registration_w74.svg)",
+          "&:disabled": {
+            backgroundImage: "url(/buttons/btn_registration_w74_disabled.svg)",
+          },
         },
       });
     },

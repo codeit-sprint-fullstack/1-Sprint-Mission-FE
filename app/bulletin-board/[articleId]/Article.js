@@ -1,11 +1,11 @@
 import Image from "next/image";
+import classNames from "classnames";
 
 import Profile from "@/app/components/Profile";
 import Date from "@/app/components/Date";
 import Favorite from "@/app/components/Favorite";
 import { ARTICLE_DETAIL } from "@/app/constants/Favorite";
 import { PROFILE_H40 } from "@/app/constants/Profile";
-import { DATE } from "@/app/constants/date";
 import DropDownKebabArticle from "@/app/components/DropDownKebabArticle";
 
 import style from "./article.module.css";
@@ -56,7 +56,7 @@ export function Article({
         <Profile type={PROFILE_H40} profileImgUrl={profileImgUrl} />
         <div className={middleBarOwnerDateSetClass}>
           <Owner dividerClass={middleBarOwnerClass} nickname={nickname} />
-          <Date type={DATE} dbDate={createdDate} />
+          <Date dbDate={createdDate} />
         </div>
         <Divider dividerClass={dividerClass} />
         <Favorite type={ARTICLE_DETAIL} favoriteCount={favoriteCount} />

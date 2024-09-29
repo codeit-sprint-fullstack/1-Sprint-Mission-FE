@@ -1,7 +1,6 @@
 import Profile from "./Profile";
-import Date from "./Date";
+import LastTime from "./LastTime";
 import { PROFILE_H32 } from "../constants/Profile";
-import { LAST_TIME } from "../constants/date";
 
 import style from "./comment.module.css";
 
@@ -22,7 +21,7 @@ export function Comment({ content, profileImgUrl, nickname, date }) {
         <Profile type={PROFILE_H32} profileImgUrl={profileImgUrl} />
         <div className={bottomBarNicknameDateSetClass}>
           <div className={nicknameClass}>{nickname}</div>
-          <Date type={LAST_TIME} dbDate={date} />
+          <LastTime dbDate={date} />
         </div>
       </div>
     </div>
