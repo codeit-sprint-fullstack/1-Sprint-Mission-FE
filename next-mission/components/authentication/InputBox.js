@@ -7,7 +7,11 @@ export default function Inputbox({
   name, // input 종류
   value, // input 값
   changeHandler, // value 값 일치 함수
+  readyOkHandler, // 버튼색 변경 함수
+  enterKeyHandler, // Enter를 눌렀을때 서버 요청
   checkpassword, // 비밀번호 확인(회원가입 쪽에서 사용)
+  loginError, // 로그인에서 에러 발생시 (로그인에서만 사용)
+  setLoginError,
 }) {
   const [lavelName, setLavelName] = useState("");
   const [placeholder, setPlaceHolder] = useState("");
@@ -56,7 +60,12 @@ export default function Inputbox({
         setErrorMasage("비밀번호가 일치하지 않습니다");
       }
     }
-  }, [name, mode]);
+
+    if (loginError) {
+      setShowEorrorMasage(true);
+      setInputMargin(style.margin8);
+    } 
+  }, [name, mode, loginError]);
 
   // 회원가입의 input 값에 따른 에러메세지 출력
   const errorCheckHandler = () => {
@@ -68,6 +77,7 @@ export default function Inputbox({
           setInputMargin(style.margin8);
         } else {
           setShowEorrorMasage(false);
+          setInputMargin(style.margin24);
         }
       } else if (name === "nickname") {
         if (value === "") {
@@ -75,6 +85,7 @@ export default function Inputbox({
           setInputMargin(style.margin8);
         } else {
           setShowEorrorMasage(false);
+          setInputMargin(style.margin24);
         }
       } else if (name === "password") {
         if (value.length < 8) {
@@ -82,6 +93,7 @@ export default function Inputbox({
           setInputMargin(style.margin8);
         } else {
           setShowEorrorMasage(false);
+          setInputMargin(style.margin24);
         }
       } else if (name === "passwordConfirmation") {
         if (value !== checkpassword) {
@@ -89,9 +101,15 @@ export default function Inputbox({
           setInputMargin(style.margin8);
         } else {
           setShowEorrorMasage(false);
+          setInputMargin(style.margin24);
         }
       }
+    } else if (mode === "login") {
+      setShowEorrorMasage(false);
+      setInputMargin(style.margin24);
+      setLoginError(false);
     }
+    readyOkHandler();
   };
 
   const eyesChangeHadler = () => {
@@ -113,6 +131,7 @@ export default function Inputbox({
         value={value}
         onChange={changeHandler}
         onKeyUp={errorCheckHandler}
+        onKeyDown={enterKeyHandler}
         placeholder={placeholder}
         type={inputType}
       />
