@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import style from './AuthenticationButton.module.css'
+import style from "./AuthenticationButton.module.css";
 
 export default function AuthenticationButton({ mode, postHandler }) {
   const [text, setText] = useState("로그인");
@@ -15,7 +15,9 @@ export default function AuthenticationButton({ mode, postHandler }) {
 
   return (
     <>
-      <button className={`${style.AuthenticationButton} ${activateButton}`}>{text}</button>
+      <button className={`${style.AuthenticationButton} ${activateButton}`}>
+        {text}
+      </button>
     </>
   );
 }
