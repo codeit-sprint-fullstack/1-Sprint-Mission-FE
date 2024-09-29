@@ -69,8 +69,15 @@
   margin-right: 5px;
 }
 
+.sectionTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
 .itemDescription {
-  margin: 20px 0;
+  margin: 10px 0 20px;
   line-height: 1.6;
 }
 

@@ -226,7 +226,9 @@ const ItemDetail = () => {
               />
               {itemData.favoriteCount}
             </button>
+            <h3 className={styles.sectionTitle}>상품 소개</h3>
             <p className={styles.itemDescription}>{itemData.description}</p>
+            <h3 className={styles.sectionTitle}>상품 태그</h3>
             <div className={styles.itemTags}>
               {itemData.tags.map((tag, index) => (
                 <span key={index} className={styles.tag}>
