@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { signIn } from "@/lib/api-codeit-auth";
@@ -22,7 +22,7 @@ export default function SignInSet() {
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
 
-  const { login } = useAuth();
+  const { login, isSignedIn } = useAuth();
 
   const btnSignInClass = classNames(
     "sign-in__btn",
@@ -70,6 +70,12 @@ export default function SignInSet() {
       });
     }
   };
+
+  useEffect(() => {
+    if (isSignedIn) {
+      router.push("/items");
+    }
+  }, [isSignedIn]);
 
   return (
     <form onSubmit={handleSubmit(handleSignInBtnClick)}>
