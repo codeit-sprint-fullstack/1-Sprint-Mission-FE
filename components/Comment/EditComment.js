@@ -16,7 +16,7 @@ export default function EditComment({
   content,
   category,
   setEditId,
-  setOpenOptions,
+  setOpenDropDown,
 }) {
   const [editComment, setEditComment] = useState(content);
   const handleCommentChange = (event) => {
@@ -28,12 +28,12 @@ export default function EditComment({
   const handleSubmit = () => {
     updateComment.mutate({ id: commentId, editComment, articleId });
     setEditId(null);
-    setOpenOptions(false);
+    setOpenDropDown(false);
   };
 
   const handleCancelSubmit = () => {
     setEditId(null);
-    setOpenOptions(false);
+    setOpenDropDown(false);
   };
 
   return (

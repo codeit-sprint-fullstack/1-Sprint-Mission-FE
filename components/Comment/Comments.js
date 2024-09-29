@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 export default function Comments({ category }) {
   const [comment, setComment] = useState('');
   const [hasMore, setHasMore] = useState(true);
-  const [canSubmit, setCanSubmit] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
   const router = useRouter();
   const { id: articleId } = router.query;
 
@@ -57,9 +57,9 @@ export default function Comments({ category }) {
 
   useEffect(() => {
     if (comment) {
-      setCanSubmit(true);
+      setIsSubmit(true);
     } else {
-      setCanSubmit(false);
+      setIsSubmit(false);
     }
   }, [comment]);
 
@@ -80,7 +80,7 @@ export default function Comments({ category }) {
         className={styles.inputComment}
       />
       <CommentButton
-        disabled={postCommentMutation.isPending || !canSubmit}
+        disabled={postCommentMutation.isPending || !isSubmit}
         onClick={handleSubmit}
         label={'등록'}
       />

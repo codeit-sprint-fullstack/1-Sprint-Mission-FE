@@ -1,28 +1,13 @@
 import { useState } from 'react';
 import Image from 'next/image';
-import EditComment from '@/components/ArticleDetail/EditComment.js';
+import EditComment from './EditComment.js';
 import DropDown from '@/utils/DropDown.js';
 import dotIcon from '@/public/ic_dot.png';
-import profileIcon from '@/public/ic_profile.png';
 import noComment from '@/public/no_comment.png';
 import noAsk from '@/public/no_ask.png';
+import { UserInfo } from './UserInfo.js';
 import styles from '@/styles/Comment.module.css';
-
-function DateFormat({ createDate }) {
-  const createdDate = new Date(createDate.createdAt);
-  const nowDate = new Date();
-
-  const timeDiff = nowDate - createdDate;
-
-  const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(timeDiff / (1000 * 60 * 60));
-  const minutes = Math.floor(timeDiff / (1000 * 60));
-
-  if (days > 0) return `${days}일 전`;
-  if (hours > 0) return `${hours}시간 전`;
-  if (minutes > 0) return `${minutes}분 전`;
-  return `방금 전`;
-}
+import toast from 'react-hot-toast';
 
 export default function CommentList({
   articleId,
@@ -31,17 +16,18 @@ export default function CommentList({
   category,
 }) {
   const [commentId, setCommentId] = useState('');
-  const [openOptions, setOpenOptions] = useState(false);
+  const [isOpenDropDown, setIsOpenDropDown] = useState(false);
   const [editId, setEditId] = useState(null);
 
   const handleDropDown = (e) => {
-    setOpenOptions((prev) => !prev);
+    setIsOpenDropDown((prev) => !prev);
     setCommentId(e);
   };
 
   function handleDelete() {
     onCommentDeleteId(commentId);
-    setOpenOptions(false);
+    toast.success('삭제가 완료됐습니다!');
+    setIsOpenDropDown(false);
   }
 
   function handleEdit(e) {
@@ -72,7 +58,7 @@ export default function CommentList({
                   content={comment.content}
                   category={category}
                   setEditId={setEditId}
-                  setOpenOptions={setOpenOptions}
+                  setOpenOptions={setIsOpenDropDown}
                 />
               ) : (
                 <>
@@ -90,7 +76,7 @@ export default function CommentList({
                           width={24}
                           height={24}
                         />
-                        {commentId === comment.id && openOptions && (
+                        {commentId === comment.id && isOpenDropDown && (
                           <DropDown
                             firstAction={{
                               onClickHandler: () => handleEdit(comment.id),
@@ -100,26 +86,12 @@ export default function CommentList({
                               onClickHandler: handleDelete,
                               label: '삭제하기',
                             }}
+                            onClose={() => setIsOpenDropDown(false)}
                           />
                         )}
                       </div>
                     </div>
-                    <div className={styles.profile}>
-                      <Image
-                        src={profileIcon}
-                        alt='프로필 사진'
-                        width={32}
-                        height={32}
-                      />
-                      <div className={styles.name}>
-                        <span className={styles.userName}>
-                          {comment.user.name}
-                        </span>
-                        <span className={styles.createdDate}>
-                          <DateFormat createDate={comment} />
-                        </span>
-                      </div>
-                    </div>
+                    <UserInfo comment={comment} />
                   </div>
                 </>
               )}
