@@ -21,6 +21,7 @@ export function useGetBestArticle() {
   const { isLoading, data } = useQuery({
     queryKey: ['bestArticle'],
     queryFn: () => fetchFreeBoardBestApi(),
+    refetchInterval: 300000,
   });
 
   return { bestArticles: data, isLoading };
@@ -31,7 +32,7 @@ export function useFreeBoardArticlesList({ orderBy, limit }) {
   const router = useRouter();
   const { keyword } = router.query;
 
-  const { data, fetchNextPage, isLoading } = useInfiniteQuery({
+  const { data, fetchNextPage, isLoading, isError, error } = useInfiniteQuery({
     queryKey: ['articles', orderBy, keyword, limit],
     queryFn: ({ pageParam = 1 }) =>
       fetchFreeBoardApi({ sort: orderBy, keyword, page: pageParam, limit }),
@@ -39,6 +40,7 @@ export function useFreeBoardArticlesList({ orderBy, limit }) {
       const nextPage = pages.length + 1;
       return nextPage <= lastPage.totalPages ? nextPage : undefined;
     },
+    refetchInterval: 300000,
   });
 
   const uniqueArticles = Array.from(
@@ -61,6 +63,8 @@ export function useFreeBoardArticlesList({ orderBy, limit }) {
     articles: uniqueArticles,
     loading: isLoading,
     hasMore,
+    isError,
+    error,
     fetchNextPage,
   };
 }

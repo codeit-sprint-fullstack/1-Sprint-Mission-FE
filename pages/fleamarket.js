@@ -40,13 +40,19 @@ export default function FleaMarket() {
   const router = useRouter();
   const { keyword } = router.query;
 
-  const { articles, totalPages, isLoading } = useGetArticleList({
-    page: currentPage,
-    sort: orderBy,
-    keyword,
-  });
+  const { articles, totalPages, isLoading, isError, error } = useGetArticleList(
+    {
+      page: currentPage,
+      sort: orderBy,
+      keyword,
+    }
+  );
 
   const { bestArticles } = useGetBestArticle();
+
+  if (isError) {
+    return <div>Error: {error.message}</div>; // 에러 메시지
+  }
 
   return (
     <>

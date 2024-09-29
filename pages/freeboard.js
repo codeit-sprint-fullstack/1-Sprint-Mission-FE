@@ -41,7 +41,7 @@ export default function FreeBoardPage({ initialArticles }) {
   const router = useRouter();
   const { keyword } = router.query;
 
-  const { articles, loading, hasMore, fetchNextPage } =
+  const { articles, loading, hasMore, fetchNextPage, isError, error } =
     useFreeBoardArticlesList({
       initialArticles,
       orderBy,
@@ -65,6 +65,10 @@ export default function FreeBoardPage({ initialArticles }) {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [hasMore, loading]);
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <>

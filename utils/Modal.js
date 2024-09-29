@@ -9,11 +9,9 @@ export function AuthModal({ errorMsg, setIsShowModal }) {
   return (
     <div className={styles.layout}>
       <div className={styles.modal}>
-        <div className={styles.modalBackColor}>
-          <div className={styles.modalMain}>
-            <div className={styles.modalMsg}>{errorMsg}</div>
-          </div>
-          <button className={styles.modalBtn} onClick={handleClick}>
+        <div className={styles.authModalModalBackColor}>
+          <div className={styles.authModalMsg}>{errorMsg}</div>
+          <button className={styles.authModalBtn} onClick={handleClick}>
             확인
           </button>
         </div>
