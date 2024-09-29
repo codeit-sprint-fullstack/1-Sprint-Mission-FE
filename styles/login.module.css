@@ -52,7 +52,7 @@
   background-color: var(--brand-blue);
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
   font-size: 18px;
   margin-top: 10px;
@@ -118,12 +118,13 @@
   display: block;
   text-align: center;
   margin-top: 20px;
-  text-decoration: none;
   color: #000;
+  text-decoration: none;
 }
 
 .signupLink span {
   color: var(--brand-blue);
+  text-decoration: underline; /* 링크에 밑줄 추가 */
 }
 
 .passwordContainer {

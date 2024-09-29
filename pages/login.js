@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import styles from "../styles/Login.module.css";
+import styles from "../styles/login.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { logIn } from "../api/api"; // api.js에서 logIn 함수 import

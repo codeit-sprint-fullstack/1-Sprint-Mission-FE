@@ -23,7 +23,12 @@
 .footerMenu {
   display: flex;
   gap: 10px;
-  color: var(--gray-200);
+  color: white;
+}
+
+.footerMenu a {
+  text-decoration: none;
+  color: white;
 }
 
 .socialMedia {

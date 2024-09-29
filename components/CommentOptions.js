@@ -33,54 +33,65 @@ const CommentOptions = ({ comments, onEdit, onDelete }) => {
     <div className={styles.comments}>
       {comments.map((comment) => (
         <div key={comment.id} className={styles.comment}>
-          {editingCommentId === comment.id ? (
-            // 인라인 편집 폼
-            <div className={styles.editForm}>
-              <textarea
-                className={styles.editTextarea}
-                value={editedContent}
-                onChange={(e) => setEditedContent(e.target.value)}
-              />
-              <div className={styles.editActions}>
-                <button onClick={() => handleSaveClick(comment.id)}>
-                  저장
-                </button>
-                <button onClick={handleCancelClick}>취소</button>
-              </div>
-            </div>
-          ) : (
-            // 댓글 내용 표시
-            <>
-              <p className={styles.commentContent}>{comment.content}</p>
-              <p className={styles.commentMeta}>
-                {comment.writer.nickname} -{" "}
-                {new Date(comment.createdAt).toLocaleString()}
-                <div className={styles.commentActions}>
-                  <button
-                    onClick={() => handleCommentOptions(comment.id)}
-                    className={styles.commentOptionsButton}
-                  >
-                    <Image
-                      src="/ic_kebab.png"
-                      alt="옵션"
-                      width={20}
-                      height={20}
-                    />
+          <div className={styles.profileImageContainer}>
+            <Image
+              src="/ic_profile.png"
+              alt="프로필"
+              width={40}
+              height={40}
+              className={styles.profileImage}
+            />
+          </div>
+          <div className={styles.commentContentWrapper}>
+            {editingCommentId === comment.id ? (
+              // 인라인 편집 폼
+              <div className={styles.editForm}>
+                <textarea
+                  className={styles.editTextarea}
+                  value={editedContent}
+                  onChange={(e) => setEditedContent(e.target.value)}
+                />
+                <div className={styles.editActions}>
+                  <button onClick={() => handleSaveClick(comment.id)}>
+                    저장
                   </button>
-                  {showOptions === comment.id && (
-                    <div className={styles.optionsPopup}>
-                      <button onClick={() => handleEditClick(comment)}>
-                        수정하기
-                      </button>
-                      <button onClick={() => onDelete(comment.id)}>
-                        삭제하기
-                      </button>
-                    </div>
-                  )}
+                  <button onClick={handleCancelClick}>취소</button>
                 </div>
-              </p>
-            </>
-          )}
+              </div>
+            ) : (
+              // 댓글 내용 표시
+              <>
+                <p className={styles.commentContent}>{comment.content}</p>
+                <p className={styles.commentMeta}>
+                  {comment.writer.nickname} -{" "}
+                  {new Date(comment.createdAt).toLocaleString()}
+                  <div className={styles.commentActions}>
+                    <button
+                      onClick={() => handleCommentOptions(comment.id)}
+                      className={styles.commentOptionsButton}
+                    >
+                      <Image
+                        src="/ic_kebab.png"
+                        alt="옵션"
+                        width={20}
+                        height={20}
+                      />
+                    </button>
+                    {showOptions === comment.id && (
+                      <div className={styles.optionsPopup}>
+                        <button onClick={() => handleEditClick(comment)}>
+                          수정하기
+                        </button>
+                        <button onClick={() => onDelete(comment.id)}>
+                          삭제하기
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </p>
+              </>
+            )}
+          </div>
         </div>
       ))}
     </div>

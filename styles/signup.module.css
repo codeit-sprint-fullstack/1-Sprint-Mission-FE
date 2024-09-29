@@ -56,7 +56,7 @@
   background-color: var(--brand-blue);
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
   font-size: 18px;
   margin-top: 10px;
@@ -123,11 +123,12 @@
   text-align: center; /* 텍스트 중앙 정렬 */
   margin-top: 20px; /* 위쪽 여백 추가 */
   text-decoration: none; /* 밑줄 제거 */
-  color: #000; /* 텍스트 색상을 검정색으로 설정 */
+  color: #000;
 }
 
 .loginLink span {
   color: var(--brand-blue); /* "로그인" 텍스트 색상 변경 */
+  text-decoration: underline;
 }
 
 /* PC (1200px 이상) */

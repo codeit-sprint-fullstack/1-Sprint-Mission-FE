@@ -31,8 +31,9 @@
 
 .buttonContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* 중앙 정렬로 변경 */
   width: 100%;
+  gap: 8px; /* 버튼 사이의 간격을 8px로 설정 */
 }
 
 .cancelButton,

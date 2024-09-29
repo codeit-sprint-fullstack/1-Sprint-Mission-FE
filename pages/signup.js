@@ -2,13 +2,13 @@
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import styles from "../styles/Signup.module.css";
+import styles from "../styles/signup.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { signUp } from "../api/api"; // api.js에서 signUp 함수 import
 import { useRouter } from "next/router";
-import Modal from "../components/Modal";
 import { useMutation } from "@tanstack/react-query"; // useMutation import
+import SignupCompleteModal from "../components/SignupCompleteModal"; // 모달 컴포넌트 import
 
 const Signup = () => {
   const {
@@ -21,7 +21,7 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const router = useRouter();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 추가
   const [modalMessage, setModalMessage] = useState("");
 
   const password = watch("password");
@@ -31,7 +31,8 @@ const Signup = () => {
     mutationFn: signUp,
     onSuccess: (data) => {
       localStorage.setItem("accessToken", data.accessToken);
-      router.push("/items");
+      setModalMessage("가입 완료되었습니다.");
+      setIsModalOpen(true); // 회원가입 성공 시 모달 열기
     },
     onError: (error) => {
       console.error("회원가입 실패:", error);
@@ -59,6 +60,11 @@ const Signup = () => {
     if (event.key === "Enter" && isValid) {
       handleSubmit(onSubmit)();
     }
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    router.push("/items"); // 확인 버튼 클릭 시 /items 페이지로 이동
   };
 
   return (
@@ -243,9 +249,10 @@ const Signup = () => {
           <Link href="/login" className={styles.loginLink}>
             이미 회원이신가요? <span>로그인</span>
           </Link>
-          <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-            <p className={styles.modalText}>{modalMessage}</p>
-          </Modal>
+          <SignupCompleteModal
+            isOpen={isModalOpen}
+            onClose={handleModalClose}
+          />
         </div>
       </div>
     </div>
