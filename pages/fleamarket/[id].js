@@ -15,6 +15,18 @@ export default function ArticlePage() {
 
   const { isLoading, data: article } = useGetArticle(id);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem('accessToken');
+      if (!token) {
+        // toast.error('로그인을 해야 합니다.');
+        router.push('/login'); //비동기
+      }
+    };
+
+    fetchData();
+  }, [router]);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }

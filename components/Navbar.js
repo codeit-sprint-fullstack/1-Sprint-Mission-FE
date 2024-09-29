@@ -6,9 +6,10 @@ import styles from '@/styles/Navbar.module.css';
 import Link from 'next/link';
 import { useAuth } from '../utils/AuthProvider';
 import { useRouter } from 'next/router';
+import { NavLogButton } from '@/utils/Button';
 
 export default function Navbar() {
-  const { user } = useAuth();
+  const { user, login } = useAuth();
   const router = useRouter();
 
   return (
@@ -51,7 +52,7 @@ export default function Navbar() {
           {user ? (
             <div>
               <div>{user.nickname}</div>
-              <div>로그아웃</div>
+              <NavLogButton label='로그아웃' />
             </div>
           ) : (
             <Link href='/login' className={styles.link}>

@@ -1,6 +1,53 @@
 import axios from 'axios';
 
-const baseUrl = 'https://panda-market-api.vercel.app';
+// const baseUrl = 'https://panda-market-api.vercel.app';
+
+const otherInstance = axios.create({
+  baseURL: 'https://panda-market-api.vercel.app',
+});
+
+otherInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+otherInstance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    if (error.response?.status === 401) {
+      const token = localStorage.getItem('refreshToken');
+      const accessToken = await getUserTokenApi({ token });
+
+      error.config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+    return Promise.reject(error);
+  }
+);
+
+export async function getUserInfoApi(accessToken) {
+  try {
+    const res = await otherInstance.get(`/users/me`, {
+      params: {
+        accessToken: accessToken,
+      },
+    });
+
+    return res.data;
+  } catch (error) {
+    console.error('Error getting user info:', error);
+  }
+}
 
 export async function postUserSingUpApi({
   email,
@@ -9,7 +56,7 @@ export async function postUserSingUpApi({
   passwordConfirmation,
 }) {
   try {
-    const res = await axios.post(`${baseUrl}/auth/signUp`, {
+    const res = await otherInstance.post(`/auth/signUp`, {
       email,
       nickname,
       password,
@@ -18,60 +65,42 @@ export async function postUserSingUpApi({
 
     return res.data;
   } catch (error) {
-    console.error('Error posting data:', error);
-    alert('회원가입에 실패했습니다');
+    console.error('Login error:', error.response.data);
+    // alert(
+    //   '회원가입 실패: ' + error.response.data.message ||
+    //     '알 수 없는 오류가 발생했습니다.'
+    // );
+
+    return error.response.data.message;
   }
 }
 
 export async function postUserLogInApi({ email, password }) {
   try {
-    const res = await axios.post(`${baseUrl}/auth/signIn`, {
-      email,
-      password,
-    });
-
+    const res = await otherInstance.post(`/auth/signIn`, { email, password });
     localStorage.setItem('accessToken', res.data.accessToken);
     localStorage.setItem('refreshToken', res.data.refreshToken);
 
     return res.data;
   } catch (error) {
-    console.error('Error posting data:', error);
-    alert('로그인에 실패했습니다');
+    console.error('Login error:', error.response.data);
+    // alert(
+    //   '로그인 실패: ' + error.response.data.message ||
+    //     '알 수 없는 오류가 발생했습니다.'
+    // );
+
+    return error.response.data.message;
   }
 }
 
-export async function getUserInfoApi() {
+export async function getUserTokenApi({ token }) {
   try {
-    const token = localStorage.getItem('accessToken');
+    const res = await otherInstance.post(`/auth/refresh-token`, {
+      refreshToken: token,
+    });
 
-    const res = await axios.get(
-      `https://panda-market-api.vercel.app/users/me`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-      // {
-      //   withCredentials: true,
-      // }
-    );
-
-    return res.data;
-  } catch (error) {
-    console.error('Error posting data:', error);
-  }
-}
-
-export async function getUserTokenApi() {
-  try {
-    const res = await axios.post(
-      `https://panda-market-api.vercel.app/auth/toketn/refresh`
-      // {
-      //   withCredentials: true,
-      // }
-    );
-
-    return res.data;
+    localStorage.setItem('accessToken', res.data.accessToken);
+    return res.data.accessToken;
   } catch (error) {
     console.error('Error posting data:', error);
   }
@@ -79,7 +108,7 @@ export async function getUserTokenApi() {
 
 export async function deleteUserLogOutApi() {
   // try {
-  //   const res = await axios.delete(`${baseUrl}/auth/refresh-token`);
+  //   const res = await instance.delete(`/auth/refresh-token`);
   //   localStorage.setItem('accessToken', res.data.accessToken);
   //   return res.data;
   // } catch (error) {
@@ -90,7 +119,7 @@ export async function deleteUserLogOutApi() {
 
 export async function editUserInfoApi() {
   // try {
-  //   const res = await axios.patch(`${baseUrl}/users/me/password`);
+  //   const res = await instance.patch(`/users/me/password`);
   //   localStorage.setItem('accessToken', res.data.accessToken);
   //   return res.data;
   // } catch (error) {

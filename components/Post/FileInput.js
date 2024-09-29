@@ -4,7 +4,7 @@ import Image from 'next/image';
 import postImage from '@/public/post_imge.png';
 
 export default function FileInput({ setValues }) {
-  const [preview, setPreview] = useState();
+  const [preview, setPreview] = useState('');
   const imageRef = useRef();
 
   const handleChange = (e) => {

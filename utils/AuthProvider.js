@@ -42,11 +42,10 @@ export function AuthProvider({ children }) {
   };
 
   const login = async ({ email, password }) => {
-    await postUserLogInApi({
-      email,
-      password,
-    });
-    await getMe();
+    const resData = await postUserLogInApi({ email, password });
+    await getMe(); // 사용자 정보 업데이트
+
+    return resData; // 응답 데이터 반환
   };
 
   const logout = async () => {
@@ -62,9 +61,13 @@ export function AuthProvider({ children }) {
     }));
   };
 
-  // useEffect(() => {
-  //   getMe();
-  // }, []);
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+
+    if (token) {
+      getMe();
+    }
+  }, []);
 
   return (
     <AuthContext.Provider

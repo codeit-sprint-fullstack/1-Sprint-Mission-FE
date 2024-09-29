@@ -5,11 +5,12 @@ import { ArticleButton } from '@/utils/Button.js';
 import TitleInput from '@/components/Post/TitleInput';
 import ContentInput from '@/components/Post/ContentInput';
 import { useGetArticle, useEditArticle } from '@/hooks/useFreeBoard';
+import { useAuth } from '@/utils/AuthProvider';
 
 export default function EditArticlePage() {
   const router = useRouter();
-
-  const [canSubmit, setCanSubmit] = useState(true);
+  const userInfo = useAuth();
+  const [isSubmit, setIsSubmit] = useState(true);
   const [values, setValues] = useState({
     title: '',
     content: '',
@@ -36,7 +37,7 @@ export default function EditArticlePage() {
       [name]: value,
     }));
 
-    setCanSubmit(values.title.trim() !== '' && values.content.trim() !== '');
+    setIsSubmit(values.title.trim() !== '' && values.content.trim() !== '');
   };
 
   useEffect(() => {
@@ -60,7 +61,7 @@ export default function EditArticlePage() {
           <span className={styles.title}>게시물 수정</span>
         </div>
         <ArticleButton
-          disabled={!canSubmit}
+          disabled={!isSubmit}
           label='수정'
           onClick={handleSubmit}
         />

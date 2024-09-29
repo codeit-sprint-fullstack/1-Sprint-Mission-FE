@@ -45,3 +45,15 @@ export function ArticleButton({ disabled, onClick, label }) {
     </>
   );
 }
+
+export function NavLogButton({ onClick, label }) {
+  return (
+    <>
+      <div className={styles.buttonLayout}>
+        <button className={styles.navBtn} onClick={onClick} type='button'>
+          {label}
+        </button>
+      </div>
+    </>
+  );
+}
