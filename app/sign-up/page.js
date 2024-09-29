@@ -5,6 +5,8 @@ import SignUpSet from "./SignUpSet";
 import SimpleSignIn from "../components/SimpleSignIn";
 
 export default function SignUpPage() {
+  // 임시로 sign in css 복사해서 사용
+  // tailwind.config로 통합 예정
   const extraTextSetClass = classNames(
     "flex",
     "flex-row",
@@ -27,7 +29,7 @@ export default function SignUpPage() {
 
   return (
     <div className="sign-in__main">
-      <Link className={"sign-in__btn-logo-frame"} href="/">
+      <Link className="sign-in__btn-logo-frame" href="/">
         <button className="sign-in__btn-logo" />
       </Link>
       <SignUpSet />

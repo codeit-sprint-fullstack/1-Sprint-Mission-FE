@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { signUp } from "@/lib/api-codeit-auth";
+import Modal from "react-modal";
 import classNames from "classnames";
 
 import EmailInput from "../components/EmailInput";
@@ -57,7 +58,7 @@ export function NicknameInput({ label, register, errors }) {
 
 function PasswordConfirmInput({ label, register, errors }) {
   const [inputType, setInputType] = useState("password");
-  const [btnVisibleClass, setBtnVisibleClass] = useState("input--visible");
+  const [btnVisibleClass, setBtnVisibleClass] = useState("input--invisible");
 
   let inputClass = classNames("sign-in__input", "focus:border-input--focus");
   if (errors.passwordConfirm) {
@@ -114,6 +115,8 @@ function PasswordConfirmInput({ label, register, errors }) {
 }
 
 export default function SignUpSet() {
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
   const {
     register,
     handleSubmit,
@@ -137,16 +140,26 @@ export default function SignUpSet() {
   const password = watch("password");
   const passwordConfirm = watch("passwordConfirm");
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   const handleSignUpBtnClick = () => {
     signUp({
       email: email,
       nickname: nickname,
       password: password,
       passwordConfirmation: passwordConfirm,
-    }).then((user) => {
-      login(user);
-      router.push("/");
-    });
+    })
+      .then((user) => {
+        login(user);
+        router.push("/items");
+      })
+      .catch((err) => {
+        setModalMessage(err.response.data.message);
+        setShowModal(true);
+        console.error("Sign-up error:", err);
+      });
   };
 
   return (
@@ -160,6 +173,15 @@ export default function SignUpSet() {
         errors={errors}
       />
       <button className={btnSignInClass} disabled={!isValid} />
+      <Modal
+        className="simple-modal"
+        isOpen={showModal}
+        onRequestClose={handleCloseModal}
+        contentLabel="sign-in-modal"
+      >
+        <p className="text-simple-modal">{modalMessage}</p>
+        <button className="btn-simple-modal" onClick={handleCloseModal} />
+      </Modal>
     </form>
   );
 }

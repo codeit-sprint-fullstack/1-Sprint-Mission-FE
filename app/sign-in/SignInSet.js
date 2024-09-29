@@ -1,10 +1,10 @@
 "use client";
 
-import Modal from "react-modal";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { signIn } from "@/lib/api-codeit-auth";
+import Modal from "react-modal";
 import classNames from "classnames";
 
 import EmailInput from "../components/EmailInput";

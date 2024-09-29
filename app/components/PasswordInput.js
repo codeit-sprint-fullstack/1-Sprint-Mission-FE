@@ -7,7 +7,7 @@ import { MIN_PASSWORD_LENGTH } from "../constants/sign-in";
 
 export default function PasswordInput({ label, register, errors }) {
   const [inputType, setInputType] = useState("password");
-  const [btnVisibleClass, setBtnVisibleClass] = useState("input--visible");
+  const [btnVisibleClass, setBtnVisibleClass] = useState("input--invisible");
 
   let inputClass = classNames("sign-in__input", "focus:border-input--focus");
   if (errors.password) {
