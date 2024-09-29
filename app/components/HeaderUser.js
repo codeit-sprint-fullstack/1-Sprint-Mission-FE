@@ -46,8 +46,17 @@ export function HeaderUser() {
   const handleProfileClick = () => {
     alert("아직 구현되지 않은 기능입니다");
   };
+  useEffect(() => {
+    getMyInfo()
+      .then((data) => {
+        login(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-  const result = isSignedIn ? (
+  return isSignedIn ? (
     <div className={userInfoClass} onClick={handleProfileClick}>
       <Profile
         type={PROFILE_H40}
@@ -59,16 +68,4 @@ export function HeaderUser() {
   ) : (
     <BtnLogin />
   );
-
-  useEffect(() => {
-    getMyInfo()
-      .then((data) => {
-        login(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  return result;
 }
