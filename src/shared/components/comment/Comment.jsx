@@ -3,7 +3,7 @@ import styles from '@shared/components/comment/Comment.module.css';
 import Image from 'next/image';
 import CommentTemplate from './CommentTemplate';
 
-export function Comment({ initialData, id, useCommentsQuery }) {
+export function Comment({ initialData, id, useCommentsQuery, content }) {
   const {
     data: comments,
     isLoading,
@@ -27,11 +27,7 @@ export function Comment({ initialData, id, useCommentsQuery }) {
             <div className={styles['not-found-comment-image']}>
               <Image src={'/not-found-comment.svg'} fill />
             </div>
-            <div className={styles['not-found-content']}>
-              아직 댓글이 없어요,
-              <br />
-              지금 댓글을 달아보세요!
-            </div>
+            <div className={styles['not-found-content']}>{content}</div>
           </div>
         )}
       </div>

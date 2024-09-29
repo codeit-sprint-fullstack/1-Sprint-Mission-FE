@@ -4,9 +4,9 @@ import Input from '../inputs/Input';
 import { useLoginStore } from '@shared/store/form/login';
 import InputErrorText from '../inputs/InputErrorText';
 import styles from '@shared/components/Forms/LoginForm.module.css';
-import { useFormValidation } from 'src/hooks/useValidation/useFormValidation';
 import ActionButton from '../Buttons/ActionButton';
 import { usePostSignIn } from 'src/hooks/form/useSignInMutation';
+import { useLoginValidation } from 'src/hooks/useValidation/useLoginValidation';
 
 export default function LoginForm() {
   const [visibility, setVisibility] = useState(false);
@@ -20,7 +20,7 @@ export default function LoginForm() {
     onPasswordChange,
     errors,
     isValid,
-  } = useFormValidation();
+  } = useLoginValidation();
 
   const visibilityToggle = () => {
     setVisibility(!visibility);
@@ -41,6 +41,8 @@ export default function LoginForm() {
 
   const buttonValidation =
     isValid && !(passwordValue === '') && !(emailValue === '');
+
+  console.log(isValid);
 
   return (
     <form className={styles['form']}>
