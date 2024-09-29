@@ -3,7 +3,7 @@ import ActionDropdown from '@shared/components/dropdowns/ActionDropdown';
 import ImageActionButton from '@shared/components/Buttons/ImageActionButton';
 import { getProductList, getProducts } from '@utils/api/codeit';
 import styles from '@app/(nav-layout)/items/[itemId]/page.module.css';
-import { ProductComments } from '@shared/components/comment/commentQuery';
+import { ProductComments } from '@shared/components/comment/commentList/ProductComments';
 
 export async function generateStaticParams() {
   const response = await getProductList();
@@ -24,15 +24,16 @@ export async function generateMetadata({ params }) {
 export default async function ProductDetail({ params }) {
   const response = await getProducts(params.itemId);
   const product = response;
+  const [productImage] = response.images;
 
   return (
     <>
       <div className={styles['container']}>
         <div className={styles['product-container']}>
           <div className={styles['product-image']}>
-            <Image src={product.images} fill alt="product-image" />
+            <Image src={productImage} fill alt="product-image" />
           </div>
-          <div>
+          <div className={styles['product-content-container']}>
             <div className={styles['product-name']}>
               {product.name}
               <ActionDropdown id={params.id} option={'product'} />
@@ -44,25 +45,27 @@ export default async function ProductDetail({ params }) {
               {product.description}
             </div>
             <div className={styles['product-tags-title']}>상품 태그</div>
-            {product.tags.map((tag) => (
-              <div>#{tag}</div>
-            ))}
+            <div className={styles['tags-container']}>
+              {product.tags.map((tag) => (
+                <div className={styles['tag']}>#{tag}</div>
+              ))}
+            </div>
             <div className={styles['product-info']}>
               <div className={styles['product-meta']}>
                 <div className={styles['product-user-image']}>
-                  {product.ownerNickname.image ? (
+                  {product.ownerNickname.image && (
                     <Image
                       src={product.ownerNickname.image}
                       fill
                       alt="user-image"
                     />
-                  ) : null}
+                  )}
                 </div>
-                {product.ownerNickname ? (
+                {product.ownerNickname && (
                   <div className={styles['product-user']}>
                     {product.ownerNickname}
                   </div>
-                ) : null}
+                )}
                 <div className={styles['product-updated']}></div>
               </div>
               <div className={styles['favorite-count']}>
