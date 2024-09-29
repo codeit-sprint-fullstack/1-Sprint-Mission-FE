@@ -1,7 +1,6 @@
 .layout {
   height: 100%;
   width: 100%;
-
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 100;
   position: absolute;
@@ -54,5 +53,30 @@
   width: 88px;
   height: 48px;
   background-color: #f74747;
+  color: aliceblue;
+}
+
+.authModalModalBackColor {
+  background-color: aliceblue;
+  border-radius: 12px;
+  width: 540px;
+  height: 250px;
+  text-align: center;
+}
+
+.authModalMsg {
+  margin-top: 68px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #1f2937;
+}
+
+.authModalBtn {
+  width: 165px;
+  height: 48px;
+  background-color: #3692ff;
+  border-radius: 8px;
+  margin-top: 40px;
+  border: none;
   color: aliceblue;
 }
