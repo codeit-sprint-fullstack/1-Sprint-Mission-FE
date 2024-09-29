@@ -70,7 +70,6 @@ export const PRODUCT = {
     },
   },
   TAGS: {
-    required: "상품소개를 입력해 주세요",
     ...minMaxLength(1, 5),
   },
 };

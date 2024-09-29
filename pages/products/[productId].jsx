@@ -9,6 +9,7 @@ import styles from "@/styles/pages/products/main.module.scss";
 import CommentForm from "@/components/form/CommentForm";
 import CommentList from "@/components/comment/CommentList";
 import ReturnToListBtn from "@/components/ui/ReturnToListBtn";
+import { ENTITY } from "@/variables/entities";
 
 export async function getServerSideProps(context) {
   const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ export async function getServerSideProps(context) {
 export default function ProductDetailPage() {
   const router = useRouter();
   const { productId } = router.query;
+  const entity = ENTITY.PRODUCT;
 
   const {
     isError,
@@ -51,10 +53,10 @@ export default function ProductDetailPage() {
         <title>상세페이지</title>
       </Head>
       <section className={styles.ProductDetailPage}>
-        <ProductDetail product={product} />
+        <ProductDetail product={product} entity={entity} />
         <div className={styles.line}></div>
-        <CommentForm idPath={productId} whichComment="product" />
-        <CommentList idPath={productId} whichComment="product" />
+        <CommentForm idPath={productId} whichComment={entity} />
+        <CommentList idPath={productId} whichComment={entity} />
         <ReturnToListBtn isArticle={false} />
       </section>
     </>

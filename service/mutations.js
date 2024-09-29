@@ -28,7 +28,7 @@ export function useUpdateMutation({ entity, id }) {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  const { path, queryKey, edit: axiosFunction } = CREATE_UPDATE(entity);
+  const { path, queryKey, update: axiosFunction } = CREATE_UPDATE(entity);
 
   return useMutation({
     mutationFn: (updateData) => axiosFunction(id, updateData),

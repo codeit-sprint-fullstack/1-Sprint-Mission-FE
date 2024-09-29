@@ -20,7 +20,7 @@ export default function ProductDetail({ product, entity }) {
       <div className={styles.details}>
         <div className={styles.title}>
           <h1>{product?.name}</h1>
-          <KebabMenu idPath={product?.id} entity={entity} />
+          <KebabMenu idPath={product.id} entity={entity} />
         </div>
         <p className={styles.price}>{product?.price}</p>
         <div className={styles.line}></div>

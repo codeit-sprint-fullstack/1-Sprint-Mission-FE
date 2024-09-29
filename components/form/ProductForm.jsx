@@ -16,7 +16,10 @@ export default function ProductForm({
 
   const formMethods = useForm({
     defaultValues: {
-      content: initialData?.content || "",
+      name: initialData?.name || "",
+      description: initialData?.description || "",
+      price: initialData?.price || "",
+      tags: initialData?.tags || [],
     },
   });
 
@@ -30,8 +33,10 @@ export default function ProductForm({
   useEffect(() => {
     if (isEditMode && initialData) {
       reset({
-        title: initialData.title || "",
-        content: initialData.content || "",
+        name: initialData?.name || "",
+        description: initialData?.description || "",
+        price: initialData?.price || "",
+        tags: initialData?.tags || [],
       });
     }
   }, [reset, isEditMode, initialData]);
@@ -66,7 +71,7 @@ export default function ProductForm({
           validations={PRODUCT.PRICE}
           type="number"
         />
-        <TagInput label="태그" name="price" validations={PRODUCT.TAGS} />
+        <TagInput label="태그" name="tags" validations={PRODUCT.TAGS} />
       </form>
     </FormProvider>
   );

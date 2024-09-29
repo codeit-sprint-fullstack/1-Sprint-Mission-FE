@@ -2,7 +2,8 @@
 
 .Input,
 .TextArea,
-.PasswordInput {
+.PasswordInput,
+.TagInput {
   width: 100%;
   @include g.flex-box(column, flex-start, none, 8px);
 
@@ -39,8 +40,8 @@
   width: 100%;
   @include g.font(16, 400);
   @include g.flex-box(column, flex-start, none, 12px);
-  ul {
-    @include g.flex-box(row, flex-start, none, 12px);
+  .TagList {
+    @include g.flex-box(row, flex-start, center, 12px);
     font-weight: 400;
     li {
       @include g.flex-box(row, center, center, 9px);
