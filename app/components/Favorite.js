@@ -53,7 +53,7 @@ export default function Favorite({
     <div className={favoriteClass}>
       <button onClick={handleClickHeart}>
         <div className={heartImgFrameClass}>
-          <Image src={SRCS[Number(myFavorite)]} fill />
+          <Image src={SRCS[Number(myFavorite)]} fill alt="좋아요 마크" />
         </div>
       </button>
       <div className={favoriteCountClass}>{favoriteCountText}</div>

@@ -2,6 +2,7 @@ import Image from "next/image";
 import classNames from "classnames";
 
 import Profile from "@/app/components/Profile";
+import DropDownKebabProduct from "@/app/components/DropDownKebabProduct";
 import Favorite from "@/app/components/Favorite";
 import Date from "@/app/components/Date";
 
@@ -130,8 +131,10 @@ function ProductInfo({ product }) {
 
   return (
     <div className={productInfoClass}>
-      <div className={productTopBarClass}></div>
-      <div className="product-name">{product.name}</div>
+      <div className={productTopBarClass}>
+        <div className="product-name">{product.name}</div>
+        <DropDownKebabProduct productId={product.id} />
+      </div>
       <div className="product-price">{priceText}</div>
       <ProductInfoDivider />
       <div className="product-info-label">상품 소개</div>

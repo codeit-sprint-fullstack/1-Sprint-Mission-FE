@@ -1,10 +1,11 @@
 import Profile from "./Profile";
 import LastTime from "./LastTime";
+import DropDownKebabComment from "./DropdownKebabComment";
 import { PROFILE_H32 } from "../constants/Profile";
 
 import style from "./comment.module.css";
 
-export function Comment({ content, profileImgUrl, nickname, date }) {
+export function Comment({ content, profileImgUrl, nickname, date, commentId }) {
   const topBarClass = `flex flex-row justify-between`;
   const contentClass = `font-normal ${style.content}`;
   const bottomBarClass = `flex flex-row ${style["bottom-bar"]}`;
@@ -15,7 +16,8 @@ export function Comment({ content, profileImgUrl, nickname, date }) {
     <div className={style.comment}>
       <div className={topBarClass}>
         <div className={contentClass}>{content}</div>
-        <button className={style["btn-ellipsis"]} />
+        {/* <button className={style["btn-ellipsis"]} /> */}
+        <DropDownKebabComment commentId={commentId} />
       </div>
       <div className={bottomBarClass}>
         <Profile type={PROFILE_H32} profileImgUrl={profileImgUrl} />

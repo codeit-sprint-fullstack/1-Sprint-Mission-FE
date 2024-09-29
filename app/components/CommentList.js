@@ -31,6 +31,7 @@ export function CommentList({ list = [] }) {
         profileImgUrl={comment.user.image}
         nickname={comment.user.nickname}
         date={comment.createdAt}
+        commentId={comment.id}
       />
     );
   });
