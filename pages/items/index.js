@@ -1,14 +1,14 @@
 // pages/items/index.js
 
-import React, { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import React, { useState, useEffect } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import styles from "../../styles/Products.module.css";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
-import { fetchProducts } from "../../api/api";
+import { fetchProducts, fetchProductById } from "../../api/api";
 
 const ItemsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,6 +28,7 @@ const ItemsPage = () => {
     queryKey: ["products", params],
     queryFn: () => fetchProducts(params),
     keepPreviousData: true,
+    refetchInterval: 5000, // 5초마다 자동으로 데이터 갱신
   });
 
   const totalPages = data ? Math.ceil(data.totalCount / itemsPerPage) : 1;
@@ -70,6 +71,18 @@ const ItemsPage = () => {
       </div>
     );
   };
+
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (data && data.list) {
+      data.list.forEach((product) => {
+        queryClient.prefetchQuery(["product", product.id], () =>
+          fetchProductById(product.id)
+        );
+      });
+    }
+  }, [data, queryClient]);
 
   return (
     <div className={styles.pageContainer}>
