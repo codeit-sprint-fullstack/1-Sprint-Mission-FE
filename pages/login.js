@@ -16,7 +16,7 @@ export default function LogInPage() {
   const { login, user } = useAuth();
   const [errorMsg, setErrorMsg] = useState('');
   const [isShowModal, setIsShowModal] = useState(false);
-  const [canShowPassword, setCanShowPassword] = useState(false);
+  const [isShowPassword, setIsShowPassword] = useState(false);
   const [passwordValue, setPasswordValue] = useState({
     type: 'password',
     imag: eyeClose,
@@ -30,12 +30,11 @@ export default function LogInPage() {
   } = useForm();
 
   const onShowPassword = () => {
-    setCanShowPassword((prev) => !prev);
-    if (canShowPassword === true) {
-      setPasswordValue({ type: 'text', imag: eyeOpen });
-    } else {
-      setPasswordValue({ type: 'password', imag: eyeClose });
-    }
+    setIsShowPassword((prev) => !prev);
+    setPasswordValue({
+      type: isShowPassword ? 'password' : 'text',
+      imag: isShowPassword ? eyeClose : eyeOpen,
+    });
   };
 
   const onSubmit = async (data) => {
