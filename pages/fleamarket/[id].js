@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import Image from 'next/image';
 import backBtn from '@/public/btn_back.png';
 import Comments from '@/components/Comment/Comments.js';

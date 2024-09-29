@@ -8,9 +8,11 @@ import DateFormat from '@/utils/DateFormat.js';
 import { postFavoriteApi, deleteFavoriteApi } from '@/utils/api/favorite';
 import styles from '@/styles/Article.module.css';
 
-export function UserInfo({ article }) {
+export function UserInfo({ article, category }) {
   const [isFavorite, setIsFavorite] = useState(false);
-  const [favoriteCount, setFavoriteCount] = useState(article?.favorite || 0);
+  const [favoriteCount, setFavoriteCount] = useState(
+    Math.max(article?.favorite, 0)
+  );
   const articleId = article?.id || '';
 
   const handleFavorite = async (articleId, category) => {

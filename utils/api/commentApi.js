@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const baseUrl = 'https://sprint-be-ztdn.onrender.com/comments';
-
 const instance = axios.create({
   baseURL: 'https://sprint-be-ztdn.onrender.com/comments/',
 });

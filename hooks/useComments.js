@@ -10,9 +10,7 @@ import {
   editCommentApi,
 } from '@/utils/api/commentApi.js';
 
-export default function useComments({ articleId, category }) {
-  const queryClient = useQueryClient();
-
+export function useComments({ articleId, category }) {
   const { data, fetchNextPage, isLoading } = useInfiniteQuery({
     queryKey: ['comments', articleId],
     queryFn: ({ pageParam = null }) =>
@@ -34,6 +32,17 @@ export default function useComments({ articleId, category }) {
 
   const totalCount = data?.pages[0].totalCount;
 
+  return {
+    uniqueComments,
+    fetchNextPage,
+    isLoading,
+    totalCount,
+  };
+}
+
+export function useEditComment({ articleId }) {
+  const queryClient = useQueryClient();
+
   const deleteCommentMutation = useMutation({
     mutationFn: (targetId) => deleteCommentApi(targetId),
     onSuccess: () => {
@@ -52,11 +61,7 @@ export default function useComments({ articleId, category }) {
     },
   });
 
-  const postComment = (newComment) => {
-    postCommentMutation.mutate(newComment);
-  };
-
-  const updateComment = useMutation({
+  const editCommentMutation = useMutation({
     mutationFn: ({ id, editComment, articleId }) =>
       editCommentApi({ id, editComment, articleId }),
     onSuccess: (newComment) => {
@@ -81,13 +86,8 @@ export default function useComments({ articleId, category }) {
   });
 
   return {
-    uniqueComments,
     postCommentMutation,
-    updateComment,
+    editCommentMutation,
     deleteComments,
-    postComment,
-    fetchNextPage,
-    isLoading,
-    totalCount,
   };
 }

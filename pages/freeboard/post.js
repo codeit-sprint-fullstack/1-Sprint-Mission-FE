@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from '@/styles/ArticleFormFields.module.css';
 import { ArticleButton } from '@/utils/Button.js';
@@ -43,6 +43,18 @@ export default function PostArticlePage() {
 
     setCanSubmit(values.title.trim() !== '' && values.content.trim() !== '');
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem('accessToken');
+      if (!token) {
+        // toast.error('로그인을 해야 합니다.');
+        router.push('/login'); //비동기
+      }
+    };
+
+    fetchData();
+  }, [router]);
 
   return (
     <>

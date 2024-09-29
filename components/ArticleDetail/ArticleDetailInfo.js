@@ -72,7 +72,7 @@ export default function ArticleDetailInfo({ article, category }) {
           )}
         </div>
       </div>
-      <UserInfo article={article} />
+      <UserInfo article={article} category={category} />
 
       <div className={styles.content}>{article.content}</div>
       <div>{article.images}</div>

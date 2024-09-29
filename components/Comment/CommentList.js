@@ -56,9 +56,8 @@ export default function CommentList({
                   commentId={comment.id}
                   articleId={articleId}
                   content={comment.content}
-                  category={category}
                   setEditId={setEditId}
-                  setOpenOptions={setIsOpenDropDown}
+                  setIsOpenDropDown={setIsOpenDropDown}
                 />
               ) : (
                 <>

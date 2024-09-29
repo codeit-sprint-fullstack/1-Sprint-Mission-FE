@@ -1,5 +1,5 @@
 import styles from '@/styles/ArticleFormFields.module.css';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 import postImage from '@/public/post_imge.png';
 

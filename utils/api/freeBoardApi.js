@@ -1,10 +1,12 @@
 import axios from 'axios';
 
-const baseUrl = 'https://sprint-be-ztdn.onrender.com/freeboard';
+const instance = axios.create({
+  baseURL: 'https://sprint-be-ztdn.onrender.com/freeboard',
+});
 
 export async function fetchFreeBoardBestApi() {
   try {
-    const res = await axios.get(`${baseUrl}`, {
+    const res = await instance.get(`/`, {
       params: {
         sort: 'favorite',
         limit: 3,
@@ -19,7 +21,7 @@ export async function fetchFreeBoardBestApi() {
 
 export async function fetchFreeBoardApi({ keyword, sort, page }) {
   try {
-    const res = await axios.get(`${baseUrl}`, {
+    const res = await instance.get(`/`, {
       params: {
         keyword: keyword || '',
         sort: sort,
@@ -36,7 +38,7 @@ export async function fetchFreeBoardApi({ keyword, sort, page }) {
 
 export async function fetchFreeBoardArticleApi(id) {
   try {
-    const res = await axios.get(`${baseUrl}/${id}`);
+    const res = await instance.get(`/${id}`);
     return res.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -51,7 +53,7 @@ export async function postFreeBoardArticleApi({
   userId,
 }) {
   try {
-    const res = await axios.post(`${baseUrl}/post`, {
+    const res = await instance.post(`/post`, {
       title: title,
       content: content,
       images: images || [],
@@ -107,7 +109,7 @@ export async function postFreeBoardArticleApi({
 
 export async function editArticleApi({ title, content, id }) {
   try {
-    const res = await axios.patch(`${baseUrl}/${id}`, {
+    const res = await instance.patch(`/${id}`, {
       title: title,
       content: content,
     });
@@ -120,7 +122,7 @@ export async function editArticleApi({ title, content, id }) {
 
 export async function deleteArticleApi(id) {
   try {
-    const res = await axios.delete(`${baseUrl}/${id}`);
+    const res = await instance.delete(`/${id}`);
 
     return {};
   } catch (error) {

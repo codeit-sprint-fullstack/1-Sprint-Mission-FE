@@ -8,7 +8,6 @@ import {
   getUserTokenApi,
 } from '@/utils/api/userApi';
 import { useRouter } from 'next/router';
-import axios from 'axios';
 
 const AuthContext = createContext({
   user: null,

@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-// const baseUrl = 'https://panda-market-api.vercel.app';
-
 const otherInstance = axios.create({
   baseURL: 'https://panda-market-api.vercel.app',
 });
@@ -65,12 +63,6 @@ export async function postUserSingUpApi({
 
     return res.data;
   } catch (error) {
-    console.error('Login error:', error.response.data);
-    // alert(
-    //   '회원가입 실패: ' + error.response.data.message ||
-    //     '알 수 없는 오류가 발생했습니다.'
-    // );
-
     return error.response.data.message;
   }
 }
@@ -83,12 +75,6 @@ export async function postUserLogInApi({ email, password }) {
 
     return res.data;
   } catch (error) {
-    console.error('Login error:', error.response.data);
-    // alert(
-    //   '로그인 실패: ' + error.response.data.message ||
-    //     '알 수 없는 오류가 발생했습니다.'
-    // );
-
     return error.response.data.message;
   }
 }

@@ -1,10 +1,9 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { CommentButton } from '@/utils/Button';
 import CommentList from './CommentList';
 import styles from '@/styles/Comment.module.css';
-import useComments from '@/hooks/useComments';
+import { useComments, useEditComment } from '@/hooks/useComments';
 import useScroll from '@/hooks/useScroll';
-import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
 
 export default function Comments({ category }) {
@@ -14,14 +13,12 @@ export default function Comments({ category }) {
   const router = useRouter();
   const { id: articleId } = router.query;
 
-  const {
-    uniqueComments,
-    postCommentMutation,
-    deleteComments,
-    fetchNextPage,
-    isLoading,
-    totalCount,
-  } = useComments({ articleId, category });
+  const { uniqueComments, fetchNextPage, isLoading, totalCount } = useComments({
+    articleId,
+    category,
+  });
+
+  const { postCommentMutation, deleteComments } = useEditComment({ articleId });
 
   const handleComment = (event) => {
     setComment(event.target.value);

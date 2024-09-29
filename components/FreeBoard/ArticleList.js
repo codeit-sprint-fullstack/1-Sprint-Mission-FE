@@ -42,7 +42,7 @@ export default function ArticleList({ articles }) {
                 <div className={styles.favorite}>
                   <Image src={heartIcon} alt='하트 아이콘' />
                   <span className={styles.favoriteCount}>
-                    {article.favorite}
+                    {Math.max(article.favorite, 0)}
                   </span>
                 </div>
               </div>

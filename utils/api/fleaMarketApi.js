@@ -1,10 +1,12 @@
 import axios from 'axios';
 
-const baseUrl = 'https://sprint-be-ztdn.onrender.com/fleamarket';
+const instance = axios.create({
+  baseURL: 'https://sprint-be-ztdn.onrender.com/fleamarket',
+});
 
 export async function fetchFleaMarketBestApi() {
   try {
-    const res = await axios.get(`${baseUrl}`, {
+    const res = await instance.get(`/`, {
       params: {
         sort: 'favorite',
         limit: 3,
@@ -19,7 +21,7 @@ export async function fetchFleaMarketBestApi() {
 
 export async function fetchFleaMarketApi({ keyword, sort, page }) {
   try {
-    const res = await axios.get(`${baseUrl}`, {
+    const res = await instance.get(`/`, {
       params: {
         keyword: keyword || '',
         sort: sort,
@@ -36,7 +38,7 @@ export async function fetchFleaMarketApi({ keyword, sort, page }) {
 
 export async function fetchFleaMarketArticleApi(id) {
   try {
-    const res = await axios.get(`${baseUrl}/${id}`);
+    const res = await instance.get(`/${id}`);
     return res.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -52,7 +54,7 @@ export async function postFleaMarketArticleApi({
   userId,
 }) {
   try {
-    const res = await axios.post(`${baseUrl}/post`, {
+    const res = await instance.post(`/post`, {
       title: title,
       content: content,
       price: price,
@@ -109,7 +111,7 @@ export async function postFleaMarketArticleApi({
 
 export async function editFleaMarketArticleApi({ title, content, id }) {
   try {
-    const res = await axios.patch(`${baseUrl}/${id}`, {
+    const res = await instance.patch(`/${id}`, {
       title: title,
       content: content,
     });
@@ -122,7 +124,7 @@ export async function editFleaMarketArticleApi({ title, content, id }) {
 
 export async function deleteFleaMarketArticleApi(id) {
   try {
-    const res = await axios.delete(`${baseUrl}/${id}`);
+    const res = await instance.delete(`/${id}`);
 
     return {};
   } catch (error) {

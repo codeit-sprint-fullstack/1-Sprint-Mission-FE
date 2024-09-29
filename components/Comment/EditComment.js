@@ -1,39 +1,31 @@
 import { CommentButton, CommentCancelButton } from '@/utils/Button';
 import styles from '@/styles/Comment.module.css';
-import useComments from '@/hooks/useComments';
+import { useEditComment } from '@/hooks/useComments';
 import { useState } from 'react';
-import { editCommentApi } from '@/utils/api/commentApi.js';
-
-import {
-  useMutation,
-  useQueryClient,
-  useFilterParams,
-} from '@tanstack/react-query';
 
 export default function EditComment({
   commentId,
   articleId,
   content,
-  category,
   setEditId,
-  setOpenDropDown,
+  setIsOpenDropDown,
 }) {
   const [editComment, setEditComment] = useState(content);
   const handleCommentChange = (event) => {
     setEditComment(event.target.value);
   };
 
-  const { updateComment } = useComments({ articleId, category });
+  const { editCommentMutation } = useEditComment({ articleId });
 
   const handleSubmit = () => {
-    updateComment.mutate({ id: commentId, editComment, articleId });
+    editCommentMutation.mutate({ id: commentId, editComment, articleId });
     setEditId(null);
-    setOpenDropDown(false);
+    setIsOpenDropDown(false);
   };
 
   const handleCancelSubmit = () => {
     setEditId(null);
-    setOpenDropDown(false);
+    setIsOpenDropDown(false);
   };
 
   return (
