@@ -6,6 +6,7 @@ export function usePostSignup() {
     mutationFn: (params) => postSignup(params),
     onSuccess: (data) => {
       console.log(data);
+      window.location.href = '/';
     },
     onError: (error) => {
       console.error(error);
