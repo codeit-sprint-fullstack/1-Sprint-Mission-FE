@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { throttle } from 'lodash';
 import ArticleList from '@/components/FleaMarket/ArticleList.js';
 import BestArticleList from '@/components/FleaMarket/BestArticleList.js';
 import ArticleListHeader from '@/components/FleaMarket/ArticleListHeader.js';

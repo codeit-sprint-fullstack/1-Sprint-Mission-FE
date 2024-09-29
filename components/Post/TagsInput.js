@@ -4,7 +4,7 @@ import tagRemoveIcon from '@/public/ic_tag_delete.png';
 
 export default function TagsInput({ tags, setTags }) {
   const removeTags = (indexToRemove) => {
-    const filter = tags.filter((el, index) => index !== indexToRemove);
+    const filter = tags.filter((_, index) => index !== indexToRemove);
     setTags(filter);
   };
 

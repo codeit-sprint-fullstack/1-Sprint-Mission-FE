@@ -10,7 +10,7 @@ export async function fetchFreeBoardBestApi() {
         limit: 3,
       },
     });
-    console.log('Fetched data:', res.data);
+
     return res.data;
   } catch (error) {
     console.error('Error fetching articles:', error);

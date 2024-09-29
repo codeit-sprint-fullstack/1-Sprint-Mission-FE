@@ -7,8 +7,6 @@ import DateFormat from '@/utils/DateFormat.js';
 import styles from '@/styles/ArticleList.module.css';
 
 export default function ArticleList({ articles }) {
-  const category = 'freeboard';
-
   if (articles.length === 0) {
     return (
       <div className={styles.articleList}>

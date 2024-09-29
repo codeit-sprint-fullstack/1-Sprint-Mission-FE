@@ -4,10 +4,7 @@ import { throttle } from 'lodash';
 import ArticleList from '@/components/FreeBoard/ArticleList.js';
 import BestArticleList from '@/components/FreeBoard/BestArticleList.js';
 import ArticleListHeader from '@/components/FreeBoard/ArticleListHeader.js';
-import {
-  fetchFreeBoardBestApi,
-  fetchFreeBoardApi,
-} from '@/utils/api/freeBoardApi';
+import { fetchFreeBoardApi } from '@/utils/api/freeBoardApi';
 import styles from '@/styles/FreeBoard.module.css';
 import {
   useFreeBoardArticlesList,

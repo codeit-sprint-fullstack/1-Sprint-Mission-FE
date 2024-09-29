@@ -9,10 +9,11 @@ import DropDown from '@/utils/DropDown.js';
 import { useState } from 'react';
 
 export default function ArticleListHeader({ keyword, setOrderBy }) {
-  const [showDropDown, setShowDropDOwn] = useState(false);
+  const [isShowDropDown, setIsShowDropDown] = useState(false);
   const [orderByText, setOrderByText] = useState('최신순');
+
   const handleDropDown = () => {
-    setShowDropDOwn((prev) => !prev);
+    setIsShowDropDown((prev) => !prev);
   };
 
   const handleOrderByClick = (orderBy) => {
@@ -48,7 +49,7 @@ export default function ArticleListHeader({ keyword, setOrderBy }) {
             alt='모바일 드롭다운 버튼'
             className={styles.dropDownMobile}
           />
-          {showDropDown && (
+          {isShowDropDown && (
             <div className={styles.dropDownLayout}>
               <DropDown
                 firstAction={{

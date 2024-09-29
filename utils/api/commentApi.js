@@ -43,10 +43,10 @@ export async function editCommentApi({ id, editComment }) {
     const res = await instance.patch(`${id}`, {
       content: editComment,
     });
-    return res.data; // 수정된 댓글 데이터를 반환
+    return res.data;
   } catch (error) {
     console.error('Error editing data:', error);
-    throw error; // 오류를 던져서 useMutation에서 처리할 수 있도록 함
+    throw error;
   }
 }
 

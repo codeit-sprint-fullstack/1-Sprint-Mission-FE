@@ -29,8 +29,8 @@ export default function Pagination({
             onClick={() => setCurrentPage(startPage + index)}
             className={
               startPage + index === currentPage
-                ? styles.selectBtn // 현재 페이지의 버튼 스타일
-                : styles.noSelectBtn // 다른 페이지 버튼 스타일
+                ? styles.selectBtn
+                : styles.noSelectBtn
             }
           >
             {startPage + index}

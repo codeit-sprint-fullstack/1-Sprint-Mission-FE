@@ -26,7 +26,7 @@ export async function deleteFavoriteApi({ articleId, category }) {
         userId: '86d761e4-a9d0-4082-96dd-cf6f2c931673',
       },
     });
-    return res.data; // 필요한 경우 응답 데이터 반환
+    return {};
   } catch (error) {
     console.error('Error deleting data:', error);
   }

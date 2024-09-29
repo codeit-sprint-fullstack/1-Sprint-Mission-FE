@@ -48,6 +48,7 @@
   color: #4b5563;
   margin-top: 16px;
   margin-bottom: 24px;
+  min-height: 100px;
 }
 
 .hashtags {

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { throttle } from 'lodash';
 
 export default function useScroll({ comment, isLoading, hasMore }) {
-  const [canScroll, setCanScroll] = useState(true);
+  const [isScroll, setIsScroll] = useState(true);
 
   useEffect(() => {
     const handleScroll = throttle(() => {
@@ -11,10 +11,10 @@ export default function useScroll({ comment, isLoading, hasMore }) {
       const scrollPosition = window.scrollY + window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
 
-      if (scrollPosition >= documentHeight - 100 && !canScroll) {
-        setCanScroll(true);
+      if (scrollPosition >= documentHeight - 100 && !isScroll) {
+        setIsScroll(true);
       } else {
-        setCanScroll(false);
+        setIsScroll(false);
       }
     }, 200);
 
@@ -22,7 +22,7 @@ export default function useScroll({ comment, isLoading, hasMore }) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isLoading, hasMore, canScroll, comment]);
+  }, [isLoading, hasMore, isScroll, comment]);
 
-  return { canScroll };
+  return { canScroll: isScroll };
 }

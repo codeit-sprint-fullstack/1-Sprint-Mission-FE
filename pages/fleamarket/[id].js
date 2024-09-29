@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import backBtn from '@/public/btn_back.png';
-import Comments from '@/components/ArticleDetail/Comments.js';
+import Comments from '@/components/Comment/Comments.js';
 import ArticleDetail from '@/components/FleaMarket/ArticleDetail';
 import styles from '@/styles/Article.module.css';
 import { useGetArticle } from '@/hooks/useFleaMarket';
@@ -14,6 +14,10 @@ export default function ArticlePage() {
   const category = 'fleamarket';
 
   const { isLoading, data: article } = useGetArticle(id);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>

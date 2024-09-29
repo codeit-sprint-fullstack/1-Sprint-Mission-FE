@@ -1,12 +1,6 @@
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import {
-  useInfiniteQuery,
-  useQuery,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import {
   fetchFleaMarketApi,
@@ -26,56 +20,14 @@ export function useGetBestArticle() {
   return { bestArticles: data, isLoading };
 }
 
-// export function useFleaMarketArticlesList({ orderBy, limit }) {
-//   const [hasMore, setHasMore] = useState(true);
-//   const router = useRouter();
-//   const { keyword } = router.query;
-
-//   const { data, fetchNextPage, isLoading } = useInfiniteQuery({
-//     queryKey: ['articles', keyword],
-//     queryFn: ({ pageParam = 1 }) =>
-//       fetchFleaMarketApi({ sort: orderBy, keyword, page: pageParam, limit }),
-//     getNextPageParam: (lastPage, pages) => {
-//       const nextPage = pages.length + 1;
-//       return nextPage <= lastPage.totalPages ? nextPage : undefined;
-//     },
-//   });
-
-//   const uniqueArticles = Array.from(
-//     new Map(
-//       data?.pages
-//         .flatMap((page) => page.data)
-//         .map((article) => [article.id, article])
-//     ).values() || []
-//   );
-
-//   const totalPages = data?.pages[0].totalPages;
-
-//   useEffect(() => {
-//     if (totalPages - data?.pages.length <= 0) {
-//       setHasMore(false);
-//     }
-//   }, [data]);
-
-//   return {
-//     articles: uniqueArticles,
-//     loading: isLoading,
-//     totalPages,
-//     hasMore,
-//     fetchNextPage,
-//   };
-// }
-
 export function useGetArticleList({ page, sort, keyword }) {
-  const { data, fetchNextPage, isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['article', page, sort, keyword],
     queryFn: () => fetchFleaMarketApi({ page, sort, keyword }),
   });
 
   const totalPages = data?.totalPages;
   const articles = data?.data;
-
-  // console.log(data.data);
 
   return {
     articles,

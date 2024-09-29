@@ -2,18 +2,22 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import backBtn from '@/public/btn_back.png';
-import Comments from '@/components/ArticleDetail/Comments.js';
+import Comments from '@/components/Comment/Comments.js';
 import ArticleDetailInfo from '@/components/ArticleDetail/ArticleDetailInfo';
 import styles from '@/styles/Article.module.css';
 import { useGetArticle } from '@/hooks/useFreeBoard';
 
 export default function ArticlePage() {
   const router = useRouter();
-  const id = router.query.id;
+  const { id } = router.query;
 
   const category = 'freeboard';
 
   const { isLoading, data: article } = useGetArticle(id);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>

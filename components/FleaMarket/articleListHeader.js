@@ -9,10 +9,10 @@ import DropDown from '@/utils/DropDown.js';
 import { useState } from 'react';
 
 export default function ArticleListHeader({ keyword, setOrderBy }) {
-  const [showDropDown, setShowDropDOwn] = useState(false);
+  const [isShowDropDown, setIsShowDropDOwn] = useState(false);
   const [orderByText, setOrderByText] = useState('최신순');
   const handleDropDown = () => {
-    setShowDropDOwn((prev) => !prev);
+    setIsShowDropDOwn((prev) => !prev);
   };
 
   const handleOrderByClick = (orderBy) => {
@@ -34,6 +34,7 @@ export default function ArticleListHeader({ keyword, setOrderBy }) {
       </div>
       <div className={styles.menu}>
         <SearchForm keyword={keyword} />
+        
         <div className={styles.dropDownBoxLayout} onClick={handleDropDown}>
           <div className={styles.webDropDOnwBox}>
             <div className={styles.dropDownBoxText}>{orderByText}</div>
@@ -43,12 +44,13 @@ export default function ArticleListHeader({ keyword, setOrderBy }) {
               className={styles.dropDownArrow}
             />
           </div>
+
           <Image
             src={mobileDropDown}
             alt='모바일 드롭다운 버튼'
             className={styles.dropDownMobile}
           />
-          {showDropDown && (
+          {isShowDropDown && (
             <div className={styles.dropDownLayout}>
               <DropDown
                 firstAction={{
@@ -59,6 +61,7 @@ export default function ArticleListHeader({ keyword, setOrderBy }) {
                   onClickHandler: () => handleOrderByClick('favorite'),
                   label: '좋아요순',
                 }}
+                onClose={() => setIsShowDropDOwn(false)}
               />
             </div>
           )}

@@ -1,7 +1,6 @@
 import logo from '../public/logo.png';
 import logoMobile from '../public/logo_mobile.png';
 import loginBtn from '../public/login_btn.png';
-
 import Image from 'next/image';
 import styles from '@/styles/Navbar.module.css';
 import Link from 'next/link';
@@ -10,7 +9,7 @@ import { useRouter } from 'next/router';
 
 export default function Navbar() {
   const { user } = useAuth();
-  const router = useRouter(); // 현재 경로 가져오기
+  const router = useRouter();
 
   return (
     <>
