@@ -1,6 +1,6 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { PAGE_SIZE } from "@/variables/queryKeys";
-import { READ_ONE, READ_ALL } from "@/variables/entities";
+import { READ_ONE, READ_ALL, CRUD_COMMENT } from "@/variables/entities";
 
 export function useGetBestList(entity, params = {}) {
   const { queryKey, read: axiosFunction } = READ_ALL(entity);
@@ -10,7 +10,7 @@ export function useGetBestList(entity, params = {}) {
   });
 }
 
-export function useGetList(entity, { orderBy, keyword }) {
+export function useGetInfiniteList(entity, { orderBy, keyword }) {
   const { queryKey, read: axiosFunction } = READ_ALL(entity);
 
   return useInfiniteQuery({
@@ -33,8 +33,24 @@ export function useGetList(entity, { orderBy, keyword }) {
   });
 }
 
+export function useGetList(entity, { orderBy, keyword, page }) {
+  const { queryKey, read: axiosFunction } = READ_ALL(entity);
+
+  return useQuery({
+    queryKey: queryKey({ orderBy, keyword, page }),
+    queryFn: () =>
+      axiosFunction({
+        keyword,
+        orderBy,
+        page,
+        pageSize: PAGE_SIZE.DEFAULT,
+      }),
+    keepPreviousData: true,
+  });
+}
+
 export function useGetCommentList({ idPath, whichComment }) {
-  const { queryKey, readComments: axiosFunction } = READ_ALL(whichComment);
+  const { queryKey, read: axiosFunction } = CRUD_COMMENT(whichComment);
 
   return useInfiniteQuery({
     queryKey: queryKey(idPath),

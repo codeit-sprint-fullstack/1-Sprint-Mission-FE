@@ -6,6 +6,7 @@ export const assets = {
   icons: {
     x: "/assets/icons/ic_X.svg",
     arrowDown: "/assets/icons/ic_arrow_down.svg",
+    arrowLeft: "/assets/icons/ic_arrow_left.svg",
     arrowReturn: "/assets/icons/ic_arrow_return.svg",
     arrowRight: "/assets/icons/ic_arrow_right.svg",
     facebook: "/assets/icons/ic_facebook.svg",

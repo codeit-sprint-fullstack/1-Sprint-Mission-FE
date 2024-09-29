@@ -12,6 +12,7 @@ import styles from "@/styles/pages/forum/main.module.scss";
 import { useAuth } from "@/context/AuthProvider";
 import { useGetById } from "@/service/queries";
 import { ENTITY } from "@/variables/entities";
+import Loader from "@/components/ui/Loader";
 
 export async function getServerSideProps(context) {
   const queryClient = new QueryClient();
@@ -37,6 +38,7 @@ export default function ArticleDetailPage() {
   const {
     isError,
     error,
+    isPending,
     data: article,
   } = useGetById({
     entity,
@@ -46,6 +48,10 @@ export default function ArticleDetailPage() {
   if (isError) {
     const errMsg = error?.message;
     return <Message type="error" msg={errMsg} />;
+  }
+
+  if (isPending) {
+    return <Loader />;
   }
 
   if (!user) {

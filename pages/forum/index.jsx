@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import Head from "next/head";
 import Link from "next/link";
 import { articleKey } from "@/variables/queryKeys";
-import { useGetList } from "@/service/queries";
+import { useGetInfiniteList } from "@/service/queries";
 import { getArticleList } from "@/service/api/article";
 import BestArticles from "@/components/article/BestArticles";
 import ArticleList from "@/components/article/ArticleList";
@@ -52,7 +52,7 @@ export default function ForumPage() {
     hasNextPage,
     error,
     fetchNextPage,
-  } = useGetList(entity, { orderBy, keyword });
+  } = useGetInfiniteList(entity, { orderBy, keyword });
 
   useEffect(() => {
     if (inView) {

@@ -1,6 +1,7 @@
 import axios from "./axios";
 
 const PATH = "/products";
+
 export async function getProductList({
   pageSize = 10,
   orderBy = "recent",

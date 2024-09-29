@@ -3,13 +3,8 @@ import ProfileImg from "@/components/ui/ProfileImg";
 import KebabMenu from "@/components/ui/KebabMenu";
 import styles from "./ArticleDetail.module.scss";
 import LikeButton from "../user/LikeButton";
-import Message from "../ui/Message";
 
 export default function ArticleDetail({ article, entity }) {
-  if (!article) {
-    return <Message type="error" msg="article이 없음" />;
-  }
-
   const writer = article?.writer;
   return (
     <article className={styles.ArticleDetail}>

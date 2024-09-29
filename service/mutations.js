@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { CREATE_UPDATE, MUTATE_COMMENT, DELETE } from "@/variables/entities";
+import { CREATE_UPDATE, CRUD_COMMENT, DELETE } from "@/variables/entities";
 
 //to create product or article
 export function useCreateMutation({ entity }) {
@@ -59,7 +59,7 @@ export function useDeleteMutation({ entity }) {
 export function useDeleteComment({ whichComment, idPath }) {
   const queryClient = useQueryClient();
 
-  const { queryKey, delete: axiosFunction } = MUTATE_COMMENT(whichComment);
+  const { queryKey, delete: axiosFunction } = CRUD_COMMENT(whichComment);
 
   return useMutation({
     mutationFn: (commentId) => {
@@ -75,7 +75,7 @@ export function useDeleteComment({ whichComment, idPath }) {
 //comments
 export function useCreateComment({ idPath, whichComment }) {
   const queryClient = useQueryClient();
-  const { queryKey, create: axiosFunction } = MUTATE_COMMENT(whichComment);
+  const { queryKey, create: axiosFunction } = CRUD_COMMENT(whichComment);
 
   return useMutation({
     mutationFn: (data) => axiosFunction(idPath, data),
@@ -91,7 +91,7 @@ export function useCreateComment({ idPath, whichComment }) {
 export function useUpdateComment({ whichComment, idPath, commentId }) {
   const queryClient = useQueryClient();
 
-  const { queryKey, edit: axiosFunction } = MUTATE_COMMENT(whichComment);
+  const { queryKey, update: axiosFunction } = CRUD_COMMENT(whichComment);
 
   return useMutation({
     mutationFn: (data) => axiosFunction(commentId, data),

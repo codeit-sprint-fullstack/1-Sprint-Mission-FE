@@ -30,24 +30,24 @@ const CONFIG = {
     path: "/forum",
     name: "게시글",
     key: articleKey,
-    createComment: createArticleComment,
-    delete: deleteArticleById,
-    update: updateArticleById,
-    create: createArticle,
     readAll: getArticleList,
     readOne: getArticleById,
+    create: createArticle,
+    update: updateArticleById,
+    delete: deleteArticleById,
+    createComment: createArticleComment,
     readComments: getArticleComments,
   },
   product: {
     path: "/products",
     name: "상품",
     key: productKey,
-    createComment: createProductComment,
-    delete: deleteProductById,
-    update: updateProductById,
-    create: createProduct,
     readAll: getProductList,
     readOne: getProductById,
+    create: createProduct,
+    update: updateProductById,
+    delete: deleteProductById,
+    createComment: createProductComment,
     readComments: getProductComments,
   },
   comment: {
@@ -62,7 +62,6 @@ export const READ_ALL = (entity) => {
     path: CONFIG[entity].path,
     queryKey: (params) => CONFIG[entity].key.list(params),
     read: CONFIG[entity].readAll,
-    readComments: CONFIG[entity].readComments,
   };
 };
 
@@ -94,11 +93,12 @@ export const CREATE_UPDATE = (entity) => {
   };
 };
 
-export const MUTATE_COMMENT = (entity) => {
+export const CRUD_COMMENT = (entity) => {
   return {
     queryKey: (idPath) => CONFIG[entity].key.comments(idPath),
     create: CONFIG[entity].createComment,
     delete: CONFIG.comment.delete,
     update: CONFIG.comment.update,
+    read: CONFIG[entity].readComments,
   };
 };

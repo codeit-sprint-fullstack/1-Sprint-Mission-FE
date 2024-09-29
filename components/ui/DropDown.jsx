@@ -3,7 +3,7 @@ import styles from "./DropDown.module.scss";
 import assets from "@/variables/images";
 import { IconContainer } from "./ImgContainers";
 
-export default function DropDown({ setOrderBy, orderBy }) {
+export default function DropDown({ setOrderBy, orderBy, entity = "article" }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropDownRef = useRef(0);
 
@@ -16,13 +16,12 @@ export default function DropDown({ setOrderBy, orderBy }) {
     setIsOpen(false);
   };
 
-  const handleClickOutside = (e) => {
-    if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
-      setIsOpen(false);
-    }
-  };
-
   useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
     document.addEventListener("click", handleClickOutside);
     return () => {
       document.removeEventListener("click", handleClickOutside);
@@ -30,8 +29,8 @@ export default function DropDown({ setOrderBy, orderBy }) {
   }, []);
 
   return (
-    <div className={styles.DropDown}>
-      <button onClick={toggleDropDown} ref={dropDownRef}>
+    <div className={styles.DropDown} ref={dropDownRef}>
+      <button onClick={toggleDropDown}>
         <div className={styles.default}>
           {orderBy === "recent" ? "최신순" : "인기순"}
           <IconContainer src={assets.icons.arrowDown} alt="arrow down icon" />
@@ -44,7 +43,13 @@ export default function DropDown({ setOrderBy, orderBy }) {
       {isOpen && (
         <ul>
           <li onClick={() => handleSorting("recent")}>최신순</li>
-          <li onClick={() => handleSorting("like")}>인기순</li>
+          <li
+            onClick={() =>
+              handleSorting(entity === "article" ? "like" : "favorite")
+            }
+          >
+            인기순
+          </li>
         </ul>
       )}
     </div>
