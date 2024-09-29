@@ -1,5 +1,6 @@
 "use client";
 
+import Modal from "react-modal";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -8,11 +9,10 @@ import classNames from "classnames";
 
 import EmailInput from "../components/EmailInput";
 import PasswordInput from "../components/PasswordInput";
-import SimpleModal from "../components/SimpleModal";
 import useAuth from "../hooks/useAuth";
 
 export default function SignInSet() {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const {
     register,
@@ -76,9 +76,15 @@ export default function SignInSet() {
       <EmailInput label="email" register={register} errors={errors} />
       <PasswordInput label="password" register={register} errors={errors} />
       <button className={btnSignInClass} disabled={!isValid} />
-      <SimpleModal show={showModal} onClose={handleCloseModal}>
-        {modalMessage}
-      </SimpleModal>
+      <Modal
+        className="simple-modal"
+        isOpen={showModal}
+        onRequestClose={handleCloseModal}
+        contentLabel="sign-in-modal"
+      >
+        <p className="text-simple-modal">{modalMessage}</p>
+        <button className="btn-simple-modal" onClick={handleCloseModal} />
+      </Modal>
     </form>
   );
 }

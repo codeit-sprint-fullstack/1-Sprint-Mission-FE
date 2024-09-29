@@ -524,6 +524,12 @@ module.exports = {
             gap: "4.2rem",
           },
         },
+        ".text-simple-modal": {
+          fontSize: "1.8rem",
+          color: "#1f2937",
+          lineHeight: "2.6rem",
+          fontWeight: 500,
+        },
         ".btn-simple-modal": {
           width: "16.5rem",
           height: "4.8rem",
