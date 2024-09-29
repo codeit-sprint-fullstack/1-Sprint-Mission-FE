@@ -1,7 +1,7 @@
 import styles from "@/styles/Comment.module.css";
 import { useState } from "react";
 import Image from "next/image";
-import axios from "@/lib/axios";
+import deleteComment from "@/lib/axios";
 
 export default function comment({ comment }) {
   const [isOpen, setIsOpen] = useState();
@@ -9,12 +9,6 @@ export default function comment({ comment }) {
   const toggleDropDown = () => {
     setIsOpen(!isOpen);
   };
-
-  async function deleteComment(targetId) {
-    const res = await axios.delete(`/comment/${targetId}`);
-    alert("삭제되었습니다.");
-    window.location.reload();
-  }
 
   return (
     <>
@@ -55,7 +49,7 @@ export default function comment({ comment }) {
           />
           <div className={styles.comment_information_flex}>
             <span className={styles.comment_information_nickname}>
-              똑똑한판다
+              {comment.writer.nickname}
             </span>
             <span className={styles.comment_information_time}>1시간 전</span>
           </div>

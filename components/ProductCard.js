@@ -10,6 +10,7 @@ export default function ProductCard({ product }) {
           src={product.images[0]}
           width={220}
           height={220}
+          priority
           alt="product_image"
         />
         <p className={styles.productCardName}>{product.name}</p>

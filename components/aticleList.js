@@ -1,28 +1,27 @@
 import styles from "@/styles/ArticleList.module.css";
 import { useEffect, useState, useRef } from "react";
-import axios from "@/lib/axios";
+import { useQuery } from "@tanstack/react-query";
+import { getArticles } from "@/lib/api";
 import ArticleCard from "./articleCard";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function ArticleList() {
-  const [articles, setArticles] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [boxText, setBoxText] = useState("최신순");
   const [orderBy, setOrderBy] = useState("recent");
   const [searchQuery, setSearchQuery] = useState("");
   const dropDownRef = useRef(null);
 
-  useEffect(() => {
-    async function fetchArticles() {
-      const res = await axios.get(
-        `/article?order=${orderBy}&keyword=${searchQuery}&pageSize=6`
-      );
-      setArticles(res.data);
-    }
+  const { data: articles, refetch } = useQuery({
+    queryKey: ["articles", orderBy, searchQuery],
+    queryFn: () => getArticles(orderBy, searchQuery),
+    enabled: false,
+  });
 
-    fetchArticles();
-  }, [orderBy, searchQuery]);
+  useEffect(() => {
+    refetch();
+  }, [orderBy, searchQuery, refetch]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -118,9 +117,10 @@ export default function ArticleList() {
           )}
         </div>
       </div>
-      {articles.map((article) => (
-        <ArticleCard key={article.id} article={article} />
-      ))}
+      {articles &&
+        articles.list.map((article) => (
+          <ArticleCard key={article.id} article={article} />
+        ))}
     </div>
   );
 }

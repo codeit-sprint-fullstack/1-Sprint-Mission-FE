@@ -2,7 +2,7 @@
   width: 1200px;
   margin: 24px auto 0;
   background-color: #fcfcfc;
-  height: 100px;
+  height: fit-content;
   border-bottom: 1px solid #e5e7eb;
   position: relative;
 }
@@ -65,7 +65,7 @@
 
 .comment_information {
   display: flex;
-  position: absolute;
+  margin-top: 24px;
   bottom: 12px;
   gap: 8px;
 }

@@ -1,31 +1,31 @@
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
-import axios from "@/lib/axios";
+import { useQuery } from "@tanstack/react-query";
+import { getArticle, getArticleComment } from "@/lib/api";
 import Image from "next/image";
 import styles from "@/styles/Article.module.css";
 import Link from "next/link";
 import Comment from "@/components/comment";
+import formatDate from "@/utils/formatDate";
 
 export default function Article() {
-  const [article, setArticle] = useState();
-  const [comment, setComment] = useState();
   const [form, setForm] = useState({ content: "" });
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const { id } = router.query;
   const dropDownRef = useRef(null);
 
-  async function getArticle(targetId) {
-    const res = await axios.get(`article/${targetId}`);
-    const nextArticle = res.data;
-    setArticle(nextArticle);
-  }
+  const { data: article, refetch: refetchArticle } = useQuery({
+    queryKey: ["article", id],
+    queryFn: () => getArticle(id),
+    enabled: !!id,
+  });
 
-  async function getComment(targetId) {
-    const res = await axios.get(`article/${targetId}/comment`);
-    const nextComment = res.data;
-    setComment(nextComment);
-  }
+  const { data: comment, refetch: refetchComment } = useQuery({
+    queryKey: ["comment", id],
+    queryFn: () => getArticleComment(id),
+    enabled: !!id,
+  });
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -43,20 +43,11 @@ export default function Article() {
   useEffect(() => {
     if (!id) return;
 
-    getArticle(id);
-    getComment(id);
-  }, [id]);
+    refetchArticle();
+    refetchComment();
+  }, [id, refetchArticle, refetchComment]);
 
   if (!article) return null;
-
-  function formatDate(dateString) {
-    const options = { year: "numeric", month: "2-digit", day: "2-digit" };
-    const date = new Date(dateString);
-    return date
-      .toLocaleDateString("ko-KR", options)
-      .replace(/\./g, "")
-      .replace(/ /g, ". ");
-  }
 
   const toggleDropDown = () => {
     setIsOpen(!isOpen);
@@ -165,9 +156,9 @@ export default function Article() {
             등록
           </button>
         </form>
-        {comment && comment.length > 0 ? (
+        {comment && comment.list && comment.list.length ? (
           <div className={styles.comment_list}>
-            {comment.map((comment) => (
+            {comment.list.map((comment) => (
               <Comment key={comment.id} comment={comment} />
             ))}
             <Link href="/" className={styles.comment_list_btn}>

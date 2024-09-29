@@ -1,5 +1,5 @@
 import styles from "@/styles/RegistPage.module.css";
-import { useState, useEffect, useReducer } from "react";
+import { useState, useEffect } from "react";
 import axios from "@/lib/axios";
 import { useRouter } from "next/router";
 
