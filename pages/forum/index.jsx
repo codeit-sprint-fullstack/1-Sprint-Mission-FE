@@ -18,33 +18,23 @@ import Message from "@/components/ui/Message";
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
 
-  try {
-    await Promise.all([
-      queryClient.prefetchQuery({
-        queryKey: articleKey.list({ pageSize: 3, orderBy: "like" }),
-        queryFn: () => getArticleList({ pageSize: 3, orderBy: "like" }),
-      }),
-      queryClient.prefetchInfiniteQuery({
-        queryKey: articleKey.list({ orderBy: "recent", keyword: "" }),
-        queryFn: () => getArticleList({ orderBy: "recent" }),
-        initialPageParam: 1,
-      }),
-    ]);
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: articleKey.list({ pageSize: 3, orderBy: "like" }),
+      queryFn: () => getArticleList({ pageSize: 3, orderBy: "like" }),
+    }),
+    queryClient.prefetchInfiniteQuery({
+      queryKey: articleKey.list({ orderBy: "recent", keyword: "" }),
+      queryFn: () => getArticleList({ orderBy: "recent" }),
+      initialPageParam: 1,
+    }),
+  ]);
 
-    return {
-      props: {
-        dehydratedState: dehydrate(queryClient),
-      },
-    };
-  } catch (err) {
-    console.error(err.message);
-    if (err.response) {
-      console.log(err.response.status);
-      console.log(err.response.data);
-    } else {
-      console.error("Error", err);
-    }
-  }
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
 }
 
 export default function ForumPage() {

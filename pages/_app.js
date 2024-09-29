@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }) {
         mutationCache: new MutationCache({
           onError: (error) => {
             console.error("Mutation Error", error.message);
-            onModalOpen(error.message);
+            onModalOpen({ msg: error.message });
             console.log("글로벌에러 모달 열림");
           },
         }),
@@ -49,8 +49,8 @@ export default function App({ Component, pageProps }) {
             <Header />
             <Main>
               <Component {...pageProps} />
-              <GlobalModal />
             </Main>
+            <GlobalModal />
           </AuthProvider>
         </HydrationBoundary>
         <ReactQueryDevtools initialIsOpen={false} />

@@ -12,7 +12,11 @@ export default function CommentContent({ comment, idPath, whichComment }) {
     ? `${styles.CommentContent} ${styles.edit}`
     : styles.CommentContent;
 
-  const { mutate } = useUpdateComment(comment.id);
+  const { mutate } = useUpdateComment({
+    whichComment,
+    idPath,
+    commentId: comment.id,
+  });
 
   const handleUpdateSubmit = (data) => {
     const updateComment = { content: data.content };

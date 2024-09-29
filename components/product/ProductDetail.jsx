@@ -5,7 +5,7 @@ import LikeButton from "../user/LikeButton";
 import UserInfo from "../user/UserInfo";
 import styles from "./ProductDetail.module.scss";
 
-export default function ProductDetail({ product }) {
+export default function ProductDetail({ product, entity }) {
   if (!product) return <Message msg="product data가 없나봄." />;
 
   return (
@@ -20,7 +20,7 @@ export default function ProductDetail({ product }) {
       <div className={styles.details}>
         <div className={styles.title}>
           <h1>{product?.name}</h1>
-          <KebabMenu idPath={product?.id} entity="product" />
+          <KebabMenu idPath={product?.id} entity={entity} />
         </div>
         <p className={styles.price}>{product?.price}</p>
         <div className={styles.line}></div>

@@ -3,9 +3,11 @@ import Loader from "@/components/ui/Loader";
 import Message from "@/components/ui/Message";
 import { useUpdateMutation } from "@/service/mutations";
 import { useGetById } from "@/service/queries";
+import { ENTITY } from "@/variables/entities";
 import { useRouter } from "next/router";
 
 export default function EditArticlePage() {
+  const entity = ENTITY.ARTICLE;
   const router = useRouter();
   const { articleId } = router.query;
   const {
@@ -14,11 +16,11 @@ export default function EditArticlePage() {
     data: article,
     isPending,
   } = useGetById({
-    entity: "article",
+    entity,
     id: articleId,
   });
 
-  const { mutate } = useUpdateMutation({ entity: "article", id: articleId });
+  const { mutate } = useUpdateMutation({ entity, id: articleId });
 
   if (isPending) return <Loader />;
   if (isError) {

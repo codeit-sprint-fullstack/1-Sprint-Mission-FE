@@ -4,14 +4,13 @@ import KebabMenu from "@/components/ui/KebabMenu";
 import styles from "./ArticleDetail.module.scss";
 import LikeButton from "../user/LikeButton";
 
-export default function ArticleDetail({ article }) {
+export default function ArticleDetail({ article, entity }) {
   const { writer } = article;
-
   return (
     <article className={styles.ArticleDetail}>
       <div className={styles.top}>
         <h3>{article.title}</h3>
-        <KebabMenu idPath={article.id} entity="article" />
+        <KebabMenu idPath={article.id} entity={entity} />
       </div>
       <div className={styles.middle}>
         <div className={styles.user}>

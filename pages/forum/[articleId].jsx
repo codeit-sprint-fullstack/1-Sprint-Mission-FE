@@ -11,6 +11,7 @@ import ReturnToListBtn from "@/components/ui/ReturnToListBtn";
 import styles from "@/styles/pages/forum/main.module.scss";
 import { useAuth } from "@/context/AuthProvider";
 import { useGetById } from "@/service/queries";
+import { ENTITY } from "@/variables/entities";
 
 export async function getServerSideProps(context) {
   const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function ArticleDetailPage() {
+  const entity = ENTITY.ARTICLE;
   const router = useRouter();
   const { user } = useAuth(true);
   const { articleId } = router.query;
@@ -57,11 +59,11 @@ export default function ArticleDetailPage() {
       </Head>
 
       <section className={styles.ArticleDetailPage}>
-        <ArticleDetail article={article} />
+        <ArticleDetail article={article} entity={entity} />
 
-        <CommentForm idPath={articleId} whichComment="article" />
+        <CommentForm idPath={articleId} whichComment={entity} />
 
-        <CommentList idPath={articleId} whichComment="article" />
+        <CommentList idPath={articleId} whichComment={entity} />
         <ReturnToListBtn />
       </section>
     </>

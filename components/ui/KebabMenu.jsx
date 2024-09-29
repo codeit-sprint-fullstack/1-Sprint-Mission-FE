@@ -6,15 +6,20 @@ import { useDeleteMutation } from "@/service/mutations";
 import assets from "@/variables/images";
 import { IconContainer } from "./ImgContainers";
 import useGlobalModal from "@/hooks/useGlobalModal";
-import { EDIT_DELETE } from "@/variables/entities";
+import { DELETE, CREATE_EDIT } from "@/variables/entities";
 
 export default function KebabMenu({ idPath, entity }) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const dropDownRef = useRef(null);
 
-  const { pathAfterDeletion, editPath, deleteMessage, successMessage } =
-    EDIT_DELETE[entity];
+  const { mutatePath } = CREATE_EDIT(entity);
+
+  const {
+    path: pathAfterDeletion,
+    deleteMessage,
+    successMessage,
+  } = DELETE(entity);
 
   const { onModalOpen, GlobalModal } = useGlobalModal();
 
@@ -31,18 +36,20 @@ export default function KebabMenu({ idPath, entity }) {
   };
 
   const handleClickEdit = () => {
-    router.push(`${editPath}/${idPath}`);
+    router.push(`${mutatePath}/${idPath}`);
   };
 
   const handleClickDelete = () => {
-    onModalOpen(deleteMessage);
+    onModalOpen({ msg: deleteMessage, action: handleConfirmDelete });
   };
 
   const handleConfirmDelete = () => {
     mutate(idPath, {
       onSuccess: () => {
-        onModalOpen(successMessage);
-        router.push(pathAfterDeletion);
+        onModalOpen({
+          msg: successMessage,
+          action: router.push(pathAfterDeletion),
+        });
       },
     });
   };
@@ -57,7 +64,7 @@ export default function KebabMenu({ idPath, entity }) {
 
   return (
     <>
-      <GlobalModal onClose={handleConfirmDelete} />
+      <GlobalModal />
 
       <div className={styles.KebabMenu} ref={dropDownRef}>
         <Button onClick={toggleDropDown} variant="icon">

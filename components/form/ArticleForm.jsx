@@ -5,7 +5,6 @@ import TextArea from "./comm/TextArea";
 import Button from "../ui/Button";
 import { useEffect } from "react";
 import { ARTICLE } from "@/variables/formValidation";
-import Modal from "../ui/Modal";
 
 export default function ArticleForm({
   onSubmit,

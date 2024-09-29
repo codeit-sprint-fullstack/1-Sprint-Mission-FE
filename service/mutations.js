@@ -1,40 +1,23 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-  createArticle,
-  createArticleComment,
-  createProduct,
-  deleteArticleById,
-  updateArticleById,
-} from "./api/article";
-import { articleKey, productKey } from "@/variables/queryKeys";
 import { useRouter } from "next/router";
-import { useParams, usePathname } from "next/navigation";
-import { deleteCommentById, updateCommentById } from "./api/comments";
-import {
-  createProductComment,
-  deleteProductById,
-  updateProductById,
-} from "./api/product";
+import { CREATE_EDIT, MUTATE_COMMENT, DELETE } from "@/variables/entities";
 
 //to create product or article
 export function useCreateMutation({ entity }) {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  const apiFunction = entity === "article" ? createArticle : createProduct;
-  const path = entity === "article" ? "forum" : "products";
+  const { path, queryKey, create: axiosFunction } = CREATE_EDIT(entity);
 
   return useMutation({
-    mutationFn: (newArticle) => apiFunction(newArticle),
+    mutationFn: (newArticle) => axiosFunction(newArticle),
     onSuccess: (data) => {
       if (data.id) {
-        router.push(`/${path}/${data.id}`);
+        router.push(`${path}/${data.id}`);
       }
 
-      queryClient.invalidateQueries(articleKey.lists());
-    },
-    onError: (error) => {
-      console.error(error.message);
+      queryClient.invalidateQueries(queryKey());
+      console.log("successCreate:", queryKey());
     },
   });
 }
@@ -45,42 +28,30 @@ export function useUpdateMutation({ entity, id }) {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  const apiFunction =
-    entity === "article" ? updateArticleById : updateProductById;
-  const path = entity === "article" ? "forum" : "products";
-  const queryKey = entity === "article" ? articleKey.list : productKey.list;
+  const { path, queryKey, edit: axiosFunction } = CREATE_EDIT(entity);
 
   return useMutation({
-    mutationFn: (updateData) => apiFunction(id, updateData),
+    mutationFn: (updateData) => axiosFunction(id, updateData),
     onSuccess: (data) => {
       if (data.id) {
-        router.push(`/${path}/${data.id}`);
+        queryClient.invalidateQueries({ queryKey: queryKey() });
+        router.push(`${path}/${data.id}`);
+        console.log("successUpdate", queryKey());
       }
-      queryClient.invalidateQueries({ queryKey: queryKey() });
     },
   });
 }
 
-export function useDeleteMutation(entity) {
+export function useDeleteMutation({ entity }) {
   const queryClient = useQueryClient();
 
-  let queryKey;
-  let deleteApi;
-
-  if (entity === "article") {
-    queryKey = articleKey.details();
-    deleteApi = deleteArticleById;
-  } else if (entity == "product") {
-    queryKey = productKey.details();
-    deleteApi = deleteProductById;
-  }
+  const { queryKey, delete: axiosFunction } = DELETE(entity);
 
   return useMutation({
-    mutationFn: (idPath) => deleteApi(idPath),
+    mutationFn: (idPath) => axiosFunction(idPath),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey });
-
-      console.log("queryKey:", queryKey);
+      queryClient.invalidateQueries({ queryKey: queryKey() });
+      console.log("successDeletion", queryKey());
     },
   });
 }
@@ -88,18 +59,15 @@ export function useDeleteMutation(entity) {
 export function useDeleteComment({ whichComment, idPath }) {
   const queryClient = useQueryClient();
 
-  const queryKey =
-    whichComment === "article"
-      ? articleKey.comments(idPath)
-      : productKey.comments(idPath);
+  const { queryKey, delete: axiosFunction } = MUTATE_COMMENT(whichComment);
 
   return useMutation({
-    mutationFn: async (commentId) => {
-      return await deleteCommentById(commentId);
+    mutationFn: (commentId) => {
+      return axiosFunction(commentId);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey });
-      console.log("queryKey:", queryKey);
+      queryClient.invalidateQueries({ queryKey: queryKey(idPath) });
+      console.log("successCommentDeletion:", queryKey(idPath));
     },
   });
 }
@@ -107,12 +75,10 @@ export function useDeleteComment({ whichComment, idPath }) {
 //comments
 export function useCreateComment({ idPath, whichComment }) {
   const queryClient = useQueryClient();
-  const isArticle = whichComment === "article";
-  const queryKey = isArticle ? articleKey.comments : productKey.comments;
-  const apiFunction = isArticle ? createArticleComment : createProductComment;
+  const { queryKey, create: axiosFunction } = MUTATE_COMMENT(whichComment);
 
   return useMutation({
-    mutationFn: (data) => apiFunction(idPath, data),
+    mutationFn: (data) => axiosFunction(idPath, data),
     onSuccess: () => {
       console.log("successMutation: create an comment");
       queryClient.invalidateQueries({
@@ -122,23 +88,19 @@ export function useCreateComment({ idPath, whichComment }) {
   });
 }
 
-export function useUpdateComment(commentId) {
+export function useUpdateComment({ whichComment, idPath, commentId }) {
   const queryClient = useQueryClient();
-  const params = useParams();
-  const pathName = usePathname();
 
-  const isArticle = pathName.startsWith("/forum");
-  const whichId = isArticle ? params.articleId : params.productId;
-  const queryKey = isArticle ? articleKey.comments : productKey.comments;
+  const { queryKey, edit: axiosFunction } = MUTATE_COMMENT(whichComment);
 
   return useMutation({
-    mutationFn: (data) => updateCommentById(commentId, data),
+    mutationFn: (data) => axiosFunction(commentId, data),
     onSuccess: () => {
       console.log("successMutation:  update an comment");
       queryClient.invalidateQueries({
-        queryKey: queryKey(whichId),
+        queryKey: queryKey(idPath),
       });
-      console.log(queryKey(whichId));
+      console.log(queryKey(idPath));
     },
   });
 }
