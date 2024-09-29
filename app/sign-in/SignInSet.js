@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { signIn } from "@/lib/api-codeit-auth";
@@ -7,9 +8,12 @@ import classNames from "classnames";
 
 import EmailInput from "../components/EmailInput";
 import PasswordInput from "../components/PasswordInput";
+import SimpleModal from "../components/SimpleModal";
 import useAuth from "../hooks/useAuth";
 
 export default function SignInSet() {
+  const [showModal, setShowModal] = useState(true);
+  const [modalMessage, setModalMessage] = useState("");
   const {
     register,
     handleSubmit,
@@ -38,18 +42,24 @@ export default function SignInSet() {
   const email = watch("email");
   const password = watch("password");
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   const handleSignInBtnClick = async () => {
     try {
       const user = await signIn({ email, password });
-      console.log("user : ", user);
+
       if (user) {
         login(user);
         router.push("/");
       } else {
         console.error("load user data failed: No user data returned.");
       }
-    } catch (error) {
-      console.error("Sign-in error:", error);
+    } catch (err) {
+      setModalMessage(err.response.data.message);
+      setShowModal(true);
+      console.error("Sign-in error:", err);
       setError("email", {
         type: "manual",
         message: "이메일을 확인해 주세요.",
@@ -66,6 +76,9 @@ export default function SignInSet() {
       <EmailInput label="email" register={register} errors={errors} />
       <PasswordInput label="password" register={register} errors={errors} />
       <button className={btnSignInClass} disabled={!isValid} />
+      <SimpleModal show={showModal} onClose={handleCloseModal}>
+        {modalMessage}
+      </SimpleModal>
     </form>
   );
 }
