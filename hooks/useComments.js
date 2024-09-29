@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect } from "react";
-import { throttle } from "@/utils/throttle";
 import {
   fetchComments,
   createComments,

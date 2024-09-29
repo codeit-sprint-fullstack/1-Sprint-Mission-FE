@@ -1,4 +1,3 @@
-// API 엔드포인트 상수 정의
 export const API_ENDPOINTS = {
   AUTH: {
     SIGN_IN: "/auth/signIn",

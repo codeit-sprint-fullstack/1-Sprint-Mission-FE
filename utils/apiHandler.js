@@ -1,4 +1,3 @@
-// apiHandler.js
 export default async function apiHandler(apiCall) {
   try {
     return await apiCall();

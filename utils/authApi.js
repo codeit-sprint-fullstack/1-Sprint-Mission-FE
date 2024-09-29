@@ -1,6 +1,7 @@
 import apiClient from "./apiClient";
 import apiHandler from "./apiHandler";
 import { API_ENDPOINTS } from "./apiEndpoint";
+
 const saveAccessToken = (accessToken, refreshToken) => {
   if (accessToken) {
     localStorage.setItem("accessToken", accessToken);
@@ -8,7 +9,6 @@ const saveAccessToken = (accessToken, refreshToken) => {
   }
 };
 
-// 로그인 API 호출
 export const login = async (userData) => {
   return apiHandler(async () => {
     const { data } = await apiClient.post(API_ENDPOINTS.AUTH.SIGN_IN, userData);
@@ -17,7 +17,6 @@ export const login = async (userData) => {
   });
 };
 
-// 회원가입 API 호출
 export const signup = async (userData) => {
   return apiHandler(async () => {
     const { data } = await apiClient.post(API_ENDPOINTS.AUTH.SIGN_UP, userData);

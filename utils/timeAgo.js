@@ -13,7 +13,6 @@ export const timeAgo = (date) => {
     { unit: "초", value: timeDiffInSeconds % 60 },
   ];
 
-  // 가장 큰 단위의 시간 값을 반환
   const timeAgoString = times.find((time) => time.value > 0);
   return timeAgoString
     ? `${timeAgoString.value}${timeAgoString.unit} 전`
