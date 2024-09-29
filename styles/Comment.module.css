@@ -53,6 +53,7 @@
   color: #6b7280;
   background-color: white;
   cursor: pointer;
+  z-index: 2;
 }
 
 .comment_title_dropdown_btn {

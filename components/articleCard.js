@@ -31,7 +31,9 @@ export default function articleCard({ article }) {
             height={24}
             alt="user_profile"
           />
-          <span className={styles.article_card_nickname}>총명한 판다</span>
+          <span className={styles.article_card_nickname}>
+            {article.writer.nickname}
+          </span>
           <p className={styles.article_card_date}>
             {formatDate(article.createdAt)}
           </p>

@@ -1,7 +1,8 @@
 import styles from "@/styles/Comment.module.css";
 import { useState } from "react";
 import Image from "next/image";
-import deleteComment from "@/lib/axios";
+import { deleteProductComment } from "@/lib/api";
+import { useMutation } from "@tanstack/react-query";
 
 export default function comment({ comment }) {
   const [isOpen, setIsOpen] = useState();
@@ -9,6 +10,17 @@ export default function comment({ comment }) {
   const toggleDropDown = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleCommentDelete = (commentId) => {
+    deleteMutation.mutate(commentId);
+  };
+
+  const deleteMutation = useMutation({
+    mutationFn: (commentId) => deleteProductComment(commentId),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["comments", id]);
+    },
+  });
 
   return (
     <>
@@ -31,7 +43,7 @@ export default function comment({ comment }) {
                 </button>
                 <button
                   className={styles.comment_title_dropdown_box_delete}
-                  onClick={() => deleteComment(comment.id)}
+                  onClick={() => handleCommentDelete(comment.id)}
                 >
                   삭제하기
                 </button>

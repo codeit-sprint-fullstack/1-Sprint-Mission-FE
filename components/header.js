@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "@/styles/Header.module.css";
 import Link from "next/link";
@@ -19,6 +20,17 @@ function NavLink({ href, children, activeClassName }) {
 }
 
 export default function Header() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedUser = JSON.parse(localStorage.getItem("token"));
+      if (storedUser) {
+        setUser(storedUser.user);
+      }
+    }
+  }, []);
+
   return (
     <div className={styles.header}>
       <div className={styles.header_content}>
@@ -42,9 +54,16 @@ export default function Header() {
             </NavLink>
           </div>
         </div>
-        <Link href="/login" className={styles.login}>
-          로그인
-        </Link>
+        {user ? (
+          <div className={styles.headerUserInfoContainer}>
+            <Image src="/ic_profile.png" width={40} height={40} />
+            <p className={styles.headerUserNickname}>{user.nickname}</p>
+          </div>
+        ) : (
+          <Link href="/login" className={styles.login}>
+            로그인
+          </Link>
+        )}
       </div>
     </div>
   );

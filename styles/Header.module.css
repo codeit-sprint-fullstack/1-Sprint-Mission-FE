@@ -68,3 +68,17 @@
 .logo {
   cursor: pointer;
 }
+
+.headerUserInfoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.headerUserNickname {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  color: #4b5563;
+}

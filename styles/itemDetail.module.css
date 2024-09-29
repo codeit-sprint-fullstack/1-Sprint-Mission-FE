@@ -176,6 +176,11 @@
   color: #f3f4f6;
 }
 
+.itemDetailCommentBtnActive {
+  background-color: var(--brand-blue);
+  cursor: pointer;
+}
+
 .itemDetailCommentListContainer {
   width: 1200px;
   height: fit-content;
