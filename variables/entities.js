@@ -2,6 +2,9 @@ import {
   createArticle,
   createArticleComment,
   deleteArticleById,
+  getArticleById,
+  getArticleComments,
+  getArticleList,
   updateArticleById,
 } from "@/service/api/article";
 import { articleKey, productKey } from "./queryKeys";
@@ -9,6 +12,9 @@ import {
   createProduct,
   createProductComment,
   deleteProductById,
+  getProductById,
+  getProductComments,
+  getProductList,
   updateProductById,
 } from "@/service/api/product";
 import { deleteCommentById, updateCommentById } from "@/service/api/comments";
@@ -26,8 +32,11 @@ const CONFIG = {
     key: articleKey,
     createComment: createArticleComment,
     delete: deleteArticleById,
-    edit: updateArticleById,
+    update: updateArticleById,
     create: createArticle,
+    readAll: getArticleList,
+    readOne: getArticleById,
+    readComments: getArticleComments,
   },
   product: {
     path: "/products",
@@ -35,14 +44,34 @@ const CONFIG = {
     key: productKey,
     createComment: createProductComment,
     delete: deleteProductById,
-    edit: updateProductById,
+    update: updateProductById,
     create: createProduct,
+    readAll: getProductList,
+    readOne: getProductById,
+    readComments: getProductComments,
   },
   comment: {
     name: "댓글",
     delete: deleteCommentById,
-    edit: updateCommentById,
+    update: updateCommentById,
   },
+};
+
+export const READ_ALL = (entity) => {
+  return {
+    path: CONFIG[entity].path,
+    queryKey: (params) => CONFIG[entity].key.list(params),
+    read: CONFIG[entity].readAll,
+    readComments: CONFIG[entity].readComments,
+  };
+};
+
+export const READ_ONE = (entity) => {
+  return {
+    path: CONFIG[entity].path,
+    queryKey: (id) => CONFIG[entity].key.details(id),
+    read: CONFIG[entity].readOne,
+  };
 };
 
 export const DELETE = (entity) => {
@@ -55,12 +84,12 @@ export const DELETE = (entity) => {
   };
 };
 
-export const CREATE_EDIT = (entity) => {
+export const CREATE_UPDATE = (entity) => {
   return {
     path: CONFIG[entity].path,
     mutatePath: `${CONFIG[entity].path}/registration`,
     queryKey: () => CONFIG[entity].key.list(),
-    edit: CONFIG[entity].edit,
+    update: CONFIG[entity].update,
     create: CONFIG[entity].create,
   };
 };
@@ -70,6 +99,6 @@ export const MUTATE_COMMENT = (entity) => {
     queryKey: (idPath) => CONFIG[entity].key.comments(idPath),
     create: CONFIG[entity].createComment,
     delete: CONFIG.comment.delete,
-    edit: CONFIG.comment.edit,
+    update: CONFIG.comment.update,
   };
 };

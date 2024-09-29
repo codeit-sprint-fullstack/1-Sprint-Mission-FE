@@ -6,14 +6,14 @@ import { useDeleteMutation } from "@/service/mutations";
 import assets from "@/variables/images";
 import { IconContainer } from "./ImgContainers";
 import useGlobalModal from "@/hooks/useGlobalModal";
-import { DELETE, CREATE_EDIT } from "@/variables/entities";
+import { DELETE, CREATE_UPDATE } from "@/variables/entities";
 
 export default function KebabMenu({ idPath, entity }) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const dropDownRef = useRef(null);
 
-  const { mutatePath } = CREATE_EDIT(entity);
+  const { mutatePath } = CREATE_UPDATE(entity);
 
   const {
     path: pathAfterDeletion,

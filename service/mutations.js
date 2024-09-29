@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { CREATE_EDIT, MUTATE_COMMENT, DELETE } from "@/variables/entities";
+import { CREATE_UPDATE, MUTATE_COMMENT, DELETE } from "@/variables/entities";
 
 //to create product or article
 export function useCreateMutation({ entity }) {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  const { path, queryKey, create: axiosFunction } = CREATE_EDIT(entity);
+  const { path, queryKey, create: axiosFunction } = CREATE_UPDATE(entity);
 
   return useMutation({
     mutationFn: (newArticle) => axiosFunction(newArticle),
@@ -28,7 +28,7 @@ export function useUpdateMutation({ entity, id }) {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  const { path, queryKey, edit: axiosFunction } = CREATE_EDIT(entity);
+  const { path, queryKey, edit: axiosFunction } = CREATE_UPDATE(entity);
 
   return useMutation({
     mutationFn: (updateData) => axiosFunction(id, updateData),

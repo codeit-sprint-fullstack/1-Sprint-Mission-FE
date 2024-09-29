@@ -1,46 +1,22 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import {
-  getArticleList,
-  getArticleComments,
-  getArticleById,
-} from "./api/article";
-import { articleKey, PAGE_SIZE, productKey } from "@/variables/queryKeys";
-import { getProductById, getProductComments } from "./api/product";
+import { PAGE_SIZE } from "@/variables/queryKeys";
+import { READ_ONE, READ_ALL } from "@/variables/entities";
 
-export function useGetBestArticles(params = {}) {
+export function useGetBestList(entity, params = {}) {
+  const { queryKey, read: axiosFunction } = READ_ALL(entity);
   return useQuery({
-    queryKey: articleKey.list(params),
-    queryFn: () => getArticleList(params),
+    queryKey: queryKey(params),
+    queryFn: () => axiosFunction(params),
   });
 }
 
-export function useGetCommentList({ idPath, whichComment }) {
-  const isArticle = whichComment === "article";
-  const queryKey = isArticle ? articleKey.comments : productKey.comments;
-  const apiFunction = isArticle ? getArticleComments : getProductComments;
+export function useGetList(entity, { orderBy, keyword }) {
+  const { queryKey, read: axiosFunction } = READ_ALL(entity);
 
   return useInfiniteQuery({
-    queryKey: queryKey(idPath),
-    queryFn: ({ pageParam = null }) => {
-      return apiFunction(idPath, { cursor: pageParam });
-    },
-    initialPageParam: null,
-    getNextPageParam: (lastPage) => {
-      if (!lastPage.nextCursor) {
-        return undefined;
-      }
-      return lastPage.nextCursor;
-    },
-    keepPreviousData: true,
-    enabled: !!idPath,
-  });
-}
-
-export function useGetArticleList({ orderBy, keyword }) {
-  return useInfiniteQuery({
-    queryKey: articleKey.list({ orderBy, keyword }),
+    queryKey: queryKey({ orderBy, keyword }),
     queryFn: ({ pageParam = 1 }) =>
-      getArticleList({
+      axiosFunction({
         keyword,
         orderBy,
         page: pageParam,
@@ -57,12 +33,32 @@ export function useGetArticleList({ orderBy, keyword }) {
   });
 }
 
+export function useGetCommentList({ idPath, whichComment }) {
+  const { queryKey, readComments: axiosFunction } = READ_ALL(whichComment);
+
+  return useInfiniteQuery({
+    queryKey: queryKey(idPath),
+    queryFn: ({ pageParam = null }) => {
+      return axiosFunction(idPath, { cursor: pageParam });
+    },
+    initialPageParam: null,
+    getNextPageParam: (lastPage) => {
+      if (!lastPage.nextCursor) {
+        return undefined;
+      }
+      return lastPage.nextCursor;
+    },
+    keepPreviousData: true,
+    enabled: !!idPath,
+  });
+}
+
 export function useGetById({ entity, id }) {
-  const queryKey = entity === "article" ? articleKey.detail : productKey.detail;
-  const apiFunction = entity === "article" ? getArticleById : getProductById;
+  const { queryKey, read: axiosFunction } = READ_ONE(entity);
+
   return useQuery({
     queryKey: queryKey(id),
-    queryFn: () => apiFunction(id),
+    queryFn: () => axiosFunction(id),
     enabled: !!id,
   });
 }

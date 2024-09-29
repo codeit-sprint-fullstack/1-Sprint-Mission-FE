@@ -2,7 +2,7 @@ import Link from "next/link";
 import { formatDate, formatLikes } from "@/utils/formatFn";
 import { IconContainer, ImageContainer } from "../ui/ImgContainers";
 import styles from "./BestArticles.module.scss";
-import { useGetBestArticles } from "@/service/queries";
+import { useGetBestList } from "@/service/queries";
 import assets from "@/variables/images";
 
 function ArticleCard({ article, userName }) {
@@ -42,9 +42,8 @@ function ArticleCard({ article, userName }) {
   );
 }
 
-export default function BestArticles() {
-  const { data } = useGetBestArticles({ pageSize: 3, orderBy: "like" });
-
+export default function BestArticles({ entity }) {
+  const { data } = useGetBestList(entity, { pageSize: 3, orderBy: "like" });
   const { list } = data;
 
   if (list.length === 0) {
@@ -56,7 +55,7 @@ export default function BestArticles() {
       {list.map((article) => {
         return (
           <li className={styles.ArticleCard} key={article.id}>
-            <Link href={`forum/${article.id}`}>
+            <Link href={`/forum/${article.id}`}>
               <ArticleCard article={article} />
             </Link>
           </li>

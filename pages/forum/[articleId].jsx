@@ -39,7 +39,7 @@ export default function ArticleDetailPage() {
     error,
     data: article,
   } = useGetById({
-    entity: "article",
+    entity,
     id: articleId,
   });
 

@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import Head from "next/head";
 import Link from "next/link";
 import { articleKey } from "@/variables/queryKeys";
-import { useGetArticleList } from "@/service/queries";
+import { useGetList } from "@/service/queries";
 import { getArticleList } from "@/service/api/article";
 import BestArticles from "@/components/article/BestArticles";
 import ArticleList from "@/components/article/ArticleList";
@@ -14,6 +14,7 @@ import DropDown from "@/components/ui/DropDown";
 import Loader from "@/components/ui/Loader";
 import styles from "@/styles/pages/forum/main.module.scss";
 import Message from "@/components/ui/Message";
+import { ENTITY } from "@/variables/entities";
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
@@ -41,6 +42,7 @@ export default function ForumPage() {
   const [keyword, setKeyword] = useState("");
   const [orderBy, setOrderBy] = useState("recent");
   const { ref, inView } = useInView();
+  const entity = ENTITY.ARTICLE;
 
   const {
     data: articleData,
@@ -50,7 +52,7 @@ export default function ForumPage() {
     hasNextPage,
     error,
     fetchNextPage,
-  } = useGetArticleList({ orderBy, keyword });
+  } = useGetList(entity, { orderBy, keyword });
 
   useEffect(() => {
     if (inView) {
@@ -73,7 +75,7 @@ export default function ForumPage() {
 
       <section className={styles["best-section"]}>
         <h2>베스트 게시글</h2>
-        <BestArticles />
+        <BestArticles entity={entity} />
       </section>
       <section className={styles["article-section"]}>
         <div className={styles["article-section-topbar"]}>
