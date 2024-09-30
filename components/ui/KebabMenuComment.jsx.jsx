@@ -14,9 +14,6 @@ export default function KebabMenuComment({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropDownRef = useRef(null);
-  console.log("commendId", commentId);
-  console.log("idPath", idPath);
-  console.log("whichComment", whichComment);
   const { onModalOpen, GlobalModal } = useGlobalModal();
 
   const { mutate } = useDeleteComment({ idPath, whichComment });

@@ -1,16 +1,13 @@
 import ProductForm from "@/components/form/ProductForm";
 import { useCreateMutation } from "@/service/mutations";
 import Loader from "@/components/ui/Loader";
-import { ENTITY } from "@/variables/entities";
+import { ENTITY, IMG_URL } from "@/variables/entities";
 
 export default function CreateProductPage() {
   const entity = ENTITY.PRODUCT;
   const { isPending, mutate } = useCreateMutation({
     entity,
   });
-
-  const imgUrl =
-    "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/214/1727686781759/apple.jpg";
 
   const handleNewProductSubmit = (data) => {
     const formData = new FormData();
@@ -19,7 +16,7 @@ export default function CreateProductPage() {
     formData.append("description", data.description);
     formData.append("price", data.price);
     formData.append("tags", data.tags);
-    formData.append("images", imgUrl);
+    formData.append("images", IMG_URL);
 
     data.tags.forEach((tag) => {
       formData.append("tags[]", tag);

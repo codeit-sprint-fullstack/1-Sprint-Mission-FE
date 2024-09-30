@@ -102,3 +102,6 @@ export const CRUD_COMMENT = (entity) => {
     read: CONFIG[entity].readComments,
   };
 };
+
+export const IMG_URL =
+  "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/214/1727686781759/apple.jpg";
