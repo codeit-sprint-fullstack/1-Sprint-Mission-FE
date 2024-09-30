@@ -1,4 +1,4 @@
-import { FormProvider, useForm, Controller } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import styles from "./ProductForm.module.scss";
 import Input from "./comm/Input";
 import TextArea from "./comm/TextArea";
@@ -73,7 +73,7 @@ export default function ProductForm({
           type="number"
         />
 
-        <TagInput name="tags" label="태그" validations={PRODUCT.TAGS} />
+        <TagInput name="tags" label="태그" />
       </form>
     </FormProvider>
   );

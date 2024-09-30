@@ -69,7 +69,4 @@ export const PRODUCT = {
       message: "숫자만 입력해 주세요",
     },
   },
-  TAGS: {
-    ...minMaxLength(1, 5),
-  },
 };

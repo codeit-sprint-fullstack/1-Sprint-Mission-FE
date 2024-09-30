@@ -2,10 +2,12 @@ import ProductForm from "@/components/form/ProductForm";
 import { useCreateMutation } from "@/service/mutations";
 import Loader from "@/components/ui/Loader";
 import Message from "@/components/ui/Message";
+import { ENTITY } from "@/variables/entities";
 
 export default function CreateProductPage() {
+  const entity = ENTITY.PRODUCT;
   const { isPending, isError, mutate, error } = useCreateMutation({
-    entity: "product",
+    entity,
   });
 
   const handleNewProductSubmit = (data) => {
@@ -15,6 +17,7 @@ export default function CreateProductPage() {
     formData.append("description", data.description);
     formData.append("price", data.price);
     formData.append("tags", data.title);
+    formData.append("images", []);
 
     mutate(formData);
   };
