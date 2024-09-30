@@ -4,9 +4,9 @@ import Input from "../comm/Input";
 import Button from "../../ui/Button";
 import { PasswordInput } from "../comm/PasswordInput";
 import { AUTH } from "@/variables/formValidation";
-import Modal from "@/components/ui/Modal";
 import { useAuth } from "@/context/AuthProvider";
-import { useModal } from "@/hooks/useModal";
+import { useModalAction } from "@/hooks/useModalAction";
+import Modal from "@/components/ui/modals/Modal";
 
 export default function LoginForm() {
   const formMethods = useForm();
@@ -19,7 +19,7 @@ export default function LoginForm() {
     onModalOpen,
     onModalClose,
     modalMsg,
-  } = useModal();
+  } = useModalAction();
 
   const {
     handleSubmit,

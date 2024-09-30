@@ -4,7 +4,8 @@ import styles from "./KebabMenu.module.scss";
 import { useDeleteComment } from "@/service/mutations";
 import assets from "@/variables/images";
 import { IconContainer } from "./ImgContainers";
-import useGlobalModal from "@/hooks/useGlobalModal";
+import { useConfirmModal } from "@/hooks/useModals";
+import { CRUD_COMMENT } from "@/variables/entities";
 
 export default function KebabMenuComment({
   idPath,
@@ -14,9 +15,11 @@ export default function KebabMenuComment({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropDownRef = useRef(null);
-  const { onModalOpen, GlobalModal } = useGlobalModal();
+  const { onModalOpen, Modal } = useConfirmModal();
 
   const { mutate } = useDeleteComment({ idPath, whichComment });
+
+  const { deleteMessage, successMessage } = CRUD_COMMENT(whichComment);
 
   const toggleDropDown = () => {
     setIsOpen(!isOpen);
@@ -33,14 +36,15 @@ export default function KebabMenuComment({
   };
 
   const handleClickDelete = () => {
-    onModalOpen({
-      msg: "댓글을 삭제하시겠습니까?",
-      action: handleConfirmDelete,
-    });
+    onModalOpen({ msg: deleteMessage, action: handleConfirmDelete });
   };
 
   const handleConfirmDelete = () => {
-    mutate(commentId);
+    mutate(commentId, {
+      onSuccess: () => {
+        onModalOpen({ msg: successMessage });
+      },
+    });
   };
 
   //드롭다운 메뉴 외부 클릭 감지
@@ -53,7 +57,7 @@ export default function KebabMenuComment({
 
   return (
     <>
-      <GlobalModal />
+      <Modal />
 
       <div className={styles.KebabMenu} ref={dropDownRef}>
         <Button onClick={toggleDropDown} variant="icon">

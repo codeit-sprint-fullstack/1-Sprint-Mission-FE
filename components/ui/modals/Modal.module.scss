@@ -1,0 +1,53 @@
+@use "@/styles/globals/shared" as g;
+
+.Modal {
+  width: clamp(540px, 100%, 220px);
+  height: 250px;
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+
+  @include g.flex-box(column, center, center, 40px);
+
+  &-msg {
+    @include g.font(18, 500);
+    color: g.$grey-800;
+  }
+
+  &-btn {
+    max-width: 165px;
+    width: 100%;
+    min-width: 48px;
+  }
+}
+
+.ConfirmModal {
+  width: 298px;
+  height: 202px;
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  @include g.flex-box(column, center, center, 24px);
+  .modal-msg {
+    @include g.font(16, 500);
+    color: g.$grey-800;
+  }
+
+  .btns {
+    @include g.flex-box(row, center, center, 8px);
+    button {
+      width: 88px;
+      height: 48px;
+      border-radius: 8px;
+    }
+    &-cancel {
+      background-color: #fff;
+      border: 1px solid g.$error-red;
+      color: g.$error-red;
+    }
+    &-delete {
+      background-color: g.$error-red;
+      color: #fff;
+    }
+  }
+}

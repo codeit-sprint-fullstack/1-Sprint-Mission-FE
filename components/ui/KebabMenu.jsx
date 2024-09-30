@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 import { useDeleteMutation } from "@/service/mutations";
 import assets from "@/variables/images";
 import { IconContainer } from "./ImgContainers";
-import useGlobalModal from "@/hooks/useGlobalModal";
 import { DELETE, CREATE_UPDATE } from "@/variables/entities";
+import { useConfirmModal } from "@/hooks/useModals";
 
 export default function KebabMenu({ idPath, entity }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +21,7 @@ export default function KebabMenu({ idPath, entity }) {
     successMessage,
   } = DELETE(entity);
 
-  const { onModalOpen, GlobalModal } = useGlobalModal();
+  const { onModalOpen, Modal } = useConfirmModal();
 
   const { mutate } = useDeleteMutation({ entity });
 
@@ -64,7 +64,7 @@ export default function KebabMenu({ idPath, entity }) {
 
   return (
     <>
-      <GlobalModal />
+      <Modal />
 
       <div className={styles.KebabMenu} ref={dropDownRef}>
         <Button onClick={toggleDropDown} variant="icon">

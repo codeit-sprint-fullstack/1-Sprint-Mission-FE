@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export function useModal() {
+export function useModalAction() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState("");
   const [nextAction, setNextAction] = useState(null);

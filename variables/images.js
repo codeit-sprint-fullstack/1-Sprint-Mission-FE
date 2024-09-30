@@ -9,6 +9,7 @@ export const assets = {
     arrowLeft: "/assets/icons/ic_arrow_left.svg",
     arrowReturn: "/assets/icons/ic_arrow_return.svg",
     arrowRight: "/assets/icons/ic_arrow_right.svg",
+    check: "/assets/icons/ic_check.svg",
     facebook: "/assets/icons/ic_facebook.svg",
     google: "/assets/icons/ic_google.svg",
     heart: "/assets/icons/ic_heart.svg",

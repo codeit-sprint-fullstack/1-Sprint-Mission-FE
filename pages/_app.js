@@ -12,7 +12,7 @@ import Footer from "@/components/layout/Footer";
 import Main from "@/components/layout/Main";
 import React from "react";
 import { AuthProvider } from "@/context/AuthProvider";
-import useGlobalModal from "@/hooks/useGlobalModal";
+import { useGlobalModal } from "@/hooks/useModals";
 
 export default function App({ Component, pageProps }) {
   const { onModalOpen, GlobalModal } = useGlobalModal();

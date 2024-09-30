@@ -100,6 +100,8 @@ export const CRUD_COMMENT = (entity) => {
     delete: CONFIG.comment.delete,
     update: CONFIG.comment.update,
     read: CONFIG[entity].readComments,
+    deleteMessage: `${CONFIG[entity].name} 댓글을 삭제하시겠습니까?`,
+    successMessage: `${CONFIG[entity].name} 댓글이 삭제되었습니다.`,
   };
 };
 
