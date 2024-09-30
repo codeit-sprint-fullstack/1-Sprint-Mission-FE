@@ -1,7 +1,7 @@
 import { useController, useFormContext } from "react-hook-form";
 import styles from "./InputFields.module.scss";
 import assets from "@/variables/images";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 export default function TagInput({ name, label }) {
@@ -71,11 +71,6 @@ export default function TagInput({ name, label }) {
     const updatedTags = tags.filter((tag) => tag !== tagToDelete);
     updateTags(updatedTags);
   };
-
-  useEffect(() => {
-    console.log("Tags", tags);
-    console.log("InputValue", inputValue);
-  }, [tags, inputValue]);
 
   return (
     <div className={styles.TagInput}>

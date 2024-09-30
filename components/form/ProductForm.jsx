@@ -35,7 +35,7 @@ export default function ProductForm({
       reset({
         name: initialData?.name || "",
         description: initialData?.description || "",
-        price: initialData?.price || "",
+        price: initialData?.price || 0,
         tags: initialData?.tags || [],
       });
     }
@@ -43,9 +43,11 @@ export default function ProductForm({
 
   //submit 후 form reset
   const handleResetAfterSubmit = (data) => {
-    onSubmit(data);
-    console.log(data);
-    reset();
+    if (data) {
+      onSubmit(data);
+      reset();
+      console.log("handleResetAfterSubmit");
+    }
   };
 
   return (
