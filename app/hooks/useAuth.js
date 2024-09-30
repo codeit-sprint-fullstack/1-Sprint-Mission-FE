@@ -5,6 +5,7 @@ const useAuth = create((set) => ({
   userId: "",
   userNickname: "",
   userProfileUrl: null,
+  prePath: "/items",
   // login: (user) =>
   //   set({
   //     isSignedIn: true,
@@ -32,6 +33,7 @@ const useAuth = create((set) => ({
       userNickname: "",
       userProfileUrl: null,
     }),
+  setPrePath: (path) => set({ prePath: path }),
 }));
 
 export default useAuth;

@@ -22,7 +22,7 @@ export default function SignInSet() {
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
 
-  const { login, isSignedIn } = useAuth();
+  const { login, isSignedIn, prePath } = useAuth();
 
   const btnSignInClass = classNames(
     "sign-in__btn",
@@ -73,7 +73,9 @@ export default function SignInSet() {
 
   useEffect(() => {
     if (isSignedIn) {
-      router.push("/items");
+      // router.push("/items");
+      console.log("prePath : ", prePath);
+      router.push(prePath);
     }
   }, [isSignedIn]);
 
