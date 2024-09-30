@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { CREATE_UPDATE, CRUD_COMMENT, DELETE } from "@/variables/entities";
+import { createImageUrl } from "./api/user";
 
 //to create product or article
 export function useCreateMutation({ entity }) {

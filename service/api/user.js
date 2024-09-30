@@ -18,15 +18,21 @@ export async function updateUserPassword(data) {
 }
 
 export async function getUserProductList() {
-  try {
-    const res = await axios.get(`${PATH}/products`);
-    return res.data;
-  } catch (error) {
-    console.error("Api error", error.message, error?.status);
-  }
+  const res = await axios.get(`${PATH}/products`);
+  return res.data;
 }
 
 export async function getUserFavoriteList() {
   const res = await axios.get(`${PATH}/favorites`);
+  return res.data;
+}
+
+//이미지 업로드해서 Url받는 api
+export async function createImageUrl(formData) {
+  const res = await axios.post("/images/upload", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return res.data;
 }
