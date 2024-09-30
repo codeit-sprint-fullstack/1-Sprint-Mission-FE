@@ -1,4 +1,4 @@
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm, Controller } from "react-hook-form";
 import styles from "./ProductForm.module.scss";
 import Input from "./comm/Input";
 import TextArea from "./comm/TextArea";
@@ -44,6 +44,7 @@ export default function ProductForm({
   //submit 후 form reset
   const handleResetAfterSubmit = (data) => {
     onSubmit(data);
+    console.log(data);
     reset();
   };
 
@@ -71,7 +72,8 @@ export default function ProductForm({
           validations={PRODUCT.PRICE}
           type="number"
         />
-        <TagInput label="태그" name="tags" validations={PRODUCT.TAGS} />
+
+        <TagInput name="tags" label="태그" validations={PRODUCT.TAGS} />
       </form>
     </FormProvider>
   );
