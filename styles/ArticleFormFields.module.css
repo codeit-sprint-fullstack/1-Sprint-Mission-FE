@@ -55,6 +55,28 @@
   margin-bottom: 24px;
 }
 
+.imageList {
+  display: flex;
+  gap: 16px;
+}
+
+.imageValue {
+  border-radius: 10px;
+  position: relative;
+}
+
+.imageDeleBtn {
+  position: absolute;
+  transform: translateX(-30px) translateY(10px);
+  width: 22px;
+  height: 24px;
+  background-color: #9ca3af;
+  border-radius: 100%;
+  border: none;
+  color: aliceblue;
+  font-weight: 1000;
+}
+
 .hashtags {
   display: flex;
   flex-wrap: wrap;
