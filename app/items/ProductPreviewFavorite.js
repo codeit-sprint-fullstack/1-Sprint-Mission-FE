@@ -1,19 +1,16 @@
 import classNames from "classnames";
 
-import style from "./product-preview-favorite.module.css";
-
 export default function ProductPreviewFavorite({
   productId,
   isFavorite,
   favriteCount,
 }) {
-  // let heartClass = classNames("w-1.6rem", "h-1.6rem", style["heart-empty"]);
   let heartClass = classNames("w-1.6rem", "h-1.6rem");
 
   if (isFavorite) {
-    heartClass = classNames(heartClass, style["heart-full"]);
+    heartClass = classNames(heartClass, "bg-favorite-heart--full");
   } else {
-    heartClass = classNames(heartClass, style["heart-empty"]);
+    heartClass = classNames(heartClass, "bg-favorite-heart--empty");
   }
 
   const countClass = classNames(

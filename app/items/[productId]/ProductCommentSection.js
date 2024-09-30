@@ -9,7 +9,7 @@ import {
 } from "@/lib/api-codeit-comment";
 
 import ProductCommentMaker from "./ProductCommentMaker";
-import ProductCommentList from "./ProductCommentList";
+import CommentList from "@/app/components/CommentList";
 import Loading from "@/app/components/Loading";
 
 export default function ProductCommentSection({ productId }) {
@@ -61,7 +61,7 @@ export default function ProductCommentSection({ productId }) {
         <ProductCommentMaker registComment={handleRegistComment} />
       </div>
       <div className={commentListFrameClass}>
-        <ProductCommentList data={data} />
+        <CommentList data={data} />
       </div>
     </>
   );

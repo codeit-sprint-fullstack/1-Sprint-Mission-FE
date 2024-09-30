@@ -236,6 +236,9 @@ module.exports = {
           "url('/buttons/btn_sign_in_disabled_w343.svg')",
         "oauth-btn__google": "url('/buttons/btn_google.svg')",
         "oauth-btn__kakao": "url('/buttons/btn_kakao.svg')",
+        "favorite-heart--full": "url('/icons/ic_heart_small.svg')",
+        "favorite-heart--empty": "url('/icons/ic_heart_empty_small.svg')",
+        "btn-link-regist": "url('/buttons/btn_regist_product.svg')",
       },
       borderColor: {
         "input--focus": "#3692FF",
@@ -249,8 +252,8 @@ module.exports = {
     },
   },
   plugins: [
-    function ({ addComponents }) {
-      addComponents({
+    function ({ addComponents, theme }) {
+      const components = {
         ".main": {
           marginTop: "7rem",
           marginLeft: "auto",
@@ -264,12 +267,12 @@ module.exports = {
           },
         },
         ".content": {
-          width: "120rem",
+          width: theme("width.pc-content"),
           "@screen tablet": {
-            width: "69.6rem",
+            width: theme("width.tablet-content"),
           },
           "@screen mobile": {
-            width: "34.3rem",
+            width: theme("width.mobile-content"),
           },
         },
         ".sign-in__main": {
@@ -281,7 +284,7 @@ module.exports = {
             margin: "19rem auto 32.5rem auto",
           },
           "@screen mobile": {
-            width: "34.3rem",
+            width: theme("width.mobile-content"),
             margin: "8rem auto 23.1rem auto",
           },
         },
@@ -316,7 +319,7 @@ module.exports = {
           marginBottom: "1.6rem",
           fontSize: "1.8rem",
           fontWeight: "700",
-          color: "#1f2937",
+          color: theme("colors.gray.800"),
           "@screen mobile": {
             fontSize: "1.4rem",
             marginBottom: "0.8rem",
@@ -334,11 +337,11 @@ module.exports = {
           boxSizing: "border-box",
           border: "0.1rem solid",
           borderRadius: "0.75em",
-          borderColor: "#f3f4f6",
-          backgroundColor: "#f3f4f6",
+          borderColor: theme("colors.gray.100"),
+          backgroundColor: theme("colors.gray.100"),
           fontSize: "1.6rem",
           fontWeight: "400",
-          color: "#1f2937",
+          color: theme("colors.gray.800"),
         },
         ".input--visible": {
           width: "2.4rem",
@@ -362,17 +365,17 @@ module.exports = {
           paddingLeft: "1.6rem",
           fontSize: "1.5rem",
           fontWeight: "600",
-          color: "#F74747",
+          color: theme("colors.red"),
         },
         ".sign-in__btn": {
           width: "64rem",
           height: "5.6rem",
           "@screen mobile": {
-            width: "34.3rem",
+            width: theme("width.mobile-content"),
           },
         },
         ".invalid-border": {
-          borderColor: "#F74747",
+          borderColor: theme("colors.red"),
         },
         ".oauth-btn": {
           width: "4.2rem",
@@ -425,7 +428,7 @@ module.exports = {
           fontSize: "2.4rem",
           fontWeight: "600",
           lineHeight: "3.2rem",
-          color: "#1f2937",
+          color: theme("colors.gray.800"),
           "@screen tablet": {
             fontSize: "2rem",
           },
@@ -439,7 +442,7 @@ module.exports = {
           fontSize: "4rem",
           fontWeight: "600",
           lineHeight: "5.2rem",
-          color: "#1f2937",
+          color: theme("colors.gray.800"),
           "@screen tablet": {
             marginTop: "0.8rem",
             fontSize: "3.2rem",
@@ -455,7 +458,7 @@ module.exports = {
           fontSize: "1.6rem",
           fontWeight: "600",
           lineHeight: "2.6rem",
-          color: "#4B5563",
+          color: theme("colors.gray.600"),
           "@screen tablet": {
             fontSize: "1.4rem",
             lineHeight: "2.4rem",
@@ -471,7 +474,7 @@ module.exports = {
           fontSize: "1.6rem",
           fontWeight: "400",
           lineHeight: "2.6rem",
-          color: "#4B5563",
+          color: theme("colors.gray.600"),
           "@screen tablet": {
             marginTop: "0.8rem",
           },
@@ -483,13 +486,13 @@ module.exports = {
           height: "3.6rem",
           borderRadius: "1em",
           boxSizing: "border-box",
-          backgroundColor: "#f3f4f6",
+          backgroundColor: theme("colors.gray.100"),
           padding: "0.5rem 1.6rem",
           fontSize: "1.6rem",
           fontWeight: "400",
           lineHeight: "2.6rem",
           textWrap: "nowrap",
-          color: "#1f2937",
+          color: theme("colors.gray.800"),
         },
         ".btn-to-list": {
           width: "24rem",
@@ -526,7 +529,7 @@ module.exports = {
         },
         ".text-simple-modal": {
           fontSize: "1.8rem",
-          color: "#1f2937",
+          color: theme("colors.gray.800"),
           lineHeight: "2.6rem",
           fontWeight: 500,
         },
@@ -539,7 +542,54 @@ module.exports = {
             backgroundImage: "url(/buttons/btn_confirm_w120.svg)",
           },
         },
-      });
+        ".empty-comment-list": {
+          width: theme("width.pc-content"),
+          height: "20.8rem",
+          "@screen tablet": {
+            width: theme("width.tablet-content"),
+          },
+          "@screen mobile": {
+            width: theme("width.mobile-content"),
+          },
+        },
+        ".empty-comment-list_mark-text-set": {
+          width: "15.0rem",
+          heigth: "20.8rem",
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-between",
+        },
+        ".empty-comment-list_mark": {
+          width: "14rem",
+          height: "14rem",
+          backgroundImage: "url('/images/Img_reply_empty.svg')",
+        },
+        ".empty-comment-list_text": {
+          width: "15.1rem",
+          height: "5.2rem",
+          fontSize: "1.6rem",
+          lineHeight: "2.6rem",
+          color: theme("colors.gray.400"),
+          textAlign: "center",
+        },
+        ".comment-list": {
+          width: theme("width.pc-content"),
+          gap: "2.4rem",
+          display: "flex",
+          flexDirection: "column",
+          "@screen tablet": {
+            width: theme("width.tablet-content"),
+            gap: "2.4rem",
+          },
+          "@screen mobile": {
+            width: theme("width.mobile-content"),
+            gap: " 1.6rem",
+          },
+        },
+      };
+      addComponents(components);
     },
   ],
 };

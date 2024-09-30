@@ -27,8 +27,6 @@ import {
 import { PAGE_SIZE } from "../constants/product";
 import { PC } from "../constants/device";
 
-import style from "./product-list.module.css";
-
 export default function ProductList({ initList, initTotalCount }) {
   const [keyword, setKeyword] = useState("");
   const [params, setParams] = useState({
@@ -97,7 +95,7 @@ export default function ProductList({ initList, initTotalCount }) {
   const btnLinkRegistClass = classNames(
     "w-btn-link-regist",
     "h-tool42",
-    style["btn-link-regist"]
+    "bg-btn-link-regist"
   );
   const dropdownClass = classNames("mobile:order-4");
   const productListFrame = classNames(
