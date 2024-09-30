@@ -9,6 +9,7 @@ import {
   addFavoriteProduct,
   removeFavoriteProduct,
 } from "@/lib/api-codeit-product";
+import { limitTextCount } from "@/lib/text";
 
 const SRCS = ["/icons/ic_heart_empty_small.svg", "/icons/ic_heart_full.svg"];
 
@@ -20,7 +21,7 @@ export default function Favorite({
 }) {
   const [isFavorite, setIsFavorite] = useState(myFavorite);
   const [favoriteCountText, setFavoriteCountText] = useState(
-    favoriteCount < 9999 ? favoriteCount : "9999+"
+    limitTextCount(favoriteCount)
   );
   const favoriteClass = classNames(
     "flex",
@@ -50,11 +51,9 @@ export default function Favorite({
       [Number(isFavorite)](objectId)
       .then((data) => {
         setIsFavorite(data.isFavorite);
-        setFavoriteCountText(data.favoriteCount);
+        setFavoriteCountText(limitTextCount(data.favoriteCount));
       });
   };
-
-  console.log("Number(myFavorite) : ", Number(isFavorite));
 
   return (
     <div className={favoriteClass}>
