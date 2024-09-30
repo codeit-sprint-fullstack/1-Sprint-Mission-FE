@@ -9,8 +9,6 @@ export default function ArticleDropDown({ articleId }) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
-  console.log(articleId);
-
   const toggleDropDown = () => {
     setIsOpen(!isOpen);
   };
