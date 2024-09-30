@@ -4,8 +4,11 @@ import { useUpdateComment } from "@/service/mutations";
 import UpdateCommentForm from "../form/UpdateCommentForm";
 import UserInfo from "../user/UserInfo";
 import KebabMenuComment from "../ui/KebabMenuComment.jsx";
+import { ENTITY } from "@/variables/entities";
 
 export default function CommentContent({ comment, idPath, whichComment }) {
+  const entity = ENTITY.COMMENT;
+
   const [isEditMode, setIsEditMode] = useState(false);
 
   const classNames = isEditMode
@@ -40,7 +43,7 @@ export default function CommentContent({ comment, idPath, whichComment }) {
         />
       </div>
 
-      <UserInfo variant="comment" user={comment} />
+      <UserInfo entity={entity} data={comment} />
     </li>
   ) : (
     <li className={classNames}>
@@ -52,7 +55,7 @@ export default function CommentContent({ comment, idPath, whichComment }) {
         />
       </div>
 
-      <UserInfo variant="comment" user={comment} />
+      <UserInfo entity={entity} data={comment} />
     </li>
   );
 }

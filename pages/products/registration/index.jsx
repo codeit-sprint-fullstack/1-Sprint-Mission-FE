@@ -10,7 +10,7 @@ export default function CreateProductPage() {
   });
 
   const imgUrl =
-    "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/214/1727682824059/Screenshot%202024-09-30%20at%203.32.32%C3%A2%C2%80%C2%AFPM.png";
+    "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/214/1727686781759/apple.jpg";
 
   const handleNewProductSubmit = (data) => {
     const formData = new FormData();

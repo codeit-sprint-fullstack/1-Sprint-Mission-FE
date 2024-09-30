@@ -18,24 +18,29 @@ export default function ProductDetail({ product, entity }) {
         isBorder={true}
       />
       <div className={styles.details}>
-        <div className={styles.title}>
-          <h1>{product?.name}</h1>
-          <KebabMenu idPath={product.id} entity={entity} />
+        <div className={styles.top}>
+          <div className={styles.title}>
+            <h1>{product?.name}</h1>
+            <KebabMenu idPath={product.id} entity={entity} />
+          </div>
+          <p className={styles.price}>{`${product?.price}원`}</p>
+          <div className={styles.line}></div>
         </div>
-        <p className={styles.price}>{product?.price}</p>
-        <div className={styles.line}></div>
         <div className={styles.description}>
           <h2>상품소개</h2>
           <p>{product?.description}</p>
+        </div>
+        <div className={styles.tagList}>
           <h2>상품 태그</h2>
           <ul className={styles.tags}>
             {product?.tags.map((tag, index) => {
-              return <li key={index}>{tag}</li>;
+              return <li key={index}>{`#${tag}`}</li>;
             })}
           </ul>
         </div>
         <div className={styles.writer}>
-          <UserInfo date={product?.createdAt} /> <LikeButton data={product} />
+          <UserInfo entity={entity} data={product} />
+          <LikeButton data={product} />
         </div>
       </div>
     </article>

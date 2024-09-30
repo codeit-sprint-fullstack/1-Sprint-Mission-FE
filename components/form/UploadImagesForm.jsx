@@ -12,7 +12,7 @@ export default function UploadImageForm() {
       if (data && data.url) {
         console.log("successMutation: upload image");
         setImageUrl(data.url);
-        console.log(data.url);
+        console.log("image url:", data.url);
       } else {
         console.log("데이터에 url없나봄");
       }
