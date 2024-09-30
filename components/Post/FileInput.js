@@ -2,63 +2,87 @@ import styles from '@/styles/ArticleFormFields.module.css';
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 import postImage from '@/public/post_imge.png';
+import icImageDelete from '@/public/ic_image_delete.png';
 
-export default function FileInput({ setValues }) {
-  const [preview, setPreview] = useState('');
+export default function FileInput({ values, setValues }) {
+  const [showImages, setShowImages] = useState([]);
   const imageRef = useRef();
 
-  const handleChange = (e) => {
-    const imageValue = e.target.files[0];
+  const testSelect = (event) => {
+    const imageLists = event.target.files;
+    let imageUrlLists = [...showImages];
+
+    for (let i = 0; i < imageLists.length; i++) {
+      const currentImageUrl = URL.createObjectURL(imageLists[i]);
+      imageUrlLists.push(currentImageUrl);
+    }
+
+    if (imageUrlLists.length > 3) {
+      imageUrlLists = imageUrlLists.slice(0, 3);
+    }
+
+    setShowImages(imageUrlLists);
     setValues((prev) => ({
       ...prev,
-      image: imageValue,
+      image: [...prev.image, imageLists],
     }));
-
-    if (imageValue) {
-      const uploadPreview = URL.createObjectURL(imageValue);
-      setPreview(uploadPreview);
-    }
   };
 
-  const handleClearClick = () => {
-    const inputNode = imageRef.current;
-    if (!inputNode) return;
+  const handleDeleteImage = (id) => {
+    setShowImages(showImages.filter((_, index) => index !== id));
 
-    inputNode.value = '';
     setValues((prev) => ({
       ...prev,
-      image: null,
+      image: values.image.filter((_, index) => index !== id),
     }));
-    setPreview('');
   };
 
   return (
-    <div>
+    <div className={styles.fileInput}>
       <div className={styles.sectionTitle}>이미지</div>
-      {preview && (
-        <Image src={preview} width={300} height={300} alt='이미지 미리보기' />
-      )}
 
       <input
         name='image'
         type='file'
-        onChange={handleChange}
+        onChange={testSelect}
         ref={imageRef}
         multiple
+        accept='image/*'
         style={{ display: 'none' }}
       />
 
-      <div
-        onClick={() => imageRef.current.click()}
-        style={{ cursor: 'pointer' }}
-      >
-        <Image
-          src={postImage}
-          alt='이미지 넣기 버튼'
-          style={{ display: preview ? 'none' : 'block' }}
-        />
+      <div className={styles.imageList}>
+        <div
+          onClick={() => imageRef.current.click()}
+          style={{ cursor: 'pointer' }}
+        >
+          <Image
+            src={postImage}
+            alt='이미지 넣기 버튼'
+            width={282}
+            height={282}
+          />
+        </div>
+
+        {showImages.map((image, id) => (
+          <div key={id}>
+            <img
+              src={image}
+              width={282}
+              height={282}
+              alt={`${image}-${id}`}
+              className={styles.imageValue}
+            />
+            <Image
+              src={icImageDelete}
+              width={22}
+              height={24}
+              onClick={() => handleDeleteImage(id)}
+              className={styles.imageDeleBtn}
+            />
+          </div>
+        ))}
       </div>
-      {preview && <button onClick={handleClearClick}>X</button>}
     </div>
   );
 }

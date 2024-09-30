@@ -85,7 +85,7 @@ export default function PostFleaArticlePage() {
           setValues={setValues}
           onChange={onChange}
         />
-        <FileInput setValues={setValues} onChange={onChange} />
+        <FileInput values={values} setValues={setValues} />
         <PriceInput values={values} onChange={onChange} />
         <TagsInput tags={tags} setTags={setTags} />
       </div>
