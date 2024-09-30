@@ -16,9 +16,6 @@ export default function ProductPreviewImage({ imageUrl }) {
       setValidImg("/images/no_image.svg");
     };
 
-    // image.addEventListener("load", handleImgLoad);
-    // image.addEventListener("Error", handleImgError);
-
     image.src = imageUrl;
     image.onload = handleImgLoad;
     image.onerror = handleImgError;
@@ -26,8 +23,6 @@ export default function ProductPreviewImage({ imageUrl }) {
     return () => {
       image.onload = null;
       image.onerror = null;
-      // image.removeEventListener("load", handleImgLoad);
-      // image.removeEventListener("Error", handleImgError);
     };
   }, [imageUrl]);
 

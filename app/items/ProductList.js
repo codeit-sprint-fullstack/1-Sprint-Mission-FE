@@ -152,6 +152,8 @@ export default function ProductList({ initList, initTotalCount }) {
     }));
   }, [device]);
 
+  console.log("list : ", list);
+
   if (isLoading)
     return (
       <div>

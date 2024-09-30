@@ -1,6 +1,6 @@
-import Image from "next/image";
 import classNames from "classnames";
 
+import ProductImageListSet from "./ProductImageListSet";
 import Profile from "@/app/components/Profile";
 import DropDownKebabProduct from "@/app/components/DropDownKebabProduct";
 import Favorite from "@/app/components/Favorite";
@@ -50,32 +50,6 @@ function ProductInfoDivider() {
       <div className={upperDividerClass}></div>
       <div className={lowerDividerClass}></div>
     </>
-  );
-}
-
-function ProductImageListSet({ images }) {
-  const productImageListSetClass = classNames("product-image-list-set");
-  const productImageClass = classNames("product-image-frame");
-  const productImageListClass = classNames(
-    "product-image-list",
-    "bg-gray-100",
-    "text-2xl"
-  );
-
-  return (
-    <div className={productImageListSetClass}>
-      <div className={productImageClass}>
-        <Image
-          src={images[0]}
-          fill
-          style={{ objectFit: "cover" }}
-          alt="상품 이미지"
-        />
-      </div>
-      <div className={productImageListClass}>
-        이미지 리스트 선택창(개발 예정)
-      </div>
-    </div>
   );
 }
 
