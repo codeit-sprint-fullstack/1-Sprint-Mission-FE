@@ -3,19 +3,18 @@ import { useRef, useState } from 'react';
 import Image from 'next/image';
 import postImage from '@/public/post_imge.png';
 import icImageDelete from '@/public/ic_image_delete.png';
+import { faCropSimple } from '@fortawesome/free-solid-svg-icons';
 
 export default function FileInput({ values, setValues }) {
   const [showImages, setShowImages] = useState([]);
   const imageRef = useRef();
 
-  const testSelect = (event) => {
-    const imageLists = event.target.files;
-    let imageUrlLists = [...showImages];
+  const handleSelectImage = (event) => {
+    const imageLists = event.target.files[0];
+    const currentImageUrl = URL.createObjectURL(imageLists);
 
-    for (let i = 0; i < imageLists.length; i++) {
-      const currentImageUrl = URL.createObjectURL(imageLists[i]);
-      imageUrlLists.push(currentImageUrl);
-    }
+    let imageUrlLists = [...showImages];
+    imageUrlLists.push(currentImageUrl);
 
     if (imageUrlLists.length > 3) {
       imageUrlLists = imageUrlLists.slice(0, 3);
@@ -44,7 +43,7 @@ export default function FileInput({ values, setValues }) {
       <input
         name='image'
         type='file'
-        onChange={testSelect}
+        onChange={handleSelectImage}
         ref={imageRef}
         multiple
         accept='image/*'
@@ -75,6 +74,7 @@ export default function FileInput({ values, setValues }) {
             />
             <Image
               src={icImageDelete}
+              alt='삭제 버튼'
               width={22}
               height={24}
               onClick={() => handleDeleteImage(id)}
