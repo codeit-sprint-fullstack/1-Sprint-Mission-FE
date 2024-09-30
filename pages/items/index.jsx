@@ -2,10 +2,16 @@ import React from "react";
 import ItemListContainer from "@/components/ItemComponents/ItemListContainer.jsx";
 import { fetchProducts } from "@/utils/productApi";
 import { QueryClient, dehydrate } from "@tanstack/react-query";
+import BestProducts from "@/components/BestProductComponents/BestProducts";
 
-export default function Items({ initialProducts, initialTotalCount }) {
+export default function Items({
+  initialProducts,
+  initialTotalCount,
+  bestProducts,
+}) {
   return (
     <>
+      <BestProducts bestProducts={bestProducts} />
       <ItemListContainer
         initialProducts={initialProducts}
         initialTotalCount={initialTotalCount}
@@ -26,6 +32,13 @@ export async function getServerSideProps(context) {
         orderBy: "recent",
       });
 
+    const { list: bestProducts } = await fetchProducts({
+      pageSize: 4,
+      page: 1,
+      keyword: "",
+      orderBy: "favorite",
+    });
+
     await queryClient.prefetchQuery({
       queryKey: ["products", 1],
       queryFn: () =>
@@ -41,6 +54,7 @@ export async function getServerSideProps(context) {
       props: {
         initialProducts,
         initialTotalCount,
+        bestProducts,
         dehydratedState: dehydrate(queryClient),
       },
     };
