@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import classNames from "classnames";
 import { FAVORITE_CLASSES } from "../constants/Favorite";
@@ -13,10 +14,14 @@ const SRCS = ["/icons/ic_heart_empty_small.svg", "/icons/ic_heart_full.svg"];
 
 export default function Favorite({
   type,
-  myFavorite = 0,
+  myFavorite = false,
   favoriteCount,
   objectId,
 }) {
+  const [isFavorite, setIsFavorite] = useState(myFavorite);
+  const [favoriteCountText, setFavoriteCountText] = useState(
+    favoriteCount < 9999 ? favoriteCount : "9999+"
+  );
   const favoriteClass = classNames(
     "flex",
     "flex-row",
@@ -36,24 +41,26 @@ export default function Favorite({
     "relative",
     FAVORITE_CLASSES[type].heart
   );
-  const favoriteCountText = favoriteCount < 9999 ? favoriteCount : "9999+";
 
   // 임시로 함수 배열 형식으로 favorite 처리. 컴포넌트를 나누거나, 다른 방식으로 고려 중
   const TOOGLE_FAVORITE = [[], [addFavoriteProduct, removeFavoriteProduct]];
 
   const handleClickHeart = () => {
-    TOOGLE_FAVORITE[Math.floor(Number(myFavorite) / 3)]
-      [Number(myFavorite)](objectId)
+    TOOGLE_FAVORITE[Math.floor(Number(type) / 3)]
+      [Number(isFavorite)](objectId)
       .then((data) => {
-        myFavorite = data.isFavorite;
+        setIsFavorite(data.isFavorite);
+        setFavoriteCountText(data.favoriteCount);
       });
   };
+
+  console.log("Number(myFavorite) : ", Number(isFavorite));
 
   return (
     <div className={favoriteClass}>
       <button onClick={handleClickHeart}>
         <div className={heartImgFrameClass}>
-          <Image src={SRCS[Number(myFavorite)]} fill alt="좋아요 마크" />
+          <Image src={SRCS[Number(isFavorite)]} fill alt="좋아요 마크" />
         </div>
       </button>
       <div className={favoriteCountClass}>{favoriteCountText}</div>
