@@ -7,10 +7,8 @@ export const InputField = ({
   label,
   type = "text",
   placeholder,
-  formData,
-  handleChange,
-  handleBlur,
-  errors,
+  register,
+  error,
   touched,
 }) => (
   <div className={styles.inputContainer}>
@@ -19,20 +17,12 @@ export const InputField = ({
     </label>
     <input
       id={name}
-      name={name}
       type={type}
       placeholder={placeholder}
-      value={formData[name]}
-      onChange={handleChange}
-      onBlur={handleBlur}
-      required
-      className={`${styles.input} ${
-        touched[name] && errors[name] ? styles.inputError : ""
-      }`}
+      {...register(name)}
+      className={`${styles.input} ${touched && error ? styles.inputError : ""}`}
     />
-    {touched[name] && errors[name] && (
-      <div className={styles.error}>{errors[name]}</div>
-    )}
+    {touched && error && <div className={styles.error}>{error.message}</div>}
   </div>
 );
 
@@ -40,10 +30,8 @@ export const PasswordField = ({
   name,
   label,
   placeholder,
-  formData,
-  handleChange,
-  handleBlur,
-  errors,
+  register,
+  error,
   touched,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -56,15 +44,11 @@ export const PasswordField = ({
       <div className={styles.inputWrapper}>
         <input
           id={name}
-          name={name}
           type={showPassword ? "text" : "password"}
           placeholder={placeholder}
-          value={formData[name]}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          required
+          {...register(name)}
           className={`${styles.input} ${
-            touched[name] && errors[name] ? styles.inputError : ""
+            touched && error ? styles.inputError : ""
           }`}
         />
         <button
@@ -87,9 +71,7 @@ export const PasswordField = ({
           </div>
         </button>
       </div>
-      {touched[name] && errors[name] && (
-        <div className={styles.error}>{errors[name]}</div>
-      )}
+      {touched && error && <div className={styles.error}>{error.message}</div>}
     </div>
   );
 };

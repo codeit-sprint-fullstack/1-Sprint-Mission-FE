@@ -34,22 +34,8 @@ export const useAuthValidation = (mode) => {
     }
   );
 
-  const handleSubmit = (e, formData, isFormValid, errors) => {
-    e.preventDefault();
-    if (isFormValid) {
-      authMutation.mutate(formData);
-    } else {
-      const errorMessages = Object.values(errors).filter(Boolean);
-      if (errorMessages.length > 0) {
-        showModal({
-          showImage: false,
-          content: errorMessages.join("\n"),
-          confirmText: "확인",
-          showCancel: false,
-          customClass: styles.authErrorModal,
-        });
-      }
-    }
+  const handleSubmit = (formData) => {
+    authMutation.mutate(formData);
   };
 
   return { handleSubmit, isLoading: authMutation.isLoading };
