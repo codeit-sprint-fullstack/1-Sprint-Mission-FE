@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "@/pages/api/axios";
+import axios from "@/lib/axios.js";
 import BestArticleCard from "./BestArticleCard";
 import styles from "./BestArticleList.module.css";
 

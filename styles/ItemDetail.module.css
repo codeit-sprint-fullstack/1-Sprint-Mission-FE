@@ -1,0 +1,220 @@
+/* ItemDetail.module.css */
+
+.container {
+  max-width: 1200px;
+  margin: 70px auto 0;
+  padding: 20px;
+}
+
+.contentWrapper {
+  display: flex;
+  gap: 40px;
+}
+
+.imageGallery {
+  flex: 1;
+}
+
+.mainImage {
+  width: 486px;
+  height: 486px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.itemInfo {
+  flex: 1;
+  position: relative; /* 추가 */
+}
+
+/* 새로 추가된 스타일 */
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.itemName {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-right: 100px; /* 추가: ProductOptions를 위한 공간 확보 */
+}
+
+.productOptions {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.itemPrice {
+  font-size: 28px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.favoriteButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.favoriteIcon {
+  margin-right: 5px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.itemDescription {
+  margin: 10px 0 20px;
+  line-height: 1.6;
+}
+
+.itemTags {
+  margin-bottom: 20px;
+}
+
+.tag {
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.commentSection {
+  margin-top: 40px;
+}
+
+.commentForm {
+  width: 1200px;
+  height: 104px;
+  display: flex;
+  margin: 20px 0; /* 위아래 여백 추가 */
+}
+
+.commentInput {
+  flex-grow: 1;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f3f4f6;
+}
+
+.commentSubmit {
+  margin-left: 10px;
+  padding: 0 20px;
+  height: 40px;
+  background-color: #9ca3af;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.commentSubmit:hover {
+  background-color: #3692ff;
+}
+
+.comment {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  position: relative;
+}
+
+.commentContent {
+  flex-grow: 1;
+  padding-right: 30px; /* CommentOptions 버튼을 위한 공간 */
+}
+
+.commentOptions {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* CommentOptions 컴포넌트 내부의 버튼 스타일 */
+.commentOptions {
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 끝으로 정렬 */
+}
+
+.commentOptions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.commentActions {
+  position: relative;
+}
+
+.kebabButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.actionMenu {
+  position: absolute;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.actionMenu.active {
+  display: block;
+}
+
+.actionMenuItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.actionMenuItem:hover {
+  background-color: #f3f4f6;
+}
+
+.emptyComments {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.backToListButton {
+  display: block;
+  margin: 20px auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .contentWrapper {
+    flex-direction: column;
+  }
+
+  .imageGallery,
+  .itemInfo {
+    width: 100%;
+  }
+}

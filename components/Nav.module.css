@@ -7,6 +7,7 @@
   border-bottom: 1px solid #dfdfdf;
   position: fixed;
   top: 0;
+  padding: 32px 300px;
   background-color: white;
   z-index: 1; /* 다른 요소들보다 위에 표시 */
 }
@@ -16,8 +17,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px; /* 좌우 패딩을 줄여 단순화 */
-  max-width: 1200px; /* 최대 너비를 1200px로 설정 */
   margin: 0 auto;
   height: 100%;
 }
@@ -50,10 +49,46 @@
   cursor: pointer;
   transition: color 0.3s; /* 호버 시 부드러운 색상 전환 */
   color: #1f2937;
+  text-decoration: none; /* 밑줄 제거 */
 }
 
 .link:hover {
   color: #3b82f6; /* 호버 시 색상 변경 */
+}
+
+/* 프로필 컨테이너 */
+.profileContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 유저 정보 스타일 */
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 로그아웃 버튼 스타일 */
+.logoutButton {
+  background-color: var(--brand-blue); /* 브랜드 블루 색상 */
+  width: 88px;
+  height: 42px;
+  border-radius: 8px; /* 모서리를 둥글게 */
+  color: white;
+  font-weight: 600;
+  line-height: 19.09px;
+  text-align: center;
+  padding: 11.5px;
+  cursor: pointer;
+  border: none; /* 테두리 제거 */
+  transition: background-color 0.3s; /* 호버 시 부드러운 배경색 전환 */
+  text-decoration: none; /* 밑줄 제거 */
+}
+
+.logoutButton:hover {
+  background-color: #2563eb; /* 호버 시 더 어두운 파란색 */
 }
 
 /* 로그인 버튼 스타일 */
@@ -94,4 +129,10 @@
     align-self: flex-end;
     margin-top: 10px;
   }
+}
+
+/* 프로필 이미지 스타일 */
+.profileImage {
+  border-radius: 50%;
+  margin-right: 8px;
 }

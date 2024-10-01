@@ -1,0 +1,130 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.searchForm {
+  display: flex;
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+.searchInput {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+}
+
+.searchButton {
+  padding: 10px 20px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.createButton {
+  padding: 10px 20px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sortSelect {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5개 열로 고정 */
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.productItem {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column; /* 세로 방향으로 정렬 */
+  align-items: center; /* 중앙 정렬 */
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden; /* 이미지가 컨테이너를 넘지 않도록 설정 */
+}
+
+.productName {
+  font-size: 16px;
+  margin-bottom: 5px; /* 세로 간격 5px 추가 */
+}
+
+.productPrice {
+  font-weight: bold;
+  margin-bottom: 5px; /* 세로 간격 5px 추가 */
+}
+
+.favoriteCount {
+  color: #ff4081;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #2196f3;
+  color: white;
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.contentContainer {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 페이지네이션이 3페이지 이상일 때 이미지 크기 조정 */
+@media (max-width: 1199px) {
+  .productGrid {
+    grid-template-columns: repeat(3, 1fr); /* 3개 열로 변경 */
+  }
+}

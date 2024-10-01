@@ -1,0 +1,188 @@
+.container {
+  width: 100%;
+  max-width: 640px;
+  padding: 40px;
+  background-color: var(--main-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.title {
+  margin: 0;
+  line-height: 0;
+  color: #4a90e2;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.submitButton {
+  padding: 12px;
+  background-color: var(--brand-blue);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.socialLoginContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.loginText {
+  font-size: 14px;
+  color: #333;
+}
+
+.loginButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.loginButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: white;
+  padding: 0;
+}
+
+.loginButton:last-child {
+  background-color: #fee500;
+}
+
+.loginButton img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+
+.signupLink {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #000;
+  text-decoration: none;
+}
+
+.signupLink span {
+  color: var(--brand-blue);
+  text-decoration: underline; /* 링크에 밑줄 추가 */
+}
+
+.passwordContainer {
+  position: relative;
+  width: 100%;
+}
+
+.passwordContainer .input {
+  padding-right: 40px;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input.error,
+.passwordContainer.error .input {
+  border-color: #ff0000;
+}
+
+.errorMessage {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* 반응형 스타일 */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+  .container {
+    max-width: 100%;
+    padding: 20px;
+  }
+}
+
+.modalText {
+  font-size: 18px;
+  color: #333;
+}
