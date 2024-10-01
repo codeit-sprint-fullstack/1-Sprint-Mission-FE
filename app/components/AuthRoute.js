@@ -11,11 +11,11 @@ export default function AuthRoute({ children }) {
 
   useEffect(() => {
     if (isSignedIn !== true) {
-      console.log("router.asPath : ", pathname);
+      // console.log("router.asPath : ", pathname);
       setPrePath(pathname);
       router.push("/sign-in");
     }
-  }, [isSignedIn, router]);
+  }, [isSignedIn, router, pathname, setPrePath]);
 
   if (!isSignedIn) return <p>로그인이 필요합니다</p>;
 

@@ -46,6 +46,7 @@ export function HeaderUser() {
   const handleProfileClick = () => {
     alert("아직 구현되지 않은 기능입니다");
   };
+
   useEffect(() => {
     getMyInfo()
       .then((data) => {
@@ -54,7 +55,7 @@ export function HeaderUser() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [login]);
 
   return isSignedIn ? (
     <div className={userInfoClass} onClick={handleProfileClick}>

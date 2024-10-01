@@ -1,3 +1,4 @@
+import Image from "next/image";
 import classNames from "classnames";
 
 export default function Loading() {
@@ -10,8 +11,13 @@ export default function Loading() {
   );
 
   return (
-    <div className={loadingFrameClass}>
-      <img className="loading-spinner" />
-    </div>
+    <a className={loadingFrameClass}>
+      <img
+        className="loading-spinner"
+        width="12rem"
+        height="6rem"
+        alt="로딩 이미지"
+      />
+    </a>
   );
 }

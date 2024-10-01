@@ -51,7 +51,11 @@ export default function PasswordInput({ label, register, errors }) {
           })}
           aria-invalid={errors.password ? "true" : "false"}
         />
-        <img className={btnVisibleClass} onClick={handleVisiblePassword} />
+        <img
+          className={btnVisibleClass}
+          onClick={handleVisiblePassword}
+          alt="비밀번호 확인"
+        />
       </div>
       {errors.password && (
         <p className="warning-text">{errors.password.message}</p>

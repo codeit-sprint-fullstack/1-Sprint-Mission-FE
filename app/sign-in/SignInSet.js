@@ -76,7 +76,7 @@ export default function SignInSet() {
       // router.push("/items");
       router.push(prePath);
     }
-  }, [isSignedIn]);
+  }, [isSignedIn, router, prePath]);
 
   return (
     <form onSubmit={handleSubmit(handleSignInBtnClick)}>

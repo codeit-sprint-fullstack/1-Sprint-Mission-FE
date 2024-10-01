@@ -102,7 +102,11 @@ function PasswordConfirmInput({ label, register, errors }) {
           })}
           aria-invalid={errors.passwordConfirm ? "true" : "false"}
         />
-        <img className={btnVisibleClass} onClick={handleVisiblePassword} />
+        <img
+          className={btnVisibleClass}
+          onClick={handleVisiblePassword}
+          alt="비밀번호 확인"
+        />
       </div>
       {(errors.passwordConfirm && (
         <p className="warning-text">{errors.passwordConfirm.message}</p>

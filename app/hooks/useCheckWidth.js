@@ -34,7 +34,7 @@ function useCheckWidth() {
         window.removeEventListener("resize", handleResize);
       };
     }
-  }, []);
+  }, [handleResize]);
 
   return device;
 }
