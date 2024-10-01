@@ -1,7 +1,7 @@
 import axios from "axios";
 import axiosInstance from "./axiosInstance";
 
-const baseUrl = "https://panda-market-api.vercel.app";
+const baseUrl = "https://baomarket.onrender.com";
 
 // 회원가입 요청
 export const signUp = async (
