@@ -16,7 +16,7 @@ const SRCS = ["/icons/ic_heart_empty_small.svg", "/icons/ic_heart_full.svg"];
 export default function Favorite({
   type,
   myFavorite = false,
-  favoriteCount,
+  favoriteCount = 0,
   objectId,
 }) {
   const [isFavorite, setIsFavorite] = useState(myFavorite);

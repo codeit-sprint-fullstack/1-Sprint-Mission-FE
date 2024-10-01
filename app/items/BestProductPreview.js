@@ -1,3 +1,6 @@
+import Favorite from "../components/Favorite";
+import { BEST_ARTICLE } from "../constants/Favorite";
+
 export default function ProductPreview({
   img,
   imgClass,
@@ -42,15 +45,12 @@ export default function ProductPreview({
       <div className="flex-col justify-space-between product__text">
         <div className="Text-md Medium text-overflow-ellipsis">{title}</div>
         <div className="Text-lg Bold text-overflow-ellipsis">{priceText}</div>
-        <div className="flex-row">
-          <Button
-            className="favoriteButton"
-            onClick={handleFavoriteButtonClick}
-          />
-          <p className="margin-left4 Text-xs-line-height18 Medium">
-            {favorite}
-          </p>
-        </div>
+        <Favorite
+          type={BEST_ARTICLE}
+          myFavorite={favorite}
+          favoriteCount={0}
+          objectId={"tempId"}
+        />
       </div>
     </>
   );
