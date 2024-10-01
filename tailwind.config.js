@@ -363,7 +363,7 @@ module.exports = {
           right: "1.6rem",
           content: "url(/buttons/btn_invisible.svg)",
         },
-        ".sign-in__warn": {
+        ".warning-text": {
           paddingLeft: "1.6rem",
           fontSize: "1.5rem",
           fontWeight: "600",
@@ -589,6 +589,50 @@ module.exports = {
             width: theme("width.mobile-content"),
             gap: " 1.6rem",
           },
+        },
+        ".comment": {
+          height: "10rem",
+          backgroundColor: theme("colors.alabaster"),
+          borderBottom: "0.1rem solid",
+          borderColor: theme("colors.gray.200"),
+          "@screen mobile": {
+            height: "9.6rem",
+          },
+        },
+        ".comment__nickname-last-date": {
+          display: "flex",
+          flexDirection: "column",
+          marginLeft: "0.8rem",
+          gap: "0.4rem",
+        },
+        ".comment__nickname": {
+          fontSize: "1.4rem",
+          lineHeight: "1.8rem",
+          color: theme("colors.gray.600"),
+        },
+        ".comment-modifier__textarea": {
+          boxSizing: "border-box",
+          width: "100%",
+          height: "8rem",
+          padding: "1.6rem 2.4rem",
+          backgroundColor: theme("colors.gray.100"),
+          fontSize: "1.4rem",
+          lineHeight: "2.4rem",
+          fontWeight: 400,
+          borderRadius: "0.85714em",
+          resize: "none",
+        },
+        ".comment-modifier__btn-complete-cancel": {
+          width: "6.8rem",
+          height: "4.2rem",
+          fontSize: "1.6rem",
+          fontWeight: 600,
+          color: theme("colors.gray.500"),
+        },
+        ".comment-modifier__btn-complete-modify": {
+          width: "10.6rem",
+          height: "4.2rem",
+          backgroundImage: "url(/buttons/btn_modify_complete.svg)",
         },
       };
       addComponents(components);

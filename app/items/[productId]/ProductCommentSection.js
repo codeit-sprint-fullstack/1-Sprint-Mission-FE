@@ -64,8 +64,8 @@ export default function ProductCommentSection({ productId }) {
     mutation.mutate({ productId, content: newComment });
   };
 
-  const handleUpdateComment = ({ commentId, updatedComment }) => {
-    updateMutation.mutate({ commentId, updatedComment });
+  const handleUpdateComment = ({ commentId, content }) => {
+    updateMutation.mutate({ commentId, content });
   };
 
   const handleDeleteComment = (commentId) => {

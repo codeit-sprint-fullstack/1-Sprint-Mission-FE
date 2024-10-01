@@ -31,7 +31,7 @@ export default function EmailInput({ label, register, errors }) {
         })}
         aria-invalid={errors.email ? "true" : "false"}
       />
-      {errors.email && <p className="sign-in__warn">{errors.email.message}</p>}
+      {errors.email && <p className="warning-text">{errors.email.message}</p>}
     </div>
   );
 }

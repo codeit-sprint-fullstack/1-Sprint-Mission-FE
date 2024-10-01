@@ -50,7 +50,7 @@ export function NicknameInput({ label, register, errors }) {
         aria-invalid={errors.nickname ? "true" : "false"}
       />
       {errors.nickname && (
-        <p className="sign-in__warn">{errors.nickname.message}</p>
+        <p className="warning-text">{errors.nickname.message}</p>
       )}
     </div>
   );
@@ -105,10 +105,10 @@ function PasswordConfirmInput({ label, register, errors }) {
         <img className={btnVisibleClass} onClick={handleVisiblePassword} />
       </div>
       {(errors.passwordConfirm && (
-        <p className="sign-in__warn">{errors.passwordConfirm.message}</p>
+        <p className="warning-text">{errors.passwordConfirm.message}</p>
       )) ||
         (errors.password !== errors.passwordConfirm && (
-          <p className="sign-in__warn">{"비밀번호가 일치하지 않습니다"}</p>
+          <p className="warning-text">{"비밀번호가 일치하지 않습니다"}</p>
         ))}
     </div>
   );

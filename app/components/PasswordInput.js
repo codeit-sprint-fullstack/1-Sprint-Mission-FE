@@ -54,7 +54,7 @@ export default function PasswordInput({ label, register, errors }) {
         <img className={btnVisibleClass} onClick={handleVisiblePassword} />
       </div>
       {errors.password && (
-        <p className="sign-in__warn">{errors.password.message}</p>
+        <p className="warning-text">{errors.password.message}</p>
       )}
     </div>
   );
