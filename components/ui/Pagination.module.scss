@@ -1,37 +1,36 @@
 @use "@/styles/globals/shared" as g;
 
 .Pagination {
-  display: flex;
-  justify-content: center;
+  @include g.flex-box(row, center, center, 4px);
   margin-top: 43px;
   margin-bottom: 54px;
-  gap: 4px;
-}
 
-.Pagination button {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--grey-200);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--grey-500);
-  padding-top: 2px;
-  font-weight: 600;
-  font-size: 1rem;
-}
+  .btn {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: 1px solid g.$grey-200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: g.$grey-500;
+    padding-top: 2px;
+    font-weight: 600;
+    font-size: 1rem;
 
-.Pagination .arrow-left:active,
-.Pagination .arrow-right:active {
-  border: 3px solid var(--primary-colour);
-}
+    &:hover {
+      border: 2px solid g.$primary-color;
+    }
 
-.Pagination .current {
-  background-color: var(--primary-colour);
-  color: #fff;
-}
+    &-prev:disabled,
+    &-next:disabled {
+      background-color: g.$grey-200;
+      border: none;
+    }
 
-.Pagination .arrow-right {
-  transform: rotate(180deg);
+    &-current {
+      background-color: g.$primary-color;
+      color: #fff;
+    }
+  }
 }

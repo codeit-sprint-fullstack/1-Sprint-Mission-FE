@@ -15,6 +15,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Pagination from "@/components/ui/Pagination";
 import { useGetList } from "@/service/queries";
+import { useAuth } from "@/context/AuthProvider";
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
@@ -42,6 +43,8 @@ export default function ProductPage() {
   const [orderBy, setOrderBy] = useState("recent");
   const [page, setPage] = useState(1);
 
+  const { user } = useAuth(true);
+
   const entity = ENTITY.PRODUCT;
   const {
     data: productData,
@@ -49,6 +52,10 @@ export default function ProductPage() {
     error,
     isPending,
   } = useGetList(entity, { orderBy, keyword, page });
+
+  if (!user) {
+    return null;
+  }
 
   if (isError) {
     const errMsg = error?.message;
@@ -64,10 +71,11 @@ export default function ProductPage() {
       <Head>
         <title>중고 마켓</title>
       </Head>
-      <section className={styles["best-section"]}>
+      <section className={styles["product-best-section"]}>
         <h2>베스트 상품</h2>
         <BestProducts entity={entity} />
       </section>
+
       <section className={styles["product-section"]}>
         <div className={styles["product-section-topbar"]}>
           <h2>
@@ -81,6 +89,7 @@ export default function ProductPage() {
         </div>
 
         <ProductList data={productData} />
+
         <Pagination
           currentPage={page}
           setCurrentPage={setPage}

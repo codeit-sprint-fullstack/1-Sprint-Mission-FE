@@ -4,6 +4,7 @@ import { IconContainer, ImageContainer } from "../ui/ImgContainers";
 import styles from "./BestArticles.module.scss";
 import { useGetBestList } from "@/service/queries";
 import assets from "@/variables/images";
+import Loader from "../ui/Loader";
 
 function ArticleCard({ article, userName }) {
   return (
@@ -43,11 +44,19 @@ function ArticleCard({ article, userName }) {
 }
 
 export default function BestArticles({ entity }) {
-  const { data } = useGetBestList(entity, { pageSize: 3, orderBy: "like" });
+  const { data, isPending } = useGetBestList(entity, {
+    pageSize: 3,
+    orderBy: "like",
+  });
+
+  if (isPending) {
+    return <Loader />;
+  }
+
   const { list } = data;
 
   if (list.length === 0) {
-    return <p>빈 어레이임</p>;
+    return <p> 해당된 검색 결과가 없습니다</p>;
   }
 
   return (

@@ -12,7 +12,7 @@ export default function Pagination({
   let startPage;
   let endPage;
 
-  const totalPages = Math.ceil(totalCount / PAGE_SIZE);
+  const totalPages = Math.ceil(totalCount / PAGE_SIZE.DEFAULT);
 
   if (currentPage < 3) {
     startPage = 1;
@@ -35,19 +35,19 @@ export default function Pagination({
 
   const handlePageClick = (pageNum) => {
     if (pageNum !== currentPage) {
-      setCurrentPage("page", pageNum);
+      setCurrentPage(pageNum);
     }
   };
 
   const prevBtnClick = () => {
     if (currentPage > 1) {
-      setCurrentPage("page", currentPage - 1);
+      setCurrentPage(currentPage - 1);
     }
   };
 
   const nextBtnClick = () => {
     if (currentPage < totalPages) {
-      setCurrentPage("page", currentPage + 1);
+      setCurrentPage(currentPage + 1);
     }
   };
 
@@ -58,6 +58,7 @@ export default function Pagination({
           type="button"
           onClick={prevBtnClick}
           disabled={currentPage <= 1}
+          className={`${styles.btn} ${styles["btn-prev"]}`}
         >
           <Image
             src={assets.icons.arrowLeft}
@@ -69,12 +70,13 @@ export default function Pagination({
       </li>
       {pageNumbers.map((pageNum) => {
         const isActive = pageNum === currentPage;
+        const classNames = isActive && styles["btn-current"];
         return (
           <li key={pageNum}>
             <button
               type="button"
               onClick={() => handlePageClick(pageNum)}
-              className={isActive && styles.active}
+              className={`${styles.btn} ${classNames}`}
             >
               {pageNum}
             </button>
@@ -82,7 +84,11 @@ export default function Pagination({
         );
       })}
       <li>
-        <button onClick={nextBtnClick} disabled={currentPage >= totalPages}>
+        <button
+          className={`${styles.btn} ${styles["btn-next"]}`}
+          onClick={nextBtnClick}
+          disabled={currentPage >= totalPages}
+        >
           <Image
             src={assets.icons.arrowRight}
             alt="next button"

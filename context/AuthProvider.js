@@ -1,3 +1,4 @@
+import { useGlobalModal } from "@/hooks/useModals";
 import { createLogIn, createUser } from "@/service/api/auth";
 import { getUserMe } from "@/service/api/user";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
@@ -9,11 +10,13 @@ const AuthContext = createContext({
   isLoading: false,
   logIn: () => {},
   logOut: () => {},
+  onModalOpen: () => {},
 });
 
 export function AuthProvider({ children }) {
   const queryClient = useQueryClient();
   const router = useRouter();
+  const { onModalOpen, GlobalModal } = useGlobalModal();
   let accessToken;
 
   if (typeof window !== "undefined") {
@@ -80,9 +83,11 @@ export function AuthProvider({ children }) {
         logIn: logInMutation,
         signUp: signUpMutation,
         logOut,
+        onModalOpen,
       }}
     >
       {children}
+      <GlobalModal />
     </AuthContext.Provider>
   );
 }
@@ -97,7 +102,12 @@ export function useAuth(required) {
 
   useEffect(() => {
     if (required && !context.user && !context.isLoading) {
-      router.push("/auth/login");
+      context.onModalOpen({
+        msg: "로그인 된 유저만 접근할수 있습니다.",
+        action: () => router.push("/auth/login"),
+      });
+
+      // router.push("/auth/login");
       console.log("로그인 필요함");
     }
   }, [context.user, context.isLoading, router, required]);

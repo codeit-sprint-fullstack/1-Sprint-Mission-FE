@@ -3,13 +3,19 @@ import Modal from "@/components/ui/modals/Modal";
 import ConfirmModal from "@/components/ui/modals/ConfirmModal";
 
 export function useGlobalModal() {
-  const { modalRef, onModalOpen, onModalClose, isModalOpen, modalMsg } =
-    useModalAction();
+  const {
+    modalRef,
+    onModalOpen,
+    onModalClose,
+    onModalConfirm,
+    isModalOpen,
+    modalMsg,
+  } = useModalAction();
 
   const GlobalModal = () => {
     return (
       isModalOpen && (
-        <Modal ref={modalRef} msg={modalMsg} onClose={onModalClose} />
+        <Modal ref={modalRef} msg={modalMsg} onClose={onModalConfirm} />
       )
     );
   };
