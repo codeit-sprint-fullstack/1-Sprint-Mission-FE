@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import style from "./ProductEditModal.module.css";
 import { updateProduct } from "../api/productApi";
 import { getAccessToken } from "../api/authApi";
-import ImageUpload from "./ImageUpload"; // 이미지 업로드 컴포넌트 import
+import ImageUpload from "./ImageUpload"; 
 
 const ProductEditModal = ({
   isOpen,
@@ -185,3 +185,4 @@ const ProductEditModal = ({
 };
 
 export default ProductEditModal;
+
