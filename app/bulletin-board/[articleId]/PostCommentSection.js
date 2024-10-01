@@ -5,7 +5,7 @@ import { createPostComment, getPostComments } from "@/lib/api-post-comment";
 import classNames from "classnames";
 
 import PostCommentMaker from "./PostCommentMaker";
-import CommentList from "@app/components/CommentList";
+import CommentList from "@/app/components/CommentList";
 
 export default function PostCommentSection({ postId }) {
   const queryClient = useQueryClient();
