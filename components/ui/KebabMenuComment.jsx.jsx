@@ -25,17 +25,13 @@ export default function KebabMenuComment({
     setIsOpen(!isOpen);
   };
 
-  const handleClickOutside = (e) => {
-    if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
-      setIsOpen(false);
-    }
-  };
-
   const handleClickEdit = () => {
+    setIsOpen(false);
     setIsEditMode(true);
   };
 
   const handleClickDelete = () => {
+    setIsOpen(false);
     onModalOpen({ msg: deleteMessage, action: handleConfirmDelete });
   };
 
@@ -49,6 +45,12 @@ export default function KebabMenuComment({
 
   //드롭다운 메뉴 외부 클릭 감지
   useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+
     document.addEventListener("click", handleClickOutside);
     return () => {
       document.removeEventListener("click", handleClickOutside);
@@ -58,7 +60,6 @@ export default function KebabMenuComment({
   return (
     <>
       <Modal />
-
       <div className={styles.KebabMenu} ref={dropDownRef}>
         <Button onClick={toggleDropDown} variant="icon">
           <IconContainer src={assets.icons.kebab} alt="kebab menu icon" />

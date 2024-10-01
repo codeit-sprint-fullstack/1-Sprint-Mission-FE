@@ -7,7 +7,7 @@
   border-radius: 35px;
   padding: 4px 13px;
   &:hover {
-    border: 2px solid g.$primary-color;
+    border: 2px solid g.$likes-color;
   }
   .LikeNumber {
     @include g.font(16, 500);

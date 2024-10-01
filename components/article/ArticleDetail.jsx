@@ -3,8 +3,13 @@ import ProfileImg from "@/components/ui/ProfileImg";
 import KebabMenu from "@/components/ui/KebabMenu";
 import styles from "./ArticleDetail.module.scss";
 import LikeButton from "../user/LikeButton";
+import Loader from "../ui/Loader";
 
 export default function ArticleDetail({ article, entity }) {
+  if (!article) {
+    return <Loader />;
+  }
+
   const writer = article?.writer;
   return (
     <article className={styles.ArticleDetail}>

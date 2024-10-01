@@ -5,15 +5,15 @@ import { IconContainer } from "./ImgContainers";
 
 export default function DropDown({ setOrderBy, orderBy, entity = "article" }) {
   const [isOpen, setIsOpen] = useState(false);
-  const dropDownRef = useRef(0);
+  const dropDownRef = useRef(null);
 
   const toggleDropDown = () => {
     setIsOpen(!isOpen);
   };
 
   const handleSorting = (order) => {
-    setOrderBy(order);
     setIsOpen(false);
+    setOrderBy(order);
   };
 
   useEffect(() => {
