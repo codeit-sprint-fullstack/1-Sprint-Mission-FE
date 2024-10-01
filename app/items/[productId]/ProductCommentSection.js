@@ -6,6 +6,8 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   createProductComment,
   getProductComments,
+  modifyComment,
+  deleteComment,
 } from "@/lib/api-codeit-comment";
 
 import ProductCommentMaker from "./ProductCommentMaker";
@@ -30,6 +32,25 @@ export default function ProductCommentSection({ productId }) {
     },
   });
 
+  const updateMutation = useMutation({
+    mutationFn: ({ commentId, content }) =>
+      modifyComment({ commentId, content }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [`product-comments`, productId],
+      });
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: (commentId) => deleteComment(commentId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [`product-comments`, productId],
+      });
+    },
+  });
+
   const commentMakerFrameClass = classNames(
     "mt-comment-maker-frame",
     "tablet:mt-tablet-comment-maker-frame"
@@ -41,6 +62,14 @@ export default function ProductCommentSection({ productId }) {
 
   const handleRegistComment = (newComment) => {
     mutation.mutate({ productId, content: newComment });
+  };
+
+  const handleUpdateComment = ({ commentId, updatedComment }) => {
+    updateMutation.mutate({ commentId, updatedComment });
+  };
+
+  const handleDeleteComment = (commentId) => {
+    deleteMutation.mutate(commentId);
   };
 
   if (isLoading) {
@@ -61,7 +90,11 @@ export default function ProductCommentSection({ productId }) {
         <ProductCommentMaker registComment={handleRegistComment} />
       </div>
       <div className={commentListFrameClass}>
-        <CommentList data={data} />
+        <CommentList
+          data={data}
+          updateComment={handleUpdateComment}
+          deleteComment={handleDeleteComment}
+        />
       </div>
     </>
   );

@@ -3,6 +3,7 @@
 import { useState, createContext, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { deleteComment } from "@/lib/api-codeit-comment";
+import useAuth from "../hooks/useAuth";
 
 import style from "./dropdown-kebab-article.module.css";
 
@@ -49,27 +50,32 @@ export function DropdownMenu({ onModify, onDelete }) {
   );
 }
 
-export function DropDownKebabComment({ commentId }) {
+export function DropDownKebabComment({
+  commentId,
+  ownerId,
+  onModify,
+  onDelete,
+}) {
   const [isOpened, setIsOpened] = useState(false);
+  const { userId } = useAuth();
 
-  const router = useRouter();
+  // 토큰 만료시 sign-in 으로 이동을 위한 코드용
+  // const router = useRouter();
 
   const toggleDropdown = () => {
-    setIsOpened((prevIsOpened) => !prevIsOpened);
+    if (userId === ownerId) {
+      setIsOpened((prevIsOpened) => !prevIsOpened);
+    } else {
+      alert("임시 처리 : 권한이 없습니다");
+    }
   };
 
   const handleModifyArticle = () => {
-    // 댓글 수정 component 호출 함수 연결
+    onModify();
   };
 
   const handleDeleteArticle = () => {
-    deleteComment(commentId)
-      .then((data) => {
-        // 댓글 목록 초기화
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    onDelete();
   };
 
   return (
