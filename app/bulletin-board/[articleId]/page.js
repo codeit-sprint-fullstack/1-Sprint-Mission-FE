@@ -9,14 +9,7 @@ export default async function ArticlePage({ params }) {
   const { articleId } = params;
   const mainClass = classNames("content", "main");
 
-  const btnFrameClass = classNames(
-    "flex",
-    "flex-row",
-    "content",
-    "h-4.8rem",
-    "mt-btn-to-list-frame-mt",
-    "mb-btn-to-list-frame-mb"
-  );
+  const btnFrameClass = classNames("content", "btn-to-list-frame");
   const linkClass = classNames("my-0", "mx-auto");
 
   const postData = await getPost(articleId);

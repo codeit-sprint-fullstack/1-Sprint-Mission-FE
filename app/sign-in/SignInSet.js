@@ -74,7 +74,6 @@ export default function SignInSet() {
   useEffect(() => {
     if (isSignedIn) {
       // router.push("/items");
-      console.log("prePath : ", prePath);
       router.push(prePath);
     }
   }, [isSignedIn]);

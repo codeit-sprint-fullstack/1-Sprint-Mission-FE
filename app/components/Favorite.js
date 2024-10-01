@@ -43,6 +43,10 @@ export default function Favorite({
     FAVORITE_CLASSES[type].heart
   );
 
+  console.log("Favorite myFavorite test : ", myFavorite);
+  console.log("Favorite isFavorite test : ", isFavorite);
+  console.log("Favorite number(isFavorite) test : ", Number(isFavorite));
+
   // 임시로 함수 배열 형식으로 favorite 처리. 컴포넌트를 나누거나, 다른 방식으로 고려 중
   const TOOGLE_FAVORITE = [[], [addFavoriteProduct, removeFavoriteProduct]];
 

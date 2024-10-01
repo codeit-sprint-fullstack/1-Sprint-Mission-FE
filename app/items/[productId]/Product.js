@@ -2,7 +2,7 @@ import classNames from "classnames";
 
 import ProductImageListSet from "./ProductImageListSet";
 import Profile from "@/app/components/Profile";
-import DropDownKebabProduct from "@/app/components/DropDownKebabProduct";
+import DropDownKebabProduct from "./DropDownKebabProduct";
 import Favorite from "@/app/components/Favorite";
 import Date from "@/app/components/Date";
 
@@ -107,7 +107,10 @@ function ProductInfo({ product }) {
     <div className={productInfoClass}>
       <div className={productTopBarClass}>
         <div className="product-name">{product.name}</div>
-        <DropDownKebabProduct productId={product.id} />
+        <DropDownKebabProduct
+          productId={product.id}
+          ownerId={product.ownerId}
+        />
       </div>
       <div className="product-price">{priceText}</div>
       <ProductInfoDivider />

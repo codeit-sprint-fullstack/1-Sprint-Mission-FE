@@ -172,9 +172,6 @@ module.exports = {
         "tablet-sign-in-mb": "32.5rem",
         "mobile-sign-in-mt": "8rem",
         "mobile-sign-in-mb": "23.1rem",
-        // btn-to-list-frame
-        "btn-to-list-frame-mt": "6.4rem",
-        "btn-to-list-frame-mb": "32.5rem",
         // comment-maker-frame
         "comment-maker-frame": "3.2rem",
         "tablet-comment-maker-frame": "4rem",
@@ -496,6 +493,12 @@ module.exports = {
           textWrap: "nowrap",
           color: theme("colors.gray.800"),
         },
+        ".btn-to-list-frame": {
+          display: "flex",
+          height: "4.8rem",
+          marginTop: "6.4rem",
+          marginBottom: "32.5rem",
+        },
         ".btn-to-list": {
           width: "24rem",
           height: "4.8rem",
@@ -639,6 +642,42 @@ module.exports = {
           width: theme("width.loading"),
           height: theme("height.loading"),
           content: "url(/images/loading_infinite_spinner.svg)",
+        },
+        ".dropdown-kebab": {
+          width: "2.4rem",
+          height: "2.4rem",
+          position: "relative",
+        },
+        ".dropdown-kebab__toggle": {
+          width: "100%",
+          height: "100%",
+          backgroundImage: "url(/icons/ic_kebab.svg)",
+        },
+        ".dropdown-kebab__menu": {
+          width: "13.9rem",
+          height: "9.2rem",
+          position: "absolute",
+          top: "3rem",
+          right: "0rem",
+          zIndex: "10",
+          boxSizing: "border-box",
+          border: "0.1rem solid",
+          borderColor: theme("colors.gray.300"),
+          borderRadius: "0.8em",
+          overflow: "hidden",
+        },
+        ".dropdown-kebab__item": {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "13.9rem",
+          height: "4.6rem",
+          fontSize: "1.6rem",
+          lineHeight: "2.6rem",
+          fontWeight: 400,
+          color: theme("colors.gray.500"),
+          backgroundColor: "white",
+          cursor: "pointer",
         },
       };
       addComponents(components);

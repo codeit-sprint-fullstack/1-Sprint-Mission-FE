@@ -10,8 +10,6 @@ export default async function ProductPage({ params }) {
   const { productId } = params;
 
   const product = await getProduct({ productId: productId });
-  // const product_id = product.id;
-  // const description = product.description;
 
   // const product = {
   //   id: 259,
@@ -30,15 +28,7 @@ export default async function ProductPage({ params }) {
   //   isFavorite: false,
   // };
 
-  // 게시글과 동일. tailwind.config로 정의 필요 : btnFrameClass, linkClass, btnToItemsClass
-  const btnFrameClass = classNames(
-    "flex",
-    "flex-row",
-    "content",
-    "h-4.8rem",
-    "mt-btn-to-list-frame-mt",
-    "mb-btn-to-list-frame-mb"
-  );
+  const btnFrameClass = classNames("content", "btn-to-list-frame");
   const linkClass = classNames("my-0", "mx-auto");
 
   return (
