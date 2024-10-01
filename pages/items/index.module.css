@@ -1,0 +1,50 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-bottom: 100px;
+}
+
+.sectionTitle {
+  color: var(--gray-900);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  margin-bottom: 24px;
+}
+
+.bestSectionTitle {
+  color: var(--gray-900);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.searchInput {
+  width: 325px;
+}
+
+.controlsContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.controlsHug {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.loading {
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
