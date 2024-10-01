@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { fetchArticleById, fetchComments } from '../../api/api';
+import { getArticleById, fetchComments } from '../../api/articleApi';
 import styles from '../../styles/postdetail.module.css';
 import CommentItem from '../../components/CommentItem';
 import CommentForm from '../../components/CommentForm';
 import BackButton from '../../components/BackButton';
 import PostKebabMenu from '../../components/PostKebabMenu';
-import EmptyComments from '../../components/EmptyComments'; // EmptyComments 컴포넌트 추가
+import EmptyComments from '../../components/EmptyComments';
 
 const PostDetail = () => {
   const router = useRouter();
   const { id } = router.query;
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [likes, setLikes] = useState(Math.floor(Math.random() * 10000)); // 랜덤 좋아요 생성
-  const [comments, setComments] = useState([]); // 댓글 초기화
+  const [likes, setLikes] = useState(Math.floor(Math.random() * 10000));
+  const [comments, setComments] = useState([]);
 
-  // 댓글 목록을 다시 불러오는 함수
   const loadComments = async () => {
     try {
       const data = await fetchComments(id);
-      setComments(Array.isArray(data) ? data : []); // 댓글 목록 상태 업데이트
+      setComments(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('댓글 목록 불러오기 실패:', error);
     }
@@ -28,23 +27,23 @@ const PostDetail = () => {
 
   useEffect(() => {
     if (id) {
-      fetchArticleById(id)
+      getArticleById(id)
         .then((data) => {
           setPost(data);
           setLoading(false);
-          console.log("게시글 수정하기 성공:", data);
+          console.log("게시글 불러오기 성공:", data);
         })
         .catch((error) => {
-          console.error('Error fetching article:', error);
+          console.error('게시글 불러오기 실패:', error);
           setLoading(false);
         });
 
-      loadComments(); // 초기 댓글 목록 불러오기
+      loadComments();
     }
   }, [id]);
 
   const addNewComment = (newComment) => {
-    setComments([newComment, ...comments]); // 새로운 댓글을 추가
+    setComments([newComment, ...comments]);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -82,11 +81,11 @@ const PostDetail = () => {
             {comments.map((comment, index) => (
               <CommentItem
                 key={comment.id}
-                id={comment.id}  // 댓글의 id를 전달
+                id={comment.id}
                 author={`${comments.length - index}번 바오`}
                 content={comment.content}
                 createdAt={comment.createdAt}
-                refreshComments={loadComments}  // 댓글 수정 후 목록 갱신
+                refreshComments={loadComments}
               />
             ))}
             <div className={styles.buttonContainer}>

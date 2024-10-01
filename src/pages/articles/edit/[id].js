@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { updateArticle, fetchArticleById } from '../../../api/api';
-import styles from '../../../styles/create.module.css'; // 게시글 등록 페이지와 동일한 CSS 파일 적용
+import { updateArticle, getArticleById } from '../../../api/articleApi';
+import styles from '../../../styles/create.module.css';
 import EditButton from '../../../components/EditButton';
 
 const EditArticle = () => {
   const router = useRouter();
-  const { id: articleId } = router.query; // URL에서 id를 articleId로 가져오기
+  const { id: articleId } = router.query;
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
   useEffect(() => {
     if (articleId) {
-      console.log("게시글 ID 확인:", articleId); // articleId 확인
-      fetchArticleById(articleId)
+      console.log("게시글 ID 확인:", articleId);
+      getArticleById(articleId)
         .then((article) => {
           setTitle(article.title);
           setContent(article.content);
@@ -33,10 +33,10 @@ const EditArticle = () => {
     }
 
     try {
-      await updateArticle(articleId, { title, content }); // 게시글 수정 API 호출
+      await updateArticle(articleId, { title, content });
       alert('게시글이 수정되었습니다.');
       console.log("게시글 수정 성공, 게시글 ID:", articleId);
-      router.replace(`/articles/${articleId}`); // 수정 후 다시 게시글 상세 페이지로 이동
+      router.replace(`/articles/${articleId}`);
     } catch (error) {
       console.error('게시글 수정 중 오류가 발생했습니다.', error);
       alert('게시글 수정 중 오류가 발생했습니다.');
@@ -48,10 +48,10 @@ const EditArticle = () => {
       <div className={styles.formHeader}>
         <h2>게시글 수정하기</h2>
         <EditButton
-          articleId={articleId}  // articleId를 EditButton에 전달
+          articleId={articleId}
           title={title}
           content={content}
-          onClick={handleSavePost} // 수정 버튼 클릭 시 저장 처리
+          onClick={handleSavePost}
         />
       </div>
       <div className={styles.formGroup}>
