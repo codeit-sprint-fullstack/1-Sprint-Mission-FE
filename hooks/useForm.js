@@ -12,19 +12,10 @@ export const useForm = (mode) => {
   const [touched, setTouched] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
 
-  const handleChange = useCallback(
-    (e) => {
-      const { name, value } = e.target;
-      setFormData((prev) => {
-        const newData = { ...prev, [name]: value };
-        const newErrors = validateForm(newData, mode);
-        setErrors(newErrors);
-        setTouched((prevTouched) => ({ ...prevTouched, [name]: true }));
-        return newData;
-      });
-    },
-    [mode]
-  );
+  const handleChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  }, []);
 
   const handleBlur = useCallback((e) => {
     const { name } = e.target;
@@ -45,6 +36,16 @@ export const useForm = (mode) => {
     );
 
     setIsFormValid(isValid);
+
+    setTouched((prevTouched) => {
+      const newTouched = { ...prevTouched };
+      Object.keys(formData).forEach((field) => {
+        if (formData[field] !== "") {
+          newTouched[field] = true;
+        }
+      });
+      return newTouched;
+    });
   }, [formData, mode]);
 
   return { formData, handleChange, handleBlur, errors, touched, isFormValid };
