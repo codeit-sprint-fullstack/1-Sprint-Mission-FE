@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, createContext, useContext } from "react";
+import { useState, useEffect, useRef, createContext, useContext } from "react";
 import { useRouter } from "next/navigation";
-import { deleteComment } from "@/lib/api-codeit-comment";
 import useAuth from "../hooks/useAuth";
 
 import style from "./dropdown-kebab-article.module.css";
@@ -50,13 +49,9 @@ export function DropdownMenu({ onModify, onDelete }) {
   );
 }
 
-export function DropDownKebabComment({
-  commentId,
-  ownerId,
-  onModify,
-  onDelete,
-}) {
+export function DropDownKebabComment({ ownerId, onModify, onDelete }) {
   const [isOpened, setIsOpened] = useState(false);
+  const dropdownRef = useRef(null);
   const { userId } = useAuth();
 
   // 토큰 만료시 sign-in 으로 이동을 위한 코드용
@@ -78,9 +73,23 @@ export function DropDownKebabComment({
     onDelete();
   };
 
+  const handleClickOutside = (e) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      setIsOpened(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <dropdownContext.Provider value={{ isOpened, setIsOpened, toggleDropdown }}>
-      <div className={style["dropdown-kebab-article"]}>
+      <div className={style["dropdown-kebab-article"]} ref={dropdownRef}>
         <button
           className={style["dropdown-kebab-article-toggle"]}
           onClick={toggleDropdown}
