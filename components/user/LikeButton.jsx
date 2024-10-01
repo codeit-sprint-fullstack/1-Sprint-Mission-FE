@@ -1,13 +1,15 @@
 import Image from "next/image";
 import styles from "./LikeButton.module.scss";
-import inactiveHeart from "../../public/assets/icons/ic_heart_inactive.svg";
-import activeHeart from "../../public/assets/icons/ic_heart_active.svg";
 import { formatLikes } from "@/utils/formatFn";
+import assets from "@/variables/images";
 
 export function LikeNumber({ data, size }) {
   const likeNum = data?.favoriteCount || data?.likeCount;
+  assets.icons.inactiveHeart;
+  const likeIcon = data?.isFavorite
+    ? assets.icons.heartActive
+    : assets.icons.heartInactive;
 
-  const likeIcon = data?.isFavorite ? activeHeart : inactiveHeart;
   return (
     <div className={styles.LikeNumber}>
       <Image src={likeIcon} alt="likes icon" width={size} height={size} />
@@ -16,9 +18,9 @@ export function LikeNumber({ data, size }) {
   );
 }
 
-export default function LikeButton({ data, size = 32 }) {
+export default function LikeButton({ data, size = 32, onClick = null }) {
   return (
-    <button className={styles.LikeButton}>
+    <button className={styles.LikeButton} onClick={onClick}>
       <LikeNumber data={data} size={size} />
     </button>
   );

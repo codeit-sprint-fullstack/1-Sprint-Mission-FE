@@ -1,7 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { CREATE_UPDATE, CRUD_COMMENT, DELETE } from "@/variables/entities";
-import { createImageUrl } from "./api/user";
+import {
+  CREATE_UPDATE,
+  CRUD_COMMENT,
+  DELETE,
+  MUTATE_LIKE,
+} from "@/variables/entities";
 
 //to create product or article
 export function useCreateMutation({ entity }) {
@@ -102,6 +106,48 @@ export function useUpdateComment({ whichComment, idPath, commentId }) {
         queryKey: queryKey(idPath),
       });
       console.log(queryKey(idPath));
+    },
+  });
+}
+
+//mutate like
+export function useLikeMutation({ entity, id, isLiked }) {
+  const queryClient = useQueryClient();
+  const { queryKey, create, delete: remove } = MUTATE_LIKE(entity);
+
+  return useMutation({
+    mutationFn: (id) => {
+      return isLiked ? remove(id) : create(id);
+    },
+    onMutate: async () => {
+      await queryClient.cancelQueries({
+        queryKey: queryKey(id),
+      });
+
+      const prevData = queryClient.getQueryData({ queryKey: queryKey() });
+
+      queryClient.setQueryData({
+        queryKey: queryKey(id),
+        updater: (prev) => {
+          return {
+            ...prev,
+            isFavorite: !isLiked,
+            favoriteCount: isLiked
+              ? prev.favoriteCount + 1
+              : prev.favoriteCount - 1,
+          };
+        },
+      });
+      return { prevData };
+    },
+    onError: (context) => {
+      queryClient.setQueryData({
+        queryKey: queryKey(id),
+        updater: context.prevData,
+      });
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: queryKey(id) });
     },
   });
 }

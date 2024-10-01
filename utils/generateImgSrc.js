@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 const __dirname = path.join();
 
-export const assets = {};
+const assets = {};
 
 const assetsPath = path.join(__dirname, "public/assets");
 const categories = fs.readdirSync(assetsPath).filter((item) => {

@@ -11,7 +11,9 @@ import { articleKey, productKey } from "./queryKeys";
 import {
   createProduct,
   createProductComment,
+  createProductFavorite,
   deleteProductById,
+  deleteProductFavorite,
   getProductById,
   getProductComments,
   getProductList,
@@ -49,6 +51,8 @@ const CONFIG = {
     delete: deleteProductById,
     createComment: createProductComment,
     readComments: getProductComments,
+    createLike: createProductFavorite,
+    deleteLike: deleteProductFavorite,
   },
   comment: {
     name: "댓글",
@@ -90,6 +94,14 @@ export const CREATE_UPDATE = (entity) => {
     queryKey: () => CONFIG[entity].key.list(),
     update: CONFIG[entity].update,
     create: CONFIG[entity].create,
+  };
+};
+
+export const MUTATE_LIKE = (entity) => {
+  return {
+    queryKey: (id) => CONFIG[entity].key.details(id),
+    create: CONFIG[entity].createLike,
+    delete: CONFIG[entity].deleteLike,
   };
 };
 

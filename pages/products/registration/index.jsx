@@ -23,10 +23,6 @@ export default function CreateProductPage() {
     });
 
     mutate(formData);
-
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}`, value);
-    }
   };
 
   if (isPending) return <Loader />;

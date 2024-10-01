@@ -47,3 +47,13 @@ export async function updateProductById(productId, productData) {
   const res = await axios.patch(`${PATH}/${productId}`, productData);
   return res.data;
 }
+
+export async function createProductFavorite(productId) {
+  const res = await axios.post(`${PATH}/${productId}/favorite`);
+  return res.data;
+}
+
+export async function deleteProductFavorite(productId) {
+  const res = await axios.delete(`${PATH}/${productId}/favorite`);
+  return res.data;
+}

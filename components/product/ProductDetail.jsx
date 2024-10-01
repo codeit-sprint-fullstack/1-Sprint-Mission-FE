@@ -1,3 +1,4 @@
+import { useLikeMutation } from "@/service/mutations";
 import { ImageContainer } from "../ui/ImgContainers";
 import KebabMenu from "../ui/KebabMenu";
 import Message from "../ui/Message";
@@ -7,6 +8,14 @@ import styles from "./ProductDetail.module.scss";
 
 export default function ProductDetail({ product, entity }) {
   if (!product) return <Message msg="product data가 없나봄." />;
+
+  const isLiked = product.isFavorite;
+
+  const { mutate } = useLikeMutation({ id: product.id, entity, isLiked });
+
+  const toggleLikeButton = () => {
+    mutate(product.id);
+  };
 
   return (
     <article className={styles.ProductDetail}>
@@ -40,7 +49,7 @@ export default function ProductDetail({ product, entity }) {
         </div>
         <div className={styles.writer}>
           <UserInfo entity={entity} data={product} />
-          <LikeButton data={product} />
+          <LikeButton data={product} onClick={toggleLikeButton} />
         </div>
       </div>
     </article>
