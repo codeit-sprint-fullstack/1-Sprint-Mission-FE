@@ -3,7 +3,9 @@ import Button from "@/components/ui/Button";
 import { useAuth } from "@/context/AuthProvider";
 
 export default function MyPage() {
-  const { user, logOut } = useAuth(true);
+  const { user, logOut } = useAuth();
+
+  if (!user) return null;
 
   return (
     <>

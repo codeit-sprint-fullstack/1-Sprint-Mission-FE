@@ -7,21 +7,21 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export default function LoginPage() {
-  const { user } = useAuth();
+  const { user, logIn } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     if (user) {
       router.push("/");
     }
-  });
+  }, [user, router]);
 
   return (
     <section className={styles.AuthPage}>
-      <LoginForm />
+      <LoginForm logIn={logIn} />
       <SocialLogin />
       <p className={styles.text}>
-        판다마켓이 처음이신가요?{" "}
+        판다마켓이 처음이신가요?
         <Link href="/auth/signup" className={styles.link}>
           회원가입
         </Link>

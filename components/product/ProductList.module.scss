@@ -20,5 +20,11 @@
   @include g.flex-box(column, flex-start, flex-start, 16px);
   .text {
     @include g.flex-box(column, flex-start, flex-start, 6px);
+    h3 {
+      @include g.font(14, 500);
+    }
+    p {
+      @include g.font(16, 700);
+    }
   }
 }

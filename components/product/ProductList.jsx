@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./ProductList.module.scss";
 import { ImageContainer } from "../ui/ImgContainers";
-import LikeButton from "../user/LikeButton";
+import { LikeNumber } from "../user/LikeButton";
 
 function ProductCard({ product }) {
   if (product.length === 0) {
@@ -15,10 +15,11 @@ function ProductCard({ product }) {
         alt={product.name}
         radius="16px"
       />
+
       <div className={styles.text}>
         <h3>{product.name}</h3>
         <p>{product.price.toLocaleString()}원</p>
-        <LikeButton data={product} />
+        <LikeNumber data={product} size={16} />
       </div>
     </div>
   );

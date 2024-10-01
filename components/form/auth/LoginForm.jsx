@@ -4,22 +4,9 @@ import Input from "../comm/Input";
 import Button from "../../ui/Button";
 import { PasswordInput } from "../comm/PasswordInput";
 import { AUTH } from "@/variables/formValidation";
-import { useAuth } from "@/context/AuthProvider";
-import { useModalAction } from "@/hooks/useModalAction";
-import Modal from "@/components/ui/modals/Modal";
 
-export default function LoginForm() {
+export default function LoginForm({ logIn }) {
   const formMethods = useForm();
-  const { logIn } = useAuth();
-
-  const {
-    isModalOpen,
-    modalRef,
-    onModalConfirm,
-    onModalOpen,
-    onModalClose,
-    modalMsg,
-  } = useModalAction();
 
   const {
     handleSubmit,
@@ -33,26 +20,11 @@ export default function LoginForm() {
         console.log("로그인 됨");
         reset();
       },
-      onError: (error) => {
-        console.error(error.message, error.status);
-        onModalOpen(error.message || "로그인 오류가 발생했습니다");
-      },
     });
   };
 
   return (
     <>
-      {isModalOpen && (
-        <Modal
-          ref={modalRef}
-          msg={modalMsg}
-          onClose={
-            logIn.isError
-              ? () => onModalClose()
-              : () => onModalConfirm("/products")
-          }
-        />
-      )}
       <FormProvider {...formMethods}>
         <form
           className={styles.AuthForm}

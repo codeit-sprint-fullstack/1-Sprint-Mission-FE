@@ -16,7 +16,7 @@ const AuthContext = createContext({
 export function AuthProvider({ children }) {
   const queryClient = useQueryClient();
   const router = useRouter();
-  const { onModalOpen, GlobalModal } = useGlobalModal();
+  const { onModalOpen, GlobalModal: AuthModal } = useGlobalModal();
   let accessToken;
 
   if (typeof window !== "undefined") {
@@ -47,9 +47,6 @@ export function AuthProvider({ children }) {
       queryClient.invalidateQueries("user");
       getMe();
     },
-    onError: (error) => {
-      console.log(error.message);
-    },
   });
 
   const signUpMutation = useMutation({
@@ -70,9 +67,12 @@ export function AuthProvider({ children }) {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     queryClient.setQueriesData(["user"], null);
-    console.log("로그아웃 됨");
+    onModalOpen({
+      msg: "로그아웃 되었습니다",
+      action: () => router.push("/"),
+    });
 
-    router.push("/");
+    console.log("로그아웃 됨");
   };
 
   return (
@@ -87,7 +87,7 @@ export function AuthProvider({ children }) {
       }}
     >
       {children}
-      <GlobalModal />
+      <AuthModal />
     </AuthContext.Provider>
   );
 }

@@ -4,54 +4,47 @@ import Input from "../comm/Input";
 import Button from "../../ui/Button";
 import { PasswordInput } from "../comm/PasswordInput";
 import { AUTH } from "@/variables/formValidation";
-import { useModal } from "@/hooks/useModal";
-import Modal from "@/components/ui/Modal";
+import { useGlobalModal } from "@/hooks/useModals";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { useAuth } from "@/context/AuthProvider";
 
 export default function SignUpForm() {
+  const [newUser, setNewUser] = useState(false);
+  const { signUp, user } = useAuth();
   const formMethods = useForm();
-  const {
-    isModalOpen,
-    modalRef,
-    onModalConfirm,
-    onModalOpen,
-    onModalClose,
-    modalMsg,
-  } = useModal();
-  const { signUp } = useAuth();
-
+  const { onModalOpen, GlobalModal } = useGlobalModal();
   const {
     handleSubmit,
     formState: { isValid },
     reset,
   } = formMethods;
 
+  const router = useRouter();
+
   const handleLoginSubmit = (data) => {
     signUp.mutate(data, {
       onSuccess: () => {
-        onModalOpen("가입이 완료되었습니다.");
+        setNewUser(true);
+        onModalOpen({
+          msg: "가입이 완료되었습니다.",
+          path: "/",
+        });
         reset();
-      },
-      onError: (error) => {
-        console.error(error.message, error.status);
-        onModalOpen(error.message);
       },
     });
   };
 
+  useEffect(() => {
+    if (user && !newUser) {
+      router.push("/");
+      setNewUser(false);
+    }
+  }, [user, router]);
+
   return (
     <>
-      {isModalOpen && (
-        <Modal
-          ref={modalRef}
-          msg={modalMsg}
-          onClose={
-            signUp.isError
-              ? () => onModalClose()
-              : () => onModalConfirm("/auth/login")
-          }
-        />
-      )}
+      <GlobalModal />
       <FormProvider {...formMethods}>
         <form
           className={styles.AuthForm}

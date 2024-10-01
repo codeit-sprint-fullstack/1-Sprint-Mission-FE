@@ -1,9 +1,13 @@
+import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
 export function useModalAction() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState("");
   const [nextAction, setNextAction] = useState(null);
+  const [redirect, setRedirect] = useState(null);
+
+  const router = useRouter();
 
   const modalRef = useRef(null);
 
@@ -13,12 +17,16 @@ export function useModalAction() {
     }
   }, [isModalOpen]);
 
-  const onModalOpen = ({ msg, action }) => {
+  const onModalOpen = ({ msg, action, path }) => {
     setIsModalOpen(true);
     setModalMsg(msg);
 
     if (action) {
       setNextAction(() => action);
+    }
+
+    if (path) {
+      setRedirect(() => router.push(path));
     }
   };
 
@@ -27,6 +35,7 @@ export function useModalAction() {
       modalRef.current.close();
       setIsModalOpen(false);
       setNextAction(null);
+      setRedirect(null);
     }
   };
 
@@ -39,7 +48,12 @@ export function useModalAction() {
       nextAction();
     }
 
+    if (redirect) {
+      redirect();
+    }
+
     setNextAction(null);
+    setRedirect(null);
   };
 
   return {
