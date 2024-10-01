@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import "./BestProducts.css";
+import styles from "./BestProducts.module.css"; // CSS 모듈 import
 import { getProductList } from "../api/api";
 import BestProductItem from "./BestProductItem";
 
@@ -33,8 +33,8 @@ function BestProducts() {
   const topProducts = products.slice(0, 4);
 
   return (
-    <section className="best-products">
-      <div className="bestProductList">
+    <section className={styles.bestProducts}>
+      <div className={styles.bestProductList}>
         {topProducts.map((product) => (
           <BestProductItem key={product.id} product={product} />
         ))}
