@@ -8,6 +8,7 @@ import ProductSearchBar from "../../components/ProductSearchBar";
 import ProductRegisterButton from "../../components/ProductRegisterButton";
 import SortOptions from "../../components/SortOptions";
 import Spinner from "../../components/Spinner";
+import BestProducts from "../../components/BestProducts";
 import styles from "../../styles/itemList.module.css";
 
 const ProductListPage = () => {
@@ -53,6 +54,8 @@ const ProductListPage = () => {
   return (
     <Spinner dataLoaded={!isLoading}>
       <div className={styles.productList}>
+        <BestProducts />
+
         <div className={styles.header}>
           <h2 className={styles.sectionTitle}>판매 중인 상품</h2>
           <div className={styles.controlContainer}>
