@@ -133,6 +133,8 @@ module.exports = {
         "btn-page": "4rem",
         // simple-sign-in
         "simple-sign-in": "7.4rem",
+        // post-middle-bar
+        "post-middle-bar": "7.2rem",
       },
       fontSize: {
         base: "10px",

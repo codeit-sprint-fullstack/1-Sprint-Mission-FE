@@ -1,7 +1,0 @@
-.btn-regist {
-  background-image: url(../../public/buttons/btn_registration_w74.svg);
-}
-
-.btn-regist:disabled {
-  background-image: url(../../public/buttons/btn_registration_w74_disabled.svg);
-}

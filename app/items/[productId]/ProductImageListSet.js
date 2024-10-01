@@ -5,7 +5,6 @@ import classNames from "classnames";
 import Image from "next/image";
 
 export default function ProductImageListSet({ images }) {
-  const noImg = "/images/no_image.svg";
   const [validImgs, setValidImgs] = useState(images);
 
   const productImageListSetClass = classNames("product-image-list-set");
@@ -17,7 +16,7 @@ export default function ProductImageListSet({ images }) {
   );
 
   useEffect(() => {
-    const loadImages = async () => {
+    const loadImages = () => {
       const imgPromises = images.map((img) => {
         return new Promise((resolve) => {
           const image = new window.Image();
@@ -35,14 +34,22 @@ export default function ProductImageListSet({ images }) {
         });
       });
 
-      const results = await Promise.all(imgPromises);
-      setValidImgs(results);
+      Promise.all(imgPromises).then((results) => {
+        setValidImgs(results);
+      });
     };
 
     loadImages();
 
     return () => {
       setValidImgs([]);
+
+      images.forEach((img) => {
+        const image = new window.Image();
+        image.src = img;
+        image.onload = null;
+        image.onerror = null;
+      });
     };
   }, [images]);
 

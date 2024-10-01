@@ -4,21 +4,21 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { createPostComment, getPostComments } from "@/lib/api-post-comment";
 import classNames from "classnames";
 
-import CommentMaker from "./CommentMaker";
-import CommentList from "./CommentList";
+import PostCommentMaker from "./PostCommentMaker";
+import CommentList from "@app/components/CommentList";
 
-export default function CommentSection({ postId }) {
+export default function PostCommentSection({ postId }) {
   const queryClient = useQueryClient();
 
   const { data: commentList } = useQuery({
-    queryKey: [`comments`, postId],
+    queryKey: [`post-comments`, postId],
     queryFn: () => getPostComments(postId),
   });
 
   const mutation = useMutation({
     mutationFn: ({ postId, content }) => createPostComment(postId, content),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [`comments`, postId] });
+      queryClient.invalidateQueries({ queryKey: [`post-comments`, postId] });
     },
   });
 
@@ -38,7 +38,7 @@ export default function CommentSection({ postId }) {
   return (
     <>
       <div className={commentMakerFrameClass}>
-        <CommentMaker registComment={handleRegistComment} />
+        <PostCommentMaker registComment={handleRegistComment} />
       </div>
       <div className={commentListFrameClass}>
         <CommentList list={commentList} />

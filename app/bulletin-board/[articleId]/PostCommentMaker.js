@@ -3,18 +3,16 @@
 import { useState } from "react";
 import classNames from "classnames";
 
-import TextArea from "./TextArea";
+import TextArea from "../../components/TextArea";
 import {
   MIN_COMMENT_LENGTH,
   WARN_MIN_COMMENT_LENGTH,
   MAX_COMMENT_LENGTH,
   WARN_MAX_COMMENT_LENGTH,
   VALID_VALUE,
-} from "../constants/comment";
+} from "../../constants/comment";
 
-import style from "./comment-maker.module.css";
-
-export function CommentMaker({ registComment }) {
+export default function PostCommentMaker({ registComment }) {
   const [comment, setComment] = useState("");
   const [commentValid, setCommentValid] = useState(undefined);
   const [registBtnDisable, setRegistBtnDisable] = useState(true);
@@ -113,7 +111,7 @@ export function CommentMaker({ registComment }) {
       {getCommentWarn()}
       <div className={commentBottomBarClass}>
         <button
-          className={"btn-comment-regist"}
+          className="btn-comment-regist"
           onClick={handleRegistComment}
           disabled={registBtnDisable}
         />
@@ -121,5 +119,3 @@ export function CommentMaker({ registComment }) {
     </div>
   );
 }
-
-export default CommentMaker;
