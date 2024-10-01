@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Axios 인스턴스 생성
 const axiosInstance = axios.create({
-  baseURL: "https://panda-market-api.vercel.app",
+  baseURL: "https://baomarket.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },
