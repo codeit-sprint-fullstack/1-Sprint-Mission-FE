@@ -566,7 +566,7 @@ module.exports = {
         ".empty-comment-list_mark": {
           width: "14rem",
           height: "14rem",
-          backgroundImage: "url('/images/Img_reply_empty.svg')",
+          backgroundImage: "url(/images/Img_reply_empty.svg)",
         },
         ".empty-comment-list_text": {
           width: "15.1rem",
@@ -633,6 +633,12 @@ module.exports = {
           width: "10.6rem",
           height: "4.2rem",
           backgroundImage: "url(/buttons/btn_modify_complete.svg)",
+        },
+        ".loading-spinner": {
+          margin: "auto",
+          width: theme("width.loading"),
+          height: theme("height.loading"),
+          content: "url(/images/loading_infinite_spinner.svg)",
         },
       };
       addComponents(components);
