@@ -34,6 +34,7 @@ export default function ProductListItem({ product }) {
         height={200}
         className={styles.productImage}
         onError={() => setImageSrc(defaultImage)}
+        priority
       />
       <div className={styles.productInfo}>
         <p className={styles.productName}>{product.name}</p>
