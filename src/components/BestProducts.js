@@ -16,9 +16,10 @@ function BestProducts() {
           offset: 0,
           limit: 4,
         });
-        console.log("응답 데이터:", response);
+        console.log("베스트 상품 응답 데이터:", response);
 
-        const sortedProducts = response.list.sort(
+        // 응답 데이터가 배열인 경우 직접 사용
+        const sortedProducts = response.sort(
           (a, b) => b.favoriteCount - a.favoriteCount
         );
         setProducts(sortedProducts);

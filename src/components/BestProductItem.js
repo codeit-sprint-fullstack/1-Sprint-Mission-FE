@@ -1,18 +1,23 @@
-import React from "react";
+import Image from "next/image";
 import styles from "./BestProducts.module.css"; // CSS 모듈 import
 
 function BestProductItem({ product }) {
   const imageSrc =
     product.images && product.images.length > 0
       ? product.images[0]
-      : "/images/default_image.png"; // 기본 이미지 경로
+      : "/images/img_default.png"; // 기본 이미지 경로
+
+  console.log("Image Source:", imageSrc);
 
   return (
     <div className={styles.bestProductItemCard}>
-      <img
+      <Image
         src={imageSrc}
         alt={product.name}
         className={styles.bestProductImage}
+        width={282}
+        height={282}
+        priority
       />
       <div className={styles.productInfo}>
         <p className={styles.productName}>{product.name}</p>
