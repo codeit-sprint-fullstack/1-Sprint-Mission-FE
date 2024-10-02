@@ -22,15 +22,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/free-board": [
+    "/items": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/free-board.js"
+      "static/chunks/pages/items.js"
     ],
-    "/post-detail/[id]": [
+    "/items/[itemId]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/post-detail/[id].js"
+      "static/chunks/pages/items/[itemId].js"
     ]
   },
   "ampFirstPages": []

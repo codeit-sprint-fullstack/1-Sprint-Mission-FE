@@ -1,5 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700&display=swap");
 
+* {
+  box-sizing: border-box; /* 모든 요소에 적용 */
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: "Pretendard", sans-serif;
 }
@@ -153,5 +163,3 @@ select::after {
 .search-results li:last-child {
   border-bottom: none;
 }
-
-

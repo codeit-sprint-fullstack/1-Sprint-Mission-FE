@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import Router from "next/router";
 import Spinner from "../components/Spinner";
 import "../styles/globals.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+// QueryClient 인스턴스 생성
+const queryClient = new QueryClient();
 
 // 핸들러 함수들을 useEffect 외부에서 정의
 const handleRouteChange = (setLoading) => () => setLoading(true);
@@ -31,10 +35,10 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       {loading && <Spinner />}
       <Component {...pageProps} onPageLoad={() => setLoading(false)} />
-    </>
+    </QueryClientProvider>
   );
 }
 

@@ -1,0 +1,364 @@
+.productDetailItem {
+  position: relative; /* 메뉴의 위치를 설정하기 위해*/
+}
+
+/* 판매 사진과 판매 내용 컨테이내 */
+.productHeaderContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  margin-top: 20px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 20px;
+}
+
+/* 이미지 옆 판매 내용 */
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  width: 690px;
+  gap: 10px;
+  text-align: left;
+}
+
+/* : 버튼 */
+.productTitleMenu {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 판매 제목 */
+.productTitle {
+  text-align: left;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+/* 가격 */
+.productPrice {
+  text-align: left;
+  font-size: 40px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  border-bottom: 1px solid #e5e7eb; /* 회색 줄 추가 */
+  padding-bottom: 10px;
+}
+
+/* 문의하기 */
+.productQuestion {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  margin-top: 20px;
+}
+
+/* 상품 소개 */
+.productIntroduction {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+/* 상품 소개 글 */
+.productDescription {
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left;
+  color: #4b5563;
+}
+
+/* 상풉 태그 문구 */
+.tagsmungoo {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+/* 태그 낱개 */
+.tags {
+  width: 125px;
+  height: 36px;
+  padding: 6px 16px;
+  gap: 10px;
+  border-radius: 26px;
+  background: #f3f4f6;
+}
+
+/* 프로필이미지, 작성자, 작성날짜와 좋아요 수*/
+.productFooter {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+/* 프로필이미지, 작성자, 작성날짜 */
+.authorInfo {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* 작성자와 작성 날짜 */
+.authorDate {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+/* 좋아요 수 버튼 */
+.likeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 87px;
+  height: 40px;
+  padding: 4px 12px;
+  border-radius: 35px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+/* 좋아요 수 */
+.likeCount {
+  display: flex;
+  font-size: 16px;
+  font-weight: 800;
+  color: #1159e7;
+}
+
+/* 작성자 */
+.authorName {
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 작성 날짜 */
+.postDate {
+  font-size: 14px;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+/* 댓글 달기 문구 */
+.commentDalkiH3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* 댓글 내용 textarea */
+.detailCommentContainer {
+  display: flex;
+  gap: 16px;
+}
+
+/* 댓글 textarea */
+.commentInput {
+  height: 104px;
+  padding: 16px 24px;
+  background: #f3f4f6;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+/* 포커스 시 테두리 색상 변경 */
+.commentInput:focus {
+  border-color: #3692ff;
+  border-width: 4px;
+  outline: none;
+}
+
+/* placeholder */
+.commentInput::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  color: #9ca3af;
+}
+
+/* 댓글 등록 버튼 */
+.registrationBtn {
+  padding: 12px 0;
+  border-radius: 8px;
+  background: #3692ff;
+  width: 74px;
+  height: 42px;
+  border: none;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 700;
+  align-self: flex-end;
+}
+
+/* 등록 버튼 비활성화*/
+.registrationBtn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* 수정/삭제를 위한 : 버튼 */
+.moreMenuButton {
+  position: relative;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: none;
+  color: #9ca3af;
+}
+
+/* 수정/삭제 메뉴 */
+.menu {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  border: 1px solid #d1d5db;
+  display: flex;
+  flex-direction: column;
+  width: 139px;
+}
+
+/* 메뉴 버튼 스타일 */
+.menuButton {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #6b7280;
+  cursor: pointer;
+  text-align: center;
+}
+
+.menuButton:hover {
+  background: #e5e7eb;
+}
+
+/* 등록 버튼 위치 */
+.registrationContainer {
+  display: flex;
+  justify-content: flex-end; /* 버튼을 오른쪽 끝으로 이동 */
+}
+
+/* 태그 */
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap; /* 여러 줄로 표시되도록 설정 */
+  gap: 10px; /* 태그 사이 간격 */
+}
+
+.tag {
+  background: #f3f4f6;
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+  display: inline-block;
+}
+
+/*-------------------반응형 디자인 ---------------------------*/
+
+/* Tablet */
+@media only screen and (min-width: 744px) and (max-width: 1199px) {
+  /* 판매 사진과 판매 내용 컨테이내 */
+  .productHeaderContainer {
+    margin-top: 20px;
+  }
+
+  .productInfo {
+    width: 100%; /* 너비를 100%로 설정 */
+  }
+
+  /* 판매 이미지 */
+  .productImage {
+    width: 340px;
+    height: 340px;
+    border-radius: 16px;
+  }
+
+  .productTitle {
+    font-size: 22px;
+  }
+
+  .productPrice {
+    font-size: 18px;
+  }
+
+  .productDescription {
+    font-size: 14px;
+  }
+
+  .commentInput {
+    width: 100%;
+    height: 80px;
+    padding: 12px 16px;
+  }
+
+  /* placeholder */
+  .commentInput::placeholder {
+    font-size: 14px;
+  }
+
+  .tagsContainer {
+    justify-content: flex-start; /* 태그 정렬을 왼쪽으로 */
+  }
+}
+
+/* Mobile */
+@media only screen and (min-width: 375px) and (max-width: 743px) {
+  /* 판매 사진과 판매 내용 컨테이내 */
+  .productHeaderContainer {
+    flex-direction: column; /* 세로로 나열 */
+    margin-top: 20px;
+  }
+
+  .imageContainer {
+    display: flex; /* flexbox 사용 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 (height가 설정된 경우) */
+    margin-bottom: 20px; /* 이미지와 상품 정보 사이의 간격 */
+  }
+
+  .productInfo {
+    width: 100%; /* 너비를 100%로 설정 */
+  }
+
+  /* 판매 이미지 */
+  .productImage {
+    width: 344px;
+    height: 343px;
+    border-radius: 12px;
+  }
+
+  .productTitle {
+    font-size: 20px;
+  }
+
+  .productPrice {
+    font-size: 16px;
+  }
+
+  .commentInput {
+    height: 72px;
+    padding: 8px 12px;
+    font-size: 14px;
+    width: 100%; /* 너비를 100%로 설정 */
+  }
+
+  /* placeholder */
+  .commentInput::placeholder {
+    font-size: 12px;
+  }
+}

@@ -77,3 +77,61 @@
   margin-right: 200px;
   font-family: Pretendard;
 }
+
+/* 인가된 경우, 유저 정보 API를 활용 */
+
+/* 프로필 이미지와 닉네임 */
+.loginprofile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 200px;
+}
+
+/* 닉네임 */
+.username {
+  font-size: 18px;
+  font-weight: 400;
+  color: #4b5563;
+}
+
+/* Tablet */
+@media only screen and (min-width: 744px) and (max-width: 1199px) {
+  .header {
+    padding: 10px;
+  }
+
+  .logoContainer {
+    margin-left: 20px;
+    margin-right: 10px;
+  }
+
+  .loginButton {
+    margin-right: 20px;
+  }
+
+  .loginprofile {
+    margin-right: 20px;
+  }
+}
+
+/* Mobile */
+@media only screen and (min-width: 375px) and (max-width: 743px) {
+  /* 헤더 */
+  .logoContainer {
+    margin-left: 10px;
+    margin-right: 20px;
+  }
+
+  .loginButton {
+    margin-right: 20px;
+  }
+
+  .loginprofile {
+    margin-right: 20px;
+  }
+
+  .logo:first-child {
+    display: none;
+  }
+}
