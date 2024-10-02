@@ -33,8 +33,14 @@ export default function BestArticleList({ articles }) {
               <div className={styles.main}>
                 <div className={styles.title}>{article.title}</div>
                 <Image
-                  src={articleImage}
+                  src={
+                    article.images && article.images.length > 0
+                      ? `https://sprint-be-ztdn.onrender.com/${article.images[0]}`
+                      : articleImage
+                  }
                   alt='기본이미지'
+                  width={72}
+                  height={72}
                   className={styles.image}
                 />
               </div>

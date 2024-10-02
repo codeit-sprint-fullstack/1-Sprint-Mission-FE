@@ -60,7 +60,6 @@ export function useFleaMarketEditArticle({ id }) {
     onSuccess: (newArticle) => {
       queryClient.setQueryData(['article', newArticle.id], newArticle);
       queryClient.invalidateQueries(['article', newArticle.id]);
-      queryClient.invalidateQueries(['bestArticle']);
       router.push(`/fleamarket/${id}`);
     },
     onError: (error) => {
@@ -91,12 +90,11 @@ export function useFleaMarketPostArticle() {
   const router = useRouter();
 
   const postFleaMarketArticle = useMutation({
-    mutationFn: ({ title, content, price, image, tags, userId }) =>
-      postFleaMarketArticleApi({ title, content, price, image, tags, userId }),
+    mutationFn: ({ title, content, price, images, tags, userId }) =>
+      postFleaMarketArticleApi({ title, content, price, images, tags, userId }),
     onSuccess: (newArticle) => {
       queryClient.setQueryData(['article', newArticle.id], newArticle);
-      queryClient.invalidateQueries(['bestArticle']);
-      router.push(`/fleamarket/${newArticle.id}`);
+      router.push(`/fleamarket/${newArticle.data.id}`);
     },
     onError: (error) => {
       console.error('Error editing data:', error);

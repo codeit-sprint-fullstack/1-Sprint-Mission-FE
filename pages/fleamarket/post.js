@@ -17,7 +17,7 @@ export default function PostFleaArticlePage() {
     title: '',
     content: '',
     price: '',
-    image: [],
+    images: [],
   });
 
   const router = useRouter();
@@ -31,7 +31,7 @@ export default function PostFleaArticlePage() {
         title: values.title,
         content: values.content,
         price: values.price,
-        image: values.image || [],
+        images: values.images || [],
         tags: tags || [],
         userId: '86d761e4-a9d0-4082-96dd-cf6f2c931673',
       };

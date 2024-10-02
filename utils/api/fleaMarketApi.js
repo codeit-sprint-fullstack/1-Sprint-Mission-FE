@@ -45,69 +45,70 @@ export async function fetchFleaMarketArticleApi(id) {
   }
 }
 
+// export async function postFleaMarketArticleApi({
+//   title,
+//   content,
+//   price,
+//   images,
+//   tags,
+//   userId,
+// }) {
+//   try {
+//     const res = await instance.post(`/post`, {
+//       title: title,
+//       content: content,
+//       price: price,
+//       images: images || [],
+//       tags: tags || [],
+//       userId: '86d761e4-a9d0-4082-96dd-cf6f2c931673',
+//     });
+//     console.log(res);
+//     return res.data;
+//   } catch (error) {
+//     console.error('Error posting data:', error);
+//   }
+// }
+
 export async function postFleaMarketArticleApi({
   title,
   content,
-  price,
   images,
+  price,
   tags,
-  userId,
 }) {
   try {
-    const res = await instance.post(`/post`, {
-      title: title,
-      content: content,
-      price: price,
-      images: images || [],
-      tags: tags || [],
-      userId: userId,
+    const formData = new FormData();
+
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('userId', '86d761e4-a9d0-4082-96dd-cf6f2c931673');
+
+    images.forEach((file) => {
+      formData.append('images', file);
     });
 
-    return res.data;
+    formData.append('tags', tags);
+    formData.append('price', price);
+
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+
+    const res = await instance.post(`/post`, formData, config);
+
+    console.log(res);
+    return res;
   } catch (error) {
+    alert('게시물 등록에 실패했습니다.');
     console.error('Error posting data:', error);
   }
 }
-
-// export async function postArticleApi({
-//   title,
-//   content,
-//   image,
-//   price,
-//   tags,
-//   category,
-// }) {
-//   try {
-//     const formData = new FormData();
-
-//     formData.append('title', title);
-//     formData.append('content', content);
-//     formData.append('category', category);
-//     formData.append('userId', '86d761e4-a9d0-4082-96dd-cf6f2c931673');
-
-//     formData.append('images', image);
-
-//     // if (tags) {
-//     //   tags.forEach((tag) => {
-//     //     formData.append('tags', tag);
-//     //   });
-//     // }
-//     // if (priceValue) {
-//     //   formData.append('price', price || null);
-//     // }
-//     for (let [key, value] of formData.entries()) {
-//       console.log(`${key}: ${value}`);
-//     }
-
-//     const res = await axios.post(`${baseUrl}`, formData);
-
-//     console.log(res);
-//     return res;
-//   } catch (error) {
-//     alert('게시물 등록에 실패했습니다.');
-//     console.error('Error deleting data:', error);
-//   }
-// }
 
 export async function editFleaMarketArticleApi({ title, content, id }) {
   try {

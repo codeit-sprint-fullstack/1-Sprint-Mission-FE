@@ -26,7 +26,16 @@ export default function ArticleList({ articles }) {
                     [{article.comment.length}]
                   </span>
                 </span>
-                <Image src={articleImage} alt='기본이미지' />
+                <Image
+                  src={
+                    article.images && article.images.length > 0
+                      ? `https://sprint-be-ztdn.onrender.com/${article.images[0]}`
+                      : articleImage
+                  }
+                  alt='기본이미지'
+                  width={72}
+                  height={72}
+                />
               </div>
 
               <ArticleListUserInfo article={article} />

@@ -59,7 +59,11 @@ export default function ArticleDetailInfo({ article, category }) {
       )}
       <div className={styles.layout}>
         <Image
-          src={TestImage}
+          src={
+            article.images && article.images.length > 0
+              ? `https://sprint-be-ztdn.onrender.com/${article.images[0]}`
+              : TestImage
+          }
           width={486}
           height={486}
           alt='이미지'
@@ -105,7 +109,7 @@ export default function ArticleDetailInfo({ article, category }) {
           <div className={styles.itemTitleText}>상품 태그</div>
           {article.tags.map((tag, index) => (
             <li key={index} className={styles.hashtags}>
-              <span className={styles.hashtagTitle}> {tag}</span>
+              <span className={styles.hashtagTitle}># {tag}</span>
             </li>
           ))}
         </div>

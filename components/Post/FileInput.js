@@ -23,7 +23,7 @@ export default function FileInput({ values, setValues }) {
     setShowImages(imageUrlLists);
     setValues((prev) => ({
       ...prev,
-      image: [...prev.image, imageLists],
+      images: [...prev.images, imageLists],
     }));
   };
 
@@ -32,7 +32,7 @@ export default function FileInput({ values, setValues }) {
 
     setValues((prev) => ({
       ...prev,
-      image: values.image.filter((_, index) => index !== id),
+      images: values.images.filter((_, index) => index !== id),
     }));
   };
 
@@ -41,7 +41,7 @@ export default function FileInput({ values, setValues }) {
       <div className={styles.sectionTitle}>이미지</div>
 
       <input
-        name='image'
+        name='images'
         type='file'
         onChange={handleSelectImage}
         ref={imageRef}
