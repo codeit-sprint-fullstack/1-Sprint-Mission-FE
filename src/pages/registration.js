@@ -56,8 +56,8 @@ export default function RegistrationPage() {
       return;
     }
 
-    const newImages = files.map((file) => URL.createObjectURL(file));
-    setImages((prevImages) => [...prevImages, ...newImages]);
+    // 실제 파일 객체를 상태에 저장
+    setImages((prevImages) => [...prevImages, ...files]); // 파일 객체 배열로 저장
 
     e.target.value = null; // null로 설정하여 초기화
   };
@@ -93,12 +93,12 @@ export default function RegistrationPage() {
         description: values.description,
         price: values.price,
         tags: values.tags,
-        images,
+        images: images, // 이제 File 객체 배열이 됨
       });
 
       setValues(INITIAL_VALUES);
       setTags([]);
-      setImages([]);
+      setImages([]); // 이미지 초기화
       router.push("/items"); // 중고마켓 페이지로 이동
     } catch (error) {
       console.error("상품 등록 실패", error);
@@ -164,25 +164,28 @@ export default function RegistrationPage() {
               {/* 이미지 미리보기 추가 */}
               <div className={styles.imagePreviewContainer}>
                 <div className={styles.imagePreview}>
-                  {images.map((image, index) => (
-                    <div key={index} className={styles.imageContainer}>
-                      <img
-                        src={image}
-                        alt={`Image ${index + 1}`}
-                        className={styles.imagePreviewImage}
-                        onClick={(e) => {
-                          e.stopPropagation(); // 클릭 이벤트 전파 방지
-                        }}
-                      />
-                      <button
-                        type="button"
-                        className={styles.removeImage}
-                        onClick={() => handleImageRemove(index)}
-                      >
-                        X
-                      </button>
-                    </div>
-                  ))}
+                  {images.map((file, index) => {
+                    const imageUrl = URL.createObjectURL(file); // URL 생성
+                    return (
+                      <div key={index} className={styles.imageContainer}>
+                        <img
+                          src={imageUrl} // 일반 img 태그로 변경
+                          alt={`Image ${index + 1}`}
+                          className={styles.imagePreviewImage}
+                          onClick={(e) => {
+                            e.stopPropagation(); // 클릭 이벤트 전파 방지
+                          }}
+                        />
+                        <button
+                          type="button"
+                          className={styles.removeImage}
+                          onClick={() => handleImageRemove(index)}
+                        >
+                          X
+                        </button>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
