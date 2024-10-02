@@ -1,0 +1,52 @@
+.mobileSearchBar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  position: static;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.mobileBar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.fontStyle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.btnAdd {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #3692ff;
+  color: #f3f4f6;
+  width: 133px;
+  height: 42px;
+  border-radius: 8px;
+  padding: 12px 23px;
+}
+
+.inputSearch {
+  width: 288px;
+  height: 42px;
+  border-radius: 12px;
+  padding: 9px 20px 9px 40px;
+  background: url("../../images/ic_search.png") calc(16px) center no-repeat;
+  background-size: 24px;
+  background-color: #f3f4f6;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.inputSearch::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: #9ca3af;
+}

@@ -1,0 +1,26 @@
+.container {
+  width: 100%;
+  display: flex;
+  width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loginContainer {
+  width: 100%;
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 743px) {
+  .container {
+    width: 100%;
+    margin-left: 16px;
+    padding-right: 16px;
+  }
+  .loginContainer {
+    margin-top: 24px;
+  }
+}

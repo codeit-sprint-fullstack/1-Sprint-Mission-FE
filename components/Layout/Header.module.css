@@ -50,12 +50,45 @@
   cursor: pointer;
 }
 
+.userInfo {
+  display: flex;
+  align-items: center;
+  margin: 15px 200px 14px auto;
+  gap: 6px;
+  .userProfile {
+    width: 40px;
+    height: 40px;
+  }
+  .userNickname {
+    font-size: 16px;
+    font-weight: 400;
+    color: #4b5563;
+    margin-right: 8px;
+  }
+  .logout_btn {
+    width: 66px;
+    height: 42px;
+    border-radius: 8px;
+    text-align: center;
+    padding: 11px 0;
+    background-color: #3692ff;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    cursor: pointer;
+  }
+}
+
 @media (max-width: 1199px) {
   .logo {
     margin-left: 24px;
   }
 
   .login_btn {
+    margin: 14px 24px 14px auto;
+  }
+
+  .userInfo {
     margin: 14px 24px 14px auto;
   }
 }
@@ -75,6 +108,13 @@
 
   .login_btn {
     margin: 14px 16px 14px auto;
+  }
+
+  .userInfo {
+    margin: 14px 16px 14px auto;
+    .userNickname {
+      display: none;
+    }
   }
 
   .moves {

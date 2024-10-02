@@ -1,0 +1,80 @@
+.sell {
+  grid-row: 2;
+  grid-column: 2;
+  margin-top: 40px;
+}
+
+.sellProduct {
+  width: 221px;
+  height: 221px;
+  border-radius: 16px;
+  aspect-ratio: 1 / 1;
+}
+.sellProductItem {
+  width: 100%;
+  position: relative;
+  .itemName {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1f2937;
+    margin-top: 10px;
+  }
+  .itemPrice {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-top: 6px;
+  }
+  .itemFavoriteCnt {
+    font-size: 12px;
+    font-weight: 500;
+    color: #4b5563;
+    margin-top: 6px;
+  }
+}
+
+.sellProductList {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto;
+  gap: 24px;
+  position: relative;
+  top: 24px;
+  width: 100%;
+}
+
+/* 태블릿 크기 */
+@media (max-width: 1199px) {
+  .sellProductList {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .sell {
+    margin-top: 90px;
+  }
+  .sellProductItem {
+    justify-self: center;
+  }
+}
+
+/* 모바일 크기 */
+@media (max-width: 743px) {
+  .sellProductList {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .sellProduct {
+    width: 100%;
+    border-radius: 12px;
+    height: auto;
+  }
+
+  .sell {
+    margin-top: 124px;
+  }
+
+  .sellProductItem {
+    width: 100%;
+  }
+}

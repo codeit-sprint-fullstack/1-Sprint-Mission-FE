@@ -1,0 +1,37 @@
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 58px;
+  margin-top: 114px;
+  gap: 4px;
+}
+
+.shiftBtn {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  color: #6b7280;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.shiftBtn.active {
+  background-color: #2f80ed; /* 현재 페이지 색상 */
+  color: #f9fafb;
+  border: none;
+}
+
+@media (max-width: 1199px) {
+  .btnContainer {
+    margin-top: 56px;
+  }
+}
+
+@media (max-width: 743px) {
+  .btnContainer {
+    margin-top: 40px;
+  }
+}

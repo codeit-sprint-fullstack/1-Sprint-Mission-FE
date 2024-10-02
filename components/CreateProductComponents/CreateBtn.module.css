@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  grid-column: 2;
+}
+
+.addBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 33px;
+  margin-bottom: 16px;
+}
+
+.addBtn {
+  width: 74px;
+  padding: 12px 23px;
+  border-radius: 8px;
+  border: none;
+  background-color: #9ca3af;
+  color: #ffffff;
+  cursor: not-allowed;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.addBtnActive {
+  background-color: #3692ff;
+  cursor: pointer;
+}
+
+.textStyleHead {
+  font-size: 20px;
+  font-weight: 700;
+}

@@ -1,5 +1,9 @@
-import { useState, useCallback } from "react";
-import { fetchComments, createComments, updateComments } from "@/utils/chatApi";
+import { useState, useCallback, useEffect } from "react";
+import {
+  fetchComments,
+  createComments,
+  updateComments,
+} from "@/utils/articleChatApi";
 
 export function useComments(
   articleId,
@@ -88,3 +92,23 @@ export function useComments(
     editComment,
   };
 }
+
+export const useInfiniteScroll = ({ loadMore, hasMore, isLoading }) => {
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+          document.documentElement.offsetHeight - 50 &&
+        !isLoading &&
+        hasMore
+      ) {
+        loadMore();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [loadMore, hasMore, isLoading]);
+};

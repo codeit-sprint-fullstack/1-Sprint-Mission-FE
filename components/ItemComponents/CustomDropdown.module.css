@@ -1,0 +1,81 @@
+.custom-dropdown {
+  display: inline-block;
+  width: 130px;
+  position: relative;
+}
+
+.customDropdownSelected {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 130px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url("../../images/ic_arrow_down.png");
+  background-repeat: no-repeat;
+  background-position: 90px;
+  background-size: 24px;
+  border-radius: 12px;
+}
+
+.customDropdownOptions {
+  top: 40px;
+  right: 0;
+  width: 130px;
+  max-height: 200px;
+  z-index: 1000;
+  display: block;
+  position: absolute;
+  margin-top: 8px;
+  border-radius: 12px;
+}
+
+.customDropdownOptions :first-child {
+  border-radius: 12px 12px 0 0;
+}
+
+.customDropdownOptions :last-child {
+  border-radius: 0 0 12px 12px;
+}
+
+.option {
+  width: 130px;
+  height: 42px;
+  text-align: center;
+  padding-top: 9px;
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+}
+
+@media (max-width: 743px) {
+  .custom-dropdown {
+    width: auto;
+    position: absolute;
+    right: 16px;
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .customDropdownText {
+    display: none;
+  }
+
+  .customDropdownSelected {
+    width: 42px;
+    background-image: url("../../images/ic_sort.png");
+    background-position: center;
+    height: 42px;
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  .customDropdownOptions {
+    margin-top: 4px;
+    top: 220px;
+    right: 16px;
+  }
+}
