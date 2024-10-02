@@ -18,7 +18,7 @@ export function ArticleDetailUserInfo({ article, category }) {
   const handleFavorite = async (articleId, category) => {
     setIsFavorite((prev) => !prev);
     if (!isFavorite) {
-      setFavoriteCount((prev) => Math.max(prev + 1, 0));
+      setFavoriteCount((prev) => prev + 1);
       await postFavoriteApi(articleId, category);
     } else {
       setFavoriteCount((prev) => Math.max(prev - 1, 0));
@@ -57,4 +57,3 @@ export function ArticleDetailUserInfo({ article, category }) {
     </>
   );
 }
-

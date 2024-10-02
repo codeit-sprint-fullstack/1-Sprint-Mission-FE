@@ -4,7 +4,7 @@ import bestBadge from '@/public/best_badge.png';
 import Image from 'next/image';
 import styles from '@/styles/BestArticleList.module.css';
 import DateFormat from '@/utils/DateFormat.js';
-import useDevice from '@/hooks/useDevice';
+import useBestArticleByDevice from '@/hooks/useBestArticleByDevice';
 import heartIcon from '@/public/ic_heart.png';
 
 export default function BestArticleList({ articles }) {
