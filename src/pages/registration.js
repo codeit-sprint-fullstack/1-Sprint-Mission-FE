@@ -92,7 +92,7 @@ export default function RegistrationPage() {
         name: values.name,
         description: values.description,
         price: values.price,
-        tags: values.tags,
+        tags: tags.join(","), // 배열을 문자열로 변환하여 전송
         images: images, // 이제 File 객체 배열이 됨
       });
 
