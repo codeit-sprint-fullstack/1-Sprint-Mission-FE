@@ -164,23 +164,25 @@ function DetailArticle({ article, comments, id }) {
     handleChangeValues(name, value);
   };
 
-  useEffect(() => {
-    useDebouncedCallback(() => {
-      if (globalDivRef.current) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              fetchNextPage();
-            }
-          });
+  const moreDataFetch = useDebouncedCallback(() => {
+    if (globalDivRef.current) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            fetchNextPage();
+          }
         });
-        observer.observe(globalDivRef.current);
-        return () => {
-          observer.disconnect();
-        };
-      }
-    }, 500);
-  }, [globalDivRef, fetchNextPage]);
+      });
+      observer.observe(globalDivRef.current);
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, 500);
+
+  useEffect(() => {
+    moreDataFetch();
+  }, [moreDataFetch, fetchNextPage]);
 
   return (
     <>

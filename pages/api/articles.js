@@ -39,3 +39,13 @@ export async function deleteArticle(id) {
   const res = await instance.delete(`/articles/${id}`);
   return res.status;
 }
+
+export async function likeProduct(id) {
+  const res = await instance.post(`/articles/${id}/favorite`);
+  return res.data;
+}
+
+export async function unlikeProduct(id) {
+  const res = await instance.delete(`/articles/${id}/favorite`);
+  return res.data;
+}

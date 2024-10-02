@@ -7,6 +7,7 @@ import * as api from "@/pages/api/products";
 import { productModel } from "@/models/productModel";
 import styles from "@/styles/registration.module.css";
 import x_icon from "@/public/images/ic_X.png";
+import ic_plus from "@/public/images/ic_plus.png";
 import AlertModal from "@/components/Modals/AlertModal";
 import useAuth from "@/contexts/authContext";
 
@@ -47,6 +48,7 @@ function Registration({ product }) {
   useAuth();
   const [openAlertModal, setOpenAlertModal] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [images, setImages] = useState([]);
 
   async function createProduct(values) {
     const postValues = productModel(values, chips);
@@ -106,6 +108,28 @@ function Registration({ product }) {
     product ? updateProduct : createProduct
   );
 
+  // 이미지 상대경로 저장
+  const handleAddImages = (event) => {
+    const imageLists = event.target.files;
+    let imageUrlLists = [...images];
+
+    for (let i = 0; i < imageLists.length; i++) {
+      const currentImageUrl = URL.createObjectURL(imageLists[i]);
+      imageUrlLists.push(currentImageUrl);
+    }
+
+    if (imageUrlLists.length > 3) {
+      imageUrlLists = imageUrlLists.slice(0, 3);
+    }
+
+    setImages(imageUrlLists);
+  };
+
+  // X버튼 클릭 시 이미지 삭제
+  const handleDeleteImage = (id) => {
+    setImages(images.filter((_, index) => index !== id));
+  };
+
   return (
     <>
       <AlertModal
@@ -126,6 +150,42 @@ function Registration({ product }) {
             >
               등록
             </button>
+          </div>
+
+          <div className={styles.input_box}>
+            <label>삼품 이미지</label>
+            <div className={styles.input_file_box}>
+              <label htmlFor="files" className={styles.input_file_box_add_file}>
+                <Image width={48} height={48} src={ic_plus} alt="이미지추가" />
+                이미지 등록
+              </label>
+              {images.map((item, index) => (
+                <div key={index} className={styles.file_input_item_box}>
+                  <Image
+                    onClick={() => handleDeleteImage(index)}
+                    src={x_icon}
+                    alt="이미지 삭제"
+                    className={styles.file_item_x_icon}
+                  />
+                  <Image
+                    className={styles.file_input_item}
+                    width={24}
+                    height={24}
+                    src={item}
+                    alt="이미지 미리보기"
+                  />
+                </div>
+              ))}
+              <input
+                id="files"
+                onChange={handleAddImages}
+                accept="image/jpg, image/png, image/jpeg"
+                className={styles.input_file}
+                type="file"
+                multiple
+              />
+            </div>
+            {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
           </div>
           <div className={styles.input_box}>
             <label>삼품명</label>
