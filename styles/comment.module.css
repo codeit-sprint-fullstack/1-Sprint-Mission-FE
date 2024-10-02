@@ -1,0 +1,91 @@
+/* 댓글리스트스타일 */
+.comment_item_box {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #e5e7eb;
+}
+.comment_item_content_box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: 400;
+}
+
+.comment_content {
+  width: 100%;
+  font-size: 14px;
+  line-height: 24px;
+  color: #1f2937;
+}
+
+.comment_content_textarea {
+  width: 100%;
+  font-size: 14px;
+  line-height: 24px;
+  color: #1f2937;
+  box-sizing: border-box;
+  height: 104px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  background: #f3f4f6;
+}
+
+.comment_content_data_box {
+  margin-top: 24px;
+  display: flex;
+  gap: 8px;
+}
+
+.comment_content_data {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  line-height: 18px;
+  margin-bottom: 16px;
+}
+
+.comment_name {
+  color: #4b5563;
+}
+
+.comment_date {
+  color: #9ca3af;
+}
+
+.comment_update_date {
+  color: #9ca3af;
+  margin-left: 8px;
+}
+
+.comment_update_box {
+  display: flex;
+  gap: 4px;
+  position: absolute;
+  right: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+}
+
+.comment_data_save_btn {
+  box-sizing: border-box;
+  border-radius: 8px;
+  color: #ffffff;
+  width: 106px;
+  height: 42px;
+}
+
+.comment_data_cancel_btn {
+  box-sizing: border-box;
+  height: 40px;
+  width: 80px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #737373;
+}

@@ -1,15 +1,17 @@
 import { useState, useEffect, useCallback } from "react";
 import useWindowResize from "@/hooks/useWindowResize";
-import ProductList from "@/components/ProductList.jsx";
+import Product from "@/components/ProductList.jsx";
 import SearchBar from "@/components/SearchBar";
 import Pagination from "@/components/Pagination";
 import * as api from "@/pages/api/products.js";
+import styles from "@/styles/Home.module.css";
+import useAuth from "@/contexts/authContext";
 
 export async function getServerSideProps() {
   const productsQuery = {
     orderBy: "recent",
-    offset: 1,
-    limit: 10,
+    page: 1,
+    pageSize: 10,
   };
 
   let items = [];
@@ -36,6 +38,8 @@ function Items({ items, productsTotalCount, productsQuery }) {
   const [params, setParams] = useState(productsQuery);
   const [products, setProducts] = useState(items);
   const [totalDataCount, setTotalDataCount] = useState(productsTotalCount);
+
+  useAuth();
 
   const handleChange = (name, value) => {
     setParams((prev) => ({
@@ -65,13 +69,13 @@ function Items({ items, productsTotalCount, productsQuery }) {
   const changeFromNextView = useCallback(() => {
     switch (view) {
       case "isDesktop":
-        handleChangeParams({ limit: 10, offset: 1 });
+        handleChangeParams({ pageSize: 10, page: 1 });
         break;
       case "isTablet":
-        handleChangeParams({ limit: 6, offset: 1 });
+        handleChangeParams({ pageSize: 6, page: 1 });
         break;
       case "isMobile":
-        handleChangeParams({ limit: 4, offset: 1 });
+        handleChangeParams({ pageSize: 4, page: 1 });
         break;
       default:
     }
@@ -87,13 +91,17 @@ function Items({ items, productsTotalCount, productsQuery }) {
 
   return (
     <main>
-      <div className="products_container">
+      <div className={styles.products_container}>
         <SearchBar
           isMobile={view === "isMobile"}
           orderBy={params.orderBy}
           onChange={handleChange}
         />
-        <ProductList items={products} favorite={false} />
+        <div className={styles.Products}>
+          {products.map((item) => (
+            <Product key={item.id} itemValues={item} favorite={false} />
+          ))}
+        </div>
       </div>
       <Pagination
         onChange={handleChange}

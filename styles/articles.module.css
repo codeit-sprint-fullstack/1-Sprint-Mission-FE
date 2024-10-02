@@ -52,7 +52,7 @@
   box-sizing: border-box;
   width: 72px;
   height: 72px;
-  padding: 13.71px 12px;
+  /* padding: 13.71px 12px; */
   border-radius: 6px;
   border: 1px solid #e5e7eb;
 }
@@ -111,7 +111,7 @@
   box-sizing: border-box;
   width: 72px;
   height: 72px;
-  padding: 13.71px 12px;
+  /* padding: 13.71px 12px; */
   border-radius: 8px;
   border: 1px solid #f3f4f6;
 }

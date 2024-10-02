@@ -1,12 +1,17 @@
 import styles from "@/styles/header.module.css";
 import mainLog from "../public/images/mainlogo.png";
 import mb_Log from "../public/images/mb_logo.png";
+import ic_profile from "@/public/images/ic_profile.png";
 import Link from "next/link";
 import Image from "next/image";
 import useWindowResize from "@/hooks/useWindowResize";
 import { useRouter } from "next/router";
+import { useContext } from "react";
+import useAuth from "@/contexts/authContext";
 
 function Header() {
+  const { user, logout } = useAuth(false);
+  const userProfileImage = user?.image ? user.image : ic_profile;
   const view = useWindowResize();
   const router = useRouter();
   const path = router.pathname;
@@ -36,10 +41,28 @@ function Header() {
             </Link>
           </div>
           <div className={styles.nav_content}>
-            <Link href="/Products" style={getLinkStyle("/Products") || {}}>
+            <Link href="/Items" style={getLinkStyle("/Items") || {}}>
               중고마켓
             </Link>
           </div>
+        </div>
+        <div className={styles.profile_box}>
+          {user ? (
+            <>
+              <Image
+                className={styles.header_profile_image}
+                src={userProfileImage}
+                alt="유저이미지"
+              />
+              <span>{user?.nickname}</span>
+            </>
+          ) : (
+            <Link href={"Login"}>
+              <button className={styles.login_btn}>로그인</button>
+            </Link>
+          )}
+          {/* 테스트용 임시 로그아웃 버튼 */}
+          {/* <button onClick={logout}>로그아웃</button> */}
         </div>
       </div>
     </header>

@@ -27,7 +27,7 @@ function SearchBar({ onChange, orderBy, isMobile = false }) {
       <div className={styles.first_block}>
         <h2>판매 중인 상품</h2>
         {isMobile && (
-          <Link href="/Products/Registration">
+          <Link href="/Items/Registration">
             <button className={styles.add_product_btn}>상품 등록하기</button>
           </Link>
         )}
@@ -49,7 +49,7 @@ function SearchBar({ onChange, orderBy, isMobile = false }) {
           </form>
         </div>
         {!isMobile && (
-          <Link href="/Products/Registration">
+          <Link href="/Items/Registration">
             <button className={styles.add_product_btn}>상품 등록하기</button>
           </Link>
         )}

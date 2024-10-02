@@ -1,6 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useCallback, useContext, useEffect, useState } from "react";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+  useInfiniteQuery,
+  useQuery,
+} from "@tanstack/react-query";
 import * as api from "@/pages/api/articles";
 import DropDownBox from "@/components/DropdownList/DropdownBox";
 import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
@@ -11,9 +18,11 @@ import ic_medal from "@/public/images/ic_medal.png";
 import ic_profile from "@/public/images/ic_profile.png";
 import styles from "@/styles/articles.module.css";
 import { RefContext } from "../_app";
+import useAuth from "@/contexts/authContext";
 
 function BestArticles({ item }) {
-  const { user, title, createAt, favorite } = item;
+  const { writer, title, createAt, likeCount, image } = item;
+  const articleImage = image ? image : imgDefault;
   const date = dateFormatYYYYMMDD(createAt);
 
   return (
@@ -27,13 +36,15 @@ function BestArticles({ item }) {
           <span className={styles.best_article_title}>{title}</span>
           <Image
             className={styles.best_article_image}
-            src={imgDefault}
+            src={articleImage}
+            width={72}
+            height={72}
             alt="게시글이미지"
           />
         </div>
         <div className={styles.item_data_box}>
           <div className={styles.item_data_box}>
-            <span>{user.name}</span>
+            <span>{writer.nickname}</span>
             <Image
               width={16}
               height={16}
@@ -41,7 +52,7 @@ function BestArticles({ item }) {
               src={ic_heart}
               alt="좋아요이미지"
             />
-            <span>{favorite}</span>
+            <span>{likeCount}</span>
           </div>
           <div className={styles.item_data_box}>
             <span className={styles.create_time}>{date}</span>
@@ -53,7 +64,8 @@ function BestArticles({ item }) {
 }
 
 function ArticleItems({ item }) {
-  const { user, title, createAt, favorite } = item;
+  const { writer, title, createAt, likeCount, image } = item;
+  const articleImage = image ? image : imgDefault;
   const date = dateFormatYYYYMMDD(createAt);
 
   return (
@@ -63,7 +75,9 @@ function ArticleItems({ item }) {
           <span className={styles.article_item_title}>{title}</span>
           <Image
             className={styles.article_item_image}
-            src={imgDefault}
+            width={72}
+            height={72}
+            src={articleImage}
             alt="게시글이미지"
           />
         </div>
@@ -75,7 +89,9 @@ function ArticleItems({ item }) {
               src={ic_profile}
               alt="사용자프로필이미지"
             />
-            <span className={styles.item_data_user_name}>{user.name}</span>
+            <span className={styles.item_data_user_name}>
+              {writer.nickname}
+            </span>
             <span className={styles.create_time}>{date}</span>
           </div>
           <div className={styles.item_data_box}>
@@ -86,7 +102,7 @@ function ArticleItems({ item }) {
               src={ic_heart}
               alt="좋아요이미지"
             />
-            <span>{favorite}</span>
+            <span>{likeCount}</span>
           </div>
         </div>
       </li>
@@ -94,65 +110,95 @@ function ArticleItems({ item }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
   const defaultParams = {
     orderBy: "recent",
     keyword: "",
-    limit: 5,
+    pageSize: 5,
+    page: 1,
   };
 
-  let bestItems = [];
-  let Items = [];
-  try {
-    const { list } = await api.getBestArticles();
-    bestItems = list;
-  } catch (error) {
-    console.log(error);
-  }
+  await queryClient.prefetchQuery({
+    queryKey: ["bestArticles"],
+    queryFn: () => api.getBestArticles(),
+  });
 
-  try {
-    const { list } = await api.getArticles(defaultParams);
-    Items = list;
-  } catch (error) {
-    console.log(error);
-  }
+  await queryClient.prefetchQuery({
+    queryKey: ["Articles"],
+    queryFn: api.getArticles(defaultParams),
+  });
 
   return {
     props: {
-      Items,
-      bestItems,
+      dehydratedState: dehydrate(queryClient),
       defaultParams,
     },
   };
 }
 
-function Articles({ bestItems, defaultParams, Items }) {
+function ArticlesRouter({ dehydratedState, defaultParams }) {
+  return (
+    <HydrationBoundary state={dehydratedState}>
+      <Articles defaultParams={defaultParams} />
+    </HydrationBoundary>
+  );
+}
+
+function Articles({ defaultParams }) {
   const globalDivRef = useContext(RefContext);
   const [params, setParams] = useState(defaultParams);
-  const [articles, setArticles] = useState(Items);
-  const [cursor, setCursor] = useState("");
+  const [articles, setArticles] = useState([]);
   const [keyword, setKeyword] = useState("");
 
-  const getArticles = useCallback(async () => {
-    try {
-      const { list, nextCursor } = await api.getArticles(params);
-      setArticles(list);
-      setCursor(nextCursor);
-    } catch (error) {
-      console.log(error);
-    }
-  }, [params]);
+  useAuth();
 
-  const getMoreArticles = useCallback(async () => {
-    if (!cursor) return;
-    try {
-      const { list, nextCursor } = await api.getArticles(params, cursor);
-      setArticles((prev) => [...prev, ...list]);
-      setCursor(nextCursor);
-    } catch (error) {
-      console.log(error);
-    }
-  }, [params, cursor]);
+  const {
+    data: articlesData,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["articles", params],
+    queryFn: () => api.getArticles(params),
+  });
+
+  // const {
+  //   data: articlesData2,
+  //   fetchStatus,
+  //   error: moreErr,
+  //   fetchNextPage,
+  // } = useInfiniteQuery({
+  //   queryKey: ["articles22"],
+  //   queryFn: ({ pageParams }) => {
+  //     console.log(pageParams);
+  //     api.getArticles(params, pageParams);
+  //   },
+  //   initialPageParam: 0,
+  //   getNextPageParam: (lastPage, lastPageParams) => {
+  //     // if (!(lastPage.totalCount - lastPageParams.data * params.pageSize > 0)) {
+  //     lastPageParams + 1;
+  //     // setParams((prev) => ({
+  //     //   ...prev,
+  //     //   page: prev.page + 1,
+  //     // }));
+  //     // } else {
+  //     //   undefined;
+  //     // }
+  //   },
+  // });
+
+  if (isError) {
+    console.log(isError);
+  }
+
+  const moreData = () => {
+    fetchNextPage();
+  };
+
+  const { data: bestArticlesData } = useQuery({
+    queryKey: ["bestArticles"],
+    queryFn: () => api.getBestArticles(),
+  });
 
   const handleChangeParams = (name, value) => {
     setParams((prev) => ({
@@ -177,15 +223,18 @@ function Articles({ bestItems, defaultParams, Items }) {
   };
 
   useEffect(() => {
-    getArticles();
-  }, [getArticles]);
+    setArticles((prev) => [...prev, ...(articlesData?.list || [])]);
+  }, [articlesData]);
 
   useEffect(() => {
     if (globalDivRef.current) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            getMoreArticles();
+            setParams((prev) => ({
+              ...prev,
+              page: prev.page + 1,
+            }));
           }
         });
       });
@@ -194,14 +243,14 @@ function Articles({ bestItems, defaultParams, Items }) {
         observer.disconnect();
       };
     }
-  }, [globalDivRef, getMoreArticles]);
+  }, [globalDivRef]);
 
   return (
     <main>
       <div className={styles.best_articles}>
         <h2>베스트 게시글</h2>
         <div className={styles.best_articles_item}>
-          {bestItems.map((item) => (
+          {bestArticlesData?.list.map((item) => (
             <BestArticles key={item.id} item={item} />
           ))}
         </div>
@@ -240,8 +289,9 @@ function Articles({ bestItems, defaultParams, Items }) {
             <ArticleItems key={item.id} item={item} />
           ))}
         </ul>
+        <button onClick={moreData}>더불러오기</button>
       </div>
     </main>
   );
 }
-export default Articles;
+export default ArticlesRouter;

@@ -152,10 +152,6 @@ main {
   min-width: 376px;
 }
 
-.products_container {
-  margin-top: 24px;
-}
-
 h2 {
   font-size: 20px;
   font-weight: 700;
@@ -176,6 +172,12 @@ h3 {
 button {
   border: none;
   background-color: #3692ff;
+}
+
+hr {
+  width: 100%;
+  border-width: 1px;
+  color: #dfdfdf;
 }
 
 html {

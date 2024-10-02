@@ -4,6 +4,7 @@ import useFormValidation from "@/hooks/useFormValidation";
 import AlertModal from "@/components/Modals/AlertModal";
 import * as api from "@/pages/api/articles";
 import styles from "@/styles/registration.module.css";
+import useAuth from "@/contexts/authContext";
 
 export async function getServerSideProps(context) {
   //경로의 context 값이 있다면 지곤 게시글의 수정으로 서버에서 값을 전달한다.
@@ -30,6 +31,7 @@ export async function getServerSideProps(context) {
 
 function Registration({ article }) {
   const router = useRouter();
+  useAuth();
   const [openAlertModal, setOpenAlertModal] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
@@ -74,7 +76,6 @@ function Registration({ article }) {
         title: article ? article.title : "",
         content: article ? article.content : "",
         //유저관리를 안하고 있음 기본 유저를 설정 추후 유저관리의 로그인계정으로 변경해야 함
-        userId: "550e8400-e29b-41d4-a716-446655440000",
       },
       //서버에서 전달받은 article이 있다면 callback 으로 update함수를, 없다면 create 함수를 전달한다.
       article ? updateArticle : createArticle

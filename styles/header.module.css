@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: 1px solid #dfdfdf;
 }
 
 .logo_img {
@@ -28,6 +29,31 @@
   line-height: 21.48px;
 }
 
+.profile_box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 200px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  color: #4b5563;
+}
+
+.header_profile_image {
+  width: 40px;
+  height: 40px;
+}
+
+.login_btn {
+  box-sizing: border-box;
+  width: 88px;
+  height: 42px;
+  padding: 12px 23px;
+  border-radius: 8px;
+  color: #ffffff;
+}
+
 .nav_content:hover {
   transform: scale(1.2);
 }
@@ -35,6 +61,9 @@
 @media screen and (max-width: 1200px) {
   .logo_img {
     margin-left: 24px;
+  }
+  .profile_box {
+    margin-right: 24px;
   }
 }
 

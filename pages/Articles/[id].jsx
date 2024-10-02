@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import { dateFormatYYYYMMDD, elapsedTime } from "@/utils/dateFormat";
+import { useState, useEffect } from "react";
+import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
 import * as commentApi from "@/pages/api/comment";
 import * as articleApi from "@/pages/api/articles";
 import AlertModal from "@/components/Modals/AlertModal";
@@ -14,14 +14,26 @@ import ic_heart from "@/public/images/ic_heart.png";
 import img_reply_empty from "@/public/images/img_reply_empty.png";
 import ic_back from "@/public/images/ic_back.png";
 import styles from "@/styles/detailArticle.module.css";
+import Comment from "@/components/Comment";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
+import { RefContext } from "@/pages/_app";
+import useAuth from "@/contexts/authContext";
 
 export async function getServerSideProps(context) {
-  const { id } = context.params;
+  const { id } = context.query;
 
-  let article = [];
+  let article = {};
+  let comments = [];
   try {
     const data = await articleApi.getArticle(id);
     article = data;
+  } catch (error) {
+    console.log(error);
+  }
+  try {
+    const response = await commentApi.getArticleComments(id);
+    comments = response;
   } catch (error) {
     console.log(error);
   }
@@ -29,161 +41,44 @@ export async function getServerSideProps(context) {
   return {
     props: {
       article,
+      comments,
+      id,
     },
   };
 }
 
-function Comment({ item, openAlert, setAlertMessage }) {
-  const { content, user, createAt, updateAt } = item;
+function DetailArticle({ article, comments, id }) {
   const router = useRouter();
-  //날짜 포멧
-  const createDate = elapsedTime(createAt);
-  const updateDate = elapsedTime(updateAt);
+  const globalDivRef = useContext(RefContext); //무한 스크롤 쿼리용 Ref
+  useAuth();
 
-  const [openDropdown, setOpenDropdown] = useState(false);
-  const [updateContent, setUpdateContent] = useState(false);
-  const [value, setValue] = useState(content);
-  const [confirmModal, setConfirmModal] = useState(false);
-  const [confirmMessage, setConfirmMessage] = useState(false);
+  //게시글  SSR initialData
+  const { data: articleData } = useQuery({
+    queryKey: ["article"],
+    queryFn: articleApi.getArticle(id),
+    initialData: article,
+  });
 
-  const handleChangeValue = (e) => {
-    setValue(e.target.value);
-  };
+  //무한스크롤 쿼리를 통한 react-query관리
+  const {
+    data: commentData,
+    fetchStatus, //로딩 에니메이션용
+    fetchNextPage,
+  } = useInfiniteQuery({
+    queryKey: ["comments", id],
+    queryFn: ({ pageParam }) => commentApi.getArticleComments(id, pageParam),
+    getNextPageParam: (lastPage) =>
+      lastPage.nextCursor ? lastPage.nextCursor : undefined,
+    initialData: {
+      pages: [comments], // comments 배열을 pages로 감싸서 전달
+      pageParams: [comments.nextCursor], // pageParams 기본값 설정
+    },
+  });
 
-  const handleUpdateComment = () => {
-    setUpdateContent(true);
-    setOpenDropdown(false);
-  };
-  const handleUpdateCancel = () => {
-    setUpdateContent(false);
-  };
-  const handleDeleteComment = () => {
-    setOpenDropdown(false);
-    //삭제의 경우 confirm 모달을 통하여 확인하여 진행한다.
-    setConfirmMessage("댓글이 영구적으로 삭제됩니다. 삭제하시겠습니까?");
-    handleOpenConfirmModal();
-  };
-
-  const handleOpenDropdown = () => setOpenDropdown(!openDropdown);
-  const handleOpenConfirmModal = () => setConfirmModal(true);
-  const handleCloseConfirmModal = () => setConfirmModal(false);
-
-  const updateComment = async () => {
-    try {
-      const res = await commentApi.updateComment(item.id, { content: value });
-      if (res) {
-        setUpdateContent(false);
-        router.reload();
-      }
-    } catch (error) {
-      console.log(error);
-      setAlertMessage("댓글 수정에 실패했습니다." + error.name);
-      openAlert();
-    }
-  };
-
-  const deleteComment = async () => {
-    try {
-      const res = await commentApi.deleteComment(item.id);
-      if (res) {
-        setAlertMessage("댓글이 삭제 되었습니다.");
-        handleCloseConfirmModal();
-        openAlert();
-        router.reload();
-      }
-    } catch (error) {
-      console.log(error);
-      setAlertMessage("댓글 삭제에 실패했습니다." + error.name);
-      openAlert();
-    }
-  };
-
-  return (
-    <>
-      <ConfirmModal
-        onConfirm={deleteComment}
-        onClose={handleCloseConfirmModal}
-        isOpen={confirmModal}
-        message={confirmMessage}
-      />
-      <div className={styles.comment_item_box}>
-        <div className={styles.comment_item_content_box}>
-          {updateContent ? (
-            <textarea
-              className={styles.comment_content_textarea}
-              name="content"
-              onChange={handleChangeValue}
-              value={value || ""}
-            />
-          ) : (
-            <p className={styles.comment_content}>{content}</p>
-          )}
-          {!updateContent && (
-            <Image
-              onClick={handleOpenDropdown}
-              src={ic_kebab}
-              width={24}
-              height={24}
-              alt="수정/삭제이미지"
-            />
-          )}
-
-          {openDropdown && (
-            <DropdownData
-              onUpdate={handleUpdateComment}
-              onDelete={handleDeleteComment}
-            />
-          )}
-        </div>
-        <div className={styles.comment_content_data_box}>
-          <Image
-            src={ic_profile}
-            width={40}
-            height={40}
-            alt="사용자프로필이미지"
-          />
-          <div className={styles.comment_content_data}>
-            <span className={styles.comment_name}>{user.name}</span>
-            <div>
-              <span className={styles.comment_date}>{createDate}</span>
-              {createAt !== updateAt && (
-                <span className={styles.comment_update_date}>
-                  ( 수정됨 {updateDate} )
-                </span>
-              )}
-            </div>
-          </div>
-
-          {updateContent && (
-            <div className={styles.comment_update_box}>
-              <button
-                onClick={handleUpdateCancel}
-                className={styles.comment_data_cancel_btn}
-              >
-                취소
-              </button>
-              <button
-                onClick={updateComment}
-                className={styles.comment_data_save_btn}
-              >
-                수정
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-    </>
-  );
-}
-
-function DetailArticle({ article }) {
-  const router = useRouter();
-  const { title, content, favorite, user, createAt, comment } = article;
+  const { title, content, likeCount, writer, createAt } = articleData;
   //날짜 포멧
   const date = dateFormatYYYYMMDD(createAt);
   const defaultUser = {
-    //유저관리를 안하고 있음 기본 유저를 설정 추후 유저관리의 로그인계정으로 변경해야 함
-    userId: user.id,
     articleId: article.id,
   };
   const [values, setValues] = useState(defaultUser);
@@ -207,6 +102,12 @@ function DetailArticle({ article }) {
     router.push(`/Articles/Registration?id=${article.id}`);
   };
 
+  const handleDeleteArticle = () => {
+    //삭제의 경우 confirm 모달을 통하여 확인하여 진행한다.
+    setConfirmMessage("게시글이 영구적으로 삭제됩니다. 삭제하시겠습니까?");
+    openConfirmModal();
+  };
+
   const deleteArticle = () => {
     try {
       const res = articleApi.deleteArticle(article.id);
@@ -227,7 +128,7 @@ function DetailArticle({ article }) {
 
   const createComment = () => {
     try {
-      const data = commentApi.createComment(values);
+      const data = commentApi.createArticlesComment(values);
       if (data) {
         router.reload();
       } else {
@@ -242,12 +143,6 @@ function DetailArticle({ article }) {
     }
   };
 
-  const handleDeleteArticle = () => {
-    //삭제의 경우 confirm 모달을 통하여 확인하여 진행한다.
-    setConfirmMessage("게시글이 영구적으로 삭제됩니다. 삭제하시겠습니까?");
-    openConfirmModal();
-  };
-
   const handleChangeValues = (name, value) => {
     setValues((prev) => ({
       ...prev,
@@ -260,6 +155,22 @@ function DetailArticle({ article }) {
     const value = e.target.value;
     handleChangeValues(name, value);
   };
+
+  useEffect(() => {
+    if (globalDivRef.current) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            fetchNextPage();
+          }
+        });
+      });
+      observer.observe(globalDivRef.current);
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, [globalDivRef, fetchNextPage]);
 
   return (
     <>
@@ -301,7 +212,7 @@ function DetailArticle({ article }) {
                 height={40}
                 alt="사용자프로필이미지"
               />
-              <span className={styles.article_user}>{user.name}</span>
+              <span className={styles.article_user}>{writer?.name}</span>
               <span className={styles.article_createAt}>{date}</span>
             </div>
             <div className={styles.article_favorite_box}>
@@ -312,7 +223,7 @@ function DetailArticle({ article }) {
                   height={32}
                   alt="좋아요이미지"
                 />
-                {favorite}
+                {likeCount}
               </button>
             </div>
           </div>
@@ -338,22 +249,28 @@ function DetailArticle({ article }) {
         </div>
         <div className={styles.article_comments_box}>
           <div className={styles.article_comments}>
-            {comment.map((item) => (
-              <Comment
-                key={item.id}
-                item={item}
-                openAlert={openAlertModal}
-                setAlertMessage={setAlertMessage}
-              />
-            ))}
+            {commentData?.pages.map((items) =>
+              items.list.map((item) => (
+                <Comment
+                  key={item.id}
+                  item={item}
+                  openAlert={openAlertModal}
+                  setAlertMessage={setAlertMessage}
+                />
+              ))
+            )}
+            {fetchStatus === "fetching" && (
+              <div className={styles.loader}></div>
+            )}
             {/* 게시글의 등록된 댓글이 없다면 아래의 내용을 렌더링한다. */}
-            {comment.length < 1 && (
+            {commentData?.pages.length < 1 && (
               <>
                 <Image
                   src={img_reply_empty}
                   width={140}
                   height={140}
                   alt="댓글이없습니다"
+                  priority
                 />
                 <p>
                   아직 댓글이 없어요, <br />

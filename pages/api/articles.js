@@ -1,16 +1,16 @@
-import instance from "./axios.js";
+import instance from "./httpClient.js";
 
-export async function getArticles(params = {}, cursor = "") {
+export async function getArticles(params = {}) {
   const res = await instance.get("/articles", {
-    params: { ...params, cursor },
+    params: { ...params },
   });
   return res.data;
 }
 
 export async function getBestArticles(
   params = {
-    orderBy: "favorite",
-    limit: 3,
+    orderBy: "like",
+    pageSize: 3,
   }
 ) {
   const res = await instance.get("/articles", {
