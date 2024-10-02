@@ -18,7 +18,9 @@ export function useComments({ articleId, category }) {
     getNextPageParam: (lastPage) => {
       const comments = lastPage.comments || [];
 
-      return comments.length < 4 ? undefined : comments[comments.length - 1].id;
+      return comments.length <= 4
+        ? undefined
+        : comments[comments.length - 1].id;
     },
   });
 
