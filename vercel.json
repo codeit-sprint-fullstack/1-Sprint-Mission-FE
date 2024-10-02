@@ -1,8 +1,16 @@
 {
   "rewrites": [
     {
-      "source": "/:path*",
-      "destination": "/app/:path*"
+      "source": "/items/:productId",
+      "destination": "/app/items/:productId"
+    },
+    {
+      "source": "/bulletin-board/:articleId",
+      "destination": "/app/bulletin-board/:articleId"
+    },
+    {
+      "source": "/article-edit/:articleId",
+      "destination": "/app/article-edit/:articleId"
     }
   ]
 }
