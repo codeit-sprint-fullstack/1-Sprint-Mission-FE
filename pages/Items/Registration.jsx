@@ -12,25 +12,18 @@ import useAuth from "@/contexts/authContext";
 
 export async function getServerSideProps(context) {
   //경로의 context 값이 있다면 지곤 상품의 수정으로 서버에서 값을 전달한다.
+  const { id } = context.query;
   let product = null;
-  if (context.query) {
-    const { id } = context.query;
-
+  if (id) {
     try {
-      const data = await api.getProduct(id);
-      product = data;
+      product = await api.getProduct(id);
     } catch (error) {
       console.log(error);
     }
-
-    return {
-      props: { product },
-    };
-  } else {
-    return {
-      props: {},
-    };
   }
+  return {
+    props: { product },
+  };
 }
 
 function Chips({ tag, onClick, index }) {

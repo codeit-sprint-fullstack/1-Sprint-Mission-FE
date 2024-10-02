@@ -20,6 +20,7 @@ import { useContext } from "react";
 import { RefContext } from "@/pages/_app";
 import useAuth from "@/contexts/authContext";
 import instance from "../api/httpClient";
+import { useDebouncedCallback } from "use-debounce";
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
@@ -164,19 +165,21 @@ function DetailArticle({ article, comments, id }) {
   };
 
   useEffect(() => {
-    if (globalDivRef.current) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            fetchNextPage();
-          }
+    useDebouncedCallback(() => {
+      if (globalDivRef.current) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              fetchNextPage();
+            }
+          });
         });
-      });
-      observer.observe(globalDivRef.current);
-      return () => {
-        observer.disconnect();
-      };
-    }
+        observer.observe(globalDivRef.current);
+        return () => {
+          observer.disconnect();
+        };
+      }
+    }, 500);
   }, [globalDivRef, fetchNextPage]);
 
   return (
