@@ -10,7 +10,7 @@ import ic_kebab from "@/public/images/ic_kebab.png";
 import ic_profile from "@/public/images/ic_profile.png";
 
 function Comment({ item, openAlert, setAlertMessage, user }) {
-  const { content, writer, createAt, updateAt, id } = item;
+  const { content, user: writer, createAt, updateAt, id } = item;
   const router = useRouter();
   //날짜 포멧
   const createDate = elapsedTime(createAt);
@@ -99,7 +99,7 @@ function Comment({ item, openAlert, setAlertMessage, user }) {
           {!isUpdating && (
             <>
               {/* 작성자와 로그인 사용자가 같을때 수정/삭제 가능함 */}
-              {user?.id === writer.id && (
+              {user?.id === writer?.id && (
                 <Image
                   onClick={handleOpenDropdown}
                   src={ic_kebab}
@@ -125,7 +125,7 @@ function Comment({ item, openAlert, setAlertMessage, user }) {
             alt="사용자프로필이미지"
           />
           <div className={styles.comment_content_data}>
-            <span className={styles.comment_name}>{writer.nickname}</span>
+            <span className={styles.comment_name}>{writer?.nickname}</span>
             <div>
               <span className={styles.comment_date}>{createDate}</span>
               {createAt !== updateAt && (

@@ -39,8 +39,6 @@ function Items({ items, productsTotalCount, productsQuery }) {
   const [products, setProducts] = useState(items);
   const [totalDataCount, setTotalDataCount] = useState(productsTotalCount);
 
-  useAuth();
-
   const handleChange = (name, value) => {
     setParams((prev) => ({
       ...prev,

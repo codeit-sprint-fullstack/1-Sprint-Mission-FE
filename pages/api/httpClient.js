@@ -3,10 +3,11 @@ import * as api from "./auth";
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-  // withCredentials: true,
+  // baseURL: "/api",
+  withCredentials: true,
 });
 
-// 리퀘스트 요청전 헤더에 로컬스토리지의 저장됱 토큰을 기입한다.
+//리퀘스트 요청전 헤더에 로컬스토리지의 저장됱 토큰을 기입한다.
 instance.interceptors.request.use(
   (config) => {
     //서버사이드의 리퀘스트라면 토큰을 추가하지 않는다.
@@ -23,16 +24,24 @@ instance.interceptors.request.use(
   }
 );
 
-// 리스퐅스로 권한 에러가 돌아오면 토큰을 갱신한다
+let retry_count = 0;
+const MAX_COUNT = 1;
+
+// 리스폰스로 권한 에러가 돌아오면 토큰을 갱신한다
 instance.interceptors.response.use(
   (res) => res,
   async (error) => {
-    console.log(error);
+    console.log(error.message);
     const originalRequest = error.config;
+    console.log(originalRequest.headers);
     const response = error.response.status; // 가로 챈 리스폰스
-    if (response === 401 && !originalRequest._retry) {
-      const { accessToken } = await api.refreshToken();
-      localStorage.setItem("codeit-accessToken", accessToken);
+    if (
+      response === 401 &&
+      !originalRequest._retry &&
+      retry_count < MAX_COUNT
+    ) {
+      await api.refreshToken();
+      retry_count++;
       originalRequest._retry = true;
       return instance(originalRequest);
     }

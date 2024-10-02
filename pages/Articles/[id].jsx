@@ -19,23 +19,30 @@ import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { RefContext } from "@/pages/_app";
 import useAuth from "@/contexts/authContext";
+import instance from "../api/httpClient";
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
+  const accessToken = await context.req.cookies["access-token"];
 
   let article = {};
   let comments = [];
   try {
-    const data = await articleApi.getArticle(id);
-    article = data;
+    // const data = await articleApi.getArticle(id);
+    const data = await instance.get(`/articles/${id}`, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
+    article = data.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
   try {
     const response = await commentApi.getArticleComments(id);
     comments = response;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 
   return {
@@ -50,12 +57,12 @@ export async function getServerSideProps(context) {
 function DetailArticle({ article, comments, id }) {
   const router = useRouter();
   const globalDivRef = useContext(RefContext); //무한 스크롤 쿼리용 Ref
-  useAuth();
+  const { user, isPending } = useAuth();
 
   //게시글  SSR initialData
-  const { data: articleData } = useQuery({
-    queryKey: ["article"],
-    queryFn: articleApi.getArticle(id),
+  const { data: articleData, error } = useQuery({
+    queryKey: ["article", id],
+    queryFn: () => articleApi.getArticle(id),
     initialData: article,
   });
 
@@ -75,7 +82,7 @@ function DetailArticle({ article, comments, id }) {
     },
   });
 
-  const { title, content, likeCount, writer, createAt } = articleData;
+  const { title, content, likeCount, owner, createAt } = articleData;
   //날짜 포멧
   const date = dateFormatYYYYMMDD(createAt);
   const defaultUser = {
@@ -212,7 +219,7 @@ function DetailArticle({ article, comments, id }) {
                 height={40}
                 alt="사용자프로필이미지"
               />
-              <span className={styles.article_user}>{writer?.name}</span>
+              <span className={styles.article_user}>{owner?.nickname}</span>
               <span className={styles.article_createAt}>{date}</span>
             </div>
             <div className={styles.article_favorite_box}>

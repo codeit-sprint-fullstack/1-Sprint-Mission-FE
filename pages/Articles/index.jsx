@@ -21,7 +21,7 @@ import { RefContext } from "../_app";
 import useAuth from "@/contexts/authContext";
 
 function BestArticles({ item }) {
-  const { writer, title, createAt, likeCount, image } = item;
+  const { owner, title, createAt, likeCount, image } = item;
   const articleImage = image ? image : imgDefault;
   const date = dateFormatYYYYMMDD(createAt);
 
@@ -44,7 +44,7 @@ function BestArticles({ item }) {
         </div>
         <div className={styles.item_data_box}>
           <div className={styles.item_data_box}>
-            <span>{writer.nickname}</span>
+            <span>{owner?.nickname}</span>
             <Image
               width={16}
               height={16}
@@ -64,7 +64,7 @@ function BestArticles({ item }) {
 }
 
 function ArticleItems({ item }) {
-  const { writer, title, createAt, likeCount, image } = item;
+  const { owner, title, createAt, likeCount, image } = item;
   const articleImage = image ? image : imgDefault;
   const date = dateFormatYYYYMMDD(createAt);
 
@@ -90,7 +90,7 @@ function ArticleItems({ item }) {
               alt="사용자프로필이미지"
             />
             <span className={styles.item_data_user_name}>
-              {writer.nickname}
+              {owner?.nickname}
             </span>
             <span className={styles.create_time}>{date}</span>
           </div>
@@ -151,41 +151,10 @@ function Articles({ defaultParams }) {
   const [articles, setArticles] = useState([]);
   const [keyword, setKeyword] = useState("");
 
-  useAuth();
-
-  const {
-    data: articlesData,
-    isError,
-    error,
-  } = useQuery({
+  const { data: articlesData, isError } = useQuery({
     queryKey: ["articles", params],
     queryFn: () => api.getArticles(params),
   });
-
-  // const {
-  //   data: articlesData2,
-  //   fetchStatus,
-  //   error: moreErr,
-  //   fetchNextPage,
-  // } = useInfiniteQuery({
-  //   queryKey: ["articles22"],
-  //   queryFn: ({ pageParams }) => {
-  //     console.log(pageParams);
-  //     api.getArticles(params, pageParams);
-  //   },
-  //   initialPageParam: 0,
-  //   getNextPageParam: (lastPage, lastPageParams) => {
-  //     // if (!(lastPage.totalCount - lastPageParams.data * params.pageSize > 0)) {
-  //     lastPageParams + 1;
-  //     // setParams((prev) => ({
-  //     //   ...prev,
-  //     //   page: prev.page + 1,
-  //     // }));
-  //     // } else {
-  //     //   undefined;
-  //     // }
-  //   },
-  // });
 
   if (isError) {
     console.log(isError);

@@ -7,7 +7,7 @@ import Link from "next/link";
 function Product({ itemValues, favorite }) {
   const { name, price, favoriteCount, id, images } = itemValues;
   const numFormat = price.toLocaleString();
-  const productImage = images ? images[0] : imgDefault;
+  const productImage = images.length > 0 ? images[0] : imgDefault;
   return (
     <Link
       href={`/Items/${id}`}

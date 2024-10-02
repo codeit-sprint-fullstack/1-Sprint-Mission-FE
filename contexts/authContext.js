@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import * as authApi from "@/pages/api/auth";
-import * as userApi from "@/pages/api/user";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
 
@@ -21,15 +20,13 @@ export function AuthProvider({ children }) {
     //사용자정보의 유무의 따라 리다이렉트를 하기위한 pending 상태추가
     setIsPending(true);
     try {
-      const data = await userApi.getUserMe();
+      const data = await authApi.getUserMe();
       if (data) {
         //새로운 사용자정보가 있으면 갱신
         setUser(data);
       }
     } catch (error) {
       console.log(error);
-      //에러 발생시 사용자정보 초기화 -> 토큰만료 등
-      setUser(null);
     } finally {
       //pending 상태는 false로 초기화
       setIsPending(false);
@@ -47,11 +44,7 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const logout = () => {
-    localStorage.removeItem("codeit-accessToken");
-    localStorage.removeItem("codeit-refreshToken");
-    router.push("/");
-  };
+  const logout = () => {};
 
   const updateMe = () => {};
 

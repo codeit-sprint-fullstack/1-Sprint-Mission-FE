@@ -10,6 +10,7 @@ import AlertModal from "@/components/Modals/AlertModal";
 import ConfirmModal from "@/components/Modals/ConfirmModal";
 import styles from "@/styles/detailProduct.module.css";
 import ic_back from "@/public/images/ic_back.png";
+import imgDefault from "@/public/images/img_default.png";
 import ic_profile from "@/public/images/ic_profile.png";
 import ic_heart from "@/public/images/ic_heart.png";
 import ic_heart_liked from "@/public/images/ic_heart_liked.png";
@@ -25,6 +26,7 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
+import instance from "../api/httpClient";
 
 export async function getServerSideProps(context) {
   //다이나믹 라우팅인 관계로 SSG의 방식으로 react-query를 사용하지 않고 SSR 방식을 사용
@@ -34,8 +36,13 @@ export async function getServerSideProps(context) {
   let comments = [];
 
   try {
-    const data = await productsApi.getProduct(id);
-    product = data;
+    // const data = await productsApi.getProduct(id);
+    const data = await instance.get(`/products/${id}`, {
+      headers: {
+        Authorization: context.req.cookies["access-token"],
+      },
+    });
+    product = data.data;
   } catch (error) {
     console.log(error);
   }
@@ -61,13 +68,13 @@ function DetailProduct({ product, comments, id }) {
   const queryClient = useQueryClient();
 
   const { data: productData } = useQuery({
-    queryKey: ["product"],
+    queryKey: ["product", id],
     queryFn: () => productsApi.getProduct(id),
     initialData: product,
   });
 
   const { data: commentsData } = useQuery({
-    queryKey: ["comments"],
+    queryKey: ["comments", id],
     queryFn: () => commentApi.getProductComments(id),
     initialData: comments,
   });
@@ -76,8 +83,8 @@ function DetailProduct({ product, comments, id }) {
     createdAt,
     favoriteCount,
     ownerId,
-    ownerNickname,
-    tags,
+    owner,
+    tags = [],
     price,
     description,
     name,
@@ -85,7 +92,8 @@ function DetailProduct({ product, comments, id }) {
   } = productData;
 
   //날짜 포멧
-  const productsImage = product.images[0];
+  const productsImage =
+    product.images.length > 0 ? productData.image[0] : imgDefault;
   const date = dateFormatYYYYMMDD(createdAt);
   const numFormat = price.toLocaleString();
   const [content, setContent] = useState("");
@@ -272,7 +280,7 @@ function DetailProduct({ product, comments, id }) {
                 alt="작성자이미지"
               />
               <div className={styles.product_row_sub_box}>
-                <span>{ownerNickname}</span>
+                <span>{owner?.nickname}</span>
                 <span className={styles.product_createdAt}>{date}</span>
               </div>
               <div>
@@ -312,7 +320,7 @@ function DetailProduct({ product, comments, id }) {
         </div>
         <div className={styles.products_comments_box}>
           <div className={styles.products_comments}>
-            {commentsData.map((item) => (
+            {commentsData?.map((item) => (
               <Comment
                 user={user}
                 key={item.id}

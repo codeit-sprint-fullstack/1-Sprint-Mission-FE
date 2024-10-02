@@ -1,11 +1,11 @@
 import Head from "next/head";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useWindowResize from "@/hooks/useWindowResize";
-import ProductList from "@/components/ProductList";
 import Product from "@/components/ProductList";
 import Pagination from "@/components/Pagination";
 import SearchBar from "@/components/SearchBar";
 import * as api from "@/pages/api/products";
+
 import {
   dehydrate,
   HydrationBoundary,
@@ -25,7 +25,7 @@ export async function getStaticProps() {
   };
 
   const bestProductsQuery = {
-    orderBy: "favorite",
+    orderBy: "favoriteCount",
     pageSize: 4,
   };
 
@@ -63,7 +63,6 @@ function Home({ productsQuery, bestProductsQuery }) {
   const [params, setParams] = useState(productsQuery);
   const [bestParams, setBestParams] = useState(bestProductsQuery);
   const [totalDataCount, setTotalDataCount] = useState(0);
-
   const handleChangeParams = (obj) => {
     setParams((prev) => ({
       ...prev,
@@ -90,30 +89,30 @@ function Home({ productsQuery, bestProductsQuery }) {
 
   const view = useWindowResize();
 
-  useEffect(() => {
-    const changeFromNextView = () => {
-      switch (view) {
-        case "isDesktop":
-          handleChangeParams({ pageSize: 10, page: 1 });
-          handleChangeBestParams("pageSize", 4);
-          break;
-        case "isTablet":
-          handleChangeParams({ pageSize: 6, page: 1 });
-          handleChangeBestParams("pageSize", 2);
-          break;
-        case "isMobile":
-          handleChangeParams({ pageSize: 4, page: 1 });
-          handleChangeBestParams("pageSize", 1);
-          break;
-        default:
-      }
-    };
-    changeFromNextView();
-  }, [view]);
+  // useEffect(() => {
+  //   const changeFromNextView = () => {
+  //     switch (view) {
+  //       case "isDesktop":
+  //         handleChangeParams({ pageSize: 10, page: 1 });
+  //         handleChangeBestParams("pageSize", 4);
+  //         break;
+  //       case "isTablet":
+  //         handleChangeParams({ pageSize: 6, page: 1 });
+  //         handleChangeBestParams("pageSize", 2);
+  //         break;
+  //       case "isMobile":
+  //         handleChangeParams({ pageSize: 4, page: 1 });
+  //         handleChangeBestParams("pageSize", 1);
+  //         break;
+  //       default:
+  //     }
+  //   };
+  //   changeFromNextView();
+  // }, [view]);
 
-  useEffect(() => {
-    setTotalDataCount(productData?.totalCount);
-  }, [productData]);
+  // useEffect(() => {
+  //   setTotalDataCount(productData?.totalCount);
+  // }, [productData]);
 
   return (
     <>
