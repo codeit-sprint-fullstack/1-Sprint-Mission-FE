@@ -99,7 +99,7 @@ export default function RegistrationPage() {
       setValues(INITIAL_VALUES);
       setTags([]);
       setImages([]);
-      router.push("/Productinformation");
+      router.push("/items"); // 중고마켓 페이지로 이동
     } catch (error) {
       console.error("상품 등록 실패", error);
       setSubmittingError(error);
