@@ -33,19 +33,25 @@ apiClient.interceptors.request.use(
 /*----------------------상품 관련 API ---------------------------*/
 /* 상품 목록 조회 API */
 export async function getProductList({
-  sort = "recent", // 최신순으로 정렬 기본값
+  sort = "recent", // 기본값은 최신순
   offset = 0,
   limit = 10,
   search = "",
 } = {}) {
   const query = new URLSearchParams({
-    sort,
-    offset,
-    limit,
-    search,
+    sort, // 최신순 또는 좋아요 순
+    offset: String(offset), // offset을 문자열로 변환
+    limit: String(limit), // limit을 문자열로 변환
+    search, // 검색어
   }).toString();
-  const response = await apiClient.get(`${marketUrl}?${query}`);
-  return response.data;
+
+  try {
+    const response = await apiClient.get(`${marketUrl}?${query}`);
+    return response.data; // 응답 데이터 반환
+  } catch (error) {
+    console.error("상품 목록을 불러오는데 실패했습니다.", error);
+    throw error; // 오류 발생 시 다시 던지기
+  }
 }
 
 /* 상품 등록 API */
@@ -62,6 +68,11 @@ export async function createProduct(product) {
       formData.append("images", image);
     });
   }
+
+  // 디버그를 위한 로그 추가
+
+  console.log("Form Data Entries:", [...formData.entries()]);
+  console.log(product.images);
 
   const response = await apiClient.post(`${marketUrl}`, formData, {
     headers: {
