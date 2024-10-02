@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useDevice({ articlesList }) {
+export default function useBestArticleByDevice({ articlesList }) {
   const [bestArticles, setBestArticles] = useState(articlesList);
   const [resize, setResize] = useState();
 
