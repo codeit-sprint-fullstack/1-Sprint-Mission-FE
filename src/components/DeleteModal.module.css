@@ -1,0 +1,107 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 298px;
+  height: 202px;
+}
+
+.topBox {
+  width: 250px;
+  height: 74px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.iconWrapper {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.redIcon {
+  width: 100%;
+  height: 100%;
+}
+
+.checkIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+}
+
+.message {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  color: #1f2937;
+  text-align: center;
+}
+
+.bottomBox {
+  width: 184px;
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cancelButton {
+  width: 88px;
+  height: 48px;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  border: 1px solid #f74747;
+  color: #f74747;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+  padding: 12px 23px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.confirmButton {
+  width: 88px;
+  height: 48px;
+  border-radius: 8px;
+  background-color: #f74747;
+  color: #f3f4f6;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+  padding: 12px 23px;
+  border: 1px solid #f74747;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+

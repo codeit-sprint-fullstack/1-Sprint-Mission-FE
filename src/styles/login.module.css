@@ -1,0 +1,123 @@
+.loginHeader {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.main {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.main form {
+  width: 100%;
+}
+
+.formGroup {
+  margin-bottom: 35px;
+  position: relative; /* 에러 메시지가 절대 위치로 고정되도록 설정 */
+}
+
+.label {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21.48px;
+  color: #1f2937;
+  display: block;
+  margin-bottom: 15px; /* label과 input 사이의 간격 */
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  border-radius: 12px;
+  padding: 16px 24px;
+  background-color: #f3f4f6;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #9ca3af;
+  border: 1px solid #e5e7eb;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  border-color: #3692ff;
+}
+
+.visibilityIcon {
+  position: absolute;
+  right: 20px;
+  top: 40%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.loginButton {
+  width: 100%;
+  min-height: 56px;
+  border-radius: 40px;
+  padding: 16px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #ffffff;
+  background-color: #9ca3af;
+  border: none;
+  cursor: pointer;
+}
+
+.errorMessage {
+  color: #f74747;
+  font-size: 14px;
+  position: absolute;
+  top: 100%; /* 입력 박스 바로 아래에 배치 */
+  left: 0;
+  margin-top: 5px;
+  white-space: nowrap;
+}
+
+/* 간편 로그인하기 스타일 */
+.socialLogin {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e6f2ff;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin-top: 20px;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 10px;
+}
+
+.googleLogin img,
+.kakaoLogin img {
+  width: 40px;
+  height: 40px;
+}
+
+.signupLink {
+  font-family: "Pretendard", sans-serif;
+  font-size: 15px;
+  margin-top: 30px;
+  color: #1f2937;
+  text-align: center;
+}
+
+.signupLink a {
+  color: #3182f6;
+}
+
+.signupLink a:hover {
+  text-decoration: underline;
+}
+

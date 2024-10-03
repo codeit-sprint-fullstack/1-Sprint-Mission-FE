@@ -1,0 +1,193 @@
+.registrationForm {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formHeader h2 {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23.87px;
+  color: #1f2937;
+}
+
+.submitButton {
+  width: 74px;
+  height: 42px;
+  padding: 12px 23px;
+  background-color: #3692ff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #f3f4f6;
+  cursor: pointer;
+  transform: translateX(18px);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.formGroup label {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #1f2937;
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #f3f4f6;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #1f2937;
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  padding-left: 3px;
+}
+
+.formGroup input.error,
+.formGroup textarea.error {
+  border-color: #f74747;
+}
+
+.errorMessage {
+  color: #f74747;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14.32px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  background-color: #e5e7eb;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16.72px;
+  color: #1f2937;
+}
+
+.tag button {
+  background: none;
+  border: none;
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 14.32px;
+  color: #f74747;
+}
+
+.formGroup input#name,
+.formGroup input#price,
+.formGroup input#tag,
+.formGroup textarea#description {
+  width: 100%;
+}
+
+.formGroup input#name,
+.formGroup input#price,
+.formGroup input#tag {
+  height: 40px;
+}
+
+.formGroup textarea#description {
+  height: 270px;
+}
+
+/* Tablet 기준 */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .formGroup input#name,
+  .formGroup textarea#description,
+  .formGroup input#price,
+  .formGroup input#tag {
+    min-width: 696px;
+    width: calc(100% - 20px);
+    height: 30px;
+  }
+
+  .formGroup textarea#description {
+    height: 180px;
+  }
+
+  .submitButton {
+    transform: translateX(-6px);
+  }
+}
+
+/* Mobile 기준 */
+@media (max-width: 743px) and (min-width: 375px) {
+  .registrationForm {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .formHeader h2 {
+    font-size: 18px;
+    line-height: 21.09px;
+  }
+
+  .submitButton {
+    width: 75px;
+    height: 36px;
+    font-size: 14px;
+    line-height: 16.09px;
+    transform: translateX(50px);
+  }
+
+  .formGroup label,
+  .formGroup input,
+  .formGroup textarea {
+    font-size: 14px;
+    line-height: 16.09px;
+  }
+
+  .formGroup input#name,
+  .formGroup textarea#description,
+  .formGroup input#price,
+  .formGroup input#tag {
+    min-width: 345px;
+    height: 27px;
+    width: calc(100% + 25px);
+  }
+
+  .formGroup textarea#description {
+    height: 180px;
+  }
+}
+

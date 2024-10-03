@@ -1,15 +1,20 @@
 import '../globals/global.css';
 import Navbar from '../components/Navbar';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'; // React Query import 추가
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
 
 function MyApp({ Component, pageProps }) {
-  // QueryClient를 상태로 관리
-  const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,  // 자동 재시도 비활성화
+      },
+    },
+  }));
 
   return (
-    <QueryClientProvider client={queryClient}>  {/* QueryClientProvider로 앱을 감쌈 */}
-      <Navbar />  {/* 모든 페이지에 공통으로 표시될 Navbar */}
+    <QueryClientProvider client={queryClient}>
+      <Navbar />
       <Component {...pageProps} />
     </QueryClientProvider>
   );

@@ -1,0 +1,22 @@
+.socialLogin {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e6f2ff;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin-top: 20px;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 10px;
+}
+
+.googleLogin img,
+.kakaoLogin img {
+  width: 40px;
+  height: 40px;
+}
+
