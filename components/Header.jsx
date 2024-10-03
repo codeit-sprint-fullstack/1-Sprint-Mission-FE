@@ -57,7 +57,7 @@ function Header() {
               <span>{user?.nickname}</span>
             </>
           ) : (
-            <Link href={"Login"}>
+            <Link href={"/Login"}>
               <button className={styles.login_btn}>로그인</button>
             </Link>
           )}
