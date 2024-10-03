@@ -1,0 +1,82 @@
+.layout {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.modal {
+  margin-top: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modalBackColor {
+  background-color: aliceblue;
+  border-radius: 12px;
+  width: 298px;
+  height: 202px;
+  text-align: center;
+}
+
+.modalMain {
+  margin-top: 30px;
+}
+
+.modalMsg {
+  margin-top: 24px;
+  margin-bottom: 32px;
+}
+
+.modalBtns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.modalCancelBtn {
+  border: 1px solid #f74747;
+  border-radius: 8px;
+  width: 88px;
+  height: 48px;
+  background-color: aliceblue;
+  color: #f74747;
+}
+
+.modalBtn {
+  border: 1px solid #f74747;
+  border-radius: 8px;
+  width: 88px;
+  height: 48px;
+  background-color: #f74747;
+  color: aliceblue;
+}
+
+.authModalModalBackColor {
+  background-color: aliceblue;
+  border-radius: 12px;
+  width: 540px;
+  height: 250px;
+  text-align: center;
+}
+
+.authModalMsg {
+  margin-top: 68px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #1f2937;
+}
+
+.authModalBtn {
+  width: 165px;
+  height: 48px;
+  background-color: #3692ff;
+  border-radius: 8px;
+  margin-top: 40px;
+  border: none;
+  color: aliceblue;
+}

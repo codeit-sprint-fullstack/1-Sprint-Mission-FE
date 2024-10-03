@@ -1,45 +1,53 @@
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
+import toast from 'react-hot-toast';
 import Image from 'next/image';
-import line from '@/public/heartLine.png';
-import profileIcon from '@/public/ic_profile.png';
-import heartIcon from '@/public/ic_heart.png';
 import dotIcon from '@/public/ic_dot.png';
-import DateFormat from '@/utils/DateFormat.js';
 import DropDown from '@/utils/DropDown.js';
-import { deleteArticleApi } from '@/utils/api/articleApi.js';
+import { useEditArticle } from '@/hooks/useFreeBoard';
+import { ArticleDeleteModal } from '@/utils/Modal';
+import { UserInfo } from './UserInfo';
 import styles from '@/styles/Article.module.css';
 
-export default function ArticleDetail({ article }) {
-  const [openOptions, setOpenOptions] = useState(false);
+export default function ArticleDetailInfo({ article, category }) {
+  const [isOpenDropDown, setIsOpenDropDown] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const { id } = router.query;
 
-  // useCallback 사용
+  const { deleteArticle } = useEditArticle({ id });
 
-  const handleDropDown = useCallback(() => {
-    setOpenOptions((prev) => !prev);
-  }, []);
-
-  const buttonEvent = async () => {
-    if (confirm('정말 삭제하시겠습니까??') === true) {
-      try {
-        await deleteArticleApi(article.id);
-        router.push('/freeboard');
-      } catch (error) {
-        console.error('Error deleting article:', error);
-      }
-    } else {
-      return;
-    }
+  const handleDelete = () => {
+    setIsModalOpen(true);
   };
 
+  const onConfirm = () => {
+    deleteArticle(id);
+    toast.success('삭제가 완료됐습니다!');
+    router.push(`/${category}`);
+  };
+
+  const handleDropDown = useCallback(() => {
+    setIsOpenDropDown((prev) => !prev);
+  }, []);
+
   const handleEdit = useCallback(() => {
-    router.push(`/article/edit/${id}`);
-  }, [id, router]);
+    router.push(`/${category}/edit/${id}`);
+  }, [id, router, category]);
+
+  if (!article) {
+    return <div>loading...</div>;
+  }
 
   return (
     <>
+      {isModalOpen && (
+        <ArticleDeleteModal
+          onClose={() => setIsModalOpen(false)}
+          onConfirm={() => onConfirm()}
+        />
+      )}
+
       <div className={styles.title}>
         <div className={styles.titleText}>{article.title}</div>
         <div className={styles.buttonTest}>
@@ -49,37 +57,26 @@ export default function ArticleDetail({ article }) {
             onClick={handleDropDown}
             className={styles.dotImage}
           />
-          {openOptions && (
+          {isOpenDropDown && (
             <DropDown
               firstAction={{
                 onClickHandler: handleEdit,
                 label: '수정하기',
               }}
               secondAction={{
-                onClickHandler: buttonEvent,
+                onClickHandler: handleDelete,
                 label: '삭제하기',
               }}
+              onClose={() => setIsOpenDropDown(false)}
             />
           )}
         </div>
       </div>
-      <div className={styles.profile}>
-        <Image src={profileIcon} alt='프로필 사진' width={40} height={40} />
-        <p className={styles.userName}>{article.user.name}</p>
-        <span className={styles.date}>
-          <DateFormat createDate={article} className={styles.profileIcon} />
-        </span>
-        <Image src={line} alt='선' className={styles.line} />
-        <div className={styles.heart}>
-          <Image
-            src={heartIcon}
-            alt='하트 아이콘'
-            className={styles.heartIcon}
-          />
-          <span className={styles.heartCount}>188</span>
-        </div>
-      </div>
+      <UserInfo article={article} category={category} />
+
       <div className={styles.content}>{article.content}</div>
+      <div>{article.images}</div>
+      {/* <Image src={article.image} width={150} height={150} alt='이미지' /> */}
     </>
   );
 }

@@ -3,28 +3,26 @@ import { useRouter } from 'next/router';
 import { throttle } from 'lodash';
 import ArticleList from '@/components/FreeBoard/ArticleList.js';
 import BestArticleList from '@/components/FreeBoard/BestArticleList.js';
-import ArticleListHeard from '@/components/FreeBoard/ArticleListHeard.js';
-import {
-  fetchFreeBoardArticlesApi,
-  fetchFreeBoardBestArticlesApi,
-} from '@/utils/api/articleApi.js';
+import ArticleListHeader from '@/components/FreeBoard/ArticleListHeader.js';
+import { fetchFreeBoardApi } from '@/utils/api/freeBoardApi';
 import styles from '@/styles/FreeBoard.module.css';
-import useArticles from '@/hooks/useArticles';
+import {
+  useFreeBoardArticlesList,
+  useGetBestArticle,
+} from '@/hooks/useFreeBoard';
 
 export const getServerSideProps = async (context) => {
-  const { keyword = '', orderBy = 'recent', page = 1 } = context.query;
+  const { keyword = '', sort = 'recent', page = 1 } = context.query;
 
   try {
-    const bestArticles = await fetchFreeBoardBestArticlesApi();
-    const articles = await fetchFreeBoardArticlesApi({
+    const articles = await fetchFreeBoardApi({
       keyword,
-      orderBy,
+      sort,
       page,
     });
 
     return {
       props: {
-        bestArticlesData: bestArticles.data,
         initialArticles: articles.data || [],
       },
     };
@@ -32,22 +30,25 @@ export const getServerSideProps = async (context) => {
     console.error('Error fetching article:', error);
     return {
       props: {
-        bestArticlesData: [],
         initialArticles: [],
       },
     };
   }
 };
 
-export default function FreeBoardPage({ bestArticlesData, initialArticles }) {
+export default function FreeBoardPage({ initialArticles }) {
   const [orderBy, setOrderBy] = useState('recent');
   const router = useRouter();
   const { keyword } = router.query;
 
-  const { articles, loading, hasMore, setPagesValue } = useArticles({
-    initialArticles,
-    orderBy,
-  });
+  const { articles, loading, hasMore, fetchNextPage, isError, error } =
+    useFreeBoardArticlesList({
+      initialArticles,
+      orderBy,
+      limit: 5,
+    });
+
+  const { bestArticles } = useGetBestArticle();
 
   useEffect(() => {
     const handleScroll = throttle(() => {
@@ -57,7 +58,7 @@ export default function FreeBoardPage({ bestArticlesData, initialArticles }) {
       const documentHeight = document.documentElement.scrollHeight;
 
       if (scrollPosition >= documentHeight - 100) {
-        setPagesValue((prev) => prev + 1);
+        fetchNextPage();
       }
     }, 200);
 
@@ -65,11 +66,15 @@ export default function FreeBoardPage({ bestArticlesData, initialArticles }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [hasMore, loading]);
 
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <>
       <div className={styles.body}>
-        <BestArticleList articles={bestArticlesData} />
-        <ArticleListHeard keyword={keyword} setOrderBy={setOrderBy} />
+        <BestArticleList articles={bestArticles} />
+        <ArticleListHeader keyword={keyword} setOrderBy={setOrderBy} />
         <ArticleList articles={articles} />
         {loading && <div>Loading...</div>}
       </div>

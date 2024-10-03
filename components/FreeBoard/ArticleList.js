@@ -20,7 +20,7 @@ export default function ArticleList({ articles }) {
       <div className={styles.articleList}>
         {articles.map((article) => (
           <div key={article.id} className={styles.list}>
-            <Link href={`/article/${article.id}`} className={styles.link}>
+            <Link href={`/freeboard/${article.id}`} className={styles.link}>
               <div className={styles.main}>
                 <span className={styles.title}>
                   {article.title}
@@ -41,7 +41,9 @@ export default function ArticleList({ articles }) {
                 </div>
                 <div className={styles.favorite}>
                   <Image src={heartIcon} alt='하트 아이콘' />
-                  <span className={styles.favoriteCount}>188</span>
+                  <span className={styles.favoriteCount}>
+                    {Math.max(article.favorite, 0)}
+                  </span>
                 </div>
               </div>
             </Link>

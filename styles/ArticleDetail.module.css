@@ -1,0 +1,130 @@
+.layout {
+  margin: 32px 0;
+  height: 550px;
+  border-bottom: 1px solid gainsboro;
+}
+
+.itemImage {
+  float: left;
+  margin-right: 32px;
+}
+
+.information {
+  margin-left: 32px;
+}
+
+.titleOption {
+  display: flex;
+  justify-content: space-between;
+}
+
+.titleText {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.itemPrice {
+  margin: 16px;
+  font-size: 40px;
+  font-weight: 600;
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.itemInformation {
+  margin: 24px 0 62px;
+}
+
+.itemTitleText {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.itemContent {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #4b5563;
+  margin-top: 16px;
+  margin-bottom: 24px;
+  min-height: 100px;
+}
+
+.hashtags {
+  display: flex;
+  flex-wrap: wrap;
+  float: left;
+  padding: 6px 14px 6px 6px;
+  background-color: #f3f4f6;
+  border-radius: 26px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  margin-top: 16px;
+}
+
+.hashtagTitle {
+  margin-left: 8px;
+  color: #4b5563;
+}
+
+.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 144px;
+  padding-bottom: 16px;
+}
+
+.userName {
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.date {
+  color: #9ca3af;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.line {
+  margin: 0 32px;
+}
+
+.heart {
+  border: 1px solid #e5e7eb;
+  border-radius: 35px;
+  padding: 4px 12px;
+  align-items: center;
+  display: flex;
+  align-items: center;
+}
+
+.heartCount {
+  color: #6b7280;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 5px;
+  margin-top: 4px;
+}
+
+.userInfo {
+  display: flex;
+}
+
+.date {
+  display: flex;
+  flex-direction: row;
+  margin-top: 4px;
+}
+
+.articleInfo {
+  margin-left: 16px;
+}
+
+.heartCount {
+  display: flex;
+}

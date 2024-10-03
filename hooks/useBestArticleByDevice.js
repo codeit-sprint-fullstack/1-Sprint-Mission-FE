@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
-export default function useDevice({ articles }) {
-  const [bestArticles, setBestArticles] = useState(articles);
+export default function useBestArticleByDevice({ articlesList }) {
+  const [bestArticles, setBestArticles] = useState(articlesList);
   const [resize, setResize] = useState();
 
   useEffect(() => {
@@ -18,7 +18,10 @@ export default function useDevice({ articles }) {
       } else {
         maxArticles = 3;
       }
-      setBestArticles(articles.slice(0, maxArticles));
+
+      if (articlesList) {
+        setBestArticles(articlesList.slice(0, maxArticles));
+      }
     };
 
     handleResize();
@@ -27,7 +30,7 @@ export default function useDevice({ articles }) {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [articles]);
+  }, [articlesList]);
 
   return { bestArticles };
 }

@@ -1,86 +1,95 @@
-import { useEffect, useState, useRef } from 'react';
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 import {
   fetchCommentsApi,
   postCommentApi,
   deleteCommentApi,
+  editCommentApi,
 } from '@/utils/api/commentApi.js';
 
-export default function useComments({
-  articleId,
-  comment,
-  setCommentsList,
-  commentsList,
-}) {
-  const [canEdit, setCanEdit] = useState(false);
-  const [canSubmit, setCanSubmit] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-  const [loading, setLoading] = useState(false);
-  let cursorIdRef = useRef(null);
+export function useComments({ articleId, category }) {
+  const { data, fetchNextPage, isLoading } = useInfiniteQuery({
+    queryKey: ['comments', articleId],
+    queryFn: ({ pageParam = null }) =>
+      fetchCommentsApi({ articleId, category, cursorId: pageParam }),
+    getNextPageParam: (lastPage) => {
+      const comments = lastPage.comments || [];
 
-  async function getComments(articleId) {
-    setLoading(true);
-    try {
-      const res = await fetchCommentsApi(articleId, cursorIdRef.current);
-      const { comments, totalCount } = res;
+      return comments.length <= 4
+        ? undefined
+        : comments[comments.length - 1].id;
+    },
+  });
 
-      cursorIdRef.current =
-        comments.length > 0 ? comments[comments.length - 1].id : null;
+  const uniqueComments = Array.from(
+    new Map(
+      data?.pages
+        .flatMap((page) => page.comments)
+        .map((comment) => [comment.id, comment])
+    ).values() || []
+  );
 
-      const mergedItems = [...commentsList, ...comments.slice(0, 5)];
-      const uniqueComments = Array.from(
-        new Map(mergedItems.map((item) => [item.id, item])).values()
-      );
-
-      if (uniqueComments.length >= totalCount) {
-        setHasMore(false);
-      }
-
-      setCommentsList(uniqueComments);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  async function deleteComments(targetId) {
-    try {
-      const res = await deleteCommentApi(targetId);
-      cursorIdRef.current = null;
-      setCommentsList([]);
-      setHasMore(true);
-      setCanEdit((prev) => !prev);
-    } catch (error) {
-      console.error('Error deleting data:', error);
-    }
-  }
-
-  async function postComment() {
-    try {
-      const res = await postCommentApi(articleId, comment);
-
-      setCommentsList([res, ...commentsList]);
-    } catch (error) {
-      console.error('Error posting data:', error);
-    }
-  }
-
-  useEffect(() => {
-    if (comment) {
-      setCanSubmit(true);
-    } else {
-      setCanSubmit(false);
-    }
-  }, [comment]);
+  const totalCount = data?.pages[0].totalCount;
 
   return {
-    getComments,
+    uniqueComments,
+    fetchNextPage,
+    isLoading,
+    totalCount,
+  };
+}
+
+export function useEditComment({ articleId }) {
+  const queryClient = useQueryClient();
+
+  const deleteCommentMutation = useMutation({
+    mutationFn: (targetId) => deleteCommentApi(targetId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['comments', articleId] });
+    },
+  });
+
+  const deleteComments = (targetId) => {
+    deleteCommentMutation.mutate(targetId);
+  };
+
+  const postCommentMutation = useMutation({
+    mutationFn: (newComment) => postCommentApi(newComment),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['comments', articleId] });
+    },
+  });
+
+  const editCommentMutation = useMutation({
+    mutationFn: ({ id, editComment, articleId }) =>
+      editCommentApi({ id, editComment, articleId }),
+    onSuccess: (newComment) => {
+      queryClient.setQueryData(['comments', articleId], (previous) => {
+        if (!previous) return [];
+
+        return {
+          ...previous,
+          pages: previous.pages.map((page) => ({
+            ...page,
+            comments: page.comments.map((comment) =>
+              comment.id === newComment.id ? newComment : comment
+            ),
+          })),
+        };
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: ['comments', articleId],
+      });
+    },
+  });
+
+  return {
+    postCommentMutation,
+    editCommentMutation,
     deleteComments,
-    postComment,
-    canEdit,
-    canSubmit,
-    loading,
-    cursorIdRef,
-    hasMore,
   };
 }
