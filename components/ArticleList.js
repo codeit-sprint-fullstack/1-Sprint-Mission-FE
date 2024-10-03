@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "@/pages/api/axios";
+import axios from "@/lib/axios.js";
 import Article from "./Article";
 import Image from "next/image";
 import Link from "next/link";

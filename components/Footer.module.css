@@ -3,20 +3,35 @@
 .footer {
   background-color: #111827;
   color: #9ca3af;
+  width: 100%; /* Fixed */
+  height: 160px; /* Fixed */
+  padding: 32px 200px;
+  font-size: 16px;
+  position: absolute;
+  top: 1628px;
+}
+
+.footerContent {
+  width: 1520px; /* Fill */
+  height: 20px; /* Hug */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3.2rem 20rem 10.8rem 20rem;
-  font-size: 1.6rem;
+  margin: 0 auto;
 }
 
 .footerMenu {
   display: flex;
-  gap: 3rem;
-  color: var(--gray-200);
+  gap: 10px;
+  color: white;
+}
+
+.footerMenu a {
+  text-decoration: none;
+  color: white;
 }
 
 .socialMedia {
   display: flex;
-  gap: 1.2rem;
+  gap: 10px;
 }
