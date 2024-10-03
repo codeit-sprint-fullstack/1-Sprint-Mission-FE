@@ -1,14 +1,11 @@
-import {
-  QueryClient,
-  dehydrate,
-  useInfiniteQuery,
-} from "@tanstack/react-query";
+import { QueryClient, dehydrate } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import Head from "next/head";
 import Link from "next/link";
-import { getArticleList } from "@/service/api";
-import { articleKey, PAGE_SIZE } from "@/variables/queryKeys";
+import { articleKey } from "@/variables/queryKeys";
+import { useGetInfiniteList } from "@/service/queries";
+import { getArticleList } from "@/service/api/article";
 import BestArticles from "@/components/article/BestArticles";
 import ArticleList from "@/components/article/ArticleList";
 import SearchBar from "@/components/form/SearchBar";
@@ -17,43 +14,35 @@ import DropDown from "@/components/ui/DropDown";
 import Loader from "@/components/ui/Loader";
 import styles from "@/styles/pages/forum/main.module.scss";
 import Message from "@/components/ui/Message";
+import { ENTITY } from "@/variables/entities";
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
 
-  try {
-    await Promise.all([
-      queryClient.prefetchQuery({
-        queryKey: articleKey.list({ pageSize: 3, orderBy: "like" }),
-        queryFn: () => getArticleList({ pageSize: 3, orderBy: "like" }),
-      }),
-      queryClient.prefetchInfiniteQuery({
-        queryKey: articleKey.list({ orderBy: "recent", keyword: "" }),
-        queryFn: () => getArticleList({ orderBy: "recent" }),
-        initialPageParam: 1,
-      }),
-    ]);
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: articleKey.list({ pageSize: 3, orderBy: "like" }),
+      queryFn: () => getArticleList({ pageSize: 3, orderBy: "like" }),
+    }),
+    queryClient.prefetchInfiniteQuery({
+      queryKey: articleKey.list({ orderBy: "recent", keyword: "" }),
+      queryFn: () => getArticleList({ orderBy: "recent" }),
+      initialPageParam: 1,
+    }),
+  ]);
 
-    return {
-      props: {
-        dehydratedState: dehydrate(queryClient),
-      },
-    };
-  } catch (err) {
-    console.error(err.message);
-    if (err.response) {
-      console.log(err.response.status);
-      console.log(err.response.data);
-    } else {
-      console.error("Error", err);
-    }
-  }
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
 }
 
 export default function ForumPage() {
   const [keyword, setKeyword] = useState("");
   const [orderBy, setOrderBy] = useState("recent");
   const { ref, inView } = useInView();
+  const entity = ENTITY.ARTICLE;
 
   const {
     data: articleData,
@@ -63,30 +52,7 @@ export default function ForumPage() {
     hasNextPage,
     error,
     fetchNextPage,
-  } = useInfiniteQuery({
-    queryKey: articleKey.list({ orderBy, keyword }),
-    queryFn: ({ pageParam = 1 }) =>
-      getArticleList({
-        keyword,
-        orderBy,
-        page: pageParam,
-        pageSize: PAGE_SIZE.DEFAULT,
-      }),
-
-    getNextPageParam: (lastPage, allPages) => {
-      if (!lastPage || !Array.isArray(lastPage.list)) {
-        return undefined;
-      }
-      if (!lastPage || !lastPage.list) {
-        return undefined;
-      }
-      if (lastPage.list.length < PAGE_SIZE.DEFAULT) {
-        return undefined;
-      }
-      return allPages.length + 1;
-    },
-    keepPreviousData: true,
-  });
+  } = useGetInfiniteList(entity, { orderBy, keyword });
 
   useEffect(() => {
     if (inView) {
@@ -109,14 +75,14 @@ export default function ForumPage() {
 
       <section className={styles["best-section"]}>
         <h2>베스트 게시글</h2>
-        <BestArticles />
+        <BestArticles entity={entity} />
       </section>
       <section className={styles["article-section"]}>
         <div className={styles["article-section-topbar"]}>
           <h2>
-            전체 게시글 <span>{`(${pages[0].totalCount})`}</span>
+            전체 게시글 <span>{`(${pages[0]?.totalCount})`}</span>
           </h2>
-          <Link href="/forum/create-article" passHref>
+          <Link href="/forum/registration" passHref>
             <Button variant="primary">글쓰기</Button>
           </Link>
         </div>

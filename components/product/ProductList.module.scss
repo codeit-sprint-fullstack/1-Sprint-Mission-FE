@@ -1,0 +1,30 @@
+@use "@/styles/globals/shared" as g;
+
+.ProductList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  max-width: 100%;
+  gap: 24px;
+  .all {
+    min-width: 221px;
+    height: auto;
+  }
+
+  .best {
+    min-width: 221px;
+    height: auto;
+  }
+}
+
+.ProductCard {
+  @include g.flex-box(column, flex-start, flex-start, 16px);
+  .text {
+    @include g.flex-box(column, flex-start, flex-start, 6px);
+    h3 {
+      @include g.font(14, 500);
+    }
+    p {
+      @include g.font(16, 700);
+    }
+  }
+}

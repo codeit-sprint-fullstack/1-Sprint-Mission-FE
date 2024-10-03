@@ -1,0 +1,13 @@
+@use "@/styles/globals/shared" as g;
+
+.ProductForm {
+  @include g.flex-box(column, center, center, 24px);
+
+  .top-bar {
+    @include g.flex-box(row, space-between, center);
+    width: 100%;
+  }
+  textarea {
+    height: 282px;
+  }
+}

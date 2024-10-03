@@ -1,0 +1,51 @@
+@use "@/styles/globals/shared" as g;
+
+.ProductDetailPage {
+  @include g.flex-box(column, center, center, 40px);
+  .line {
+    @include g.line-horizontal();
+  }
+}
+
+//Product index page
+.product-section {
+  @include g.flex-box(column, center, center, 24px);
+
+  &-topbar {
+    width: 100%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr auto auto auto;
+    gap: 12px;
+
+    @media only screen and (max-width: 700px) {
+      display: grid;
+      grid-template-areas:
+        "a b b"
+        "c c d";
+      grid-template-columns: auto 1fr auto;
+      grid-template-rows: 1fr 1fr;
+
+      > h2 {
+        grid-area: a;
+      }
+
+      > .SearchBar {
+        grid-area: b;
+        justify-self: end;
+      }
+
+      > a {
+        grid-area: c;
+      }
+
+      > .Dropdown {
+        grid-area: d;
+      }
+    }
+  }
+}
+
+.product-best-section + .product-section {
+  margin-top: 40px;
+}

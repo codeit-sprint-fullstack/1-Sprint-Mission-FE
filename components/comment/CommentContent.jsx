@@ -1,19 +1,25 @@
 import styles from "./CommentContent.module.scss";
-import { calculateTimeAgo } from "@/utils/formatFn";
-import KebabMenu from "../ui/KebabMenu";
-import ProfileImg from "../ui/ProfileImg";
 import { useState } from "react";
 import { useUpdateComment } from "@/service/mutations";
 import UpdateCommentForm from "../form/UpdateCommentForm";
+import UserInfo from "../user/UserInfo";
+import KebabMenuComment from "../ui/KebabMenuComment.jsx";
+import { ENTITY } from "@/variables/entities";
 
-export default function CommentContent({ comment }) {
+export default function CommentContent({ comment, idPath, whichComment }) {
+  const entity = ENTITY.COMMENT;
+
   const [isEditMode, setIsEditMode] = useState(false);
 
   const classNames = isEditMode
     ? `${styles.CommentContent} ${styles.edit}`
     : styles.CommentContent;
 
-  const { mutate } = useUpdateComment(comment.id);
+  const { mutate } = useUpdateComment({
+    whichComment,
+    idPath,
+    commentId: comment.id,
+  });
 
   const handleUpdateSubmit = (data) => {
     const updateComment = { content: data.content };
@@ -29,20 +35,15 @@ export default function CommentContent({ comment }) {
     <li className={classNames}>
       <div className={styles.top}>
         <h4>{comment.content}</h4>
-        <KebabMenu
-          entity="comment"
-          idPath={comment.id}
+        <KebabMenuComment
+          whichComment={whichComment}
+          idPath={idPath}
+          commentId={comment.id}
           setIsEditMode={setIsEditMode}
         />
       </div>
 
-      <div className={styles.bottom}>
-        <ProfileImg width="32px" />
-        <div className={styles["bottom-right"]}>
-          <p>{comment.writer?.nickname || "똑똑한 판다"}</p>
-          <time>{calculateTimeAgo(comment.createdAt)}</time>
-        </div>
-      </div>
+      <UserInfo entity={entity} data={comment} />
     </li>
   ) : (
     <li className={classNames}>
@@ -54,13 +55,7 @@ export default function CommentContent({ comment }) {
         />
       </div>
 
-      <div className={styles.bottom}>
-        <ProfileImg width="32px" />
-        <div className={styles["bottom-right"]}>
-          <p>{comment.writer?.nickname || "똑똑한 판다"}</p>
-          <time>{calculateTimeAgo(comment.createdAt)}</time>
-        </div>
-      </div>
+      <UserInfo entity={entity} data={comment} />
     </li>
   );
 }

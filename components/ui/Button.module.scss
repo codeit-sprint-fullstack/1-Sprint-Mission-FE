@@ -30,3 +30,21 @@
 .small {
   padding: 8px 23px;
 }
+
+.button-auth {
+  @include g.button(
+    $bg: g.$primary-color,
+    $padding: 16px 23px,
+    $radius: 40px,
+    $font-color: #fff
+  );
+  width: 100%;
+
+  &:hover {
+    background-color: darken(g.$primary-color, 10%);
+  }
+  &:disabled {
+    background-color: g.$grey-400;
+    cursor: not-allowed;
+  }
+}

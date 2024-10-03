@@ -1,0 +1,21 @@
+@use "@/styles/globals/shared" as g;
+
+.LikeButton {
+  @include g.flex-box(row, center, center, 4px);
+  color: g.$grey-500;
+  border: 1px solid g.$grey-200;
+  border-radius: 35px;
+  padding: 4px 13px;
+  &:hover {
+    border: 2px solid g.$likes-color;
+  }
+  .LikeNumber {
+    @include g.font(16, 500);
+  }
+}
+
+.LikeNumber {
+  @include g.flex-box(row, center, center, 4px);
+  @include g.font(14, 500);
+  color: g.$grey-500;
+}

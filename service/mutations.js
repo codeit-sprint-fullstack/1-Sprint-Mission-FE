@@ -1,99 +1,153 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-  createArticle,
-  createArticleComment,
-  deleteArticleById,
-  deleteCommentById,
-  updateCommentById,
-} from "./api";
-import { articleKey, commentKey, productKey } from "@/variables/queryKeys";
 import { useRouter } from "next/router";
-import { useParams, usePathname } from "next/navigation";
+import {
+  CREATE_UPDATE,
+  CRUD_COMMENT,
+  DELETE,
+  MUTATE_LIKE,
+} from "@/variables/entities";
 
-export function useCreateArticle() {
+//to create product or article
+export function useCreateMutation({ entity }) {
   const queryClient = useQueryClient();
   const router = useRouter();
 
+  const { path, queryKey, create: axiosFunction } = CREATE_UPDATE(entity);
+
   return useMutation({
-    mutationFn: (newArticle) => createArticle(newArticle),
+    mutationFn: (newArticle) => axiosFunction(newArticle),
     onSuccess: (data) => {
       if (data.id) {
-        router.push(`/forum/${data.id}`);
+        router.push(`${path}/${data.id}`);
       }
 
-      queryClient.invalidateQueries(articleKey.lists());
-    },
-    onError: (error) => {
-      console.error(error.message);
+      queryClient.invalidateQueries(queryKey());
+      console.log("successCreate:", queryKey());
     },
   });
 }
 
-export function useCreateComment(id) {
+//to update article or product
+
+export function useUpdateMutation({ entity, id }) {
   const queryClient = useQueryClient();
+  const router = useRouter();
+
+  const { path, queryKey, update: axiosFunction } = CREATE_UPDATE(entity);
+
   return useMutation({
-    mutationFn: (data) => createArticleComment(id, data),
+    mutationFn: (updateData) => axiosFunction(id, updateData),
+    onSuccess: (data) => {
+      if (data.id) {
+        queryClient.invalidateQueries({ queryKey: queryKey() });
+        router.push(`${path}/${data.id}`);
+        console.log("successUpdate", queryKey());
+      }
+    },
+  });
+}
+
+export function useDeleteMutation({ entity }) {
+  const queryClient = useQueryClient();
+
+  const { queryKey, delete: axiosFunction } = DELETE(entity);
+
+  return useMutation({
+    mutationFn: (idPath) => axiosFunction(idPath),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: queryKey() });
+      console.log("successDeletion", queryKey());
+    },
+  });
+}
+
+export function useDeleteComment({ whichComment, idPath }) {
+  const queryClient = useQueryClient();
+
+  const { queryKey, delete: axiosFunction } = CRUD_COMMENT(whichComment);
+
+  return useMutation({
+    mutationFn: (commentId) => {
+      return axiosFunction(commentId);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: queryKey(idPath) });
+      console.log("successCommentDeletion:", queryKey(idPath));
+    },
+  });
+}
+
+//comments
+export function useCreateComment({ idPath, whichComment }) {
+  const queryClient = useQueryClient();
+  const { queryKey, create: axiosFunction } = CRUD_COMMENT(whichComment);
+
+  return useMutation({
+    mutationFn: (data) => axiosFunction(idPath, data),
     onSuccess: () => {
       console.log("successMutation: create an comment");
       queryClient.invalidateQueries({
-        queryKey: articleKey.comments(id),
+        queryKey: queryKey(idPath),
       });
     },
-    onError: (error) => {
-      console.error(error.message);
-    },
   });
 }
 
-export function useDeleteMutation({ entity, onModalClose }) {
+export function useUpdateComment({ whichComment, idPath, commentId }) {
   const queryClient = useQueryClient();
 
-  let queryKey;
-  let deleteApi;
-
-  if (entity === "comment") {
-    queryKey = commentKey.all;
-    deleteApi = deleteCommentById;
-  } else if (entity === "article") {
-    queryKey = articleKey.details();
-    deleteApi = deleteArticleById;
-  }
+  const { queryKey, update: axiosFunction } = CRUD_COMMENT(whichComment);
 
   return useMutation({
-    mutationFn: (idPath) => deleteApi(idPath),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey });
-      if (onModalClose) {
-        onModalClose();
-      }
-      console.log(queryKey);
-    },
-    onError: (error) => {
-      console.error("Error deleting:", error.message);
-    },
-  });
-}
-
-export function useUpdateComment(commentId) {
-  const queryClient = useQueryClient();
-  const params = useParams();
-  const pathName = usePathname();
-
-  const isArticle = pathName.startsWith("/forum");
-  const whichId = isArticle ? params.articleId : params.productId;
-  const queryKey = isArticle ? articleKey.comments : productKey.comments;
-
-  return useMutation({
-    mutationFn: (data) => updateCommentById(commentId, data),
+    mutationFn: (data) => axiosFunction(commentId, data),
     onSuccess: () => {
       console.log("successMutation:  update an comment");
       queryClient.invalidateQueries({
-        queryKey: queryKey(whichId),
+        queryKey: queryKey(idPath),
       });
-      console.log(queryKey(whichId));
+      console.log(queryKey(idPath));
     },
-    onError: (error) => {
-      console.error(error.message);
+  });
+}
+
+//mutate like
+export function useLikeMutation({ entity, id, isLiked }) {
+  const queryClient = useQueryClient();
+  const { queryKey, create, delete: remove } = MUTATE_LIKE(entity);
+
+  return useMutation({
+    mutationFn: (id) => {
+      return isLiked ? remove(id) : create(id);
+    },
+    onMutate: async () => {
+      await queryClient.cancelQueries({
+        queryKey: queryKey(id),
+      });
+
+      const prevData = queryClient.getQueryData({ queryKey: queryKey() });
+
+      queryClient.setQueryData({
+        queryKey: queryKey(id),
+        updater: (prev) => {
+          return {
+            ...prev,
+            isFavorite: !isLiked,
+            favoriteCount: isLiked
+              ? prev.favoriteCount + 1
+              : prev.favoriteCount - 1,
+          };
+        },
+      });
+      return { prevData };
+    },
+    onError: (context) => {
+      queryClient.setQueryData({
+        queryKey: queryKey(id),
+        updater: context.prevData,
+      });
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: queryKey(id) });
     },
   });
 }

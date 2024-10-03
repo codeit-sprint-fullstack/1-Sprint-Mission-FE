@@ -1,16 +1,18 @@
 import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/router";
-import { QueryClient, useQuery, dehydrate } from "@tanstack/react-query";
-import { getArticleById } from "@/service/api";
+import { QueryClient, dehydrate } from "@tanstack/react-query";
+import { getArticleById } from "@/service/api/article";
 import ArticleDetail from "@/components/article/ArticleDetail";
 import CommentList from "@/components/comment/CommentList";
 import Message from "@/components/ui/Message";
-import returnIcon from "@/public/assets/icons/ic_arrow_return.svg";
-import styles from "@/styles/pages/forum/articleId.module.scss";
 import { articleKey } from "@/variables/queryKeys";
 import CommentForm from "@/components/form/CommentForm";
+import ReturnToListBtn from "@/components/ui/ReturnToListBtn";
+import styles from "@/styles/pages/forum/main.module.scss";
+import { useAuth } from "@/context/AuthProvider";
+import { useGetById } from "@/service/queries";
+import { ENTITY } from "@/variables/entities";
+import Loader from "@/components/ui/Loader";
 
 export async function getServerSideProps(context) {
   const queryClient = new QueryClient();
@@ -28,22 +30,32 @@ export async function getServerSideProps(context) {
 }
 
 export default function ArticleDetailPage() {
+  const entity = ENTITY.ARTICLE;
   const router = useRouter();
+  const { user } = useAuth(true);
   const { articleId } = router.query;
 
   const {
     isError,
     error,
+    isPending,
     data: article,
-  } = useQuery({
-    queryKey: articleKey.detail(articleId),
-    queryFn: () => getArticleById(articleId),
-    enabled: !!articleId,
+  } = useGetById({
+    entity,
+    id: articleId,
   });
 
   if (isError) {
     const errMsg = error?.message;
     return <Message type="error" msg={errMsg} />;
+  }
+
+  if (isPending) {
+    return <Loader />;
+  }
+
+  if (!user) {
+    return null;
   }
 
   return (
@@ -52,19 +64,13 @@ export default function ArticleDetailPage() {
         <title>자유 게시판</title>
       </Head>
 
-      <section className={styles["article-section"]}>
-        <ArticleDetail article={article} />
+      <section className={styles.ArticleDetailPage}>
+        <ArticleDetail article={article} entity={entity} />
 
-        <CommentForm idPath={article.id} />
+        <CommentForm idPath={articleId} whichComment={entity} />
 
-        <CommentList idPath={article.id} isArticle={true} />
-
-        <Link href="/forum">
-          <button className={styles["return-btn"]}>
-            <span>목록으로 돌아가기</span>
-            <Image src={returnIcon} alt="returnIcon" width={24} height={24} />
-          </button>
-        </Link>
+        <CommentList idPath={articleId} whichComment={entity} />
+        <ReturnToListBtn />
       </section>
     </>
   );

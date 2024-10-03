@@ -6,6 +6,7 @@ export default function Input({
   label = false,
   placeholder = "입력해 주세요",
   validations = {},
+  type = "text",
 }) {
   const {
     register,
@@ -15,6 +16,7 @@ export default function Input({
   } = useFormContext();
 
   const addError = errors[name] && styles.error;
+  const text = (label && placeholder) || `${label}${placeholder}`;
 
   return (
     <div className={styles.Input}>
@@ -31,7 +33,8 @@ export default function Input({
           onChange: () => trigger(name),
         })}
         onFocus={() => clearErrors(name)}
-        placeholder={placeholder}
+        placeholder={label ? text : placeholder}
+        type={type}
       />
       {errors && errors[name] && (
         <span className={styles["error-text"]}>{errors[name].message}</span>

@@ -1,5 +1,6 @@
 import {
   HydrationBoundary,
+  MutationCache,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
@@ -10,8 +11,11 @@ import Head from "next/head";
 import Footer from "@/components/layout/Footer";
 import Main from "@/components/layout/Main";
 import React from "react";
+import { AuthProvider } from "@/context/AuthProvider";
+import { useGlobalModal } from "@/hooks/useModals";
 
 export default function App({ Component, pageProps }) {
+  const { onModalOpen, GlobalModal } = useGlobalModal();
   const [queryClient] = React.useState(
     () =>
       new QueryClient({
@@ -24,6 +28,13 @@ export default function App({ Component, pageProps }) {
             retry: 1,
           },
         },
+        mutationCache: new MutationCache({
+          onError: (error) => {
+            console.error("Mutation Error", error.message);
+            onModalOpen({ msg: error.message });
+            console.log("글로벌에러 모달 열림");
+          },
+        }),
       })
   );
 
@@ -32,15 +43,18 @@ export default function App({ Component, pageProps }) {
       <Head>
         <link rel="icon" href="/favicon.svg" />
       </Head>
-      <Header />
-      <Main>
-        <QueryClientProvider client={queryClient}>
-          <HydrationBoundary state={pageProps.dehydratedState ?? {}}>
-            <Component {...pageProps} />
-          </HydrationBoundary>
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
-      </Main>
+      <QueryClientProvider client={queryClient}>
+        <HydrationBoundary state={pageProps.dehydratedState ?? {}}>
+          <AuthProvider>
+            <Header />
+            <Main>
+              <Component {...pageProps} />
+            </Main>
+            <GlobalModal />
+          </AuthProvider>
+        </HydrationBoundary>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
       <Footer />
     </>
   );

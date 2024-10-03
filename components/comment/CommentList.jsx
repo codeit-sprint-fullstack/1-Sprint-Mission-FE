@@ -1,4 +1,4 @@
-import { useCommentList } from "@/service/queries";
+import { useGetCommentList } from "@/service/queries";
 import styles from "./CommentList.module.scss";
 import EmptyComments from "../ui/EmptyComment";
 import Loader from "../ui/Loader";
@@ -7,7 +7,7 @@ import CommentContent from "./CommentContent";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 
-export default function CommentList({ idPath, isArticle }) {
+export default function CommentList({ idPath, whichComment }) {
   const { ref, inView } = useInView();
 
   const {
@@ -19,9 +19,9 @@ export default function CommentList({ idPath, isArticle }) {
     isError,
     error,
     data,
-  } = useCommentList({
+  } = useGetCommentList({
     idPath,
-    whichId: isArticle ? "article" : "product",
+    whichComment,
   });
 
   useEffect(() => {
@@ -54,6 +54,7 @@ export default function CommentList({ idPath, isArticle }) {
                 comment={comment}
                 key={comment.id}
                 idPath={idPath}
+                whichComment={whichComment}
               />
             );
           });
@@ -63,9 +64,9 @@ export default function CommentList({ idPath, isArticle }) {
         {isFetchingNextPage ? (
           <Loader msg="더 불러오는중" />
         ) : hasNextPage ? (
-          <Loader msg="새 게시물 불러오는 중" />
+          <Loader msg="새 댓글 불러오는 중" />
         ) : (
-          <Message msg="더 불러올 게시물이 없습니다" />
+          <Message msg="더 불러올 댓글이 없습니다" />
         )}
       </div>
     </>

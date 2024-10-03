@@ -1,7 +1,9 @@
 @use "@/styles/globals/shared" as g;
 
 .Input,
-.TextArea {
+.TextArea,
+.PasswordInput,
+.TagInput {
   width: 100%;
   @include g.flex-box(column, flex-start, none, 8px);
 
@@ -17,5 +19,39 @@
 
   .error {
     outline: 1px solid g.$error-red;
+  }
+}
+
+.PasswordInput {
+  .input {
+    position: relative;
+  }
+  .toggleBtn {
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    z-index: 999;
+  }
+}
+
+.TagInput {
+  width: 100%;
+  @include g.font(16, 400);
+  @include g.flex-box(column, flex-start, none, 12px);
+  .TagList {
+    @include g.flex-box(row, flex-start, center, 12px);
+    font-weight: 400;
+    li {
+      @include g.flex-box(row, center, center, 9px);
+      background-color: g.$grey-100;
+      padding: 6px 12px 6px 16px;
+      border-radius: 26px;
+      button {
+        padding: 0;
+        background: none;
+      }
+    }
   }
 }

@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "image": "nodemon utils/generateImgSrc.js"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.55.2",
@@ -17,7 +18,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.0",
-    "react-intersection-observer": "^9.13.1"
+    "react-intersection-observer": "^9.13.1",
+    "sharp": "^0.33.5"
   },
   "devDependencies": {
     "eslint": "^8",

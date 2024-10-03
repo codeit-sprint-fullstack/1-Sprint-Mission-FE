@@ -1,0 +1,27 @@
+@use "@/styles/globals/shared" as g;
+
+.UserInfo {
+  @include g.flex-box(row, flex-start, center, 16px);
+  @include g.font(14, 400);
+  width: 100%;
+
+  .user {
+    @include g.flex-box(column, center, flex-start, 2px);
+
+    .name {
+      @include g.font(14, 500);
+    }
+    .date {
+      color: g.$grey-400;
+    }
+  }
+
+  &.comment {
+    gap: 8px;
+    .user {
+      .name {
+        @include g.font(12, 400);
+      }
+    }
+  }
+}

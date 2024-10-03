@@ -1,31 +1,29 @@
-import Image from "next/image";
 import Link from "next/link";
 import { formatDate, formatLikes } from "@/utils/formatFn";
-import ImageContainer from "../ui/ImgContainer";
-import defaultImg from "../../public/assets/img_default.svg";
-import inactiveHeart from "../../public/assets/icons/ic_heart_inactive.svg";
-import activeHeart from "../../public/assets/icons/ic_heart_active.svg";
-import bestBadge from "../../public/assets/icons/ic_medal.svg";
+import { IconContainer, ImageContainer } from "../ui/ImgContainers";
 import styles from "./BestArticles.module.scss";
-import { useBestArticles } from "@/service/queries";
+import { useGetBestList } from "@/service/queries";
+import assets from "@/variables/images";
+import Loader from "../ui/Loader";
 
 function ArticleCard({ article, userName }) {
-  const articleImg = article.productImg ? article.productImg : defaultImg;
-  const likeImg = userName ? activeHeart : inactiveHeart;
   return (
     <>
       <div className={styles.top}>
-        <Image src={bestBadge} alt="best badge icon" />
+        <IconContainer
+          src={assets.images.badge}
+          width="16px"
+          alt="best badge icon"
+        />
         <span>Best</span>
       </div>
       <div className={styles.middle}>
         <h3>{article.title}</h3>
         <ImageContainer
-          src={articleImg}
+          src={article?.image}
           width="72px"
-          height="72px"
           radius="6px"
-          borderColor="g.$grey-200"
+          isBorder={true}
         />
       </div>
       <div className={styles.bottom}>
@@ -33,7 +31,7 @@ function ArticleCard({ article, userName }) {
           <span>{userName ? userName : "총명한 판다"}</span>
           <div className={styles.like}>
             <button>
-              <Image src={likeImg} alt="like icon" />
+              <IconContainer src={assets.icons.heart} alt="like icon" />
             </button>
             <span>{formatLikes(article.likeCount)}</span>
           </div>
@@ -45,13 +43,20 @@ function ArticleCard({ article, userName }) {
   );
 }
 
-export default function BestArticles() {
-  const { data } = useBestArticles({ pageSize: 3, orderBy: "like" });
+export default function BestArticles({ entity }) {
+  const { data, isPending } = useGetBestList(entity, {
+    pageSize: 3,
+    orderBy: "like",
+  });
+
+  if (isPending) {
+    return <Loader />;
+  }
 
   const { list } = data;
 
   if (list.length === 0) {
-    return <p>빈 어레이임</p>;
+    return <p> 해당된 검색 결과가 없습니다</p>;
   }
 
   return (
@@ -59,7 +64,7 @@ export default function BestArticles() {
       {list.map((article) => {
         return (
           <li className={styles.ArticleCard} key={article.id}>
-            <Link href={`forum/${article.id}`}>
+            <Link href={`/forum/${article.id}`}>
               <ArticleCard article={article} />
             </Link>
           </li>

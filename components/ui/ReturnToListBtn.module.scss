@@ -1,9 +1,6 @@
 @use "@/styles/globals/shared" as g;
 
-.article-section {
-  @include g.flex-box(column, center, center, 58px);
-}
-.return-btn {
+.ReturnToListBtn {
   @include g.button(g.$primary-color, 11px 40px, 40px);
   @include g.flex-box(row, center, center, 8px);
   &:hover {

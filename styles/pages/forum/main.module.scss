@@ -28,3 +28,6 @@
 }
 
 // forum id page
+.ArticleDetailPage {
+  @include g.flex-box(column, center, center, 58px);
+}
