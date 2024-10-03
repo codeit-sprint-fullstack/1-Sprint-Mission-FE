@@ -74,6 +74,6 @@ dialog::backdrop {
 }
 
 button:disabled {
-  background-color: g.$grey-400;
   cursor: not-allowed;
+  pointer-events: none;
 }

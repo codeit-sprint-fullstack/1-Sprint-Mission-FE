@@ -5,7 +5,10 @@
   color: #fff;
 
   &:hover {
-    background-color: darken(g.$primary-color, 10%);
+    background-color: g.$primary-hover;
+  }
+  &:active {
+    background-color: g.$primary-active;
   }
 
   &:disabled {

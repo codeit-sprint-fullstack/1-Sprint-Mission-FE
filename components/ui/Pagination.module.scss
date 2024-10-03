@@ -6,30 +6,25 @@
   margin-bottom: 54px;
 
   .btn {
+    @include g.flex-box(row, center, center);
+    @include g.font(16, 600);
     border-radius: 50%;
     width: 40px;
     height: 40px;
     border: 1px solid g.$grey-200;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: g.$grey-500;
-    padding-top: 2px;
-    font-weight: 600;
-    font-size: 1rem;
 
     &:hover {
-      border: 2px solid g.$primary-color;
+      border: 2px solid g.$primary-current;
     }
 
     &-prev:disabled,
     &-next:disabled {
-      background-color: g.$grey-200;
-      border: none;
+      opacity: 0.4;
     }
 
     &-current {
-      background-color: g.$primary-color;
+      background-color: g.$primary-current;
       color: #fff;
     }
   }
