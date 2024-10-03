@@ -7,9 +7,10 @@ export default function NoComments() {
       <Image
         src="/images/Img_inquiry_empty.png"
         alt="No comments"
-        width={151}
+        width={200}
         height={208}
       />
+      <p className={styles.pNoComments}>아직 문의가 없어요</p>
     </div>
   );
 }
