@@ -39,16 +39,6 @@ export default function ProductDetailPage() {
     onSuccess: (data) => setProduct(data), // 성공적으로 데이터 가져온 후 product 상태 업데이트
   });
 
-  // 댓글을 가져오는 useQuery
-  const { data: commentsData, error: commentsError } = useQuery({
-    queryKey: ["comments", itemId],
-    queryFn: () => fetchCommentsByProductId(itemId, 10),
-    enabled: !!itemId,
-    staleTime: 10000,
-    refetchInterval: 30000,
-    onSuccess: (data) => setComments(data.list), // 댓글 데이터를 성공적으로 가져왔을 때 업데이트
-  });
-
   // 상품 정보를 불러오는 함수
   const fetchProduct = async () => {
     try {
@@ -64,6 +54,27 @@ export default function ProductDetailPage() {
     }
   };
 
+  // 댓글을 가져오는 useQuery
+  const { data: commentsData, error: commentsError } = useQuery({
+    queryKey: ["comments", itemId],
+    queryFn: () => fetchCommentsByProductId(itemId, 10),
+    enabled: !!itemId,
+    staleTime: 10000,
+    refetchInterval: 30000,
+    onSuccess: (data) => {
+      if (data && Array.isArray(data.comments)) {
+        setComments(
+          data.comments.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          )
+        );
+      } else {
+        console.warn("댓글 데이터가 없습니다.");
+        setComments([]); // 빈 배열로 초기화
+      }
+    },
+  });
+
   // 댓글을 불러오는 함수 (시간순 정렬)
   const fetchCommentsData = async () => {
     try {
@@ -72,13 +83,16 @@ export default function ProductDetailPage() {
         return;
       }
       const response = await fetchCommentsByProductId(itemId, 10);
-
-      // 댓글 데이터를 최신순으로 정렬해서 상태에 저장
-      setComments(
-        response.list.sort(
-          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-        )
-      );
+      if (response && Array.isArray(response.comments)) {
+        setComments(
+          response.comments.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          )
+        );
+      } else {
+        console.warn("댓글 데이터가 없습니다.");
+        setComments([]); // 빈 배열로 초기화
+      }
     } catch (err) {
       console.error("댓글 불러오기 오류:", err);
     }
