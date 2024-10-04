@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Axios 인스턴스 생성
 const axiosInstance = axios.create({
-  baseURL: "https://baomarket.onrender.com",
+  baseURL: "https://baomarket.onrender.com/api",
   headers: {
     "Content-Type": "application/json",
   },

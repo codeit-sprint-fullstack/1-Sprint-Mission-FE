@@ -1,7 +1,7 @@
 import axios from "axios";
 import axiosInstance from "./axiosInstance";
 
-const baseUrl = "https://baomarket.onrender.com";
+const baseUrl = "https://baomarket.onrender.com/api";
 
 // 회원가입 요청
 export const signUp = async (
