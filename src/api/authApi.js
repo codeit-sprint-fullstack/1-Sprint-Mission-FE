@@ -4,12 +4,7 @@ import axiosInstance from "./axiosInstance";
 const baseUrl = "https://baomarket.onrender.com/api";
 
 // 회원가입 요청
-export const signUp = async (
-  email,
-  nickname,
-  password,
-  passwordConfirmation
-) => {
+export const signUp = async (email, nickname, password, passwordConfirmation) => {
   try {
     const response = await axios({
       method: "post",
@@ -78,25 +73,8 @@ export const signIn = async (email, password) => {
 export const logOut = () => {
   localStorage.removeItem("accessToken");
   localStorage.removeItem("nickname");
+  localStorage.removeItem("userId");
   console.log("로그아웃 완료, accessToken 및 nickname 제거");
-};
-
-// 토큰 갱신 요청
-export const refreshToken = async (refreshToken) => {
-  try {
-    const response = await axiosInstance.post("/auth/refresh-token", { refreshToken });
-
-    // 새로 발급된 토큰 저장
-    if (response.data.accessToken) {
-      localStorage.setItem("accessToken", response.data.accessToken);
-      console.log("새로운 액세스 토큰:", response.data.accessToken);
-    }
-
-    return response.data;
-  } catch (error) {
-    console.error("토큰 갱신 오류:", error);
-    throw error;
-  }
 };
 
 // accessToken 가져오기
