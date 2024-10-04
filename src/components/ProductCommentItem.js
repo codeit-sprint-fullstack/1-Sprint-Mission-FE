@@ -68,18 +68,16 @@ export default function ProductCommentItem({
     <div className={styles.commentContainer}>
       <div className={styles.commentHeader}>
         {isEditing ? (
-          <>
-            <div className={styles.editMode}>
-              <textarea
-                value={editedContent}
-                onChange={handleChange}
-                className={styles.editTextarea}
-              />
-              <button onClick={handleEdit} className={styles.saveButton}>
-                저장
-              </button>
-            </div>
-          </>
+          <div className={styles.editMode}>
+            <textarea
+              value={editedContent}
+              onChange={handleChange}
+              className={styles.editTextarea}
+            />
+            <button onClick={handleEdit} className={styles.saveButton}>
+              저장
+            </button>
+          </div>
         ) : (
           <p className={styles.content}>{comment.content}</p>
         )}
@@ -96,7 +94,7 @@ export default function ProductCommentItem({
           height={32}
         />
         <div className={styles.authorDate}>
-          <span className={styles.author}>{comment.writer.nickname}</span>
+          <span className={styles.author}>{comment.user.nickname}</span>
           <span className={styles.date}>
             {new Date(comment.createdAt).toLocaleDateString()}
           </span>
