@@ -26,7 +26,7 @@ export default function ProductDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState("");
   const [product, setProduct] = useState(null); // product 상태 추가
 
   // 상품 정보를 가져오는 useQuery
@@ -98,38 +98,41 @@ export default function ProductDetailPage() {
     }
   };
 
-  // 댓글 등록 핸들러
+  // 댓글 등록 API
   const handleCommentSubmit = async (comment) => {
+    console.log("입력된 댓글 내용:", comment); // 댓글 내용 확인
     if (comment.trim()) {
       try {
         const commentData = {
           content: comment,
-          author: "작성자 판다",
-          createdAt: new Date().toISOString(),
+          marketPostId: itemId, // 상품 ID를 itemId로 변경
         };
-        // 서버에 댓글을 등록하고 응답을 받아옴
-        const newComment = await createCommentForProduct(
-          product.id,
-          commentData
-        );
-        // 새로운 댓글을 기존 댓글 목록 앞에 추가하여 최신순으로 정렬
+        console.log("상품 ID:", itemId); // itemId가 제대로 설정되어 있는지 확인
+        // 서버에 댓글을 등록하는 API 호출
+        const newComment = await createCommentForProduct(commentData); // commentData를 전달
         setComments((prevComments) => [newComment, ...prevComments]);
       } catch (error) {
         console.error("댓글 등록 실패:", error);
       }
+    } else {
+      console.error("댓글 내용이 비어있습니다.");
     }
   };
 
   // 댓글 수정 핸들러
   const handleCommentUpdate = async (commentId, updatedData) => {
     try {
-      await updateMarketComment(commentId, updatedData);
+      await prisma.comment.update({
+        where: { id: commentId },
+        data: {
+          content: updatedData.content, // 객체 대신 문자열로 직접 설정
+        },
+      });
       fetchCommentsData(); // 댓글 목록 재조회
     } catch (error) {
       console.error("댓글 수정 실패:", error);
     }
   };
-
   // 상품 삭제 핸들러
   const handleDeleteProduct = async () => {
     try {

@@ -150,18 +150,22 @@ export async function fetchCommentsByProductId(
 }
 
 /* 상품에 댓글 추가 API */
-export const createCommentForProduct = async ({ productId, content }) => {
+export const createCommentForProduct = async ({ marketPostId, content }) => {
+  console.log("상품 ID:", marketPostId);
+  console.log("댓글 내용:", content);
+
   const response = await apiClient.post(marketCommentsUrl, {
     content,
-    marketPostId: productId,
+    marketPostId,
   });
+
   return response.data;
 };
 
 /* 중고마켓 댓글 수정 API */
 export const updateMarketComment = async (commentId, content) => {
   const response = await apiClient.patch(`${marketCommentsUrl}/${commentId}`, {
-    content,
+    content: content,
   });
   return response.data;
 };

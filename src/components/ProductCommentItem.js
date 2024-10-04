@@ -23,13 +23,10 @@ export default function ProductCommentItem({
   const handleEdit = async () => {
     if (editedContent.trim()) {
       try {
-        console.log("댓글 ID:", comment.id);
-
-        await updateMarketComment(comment.id, {
-          content: editedContent,
-        });
+        // 수정할 댓글의 ID와 수정된 내용을 전송
+        await updateMarketComment(comment.id, editedContent);
         setIsEditing(false);
-        onCommentUpdate(comment.id, { content: editedContent });
+        fetchCommentsData(); // 댓글 목록 재조회
       } catch (error) {
         console.error(
           "댓글 수정 실패:",
