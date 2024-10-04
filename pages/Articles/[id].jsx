@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
 import * as commentApi from "@/pages/api/comment";
 import * as articleApi from "@/pages/api/articles";
@@ -11,39 +11,42 @@ import ConfirmModal from "@/components/Modals/ConfirmModal";
 import ic_kebab from "@/public/images/ic_kebab.png";
 import ic_profile from "@/public/images/ic_profile.png";
 import ic_heart from "@/public/images/ic_heart.png";
+import ic_heart_liked from "@/public/images/ic_heart_liked.png";
 import img_reply_empty from "@/public/images/img_reply_empty.png";
 import ic_back from "@/public/images/ic_back.png";
 import styles from "@/styles/detailArticle.module.css";
 import Comment from "@/components/Comment";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
 import { RefContext } from "@/pages/_app";
 import useAuth from "@/contexts/authContext";
-import instance from "../api/httpClient";
 import { useDebouncedCallback } from "use-debounce";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
+import { setContext } from "../api/httpClient";
 
 export async function getServerSideProps(context) {
+  setContext(context);
   const { id } = context.query;
-  const accessToken = await context.req.cookies["access-token"];
 
   let article = {};
   let comments = [];
   try {
-    // const data = await articleApi.getArticle(id);
-    const data = await instance.get(`/articles/${id}`, {
-      headers: {
-        Authorization: accessToken,
-      },
-    });
-    article = data.data;
+    const data = await articleApi.getArticle(id);
+    article = data;
   } catch (error) {
-    // console.log(error);
+    console.log(error);
   }
   try {
     const response = await commentApi.getArticleComments(id);
     comments = response;
   } catch (error) {
-    // console.log(error);
+    console.log(error);
   }
 
   return {
@@ -56,12 +59,14 @@ export async function getServerSideProps(context) {
 }
 
 function DetailArticle({ article, comments, id }) {
+  //권한인증
+  const { user } = useAuth();
   const router = useRouter();
+  const queryClient = useQueryClient();
   const globalDivRef = useContext(RefContext); //무한 스크롤 쿼리용 Ref
-  const { user, isPending } = useAuth();
 
   //게시글  SSR initialData
-  const { data: articleData, error } = useQuery({
+  const { data: articleData } = useQuery({
     queryKey: ["article", id],
     queryFn: () => articleApi.getArticle(id),
     initialData: article,
@@ -83,12 +88,54 @@ function DetailArticle({ article, comments, id }) {
     },
   });
 
-  const { title, content, likeCount, owner, createAt } = articleData;
+  const likeMutation = useMutation({
+    mutationFn: async () => {
+      //해당 상품의 사용자 좋아요상태의 따라 호출하는 API를 달리 한다.
+      if (isFavorite) {
+        await articleApi.unlikeArticle(id);
+      } else {
+        await articleApi.likeArticle(id);
+      }
+    },
+    onMutate: async () => {
+      //만약 refetch를 진행중이라면 mutation의 값을 덮어쓸수 있기 때문에 취소해준다
+      await queryClient.cancelQueries({
+        queryKey: ["article", id],
+      });
+
+      //실패할 경유의 대비하여 이전의 상태를 저장한다
+      const prevArticle = queryClient.getQueryData(["article", id]);
+
+      queryClient.setQueryData(["article", id], (prev) => ({
+        ...prev,
+        isFavorite: !prev.isFavorite, //isFavorite 값을 반전
+        favoriteCount: prev.isFavorite
+          ? prev.favoriteCount - 1 //현재 좋아요 상품이라면 취소되면서 count down
+          : prev.favoriteCount + 1,
+      }));
+      return { prevArticle }; //실패할 경우 반환되는 값은 onError의 context로 전달 된다
+    },
+    onError: (error, {}, context) => {
+      console.log(error);
+      queryClient.setQueryData(["article", id], context.prevArticle);
+    },
+    onSettled: (data, err) => {
+      queryClient.invalidateQueries({
+        queryKey: ["article", id],
+      });
+    },
+  });
+
+  const handleLikeButtonClick = () => {
+    if (!user) return; //로그인이 되어 있지 않으면 뮤테이션을 실행하지 않게 리턴한다.
+    likeMutation.mutate();
+  };
+
+  const { title, content, favoriteCount, isFavorite, owner, createAt } =
+    articleData;
   //날짜 포멧
   const date = dateFormatYYYYMMDD(createAt);
-  const defaultUser = {
-    articleId: article.id,
-  };
+  const defaultUser = { articleId: article.id };
   const [values, setValues] = useState(defaultUser);
   const [Alert, setAlert] = useState(false);
   const [Confirm, setConfirm] = useState(false);
@@ -228,14 +275,17 @@ function DetailArticle({ article, comments, id }) {
               <span className={styles.article_createAt}>{date}</span>
             </div>
             <div className={styles.article_favorite_box}>
-              <button className={styles.article_favorite_btn}>
+              <button
+                onClick={handleLikeButtonClick}
+                className={styles.article_favorite_btn}
+              >
                 <Image
-                  src={ic_heart}
+                  src={isFavorite ? ic_heart_liked : ic_heart}
                   width={32}
                   height={32}
                   alt="좋아요이미지"
                 />
-                {likeCount}
+                {favoriteCount}
               </button>
             </div>
           </div>

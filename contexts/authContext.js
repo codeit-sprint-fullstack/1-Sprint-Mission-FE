@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import * as authApi from "@/pages/api/auth";
 import { useRouter } from "next/router";
-import { useQuery } from "@tanstack/react-query";
 
 const AuthContext = createContext({
   user: null,
@@ -26,6 +25,7 @@ export function AuthProvider({ children }) {
         setUser(data);
       }
     } catch (error) {
+      setUser(null);
       console.log(error);
     } finally {
       //pending 상태는 false로 초기화
@@ -73,6 +73,6 @@ export default function useAuth(required = true) {
     if (required && !context.user && !context.isPending) {
       router.push("/Login");
     }
-  }, [required, context.user]);
+  }, [required, context.user, context.isPending]);
   return context;
 }

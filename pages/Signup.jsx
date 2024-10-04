@@ -28,7 +28,8 @@ function SignUp() {
 
   const createUser = async (value) => {
     try {
-      const data = await api.createUser(value);
+      const { passwordConfirmation, ...rest } = value;
+      const data = await api.createUser(rest);
       //리스폰스로 생성된 유저의 password를 안줌
       if (data) {
         localStorage.setItem("codeit-accessToken", data.accessToken);
