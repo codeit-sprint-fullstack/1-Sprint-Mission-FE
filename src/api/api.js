@@ -95,7 +95,14 @@ export const updateProduct = async (productId, productData) => {
   formData.append("name", productData.name);
   formData.append("description", productData.description);
   formData.append("price", productData.price);
-  formData.append("tags", productData.tags);
+
+  // tags를 배열로 처리
+  const tags = Array.isArray(productData.tags)
+    ? productData.tags
+    : [productData.tags];
+  tags.forEach((tag) => {
+    formData.append("tags", tag);
+  });
 
   // 다중 이미지 처리
   if (productData.images && productData.images.length > 0) {
@@ -103,6 +110,9 @@ export const updateProduct = async (productId, productData) => {
       formData.append("images", image);
     });
   }
+
+  // 전송할 데이터 로그
+  console.log("전송할 데이터:", Array.from(formData.entries()));
 
   const response = await apiClient.patch(
     `${marketUrl}/${productId}`,
@@ -113,6 +123,9 @@ export const updateProduct = async (productId, productData) => {
       },
     }
   );
+
+  // 서버 응답 확인
+  console.log("서버 응답:", response.data);
 
   return response.data;
 };

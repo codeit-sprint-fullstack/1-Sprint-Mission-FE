@@ -3,7 +3,6 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/items": "pages/items.js",
-  "/login": "pages/login.js",
-  "/registration": "pages/registration.js",
-  "/items/[itemId]": "pages/items/[itemId].js"
+  "/items/[itemId]": "pages/items/[itemId].js",
+  "/product-edit/[id]": "pages/product-edit/[id].js"
 }
