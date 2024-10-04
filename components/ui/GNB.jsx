@@ -53,27 +53,7 @@ export default function Header() {
       },
     });
   };
-
-  return (
-    <header className={styles.headerContainer}>
-      <div className={styles.headerLogoTextHug}>
-        <Link href="/" className={styles.logoLink}>
-          <Image {...logoProps} />
-        </Link>
-        <nav className={styles.headerTextHug}>
-          {NAV_ITEMS.map(({ href, text }) => (
-            <Link
-              key={href}
-              href={href}
-              className={
-                pathname === href ? styles.headerTextActive : styles.headerText
-              }
-            >
-              {text}
-            </Link>
-          ))}
-        </nav>
-      </div>
+  
       {loading ? (
         <div>Loading...</div>
       ) : user ? (
@@ -90,6 +70,7 @@ export default function Header() {
       ) : (
         <MemoizedSmallButton href="/login">로그인</MemoizedSmallButton>
       )}
+
     </header>
   );
 }

@@ -56,28 +56,3 @@
   cursor: pointer;
 }
 
-.headerTextHug {
-  display: flex;
-  flex-direction: row;
-  gap: 32px;
-}
-
-@media (max-width: 1199px) {
-  .headerLogoTextHug {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-  }
-}
-
-@media (max-width: 768px) {
-  .headerLogoTextHug {
-    gap: 16px;
-  }
-
-  .headerTextHug {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-  }
-}
