@@ -15,7 +15,6 @@ export function useGetBestArticle() {
   const { isLoading, data } = useQuery({
     queryKey: ['bestArticle'],
     queryFn: () => fetchFleaMarketBestApi(),
-    refetchInterval: 300000,
   });
 
   return { bestArticles: data, isLoading };
@@ -25,7 +24,6 @@ export function useGetArticleList({ page, sort, keyword }) {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['article', page, sort, keyword],
     queryFn: () => fetchFleaMarketApi({ page, sort, keyword }),
-    refetchInterval: 300000,
   });
 
   const totalPages = data?.totalPages;

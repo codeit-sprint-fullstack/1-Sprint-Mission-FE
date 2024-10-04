@@ -9,7 +9,7 @@ export async function fetchFleaMarketBestApi() {
     const res = await instance.get(`/`, {
       params: {
         sort: 'favorite',
-        limit: 3,
+        limit: 4,
       },
     });
 
@@ -26,7 +26,7 @@ export async function fetchFleaMarketApi({ keyword, sort, page }) {
         keyword: keyword || '',
         sort: sort,
         page: page,
-        limit: 5,
+        limit: 10,
       },
     });
 
