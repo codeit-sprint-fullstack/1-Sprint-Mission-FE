@@ -6,6 +6,8 @@ import ProductCommentSection from "./ProductCommentSection";
 import AuthRoute from "@/app/components/AuthRoute";
 import { getProduct } from "@/lib/api-codeit-product";
 
+export const dynamicParams = true;
+
 export default async function ProductPage({ params }) {
   const { productId } = params;
 
