@@ -1,0 +1,96 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.inputForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.otherInput,
+.pwInput,
+.pwInputError {
+  width: 640px;
+}
+
+.otherInput:focus,
+.pwInput:focus {
+  outline: 1px solid #3692ff;
+}
+
+.otherInputError,
+.pwInputError {
+  outline: 1px solid #f74747;
+}
+
+.error {
+  color: #f74747;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: -8px;
+  margin-left: 16px;
+}
+
+.pwContainer {
+  position: relative;
+}
+
+/* 되나 테스트 공백 콤마로 스타일링 주기 */
+
+.eye {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+
+/* .pwContainer .eyeClose {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  cursor: pointer;
+}
+
+.pwContainer .eyeShow {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  cursor: pointer;
+} */
+
+/* .eyeClose,
+.eyeShow {
+  visibility: hidden;
+}
+
+.eyeClose.show,
+.eyeShow.show {
+  visibility: visible;
+} */
+
+.button {
+  border-radius: 40px;
+  border-style: none;
+  background-color: #3692ff;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 16px 124px;
+  height: 56px;
+  cursor: pointer;
+}
+
+.button:disabled {
+  background-color: #9ca3af;
+  cursor: default;
+}
