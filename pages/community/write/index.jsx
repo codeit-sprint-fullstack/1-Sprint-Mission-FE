@@ -5,7 +5,7 @@ import SmallButton from "@/components/common/SmallButton.jsx";
 import styles from "./index.module.css";
 import usePostMutation from "@/hooks/usePostMutation";
 import { fetchPost } from "@/utils/communityAPI";
-import { useAuth } from "@/hooks/useAuth"; // 수정된 useAuth 임포트
+import { useAuth } from "@/hooks/useAuth";
 
 export default function WriteOrEditArticle() {
   const [title, setTitle] = useState("");
@@ -17,7 +17,7 @@ export default function WriteOrEditArticle() {
   const { id } = router.query;
   const isEditing = !!id;
 
-  const { user, loading } = useAuth(); // useAuth에서 user와 loading 상태 가져오기
+  const { user, loading } = useAuth();
 
   const { data: articleData, isLoading: isArticleLoading } = useQuery(
     ["article", id],
@@ -64,7 +64,7 @@ export default function WriteOrEditArticle() {
         id: isEditing ? id : undefined,
         title,
         content,
-        userId: user.id, // user 객체에서 id를 가져옵니다.
+        userId: user.id,
       });
     } else if (!user) {
       alert("로그인이 필요합니다.");

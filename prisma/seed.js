@@ -96,7 +96,7 @@ async function main() {
       },
     });
 
-    console.log("시드완.");
+    console.log("시드완");
   } catch (error) {
     console.error("시딩중오류:", error);
   } finally {

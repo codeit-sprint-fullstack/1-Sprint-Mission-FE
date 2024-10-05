@@ -4,12 +4,13 @@ import styles from "./CommentSection.module.css";
 
 const CommentList = memo(
   ({
-    comments,
+    commentsData,
     handleUpdateComment,
     handleDeleteComment,
     updateMutation,
     deleteMutation,
   }) => {
+    const comments = commentsData?.comments || [];
     return (
       <ul className={styles.commentList}>
         {comments.map((comment) => (

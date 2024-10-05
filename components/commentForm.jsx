@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAuth } from "@/hooks/useAuth"; // useAuth 훅 import
+import { useAuth } from "@/hooks/useAuth";
 import SmallButton from "@/components/common/SmallButton.jsx";
 import styles from "@/pages/community/articles/style.module.css";
 import usePostMutation from "@/hooks/usePostMutation";
@@ -7,7 +7,7 @@ import usePostMutation from "@/hooks/usePostMutation";
 const CommentForm = ({ articleId, onCommentAdded }) => {
   const [comment, setComment] = useState("");
   const [error, setError] = useState("");
-  const { user, loading } = useAuth(); // useAuth 훅 사용
+  const { user, loading } = useAuth();
 
   const onSuccess = () => {
     setComment("");
@@ -35,7 +35,7 @@ const CommentForm = ({ articleId, onCommentAdded }) => {
       mutate({
         articleId,
         content: comment,
-        userId: user.id, // user 객체에서 id를 가져옵니다.
+        userId: user.id,
       });
     } else {
       setError("댓글 내용을 입력해 주세요.");
