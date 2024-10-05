@@ -74,7 +74,7 @@ function DetailArticle({ article, comments, id }) {
 
   //무한스크롤 쿼리를 통한 react-query관리
   const {
-    data: commentData,
+    data: commentsData,
     fetchStatus, //로딩 에니메이션용
     fetchNextPage,
   } = useInfiniteQuery({
@@ -311,21 +311,22 @@ function DetailArticle({ article, comments, id }) {
         </div>
         <div className={styles.article_comments_box}>
           <div className={styles.article_comments}>
-            {commentData?.pages.map((items) =>
-              items.list.map((item) => (
-                <Comment
-                  key={item.id}
-                  item={item}
-                  openAlert={openAlertModal}
-                  setAlertMessage={setAlertMessage}
-                />
-              ))
-            )}
+            {commentsData.pages.list > 0 &&
+              commentsData?.pages.map((items) =>
+                items.list.map((item) => (
+                  <Comment
+                    key={item.id}
+                    item={item}
+                    openAlert={openAlertModal}
+                    setAlertMessage={setAlertMessage}
+                  />
+                ))
+              )}
             {fetchStatus === "fetching" && (
               <div className={styles.loader}></div>
             )}
             {/* 게시글의 등록된 댓글이 없다면 아래의 내용을 렌더링한다. */}
-            {commentData?.pages.length < 1 && (
+            {commentsData.pages[0].list.length < 1 && (
               <>
                 <Image
                   src={img_reply_empty}

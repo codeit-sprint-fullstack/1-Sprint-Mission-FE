@@ -147,7 +147,11 @@ function DetailProduct({ product, comments, id }) {
     isFavorite,
   } = productData;
 
-  const productsImage = images.length > 0 ? productData.image[0] : imgDefault;
+  const imageUrl =
+    images.length > 0
+      ? // ? process.env.NEXT_PUBLIC_UPLOADS_URL + images[0] DB의 백서버로 접근가능한 파일이름으로만 저장하는 방식
+        images[0] //DB의 전체 URL을 저장하는 방식 지금은 서버에 저장하지만 스토리지를 사용한다면 이렇게 저장할지 의문..
+      : imgDefault;
   //날짜 포멧
   const date = dateFormatYYYYMMDD(createdAt);
   const numFormat = price?.toLocaleString();
@@ -168,11 +172,11 @@ function DetailProduct({ product, comments, id }) {
   const openArticleDropdown = () => setOpenDropdown(!openDropdown);
 
   // 상품수정을 선택시 Registration 페이지의 쿼리로 상품의 id를 전달한다.
-  const updateArticle = () => {
+  const updateProduct = () => {
     router.push(`/Items/Registration?id=${id}`);
   };
 
-  const handleDeleteArticle = () => {
+  const handleDeleteProduct = () => {
     //삭제의 경우 confirm 모달을 통하여 확인하여 진행한다.
     setConfirmMessage("상품이 영구적으로 삭제됩니다. 삭제하시겠습니까?");
     openConfirmModal();
@@ -258,7 +262,7 @@ function DetailProduct({ product, comments, id }) {
             className={styles.product_image}
             width={486}
             height={486}
-            src={productsImage}
+            src={imageUrl}
             alt="상품이미지"
             priority
             unoptimized={true}
@@ -279,8 +283,8 @@ function DetailProduct({ product, comments, id }) {
                   />
                   {openDropdown && (
                     <DropdownData
-                      handleUpdate={updateArticle}
-                      handleDelete={handleDeleteArticle}
+                      onUpdate={updateProduct}
+                      onDelete={handleDeleteProduct}
                     />
                   )}
                 </>
@@ -347,20 +351,21 @@ function DetailProduct({ product, comments, id }) {
         </div>
         <div className={styles.products_comments_box}>
           <div className={styles.products_comments}>
-            {commentsData?.pages.map((item) => (
-              <Comment
-                user={user}
-                key={item.id}
-                item={item}
-                openAlert={openAlertModal}
-                setAlertMessage={setAlertMessage}
-              />
-            ))}
+            {commentsData.pages.list > 0 &&
+              commentsData.pages.list.map((item) => (
+                <Comment
+                  user={user}
+                  key={item.id}
+                  item={item}
+                  openAlert={openAlertModal}
+                  setAlertMessage={setAlertMessage}
+                />
+              ))}
             {fetchStatus === "fetching" && (
               <div className={styles.loader}></div>
             )}
             {/* 게시글의 등록된 댓글이 없다면 아래의 내용을 렌더링한다. */}
-            {commentsData?.pages.length < 1 && (
+            {commentsData.pages[0].list.length < 1 && (
               <>
                 <Image
                   src={Img_inquiry_empty}

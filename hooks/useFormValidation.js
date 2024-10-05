@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-const useFormValidation = (initialValues, callback) => {
+const useFormValidation = (initialValues, callback, tags = []) => {
   const emailPattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
   const passwordPattern =
     /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
-  const [chips, setChips] = useState([]);
+  const [chips, setChips] = useState(tags);
   const [disabled, setDisabled] = useState(true);
 
   const validateField = (name, value) => {

@@ -48,8 +48,10 @@ function Registration({ product }) {
   // useAuth();
   const [openAlertModal, setOpenAlertModal] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  const [images, setImages] = useState([]);
-  const [imagePreviews, setImagePreviews] = useState([]);
+  const [images, setImages] = useState(product ? product.images : []);
+  const [imagePreviews, setImagePreviews] = useState(
+    product ? product.images : []
+  );
 
   async function createProduct(values) {
     const postValues = productModel(values, chips);
@@ -112,8 +114,8 @@ function Registration({ product }) {
       price: product ? product.price : 0,
       //tag는 필수 필드가 아니라 제외
     },
-
-    product ? updateProduct : createProduct
+    product ? updateProduct : createProduct,
+    product?.tags
   );
 
   const handleAddImages = (event) => {
@@ -183,8 +185,8 @@ function Registration({ product }) {
                   />
                   <Image
                     className={styles.file_input_item}
-                    width={24}
-                    height={24}
+                    width={282}
+                    height={282}
                     src={item}
                     alt="이미지 미리보기"
                   />
