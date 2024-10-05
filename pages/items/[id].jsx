@@ -38,19 +38,26 @@ export default function ProductDetail({ initialComments, id }) {
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
+  const productId = parseInt(id, 10);
+  if (isNaN(productId)) {
+    return {
+      notFound: true,
+    };
+  }
   const queryClient = new QueryClient();
 
   try {
     await queryClient.prefetchQuery({
-      queryKey: ["product", id],
+      queryKey: ["product", productId],
       queryFn: () => fetchProduct(id),
     });
     await queryClient.prefetchQuery({
-      queryKey: ["comments", id],
+      queryKey: ["comments", productId],
       queryFn: () => fetchComments(id),
     });
 
-    const productComment = await fetchComments(id);
+    const productComment = await fetchComments(productId);
+
     return {
       props: {
         initialComments: productComment,

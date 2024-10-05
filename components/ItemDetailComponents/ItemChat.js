@@ -17,7 +17,7 @@ export default function ItemChat({ initialComments, id }) {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const queryClient = useQueryClient();
-
+  console.log(cursor);
   useEffect(() => {
     setFormValid(input.trim().length > 0);
   }, [input]);
@@ -65,21 +65,27 @@ export default function ItemChat({ initialComments, id }) {
   };
 
   const loadMoreComments = useCallback(async () => {
-    if (!hasMore && cursor == null) return;
+    if (!hasMore || cursor === null) return;
 
     setLoading(true);
     try {
       const newCommentsData = await fetchComments(id, cursor);
-      const newComments = newCommentsData?.list || [];
-      console.log(newCommentsData);
 
-      if (newComments.length > 0) {
-        setComments((prevComments) => [...prevComments, ...newComments]);
-        setCursor(newCommentsData.nextCursor);
+      if (newCommentsData) {
+        const newComments = newCommentsData.list || [];
+
+        if (newComments.length > 0) {
+          setComments((prevComments) => [...prevComments, ...newComments]);
+          setCursor(newCommentsData.nextCursor);
+          setHasMore(newCommentsData.nextCursor !== null);
+        } else {
+          setHasMore(false);
+        }
       } else {
         setHasMore(false);
       }
     } catch (error) {
+      console.error("Error loading more comments:", error);
       setHasMore(false);
       toast.info("모든 댓글을 불러왔습니다.");
     }

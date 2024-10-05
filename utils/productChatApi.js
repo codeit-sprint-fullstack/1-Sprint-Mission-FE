@@ -2,10 +2,14 @@ import apiHandler from "./apiHandler";
 import apiClient from "./apiClient";
 import { API_ENDPOINTS } from "./apiEndpoint";
 
-export async function fetchComments(id, cursor = 0) {
+export async function fetchComments(id, cursor = null) {
+  const productId = parseInt(id, 10);
+  if (isNaN(productId)) {
+    throw new Error(`Invalid ID: ${id}`);
+  }
   return apiHandler(async () => {
     const response = await apiClient.get(
-      API_ENDPOINTS.PRODUCTS.FETCH_COMMENTS(id, cursor)
+      API_ENDPOINTS.PRODUCTS.FETCH_COMMENTS(productId, cursor)
     );
     return response.data;
   });

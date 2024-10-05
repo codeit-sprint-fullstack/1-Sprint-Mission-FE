@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "https://panda-market-api.vercel.app";
+const baseUrl = "https://thrift-shop.onrender.com";
 
 const apiClient = axios.create({
   baseURL: baseUrl,

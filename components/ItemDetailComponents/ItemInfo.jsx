@@ -85,7 +85,7 @@ export default function ItemInfo(product) {
     <div className={styles.itemContainer}>
       <Image
         className={styles.itemImg}
-        src={item.images[0] ? item.images[0] : defaultImage}
+        src={defaultImage}
         width={486}
         height={486}
         alt="product"

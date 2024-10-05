@@ -61,3 +61,24 @@ export async function removeFavorite(productId) {
   );
   return response.data;
 }
+
+//이미지 등록
+export const uploadImages = async (files) => {
+  const formData = new FormData();
+  files.forEach((file) => formData.append("images", file));
+  console.log(formData);
+  try {
+    const response = await apiClient.post(
+      API_ENDPOINTS.IMAGES.UPLOAD,
+      formData,
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+      }
+    );
+
+    return response.data.urls;
+  } catch (error) {
+    console.error("Error uploading images:", error);
+    throw new Error("Image upload failed");
+  }
+};
