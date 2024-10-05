@@ -17,9 +17,9 @@ export function useArticles(initialArticles, totalArticles, pageSize, router) {
           page: 1,
           pageSize: pageSize,
         });
-        setArticles(response || []);
+        setArticles(response.list || []);
         setPage(1);
-        setHasMore(response.length < totalArticles);
+        setHasMore(response.list.length < totalArticles);
       } catch (error) {
         console.error("Error fetching updated articles:", error);
       } finally {
@@ -44,7 +44,7 @@ export function useArticles(initialArticles, totalArticles, pageSize, router) {
         pageSize: pageSize,
       });
 
-      const newArticles = response || [];
+      const newArticles = response.list || [];
       setArticles((prevArticles) => [...prevArticles, ...newArticles]);
       setPage(nextPage);
 

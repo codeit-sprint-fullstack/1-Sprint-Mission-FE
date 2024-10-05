@@ -8,12 +8,12 @@ export async function fetchArticle(id) {
 }
 
 // Article 목록 가져오기
-export async function fetchArticles({ orderBy, keyword, page, size }) {
+export async function fetchArticles({ orderBy, keyword, page, pageSize }) {
   const params = {
     orderBy,
-    search: keyword,
+    keyword: keyword,
     page: page,
-    pageSize: size,
+    pageSize: pageSize,
   };
 
   const { data } = await apiClient.get(`/articles`, { params });
@@ -23,7 +23,7 @@ export async function fetchArticles({ orderBy, keyword, page, size }) {
 // Best Article 가져오기
 export async function fetchBestArticles(size) {
   const params = {
-    orderBy: "recent",
+    orderBy: "favorite",
     pageSize: size,
   };
 

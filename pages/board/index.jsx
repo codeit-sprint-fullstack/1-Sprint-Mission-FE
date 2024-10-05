@@ -14,9 +14,8 @@ export async function getServerSideProps(context) {
     orderBy = "recent",
     keyword = "",
     page = 1,
-    pageSize = 4,
+    pageSize = 5,
   } = context.query;
-
   try {
     const articles = await fetchArticles({ orderBy, keyword, page, pageSize });
 

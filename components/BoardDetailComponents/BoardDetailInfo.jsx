@@ -52,12 +52,12 @@ export default function BoardDetailInfo({ article }) {
       )}
       <div className={styles.userInfoContainer}>
         <Image src={profile} alt="profile" className={styles.profileImg} />
-        <p className={styles.user}>총명한 판다{article.id}</p>
+        <p className={styles.user}>{article.writer.nickname}</p>
         <p className={styles.date}>
           {new Date(article.createdAt).toLocaleDateString()}
         </p>
         <p className={styles.divider}>|</p>
-        <p className={styles.favorite}>♡ {article.favorite}</p>
+        <p className={styles.favorite}>♡ {article.likeCount}</p>
       </div>
       <p className={styles.content}>{article.content}</p>
     </div>
