@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./ProductCard.module.css";
 
 const ProductCard = ({ product, mode = "normal" }) => {
+  const [imageError, setImageError] = useState(false);
+
   const getClassName = (baseName) => {
     if (mode === "best") {
       const capitalizedBaseName =
@@ -13,22 +15,30 @@ const ProductCard = ({ product, mode = "normal" }) => {
     return styles[baseName];
   };
 
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
+  const imageSrc =
+    imageError || !product.images || product.images.length === 0
+      ? "/images/img_default.svg"
+      : product.images[0];
+
   return (
     <div className={getClassName("productCard")}>
-      {product.images && product.images.length > 0 && (
-        <Link
-          href={`/items/${product.id}`}
-          className={getClassName("productImageLink")}
-        >
-          <Image
-            src={product.images[0]}
-            alt={product.name}
-            width={mode === "best" ? 282 : 221}
-            height={mode === "best" ? 282 : 221}
-            className={getClassName("productImage")}
-          />
-        </Link>
-      )}
+      <Link
+        href={`/items/${product.id}`}
+        className={getClassName("productImageLink")}
+      >
+        <Image
+          src={imageSrc}
+          alt={product.name}
+          width={mode === "best" ? 282 : 221}
+          height={mode === "best" ? 282 : 221}
+          className={getClassName("productImage")}
+          onError={handleImageError}
+        />
+      </Link>
       <div className={getClassName("productInfo")}>
         <h2 className={getClassName("productName")}>{product.name}</h2>
         <p className={getClassName("productPrice")}>

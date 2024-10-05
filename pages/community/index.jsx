@@ -1,15 +1,14 @@
 import React from "react";
-import { useCommunityPosts } from "@/hooks/useCommunityPosts";
+import { useCommunityArticles } from "@/hooks/useCommunityArticles";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
-import BestPosts from "@/components/community/BestPosts";
-import PostList from "@/components/community/PostList";
+import ArticleList from "@/components/community/ArticleList";
 import SearchSection from "@/components/community/SearchSection";
 import styles from "@/pages/community/index.module.css";
 import SmallButton from "@/components/common/SmallButton";
 
 const Community = () => {
   const {
-    posts,
+    articles,
     isLoading,
     isError,
     error,
@@ -20,34 +19,33 @@ const Community = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useCommunityPosts();
+  } = useCommunityArticles();
 
   useInfiniteScroll(fetchNextPage, hasNextPage);
 
+  console.log("컴포넌트내 데이터:", articles);
+  console.log("로딩여부:", isLoading);
+  console.log("에러여부:", isError);
+  console.log("에러:", error);
+
   if (isLoading) {
+    return <div className={styles.communityContainer}>로딩 중...</div>;
+  }
+
+  if (isError) {
     return (
       <div className={styles.communityContainer}>
-        <div className={styles.spinnerContainer}>
-          <div className={styles.spinner}></div>
-        </div>
+        에러 발생: {error.message}
       </div>
     );
   }
 
-  if (isError)
-    return (
-      <div className={styles.communityContainer}>
-        에러가 발생했습니다: {error.message}
-      </div>
-    );
-  if (!posts || posts.length === 0)
+  if (!articles || articles.length === 0) {
     return <div className={styles.communityContainer}>게시글이 없습니다.</div>;
-
-  const bestPosts = posts.slice(0, 3);
+  }
 
   return (
     <div className={styles.communityContainer}>
-      <BestPosts posts={bestPosts} />
       <div className={styles.buttonSectionHug}>
         게시글 <SmallButton href="/community/write">글쓰기</SmallButton>
       </div>
@@ -57,13 +55,13 @@ const Community = () => {
         sort={sort}
         setSort={setSort}
       />
-      <PostList posts={posts} isFetchingNextPage={isFetchingNextPage} />
-      {isFetchingNextPage && (
-        <div className={styles.spinnerContainer}>
-          <div className={styles.spinner}></div>
-        </div>
-      )}
-      {!hasNextPage && posts.length > 0 && null}
+      <ArticleList
+        articles={articles.filter(
+          (article) => article !== null && article !== undefined
+        )}
+        isFetchingNextPage={isFetchingNextPage}
+      />
+      {isFetchingNextPage && <div>추가 게시글을 불러오는 중...</div>}
     </div>
   );
 };

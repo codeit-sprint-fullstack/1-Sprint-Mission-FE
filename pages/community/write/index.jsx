@@ -5,6 +5,7 @@ import SmallButton from "@/components/common/SmallButton.jsx";
 import styles from "./index.module.css";
 import usePostMutation from "@/hooks/usePostMutation";
 import { fetchPost } from "@/utils/communityAPI";
+import { useAuth } from "@/hooks/useAuth"; // 수정된 useAuth 임포트
 
 export default function WriteOrEditArticle() {
   const [title, setTitle] = useState("");
@@ -15,6 +16,8 @@ export default function WriteOrEditArticle() {
   const router = useRouter();
   const { id } = router.query;
   const isEditing = !!id;
+
+  const { user, loading } = useAuth(); // useAuth에서 user와 loading 상태 가져오기
 
   const { data: articleData, isLoading: isArticleLoading } = useQuery(
     ["article", id],
@@ -56,12 +59,16 @@ export default function WriteOrEditArticle() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isFormValid) {
+    if (isFormValid && user) {
       mutate({
         id: isEditing ? id : undefined,
         title,
         content,
+        userId: user.id, // user 객체에서 id를 가져옵니다.
       });
+    } else if (!user) {
+      alert("로그인이 필요합니다.");
+      router.push("/login");
     } else {
       setTouched({ title: true, content: true });
     }
@@ -71,8 +78,16 @@ export default function WriteOrEditArticle() {
     setTouched((prev) => ({ ...prev, [field]: true }));
   };
 
-  if (isEditing && isArticleLoading) {
-    return <div>게시글을 불러오는 중...</div>;
+  if (loading || (isEditing && isArticleLoading)) {
+    return <div>로딩 중...</div>;
+  }
+
+  if (!user) {
+    return (
+      <div>
+        로그인이 필요합니다. <a href="/login">로그인 하러 가기</a>
+      </div>
+    );
   }
 
   return (

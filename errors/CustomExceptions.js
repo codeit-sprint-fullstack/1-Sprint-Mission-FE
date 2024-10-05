@@ -87,3 +87,14 @@ export class RateLimitExceededException extends CommonException {
     });
   }
 }
+
+export class InternalServerErrorException extends CommonException {
+  constructor(message = "내부 서버 오류가 발생했습니다") {
+    super({
+      status: HttpStatus.INTERNAL_SERVER_ERROR,
+      code: ExceptionCode.DATABASE_ERROR, // 또는 다른 적절한 코드
+      message,
+      identifier: ExceptionIdentifier.SYSTEM_ERROR,
+    });
+  }
+}

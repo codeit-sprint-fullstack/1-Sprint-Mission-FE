@@ -2,7 +2,6 @@ import { useMutation } from "react-query";
 import { useRouter } from "next/router";
 import { signIn, signUp } from "@/utils/auth";
 import { useModal } from "@/contexts/ModalContext";
-import styles from "@/components/common/AuthForm.module.css";
 
 export const useAuthValidation = (mode) => {
   const router = useRouter();

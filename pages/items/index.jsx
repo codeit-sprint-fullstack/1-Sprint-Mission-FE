@@ -12,33 +12,50 @@ const ProductPage = () => {
   const router = useRouter();
   const [bestProducts, setBestProducts] = useState([]);
   const [normalProducts, setNormalProducts] = useState([]);
-  const [bestLoading, setBestLoading] = useState(true);
-  const [normalLoading, setNormalLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [sortBy, setSortBy] = useState("recent");
-  const [searchKeyword, setSearchKeyword] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState(null);
   const ITEMS_PER_PAGE = 10;
+  const BEST_ITEMS_COUNT = 4;
 
   const fetchProducts = useCallback(async (page, sort, keyword) => {
     try {
-      setBestLoading(true);
-      setNormalLoading(true);
-      const [bestResponse, normalResponse] = await Promise.all([
-        getProducts({ page: 1, pageSize: 4, orderBy: "favorite" }),
-        getProducts({ page, pageSize: ITEMS_PER_PAGE, orderBy: sort, keyword }),
-      ]);
+      setLoading(true);
+      setError(null);
 
-      setBestProducts(bestResponse.products);
-      setNormalProducts(normalResponse.products);
-      setTotalPages(Math.ceil(normalResponse.totalCount / ITEMS_PER_PAGE));
+      const normalResponse = await getProducts({
+        page,
+        pageSize: ITEMS_PER_PAGE,
+        orderBy: sort,
+        keyword: keyword || undefined,
+      });
+
+      const bestResponse = await getProducts({
+        page: 1,
+        pageSize: BEST_ITEMS_COUNT,
+        orderBy: "favorite",
+      });
+
+      if (normalResponse && Array.isArray(normalResponse.products)) {
+        setNormalProducts(normalResponse.products);
+        setTotalPages(normalResponse.totalPages || 1);
+        setCurrentPage(normalResponse.currentPage || 1);
+      } else {
+        setError("일반 상품 데이터를 불러오는 데 문제가 발생했습니다.");
+      }
+
+      if (bestResponse && Array.isArray(bestResponse.products)) {
+        setBestProducts(bestResponse.products);
+      } else {
+        setError("베스트 상품 데이터를 불러오는 데 문제가 발생했습니다.");
+      }
     } catch (err) {
-      console.error("Error fetching products:", err);
-      setError(err.message);
+      setError("상품을 불러오는 데 실패했습니다. 다시 시도해 주세요.");
     } finally {
-      setBestLoading(false);
-      setNormalLoading(false);
+      setLoading(false);
     }
   }, []);
 
@@ -58,7 +75,8 @@ const ProductPage = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setSearchKeyword(e.target.elements.search.value);
+    const keyword = e.target.elements.search.value;
+    setSearchKeyword(keyword === "" ? null : keyword);
     setCurrentPage(1);
   };
 
@@ -68,30 +86,51 @@ const ProductPage = () => {
 
   return (
     <div className={styles.container}>
-      {error && <div className={styles.error}>{error}</div>}
+      {error && (
+        <div className={styles.error}>
+          {error}
+          <Button
+            onClick={() => fetchProducts(currentPage, sortBy, searchKeyword)}
+          >
+            다시 시도
+          </Button>
+        </div>
+      )}
 
       <section>
         <p className={styles.sectionTitle}>베스트 상품</p>
-        <BestProductList products={bestProducts} loading={bestLoading} />
+        {loading ? (
+          <div>베스트 상품을 불러오는 중입니다...</div>
+        ) : (
+          <BestProductList products={bestProducts} />
+        )}
       </section>
       <section>
         <div className={styles.controlsContainer}>
           <p className={styles.bestSectionTitle}>판매중인 상품</p>
           <div className={styles.controlsHug}>
-            <Input
-              name="search"
-              placeholder="상품 검색..."
-              className={styles.searchInput}
-            />
+            <form className={styles.searchInput} onSubmit={handleSearch}>
+              <Input
+                name="search"
+                placeholder="상품 검색..."
+                className={styles.searchInput}
+              />
+            </form>
             <Button onClick={handleAddProduct}>상품 등록하기</Button>
-            <Select onChange={handleSortChange} defaultValue={sortBy}>
+            <Select onChange={handleSortChange} value={sortBy}>
               <option value="recent">최신순</option>
               <option value="favorite">좋아요순</option>
             </Select>
           </div>
         </div>
 
-        <NormalProductList products={normalProducts} loading={normalLoading} />
+        {loading ? (
+          <div>상품을 불러오는 중입니다...</div>
+        ) : normalProducts.length === 0 ? (
+          <div>표시할 상품이 없습니다.</div>
+        ) : (
+          <NormalProductList products={normalProducts} />
+        )}
       </section>
 
       <Pagination

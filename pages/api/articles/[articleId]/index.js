@@ -4,16 +4,16 @@ import {
   HttpStatus,
   ExceptionCode,
 } from "@/errors";
-import { handleError } from "@utils/apiErrorHandler";
-import { getPostById, updatePost, deletePost } from "@/data/postData";
+import { handleApiError } from "@/utils/apiErrorHandler";
+import { getArticleById, updatePost, deletePost } from "@/data/postArticle";
 
 export default async function handler(req, res) {
   try {
-    const { postId } = req.query;
+    const { articleId } = req.query;
 
     switch (req.method) {
       case "GET":
-        const post = await getPostById(postId);
+        const post = await getArticleById(articleId);
         res.status(HttpStatus.OK).json(post);
         break;
 
@@ -26,12 +26,12 @@ export default async function handler(req, res) {
             code: ExceptionCode.INVALID_INPUT,
           });
         }
-        const updatedPost = await updatePost(postId, { title, content });
+        const updatedPost = await updatePost(articleId, { title, content });
         res.status(HttpStatus.OK).json(updatedPost);
         break;
 
       case "DELETE":
-        await deletePost(postId);
+        await deletePost(articleId);
         res.status(HttpStatus.NO_CONTENT).end();
         break;
 
@@ -44,10 +44,6 @@ export default async function handler(req, res) {
         });
     }
   } catch (error) {
-    if (error instanceof NotFoundException) {
-      handleError(res, error);
-    } else {
-      handleError(res, error);
-    }
+    handleApiError(res, error);
   }
 }

@@ -1,14 +1,14 @@
 import { useState, useCallback, useEffect } from "react";
 import { useInfiniteQuery } from "react-query";
-import { fetchPosts } from "@/utils/communityAPI";
+import { fetchArticles } from "@/utils/communityAPI";
 
-export const useCommunityPosts = () => {
+export const useCommunityArticles = () => {
   const [sort, setSort] = useState("latest");
   const [search, setSearch] = useState("");
 
-  const fetchPostsWithParams = useCallback(
+  const fetchArticlesWithParams = useCallback(
     ({ pageParam = 0 }) => {
-      return fetchPosts(pageParam, sort, search);
+      return fetchArticles(pageParam, sort, search);
     },
     [sort, search]
   );
@@ -22,15 +22,16 @@ export const useCommunityPosts = () => {
     error,
     isFetchingNextPage,
     refetch,
-  } = useInfiniteQuery(["posts", sort, search], fetchPostsWithParams, {
-    getNextPageParam: (lastPage) => {
-      return lastPage.nextPage ?? undefined;
-    },
+  } = useInfiniteQuery(["Articles", sort, search], fetchArticlesWithParams, {
+    getNextPageParam: (lastPage) => lastPage.nextPage,
     staleTime: 60000,
     retry: 3,
   });
 
-  const posts = data ? data.pages.flatMap((page) => page.posts) : [];
+  const articles = data?.pages.flatMap((page) => page.articles) ?? [];
+
+  console.log("받은거:", data);
+  console.log("처리한거:", articles);
 
   const handleSortChange = useCallback((newSort) => {
     setSort(newSort);
@@ -45,7 +46,7 @@ export const useCommunityPosts = () => {
   }, [sort, search, refetch]);
 
   return {
-    posts,
+    articles,
     isLoading,
     isError,
     error,

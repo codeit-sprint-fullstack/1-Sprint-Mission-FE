@@ -13,6 +13,10 @@
   margin-bottom: 24px;
 }
 
+.searchPartHug {
+  display: flex;
+}
+
 .bestSectionTitle {
   color: var(--gray-900);
   font-size: 20px;
@@ -22,6 +26,7 @@
 
 .searchInput {
   width: 325px;
+  height: 46px;
 }
 
 .controlsContainer {
