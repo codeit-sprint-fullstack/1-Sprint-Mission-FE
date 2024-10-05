@@ -74,14 +74,11 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
 
   return (
     <form className={styles.productForm} onSubmit={handleSubmit}>
-      {/* 이미지 업로드 */}
       <label htmlFor="productImage" className={styles.labelText}>
         상품 이미지
       </label>
       <ImageUpload onImagesChange={handleImagesChange} />
 
-      {/* 기타 폼 필드 */}
-      {/* 상품명 */}
       <label htmlFor="productName" className={styles.labelText}>
         상품명
       </label>

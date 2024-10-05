@@ -22,8 +22,8 @@ export default function BestProduct({ articles }) {
         maxArticles = 3;
       }
 
-      const filteredArticles = Array.isArray(articles.data)
-        ? articles.data.slice(0, maxArticles)
+      const filteredArticles = Array.isArray(articles.list)
+        ? articles.list.slice(0, maxArticles)
         : [];
       setBestArticles(filteredArticles);
     };
@@ -59,7 +59,7 @@ export default function BestProduct({ articles }) {
                 </div>
                 <div className={styles.info}>
                   <p className={styles.user}>
-                    총명한 판다{article.id} ♡ {article.favorite}
+                    {article.writer.nickname} ♡ {article.likeCount}
                   </p>
                   <p className={styles.date}>
                     {new Date(article.createdAt).toLocaleDateString()}

@@ -55,7 +55,6 @@ export async function getServerSideProps(context) {
       queryKey: ["comments", productId],
       queryFn: () => fetchComments(id),
     });
-
     const productComment = await fetchComments(productId);
 
     return {

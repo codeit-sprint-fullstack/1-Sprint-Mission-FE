@@ -21,6 +21,7 @@ export default function ItemChat({ initialComments, id }) {
   useEffect(() => {
     setFormValid(input.trim().length > 0);
   }, [input]);
+
   const addCommentMutation = useMutation({
     mutationFn: (newComment) => addComment(id, newComment),
     onSuccess: (addedComment) => {
@@ -36,11 +37,14 @@ export default function ItemChat({ initialComments, id }) {
   const editCommentMutation = useMutation({
     mutationFn: (updatedComment) => editComment(currentEditId, updatedComment),
     onSuccess: (editedComment) => {
-      setComments((prevComments) =>
-        prevComments.map((comment) =>
-          comment.id === currentEditId ? editedComment : comment
-        )
-      );
+      if (editedComment) {
+        setComments((prevComments) =>
+          prevComments.map((comment) =>
+            comment.id === currentEditId ? editedComment : comment
+          )
+        );
+      }
+
       setIsEditing(false);
       setCurrentEditId(null);
       setInput("");
@@ -65,13 +69,16 @@ export default function ItemChat({ initialComments, id }) {
   };
 
   const loadMoreComments = useCallback(async () => {
-    if (!hasMore && cursor == null) return;
+    if (!hasMore || cursor == null) {
+      setHasMore(false);
+      toast.info("모든 댓글을 불러왔습니다.");
+      return;
+    }
 
     setLoading(true);
     try {
       const newCommentsData = await fetchComments(id, cursor);
       const newComments = newCommentsData?.list || [];
-      console.log(newCommentsData);
 
       if (newComments.length > 0) {
         setComments((prevComments) => [...prevComments, ...newComments]);

@@ -11,15 +11,15 @@ export default function CreateBtn() {
   const [formValues, setFormValues] = useState({}); // 폼 값 상태
   const router = useRouter();
 
-  // const mutation = useMutation({
-  //   mutationFn: createProduct,
-  //   onSuccess: (newProduct) => {
-  //     router.push(ROUTES.ITEMS_DETAIL(newProduct.id));
-  //   },
-  //   onError: (error) => {
-  //     console.error("Failed to create product:", error.response || error);
-  //   },
-  // });
+  const mutation = useMutation({
+    mutationFn: createProduct,
+    onSuccess: (newProduct) => {
+      router.push(ROUTES.ITEMS_DETAIL(newProduct.id));
+    },
+    onError: (error) => {
+      console.error("Failed to create product:", error.response || error);
+    },
+  });
 
   const handleProductPost = async () => {
     if (!isFormValid) return;
@@ -34,15 +34,15 @@ export default function CreateBtn() {
       console.log(formValues);
       console.log(imageUrls);
 
-      // const productData = {
-      //   images: imageUrls,
-      //   name: formValues.productName,
-      //   description: formValues.productIntro,
-      //   price: formValues.productPrice,
-      //   tags: formValues.tags || [],
-      // };
+      const productData = {
+        images: imageUrls,
+        name: formValues.productName,
+        description: formValues.productIntro,
+        price: formValues.productPrice,
+        tags: formValues.tags || [],
+      };
 
-      //mutation.mutate(productData);
+      mutation.mutate(productData);
     } catch (error) {
       console.error("Error uploading images or creating product:", error);
     }

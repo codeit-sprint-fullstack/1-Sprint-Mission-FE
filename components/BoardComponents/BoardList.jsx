@@ -9,11 +9,11 @@ import { ROUTES } from "@/utils/rotues";
 export default function BoardList({ articles }) {
   const router = useRouter();
   const [keyword, setKeyword] = useState(router.query.keyword || "");
-  const [sortOrder, setSortOrder] = useState(router.query.sort || "createdAt");
+  const [sortOrder, setSortOrder] = useState(router.query.sort || "recent");
 
   useEffect(() => {
     setKeyword(router.query.keyword || "");
-    setSortOrder(router.query.sort || "createdAt");
+    setSortOrder(router.query.sort || "recent");
   }, [router.query]);
 
   const handleSortChange = (value) => {
@@ -21,7 +21,7 @@ export default function BoardList({ articles }) {
     router.push(
       {
         pathname: router.pathname,
-        query: { ...router.query, sort: value, page: 1 },
+        query: { ...router.query, orderBy: value, page: 1 },
       },
       undefined,
       { shallow: true }

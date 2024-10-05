@@ -12,15 +12,14 @@ export function useArticles(initialArticles, totalArticles, pageSize, router) {
       setLoading(true);
       try {
         const response = await fetchArticles({
-          sort: router.query.sort || "createdAt",
+          orderBy: router.query.sort || "recent",
           keyword: router.query.keyword || "",
           page: 1,
-          size: pageSize,
+          pageSize: pageSize,
         });
-
-        setArticles(response.data || []);
+        setArticles(response || []);
         setPage(1);
-        setHasMore(response.data.length < totalArticles);
+        setHasMore(response.length < totalArticles);
       } catch (error) {
         console.error("Error fetching updated articles:", error);
       } finally {
@@ -39,13 +38,13 @@ export function useArticles(initialArticles, totalArticles, pageSize, router) {
 
     try {
       const response = await fetchArticles({
-        sort: router.query.sort || "createdAt",
+        orderBy: router.query.sort || "recent",
         keyword: router.query.keyword || "",
         page: nextPage,
-        size: pageSize,
+        pageSize: pageSize,
       });
 
-      const newArticles = response.data || [];
+      const newArticles = response || [];
       setArticles((prevArticles) => [...prevArticles, ...newArticles]);
       setPage(nextPage);
 

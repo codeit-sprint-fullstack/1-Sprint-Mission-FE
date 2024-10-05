@@ -30,12 +30,12 @@ export default function BoardListItems({ articles }) {
                       alt="profile"
                       className={styles.profileImg}
                     />
-                    <p className={styles.user}>총명한 판다{article.id}</p>
+                    <p className={styles.user}>{article.writer.nickname}</p>
                     <p className={styles.date}>
                       {new Date(article.createdAt).toLocaleDateString()}
                     </p>
                   </div>
-                  <p className={styles.like}>♡ {article.favorite}</p>
+                  <p className={styles.like}>♡ {article.likeCount}</p>
                 </div>
               </div>
             </Link>

@@ -11,23 +11,24 @@ import "react-toastify/dist/ReactToastify.css";
 
 export async function getServerSideProps(context) {
   const {
-    sort = "createdAt",
+    orderBy = "recent",
     keyword = "",
     page = 1,
-    size = 4,
+    pageSize = 4,
   } = context.query;
 
   try {
-    const articles = await fetchArticles({ sort, keyword, page, size });
+    const articles = await fetchArticles({ orderBy, keyword, page, pageSize });
+
     const bestArticles = await fetchBestArticles(3);
 
     return {
       props: {
-        initialArticles: articles.data || [],
-        totalArticles: articles.total || 0,
+        initialArticles: articles.list || [],
+        totalArticles: articles.totalCount || 0,
         bestArticles,
         initialPage: page,
-        pageSize: size,
+        pageSize,
       },
     };
   } catch (error) {
@@ -38,7 +39,7 @@ export async function getServerSideProps(context) {
         totalArticles: 0,
         bestArticles: [],
         initialPage: 1,
-        pageSize: size,
+        pageSize,
       },
     };
   }
@@ -76,7 +77,6 @@ export default function Board({
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [loadMoreArticles, hasMore]);
-
   return (
     <div className={styles.boardContainer}>
       <ToastContainer position="top-right" autoClose={2000} />

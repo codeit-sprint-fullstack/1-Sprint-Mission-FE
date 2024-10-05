@@ -6,12 +6,7 @@ import { throttle } from "@/utils/throttle";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function BoardChat({
-  initialComments = [],
-  articleId,
-  totalComments,
-  pageSize,
-}) {
+export default function BoardChat({ initialComments, articleId }) {
   const [formValid, setFormValid] = useState(false);
   const [comment, setComment] = useState("");
   const [editCommentId, setEditCommentId] = useState(null);
@@ -23,7 +18,8 @@ export default function BoardChat({
     loading,
     addComment,
     editComment,
-  } = useComments(articleId, initialComments, totalComments, pageSize);
+    nextCursor,
+  } = useComments(articleId, initialComments);
 
   const validateAndSetFormValid = (value) => {
     setFormValid(value.trim().length > 0);
@@ -67,7 +63,7 @@ export default function BoardChat({
         hasMore &&
         !loading
       ) {
-        loadMoreComments();
+        loadMoreComments(nextCursor);
       } else if (!hasMore && load) {
         load = false;
         toast.info("모든 댓글을 불러왔습니다.");
@@ -77,7 +73,7 @@ export default function BoardChat({
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [loadMoreComments, hasMore, loading]);
+  }, [loadMoreComments, hasMore, loading, nextCursor]);
 
   return (
     <div className={styles.container}>
