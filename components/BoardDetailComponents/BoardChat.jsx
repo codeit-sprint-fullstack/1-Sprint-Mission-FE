@@ -55,18 +55,16 @@ export default function BoardChat({ initialComments, articleId }) {
   };
 
   useEffect(() => {
-    let load = true;
     const handleScroll = throttle(() => {
+      // 스크롤 위치와 hasMore, loading 상태 확인
       if (
         window.innerHeight + document.documentElement.scrollTop >=
           document.documentElement.offsetHeight - 100 &&
-        hasMore &&
-        !loading
+        hasMore && // 다음 댓글이 더 있는 경우에만
+        !loading && // 로딩 중이 아닐 때만
+        nextCursor // 다음 커서가 있는 경우에만
       ) {
         loadMoreComments(nextCursor);
-      } else if (!hasMore && load) {
-        load = false;
-        toast.info("모든 댓글을 불러왔습니다.");
       }
     }, 200);
 
@@ -74,6 +72,12 @@ export default function BoardChat({ initialComments, articleId }) {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [loadMoreComments, hasMore, loading, nextCursor]);
+
+  useEffect(() => {
+    if (!hasMore) {
+      toast.info("모든 댓글을 불러왔습니다.");
+    }
+  }, [hasMore]);
 
   return (
     <div className={styles.container}>

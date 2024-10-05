@@ -5,52 +5,38 @@ import {
   updateComments,
 } from "@/utils/articleChatApi";
 
-export function useComments(
-  articleId,
-  initialComments,
-  totalComments,
-  pageSize
-) {
-  const [comments, setComments] = useState(initialComments);
-  const [page, setPage] = useState(1);
+export function useComments(articleId, initialComments) {
+  const [comments, setComments] = useState(initialComments || []);
+  const [cursor, setCursor] = useState(
+    initialComments.length > 0
+      ? initialComments[initialComments.length - 1].id
+      : null
+  );
   const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(
-    initialComments.length < totalComments
+  const [hasMore, setHasMore] = useState(true);
+
+  const loadMoreComments = useCallback(
+    async (nextCursor) => {
+      if (loading || !hasMore || !nextCursor) return;
+
+      setLoading(true);
+      try {
+        const response = await fetchComments(articleId, nextCursor);
+        const newComments = response.list || [];
+
+        setComments((prevComments) => [...prevComments, ...newComments]);
+        setCursor(response.nextCursor);
+        setHasMore(response.nextCursor !== null); // 다음 커서가 없으면 hasMore를 false로 설정
+      } catch (error) {
+        console.error("Error fetching more comments:", error);
+        setHasMore(false);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [loading, hasMore, articleId]
   );
 
-  // 댓글 추가 로드 함수
-  const loadMoreComments = useCallback(async () => {
-    if (loading || !hasMore) return;
-
-    setLoading(true);
-    const nextPage = page + 1;
-
-    try {
-      const response = await fetchComments(articleId, nextPage, pageSize);
-      const newComments = response.data || [];
-
-      setComments((prevComments) => [...prevComments, ...newComments]);
-      setPage(nextPage);
-
-      if (comments.length + newComments.length >= totalComments) {
-        setHasMore(false);
-      }
-    } catch (error) {
-      console.error("Error fetching more comments:", error);
-    } finally {
-      setLoading(false);
-    }
-  }, [
-    page,
-    loading,
-    hasMore,
-    comments.length,
-    totalComments,
-    pageSize,
-    articleId,
-  ]);
-
-  // 댓글 등록 함수
   const addComment = useCallback(
     async (commentContent) => {
       try {
@@ -90,6 +76,7 @@ export function useComments(
     loading,
     addComment,
     editComment,
+    nextCursor: cursor, // nextCursor를 반환
   };
 }
 
@@ -102,7 +89,7 @@ export const useInfiniteScroll = ({ loadMore, hasMore, isLoading }) => {
         !isLoading &&
         hasMore
       ) {
-        loadMore();
+        loadMore(); // 스크롤 시 `loadMore` 함수를 호출하여 다음 커서로 댓글 불러오기
       }
     };
 

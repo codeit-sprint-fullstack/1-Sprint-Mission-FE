@@ -1,9 +1,10 @@
 import apiClient from "./apiClient";
-import apiHandler from "./apiHandler";
 
 // 댓글 조회
 export async function fetchComments(id, cursor = null) {
-  const response = await apiClient.get(`/articles/${id}/comments`, cursor);
+  const response = await apiClient.get(
+    `/articles/${id}/comments?cursor=${cursor}`
+  );
 
   if (response.status !== 200) {
     throw new Error("Failed to fetch comments");
