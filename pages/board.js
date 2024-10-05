@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 export async function getStaticProps() {
   const res = await axios.get("/articles");
-  const articles = res.data;
+  const articles = res.data.list;
 
   return {
     props: {
