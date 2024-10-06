@@ -18,12 +18,11 @@ import ProductEditModal from "../../components/ProductEditModal";
 import Spinner from "../../components/Spinner";
 import styles from "../../styles/itemDetail.module.css";
 
-// 하드코딩된 서버 URL
 const SERVER_URL = "https://baomarket.onrender.com";
 
 const ProductDetailPage = () => {
   const router = useRouter();
-  const { itemId } = router.query; // itemId가 URL에서 추출됨
+  const { itemId } = router.query;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [accessToken, setAccessToken] = useState(null);
@@ -57,7 +56,6 @@ const ProductDetailPage = () => {
         tags: data.tags || [],
       });
 
-      // 디버깅용 로그 추가
       console.log("Product Data:", data); // 상품 데이터 확인용 로그
     },
   });
@@ -108,20 +106,19 @@ const ProductDetailPage = () => {
 
   if (productError) return <p>상품 정보를 불러오는 중 오류가 발생했습니다.</p>;
 
-  // 디버깅용 로그 추가
-  console.log("Product Images:", productData?.images); // 이미지 배열 확인용 로그
+  console.log("Product Images:", productData?.image); // image 필드 확인
 
   return (
     <div>
       <div className={styles.itemDetail}>
-        {productData?.images?.length > 0 ? (
+        {productData?.image?.length > 0 ? (
           <img
-            src={productData.images[0]} // 이미지를 그대로 사용
+            src={productData.image[0]}
             alt={productData?.name}
             className={styles.image}
           />
         ) : (
-          <p>이미지가 없습니다.</p> // 이미지가 없을 때 대비
+          <p>이미지가 없습니다.</p>
         )}
         <div className={styles.infoContainer}>
           <div className={`${styles.infoBox} ${styles.firstBox}`}>
@@ -133,7 +130,7 @@ const ProductDetailPage = () => {
                 onEdit={() => setShowEditModal(true)}
                 onProductUpdate={(updatedProduct) =>
                   setEditedProduct(updatedProduct)
-                } // 수정된 내용 반영
+                }
                 refreshProducts={() => router.push("/items")}
               />
             </div>
@@ -202,7 +199,7 @@ const ProductDetailPage = () => {
                 content={comment.content}
                 createdAt={comment.createdAt}
                 author={comment.writer?.nickname || "푸바오"}
-                refreshComments={loadComments} // 댓글 갱신 처리
+                refreshComments={loadComments}
               />
             ))
           )}

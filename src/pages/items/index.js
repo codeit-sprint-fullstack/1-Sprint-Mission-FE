@@ -87,9 +87,9 @@ const ProductListPage = () => {
               onMouseEnter={() => handleMouseEnter(item.id)}
               onClick={() => handleProductClick(item.id)}
             >
-              {item.images?.length > 0 && (
+              {item.image?.length > 0 && (
                 <img
-                  src={item.images[0]} // 경로 수정
+                  src={item.image[0]}
                   alt={item.name}
                   className={styles.productImg}
                 />
@@ -117,3 +117,4 @@ const ProductListPage = () => {
 };
 
 export default ProductListPage;
+

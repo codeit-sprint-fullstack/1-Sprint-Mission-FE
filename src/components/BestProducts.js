@@ -34,7 +34,7 @@ const BestProducts = () => {
               onClick={() => handleProductClick(item._id || item.id)}
             >
               <img
-                src={item.images?.[0] || "/image/default.svg"}
+                src={item.image?.[0] || "/image/default.svg"}
                 alt={item.name}
                 className={styles.productImg}
               />
