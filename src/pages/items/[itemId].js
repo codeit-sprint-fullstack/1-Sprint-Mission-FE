@@ -21,7 +21,7 @@ import styles from "../../styles/itemDetail.module.css";
 
 const ProductDetailPage = () => {
   const router = useRouter();
-  const { itemId } = router.query;
+  const { itemId } = router.query; // itemId가 URL에서 추출됨
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [accessToken, setAccessToken] = useState(null);
@@ -64,7 +64,8 @@ const ProductDetailPage = () => {
 
   const loadComments = async () => {
     try {
-      const data = await getComments(itemId);
+      console.log("불러오는 productId (itemId):", itemId); // itemId 로그 추가
+      const data = await getComments(itemId); // itemId가 productId로 사용됨
       setComments(data.list || []);
     } catch (error) {
       console.error("댓글 목록 불러오기 실패:", error);
@@ -234,4 +235,3 @@ const ProductDetailPage = () => {
 };
 
 export default ProductDetailPage;
-
