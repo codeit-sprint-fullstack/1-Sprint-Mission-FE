@@ -67,6 +67,16 @@ const PostDetail = () => {
         <span className={styles.likes}>{likes}</span>
       </div>
 
+      {post.image && post.image.length > 0 && (
+        <div className={styles.imageContainer}>
+          <img
+            src={post.image[0]}
+            alt="게시글 이미지"
+            className={styles.postImage}
+          />
+        </div>
+      )}
+
       <div className={styles.contentContainer}>
         <p className={styles.postContent}>{post.content}</p>
       </div>

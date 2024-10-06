@@ -13,7 +13,7 @@ const CreateArticle = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [createdAt] = useState(formatDate(new Date()));
-  const [imageUrls, setImageUrls] = useState([]);
+  const [imageUrls, setImageUrls] = useState([]);  // 이미지 URL 배열
   const router = useRouter();
 
   const handleSubmit = async () => {
@@ -27,7 +27,7 @@ const CreateArticle = () => {
         title: title.trim(),
         content: content.trim(),
         createdAt,
-        images: imageUrls,
+        images: imageUrls,  // 이미지 URL 배열
       };
 
       console.log("전송할 게시글 데이터:", articleData);
