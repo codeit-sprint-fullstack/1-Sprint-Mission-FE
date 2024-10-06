@@ -6,7 +6,8 @@
       "@shared/*": ["./src/shared/*"],
       "@widgets/*": ["./src/widgets/*"],
       "@app/*": ["./app/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils/*": ["./src/utils/*"],
+      "@hooks/*": ["./src/hooks/*"]
     }
   }
 }

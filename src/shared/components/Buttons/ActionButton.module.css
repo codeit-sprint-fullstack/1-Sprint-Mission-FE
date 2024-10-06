@@ -86,3 +86,16 @@
   color: var(--color-white);
   font-size: 1rem;
 }
+
+.create-product-button {
+  width: 133px;
+  height: 42px;
+  border-radius: 8px;
+  padding: 12px 23px;
+  background-color: var(--color-blue-100);
+  border: 0;
+  font-weight: 600;
+  color: var(--color-white);
+  font-size: 1rem;
+  cursor: pointer;
+}
