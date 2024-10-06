@@ -87,7 +87,7 @@ const ProductListPage = () => {
             >
               {item.images?.length > 0 && (
                 <img
-                  src={`https://baomarket.onrender.com/uploads/${item.images[0]}`}
+                  src={item.images[0]}
                   alt={item.name}
                   className={styles.productImg}
                 />

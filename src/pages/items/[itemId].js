@@ -118,7 +118,7 @@ const ProductDetailPage = () => {
       <div className={styles.itemDetail}>
         {productData?.images?.length > 0 && (
           <img
-            src={`https://baomarket.onrender.com/uploads/${productData.images[0]}`}
+            src={productData.images[0]}
             alt={productData?.name}
             className={styles.image}
           />
