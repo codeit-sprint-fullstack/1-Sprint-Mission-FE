@@ -1,0 +1,23 @@
+.AuthenticationButton{
+    width: 640px;
+    height: 56px;
+    border: none;
+    border-radius: 40px;
+    margin-bottom: 24px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 32px;
+    color: #F3F4F6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.buttonOff{
+    background-color: #9CA3AF;
+}
+
+.buttonOn{
+    background-color: #3692FF;
+}

@@ -1,27 +1,23 @@
 import { useEffect, useState } from "react";
 import style from "./CommentFrom.module.css";
 
-export default function CommentFrom({
-  Handler,
-  mode,
-  patchCommend,
-  setPatchCommend,
-}) {
+export default function CommentFrom({ Handler, mode }) {
   const [value, setValue] = useState("");
   const [activateButton, setActivateButton] = useState(style.buttonOff);
-  const [title, setTitle] = useState("댓글달기");
-  const [button, setButton] = useState("등록");
+  const [title, setTitle] = useState("");
+  const [placeholder, setPlaceholder] = useState("");
 
   useEffect(() => {
-    if (mode === "등록") {
+    if (mode === "자유게시판") {
       setValue("");
       setTitle("댓글달기");
-      setButton("등록");
-    } else if (mode === "수정") {
-      setValue(patchCommend.contentValue);
-      setTitle("댓글수정");
-      setButton("수정");
-      setActivateButton(style.buttonOn);
+      setPlaceholder("댓글을 입력해주세요.");
+    } else if (mode === "중고마켓") {
+      setValue("");
+      setTitle("문의하기");
+      setPlaceholder(
+        "개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
+      );
     }
   }, []);
 
@@ -47,26 +43,9 @@ export default function CommentFrom({
   const buttonHandler = (e) => {
     e.preventDefault();
 
-    if (activateButton === style.buttonOn && mode === "등록") {
+    if (activateButton === style.buttonOn) {
       Handler(value);
       setValue("");
-    } else if (activateButton === style.buttonOn && mode === "수정") {
-      if (patchCommend.contentValue === value) {
-        setPatchCommend({
-          boolinValue: false,
-          contentValue: "",
-          id: "",
-          idx: "",
-        });
-      } else {
-        Handler(value);
-        setPatchCommend({
-          boolinValue: false,
-          contentValue: "",
-          id: "",
-          idx: "",
-        });
-      }
     }
   };
 
@@ -84,14 +63,14 @@ export default function CommentFrom({
         value={value}
         onChange={valueChangeHandler}
         onKeyUp={buttonChangeHAndler}
-        placeholder="댓글을 입력해주세요."
+        placeholder={placeholder}
       />
       <div className={style.buttonCotaner}>
         <button
           className={`${style.CommentFromButton} ${style.font16} ${activateButton}`}
           onClick={buttonHandler}
         >
-          {button}
+          등록
         </button>
       </div>
     </form>

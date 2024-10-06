@@ -1,0 +1,44 @@
+.contaner{
+    width: auto;
+    height: auto;
+    margin: 157px 0 227px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pandaLogo{
+    margin-bottom: 40px;
+}
+
+.adviceBox{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.adviceText{
+    width: auto;
+    height: 24px;
+    margin-right: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #1F2937;
+}
+
+.adviceLink{
+    width: auto;
+    height: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16.71px;
+    text-decoration: underline;
+    color: #3692FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

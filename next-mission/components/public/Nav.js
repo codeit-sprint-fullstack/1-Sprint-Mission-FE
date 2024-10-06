@@ -34,13 +34,16 @@ function Nav() {
           <p
             className={`${style.listFont} ${style.usedFont} ${getLinkStyle([
               "/items",
+              `/items/${id}`,
             ])}`}
           >
             중고마켓
           </p>
         </Link>
       </div>
-      <div className={style.login}>로그인</div>
+      <Link href="/signin">
+        <div className={style.login}>로그인</div>
+      </Link>
     </nav>
   );
 }

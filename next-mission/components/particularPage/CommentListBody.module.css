@@ -39,12 +39,39 @@
   align-items: center;
 }
 
+.patchInput {
+  width: 1200px;
+  height: 80px;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 24px;
+  background-color: #f3f4f6;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #1F2937;
+}
+
+.patchInput:focus{
+  outline: none;
+  border: 1px solid #3692FF;
+}
+
 .additionalInformation {
-  width: auto;
-  height: 40px;
-  margin: 24px 0 12px;
+  width: 1200px;
   display: flex;
   flex-direction: row;
+  position: relative;
+}
+
+.noPatch{
+  height: 40px;
+  margin: 24px 0 12px;
+}
+
+.yesPatch{
+  height: 42px;
+  margin: 16.5px 0 24.5px;
 }
 
 .userImg {
@@ -74,6 +101,54 @@
   color: #9ca3af;
 }
 
+.buttonContaner{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.cancelButton{
+  width: 68px;
+  height: 42px;
+  border: none;
+  margin-right: 4px;
+  background-color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  color: #737373;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.patchbutton{
+  width:106px;
+  height: 42px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  color: #F3F4F6;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.buttonOff {
+  background-color: #9ca3af;
+}
+
+.buttonOn {
+  background-color: #3692ff;
+}
+
 @media (min-width: 744px) and (max-width: 1199px) {
   .contaner {
     width: 696px;
@@ -86,6 +161,14 @@
   .dropDownText {
     height: 47px;
     line-height: 19.09px;
+  }
+
+  .patchInput {
+    width: 696px;
+  }
+
+  .additionalInformation {
+    width: 696px;
   }
 }
 
@@ -106,8 +189,15 @@
     font-size: 14px;
     line-height: 24px;
   }
+  .patchInput {
+    width: 344px;
+  }
 
   .additionalInformation {
+    width: 344px;
+  }
+
+  .noPatch{
     margin: 24px 0 8px;
   }
 }

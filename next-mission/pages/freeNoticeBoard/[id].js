@@ -1,8 +1,8 @@
 import CommentFrom from "@/components/particularPage/CommentFrom";
 import CommentList from "@/components/particularPage/CommentList";
-import ParticularInformation from "@/components/particularPage/ParticularInformation";
+import NoticeBoardParticularInformation from "@/components/particularPage/NoticeBoardParticularInfo";
 import Spinner from "@/components/public/Spinner";
-import styles from '@/styles/FreeNoticeBoard.module.css'
+import styles from "@/styles/FreeNoticeBoard.module.css";
 import instance from "@/lib/axios";
 import Head from "next/head";
 import { notFound } from "next/navigation";
@@ -33,7 +33,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function ParticularPage({
+export default function NoticeBoardParticularPage({
   noticeBoardData,
   commentData,
   cursorData,
@@ -42,7 +42,7 @@ export default function ParticularPage({
   const [cursor, setCursor] = useState(""); // 현재 커서
   const [hasMore, setHasMore] = useState(true); // 더 불러올 데이터가 있는지 여부
   const [nextCursor, setNextCursor] = useState(cursorData);
-  const [patchCommend, setPatchCommend] = useState({
+  const [patchComment, setPatchComment] = useState({
     boolinValue: false,
     contentValue: "",
     id: "",
@@ -97,13 +97,13 @@ export default function ParticularPage({
       content: value,
     };
     const res = await instance.patch(
-      `/freeCommends/${patchCommend.id}`,
+      `/freeCommends/${patchComment.id}`,
       subject
     );
     const data = res.data;
 
     const newComment = [...comment];
-    newComment.splice(patchCommend.idx, 1, data);
+    newComment.splice(patchComment.idx, 1, data);
     setComment(newComment);
   };
 
@@ -113,7 +113,7 @@ export default function ParticularPage({
     const nextComment = [...comment];
     nextComment.splice(idx, 1);
     setComment(nextComment);
-    setPatchCommend({
+    setPatchComment({
       boolinValue: false,
       contentValue: "",
       id: "",
@@ -121,36 +121,22 @@ export default function ParticularPage({
     });
   };
 
-
   return (
     <>
       <Head>
         <title>{noticeBoardData.title} - 자유게시판 | 판다마켓</title>
       </Head>
-      <ParticularInformation data={noticeBoardData} />
-      {patchCommend.boolinValue || (
-        <CommentFrom
-          Handler={postCommentHandler}
-          mode={"등록"}
-          patchCommend={patchCommend}
-          setPatchCommend={setPatchCommend}
-        />
-      )}
-      {patchCommend.boolinValue && (
-        <CommentFrom
-          Handler={patchcomment}
-          mode={"수정"}
-          patchCommend={patchCommend}
-          setPatchCommend={setPatchCommend}
-        />
-      )}
+      <NoticeBoardParticularInformation data={noticeBoardData} />
+      <CommentFrom Handler={postCommentHandler} mode={"자유게시판"} />
       <CommentList
+        mode={"자유게시판"}
         comment={comment} // 불러온 데이터 배열
         hasMore={hasMore} // 추가 데이터 여부
         loadMore={loadMoreItems} // 페이지를 로드하는 함수
         deleteCommentHandler={deleteCommentHandler}
-        patchCommend={patchCommend}
-        setPatchCommend={setPatchCommend}
+        patchComment={patchComment}
+        setPatchComment={setPatchComment}
+        patchCommentHandler={patchcomment}
       />
     </>
   );

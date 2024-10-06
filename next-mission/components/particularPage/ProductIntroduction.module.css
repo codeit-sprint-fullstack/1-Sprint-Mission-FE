@@ -1,0 +1,22 @@
+.contaner{
+    width: 690px;
+    height: auto;
+    min-height: 146px;
+    margin-bottom: 24px;
+    font-size: 16px;
+    line-height: 26px;
+    color: #4B5563;
+}
+
+.title{
+    width: 690px;
+    height: 26px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.content{
+    width: 690px;
+    height: auto;
+    font-weight: 400;
+}
