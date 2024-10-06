@@ -48,18 +48,16 @@ export const signIn = async (email, password) => {
 
     console.log("로그인 응답:", response.data);
 
-    // 로그인 후 accessToken 및 user 정보를 저장
-    if (response.data.accessToken && response.data.user) {
+    // 로그인 후 accessToken 및 nickname 저장
+    if (response.data.accessToken && response.data.nickname) {
       localStorage.setItem("accessToken", response.data.accessToken);
-      localStorage.setItem("nickname", response.data.user.nickname);
-      localStorage.setItem("userId", response.data.user.id);
-      console.log("닉네임 저장 완료:", response.data.user.nickname);
-      console.log("사용자 ID 저장 완료:", response.data.user.id);
+      localStorage.setItem("nickname", response.data.nickname);
+      console.log("닉네임 저장 완료:", response.data.nickname);
       console.log("저장된 accessToken: ", response.data.accessToken);
 
       window.dispatchEvent(new Event("storage"));
     } else {
-      console.error("로그인 응답에 닉네임 또는 userId가 없습니다.");
+      console.error("로그인 응답에 닉네임 또는 accessToken이 없습니다.");
     }
 
     return response.data;
@@ -73,7 +71,6 @@ export const signIn = async (email, password) => {
 export const logOut = () => {
   localStorage.removeItem("accessToken");
   localStorage.removeItem("nickname");
-  localStorage.removeItem("userId");
   console.log("로그아웃 완료, accessToken 및 nickname 제거");
 };
 
