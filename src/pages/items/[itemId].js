@@ -37,7 +37,6 @@ const ProductDetailPage = () => {
     tags: [],
   });
 
-  // 페이지가 로드될 때 accessToken을 getAccessToken 함수로 가져옴
   useEffect(() => {
     if (typeof window !== "undefined") {
       const token = getAccessToken();
@@ -45,11 +44,7 @@ const ProductDetailPage = () => {
     }
   }, []);
 
-  const {
-    data: productData,
-    error: productError,
-    isLoading: isProductLoading,
-  } = useQuery({
+  const { data: productData, error: productError, isLoading: isProductLoading } = useQuery({
     queryKey: ["product", itemId],
     queryFn: () => getProductById(itemId),
     enabled: !!itemId,
@@ -61,13 +56,15 @@ const ProductDetailPage = () => {
         description: data.description,
         tags: data.tags || [],
       });
+
+      // 디버깅용 로그 추가
+      console.log("Product Data:", data); // 상품 데이터 확인용 로그
     },
   });
 
   const loadComments = async () => {
     try {
-      console.log("불러오는 productId (itemId):", itemId); // itemId 로그 추가
-      const data = await getComments(itemId); // itemId가 productId로 사용됨
+      const data = await getComments(itemId);
       setComments(data.list || []);
     } catch (error) {
       console.error("댓글 목록 불러오기 실패:", error);
@@ -76,19 +73,15 @@ const ProductDetailPage = () => {
 
   useEffect(() => {
     if (itemId) {
-      loadComments(); // 댓글 목록 불러오기
+      loadComments();
     }
   }, [itemId]);
 
   const likeMutation = useMutation({
-    mutationFn: isLiked
-      ? () => unfavoriteProduct(itemId, accessToken)
-      : () => favoriteProduct(itemId, accessToken),
+    mutationFn: isLiked ? () => unfavoriteProduct(itemId, accessToken) : () => favoriteProduct(itemId, accessToken),
     onSuccess: () => {
       setIsLiked(!isLiked);
-      productData.favoriteCount = isLiked
-        ? productData.favoriteCount - 1
-        : productData.favoriteCount + 1;
+      productData.favoriteCount = isLiked ? productData.favoriteCount - 1 : productData.favoriteCount + 1;
     },
     onError: () => {
       setModalMessage("좋아요 처리 중 오류가 발생했습니다.");
@@ -115,14 +108,15 @@ const ProductDetailPage = () => {
 
   if (productError) return <p>상품 정보를 불러오는 중 오류가 발생했습니다.</p>;
 
-  if (!productData) return <p>상품 정보가 없습니다.</p>; // productData가 없을 경우 대비
+  // 디버깅용 로그 추가
+  console.log("Product Images:", productData?.images); // 이미지 배열 확인용 로그
 
   return (
     <div>
       <div className={styles.itemDetail}>
         {productData?.images?.length > 0 ? (
           <img
-            src={productData.images[0]} // 이미지 경로 수정
+            src={productData.images[0]} // 이미지를 그대로 사용
             alt={productData?.name}
             className={styles.image}
           />
