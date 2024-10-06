@@ -2,30 +2,36 @@ import styles from "./BoardList.module.css";
 import SearchBar from "@/components/BoardComponents/SearchBar.jsx";
 import BoardListItems from "@/components/BoardComponents/BoardListItems.jsx";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ROUTES } from "@/utils/rotues";
+import { useQuery } from "@tanstack/react-query";
+import { fetchArticles } from "@/utils/articleApi";
 
-export default function BoardList({ articles }) {
-  const router = useRouter();
-  const [keyword, setKeyword] = useState(router.query.keyword || "");
-  const [sortOrder, setSortOrder] = useState(router.query.sort || "recent");
+export default function BoardList({ initialArticles }) {
+  const [keyword, setKeyword] = useState("");
+  const [sortOrder, setSortOrder] = useState("recent");
 
-  useEffect(() => {
-    setKeyword(router.query.keyword || "");
-    setSortOrder(router.query.sort || "recent");
-  }, [router.query]);
+  const {
+    data: articles,
+    refetch,
+    isFetching,
+    error,
+  } = useQuery({
+    queryKey: ["articles", { sortOrder }],
+    queryFn: () =>
+      fetchArticles({
+        orderBy: sortOrder,
+        keyword,
+        page: 1,
+        pageSize: 5,
+      }),
+    initialData: initialArticles,
+    keepPreviousData: true,
+  });
 
   const handleSortChange = (value) => {
     setSortOrder(value);
-    router.push(
-      {
-        pathname: router.pathname,
-        query: { ...router.query, orderBy: value, page: 1 },
-      },
-      undefined,
-      { shallow: true }
-    );
+    refetch();
   };
 
   const handleKeywordChange = (event) => {
@@ -33,14 +39,7 @@ export default function BoardList({ articles }) {
   };
 
   const handleKeywordSearch = () => {
-    router.push(
-      {
-        pathname: router.pathname,
-        query: { ...router.query, keyword, page: 1 },
-      },
-      undefined,
-      { shallow: true }
-    );
+    refetch();
   };
 
   const handleKeyDown = (event) => {
@@ -48,6 +47,9 @@ export default function BoardList({ articles }) {
       handleKeywordSearch();
     }
   };
+
+  if (isFetching) return <p>Loading...</p>;
+  if (error) return <p>Failed to load articles: {error.message}</p>;
 
   return (
     <>
@@ -64,7 +66,7 @@ export default function BoardList({ articles }) {
         sortOrder={sortOrder}
         onSortChange={handleSortChange}
       />
-      <BoardListItems articles={articles} />
+      <BoardListItems articles={articles?.list || []} />
     </>
   );
 }
