@@ -116,16 +116,13 @@ const ProductDetailPage = () => {
   return (
     <div>
       <div className={styles.itemDetail}>
-        <img
-          src={
-            productData?.images?.length > 0
-              ? productData.images[0]
-              : "/image/beach.jpeg"
-          }
-          alt={productData?.name || "기본 이미지"}
-          className={styles.image}
-        />
-
+        {productData?.images?.length > 0 && (
+          <img
+            src={`https://baomarket.onrender.com/uploads/${productData.images[0]}`}
+            alt={productData?.name}
+            className={styles.image}
+          />
+        )}
         <div className={styles.infoContainer}>
           <div className={`${styles.infoBox} ${styles.firstBox}`}>
             <div className={styles.namePriceContainer}>
@@ -169,9 +166,7 @@ const ProductDetailPage = () => {
               alt="Profile"
               className={styles.profileIcon}
             />
-            <span className={styles.ownerId}>
-              {productData?.userId}번 바오
-            </span>
+            <span className={styles.ownerId}>{productData?.userId}번 바오</span>
             <span className={styles.createdAt}>
               {new Date(productData?.createdAt).toLocaleDateString()}
             </span>

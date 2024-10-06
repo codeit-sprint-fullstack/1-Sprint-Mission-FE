@@ -49,7 +49,8 @@ const ProductListPage = () => {
     router.push(`/items/${id}`);
   };
 
-  if (error) return <p>상품을 불러오는 중 오류가 발생했습니다: {error.message}</p>;
+  if (error)
+    return <p>상품을 불러오는 중 오류가 발생했습니다: {error.message}</p>;
 
   return (
     <Spinner dataLoaded={!isLoading}>
@@ -79,16 +80,18 @@ const ProductListPage = () => {
         <div className={styles.allProductsContents}>
           {products.map((item) => (
             <div
-              key={item._id || item.id}
+              key={item.id}
               className={styles.allProducts}
-              onMouseEnter={() => handleMouseEnter(item._id || item.id)}
-              onClick={() => handleProductClick(item._id || item.id)}
+              onMouseEnter={() => handleMouseEnter(item.id)}
+              onClick={() => handleProductClick(item.id)}
             >
-              <img
-                src={item.images?.[0] || "/image/default.svg"}
-                alt={item.name}
-                className={styles.productImg}
-              />
+              {item.images?.length > 0 && (
+                <img
+                  src={`https://baomarket.onrender.com/uploads/${item.images[0]}`}
+                  alt={item.name}
+                  className={styles.productImg}
+                />
+              )}
               <h2 className={styles.productTitle}>{item.name}</h2>
               <h2 className={styles.productPrice}>
                 {item.price.toLocaleString("ko-KR")}원
@@ -101,11 +104,14 @@ const ProductListPage = () => {
           ))}
         </div>
 
-        <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          onPageChange={setPage}
+        />
       </div>
     </Spinner>
   );
 };
 
 export default ProductListPage;
-
