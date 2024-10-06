@@ -43,7 +43,11 @@ const ProductDetailPage = () => {
     }
   }, []);
 
-  const { data: productData, error: productError, isLoading: isProductLoading } = useQuery({
+  const {
+    data: productData,
+    error: productError,
+    isLoading: isProductLoading,
+  } = useQuery({
     queryKey: ["product", itemId],
     queryFn: () => getProductById(itemId),
     enabled: !!itemId,
@@ -112,8 +116,12 @@ const ProductDetailPage = () => {
     <div>
       <div className={styles.itemDetail}>
         <img
-          src={productData?.images[0]}
-          alt={productData?.name}
+          src={
+            productData?.images?.length > 0
+              ? productData.images[0]
+              : "/image/beach.jpeg"
+          }
+          alt={productData?.name || "기본 이미지"}
           className={styles.image}
         />
 
@@ -218,9 +226,7 @@ const ProductDetailPage = () => {
           isOpen={showEditModal}
           onClose={() => setShowEditModal(false)}
           productData={productData}
-          onProductUpdate={(updatedProduct) =>
-            setEditedProduct(updatedProduct)
-          }
+          onProductUpdate={(updatedProduct) => setEditedProduct(updatedProduct)}
         />
       )}
     </div>
@@ -228,4 +234,3 @@ const ProductDetailPage = () => {
 };
 
 export default ProductDetailPage;
-

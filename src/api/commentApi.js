@@ -8,8 +8,12 @@ export const createComment = async (productId, content) => {
   return response.data;
 };
 
-// 상품의 댓글 목록 조회
 export const getComments = async (productId, limit = 10, cursor = 0) => {
+  if (!productId) {
+    console.error("productId가 존재하지 않습니다.");
+    return [];
+  }
+
   const response = await axiosInstance.get(`/products/${productId}/comments`, {
     params: { limit: limit, cursor: cursor },
   });
@@ -29,4 +33,3 @@ export const deleteComment = async (commentId) => {
   const response = await axiosInstance.delete(`/comments/${commentId}`);
   return response.data;
 };
-
