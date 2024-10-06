@@ -6,7 +6,7 @@ const ProductEmptyComments = () => {
   return (
     <>
       <img
-        src="/image/Product_empty.svg"
+        src="/image/product_empty.svg"
         alt="Reply Icon"
         className={styles.replyIcon}
       />
