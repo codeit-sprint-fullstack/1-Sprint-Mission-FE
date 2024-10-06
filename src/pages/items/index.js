@@ -11,6 +11,8 @@ import Spinner from "../../components/Spinner";
 import BestProducts from "../../components/BestProducts";
 import styles from "../../styles/itemList.module.css";
 
+const SERVER_URL = "https://baomarket.onrender.com";
+
 const ProductListPage = () => {
   const router = useRouter();
   const screenType = useScreenType();
@@ -87,7 +89,7 @@ const ProductListPage = () => {
             >
               {item.images?.length > 0 && (
                 <img
-                  src={item.images[0]}
+                  src={`${SERVER_URL}/uploads/${item.images[0]}`}
                   alt={item.name}
                   className={styles.productImg}
                 />
@@ -115,3 +117,4 @@ const ProductListPage = () => {
 };
 
 export default ProductListPage;
+
