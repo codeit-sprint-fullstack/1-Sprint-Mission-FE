@@ -89,7 +89,7 @@ const ProductListPage = () => {
             >
               {item.images?.length > 0 && (
                 <img
-                  src={`${SERVER_URL}/uploads/${item.images[0]}`} // 경로 수정
+                  src={item.images[0]} // 경로 수정
                   alt={item.name}
                   className={styles.productImg}
                 />

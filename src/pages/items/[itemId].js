@@ -122,7 +122,7 @@ const ProductDetailPage = () => {
       <div className={styles.itemDetail}>
         {productData?.images?.length > 0 ? (
           <img
-            src={`${SERVER_URL}/uploads/${productData.images[0]}`} // 이미지 경로 수정
+            src={productData.images[0]} // 이미지 경로 수정
             alt={productData?.name}
             className={styles.image}
           />
