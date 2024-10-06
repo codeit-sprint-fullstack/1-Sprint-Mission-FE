@@ -1,6 +1,6 @@
 import { useController, useForm } from 'react-hook-form';
 
-export function useFormValidation() {
+export function useSignupValidation() {
   const {
     formState: { errors, isValid },
     control,

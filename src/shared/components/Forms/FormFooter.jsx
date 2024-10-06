@@ -8,12 +8,16 @@ export default function FormFooter({ content, linkContent, path }) {
       <div className={styles['simple-login-container']}>
         <div className={styles['simple-login-content']}>간편 로그인하기</div>
         <div className={styles['image-container']}>
-          <div className={styles['sns-logo']}>
-            <Image src={'/google.svg'} fill />
-          </div>
-          <div className={styles['sns-logo']}>
-            <Image src={'/kakao.svg'} fill />
-          </div>
+          <Link href={'https://www.google.com'}>
+            <div className={styles['sns-logo']}>
+              <Image src={'/google.svg'} fill />
+            </div>
+          </Link>
+          <Link href={'https://www.kakaocorp.com/page'}>
+            <div className={styles['sns-logo']}>
+              <Image src={'/kakao.svg'} fill />
+            </div>
+          </Link>
         </div>
       </div>
       <div className={styles['footer-content']}>

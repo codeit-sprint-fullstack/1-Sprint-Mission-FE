@@ -1,20 +1,7 @@
 'use client';
 import { useArticleComments } from 'src/hooks/comment/useArticleComments';
-import { Comment } from './Comment';
-import CommentInputBox from './CommentInputBox';
-
-export function ArticleComments({ id, initialData }) {
-  return (
-    <>
-      <CommentInputBox title={'댓글등록'} placeholder={'댓글을 입력해주세요'} />
-      <Comment
-        id={id}
-        initialData={initialData}
-        useCommentsQuery={useArticleComments}
-      />
-    </>
-  );
-}
+import { Comment } from '@shared/components/comment/Comment';
+import CommentInputBox from '@shared/components/comment/CommentInputBox';
 
 export function ProductComments({ id, initialData }) {
   return (
@@ -29,6 +16,7 @@ export function ProductComments({ id, initialData }) {
         id={id}
         initialData={initialData}
         useCommentsQuery={useArticleComments}
+        content={'아직 문의가 없어요'}
       />
     </>
   );

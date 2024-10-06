@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import Input from '../inputs/Input';
 import InputErrorText from '../inputs/InputErrorText';
 import styles from '@shared/components/Forms/SignupForm.module.css';
-import { useFormValidation } from 'src/hooks/useValidation/useFormValidation';
 import ActionButton from '../Buttons/ActionButton';
 import { useSignupStore } from '@shared/store/form/signup';
 import { usePostSignup } from 'src/hooks/form/useSignupMutation';
+import { useSignupValidation } from 'src/hooks/useValidation/useSignupValidation';
 
 export default function SignupForm() {
   const [visibility, setVisibility] = useState({
@@ -37,7 +37,7 @@ export default function SignupForm() {
     onPasswordConfirmationChange,
     errors,
     isValid,
-  } = useFormValidation();
+  } = useSignupValidation();
 
   const visibilityToggle = (target) => {
     setVisibility((visibility) => ({

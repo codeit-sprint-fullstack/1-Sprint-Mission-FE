@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getComment } from '@utils/api/api';
+import { QUERY_KEYS } from '../Constant/queryKeys';
 
 export const useArticleComments = ({ id, initialData }) => {
   const {
@@ -7,7 +8,7 @@ export const useArticleComments = ({ id, initialData }) => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['articleComments', id],
+    queryKey: [QUERY_KEYS.ARTICLE_COMMENTS, id],
     queryFn: async () => getComment(id),
     initialData: initialData,
     keepPreviousData: true,
