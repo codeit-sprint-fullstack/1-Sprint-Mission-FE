@@ -1,0 +1,26 @@
+.simple-login-container {
+  width: 640px;
+  height: 74px;
+  padding: 16px 23px 16px 23px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e6f2ff;
+  border-radius: 8px;
+  margin-top: 24px;
+}
+
+.sns-logo {
+  position: relative;
+  width: 42px;
+  height: 42px;
+}
+
+.image-container {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-content {
+  margin-top: 24px;
+}

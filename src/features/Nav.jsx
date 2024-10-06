@@ -37,7 +37,11 @@ export default function Nav() {
               </Link>
             </div>
           </div>
-          <ActionButton content={'로그인'} style={'login-button'} />
+          <ActionButton
+            content={'로그인'}
+            style={'login-button'}
+            path={'/login'}
+          />
         </div>
       </div>
     </nav>

@@ -1,0 +1,18 @@
+.form {
+  width: 640px;
+  height: 272px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.email > :nth-child(2),
+.password > :nth-child(2) {
+  margin-top: 16px;
+}
+
+.email > :nth-child(3),
+.password > :nth-child(3) {
+  margin-top: 8px;
+  margin-left: 16px;
+}

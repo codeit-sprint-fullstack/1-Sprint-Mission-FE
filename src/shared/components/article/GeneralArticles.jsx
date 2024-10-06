@@ -6,18 +6,20 @@ import SortDropdown from '@shared/components/dropdowns/SortDropdown';
 import SearchInput from '@shared/components/inputs/SearchInput';
 import styles from '@shared/components/article/ArticlesList.module.css';
 import { useQuery } from '@tanstack/react-query';
+import { QUERY_KEYS } from 'src/hooks/Constant/queryKeys';
 
 export default function GeneralArticles({ article }) {
   const [searchQuery, setSearchQuery] = useState('');
 
   const {
-    data: searchArticles = article,
+    data: searchArticles,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['searchArticles', searchQuery],
+    queryKey: [QUERY_KEYS.SEARCH_ARTICLES, searchQuery],
     queryFn: () =>
       getArticleList({ orderBy: 'recent', limit: 5, search: searchQuery }),
+    initialData: article,
     keepPreviousData: true,
   });
 

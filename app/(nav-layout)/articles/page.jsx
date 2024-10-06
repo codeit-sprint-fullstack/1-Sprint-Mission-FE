@@ -1,4 +1,4 @@
-import styles from '@app/articles/page.module.css';
+import styles from '@app/(nav-layout)/articles/page.module.css';
 import BestAritcles from '@shared/components/article/BestArticles';
 import GeneralArticles from '@shared/components/article/GeneralArticles';
 import ActionButton from '@shared/components/Buttons/ActionButton';

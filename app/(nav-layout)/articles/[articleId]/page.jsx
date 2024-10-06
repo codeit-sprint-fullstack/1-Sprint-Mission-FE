@@ -1,9 +1,9 @@
-import styles from '@app/articles/[articleId]/page.module.css';
+import styles from '@app/(nav-layout)/articles/[articleId]/page.module.css';
 import moment from 'moment';
 import Image from 'next/image';
 import { getArticleList, getArticle } from '@utils/api/api';
 import ActionDropdown from '@shared/components/dropdowns/ActionDropdown';
-import { ArticleComment } from '@shared/components/article/comment/ArticleComment';
+import { Comment } from '@shared/components/comment/Comment';
 import ImageActionButton from '@shared/components/Buttons/ImageActionButton';
 
 export async function generateStaticParams() {
@@ -56,10 +56,7 @@ export default async function ArticleDetail({ params }) {
           </div>
         </div>
         <div className={styles['article-content']}>{article.content}</div>
-        <ArticleComment
-          commentData={article.comment}
-          articleId={params.articleId}
-        />
+        <Comment initialData={article.comment} id={params.articleId} />
         <ImageActionButton content={'목록으로 돌아가기'} type={'return'} />
       </div>
     </>
