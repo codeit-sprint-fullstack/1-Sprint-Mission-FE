@@ -33,7 +33,7 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
         return value;
       }) &&
       tags.length > 0 &&
-      uploadedImages.length > 0; // 이미지가 최소 1개 이상 있어야 유효
+      uploadedImages.length > 0;
 
     onFormChange(isFormValid);
     onFormValuesChange({ ...values, tags, uploadedImages }); // 폼 값 및 이미지 데이터 전달

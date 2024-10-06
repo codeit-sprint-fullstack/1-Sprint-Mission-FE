@@ -19,6 +19,7 @@ export default function ItemList({
   onOptionChange,
 }) {
   const deviceType = useDeviceType();
+  const imageUrl = "https://thrift-shop.onrender.com";
   return (
     <div className={styles.sell}>
       {deviceType === "mobile" ? (
@@ -51,10 +52,11 @@ export default function ItemList({
                 <Link href={ROUTES.ITEMS_DETAIL(id)}>
                   <Image
                     className={styles.sellProduct}
-                    src={img_default}
+                    src={`${imageUrl}${images[0]}` || img_default}
                     alt={images && images.length > 0 ? name : ""}
                     width={221}
                     height={221}
+                    priority
                   />
                   <p className={styles.itemName}>{name}</p>
                   <p className={styles.itemPrice}>{`${formatPrice(

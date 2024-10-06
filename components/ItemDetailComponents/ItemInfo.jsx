@@ -16,6 +16,7 @@ import Link from "next/link";
 import { useMutation } from "@tanstack/react-query";
 
 export default function ItemInfo(product) {
+  const imageUrl = "https://thrift-shop.onrender.com";
   const item = product.product;
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -85,10 +86,11 @@ export default function ItemInfo(product) {
     <div className={styles.itemContainer}>
       <Image
         className={styles.itemImg}
-        src={defaultImage}
+        src={`${imageUrl}${item.images[0]}`}
         width={486}
         height={486}
         alt="product"
+        priority
       />
       <div className={styles.infoContainer}>
         <div className={styles.infoName}>

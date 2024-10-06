@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "./CreateBtn.module.css";
-import CreateForm from "./CreateForm.jsx"; // CreateForm 컴포넌트 import
-import { createProduct, uploadImages } from "@/utils/productApi"; // 이미지 및 상품 등록 API import
+import CreateForm from "./CreateForm.jsx";
+import { createProduct } from "@/utils/productApi";
 import { ROUTES } from "@/utils/rotues";
 import { useMutation } from "@tanstack/react-query";
 
 export default function CreateBtn() {
-  const [isFormValid, setIsFormValid] = useState(false); // 폼 유효성 상태
-  const [formValues, setFormValues] = useState({}); // 폼 값 상태
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [formValues, setFormValues] = useState({});
   const router = useRouter();
 
   const mutation = useMutation({
     mutationFn: createProduct,
     onSuccess: (newProduct) => {
-      router.push(ROUTES.ITEMS_DETAIL(newProduct.id));
+      router.push(ROUTES.ITEMS_DETAIL(newProduct.product.id));
     },
     onError: (error) => {
       console.error("Failed to create product:", error.response || error);
@@ -25,26 +25,25 @@ export default function CreateBtn() {
     if (!isFormValid) return;
 
     try {
-      let imageUrls = [];
+      const formData = new FormData();
+
       if (formValues.uploadedImages && formValues.uploadedImages.length > 0) {
-        const imageFiles = formValues.uploadedImages.map((img) => img.file);
-        imageUrls = await uploadImages(imageFiles);
+        formValues.uploadedImages.forEach((image, index) => {
+          console.log(image);
+          formData.append("images", image.file);
+        });
       }
+      formValues.tags.forEach((tag) => {
+        formData.append("tags[]", tag);
+      });
 
-      console.log(formValues);
-      console.log(imageUrls);
+      formData.append("name", formValues.productName);
+      formData.append("description", formValues.productIntro);
+      formData.append("price", formValues.productPrice);
 
-      const productData = {
-        images: imageUrls,
-        name: formValues.productName,
-        description: formValues.productIntro,
-        price: formValues.productPrice,
-        tags: formValues.tags || [],
-      };
-
-      mutation.mutate(productData);
+      mutation.mutate(formData);
     } catch (error) {
-      console.error("Error uploading images or creating product:", error);
+      console.error("Error creating product:", error);
     }
   };
 
@@ -63,8 +62,8 @@ export default function CreateBtn() {
         </button>
       </div>
       <CreateForm
-        onFormChange={setIsFormValid} // 폼 유효성 상태 전달
-        onFormValuesChange={setFormValues} // 폼 값 상태 전달
+        onFormChange={setIsFormValid}
+        onFormValuesChange={setFormValues}
       />
     </div>
   );

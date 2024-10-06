@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styles from "./EditForm.module.css";
 import { useValidateForm } from "@/hooks/useValidation";
+import ImageUpload from "./ImageUpload";
 
 function EditForm({ onFormChange, onFormValuesChange, item }) {
+  const [uploadedImages, setUploadedImages] = useState([]);
+  const Url = "https://thrift-shop.onrender.com";
   const initialFormState = {
     productName: "",
     productIntro: "",
@@ -37,8 +40,17 @@ function EditForm({ onFormChange, onFormValuesChange, item }) {
         productImage: item.images,
       });
       setTags(item.tags || []);
+      const initialUploadedImages = item.images.map((imageUrl) => ({
+        file: null,
+        previewUrl: imageUrl,
+      }));
+      setUploadedImages(initialUploadedImages);
     }
   }, [item, setValues]);
+
+  const handleImagesChange = (images) => {
+    setUploadedImages(images);
+  };
 
   useEffect(() => {
     const isFormValid =
@@ -46,11 +58,12 @@ function EditForm({ onFormChange, onFormValuesChange, item }) {
       values.productName.trim() !== "" &&
       values.productIntro.trim() !== "" &&
       String(values.productPrice).trim() !== "" &&
-      tags.length > 0;
+      tags.length > 0 &&
+      uploadedImages.length > 0;
 
     onFormChange(isFormValid);
-    onFormValuesChange({ ...values, tags });
-  }, [errors, values, tags, onFormChange, onFormValuesChange]);
+    onFormValuesChange({ ...values, tags, uploadedImages });
+  }, [errors, values, tags, uploadedImages, onFormChange, onFormValuesChange]);
 
   const handleKeyDown = (e) => {
     if (
@@ -83,23 +96,10 @@ function EditForm({ onFormChange, onFormValuesChange, item }) {
 
   return (
     <form className={styles.productForm}>
-      <label htmlFor="productImage" className={styles.labelText}>
-        상품 이미지
-      </label>
-      <input
-        type="text"
-        className={`${styles.inputStyle} ${
-          errors.productImage ? styles.inputError : ""
-        }`}
-        id="productImage"
-        name="productImage"
-        placeholder="이미지 링크를 첨부해주세요."
-        value={values.productImage}
-        onChange={handleChange}
+      <ImageUpload
+        onImagesChange={handleImagesChange}
+        initialImages={uploadedImages}
       />
-      {errors.productImage && (
-        <p className={styles.inputCheck}>{errors.productImage}</p>
-      )}
 
       <label htmlFor="productName" className={styles.labelText}>
         상품명

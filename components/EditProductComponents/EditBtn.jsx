@@ -1,3 +1,4 @@
+// EditBtn.jsx
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "./EditBtn.module.css";
@@ -7,25 +8,14 @@ import { ROUTES } from "@/utils/rotues";
 import { useMutation } from "@tanstack/react-query";
 
 export default function EditBtn({ item }) {
+  // 폼의 유효성 및 폼 값 상태 관리
   const [isFormValid, setIsFormValid] = useState(false);
   const [formValues, setFormValues] = useState({});
   const router = useRouter();
-  const token =
-    typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
 
+  // useMutation에서 mutationFn을 객체 파라미터로 받도록 설정
   const mutation = useMutation({
-    mutationFn: (id) =>
-      editProduct(
-        id,
-        {
-          name: formValues.productName,
-          description: formValues.productIntro,
-          price: formValues.productPrice,
-          tags: formValues.tags || [],
-          images: formValues.productImage,
-        },
-        token
-      ),
+    mutationFn: ({ id, formData }) => editProduct(id, formData),
     onSuccess: () => {
       router.push(ROUTES.ITEMS_DETAIL(item.id));
     },
@@ -35,8 +25,29 @@ export default function EditBtn({ item }) {
   });
 
   const handleProductPost = () => {
-    if (isFormValid) {
-      mutation.mutate(item.id);
+    if (!isFormValid) return;
+
+    try {
+      const formData = new FormData();
+
+      if (formValues.uploadedImages && formValues.uploadedImages.length > 0) {
+        formValues.uploadedImages.forEach((image) => {
+          console.log(image);
+          formData.append("images", image.file);
+        });
+      }
+
+      (formValues.tags || []).forEach((tag) => {
+        formData.append("tags[]", tag);
+      });
+
+      formData.append("name", formValues.productName);
+      formData.append("description", formValues.productIntro);
+      formData.append("price", formValues.productPrice);
+
+      mutation.mutate({ id: item.id, formData });
+    } catch (error) {
+      console.error("Error editing product:", error);
     }
   };
 

@@ -21,7 +21,9 @@ export async function fetchProducts({ pageSize, page, keyword, orderBy }) {
 
 // 제품 생성하기
 export async function createProduct(data) {
-  const response = await apiClient.post(API_ENDPOINTS.PRODUCTS.BASE, data);
+  const response = await apiClient.post(API_ENDPOINTS.PRODUCTS.BASE, data, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
   return response.data;
 }
 
@@ -49,7 +51,10 @@ export async function addFavorite(productId) {
 export async function editProduct(productId, data) {
   const response = await apiClient.patch(
     API_ENDPOINTS.PRODUCTS.DETAIL(productId),
-    data
+    data,
+    {
+      headers: { "Content-Type": "multipart/form-data" },
+    }
   );
   return response.data;
 }
@@ -61,24 +66,3 @@ export async function removeFavorite(productId) {
   );
   return response.data;
 }
-
-//이미지 등록
-export const uploadImages = async (files) => {
-  const formData = new FormData();
-  files.forEach((file) => formData.append("images", file));
-  console.log(formData);
-  try {
-    const response = await apiClient.post(
-      API_ENDPOINTS.IMAGES.UPLOAD,
-      formData,
-      {
-        headers: { "Content-Type": "multipart/form-data" },
-      }
-    );
-
-    return response.data.urls;
-  } catch (error) {
-    console.error("Error uploading images:", error);
-    throw new Error("Image upload failed");
-  }
-};
