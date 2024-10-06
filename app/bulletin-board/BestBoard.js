@@ -1,30 +1,51 @@
-"use client";
+import classNames from "classnames";
 
-import { useContext, useState, useEffect } from "react";
-
+import { getPosts } from "@/lib/api-post";
 import { BestArticle } from "./BestArticle";
-import { DeviceContext } from "../components/DeviceProvider";
 
-import { getArticles } from "@/lib/axios";
 import { BEST_ARTICLE_PAGE_SIZE } from "../constants/article";
 
-import style from "./bestboard.module.css";
+export async function BestBoard() {
+  const boardClass = classNames(
+    "w-pc-content",
+    "h-pc-best-board",
+    "tablet:w-tablet-content",
+    "tablet:h-tablet-best-board",
+    "mobile:w-mobile-content",
+    "mobile:h-mobile-best-board"
+  );
+  const boardLabelClass = classNames(
+    "h-2.4rem",
+    "text-xl",
+    "leading-32",
+    "font-bold",
+    "mobile:h-2.6rem",
+    "mobile:text-2lg",
+    "mobile:leading-26"
+  );
+  const boardListClass = classNames(
+    "flex",
+    "flex-row",
+    "mt-2.4rem",
+    "w-pc-content",
+    "h-pc-best-board-list",
+    "gap-2.4rem",
+    "overflow-hidden",
+    "tablet:w-tablet-content",
+    "tablet:h-tablet-best-board-list",
+    "gap-1.6rem",
+    "mobile:w-mobile-content",
+    "mobile:h-mobile-best-board-list",
+    "mobile:mt-1.6rem"
+  );
 
-export function BestBoard() {
-  const { device } = useContext(DeviceContext);
-  const [list, setList] = useState([]);
-
-  const boardClass = `${style.bestboard}`;
-  const boardLabelClass = `font-bold ${style.label}`;
-  const boardListClass = `flex flex-row ${style.list}`;
-
-  useEffect(() => {
-    getArticles(1, BEST_ARTICLE_PAGE_SIZE[device], "favorite").then((data) => {
+  let list = await getPosts(1, BEST_ARTICLE_PAGE_SIZE, "favorite").then(
+    (data) => {
       const newList = data.articles.map((article, index) => {
         return (
           <BestArticle
             key={index}
-            articleId={article.id}
+            postId={article.id}
             title={article.title}
             imgUrl={"../../public/images/no_image.svg"}
             nickname={article.user.nickname}
@@ -34,9 +55,10 @@ export function BestBoard() {
           />
         );
       });
-      setList(newList);
-    });
-  }, [device]);
+
+      return newList;
+    }
+  );
 
   return (
     <div className={boardClass}>

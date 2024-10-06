@@ -74,7 +74,7 @@ body {
     text-wrap: balance;
   }
 }
-
+/* 
 .Bold {
   font-weight: 700;
 }
@@ -89,7 +89,7 @@ body {
 
 .Regular {
   font-weight: 400;
-}
+} */
 
 .Text-3xl {
   font-family: "Pretendard";
@@ -167,7 +167,7 @@ body {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-
+/* 
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -184,11 +184,11 @@ body {
 
 .justify-center {
   justify-content: center;
-}
-
+} */
+/* 
 .grid {
   display: grid;
-}
+} */
 
 .margin-left4 {
   margin-left: 0.4rem;

@@ -1,29 +1,21 @@
 import { DateTime } from "luxon";
-import { LAST_TIME, DATE } from "../constants/date";
+import classNames from "classnames";
 
-import style from "./date.module.css";
+export default function Date({ dbDate }) {
+  const dateClass = classNames(
+    "flex",
+    "flex-row",
+    "font-normal",
+    "text-md",
+    "text-nowrap",
+    "leading-24",
+    "text-gray-400"
+  );
 
-export function Date({ type, dbDate }) {
-  const dateClass = `flex flex-row font-normal ${style.date}`;
-  const lastTimeClass = `flex flex-row items-center font-normal ${style["last-time"]}`;
+  const localDate = DateTime.fromISO(dbDate, { zone: "UTC" }).setZone(
+    Intl.DateTimeFormat().resolvedOptions().timeZone
+  );
+  const dateText = localDate.toFormat("yyyy. MM. dd");
 
-  let result = undefined;
-
-  if (type === DATE) {
-    const localDate = DateTime.fromISO(dbDate, { zone: "UTC" }).setZone(
-      Intl.DateTimeFormat().resolvedOptions().timeZone
-    );
-    const dateText = localDate.toFormat("yyyy. MM. dd");
-    result = <div className={dateClass}>{dateText}</div>;
-  } else {
-    const localDate = DateTime.fromISO(dbDate, { zone: "UTC" }).setZone(
-      Intl.DateTimeFormat().resolvedOptions().timeZone
-    );
-    const dateText = localDate.toRelative();
-    result = <div className={lastTimeClass}>{dateText}</div>;
-  }
-
-  return result;
+  return <div className={dateClass}>{dateText}</div>;
 }
-
-export default Date;

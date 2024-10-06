@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, createContext, useContext } from "react";
+import { useState, useEffect, useRef, createContext, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { deleteArticle } from "@/lib/axios";
 
@@ -49,7 +49,7 @@ export function DropdownMenu({ onModify, onDelete }) {
 
 export function DropDownKebabArticle({ articleId }) {
   const [isOpened, setIsOpened] = useState(false);
-
+  const dropdownRef = useRef(null);
   const router = useRouter();
 
   const toggleDropdown = () => {
@@ -66,9 +66,23 @@ export function DropDownKebabArticle({ articleId }) {
     });
   };
 
+  const handleClickOutside = (e) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      setIsOpened(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <dropdownContext.Provider value={{ isOpened, setIsOpened, toggleDropdown }}>
-      <div className={style["dropdown-kebab-article"]}>
+      <div className={style["dropdown-kebab-article"]} ref={dropdownRef}>
         <button
           className={style["dropdown-kebab-article-toggle"]}
           onClick={toggleDropdown}

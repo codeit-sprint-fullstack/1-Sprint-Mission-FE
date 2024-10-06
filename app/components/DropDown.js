@@ -6,28 +6,38 @@ import React, {
   useContext,
   cloneElement,
 } from "react";
-
-import { DeviceContext } from "../components/DeviceProvider";
-
-import { MOBILE } from "../constants/device";
+import classNames from "classnames";
 
 import style from "./dropdown.module.css";
+
+const DROPDOWN_ITEM_HEIGHT = 4.2; // 4.2rem
 
 const dropdownContext = createContext();
 
 export function DropdownMenu({ children }) {
-  const { device } = useContext(DeviceContext);
   const { isOpened } = useContext(dropdownContext);
 
-  let dropdownMenuClass = `flex flex-col font-normal ${style["dropdown-menu"]}`;
-
-  if (device === MOBILE) {
-    dropdownMenuClass += ` ${style["mobile-menu"]}`;
-  }
+  let dropdownMenuClass = classNames(
+    "flex",
+    "flex-col",
+    "justify-between",
+    "relative",
+    "bg-white",
+    "box-border",
+    "border-1",
+    "border-gray-200",
+    "rounded-xl",
+    "overflow-hidden",
+    "z-30",
+    "w-dropdown",
+    "top-0.8rem",
+    "mobile:top-mobile-dropdown-menu-top",
+    "mobile:left-mobile-dropdown-menu-left"
+  );
 
   const arrChild = React.Children.toArray(children);
   const itemCount = arrChild.length;
-  const meneHeight = itemCount * 4.2 + "rem";
+  const meneHeight = itemCount * DROPDOWN_ITEM_HEIGHT + "rem";
   const menuHeightStyle = {
     height: meneHeight,
   };
@@ -46,11 +56,29 @@ export function DropdownMenu({ children }) {
 export function DropdownItem({ onClick, children, isLast }) {
   const { setIsOpened } = useContext(dropdownContext);
 
-  let dropdownItemClass = `${style["dropdown-item"]}`;
+  let dropdownItemClass = classNames(
+    "box-border",
+    "place-content-center",
+    "text-center",
+    "font-normal",
+    "text-lg",
+    "text-gray-800",
+    "leading-26",
+    "cursor-pointer"
+  );
 
-  if (isLast) {
-    dropdownItemClass += ` ${style["last-item"]}`;
+  if (!isLast) {
+    dropdownItemClass = classNames(
+      dropdownItemClass,
+      "border-b-1",
+      "border-b-gray-200"
+    );
   }
+
+  const itemHeight = DROPDOWN_ITEM_HEIGHT + "rem";
+  const itemHeightStyle = {
+    height: itemHeight,
+  };
 
   const onItemClick = () => {
     setIsOpened(false);
@@ -58,29 +86,55 @@ export function DropdownItem({ onClick, children, isLast }) {
   };
 
   return (
-    <p className={dropdownItemClass} onClick={onItemClick}>
+    <p
+      className={dropdownItemClass}
+      style={itemHeightStyle}
+      onClick={onItemClick}
+    >
       {children}
     </p>
   );
 }
 
 export function DropdownToggle({ children }) {
-  const { device } = useContext(DeviceContext);
   const { toggleDropdown } = useContext(dropdownContext);
 
-  const dropdownClass = `font-normal ${style["dropdown-toggle"]}`;
+  const dropdownToggleClass = classNames(
+    "box-border",
+    "px-2rem",
+    "border-1",
+    "border-gray-200",
+    "rounded-xl",
+    "w-dropdown",
+    "h-dropdown",
+    "bg-white",
+    "text-start",
+    "font-normal",
+    "text-lg",
+    "text-gray-800",
+    "leading-26",
+    "relative",
+    "mobile:text-transparent",
+    "mobile:border-none",
+    "mobile:w-mobile-dropdown-toggle",
+    style["dropdown-toggle"]
+  );
 
   return (
     <>
-      <button className={dropdownClass} onClick={toggleDropdown}>
-        {device === MOBILE ? "" : children}
+      <button className={dropdownToggleClass} onClick={toggleDropdown}>
+        {children}
       </button>
     </>
   );
 }
 
-export function Dropdown({ dropdwonClass, children }) {
+export function Dropdown({ dropdwonClass, minimise, children }) {
   const [isOpened, setIsOpened] = useState(false);
+
+  if (minimise) {
+    dropdwonClass = classNames("mobile:w-4.2rem");
+  }
 
   const toggleDropdown = () => {
     setIsOpened((prevIsOpened) => !prevIsOpened);

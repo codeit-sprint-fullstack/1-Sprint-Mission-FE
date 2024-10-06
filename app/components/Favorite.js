@@ -1,70 +1,72 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import classNames from "classnames";
+import { FAVORITE_CLASSES } from "../constants/Favorite";
+
 import {
-  BEST_ARTICLE,
-  ARTICLE_PREVIEW,
-  ARTICLE_DETAIL,
-} from "../constants/Favorite";
+  addFavoriteProduct,
+  removeFavoriteProduct,
+} from "@/lib/api-codeit-product";
+import { limitTextCount } from "@/lib/text";
 
-import style from "./favorite.module.css";
+const SRCS = ["/icons/ic_heart_empty_small.svg", "/icons/ic_heart_full.svg"];
 
-export function Favorite({ type, myFavorite, favoriteCount }) {
-  let favorite = undefined;
-  let heart = `${style["heart-empty"]}`;
+export default function Favorite({
+  type,
+  myFavorite = false,
+  favoriteCount = 0,
+  objectId,
+}) {
+  const [isFavorite, setIsFavorite] = useState(myFavorite);
+  const [favoriteCountText, setFavoriteCountText] = useState(
+    limitTextCount(favoriteCount)
+  );
+  const favoriteClass = classNames(
+    "flex",
+    "flex-row",
+    "items-center",
+    "border-box",
+    FAVORITE_CLASSES[type].favorite
+  );
+  const favoriteCountClass = classNames(
+    "flex",
+    "flex-row",
+    "items-center",
+    "font-normal",
+    "text-gray-500",
+    FAVORITE_CLASSES[type].count
+  );
+  const heartImgFrameClass = classNames(
+    "relative",
+    FAVORITE_CLASSES[type].heart
+  );
 
-  if (myFavorite) {
-    heart = `${style["heart-full"]}`;
-  }
+  console.log("Favorite myFavorite test : ", myFavorite);
+  console.log("Favorite isFavorite test : ", isFavorite);
+  console.log("Favorite number(isFavorite) test : ", Number(isFavorite));
 
-  const bestPostFavoriteClass = `flex-row items-center ${style["best-post-favorite"]}`;
-  let bestPostFavoriteImgClass = heart + ` ${style["best-post-favorite-img"]}`;
-  const bestPostFavoriteCountClass = `flex-row items-center font-normal text-gray-500 ${style["best-post-favorite-count"]}`;
+  // 임시로 함수 배열 형식으로 favorite 처리. 컴포넌트를 나누거나, 다른 방식으로 고려 중
+  const TOOGLE_FAVORITE = [[], [addFavoriteProduct, removeFavoriteProduct]];
 
-  const postPreviewFavoriteClass = `flex-row items-center ${style["post-preview-favorite"]}`;
-  let postPreviewFavoriteImgClass =
-    heart + ` ${style["post-preview-favorite-img"]}`;
-  const postPreviewFavoriteCountClass = `flex-row items-center font-normal text-gray-500 ${style["post-preview-favorite-count"]}`;
+  const handleClickHeart = () => {
+    TOOGLE_FAVORITE[Math.floor(Number(type) / 3)]
+      [Number(isFavorite)](objectId)
+      .then((data) => {
+        setIsFavorite(data.isFavorite);
+        setFavoriteCountText(limitTextCount(data.favoriteCount));
+      });
+  };
 
-  const postDetailFavoriteClass = `flex-row items-center ${style["post-detail-favorite"]}`;
-  let postDetailFavoriteImgClass =
-    heart + ` ${style["post-detail-favorite-img"]}`;
-  const postDetailFavoriteCountClass = `flex-row items-center font-medium text-gray-500 ${style["post-detail-favorite-count"]}`;
-
-  let favoriteCountText = favoriteCount < 9999 ? favoriteCount : "9999+";
-
-  switch (type) {
-    case BEST_ARTICLE: {
-      favorite = (
-        <div className={bestPostFavoriteClass}>
-          <img className={bestPostFavoriteImgClass} />
-          <div className={bestPostFavoriteCountClass}>{favoriteCountText}</div>
+  return (
+    <div className={favoriteClass}>
+      <button onClick={handleClickHeart}>
+        <div className={heartImgFrameClass}>
+          <Image src={SRCS[Number(isFavorite)]} fill alt="좋아요 마크" />
         </div>
-      );
-      break;
-    }
-    case ARTICLE_PREVIEW: {
-      favorite = (
-        <div className={postPreviewFavoriteClass}>
-          <img className={postPreviewFavoriteImgClass} />
-          <div className={postPreviewFavoriteCountClass}>
-            {favoriteCountText}
-          </div>
-        </div>
-      );
-      break;
-    }
-    case ARTICLE_DETAIL: {
-      favorite = (
-        <div className={postDetailFavoriteClass}>
-          <img className={postDetailFavoriteImgClass} />
-          <div className={postDetailFavoriteCountClass}>
-            {favoriteCountText}
-          </div>
-        </div>
-      );
-      break;
-    }
-  }
-
-  return favorite;
+      </button>
+      <div className={favoriteCountClass}>{favoriteCountText}</div>
+    </div>
+  );
 }
-
-export default Favorite;

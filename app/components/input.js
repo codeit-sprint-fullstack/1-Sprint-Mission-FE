@@ -17,7 +17,7 @@ export function Input({
 
   useEffect(() => {
     customInput.setValue(value);
-  }, [value]);
+  }, [value, customInput]);
 
   useEffect(() => {
     if (!customInput.isValid) {
@@ -29,7 +29,7 @@ export function Input({
     if (getValid) {
       getValid(customInput.isValid);
     }
-  }, [customInput.isValid]);
+  }, [customInput.isValid, getValid]);
 
   const handleChangeInput = (e) => {
     if (onChange) {

@@ -1,26 +1,45 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import classNames from "classnames";
 
-import { createArticleComment } from "@/lib/axios";
-import TextArea from "./TextArea";
+import TextArea from "../../components/TextArea";
 import {
   MIN_COMMENT_LENGTH,
   WARN_MIN_COMMENT_LENGTH,
   MAX_COMMENT_LENGTH,
   WARN_MAX_COMMENT_LENGTH,
   VALID_VALUE,
-} from "../constants/comment";
+} from "../../constants/comment";
 
-import style from "./comment-maker.module.css";
-
-export function CommentMaker({ articleId, registComment }) {
+export default function PostCommentMaker({ registComment }) {
   const [comment, setComment] = useState("");
   const [commentValid, setCommentValid] = useState(undefined);
   const [registBtnDisable, setRegistBtnDisable] = useState(true);
 
-  const commentMakerLabelClass = `font-semibold ${style["comment-maker-label"]}`;
-  const commentBottomBarClass = `flex-row justify-end ${style["comment-bottom-bar"]}`;
+  const commentMakerClass = classNames(
+    "w-pc-content",
+    "tablet:w-tablet-content",
+    "mobile:w-mobile-content"
+  );
+  const commentTextAreaFrameClass = classNames(
+    "w-full",
+    "h-comment-text-area-frame",
+    "mt-comment-text-area-frame"
+  );
+  const commentMakerLabelClass = classNames(
+    "font-semibold",
+    "text-lg",
+    "leading-26"
+  );
+  const commentBottomBarClass = classNames(
+    "flex",
+    "flex-row",
+    "justify-end",
+    "w-full",
+    "h-4.2rem",
+    "mt-1.6rem"
+  );
 
   const handleRegistComment = () => {
     if (commentValid !== VALID_VALUE) {
@@ -29,11 +48,11 @@ export function CommentMaker({ articleId, registComment }) {
 
     setRegistBtnDisable(true);
 
-    createArticleComment(articleId, comment).then((data) => {
+    try {
+      registComment(comment);
       setComment("");
       setCommentValid(undefined);
-      registComment();
-    });
+    } catch (err) {}
   };
 
   const validtateComment = (comment) => {
@@ -78,9 +97,9 @@ export function CommentMaker({ articleId, registComment }) {
   };
 
   return (
-    <div className={style["comment-maker"]}>
+    <div className={commentMakerClass}>
       <div className={commentMakerLabelClass}>댓글달기</div>
-      <div className={style["comment-text-area-frame"]}>
+      <div className={commentTextAreaFrameClass}>
         <TextArea
           onChange={handleChangeComment}
           placeholder={"댓글을 입력해주세요."}
@@ -92,7 +111,7 @@ export function CommentMaker({ articleId, registComment }) {
       {getCommentWarn()}
       <div className={commentBottomBarClass}>
         <button
-          className={style["btn-regist"]}
+          className="btn-comment-regist"
           onClick={handleRegistComment}
           disabled={registBtnDisable}
         />
@@ -100,5 +119,3 @@ export function CommentMaker({ articleId, registComment }) {
     </div>
   );
 }
-
-export default CommentMaker;

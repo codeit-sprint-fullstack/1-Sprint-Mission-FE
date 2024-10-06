@@ -1,18 +1,14 @@
-"use client";
+import classNames from "classnames";
 
-import { DeviceProvider } from "../components/DeviceProvider";
 import BestBoard from "./BestBoard";
 import Board from "./Board";
 
-import style from "./bulletin-board.module.css";
-
 export function BulletinBoard() {
+  const mainClass = classNames("content", "main");
   return (
-    <div className={style.main}>
-      <DeviceProvider>
-        <BestBoard />
-        <Board />
-      </DeviceProvider>
+    <div className={mainClass}>
+      {/* <BestBoard /> */}
+      {/* <Board /> */}
     </div>
   );
 }
