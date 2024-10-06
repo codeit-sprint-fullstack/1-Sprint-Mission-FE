@@ -1,40 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## **기본 요구사항**
 
-## Getting Started
+**공통**
 
-First, run the development server:
+- [x] Github에 위클리 미션 PR을 만들어 주세요.
+- [x] React.js 혹은 Next.js를 사용해 진행합니다.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### **프론트엔드 구현 요구사항**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**중고마켓 페이지**
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- [ ] 디폴트 이미지로 처리한 이미지를 실제 Product Get API에서 가져온 이미지로 변경해 주세요.
+- [ ] 좋아요 순 정렬 기능을 붙여주세요.
+- [ ] 베스트 상품 기능을 추가해 주세요. 베스트 상품은 가장 많이 좋아요를 받은 순으로 PC 기준 최대 4개까지 조회 가능합니다.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+**상품 등록하기 페이지**
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- [ ] 상품 이미지 등록 기능을 구현합니다. 파일을 선택해 이미지를 업로드하고, preview를 볼 수 있도록 구현합니다. 이미지는 최대 3개까지만 등록 가능하도록 구현해 주세요.
+- [ ] 동일하게 상품 이미지 수정 기능도 추가합니다.
+- [ ] 상품 등록 성공 시 중고마켓 페이지로 이동해 주세요.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## **심화 요구사항**
 
-## Learn More
+**상태코드 (웹 API 관련)**
 
-To learn more about Next.js, take a look at the following resources:
+- [ ] 프론트엔드에서는 서버 응답의 상태코드에 따라 적절한 사용자 피드백을 제공합니다.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**인증**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [ ] 토큰 기반 방식을 사용할 경우, 만료된 액세스 토큰을 새로 발급하는 리프레시 토큰 발급 기능을 구현합니다.(jwt sliding session 적용)
 
-## Deploy on Vercel
+**OAuth를 활용한 인증**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [ ] 구글 OAuth를 사용하여 회원가입 및 로그인 기능을 구현합니다.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**프로젝트 구조 변경**
+
+- [ ] 프로젝트의 구조와 복잡성을 관리하기 위해 MVC 패턴이나 Layered Architecture와 같은 설계 방식을 적용해 보세요.
+
+**(생략 가능) 자유게시판 게시물 등록**
+
+- [ ] 프론트엔드를 Next.js로 Migration 했을 경우에만 진행해 주세요.
+  - [ ] 게시물 등록 시 이미지 등록 기능을 구현합니다. 파일을 선택해 이미지를 업로드하고, preview를 볼 수 있도록 구현합니다. 이미지는 최대 3개까지만 등록 가능하도록 구현해 주세요.
+- [ ] 게시물 등록 시 필요한 필드(제목, 내용 등)의 유효성 검증하는 미들웨어를 구현합니다.
+- [ ] `multer` 미들웨어를 사용하여 이미지 업로드 API를 구현해 주세요.
+  - [ ] 업로드된 이미지는 서버에 저장하고, 해당 이미지의 경로를 response 객체에 포함해 반환합니다.
