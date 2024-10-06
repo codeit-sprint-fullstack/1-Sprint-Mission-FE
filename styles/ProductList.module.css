@@ -1,0 +1,63 @@
+.productListNav {
+  margin: 26px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1200px;
+  height: 42px;
+}
+
+.productListTitle {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #1f2937;
+}
+
+.productListUtilContainer {
+  display: flex;
+  gap: 12px;
+}
+
+.productListSearch {
+  width: 325px;
+  height: 42px;
+  border-radius: 12px;
+  border: none;
+  background: #f3f4f6;
+  padding: 9px 16px;
+}
+
+.productListRegistBtn {
+  width: 133px;
+  height: 42px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--brand-blue);
+  text-align: center;
+  padding-top: 8px;
+  font-weight: 500;
+  line-height: 26px;
+  color: #f3f4f6;
+  text-decoration: none;
+}
+
+.productListDropdown {
+  width: 130px;
+  height: 42px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 9px 20px 0;
+  font-weight: 400;
+  line-height: 26px;
+  color: #1f2937;
+}
+
+.productList {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  column-gap: 24px;
+  row-gap: 40px;
+  margin: 24px auto 0;
+}

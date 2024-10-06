@@ -2,7 +2,7 @@
   width: 1200px;
   margin: 24px auto 0;
   background-color: #fcfcfc;
-  height: 100px;
+  height: fit-content;
   border-bottom: 1px solid #e5e7eb;
   position: relative;
 }
@@ -53,6 +53,7 @@
   color: #6b7280;
   background-color: white;
   cursor: pointer;
+  z-index: 2;
 }
 
 .comment_title_dropdown_btn {
@@ -65,7 +66,7 @@
 
 .comment_information {
   display: flex;
-  position: absolute;
+  margin-top: 24px;
   bottom: 12px;
   gap: 8px;
 }

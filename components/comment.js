@@ -1,7 +1,8 @@
 import styles from "@/styles/Comment.module.css";
 import { useState } from "react";
 import Image from "next/image";
-import axios from "@/lib/axios";
+import { deleteProductComment } from "@/lib/api";
+import { useMutation } from "@tanstack/react-query";
 
 export default function comment({ comment }) {
   const [isOpen, setIsOpen] = useState();
@@ -10,11 +11,16 @@ export default function comment({ comment }) {
     setIsOpen(!isOpen);
   };
 
-  async function deleteComment(targetId) {
-    const res = await axios.delete(`/comment/${targetId}`);
-    alert("삭제되었습니다.");
-    window.location.reload();
-  }
+  const handleCommentDelete = (commentId) => {
+    deleteMutation.mutate(commentId);
+  };
+
+  const deleteMutation = useMutation({
+    mutationFn: (commentId) => deleteProductComment(commentId),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["comments", id]);
+    },
+  });
 
   return (
     <>
@@ -37,7 +43,7 @@ export default function comment({ comment }) {
                 </button>
                 <button
                   className={styles.comment_title_dropdown_box_delete}
-                  onClick={() => deleteComment(comment.id)}
+                  onClick={() => handleCommentDelete(comment.id)}
                 >
                   삭제하기
                 </button>
@@ -55,7 +61,7 @@ export default function comment({ comment }) {
           />
           <div className={styles.comment_information_flex}>
             <span className={styles.comment_information_nickname}>
-              똑똑한판다
+              {comment.writer.nickname}
             </span>
             <span className={styles.comment_information_time}>1시간 전</span>
           </div>

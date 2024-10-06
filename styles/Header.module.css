@@ -3,7 +3,7 @@
   height: 70px;
   border-bottom: solid 1px #dfdfdf;
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   background-color: white;
   top: 0;
 }
@@ -27,10 +27,23 @@
 
 .link {
   display: inline-block;
-  width: 78px;
+  width: 109px;
   font-weight: 700;
   line-height: 21.48px;
   text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: #4b5563;
+}
+
+.active_link {
+  display: inline-block;
+  width: 109px;
+  font-weight: 700;
+  line-height: 21.48px;
+  text-align: center;
+  color: var(--brand-blue);
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -49,8 +62,23 @@
   text-align: center;
   padding: 11.5px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .logo {
   cursor: pointer;
+}
+
+.headerUserInfoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.headerUserNickname {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  color: #4b5563;
 }
