@@ -169,7 +169,7 @@ const ProductDetailPage = () => {
               className={styles.profileIcon}
             />
             <span className={styles.ownerId}>
-              {productData?.ownerId}번 바오
+              {productData?.userId}번 바오
             </span>
             <span className={styles.createdAt}>
               {new Date(productData?.createdAt).toLocaleDateString()}
@@ -234,3 +234,4 @@ const ProductDetailPage = () => {
 };
 
 export default ProductDetailPage;
+
