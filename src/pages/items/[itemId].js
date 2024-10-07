@@ -67,8 +67,8 @@ const ProductDetailPage = () => {
   const loadComments = async () => {
     try {
       const data = await getComments(itemId);
+      console.log("불러온 댓글 데이터:", data); // 서버에서 댓글 데이터를 받아온 직후에 로그
       setComments(data.list || []);
-      console.log("업데이트된 댓글 상태:", comments); // 상태 업데이트 후 확인
     } catch (error) {
       console.error("댓글 목록 불러오기 실패:", error);
     }
@@ -76,9 +76,15 @@ const ProductDetailPage = () => {
 
   useEffect(() => {
     if (itemId) {
-      loadComments();
+      loadComments(); // 서버에서 댓글 데이터를 불러옴
+      console.log("loadComments 호출됨, itemId:", itemId); // useEffect가 실행될 때마다 로그
     }
-  }, [itemId]);
+  }, [itemId]); // itemId가 변경될 때마다 실행
+
+  // 댓글 상태가 업데이트될 때마다 로그 출력하는 useEffect
+  useEffect(() => {
+    console.log("댓글 상태가 업데이트되었습니다:", comments); // comments 상태가 변경될 때마다 로그 출력
+  }, [comments]); // comments 상태가 변경될 때마다 실행
 
   const likeMutation = useMutation({
     mutationFn: isLiked
