@@ -64,7 +64,7 @@ function BestArticles({ item }) {
 }
 
 function ArticleItems({ item }) {
-  const { owner, title, createAt, likeCount, image } = item;
+  const { owner, title, createAt, favoriteCount, image } = item;
   const articleImage = image ? image : imgDefault;
   const date = dateFormatYYYYMMDD(createAt);
 
@@ -102,7 +102,7 @@ function ArticleItems({ item }) {
               src={ic_heart}
               alt="좋아요이미지"
             />
-            <span>{likeCount}</span>
+            <span>{favoriteCount}</span>
           </div>
         </div>
       </li>
@@ -115,8 +115,8 @@ export async function getStaticProps() {
   const defaultParams = {
     orderBy: "recent",
     keyword: "",
-    pageSize: 5,
-    page: 1,
+    // pageSize: 5,
+    // page: 1,
   };
 
   await queryClient.prefetchQuery({
@@ -151,9 +151,26 @@ function Articles({ defaultParams }) {
   const [articles, setArticles] = useState([]);
   const [keyword, setKeyword] = useState("");
 
-  const { data: articlesData, isError } = useQuery({
+  // const { data: articlesData, isError } = useQuery({
+  //   queryKey: ["articles", params],
+  //   queryFn: () => api.getArticles(params),
+  // });
+
+  //무한스크롤 쿼리를 통한 react-query관리
+  const {
+    data: articlesData,
+    fetchStatus, //로딩 에니메이션용
+    isError,
+    fetchNextPage,
+  } = useInfiniteQuery({
     queryKey: ["articles", params],
-    queryFn: () => api.getArticles(params),
+    queryFn: ({ pageParam }) => api.getArticles(params, pageParam),
+    getNextPageParam: (lastPage) =>
+      lastPage.nextCursor ? lastPage.nextCursor : undefined,
+    // initialData: {
+    //   pages: [comments], // comments 배열을 pages로 감싸서 전달
+    //   pageParams: [comments.nextCursor], // pageParams 기본값 설정
+    // },
   });
 
   if (isError) {
@@ -191,19 +208,20 @@ function Articles({ defaultParams }) {
     handleChangeParams("orderBy", value);
   };
 
-  useEffect(() => {
-    setArticles((prev) => [...prev, ...(articlesData?.list || [])]);
-  }, [articlesData]);
+  // useEffect(() => {
+  //   setArticles((prev) => [...prev, ...(articlesData?.list || [])]);
+  // }, [articlesData]);
 
   useEffect(() => {
     if (globalDivRef.current) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setParams((prev) => ({
-              ...prev,
-              page: prev.page + 1,
-            }));
+            // setParams((prev) => ({
+            //   ...prev,
+            //   page: prev.page + 1,
+            // }));
+            fetchNextPage();
           }
         });
       });
@@ -254,11 +272,17 @@ function Articles({ defaultParams }) {
           />
         </div>
         <ul className={styles.article_ul}>
-          {articles.map((item) => (
+          {/* {articlesData?.list.map((item) => (
             <ArticleItems key={item.id} item={item} />
-          ))}
+          ))} */}
+          {articlesData?.pages &&
+            articlesData.pages.map((items) =>
+              items.list.map((item) => (
+                <ArticleItems key={item.id} item={item} />
+              ))
+            )}
+          {fetchStatus === "fetching" && <div className={styles.loader}></div>}
         </ul>
-        <button onClick={moreData}>더불러오기</button>
       </div>
     </main>
   );
