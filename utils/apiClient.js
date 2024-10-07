@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const baseUrl = "https://thrift-shop.onrender.com";
-
 const apiClient = axios.create({
   baseURL: baseUrl,
   headers: {

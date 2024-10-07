@@ -30,21 +30,26 @@ export default function EditBtn({ item }) {
     try {
       const formData = new FormData();
 
-      if (formValues.uploadedImages && formValues.uploadedImages.length > 0) {
-        formValues.uploadedImages.forEach((image) => {
-          console.log(image);
+      // 모든 이미지를 하나의 필드에 추가
+      (formValues.uploadedImages || []).forEach((image) => {
+        if (!image.isExisting) {
           formData.append("images", image.file);
-        });
-      }
+        } else {
+          formData.append("images", image.previewUrl);
+        }
+      });
 
+      // 태그 추가
       (formValues.tags || []).forEach((tag) => {
         formData.append("tags[]", tag);
       });
 
+      // 상품 정보 추가
       formData.append("name", formValues.productName);
       formData.append("description", formValues.productIntro);
       formData.append("price", formValues.productPrice);
 
+      // 서버로 formData 전송
       mutation.mutate({ id: item.id, formData });
     } catch (error) {
       console.error("Error editing product:", error);

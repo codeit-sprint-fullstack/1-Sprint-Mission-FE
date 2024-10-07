@@ -57,6 +57,23 @@
   }
 }
 
+.emptyContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 48px;
+  .emptyImg {
+    width: 196px;
+    height: 196px;
+  }
+  .emptyText {
+    font-size: 16px;
+    font-weight: 400;
+    color: #9ca3af;
+  }
+}
+
 @media (max-width: 1199px) {
   .container {
     width: 696px;

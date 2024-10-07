@@ -5,7 +5,6 @@ import ImageUpload from "./ImageUpload";
 
 function EditForm({ onFormChange, onFormValuesChange, item }) {
   const [uploadedImages, setUploadedImages] = useState([]);
-  const Url = "https://thrift-shop.onrender.com";
   const initialFormState = {
     productName: "",
     productIntro: "",

@@ -52,7 +52,7 @@ export default function ItemList({
                 <Link href={ROUTES.ITEMS_DETAIL(id)}>
                   <Image
                     className={styles.sellProduct}
-                    src={`${imageUrl}${images[0]}` || img_default}
+                    src={images[0] ? `${imageUrl}${images[0]}` : img_default}
                     alt={images && images.length > 0 ? name : ""}
                     width={221}
                     height={221}

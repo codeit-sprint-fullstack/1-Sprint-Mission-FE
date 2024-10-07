@@ -7,7 +7,6 @@ const ImageUpload = ({ onImagesChange, initialImages = [] }) => {
   const [images, setImages] = useState([]);
   const fileInputRef = useRef(null);
 
-  // `onImagesChange` 함수를 useCallback으로 감싸서 참조가 고정되도록 설정
   const handleImagesChange = useCallback(
     (updatedImages) => {
       onImagesChange(updatedImages);
@@ -16,20 +15,18 @@ const ImageUpload = ({ onImagesChange, initialImages = [] }) => {
   );
 
   useEffect(() => {
-    // 초기 이미지 설정
     if (initialImages.length > 0 && images.length === 0) {
       const formattedImages = initialImages.map((image) => ({
-        file: null, // 기존 이미지이므로 File 객체는 null로 설정
-        previewUrl:
-          typeof image.previewUrl === "object" && image.previewUrl.url
-            ? image.previewUrl.url // previewUrl 객체 내부의 url 값 사용
-            : image.previewUrl, // previewUrl이 이미 문자열이라면 그대로 사용
+        file: null,
+        previewUrl: image.previewUrl,
+        isExisting: true,
+        isDeleted: false,
       }));
 
       setImages(formattedImages);
       handleImagesChange(formattedImages);
     }
-  }, [initialImages, images.length, handleImagesChange]); // images.length를 의존성에 추가하여 상태 초기화 제어
+  }, [initialImages, images.length, handleImagesChange]);
 
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
@@ -41,6 +38,8 @@ const ImageUpload = ({ onImagesChange, initialImages = [] }) => {
     const newImages = files.map((file) => ({
       file,
       previewUrl: URL.createObjectURL(file),
+      isExisting: false,
+      isDeleted: false,
     }));
 
     const updatedImages = [...images, ...newImages].slice(0, 3);
@@ -49,9 +48,16 @@ const ImageUpload = ({ onImagesChange, initialImages = [] }) => {
   };
 
   const handleImageDelete = (index) => {
-    const updatedImages = images.filter((_, i) => i !== index);
-    setImages(updatedImages);
-    handleImagesChange(updatedImages);
+    const updatedImages = images.map((img, i) => {
+      if (i === index && img.isExisting) {
+        return { ...img, isDeleted: true };
+      }
+      return img;
+    });
+
+    const filteredImages = updatedImages.filter((img) => !img.isDeleted);
+    setImages(filteredImages);
+    handleImagesChange(filteredImages);
   };
 
   return (
