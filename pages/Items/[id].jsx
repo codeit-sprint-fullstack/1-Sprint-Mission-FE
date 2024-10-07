@@ -235,6 +235,7 @@ function DetailProduct({ product, comments, id }) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            console.log("확인");
             fetchNextPage();
           }
         });

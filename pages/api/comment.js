@@ -1,19 +1,20 @@
 import instance from "./httpClient.js";
 
-export async function getArticleComments(id, cursor = "", limit = 5) {
+export async function getArticleComments(id, cursor) {
   const res = await instance.get(`comments/${id}/article`, {
     params: {
-      limit,
+      limit: 5,
       cursor,
     },
   });
   return res.data;
 }
 
-export async function getProductComments(id, limit = 5) {
+export async function getProductComments(id, cursor) {
   const res = await instance.get(`comments/${id}/product`, {
     params: {
-      limit,
+      limit: 5,
+      cursor,
     },
   });
   return res.data;
