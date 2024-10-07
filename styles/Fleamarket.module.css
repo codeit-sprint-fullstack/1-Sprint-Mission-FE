@@ -1,11 +1,43 @@
 .headerLayout {
   display: flex;
   justify-content: space-between;
+  margin: 40px 0 24px;
+}
+
+.headerTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
 }
 
 .headerMenu {
   display: flex;
   gap: 12px;
+}
+
+.submit {
+  position: relative;
+  margin-right: auto;
+  min-width: 325px;
+  flex-grow: 0.98;
+}
+
+.icon {
+  position: absolute;
+  top: 9px;
+  left: 16px;
+}
+
+.searchInput {
+  width: 100%;
+  height: 42px;
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 12px;
+  padding-left: 44px;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+  margin-right: 100px;
 }
 
 .postButton {
@@ -48,6 +80,10 @@
   grid-column-gap: 24px;
   grid-row-gap: 40px;
   height: 740px;
+}
+
+.productInfo {
+  margin-top: 16px;
 }
 
 .title {

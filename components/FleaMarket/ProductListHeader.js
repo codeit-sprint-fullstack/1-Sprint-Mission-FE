@@ -25,9 +25,9 @@ export default function ProductListHeader({ keyword, setOrderBy }) {
       <div className={styles.headerLayout}>
         <div className={styles.listHeader}>
           {keyword ? (
-            <span className={styles.title}>검색 결과</span>
+            <span className={styles.headerTitle}>검색 결과</span>
           ) : (
-            <span className={styles.title}>판매 중인 상품</span>
+            <span className={styles.headerTitle}>판매 중인 상품</span>
           )}
         </div>
         <div className={styles.headerMenu}>

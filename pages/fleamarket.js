@@ -54,8 +54,6 @@ export default function FleaMarket() {
     return <div>Error: {error.message}</div>;
   }
 
-  console.log(articles);
-
   return (
     <>
       <div className={styles.body}>
