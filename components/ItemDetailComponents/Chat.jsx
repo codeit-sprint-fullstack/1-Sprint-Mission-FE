@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useMemo } from "react";
 import styles from "./Chat.module.css";
 import Image from "next/image";
 import profile from "@/images/ic_profile.png";
@@ -9,36 +9,46 @@ import { getUserProfile } from "@/utils/authApi";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import inquiry_empty from "@/images/img_inquiry_empty.png";
 
-export default function Chat({ comments, onEdit, setComments }) {
+export default function Chat({ comments, onEdit }) {
+  console.log(comments);
   const [isOpen, setIsOpen] = useState(null);
-  const [authStatuses, setAuthStatuses] = useState({});
   const queryClient = useQueryClient();
 
-  // 유저 프로필 정보 가져오기
   const { data: userProfile } = useQuery({
     queryKey: ["userProfile"],
     queryFn: getUserProfile,
-    enabled: !!localStorage.getItem("accessToken"), // accessToken이 존재할 때만 쿼리 실행
+    enabled: !!localStorage.getItem("accessToken"),
     refetchOnWindowFocus: false,
   });
 
-  // 댓글 삭제 mutation 설정
   const deleteCommentMutation = useMutation({
     mutationFn: (id) => deleteComment(id),
     onMutate: async (id) => {
       await queryClient.cancelQueries(["comments"]);
+
       const previousComments = queryClient.getQueryData(["comments"]);
 
-      setComments((prevComments) =>
-        prevComments.filter((comment) => comment.id !== id)
-      );
+      if (!previousComments) {
+        return { previousComments: undefined };
+      }
+
+      queryClient.setQueryData(["comments"], (oldData) => {
+        if (!oldData) return oldData;
+        return {
+          ...oldData,
+          pages: oldData.pages.map((page) => ({
+            ...page,
+            list: page.list.filter((comment) => comment.id !== id),
+          })),
+        };
+      });
 
       return { previousComments };
     },
     onError: (error, id, context) => {
       console.error("Error deleting comment:", error);
       if (context?.previousComments) {
-        setComments(context.previousComments);
+        queryClient.setQueryData(["comments"], context.previousComments);
       }
     },
     onSettled: () => {
@@ -46,29 +56,25 @@ export default function Chat({ comments, onEdit, setComments }) {
     },
   });
 
-  // 유저가 댓글의 작성자인지 여부를 설정
-  useEffect(() => {
-    if (userProfile && comments.length > 0) {
-      const statuses = comments.reduce((acc, comment) => {
+  const authStatuses = useMemo(() => {
+    if (userProfile) {
+      return comments.reduce((acc, comment) => {
         acc[comment.id] = userProfile.id === comment.writer.id;
         return acc;
       }, {});
-      setAuthStatuses(statuses);
     }
+    return {};
   }, [userProfile, comments]);
 
-  // 드롭다운 토글 핸들러
   const toggleDropdown = (id) => {
     setIsOpen(isOpen === id ? null : id);
   };
 
-  // 수정 핸들러
   const handleEdit = (comment) => {
     setIsOpen(null);
     onEdit(comment);
   };
 
-  // 삭제 핸들러
   const handleDelete = (id) => {
     deleteCommentMutation.mutate(id);
   };

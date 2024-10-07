@@ -1,22 +1,38 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import styles from "./ItemChat.module.css";
 import Chat from "./Chat.jsx";
 import { fetchComments, addComment, editComment } from "@/utils/productChatApi";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useInfiniteScroll } from "@/hooks/useComments";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  useMutation,
+  useQueryClient,
+  useInfiniteQuery,
+} from "@tanstack/react-query";
 
 export default function ItemChat({ initialComments, id }) {
   const [input, setInput] = useState("");
   const [formValid, setFormValid] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [currentEditId, setCurrentEditId] = useState(null);
-  const [comments, setComments] = useState(initialComments?.list || []);
-  const [cursor, setCursor] = useState(initialComments.nextCursor || null);
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
   const queryClient = useQueryClient();
+
+  const hasToastShownRef = useRef(false);
+
+  const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ["comments", id],
+      queryFn: ({ pageParam }) => fetchComments(id, pageParam),
+      initialData: {
+        pages: initialComments ? [initialComments] : [],
+        pageParams: [undefined],
+      },
+      getNextPageParam: (lastPage) => lastPage?.nextCursor || null,
+      onSettled: () => {
+        hasToastShownRef.current = false;
+      },
+    });
 
   useEffect(() => {
     setFormValid(input.trim().length > 0);
@@ -25,9 +41,18 @@ export default function ItemChat({ initialComments, id }) {
   const addCommentMutation = useMutation({
     mutationFn: (newComment) => addComment(id, newComment),
     onSuccess: (addedComment) => {
-      setComments((prevComments) => [addedComment, ...prevComments]);
+      queryClient.setQueryData(["comments", id], (oldData) => {
+        if (!oldData)
+          return { pages: [{ list: [addedComment] }], pageParams: [] };
+
+        return {
+          ...oldData,
+          pages: oldData.pages.map((page, index) =>
+            index === 0 ? { ...page, list: [addedComment, ...page.list] } : page
+          ),
+        };
+      });
       setInput("");
-      queryClient.invalidateQueries(["comments", id]);
     },
     onError: (error) => {
       console.error("Error adding comment:", error);
@@ -37,18 +62,22 @@ export default function ItemChat({ initialComments, id }) {
   const editCommentMutation = useMutation({
     mutationFn: (updatedComment) => editComment(currentEditId, updatedComment),
     onSuccess: (editedComment) => {
-      if (editedComment) {
-        setComments((prevComments) =>
-          prevComments.map((comment) =>
-            comment.id === currentEditId ? editedComment : comment
-          )
-        );
-      }
+      queryClient.setQueryData(["comments", id], (oldData) => {
+        if (!oldData) return;
 
+        return {
+          ...oldData,
+          pages: oldData.pages.map((page) => ({
+            ...page,
+            list: page.list.map((comment) =>
+              comment.id === currentEditId ? editedComment : comment
+            ),
+          })),
+        };
+      });
       setIsEditing(false);
       setCurrentEditId(null);
       setInput("");
-      queryClient.invalidateQueries(["comments", id]);
     },
     onError: (error) => {
       console.error("Error editing comment:", error);
@@ -69,34 +98,28 @@ export default function ItemChat({ initialComments, id }) {
   };
 
   const loadMoreComments = useCallback(async () => {
-    if (!hasMore || cursor == null) {
-      setHasMore(false);
-      toast.info("모든 댓글을 불러왔습니다.");
+    if (!hasNextPage) {
+      if (!hasToastShownRef.current) {
+        toast.info("모든 댓글을 불러왔습니다.");
+        hasToastShownRef.current = true;
+      }
       return;
     }
 
-    setLoading(true);
-    try {
-      const newCommentsData = await fetchComments(id, cursor);
-      const newComments = newCommentsData?.list || [];
+    if (isLoading || isFetchingNextPage) return;
 
-      if (newComments.length > 0) {
-        setComments((prevComments) => [...prevComments, ...newComments]);
-        setCursor(newCommentsData.nextCursor);
-      } else {
-        setHasMore(false);
-      }
+    try {
+      await fetchNextPage();
     } catch (error) {
-      setHasMore(false);
-      toast.info("모든 댓글을 불러왔습니다.");
+      console.error("Error loading more comments:", error);
+      toast.error("댓글을 불러오는 중 오류가 발생했습니다.");
     }
-    setLoading(false);
-  }, [id, cursor, hasMore]);
+  }, [fetchNextPage, hasNextPage, isLoading, isFetchingNextPage]);
 
   useInfiniteScroll({
     loadMore: loadMoreComments,
-    hasMore,
-    isLoading: loading,
+    hasMore: hasNextPage,
+    isLoading,
   });
 
   const handleEdit = (comment) => {
@@ -124,7 +147,10 @@ export default function ItemChat({ initialComments, id }) {
           {isEditing ? "수정" : "등록"}
         </button>
       </div>
-      <Chat comments={comments} onEdit={handleEdit} setComments={setComments} />
+      <Chat
+        comments={data?.pages?.flatMap((page) => page.list) || []}
+        onEdit={handleEdit}
+      />
     </>
   );
 }

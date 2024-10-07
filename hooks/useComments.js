@@ -89,7 +89,9 @@ export const useInfiniteScroll = ({ loadMore, hasMore, isLoading }) => {
         !isLoading &&
         hasMore
       ) {
-        loadMore(); // 스크롤 시 `loadMore` 함수를 호출하여 다음 커서로 댓글 불러오기
+        loadMore();
+      } else {
+        hasMore = true;
       }
     };
 
