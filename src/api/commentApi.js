@@ -15,7 +15,7 @@ export const createComment = async (productId, content) => {
 
 // 상품의 댓글 목록 불러오기
 export const getComments = async (productId, limit = 10, cursor = 0) => {
-  console.log("전달된 productId:", productId);  // 추가된 로그
+  console.log("전달된 productId:", productId);  // productId 로그 추가
   if (!productId) {
     console.error("productId가 존재하지 않습니다.");
     return [];
@@ -25,13 +25,14 @@ export const getComments = async (productId, limit = 10, cursor = 0) => {
     const response = await axiosInstance.get(`/products/${productId}/comments`, {
       params: { limit: limit, cursor: cursor },
     });
-    console.log("댓글 목록 조회 응답:", response.data);  // 추가된 로그
+    console.log("댓글 목록 조회 응답:", response.data);  // 백엔드 응답 로그
     return response.data;
   } catch (error) {
-    console.error("댓글 목록 불러오기 실패:", error.response ? error.response.data : error.message);
-    return [];
+    console.error("댓글 목록 불러오기 실패:", error.response ? error.response.data : error.message);  // 백엔드 에러 로그
+    throw error; // 에러를 다시 던져서 호출한 함수에서 처리 가능
   }
 };
+
 
 
 // 댓글 수정
