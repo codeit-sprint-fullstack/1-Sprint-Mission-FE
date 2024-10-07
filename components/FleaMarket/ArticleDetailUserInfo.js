@@ -32,7 +32,7 @@ export function ArticleDetailUserInfo({ article, category }) {
         <div className={styles.userInfo}>
           <Image src={profileIcon} alt='프로필 사진' width={40} height={40} />
           <div className={styles.articleInfo}>
-            <p className={styles.userName}>{article.user.name}</p>
+            <p className={styles.userName}>{article.user?.nickname}</p>
             <span className={styles.date}>
               <DateFormat createDate={article} className={styles.profileIcon} />
             </span>

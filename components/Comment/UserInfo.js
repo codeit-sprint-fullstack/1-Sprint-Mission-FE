@@ -24,7 +24,7 @@ export function UserInfo({ comment }) {
       <div className={styles.profile}>
         <Image src={profileIcon} alt='프로필 사진' width={32} height={32} />
         <div className={styles.name}>
-          <span className={styles.userName}>{comment.user.name}</span>
+          <span className={styles.userName}>{comment.user.nickname}</span>
           <span className={styles.createdDate}>
             <DateFormat createDate={comment} />
           </span>

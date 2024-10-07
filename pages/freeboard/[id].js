@@ -7,13 +7,11 @@ import ArticleDetailInfo from '@/components/ArticleDetail/ArticleDetailInfo';
 import styles from '@/styles/Article.module.css';
 import { useGetArticle } from '@/hooks/useFreeBoard';
 import { useEffect } from 'react';
-import { useAuth } from '@/utils/AuthProvider';
 import toast from 'react-hot-toast';
 
 export default function ArticlePage() {
   const router = useRouter();
   const { id } = router.query;
-  const userInfo = useAuth();
   const category = 'freeboard';
 
   const { isLoading, data: article } = useGetArticle(id);

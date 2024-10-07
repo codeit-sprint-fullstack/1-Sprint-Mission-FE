@@ -53,11 +53,11 @@ export function useFleaMarketEditArticle({ id }) {
   const router = useRouter();
 
   const editFleaMarketArticle = useMutation({
-    mutationFn: ({ id, title, content }) =>
-      editFleaMarketArticleApi({ id, title, content }),
+    mutationFn: ({ id, title, content, tags, images, price }) =>
+      editFleaMarketArticleApi({ id, title, content, tags, images, price }),
     onSuccess: (newArticle) => {
-      queryClient.setQueryData(['article', newArticle.id], newArticle);
-      queryClient.invalidateQueries(['article', newArticle.id]);
+      queryClient.setQueryData(['article', id], newArticle);
+      queryClient.invalidateQueries(['article', id]);
       router.push(`/fleamarket/${id}`);
     },
     onError: (error) => {

@@ -38,50 +38,35 @@ export async function fetchFleaMarketApi({ keyword, sort, page }) {
 
 export async function fetchFleaMarketArticleApi(id) {
   try {
-    const res = await instance.get(`/${id}`);
+    const accessToken = localStorage.getItem('accessToken');
+
+    const res = await instance.get(`/${id}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
     return res.data;
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 }
 
-// export async function postFleaMarketArticleApi({
-//   title,
-//   content,
-//   price,
-//   images,
-//   tags,
-//   userId,
-// }) {
-//   try {
-//     const res = await instance.post(`/post`, {
-//       title: title,
-//       content: content,
-//       price: price,
-//       images: images || [],
-//       tags: tags || [],
-//       userId: '86d761e4-a9d0-4082-96dd-cf6f2c931673',
-//     });
-//     console.log(res);
-//     return res.data;
-//   } catch (error) {
-//     console.error('Error posting data:', error);
-//   }
-// }
-
 export async function postFleaMarketArticleApi({
   title,
   content,
   images,
   price,
+  userId,
   tags,
 }) {
   try {
+    const accessToken = localStorage.getItem('accessToken');
+
     const formData = new FormData();
 
     formData.append('title', title);
     formData.append('content', content);
-    formData.append('userId', '86d761e4-a9d0-4082-96dd-cf6f2c931673');
+    formData.append('userId', userId);
 
     images.forEach((file) => {
       formData.append('images', file);
@@ -97,6 +82,7 @@ export async function postFleaMarketArticleApi({
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${accessToken}`,
       },
     };
 
@@ -110,12 +96,43 @@ export async function postFleaMarketArticleApi({
   }
 }
 
-export async function editFleaMarketArticleApi({ title, content, id }) {
+export async function editFleaMarketArticleApi({
+  id,
+  title,
+  content,
+  images,
+  price,
+  userId,
+  tags,
+}) {
   try {
-    const res = await instance.patch(`/${id}`, {
-      title: title,
-      content: content,
+    const accessToken = localStorage.getItem('accessToken');
+
+    const formData = new FormData();
+
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('userId', userId);
+
+    images?.forEach((file) => {
+      formData.append('images', file);
     });
+
+    formData.append('tags', tags);
+    formData.append('price', price);
+
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+
+    const res = await instance.patch(`/${id}/edit`, formData, config);
 
     return res.data;
   } catch (error) {
@@ -125,7 +142,13 @@ export async function editFleaMarketArticleApi({ title, content, id }) {
 
 export async function deleteFleaMarketArticleApi(id) {
   try {
-    const res = await instance.delete(`/${id}`);
+    const accessToken = localStorage.getItem('accessToken');
+
+    const res = await instance.delete(`/${id}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
 
     return {};
   } catch (error) {

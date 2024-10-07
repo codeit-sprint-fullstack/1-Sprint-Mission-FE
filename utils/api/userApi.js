@@ -1,43 +1,43 @@
 import axios from 'axios';
 
-const otherInstance = axios.create({
-  baseURL: 'https://panda-market-api.vercel.app',
+const instance = axios.create({
+  baseURL: 'https://sprint-be-ztdn.onrender.com/',
 });
 
-otherInstance.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
+// instance.interceptors.request.use(
+//   (config) => {
+//     const token = localStorage.getItem('accessToken');
+//     if (token) {
+//       config.headers.Authorization = `Bearer ${token}`;
+//     }
 
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+//     return config;
+//   },
+//   (error) => {
+//     return Promise.reject(error);
+//   }
+// );
 
-otherInstance.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  async (error) => {
-    if (error.response?.status === 401) {
-      const token = localStorage.getItem('refreshToken');
-      const accessToken = await getUserTokenApi({ token });
+// instance.interceptors.response.use(
+//   (response) => {
+//     return response;
+//   },
+//   async (error) => {
+//     if (error.response?.status === 401) {
+//       const token = getCookie('refreshToken');
+//       const accessToken = await getUserTokenApi({ token });
 
-      error.config.headers.Authorization = `Bearer ${accessToken}`;
-    }
-    return Promise.reject(error);
-  }
-);
+//       error.config.headers.Authorization = `Bearer ${accessToken}`;
+//     }
+//     return Promise.reject(error);
+//   }
+// );
 
-export async function getUserInfoApi(accessToken) {
+export async function fetchUserInfoApi(accessToken) {
   try {
-    const res = await otherInstance.get(`/users/me`, {
-      params: {
-        accessToken: accessToken,
+    const res = await instance.get(`auth`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
       },
     });
 
@@ -47,18 +47,12 @@ export async function getUserInfoApi(accessToken) {
   }
 }
 
-export async function postUserSingUpApi({
-  email,
-  nickname,
-  password,
-  passwordConfirmation,
-}) {
+export async function postUserRegisterApi({ email, nickname, password }) {
   try {
-    const res = await otherInstance.post(`/auth/signUp`, {
+    const res = await instance.post(`users/auth/signUp`, {
       email,
       nickname,
-      password,
-      passwordConfirmation,
+      encryptedPassword: password,
     });
 
     return res.data;
@@ -67,21 +61,24 @@ export async function postUserSingUpApi({
   }
 }
 
-export async function postUserLogInApi({ email, password }) {
+export async function postUserLogInApi({ email, encryptedPassword }) {
   try {
-    const res = await otherInstance.post(`/auth/signIn`, { email, password });
+    const res = await instance.post(`users/auth/logIn`, {
+      email,
+      encryptedPassword,
+    });
     localStorage.setItem('accessToken', res.data.accessToken);
-    localStorage.setItem('refreshToken', res.data.refreshToken);
 
+    console.log(res.data);
     return res.data;
   } catch (error) {
-    return error.response.data.message;
+    console.error('Error posting data:', error);
   }
 }
 
-export async function getUserTokenApi({ token }) {
+export async function fetchUserTokenApi({ token }) {
   try {
-    const res = await otherInstance.post(`/auth/refresh-token`, {
+    const res = await instance.post(`users/auth/refresh-token`, {
       refreshToken: token,
     });
 
@@ -92,24 +89,6 @@ export async function getUserTokenApi({ token }) {
   }
 }
 
-export async function deleteUserLogOutApi() {
-  // try {
-  //   const res = await instance.delete(`/auth/refresh-token`);
-  //   localStorage.setItem('accessToken', res.data.accessToken);
-  //   return res.data;
-  // } catch (error) {
-  //   console.error('Error posting data:', error);
-  //   alert('로그아웃에 실패했습니다');
-  // }
-}
+export async function deleteUserLogOutApi() {}
 
-export async function editUserInfoApi() {
-  // try {
-  //   const res = await instance.patch(`/users/me/password`);
-  //   localStorage.setItem('accessToken', res.data.accessToken);
-  //   return res.data;
-  // } catch (error) {
-  //   console.error('Error posting data:', error);
-  //   alert('회원정보 수정에 실패했습니다');
-  // }
-}
+export async function editUserInfoApi() {}
