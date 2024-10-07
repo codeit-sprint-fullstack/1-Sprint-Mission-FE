@@ -1,0 +1,44 @@
+.center {
+  display: flex;
+  justify-content: center;
+  margin-top: 231px;
+  margin-bottom: 231px; /* 임시로 잘 보이기 위해 */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.simpleLogin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e6f2ff;
+  border-radius: 8px;
+  width: 640px;
+  height: 74px;
+  padding: 23px;
+}
+
+.simpleLoginText {
+  font-weight: 500;
+}
+
+.simpleLoginIcons {
+  display: flex;
+  gap: 16px;
+}
+
+.otherCase {
+  display: flex;
+  gap: 4px;
+  font-size: 15px;
+}
+
+.otherCaseLink {
+  color: #3182f6;
+  text-decoration: underline;
+}

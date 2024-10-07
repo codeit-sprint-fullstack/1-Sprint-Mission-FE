@@ -1,0 +1,52 @@
+.articleListContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.articleList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 0 24px 0;
+  background-color: #fcfcfc;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.articleListHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 20px;
+  color: #1f2937;
+}
+
+.articleInfoContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.articleInfo {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.user {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.date {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.favorite {
+  font-size: 16px;
+  color: #6b7280;
+  background-color: #fcfcfc;
+}

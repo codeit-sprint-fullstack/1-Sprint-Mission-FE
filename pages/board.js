@@ -1,12 +1,13 @@
-import Article from "@/components/Article";
-import BestArticle from "@/components/BestArticle";
+
+import Article from "@/components/BoardComponent/Article";
+import BestArticle from "@/components/BoardComponent/BestArticle";
 import styles from "@/styles/Board.module.css";
 import axios from "@/lib/axios";
 import { useEffect } from "react";
 
 export async function getStaticProps() {
   const res = await axios.get("/articles");
-  const articles = res.data;
+  const articles = res.data.list;
 
   return {
     props: {

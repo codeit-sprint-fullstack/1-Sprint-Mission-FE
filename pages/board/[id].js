@@ -5,10 +5,10 @@ import defaultUserImg from "@/images/defaultUserImg.png";
 import borderLine from "@/images/borderLine.png";
 import goBack from "@/images/ic_back.png";
 import Link from "next/link";
-import CommentList from "@/components/CommentList";
-import ArticleDropDown from "@/components/ArticleDropDown";
-import PostComment from "@/components/PostComment";
+import ArticleDropDown from "@/components/BoardDetail/ArticleDropDown";
 import { useState } from "react";
+import CommentList from "@/components/CommentComponent/CommentList";
+import PostComment from "@/components/CommentComponent/PostComment";
 
 export async function getServerSideProps(context) {
   const articleId = context.params["id"];
@@ -29,8 +29,7 @@ export async function getServerSideProps(context) {
     },
   };
 }
-
-// article없으면 로딩일때 돌아가는 Spinner같은 로딩창
+/** @TODO article없으면 로딩일때 돌아가는 Spinner같은 로딩창 구현 */
 // if (!article)
 //   return (
 //     <div className={styles.loading}>
@@ -65,7 +64,7 @@ export default function BoardDetail(article) {
           <div className={styles.titleHeader}>
             <span className={styles.title}>{detailArticle.title}</span>
             {/* DropDown 넣을 공간 */}
-            <ArticleDropDown articleId={detailArticle.id}/>
+            <ArticleDropDown articleId={detailArticle.id} />
           </div>
           <div className={styles.articleInfoContainer}>
             <div className={styles.articleInfo}>
@@ -80,7 +79,11 @@ export default function BoardDetail(article) {
         <span className={styles.content}>{detailArticle.content}</span>
       </div>
       {/* 댓글 달기 컴포넌트 넣을 공간 */}
-      <PostComment addComment={addComment} />
+      <PostComment
+        addComment={addComment}
+        title={"댓글달기"}
+        placehorder={"댓글을 입력해주세요."}
+      />
       {/* 댓글 목록 컴포넌트 넣을 공간 */}
       <CommentList commentList={commentList} setCommentList={setCommentList} />
       <Link href={"/board"} className={styles.goBackLink}>
