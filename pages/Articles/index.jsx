@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   dehydrate,
   HydrationBoundary,
@@ -18,7 +18,6 @@ import ic_medal from "@/public/images/ic_medal.png";
 import ic_profile from "@/public/images/ic_profile.png";
 import styles from "@/styles/articles.module.css";
 import { RefContext } from "../_app";
-import useAuth from "@/contexts/authContext";
 
 function BestArticles({ item }) {
   const { owner, title, createAt, likeCount, image } = item;
@@ -115,8 +114,6 @@ export async function getStaticProps() {
   const defaultParams = {
     orderBy: "recent",
     keyword: "",
-    // pageSize: 5,
-    // page: 1,
   };
 
   await queryClient.prefetchQuery({
@@ -213,7 +210,7 @@ function Articles({ defaultParams }) {
         observer.disconnect();
       };
     }
-  }, [globalDivRef]);
+  }, [fetchNextPage, globalDivRef]);
 
   return (
     <main>

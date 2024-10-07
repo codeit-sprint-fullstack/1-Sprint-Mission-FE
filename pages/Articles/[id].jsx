@@ -3,8 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect, useContext } from "react";
 import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
-import * as commentApi from "@/pages/api/comment";
-import * as articleApi from "@/pages/api/articles";
+import * as commentApi from "@/pages/api/comment.js";
+import * as articleApi from "@/pages/api/articles.js";
 import AlertModal from "@/components/Modals/AlertModal";
 import DropdownData from "@/components/DropdownList/DropdownData";
 import ConfirmModal from "@/components/Modals/ConfirmModal";
@@ -20,9 +20,6 @@ import { RefContext } from "@/pages/_app";
 import useAuth from "@/contexts/authContext";
 import { useDebouncedCallback } from "use-debounce";
 import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
   useInfiniteQuery,
   useMutation,
   useQuery,
