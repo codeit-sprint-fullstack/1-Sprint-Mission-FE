@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://panda-market-api.vercel.app",
+  baseURL: "https://ms10-5yps.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },
@@ -20,10 +20,11 @@ api.interceptors.request.use(
   }
 );
 
-export async function getProducts() {
+export async function getProducts(data) {
   try {
-    const response = await api.get("/products");
-    return response.data.list;
+    const response = await api.get("/products", data);
+    console.log(response.data);
+    return response.data.products;
   } catch (error) {
     return error.response;
   }
@@ -32,6 +33,7 @@ export async function getProducts() {
 export async function getProduct(productId) {
   try {
     const response = await api.get(`/products/${productId}`);
+    console.log(response);
     return response;
   } catch (error) {
     return error.response;
@@ -39,7 +41,6 @@ export async function getProduct(productId) {
 }
 
 export async function postProduct(data) {
-  // console.log(data);
   try {
     const token = localStorage.getItem("accessToken");
     const response = await api.post("/products", data);
@@ -83,7 +84,7 @@ export async function deletefavorite(productId) {
 export async function postfavorite(productId) {
   try {
     const token = localStorage.getItem("accessToken");
-    const response = await api.post(`/products/${productId}/favorite`);
+    const response = await api.post(`/products/${productId}/favorites`);
     return response;
   } catch (error) {
     deletefavorite(productId);

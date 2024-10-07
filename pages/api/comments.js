@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://panda-market-api.vercel.app",
+  baseURL: "https://ms10-5yps.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },
@@ -28,7 +28,8 @@ export async function getComments(productId, limit) {
         limit: limit,
       },
     });
-    return response;
+    console.log(response.data.comments);
+    return response.data.comments;
   } catch (error) {
     console.log(error);
     return error.response;
@@ -46,10 +47,13 @@ export async function postComment(productId, data) {
   }
 }
 
-export async function patchComment(commentId, data) {
+export async function patchComment(productId, commentId, data) {
   try {
     const token = localStorage.getItem("accessToken");
-    const response = await api.patch(`/comments/${commentId}`, data);
+    const response = await api.patch(
+      `/products/${productId}/comments/${commentId}`,
+      data
+    );
     return response;
   } catch (error) {
     console.log(error);
@@ -57,9 +61,11 @@ export async function patchComment(commentId, data) {
   }
 }
 
-export async function deleteComment(commentId) {
+export async function deleteComment(productId, commentId) {
   try {
-    const response = await api.delete(`/comments/${commentId}`);
+    const response = await api.delete(
+      `/products/${productId}/comments/${commentId}`
+    );
     return response;
   } catch (error) {
     console.log(error);

@@ -57,12 +57,12 @@ const SignupForm = ({ isModalOpen, setIsModalOpen }) => {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
+      console.log(values);
       try {
         const res = await PostSignup({
           email: values.email,
-          nickname: values.nickname,
           password: values.password,
-          passwordConfirmation: values.password2,
+          nickname: values.nickname,
         });
         if (res && res.status === 201) {
           resetForm();

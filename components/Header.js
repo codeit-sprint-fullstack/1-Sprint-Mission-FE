@@ -69,7 +69,7 @@ export default function Header() {
       ) : (
         <div className={styles.loginSuccess}>
           <Image src="/MyImg.svg" alt="profile" width={40} height={40}></Image>
-          <p>{userData.nickname}</p>
+          <p>{userData.nickName}</p>
         </div>
       )}
     </div>

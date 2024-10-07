@@ -53,7 +53,7 @@ export default function Market({ id }) {
     const fetchProduct = async () => {
       try {
         const response = await getProduct(id); // 비동기 API 호출
-        setProduct(response.data); // API 호출 후 데이터를 상태로 저장
+        setProduct(response.data.product); // API 호출 후 데이터를 상태로 저장
         // const profile = await getProfile(); // 비동기 함수 호출
         // setUserData(profile); // 프로필 데이터를 상태로 저장
       } catch (error) {
@@ -67,8 +67,8 @@ export default function Market({ id }) {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await getComments(id, 10); // 비동기 API 호출
-        setComment(response.data.list); // API 호출 후 데이터의 data 부분만 상태로 저장
+        const response = await getComments(id, 9); // 비동기 API 호출
+        setComment(response); // API 호출 후 데이터의 data 부분만 상태로 저장
       } catch (error) {
         console.error("댓글 오류", error);
       }
@@ -90,9 +90,9 @@ export default function Market({ id }) {
   };
 
   const commentSubmitForm = async () => {
-    // console.log(commentId);
+    console.log(commentId, values.content);
     try {
-      const res = await patchComment(commentId, {
+      const res = await patchComment(product.id, commentId, {
         content: values.content,
       });
       if (res && res.status === 200) {
@@ -287,8 +287,8 @@ export default function Market({ id }) {
               <button
                 className={styles.favorite}
                 onClick={async () => {
-                  await postfavorite(id);
-                  router.reload();
+                  await postfavorite(product.id);
+                  // router.reload();
                 }}
               >
                 {"♡" + product.favoriteCount}
@@ -308,7 +308,7 @@ export default function Market({ id }) {
             onClick={async () => {
               await postComment(product.id, { content: commentData });
               // router.push(`/items/${product.id}`);
-              router.reload();
+              // router.reload();
             }}
           >
             등록
@@ -339,7 +339,7 @@ export default function Market({ id }) {
                       </li>
                       <li
                         onClick={async () => {
-                          await deleteComment(comment.id);
+                          await deleteComment(product.id, comment.id);
                           console.log(comment.id);
                           router.reload();
                         }}
@@ -355,7 +355,7 @@ export default function Market({ id }) {
                   </div>
                   <div className={styles.marketArticleProfileInfo}>
                     <p className={styles.marketArticleProfileName}>
-                      {comment.writer.nickname}
+                      {comment.user.nickName}
                     </p>{" "}
                     <p className={styles.marketArticleProfileDate}>
                       {getTimeDifference(comment.updatedAt)}
