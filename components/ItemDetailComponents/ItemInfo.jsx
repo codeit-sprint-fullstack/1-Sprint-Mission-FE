@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "./ItemInfo.module.css";
 import defaultImage from "@/images/img_default.png";
@@ -7,13 +9,11 @@ import ic_profile from "@/images/ic_profile.png";
 import ic_active_favorite from "@/images/ic_active_favorite.png";
 import ic_empty_favorite from "@/images/ic_empty_favorite.png";
 import ic_kebab from "@/images/ic_kebab.png";
-import { useState } from "react";
-import { useRouter } from "next/router";
-import useAuth from "@/hooks/useAuth";
-import Modal from "../ModalComponents/Modal.jsx";
-import { ROUTES } from "@/utils/rotues";
-import Link from "next/link";
 import { useMutation } from "@tanstack/react-query";
+import Modal from "../ModalComponents/Modal.jsx";
+import Link from "next/link";
+import { ROUTES } from "@/utils/rotues";
+import useAuth from "@/hooks/useAuth";
 
 export default function ItemInfo(product) {
   const imageUrl = "https://thrift-shop.onrender.com";
@@ -27,6 +27,7 @@ export default function ItemInfo(product) {
   const [isFavoriteCount, setIsFavoriteCount] = useState(
     item?.favoriteCount || 0
   );
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); // 현재 이미지 인덱스
 
   const isAuthenticated = useAuth(item.ownerId);
 
@@ -59,7 +60,7 @@ export default function ItemInfo(product) {
       setIsFavoriteCount(isFavoriteCount + 1);
     },
     onError: (error) => {
-      console.error("Error deleting product:", error);
+      console.error("Error adding favorite:", error);
     },
   });
 
@@ -70,7 +71,7 @@ export default function ItemInfo(product) {
       setIsFavoriteCount(isFavoriteCount - 1);
     },
     onError: (error) => {
-      console.error("Error deleting product:", error);
+      console.error("Error removing favorite:", error);
     },
   });
 
@@ -82,16 +83,50 @@ export default function ItemInfo(product) {
     }
   };
 
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? item.images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === item.images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
   return (
     <div className={styles.itemContainer}>
-      <Image
-        className={styles.itemImg}
-        src={item.images[0] ? `${imageUrl}${item.images[0]}` : defaultImage}
-        width={486}
-        height={486}
-        alt="product"
-        priority
-      />
+      <div className={styles.imageSlider}>
+        {item.images.length > 1 && (
+          <>
+            {currentImageIndex > 0 && (
+              <button className={styles.prevButton} onClick={handlePrevImage}>
+                &lt;
+              </button>
+            )}
+
+            {currentImageIndex < item.images.length - 1 && (
+              <button className={styles.nextButton} onClick={handleNextImage}>
+                &gt;
+              </button>
+            )}
+          </>
+        )}
+        <Image
+          className={styles.itemImg}
+          src={
+            item.images.length > 0
+              ? `${imageUrl}${item.images[currentImageIndex]}`
+              : defaultImage
+          }
+          width={486}
+          height={486}
+          alt="product"
+          priority
+        />
+      </div>
+
       <div className={styles.infoContainer}>
         <div className={styles.infoName}>
           <p className={styles.itemName}>{item.name}</p>
