@@ -43,7 +43,11 @@ const ProductDetailPage = () => {
     }
   }, []);
 
-  const { data: productData, error: productError, isLoading: isProductLoading } = useQuery({
+  const {
+    data: productData,
+    error: productError,
+    isLoading: isProductLoading,
+  } = useQuery({
     queryKey: ["product", itemId],
     queryFn: () => getProductById(itemId),
     enabled: !!itemId,
@@ -64,6 +68,7 @@ const ProductDetailPage = () => {
     try {
       const data = await getComments(itemId);
       setComments(data.list || []);
+      console.log("업데이트된 댓글 상태:", comments); // 상태 업데이트 후 확인
     } catch (error) {
       console.error("댓글 목록 불러오기 실패:", error);
     }
@@ -76,10 +81,14 @@ const ProductDetailPage = () => {
   }, [itemId]);
 
   const likeMutation = useMutation({
-    mutationFn: isLiked ? () => unfavoriteProduct(itemId, accessToken) : () => favoriteProduct(itemId, accessToken),
+    mutationFn: isLiked
+      ? () => unfavoriteProduct(itemId, accessToken)
+      : () => favoriteProduct(itemId, accessToken),
     onSuccess: () => {
       setIsLiked(!isLiked);
-      productData.favoriteCount = isLiked ? productData.favoriteCount - 1 : productData.favoriteCount + 1;
+      productData.favoriteCount = isLiked
+        ? productData.favoriteCount - 1
+        : productData.favoriteCount + 1;
     },
     onError: () => {
       setModalMessage("좋아요 처리 중 오류가 발생했습니다.");
