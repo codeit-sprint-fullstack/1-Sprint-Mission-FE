@@ -52,6 +52,14 @@
   margin-right: 200px;
 }
 
+/* 프로필 이미지와 닉네임 */
+.loginprofile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 200px;
+}
+
 /* 자유게시판 페이지의 로그인 버튼*/
 .loginButton {
   width: 74px;
@@ -65,6 +73,7 @@
   border: none;
   margin-right: 200px;
   font-family: Pretendard;
+  cursor: pointer;
 }
 
 /* 자유게시판 페이지의 상단바 '자유게시판 버튼색'*/
