@@ -3,7 +3,18 @@ import {
   fetchComments,
   createComments,
   updateComments,
+  deleteComments,
 } from "@/utils/articleChatApi";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+export const useDeleteComment = () => {
+  return useMutation({
+    mutationFn: (id) => deleteComments(id),
+    onError: (err, id, context) => {
+      console.error("Error deleting comment:", err);
+    },
+  });
+};
 
 export function useComments(articleId, initialComments) {
   const [comments, setComments] = useState(initialComments || []);
@@ -26,7 +37,7 @@ export function useComments(articleId, initialComments) {
 
         setComments((prevComments) => [...prevComments, ...newComments]);
         setCursor(response.nextCursor);
-        setHasMore(response.nextCursor !== null); // 다음 커서가 없으면 hasMore를 false로 설정
+        setHasMore(response.nextCursor !== null);
       } catch (error) {
         console.error("Error fetching more comments:", error);
         setHasMore(false);

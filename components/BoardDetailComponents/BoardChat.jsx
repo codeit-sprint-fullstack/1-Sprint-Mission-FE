@@ -56,13 +56,12 @@ export default function BoardChat({ initialComments, articleId }) {
 
   useEffect(() => {
     const handleScroll = throttle(() => {
-      // 스크롤 위치와 hasMore, loading 상태 확인
       if (
         window.innerHeight + document.documentElement.scrollTop >=
           document.documentElement.offsetHeight - 100 &&
-        hasMore && // 다음 댓글이 더 있는 경우에만
-        !loading && // 로딩 중이 아닐 때만
-        nextCursor // 다음 커서가 있는 경우에만
+        hasMore &&
+        !loading &&
+        nextCursor
       ) {
         loadMoreComments(nextCursor);
       }
