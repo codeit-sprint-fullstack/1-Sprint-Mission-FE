@@ -123,7 +123,7 @@ export default function Login() {
           <div className={styles.easy_text}>간편 로그인하기</div>
 
           <div className={styles.sns}>
-            <a href="https://www.google.com/" target="google">
+            <a href="http://localhost:8000/api/users/auth/google">
               <Image
                 src="/images/google.png"
                 alt="구글"
