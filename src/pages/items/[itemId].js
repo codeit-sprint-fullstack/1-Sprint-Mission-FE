@@ -64,7 +64,12 @@ const ProductDetailPage = () => {
     try {
       const data = await getComments(itemId);
       console.log("불러온 댓글 데이터:", data);  // 서버에서 불러온 댓글 데이터 확인
-      setComments(data.list || []);  // 상태 업데이트
+      if (data && data.list) {
+        setComments(data.list);  // 데이터가 존재하면 상태 업데이트
+        console.log("setComments 후 comments 상태:", data.list);  // 상태 업데이트 후 로그 확인
+      } else {
+        console.log("데이터가 비어있습니다:", data);
+      }
     } catch (error) {
       console.error("댓글 목록 불러오기 실패:", error);
     }
