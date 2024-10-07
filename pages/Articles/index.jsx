@@ -151,11 +151,6 @@ function Articles({ defaultParams }) {
   const [articles, setArticles] = useState([]);
   const [keyword, setKeyword] = useState("");
 
-  // const { data: articlesData, isError } = useQuery({
-  //   queryKey: ["articles", params],
-  //   queryFn: () => api.getArticles(params),
-  // });
-
   //무한스크롤 쿼리를 통한 react-query관리
   const {
     data: articlesData,
@@ -167,10 +162,6 @@ function Articles({ defaultParams }) {
     queryFn: ({ pageParam }) => api.getArticles(params, pageParam),
     getNextPageParam: (lastPage) =>
       lastPage.nextCursor ? lastPage.nextCursor : undefined,
-    // initialData: {
-    //   pages: [comments], // comments 배열을 pages로 감싸서 전달
-    //   pageParams: [comments.nextCursor], // pageParams 기본값 설정
-    // },
   });
 
   if (isError) {
@@ -208,19 +199,11 @@ function Articles({ defaultParams }) {
     handleChangeParams("orderBy", value);
   };
 
-  // useEffect(() => {
-  //   setArticles((prev) => [...prev, ...(articlesData?.list || [])]);
-  // }, [articlesData]);
-
   useEffect(() => {
     if (globalDivRef.current) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // setParams((prev) => ({
-            //   ...prev,
-            //   page: prev.page + 1,
-            // }));
             fetchNextPage();
           }
         });
@@ -272,9 +255,6 @@ function Articles({ defaultParams }) {
           />
         </div>
         <ul className={styles.article_ul}>
-          {/* {articlesData?.list.map((item) => (
-            <ArticleItems key={item.id} item={item} />
-          ))} */}
           {articlesData?.pages &&
             articlesData.pages.map((items) =>
               items.list.map((item) => (
