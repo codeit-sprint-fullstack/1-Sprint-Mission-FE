@@ -36,15 +36,21 @@ export async function fetchFleaMarketApi({ keyword, sort, page }) {
   }
 }
 
-export async function fetchFleaMarketArticleApi(id) {
+export async function fetchFleaMarketArticleApi({ id, userId }) {
   try {
     const accessToken = localStorage.getItem('accessToken');
 
-    const res = await instance.get(`/${id}`, {
+    const config = {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
+    };
+
+    const res = await instance.get(`/${id}`, {
+      headers: config.headers,
+      params: { userId },
     });
+
     return res.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -88,7 +94,6 @@ export async function postFleaMarketArticleApi({
 
     const res = await instance.post(`/post`, formData, config);
 
-    console.log(res);
     return res;
   } catch (error) {
     alert('게시물 등록에 실패했습니다.');

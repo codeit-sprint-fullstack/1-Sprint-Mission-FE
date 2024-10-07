@@ -49,7 +49,7 @@ export async function fetchUserInfoApi(accessToken) {
 
 export async function postUserRegisterApi({ email, nickname, password }) {
   try {
-    const res = await instance.post(`users/auth/signUp`, {
+    const res = await instance.post(`user/auth/signUp`, {
       email,
       nickname,
       encryptedPassword: password,
@@ -63,7 +63,7 @@ export async function postUserRegisterApi({ email, nickname, password }) {
 
 export async function postUserLogInApi({ email, encryptedPassword }) {
   try {
-    const res = await instance.post(`users/auth/logIn`, {
+    const res = await instance.post(`user/auth/logIn`, {
       email,
       encryptedPassword,
     });
@@ -78,7 +78,7 @@ export async function postUserLogInApi({ email, encryptedPassword }) {
 
 export async function fetchUserTokenApi({ token }) {
   try {
-    const res = await instance.post(`users/auth/refresh-token`, {
+    const res = await instance.post(`user/auth/refresh-token`, {
       refreshToken: token,
     });
 

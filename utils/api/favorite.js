@@ -4,9 +4,14 @@ const instance = axios.create({
   baseURL: 'https://sprint-be-ztdn.onrender.com/favorite',
 });
 
-const accessToken = localStorage.getItem('accessToken');
+let accessToken;
 
-export async function postFavoriteApi({ articleId, userId }) {
+if (typeof window !== 'undefined') {
+  // Perform localStorage action
+  accessToken = localStorage.getItem('accessToken');
+}
+
+export async function postFavoriteApi({ articleId, userId, accessToken }) {
   try {
     const config = {
       headers: {
@@ -23,7 +28,7 @@ export async function postFavoriteApi({ articleId, userId }) {
   }
 }
 
-export async function deleteFavoriteApi({ articleId, userId }) {
+export async function deleteFavoriteApi({ articleId, userId, accessToken }) {
   try {
     const config = {
       headers: {
