@@ -1,3 +1,4 @@
+
 import Article from "@/components/BoardComponent/Article";
 import BestArticle from "@/components/BoardComponent/BestArticle";
 import styles from "@/styles/Board.module.css";
