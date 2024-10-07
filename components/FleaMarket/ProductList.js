@@ -37,7 +37,12 @@ export default function ProductList({ articles }) {
                     [{article.comment.length}]
                   </span>
                 </span>
-                <div className={styles.price}>{article.price}</div>
+                <div className={styles.price}>
+                  {article.price
+                    .toString()
+                    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
+                  원
+                </div>
                 <ArticleListUserInfo article={article} />
               </div>
             </Link>

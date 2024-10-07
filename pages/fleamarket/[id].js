@@ -7,26 +7,23 @@ import Comments from '@/components/Comment/Comments.js';
 import ArticleDetail from '@/components/FleaMarket/ArticleDetail';
 import styles from '@/styles/Article.module.css';
 import { useGetArticle } from '@/hooks/useFleaMarket';
+import { useUserAuth } from '@/context/UserContextProvider';
+import toast from 'react-hot-toast';
 
 export default function ArticlePage() {
   const router = useRouter();
   const id = router.query.id;
+  useUserAuth();
 
   const category = 'fleamarket';
 
-  const { isLoading, data: article } = useGetArticle(id);
+  const { isLoading, data } = useGetArticle(id);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const token = localStorage.getItem('accessToken');
-      if (!token) {
-        // toast.error('로그인을 해야 합니다.');
-        router.push('/login'); //비동기
-      }
-    };
-
-    fetchData();
-  }, [router]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.push('/login');
+  //   }
+  // }, [router]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -36,7 +33,7 @@ export default function ArticlePage() {
     <>
       <div className={styles.article}>
         <ArticleDetail
-          article={article}
+          article={data?.article}
           category={category}
           id={id}
           handleDeleteArticle={() => handleDeleteArticle(id)}
