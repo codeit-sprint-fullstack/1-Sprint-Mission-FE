@@ -6,7 +6,7 @@ import {
   favoriteProduct,
   unfavoriteProduct,
 } from "../../api/productApi";
-import { getProductComments } from "../../api/commentApi";  // 상품에 대한 댓글 가져오는 함수로 변경
+import { getProductComments } from "../../api/commentApi"; // 상품에 대한 댓글 가져오는 함수로 변경
 import { getAccessToken } from "../../api/authApi";
 import Modal from "../../components/Modal";
 import ProductCommentForm from "../../components/ProductCommentForm";
@@ -96,12 +96,17 @@ const ProductDetailPage = () => {
       ? () => unfavoriteProduct(itemId, accessToken)
       : () => favoriteProduct(itemId, accessToken),
     onSuccess: () => {
+      console.log("좋아요 요청 성공:", isLiked ? "좋아요 취소" : "좋아요 추가");
       setIsLiked(!isLiked);
       productData.favoriteCount = isLiked
         ? productData.favoriteCount - 1
         : productData.favoriteCount + 1;
     },
-    onError: () => {
+    onError: (error) => {
+      console.error(
+        "좋아요 처리 중 오류 발생:",
+        error.response ? error.response.data : error.message
+      );
       setModalMessage("좋아요 처리 중 오류가 발생했습니다.");
       setIsModalOpen(true);
     },
@@ -109,6 +114,10 @@ const ProductDetailPage = () => {
 
   const handleLikeToggle = () => {
     if (accessToken) {
+      console.log(
+        "좋아요 토글 요청, 현재 상태:",
+        isLiked ? "좋아요 취소" : "좋아요 추가"
+      );
       likeMutation.mutate();
     } else {
       setModalMessage("로그인이 필요합니다.");
@@ -245,4 +254,3 @@ const ProductDetailPage = () => {
 };
 
 export default ProductDetailPage;
-
