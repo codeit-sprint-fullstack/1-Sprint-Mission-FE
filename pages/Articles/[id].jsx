@@ -135,8 +135,7 @@ function DetailArticle({ article, comments, id }) {
     articleData;
   //날짜 포멧
   const date = dateFormatYYYYMMDD(createAt);
-  const defaultUser = { articleId: article.id };
-  const [values, setValues] = useState(defaultUser);
+  const [values, setValues] = useState({});
   const [Alert, setAlert] = useState(false);
   const [Confirm, setConfirm] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -183,7 +182,7 @@ function DetailArticle({ article, comments, id }) {
 
   const createComment = () => {
     try {
-      const data = commentApi.createArticlesComment(values);
+      const data = commentApi.createArticlesComment(values, id);
       if (data) {
         router.reload();
       } else {
@@ -311,10 +310,11 @@ function DetailArticle({ article, comments, id }) {
         </div>
         <div className={styles.article_comments_box}>
           <div className={styles.article_comments}>
-            {commentsData.pages.list > 0 &&
-              commentsData?.pages.map((items) =>
+            {commentsData.pages &&
+              commentsData.pages.map((items) =>
                 items.list.map((item) => (
                   <Comment
+                    user={user}
                     key={item.id}
                     item={item}
                     openAlert={openAlertModal}
@@ -326,7 +326,7 @@ function DetailArticle({ article, comments, id }) {
               <div className={styles.loader}></div>
             )}
             {/* 게시글의 등록된 댓글이 없다면 아래의 내용을 렌더링한다. */}
-            {commentsData.pages[0].list.length < 1 && (
+            {commentsData.pages[0].list.length <= 0 && (
               <>
                 <Image
                   src={img_reply_empty}

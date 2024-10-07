@@ -10,7 +10,8 @@ function Product({ itemValues, favorite }) {
 
   const imageUrl =
     images.length > 0
-      ? process.env.NEXT_PUBLIC_UPLOADS_URL + images[0]
+      ? // ? process.env.NEXT_PUBLIC_UPLOADS_URL +
+        images[0]
       : imgDefault;
 
   return (

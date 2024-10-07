@@ -10,8 +10,7 @@ import ic_kebab from "@/public/images/ic_kebab.png";
 import ic_profile from "@/public/images/ic_profile.png";
 
 function Comment({ item, openAlert, setAlertMessage, user }) {
-  const { content, userId, writer, createAt, updateAt, id } = item;
-
+  const { content, userId, user: writer, createAt, updateAt, id } = item;
   const router = useRouter();
   //날짜 포멧
   const createDate = elapsedTime(createAt);

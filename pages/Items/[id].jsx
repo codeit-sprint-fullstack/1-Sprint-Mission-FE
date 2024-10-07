@@ -155,7 +155,7 @@ function DetailProduct({ product, comments, id }) {
   //날짜 포멧
   const date = dateFormatYYYYMMDD(createdAt);
   const numFormat = price?.toLocaleString();
-  const [content, setContent] = useState("");
+  const [values, setValues] = useState({});
   const [alert, setAlert] = useState(false);
   const [Confirm, setConfirm] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -202,7 +202,7 @@ function DetailProduct({ product, comments, id }) {
 
   const createComment = () => {
     try {
-      const data = commentApi.createProductComment(content, product.id);
+      const data = commentApi.createProductComment(values, id);
       if (data) {
         router.reload();
       } else {
@@ -217,9 +217,17 @@ function DetailProduct({ product, comments, id }) {
     }
   };
 
+  const handleChangeValues = (name, value) => {
+    setValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   const handleChange = (e) => {
+    const name = e.target.name;
     const value = e.target.value;
-    setContent(value);
+    handleChangeValues(name, value);
   };
 
   const moreDataFetch = useDebouncedCallback(() => {
@@ -342,30 +350,32 @@ function DetailProduct({ product, comments, id }) {
           <button
             onClick={createComment}
             className={`${styles.products_create_comment_btn} ${
-              !content && styles.disabled
+              !values.content && styles.disabled
             }`}
-            disabled={!content}
+            disabled={!values.content}
           >
             등록
           </button>
         </div>
         <div className={styles.products_comments_box}>
           <div className={styles.products_comments}>
-            {commentsData.pages.list > 0 &&
-              commentsData.pages.list.map((item) => (
-                <Comment
-                  user={user}
-                  key={item.id}
-                  item={item}
-                  openAlert={openAlertModal}
-                  setAlertMessage={setAlertMessage}
-                />
-              ))}
+            {commentsData.pages &&
+              commentsData.pages.map((items) =>
+                items.list.map((item) => (
+                  <Comment
+                    user={user}
+                    key={item.id}
+                    item={item}
+                    openAlert={openAlertModal}
+                    setAlertMessage={setAlertMessage}
+                  />
+                ))
+              )}
             {fetchStatus === "fetching" && (
               <div className={styles.loader}></div>
             )}
             {/* 게시글의 등록된 댓글이 없다면 아래의 내용을 렌더링한다. */}
-            {commentsData.pages[0].list.length < 1 && (
+            {commentsData.pages[0].list.length <= 0 && (
               <>
                 <Image
                   src={Img_inquiry_empty}
