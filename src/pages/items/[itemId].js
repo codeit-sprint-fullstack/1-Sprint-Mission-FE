@@ -56,7 +56,7 @@ const ProductDetailPage = () => {
         tags: data.tags || [],
       });
 
-      console.log("Product Data:", data); // 상품 데이터 확인용 로그
+      console.log("Product Data:", data);  // 상품 데이터 확인용 로그
     },
   });
 
@@ -64,12 +64,9 @@ const ProductDetailPage = () => {
     try {
       const data = await getComments(itemId);
       console.log("불러온 댓글 데이터:", data);  // 서버에서 불러온 댓글 데이터 확인
-      if (data && data.list) {
-        setComments(data.list);  // 데이터가 존재하면 상태 업데이트
-        console.log("setComments 후 comments 상태:", data.list);  // 상태 업데이트 후 로그 확인
-      } else {
-        console.log("데이터가 비어있습니다:", data);
-      }
+
+      setComments(data || []);
+      console.log("setComments 후 comments 상태:", data);  // 상태 업데이트 후 로그
     } catch (error) {
       console.error("댓글 목록 불러오기 실패:", error);
     }
@@ -78,12 +75,12 @@ const ProductDetailPage = () => {
   useEffect(() => {
     if (itemId) {
       loadComments();
-      console.log("loadComments 호출됨, itemId:", itemId);  // useEffect가 실행될 때마다 로그
+      console.log("loadComments 호출됨, itemId:", itemId);
     }
   }, [itemId]);
 
   useEffect(() => {
-    console.log("댓글 상태가 업데이트되었습니다:", comments);  // comments 상태가 변경될 때마다 로그 출력
+    console.log("댓글 상태가 업데이트되었습니다:", comments);
   }, [comments]);
 
   const likeMutation = useMutation({
@@ -116,8 +113,6 @@ const ProductDetailPage = () => {
   }
 
   if (productError) return <p>상품 정보를 불러오는 중 오류가 발생했습니다.</p>;
-
-  console.log("Product Images:", productData?.image); // image 필드 확인
 
   return (
     <div>
