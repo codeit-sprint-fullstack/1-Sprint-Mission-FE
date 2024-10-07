@@ -145,7 +145,6 @@ function ArticlesRouter({ dehydratedState, defaultParams }) {
 function Articles({ defaultParams }) {
   const globalDivRef = useContext(RefContext);
   const [params, setParams] = useState(defaultParams);
-  const [articles, setArticles] = useState([]);
   const [keyword, setKeyword] = useState("");
 
   //무한스크롤 쿼리를 통한 react-query관리

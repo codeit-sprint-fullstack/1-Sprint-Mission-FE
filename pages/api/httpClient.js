@@ -13,7 +13,6 @@ export const setContext = (_context) => {
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-  // baseURL: "/api",
   withCredentials: true,
 });
 
@@ -44,9 +43,6 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
-// let retry_count = 0;
-// const MAX_COUNT = 1;
 
 // 리스폰스로 권한 에러가 돌아오면 토큰을 갱신한다
 instance.interceptors.response.use(
