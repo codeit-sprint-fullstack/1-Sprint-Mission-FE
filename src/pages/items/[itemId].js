@@ -43,7 +43,11 @@ const ProductDetailPage = () => {
     }
   }, []);
 
-  const { data: productData, error: productError, isLoading: isProductLoading } = useQuery({
+  const {
+    data: productData,
+    error: productError,
+    isLoading: isProductLoading,
+  } = useQuery({
     queryKey: ["product", itemId],
     queryFn: () => getProductById(itemId),
     enabled: !!itemId,
@@ -56,17 +60,21 @@ const ProductDetailPage = () => {
         tags: data.tags || [],
       });
 
-      console.log("Product Data:", data);  // 상품 데이터 확인용 로그
+      console.log("Product Data:", data); // 상품 데이터 확인용 로그
     },
   });
 
   const loadComments = async () => {
     try {
       const data = await getComments(itemId);
-      console.log("불러온 댓글 데이터:", data);  // 서버에서 불러온 댓글 데이터 확인
+      console.log("불러온 댓글 데이터:", data);
 
-      setComments(data || []);
-      console.log("setComments 후 comments 상태:", data);  // 상태 업데이트 후 로그
+      // 상태 업데이트 시 댓글을 최신순으로 정렬
+      const sortedComments = (data || []).sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+      setComments(sortedComments); // 정렬된 댓글 상태 업데이트
+      console.log("setComments 후 comments 상태:", sortedComments);
     } catch (error) {
       console.error("댓글 목록 불러오기 실패:", error);
     }
@@ -84,10 +92,14 @@ const ProductDetailPage = () => {
   }, [comments]);
 
   const likeMutation = useMutation({
-    mutationFn: isLiked ? () => unfavoriteProduct(itemId, accessToken) : () => favoriteProduct(itemId, accessToken),
+    mutationFn: isLiked
+      ? () => unfavoriteProduct(itemId, accessToken)
+      : () => favoriteProduct(itemId, accessToken),
     onSuccess: () => {
       setIsLiked(!isLiked);
-      productData.favoriteCount = isLiked ? productData.favoriteCount - 1 : productData.favoriteCount + 1;
+      productData.favoriteCount = isLiked
+        ? productData.favoriteCount - 1
+        : productData.favoriteCount + 1;
     },
     onError: () => {
       setModalMessage("좋아요 처리 중 오류가 발생했습니다.");
@@ -233,4 +245,3 @@ const ProductDetailPage = () => {
 };
 
 export default ProductDetailPage;
-
