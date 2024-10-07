@@ -1,6 +1,6 @@
 import styles from "./BoardDetailInfo.module.css";
 import { useState } from "react";
-import { deleteArticle } from "@/utils/articleApi";
+import { deleteArticle, addLike, removeLike } from "@/utils/articleApi";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import profile from "@/images/ic_profile.png";
@@ -8,10 +8,18 @@ import kebab from "@/images/ic_kebab.png";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 import { useMutation } from "@tanstack/react-query";
+import ic_active_favorite from "@/images/ic_active_favorite.png";
+import ic_empty_favorite from "@/images/ic_empty_favorite.png";
 
 export default function BoardDetailInfo({ article }) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+  const [isItemFavorite, setIsItemFavorite] = useState(
+    article?.isLiked || false
+  );
+  const [isFavoriteCount, setIsFavoriteCount] = useState(
+    article?.likeCount || 0
+  );
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -27,6 +35,36 @@ export default function BoardDetailInfo({ article }) {
 
   const handleDelete = () => {
     mutation.mutate(article.id);
+  };
+
+  const addFavoriteMutate = useMutation({
+    mutationFn: (id) => addLike(id),
+    onSuccess: () => {
+      setIsItemFavorite(true);
+      setIsFavoriteCount(isFavoriteCount + 1);
+    },
+    onError: (error) => {
+      console.error("Error deleting product:", error);
+    },
+  });
+
+  const removeFavoriteMutate = useMutation({
+    mutationFn: (id) => removeLike(id),
+    onSuccess: () => {
+      setIsItemFavorite(false);
+      setIsFavoriteCount(isFavoriteCount - 1);
+    },
+    onError: (error) => {
+      console.error("Error deleting product:", error);
+    },
+  });
+
+  const handleFavoriteToggle = () => {
+    if (isItemFavorite) {
+      removeFavoriteMutate.mutate(article.id);
+    } else {
+      addFavoriteMutate.mutate(article.id);
+    }
   };
 
   return (
@@ -57,7 +95,15 @@ export default function BoardDetailInfo({ article }) {
           {new Date(article.createdAt).toLocaleDateString()}
         </p>
         <p className={styles.divider}>|</p>
-        <p className={styles.favorite}>♡ {article.likeCount}</p>
+        <div className={styles.favoriteInfo}>
+          <Image
+            className={styles.ic_favorite}
+            src={isItemFavorite ? ic_active_favorite : ic_empty_favorite}
+            alt={isItemFavorite ? "active favorite" : "empty favorite"}
+            onClick={handleFavoriteToggle}
+          />
+          <p className={styles.favorite}>{isFavoriteCount}</p>
+        </div>
       </div>
       <p className={styles.content}>{article.content}</p>
     </div>

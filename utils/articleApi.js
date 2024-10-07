@@ -48,3 +48,13 @@ export async function createArticle(formData) {
   const { data } = await apiClient.post(`/articles`, formData);
   return data;
 }
+
+export async function addLike(articleId) {
+  const { data } = await apiClient.post(`/articles/${articleId}/like`);
+  return data;
+}
+
+export async function removeLike(articleId) {
+  const { data } = await apiClient.delete(`/articles/${articleId}/like`);
+  return data;
+}
