@@ -7,19 +7,16 @@
 
 .articleList {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
   height: 378px;
 }
 
-/* .list {
+.list {
   border-radius: 8px;
-  width: 384px;
   height: 169px;
-  padding: 0 24px 16px 24px;
   margin-right: 24px;
   flex-direction: row;
-} */
+}
 
 .link {
   text-decoration: none;
@@ -31,7 +28,7 @@
 }
 
 .productInfo {
-  margin-top: 16px 0 40px;
+  margin: 16px 0 40px 10px;
 }
 
 .title {
@@ -71,19 +68,7 @@
 }
 /* 
 @media screen and (max-width: 1199px) {
-  .articleList {
-    height: 198px;
-    margin: 0 24px;
-    justify-content: center;
-  }
-
-  .list {
-    width: 340px;
-  }
-
-  .main {
-    margin-top: 10px;
-  }
+  
 }
 
 @media screen and (max-width: 743px) {

@@ -3,12 +3,15 @@ import articleImage from '@/public/article_image.png';
 import Image from 'next/image';
 import styles from '@/styles/BestProductList.module.css';
 import DateFormat from '@/utils/DateFormat.js';
-import useBestArticleByDevice from '@/hooks/useBestArticleByDevice';
+import useBestProductByDevice from '@/hooks/useBestArticleByDevice';
 import heartIcon from '@/public/ic_heart.png';
 
 export default function BestProductList({ articles }) {
-  const articlesList = articles?.data;
-  const { bestArticles } = useBestArticleByDevice({ articlesList });
+  const articlesList = articles?.data || [];
+  const { bestArticles } = useBestProductByDevice({
+    articlesList,
+    maxProduct: 4,
+  });
 
   if (bestArticles?.length === 0) {
     return (
