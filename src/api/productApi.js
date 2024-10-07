@@ -61,14 +61,28 @@ export const getProductById = async (productId) => {
 
 // 상품 좋아요
 export const favoriteProduct = async (productId) => {
-  const response = await axiosInstance.post(`/products/${productId}/favorite`);
-  return response.data;
+  console.log("좋아요 추가 요청 보냄:", productId); // 요청 전에 로그 추가
+  try {
+    const response = await axiosInstance.post(`/products/${productId}/like`);
+    console.log("좋아요 추가 응답:", response.data); // 성공 응답 로그 추가
+    return response.data;
+  } catch (error) {
+    console.error("좋아요 추가 중 에러:", error.response ? error.response.data : error.message); // 에러 로그 추가
+    throw error;
+  }
 };
 
 // 상품 좋아요 취소
 export const unfavoriteProduct = async (productId) => {
-  const response = await axiosInstance.delete(`/products/${productId}/favorite`);
-  return response.data;
+  console.log("좋아요 취소 요청 보냄:", productId); // 요청 전에 로그 추가
+  try {
+    const response = await axiosInstance.delete(`/products/${productId}/like`);
+    console.log("좋아요 취소 응답:", response.data); // 성공 응답 로그 추가
+    return response.data;
+  } catch (error) {
+    console.error("좋아요 취소 중 에러:", error.response ? error.response.data : error.message); // 에러 로그 추가
+    throw error;
+  }
 };
 
 // 이미지 업로드

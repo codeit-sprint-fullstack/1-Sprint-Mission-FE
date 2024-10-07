@@ -17,6 +17,7 @@ const ProductCommentForm = ({ productId, addNewComment, accessToken }) => {
     setIsSubmitting(true);
 
     try {
+      console.log("등록할 productId:", productId); // productId 로그 추가
       const newComment = await createComment(productId, content, accessToken);
       alert("댓글이 등록되었습니다.");
       addNewComment(newComment); // 부모로부터 전달된 addNewComment 함수 호출
@@ -37,8 +38,7 @@ const ProductCommentForm = ({ productId, addNewComment, accessToken }) => {
           id="content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.
-          "
+          placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
           style={{ height: "100px" }}
         />
       </div>
@@ -54,4 +54,3 @@ const ProductCommentForm = ({ productId, addNewComment, accessToken }) => {
 };
 
 export default ProductCommentForm;
-

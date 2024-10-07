@@ -1,6 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { createProduct } from "../../api/productApi";
+import ImageUpload from "../../components/ImageUpload";
 import styles from "../../styles/productRegistration.module.css";
 
 const Registration = () => {
@@ -9,7 +10,7 @@ const Registration = () => {
   const [price, setPrice] = useState("");
   const [tag, setTag] = useState("");
   const [tags, setTags] = useState([]);
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrls, setImageUrls] = useState([]);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -18,18 +19,17 @@ const Registration = () => {
     try {
       const accessToken = localStorage.getItem("accessToken");
 
-      if (!name || !description || !price || !imageUrl) {
+      if (!name || !description || !price || imageUrls.length === 0) {
         console.error("모든 필드를 입력해야 합니다.");
         return;
       }
 
-      // 상품 데이터를 JSON 객체로 생성
       const productData = {
         name: name.trim(),
         description: description.trim(),
         price: parseFloat(price),
-        tags: tags, // 배열로 전송
-        images: [imageUrl], // 이미지 배열로 전송
+        tags: tags,
+        images: imageUrls, // 이미지 URL 배열 전송
       };
 
       console.log("전송할 데이터:", productData);
@@ -68,15 +68,8 @@ const Registration = () => {
       </div>
 
       <div className={styles.formGroup}>
-        <label htmlFor="image">외부 이미지 URL</label>
-        <input
-          type="text"
-          id="image"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-          placeholder="이미지 URL을 입력해주세요"
-          required
-        />
+        <label htmlFor="images">상품 이미지</label>
+        <ImageUpload setImageUrls={setImageUrls} />
       </div>
 
       <div className={styles.formGroup}>
@@ -127,9 +120,18 @@ const Registration = () => {
         <div className={styles.tags}>
           {tags.map((t, index) => (
             <div key={index} className={styles.tag}>
-              <span>{t}</span>
+              <span>#{t}</span>
               <button type="button" onClick={() => handleDeleteTag(t)}>
-                X
+                <img
+                  src="/image/delete_round.svg"
+                  alt="Delete Round Icon"
+                  className={styles.roundIcon}
+                />
+                <img
+                  src="/image/delete.svg"
+                  alt="Delete Icon"
+                  className={styles.deleteIcon}
+                />
               </button>
             </div>
           ))}

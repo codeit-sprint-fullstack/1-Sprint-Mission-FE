@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { deleteComment } from '../api/api';
+import { deleteComment } from '../api/commentApi';
 import styles from './CommentKebabMenu.module.css';
 
 const CommentKebabMenu = ({ commentId, onEdit, refreshComments }) => {
   const [showMenu, setShowMenu] = useState(false);
 
-  console.log("전달된 댓글 ID:", commentId); 
+  console.log("전달된 댓글 ID:", commentId);
 
   const handleKebabClick = () => {
     setShowMenu(!showMenu); // 케밥 버튼 클릭 시 토글
@@ -47,4 +47,3 @@ const CommentKebabMenu = ({ commentId, onEdit, refreshComments }) => {
 };
 
 export default CommentKebabMenu;
-

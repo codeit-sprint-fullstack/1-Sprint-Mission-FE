@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from './BestPosts.module.css';
-import { fetchBestArticles } from '../api/api';
+import { fetchBestArticles } from '../api/articleApi';
 
 // 날짜를 YYYY.MM.DD 형식으로 변환하는 함수
 const formatDate = (dateString) => {
@@ -21,14 +21,18 @@ const BestBox = ({ id, title, author, likes, date, image }) => {
       <h3 className={styles.bestTitle}>
         {title || '맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?'}
       </h3>
-      <img src={image || '/image/next_default.svg'} alt="Post Image" className={styles.bestImage} />
+      <img
+        src={image && image.length > 0 ? image[0] : '/image/next_default.svg'} // 첫 번째 이미지 사용
+        alt="Post Image"
+        className={styles.bestImage}
+      />
       <div className={styles.bestFooter}>
         <span className={styles.bestAuthor}>{author || '푸바오'}</span>
         <div className={styles.bestLikes}>
           <img src="/image/heart.svg" alt="Heart Icon" />
           <span>{likes || '0'}</span>
         </div>
-        <span className={styles.bestDate}>{formatDate(date)}</span> {/* 변환된 날짜 출력 */}
+        <span className={styles.bestDate}>{formatDate(date)}</span>
       </div>
     </div>
   );
@@ -77,7 +81,7 @@ const BestPosts = ({ bestPosts }) => {
             author={post.author}
             likes={post.likes}
             date={post.createdAt}
-            image={post.image}
+            image={post.image} // 서버에서 반환된 이미지 배열
           />
         ))}
       </div>
@@ -86,4 +90,3 @@ const BestPosts = ({ bestPosts }) => {
 };
 
 export default BestPosts;
-

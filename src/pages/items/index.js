@@ -8,7 +8,10 @@ import ProductSearchBar from "../../components/ProductSearchBar";
 import ProductRegisterButton from "../../components/ProductRegisterButton";
 import SortOptions from "../../components/SortOptions";
 import Spinner from "../../components/Spinner";
+import BestProducts from "../../components/BestProducts";
 import styles from "../../styles/itemList.module.css";
+
+const SERVER_URL = "https://baomarket.onrender.com";
 
 const ProductListPage = () => {
   const router = useRouter();
@@ -48,11 +51,14 @@ const ProductListPage = () => {
     router.push(`/items/${id}`);
   };
 
-  if (error) return <p>상품을 불러오는 중 오류가 발생했습니다: {error.message}</p>;
+  if (error)
+    return <p>상품을 불러오는 중 오류가 발생했습니다: {error.message}</p>;
 
   return (
     <Spinner dataLoaded={!isLoading}>
       <div className={styles.productList}>
+        <BestProducts />
+
         <div className={styles.header}>
           <h2 className={styles.sectionTitle}>판매 중인 상품</h2>
           <div className={styles.controlContainer}>
@@ -76,16 +82,18 @@ const ProductListPage = () => {
         <div className={styles.allProductsContents}>
           {products.map((item) => (
             <div
-              key={item._id || item.id}
+              key={item.id}
               className={styles.allProducts}
-              onMouseEnter={() => handleMouseEnter(item._id || item.id)}
-              onClick={() => handleProductClick(item._id || item.id)}
+              onMouseEnter={() => handleMouseEnter(item.id)}
+              onClick={() => handleProductClick(item.id)}
             >
-              <img
-                src={item.images?.[0] || "/image/default.svg"}
-                alt={item.name}
-                className={styles.productImg}
-              />
+              {item.image?.length > 0 && (
+                <img
+                  src={item.image[0]}
+                  alt={item.name}
+                  className={styles.productImg}
+                />
+              )}
               <h2 className={styles.productTitle}>{item.name}</h2>
               <h2 className={styles.productPrice}>
                 {item.price.toLocaleString("ko-KR")}원
@@ -98,7 +106,11 @@ const ProductListPage = () => {
           ))}
         </div>
 
-        <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          onPageChange={setPage}
+        />
       </div>
     </Spinner>
   );

@@ -9,25 +9,30 @@
     justify-content: space-between;
     align-items: flex-start;
     margin: auto;
-    transition: transform 0.3s ease; 
+    transition: transform 0.3s ease;
 }
 
 .postItem.moveDown {
     transform: translateY(300px);
 }
 
+.postContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
 .postTitle {
     font-size: 20px;
     font-weight: 600;
     color: #1f2937;
-    margin: 0;
-    transform: translateY(10px);
+    margin-top: 5px;
 }
 
 .postDetails {
     display: flex;
     align-items: center;
-    margin-top: 85px;
 }
 
 .profileIcon {

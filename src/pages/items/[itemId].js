@@ -5,9 +5,8 @@ import {
   getProductById,
   favoriteProduct,
   unfavoriteProduct,
-  updateProduct,
 } from "../../api/productApi";
-import { getComments } from "../../api/commentApi";
+import { getProductComments } from "../../api/commentApi"; // 상품에 대한 댓글 가져오는 함수로 변경
 import { getAccessToken } from "../../api/authApi";
 import Modal from "../../components/Modal";
 import ProductCommentForm from "../../components/ProductCommentForm";
@@ -18,6 +17,8 @@ import ProductKebabMenu from "../../components/ProductKebabMenu";
 import ProductEditModal from "../../components/ProductEditModal";
 import Spinner from "../../components/Spinner";
 import styles from "../../styles/itemDetail.module.css";
+
+const SERVER_URL = "https://baomarket.onrender.com";
 
 const ProductDetailPage = () => {
   const router = useRouter();
@@ -35,7 +36,6 @@ const ProductDetailPage = () => {
     tags: [],
   });
 
-  // 페이지가 로드될 때 accessToken을 getAccessToken 함수로 가져옴
   useEffect(() => {
     if (typeof window !== "undefined") {
       const token = getAccessToken();
@@ -43,7 +43,11 @@ const ProductDetailPage = () => {
     }
   }, []);
 
-  const { data: productData, error: productError, isLoading: isProductLoading } = useQuery({
+  const {
+    data: productData,
+    error: productError,
+    isLoading: isProductLoading,
+  } = useQuery({
     queryKey: ["product", itemId],
     queryFn: () => getProductById(itemId),
     enabled: !!itemId,
@@ -55,13 +59,22 @@ const ProductDetailPage = () => {
         description: data.description,
         tags: data.tags || [],
       });
+
+      console.log("Product Data:", data); // 상품 데이터 확인용 로그
     },
   });
 
   const loadComments = async () => {
     try {
-      const data = await getComments(itemId);
-      setComments(data.list || []);
+      const data = await getProductComments(itemId);
+      console.log("불러온 댓글 데이터:", data);
+
+      // 상태 업데이트 시 댓글을 최신순으로 정렬
+      const sortedComments = (data || []).sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+      setComments(sortedComments); // 정렬된 댓글 상태 업데이트
+      console.log("setComments 후 comments 상태:", sortedComments);
     } catch (error) {
       console.error("댓글 목록 불러오기 실패:", error);
     }
@@ -69,21 +82,31 @@ const ProductDetailPage = () => {
 
   useEffect(() => {
     if (itemId) {
-      loadComments(); // 댓글 목록 불러오기
+      loadComments();
+      console.log("loadComments 호출됨, itemId:", itemId);
     }
   }, [itemId]);
+
+  useEffect(() => {
+    console.log("댓글 상태가 업데이트되었습니다:", comments);
+  }, [comments]);
 
   const likeMutation = useMutation({
     mutationFn: isLiked
       ? () => unfavoriteProduct(itemId, accessToken)
       : () => favoriteProduct(itemId, accessToken),
     onSuccess: () => {
+      console.log("좋아요 요청 성공:", isLiked ? "좋아요 취소" : "좋아요 추가");
       setIsLiked(!isLiked);
       productData.favoriteCount = isLiked
         ? productData.favoriteCount - 1
         : productData.favoriteCount + 1;
     },
-    onError: () => {
+    onError: (error) => {
+      console.error(
+        "좋아요 처리 중 오류 발생:",
+        error.response ? error.response.data : error.message
+      );
       setModalMessage("좋아요 처리 중 오류가 발생했습니다.");
       setIsModalOpen(true);
     },
@@ -91,6 +114,10 @@ const ProductDetailPage = () => {
 
   const handleLikeToggle = () => {
     if (accessToken) {
+      console.log(
+        "좋아요 토글 요청, 현재 상태:",
+        isLiked ? "좋아요 취소" : "좋아요 추가"
+      );
       likeMutation.mutate();
     } else {
       setModalMessage("로그인이 필요합니다.");
@@ -111,12 +138,15 @@ const ProductDetailPage = () => {
   return (
     <div>
       <div className={styles.itemDetail}>
-        <img
-          src={productData?.images[0]}
-          alt={productData?.name}
-          className={styles.image}
-        />
-
+        {productData?.image?.length > 0 ? (
+          <img
+            src={productData.image[0]}
+            alt={productData?.name}
+            className={styles.image}
+          />
+        ) : (
+          <p>이미지가 없습니다.</p>
+        )}
         <div className={styles.infoContainer}>
           <div className={`${styles.infoBox} ${styles.firstBox}`}>
             <div className={styles.namePriceContainer}>
@@ -127,7 +157,7 @@ const ProductDetailPage = () => {
                 onEdit={() => setShowEditModal(true)}
                 onProductUpdate={(updatedProduct) =>
                   setEditedProduct(updatedProduct)
-                } // 수정된 내용 반영
+                }
                 refreshProducts={() => router.push("/items")}
               />
             </div>
@@ -160,9 +190,7 @@ const ProductDetailPage = () => {
               alt="Profile"
               className={styles.profileIcon}
             />
-            <span className={styles.ownerId}>
-              {productData?.ownerId}번 바오
-            </span>
+            <span className={styles.ownerId}>{productData?.userId}번 바오</span>
             <span className={styles.createdAt}>
               {new Date(productData?.createdAt).toLocaleDateString()}
             </span>
@@ -197,8 +225,8 @@ const ProductDetailPage = () => {
                 id={comment.id}
                 content={comment.content}
                 createdAt={comment.createdAt}
-                author={comment.writer?.nickname || "푸바오"}
-                refreshComments={loadComments} // 댓글 갱신 처리
+                author={comment.user?.nickname || "푸바오"}
+                refreshComments={loadComments}
               />
             ))
           )}
@@ -218,9 +246,7 @@ const ProductDetailPage = () => {
           isOpen={showEditModal}
           onClose={() => setShowEditModal(false)}
           productData={productData}
-          onProductUpdate={(updatedProduct) =>
-            setEditedProduct(updatedProduct)
-          }
+          onProductUpdate={(updatedProduct) => setEditedProduct(updatedProduct)}
         />
       )}
     </div>
@@ -228,4 +254,3 @@ const ProductDetailPage = () => {
 };
 
 export default ProductDetailPage;
-
