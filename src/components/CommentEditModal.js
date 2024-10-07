@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import style from "./CommentEditModal.module.css";
-import { updateComment } from "../api/commentApi";
+import { updateProductComment } from "../api/commentApi";
 import { getAccessToken } from "../api/authApi";
 
 const CommentEditModal = ({
   isOpen,
   onClose,
   commentId,
+  productId,
   initialContent,
   onCommentUpdate,
 }) => {
@@ -33,7 +34,7 @@ const CommentEditModal = ({
 
     setIsLoading(true);
     try {
-      await updateComment(commentId, commentData, accessToken);
+      await updateProductComment(productId, commentId, commentData, accessToken);
       alert("댓글이 수정되었습니다.");
 
       if (typeof onCommentUpdate === "function") {

@@ -6,7 +6,7 @@ import {
   favoriteProduct,
   unfavoriteProduct,
 } from "../../api/productApi";
-import { getComments } from "../../api/commentApi";
+import { getProductComments } from "../../api/commentApi";  // 상품에 대한 댓글 가져오는 함수로 변경
 import { getAccessToken } from "../../api/authApi";
 import Modal from "../../components/Modal";
 import ProductCommentForm from "../../components/ProductCommentForm";
@@ -66,7 +66,7 @@ const ProductDetailPage = () => {
 
   const loadComments = async () => {
     try {
-      const data = await getComments(itemId);
+      const data = await getProductComments(itemId);
       console.log("불러온 댓글 데이터:", data);
 
       // 상태 업데이트 시 댓글을 최신순으로 정렬
@@ -245,3 +245,4 @@ const ProductDetailPage = () => {
 };
 
 export default ProductDetailPage;
+
