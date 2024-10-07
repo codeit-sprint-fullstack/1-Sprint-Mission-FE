@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useAuth } from '../utils/AuthProvider';
+import { postUserLogInApi } from '@/utils/api/userApi';
 import Image from 'next/image';
 import styles from '@/styles/Login.module.css';
 import logo from '@/public/login_logo.png';
@@ -13,7 +13,6 @@ import { useState } from 'react';
 import { AuthModal } from '@/utils/Modal';
 
 export default function LogInPage() {
-  const { login, user } = useAuth();
   const [errorMsg, setErrorMsg] = useState('');
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -38,13 +37,14 @@ export default function LogInPage() {
   };
 
   const onSubmit = async (data) => {
-    const resData = await login({
+    const resData = await postUserLogInApi({
       email: data.email,
-      password: data.password,
+      encryptedPassword: data.password,
     });
 
     if (resData && resData.accessToken) {
       router.push('/fleamarket');
+      
     } else {
       setErrorMsg(resData);
       setIsShowModal(true);

@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useAuth } from '../utils/AuthProvider';
-import { postUserSingUpApi } from '@/utils/api/userApi.js';
+import { postUserRegisterApi } from '@/utils/api/userApi.js';
 import Image from 'next/image';
 import styles from '@/styles/Login.module.css';
 import eyeOpen from '@/public/login_eye_open.png';
@@ -13,8 +12,7 @@ import kakaoIcon from '@/public/sns_icon/ic_kakao.png';
 import googleIcon from '@/public/sns_icon/ic_google.png';
 import { AuthModal } from '@/utils/Modal';
 
-export default function LogInPage() {
-  const { login, user } = useAuth();
+export default function RegisterPage() {
   const [errorMsg, setErrorMsg] = useState('');
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -27,6 +25,7 @@ export default function LogInPage() {
     type: 'password',
     imag: eyeClose,
   });
+
   const router = useRouter();
 
   const {
@@ -55,15 +54,14 @@ export default function LogInPage() {
   };
 
   const onSubmit = async (data) => {
-    const resData = await postUserSingUpApi({
+    const resData = await postUserRegisterApi({
       email: data.email,
       nickname: data.nickname,
       password: data.password,
-      passwordConfirmation: data.passwordConfirmation,
     });
 
     if (resData && resData.accessToken) {
-      router.push('/login');
+      // router.push('/login');
       console.log(resData);
     } else {
       setErrorMsg(resData); // 에러 메시지 설정

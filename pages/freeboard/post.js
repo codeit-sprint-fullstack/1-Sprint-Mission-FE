@@ -5,7 +5,6 @@ import { ArticleButton } from '@/utils/Button.js';
 import TitleInput from '@/components/Post/TitleInput';
 import ContentInput from '@/components/Post/ContentInput';
 import { useEditArticle } from '@/hooks/useFreeBoard';
-import { useAuth } from '@/utils/AuthProvider';
 
 export default function PostArticlePage() {
   const [values, setValues] = useState({
@@ -16,7 +15,6 @@ export default function PostArticlePage() {
   const [canSubmit, setCanSubmit] = useState(false);
   const router = useRouter();
   const { id } = router.query;
-  const { user } = useAuth();
 
   const { postComment } = useEditArticle({ id });
 

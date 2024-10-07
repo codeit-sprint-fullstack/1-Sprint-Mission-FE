@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useBestArticleByDevice({ articlesList }) {
+export default function useBestArticleByDevice({ articlesList, maxProduct }) {
   const [bestArticles, setBestArticles] = useState(articlesList);
   const [resize, setResize] = useState();
 
@@ -16,7 +16,7 @@ export default function useBestArticleByDevice({ articlesList }) {
       } else if (screenWidth <= 1199) {
         maxArticles = 2;
       } else {
-        maxArticles = 3;
+        maxArticles = maxProduct || 3;
       }
 
       if (articlesList) {

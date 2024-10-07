@@ -14,14 +14,15 @@
 
 .dropDown {
   position: absolute;
-  width: 139px;
+  width: 130px;
   height: 92px;
   border: 1px solid #d1d5db;
   background-color: #ffff;
   text-align: center;
   border-radius: 8px;
-  margin-left: -120px;
+  margin-left: -130px;
   cursor: pointer;
+  margin-top: 50px;
 }
 
 .dropDownEdit {

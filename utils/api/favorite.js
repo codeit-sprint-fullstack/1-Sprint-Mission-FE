@@ -4,12 +4,23 @@ const instance = axios.create({
   baseURL: 'https://sprint-be-ztdn.onrender.com/favorite',
 });
 
-export async function postFavoriteApi({ articleId, category }) {
+let accessToken;
+
+if (typeof window !== 'undefined') {
+  // Perform localStorage action
+  accessToken = localStorage.getItem('accessToken');
+}
+
+export async function postFavoriteApi({ articleId, userId, accessToken }) {
   try {
-    const res = await instance.post(`/${category}/${articleId}`, {
-      userId: '86d761e4-a9d0-4082-96dd-cf6f2c931673',
-      articleId: articleId,
-    });
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      params: { userId },
+    };
+
+    const res = await instance.post(`/${articleId}`, {}, config);
 
     return res.data;
   } catch (error) {
@@ -17,13 +28,19 @@ export async function postFavoriteApi({ articleId, category }) {
   }
 }
 
-export async function deleteFavoriteApi({ articleId, category }) {
+export async function deleteFavoriteApi({ articleId, userId, accessToken }) {
   try {
-    const res = await instance.delete(`/${category}/${articleId}`, {
-      params: {
-        userId: '86d761e4-a9d0-4082-96dd-cf6f2c931673',
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
       },
+    };
+
+    const res = await instance.delete(`/${articleId}`, {
+      headers: config.headers,
+      params: { userId },
     });
+
     return {};
   } catch (error) {
     console.error('Error deleting data:', error);

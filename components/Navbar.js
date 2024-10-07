@@ -4,13 +4,13 @@ import loginBtn from '../public/login_btn.png';
 import Image from 'next/image';
 import styles from '@/styles/Navbar.module.css';
 import Link from 'next/link';
-import { useAuth } from '../utils/AuthProvider';
 import { useRouter } from 'next/router';
 import { NavLogButton } from '@/utils/Button';
+import { useUserAuth } from '@/context/UserContextProvider';
 
 export default function Navbar() {
-  const { user, login } = useAuth();
   const router = useRouter();
+  const { user, isPending } = useUserAuth();
 
   return (
     <>

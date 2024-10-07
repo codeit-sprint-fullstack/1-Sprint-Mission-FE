@@ -1,11 +1,11 @@
-import styles from '@/styles/FreeBoard.module.css';
+import styles from '@/styles/Fleamarket.module.css';
 
 export default function Pagination({
   totalPages,
   currentPage,
   setCurrentPage,
 }) {
-  const pageLimit = 1;
+  const pageLimit = 5;
   const startPage = Math.floor((currentPage - 1) / pageLimit) * pageLimit + 1;
   const endPage = Math.min(startPage + pageLimit - 1, totalPages);
 
@@ -19,8 +19,12 @@ export default function Pagination({
 
   return (
     <>
-      <div>
-        <button disabled={currentPage <= pageLimit} onClick={handlePrev}>
+      <div className={styles.paginationLayout}>
+        <button
+          disabled={currentPage <= pageLimit}
+          onClick={handlePrev}
+          className={styles.paginationArrowBtn}
+        >
           &lt;
         </button>
         {Array.from({ length: endPage - startPage + 1 }, (_, index) => (
@@ -39,6 +43,7 @@ export default function Pagination({
         <button
           disabled={currentPage + pageLimit > totalPages}
           onClick={handleNext}
+          className={styles.paginationArrowBtn}
         >
           &gt;
         </button>

@@ -16,23 +16,24 @@ export function useComments({ articleId, category }) {
     queryFn: ({ pageParam = null }) =>
       fetchCommentsApi({ articleId, category, cursorId: pageParam }),
     getNextPageParam: (lastPage) => {
-      const comments = lastPage.comments || [];
+      const comments = lastPage?.comments || [];
 
       return comments.length <= 4
         ? undefined
         : comments[comments.length - 1].id;
     },
+    enabled: !!articleId && !!category,
   });
 
   const uniqueComments = Array.from(
     new Map(
       data?.pages
-        .flatMap((page) => page.comments)
-        .map((comment) => [comment.id, comment])
+        .flatMap((page) => page?.comments || [])
+        .map((comment) => [comment.id, comment] || [])
     ).values() || []
   );
 
-  const totalCount = data?.pages[0].totalCount;
+  const totalCount = data?.pages[0]?.totalCount || 0;
 
   return {
     uniqueComments,

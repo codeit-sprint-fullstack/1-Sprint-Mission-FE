@@ -1,16 +1,22 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://sprint-be-ztdn.onrender.com/comments/',
+  baseURL: 'https://sprint-be-ztdn.onrender.com/comment/',
 });
 
 export async function fetchCommentsApi({ articleId, category, cursorId }) {
   try {
-    const res = await instance.get(`${category}/${articleId}`, {
-      params: {
-        limit: 5,
-        cursor: cursorId,
+    const accessToken = localStorage.getItem('accessToken');
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
       },
+    };
+
+    const res = await instance.get(`${category}/${articleId}`, {
+      headers: config.headers,
+      params: { limit: 5, cursor: cursorId },
     });
 
     return {
@@ -22,13 +28,25 @@ export async function fetchCommentsApi({ articleId, category, cursorId }) {
   }
 }
 
-export async function postCommentApi({ category, articleId, comment }) {
+export async function postCommentApi({ category, articleId, comment, userId }) {
   try {
-    const res = await instance.post(`${category}/${articleId}`, {
-      content: comment,
-      articleId: articleId,
-      userId: '86d761e4-a9d0-4082-96dd-cf6f2c931673',
-    });
+    const accessToken = localStorage.getItem('accessToken');
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+
+    const res = await instance.post(
+      `${category}/${articleId}`,
+      {
+        content: comment,
+        articleId: articleId,
+        userId: userId,
+      },
+      config
+    );
 
     return res.data;
   } catch (error) {
@@ -38,9 +56,21 @@ export async function postCommentApi({ category, articleId, comment }) {
 
 export async function editCommentApi({ id, editComment }) {
   try {
-    const res = await instance.patch(`${id}`, {
-      content: editComment,
-    });
+    const accessToken = localStorage.getItem('accessToken');
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+
+    const res = await instance.patch(
+      `${id}`,
+      {
+        content: editComment,
+      },
+      config
+    );
     return res.data;
   } catch (error) {
     console.error('Error editing data:', error);
@@ -50,7 +80,15 @@ export async function editCommentApi({ id, editComment }) {
 
 export async function deleteCommentApi(commentId) {
   try {
-    const res = await instance.delete(`${commentId}`);
+    const accessToken = localStorage.getItem('accessToken');
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+
+    const res = await instance.delete(`${commentId}`, config);
     return {};
   } catch (error) {
     console.error('Error deleting data:', error);

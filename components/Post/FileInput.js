@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import Image from 'next/image';
 import postImage from '@/public/post_imge.png';
 import icImageDelete from '@/public/ic_image_delete.png';
+import { useEffect } from 'react';
 import { faCropSimple } from '@fortawesome/free-solid-svg-icons';
 
 export default function FileInput({ values, setValues }) {
@@ -36,6 +37,20 @@ export default function FileInput({ values, setValues }) {
     }));
   };
 
+  useEffect(() => {
+    if (values.images && values.images.length > 0) {
+      const updatedImages = values.images.map((image) => {
+        if (typeof image === 'string') {
+          return `https://sprint-be-ztdn.onrender.com/${image}`;
+        }
+        return URL.createObjectURL(image);
+      });
+      setShowImages(updatedImages);
+    } else {
+      setShowImages([]);
+    }
+  }, [values.images]);
+
   return (
     <div className={styles.fileInput}>
       <div className={styles.sectionTitle}>이미지</div>
@@ -62,10 +77,9 @@ export default function FileInput({ values, setValues }) {
             height={282}
           />
         </div>
-
         {showImages.map((image, id) => (
           <div key={id}>
-            <img
+            <Image
               src={image}
               width={282}
               height={282}

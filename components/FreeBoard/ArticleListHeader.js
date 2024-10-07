@@ -60,6 +60,7 @@ export default function ArticleListHeader({ keyword, setOrderBy }) {
                   onClickHandler: () => handleOrderByClick('favorite'),
                   label: '좋아요순',
                 }}
+                onClose={() => setIsShowDropDown(false)}
               />
             </div>
           )}

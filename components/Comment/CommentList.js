@@ -6,6 +6,7 @@ import dotIcon from '@/public/ic_dot.png';
 import noComment from '@/public/no_comment.png';
 import noAsk from '@/public/no_ask.png';
 import { UserInfo } from './UserInfo.js';
+import { useUserAuth } from '@/context/UserContextProvider';
 import styles from '@/styles/Comment.module.css';
 import toast from 'react-hot-toast';
 
@@ -18,10 +19,15 @@ export default function CommentList({
   const [commentId, setCommentId] = useState('');
   const [isOpenDropDown, setIsOpenDropDown] = useState(false);
   const [editId, setEditId] = useState(null);
+  const { user } = useUserAuth();
 
   const handleDropDown = (e) => {
-    setIsOpenDropDown((prev) => !prev);
-    setCommentId(e);
+    if (user?.id === e.userId) {
+      setIsOpenDropDown((prev) => !prev);
+      setCommentId(e.id);
+    } else {
+      setIsOpenDropDown(false);
+    }
   };
 
   function handleDelete() {
@@ -68,7 +74,7 @@ export default function CommentList({
                       </span>
                       <div>
                         <Image
-                          onClick={() => handleDropDown(comment.id)}
+                          onClick={() => handleDropDown(comment)}
                           src={dotIcon}
                           className={styles.dotImage}
                           alt='수정삭제 버튼'

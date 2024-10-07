@@ -5,11 +5,10 @@ import { ArticleButton } from '@/utils/Button.js';
 import TitleInput from '@/components/Post/TitleInput';
 import ContentInput from '@/components/Post/ContentInput';
 import { useGetArticle, useEditArticle } from '@/hooks/useFreeBoard';
-import { useAuth } from '@/utils/AuthProvider';
 
 export default function EditArticlePage() {
   const router = useRouter();
-  const userInfo = useAuth();
+  const { user, isPending } = useUserAuth();
   const [isSubmit, setIsSubmit] = useState(true);
   const [values, setValues] = useState({
     title: '',
@@ -26,6 +25,7 @@ export default function EditArticlePage() {
       id,
       title: values.title,
       content: values.content,
+      userId: user.id,
     });
   };
 

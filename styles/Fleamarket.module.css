@@ -1,0 +1,151 @@
+.headerLayout {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px 0 24px;
+}
+
+.headerTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.headerMenu {
+  display: flex;
+  gap: 12px;
+}
+
+.submit {
+  position: relative;
+  margin-right: auto;
+  min-width: 325px;
+  flex-grow: 0.98;
+}
+
+.icon {
+  position: absolute;
+  top: 9px;
+  left: 16px;
+}
+
+.searchInput {
+  width: 100%;
+  height: 42px;
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 12px;
+  padding-left: 44px;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+  margin-right: 100px;
+}
+
+.postButton {
+  border: none;
+  width: 133px;
+  height: 42px;
+  text-align: center;
+  align-items: center;
+  background-color: #3692ff;
+  color: #f3f4f6;
+  border-radius: 8px;
+}
+
+.dropDownBoxLayout {
+  display: flex;
+  flex-direction: row;
+}
+
+.webDropDownBox {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 130px;
+  height: 42px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  text-align: center;
+  align-items: center;
+  padding: 12px 20px;
+}
+
+.dropDownMobile {
+  display: none;
+}
+
+.articleList {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 24px;
+  grid-row-gap: 40px;
+  height: 740px;
+}
+
+.productInfo {
+  margin: 16px 0 40px 10px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.commentCount {
+  color: blueviolet;
+  margin-left: 10px;
+}
+
+.price {
+  margin: 6px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.favorite {
+  display: flex;
+  flex-direction: row;
+}
+
+.favoriteCount {
+  margin-left: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.paginationLayout {
+  display: flex;
+  justify-content: center;
+  margin: 43px 0 140px;
+}
+
+.paginationArrowBtn {
+  border: 1px solid #e5e7eb;
+  border-radius: 40px;
+  padding: 12.5px;
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+}
+
+.selectBtn {
+  border: 1px solid #e5e7eb;
+  border-radius: 40px;
+  padding: 12.5px;
+  width: 40px;
+  height: 40px;
+  background-color: #3692ff;
+  color: #e5e7eb;
+}
+
+.noSelectBtn {
+  border: 1px solid #e5e7eb;
+  border-radius: 40px;
+  padding: 12.5px;
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+}

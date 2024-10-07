@@ -5,18 +5,22 @@ import styles from '@/styles/Comment.module.css';
 import { useComments, useEditComment } from '@/hooks/useComments';
 import useScroll from '@/hooks/useScroll';
 import { useRouter } from 'next/router';
+import { useUserAuth } from '@/context/UserContextProvider';
 
 export default function Comments({ category }) {
   const [comment, setComment] = useState('');
   const [hasMore, setHasMore] = useState(true);
   const [isSubmit, setIsSubmit] = useState(false);
   const router = useRouter();
+  const { user } = useUserAuth();
   const { id: articleId } = router.query;
 
   const { uniqueComments, fetchNextPage, isLoading, totalCount } = useComments({
     articleId,
     category,
   });
+
+  const userId = user?.id;
 
   const { postCommentMutation, deleteComments } = useEditComment({ articleId });
 
@@ -26,7 +30,7 @@ export default function Comments({ category }) {
 
   const handleSubmit = () => {
     if (articleId && comment) {
-      const newComment = { category, articleId, comment };
+      const newComment = { category, articleId, comment, userId };
       postCommentMutation.mutate(newComment);
       setComment('');
     } else {
