@@ -4,34 +4,14 @@ import BoardListItems from "@/components/BoardComponents/BoardListItems.jsx";
 import Link from "next/link";
 import { useState } from "react";
 import { ROUTES } from "@/utils/rotues";
-import { useQuery } from "@tanstack/react-query";
-import { fetchArticles } from "@/utils/articleApi";
 
-export default function BoardList({ initialArticles }) {
+export default function BoardList({ articles, onSearch, onSortChange }) {
   const [keyword, setKeyword] = useState("");
   const [sortOrder, setSortOrder] = useState("recent");
 
-  const {
-    data: articles,
-    refetch,
-    isFetching,
-    error,
-  } = useQuery({
-    queryKey: ["articles", { sortOrder }],
-    queryFn: () =>
-      fetchArticles({
-        orderBy: sortOrder,
-        keyword,
-        page: 1,
-        pageSize: 5,
-      }),
-    initialData: initialArticles,
-    keepPreviousData: true,
-  });
-
   const handleSortChange = (value) => {
     setSortOrder(value);
-    refetch();
+    onSortChange(value);
   };
 
   const handleKeywordChange = (event) => {
@@ -39,7 +19,7 @@ export default function BoardList({ initialArticles }) {
   };
 
   const handleKeywordSearch = () => {
-    refetch();
+    onSearch(keyword);
   };
 
   const handleKeyDown = (event) => {
@@ -47,9 +27,6 @@ export default function BoardList({ initialArticles }) {
       handleKeywordSearch();
     }
   };
-
-  if (isFetching) return <p>Loading...</p>;
-  if (error) return <p>Failed to load articles: {error.message}</p>;
 
   return (
     <>
@@ -66,7 +43,7 @@ export default function BoardList({ initialArticles }) {
         sortOrder={sortOrder}
         onSortChange={handleSortChange}
       />
-      <BoardListItems articles={articles?.list || []} />
+      <BoardListItems articles={articles} />
     </>
   );
 }

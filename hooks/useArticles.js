@@ -7,28 +7,8 @@ export function useArticles(initialArticles, totalArticles, pageSize, router) {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(articles.length < totalArticles);
 
-  useEffect(() => {
-    const fetchUpdatedArticles = async () => {
-      setLoading(true);
-      try {
-        const response = await fetchArticles({
-          orderBy: router.query.sort || "recent",
-          keyword: router.query.keyword || "",
-          page: 1,
-          pageSize: pageSize,
-        });
-        setArticles(response.list || []);
-        setPage(1);
-        setHasMore(response.list.length < totalArticles);
-      } catch (error) {
-        console.error("Error fetching updated articles:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUpdatedArticles();
-  }, [router.query, totalArticles, pageSize]);
+  const [keyword, setKeyword] = useState("");
+  const [sortOrder, setSortOrder] = useState("recent");
 
   const loadMoreArticles = useCallback(async () => {
     if (loading || !hasMore) return;
@@ -38,8 +18,8 @@ export function useArticles(initialArticles, totalArticles, pageSize, router) {
 
     try {
       const response = await fetchArticles({
-        orderBy: router.query.sort || "recent",
-        keyword: router.query.keyword || "",
+        orderBy: sortOrder,
+        keyword: keyword,
         page: nextPage,
         pageSize: pageSize,
       });
@@ -47,27 +27,55 @@ export function useArticles(initialArticles, totalArticles, pageSize, router) {
       const newArticles = response.list || [];
       setArticles((prevArticles) => [...prevArticles, ...newArticles]);
       setPage(nextPage);
-
-      if (
-        newArticles.length === 0 ||
-        articles.length + newArticles.length >= totalArticles
-      ) {
-        setHasMore(false);
-      }
+      setHasMore(
+        newArticles.length > 0 &&
+          articles.length + newArticles.length < totalArticles
+      );
     } catch (error) {
       console.error("Error fetching more articles:", error);
     } finally {
       setLoading(false);
     }
   }, [
-    page,
     loading,
     hasMore,
+    page,
     articles.length,
     totalArticles,
     pageSize,
-    router.query,
+    sortOrder,
+    keyword,
   ]);
 
-  return { articles, loadMoreArticles, hasMore, loading };
+  useEffect(() => {
+    const fetchInitialArticles = async () => {
+      setLoading(true);
+      try {
+        const response = await fetchArticles({
+          orderBy: sortOrder,
+          keyword: keyword,
+          page: 1,
+          pageSize: pageSize,
+        });
+        setArticles(response.list || []);
+        setPage(1);
+        setHasMore(response.list.length < totalArticles);
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInitialArticles();
+  }, [sortOrder, keyword, pageSize, totalArticles]);
+
+  return {
+    articles,
+    loadMoreArticles,
+    hasMore,
+    loading,
+    setKeyword,
+    setSortOrder,
+  };
 }
