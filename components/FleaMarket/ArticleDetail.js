@@ -11,7 +11,7 @@ import { ArticleDeleteModal } from '@/utils/Modal';
 import toast from 'react-hot-toast';
 import { useUserAuth } from '@/context/UserContextProvider';
 
-export default function ArticleDetailInfo({ userId, article, category }) {
+export default function ArticleDetailInfo({ isLiked, article, category }) {
   const [isOenDropDown, setIsOpenDropDown] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
@@ -120,7 +120,12 @@ export default function ArticleDetailInfo({ userId, article, category }) {
           ))}
         </div>
 
-        <ArticleDetailUserInfo article={article} category={category} />
+        <ArticleDetailUserInfo
+          article={article}
+          isLiked={isLiked}
+          user={user}
+          category={category}
+        />
       </div>
     </>
   );

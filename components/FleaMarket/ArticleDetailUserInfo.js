@@ -6,25 +6,42 @@ import heartIcon from '@/public/ic_heart.png';
 import heartFullIcon from '@/public/ic_heart_full.png';
 import DateFormat from '@/utils/DateFormat.js';
 import { postFavoriteApi, deleteFavoriteApi } from '@/utils/api/favorite';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export function ArticleDetailUserInfo({ article, category }) {
-  const [isFavorite, setIsFavorite] = useState(false);
+export function ArticleDetailUserInfo({ article, isLiked, user }) {
+  const [isFavorite, setIsFavorite] = useState(isLiked);
   const [favoriteCount, setFavoriteCount] = useState(
-    Math.min(article?.favorite || 0)
+    Math.min(article?.favoriteCount || 0)
   );
-  const articleId = article?.id || '';
+  const [values, setValues] = useState({ articleId: '', userId: '' });
 
-  const handleFavorite = async (articleId, category) => {
+  const handleFavorite = async () => {
     setIsFavorite((prev) => !prev);
+
     if (!isFavorite) {
       setFavoriteCount((prev) => prev + 1);
-      await postFavoriteApi(articleId, category);
+
+      await postFavoriteApi({
+        articleId: values.articleId,
+        userId: values.userId,
+      });
     } else {
       setFavoriteCount((prev) => Math.max(prev - 1, 0));
-      await deleteFavoriteApi(articleId, category);
+      await deleteFavoriteApi({
+        articleId: values.articleId,
+        userId: values.userId,
+      });
     }
   };
+
+  useEffect(() => {
+    if (article && user) {
+      setValues({
+        articleId: article.id,
+        userId: user.id,
+      });
+    }
+  }, [article, user]);
 
   return (
     <>
@@ -48,7 +65,7 @@ export function ArticleDetailUserInfo({ article, category }) {
               height={23.3}
               alt='하트 아이콘'
               className={styles.heartIcon}
-              onClick={() => handleFavorite(articleId, category)}
+              onClick={() => handleFavorite()}
             />
             <span className={styles.heartCount}>{favoriteCount}</span>
           </div>

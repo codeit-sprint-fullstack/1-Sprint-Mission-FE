@@ -18,7 +18,7 @@ export function ArticleListUserInfo({ article }) {
         <div className={styles.favorite}>
           <Image src={heartIcon} alt='하트 아이콘' width={16} height={16} />
           <span className={styles.favoriteCount}>
-            {Math.min(article.favorite, 0)}
+            {Math.max(article.favoriteCount, 0)}
           </span>
         </div>
       </div>

@@ -38,11 +38,11 @@ export function useGetArticleList({ page, sort, keyword }) {
   };
 }
 
-export function useGetArticle(id) {
+export function useGetArticle({ id, userId }) {
   const { isLoading, data } = useQuery({
-    queryKey: ['article', id],
-    queryFn: () => fetchFleaMarketArticleApi(id),
-    enabled: !!id,
+    queryKey: ['article', id, userId],
+    queryFn: () => fetchFleaMarketArticleApi({ id, userId }),
+    enabled: !!id && !!userId,
   });
 
   return { data, isLoading };
