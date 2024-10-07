@@ -5,7 +5,7 @@ import {
   updateComments,
   deleteComments,
 } from "@/utils/articleChatApi";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
 export const useDeleteComment = () => {
   return useMutation({
