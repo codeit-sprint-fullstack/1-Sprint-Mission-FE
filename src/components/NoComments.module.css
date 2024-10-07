@@ -6,5 +6,12 @@
   justify-content: center;
   max-width: 1200px;
   margin: 0 auto;
-  margin-top: 250px;
+}
+
+/* 중고마켓 상세페이지 아직 문의가 없어요 문구 */
+.pNoComments {
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  color: #9ca3af;
 }

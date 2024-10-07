@@ -23,13 +23,10 @@ export default function ProductCommentItem({
   const handleEdit = async () => {
     if (editedContent.trim()) {
       try {
-        console.log("댓글 ID:", comment.id);
-
-        await updateMarketComment(comment.id, {
-          content: editedContent,
-        });
+        // 수정할 댓글의 ID와 수정된 내용을 전송
+        await updateMarketComment(comment.id, editedContent);
         setIsEditing(false);
-        onCommentUpdate(comment.id, { content: editedContent });
+        fetchCommentsData(); // 댓글 목록 재조회
       } catch (error) {
         console.error(
           "댓글 수정 실패:",
@@ -68,18 +65,16 @@ export default function ProductCommentItem({
     <div className={styles.commentContainer}>
       <div className={styles.commentHeader}>
         {isEditing ? (
-          <>
-            <div className={styles.editMode}>
-              <textarea
-                value={editedContent}
-                onChange={handleChange}
-                className={styles.editTextarea}
-              />
-              <button onClick={handleEdit} className={styles.saveButton}>
-                저장
-              </button>
-            </div>
-          </>
+          <div className={styles.editMode}>
+            <textarea
+              value={editedContent}
+              onChange={handleChange}
+              className={styles.editTextarea}
+            />
+            <button onClick={handleEdit} className={styles.saveButton}>
+              저장
+            </button>
+          </div>
         ) : (
           <p className={styles.content}>{comment.content}</p>
         )}
@@ -96,7 +91,7 @@ export default function ProductCommentItem({
           height={32}
         />
         <div className={styles.authorDate}>
-          <span className={styles.author}>{comment.writer.nickname}</span>
+          <span className={styles.author}>{comment.user.nickname}</span>
           <span className={styles.date}>
             {new Date(comment.createdAt).toLocaleDateString()}
           </span>

@@ -76,6 +76,7 @@
   border: none;
   margin-right: 200px;
   font-family: Pretendard;
+  cursor: pointer;
 }
 
 /* 인가된 경우, 유저 정보 API를 활용 */

@@ -13,6 +13,7 @@ function ProductList({ products }) {
     <section className={styles.saleProducts}>
       <ul className={styles.productList}>
         {products.map((product) => (
+          // ProductListItem에 imageUrl을 prop로 전달
           <ProductListItem key={product.id} product={product} />
         ))}
       </ul>

@@ -27,7 +27,7 @@ export default function Login() {
     onSuccess: (data) => {
       console.log("로그인 성공:", data);
       // 로그인 성공 시 accessToken을 로컬 스토리지에 저장 및 중고 마켓 페이지로 이동
-      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("accessToken", data.token);
       router.push("/items");
     },
     onError: (error) => {
@@ -123,7 +123,7 @@ export default function Login() {
           <div className={styles.easy_text}>간편 로그인하기</div>
 
           <div className={styles.sns}>
-            <a href="https://www.google.com/" target="google">
+            <a href="http://localhost:8000/api/users/auth/google">
               <Image
                 src="/images/google.png"
                 alt="구글"

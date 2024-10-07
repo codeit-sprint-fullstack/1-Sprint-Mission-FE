@@ -48,6 +48,16 @@
 }
 
 /* 라벨 스타일 */
+.Label {
+  display: block;
+  font-weight: 700;
+  font-size: 18px;
+  color: #1f2937;
+  font-family: Pretendard;
+  margin-bottom: 8px;
+}
+
+/* 라벨 스타일 */
 .label1 {
   display: block;
   font-weight: 700;
@@ -177,4 +187,53 @@ textarea.RegistrationInput::placeholder {
 .FormTop button:disabled {
   background: #9ca3af;
   cursor: not-allowed;
+}
+
+/* 상품 이미지 등록 컨테이너 */
+.imageRegist {
+  display: flex;
+  gap: 24px;
+}
+
+/* 미리보기 이미지 컨테이너 */
+.imageContainer {
+  position: relative; /* 부모 요소를 relative로 설정 */
+  display: inline-block;
+}
+
+/* 미리보기 이미지 */
+.imagePreviewImage {
+  margin: 44px 20px 20px 0;
+  width: 282px;
+  height: 282px;
+  border: 1px solid #ddd;
+}
+
+/* 미리보기 이미지 삭제 X 버튼 */
+.removeImage {
+  position: absolute; /* 절대 위치 설정 */
+  top: 60px;
+  right: 30px;
+  color: #ffffff;
+  background: #9ca3af;
+  border-style: none;
+  border-radius: 50%;
+  cursor: pointer; /* 커서 포인터로 변경 */
+  z-index: 10; /* 다른 요소들보다 위에 오도록 설정 */
+}
+
+/* 상품 이미지 등록 */
+.imageUpload {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 282px;
+  height: 282px;
+  background: #f3f4f6;
+  font-size: 16px;
+  font-weight: 400;
+  color: #9ca3af;
+  border-radius: 12px;
 }

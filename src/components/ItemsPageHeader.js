@@ -91,7 +91,9 @@ function ItemsPageHeader() {
       <nav className={styles.nav}>
         <ul>
           <li>
-            <a href="#free-board">자유게시판</a>
+            <Link className={styles.itemPageMarket} href="/free-board">
+              자유게시판
+            </Link>
           </li>
           <li>
             <Link className={styles.itemPageMarket} href="/items">
