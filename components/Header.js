@@ -43,9 +43,9 @@ export default function Header() {
       </div>
       <div className={styles.HeaderMenu}>
         <Link
-          href="/"
+          href="/articles"
           className={
-            router.pathname === "/product" ? styles.Active : styles.NotActive
+            router.pathname === "/articles" ? styles.Active : styles.NotActive
           }
         >
           <p>자유 게시판</p>

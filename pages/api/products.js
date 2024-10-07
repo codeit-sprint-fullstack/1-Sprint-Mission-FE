@@ -33,7 +33,7 @@ export async function getProducts(data) {
 export async function getProduct(productId) {
   try {
     const response = await api.get(`/products/${productId}`);
-    console.log(response);
+    // console.log(response);
     return response;
   } catch (error) {
     return error.response;

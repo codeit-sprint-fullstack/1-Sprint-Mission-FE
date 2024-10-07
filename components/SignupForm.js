@@ -57,7 +57,7 @@ const SignupForm = ({ isModalOpen, setIsModalOpen }) => {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      console.log(values);
+      // console.log(values);
       try {
         const res = await PostSignup({
           email: values.email,

@@ -68,6 +68,7 @@ export default function Market({ id }) {
     const fetchComments = async () => {
       try {
         const response = await getComments(id, 9); // 비동기 API 호출
+        // console.log(response);
         setComment(response); // API 호출 후 데이터의 data 부분만 상태로 저장
       } catch (error) {
         console.error("댓글 오류", error);

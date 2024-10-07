@@ -1,0 +1,132 @@
+.HomeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 70px;
+  padding-bottom: 160px;
+  width: 100%;
+  justify-content: space-around;
+}
+.ContainerGrid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  width: 100%;
+}
+.ContainerGridTitle {
+  grid-column: 2;
+  font-size: 20px;
+  font-weight: 700;
+}
+.BestItemContainer {
+  grid-column: 2;
+  display: flex;
+  gap: 24px;
+}
+.ContentTitle {
+  grid-column: 2;
+  display: flex;
+  margin-top: 40px;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  align-items: center;
+}
+.ContentBtn {
+  width: 88px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: #3692ff;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+.ContentPost {
+  grid-column: 2;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 29px;
+  gap: 16px;
+}
+
+.ContentInput {
+  width: 100%;
+  height: 42px;
+  border-radius: 12px;
+  padding: 9px 20px 9px 16px;
+  gap: 10px;
+  background-color: #f3f4f6;
+  border: none;
+  font-size: 16px;
+  font-weight: 400;
+  color: #9ca3af;
+  padding-left: 44px;
+  box-sizing: border-box;
+}
+.SearchImg {
+  position: absolute;
+  left: 20px;
+}
+
+.dropdown {
+  position: relative;
+}
+.menu {
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border-color: #e5e7eb;
+  width: 130px;
+}
+.toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  width: 130px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 16px;
+  font-weight: 400;
+  color: #1f2937;
+  padding: 12px 20px 12px 20px;
+  box-sizing: border-box;
+}
+.menu {
+  position: absolute;
+  width: 130px;
+  height: 42px;
+  background-color: #ffffff;
+  border-color: #e5e7eb;
+  box-sizing: border-box;
+}
+.menu li {
+  display: flex;
+  width: 130px;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+  font-size: 16px;
+  font-weight: 400;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+.menu li:first-child {
+  border-radius: 12px 12px 0 0;
+}
+.menu li:last-child {
+  border-radius: 0px 0px 12px 12px;
+}
+.ContentItem {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  gap: 24px;
+}
