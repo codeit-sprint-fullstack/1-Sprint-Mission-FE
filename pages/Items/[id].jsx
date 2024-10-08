@@ -1,7 +1,8 @@
 import * as productsApi from "@/pages/api/products";
 import * as commentApi from "@/pages/api/comment";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import { RefContext } from "@/pages/_app";
 import useAuth from "@/contexts/authContext";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,6 +11,7 @@ import AlertModal from "@/components/Modals/AlertModal";
 import ConfirmModal from "@/components/Modals/ConfirmModal";
 import styles from "@/styles/detailProduct.module.css";
 import ic_back from "@/public/images/ic_back.png";
+import imgDefault from "@/public/images/img_default.png";
 import ic_profile from "@/public/images/ic_profile.png";
 import ic_heart from "@/public/images/ic_heart.png";
 import ic_heart_liked from "@/public/images/ic_heart_liked.png";
@@ -17,16 +19,17 @@ import ic_kebab from "@/public/images/ic_kebab.png";
 import Img_inquiry_empty from "@/public/images/Img_inquiry_empty.png";
 import { dateFormatYYYYMMDD } from "@/utils/dateFormat";
 import DropdownData from "@/components/DropdownList/DropdownData";
+import { useDebouncedCallback } from "use-debounce";
 import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
+  useInfiniteQuery,
   useMutation,
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
+import { setContext } from "../api/httpClient";
 
 export async function getServerSideProps(context) {
+  setContext(context);
   //다이나믹 라우팅인 관계로 SSG의 방식으로 react-query를 사용하지 않고 SSR 방식을 사용
   const { id } = context.params;
 
@@ -41,8 +44,8 @@ export async function getServerSideProps(context) {
   }
 
   try {
-    const { list } = await commentApi.getProductComments(id);
-    comments = list;
+    const response = await commentApi.getProductComments(id);
+    comments = response;
   } catch (error) {
     console.log(error);
   }
@@ -57,38 +60,99 @@ export async function getServerSideProps(context) {
 }
 
 function DetailProduct({ product, comments, id }) {
+  //권한인증
+  const { user } = useAuth();
   const router = useRouter();
   const queryClient = useQueryClient();
+  const globalDivRef = useContext(RefContext); //무한 스크롤 쿼리용 Ref
 
   const { data: productData } = useQuery({
-    queryKey: ["product"],
+    queryKey: ["product", id],
     queryFn: () => productsApi.getProduct(id),
     initialData: product,
   });
 
-  const { data: commentsData } = useQuery({
-    queryKey: ["comments"],
-    queryFn: () => commentApi.getProductComments(id),
-    initialData: comments,
+  //무한스크롤 쿼리를 통한 react-query관리
+  const {
+    data: commentsData,
+    fetchStatus, //로딩 에니메이션용
+    fetchNextPage,
+  } = useInfiniteQuery({
+    queryKey: ["comments", id],
+    queryFn: ({ pageParam }) => commentApi.getProductComments(id, pageParam),
+    getNextPageParam: (lastPage) =>
+      lastPage.nextCursor ? lastPage.nextCursor : undefined,
+    initialData: {
+      pages: [comments], // comments 배열을 pages로 감싸서 전달
+      pageParams: [comments.nextCursor], // pageParams 기본값 설정
+    },
   });
+
+  const likeMutation = useMutation({
+    mutationFn: async () => {
+      //해당 상품의 사용자 좋아요상태의 따라 호출하는 API를 달리 한다.
+      if (isFavorite) {
+        await productsApi.unlikeProduct(id);
+      } else {
+        await productsApi.likeProduct(id);
+      }
+    },
+    onMutate: async () => {
+      //만약 refetch를 진행중이라면 mutation의 값을 덮어쓸수 있기 때문에 취소해준다
+      await queryClient.cancelQueries({
+        queryKey: ["product", id],
+      });
+
+      //실패할 경유의 대비하여 이전의 상태를 저장한다
+      const prevProduct = queryClient.getQueryData(["product", id]);
+
+      queryClient.setQueryData(["product", id], (prev) => ({
+        ...prev,
+        isFavorite: !prev.isFavorite, //isFavorite 값을 반전
+        favoriteCount: prev.isFavorite
+          ? prev.favoriteCount - 1 //현재 좋아요 상품이라면 취소되면서 count down
+          : prev.favoriteCount + 1,
+      }));
+      return { prevProduct }; //실패할 경우 반환되는 값은 onError의 context로 전달 된다
+    },
+    onError: (error, {}, context) => {
+      console.log(error);
+      queryClient.setQueryData(["product", id], context.prevProduct);
+    },
+    onSettled: (data, err) => {
+      queryClient.invalidateQueries({
+        queryKey: ["product", id],
+      });
+    },
+  });
+
+  const handleLikeButtonClick = () => {
+    if (!user) return; //로그인이 되어 있지 않으면 뮤테이션을 실행하지 않게 리턴한다.
+    likeMutation.mutate();
+  };
 
   const {
     createdAt,
     favoriteCount,
     ownerId,
-    ownerNickname,
-    tags,
+    owner,
+    tags = [],
     price,
     description,
     name,
+    images = [],
     isFavorite,
   } = productData;
 
+  const imageUrl =
+    images.length > 0
+      ? // ? process.env.NEXT_PUBLIC_UPLOADS_URL + images[0] DB의 백서버로 접근가능한 파일이름으로만 저장하는 방식
+        images[0] //DB의 전체 URL을 저장하는 방식 지금은 서버에 저장하지만 스토리지를 사용한다면 이렇게 저장할지 의문..
+      : imgDefault;
   //날짜 포멧
-  const productsImage = product.images[0];
   const date = dateFormatYYYYMMDD(createdAt);
-  const numFormat = price.toLocaleString();
-  const [content, setContent] = useState("");
+  const numFormat = price?.toLocaleString();
+  const [values, setValues] = useState({});
   const [alert, setAlert] = useState(false);
   const [Confirm, setConfirm] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -100,24 +164,16 @@ function DetailProduct({ product, comments, id }) {
   const openConfirmModal = () => setConfirm(true);
   const closeConfirmModal = () => setConfirm(false);
 
-  //권한인증
-  const { user } = useAuth();
-
   //수정/삭제 드롭다운오픈 상태 값
   const [openDropdown, setOpenDropdown] = useState(false);
   const openArticleDropdown = () => setOpenDropdown(!openDropdown);
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setContent(value);
-  };
-
   // 상품수정을 선택시 Registration 페이지의 쿼리로 상품의 id를 전달한다.
-  const updateArticle = () => {
+  const updateProduct = () => {
     router.push(`/Items/Registration?id=${id}`);
   };
 
-  const handleDeleteArticle = () => {
+  const handleDeleteProduct = () => {
     //삭제의 경우 confirm 모달을 통하여 확인하여 진행한다.
     setConfirmMessage("상품이 영구적으로 삭제됩니다. 삭제하시겠습니까?");
     openConfirmModal();
@@ -143,7 +199,7 @@ function DetailProduct({ product, comments, id }) {
 
   const createComment = () => {
     try {
-      const data = commentApi.createProductComment(content, product.id);
+      const data = commentApi.createProductComment(values, id);
       if (data) {
         router.reload();
       } else {
@@ -158,50 +214,39 @@ function DetailProduct({ product, comments, id }) {
     }
   };
 
-  const likeMutation = useMutation({
-    mutationFn: async () => {
-      //해당 상품의 사용자 좋아요상태의 따라 호출하는 API를 달리 한다.
-      if (isFavorite) {
-        await productsApi.unlikeProduct(id);
-      } else {
-        await productsApi.likeProduct(id);
-      }
-    },
-    onMutate: async () => {
-      //만약 refetch를 진행중이라면 mutation의 값을 덮어쓸수 있기 때문에 취소해준다
-      await queryClient.cancelQueries({
-        queryKey: ["product"],
-      });
-
-      //실패할 경유의 대비하여 이전의 상태를 저장한다
-      const prevProduct = queryClient.getQueryData(["product"]);
-
-      queryClient.setQueryData(["product"], (prev) => ({
-        ...prev,
-        data: {
-          isFavorite: !prev.isFavorite, //isFavorite 값을 반전
-          favoriteCount: prev.isFavorite
-            ? prev.favoriteCount - 1 //현재 좋아요 상품이라면 취소되면서 count down
-            : prev.favoriteCount + 1,
-        },
-      }));
-      return { prevProduct }; //실패할 경우 반환되는 값은 onError의 context로 전달 된다
-    },
-    onError: (error, {}, context) => {
-      console.log(error);
-      queryClient.setQueryData(["product"], context.prevProduct);
-    },
-    onSettled: (data, err) => {
-      queryClient.invalidateQueries({
-        queryKey: ["product"],
-      });
-    },
-  });
-
-  const handleLikeButtonClick = () => {
-    if (!user) return; //로그인이 되어 있지 않으면 뮤테이션을 실행하지 않게 리턴한다.
-    likeMutation.mutate();
+  const handleChangeValues = (name, value) => {
+    setValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    handleChangeValues(name, value);
+  };
+
+  const moreDataFetch = useDebouncedCallback(() => {
+    if (globalDivRef.current) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            console.log("확인");
+            fetchNextPage();
+          }
+        });
+      });
+      observer.observe(globalDivRef.current);
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, 500);
+
+  useEffect(() => {
+    moreDataFetch();
+  }, [moreDataFetch, fetchNextPage]);
 
   return (
     <>
@@ -223,7 +268,7 @@ function DetailProduct({ product, comments, id }) {
             className={styles.product_image}
             width={486}
             height={486}
-            src={productsImage}
+            src={imageUrl}
             alt="상품이미지"
             priority
             unoptimized={true}
@@ -244,8 +289,8 @@ function DetailProduct({ product, comments, id }) {
                   />
                   {openDropdown && (
                     <DropdownData
-                      handleUpdate={updateArticle}
-                      handleDelete={handleDeleteArticle}
+                      onUpdate={updateProduct}
+                      onDelete={handleDeleteProduct}
                     />
                   )}
                 </>
@@ -272,7 +317,7 @@ function DetailProduct({ product, comments, id }) {
                 alt="작성자이미지"
               />
               <div className={styles.product_row_sub_box}>
-                <span>{ownerNickname}</span>
+                <span>{owner?.nickname}</span>
                 <span className={styles.product_createdAt}>{date}</span>
               </div>
               <div>
@@ -303,26 +348,32 @@ function DetailProduct({ product, comments, id }) {
           <button
             onClick={createComment}
             className={`${styles.products_create_comment_btn} ${
-              !content && styles.disabled
+              !values.content && styles.disabled
             }`}
-            disabled={!content}
+            disabled={!values.content}
           >
             등록
           </button>
         </div>
         <div className={styles.products_comments_box}>
           <div className={styles.products_comments}>
-            {commentsData.map((item) => (
-              <Comment
-                user={user}
-                key={item.id}
-                item={item}
-                openAlert={openAlertModal}
-                setAlertMessage={setAlertMessage}
-              />
-            ))}
+            {commentsData.pages &&
+              commentsData.pages.map((items) =>
+                items.list.map((item) => (
+                  <Comment
+                    user={user}
+                    key={item.id}
+                    item={item}
+                    openAlert={openAlertModal}
+                    setAlertMessage={setAlertMessage}
+                  />
+                ))
+              )}
+            {fetchStatus === "fetching" && (
+              <div className={styles.loader}></div>
+            )}
             {/* 게시글의 등록된 댓글이 없다면 아래의 내용을 렌더링한다. */}
-            {commentsData.length < 1 && (
+            {commentsData.pages[0].list.length <= 0 && (
               <>
                 <Image
                   src={Img_inquiry_empty}

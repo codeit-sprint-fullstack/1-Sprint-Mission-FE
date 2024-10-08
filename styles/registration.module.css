@@ -31,12 +31,63 @@
   gap: 8px;
 }
 
+.input_file_box {
+  display: flex;
+  gap: 24px;
+}
+
+.input_file_box_add_file {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 282px;
+  height: 282px;
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #9ca3af;
+}
+
+.file_input_item_box {
+  position: relative;
+}
+
+.file_item_x_icon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 12px;
+  right: 12px;
+}
+
+.file_input_item {
+  border-radius: 12px;
+  width: 282px;
+  height: 282px;
+}
+
 .input {
   font-size: 16px;
   background-color: #f3f4f6;
   box-sizing: border-box;
   padding: 16px 24px;
   border-radius: 12px;
+}
+
+.input_file {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 .description {

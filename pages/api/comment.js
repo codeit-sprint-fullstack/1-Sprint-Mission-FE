@@ -1,35 +1,32 @@
 import instance from "./httpClient.js";
 
-export async function getArticleComments(id, cursor = 0, limit = 5) {
-  const res = await instance.get(`articles/${id}/comments`, {
+export async function getArticleComments(id, cursor) {
+  const res = await instance.get(`comments/${id}/article`, {
     params: {
-      limit,
+      limit: 5,
       cursor,
     },
   });
   return res.data;
 }
 
-export async function getProductComments(id, limit = 5) {
-  const res = await instance.get(`products/${id}/comments`, {
+export async function getProductComments(id, cursor) {
+  const res = await instance.get(`comments/${id}/product`, {
     params: {
-      limit,
+      limit: 5,
+      cursor,
     },
   });
   return res.data;
 }
 
-export async function createArticlesComment(content = "", articleId) {
-  const res = await instance.post(`articles/${articleId}/comments`, {
-    content,
-  });
+export async function createArticlesComment(params = {}, articleId) {
+  const res = await instance.post(`comments/${articleId}/article`, params);
   return res.data;
 }
 
-export async function createProductComment(content = "", productId) {
-  const res = await instance.post(`products/${productId}/comments`, {
-    content,
-  });
+export async function createProductComment(params = {}, productId) {
+  const res = await instance.post(`comments/${productId}/product`, params);
   return res.data;
 }
 
