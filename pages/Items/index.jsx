@@ -5,46 +5,52 @@ import SearchBar from "@/components/SearchBar";
 import Pagination from "@/components/Pagination";
 import * as api from "@/pages/api/products.js";
 import styles from "@/styles/Home.module.css";
-import useAuth from "@/contexts/authContext";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+  useQuery,
+} from "@tanstack/react-query";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+
   const productsQuery = {
     orderBy: "recent",
     page: 1,
     pageSize: 10,
   };
 
-  let items = [];
-  let productsTotalCount = 0;
-
   try {
-    const { list, totalCount } = await api.getProducts(productsQuery);
-    items = list;
-    productsTotalCount = totalCount;
-  } catch (e) {
-    console.log(e.message);
-  }
+    await queryClient.prefetchQuery({
+      queryKey: ["products"],
+      queryFn: () => api.getProducts(productsQuery),
+    });
+  } catch (error) {}
 
   return {
     props: {
-      items,
-      productsTotalCount,
+      dehydratedState: dehydrate(queryClient),
       productsQuery,
     },
   };
 }
 
-function Items({ items, productsTotalCount, productsQuery }) {
-  const [params, setParams] = useState(productsQuery);
-  const [products, setProducts] = useState(items);
-  const [totalDataCount, setTotalDataCount] = useState(productsTotalCount);
+function itemsRouter({ dehydratedState, productsQuery }) {
+  return (
+    <HydrationBoundary state={dehydratedState}>
+      <Items productsQuery={productsQuery} />
+    </HydrationBoundary>
+  );
+}
 
-  const handleChange = (name, value) => {
-    setParams((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+function Items({ productsQuery }) {
+  const [params, setParams] = useState(productsQuery);
+
+  const { data: productData } = useQuery({
+    queryKey: ["products", params],
+    queryFn: () => api.getProducts(params),
+  });
 
   const handleChangeParams = (obj) => {
     setParams((prev) => ({
@@ -80,10 +86,6 @@ function Items({ items, productsTotalCount, productsQuery }) {
   }, [view]);
 
   useEffect(() => {
-    loadProducts(params);
-  }, [params]);
-
-  useEffect(() => {
     changeFromNextView();
   }, [changeFromNextView]);
 
@@ -93,21 +95,21 @@ function Items({ items, productsTotalCount, productsQuery }) {
         <SearchBar
           isMobile={view === "isMobile"}
           orderBy={params.orderBy}
-          onChange={handleChange}
+          onChange={handleChangeParams}
         />
         <div className={styles.Products}>
-          {products.map((item) => (
+          {productData?.list.map((item) => (
             <Product key={item.id} itemValues={item} favorite={false} />
           ))}
         </div>
       </div>
       <Pagination
-        onChange={handleChange}
+        onChange={handleChangeParams}
         params={params}
-        totalCount={totalDataCount}
+        totalCount={productData?.totalDataCount}
       />
     </main>
   );
 }
 
-export default Items;
+export default itemsRouter;

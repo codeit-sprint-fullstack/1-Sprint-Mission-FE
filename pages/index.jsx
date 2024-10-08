@@ -89,30 +89,30 @@ function Home({ productsQuery, bestProductsQuery }) {
 
   const view = useWindowResize();
 
-  // useEffect(() => {
-  //   const changeFromNextView = () => {
-  //     switch (view) {
-  //       case "isDesktop":
-  //         handleChangeParams({ pageSize: 10, page: 1 });
-  //         handleChangeBestParams("pageSize", 4);
-  //         break;
-  //       case "isTablet":
-  //         handleChangeParams({ pageSize: 6, page: 1 });
-  //         handleChangeBestParams("pageSize", 2);
-  //         break;
-  //       case "isMobile":
-  //         handleChangeParams({ pageSize: 4, page: 1 });
-  //         handleChangeBestParams("pageSize", 1);
-  //         break;
-  //       default:
-  //     }
-  //   };
-  //   changeFromNextView();
-  // }, [view]);
+  useEffect(() => {
+    const changeFromNextView = () => {
+      switch (view) {
+        case "isDesktop":
+          handleChangeParams({ pageSize: 10, page: 1 });
+          handleChangeBestParams("pageSize", 4);
+          break;
+        case "isTablet":
+          handleChangeParams({ pageSize: 6, page: 1 });
+          handleChangeBestParams("pageSize", 2);
+          break;
+        case "isMobile":
+          handleChangeParams({ pageSize: 4, page: 1 });
+          handleChangeBestParams("pageSize", 1);
+          break;
+        default:
+      }
+    };
+    changeFromNextView();
+  }, [view]);
 
-  // useEffect(() => {
-  //   setTotalDataCount(productData?.totalCount);
-  // }, [productData]);
+  useEffect(() => {
+    setTotalDataCount(productData?.totalCount);
+  }, [productData]);
 
   return (
     <>
