@@ -4,10 +4,10 @@ import { useRouter } from "next/router";
 
 export default function BestItem(article) {
   const router = useRouter();
-  // console.log(article);
+  // console.log();
   const pagemove = () => {
     router.push(`/article/${article.article.id}`);
-    // console.log(article.article.id);
+    // console.log(article.article);
   };
   return (
     <>
@@ -23,7 +23,7 @@ export default function BestItem(article) {
             {article.article.content}
           </p>
           <div className={styles.BestImg}>
-            <Image src="/ItemImg.svg" fill={true} alt="logo" />
+            <Image src={article.article.images[0]} fill={true} alt="logo" />
           </div>
         </div>
         <div className={styles.BestItemInfo}>

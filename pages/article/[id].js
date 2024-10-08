@@ -193,7 +193,7 @@ export default function Post({ id }) {
         ></CommentModal>
         <div className={styles.pstInfo}>
           <div className={styles.posttop}>
-            <p>{data.title}</p>
+            <p>{data.name}</p>
             <Image
               onClick={handletoggle}
               src="/kebab-btn.svg"

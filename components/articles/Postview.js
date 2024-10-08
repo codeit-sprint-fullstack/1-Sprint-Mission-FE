@@ -14,7 +14,7 @@ export default function Postview(articledata) {
         <p>{articledata.articledata.content}</p>
         <Image
           className={styles.PostviewImg}
-          src="/ItemImg.svg"
+          src={articledata.articledata.images[0]}
           width={300}
           height={300}
         ></Image>

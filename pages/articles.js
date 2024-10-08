@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { getArticles } from "./api/articles";
 import { useRouter } from "next/router";
-let pageSize = 3;
+let pageSize = 10;
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownValue, setdropdownValue] = useState("최신 순");
@@ -44,8 +44,10 @@ export default function Home() {
 
   const router = useRouter();
   const article = async () => {
-    const data = await getArticles();
-    // console.log(data);
+    const data = await getArticles({
+      pageSize: 4,
+    });
+    console.log(data);
     setbestArticles(data.data.articles);
   };
   useEffect(() => {
@@ -56,7 +58,7 @@ export default function Home() {
   };
   const postClick = () => {
     // console.log("클릭했음");
-    router.push("post/addpost");
+    router.push("article/create");
   };
 
   const contentarticle = async () => {

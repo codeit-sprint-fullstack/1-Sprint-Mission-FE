@@ -21,7 +21,9 @@ api.interceptors.request.use(
 
 export async function getArticles(data) {
   try {
-    const response = await api.get("/articles", data);
+    const response = await api.get("/articles", {
+      params: data,
+    });
     return response;
   } catch (error) {
     return error.response;
@@ -51,6 +53,16 @@ export async function deleteArticle(articleId) {
   try {
     const token = localStorage.getItem("accessToken");
     const response = await api.delete(`/articles/${articleId}`);
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+}
+
+export async function postArticle(data) {
+  try {
+    const token = localStorage.getItem("accessToken");
+    const response = await api.post("/articles", data);
     return response;
   } catch (error) {
     return error.response;
