@@ -41,7 +41,7 @@ export async function getArticleId(articleId, data) {
 
 export async function patchArticle(articleId, data) {
   try {
-    const token = localStorage.getItem("accessToken");
+    // const token = localStorage.getItem("accessToken");
     const response = await api.patch(`/articles/${articleId}`, data);
     return response;
   } catch (error) {
@@ -51,7 +51,7 @@ export async function patchArticle(articleId, data) {
 
 export async function deleteArticle(articleId) {
   try {
-    const token = localStorage.getItem("accessToken");
+    // const token = localStorage.getItem("accessToken");
     const response = await api.delete(`/articles/${articleId}`);
     return response;
   } catch (error) {
@@ -61,7 +61,7 @@ export async function deleteArticle(articleId) {
 
 export async function postArticle(data) {
   try {
-    const token = localStorage.getItem("accessToken");
+    // const token = localStorage.getItem("accessToken");
     const response = await api.post("/articles", data);
     return response;
   } catch (error) {
@@ -71,7 +71,7 @@ export async function postArticle(data) {
 
 export async function postfavorite(articleId) {
   try {
-    const token = localStorage.getItem("accessToken");
+    // const token = localStorage.getItem("accessToken");
     const response = await api.post(`/articles/${articleId}/favorites`);
     return response;
   } catch (error) {

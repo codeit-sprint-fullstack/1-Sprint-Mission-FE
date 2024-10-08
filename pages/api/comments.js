@@ -38,7 +38,7 @@ export async function getComments(productId, limit) {
 
 export async function postComment(productId, data) {
   try {
-    const token = localStorage.getItem("accessToken");
+    // const token = localStorage.getItem("accessToken");
     const response = await api.post(
       `/products/product/${productId}/comments`,
       data
@@ -52,7 +52,7 @@ export async function postComment(productId, data) {
 
 export async function patchComment(commentId, data) {
   try {
-    const token = localStorage.getItem("accessToken");
+    // const token = localStorage.getItem("accessToken");
     const response = await api.patch(`/products/comments/${commentId}`, data);
     return response;
   } catch (error) {

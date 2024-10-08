@@ -42,7 +42,7 @@ export async function getProduct(productId) {
 
 export async function postProduct(data) {
   try {
-    const token = localStorage.getItem("accessToken");
+    // const token = localStorage.getItem("accessToken");
     const response = await api.post("/products", data);
     console.log(response);
     return response;
@@ -54,7 +54,7 @@ export async function postProduct(data) {
 
 export async function patchProduct(productId, data) {
   try {
-    const token = localStorage.getItem("accessToken");
+    // const token = localStorage.getItem("accessToken");
     const response = await api.patch(`/products/${productId}`, data);
     return response;
   } catch (error) {
@@ -64,7 +64,7 @@ export async function patchProduct(productId, data) {
 
 export async function deleteProduct(productId) {
   try {
-    const token = localStorage.getItem("accessToken");
+    // const token = localStorage.getItem("accessToken");
     const response = await api.delete(`/products/${productId}`);
     return response;
   } catch (error) {
@@ -73,7 +73,7 @@ export async function deleteProduct(productId) {
 }
 export async function deletefavorite(productId) {
   try {
-    const token = localStorage.getItem("accessToken");
+    // const token = localStorage.getItem("accessToken");
     const response = await api.delete(`/products/${productId}/favorite`);
     return response;
   } catch (error) {
@@ -83,7 +83,7 @@ export async function deletefavorite(productId) {
 }
 export async function postfavorite(productId) {
   try {
-    const token = localStorage.getItem("accessToken");
+    // const token = localStorage.getItem("accessToken");
     const response = await api.post(`/products/${productId}/favorites`);
     return response;
   } catch (error) {
