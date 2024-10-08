@@ -1,0 +1,18 @@
+### 회원가입
+POST https://panda-market-api.vercel.app/auth/signup
+Content-Type: application/json
+
+{
+  "email" : "4321a3221da@naver.com",
+  "nickname" : "na3322me",
+  "password" : "12341234",
+  "passwordConfirmation" : "12341234"
+}
+### 로그인 시도
+POST https://panda-market-api.vercel.app/auth/signIn
+Content-Type: application/json
+
+{
+  "email" : "dafda@naver.com",
+  "password" : "12341234"
+}
