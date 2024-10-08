@@ -1,28 +1,7 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const POSTS_PER_PAGE = 3;
 
-const handleResponse = async (response) => {
-  if (!response.ok) {
-    let errorMessage;
-    try {
-      const errorData = await response.json();
-      errorMessage = errorData.message;
-    } catch {
-      errorMessage = "요청 처리 중 오류가 발생했습니다.";
-    }
-    throw new Error(errorMessage);
-  }
-
-  if (response.status === 204) {
-    return null;
-  }
-
-  try {
-    return await response.json();
-  } catch {
-    return null;
-  }
-};
+import { communityApi } from "./clients";
+import { handleApiError } from "./apiErrorHandler";
+import { POSTS_PER_PAGE } from "@/constants/pagination";
 
 export const fetchPosts = async (
   pageParam = 0,

@@ -1,0 +1,21 @@
+.container {
+  padding: 16px 23px 16px 23px;
+  background-color: #e6f2ff;
+  display: flex;
+  border-radius: 8px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.imageHug {
+  display: flex;
+  gap: 16px;
+}
+
+.headText {
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 500;
+  color: var(--gray-800);
+}

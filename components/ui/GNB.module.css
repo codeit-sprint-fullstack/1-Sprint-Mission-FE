@@ -37,28 +37,22 @@
   align-items: center;
 }
 
-.headerTextHug {
+.profileImage {
+  width: 40px;
+  height: 40px;
+}
+
+.userInfoHug {
   display: flex;
-  flex-direction: row;
-  gap: 32px;
+  gap: 6px;
+  align-items: center;
 }
 
-@media (max-width: 1199px) {
-  .headerLogoTextHug {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-  }
+.userInfo {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--gray-600);
+  cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  .headerLogoTextHug {
-    gap: 16px;
-  }
-
-  .headerTextHug {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-  }
-}

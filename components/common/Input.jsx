@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Input.module.css";
 import Image from "next/image";
+import { useClickOutside } from "@/hooks/useClickOutside";
 
 export const Input = React.forwardRef(({ className, ...props }, ref) => {
   return (
@@ -15,25 +16,23 @@ export const Select = React.forwardRef(
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
     const [isClosing, setIsClosing] = useState(false);
-    const dropdownRef = useRef(null);
 
-    useEffect(() => {
-      const handleClickOutside = (event) => {
-        if (
-          dropdownRef.current &&
-          !dropdownRef.current.contains(event.target) &&
-          !event.target.closest("button") &&
-          !event.target.closest(`.${styles.selectWrapper}`)
-        ) {
-          closeDropdown();
-        }
-      };
+    const closeDropdown = () => {
+      setIsClosing(true);
+      setTimeout(() => {
+        setIsOpen(false);
+        setIsClosing(false);
+      }, 200);
+    };
 
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, []);
+    const dropdownRef = useClickOutside((event) => {
+      if (
+        !event.target.closest("button") &&
+        !event.target.closest(`.${styles.selectWrapper}`)
+      ) {
+        closeDropdown();
+      }
+    });
 
     useEffect(() => {
       const defaultOption = React.Children.toArray(children).find(
@@ -53,14 +52,6 @@ export const Select = React.forwardRef(
       } else {
         setIsOpen(true);
       }
-    };
-
-    const closeDropdown = () => {
-      setIsClosing(true);
-      setTimeout(() => {
-        setIsOpen(false);
-        setIsClosing(false);
-      });
     };
 
     const handleOptionClick = (option) => {

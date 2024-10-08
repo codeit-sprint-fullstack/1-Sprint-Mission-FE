@@ -4,7 +4,7 @@ import {
   HttpStatus,
   ExceptionCode,
 } from "@/errors";
-import { handleError } from "@/utils/handleError";
+import { handleError } from "@utils/apiErrorHandler";
 import { getPosts, getTotalPostsCount, addPost } from "@/data/postData";
 
 export default async function handler(req, res) {
