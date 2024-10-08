@@ -68,3 +68,13 @@ export async function postArticle(data) {
     return error.response;
   }
 }
+
+export async function postfavorite(articleId) {
+  try {
+    const token = localStorage.getItem("accessToken");
+    const response = await api.post(`/articles/${articleId}/favorites`);
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+}

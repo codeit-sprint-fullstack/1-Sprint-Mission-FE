@@ -6,6 +6,7 @@ import {
   // postComment,
   deleteArticle,
   // deletecomment,
+  postfavorite,
 } from "../api/articles";
 
 import {
@@ -220,7 +221,12 @@ export default function Post({ id }) {
               <p className={styles.titledate}>{date}</p>
             </div>
             <div>
-              <button className={styles.likebtn}>♡ {data.like}</button>
+              <button
+                className={styles.likebtn}
+                onClick={() => postfavorite(data.id)}
+              >
+                ♡ {data.favoriteCount}
+              </button>
             </div>
           </div>
           <div className={styles.postcontent}>
