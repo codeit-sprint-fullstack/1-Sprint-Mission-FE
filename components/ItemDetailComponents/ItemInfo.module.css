@@ -136,6 +136,7 @@
         .ic_favorite {
           width: 26px;
           height: 23px;
+          cursor: pointer;
         }
         .favoriteCount {
           font-size: 16px;

@@ -3,7 +3,6 @@ import styles from "./ImageUpload.module.css";
 import Image from "next/image";
 
 const ImageUpload = ({ onImagesChange, initialImages = [] }) => {
-  const url = "https://thrift-shop.onrender.com";
   const [images, setImages] = useState([]);
   const fileInputRef = useRef(null);
 
@@ -84,7 +83,7 @@ const ImageUpload = ({ onImagesChange, initialImages = [] }) => {
               src={
                 image.previewUrl.startsWith("blob:")
                   ? image.previewUrl
-                  : url + image.previewUrl
+                  : image.previewUrl
               }
               alt={`미리보기 ${index + 1}`}
               className={styles.imagePreview}

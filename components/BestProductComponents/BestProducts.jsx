@@ -9,7 +9,6 @@ import img_default from "@/images/img_default.png";
 
 export default function BestProducts({ bestProducts }) {
   const [bestArticles, setBestArticles] = useState([]);
-  const imageUrl = "https://thrift-shop.onrender.com";
 
   useEffect(() => {
     const updateBestArticles = () => {
@@ -51,7 +50,7 @@ export default function BestProducts({ bestProducts }) {
               <div className="productItem" key={product.id}>
                 <Link href={ROUTES.ITEMS_DETAIL(product.id)} passHref>
                   <Image
-                    src={`${imageUrl}${product.images[0]}` || img_default}
+                    src={`${product.images[0]}` || img_default}
                     alt={product.name ?? "Product Image"}
                     width={282}
                     height={282}

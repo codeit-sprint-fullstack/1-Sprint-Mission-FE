@@ -16,7 +16,6 @@ import { ROUTES } from "@/utils/rotues";
 import useAuth from "@/hooks/useAuth";
 
 export default function ItemInfo(product) {
-  const imageUrl = "https://thrift-shop.onrender.com";
   const item = product.product;
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +26,7 @@ export default function ItemInfo(product) {
   const [isFavoriteCount, setIsFavoriteCount] = useState(
     item?.favoriteCount || 0
   );
-  const [currentImageIndex, setCurrentImageIndex] = useState(0); // 현재 이미지 인덱스
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const isAuthenticated = useAuth(item.ownerId);
 
@@ -117,7 +116,7 @@ export default function ItemInfo(product) {
           className={styles.itemImg}
           src={
             item.images.length > 0
-              ? `${imageUrl}${item.images[currentImageIndex]}`
+              ? `${item.images[currentImageIndex]}`
               : defaultImage
           }
           width={486}
