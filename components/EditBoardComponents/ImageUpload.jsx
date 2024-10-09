@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import styles from "./ImageUpload.module.css";
 import Image from "next/image";
 
@@ -49,7 +49,7 @@ const ImageUpload = ({ onImagesChange, initialImages = [] }) => {
 
   const handleImageDelete = (index) => {
     const updatedImages = images.map((img, i) => {
-      if (i === index) {
+      if (i === index && img.isExisting) {
         return { ...img, isDeleted: true };
       }
       return img;

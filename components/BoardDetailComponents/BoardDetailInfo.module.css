@@ -59,6 +59,7 @@
     .ic_favorite {
       width: 23px;
       height: 20px;
+      cursor: pointer;
     }
     .favoriteCount {
       font-size: 16px;
@@ -66,6 +67,11 @@
       color: #6b7280;
     }
   }
+}
+
+.line {
+  margin: 16px 0 24px 0;
+  border: 1px solid #e5e7eb;
 }
 
 .content {

@@ -16,6 +16,9 @@
         color: #1f2937;
         white-space: break-spaces;
       }
+      .kebab {
+        cursor: pointer;
+      }
     }
     .profileContainer {
       display: flex;

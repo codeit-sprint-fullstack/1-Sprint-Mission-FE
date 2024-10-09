@@ -1,5 +1,4 @@
 import apiClient from "./apiClient";
-import apiHandler from "./apiHandler";
 
 // 단일 Article 가져오기
 export async function fetchArticle(id) {
@@ -33,7 +32,9 @@ export async function fetchBestArticles(size) {
 
 // Article 업데이트
 export async function updateArticle(id, formData) {
-  const { data } = await apiClient.patch(`/articles/${id}`, formData);
+  const { data } = await apiClient.patch(`/articles/${id}`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
   return data;
 }
 

@@ -15,12 +15,11 @@ export default function EditArticlePage() {
   const [formData, setFormData] = useState({
     title: "",
     content: "",
+    images: [],
   });
   const [isFormValid, setFormValid] = useState(false);
-  const [loading, setLoading] = useState(true); // 로딩 상태 추가
-  const [error, setError] = useState(null); // 에러 상태 추가
-
-  // 게시글 데이터 가져오기
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(() => {
     const loadArticle = async () => {
       if (!id) return;
@@ -30,6 +29,7 @@ export default function EditArticlePage() {
         setFormData({
           title: article.title || "",
           content: article.content || "",
+          images: article.images || [],
         });
       } catch (error) {
         console.error("Error fetching article:", error);
@@ -55,7 +55,19 @@ export default function EditArticlePage() {
 
   const handleSubmit = () => {
     if (!isFormValid) return;
-    mutation.mutate(formData);
+
+    const formDataToSend = new FormData();
+    formDataToSend.append("title", formData.title);
+    formDataToSend.append("content", formData.content);
+
+    formData.images.forEach((image) => {
+      if (image.isExisting) {
+        formDataToSend.append("existingImages", image.previewUrl);
+      } else if (!image.isExisting) {
+        formDataToSend.append("images", image.file);
+      }
+    });
+    mutation.mutate(formDataToSend);
   };
 
   if (loading) {

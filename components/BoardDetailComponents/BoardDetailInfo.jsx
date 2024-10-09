@@ -105,6 +105,7 @@ export default function BoardDetailInfo({ article }) {
           <p className={styles.favorite}>{isFavoriteCount}</p>
         </div>
       </div>
+      <hr className={styles.line} />
       <p className={styles.content}>{article.content}</p>
     </div>
   );
