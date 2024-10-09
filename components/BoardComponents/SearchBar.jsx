@@ -13,7 +13,7 @@ export default function SearchBar({
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const options = [
-    { value: "createdAt", label: "최신순" },
+    { value: "recent", label: "최신순" },
     { value: "favorite", label: "좋아요순" },
   ];
 

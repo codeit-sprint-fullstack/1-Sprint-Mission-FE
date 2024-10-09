@@ -9,6 +9,7 @@
   height: 221px;
   border-radius: 16px;
   aspect-ratio: 1 / 1;
+  object-fit: fill;
 }
 .sellProductItem {
   width: 100%;

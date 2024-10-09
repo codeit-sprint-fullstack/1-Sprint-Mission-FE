@@ -2,30 +2,16 @@ import styles from "./BoardList.module.css";
 import SearchBar from "@/components/BoardComponents/SearchBar.jsx";
 import BoardListItems from "@/components/BoardComponents/BoardListItems.jsx";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ROUTES } from "@/utils/rotues";
 
-export default function BoardList({ articles }) {
-  const router = useRouter();
-  const [keyword, setKeyword] = useState(router.query.keyword || "");
-  const [sortOrder, setSortOrder] = useState(router.query.sort || "createdAt");
-
-  useEffect(() => {
-    setKeyword(router.query.keyword || "");
-    setSortOrder(router.query.sort || "createdAt");
-  }, [router.query]);
+export default function BoardList({ articles, onSearch, onSortChange }) {
+  const [keyword, setKeyword] = useState("");
+  const [sortOrder, setSortOrder] = useState("recent");
 
   const handleSortChange = (value) => {
     setSortOrder(value);
-    router.push(
-      {
-        pathname: router.pathname,
-        query: { ...router.query, sort: value, page: 1 },
-      },
-      undefined,
-      { shallow: true }
-    );
+    onSortChange(value);
   };
 
   const handleKeywordChange = (event) => {
@@ -33,14 +19,7 @@ export default function BoardList({ articles }) {
   };
 
   const handleKeywordSearch = () => {
-    router.push(
-      {
-        pathname: router.pathname,
-        query: { ...router.query, keyword, page: 1 },
-      },
-      undefined,
-      { shallow: true }
-    );
+    onSearch(keyword);
   };
 
   const handleKeyDown = (event) => {

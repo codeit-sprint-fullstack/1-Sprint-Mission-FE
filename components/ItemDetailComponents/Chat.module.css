@@ -16,6 +16,9 @@
         color: #1f2937;
         white-space: break-spaces;
       }
+      .kebab {
+        cursor: pointer;
+      }
     }
     .profileContainer {
       display: flex;
@@ -54,6 +57,23 @@
     padding: 16px 0 12px 0;
     height: 46px;
     cursor: pointer;
+  }
+}
+
+.emptyContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 48px;
+  .emptyImg {
+    width: 196px;
+    height: 196px;
+  }
+  .emptyText {
+    font-size: 16px;
+    font-weight: 400;
+    color: #9ca3af;
   }
 }
 

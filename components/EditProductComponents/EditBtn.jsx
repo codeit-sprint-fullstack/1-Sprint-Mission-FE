@@ -1,3 +1,4 @@
+// EditBtn.jsx
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "./EditBtn.module.css";
@@ -10,22 +11,9 @@ export default function EditBtn({ item }) {
   const [isFormValid, setIsFormValid] = useState(false);
   const [formValues, setFormValues] = useState({});
   const router = useRouter();
-  const token =
-    typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
 
   const mutation = useMutation({
-    mutationFn: (id) =>
-      editProduct(
-        id,
-        {
-          name: formValues.productName,
-          description: formValues.productIntro,
-          price: formValues.productPrice,
-          tags: formValues.tags || [],
-          images: formValues.productImage,
-        },
-        token
-      ),
+    mutationFn: ({ id, formData }) => editProduct(id, formData),
     onSuccess: () => {
       router.push(ROUTES.ITEMS_DETAIL(item.id));
     },
@@ -35,8 +23,30 @@ export default function EditBtn({ item }) {
   });
 
   const handleProductPost = () => {
-    if (isFormValid) {
-      mutation.mutate(item.id);
+    if (!isFormValid) return;
+
+    try {
+      const formData = new FormData();
+
+      (formValues.uploadedImages || []).forEach((image) => {
+        if (!image.isExisting) {
+          formData.append("images", image.file);
+        } else {
+          formData.append("existingImages", image.previewUrl);
+        }
+      });
+
+      (formValues.tags || []).forEach((tag) => {
+        formData.append("tags[]", tag);
+      });
+
+      formData.append("name", formValues.productName);
+      formData.append("description", formValues.productIntro);
+      formData.append("price", formValues.productPrice);
+
+      mutation.mutate({ id: item.id, formData });
+    } catch (error) {
+      console.error("Error editing product:", error);
     }
   };
 

@@ -12,9 +12,12 @@ export const API_ENDPOINTS = {
     FETCH_PRODUCTS: (params) => `/products?${params}`,
     DETAIL: (id) => `/products/${id}`,
     FAVORITE: (productId) => `/products/${productId}/favorite`,
-    FETCH_COMMENTS: (id, cursor) =>
-      `/products/${id}/comments?limit=4&cursor=${cursor}`,
+    FETCH_COMMENTS: (productId, cursor) =>
+      `/products/${productId}/comments?limit=4&cursor=${cursor}`,
     ADD_COMMENT: (id) => `/products/${id}/comments`,
     DETAIL_COMMENT: (id) => `/comments/${id}`,
+  },
+  IMAGES: {
+    UPLOAD: "/images/upload",
   },
 };

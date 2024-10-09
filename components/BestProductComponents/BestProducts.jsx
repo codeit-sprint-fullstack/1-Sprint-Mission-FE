@@ -50,11 +50,12 @@ export default function BestProducts({ bestProducts }) {
               <div className="productItem" key={product.id}>
                 <Link href={ROUTES.ITEMS_DETAIL(product.id)} passHref>
                   <Image
-                    src={product.images ? product.images[0] : img_default}
+                    src={`${product.images[0]}` || img_default}
                     alt={product.name ?? "Product Image"}
                     width={282}
                     height={282}
                     className={styles.productImg}
+                    priority
                   />
                   <p className={styles.productName}>{product.name}</p>
                   <p className={styles.productPrice}>

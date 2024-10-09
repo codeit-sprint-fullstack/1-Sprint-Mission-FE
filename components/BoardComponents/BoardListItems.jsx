@@ -17,9 +17,15 @@ export default function BoardListItems({ articles }) {
                   <p className={styles.title}>{article.title}</p>
                   <div className={styles.productImgContainer}>
                     <Image
-                      src={productImg}
+                      src={
+                        article.images.length > 0
+                          ? article.images[0]
+                          : productImg
+                      }
                       alt="product"
                       className={styles.productImg}
+                      width={48}
+                      height={48}
                     />
                   </div>
                 </div>
@@ -30,12 +36,12 @@ export default function BoardListItems({ articles }) {
                       alt="profile"
                       className={styles.profileImg}
                     />
-                    <p className={styles.user}>총명한 판다{article.id}</p>
+                    <p className={styles.user}>{article.writer.nickname}</p>
                     <p className={styles.date}>
                       {new Date(article.createdAt).toLocaleDateString()}
                     </p>
                   </div>
-                  <p className={styles.like}>♡ {article.favorite}</p>
+                  <p className={styles.like}>♡ {article.likeCount}</p>
                 </div>
               </div>
             </Link>

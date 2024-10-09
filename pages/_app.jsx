@@ -1,3 +1,4 @@
+import { SessionProvider } from "next-auth/react";
 import "@/styles/globals.css";
 import "@/styles/Home.module.css";
 import Head from "next/head";
@@ -17,9 +18,9 @@ export default function App({ Component, pageProps }) {
   const hideHeaderFooter = noHeaderFooter.includes(router.pathname);
 
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <AuthGuard>
+    <QueryClientProvider client={queryClient}>
+      <AuthGuard>
+        <SessionProvider session={pageProps.session}>
           <Head>
             <title>판다마켓</title>
           </Head>
@@ -33,8 +34,8 @@ export default function App({ Component, pageProps }) {
               {!hideHeaderFooter && <Footer />}
             </div>
           </main>
-        </AuthGuard>
-      </QueryClientProvider>
-    </>
+        </SessionProvider>
+      </AuthGuard>
+    </QueryClientProvider>
   );
 }

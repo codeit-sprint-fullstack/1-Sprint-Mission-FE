@@ -8,48 +8,53 @@ import { fetchComments } from "@/utils/articleChatApi";
 import { ROUTES } from "@/utils/rotues";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
-  const { page = 1, size = 4 } = context.query;
 
   try {
-    const article = await fetchArticle(id);
-    const comments = await fetchComments(id, page, size);
+    const comments = await fetchComments(id);
 
     return {
       props: {
-        article,
-        initialComments: comments.data || [],
-        totalComments: comments.total || 0,
-        initialPage: page,
-        pageSize: size,
+        initialComments: comments.list || [],
+        articleId: id,
         error: null,
       },
     };
   } catch (error) {
-    console.error("Error fetching article:", error);
+    console.error("Error fetching comments:", error);
     return {
       notFound: true,
-      error: "게시글을 불러오는 중 문제가 발생했습니다.",
+      error: "댓글을 불러오는 중 문제가 발생했습니다.",
     };
   }
 }
 
-export default function BoardDetail({
-  article,
-  initialComments,
-  totalComments,
-  pageSize,
-  error,
-}) {
+export default function BoardDetail({ initialComments, articleId, error }) {
+  const [article, setArticle] = useState(null);
   const router = useRouter();
+
   useEffect(() => {
     if (error) {
       toast.error(error);
     }
-  }, [error]);
+
+    const fetchArticleData = async () => {
+      try {
+        const fetchedArticle = await fetchArticle(articleId);
+        setArticle(fetchedArticle);
+      } catch (fetchError) {
+        console.error("Error fetching article:", fetchError);
+        toast.error("게시글을 불러오는 중 문제가 발생했습니다.");
+      }
+    };
+
+    if (articleId) {
+      fetchArticleData();
+    }
+  }, [articleId, error]);
 
   if (router.isFallback) {
     return <div>Loading...</div>;
@@ -63,12 +68,7 @@ export default function BoardDetail({
     <div className={styles.container}>
       <ToastContainer position="top-right" autoClose={3000} />
       <BoardDetailInfo article={article} />
-      <BoardChat
-        initialComments={initialComments}
-        articleId={article.id}
-        totalComments={totalComments}
-        pageSize={pageSize}
-      />
+      <BoardChat initialComments={initialComments} articleId={articleId} />
       <Link href={ROUTES.BOARD} passHref>
         <button className={styles.backBtn}>목록으로 돌아가기</button>
       </Link>
