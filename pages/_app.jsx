@@ -19,8 +19,8 @@ export default function App({ Component, pageProps }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SessionProvider session={pageProps.session}>
-        <AuthGuard>
+      <AuthGuard>
+        <SessionProvider session={pageProps.session}>
           <Head>
             <title>판다마켓</title>
           </Head>
@@ -34,8 +34,8 @@ export default function App({ Component, pageProps }) {
               {!hideHeaderFooter && <Footer />}
             </div>
           </main>
-        </AuthGuard>
-      </SessionProvider>
+        </SessionProvider>
+      </AuthGuard>
     </QueryClientProvider>
   );
 }
