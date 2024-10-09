@@ -29,7 +29,6 @@ export default function CreateBtn() {
 
       if (formValues.uploadedImages && formValues.uploadedImages.length > 0) {
         formValues.uploadedImages.forEach((image, index) => {
-          console.log(image);
           formData.append("images", image.file);
         });
       }

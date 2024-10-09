@@ -45,7 +45,9 @@ export async function deleteArticle(id) {
 
 // Article 생성
 export async function createArticle(formData) {
-  const { data } = await apiClient.post(`/articles`, formData);
+  const { data } = await apiClient.post(`/articles`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
   return data;
 }
 
