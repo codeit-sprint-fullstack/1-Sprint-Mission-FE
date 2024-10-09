@@ -7,6 +7,7 @@ import { ROUTES } from "@/utils/rotues";
 import { throttle } from "@/utils/throttle";
 
 export default function BestProduct({ articles }) {
+  const imgUrl = "https://thrift-shop.onrender.com";
   const [bestArticles, setBestArticles] = useState([]);
 
   useEffect(() => {
@@ -51,9 +52,15 @@ export default function BestProduct({ articles }) {
                   <p className={styles.title}>{article.title}</p>
                   <div className={styles.productImgContainer}>
                     <Image
-                      src={ProductImg}
+                      src={
+                        article.images.length > 0
+                          ? imgUrl + article.images[0]
+                          : ProductImg
+                      }
                       alt="product"
                       className={styles.productImg}
+                      width={48}
+                      height={48}
                     />
                   </div>
                 </div>

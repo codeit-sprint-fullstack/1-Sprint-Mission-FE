@@ -57,7 +57,7 @@ export default function CreateForm() {
     formData.append("content", values.content);
 
     uploadedImages.forEach((image, index) => {
-      formData.append("images", image);
+      formData.append("images", image.file);
     });
 
     mutation.mutate(formData);

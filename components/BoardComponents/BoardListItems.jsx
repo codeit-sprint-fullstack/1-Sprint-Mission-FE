@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 
 export default function BoardListItems({ articles }) {
+  const imgUrl = "https://thrift-shop.onrender.com";
   return (
     <>
       <div className={styles.boardListContainer}>
@@ -17,9 +18,15 @@ export default function BoardListItems({ articles }) {
                   <p className={styles.title}>{article.title}</p>
                   <div className={styles.productImgContainer}>
                     <Image
-                      src={productImg}
+                      src={
+                        article.images.length > 0
+                          ? imgUrl + article.images[0]
+                          : productImg
+                      }
                       alt="product"
                       className={styles.productImg}
+                      width={48}
+                      height={48}
                     />
                   </div>
                 </div>
