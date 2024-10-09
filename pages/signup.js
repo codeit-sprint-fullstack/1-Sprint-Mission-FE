@@ -1,7 +1,7 @@
 import styles from "@/styles/signup.module.css";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { postsignup } from "./api/user";
+import { PostSignup } from "./api/user";
 import SignupForm from "../components/SignupForm.js";
 import { Modal } from "../components/modal";
 

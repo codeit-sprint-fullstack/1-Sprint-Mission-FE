@@ -43,9 +43,9 @@ export default function Header() {
       </div>
       <div className={styles.HeaderMenu}>
         <Link
-          href="/"
+          href="/articles"
           className={
-            router.pathname === "/product" ? styles.Active : styles.NotActive
+            router.pathname === "/articles" ? styles.Active : styles.NotActive
           }
         >
           <p>자유 게시판</p>
@@ -69,7 +69,7 @@ export default function Header() {
       ) : (
         <div className={styles.loginSuccess}>
           <Image src="/MyImg.svg" alt="profile" width={40} height={40}></Image>
-          <p>{userData.nickname}</p>
+          <p>{userData.nickName}</p>
         </div>
       )}
     </div>

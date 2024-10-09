@@ -1,5 +1,5 @@
 ### 회원가입
-POST https://panda-market-api.vercel.app/auth/signup
+POST https://ms10-5yps.onrender.com/auth/signup
 Content-Type: application/json
 
 {
@@ -13,6 +13,81 @@ POST https://panda-market-api.vercel.app/auth/signIn
 Content-Type: application/json
 
 {
-  "email" : "dafda@naver.com",
-  "password" : "12341234"
+  "email" : "aaaa@naver.com",
+  "password" : "aaaaaaaa"
 }
+### 조회
+GET https://panda-market-api.vercel.app/products
+Content-Type: application/json
+
+{
+  "page" : 1,
+  "pageSize" : 4,
+  "orderBy" : "favoriteCount"
+}
+
+### 유저 조회
+GET https://panda-market-api.vercel.app/users/me
+
+
+### 댓글 내용 조회
+GET https://panda-market-api.vercel.app/products/251/comments?limit=10
+
+### 댓글 조회
+
+GET https://panda-market-api.vercel.app/comemnts/651
+
+### 상품 등록
+
+POST https://panda-market-api.vercel.app/products
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyLCJlbWFpbCI6ImJhYmFAdGVzdC5jb20iLCJpYXQiOjE3MjgwMDY5MzcsImV4cCI6MTcyODAwNzgzN30.nXBXNWYXJ-AcnhCBKQ7AIh0OoLxldr5p-KdLjYhYKZ0
+
+{
+  "images": [],
+  "price":  1000,
+  "tags": ["AI"],
+  "description": "1번 상품",
+  "name": "1"
+}
+
+### 상품 삭제
+DELETE https://panda-market-api.vercel.app/products/250
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTg3LCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTcyNzE2MzU2NywiZXhwIjoxNzI3MTY1MzY3LCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.cN7LdRiXHZTVYM8pTY7ulcMgzIaSV3rF8KySrEbtTJs
+
+
+### 상품 수정
+PATCH  https://panda-market-api.vercel.app/products/251
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTg3LCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTcyNzE2NzQwMCwiZXhwIjoxNzI3MTY5MjAwLCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.gJ4am-oHuEIlRnjjQythChf0PLRYArdcL3m7BU88T2w
+
+{
+  "description" : "검색도 좋아요! 하지만, 질문하면 바로 나옵니다."
+}
+
+
+
+### 댓글 삭제
+DELETE https://panda-market-api.vercel.app/comments/571
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTg3LCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTcyNzE2OTIxNiwiZXhwIjoxNzI3MTcxMDE2LCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.IPeX3kaMq85tZGSBgtB-1CcRU856mxTqTFksaDuxwZY
+
+### 댓글 수정
+PATCH https://panda-market-api.vercel.app/comments/651
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTg3LCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTcyNzUwMTQ1MCwiZXhwIjoxNzI3NTAzMjUwLCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.GnVf-YhFQ0G-xRWhFop0cdgr8EidWkeF04275PjeTgY
+
+{
+  "content" : "ID는 651 입니다."
+}
+
+### 좋아요 등록
+POST https://panda-market-api.vercel.app/products/251/favorite
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTg3LCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTcyNzE2OTIxNiwiZXhwIjoxNzI3MTcxMDE2LCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.IPeX3kaMq85tZGSBgtB-1CcRU856mxTqTFksaDuxwZY
+
+### 좋아요 삭제
+DELETE https://panda-market-api.vercel.app/products/251/favorite
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTg3LCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTcyNzE2OTIxNiwiZXhwIjoxNzI3MTcxMDE2LCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.IPeX3kaMq85tZGSBgtB-1CcRU856mxTqTFksaDuxwZY
