@@ -1,14 +1,14 @@
-import axios from "axios";
+import axios from 'axios';
 
 const api = axios.create({
-  baseURL: "https://ms10-5yps.onrender.com",
+  baseURL: 'https://ms10-5yps.onrender.com',
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("accessToken");
+    const token = localStorage.getItem('accessToken');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -21,7 +21,7 @@ api.interceptors.request.use(
 
 export async function getArticles(data) {
   try {
-    const response = await api.get("/articles", {
+    const response = await api.get('/articles', {
       params: data,
     });
     return response;
@@ -62,7 +62,7 @@ export async function deleteArticle(articleId) {
 export async function postArticle(data) {
   try {
     // const token = localStorage.getItem("accessToken");
-    const response = await api.post("/articles", data);
+    const response = await api.post('/articles', data);
     return response;
   } catch (error) {
     return error.response;

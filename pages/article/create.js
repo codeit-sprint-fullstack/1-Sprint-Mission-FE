@@ -1,11 +1,11 @@
-import styles from "./create.module.css";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { postArticle } from "../api/articles";
+import styles from './create.module.css';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { postArticle } from '../api/articles';
 export default function create() {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [btnState, setbtnState] = useState("addpostBtnfalse");
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [btnState, setbtnState] = useState('addpostBtnfalse');
   const [selectedImages, setSelectedImages] = useState([]);
   const [imagesUrl, setImagesUrl] = useState([]);
 
@@ -18,7 +18,7 @@ export default function create() {
     const files = Array.from(event.target.files);
 
     if (selectedImages.length + files.length > 3) {
-      alert("이미지는 최대 3개까지 등록할 수 있습니다.");
+      alert('이미지는 최대 3개까지 등록할 수 있습니다.');
       return;
     }
 
@@ -61,9 +61,9 @@ export default function create() {
 
   useEffect(() => {
     if (title.length > 0 && content.length > 0) {
-      setbtnState("addpostBtntrue");
+      setbtnState('addpostBtntrue');
     } else {
-      setbtnState("addpostBtnfalse");
+      setbtnState('addpostBtnfalse');
     }
   }, [title, content]);
 
@@ -89,7 +89,7 @@ export default function create() {
         <form className={styles.addpostporm} onSubmit={postClick}>
           <div className={styles.addposttitle}>
             <p>게시글 쓰기</p>
-            {btnState === "addpostBtnfalse" ? (
+            {btnState === 'addpostBtnfalse' ? (
               <button
                 className={styles[btnState]}
                 onClick={(e) => {
