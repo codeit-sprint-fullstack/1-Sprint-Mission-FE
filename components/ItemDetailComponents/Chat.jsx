@@ -1,13 +1,13 @@
 import { useState, useMemo } from "react";
 import styles from "./Chat.module.css";
 import Image from "next/image";
-import profile from "@/images/ic_profile.png";
+import profile from "../../images/ic_profile.png";
 import kebab from "@/images/ic_kebab.png";
 import { timeAgo } from "@/utils/timeAgo";
 import { deleteComment } from "@/utils/productChatApi";
 import { getUserProfile } from "@/utils/authApi";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import inquiry_empty from "@/images/img_inquiry_empty.png";
+import inquiry_empty from "../../images/img_inquiry_empty.png";
 
 export default function Chat({ comments, onEdit }) {
   console.log(comments);

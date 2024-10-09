@@ -1,7 +1,7 @@
 import Image from "next/image";
-import profile from "@/images/ic_profile.png";
-import kebab from "@/images/ic_kebab.png";
-import reply_empty from "@/images/img_reply_empty.png";
+import profile from "../../images/ic_profile.png";
+import kebab from "../../images/ic_kebab.png";
+import reply_empty from "../../images/img_reply_empty.png";
 import styles from "./ChatItem.module.css";
 import { useState, useEffect } from "react";
 import { useDeleteComment } from "@/hooks/useComments"; // 리액트 쿼리 훅 가져오기
