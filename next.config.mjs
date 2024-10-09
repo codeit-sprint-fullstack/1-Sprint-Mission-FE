@@ -13,7 +13,6 @@ const nextConfig = {
     ],
   },
   webpack: (config) => {
-    // Use process.cwd() instead of __dirname
     config.resolve.alias["@"] = path.resolve(process.cwd());
     return config;
   },
