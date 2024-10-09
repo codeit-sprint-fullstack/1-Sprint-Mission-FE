@@ -1,4 +1,4 @@
-// next.config.js
+// next.config.mjs
 
 /** @type {import('next').NextConfig} */
 import path from "path";
@@ -13,7 +13,8 @@ const nextConfig = {
     ],
   },
   webpack: (config) => {
-    config.resolve.alias["@"] = path.resolve(__dirname);
+    // Use process.cwd() instead of __dirname
+    config.resolve.alias["@"] = path.resolve(process.cwd());
     return config;
   },
 };
