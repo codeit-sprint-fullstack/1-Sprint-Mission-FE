@@ -17,26 +17,26 @@ import Pagination from "@/components/ui/Pagination";
 import { useGetList } from "@/service/queries";
 import { useAuth } from "@/context/AuthProvider";
 
-export async function getServerSideProps() {
-  const queryClient = new QueryClient();
+// export async function getServerSideProps() {
+//   const queryClient = new QueryClient();
 
-  await Promise.all([
-    queryClient.prefetchQuery({
-      queryKey: productKey.list({ pageSize: 4, orderBy: "favorite" }),
-      queryFn: () => getProductList({ pageSize: 4, orderBy: "favorite" }),
-    }),
-    queryClient.prefetchQuery({
-      queryKey: productKey.list({ orderBy: "recent", keyword: "", page: 1 }),
-      queryFn: () => getProductList({ orderBy: "recent" }),
-    }),
-  ]);
+//   await Promise.all([
+//     queryClient.prefetchQuery({
+//       queryKey: productKey.list({ pageSize: 4, orderBy: "favorite" }),
+//       queryFn: () => getProductList({ pageSize: 4, orderBy: "favorite" }),
+//     }),
+//     queryClient.prefetchQuery({
+//       queryKey: productKey.list({ orderBy: "recent", keyword: "", page: 1 }),
+//       queryFn: () => getProductList({ orderBy: "recent" }),
+//     }),
+//   ]);
 
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}
+//   return {
+//     props: {
+//       dehydratedState: dehydrate(queryClient),
+//     },
+//   };
+// }
 
 export default function ProductPage() {
   const [keyword, setKeyword] = useState("");

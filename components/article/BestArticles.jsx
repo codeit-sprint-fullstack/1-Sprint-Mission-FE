@@ -11,7 +11,7 @@ function ArticleCard({ article, userName }) {
     <>
       <div className={styles.top}>
         <IconContainer
-          src={assets.images.badge}
+          src={assets.icons.medal}
           width="16px"
           alt="best badge icon"
         />
@@ -44,12 +44,12 @@ function ArticleCard({ article, userName }) {
 }
 
 export default function BestArticles({ entity }) {
-  const { data, isPending } = useGetBestList(entity, {
+  const { data, isPending, isLoading } = useGetBestList(entity, {
     pageSize: 3,
     orderBy: "like",
   });
 
-  if (isPending) {
+  if (isPending || isLoading) {
     return <Loader />;
   }
 

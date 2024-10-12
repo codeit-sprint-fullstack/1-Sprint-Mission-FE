@@ -12,11 +12,6 @@
     margin-bottom: 8px;
   }
 
-  .error-text {
-    color: g.$error-red;
-    padding: 4px 16px;
-  }
-
   .error {
     outline: 1px solid g.$error-red;
   }
@@ -54,4 +49,56 @@
       }
     }
   }
+}
+
+.InputFile {
+  width: 100%;
+  @include g.flex-box(row, flex-start, center, 24px);
+  flex-wrap: wrap;
+
+  .input-file {
+    display: none;
+  }
+
+  .input-file-area {
+    @include g.flex-box(row, center, center);
+    @include g.font(16, 400);
+    background-color: g.$grey-100;
+    cursor: pointer;
+    color: g.$grey-400;
+    width: 282px;
+    height: 282px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    &:hover {
+      background-color: g.$grey-200;
+    }
+    .input-plus-icons {
+      @include g.flex-box(column, center, center, 12px);
+    }
+  }
+
+  .preview-img {
+    position: relative;
+    width: 282px;
+    height: 282px;
+    aspect-ratio: 1/1;
+    border-radius: 12px;
+    border: 3px solid g.$grey-100;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+}
+.error-text {
+  color: g.$error-red;
+  padding: 4px 16px;
 }

@@ -40,10 +40,8 @@ export function AuthProvider({ children }) {
   const logInMutation = useMutation({
     mutationFn: (data) => createLogIn(data),
     onSuccess: (data) => {
-      const { accessToken, refreshToken } = data;
+      const { accessToken } = data;
       localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("refreshToken", refreshToken);
-
       queryClient.invalidateQueries("user");
       getMe();
     },
@@ -52,10 +50,9 @@ export function AuthProvider({ children }) {
   const signUpMutation = useMutation({
     mutationFn: (data) => createUser(data),
     onSuccess: (data) => {
-      console.log(data);
-      const { accessToken, refreshToken } = data;
+      const { accessToken } = data;
+
       localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("refreshToken", refreshToken);
       queryClient.invalidateQueries("user");
     },
     onError: (error) => {
@@ -65,7 +62,6 @@ export function AuthProvider({ children }) {
 
   const logOut = () => {
     localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
     queryClient.setQueriesData(["user"], null);
     onModalOpen({
       msg: "로그아웃 되었습니다",

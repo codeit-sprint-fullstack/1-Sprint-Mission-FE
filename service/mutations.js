@@ -17,7 +17,7 @@ export function useCreateMutation({ entity }) {
   return useMutation({
     mutationFn: (newArticle) => axiosFunction(newArticle),
     onSuccess: (data) => {
-      if (data.id) {
+      if (data?.id) {
         router.push(`${path}/${data.id}`);
       }
 

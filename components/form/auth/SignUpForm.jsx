@@ -22,8 +22,14 @@ export default function SignUpForm() {
 
   const router = useRouter();
 
-  const handleLoginSubmit = (data) => {
-    signUp.mutate(data, {
+  const handleSignUpSubmit = (data) => {
+    const filterData = {
+      email: data.email,
+      nickname: data.nickname,
+      password: String(data.password),
+    };
+
+    signUp.mutate(filterData, {
       onSuccess: () => {
         setNewUser(true);
         onModalOpen({
@@ -40,7 +46,7 @@ export default function SignUpForm() {
       router.push("/");
       setNewUser(false);
     }
-  }, [user, router]);
+  }, [user, newUser, router]);
 
   return (
     <>
@@ -48,7 +54,7 @@ export default function SignUpForm() {
       <FormProvider {...formMethods}>
         <form
           className={styles.AuthForm}
-          onSubmit={handleSubmit(handleLoginSubmit)}
+          onSubmit={handleSubmit(handleSignUpSubmit)}
         >
           <Input
             name="email"

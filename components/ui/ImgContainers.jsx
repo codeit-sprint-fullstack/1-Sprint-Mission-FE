@@ -13,7 +13,7 @@ export function ImageContainer({
   isBorder = false,
   priority = false,
 }) {
-  const [imgSrc, setImgSrc] = useState(src);
+  const [imgSrc, setImgSrc] = useState(src || defaultImg);
 
   const handleError = () => {
     //url 경로 허용하지 않은 소스 이미지는 기본으로 대체
@@ -30,7 +30,7 @@ export function ImageContainer({
       }}
     >
       <Image
-        src={imgSrc || defaultImg}
+        src={imgSrc}
         alt={alt}
         fill
         priority={priority}
@@ -45,10 +45,12 @@ export function IconContainer({
   alt = "default icon",
   width = "24px",
   priority = false,
+  className = "",
 }) {
+  const classNames = `${styles.IconContainer} ${className}`;
   return (
     <div
-      className={styles.IconContainer}
+      className={classNames}
       style={{
         "--width": width,
       }}

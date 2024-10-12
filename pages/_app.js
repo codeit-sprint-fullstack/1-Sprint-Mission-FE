@@ -44,7 +44,7 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <QueryClientProvider client={queryClient}>
-        <HydrationBoundary state={pageProps.dehydratedState ?? {}}>
+        <HydrationBoundary state={pageProps.dehydratedState}>
           <AuthProvider>
             <Header />
             <Main>

@@ -35,11 +35,19 @@ export default function EditProductPage() {
     formData.append("name", data.name);
     formData.append("description", data.description);
     formData.append("price", data.price);
-    formData.append("images", IMG_URL);
 
     data.tags.forEach((tag) => {
-      formData.append("tags[]", tag);
+      formData.append("tags", tag);
     });
+
+    data.imageUrls?.forEach((image) => {
+      formData.append("imageUrls", image);
+    });
+
+    data.imageFiles?.forEach((file) => {
+      formData.append("imageFiles", file);
+    });
+
     mutate(formData);
   };
 

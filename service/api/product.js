@@ -44,7 +44,11 @@ export async function createProduct(newProduct) {
 }
 
 export async function updateProductById(productId, productData) {
-  const res = await axios.patch(`${PATH}/${productId}`, productData);
+  const res = await axios.patch(`${PATH}/${productId}`, productData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return res.data;
 }
 

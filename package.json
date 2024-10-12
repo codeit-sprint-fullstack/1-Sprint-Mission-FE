@@ -14,7 +14,7 @@
     "@tanstack/react-query": "^5.55.2",
     "@tanstack/react-query-devtools": "^5.55.2",
     "axios": "^1.7.7",
-    "next": "14.2.7",
+    "next": "^14.2.15",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.0",
@@ -22,7 +22,7 @@
     "sharp": "^0.33.5"
   },
   "devDependencies": {
-    "eslint": "^8",
+    "eslint": "^8.57.1",
     "eslint-config-next": "14.2.7",
     "sass": "^1.78.0"
   }

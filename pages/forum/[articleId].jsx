@@ -14,20 +14,20 @@ import { useGetById } from "@/service/queries";
 import { ENTITY } from "@/variables/entities";
 import Loader from "@/components/ui/Loader";
 
-export async function getServerSideProps(context) {
-  const queryClient = new QueryClient();
+// export async function getServerSideProps(context) {
+//   const queryClient = new QueryClient();
 
-  const { articleId } = context.params;
-  await queryClient.prefetchQuery({
-    queryKey: articleKey.detail(articleId),
-    queryFn: () => getArticleById(articleId),
-  });
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}
+//   const { articleId } = context.params;
+//   await queryClient.prefetchQuery({
+//     queryKey: articleKey.detail(articleId),
+//     queryFn: () => getArticleById(articleId),
+//   });
+//   return {
+//     props: {
+//       dehydratedState: dehydrate(queryClient),
+//     },
+//   };
+// }
 
 export default function ArticleDetailPage() {
   const entity = ENTITY.ARTICLE;

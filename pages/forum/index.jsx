@@ -16,27 +16,27 @@ import styles from "@/styles/pages/forum/main.module.scss";
 import Message from "@/components/ui/Message";
 import { ENTITY } from "@/variables/entities";
 
-export async function getServerSideProps() {
-  const queryClient = new QueryClient();
+// export async function getServerSideProps() {
+//   const queryClient = new QueryClient();
 
-  await Promise.all([
-    queryClient.prefetchQuery({
-      queryKey: articleKey.list({ pageSize: 3, orderBy: "like" }),
-      queryFn: () => getArticleList({ pageSize: 3, orderBy: "like" }),
-    }),
-    queryClient.prefetchInfiniteQuery({
-      queryKey: articleKey.list({ orderBy: "recent", keyword: "" }),
-      queryFn: () => getArticleList({ orderBy: "recent" }),
-      initialPageParam: 1,
-    }),
-  ]);
+//   await Promise.all([
+//     queryClient.prefetchQuery({
+//       queryKey: articleKey.list({ pageSize: 3, orderBy: "like" }),
+//       queryFn: () => getArticleList({ pageSize: 3, orderBy: "like" }),
+//     }),
+//     queryClient.prefetchInfiniteQuery({
+//       queryKey: articleKey.list({ orderBy: "recent", keyword: "" }),
+//       queryFn: () => getArticleList({ orderBy: "recent" }),
+//       initialPageParam: 1,
+//     }),
+//   ]);
 
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}
+//   return {
+//     props: {
+//       dehydratedState: dehydrate(queryClient),
+//     },
+//   };
+// }
 
 export default function ForumPage() {
   const [keyword, setKeyword] = useState("");
