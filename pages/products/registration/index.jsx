@@ -22,7 +22,7 @@ export default function CreateProductPage() {
       formData.append("tags", tag);
     });
 
-    data.tags.forEach((image) => {
+    data.imageFiles.forEach((image) => {
       formData.append("images", image);
     });
 

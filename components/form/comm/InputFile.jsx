@@ -4,12 +4,12 @@ import { IconContainer } from "@/components/ui/ImgContainers";
 import assets from "@/variables/images";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { useEffect } from "react";
 
-export default function InputFile({ name, initialImages = [] }) {
+export default function InputFile({ name, initialImages = [], isSubmit }) {
   const {
     setError,
     setValue,
-    getValues,
     clearErrors,
     formState: { errors },
   } = useFormContext();
@@ -41,6 +41,17 @@ export default function InputFile({ name, initialImages = [] }) {
         type: "manual",
         message: "*이미지 등록은 최대 3개 까지 가능합니다.",
       });
+
+      setTimeout(() => {
+        clearErrors(name);
+      }, 3000);
+
+      return;
+    } else if (totalImages === 0) {
+      setError(name, {
+        type: "manual",
+        message: "*최소 이미지 1개 등록해주세요.",
+      });
       return;
     } else {
       clearErrors(name);
@@ -54,7 +65,6 @@ export default function InputFile({ name, initialImages = [] }) {
     setNewFiles((prev) => {
       const updatedFiles = [...prev, ...files];
       setValue(fileField, updatedFiles);
-      console.log("폼에 추가된 파일:", getValues(fileField));
       return updatedFiles;
     });
 
@@ -95,6 +105,12 @@ export default function InputFile({ name, initialImages = [] }) {
       clearErrors(name);
     }
   };
+
+  useEffect(() => {
+    if (isSubmit) {
+      setPreviewUrls([]);
+    }
+  }, [isSubmit]);
 
   return (
     <>

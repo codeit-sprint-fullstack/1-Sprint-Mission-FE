@@ -39,7 +39,11 @@ export async function createProductComment(productId, newComment) {
 }
 
 export async function createProduct(newProduct) {
-  const res = await axios.post(PATH, newProduct);
+  const res = await axios.post(PATH, newProduct, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return res.data;
 }
 

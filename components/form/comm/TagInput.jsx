@@ -49,8 +49,6 @@ export default function TagInput({ name, label }) {
         trigger(name);
       }
     }
-    console.log(newTag);
-    console.log("tags", tags);
   };
 
   const handleKeyDown = (e) => {

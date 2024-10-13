@@ -1,6 +1,7 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { PAGE_SIZE } from "@/variables/queryKeys";
 import { READ_ONE, READ_ALL, CRUD_COMMENT } from "@/variables/entities";
+import { useRouter } from "next/router";
 
 export function useGetBestList(entity, params = {}) {
   const { queryKey, read: axiosFunction } = READ_ALL(entity);
@@ -69,12 +70,12 @@ export function useGetCommentList({ idPath, whichComment }) {
   });
 }
 
-export function useGetById({ entity, id }) {
+export function useGetById({ entity, id, router }) {
   const { queryKey, read: axiosFunction } = READ_ONE(entity);
 
   return useQuery({
     queryKey: queryKey(id),
     queryFn: () => axiosFunction(id),
-    enabled: !!id,
+    enabled: !!id && router.isReady,
   });
 }

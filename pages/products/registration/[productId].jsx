@@ -3,7 +3,7 @@ import Loader from "@/components/ui/Loader";
 import Message from "@/components/ui/Message";
 import { useUpdateMutation } from "@/service/mutations";
 import { useGetById } from "@/service/queries";
-import { ENTITY, IMG_URL } from "@/variables/entities";
+import { ENTITY } from "@/variables/entities";
 import { useRouter } from "next/router";
 
 export default function EditProductPage() {
@@ -19,11 +19,15 @@ export default function EditProductPage() {
   } = useGetById({
     entity,
     id: productId,
+    router,
   });
 
-  const { mutate } = useUpdateMutation({ entity, id: productId });
+  const { mutate, isPending: isUpdateReady } = useUpdateMutation({
+    entity,
+    id: productId,
+  });
 
-  if (isPending) return <Loader />;
+  if (isPending || isUpdateReady) return <Loader />;
   if (isError) {
     const errMsg = error?.message;
     return <Message type="error" msg={errMsg} />;

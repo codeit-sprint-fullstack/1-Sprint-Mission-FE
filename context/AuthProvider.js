@@ -3,7 +3,7 @@ import { createLogIn, createUser } from "@/service/api/auth";
 import { getUserMe } from "@/service/api/user";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext({
   user: null,
@@ -17,17 +17,15 @@ export function AuthProvider({ children }) {
   const queryClient = useQueryClient();
   const router = useRouter();
   const { onModalOpen, GlobalModal: AuthModal } = useGlobalModal();
-  let accessToken;
+  const [accessToken, setAccessToken] = useState(null);
 
-  if (typeof window !== "undefined") {
-    accessToken = localStorage.getItem("accessToken");
-  }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setAccessToken(localStorage.getItem("accessToken"));
+    }
+  }, []);
 
-  const {
-    data,
-    refetch: getMe,
-    isLoading,
-  } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["user"],
     queryFn: getUserMe,
     staleTime: Infinity,
@@ -43,7 +41,6 @@ export function AuthProvider({ children }) {
       const { accessToken } = data;
       localStorage.setItem("accessToken", accessToken);
       queryClient.invalidateQueries("user");
-      getMe();
     },
   });
 

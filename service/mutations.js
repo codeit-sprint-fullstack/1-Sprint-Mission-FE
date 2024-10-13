@@ -16,13 +16,13 @@ export function useCreateMutation({ entity }) {
 
   return useMutation({
     mutationFn: (newArticle) => axiosFunction(newArticle),
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       if (data?.id) {
+        await queryClient.invalidateQueries({ queryKey: queryKey(data.id) });
+        await queryClient.refetchQueries(queryKey(data.id));
         router.push(`${path}/${data.id}`);
+        console.log("successCreate:", queryKey());
       }
-
-      queryClient.invalidateQueries(queryKey());
-      console.log("successCreate:", queryKey());
     },
   });
 }
@@ -37,11 +37,14 @@ export function useUpdateMutation({ entity, id }) {
 
   return useMutation({
     mutationFn: (updateData) => axiosFunction(id, updateData),
-    onSuccess: (data) => {
-      if (data.id) {
-        queryClient.invalidateQueries({ queryKey: queryKey() });
+    onSuccess: async (data) => {
+      if (data && data.id) {
+        console.log(data.id);
+
+        await queryClient.invalidateQueries({ queryKey: queryKey(data.id) });
+        await queryClient.refetchQueries(queryKey(data.id));
         router.push(`${path}/${data.id}`);
-        console.log("successUpdate", queryKey());
+        console.log("successUpdate", queryKey(data.id));
       }
     },
   });
@@ -56,6 +59,7 @@ export function useDeleteMutation({ entity }) {
     mutationFn: (idPath) => axiosFunction(idPath),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKey() });
+
       console.log("successDeletion", queryKey());
     },
   });
