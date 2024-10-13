@@ -70,12 +70,12 @@ export function useGetCommentList({ idPath, whichComment }) {
   });
 }
 
-export function useGetById({ entity, id, router }) {
+export function useGetById({ entity, id }) {
   const { queryKey, read: axiosFunction } = READ_ONE(entity);
 
   return useQuery({
     queryKey: queryKey(id),
     queryFn: () => axiosFunction(id),
-    enabled: !!id && router.isReady,
+    enabled: !!id,
   });
 }

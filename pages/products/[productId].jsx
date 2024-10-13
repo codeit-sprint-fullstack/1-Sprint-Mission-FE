@@ -41,7 +41,7 @@ export default function ProductDetailPage() {
   } = useQuery({
     queryKey: productKey.detail(productId),
     queryFn: () => getProductById(productId),
-    enabled: !!productId && router.isReady,
+    enabled: !!productId,
   });
 
   if (isPending) {
