@@ -21,3 +21,12 @@ export async function getProductTotalCount(query) {
     console.log(error);
   }
 }
+
+export async function postProduct(productData) {
+  try {
+    const response = await renderApi.post('/products', productData);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}

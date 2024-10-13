@@ -6,7 +6,7 @@ import ForSaleProduct from '@shared/components/product/ForSaleProduct';
 import PaginationButton from '@shared/components/Buttons/PaginationButton';
 
 export default async function Product() {
-  const BestProduct = await getProductList({ order: 'favorite', limit: 4 });
+  const BestProduct = await getProductList({ limit: 4 });
   const productTotalCount = await getProductTotalCount();
 
   return (

@@ -1,0 +1,10 @@
+.add-product-image {
+  width: 282px;
+  height: 282px;
+  position: relative;
+  cursor: pointer;
+}
+
+.images-container {
+  display: flex;
+}

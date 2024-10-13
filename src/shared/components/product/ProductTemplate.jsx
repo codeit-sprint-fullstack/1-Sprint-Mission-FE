@@ -11,7 +11,7 @@ export default function ProductTemplate({ product, option }) {
     <>
       <div className={TemplateStyle}>
         <div className={styles['product-image']}>
-          <Image src={product.images} fill />
+          <Image src={product.images[0]} fill />
         </div>
         <div className={styles['product-info']}>
           <div className={styles['product-name']}>{product.name}</div>
@@ -20,7 +20,7 @@ export default function ProductTemplate({ product, option }) {
             <div className={styles['product-favorite-image']}>
               <Image src={'/favorite.svg'} fill />
             </div>
-            {product.favoriteCount}
+            {product.like.length}
           </div>
         </div>
       </div>
