@@ -11,7 +11,6 @@ import { useLoginValidation } from 'src/hooks/useValidation/useLoginValidation';
 export default function LoginForm() {
   const [visibility, setVisibility] = useState(false);
   const { email, password, setEmail, setPassword } = useLoginStore();
-  const { mutate } = usePostSignIn();
 
   const {
     emailValue,
@@ -26,9 +25,20 @@ export default function LoginForm() {
     setVisibility(!visibility);
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    mutate({ email: email, password: password });
+    try {
+      const response = await axios.post('/api/auth/login', {
+        email,
+        password,
+      });
+
+      if (response.status === 200) {
+        router.push('/');
+      }
+    } catch (error) {
+      alert('로그인 실패' + (error.response?.data.error || error.message));
+    }
   };
 
   useEffect(() => {

@@ -7,6 +7,7 @@ import ActionButton from '../Buttons/ActionButton';
 import { useSignupStore } from '@shared/store/form/signup';
 import { usePostSignup } from 'src/hooks/form/useSignupMutation';
 import { useSignupValidation } from 'src/hooks/useValidation/useSignupValidation';
+import axios from 'axios';
 
 export default function SignupForm() {
   const [visibility, setVisibility] = useState({
@@ -23,8 +24,6 @@ export default function SignupForm() {
     setPassword,
     setPasswordConfirmation,
   } = useSignupStore();
-
-  const { mutate } = usePostSignup();
 
   const {
     emailValue,
@@ -46,14 +45,21 @@ export default function SignupForm() {
     }));
   };
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    mutate({
-      email: email,
-      password: password,
-      nickname: nickname,
-      passwordConfirmation: passwordConfirmation,
-    });
+    try {
+      const response = await axios.post('/api/auth/signup', {
+        email,
+        password,
+        nickname,
+      });
+
+      if (response.status === 200) {
+        router.push('/auth/login');
+      }
+    } catch (error) {
+      alert('회원가입 실패' + (error.response?.data.error || error.message));
+    }
   };
 
   useEffect(() => {
