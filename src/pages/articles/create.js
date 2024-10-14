@@ -16,13 +16,33 @@ const CreateArticle = () => {
   const [imageUrls, setImageUrls] = useState([]);  // 이미지 URL 배열
   const router = useRouter();
 
-  const handleSubmit = async () => {
-    try {
-      if (!title || !content || imageUrls.length === 0) {
-        console.error("제목, 내용 및 이미지를 모두 입력해야 합니다.");
-        return;
-      }
+  // 유효성 검사 함수
+  const validateArticle = (title, content, imageUrls) => {
+    if (!title.trim()) {
+      console.error("제목을 입력해주세요.");
+      return false;
+    }
+    if (!content.trim()) {
+      console.error("내용을 입력해주세요.");
+      return false;
+    }
+    if (imageUrls.length === 0) {
+      console.error("이미지를 최소 하나 이상 업로드해주세요.");
+      return false;
+    }
+    if (imageUrls.length > 3) {
+      console.error("이미지는 최대 3개까지만 업로드할 수 있습니다.");
+      return false;
+    }
+    return true;
+  };
 
+  const handleSubmit = async () => {
+    if (!validateArticle(title, content, imageUrls)) {
+      return;
+    }
+
+    try {
       const articleData = {
         title: title.trim(),
         content: content.trim(),
