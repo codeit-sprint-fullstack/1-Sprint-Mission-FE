@@ -12,12 +12,7 @@ import "@/styles/globals.css";
 export const RefContext = createContext();
 
 export default function App({ Component, pageProps }) {
-  const [queryClient] = useState(
-    () =>
-      new QueryClient({
-        defaultOptions: OPTIONS,
-      })
-  );
+  const [queryClient] = useState(() => new QueryClient(OPTIONS));
   const globalDivRef = useRef(null);
   return (
     <RefContext.Provider value={globalDivRef}>

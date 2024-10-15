@@ -7,26 +7,19 @@ import styles from "@/styles/registration.module.css";
 import useAuth from "@/contexts/authContext";
 
 export async function getServerSideProps(context) {
+  const { id } = context.query;
+  let article = null;
   //경로의 context 값이 있다면 지곤 게시글의 수정으로 서버에서 값을 전달한다.
-  if (context.query) {
-    const { id } = context.query;
-
-    let article = {};
+  if (id) {
     try {
-      const data = await api.getArticle(id);
-      article = data;
+      article = await api.getArticle(id);
     } catch (error) {
       console.log(error);
     }
-
-    return {
-      props: { article },
-    };
-  } else {
-    return {
-      props: {},
-    };
   }
+  return {
+    props: { article },
+  };
 }
 
 function Registration({ article }) {

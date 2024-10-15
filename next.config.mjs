@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   images: {
     domains: ["localhost", "*", "via.placeholder.com"],
@@ -9,7 +10,6 @@ const nextConfig = {
       },
     ],
   },
-  reactStrictMode: true,
 };
 
 export default nextConfig;

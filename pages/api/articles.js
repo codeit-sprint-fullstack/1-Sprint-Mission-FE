@@ -1,8 +1,8 @@
 import instance from "./httpClient.js";
 
-export async function getArticles(params = {}) {
+export async function getArticles(params = {}, cursor = "") {
   const res = await instance.get("/articles", {
-    params: { ...params },
+    params: { ...params, cursor },
   });
   return res.data;
 }
@@ -38,4 +38,14 @@ export async function createArticle(item) {
 export async function deleteArticle(id) {
   const res = await instance.delete(`/articles/${id}`);
   return res.status;
+}
+
+export async function likeArticle(id) {
+  const res = await instance.post(`/articles/${id}/favorite`);
+  return res.data;
+}
+
+export async function unlikeArticle(id) {
+  const res = await instance.delete(`/articles/${id}/favorite`);
+  return res.data;
 }

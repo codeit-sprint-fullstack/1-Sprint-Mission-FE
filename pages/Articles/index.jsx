@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   dehydrate,
   HydrationBoundary,
@@ -18,10 +18,9 @@ import ic_medal from "@/public/images/ic_medal.png";
 import ic_profile from "@/public/images/ic_profile.png";
 import styles from "@/styles/articles.module.css";
 import { RefContext } from "../_app";
-import useAuth from "@/contexts/authContext";
 
 function BestArticles({ item }) {
-  const { writer, title, createAt, likeCount, image } = item;
+  const { owner, title, createAt, likeCount, image } = item;
   const articleImage = image ? image : imgDefault;
   const date = dateFormatYYYYMMDD(createAt);
 
@@ -44,7 +43,7 @@ function BestArticles({ item }) {
         </div>
         <div className={styles.item_data_box}>
           <div className={styles.item_data_box}>
-            <span>{writer.nickname}</span>
+            <span>{owner?.nickname}</span>
             <Image
               width={16}
               height={16}
@@ -64,7 +63,7 @@ function BestArticles({ item }) {
 }
 
 function ArticleItems({ item }) {
-  const { writer, title, createAt, likeCount, image } = item;
+  const { owner, title, createAt, favoriteCount, image } = item;
   const articleImage = image ? image : imgDefault;
   const date = dateFormatYYYYMMDD(createAt);
 
@@ -90,7 +89,7 @@ function ArticleItems({ item }) {
               alt="사용자프로필이미지"
             />
             <span className={styles.item_data_user_name}>
-              {writer.nickname}
+              {owner?.nickname}
             </span>
             <span className={styles.create_time}>{date}</span>
           </div>
@@ -102,7 +101,7 @@ function ArticleItems({ item }) {
               src={ic_heart}
               alt="좋아요이미지"
             />
-            <span>{likeCount}</span>
+            <span>{favoriteCount}</span>
           </div>
         </div>
       </li>
@@ -115,8 +114,6 @@ export async function getStaticProps() {
   const defaultParams = {
     orderBy: "recent",
     keyword: "",
-    pageSize: 5,
-    page: 1,
   };
 
   await queryClient.prefetchQuery({
@@ -148,44 +145,20 @@ function ArticlesRouter({ dehydratedState, defaultParams }) {
 function Articles({ defaultParams }) {
   const globalDivRef = useContext(RefContext);
   const [params, setParams] = useState(defaultParams);
-  const [articles, setArticles] = useState([]);
   const [keyword, setKeyword] = useState("");
 
-  useAuth();
-
+  //무한스크롤 쿼리를 통한 react-query관리
   const {
     data: articlesData,
+    fetchStatus, //로딩 에니메이션용
     isError,
-    error,
-  } = useQuery({
+    fetchNextPage,
+  } = useInfiniteQuery({
     queryKey: ["articles", params],
-    queryFn: () => api.getArticles(params),
+    queryFn: ({ pageParam }) => api.getArticles(params, pageParam),
+    getNextPageParam: (lastPage) =>
+      lastPage.nextCursor ? lastPage.nextCursor : undefined,
   });
-
-  // const {
-  //   data: articlesData2,
-  //   fetchStatus,
-  //   error: moreErr,
-  //   fetchNextPage,
-  // } = useInfiniteQuery({
-  //   queryKey: ["articles22"],
-  //   queryFn: ({ pageParams }) => {
-  //     console.log(pageParams);
-  //     api.getArticles(params, pageParams);
-  //   },
-  //   initialPageParam: 0,
-  //   getNextPageParam: (lastPage, lastPageParams) => {
-  //     // if (!(lastPage.totalCount - lastPageParams.data * params.pageSize > 0)) {
-  //     lastPageParams + 1;
-  //     // setParams((prev) => ({
-  //     //   ...prev,
-  //     //   page: prev.page + 1,
-  //     // }));
-  //     // } else {
-  //     //   undefined;
-  //     // }
-  //   },
-  // });
 
   if (isError) {
     console.log(isError);
@@ -223,18 +196,11 @@ function Articles({ defaultParams }) {
   };
 
   useEffect(() => {
-    setArticles((prev) => [...prev, ...(articlesData?.list || [])]);
-  }, [articlesData]);
-
-  useEffect(() => {
     if (globalDivRef.current) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setParams((prev) => ({
-              ...prev,
-              page: prev.page + 1,
-            }));
+            fetchNextPage();
           }
         });
       });
@@ -243,7 +209,7 @@ function Articles({ defaultParams }) {
         observer.disconnect();
       };
     }
-  }, [globalDivRef]);
+  }, [fetchNextPage, globalDivRef]);
 
   return (
     <main>
@@ -285,11 +251,14 @@ function Articles({ defaultParams }) {
           />
         </div>
         <ul className={styles.article_ul}>
-          {articles.map((item) => (
-            <ArticleItems key={item.id} item={item} />
-          ))}
+          {articlesData?.pages &&
+            articlesData.pages.map((items) =>
+              items.list.map((item) => (
+                <ArticleItems key={item.id} item={item} />
+              ))
+            )}
+          {fetchStatus === "fetching" && <div className={styles.loader}></div>}
         </ul>
-        <button onClick={moreData}>더불러오기</button>
       </div>
     </main>
   );
