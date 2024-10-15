@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import styles from "./ItemsPage.module.css"; // CSS 모듈 임포트
 import ResponsiveStyles from "../styles/Responsive.module.css"; // CSS 모듈 임포트
 import ProductList from "../components/ProductList";
+import BestProducts from "../components/BestProducts";
 import { filterProductsByName } from "../api/api";
 import Pagination from "../components/Pagination";
 import useProductList from "../hooks/useProductList";
@@ -71,25 +72,25 @@ export default function ItemsPage() {
     fetchProducts(page);
   };
 
-  // 최신순 정렬(좋아요 순 정렬 제거)
+  // 최신순 정렬 및 좋아요 순 정렬 기능 추가
   const sortedProducts = useMemo(() => {
     if (Array.isArray(products)) {
-      return [...products].sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      );
+      return [...products].sort((a, b) => {
+        if (order === "favoriteCount") {
+          return b.favoriteCount - a.favoriteCount; // 좋아요 순 정렬
+        }
+        return new Date(b.createdAt) - new Date(a.createdAt); // 최신순 정렬
+      });
     }
     return []; // products가 배열이 아닐 경우 빈 배열 반환
-  }, [products]);
+  }, [products, order]);
 
   useEffect(() => {
     fetchProducts(currentPage); // 초기 로드 및 페이지 변경 시 로드
   }, [order, currentPage, fetchProducts]);
 
   // 현재 페이지에 맞는 상품 목록 추출
-  const currentPageProducts = sortedProducts.slice(
-    (currentPage - 1) * LIMIT,
-    currentPage * LIMIT
-  );
+  const currentPageProducts = sortedProducts.slice(0, 10); // 처음 10개 상품만 추출
 
   /* 상품 등록하기 버튼 눌렀을때 이동페이지*/
   const handleAddProductClick = () => {
@@ -100,6 +101,8 @@ export default function ItemsPage() {
     <div className={styles.ItemsPage}>
       <ItemsPageHeader />
       <main className={styles.mainContent}>
+        <h2>베스트 상품</h2>
+        <BestProducts />
         <div className={styles.saleProductNav}>
           <h2 className={styles.heading}>판매 중인 상품</h2>
           <div className={styles.inputBtDrop}>
@@ -123,6 +126,8 @@ export default function ItemsPage() {
               onChange={handleOrderChange}
             >
               <option value="createdAt">최신순</option>
+              <option value="favoriteCount">좋아요 순</option>{" "}
+              {/* 좋아요 순 정렬 옵션 추가 */}
             </select>
           </div>
         </div>
