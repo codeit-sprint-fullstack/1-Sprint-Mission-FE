@@ -1,68 +1,47 @@
-import apiHandler from "./apiHandler";
+import apiClient from "./apiClient";
 
-const baseUrl = "https://thrift-shop.onrender.com";
+// 댓글 조회
+export async function fetchComments(id, cursor = null) {
+  const response = await apiClient.get(
+    `/articles/${id}/comments?cursor=${cursor}`
+  );
 
-export async function fetchComments(id, page, size) {
-  return apiHandler(async () => {
-    const response = await fetch(
-      `${baseUrl}/articleComments/${id}?page=${page}&size=${size}`
-    );
+  if (response.status !== 200) {
+    throw new Error("Failed to fetch comments");
+  }
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch comments");
-    }
-
-    const data = await response.json();
-    return data;
-  });
+  return response.data;
 }
 
+// 댓글 삭제
 export async function deleteComments(id) {
-  return apiHandler(async () => {
-    const response = await fetch(`${baseUrl}/articleComments/${id}`, {
-      method: "DELETE",
-    });
-    if (!response.ok) {
-      throw new Error("Failed to delete comments");
-    }
-    return response.data;
-  });
+  const response = await apiClient.delete(`/comments/${id}`);
+
+  if (response.status !== 204) {
+    throw new Error("Failed to delete comments");
+  }
+
+  return response.data;
 }
 
+// 댓글 생성
 export async function createComments(id, formData) {
-  return apiHandler(async () => {
-    const dataToSend = { ...formData };
+  const response = await apiClient.post(`/articles/${id}/comments`, formData);
 
-    const response = await fetch(`${baseUrl}/articleComments/${id}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(dataToSend),
-    });
+  if (response.status !== 201) {
+    throw new Error("Failed to create comments");
+  }
 
-    if (!response.ok) {
-      throw new Error("Failed to create comments");
-    }
-
-    return await response.json();
-  });
+  return response.data;
 }
 
+// 댓글 수정
 export async function updateComments(id, formData) {
-  return apiHandler(async () => {
-    const dataToSend = { ...formData };
-    const response = await fetch(`${baseUrl}/articleComments/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(dataToSend),
-    });
-    if (!response.ok) {
-      throw new Error("Failed to update comments");
-    }
+  const response = await apiClient.patch(`/comments/${id}`, formData);
 
-    return await response.json();
-  });
+  if (response.status !== 200) {
+    throw new Error("Failed to update comments");
+  }
+
+  return response.data;
 }

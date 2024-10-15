@@ -1,32 +1,34 @@
 import Image from "next/image";
-import profile from "@/images/ic_profile.png";
-import kebab from "@/images/ic_kebab.png";
-import reply_empty from "@/images/img_reply_empty.png";
+import profile from "../../images/ic_profile.png";
+import kebab from "../../images/ic_kebab.png";
+import reply_empty from "../../images/img_reply_empty.png";
 import styles from "./ChatItem.module.css";
-import { useState } from "react";
-import { deleteComments } from "@/utils/articleChatApi";
+import { useState, useEffect } from "react";
+import { useDeleteComment } from "@/hooks/useComments"; // 리액트 쿼리 훅 가져오기
 import { timeAgo } from "@/utils/timeAgo";
-import { useMutation } from "@tanstack/react-query";
 
 export default function ChatItem({ comments, onEdit }) {
   const [openDropdownId, setOpenDropdownId] = useState(null);
+  const [localComments, setLocalComments] = useState(comments);
+
+  const deleteCommentMutation = useDeleteComment();
+
+  useEffect(() => {
+    setLocalComments(comments);
+  }, [comments]);
 
   const toggleDropdown = (id) => {
     setOpenDropdownId(openDropdownId === id ? null : id);
   };
 
-  const mutation = useMutation({
-    mutationFn: (id) => deleteComments(id),
-    onSuccess: () => {
-      window.location.reload();
-    },
-    onError: (error) => {
-      console.error("Error deleting comment:", error);
-    },
-  });
-
   const handleDelete = (id) => {
-    mutation.mutate(id);
+    setLocalComments((prev) => prev.filter((comment) => comment.id !== id));
+
+    deleteCommentMutation.mutate(id, {
+      onSuccess: () => {
+        setOpenDropdownId(null);
+      },
+    });
   };
 
   const handleEdit = (chatItem) => {
@@ -36,7 +38,7 @@ export default function ChatItem({ comments, onEdit }) {
 
   return (
     <div className={styles.chatContainer}>
-      {!comments.length ? (
+      {!localComments.length ? (
         <div className={styles.nonContainer}>
           <Image
             src={reply_empty}
@@ -50,7 +52,7 @@ export default function ChatItem({ comments, onEdit }) {
           </div>
         </div>
       ) : (
-        comments.map((chatItem) => (
+        localComments.map((chatItem) => (
           <div key={chatItem.id} className={styles.container}>
             <div className={styles.menu}>
               <p className={styles.content}>{chatItem.content}</p>

@@ -8,7 +8,6 @@ import { throttle } from "@/utils/throttle";
 
 export default function BestProduct({ articles }) {
   const [bestArticles, setBestArticles] = useState([]);
-
   useEffect(() => {
     const updateBestArticles = () => {
       const screenWidth = window.innerWidth;
@@ -22,8 +21,8 @@ export default function BestProduct({ articles }) {
         maxArticles = 3;
       }
 
-      const filteredArticles = Array.isArray(articles.data)
-        ? articles.data.slice(0, maxArticles)
+      const filteredArticles = Array.isArray(articles.list)
+        ? articles.list.slice(0, maxArticles)
         : [];
       setBestArticles(filteredArticles);
     };
@@ -51,15 +50,21 @@ export default function BestProduct({ articles }) {
                   <p className={styles.title}>{article.title}</p>
                   <div className={styles.productImgContainer}>
                     <Image
-                      src={ProductImg}
+                      src={
+                        article.images.length > 0
+                          ? article.images[0]
+                          : ProductImg
+                      }
                       alt="product"
                       className={styles.productImg}
+                      width={48}
+                      height={48}
                     />
                   </div>
                 </div>
                 <div className={styles.info}>
                   <p className={styles.user}>
-                    총명한 판다{article.id} ♡ {article.favorite}
+                    {article.writer.nickname} ♡ {article.likeCount}
                   </p>
                   <p className={styles.date}>
                     {new Date(article.createdAt).toLocaleDateString()}

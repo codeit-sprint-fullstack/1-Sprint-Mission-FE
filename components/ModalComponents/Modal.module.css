@@ -30,6 +30,7 @@
         font-weight: 600;
         color: #f74747;
         margin-top: 40px;
+        cursor: pointer;
       }
       .modalDelBtn {
         width: 88px;
@@ -41,6 +42,7 @@
         font-weight: 600;
         color: #f3f4f6;
         margin-top: 40px;
+        cursor: pointer;
       }
     }
   }
@@ -62,6 +64,7 @@
       color: #f3f4f6;
       margin-top: 40px;
       margin-left: 187.5px;
+      cursor: pointer;
     }
   }
   .modalText {

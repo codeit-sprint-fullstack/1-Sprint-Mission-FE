@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "./CreateForm.module.css";
 import { useValidateForm } from "@/hooks/useValidation";
+import ImageUpload from "./ImageUpload";
 
 function CreateForm({ onFormChange, onFormValuesChange }) {
   const initialState = {
-    productImage: "",
     productName: "",
     productIntro: "",
     productPrice: "",
@@ -12,13 +12,9 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
   };
 
   const validations = {
-    productImage: { required: true },
     productName: { required: true, minLength: 1, maxLength: 10 },
     productIntro: { required: true, minLength: 10, maxLength: 200 },
-    productPrice: {
-      required: true,
-      pattern: /^[0-9]+$/,
-    },
+    productPrice: { required: true, pattern: /^[0-9]+$/ },
     productTag: { maxLength: 5 },
   };
 
@@ -27,20 +23,25 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
 
   const [tags, setTags] = useState([]);
   const [isComposing, setIsComposing] = useState(false);
+  const [uploadedImages, setUploadedImages] = useState([]); // 이미지 상태 추가
 
   useEffect(() => {
     const isFormValid =
       Object.values(errors).every((error) => error === "") &&
       Object.entries(values).every(([key, value]) => {
         if (key === "productTag") return true;
-        return value.trim() !== "";
+        return value;
       }) &&
       tags.length > 0 &&
-      values.productTag.trim() === "";
+      uploadedImages.length > 0;
 
     onFormChange(isFormValid);
-    onFormValuesChange({ ...values, tags });
-  }, [errors, values, tags, onFormChange, onFormValuesChange]);
+    onFormValuesChange({ ...values, tags, uploadedImages }); // 폼 값 및 이미지 데이터 전달
+  }, [errors, values, tags, uploadedImages, onFormChange, onFormValuesChange]);
+
+  const handleImagesChange = (images) => {
+    setUploadedImages(images);
+  };
 
   const handleKeyDown = (e) => {
     if (
@@ -76,18 +77,7 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
       <label htmlFor="productImage" className={styles.labelText}>
         상품 이미지
       </label>
-      <input
-        type="text"
-        className={styles.inputStyle}
-        id="productImage"
-        name="productImage"
-        placeholder="이미지 링크를 첨부해주세요."
-        value={values.productImage}
-        onChange={handleChange}
-      />
-      {errors.productImage && (
-        <p className={styles.inputCheck}>{errors.productImage}</p>
-      )}
+      <ImageUpload onImagesChange={handleImagesChange} />
 
       <label htmlFor="productName" className={styles.labelText}>
         상품명
@@ -105,11 +95,12 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
         <p className={styles.inputCheck}>{errors.productName}</p>
       )}
 
+      {/* 상품 소개 */}
       <label htmlFor="productIntro" className={styles.labelText}>
         상품 소개
       </label>
       <textarea
-        className={styles.inputStyle}
+        className={styles.inputStyle + " " + styles.textareaStyle}
         id="productIntro"
         name="productIntro"
         placeholder="상품 소개를 입력해주세요"
@@ -120,6 +111,7 @@ function CreateForm({ onFormChange, onFormValuesChange }) {
         <p className={styles.inputCheck}>{errors.productIntro}</p>
       )}
 
+      {/* 판매 가격 */}
       <label htmlFor="productPrice" className={styles.labelText}>
         판매가격
       </label>

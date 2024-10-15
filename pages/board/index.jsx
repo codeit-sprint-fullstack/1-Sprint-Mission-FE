@@ -3,31 +3,29 @@ import BestProduct from "@/components/BoardComponents/BestProduct.jsx";
 import BoardList from "@/components/BoardComponents/BoardList.jsx";
 import { useArticles } from "@/hooks/useArticles";
 import styles from "@/styles/board.module.css";
-import { fetchArticles, fetchBestArticles } from "@/utils/articleApi";
 import { useEffect } from "react";
 import { throttle } from "@/utils/throttle";
 import { toast, ToastContainer } from "react-toastify";
+import { fetchBestArticles, fetchArticles } from "@/utils/articleApi";
 import "react-toastify/dist/ReactToastify.css";
 
 export async function getServerSideProps(context) {
   const {
-    sort = "createdAt",
+    orderBy = "recent",
     keyword = "",
     page = 1,
-    size = 4,
+    pageSize = 5,
   } = context.query;
-
   try {
-    const articles = await fetchArticles({ sort, keyword, page, size });
+    const articles = await fetchArticles({ orderBy, keyword, page, pageSize });
     const bestArticles = await fetchBestArticles(3);
 
     return {
       props: {
-        initialArticles: articles.data || [],
-        totalArticles: articles.total || 0,
+        initialArticles: articles.list || [],
+        totalArticles: articles.totalCount || 0,
         bestArticles,
-        initialPage: page,
-        pageSize: size,
+        pageSize,
       },
     };
   } catch (error) {
@@ -37,8 +35,7 @@ export async function getServerSideProps(context) {
         initialArticles: [],
         totalArticles: 0,
         bestArticles: [],
-        initialPage: 1,
-        pageSize: size,
+        pageSize,
       },
     };
   }
@@ -51,12 +48,23 @@ export default function Board({
   pageSize,
 }) {
   const router = useRouter();
-  const { articles, loadMoreArticles, hasMore } = useArticles(
-    initialArticles,
-    totalArticles,
-    pageSize,
-    router
-  );
+
+  const {
+    articles,
+    loadMoreArticles,
+    hasMore,
+    loading,
+    setKeyword,
+    setSortOrder,
+  } = useArticles(initialArticles, totalArticles, pageSize, router);
+
+  const handleKeywordSearch = (newKeyword) => {
+    setKeyword(newKeyword);
+  };
+
+  const handleSortChange = (newSortOrder) => {
+    setSortOrder(newSortOrder);
+  };
 
   useEffect(() => {
     let load = true;
@@ -81,7 +89,12 @@ export default function Board({
     <div className={styles.boardContainer}>
       <ToastContainer position="top-right" autoClose={2000} />
       <BestProduct articles={bestArticles} />
-      <BoardList articles={articles} />
+      <BoardList
+        articles={articles}
+        onSearch={handleKeywordSearch}
+        onSortChange={handleSortChange}
+      />
+      {loading && <div>Loading more...</div>}
     </div>
   );
 }

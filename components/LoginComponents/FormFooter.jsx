@@ -4,15 +4,26 @@ import Image from "next/image";
 import ic_google from "@/images/ic_google.png";
 import ic_kakao from "@/images/ic_kakao.png";
 import styles from "./FormFooter.module.css";
+import { signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
+
 export default function FormFooter() {
+  const { data: session } = useSession();
+  const handleGoogleLogin = async () => {
+    await signIn("google");
+  };
+
   return (
     <>
       <div className={styles.easyLogin}>
         <p className={styles.easyLoginText}>간편로그인하기</p>
         <div className={styles.easyLoginImg}>
-          <Link href="https://www.google.com">
-            <Image className={styles.img} src={ic_google} alt="google" />
-          </Link>
+          <Image
+            className={styles.img}
+            src={ic_google}
+            alt="google"
+            onClick={handleGoogleLogin}
+          />
           <Link href="https://www.kakaocorp.com/page">
             <Image className={styles.img} src={ic_kakao} alt="kakao" />
           </Link>
@@ -26,6 +37,11 @@ export default function FormFooter() {
           </Link>
         </p>
       </div>
+      {session && (
+        <div>
+          <p>로그인된 사용자: {session.user.name}</p>
+        </div>
+      )}
     </>
   );
 }

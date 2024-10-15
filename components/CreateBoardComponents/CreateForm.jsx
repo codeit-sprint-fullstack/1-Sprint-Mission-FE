@@ -4,6 +4,8 @@ import { createArticle } from "@/utils/articleApi";
 import { useRouter } from "next/router";
 import { ROUTES } from "@/utils/rotues";
 import { useMutation } from "@tanstack/react-query";
+import ImageUpload from "./ImageUpload";
+import { useState } from "react";
 
 export default function CreateForm() {
   const initialState = {
@@ -22,6 +24,8 @@ export default function CreateForm() {
       minLength: 10,
     },
   };
+
+  const [uploadedImages, setUploadedImages] = useState([]);
 
   const { values, errors, handleChange, handleSubmit } = useValidateForm(
     initialState,
@@ -42,12 +46,27 @@ export default function CreateForm() {
     },
   });
 
-  const onSubmit = () => {
-    mutation.mutate({
-      title: values.title,
-      content: values.content,
-    });
+  const handleImagesChange = (images) => {
+    setUploadedImages(images);
   };
+
+  const onSubmit = () => {
+    const formData = new FormData();
+
+    formData.append("title", values.title);
+    formData.append("content", values.content);
+
+    uploadedImages.forEach((image, index) => {
+      formData.append("images", image.file);
+    });
+
+    mutation.mutate(formData);
+  };
+
+  const isFormValid =
+    values.title.trim() !== "" &&
+    values.content.trim() !== "" &&
+    Object.keys(errors).every((key) => !errors[key]);
 
   return (
     <div className={styles.container}>
@@ -56,7 +75,7 @@ export default function CreateForm() {
         <button
           type="button"
           className={styles.addBtn}
-          disabled={Object.keys(errors).some((key) => errors[key])}
+          disabled={!isFormValid}
           onClick={handleSubmit(onSubmit)}
         >
           등록
@@ -91,6 +110,7 @@ export default function CreateForm() {
           />
           {errors.content && <p className={styles.error}>{errors.content}</p>}
         </div>
+        <ImageUpload onImagesChange={handleImagesChange} />
       </form>
     </div>
   );

@@ -51,10 +51,11 @@ export default function ItemList({
                 <Link href={ROUTES.ITEMS_DETAIL(id)}>
                   <Image
                     className={styles.sellProduct}
-                    src={images[0] ? images[0] : img_default}
-                    alt={images ? name : ""}
+                    src={images[0] ? `${images[0]}` : img_default}
+                    alt={images && images.length > 0 ? name : ""}
                     width={221}
                     height={221}
+                    priority
                   />
                   <p className={styles.itemName}>{name}</p>
                   <p className={styles.itemPrice}>{`${formatPrice(

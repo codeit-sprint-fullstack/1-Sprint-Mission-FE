@@ -14,26 +14,36 @@ export default function CreateBtn() {
   const mutation = useMutation({
     mutationFn: createProduct,
     onSuccess: (newProduct) => {
-      router.push(ROUTES.ITEMS_DETAIL(newProduct.id));
+      router.push(ROUTES.ITEMS_DETAIL(newProduct.product.id));
     },
     onError: (error) => {
       console.error("Failed to create product:", error.response || error);
     },
   });
 
-  const handleProductPost = () => {
-    if (!isFormValid) {
-      return;
-    }
-    const productData = {
-      images: formValues.productImage,
-      name: formValues.productName,
-      description: formValues.productIntro,
-      price: formValues.productPrice,
-      tags: formValues.tags || [],
-    };
+  const handleProductPost = async () => {
+    if (!isFormValid) return;
 
-    mutation.mutate(productData);
+    try {
+      const formData = new FormData();
+
+      if (formValues.uploadedImages && formValues.uploadedImages.length > 0) {
+        formValues.uploadedImages.forEach((image, index) => {
+          formData.append("images", image.file);
+        });
+      }
+      formValues.tags.forEach((tag) => {
+        formData.append("tags[]", tag);
+      });
+
+      formData.append("name", formValues.productName);
+      formData.append("description", formValues.productIntro);
+      formData.append("price", formValues.productPrice);
+
+      mutation.mutate(formData);
+    } catch (error) {
+      console.error("Error creating product:", error);
+    }
   };
 
   return (

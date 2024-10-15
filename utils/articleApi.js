@@ -1,94 +1,63 @@
-import apiHandler from "./apiHandler";
+import apiClient from "./apiClient";
 
-const baseUrl = "https://thrift-shop.onrender.com";
-
+// 단일 Article 가져오기
 export async function fetchArticle(id) {
-  return apiHandler(async () => {
-    const res = await fetch(`${baseUrl}/articles/${id}`);
-    if (!res.ok) {
-      throw new Error("Failed to fetch article");
-    }
-    return res.json();
-  });
+  const { data } = await apiClient.get(`/articles/${id}`);
+  return data;
 }
 
-export async function fetchArticles({ sort, keyword, page, size }) {
-  return apiHandler(async () => {
-    const params = new URLSearchParams({
-      sort,
-      search: keyword,
-      page: page.toString(),
-      size: size.toString(),
-    });
+// Article 목록 가져오기
+export async function fetchArticles({ orderBy, keyword, page, pageSize }) {
+  const params = {
+    orderBy,
+    keyword: keyword,
+    page: page,
+    pageSize: pageSize,
+  };
 
-    const res = await fetch(`${baseUrl}/articles?${params}`);
-    if (!res.ok) {
-      throw new Error("Failed to fetch articles");
-    }
-    return await res.json();
-  });
+  const { data } = await apiClient.get(`/articles`, { params });
+  return data;
 }
 
+// Best Article 가져오기
 export async function fetchBestArticles(size) {
-  return apiHandler(async () => {
-    const res = await fetch(`${baseUrl}/articles?sort=createdAt&size=${size}`);
+  const params = {
+    orderBy: "favorite",
+    pageSize: size,
+  };
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch best articles");
-    }
-    return await res.json();
-  });
+  const { data } = await apiClient.get(`/articles`, { params });
+  return data;
 }
 
+// Article 업데이트
 export async function updateArticle(id, formData) {
-  return apiHandler(async () => {
-    const res = await fetch(`${baseUrl}/articles/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    if (!res.ok) {
-      throw new Error("Failed to update article");
-    }
-    return res.json();
+  const { data } = await apiClient.patch(`/articles/${id}`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
   });
+  return data;
 }
 
+// Article 삭제
 export async function deleteArticle(id) {
-  return apiHandler(async () => {
-    const res = await fetch(`${baseUrl}/articles/${id}`, {
-      method: "DELETE",
-    });
-
-    if (!res.ok) {
-      throw new Error("Failed to delete article");
-    }
-    const text = await res.text();
-    if (text) {
-      return JSON.parse(text);
-    }
-    return {};
-  });
+  const { data } = await apiClient.delete(`/articles/${id}`);
+  return data;
 }
 
+// Article 생성
 export async function createArticle(formData) {
-  return apiHandler(async () => {
-    const res = await fetch(`${baseUrl}/articles`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    if (!res.ok) {
-      const errorText = await res.text();
-      console.error("Server error response:", errorText);
-      throw new Error("Failed to create article");
-    }
-    return await res.json();
+  const { data } = await apiClient.post(`/articles`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
   });
+  return data;
+}
+
+export async function addLike(articleId) {
+  const { data } = await apiClient.post(`/articles/${articleId}/like`);
+  return data;
+}
+
+export async function removeLike(articleId) {
+  const { data } = await apiClient.delete(`/articles/${articleId}/like`);
+  return data;
 }
