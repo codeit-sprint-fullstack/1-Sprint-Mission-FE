@@ -5,13 +5,13 @@ import { ArticleButton } from '@/utils/Button.js';
 import TitleInput from '@/components/Post/TitleInput';
 import ContentInput from '@/components/Post/ContentInput';
 import { useFleaMarketPostArticle } from '@/hooks/useFleaMarket';
-import { useAuth } from '@/utils/AuthProvider';
 import FileInput from '@/components/Post/FileInput';
 import PriceInput from '@/components/Post/PriceInput';
 import TagsInput from '@/components/Post/TagsInput';
+import { useUserAuth } from '@/context/UserContextProvider';
 
 export default function PostFleaArticlePage() {
-  const [canSubmit, setCanSubmit] = useState(false);
+  const [isPostSubmit, setIsPostSubmit] = useState(false);
   const [tags, setTags] = useState([]);
   const [values, setValues] = useState({
     title: '',
@@ -19,9 +19,8 @@ export default function PostFleaArticlePage() {
     price: '',
     images: [],
   });
-
+  const { user, isPending } = useUserAuth();
   const router = useRouter();
-  const { user } = useAuth();
 
   const { postArticle } = useFleaMarketPostArticle();
 
@@ -33,7 +32,7 @@ export default function PostFleaArticlePage() {
         price: values.price,
         images: values.images || [],
         tags: tags || [],
-        userId: '86d761e4-a9d0-4082-96dd-cf6f2c931673',
+        userId: user.id,
       };
       postArticle(newPost);
     } catch (error) {
@@ -49,7 +48,7 @@ export default function PostFleaArticlePage() {
       [name]: value,
     }));
 
-    setCanSubmit(
+    setIsPostSubmit(
       values.title.trim() !== '' &&
         values.content.trim() !== '' &&
         values.price.trim() !== ''
@@ -75,17 +74,18 @@ export default function PostFleaArticlePage() {
           <span className={styles.title}>게시물 등록</span>
         </div>
         <ArticleButton
-          disabled={!canSubmit}
+          disabled={!isPostSubmit}
           label='등록'
           onClick={handleSubmit}
         />
+        <FileInput values={values} setValues={setValues} />
         <TitleInput values={values} onChange={onChange} />
         <ContentInput
           values={values}
           setValues={setValues}
           onChange={onChange}
         />
-        <FileInput values={values} setValues={setValues} />
+
         <PriceInput values={values} onChange={onChange} />
         <TagsInput tags={tags} setTags={setTags} />
       </div>

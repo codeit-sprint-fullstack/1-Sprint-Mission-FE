@@ -4,7 +4,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'react-hot-toast';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { AuthProvider } from '../utils/AuthProvider';
+import { UserContextProvider } from '../context/UserContextProvider';
 
 export default function App({ Component, pageProps }) {
   const queryClient = new QueryClient();
@@ -12,13 +12,13 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <AuthProvider>
+        <UserContextProvider>
           <Navbar />
           <Component {...pageProps} />
           <Footer />
           <Toaster />
           <ReactQueryDevtools initialIsOpen={false} />
-        </AuthProvider>
+        </UserContextProvider>
       </QueryClientProvider>
     </>
   );

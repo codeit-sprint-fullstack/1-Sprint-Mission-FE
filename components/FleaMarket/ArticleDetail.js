@@ -9,12 +9,14 @@ import { useFleaMarketEditArticle } from '@/hooks/useFleaMarket';
 import { ArticleDetailUserInfo } from './ArticleDetailUserInfo';
 import { ArticleDeleteModal } from '@/utils/Modal';
 import toast from 'react-hot-toast';
+import { useUserAuth } from '@/context/UserContextProvider';
 
-export default function ArticleDetailInfo({ article, category }) {
+export default function ArticleDetailInfo({ isLiked, article, category }) {
   const [isOenDropDown, setIsOpenDropDown] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const { id } = router.query;
+  const { user, isPending } = useUserAuth();
   const { deleteFleaMArketArticle } = useFleaMarketEditArticle({ id });
 
   let formattedPrice = article?.price
@@ -34,7 +36,11 @@ export default function ArticleDetailInfo({ article, category }) {
   // useCallback 사용
 
   const handleDropDown = useCallback(() => {
-    setIsOpenDropDown((prev) => !prev);
+    if (article.userId === user.id) {
+      setIsOpenDropDown((prev) => !prev);
+    } else {
+      setIsOpenDropDown(false);
+    }
   }, []);
 
   const handleEdit = useCallback(() => {
@@ -107,14 +113,19 @@ export default function ArticleDetailInfo({ article, category }) {
           </div>
 
           <div className={styles.itemTitleText}>상품 태그</div>
-          {article.tags.map((tag, index) => (
+          {article.tags?.map((tag, index) => (
             <li key={index} className={styles.hashtags}>
               <span className={styles.hashtagTitle}># {tag}</span>
             </li>
           ))}
         </div>
 
-        <ArticleDetailUserInfo article={article} category={category} />
+        <ArticleDetailUserInfo
+          article={article}
+          isLiked={isLiked}
+          user={user}
+          category={category}
+        />
       </div>
     </>
   );

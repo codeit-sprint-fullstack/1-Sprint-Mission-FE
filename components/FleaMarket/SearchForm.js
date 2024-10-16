@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import searchIcon from '@/public/ic_search.png';
-import styles from '@/styles/FreeBoard.module.css';
+import styles from '@/styles/Fleamarket.module.css';
 import Image from 'next/image';
 
 export default function SearchForm({ keyword }) {

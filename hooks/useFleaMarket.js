@@ -15,7 +15,6 @@ export function useGetBestArticle() {
   const { isLoading, data } = useQuery({
     queryKey: ['bestArticle'],
     queryFn: () => fetchFleaMarketBestApi(),
-    refetchInterval: 300000,
   });
 
   return { bestArticles: data, isLoading };
@@ -25,7 +24,6 @@ export function useGetArticleList({ page, sort, keyword }) {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['article', page, sort, keyword],
     queryFn: () => fetchFleaMarketApi({ page, sort, keyword }),
-    refetchInterval: 300000,
   });
 
   const totalPages = data?.totalPages;
@@ -40,11 +38,11 @@ export function useGetArticleList({ page, sort, keyword }) {
   };
 }
 
-export function useGetArticle(id) {
+export function useGetArticle({ id, userId }) {
   const { isLoading, data } = useQuery({
-    queryKey: ['article', id],
-    queryFn: () => fetchFleaMarketArticleApi(id),
-    enabled: !!id,
+    queryKey: ['article', id, userId],
+    queryFn: () => fetchFleaMarketArticleApi({ id, userId }),
+    enabled: !!id && !!userId,
   });
 
   return { data, isLoading };
@@ -55,11 +53,11 @@ export function useFleaMarketEditArticle({ id }) {
   const router = useRouter();
 
   const editFleaMarketArticle = useMutation({
-    mutationFn: ({ id, title, content }) =>
-      editFleaMarketArticleApi({ id, title, content }),
+    mutationFn: ({ id, title, content, tags, images, price }) =>
+      editFleaMarketArticleApi({ id, title, content, tags, images, price }),
     onSuccess: (newArticle) => {
-      queryClient.setQueryData(['article', newArticle.id], newArticle);
-      queryClient.invalidateQueries(['article', newArticle.id]);
+      queryClient.setQueryData(['article', id], newArticle);
+      queryClient.invalidateQueries(['article', id]);
       router.push(`/fleamarket/${id}`);
     },
     onError: (error) => {

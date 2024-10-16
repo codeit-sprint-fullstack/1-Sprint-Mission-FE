@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import ArticleList from '@/components/FleaMarket/ArticleList.js';
-import BestArticleList from '@/components/FleaMarket/BestArticleList.js';
-import ArticleListHeader from '@/components/FleaMarket/ArticleListHeader.js';
+import ProductList from '@/components/FleaMarket/ProductList.js';
+import BestProductList from '@/components/FleaMarket/BestProductList.js';
+import ProductListHeader from '@/components/FleaMarket/ProductListHeader.js';
 import { fetchFleaMarketApi } from '@/utils/api/fleaMarketApi';
 import styles from '@/styles/FreeBoard.module.css';
 import { useGetArticleList, useGetBestArticle } from '@/hooks/useFleaMarket';
@@ -51,15 +51,15 @@ export default function FleaMarket() {
   const { bestArticles } = useGetBestArticle();
 
   if (isError) {
-    return <div>Error: {error.message}</div>; // 에러 메시지
+    return <div>Error: {error.message}</div>;
   }
 
   return (
     <>
       <div className={styles.body}>
-        <BestArticleList articles={bestArticles} />
-        <ArticleListHeader keyword={keyword} setOrderBy={setOrderBy} />
-        <ArticleList articles={articles} />
+        <BestProductList articles={bestArticles} />
+        <ProductListHeader keyword={keyword} setOrderBy={setOrderBy} />
+        <ProductList articles={articles} />
         <Pagination
           totalPages={totalPages}
           currentPage={currentPage}

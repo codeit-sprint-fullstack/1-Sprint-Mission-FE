@@ -8,21 +8,24 @@ import PriceInput from '@/components/Post/PriceInput';
 import TagsInput from '@/components/Post/TagsInput';
 import ContentInput from '@/components/Post/ContentInput';
 import { useGetArticle, useFleaMarketEditArticle } from '@/hooks/useFleaMarket';
+import { useUserAuth } from '@/context/UserContextProvider';
+import toast from 'react-hot-toast';
 
 export default function EditArticlePage() {
   const router = useRouter();
-
   const [canSubmit, setCanSubmit] = useState(true);
   const [tags, setTags] = useState([]);
+
+  const { id } = router.query;
+  const { data, isLoading } = useGetArticle(id);
+  const { editFleaMarketArticle } = useFleaMarketEditArticle({ id });
+  const { user } = useUserAuth();
   const [values, setValues] = useState({
     title: '',
     content: '',
     price: '',
-    image: [],
+    images: [],
   });
-  const { id } = router.query;
-  const { data, isLoading } = useGetArticle(id);
-  const { editFleaMarketArticle } = useFleaMarketEditArticle({ id });
 
   const handleSubmit = () => {
     editFleaMarketArticle.mutate({
@@ -30,7 +33,7 @@ export default function EditArticlePage() {
       title: values.title,
       content: values.content,
       price: values.price,
-      image: values.image || [],
+      images: values.images || [],
       tags: values.tags || [],
     });
   };
@@ -53,14 +56,25 @@ export default function EditArticlePage() {
   useEffect(() => {
     if (data) {
       setValues({
-        title: data.title,
-        content: data.content,
-        price: data.price,
-        image: data.image,
+        title: data.article.title,
+        content: data.article.content,
+        price: data.article.price,
+        images: data.article.images,
       });
-      setTags(data.tags);
+      setTags(data.article.tags);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (data && user) {
+      if (!user) {
+        router.push('/login');
+      } else if (user.id !== data.article.userId) {
+        toast.error('권한이 없습니다!');
+        router.push(`/fleamarket/${id}`);
+      }
+    }
+  }, [user, router, data]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -83,7 +97,7 @@ export default function EditArticlePage() {
           setValues={setValues}
           onChange={onChange}
         />
-        <FileInput setValues={setValues} onChange={onChange} />
+        <FileInput values={values} setValues={setValues} />
         <PriceInput values={values} onChange={onChange} />
         <TagsInput tags={tags} setTags={setTags} />
       </div>
