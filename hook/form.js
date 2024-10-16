@@ -6,6 +6,7 @@ const useForm = (initialValues) => {
 
   // 입력값 변경 시 호출되는 함수
   const handleChange = (e) => {
+    e.preventDefault();
     const { name, value } = e.target;
     setValues({
       ...values,
@@ -32,6 +33,7 @@ const useForm = (initialValues) => {
     handleSubmit,
     resetForm,
     isSubmitting,
+    setValues,
   };
 };
 
