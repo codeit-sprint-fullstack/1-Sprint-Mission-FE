@@ -1,4 +1,5 @@
 import LoginForm from "@/components/form/auth/LogInForm";
+import Loader from "@/components/ui/Loader";
 import SocialLogin from "@/components/ui/SocialLogin";
 import { useAuth } from "@/context/AuthProvider";
 import styles from "@/styles/pages/auth/main.module.scss";
@@ -7,14 +8,18 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export default function LoginPage() {
-  const { user, logIn } = useAuth();
+  const { user, isLoading, logIn } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (user) {
+    if (user && !isLoading) {
       router.push("/");
     }
-  }, [user, router]);
+  }, [user, router, isLoading]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <section className={styles.AuthPage}>

@@ -11,14 +11,14 @@ export default function UserInfo({ data, entity }) {
     ? `${styles.UserInfo} ${styles.comment}`
     : styles.UserInfo;
 
-  const nickName = isProduct ? data.ownerNickname : data.writer.nickname;
-  const image = isProduct ? undefined : data.writer.image;
+  const nickName = isProduct ? data.owner.nickname : data.writer.nickname;
+  const image = isProduct ? data.owner.image : data.writer.image;
 
   const dateFormat = isComment ? calculateTimeAgo : formatDate;
 
   return (
     <div className={classNames}>
-      <ProfileImg width={size} src={image} />
+      <ProfileImg width={size} src={image || undefined} />
       <div className={styles.user}>
         <span className={styles.name}>{nickName || "총명한 판다"}</span>
         <time className={styles.date}>{dateFormat(data.createdAt)}</time>

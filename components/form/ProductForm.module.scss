@@ -1,7 +1,7 @@
 @use "@/styles/globals/shared" as g;
 
 .ProductForm {
-  @include g.flex-box(column, center, center, 24px);
+  @include g.flex-box(column, center, flex-start, 24px);
 
   .top-bar {
     @include g.flex-box(row, space-between, center);
@@ -9,5 +9,9 @@
   }
   textarea {
     height: 282px;
+  }
+  .file-input-label {
+    @include g.font(18, 700);
+    color: g.$grey-800;
   }
 }

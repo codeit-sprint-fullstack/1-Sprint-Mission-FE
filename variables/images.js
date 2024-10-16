@@ -19,6 +19,7 @@ export const assets = {
     kakao: "/assets/icons/ic_kakao.svg",
     kebab: "/assets/icons/ic_kebab.svg",
     medal: "/assets/icons/ic_medal.svg",
+    plus: "/assets/icons/ic_plus.svg",
     profile: "/assets/icons/ic_profile.svg",
     search: "/assets/icons/ic_search.svg",
     sort: "/assets/icons/ic_sort.svg",
@@ -26,9 +27,14 @@ export const assets = {
     youtube: "/assets/icons/ic_youtube.svg",
   },
   images: {
-    badge: "/assets/images/img_badge.svg",
     default: "/assets/images/img_default.svg",
     defaultProfile: "/assets/images/img_default_profile.svg",
+    homeBottom: "/assets/images/img_home_bottom.svg",
+    homeHotItem: "/assets/images/img_home_hot_item.svg",
+    homeRegister: "/assets/images/img_home_register.svg",
+    homeSearch: "/assets/images/img_home_search.svg",
+    homeTop: "/assets/images/img_home_top.svg",
+    inquiryEmpty: "/assets/images/img_inquiry_empty.svg",
     replyEmpty: "/assets/images/img_reply_empty.svg",
   },
 };

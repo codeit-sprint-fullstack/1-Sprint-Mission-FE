@@ -3,7 +3,7 @@ import { createLogIn, createUser } from "@/service/api/auth";
 import { getUserMe } from "@/service/api/user";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext({
   user: null,
@@ -17,17 +17,15 @@ export function AuthProvider({ children }) {
   const queryClient = useQueryClient();
   const router = useRouter();
   const { onModalOpen, GlobalModal: AuthModal } = useGlobalModal();
-  let accessToken;
+  const [accessToken, setAccessToken] = useState(null);
 
-  if (typeof window !== "undefined") {
-    accessToken = localStorage.getItem("accessToken");
-  }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setAccessToken(localStorage.getItem("accessToken"));
+    }
+  }, []);
 
-  const {
-    data,
-    refetch: getMe,
-    isLoading,
-  } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["user"],
     queryFn: getUserMe,
     staleTime: Infinity,
@@ -40,22 +38,18 @@ export function AuthProvider({ children }) {
   const logInMutation = useMutation({
     mutationFn: (data) => createLogIn(data),
     onSuccess: (data) => {
-      const { accessToken, refreshToken } = data;
+      const { accessToken } = data;
       localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("refreshToken", refreshToken);
-
       queryClient.invalidateQueries("user");
-      getMe();
     },
   });
 
   const signUpMutation = useMutation({
     mutationFn: (data) => createUser(data),
     onSuccess: (data) => {
-      console.log(data);
-      const { accessToken, refreshToken } = data;
+      const { accessToken } = data;
+
       localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("refreshToken", refreshToken);
       queryClient.invalidateQueries("user");
     },
     onError: (error) => {
@@ -65,7 +59,6 @@ export function AuthProvider({ children }) {
 
   const logOut = () => {
     localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
     queryClient.setQueriesData(["user"], null);
     onModalOpen({
       msg: "로그아웃 되었습니다",

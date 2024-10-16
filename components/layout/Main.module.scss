@@ -3,8 +3,12 @@
 .Main {
   max-width: 1200px;
   width: 100%;
-  padding: 24px;
+  padding-top: 24px;
+  padding-bottom: 150px;
   margin: 0 auto;
+  @include g.device-size(tablet) {
+    padding: 24px;
+  }
   @include g.device-size(mobile) {
     padding: 16px;
   }

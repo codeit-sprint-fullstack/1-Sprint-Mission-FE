@@ -10,22 +10,23 @@ import CommentForm from "@/components/form/CommentForm";
 import CommentList from "@/components/comment/CommentList";
 import ReturnToListBtn from "@/components/ui/ReturnToListBtn";
 import { ENTITY } from "@/variables/entities";
+import Loader from "@/components/ui/Loader";
 
-export async function getServerSideProps(context) {
-  const queryClient = new QueryClient();
+// export async function getServerSideProps(context) {
+//   const queryClient = new QueryClient();
 
-  const { productId } = context.params;
-  await queryClient.prefetchQuery({
-    queryKey: productKey.detail(productId),
-    queryFn: () => getProductById(productId),
-  });
+//   const { productId } = context.params;
+//   await queryClient.prefetchQuery({
+//     queryKey: productKey.detail(productId),
+//     queryFn: () => getProductById(productId),
+//   });
 
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}
+//   return {
+//     props: {
+//       dehydratedState: dehydrate(queryClient),
+//     },
+//   };
+// }
 
 export default function ProductDetailPage() {
   const router = useRouter();
@@ -36,11 +37,16 @@ export default function ProductDetailPage() {
     isError,
     error,
     data: product,
+    isPending,
   } = useQuery({
     queryKey: productKey.detail(productId),
     queryFn: () => getProductById(productId),
     enabled: !!productId,
   });
+
+  if (isPending) {
+    return <Loader />;
+  }
 
   if (isError) {
     const errMsg = error?.message;

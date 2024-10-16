@@ -8,6 +8,6 @@ export async function createUser(data) {
 }
 
 export async function createLogIn(data) {
-  const res = await axios.post(`${PATH}/signIn`, data);
+  const res = await axios.post(`${PATH}/logIn`, data);
   return res.data;
 }

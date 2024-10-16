@@ -56,7 +56,7 @@ export const AUTH = {
 export const PRODUCT = {
   NAME: {
     required: "상품명을 입력해 주세요",
-    ...minMaxLength(1, 10),
+    ...minMaxLength(3, 10),
   },
   DESCRIPTION: {
     required: "상품소개를 입력해 주세요",

@@ -72,7 +72,7 @@ export const READ_ALL = (entity) => {
 export const READ_ONE = (entity) => {
   return {
     path: CONFIG[entity].path,
-    queryKey: (id) => CONFIG[entity].key.details(id),
+    queryKey: (id) => CONFIG[entity].key.detail(id),
     read: CONFIG[entity].readOne,
   };
 };
@@ -91,7 +91,7 @@ export const CREATE_UPDATE = (entity) => {
   return {
     path: CONFIG[entity].path,
     mutatePath: `${CONFIG[entity].path}/registration`,
-    queryKey: () => CONFIG[entity].key.list(),
+    queryKey: (id) => CONFIG[entity].key.detail(id),
     update: CONFIG[entity].update,
     create: CONFIG[entity].create,
   };
