@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import style from "./ProductEditModal.module.css";
 import { updateProduct } from "../api/productApi";
 import { getAccessToken } from "../api/authApi";
+import ImageUpload from "./ImageUpload"; 
 
 const ProductEditModal = ({
   isOpen,
@@ -98,19 +99,10 @@ const ProductEditModal = ({
           </button>
         </div>
 
+        {/* 이미지 업로드 컴포넌트 */}
         <div className={style.formGroup}>
-          <label htmlFor="imageUrl">외부 이미지 URL</label>
-          <input
-            type="text"
-            id="imageUrl"
-            name="imageUrl"
-            value={product.images[0] || ""}
-            onChange={(e) =>
-              setProduct({ ...product, images: [e.target.value] })
-            } // 이미지 배열로 업데이트
-            placeholder="이미지 URL을 입력해주세요"
-            required
-          />
+          <label htmlFor="images">상품 이미지</label>
+          <ImageUpload setImageUrls={(newImages) => setProduct({ ...product, images: newImages })} />
         </div>
 
         <div className={style.formGroup}>

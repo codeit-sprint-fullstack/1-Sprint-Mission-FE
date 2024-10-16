@@ -35,7 +35,6 @@
   line-height: 19.09px;
   color: #f3f4f6;
   cursor: pointer;
-  transform: translateX(18px);
 }
 
 .formGroup {
@@ -94,23 +93,39 @@
   display: flex;
   align-items: center;
   background-color: #e5e7eb;
-  border-radius: 8px;
-  padding: 8px 12px;
+  border-radius: 26px;
+  padding: 6px 16px;
   font-family: "Pretendard", sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16.72px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
   color: #1f2937;
+  position: relative;
+}
+
+.tag span {
+  margin-right: 10px;
 }
 
 .tag button {
   background: none;
   border: none;
-  margin-left: 8px;
   cursor: pointer;
-  font-size: 12px;
-  line-height: 14.32px;
-  color: #f74747;
+  position: relative;
+  display: inline-block;
+  padding: 0;
+}
+
+.tag button .roundIcon {
+  display: block;
+  margin: auto;
+}
+
+.tag button .deleteIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .formGroup input#name,
@@ -128,66 +143,5 @@
 
 .formGroup textarea#description {
   height: 270px;
-}
-
-/* Tablet 기준 */
-@media (max-width: 1199px) and (min-width: 744px) {
-  .formGroup input#name,
-  .formGroup textarea#description,
-  .formGroup input#price,
-  .formGroup input#tag {
-    min-width: 696px;
-    width: calc(100% - 20px);
-    height: 30px;
-  }
-
-  .formGroup textarea#description {
-    height: 180px;
-  }
-
-  .submitButton {
-    transform: translateX(-6px);
-  }
-}
-
-/* Mobile 기준 */
-@media (max-width: 743px) and (min-width: 375px) {
-  .registrationForm {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  .formHeader h2 {
-    font-size: 18px;
-    line-height: 21.09px;
-  }
-
-  .submitButton {
-    width: 75px;
-    height: 36px;
-    font-size: 14px;
-    line-height: 16.09px;
-    transform: translateX(50px);
-  }
-
-  .formGroup label,
-  .formGroup input,
-  .formGroup textarea {
-    font-size: 14px;
-    line-height: 16.09px;
-  }
-
-  .formGroup input#name,
-  .formGroup textarea#description,
-  .formGroup input#price,
-  .formGroup input#tag {
-    min-width: 345px;
-    height: 27px;
-    width: calc(100% + 25px);
-  }
-
-  .formGroup textarea#description {
-    height: 180px;
-  }
 }
 

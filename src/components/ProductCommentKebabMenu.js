@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { deleteComment } from '../api/commentApi';
+import { deleteProductComment } from '../api/commentApi';
 import { getAccessToken } from '../api/authApi';
 import CommentEditModal from './CommentEditModal';
 import styles from './ProductCommentKebabMenu.module.css';
 
-const ProductCommentKebabMenu = ({ commentId, initialContent, refreshComments }) => {
+const ProductCommentKebabMenu = ({ commentId, productId, initialContent, refreshComments }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const menuRef = useRef(null);
@@ -35,9 +35,9 @@ const ProductCommentKebabMenu = ({ commentId, initialContent, refreshComments })
     }
 
     try {
-      await deleteComment(commentId, accessToken);
+      await deleteProductComment(productId, commentId, accessToken);
       alert('댓글이 삭제되었습니다.');
-      refreshComments();
+      refreshComments();  // 댓글 삭제 후 댓글 목록 새로고침
       setShowMenu(false);
     } catch (error) {
       console.error('댓글 삭제 중 오류가 발생했습니다:', error);
@@ -77,4 +77,3 @@ const ProductCommentKebabMenu = ({ commentId, initialContent, refreshComments })
 };
 
 export default ProductCommentKebabMenu;
-

@@ -18,17 +18,21 @@ const LoginPage = () => {
 
     try {
       const response = await signIn(email, password);
-      console.log("로그인 성공:", response);
+      console.log("로그인 응답 데이터:", response);
 
-      if (response.accessToken) {
+      // 로그인 후 accessToken 및 nickname 저장
+      if (response.accessToken && response.nickname) {
         localStorage.setItem("accessToken", response.accessToken);
+        localStorage.setItem("nickname", response.nickname);
+        console.log("닉네임 저장 완료:", response.nickname);
 
         window.dispatchEvent(new Event("storage"));
-
         router.push("/items");
+      } else {
+        console.error("로그인 응답에 닉네임 또는 accessToken이 없습니다.");
       }
     } catch (error) {
-      console.error("로그인 오류:", error);
+      console.error("로그인 중 오류 발생:", error);
       setErrorMessage("이메일 또는 비밀번호가 일치하지 않습니다.");
     }
   };
@@ -84,7 +88,7 @@ const LoginPage = () => {
                 src={
                   showPassword ? "/image/invisible.svg" : "/image/visible.svg"
                 }
-                alt="Toggle visibility"
+                alt="비밀번호 가시성 토글"
                 className={styles.visibilityIcon}
                 onClick={() => setShowPassword(!showPassword)}
               />

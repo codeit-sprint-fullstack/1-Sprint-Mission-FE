@@ -1,0 +1,59 @@
+.imageUploadWrapper {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.uploadBox {
+  width: 282px;
+  height: 282px;
+  border: 1px dashed #9ca3af;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.uploadIcon {
+  margin-bottom: 10px;
+}
+
+.uploadText {
+  font-weight: 400;
+  font-size: 16px;
+  color: #9ca3af;
+}
+
+.imagePreviewContainer {
+  position: relative;
+  width: 282px;
+  height: 282px;
+  border-radius: 12px;
+}
+
+.imagePreview {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.imageDeleteWrapper {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageDelete {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
