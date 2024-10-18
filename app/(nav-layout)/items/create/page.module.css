@@ -1,3 +1,5 @@
 .container {
-  height: 3000px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }

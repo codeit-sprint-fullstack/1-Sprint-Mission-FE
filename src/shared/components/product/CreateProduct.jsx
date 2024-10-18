@@ -7,6 +7,7 @@ import InputErrorText from '../inputs/InputErrorText';
 import { useState } from 'react';
 import { postImages } from '@utils/api/images';
 import { postProduct } from '@utils/api/product';
+import ActionButton from '../Buttons/ActionButton';
 
 export default function CreateProduct() {
   const [tags, setTags] = useState([]);
@@ -32,7 +33,7 @@ export default function CreateProduct() {
     isValid,
   } = useCreateProductValidation();
 
-  const EnterKeyDown = (e) => {
+  const enterKeyDown = (e) => {
     if (e.key === 'Enter' && productTagValue.trim()) {
       e.preventDefault();
       setTags((prev) => [...prev, productTagValue.trim()]);
@@ -91,19 +92,25 @@ export default function CreateProduct() {
 
   return (
     <form>
-      <div>상품 이미지</div>
-      <button onClick={handleSubmit}>등록</button>
+      <div className={styles['images-header']}>
+        <div className={styles['title']}>상품 이미지</div>
+        <ActionButton
+          onClick={handleSubmit}
+          content={'등록'}
+          style={'create-product-button'}
+        />
+      </div>
       <div className={styles['images-container']}>
         <div className={styles['add-product-image']} onClick={modalToggle}>
           <Image src={'/add-img.svg'} fill />
         </div>
         {previews.map((url) => (
-          <div className={styles['add-product-image']}>
+          <div className={styles['add-product-image']} key={url}>
             <Image src={url} fill />
           </div>
         ))}
       </div>
-      <div>상품명</div>
+      <div className={styles['title']}>상품명</div>
       <Input
         option={'normal'}
         page={'create-product'}
@@ -117,7 +124,7 @@ export default function CreateProduct() {
           page={'create-product'}
         />
       )}
-      <div>상품소개</div>
+      <div className={styles['title']}>상품소개</div>
       <Input
         option={'textarea'}
         page={'create-product-content'}
@@ -131,7 +138,7 @@ export default function CreateProduct() {
           page={'create-product'}
         />
       )}
-      <div>판매가격</div>
+      <div className={styles['title']}>판매가격</div>
       <Input
         option={'normal'}
         page={'create-product'}
@@ -145,14 +152,14 @@ export default function CreateProduct() {
           page={'create-product'}
         />
       )}
-      <div>태그</div>
+      <div className={styles['title']}>태그</div>
       <Input
         option={'normal'}
         page={'create-product'}
         placeholder={'태그를 입력해주세요'}
         name={'productTag'}
         onChange={onProductTagChange}
-        onKeyDown={EnterKeyDown}
+        onKeyDown={enterKeyDown}
       />
       {errors.productTag && (
         <InputErrorText
@@ -160,9 +167,11 @@ export default function CreateProduct() {
           page={'create-product'}
         />
       )}
-      <div>
+      <div className={styles['tags-container']}>
         {tags.map((tag, index) => (
-          <div key={index}>#{tag}</div>
+          <div key={index} className={styles['tags']}>
+            #{tag}
+          </div>
         ))}
       </div>
 

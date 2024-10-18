@@ -6,14 +6,14 @@ import ForSaleProduct from '@shared/components/product/ForSaleProduct';
 import PaginationButton from '@shared/components/Buttons/PaginationButton';
 
 export default async function Product() {
-  const BestProduct = await getProductList({ limit: 4 });
+  const bestProduct = await getProductList({ limit: 4 });
   const productTotalCount = await getProductTotalCount();
 
   return (
     <div className={styles['container']}>
       <div className={styles['title']}>베스트 상품</div>
       <div className={styles['best-product-container']}>
-        {BestProduct.map((product) => {
+        {bestProduct.map((product) => {
           return <ProductTemplate product={product} option={'best'} />;
         })}
       </div>

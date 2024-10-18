@@ -38,7 +38,7 @@ export default function PaginationButton({ data, limit }) {
     <div className={styles['container']}>
       <div className={styles['before-page']} onClick={beforePageClick}>
         <div className={styles['before']}>
-          <Image src={'/before-page.svg'} fill />
+          <Image src={'/before-page.svg'} fill alt="before-button" />
         </div>
       </div>
       {pageNumbers.map((num) => {
@@ -56,7 +56,7 @@ export default function PaginationButton({ data, limit }) {
       })}
       <div className={styles['next-page']} onClick={nextPageClick}>
         <div className={styles['next']}>
-          <Image src={'/next-page.svg'} fill />
+          <Image src={'/next-page.svg'} fill alt="next-button" />
         </div>
       </div>
     </div>

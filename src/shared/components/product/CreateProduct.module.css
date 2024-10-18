@@ -1,3 +1,7 @@
+.form {
+  margin-top: 26px;
+}
+
 .add-product-image {
   width: 282px;
   height: 282px;
@@ -7,4 +11,32 @@
 
 .images-container {
   display: flex;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.images-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.tags-container {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.tags {
+  padding: 6px 12px 6px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-cool-gray);
+  border-radius: 26px;
 }
