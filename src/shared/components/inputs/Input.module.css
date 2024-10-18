@@ -1,5 +1,6 @@
 .create-article-title,
-.patch-article-title {
+.patch-article-title,
+.create-product {
   width: 1200px;
   height: 56px;
   border-radius: 12px;
@@ -17,7 +18,8 @@
 }
 
 .create-article-content,
-.patch-article-content {
+.patch-article-content,
+.create-product-content {
   width: 1200px;
   height: 282px;
   border-radius: 12px;

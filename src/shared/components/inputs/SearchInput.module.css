@@ -26,3 +26,19 @@
 .search-input:focus {
   outline: 1px solid var(--color-blue-100);
 }
+
+.product-page {
+  width: 325px;
+  height: 42px;
+  border-radius: 12px;
+  padding: 9px 20px 9px 44px;
+  background-color: #f3f4f6;
+  border: 0;
+  color: var(--color-gray-100);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.product-page:focus {
+  outline: 1px solid var(--color-blue-100);
+}
