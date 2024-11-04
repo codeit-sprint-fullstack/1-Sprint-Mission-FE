@@ -3,14 +3,19 @@ import ic_arrow_down from "@/public/images/ic_arrow_down.png";
 import ic_sort from "@/public/images/ic_sort.png";
 import styles from "@/styles/searchBar.module.css";
 import Image from "next/image";
-import useWindowResize from "@/hooks/useWindowResize";
+import useWindowResize from "../../hooks/useWindowResize.js";
 
-function DropdownBox({ onOrderChange, orderBy }) {
-  const [openDropdown, setOpenDropdown] = useState(false);
+interface Props {
+  onOrderChange: (event: React.MouseEvent) => void;
+  orderBy: string;
+}
+
+function DropdownBox({ onOrderChange, orderBy }: Props) {
+  const [openDropdown, setOpenDropdown] = useState<boolean>(false);
   const handleChangeDropbox = () => {
     setOpenDropdown((e) => !e);
   };
-  const handleChangeOrder = (e) => {
+  const handleChangeOrder = (e: React.MouseEvent<HTMLButtonElement>) => {
     onOrderChange(e);
     handleChangeDropbox();
   };

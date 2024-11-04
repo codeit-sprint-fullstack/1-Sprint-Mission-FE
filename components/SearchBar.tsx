@@ -3,21 +3,31 @@ import Link from "next/link";
 import ic_search from "../public/images/ic_search.png";
 import styles from "@/styles/searchBar.module.css";
 import Image from "next/image";
-import DropdownBox from "@/components/DropdownList/DropdownBox";
+import DropdownBox from "../components/DropdownList/DropdownBox";
 
-function SearchBar({ onChange, orderBy, isMobile = false }) {
-  const [keyword, setKeyword] = useState("");
+interface Params {
+  [key: string]: string;
+}
 
-  const handleChangeOrder = (e) => {
-    const value = e.target.value;
+interface Props {
+  onChange: ({}: Params) => void;
+  orderBy: string;
+  isMobile: boolean;
+}
+
+function SearchBar({ onChange, orderBy, isMobile = false }: Props) {
+  const [keyword, setKeyword] = useState<string>("");
+
+  const handleChangeOrder = (e: React.MouseEvent) => {
+    const value = (e.target as HTMLButtonElement).value;
     onChange({ orderBy: value });
   };
 
-  const handleChangeKeyword = (e) => {
+  const handleChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onChange({ keyword });
   };
@@ -53,11 +63,7 @@ function SearchBar({ onChange, orderBy, isMobile = false }) {
             <button className={styles.add_product_btn}>상품 등록하기</button>
           </Link>
         )}
-        <DropdownBox
-          onOrderChange={handleChangeOrder}
-          orderBy={orderBy}
-          isMobile={isMobile}
-        />
+        <DropdownBox onOrderChange={handleChangeOrder} orderBy={orderBy} />
       </div>
     </div>
   );

@@ -1,11 +1,16 @@
 import { useRef, useEffect } from "react";
-import styles from "@/styles/confirmModal.module.css";
-function ConfirmModal({ message = "", isOpen, onClose, onConfirm }) {
-  const dialogRef = useRef(null);
+import styles from "@/styles/alertModal.module.css";
+
+interface Props {
+  message: string;
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+function AlertModal({ message = "", isOpen, onClose }: Props) {
+  const dialogRef = useRef<HTMLDialogElement | null>(null);
 
   const handleClose = () => onClose();
-  //확인 버튼을 클릭하면 전달받은 콜백함수를 실행한다.
-  const handleConfirm = () => onConfirm();
 
   useEffect(() => {
     isOpen ? dialogRef.current.showModal() : dialogRef.current.close();
@@ -18,11 +23,8 @@ function ConfirmModal({ message = "", isOpen, onClose, onConfirm }) {
           <h1>{message}</h1>
         </div>
         <div className={styles.alert_modal_btn_container}>
-          <button className={styles.confirm_btn} onClick={handleConfirm}>
+          <button className={styles.alert_btn} onClick={handleClose}>
             확인
-          </button>
-          <button className={styles.cancel_btn} onClick={handleClose}>
-            취소
           </button>
         </div>
       </div>
@@ -30,4 +32,4 @@ function ConfirmModal({ message = "", isOpen, onClose, onConfirm }) {
   );
 }
 
-export default ConfirmModal;
+export default AlertModal;

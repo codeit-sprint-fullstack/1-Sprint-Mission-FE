@@ -1,28 +1,44 @@
 import { useRouter } from "next/router";
-import { elapsedTime } from "@/utils/dateFormat";
+import { elapsedTime } from "../utils/dateFormat";
 import { useState } from "react";
 import DropdownData from "./DropdownList/DropdownData";
 import ConfirmModal from "./Modals/ConfirmModal";
 import Image from "next/image";
-import * as commentApi from "@/pages/api/comment";
+import * as commentApi from "../pages/api/comment";
 import styles from "@/styles/comment.module.css";
 import ic_kebab from "@/public/images/ic_kebab.png";
 import ic_profile from "@/public/images/ic_profile.png";
 
-function Comment({ item, openAlert, setAlertMessage, user }) {
+interface Comment {
+  content: string;
+  userId: string;
+  user: { nickname: string };
+  createAt: Date;
+  updateAt: Date;
+  id: string;
+}
+
+interface Props {
+  item: Comment;
+  openAlert: () => void;
+  setAlertMessage: (content: string) => void;
+  user: { id: string; nickname: string };
+}
+
+function Comment({ item, openAlert, setAlertMessage, user }: Props) {
   const { content, userId, user: writer, createAt, updateAt, id } = item;
   const router = useRouter();
   //날짜 포멧
   const createDate = elapsedTime(createAt);
   const updateDate = elapsedTime(updateAt);
 
-  const [openDropdown, setOpenDropdown] = useState(false);
-  const [isUpdating, setIsUpdating] = useState(false);
-  const [updateContent, setUpdateContent] = useState(content);
-  const [isConfirmModal, setIsConfirmModal] = useState(false);
-  const [confirmMessage, setConfirmMessage] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<boolean>(false);
+  const [isUpdating, setIsUpdating] = useState<boolean>(false);
+  const [updateContent, setUpdateContent] = useState<string>(content);
+  const [isConfirmModal, setIsConfirmModal] = useState<boolean>(false);
+  const [confirmMessage, setConfirmMessage] = useState<string>("");
 
-  const handleChangeValue = (e) => {
+  const handleChangeValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setUpdateContent(e.target.value);
   };
 

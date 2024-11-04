@@ -4,6 +4,19 @@ import imgDefault from "../public/images/img_default.png";
 import styles from "@/styles/products.module.css";
 import Link from "next/link";
 
+interface Product {
+  name: string;
+  price: number;
+  favoriteCount: number;
+  id: string;
+  images: string[];
+}
+
+interface Props {
+  itemValues: Product;
+  favorite: boolean;
+}
+
 function Product({ itemValues, favorite }) {
   const { name, price, favoriteCount, id, images } = itemValues;
   const numFormat = price.toLocaleString();

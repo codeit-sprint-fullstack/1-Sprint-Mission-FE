@@ -1,4 +1,4 @@
-export function dateFormatYYYYMMDD(value) {
+export function dateFormatYYYYMMDD(value: Date) {
   const date = new Date(value);
   const formattedDate = date.toLocaleDateString("ko-KR", {
     year: "numeric",
@@ -9,7 +9,7 @@ export function dateFormatYYYYMMDD(value) {
   return formattedDate;
 }
 
-export function elapsedTime(value) {
+export function elapsedTime(value: Date) {
   const start = new Date(value);
   const end = new Date();
 

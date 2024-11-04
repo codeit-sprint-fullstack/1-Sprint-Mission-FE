@@ -1,8 +1,13 @@
 import styles from "@/styles/dropdown.module.css";
 
-function DropdownData({ onUpdate, onDelete }) {
+interface Props {
+  onUpdate: () => void;
+  onDelete: () => void;
+}
+
+function DropdownData({ onUpdate, onDelete }: Props) {
   //전달 받은 콜백을 활용하여 다양한 환경에서 사용가능하도록 하였다.
-  console.log();
+  // console.log();
   const handleUpdate = () => onUpdate();
   const handleDelete = () => onDelete();
 

@@ -40,14 +40,14 @@ export async function getServerSideProps(context) {
     const data = await productsApi.getProduct(id);
     product = data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 
   try {
     const response = await commentApi.getProductComments(id);
     comments = response;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 
   return {

@@ -1,12 +1,18 @@
 import arrowLeft from "@/public/images/arrow_left.png";
 import arrowRight from "@/public/images/arrow_right.png";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "@/styles/pagination.module.css";
 import Image from "next/image";
 
-function MidPagingBtn({ num, onChange, pageNum }) {
-  const handlePage = (e) => {
-    const name = e.target.name;
+interface MidPagingBtnProps {
+  num: number;
+  onChange: ({}: { [key: string]: string | number }) => void;
+  pageNum: number;
+}
+
+function MidPagingBtn({ num, onChange, pageNum }: MidPagingBtnProps) {
+  const handlePage = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const name = (e.target as HTMLButtonElement).name;
     onChange({ [name]: num });
   };
   return (
@@ -22,11 +28,17 @@ function MidPagingBtn({ num, onChange, pageNum }) {
   );
 }
 
-function Pagination({ onChange, params, totalCount }) {
-  const [pagingNum, setPagingNum] = useState([]);
+interface Props {
+  onChange: ({}: { [key: string]: string | number }) => void;
+  params: { page: number; pageSize: number; orderBy: string };
+  totalCount: number;
+}
+
+function Pagination({ onChange, params, totalCount }: Props) {
+  const [pagingNum, setPagingNum] = useState<number[]>([]);
 
   //현재의 페이지에서 더 불러올 데이터가 있는지를 판별합니다.
-  const moreData = (last) => {
+  const moreData = (last: number) => {
     return totalCount - last * params.pageSize > 0;
   };
 

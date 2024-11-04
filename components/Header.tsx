@@ -4,10 +4,9 @@ import mb_Log from "../public/images/mb_logo.png";
 import ic_profile from "@/public/images/ic_profile.png";
 import Link from "next/link";
 import Image from "next/image";
-import useWindowResize from "@/hooks/useWindowResize";
+import useWindowResize from "../hooks/useWindowResize";
 import { useRouter } from "next/router";
-import { useCallback, useContext, useEffect } from "react";
-import useAuth from "@/contexts/authContext";
+import useAuth from "../contexts/authContext";
 
 function Header() {
   const { user } = useAuth(false);
@@ -16,7 +15,7 @@ function Header() {
   const router = useRouter();
   const path = router.pathname;
 
-  const getLinkStyle = (href) => {
+  const getLinkStyle = (href: string) => {
     //전달받은 파라미터가 현재 경로의 하위 파일아리면 스타일 적용
     return {
       color: path.startsWith(`${href}`) ? "#3692FF" : "inherit",
