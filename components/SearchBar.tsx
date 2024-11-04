@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import ic_search from "../public/images/ic_search.png";
-import styles from "@/styles/searchBar.module.css";
+import styles from "../styles/searchBar.module.css";
 import Image from "next/image";
 import DropdownBox from "../components/DropdownList/DropdownBox";
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useWindowResize = () => {
-  const [nextView, setNextView] = useState("isDesktop");
+  const [nextView, setNextView] = useState<string>("isDesktop");
 
   const handleResize = () => {
     if (window.innerWidth >= 1200) {

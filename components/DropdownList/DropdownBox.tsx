@@ -1,9 +1,9 @@
 import { useState } from "react";
-import ic_arrow_down from "@/public/images/ic_arrow_down.png";
-import ic_sort from "@/public/images/ic_sort.png";
-import styles from "@/styles/searchBar.module.css";
+import ic_arrow_down from "../../public/images/ic_arrow_down.png";
+import ic_sort from "../../public/images/ic_sort.png";
+import styles from "../../styles/searchBar.module.css";
 import Image from "next/image";
-import useWindowResize from "../../hooks/useWindowResize.js";
+import useWindowResize from "../../hooks/useWindowResize";
 
 interface Props {
   onOrderChange: (event: React.MouseEvent) => void;

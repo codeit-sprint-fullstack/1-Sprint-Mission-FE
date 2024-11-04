@@ -1,7 +1,7 @@
-import arrowLeft from "@/public/images/arrow_left.png";
-import arrowRight from "@/public/images/arrow_right.png";
+import arrowLeft from "../public/images/arrow_left.png";
+import arrowRight from "../public/images/arrow_right.png";
 import React, { useCallback, useEffect, useState } from "react";
-import styles from "@/styles/pagination.module.css";
+import styles from "../styles/pagination.module.css";
 import Image from "next/image";
 
 interface MidPagingBtnProps {

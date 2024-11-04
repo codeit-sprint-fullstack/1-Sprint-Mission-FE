@@ -8,16 +8,21 @@ import ic_visibility from "@/public/images/btn_visibility_24px.png";
 import main_logo from "@/public/images/logo.png";
 import ic_kakao from "@/public/images/kakaoicon.png";
 import ic_google from "@/public/images/googleicon.png";
-import * as api from "@/pages/api/auth";
-import useFormValidation from "@/hooks/useFormValidation";
-import AlertModal from "@/components/Modals/AlertModal";
-import useAuth from "@/contexts/authContext";
+import * as api from "../pages/api/auth";
+import useFormValidation from "../hooks/useFormValidation";
+import AlertModal from "../components/Modals/AlertModal";
+
+interface UserValues {
+  email: string;
+  password: string;
+  nickname: string;
+  passwordConfirmation: string;
+}
 
 function SignUp() {
   const router = useRouter();
-  const { getMe } = useAuth(false);
-  const [alertMessage, setAlertMessage] = useState("");
-  const [openAlert, setOpenAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState<string>("");
+  const [openAlert, setOpenAlert] = useState<boolean>(false);
   const [passwordVisible, setPasswordVisible] = useState({
     password: false,
     passwordConfirmation: false,
@@ -26,15 +31,14 @@ function SignUp() {
   const handleOpenAlert = () => setOpenAlert(true);
   const handleCloseAlert = () => setOpenAlert(false);
 
-  const createUser = async (value) => {
+  const createUser = async (value: UserValues) => {
     try {
       const { passwordConfirmation, ...rest } = value;
       const data = await api.createUser(rest);
       //리스폰스로 생성된 유저의 password를 안줌
       if (data) {
-        localStorage.setItem("codeit-accessToken", data.accessToken);
-        localStorage.setItem("codeit-refreshToken", data.refreshToken);
-        getMe();
+        // localStorage.setItem("codeit-accessToken", data.accessToken); //쿠키로 전달하여 로컬스토리지 사용 안함
+        // localStorage.setItem("codeit-refreshToken", data.refreshToken); //쿠키로 전달하여 로컬스토리지 사용 안함
         router.push("/Items");
       } else {
         setAlertMessage("회원가입에 실패했습니다.");
@@ -54,12 +58,25 @@ function SignUp() {
       createUser
     );
 
-  const toggleVisible = (e) => {
-    const { name } = e.target;
-    setPasswordVisible((prev) => ({
-      ...prev,
-      [name]: !prev[name],
-    }));
+  // const toggleVisible = (e: React.MouseEvent<HTMLImageElement>) => {
+  //   const target = e.target as HTMLImageElement;
+  //   const { name } = target;
+  //   setPasswordVisible((prev) => ({
+  //     ...prev,
+  //     [name]: !prev[name],
+  //   }));
+  // };
+
+  const toggleVisible = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.currentTarget; // div 요소를 가져옴
+    const name = target.getAttribute("data-name"); // data-name 속성 가져오기
+
+    if (name) {
+      setPasswordVisible((prev) => ({
+        ...prev,
+        [name]: !prev[name],
+      }));
+    }
   };
 
   useEffect(() => {
@@ -138,17 +155,20 @@ function SignUp() {
                 placeholder="비밀번호를 입력해주세요"
                 autoComplete="off"
               />
-              <Image
+              <div
                 onClick={toggleVisible}
-                name="password"
+                data-name="password"
                 className={styles.ic_visible}
-                src={
-                  passwordVisible.password ? ic_visibility_on : ic_visibility
-                }
-                width={24}
-                height={24}
-                alt="비밀번호보기"
-              />
+              >
+                <Image
+                  src={
+                    passwordVisible.password ? ic_visibility_on : ic_visibility
+                  }
+                  width={24}
+                  height={24}
+                  alt="비밀번호보기"
+                />
+              </div>
               {errors.password && (
                 <p className={styles.err_mes} style={{ color: "red" }}>
                   {errors.password}
@@ -171,17 +191,22 @@ function SignUp() {
                 placeholder="비밀번호를 다시 한 번 입력해주세요"
                 autoComplete="off"
               />
-              <Image
+              <div
                 onClick={toggleVisible}
-                name="passwordConfirmation"
+                data-name="passwordConfirmation"
                 className={styles.ic_visible}
-                src={
-                  passwordVisible.password ? ic_visibility_on : ic_visibility
-                }
-                width={24}
-                height={24}
-                alt="비밀번호보기"
-              />
+              >
+                <Image
+                  src={
+                    passwordVisible.passwordConfirmation
+                      ? ic_visibility_on
+                      : ic_visibility
+                  }
+                  width={24}
+                  height={24}
+                  alt="비밀번호보기"
+                />
+              </div>
               {errors.passwordConfirmation && (
                 <p className={styles.err_mes} style={{ color: "red" }}>
                   {errors.passwordConfirmation}

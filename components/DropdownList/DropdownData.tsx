@@ -1,4 +1,4 @@
-import styles from "@/styles/dropdown.module.css";
+import styles from "../styles/dropdown.module.css";
 
 interface Props {
   onUpdate: () => void;

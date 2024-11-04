@@ -3,7 +3,7 @@ import faceBookLogo from "../public/images/ic_facebook.png";
 import instagramLogo from "../public/images/ic_instagram.png";
 import youtubeLogo from "../public/images/ic_youtube.png";
 import twitterLogo from "../public/images/ic_twitter.png";
-import styles from "@/styles/footer.module.css";
+import styles from "../styles/footer.module.css";
 import Image from "next/image";
 
 function Footer() {

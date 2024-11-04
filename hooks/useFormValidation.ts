@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 interface Props {
   initialValues: {};
-  callback: ({}) => void;
   tags: string[];
 }
 
@@ -10,7 +9,11 @@ interface Values {
   [key: string]: string;
 }
 
-const useFormValidation = ({ initialValues, callback, tags = [] }: Props) => {
+const useFormValidation = (
+  initialValues: Values,
+  callback: any,
+  tags: string[] = []
+) => {
   const emailPattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
   const passwordPattern =
     /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;

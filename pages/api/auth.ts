@@ -7,6 +7,7 @@ interface User {
   nickname: string;
   createAt: Date;
   updateAt: Date;
+  image: string;
 }
 
 export async function getUserMe(): Promise<User> {

@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import styles from "@/styles/alertModal.module.css";
+import styles from "../../styles/alertModal.module.css";
 
 interface Props {
   message: string;

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import icHeart from "../public/images/ic_heart.png";
 import imgDefault from "../public/images/img_default.png";
-import styles from "@/styles/products.module.css";
+import styles from "../styles/products.module.css";
 import Link from "next/link";
 
 interface Product {
@@ -17,7 +17,7 @@ interface Props {
   favorite: boolean;
 }
 
-function Product({ itemValues, favorite }) {
+function Product({ itemValues, favorite }: Props) {
   const { name, price, favoriteCount, id, images } = itemValues;
   const numFormat = price.toLocaleString();
 

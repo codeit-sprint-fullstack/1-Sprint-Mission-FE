@@ -1,18 +1,46 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import * as authApi from "@/pages/api/auth";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
+import * as authApi from "../pages/api/auth";
 import { useRouter } from "next/router";
 
-const AuthContext = createContext({
+interface User {
+  id?: string;
+  email: string;
+  nickname: string;
+  createAt: Date;
+  updateAt: Date;
+  image: string;
+}
+
+interface LoginUser {
+  email: string;
+  password: string;
+}
+
+interface AuthContextValues {
+  user: User | null;
+  isPending: boolean;
+  login: (value: LoginUser) => void;
+  logout: () => void;
+  updateMe: () => void;
+}
+
+const AuthContext = createContext<AuthContextValues>({
   user: null,
   isPending: false,
-  login: () => {},
+  login: (value: LoginUser) => {},
   logout: () => {},
   updateMe: () => {},
 });
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [isPending, setIsPending] = useState(true);
+export function AuthProvider({ children }: { children: ReactNode }) {
+  const [user, setUser] = useState<User>(null);
+  const [isPending, setIsPending] = useState<boolean>(true);
 
   const getMe = async () => {
     //사용자정보의 유무의 따라 리다이렉트를 하기위한 pending 상태추가
@@ -32,12 +60,12 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const login = async (loginValue) => {
+  const login = async (loginValue: LoginUser) => {
     const data = await authApi.login(loginValue);
     if (data) {
       //받아온 정보가 있다면 아래의 이름의 로컬스토리지로 저장
-      localStorage.setItem("codeit-accessToken", data.accessToken);
-      localStorage.setItem("codeit-refreshToken", data.refreshToken);
+      // localStorage.setItem("codeit-accessToken", data.accessToken); //쿠키로 전달하여 로컬스토리지 사용 안함
+      // localStorage.setItem("codeit-refreshToken", data.refreshToken); //쿠키로 전달하여 로컬스토리지 사용 안함
       //사용자정보 갱신
       await getMe();
     }
@@ -52,15 +80,13 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider
-      value={{ user, isPending, login, logout, updateMe, getMe }}
-    >
+    <AuthContext.Provider value={{ user, isPending, login, logout, updateMe }}>
       {children}
     </AuthContext.Provider>
   );
 }
 
-export default function useAuth(required = true) {
+export default function useAuth(required: boolean = true) {
   const router = useRouter();
   const context = useContext(AuthContext);
   if (!context) {

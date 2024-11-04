@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import styles from "@/styles/confirmModal.module.css";
+import styles from "../../styles/confirmModal.module.css";
 
 interface Props {
   message: string;

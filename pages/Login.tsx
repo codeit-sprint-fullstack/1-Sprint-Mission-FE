@@ -1,22 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
-import AlertModal from "@/components/Modals/AlertModal";
-import { useCallback, useEffect, useState } from "react";
-import styles from "@/styles/login.module.css";
-import useFormValidation from "@/hooks/useFormValidation";
-import ic_visibility_on from "@/public/images/btn_visibility_on_24px.png";
-import ic_visibility from "@/public/images/btn_visibility_24px.png";
-import main_logo from "@/public/images/logo.png";
-import ic_kakao from "@/public/images/kakaoicon.png";
-import ic_google from "@/public/images/googleicon.png";
-import useAuth from "@/contexts/authContext";
+import AlertModal from "../components/Modals/AlertModal";
+import { useEffect, useState } from "react";
+import styles from "../styles/login.module.css";
+import useFormValidation from "../hooks/useFormValidation";
+import ic_visibility_on from "../public/images/btn_visibility_on_24px.png";
+import ic_visibility from "../public/images/btn_visibility_24px.png";
+import main_logo from "../public/images/logo.png";
+import ic_kakao from "../public/images/kakaoicon.png";
+import ic_google from "../public/images/googleicon.png";
+import useAuth from "../contexts/authContext";
 import { useRouter } from "next/router";
+
+interface LoginUser {
+  email: string;
+  password: string;
+}
 
 function Login() {
   const router = useRouter();
   const { user, login } = useAuth();
-  const [alertMessage, setAlertMessage] = useState("");
-  const [openAlert, setOpenAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState<string>("");
+  const [openAlert, setOpenAlert] = useState<boolean>(false);
   const [passwordVisible, setPasswordVisible] = useState({
     password: false,
     passwordConfirmation: false,
@@ -25,19 +30,23 @@ function Login() {
   const handleOpenAlert = () => setOpenAlert(true);
   const handleCloseAlert = () => setOpenAlert(false);
 
-  const toggleVisible = (e) => {
-    const { name } = e.target;
-    setPasswordVisible((prev) => ({
-      ...prev,
-      [name]: !prev[name],
-    }));
+  const toggleVisible = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.currentTarget; // div 요소를 가져옴
+    const name = target.getAttribute("data-name"); // data-name 속성 가져오기
+
+    if (name) {
+      setPasswordVisible((prev) => ({
+        ...prev,
+        [name]: !prev[name],
+      }));
+    }
   };
 
   const { values, errors, handleChange, handleSubmit, disabled, setErrors } =
     useFormValidation({ email: "", password: "" }, handleLogin);
 
   //스코프를 이용하기 위해서 화살표함수가 아닌 함수로 정의
-  async function handleLogin(value) {
+  async function handleLogin(value: LoginUser) {
     try {
       await login(value);
       router.push("/Items");
@@ -114,17 +123,20 @@ function Login() {
                 placeholder="비밀번호를 입력해주세요"
                 autoComplete="off"
               />
-              <Image
+              <div
                 onClick={toggleVisible}
-                name="password"
+                data-name="password"
                 className={styles.ic_visible}
-                src={
-                  passwordVisible.password ? ic_visibility_on : ic_visibility
-                }
-                width={24}
-                height={24}
-                alt="비밀번호보기"
-              />
+              >
+                <Image
+                  src={
+                    passwordVisible.password ? ic_visibility_on : ic_visibility
+                  }
+                  width={24}
+                  height={24}
+                  alt="비밀번호보기"
+                />
+              </div>
               {errors.password && (
                 <p className={styles.err_mes} style={{ color: "red" }}>
                   {errors.password}

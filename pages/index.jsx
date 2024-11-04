@@ -1,10 +1,10 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import useWindowResize from "@/hooks/useWindowResize";
-import Product from "@/components/ProductList";
-import Pagination from "@/components/Pagination";
-import SearchBar from "@/components/SearchBar";
-import * as api from "@/pages/api/products";
+import useWindowResize from "../hooks/useWindowResize";
+import Product from "../components/ProductList";
+import Pagination from "../components/Pagination";
+import SearchBar from "../components/SearchBar";
+import * as api from "../pages/api/products";
 
 import {
   dehydrate,
@@ -12,7 +12,7 @@ import {
   QueryClient,
   useQuery,
 } from "@tanstack/react-query";
-import styles from "@/styles/Home.module.css";
+import styles from "../styles/Home.module.css";
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
