@@ -13,7 +13,6 @@ const AuthContext = createContext({
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isPending, setIsPending] = useState(true);
-  const router = useRouter();
 
   const getMe = async () => {
     //사용자정보의 유무의 따라 리다이렉트를 하기위한 pending 상태추가

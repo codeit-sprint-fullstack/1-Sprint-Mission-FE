@@ -3,9 +3,9 @@ import * as api from "./auth";
 import Cookies from "js-cookie";
 
 let context = null;
-let accessToken = null;
-let refreshToken = null;
-export const setContext = (_context) => {
+let accessToken: string = null;
+let refreshToken: string = null;
+export const setContext = (_context: any) => {
   context = _context;
   accessToken = _context.req.cookies["access-token"];
   refreshToken = _context.req.cookies["refresh-token"];
