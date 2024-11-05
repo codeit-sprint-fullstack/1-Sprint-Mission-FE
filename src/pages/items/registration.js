@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { createProduct, uploadImage } from "../../api/productApi";
+import { getAccessToken } from "../../api/authApi";
 import ImageUpload from "../../components/ImageUpload";
 import styles from "../../styles/productRegistration.module.css";
 
@@ -11,14 +12,19 @@ const Registration = () => {
   const [tag, setTag] = useState("");
   const [tags, setTags] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
+  const [accessToken, setAccessToken] = useState(null);
   const router = useRouter();
+
+  useEffect(() => {
+    const token = getAccessToken();
+    console.log("가져온 토큰:", token);
+    setAccessToken(token);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const accessToken = localStorage.getItem("accessToken");
-
       if (!name || !description || !price || imageUrls.length === 0) {
         console.error("모든 필드를 입력해야 합니다.");
         return;

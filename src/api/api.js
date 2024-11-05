@@ -1,18 +1,14 @@
 import axios from 'axios';
 
-const baseURL =
-  process.env.NODE_ENV === 'production'
-    ? process.env.NEXT_PUBLIC_API_URL_PROD
-    : process.env.NEXT_PUBLIC_API_URL_DEV;
-
 const api = axios.create({
-  baseURL,
+  baseURL: 'https://baomarket.onrender.com',
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// 베스트 게시글 목록 조호ㅣ
+
+// 베스트 게시글 목록 조회
 export async function fetchBestArticles() {
   try {
     const response = await api.get('/api/articles/best');

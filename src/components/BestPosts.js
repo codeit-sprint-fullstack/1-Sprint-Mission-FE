@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from './BestPosts.module.css';
+import { fetchBestArticles } from '../api/articleApi';
 
 // 날짜를 YYYY.MM.DD 형식으로 변환하는 함수
 const formatDate = (dateString) => {
   return new Date(dateString).toISOString().slice(0, 10).replace(/-/g, '.');
 };
 
-const BestBox = ({ id, title, author, likes, date, image }) => {
+const BestBox = ({ id, title, user, likes, date, image }) => {
   const router = useRouter();
 
   const handleClick = () => {
@@ -21,12 +22,12 @@ const BestBox = ({ id, title, author, likes, date, image }) => {
         {title || '제목 없음'}
       </h3>
       <img
-        src={image && image.length > 0 ? image[0] : '/image/next_default.svg'} // 첫 번째 이미지 사용
+        src={image && image.length > 0 ? image[0] : '/image/next_default.svg'}
         alt="Post Image"
         className={styles.bestImage}
       />
       <div className={styles.bestFooter}>
-        <span className={styles.bestAuthor}>{author || '작성자 없음'}</span>
+        <span className={styles.bestAuthor}>{user?.nickname || '푸바오'}</span>
         <div className={styles.bestLikes}>
           <img src="/image/heart.svg" alt="Heart Icon" />
           <span>{likes || '0'}</span>
@@ -37,10 +38,26 @@ const BestBox = ({ id, title, author, likes, date, image }) => {
   );
 };
 
-const BestPosts = ({ bestPosts }) => {
+const BestPosts = () => {
+  const [bestPosts, setBestPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [columns, setColumns] = useState(3);
 
   useEffect(() => {
+    const loadBestPosts = async () => {
+      try {
+        const result = await fetchBestArticles();
+        console.log("베스트 게시글 데이터 :", result);
+        setBestPosts(result || []);
+      } catch (error) {
+        console.error('베스트 게시글을 가져오는데 오류가 발생했습니다. :', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadBestPosts();
+
     const handleResize = () => {
       const width = window.innerWidth;
       if (width < 744) {
@@ -64,6 +81,10 @@ const BestPosts = ({ bestPosts }) => {
     };
   }, []);
 
+  if (loading) {
+    return <div className={styles.loadingMessage}>로딩 중...</div>;
+  }
+
   if (!Array.isArray(bestPosts) || bestPosts.length === 0) {
     return <div className={styles.noPostsMessage}>베스트 게시글이 없습니다.</div>;
   }
@@ -77,7 +98,7 @@ const BestPosts = ({ bestPosts }) => {
             key={post.id}
             id={post.id}
             title={post.title}
-            author={post.author}
+            user={post.user}
             likes={post.likes}
             date={post.createdAt}
             image={post.image}
@@ -89,3 +110,4 @@ const BestPosts = ({ bestPosts }) => {
 };
 
 export default BestPosts;
+

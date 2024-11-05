@@ -1,24 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
 import SortOptions from './SortOptions';
 import PostItem from './PostItem';
 import WriteButton from './WriteButton';
 import styles from './PostList.module.css';
+import { fetchArticles } from '../api/articleApi';
 
-const PostList = ({ initialPosts }) => {
-  const [posts, setPosts] = useState(initialPosts || []);
+const PostList = () => {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [keyword, setKeyword] = useState('');
   const [sortOrder, setSortOrder] = useState('recent');
 
-  const addNewPost = (newPost) => {
-    setPosts([newPost, ...posts]);
-    console.log('New Post Added:', posts);
-  };
+  useEffect(() => {
+    const loadPosts = async () => {
+      try {
+        const result = await fetchArticles(1, 10, '', 'recent');
+        console.log("게시글 API 응답:", result);
+        setPosts(result);
+      } catch (error) {
+        console.error('게시글을 가져오는데 오류가 발생했습니다.:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    loadPosts();
+  }, []);
   const filteredPosts = posts.filter(post =>
     post.title.toLowerCase().includes(keyword.toLowerCase())
   );
-  console.log('Filtered posts:', filteredPosts);
 
   return (
     <div className={styles.postList}>
@@ -33,16 +44,18 @@ const PostList = ({ initialPosts }) => {
       </div>
 
       <div className={styles.posts}>
-        {filteredPosts.length > 0 ? (
+        {loading ? (
+          <p>로딩 중...</p>
+        ) : posts.length > 0 ? (
           filteredPosts.map((post, index) => (
             <PostItem
               key={index}
               id={post.id}
               title={post.title}
-              author={post.author}
+              author={post.user?.nickname || '푸바오'}
               date={post.createdAt}
-              likes={post.likes || 0}
-              image={post.image || '/image/default.svg'}
+              likes={post.likes.length || 0}
+              image={post.image[0] || '/image/default.svg'}
             />
           ))
         ) : (
@@ -54,3 +67,5 @@ const PostList = ({ initialPosts }) => {
 };
 
 export default PostList;
+
+

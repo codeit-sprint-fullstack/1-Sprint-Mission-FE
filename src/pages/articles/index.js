@@ -15,21 +15,24 @@ const BoardPage = ({ initialPosts, bestPosts }) => {
 export async function getServerSideProps() {
   try {
     const [articlesResult, bestPostsResult] = await Promise.allSettled([
-      fetchArticles({ orderBy: 'recent' }),
+      fetchArticles(1, 10, '', 'recent'),
       fetchBestArticles(),
     ]);
 
-    const initialPosts = articlesResult.status === 'fulfilled' ? articlesResult.value.list : [];
-    const bestPosts = bestPostsResult.status === 'fulfilled' ? bestPostsResult.value : [];
+    console.log('Articles Result:', articlesResult);
+    console.log('Best Posts Result:', bestPostsResult);
+
+    const initialPosts = articlesResult.status === 'fulfilled' ? articlesResult.value.list || [] : [];
+    const bestPosts = bestPostsResult.status === 'fulfilled' ? bestPostsResult.value || [] : [];
 
     return {
       props: {
-        initialPosts, // 초기 게시글
-        bestPosts,    // 베스트 게시글
+        initialPosts,
+        bestPosts,
       },
     };
   } catch (error) {
-    console.error('Error fetching data:', error.message);
+    console.error('데이터를 가져오는데 오류가 발생:', error.message);
     return {
       props: {
         initialPosts: [],
@@ -38,5 +41,6 @@ export async function getServerSideProps() {
     };
   }
 }
+
 
 export default BoardPage;
