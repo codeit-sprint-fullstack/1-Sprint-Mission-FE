@@ -13,10 +13,11 @@ const CreateArticle = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [createdAt] = useState(formatDate(new Date()));
-  const [imageUrls, setImageUrls] = useState([]);  // 이미지 URL 배열
+  const [imageUrls, setImageUrls] = useState([]); // 이미지 URL 배열
   const router = useRouter();
 
   const validateArticle = (title, content, imageUrls) => {
+    console.log("게시글 유효성 검사 중..."); // 유효성 검사 확인
     if (!title.trim()) {
       console.error("제목을 입력해주세요.");
       return false;
@@ -37,7 +38,9 @@ const CreateArticle = () => {
   };
 
   const handleSubmit = async () => {
+    console.log("게시글 등록 버튼 클릭됨"); // 버튼 클릭 확인
     if (!validateArticle(title, content, imageUrls)) {
+      console.log("유효성 검사 실패"); // 유효성 검사 실패 시
       return;
     }
 
@@ -46,14 +49,15 @@ const CreateArticle = () => {
         title: title.trim(),
         content: content.trim(),
         createdAt,
-        images: imageUrls,  // 이미지 URL 배열
+        images: imageUrls, // 이미지 URL 배열
       };
 
-      console.log("전송할 게시글 데이터:", articleData);
+      console.log("전송할 게시글 데이터:", articleData); // 전송 데이터 확인
 
       const result = await createArticle(articleData);
 
       if (result && result.id) {
+        console.log("게시글 등록 성공, 페이지 이동 중..."); // 라우터 이동 전 확인
         router.push(`/articles/${result.id}`);
       } else {
         console.error("게시글 등록에 실패했습니다.");
