@@ -1,6 +1,7 @@
+import React from 'react';
 import BestPosts from '../../components/BestPosts';
 import PostList from '../../components/PostList';
-import { fetchArticles, fetchBestArticles } from '../../api/api';
+import { fetchArticles, fetchBestArticles } from '../../api/articleApi';
 
 const BoardPage = ({ initialPosts, bestPosts }) => {
   return (
@@ -39,4 +40,3 @@ export async function getServerSideProps() {
 }
 
 export default BoardPage;
-

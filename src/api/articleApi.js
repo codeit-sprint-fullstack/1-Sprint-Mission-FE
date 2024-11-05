@@ -48,20 +48,32 @@ export const deleteArticle = async (articleId) => {
   }
 };
 
-// 게시글 목록 조회
-export const getArticles = async (page = 1, pageSize = 10, keyword = "") => {
-  console.log("게시글 목록 조회 요청 파라미터:", { page, pageSize, keyword }); // 요청 파라미터 확인
+// 최신 게시글 목록 조회
+export const fetchArticles = async (page = 1, pageSize = 10, keyword = "", orderBy = "recent") => {
+  console.log("최신 게시글 목록 조회 요청:", { page, pageSize, keyword, orderBy });
   try {
     const response = await axiosInstance.get("/articles", {
-      params: { page: page, pageSize: pageSize, keyword: keyword },
+      params: { page, pageSize, keyword, orderBy },
     });
-    console.log("게시글 목록 조회 성공:", response.data); // 조회 성공 확인
+    console.log("최신 게시글 목록 조회 성공:", response.data);
     return response.data;
   } catch (error) {
-    console.error(
-      "게시글 목록 조회 중 오류 발생:",
-      error.response ? error.response.data : error.message
-    ); // 에러 메시지 확인
+    console.error("최신 게시글 목록 조회 중 오류:", error.response ? error.response.data : error.message);
+    throw error;
+  }
+};
+
+// 베스트 게시글 목록 조회
+export const fetchBestArticles = async (page = 1, pageSize = 10) => {
+  console.log("베스트 게시글 목록 조회 요청:", { page, pageSize });
+  try {
+    const response = await axiosInstance.get("/articles", {
+      params: { page, pageSize, orderBy: "like" },
+    });
+    console.log("베스트 게시글 목록 조회 성공:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("베스트 게시글 목록 조회 중 오류:", error.response ? error.response.data : error.message);
     throw error;
   }
 };

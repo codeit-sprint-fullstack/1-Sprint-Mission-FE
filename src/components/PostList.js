@@ -4,7 +4,6 @@ import SortOptions from './SortOptions';
 import PostItem from './PostItem';
 import WriteButton from './WriteButton';
 import styles from './PostList.module.css';
-import { fetchArticles } from '../api/api';
 
 const PostList = ({ initialPosts }) => {
   const [posts, setPosts] = useState(initialPosts || []);
@@ -16,7 +15,6 @@ const PostList = ({ initialPosts }) => {
     console.log('New Post Added:', posts);
   };
 
-  // 키워드 검색을 통한 필터링된 게시글 목록
   const filteredPosts = posts.filter(post =>
     post.title.toLowerCase().includes(keyword.toLowerCase())
   );
@@ -55,21 +53,4 @@ const PostList = ({ initialPosts }) => {
   );
 };
 
-// 서버 사이드 렌더링으로 게시글 가져오기
-export async function getServerSideProps() {
-  try {
-    const data = await fetchArticles({ page: 1, pageSize: 10, orderBy: 'recent' });
-    console.log('Fetched articles data:', data);
-    return {
-      props: { initialPosts: data.list },
-    };
-  } catch (error) {
-    console.error('Error fetching posts:', error);
-    return {
-      props: { initialPosts: [] },
-    };
-  }
-}
-
 export default PostList;
-
