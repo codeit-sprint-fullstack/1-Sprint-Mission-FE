@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { createProduct } from "../../api/productApi";
+import { createProduct, uploadImage } from "../../api/productApi";
 import ImageUpload from "../../components/ImageUpload";
 import styles from "../../styles/productRegistration.module.css";
 
@@ -69,7 +69,7 @@ const Registration = () => {
 
       <div className={styles.formGroup}>
         <label htmlFor="images">상품 이미지</label>
-        <ImageUpload setImageUrls={setImageUrls} />
+        <ImageUpload setImageUrls={setImageUrls} imageUrls={imageUrls} uploadApi={uploadImage} />
       </div>
 
       <div className={styles.formGroup}>
@@ -142,4 +142,3 @@ const Registration = () => {
 };
 
 export default Registration;
-

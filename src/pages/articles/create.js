@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { createArticle } from '../../api/articleApi';
+import { createArticle, uploadArticleImage } from '../../api/articleApi';
 import ImageUpload from '../../components/ImageUpload';
 import styles from '../../styles/create.module.css';
 import RegisterButton from '../../components/RegisterButton';
@@ -16,7 +16,6 @@ const CreateArticle = () => {
   const [imageUrls, setImageUrls] = useState([]);  // 이미지 URL 배열
   const router = useRouter();
 
-  // 유효성 검사 함수
   const validateArticle = (title, content, imageUrls) => {
     if (!title.trim()) {
       console.error("제목을 입력해주세요.");
@@ -78,7 +77,7 @@ const CreateArticle = () => {
 
       <div className={styles.formGroup}>
         <label htmlFor="images">게시글 이미지</label>
-        <ImageUpload setImageUrls={setImageUrls} />
+        <ImageUpload setImageUrls={setImageUrls} imageUrls={imageUrls} uploadApi={uploadArticleImage} />
       </div>
 
       <div className={styles.formGroup}>
@@ -108,4 +107,3 @@ const CreateArticle = () => {
 };
 
 export default CreateArticle;
-

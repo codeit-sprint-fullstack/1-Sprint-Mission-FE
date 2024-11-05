@@ -74,8 +74,14 @@ const Navbar = () => {
         style={{ cursor: "pointer" }}
       />
       <div className={styles.navLinks}>
-        <Link href="/board" passHref>
-          <span className={styles.boardLink}>자유게시판</span>
+        <Link href="/articles" passHref>
+          <span
+            className={`${styles.articlesLink} ${
+              router.pathname === "/articles" ? styles.active : ""
+            }`}
+          >
+            자유게시판
+          </span>
         </Link>
         <Link href="/items" passHref>
           <span
@@ -110,4 +116,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 

@@ -1,8 +1,7 @@
 import React, { useRef } from "react";
-import { uploadImage } from "../api/productApi";
 import styles from "./ImageUpload.module.css";
 
-const ImageUpload = ({ imageUrls = [], setImageUrls }) => { // imageUrls 기본값 설정
+const ImageUpload = ({ imageUrls = [], setImageUrls, uploadApi }) => { 
   const fileInputRef = useRef(null);
 
   const handleImageUpload = async (e) => {
@@ -17,7 +16,7 @@ const ImageUpload = ({ imageUrls = [], setImageUrls }) => { // imageUrls 기본�
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       try {
-        const response = await uploadImage(file);
+        const response = await uploadApi(file); // 전달받은 API 함수 사용
         newImageUrls.push(response.url);
         setImageUrls(newImageUrls); // 이미지 URL 전달
       } catch (error) {
@@ -33,7 +32,7 @@ const ImageUpload = ({ imageUrls = [], setImageUrls }) => { // imageUrls 기본�
 
   return (
     <div className={styles.imageUploadWrapper}>
-      {Array.isArray(imageUrls) && imageUrls.map((url, index) => ( // imageUrls 배열 체크
+      {Array.isArray(imageUrls) && imageUrls.map((url, index) => (
         <div key={index} className={styles.imagePreviewContainer}>
           <img
             src={url}
