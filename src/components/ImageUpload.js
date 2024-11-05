@@ -2,24 +2,24 @@ import React, { useRef } from "react";
 import { uploadImage } from "../api/productApi";
 import styles from "./ImageUpload.module.css";
 
-const ImageUpload = ({ imageUrls, setImageUrls }) => {
+const ImageUpload = ({ imageUrls = [], setImageUrls }) => { // imageUrls 기본값 설정
   const fileInputRef = useRef(null);
 
   const handleImageUpload = async (e) => {
     const files = e.target.files;
-    if (files.length + (imageUrls ? imageUrls.length : 0) > 3) {
+    if (files.length + imageUrls.length > 3) {
       alert("최대 3개의 이미지만 업로드할 수 있습니다.");
       return;
     }
 
-    const newImageUrls = [...(imageUrls || [])];
+    const newImageUrls = [...imageUrls];
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       try {
         const response = await uploadImage(file);
         newImageUrls.push(response.url);
-        setImageUrls([...newImageUrls]); // 이미지 URL 전달
+        setImageUrls(newImageUrls); // 이미지 URL 전달
       } catch (error) {
         console.error("이미지 업로드 실패:", error);
       }
@@ -27,13 +27,13 @@ const ImageUpload = ({ imageUrls, setImageUrls }) => {
   };
 
   const handleDeleteImage = (index) => {
-    const newImageUrls = (imageUrls || []).filter((_, i) => i !== index);
+    const newImageUrls = imageUrls.filter((_, i) => i !== index);
     setImageUrls(newImageUrls); // 업데이트된 이미지 URL 전달
   };
 
   return (
     <div className={styles.imageUploadWrapper}>
-      {(imageUrls || []).map((url, index) => (
+      {Array.isArray(imageUrls) && imageUrls.map((url, index) => ( // imageUrls 배열 체크
         <div key={index} className={styles.imagePreviewContainer}>
           <img
             src={url}
@@ -56,7 +56,7 @@ const ImageUpload = ({ imageUrls, setImageUrls }) => {
         </div>
       ))}
 
-      {(imageUrls ? imageUrls.length : 0) < 3 && (
+      {imageUrls.length < 3 && (
         <label className={styles.uploadBox}>
           <input
             type="file"
