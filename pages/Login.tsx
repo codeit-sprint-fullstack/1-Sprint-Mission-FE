@@ -1,15 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import AlertModal from "../components/Modals/AlertModal";
+import AlertModal from "@/components/Modals/AlertModal";
 import { useEffect, useState } from "react";
-import styles from "../styles/login.module.css";
-import useFormValidation from "../hooks/useFormValidation";
-import ic_visibility_on from "../public/images/btn_visibility_on_24px.png";
-import ic_visibility from "../public/images/btn_visibility_24px.png";
-import main_logo from "../public/images/logo.png";
-import ic_kakao from "../public/images/kakaoicon.png";
-import ic_google from "../public/images/googleicon.png";
-import useAuth from "../contexts/authContext";
+import styles from "@/styles/login.module.css";
+import useFormValidation from "@/hooks/useFormValidation";
+import ic_visibility_on from "@/public/images/btn_visibility_on_24px.png";
+import ic_visibility from "@/public/images/btn_visibility_24px.png";
+import main_logo from "@/public/images/logo.png";
+import ic_kakao from "@/public/images/kakaoicon.png";
+import ic_google from "@/public/images/googleicon.png";
+import useAuth from "@/contexts/authContext";
 import { useRouter } from "next/router";
 
 interface LoginUser {

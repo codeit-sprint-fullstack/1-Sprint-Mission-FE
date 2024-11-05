@@ -1,23 +1,27 @@
-import instance from "./httpClient.js";
+import instance from "@/pages/api/httpClient";
+import { Entity } from "@/utils/interface/defaultEntity";
+import { User } from "@/utils/interface/User.js";
 
 interface Params {
   [key: string]: string | number;
 }
 
-interface Comment {
-  id: string;
+interface Comment extends Entity {
   content: string;
-  createAt: Date;
-  updateAt: Date;
   userId: string;
-  user: { id: string; nickname: string };
+  user: User;
+}
+
+interface ResponseData {
+  list: Comment[];
+  nextCursor: string;
 }
 
 export async function getArticleComments(
   id: string,
-  cursor: string
-): Promise<Comment[]> {
-  const res = await instance.get<Comment[]>(`comments/${id}/article`, {
+  cursor: string = ""
+): Promise<ResponseData> {
+  const res = await instance.get<ResponseData>(`comments/${id}/article`, {
     params: {
       limit: 5,
       cursor,
@@ -28,9 +32,9 @@ export async function getArticleComments(
 
 export async function getProductComments(
   id: string,
-  cursor: string
-): Promise<Comment[]> {
-  const res = await instance.get<Comment[]>(`comments/${id}/product`, {
+  cursor: string = ""
+): Promise<ResponseData> {
+  const res = await instance.get<ResponseData>(`comments/${id}/product`, {
     params: {
       limit: 5,
       cursor,
@@ -50,12 +54,12 @@ export async function createArticlesComment(
   return res.data;
 }
 
-export async function createProductComment(
+export async function createProductComment<T>(
   params: Params = {},
-  articleId: string
+  productId: T
 ): Promise<Comment> {
   const res = await instance.post<Comment>(
-    `comments/${articleId}/product`,
+    `comments/${productId}/product`,
     params
   );
   return res.data;

@@ -1,50 +1,60 @@
+import { Entity } from "@/utils/interface/defaultEntity";
 import instance from "./httpClient";
+import { User } from "@/utils/interface/User";
 
 interface Params {
   [key: string]: string | number;
 }
 
-interface Product {
-  id: string;
+interface Product extends Entity {
   name: string;
-  createAt: Date;
-  updateAt: Date;
-  user: { id: string; nickname: string };
-  userId: string;
+  owner: User;
+  ownerId: string;
   tags: string[];
-  content: string;
+  description: string;
+  price: number;
+  favoriteCount: number;
+  images: string[];
+  isFavorite: boolean;
 }
 
-interface UpdateItem {
+interface ItemValues {
   name?: string;
   tags?: string[];
-  content?: string;
+  price?: number;
+  description?: string;
+  images?: File[];
 }
 
-export async function getProducts(params: Params = {}): Promise<Product[]> {
-  const res = await instance.get<Product[]>("/products", { params });
+interface ResponseData {
+  list: Product[];
+  totalCount: number;
+}
+
+export async function getProducts(params: Params = {}): Promise<ResponseData> {
+  const res = await instance.get<ResponseData>("/products", { params });
   return res.data;
 }
 
-export async function getProduct(id: string): Promise<Product> {
+export async function getProduct<T>(id: T): Promise<Product> {
   const res = await instance.get<Product>(`/products/${id}`);
   return res.data;
 }
 
 export async function updateProduct(
   id: string,
-  item: UpdateItem
+  item: ItemValues
 ): Promise<Product> {
-  const res = await instance.patch(`/products/${id}`, item);
+  const res = await instance.patch<Product>(`/products/${id}`, item);
   return res.data;
 }
 
-export async function createProduct(item: UpdateItem): Promise<Product> {
+export async function createProduct(item: FormData): Promise<Product> {
   const res = await instance.post<Product>(`/products`, item);
   return res.data;
 }
 
-export async function deleteProduct(id: string): Promise<number> {
+export async function deleteProduct<T>(id: T): Promise<number> {
   const res = await instance.delete(`/products/${id}`);
   return res.status;
 }

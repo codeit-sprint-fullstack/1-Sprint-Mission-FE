@@ -8,21 +8,20 @@ import * as commentApi from "../pages/api/comment";
 import styles from "@/styles/comment.module.css";
 import ic_kebab from "@/public/images/ic_kebab.png";
 import ic_profile from "@/public/images/ic_profile.png";
+import { User } from "@/utils/interface/User";
+import { Entity } from "@/utils/interface/defaultEntity";
 
-interface Comment {
+interface Comment extends Entity {
   content: string;
   userId: string;
-  user: { nickname: string };
-  createAt: Date;
-  updateAt: Date;
-  id: string;
+  user: User;
 }
 
 interface Props {
   item: Comment;
   openAlert: () => void;
   setAlertMessage: (content: string) => void;
-  user: { id: string; nickname: string };
+  user: User;
 }
 
 function Comment({ item, openAlert, setAlertMessage, user }: Props) {

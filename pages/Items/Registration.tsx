@@ -10,14 +10,34 @@ import x_icon from "@/public/images/ic_X.png";
 import ic_plus from "@/public/images/ic_plus.png";
 import AlertModal from "@/components/Modals/AlertModal";
 import useAuth from "@/contexts/authContext";
+import { GetServerSideProps } from "next";
 
-export async function getServerSideProps(context) {
+interface Product {
+  id?: string;
+  name?: string;
+  description?: string;
+  price?: number;
+  tags?: string[];
+  images?: string[];
+}
+
+interface Props {
+  product: Product;
+}
+
+interface ChipsProps {
+  tag: string;
+  onClick: (index: number) => void;
+  index: number;
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
   //경로의 context 값이 있다면 지곤 상품의 수정으로 서버에서 값을 전달한다.
-  const { id } = context.query;
-  let product = null;
+  const { id } = context.query as { id: string };
+  let product: Product = null;
   if (id) {
     try {
-      product = await api.getProduct(id);
+      product = await api.getProduct<string>(id);
     } catch (error) {
       console.log(error);
     }
@@ -25,10 +45,10 @@ export async function getServerSideProps(context) {
   return {
     props: { product },
   };
-}
+};
 
-function Chips({ tag, onClick, index }) {
-  const handleBtnClick = (e) => {
+function Chips({ tag, onClick, index }: ChipsProps) {
+  const handleBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     onClick(index);
   };
@@ -43,23 +63,27 @@ function Chips({ tag, onClick, index }) {
   );
 }
 
-function Registration({ product }) {
+function Registration({ product }: Props) {
   const router = useRouter();
   useAuth();
-  const [openAlertModal, setOpenAlertModal] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
-  const [images, setImages] = useState(product ? product.images : []);
-  const [imagePreviews, setImagePreviews] = useState(
+  const [openAlertModal, setOpenAlertModal] = useState<boolean>(false);
+  const [alertMessage, setAlertMessage] = useState<string>("");
+  const [images, setImages] = useState<(string | File)[]>(
+    product ? product.images : []
+  );
+  const [imagePreviews, setImagePreviews] = useState<string[]>(
     product ? product.images : []
   );
 
-  async function createProduct(values) {
+  async function createProduct(values: Product) {
     const postValues = productModel(values, chips);
     const formData = new FormData();
     formData.append("name", postValues.name);
     formData.append("description", postValues.description);
-    formData.append("price", postValues.price);
-    formData.append("tags", postValues.tags);
+    formData.append("price", postValues.price.toString());
+    postValues.tags.forEach((tag) => {
+      formData.append("tags[]", tag);
+    });
     for (let i = 0; i < images.length; i++) {
       formData.append("images", images[i]);
     }
@@ -78,10 +102,10 @@ function Registration({ product }) {
     }
   }
 
-  async function updateProduct(values) {
+  async function updateProduct(values: Product) {
     const postValues = productModel(values, chips);
     try {
-      const data = await api.updateProduct(postValues);
+      const data = await api.updateProduct(product?.id, postValues);
       if (data) {
         router.push(`/Items/${data.id}`);
       } else {
@@ -118,7 +142,7 @@ function Registration({ product }) {
     product?.tags
   );
 
-  const handleAddImages = (event) => {
+  const handleAddImages = (event: React.ChangeEvent<HTMLInputElement>) => {
     const imageLists = event.target.files;
     let previewImages = [...imagePreviews];
     let imageFiles = [...images];
@@ -140,7 +164,7 @@ function Registration({ product }) {
   };
 
   // X버튼 클릭 시 이미지 삭제
-  const handleDeleteImage = (id) => {
+  const handleDeleteImage = (id: number) => {
     setImagePreviews(imagePreviews.filter((_, index) => index !== id));
     setImages(images.filter((_, index) => index !== id));
   };

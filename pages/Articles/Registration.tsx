@@ -5,9 +5,17 @@ import AlertModal from "@/components/Modals/AlertModal";
 import * as api from "@/pages/api/articles";
 import styles from "@/styles/registration.module.css";
 import useAuth from "@/contexts/authContext";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 
-export async function getServerSideProps(context) {
-  const { id } = context.query;
+interface ArticleItem {
+  title: string;
+  content: string;
+}
+
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const { id } = context.query as { id: string };
   let article = null;
   //경로의 context 값이 있다면 지곤 게시글의 수정으로 서버에서 값을 전달한다.
   if (id) {
@@ -20,15 +28,15 @@ export async function getServerSideProps(context) {
   return {
     props: { article },
   };
-}
+};
 
 function Registration({ article }) {
   const router = useRouter();
   useAuth();
-  const [openAlertModal, setOpenAlertModal] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
+  const [openAlertModal, setOpenAlertModal] = useState<boolean>(false);
+  const [alertMessage, setAlertMessage] = useState<string>("");
 
-  const createArticle = async () => {
+  const createArticle = async (values: ArticleItem) => {
     try {
       const data = await api.createArticle(values);
       if (data) {
@@ -44,7 +52,7 @@ function Registration({ article }) {
     }
   };
 
-  const updateArticle = async () => {
+  const updateArticle = async (values: ArticleItem) => {
     try {
       const data = await api.updateArticle(article.id, values);
       if (data) {

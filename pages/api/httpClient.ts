@@ -1,11 +1,11 @@
 import axios from "axios";
 import * as api from "./auth";
-import Cookies from "js-cookie";
+import { GetServerSidePropsContext } from "next";
 
-let context = null;
+let context: GetServerSidePropsContext = null;
 let accessToken: string = null;
 let refreshToken: string = null;
-export const setContext = (_context: any) => {
+export const setContext = (_context: GetServerSidePropsContext) => {
   context = _context;
   accessToken = _context.req.cookies["access-token"];
   refreshToken = _context.req.cookies["refresh-token"];

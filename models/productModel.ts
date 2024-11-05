@@ -1,8 +1,11 @@
-interface values {
-  [key: string]: string | string[];
+interface ProductValues {
+  name?: string;
+  description?: string;
+  price?: number;
+  tags?: string[];
 }
 
-export function productModel(values: values = {}, tags: string[] = []) {
+export function productModel(values: ProductValues = {}, tags: string[] = []) {
   values.tags = tags;
   return values;
 }

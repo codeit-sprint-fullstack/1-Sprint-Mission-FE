@@ -5,17 +5,9 @@ import {
   useState,
   ReactNode,
 } from "react";
-import * as authApi from "../pages/api/auth";
+import * as authApi from "@/pages/api/auth";
 import { useRouter } from "next/router";
-
-interface User {
-  id?: string;
-  email: string;
-  nickname: string;
-  createAt: Date;
-  updateAt: Date;
-  image: string;
-}
+import { User } from "@/utils/interface/User";
 
 interface LoginUser {
   email: string;

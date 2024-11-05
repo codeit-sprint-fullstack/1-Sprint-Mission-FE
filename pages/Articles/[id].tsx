@@ -26,18 +26,66 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { setContext } from "../api/httpClient";
+import { GetServerSideProps } from "next";
+import { Entity } from "@/utils/interface/defaultEntity";
+import { User } from "@/utils/interface/User";
 
-export async function getServerSideProps(context) {
+interface Article extends Entity {
+  owner: User;
+  ownerId: string;
+  title: string;
+  content: string;
+  likeCount?: number;
+  image: string;
+  favoriteCount: number;
+  isFavorite: boolean;
+}
+
+interface ArticleValues {
+  title: string;
+  content: string;
+  likeCount?: number;
+  image: string;
+}
+
+interface Params {
+  [key: string]: string | number;
+}
+
+interface CommentItem extends Entity {
+  content: string;
+  userId: string;
+  user: User;
+}
+
+interface ResponseData {
+  list: CommentItem[];
+  nextCursor?: string;
+}
+
+interface Props {
+  article: Article;
+  comments: ResponseData;
+  id: string;
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
   setContext(context);
-  const { id } = context.query;
+  const { id } = context.query as { id: string };
 
-  let article = {};
-  let comments = [];
+  let article: Article = null;
+  let comments: ResponseData = null;
   try {
     const data = await articleApi.getArticle(id);
     article = data;
   } catch (error) {
     console.log(error);
+    return {
+      redirect: {
+        destination: "/Login", // 로그인 페이지로 리다이렉트
+        permanent: false, // 영구적인 리다이렉트가 아닌 경우
+      },
+    };
   }
   try {
     const response = await commentApi.getArticleComments(id);
@@ -53,9 +101,9 @@ export async function getServerSideProps(context) {
       id,
     },
   };
-}
+};
 
-function DetailArticle({ article, comments, id }) {
+function DetailArticle({ article, comments, id }: Props) {
   //권한인증
   const { user } = useAuth();
   const router = useRouter();
@@ -79,6 +127,7 @@ function DetailArticle({ article, comments, id }) {
     queryFn: ({ pageParam }) => commentApi.getArticleComments(id, pageParam),
     getNextPageParam: (lastPage) =>
       lastPage.nextCursor ? lastPage.nextCursor : undefined,
+    initialPageParam: comments.nextCursor,
     initialData: {
       pages: [comments], // comments 배열을 pages로 감싸서 전달
       pageParams: [comments.nextCursor], // pageParams 기본값 설정
@@ -101,9 +150,9 @@ function DetailArticle({ article, comments, id }) {
       });
 
       //실패할 경유의 대비하여 이전의 상태를 저장한다
-      const prevArticle = queryClient.getQueryData(["article", id]);
+      const prevArticle: Article = queryClient.getQueryData(["article", id]);
 
-      queryClient.setQueryData(["article", id], (prev) => ({
+      queryClient.setQueryData(["article", id], (prev: Article) => ({
         ...prev,
         isFavorite: !prev.isFavorite, //isFavorite 값을 반전
         favoriteCount: prev.isFavorite
@@ -132,11 +181,11 @@ function DetailArticle({ article, comments, id }) {
     articleData;
   //날짜 포멧
   const date = dateFormatYYYYMMDD(createAt);
-  const [values, setValues] = useState({});
-  const [Alert, setAlert] = useState(false);
-  const [Confirm, setConfirm] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
-  const [confirmMessage, setConfirmMessage] = useState("");
+  const [values, setValues] = useState<Params>({});
+  const [Alert, setAlert] = useState<boolean>(false);
+  const [Confirm, setConfirm] = useState<boolean>(false);
+  const [alertMessage, setAlertMessage] = useState<string>("");
+  const [confirmMessage, setConfirmMessage] = useState<string>("");
 
   // 모달 오픈상태 값
   const openAlertModal = () => setAlert(true);
@@ -145,7 +194,7 @@ function DetailArticle({ article, comments, id }) {
   const closeConfirmModal = () => setConfirm(false);
 
   //수정/삭제 드롭다운오픈 상태 값
-  const [openDropdown, setOpenDropdown] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<boolean>(false);
   const openArticleDropdown = () => setOpenDropdown(!openDropdown);
 
   // 게시글수정을 선택시 Registration 페이지의 쿼리로 게시글의 id를 전달한다.
@@ -194,14 +243,14 @@ function DetailArticle({ article, comments, id }) {
     }
   };
 
-  const handleChangeValues = (name, value) => {
+  const handleChangeValues = (name: string, value: string | number) => {
     setValues((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     handleChangeValues(name, value);
@@ -254,8 +303,8 @@ function DetailArticle({ article, comments, id }) {
             />
             {openDropdown && (
               <DropdownData
-                handleUpdate={updateArticle}
-                handleDelete={handleDeleteArticle}
+                onUpdate={updateArticle}
+                onDelete={handleDeleteArticle}
               />
             )}
           </div>

@@ -1,12 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
 import useWindowResize from "@/hooks/useWindowResize";
-import Product from "@/components/ProductList.jsx";
+import Product from "@/components/ProductList";
 import SearchBar from "@/components/SearchBar";
 import Pagination from "@/components/Pagination";
-import * as api from "@/pages/api/products.js";
+import * as api from "@/pages/api/products";
 import styles from "@/styles/Home.module.css";
 import {
   dehydrate,
+  DehydratedState,
   HydrationBoundary,
   QueryClient,
   useQuery,
@@ -36,7 +37,17 @@ export async function getStaticProps() {
   };
 }
 
-function itemsRouter({ dehydratedState, productsQuery }) {
+interface Params {
+  [key: string]: string | number;
+  orderBy?: string;
+}
+
+interface Props {
+  dehydratedState: DehydratedState;
+  productsQuery: Params;
+}
+
+function itemsRouter({ dehydratedState, productsQuery }: Props) {
   return (
     <HydrationBoundary state={dehydratedState}>
       <Items productsQuery={productsQuery} />
@@ -44,7 +55,7 @@ function itemsRouter({ dehydratedState, productsQuery }) {
   );
 }
 
-function Items({ productsQuery }) {
+function Items({ productsQuery }: { productsQuery: Params }) {
   const [params, setParams] = useState(productsQuery);
 
   const { data: productData } = useQuery({
@@ -52,22 +63,22 @@ function Items({ productsQuery }) {
     queryFn: () => api.getProducts(params),
   });
 
-  const handleChangeParams = (obj) => {
+  const handleChangeParams = (obj: Params) => {
     setParams((prev) => ({
       ...prev,
       ...obj,
     }));
   };
 
-  const loadProducts = async (query) => {
-    try {
-      const { list, totalCount } = await api.getProducts(query);
-      setProducts(list);
-      setTotalDataCount(totalCount);
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
+  // const loadProducts = async (query) => {
+  //   try {
+  //     const { list, totalCount } = await api.getProducts(query);
+  //     setProducts(list);
+  //     setTotalDataCount(totalCount);
+  //   } catch (e) {
+  //     console.log(e.message);
+  //   }
+  // };
 
   const view = useWindowResize();
   const changeFromNextView = useCallback(() => {
@@ -106,7 +117,7 @@ function Items({ productsQuery }) {
       <Pagination
         onChange={handleChangeParams}
         params={params}
-        totalCount={productData?.totalDataCount}
+        totalCount={productData?.totalCount}
       />
     </main>
   );

@@ -1,23 +1,37 @@
-import instance from "./httpClient.js";
+import { User } from "@/utils/interface/User";
+import instance from "./httpClient";
+import { Entity } from "@/utils/interface/defaultEntity";
 
 interface Params {
   [key: string]: string | number;
 }
 
-interface Article {
-  id: string;
+interface Article extends Entity {
+  owner: User;
+  ownerId: string;
   title: string;
-  createAt: Date;
-  updateAt: Date;
-  user: { id: string; nickname: string };
-  userId: string;
+  content: string;
+  likeCount?: number;
+  image: string;
+  favoriteCount: number;
+  isFavorite: boolean;
+}
+
+interface ArticleItem {
+  title: string;
+  content: string;
+}
+
+interface ResponseData {
+  list: Article[];
+  nextCursor: string;
 }
 
 export async function getArticles(
   params: Params = {},
   cursor: string = ""
-): Promise<Article[]> {
-  const res = await instance.get<Article[]>("/articles", {
+): Promise<ResponseData> {
+  const res = await instance.get<ResponseData>("/articles", {
     params: { ...params, cursor },
   });
   return res.data;
@@ -28,8 +42,8 @@ export async function getBestArticles(
     orderBy: "like",
     pageSize: 3,
   }
-): Promise<Article[]> {
-  const res = await instance.get<Article[]>("/articles", {
+): Promise<ResponseData> {
+  const res = await instance.get<ResponseData>("/articles", {
     params,
   });
   return res.data;
@@ -42,13 +56,13 @@ export async function getArticle(id: string): Promise<Article> {
 
 export async function updateArticle(
   id: string,
-  item: Article
+  item: ArticleItem
 ): Promise<Article> {
   const res = await instance.patch<Article>(`/articles/${id}`, item);
   return res.data;
 }
 
-export async function createArticle(item: Article): Promise<Article> {
+export async function createArticle(item: ArticleItem): Promise<Article> {
   const res = await instance.post<Article>(`/articles`, item);
   return res.data;
 }

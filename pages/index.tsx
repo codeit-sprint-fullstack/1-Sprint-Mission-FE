@@ -1,20 +1,32 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import useWindowResize from "../hooks/useWindowResize";
-import Product from "../components/ProductList";
-import Pagination from "../components/Pagination";
-import SearchBar from "../components/SearchBar";
-import * as api from "../pages/api/products";
-
+import useWindowResize from "@/hooks/useWindowResize";
+import Product from "@/components/ProductList";
+import Pagination from "@/components/Pagination";
+import SearchBar from "@/components/SearchBar";
+import * as api from "./api/products";
 import {
   dehydrate,
+  DehydratedState,
   HydrationBoundary,
   QueryClient,
   useQuery,
 } from "@tanstack/react-query";
-import styles from "../styles/Home.module.css";
+import styles from "@/styles/Home.module.css";
+import { GetStaticProps } from "next";
 
-export async function getStaticProps() {
+interface Params {
+  [key: string]: string | number;
+  orderBy?: string;
+}
+
+interface Props {
+  dehydratedState: DehydratedState;
+  productsQuery: Params;
+  bestProductsQuery: Params;
+}
+
+export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
 
   const productsQuery = {
@@ -27,6 +39,7 @@ export async function getStaticProps() {
   const bestProductsQuery = {
     orderBy: "favoriteCount",
     pageSize: 4,
+    page: 1,
   };
 
   await queryClient.prefetchQuery({
@@ -46,9 +59,13 @@ export async function getStaticProps() {
       bestProductsQuery,
     },
   };
-}
+};
 
-function HomeRouter({ dehydratedState, productsQuery, bestProductsQuery }) {
+function HomeRouter({
+  dehydratedState,
+  productsQuery,
+  bestProductsQuery,
+}: Props) {
   return (
     <HydrationBoundary state={dehydratedState}>
       <Home
@@ -59,18 +76,24 @@ function HomeRouter({ dehydratedState, productsQuery, bestProductsQuery }) {
   );
 }
 
-function Home({ productsQuery, bestProductsQuery }) {
-  const [params, setParams] = useState(productsQuery);
-  const [bestParams, setBestParams] = useState(bestProductsQuery);
-  const [totalDataCount, setTotalDataCount] = useState(0);
-  const handleChangeParams = (obj) => {
+function Home({
+  productsQuery,
+  bestProductsQuery,
+}: {
+  productsQuery: Params;
+  bestProductsQuery: Params;
+}) {
+  const [params, setParams] = useState<Params>(productsQuery);
+  const [bestParams, setBestParams] = useState<Params>(bestProductsQuery);
+  const [totalDataCount, setTotalDataCount] = useState<number>(0);
+  const handleChangeParams = (obj: Params) => {
     setParams((prev) => ({
       ...prev,
       ...obj,
     }));
   };
 
-  const handleChangeBestParams = (name, value) => {
+  const handleChangeBestParams = (name: string, value: number) => {
     setBestParams((prev) => ({
       ...prev,
       [name]: value,

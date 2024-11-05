@@ -1,7 +1,7 @@
 import Image from "next/image";
-import icHeart from "../public/images/ic_heart.png";
-import imgDefault from "../public/images/img_default.png";
-import styles from "../styles/products.module.css";
+import icHeart from "@/public/images/ic_heart.png";
+import imgDefault from "@/public/images/img_default.png";
+import styles from "@/styles/products.module.css";
 import Link from "next/link";
 
 interface Product {

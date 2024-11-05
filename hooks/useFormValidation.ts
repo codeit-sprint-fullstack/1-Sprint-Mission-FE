@@ -6,7 +6,7 @@ interface Props {
 }
 
 interface Values {
-  [key: string]: string;
+  [key: string]: string | number;
 }
 
 const useFormValidation = (
@@ -90,7 +90,9 @@ const useFormValidation = (
     }
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = event.target;
     setValues({
       ...values,

@@ -1,12 +1,12 @@
-import styles from "../styles/header.module.css";
-import mainLog from "../public/images/mainlogo.png";
-import mb_Log from "../public/images/mb_logo.png";
-import ic_profile from "../public/images/ic_profile.png";
+import styles from "@/styles/header.module.css";
+import mainLog from "@/public/images/mainlogo.png";
+import mb_Log from "@/public/images/mb_logo.png";
+import ic_profile from "@/public/images/ic_profile.png";
 import Link from "next/link";
 import Image from "next/image";
-import useWindowResize from "../hooks/useWindowResize";
+import useWindowResize from "@/hooks/useWindowResize";
 import { useRouter } from "next/router";
-import useAuth from "../contexts/authContext";
+import useAuth from "@/contexts/authContext";
 
 function Header() {
   const { user } = useAuth(false);

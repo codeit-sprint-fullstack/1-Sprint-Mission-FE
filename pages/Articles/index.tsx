@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   dehydrate,
+  DehydratedState,
   HydrationBoundary,
   QueryClient,
   useInfiniteQuery,
@@ -18,8 +19,29 @@ import ic_medal from "@/public/images/ic_medal.png";
 import ic_profile from "@/public/images/ic_profile.png";
 import styles from "@/styles/articles.module.css";
 import { RefContext } from "../_app";
+import { User } from "@/utils/interface/User";
+import { Entity } from "@/utils/interface/defaultEntity";
 
-function BestArticles({ item }) {
+interface ArticleItem extends Entity {
+  owner: User;
+  ownerId: string;
+  title: string;
+  likeCount?: number;
+  image: string;
+  favoriteCount: number;
+}
+
+interface Params {
+  [key: string]: string | number;
+  orderBy?: string;
+}
+
+interface Props {
+  dehydratedState: DehydratedState;
+  defaultParams: Params;
+}
+
+function BestArticles({ item }: { item: ArticleItem }) {
   const { owner, title, createAt, likeCount, image } = item;
   const articleImage = image ? image : imgDefault;
   const date = dateFormatYYYYMMDD(createAt);
@@ -62,7 +84,7 @@ function BestArticles({ item }) {
   );
 }
 
-function ArticleItems({ item }) {
+function ArticleItems({ item }: { item: ArticleItem }) {
   const { owner, title, createAt, favoriteCount, image } = item;
   const articleImage = image ? image : imgDefault;
   const date = dateFormatYYYYMMDD(createAt);
@@ -123,7 +145,7 @@ export async function getStaticProps() {
 
   await queryClient.prefetchQuery({
     queryKey: ["Articles"],
-    queryFn: api.getArticles(defaultParams),
+    queryFn: () => api.getArticles(defaultParams),
   });
 
   return {
@@ -134,7 +156,7 @@ export async function getStaticProps() {
   };
 }
 
-function ArticlesRouter({ dehydratedState, defaultParams }) {
+function ArticlesRouter({ dehydratedState, defaultParams }: Props) {
   return (
     <HydrationBoundary state={dehydratedState}>
       <Articles defaultParams={defaultParams} />
@@ -142,7 +164,7 @@ function ArticlesRouter({ dehydratedState, defaultParams }) {
   );
 }
 
-function Articles({ defaultParams }) {
+function Articles({ defaultParams }: { defaultParams: Params }) {
   const globalDivRef = useContext(RefContext);
   const [params, setParams] = useState(defaultParams);
   const [keyword, setKeyword] = useState("");
@@ -158,40 +180,41 @@ function Articles({ defaultParams }) {
     queryFn: ({ pageParam }) => api.getArticles(params, pageParam),
     getNextPageParam: (lastPage) =>
       lastPage.nextCursor ? lastPage.nextCursor : undefined,
+    initialPageParam: "",
   });
 
   if (isError) {
     console.log(isError);
   }
 
-  const moreData = () => {
-    fetchNextPage();
-  };
+  // const moreData = () => {
+  //   fetchNextPage();
+  // };
 
   const { data: bestArticlesData } = useQuery({
     queryKey: ["bestArticles"],
     queryFn: () => api.getBestArticles(),
   });
 
-  const handleChangeParams = (name, value) => {
+  const handleChangeParams = (name: string, value: string | number) => {
     setParams((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const handleChangeKeyword = (e) => {
+  const handleChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setKeyword(e.target.value);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     handleChangeParams("keyword", keyword);
   };
 
-  const handleChangeOrder = (e) => {
-    const value = e.target.value;
+  const handleChangeOrder = (e: React.MouseEvent) => {
+    const value = (e.target as HTMLButtonElement).value;
     handleChangeParams("orderBy", value);
   };
 

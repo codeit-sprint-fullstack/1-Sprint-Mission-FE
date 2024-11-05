@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Link from "next/link";
-import ic_search from "../public/images/ic_search.png";
-import styles from "../styles/searchBar.module.css";
+import ic_search from "@/public/images/ic_search.png";
+import styles from "@/styles/searchBar.module.css";
 import Image from "next/image";
-import DropdownBox from "../components/DropdownList/DropdownBox";
+import DropdownBox from "@/components/DropdownList/DropdownBox";
 
 interface Params {
   [key: string]: string;

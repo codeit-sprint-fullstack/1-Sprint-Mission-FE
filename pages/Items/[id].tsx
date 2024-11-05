@@ -6,7 +6,6 @@ import { RefContext } from "@/pages/_app";
 import useAuth from "@/contexts/authContext";
 import Link from "next/link";
 import Image from "next/image";
-import Comment from "@/components/Comment";
 import AlertModal from "@/components/Modals/AlertModal";
 import ConfirmModal from "@/components/Modals/ConfirmModal";
 import styles from "@/styles/detailProduct.module.css";
@@ -27,25 +26,69 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { setContext } from "../api/httpClient";
+import { GetServerSideProps } from "next";
+import Comment from "@/components/Comment";
+import { User } from "@/utils/interface/User";
+import { Entity } from "@/utils/interface/defaultEntity";
 
-export async function getServerSideProps(context) {
+interface Product extends Entity {
+  name: string;
+  owner: User;
+  ownerId: string;
+  tags: string[];
+  description: string;
+  price: number;
+  favoriteCount: number;
+  images: string[];
+  isFavorite: boolean;
+}
+
+interface CommentItem extends Entity {
+  content: string;
+  userId: string;
+  user: User;
+}
+
+// ResponseData 타입
+interface ResponseData {
+  list: CommentItem[];
+  nextCursor?: string;
+}
+
+interface Values {
+  [key: string]: string;
+}
+
+interface Props {
+  product: Product;
+  comments: ResponseData;
+  id: string;
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
   setContext(context);
   //다이나믹 라우팅인 관계로 SSG의 방식으로 react-query를 사용하지 않고 SSR 방식을 사용
-  const { id } = context.params;
+  const { id } = context.params as { id: string };
 
-  let product = {};
-  let comments = [];
+  let product: Product = null;
+  let comments: ResponseData = null;
 
   try {
-    const data = await productsApi.getProduct(id);
-    product = data;
+    const productData = await productsApi.getProduct(id);
+    product = productData;
   } catch (error) {
-    // console.log(error);
+    console.log(error);
+    return {
+      redirect: {
+        destination: "/Login", // 로그인 페이지로 리다이렉트
+        permanent: false, // 영구적인 리다이렉트가 아닌 경우
+      },
+    };
   }
 
   try {
-    const response = await commentApi.getProductComments(id);
-    comments = response;
+    const commentData = await commentApi.getProductComments(id);
+    comments = commentData;
   } catch (error) {
     // console.log(error);
   }
@@ -57,9 +100,9 @@ export async function getServerSideProps(context) {
       id,
     },
   };
-}
+};
 
-function DetailProduct({ product, comments, id }) {
+function DetailProduct({ product, comments, id }: Props) {
   //권한인증
   const { user } = useAuth();
   const router = useRouter();
@@ -79,12 +122,13 @@ function DetailProduct({ product, comments, id }) {
     fetchNextPage,
   } = useInfiniteQuery({
     queryKey: ["comments", id],
-    queryFn: ({ pageParam }) => commentApi.getProductComments(id, pageParam),
-    getNextPageParam: (lastPage) =>
-      lastPage.nextCursor ? lastPage.nextCursor : undefined,
+    queryFn: ({ pageParam = "" }) =>
+      commentApi.getProductComments(id, pageParam),
+    getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
+    initialPageParam: comments.nextCursor ?? "",
     initialData: {
       pages: [comments], // comments 배열을 pages로 감싸서 전달
-      pageParams: [comments.nextCursor], // pageParams 기본값 설정
+      pageParams: [] as string[], // pageParams 기본값 설정
     },
   });
 
@@ -104,9 +148,9 @@ function DetailProduct({ product, comments, id }) {
       });
 
       //실패할 경유의 대비하여 이전의 상태를 저장한다
-      const prevProduct = queryClient.getQueryData(["product", id]);
+      const prevProduct: Product = queryClient.getQueryData(["product", id]);
 
-      queryClient.setQueryData(["product", id], (prev) => ({
+      queryClient.setQueryData(["product", id], (prev: Product) => ({
         ...prev,
         isFavorite: !prev.isFavorite, //isFavorite 값을 반전
         favoriteCount: prev.isFavorite
@@ -132,7 +176,7 @@ function DetailProduct({ product, comments, id }) {
   };
 
   const {
-    createdAt,
+    createAt,
     favoriteCount,
     ownerId,
     owner,
@@ -150,9 +194,9 @@ function DetailProduct({ product, comments, id }) {
         images[0] //DB의 전체 URL을 저장하는 방식 지금은 서버에 저장하지만 스토리지를 사용한다면 이렇게 저장할지 의문..
       : imgDefault;
   //날짜 포멧
-  const date = dateFormatYYYYMMDD(createdAt);
+  const date = dateFormatYYYYMMDD(createAt);
   const numFormat = price?.toLocaleString();
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState<Values>({ content: "" });
   const [alert, setAlert] = useState(false);
   const [Confirm, setConfirm] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -181,7 +225,7 @@ function DetailProduct({ product, comments, id }) {
 
   const deleteProduct = () => {
     try {
-      const res = productsApi.deleteProduct(id);
+      const res = productsApi.deleteProduct<string>(id);
       if (res) {
         router.push("/Items");
       } else {
@@ -199,7 +243,7 @@ function DetailProduct({ product, comments, id }) {
 
   const createComment = () => {
     try {
-      const data = commentApi.createProductComment(values, id);
+      const data = commentApi.createProductComment<string>(values, id);
       if (data) {
         router.reload();
       } else {
@@ -214,14 +258,14 @@ function DetailProduct({ product, comments, id }) {
     }
   };
 
-  const handleChangeValues = (name, value) => {
-    setValues((prev) => ({
+  const handleChangeValues = (name: string, value: string) => {
+    setValues((prev: Values) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     handleChangeValues(name, value);
@@ -232,7 +276,6 @@ function DetailProduct({ product, comments, id }) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log("확인");
             fetchNextPage();
           }
         });

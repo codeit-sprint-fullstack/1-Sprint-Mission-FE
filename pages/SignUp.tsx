@@ -8,9 +8,9 @@ import ic_visibility from "@/public/images/btn_visibility_24px.png";
 import main_logo from "@/public/images/logo.png";
 import ic_kakao from "@/public/images/kakaoicon.png";
 import ic_google from "@/public/images/googleicon.png";
-import * as api from "../pages/api/auth";
-import useFormValidation from "../hooks/useFormValidation";
-import AlertModal from "../components/Modals/AlertModal";
+import * as api from "@/pages/api/auth";
+import useFormValidation from "@/hooks/useFormValidation";
+import AlertModal from "@/components/Modals/AlertModal";
 
 interface UserValues {
   email: string;
