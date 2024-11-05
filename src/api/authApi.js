@@ -1,7 +1,9 @@
 import axios from "axios";
-import axiosInstance from "./axiosInstance";
 
-const baseUrl = "https://baomarket.onrender.com/api";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? `${process.env.NEXT_PUBLIC_API_URL}/api`
+    : `${process.env.NEXT_PUBLIC_API_URL_DEV}/api`;
 
 // 회원가입 요청
 export const signUp = async (email, nickname, password, passwordConfirmation) => {
@@ -78,4 +80,3 @@ export const logOut = () => {
 export const getAccessToken = () => {
   return localStorage.getItem("accessToken");
 };
-

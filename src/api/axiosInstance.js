@@ -2,7 +2,9 @@ import axios from "axios";
 
 // Axios 인스턴스 생성
 const axiosInstance = axios.create({
-  baseURL: "https://baomarket.onrender.com/api",
+  baseURL: process.env.NODE_ENV === 'production'
+    ? `${process.env.NEXT_PUBLIC_API_URL}/api`
+    : `${process.env.NEXT_PUBLIC_API_URL_DEV}/api`,
   headers: {
     "Content-Type": "application/json",
   },
@@ -23,4 +25,3 @@ axiosInstance.interceptors.request.use(
 );
 
 export default axiosInstance;
-
