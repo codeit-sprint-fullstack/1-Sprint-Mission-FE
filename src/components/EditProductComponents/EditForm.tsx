@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from "react";
 import styles from "./EditForm.module.css";
-import { useValidateForm } from "@/hooks/useValidation";
+import { useProductValidation } from "@/hooks/useValidation";
 import ImageUpload from "./ImageUpload";
 
-// 인터페이스 정의
 interface EditFormProps {
   onFormChange: (isValid: boolean) => void;
-  onFormValuesChange: (values: any) => void;
+  onFormValuesChange: (values: {
+    productName: string;
+    productIntro: string;
+    productPrice: string;
+    tags: string[];
+    uploadedImages: {
+      file: File | null;
+      previewUrl: string;
+      isExisting: boolean;
+      isDeleted: boolean;
+    }[];
+  }) => void;
   item: {
     id: number;
     name: string;
@@ -17,99 +27,87 @@ interface EditFormProps {
   };
 }
 
+interface UploadedImage {
+  file: File | null;
+  previewUrl: string;
+  isExisting: boolean;
+  isDeleted: boolean;
+}
+
 export default function EditForm({
   onFormChange,
   onFormValuesChange,
   item,
 }: EditFormProps) {
-  const [uploadedImages, setUploadedImages] = useState<
-    { file: File | null; previewUrl: string; isExisting: boolean }[]
-  >([]);
-
-  // initialFormState에서 productTag 타입을 배열로 수정
-  const initialFormState = {
-    productName: "",
-    productIntro: "",
-    productPrice: "",
-    productTag: [] as string[],
-    productImage: [] as string[], // 배열로 수정
+  // Initial form state definition
+  const initialFormState: {
+    productName: string;
+    productIntro: string;
+    productPrice: string;
+  } = {
+    productName: item.name || "",
+    productIntro: item.description || "",
+    productPrice: String(item.price) || "",
   };
 
-  const validationRules = {
-    productName: { required: true, minLength: 3 },
-    productIntro: { required: true, minLength: 10, maxLength: 100 },
-    productPrice: { required: true, pattern: /^[0-9]+$/ },
-  };
+  // Use custom validation hook for product form
+  const { values, errors, handleChange, setValues } =
+    useProductValidation(initialFormState);
 
-  const { values, errors, handleChange, setValues } = useValidateForm(
-    initialFormState,
-    validationRules
-  );
-
+  // Local state for managing tags and uploaded images
+  const [tags, setTags] = useState<string[]>(item.tags || []);
   const [isComposing, setIsComposing] = useState<boolean>(false);
+  const [uploadedImages, setUploadedImages] = useState<UploadedImage[]>(
+    item.images.map((imageUrl) => ({
+      file: null,
+      previewUrl: imageUrl,
+      isExisting: true,
+      isDeleted: false,
+    }))
+  ); // 이미지 상태 추가
+  const [tagInputValue, setTagInputValue] = useState<string>("");
 
+  // Form validity checker and value updater
   useEffect(() => {
-    if (item) {
-      setValues({
-        productName: item.name,
-        productIntro: item.description,
-        productPrice: String(item.price),
-        productTag: item.tags || [],
-        productImage: item.images,
-      });
-      const initialUploadedImages = item.images.map((imageUrl) => ({
-        file: null,
-        previewUrl: imageUrl,
-        isExisting: true,
-      }));
-      setUploadedImages(initialUploadedImages);
-    }
-  }, [item, setValues]);
-
-  const handleImagesChange = (
-    images: { file: File | null; previewUrl: string; isExisting: boolean }[]
-  ) => {
-    setUploadedImages(images);
-  };
-
-  useEffect(() => {
-    // 문자열인 경우에만 trim() 사용
     const isFormValid =
       Object.values(errors).every((error) => error === "") &&
-      typeof values.productName === "string" &&
       values.productName.trim() !== "" &&
-      typeof values.productIntro === "string" &&
       values.productIntro.trim() !== "" &&
-      typeof values.productPrice === "string" &&
       values.productPrice.trim() !== "" &&
-      (values.productTag as string[]).length > 0 &&
-      uploadedImages.length > 0;
+      tags.length > 0 &&
+      tags.length <= 5 &&
+      uploadedImages.some((img) => !img.isDeleted);
+
+    // Filter out deleted images for formValues update
+    const validImages = uploadedImages.filter((img) => !img.isDeleted);
 
     onFormChange(isFormValid);
-    onFormValuesChange({ ...values, uploadedImages });
-  }, [errors, values, uploadedImages, onFormChange, onFormValuesChange]);
+    onFormValuesChange({
+      ...values,
+      tags,
+      uploadedImages: validImages,
+    }); // 폼 값 및 이미지 데이터 전달
+  }, [errors, values, tags, uploadedImages, onFormChange, onFormValuesChange]);
 
+  // Tag addition handler (for pressing Enter)
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (
       e.key === "Enter" &&
       !isComposing &&
-      e.currentTarget.value.trim() &&
-      (values.productTag as string[]).length < 5 // 최대 태그 갯수는 5개
+      tagInputValue.trim() &&
+      tags.length < 5
     ) {
       e.preventDefault();
-      const newTag = e.currentTarget.value.trim();
-      if (!(values.productTag as string[]).includes(newTag)) {
-        setValues((prevValues) => ({
-          ...prevValues,
-          productTag: [...(prevValues.productTag as string[]), newTag],
-        }));
+      if (!tags.includes(tagInputValue.trim())) {
+        setTags([...tags, tagInputValue.trim()]);
       } else {
         alert("이미 존재하는 태그입니다.");
       }
-      e.currentTarget.value = ""; // 입력 필드 초기화
+      setTagInputValue(""); // 입력 필드 초기화
     }
   };
 
+  // Handle IME composition events for accurate tagging
   const handleComposition = (e: React.CompositionEvent<HTMLInputElement>) => {
     if (e.type === "compositionstart") {
       setIsComposing(true);
@@ -118,13 +116,14 @@ export default function EditForm({
     }
   };
 
+  // Tag removal handler
   const removeTag = (tagToRemove: string) => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      productTag: (prevValues.productTag as string[]).filter(
-        (tag) => tag !== tagToRemove
-      ),
-    }));
+    setTags(tags.filter((tag) => tag !== tagToRemove));
+  };
+
+  // Image change handler
+  const handleImagesChange = (images: UploadedImage[]) => {
+    setUploadedImages(images);
   };
 
   return (
@@ -145,7 +144,7 @@ export default function EditForm({
         id="productName"
         name="productName"
         placeholder="상품명을 입력해주세요"
-        value={values.productName as string}
+        value={values.productName}
         onChange={handleChange}
       />
       {errors.productName && (
@@ -162,7 +161,7 @@ export default function EditForm({
         id="productIntro"
         name="productIntro"
         placeholder="상품 소개를 입력해주세요"
-        value={values.productIntro as string}
+        value={values.productIntro}
         onChange={handleChange}
       ></textarea>
       {errors.productIntro && (
@@ -180,22 +179,24 @@ export default function EditForm({
         id="productPrice"
         name="productPrice"
         placeholder="판매 가격을 입력해주세요"
-        value={values.productPrice as string}
+        value={values.productPrice}
         onChange={handleChange}
       />
       {errors.productPrice && (
         <p className={styles.inputCheck}>{errors.productPrice}</p>
       )}
 
-      <label htmlFor="productTag" className={styles.labelText}>
+      <label htmlFor="tags" className={styles.labelText}>
         태그
       </label>
       <input
         type="text"
         className={`${styles.inputStyle}`}
-        id="productTag"
-        name="productTag"
+        id="tags"
+        name="tags"
         placeholder="태그를 입력해주세요"
+        value={tagInputValue}
+        onChange={(e) => setTagInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
         onCompositionStart={handleComposition}
         onCompositionUpdate={handleComposition}
@@ -203,7 +204,7 @@ export default function EditForm({
       />
 
       <div className={styles.tagsContainer}>
-        {(values.productTag as string[]).map((tag, index) => (
+        {tags.map((tag, index) => (
           <div key={index} className={styles.tag}>
             #{tag}
             <button

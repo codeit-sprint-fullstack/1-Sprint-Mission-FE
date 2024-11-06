@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./CreateForm.module.css";
-import { useValidateForm } from "@/hooks/useValidation";
+import { useProductValidation } from "@/hooks/useValidation";
 import ImageUpload from "./ImageUpload";
-import { FormValues, ValidationRules } from "@/types/Types";
+import { FormValues } from "@/types/Types";
 
-// CreateFormProps 타입 정의
 interface CreateFormProps {
   onFormChange: (isValid: boolean) => void;
   onFormValuesChange: (
@@ -17,24 +16,15 @@ function CreateForm({ onFormChange, onFormValuesChange }: CreateFormProps) {
     productName: "",
     productIntro: "",
     productPrice: "",
-    tags: [],
-    uploadedImages: [],
   };
 
-  const validations: ValidationRules = {
-    productName: { required: true, minLength: 1, maxLength: 10 },
-    productIntro: { required: true, minLength: 10, maxLength: 200 },
-    productPrice: { required: true, pattern: /^[0-9]+$/ },
-  };
-
-  const { values, errors, handleChange, setValues } = useValidateForm(
-    initialState,
-    validations
-  );
+  const { values, errors, handleChange, setValues } =
+    useProductValidation(initialState);
 
   const [tags, setTags] = useState<string[]>([]);
   const [isComposing, setIsComposing] = useState<boolean>(false);
   const [uploadedImages, setUploadedImages] = useState<{ file: File }[]>([]); // 이미지 상태 추가
+  const [tagInputValue, setTagInputValue] = useState<string>(""); // 태그 입력 상태 추가
 
   useEffect(() => {
     const isFormValid =
@@ -61,20 +51,24 @@ function CreateForm({ onFormChange, onFormValuesChange }: CreateFormProps) {
     setUploadedImages(images);
   };
 
+  const handleTagInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTagInputValue(e.target.value);
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (
       e.key === "Enter" &&
       !isComposing &&
-      e.currentTarget.value.trim() &&
+      tagInputValue.trim() &&
       tags.length < 5
     ) {
       e.preventDefault();
-      if (!tags.includes(e.currentTarget.value.trim())) {
-        setTags([...tags, e.currentTarget.value.trim()]);
+      if (!tags.includes(tagInputValue.trim())) {
+        setTags([...tags, tagInputValue.trim()]);
       } else {
         alert("이미 존재하는 태그입니다.");
       }
-      setValues((prevValues) => ({ ...prevValues, productTag: "" }));
+      setTagInputValue(""); // 입력 필드 초기화
     }
   };
 
@@ -158,6 +152,8 @@ function CreateForm({ onFormChange, onFormValuesChange }: CreateFormProps) {
         id="productTag"
         name="productTag"
         placeholder="태그를 입력해주세요"
+        value={tagInputValue}
+        onChange={handleTagInputChange}
         onKeyDown={handleKeyDown}
         onCompositionStart={handleComposition}
         onCompositionUpdate={handleComposition}

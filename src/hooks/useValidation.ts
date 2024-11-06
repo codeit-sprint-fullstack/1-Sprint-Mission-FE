@@ -1,31 +1,40 @@
 import { useState } from "react";
-import { FormValues, ValidationRules } from "@/types/Types";
 
-export function useValidateForm(
-  initialState: FormValues,
-  validations: ValidationRules
-) {
-  const [values, setValues] = useState<FormValues>(initialState);
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+interface ProductFormValues {
+  productName: string;
+  productIntro: string;
+  productPrice: string;
+}
 
-  const validate = (name: string, value: any): string => {
+interface ProductErrors {
+  productName?: string;
+  productIntro?: string;
+  productPrice?: string;
+}
+
+export function useProductValidation(initialState: ProductFormValues) {
+  const [values, setValues] = useState<ProductFormValues>(initialState);
+  const [errors, setErrors] = useState<ProductErrors>({});
+
+  const validate = (name: keyof ProductFormValues, value: string): string => {
     let error = "";
-    const rules = validations[name];
-
-    if (rules) {
-      if (
-        rules.required &&
-        (typeof value === "string" ? !value.trim() : value.length === 0)
-      ) {
-        error = "필수 항목입니다.";
-      } else if (typeof value === "string") {
-        if (rules.minLength && value.length < rules.minLength) {
-          error = `${rules.minLength}자 이상 입력해주세요`;
-        } else if (rules.maxLength && value.length > rules.maxLength) {
-          error = `${rules.maxLength}자 이하로 입력해주세요`;
-        } else if (rules.pattern && !rules.pattern.test(value)) {
-          error = "유효한 형식이 아닙니다.";
-        }
+    if (name === "productName") {
+      if (!value.trim()) {
+        error = "상품명을 입력해주세요.";
+      } else if (value.length < 1 || value.length > 10) {
+        error = "상품명은 1자 이상 10자 이하로 입력해주세요.";
+      }
+    } else if (name === "productIntro") {
+      if (!value.trim()) {
+        error = "상품 소개를 입력해주세요.";
+      } else if (value.length < 10 || value.length > 200) {
+        error = "상품 소개는 10자 이상 200자 이하로 입력해주세요.";
+      }
+    } else if (name === "productPrice") {
+      if (!value.trim()) {
+        error = "판매 가격을 입력해주세요.";
+      } else if (!/^[0-9]+$/.test(value)) {
+        error = "판매 가격은 숫자만 입력 가능합니다.";
       }
     }
 
@@ -38,31 +47,13 @@ export function useValidateForm(
   ) => {
     const { name, value } = e.target;
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
-    validate(name, value);
+    validate(name as keyof ProductFormValues, value);
   };
-
-  const handleSubmit =
-    (callback: () => void) => (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      let isValid = true;
-
-      for (const name in validations) {
-        const error = validate(name, values[name]);
-        if (error) {
-          isValid = false;
-        }
-      }
-
-      if (isValid) {
-        callback();
-      }
-    };
 
   return {
     values,
     errors,
     handleChange,
-    handleSubmit,
     setValues,
   };
 }

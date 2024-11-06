@@ -9,8 +9,6 @@ import {
   useMutation,
   useQueryClient,
   useInfiniteQuery,
-  UseMutationResult,
-  UseInfiniteQueryResult,
 } from "@tanstack/react-query";
 import { Comment } from "@/types/Types";
 
@@ -26,59 +24,64 @@ export default function ItemChat({ initialComments, id }: ItemChatProps) {
   const [currentEditId, setCurrentEditId] = useState<number | null>(null);
   const queryClient = useQueryClient();
 
-  const hasToastShownRef = useRef<boolean>(false);
-
   // useInfiniteQuery 사용
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isLoading,
-    isFetchingNextPage,
-  }: UseInfiniteQueryResult<{ list: Comment[]; nextCursor?: number | null }> =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
       queryKey: ["comments", id],
-      queryFn: async ({ pageParam = null }: { pageParam?: number | null }) =>
-        fetchComments(id, pageParam),
-      initialData: {
-        pages: [initialComments],
-        pageParams: [initialComments.nextCursor ?? null],
-      },
-      getNextPageParam: (lastPage: {
-        list: Comment[];
-        nextCursor?: number | null;
-      }) => lastPage?.nextCursor ?? null,
-      // 'initialPageParam'을 명시적으로 추가하여 초기 페이지 매개변수 정의
+      queryFn: ({ pageParam = null }) => fetchComments(id, pageParam),
+      getNextPageParam: (lastPage) => lastPage.nextCursor ?? null,
       initialPageParam: initialComments.nextCursor ?? null,
+      initialData: {
+        pages: [initialComments], // 첫 번째 페이지로 초기 데이터 설정
+        pageParams: [null], // 초기 페이지 파라미터 설정
+      },
     });
 
   useEffect(() => {
     setFormValid(input.trim().length > 0);
   }, [input]);
 
-  const addCommentMutation: UseMutationResult<
-    Comment,
-    Error,
-    { content: string }
-  > = useMutation({
-    mutationFn: (newComment) => addComment(id, newComment),
+  // 스크롤 이벤트를 통한 다음 페이지 로드 로직
+  const loadMoreComments = useCallback(async () => {
+    if (isFetchingNextPage) return; // 이미 다음 페이지를 가져오는 중이면 중복 호출 방지
+    if (!hasNextPage) {
+      return; // 더 이상 가져올 페이지가 없으면 종료
+    }
+    try {
+      await fetchNextPage();
+    } catch (error) {
+      console.error("Error loading more comments:", error);
+      toast.error("댓글을 불러오는 중 오류가 발생했습니다.");
+    }
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+
+  // useInfiniteScroll 훅 사용
+  useInfiniteScroll({
+    loadMore: loadMoreComments,
+    hasMore: hasNextPage,
+    isLoading: isFetchingNextPage,
+  });
+
+  const addCommentMutation = useMutation({
+    mutationFn: (newComment: { content: string }) => addComment(id, newComment),
     onSuccess: (addedComment) => {
       queryClient.setQueryData<{
         pages: { list: Comment[]; nextCursor?: number | null }[];
-        pageParams: (number | null)[];
+        pageParams: (number | null | undefined)[];
       }>(["comments", id], (oldData) => {
         if (!oldData) {
           return {
             pages: [
               { list: [addedComment], nextCursor: initialComments.nextCursor },
             ],
-            pageParams: [initialComments.nextCursor ?? null],
+            pageParams: [undefined],
           };
         }
 
         return {
           ...oldData,
           pages: [
+            // 최신 댓글을 첫 페이지에 추가하고, 나머지 페이지는 그대로 유지합니다.
             {
               list: [addedComment, ...oldData.pages[0].list],
               nextCursor: oldData.pages[0].nextCursor,
@@ -95,17 +98,26 @@ export default function ItemChat({ initialComments, id }: ItemChatProps) {
     },
   });
 
-  const editCommentMutation: UseMutationResult<
-    Comment,
-    Error,
-    { content: string }
-  > = useMutation({
-    mutationFn: (updatedComment) =>
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formValid) return;
+
+    const newComment = { content: input };
+
+    if (isEditing) {
+      editCommentMutation.mutate(newComment);
+    } else {
+      addCommentMutation.mutate(newComment);
+    }
+  };
+
+  const editCommentMutation = useMutation({
+    mutationFn: (updatedComment: { content: string }) =>
       editComment(currentEditId as number, updatedComment),
     onSuccess: (editedComment) => {
       queryClient.setQueryData<{
         pages: { list: Comment[]; nextCursor?: number | null }[];
-        pageParams: (number | null)[];
+        pageParams: (number | null | undefined)[];
       }>(["comments", id], (oldData) => {
         if (!oldData) return;
 
@@ -127,44 +139,6 @@ export default function ItemChat({ initialComments, id }: ItemChatProps) {
     onError: (error) => {
       console.error("Error editing comment:", error);
     },
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formValid) return;
-
-    const newComment = { content: input };
-
-    if (isEditing) {
-      editCommentMutation.mutate(newComment);
-    } else {
-      addCommentMutation.mutate(newComment);
-    }
-  };
-
-  const loadMoreComments = useCallback(async () => {
-    if (!hasNextPage) {
-      if (!hasToastShownRef.current) {
-        toast.info("모든 댓글을 불러왔습니다.");
-        hasToastShownRef.current = true;
-      }
-      return;
-    }
-
-    if (isLoading || isFetchingNextPage) return;
-
-    try {
-      await fetchNextPage();
-    } catch (error) {
-      console.error("Error loading more comments:", error);
-      toast.error("댓글을 불러오는 중 오류가 발생했습니다.");
-    }
-  }, [fetchNextPage, hasNextPage, isLoading, isFetchingNextPage]);
-
-  useInfiniteScroll({
-    loadMore: loadMoreComments,
-    hasMore: hasNextPage,
-    isLoading,
   });
 
   const handleEdit = (comment: Comment) => {
@@ -193,7 +167,7 @@ export default function ItemChat({ initialComments, id }: ItemChatProps) {
         </button>
       </div>
       <Chat
-        comments={data?.list?.flatMap((page) => page) || []}
+        comments={data?.pages?.flatMap((page) => page.list) || []}
         onEdit={handleEdit}
       />
     </>

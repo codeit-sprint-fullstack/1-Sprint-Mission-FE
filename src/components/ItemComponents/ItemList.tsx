@@ -31,8 +31,9 @@ export default function ItemList({
   onOptionChange,
 }: ItemListProps) {
   const deviceType = useDeviceType();
-  const productArray = Object.values(products);
-  console.log(typeof productArray);
+  const productArrays = Object.values(products);
+  const productArray = productArrays[0];
+  const acc = Object.values(productArray);
 
   return (
     <div className={styles.sell}>
@@ -59,25 +60,28 @@ export default function ItemList({
         {products.length === 0 ? (
           <p>No products available</p>
         ) : (
-          products.map((item) => {
-            const { id, name, price, favoriteCount, images } = item ?? {};
+          acc.map((item: any) => {
             return (
-              <div key={id} className={styles.sellProductItem}>
-                <Link href={ROUTES.ITEMS_DETAIL(id)}>
+              <div key={item.id} className={styles.sellProductItem}>
+                <Link href={ROUTES.ITEMS_DETAIL(item.id)}>
                   <Image
                     className={styles.sellProduct}
-                    src={images && images.length > 0 ? images[0] : img_default}
-                    alt={name}
+                    src={
+                      item.images && item.images.length > 0
+                        ? item.images[0]
+                        : img_default
+                    }
+                    alt={item.name}
                     width={221}
                     height={221}
                     priority
                   />
-                  <p className={styles.itemName}>{name}</p>
+                  <p className={styles.itemName}>{item.name}</p>
                   <p className={styles.itemPrice}>{`${formatPrice(
-                    price
+                    item.price
                   )} 원`}</p>
                   <p className={styles.itemFavoriteCnt}>
-                    ♡ {favoriteCount ?? "0"}
+                    ♡ {item.favoriteCount ?? "0"}
                   </p>
                 </Link>
               </div>

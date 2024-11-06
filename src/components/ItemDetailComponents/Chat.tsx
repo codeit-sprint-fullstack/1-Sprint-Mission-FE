@@ -17,7 +17,6 @@ interface ChatProps {
 }
 
 export default function Chat({ comments, onEdit }: ChatProps) {
-  console.log(comments);
   const [isOpen, setIsOpen] = useState<number | null>(null);
   const queryClient = useQueryClient();
 

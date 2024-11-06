@@ -26,7 +26,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   // 이미지 변경 시 부모 컴포넌트에 변경 사항 전달하는 함수
   const handleImagesChange = useCallback(
     (updatedImages: UploadedImage[]) => {
-      onImagesChange(updatedImages);
+      onImagesChange(updatedImages.filter((img) => !img.isDeleted)); // 삭제되지 않은 이미지만 부모 컴포넌트로 전달
     },
     [onImagesChange]
   );
@@ -68,13 +68,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 
   // 이미지 삭제 처리
   const handleImageDelete = (index: number) => {
-    const updatedImages = images.map((image, i) => {
-      if (i === index) {
-        return { ...image, isDeleted: true };
-      }
-      return image;
-    });
-
+    const updatedImages = images.filter((_, i) => i !== index); // 삭제한 이미지를 리스트에서 제외
     setImages(updatedImages);
     handleImagesChange(updatedImages);
   };
@@ -97,26 +91,24 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
           </label>
         </div>
 
-        {images
-          .filter((image) => !image.isDeleted)
-          .map((image, index) => (
-            <div key={index} className={styles.imageItem}>
-              <Image
-                src={image.previewUrl}
-                alt={`미리보기 ${index + 1}`}
-                className={styles.imagePreview}
-                width={150}
-                height={150}
-              />
-              <button
-                type="button"
-                className={styles.deleteButton}
-                onClick={() => handleImageDelete(index)}
-              >
-                &times;
-              </button>
-            </div>
-          ))}
+        {images.map((image, index) => (
+          <div key={index} className={styles.imageItem}>
+            <Image
+              src={image.previewUrl}
+              alt={`미리보기 ${index + 1}`}
+              className={styles.imagePreview}
+              width={150}
+              height={150}
+            />
+            <button
+              type="button"
+              className={styles.deleteButton}
+              onClick={() => handleImageDelete(index)}
+            >
+              &times;
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );

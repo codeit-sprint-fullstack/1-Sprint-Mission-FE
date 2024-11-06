@@ -4,17 +4,7 @@ import productImg from "@/images/product.png";
 import profile from "@/images/ic_profile.png";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
-
-interface Article {
-  id: number;
-  title: string;
-  images: string[];
-  writer: {
-    nickname: string;
-  };
-  createdAt: string;
-  likeCount: number;
-}
+import { Article } from "@/types/Types";
 
 interface BoardListItemsProps {
   articles: Article[];

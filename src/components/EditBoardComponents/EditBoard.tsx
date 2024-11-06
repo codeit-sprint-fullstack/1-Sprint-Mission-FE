@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ImageUpload from "./ImageUpload";
 import styles from "./EditBoard.module.css";
-import { useValidateForm } from "@/hooks/useValidation";
+import { useBoardValidation } from "@/hooks/useBoardValidation";
 
 // EditBoardProps 타입 정의
 interface EditBoardProps {
@@ -41,17 +41,9 @@ export default function EditBoard({
     content: formData.content || "",
   };
 
-  // 폼 유효성 검사 규칙 정의
-  const boardValidations = {
-    title: { required: true, minLength: 3 },
-    content: { required: true, minLength: 10 },
-  };
-
-  // useValidateForm 훅 사용
-  const { values, errors, handleChange, setValues } = useValidateForm(
-    initialBoardState,
-    boardValidations
-  );
+  // useBoardValidation 훅 사용
+  const { values, errors, handleChange, setValues } =
+    useBoardValidation(initialBoardState);
 
   // 폼 유효성 확인 및 상태 설정
   useEffect(() => {
@@ -60,7 +52,7 @@ export default function EditBoard({
       values.title.trim() !== "" &&
       typeof values.content === "string" &&
       values.content.trim() !== "" &&
-      Object.keys(errors).every((key) => !errors[key]) &&
+      Object.values(errors).every((error) => !error) &&
       uploadedImages.some((img) => !img.isDeleted);
 
     setFormValid(isFormValid);
@@ -84,8 +76,9 @@ export default function EditBoard({
 
   // 이미지 변경 핸들러 정의
   const handleImagesChange = (images: UploadedImage[]) => {
-    setUploadedImages(images);
-    setFormData((prev) => ({ ...prev, images }));
+    const filteredImages = images.filter((img) => !img.isDeleted);
+    setUploadedImages(filteredImages);
+    setFormData((prev) => ({ ...prev, images: filteredImages }));
   };
 
   // 입력 필드 변경 핸들러 정의

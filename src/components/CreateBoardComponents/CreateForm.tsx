@@ -1,58 +1,33 @@
 import styles from "./CreateForm.module.css";
-import { useValidateForm } from "@/hooks/useValidation";
 import { createArticle } from "@/utils/articleApi";
 import { useRouter } from "next/router";
 import { ROUTES } from "@/utils/rotues";
 import { useMutation } from "@tanstack/react-query";
 import ImageUpload from "./ImageUpload";
 import { useState } from "react";
+import { useBoardValidation } from "@/hooks/useBoardValidation";
 
-// CreateForm 컴포넌트 정의
+interface FormValues {
+  title: string;
+  content: string;
+  images: string[];
+}
+
 export default function CreateForm() {
-  // Form 상태 초기화 및 유효성 검사 규칙 정의
-  interface FormValues {
-    [key: string]: string | string[]; // 인덱스 시그니처 추가 (필수)
-    title: string;
-    content: string;
-  }
-
   const initialState: FormValues = {
     title: "",
     content: "",
+    images: [],
   };
 
-  interface Validations {
-    [key: string]: {
-      required?: boolean;
-      minLength?: number;
-      maxLength?: number;
-    };
-  }
+  // useBoardValidation 훅 사용
+  const { values, errors, handleChange, setValues } =
+    useBoardValidation(initialState);
 
-  const validations: Validations = {
-    title: {
-      required: true,
-      minLength: 3,
-      maxLength: 10,
-    },
-    content: {
-      required: true,
-      minLength: 10,
-    },
-  };
-
-  // 이미지 업로드 상태 정의
   const [uploadedImages, setUploadedImages] = useState<{ file: File }[]>([]);
-
-  // 폼 유효성 검사 관련 훅 사용
-  const { values, errors, handleChange, handleSubmit } = useValidateForm(
-    initialState,
-    validations
-  );
 
   const router = useRouter();
 
-  // 게시글 생성 Mutation 설정
   const mutation = useMutation({
     mutationFn: (formData: FormData) => createArticle(formData),
     onSuccess: (newArticle: { id: number }) => {
@@ -65,33 +40,24 @@ export default function CreateForm() {
     },
   });
 
-  // 이미지 변경 핸들러 정의
   const handleImagesChange = (images: { file: File }[]) => {
     setUploadedImages(images);
   };
 
-  // 폼 제출 핸들러 정의
-  const onSubmit = () => {
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); // 폼 기본 동작 차단
+
+    // 폼 데이터를 생성하여 서버에 제출
     const formData = new FormData();
     Object.entries(values).forEach(([key, value]) => {
-      if (typeof value === "string") {
-        formData.append(key, value);
-      } else if (Array.isArray(value)) {
-        // 배열인 경우, 각 요소를 개별적으로 추가
-        value.forEach((item) => {
-          formData.append(`${key}[]`, item);
-        });
-      }
+      formData.append(key, value as string);
     });
-
     uploadedImages.forEach((image) => {
       formData.append("images", image.file);
     });
-
     mutation.mutate(formData);
   };
 
-  // 폼 유효성 검사
   const isFormValid =
     typeof values.title === "string" &&
     values.title.trim() !== "" &&
@@ -107,12 +73,12 @@ export default function CreateForm() {
           type="button"
           className={styles.addBtn}
           disabled={!isFormValid}
-          onClick={() => handleSubmit(onSubmit)}
+          onClick={onSubmit}
         >
           등록
         </button>
       </div>
-      <form id="createForm" className={styles.createForm}>
+      <form id="createForm" className={styles.createForm} onSubmit={onSubmit}>
         <div className={styles.inputContainer}>
           <label className={styles.formLabel} htmlFor="title">
             *제목

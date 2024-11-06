@@ -40,18 +40,25 @@ export default function EditBtn({ item }: EditBtnProps) {
     try {
       const formData = new FormData();
 
+      // 이미지 처리 (기존 이미지와 신규 이미지 구분)
       (formValues.uploadedImages || []).forEach((image: any) => {
         if (!image.isExisting) {
+          // 새로 추가된 이미지
           formData.append("images", image.file);
-        } else {
+        } else if (!image.isDeleted) {
+          // 기존 이미지 중 삭제되지 않은 것만 전송
           formData.append("existingImages", image.previewUrl);
         }
       });
 
-      (formValues.tags || []).forEach((tag: string) => {
-        formData.append("tags[]", tag);
-      });
+      // 태그 배열 처리
+      if (Array.isArray(formValues.tags)) {
+        formValues.tags.forEach((tag: string) => {
+          formData.append("tags", tag);
+        });
+      }
 
+      // 기타 필드 처리
       formData.append("name", formValues.productName);
       formData.append("description", formValues.productIntro);
       formData.append("price", formValues.productPrice);

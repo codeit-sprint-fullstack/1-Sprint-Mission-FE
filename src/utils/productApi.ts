@@ -31,7 +31,7 @@ export async function fetchProducts({
 export async function createProduct(
   formData: FormData
 ): Promise<{ product: Product }> {
-  const response = await apiClient.post("/products", formData, {
+  const response = await apiClient.post(API_ENDPOINTS.PRODUCTS.BASE, formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
   return response.data;

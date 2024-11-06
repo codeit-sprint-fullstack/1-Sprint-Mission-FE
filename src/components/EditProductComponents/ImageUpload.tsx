@@ -2,29 +2,31 @@ import React, { useState, useRef, useCallback, useEffect } from "react";
 import styles from "./ImageUpload.module.css";
 import Image from "next/image";
 
-// 업로드 이미지 타입 정의
+// UploadedImage 타입 정의
 interface UploadedImage {
   file: File | null;
   previewUrl: string;
   isExisting: boolean;
+  isDeleted: boolean;
 }
 
+// ImageUploadProps 타입 정의
 interface ImageUploadProps {
   onImagesChange: (images: UploadedImage[]) => void;
   initialImages?: UploadedImage[];
 }
 
-const ImageUpload = ({
+const ImageUpload: React.FC<ImageUploadProps> = ({
   onImagesChange,
   initialImages = [],
-}: ImageUploadProps) => {
+}) => {
   const [images, setImages] = useState<UploadedImage[]>([]);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   // 이미지 변경 시 부모 컴포넌트에 변경 사항 전달하는 함수
   const handleImagesChange = useCallback(
     (updatedImages: UploadedImage[]) => {
-      onImagesChange(updatedImages);
+      onImagesChange(updatedImages.filter((img) => !img.isDeleted)); // 삭제되지 않은 이미지만 부모 컴포넌트로 전달
     },
     [onImagesChange]
   );
@@ -36,6 +38,7 @@ const ImageUpload = ({
         file: null,
         previewUrl: image.previewUrl,
         isExisting: true,
+        isDeleted: false,
       }));
 
       setImages(formattedImages);
@@ -55,6 +58,7 @@ const ImageUpload = ({
       file,
       previewUrl: URL.createObjectURL(file),
       isExisting: false,
+      isDeleted: false,
     }));
 
     const updatedImages = [...images, ...newImages].slice(0, 3);
@@ -64,7 +68,7 @@ const ImageUpload = ({
 
   // 이미지 삭제 처리
   const handleImageDelete = (index: number) => {
-    const updatedImages = images.filter((_, i) => i !== index);
+    const updatedImages = images.filter((_, i) => i !== index); // 삭제한 이미지를 리스트에서 제외
     setImages(updatedImages);
     handleImagesChange(updatedImages);
   };

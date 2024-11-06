@@ -97,20 +97,7 @@ export interface ModalProps {
 }
 
 export interface FormValues {
-  [key: string]: string | string[] | { file: File }[] | undefined;
   productName: string;
   productIntro: string;
   productPrice: string;
-  tags: string[];
-  uploadedImages: { file: File }[];
-}
-
-// 검증 규칙 타입 정의
-export interface ValidationRules {
-  [key: string]: {
-    required?: boolean;
-    minLength?: number;
-    maxLength?: number;
-    pattern?: RegExp;
-  };
 }
