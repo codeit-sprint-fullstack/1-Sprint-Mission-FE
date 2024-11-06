@@ -1,6 +1,5 @@
-import axios from "axios";
+import axios, { InternalAxiosRequestConfig, AxiosError } from "axios";
 
-// Axios 인스턴스 생성
 const axiosInstance = axios.create({
   baseURL: "https://baomarket.onrender.com/api",
   headers: {
@@ -10,18 +9,19 @@ const axiosInstance = axios.create({
 
 // 요청 전에 Authorization 헤더를 추가하는 interceptor
 axiosInstance.interceptors.request.use(
-  (config) => {
+  (config: InternalAxiosRequestConfig) => {
     if (typeof window !== "undefined") { // 클라이언트에서만 localStorage 접근
       const accessToken = localStorage.getItem("accessToken");
-      if (accessToken) {
+      if (accessToken && config.headers) {
         config.headers.Authorization = `Bearer ${accessToken}`;
       }
     }
     return config;
   },
-  (error) => {
+  (error: AxiosError) => {
     return Promise.reject(error);
   }
 );
 
 export default axiosInstance;
+

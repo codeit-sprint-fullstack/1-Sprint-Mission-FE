@@ -5,23 +5,28 @@ const baseUrl =
     ? `${process.env.NEXT_PUBLIC_API_URL}/api`
     : `${process.env.NEXT_PUBLIC_API_URL_DEV}/api`;
 
+interface AuthResponse {
+  accessToken: string;
+  nickname: string;
+}
+
 // 회원가입 요청
-export const signUp = async (email, nickname, password, passwordConfirmation) => {
+export const signUp = async (
+  email: string,
+  nickname: string,
+  password: string,
+  passwordConfirmation: string
+): Promise<AuthResponse> => {
   try {
-    const response = await axios({
-      method: "post",
-      url: `${baseUrl}/auth/signUp`,
-      data: {
-        email,
-        nickname,
-        password,
-        passwordConfirmation,
-      },
+    const response = await axios.post<AuthResponse>(`${baseUrl}/auth/signUp`, {
+      email,
+      nickname,
+      password,
+      passwordConfirmation,
     });
 
     console.log("회원가입 응답:", response.data);
 
-    // 회원가입 후 accessToken 및 nickname 저장
     if (response.data.accessToken && response.data.nickname) {
       localStorage.setItem("accessToken", response.data.accessToken);
       localStorage.setItem("nickname", response.data.nickname);
@@ -29,28 +34,24 @@ export const signUp = async (email, nickname, password, passwordConfirmation) =>
     } else {
       console.error("회원가입 응답에 nickname이 없습니다.");
     }
+
     return response.data;
-  } catch (error) {
-    console.error("회원가입 중 오류 발생:", error);
+  } catch (error: any) {
+    console.error("회원가입 중 오류 발생:", error.response ? error.response.data : error.message);
     throw error;
   }
 };
 
 // 로그인 요청
-export const signIn = async (email, password) => {
+export const signIn = async (email: string, password: string): Promise<AuthResponse> => {
   try {
-    const response = await axios({
-      method: "post",
-      url: `${baseUrl}/auth/signIn`,
-      data: {
-        email,
-        password,
-      },
+    const response = await axios.post<AuthResponse>(`${baseUrl}/auth/signIn`, {
+      email,
+      password,
     });
 
     console.log("로그인 응답:", response.data);
 
-    // 로그인 후 accessToken 및 nickname 저장
     if (response.data.accessToken && response.data.nickname) {
       localStorage.setItem("accessToken", response.data.accessToken);
       localStorage.setItem("nickname", response.data.nickname);
@@ -63,20 +64,21 @@ export const signIn = async (email, password) => {
     }
 
     return response.data;
-  } catch (error) {
-    console.error("로그인 중 오류 발생:", error);
+  } catch (error: any) {
+    console.error("로그인 중 오류 발생:", error.response ? error.response.data : error.message);
     throw error;
   }
 };
 
 // 로그아웃
-export const logOut = () => {
+export const logOut = (): void => {
   localStorage.removeItem("accessToken");
   localStorage.removeItem("nickname");
   console.log("로그아웃 완료, accessToken 및 nickname 제거");
 };
 
 // accessToken 가져오기
-export const getAccessToken = () => {
+export const getAccessToken = (): string | null => {
   return localStorage.getItem("accessToken");
 };
+
