@@ -31,7 +31,7 @@ export async function login(item: {
   return res.data;
 }
 
-export async function refreshToken(): Promise<User> {
-  const res = await instance.get<User>("/users/refresh-token");
-  return res.data;
+export async function refreshToken() {
+  const res = await instance.get("/users/refresh-token");
+  return res;
 }

@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as api from "./auth";
 import { GetServerSidePropsContext } from "next";
+import { setCookies } from "./cookies";
 
 let context: GetServerSidePropsContext = null;
 let accessToken: string = null;
@@ -15,6 +16,23 @@ const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   withCredentials: true,
 });
+
+function parseCookies(cookies: string) {
+  const parsedCookies = {};
+
+  // 쿠키를 세미콜론으로 분리
+  const cookieArray = cookies.split("; ");
+
+  cookieArray.forEach((cookie) => {
+    const [name, value] = cookie.split("=");
+    // 쿠키 이름을 키로 하고 값을 저장
+    if (name && value) {
+      parsedCookies[name] = decodeURIComponent(value);
+    }
+  });
+
+  return parsedCookies;
+}
 
 //리퀘스트 요청전 헤더에 로컬스토리지의 저장됱 토큰을 기입한다.
 instance.interceptors.request.use(
@@ -32,10 +50,10 @@ instance.interceptors.request.use(
     // );
     // console.log("리퀘스트 패스 " + config.url);
     if (accessToken) {
-      config.headers["Authorization"] = accessToken;
+      config.headers.cookie = "access-token=" + accessToken;
     }
-    if (refreshToken) {
-      config.headers["refreshToken"] = refreshToken;
+    if (refreshToken && !accessToken) {
+      config.headers.cookie = "refresh-token=" + refreshToken;
     }
     return config;
   },
@@ -48,14 +66,28 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (res) => res,
   async (error) => {
-    console.log(error.message);
     const originalRequest = error.config;
-    const response = error.response.status; // 가로 챈 리스폰스
-    if (response === 401 && !originalRequest._retry) {
-      await api.refreshToken();
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      !originalRequest._retry
+    ) {
       originalRequest._retry = true;
-      return instance(originalRequest);
+
+      // 여기에서 리프레시 토큰 API 호출
+      try {
+        const data = await api.refreshToken(); // 리프레시 토큰 함수 호출
+        const parsedCookies = parseCookies(
+          data.headers["set-cookie"].join("; ")
+        );
+        accessToken = parsedCookies["access-token"];
+        setCookies(data.headers["set-cookie"]);
+        return instance(originalRequest); // 원래 요청 다시 시도
+      } catch (refreshError) {
+        return Promise.reject(refreshError);
+      }
     }
+
     return Promise.reject(error);
   }
 );

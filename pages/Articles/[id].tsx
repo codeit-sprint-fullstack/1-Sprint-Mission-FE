@@ -29,6 +29,7 @@ import { setContext } from "../api/httpClient";
 import { GetServerSideProps } from "next";
 import { Entity } from "@/utils/interface/defaultEntity";
 import { User } from "@/utils/interface/User";
+import { getCookies } from "@/pages/api/cookies";
 
 interface Article extends Entity {
   owner: User;
@@ -39,13 +40,6 @@ interface Article extends Entity {
   image: string;
   favoriteCount: number;
   isFavorite: boolean;
-}
-
-interface ArticleValues {
-  title: string;
-  content: string;
-  likeCount?: number;
-  image: string;
 }
 
 interface Params {
@@ -70,19 +64,21 @@ interface Props {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  setContext(context);
+  setContext(context); //context로 전달받은 req, res를 httpClient에 전달
   const { id } = context.query as { id: string };
 
   let article: Article = null;
   let comments: ResponseData = null;
   try {
     const data = await articleApi.getArticle(id);
+    const cookies = getCookies(); //httpClient에서 세팅한 cookies를 가져옴
+    context.res.setHeader("Set-Cookie", cookies); //context res 헤더로 컴포넌트(브라우저) 전달/저장
     article = data;
   } catch (error) {
     console.log(error);
     return {
       redirect: {
-        destination: "/Login", // 로그인 페이지로 리다이렉트
+        destination: "/Login", //인증이 필요한 API 호출이 실패할 경우 로그인 페이지로 리다이렉트
         permanent: false, // 영구적인 리다이렉트가 아닌 경우
       },
     };

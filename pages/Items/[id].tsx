@@ -26,6 +26,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { setContext } from "../api/httpClient";
+import { getCookies } from "@/pages/api/cookies";
 import { GetServerSideProps } from "next";
 import Comment from "@/components/Comment";
 import { User } from "@/utils/interface/User";
@@ -74,8 +75,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   let comments: ResponseData = null;
 
   try {
-    const productData = await productsApi.getProduct(id);
-    product = productData;
+    const data = await productsApi.getProduct(id);
+    const cookies = getCookies(); //httpClient에서 세팅한 cookies를 가져옴
+    context.res.setHeader("Set-Cookie", cookies); //context res 헤더로 컴포넌트(브라우저) 전달/저장
+    product = data;
   } catch (error) {
     console.log(error);
     return {
@@ -90,7 +93,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const commentData = await commentApi.getProductComments(id);
     comments = commentData;
   } catch (error) {
-    // console.log(error);
+    console.log(error);
   }
 
   return {
