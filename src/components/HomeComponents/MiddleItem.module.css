@@ -1,0 +1,148 @@
+.MiddleContainer {
+  display: grid;
+  grid-template-columns: 1fr 988px 1fr;
+  align-items: center;
+  justify-items: center;
+  color: #ffffff;
+}
+
+.MiddleItemContainer {
+  grid-column: 2;
+
+  .Item {
+    margin-top: 138px;
+    margin-bottom: 138px;
+    display: flex;
+    background-color: #fcfcfc;
+    height: 444px;
+    flex-direction: row;
+  }
+
+  /* 두 번째 요소에 대해서만 배치 변경 */
+  .Item:nth-child(2) {
+    flex-direction: row-reverse;
+    .MiddleItemFont:nth-child(2) {
+      text-align: right;
+      margin-right: 64px;
+      margin-left: auto;
+    }
+  }
+
+  .MiddleItemFont {
+    margin-left: 64px;
+    margin-top: 103px;
+  }
+
+  .ItemCategoryFont {
+    font-weight: 700;
+    font-size: 18px;
+    color: #3692ff;
+    margin-bottom: 12px;
+  }
+
+  .ItemTitleFont {
+    font-weight: 700;
+    font-size: 40px;
+    color: #374151;
+    white-space: pre-wrap;
+    margin-bottom: 24px;
+  }
+
+  .ItemContentFont {
+    font-weight: 500;
+    font-size: 24px;
+    color: #374151;
+  }
+}
+
+@media (max-width: 1199px) {
+  .MiddleContainer {
+    grid-template-columns: 1fr 696px 1fr;
+  }
+  .MiddleItemContainer {
+    .Item {
+      margin-top: 24px;
+      margin-bottom: 52px;
+      height: 708px;
+      flex-direction: column;
+      .ItemImg {
+        width: 696px;
+        height: 524px;
+      }
+    }
+
+    /* 두 번째 요소에 대해서만 배치 변경 */
+    .Item:nth-child(2) {
+      flex-direction: column;
+      .MiddleItemFont:nth-child(2) {
+        text-align: right;
+        margin-right: 5px;
+        margin-left: auto;
+      }
+    }
+
+    .MiddleItemFont {
+      margin-left: 0;
+      margin-top: 24px;
+    }
+
+    .ItemTitleFont {
+      white-space: pre-wrap;
+      .ItemTitleNewLine {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 743px) {
+  .MiddleContainer {
+    grid-template-columns: 1fr;
+  }
+  .MiddleItemContainer {
+    grid-column: 1;
+    .Item {
+      margin-top: 24px;
+      margin-bottom: 52px;
+      height: auto;
+      flex-direction: column;
+      .ItemImg {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    /* 두 번째 요소에 대해서만 배치 변경 */
+    .Item:nth-child(2) {
+      flex-direction: column;
+      .MiddleItemFont:nth-child(2) {
+        text-align: right;
+        margin-right: 5px;
+        margin-left: auto;
+      }
+    }
+
+    .MiddleItemFont {
+      margin-left: 0;
+      margin-top: 24px;
+    }
+
+    .ItemCategoryFont {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .ItemTitleFont {
+      font-weight: 700;
+      font-size: 24px;
+      white-space: pre-wrap;
+      margin-bottom: 16px;
+      .ItemTitleNewLine {
+        display: none;
+      }
+    }
+    .ItemContentFont {
+      font-size: 18px;
+    }
+  }
+}
