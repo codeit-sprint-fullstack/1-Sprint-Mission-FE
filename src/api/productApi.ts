@@ -1,16 +1,28 @@
 import axiosInstance from "./axiosInstance";
 
-interface ProductData {
-  title: string;
+export interface ProductData {
+  id: number;
+  name: string;
   description: string;
   price: number;
   image?: string;
-}
-
-interface ProductResponse extends ProductData {
-  id: number;
+  likes: number;
+  tags?: string[];
+  userId?: number;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface ProductResponse extends ProductData {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image?: string;
+  createdAt: string;
+  updatedAt: string;
+  likes: number;
+  
 }
 
 // 상품 등록

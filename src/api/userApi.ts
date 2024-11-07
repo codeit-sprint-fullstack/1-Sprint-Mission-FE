@@ -15,7 +15,7 @@ interface UpdatePasswordData {
 
 interface ProductData {
   id: number;
-  title: string;
+  name: string;
   description: string;
   price: number;
   image?: string;

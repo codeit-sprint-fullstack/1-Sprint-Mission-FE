@@ -1,16 +1,21 @@
 import axiosInstance from "./axiosInstance";
 
-interface CommentData {
+export interface CommentData {
   id: number;
   content: string;
   createdAt: string;
   updatedAt: string;
 }
 
-interface CommentResponse extends CommentData {
+interface User {
+  nickname: string;
+}
+
+export interface CommentResponse extends CommentData {
   userId: number;
   articleId?: number;
   productId?: number;
+  user?: User;
 }
 
 // 상품에 댓글 추가

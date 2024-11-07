@@ -4,6 +4,7 @@ interface ArticleData {
   title: string;
   content: string;
   image?: string;
+  createdAt?: string;
 }
 
 interface ArticleResponse {
