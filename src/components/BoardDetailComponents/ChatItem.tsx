@@ -26,6 +26,7 @@ export default function ChatItem({ comments, onEdit }: ChatItemProps) {
     deleteCommentMutation.mutate(id, {
       onSuccess: () => {
         setOpenDropdownId(null);
+        window.location.reload();
       },
     });
   };
