@@ -1,4 +1,4 @@
-export const formatDate = (dateString) => {
+export const formatDate = (dateString?: string): string => {
   if (!dateString) return new Date().toLocaleString();
 
   return new Date(dateString).toLocaleString(undefined, {
@@ -10,4 +10,3 @@ export const formatDate = (dateString) => {
     second: "numeric",
   });
 };
-

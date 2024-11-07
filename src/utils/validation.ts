@@ -1,4 +1,4 @@
-export const validateEmail = (email) => {
+export const validateEmail = (email: string): string => {
   if (!email) {
     return "이메일을 입력해주세요";
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -7,7 +7,7 @@ export const validateEmail = (email) => {
   return "";
 };
 
-export const validatePassword = (password) => {
+export const validatePassword = (password: string): string => {
   if (!password) {
     return "비밀번호를 입력해주세요";
   } else if (password.length < 8) {
@@ -16,7 +16,7 @@ export const validatePassword = (password) => {
   return "";
 };
 
-export const validateConfirmPassword = (password, confirmPassword) => {
+export const validateConfirmPassword = (password: string, confirmPassword: string): string => {
   if (!confirmPassword) {
     return "비밀번호가 일치하지 않습니다";
   } else if (password !== confirmPassword) {
@@ -25,10 +25,9 @@ export const validateConfirmPassword = (password, confirmPassword) => {
   return "";
 };
 
-export const validateNickname = (nickname) => {
+export const validateNickname = (nickname: string): string => {
   if (!nickname) {
     return "닉네임을 입력해주세요";
   }
   return "";
 };
-
