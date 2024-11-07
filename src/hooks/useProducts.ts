@@ -97,7 +97,10 @@ export const useProducts = (
       newItemsPerPage = 10;
     }
 
-    setItemsPerPage(newItemsPerPage);
+    if (newItemsPerPage !== itemsPerPage) {
+      setItemsPerPage(newItemsPerPage);
+      setCurrentPage(1); // 화면 크기가 바뀌면 페이지를 1로 설정
+    }
   };
 
   // 쓰로틀링을 사용하여 리사이즈 이벤트를 제어합니다.
@@ -111,7 +114,7 @@ export const useProducts = (
     return () => {
       window.removeEventListener("resize", throttledUpdateItemsPerPage);
     };
-  }, []);
+  }, [throttledUpdateItemsPerPage]);
 
   return {
     products: data?.list || [],

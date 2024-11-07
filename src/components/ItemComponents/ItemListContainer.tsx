@@ -17,10 +17,8 @@ export default function ItemListContainer({
 }: ItemListContainerProps) {
   const [keyword, setKeyword] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("recent");
-
   const {
     products,
-    totalCount,
     itemsPerPage,
     currentPage,
     handlePageChange,
@@ -64,7 +62,7 @@ export default function ItemListContainer({
         />
       </div>
       <Pagination
-        totalCount={totalCount}
+        totalCount={initialTotalCount}
         itemsPerPage={itemsPerPage}
         currentPage={currentPage}
         onPageChange={handlePageChange}
