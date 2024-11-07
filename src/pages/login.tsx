@@ -1,26 +1,25 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/login.module.css";
 import { signIn } from "../api/authApi";
 import SocialLogin from "../components/SocialLogin";
 
-const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+const LoginPage: React.FC = () => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const router = useRouter();
 
   const isButtonActive = email && password;
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
       const response = await signIn(email, password);
       console.log("로그인 응답 데이터:", response);
 
-      // 로그인 후 accessToken 및 nickname 저장
       if (response.accessToken && response.nickname) {
         localStorage.setItem("accessToken", response.accessToken);
         localStorage.setItem("nickname", response.nickname);

@@ -6,18 +6,18 @@ import ImageUpload from '../../components/ImageUpload';
 import styles from '../../styles/create.module.css';
 import RegisterButton from '../../components/RegisterButton';
 
-const formatDate = (dateString) => {
-  return new Date(dateString).toISOString().slice(0, 10).replace(/-/g, '.');
+const formatDate = (date: Date) => {
+  return date.toISOString().slice(0, 10).replace(/-/g, '.');
 };
 
-const CreateArticle = () => {
+const CreateArticle: React.FC = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [createdAt] = useState(formatDate(new Date()));
-  const [imageUrls, setImageUrls] = useState([]);
+  const [createdAt] = useState<string>(formatDate(new Date()));
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
   const [tag, setTag] = useState('');
-  const [tags, setTags] = useState([]);
-  const [accessToken, setAccessToken] = useState(null);
+  const [tags, setTags] = useState<string[]>([]);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const CreateArticle = () => {
     setAccessToken(token);
   }, []);
 
-  const validateArticle = (title, content, imageUrls) => {
+  const validateArticle = (title: string, content: string, imageUrls: string[]) => {
     if (!title.trim()) {
       console.error("제목을 입력해주세요.");
       return false;
@@ -62,7 +62,7 @@ const CreateArticle = () => {
 
       console.log("전송할 데이터:", articleData);
 
-      const result = await createArticle(articleData, accessToken);
+      const result = await createArticle(articleData); // 원래 accessToken을 받았었지만 인수 개수? 오류로 인해 일단 제거된 자리
 
       if (result && result.id) {
         router.push(`/articles/${result.id}`);
@@ -74,7 +74,7 @@ const CreateArticle = () => {
     }
   };
 
-  const handleTagKeyPress = (e) => {
+  const handleTagKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && tag.trim().length > 0 && tag.trim().length <= 5) {
       e.preventDefault();
       setTags([...tags, tag.trim()]);
@@ -82,7 +82,7 @@ const CreateArticle = () => {
     }
   };
 
-  const handleDeleteTag = (deleteTag) => {
+  const handleDeleteTag = (deleteTag: string) => {
     setTags(tags.filter((t) => t !== deleteTag));
   };
 
@@ -93,14 +93,17 @@ const CreateArticle = () => {
         <RegisterButton
           title={title}
           content={content}
-          createdAt={createdAt}
-          addNewPost={handleSubmit}
+          addNewPost={handleSubmit} // addNewPost를 업데이트
         />
       </div>
 
       <div className={styles.formGroup}>
         <label htmlFor="images">게시글 이미지</label>
-        <ImageUpload setImageUrls={setImageUrls} imageUrls={imageUrls} uploadApi={uploadArticleImage} />
+        <ImageUpload
+          setImageUrls={setImageUrls}
+          imageUrls={imageUrls}
+          uploadApi={uploadArticleImage}
+        />
       </div>
 
       <div className={styles.formGroup}>
@@ -141,16 +144,7 @@ const CreateArticle = () => {
             <div key={index} className={styles.tag}>
               <span>#{t}</span>
               <button type="button" onClick={() => handleDeleteTag(t)}>
-                <img
-                  src="/image/delete_round.svg"
-                  alt="Delete Round Icon"
-                  className={styles.roundIcon}
-                />
-                <img
-                  src="/image/delete.svg"
-                  alt="Delete Icon"
-                  className={styles.deleteIcon}
-                />
+                X
               </button>
             </div>
           ))}
@@ -161,3 +155,4 @@ const CreateArticle = () => {
 };
 
 export default CreateArticle;
+

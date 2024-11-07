@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { getArticleById, fetchComments } from '../../api/articleApi';
+import { getArticleById } from '../../api/articleApi';
+import { getArticleComments } from '../../api/commentApi';
 import styles from '../../styles/postdetail.module.css';
 import CommentItem from '../../components/CommentItem';
 import CommentForm from '../../components/CommentForm';
@@ -8,52 +9,58 @@ import BackButton from '../../components/BackButton';
 import PostKebabMenu from '../../components/PostKebabMenu';
 import EmptyComments from '../../components/EmptyComments';
 
-const PostDetail = () => {
+const PostDetail: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [likes, setLikes] = useState(Math.floor(Math.random() * 10000));
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState<any[]>([]);
 
   const loadComments = async () => {
     try {
-      const data = await fetchComments(id);
-      setComments(Array.isArray(data) ? data : []);
+      if (typeof id === 'string') {
+        const data = await getArticleComments(parseInt(id, 10));
+        setComments(Array.isArray(data) ? data : []);
+      }
     } catch (error) {
       console.error('댓글 목록 불러오기 실패:', error);
     }
   };
 
   useEffect(() => {
-    if (id) {
-      getArticleById(id)
-        .then((data) => {
-          setPost(data);
+    const fetchArticle = async () => {
+      if (id && typeof id === 'string') {
+        try {
+          const article = await getArticleById(parseInt(id, 10));
+          setPost(article);
           setLoading(false);
-          console.log("게시글 불러오기 성공:", data);
-        })
-        .catch((error) => {
+          console.log("게시글 불러오기 성공:", article);
+        } catch (error) {
           console.error('게시글 불러오기 실패:', error);
           setLoading(false);
-        });
+        }
+      }
+    };
 
-      loadComments();
-    }
+    fetchArticle();
+    loadComments();
   }, [id]);
 
-  const addNewComment = (newComment) => {
-    setComments([newComment, ...comments]);
+  const addNewComment = (newComment: any) => {
+    setComments((prevComments) => [newComment, ...prevComments]);
   };
 
   if (loading) return <div>Loading...</div>;
   if (!post) return <div>게시글을 불러오는 중 오류가 발생했습니다.</div>;
 
+  const articleId = typeof id === 'string' ? parseInt(id, 10) : 0;
+
   return (
     <div className={styles.postDetailContainer}>
       <div className={styles.titleContainer}>
         <h1 className={styles.postTitle}>{post.title}</h1>
-        <PostKebabMenu postId={id} />
+        <PostKebabMenu postId={articleId} />
       </div>
 
       <div className={styles.postInfo}>
@@ -81,18 +88,19 @@ const PostDetail = () => {
         <p className={styles.postContent}>{post.content}</p>
       </div>
 
-      <CommentForm articleId={id} addNewComment={addNewComment} />
+      <CommentForm articleId={articleId} addNewComment={addNewComment} />
 
       <div className={styles.commentsContainer}>
         {comments.length === 0 ? (
           <EmptyComments />
         ) : (
           <>
-            {comments.map((comment, index) => (
+            {comments.map((comment) => (
               <CommentItem
                 key={comment.id}
                 id={comment.id}
-                author={`${comments.length - index}번 바오`}
+                articleId={articleId}
+                author={comment.author || '푸바오'}
                 content={comment.content}
                 createdAt={comment.createdAt}
                 refreshComments={loadComments}

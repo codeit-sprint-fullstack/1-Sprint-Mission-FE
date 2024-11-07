@@ -2,8 +2,9 @@ import '../globals/global.css';
 import Navbar from '../components/Navbar';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
+import { AppProps } from 'next/app';
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient({
     defaultOptions: {
       queries: {
@@ -21,4 +22,3 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-

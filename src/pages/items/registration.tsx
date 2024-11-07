@@ -4,15 +4,25 @@ import { createProduct, uploadImage } from "../../api/productApi";
 import { getAccessToken } from "../../api/authApi";
 import ImageUpload from "../../components/ImageUpload";
 import styles from "../../styles/productRegistration.module.css";
+import { ProductData } from "../../api/productApi";
 
-const Registration = () => {
-  const [name, setName] = useState("");
+// 새 상품 ProductData (id 제외)
+interface NewProductData {
+  name: string;
+  description: string;
+  price: number;
+  image?: string;
+  likes: number;
+}
+
+const Registration: React.FC = () => {
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState<number>(0);
   const [tag, setTag] = useState("");
-  const [tags, setTags] = useState([]);
-  const [imageUrls, setImageUrls] = useState([]);
-  const [accessToken, setAccessToken] = useState(null);
+  const [tags, setTags] = useState<string[]>([]);
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -21,26 +31,26 @@ const Registration = () => {
     setAccessToken(token);
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      if (!name || !description || !price || imageUrls.length === 0) {
+      if (!title || !description || !price || imageUrls.length === 0) {
         console.error("모든 필드를 입력해야 합니다.");
         return;
       }
 
-      const productData = {
-        name: name.trim(),
+      const productData: NewProductData = {
+        name: title.trim(),
         description: description.trim(),
-        price: parseFloat(price),
-        tags: tags,
-        images: imageUrls, // 이미지 URL 배열 전송
+        price: price,
+        likes: 0,
+        image: imageUrls[0],
       };
 
       console.log("전송할 데이터:", productData);
 
-      const result = await createProduct(productData, accessToken);
+      const result = await createProduct(productData as ProductData);
 
       if (result && result.id) {
         router.push(`/items`);
@@ -52,11 +62,11 @@ const Registration = () => {
     }
   };
 
-  const handleDeleteTag = (deleteTag) => {
+  const handleDeleteTag = (deleteTag: string) => {
     setTags(tags.filter((t) => t !== deleteTag));
   };
 
-  const handleTagKeyPress = (e) => {
+  const handleTagKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && tag.trim().length > 0 && tag.trim().length <= 5) {
       e.preventDefault();
       setTags([...tags, tag.trim()]);
@@ -75,7 +85,11 @@ const Registration = () => {
 
       <div className={styles.formGroup}>
         <label htmlFor="images">상품 이미지</label>
-        <ImageUpload setImageUrls={setImageUrls} imageUrls={imageUrls} uploadApi={uploadImage} />
+        <ImageUpload
+          setImageUrls={setImageUrls}
+          imageUrls={imageUrls}
+          uploadApi={uploadImage}
+        />
       </div>
 
       <div className={styles.formGroup}>
@@ -83,8 +97,8 @@ const Registration = () => {
         <input
           type="text"
           id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           placeholder="상품명을 입력해주세요"
           required
         />
@@ -106,8 +120,8 @@ const Registration = () => {
         <input
           type="number"
           id="price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
+          value={price.toString()}
+          onChange={(e) => setPrice(Number(e.target.value))}
           placeholder="판매 가격을 입력해주세요"
           required
         />
@@ -148,3 +162,4 @@ const Registration = () => {
 };
 
 export default Registration;
+

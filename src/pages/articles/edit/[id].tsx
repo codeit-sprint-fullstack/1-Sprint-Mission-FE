@@ -4,30 +4,40 @@ import { updateArticle, getArticleById } from '../../../api/articleApi';
 import ImageUpload from '../../../components/ImageUpload';
 import styles from '../../../styles/create.module.css';
 import EditButton from '../../../components/EditButton';
+import { uploadArticleImage } from '../../../api/articleApi';
 
-const EditArticle = () => {
+interface ArticleData {
+  title: string;
+  content: string;
+  image?: string;
+}
+
+const EditArticle: React.FC = () => {
   const router = useRouter();
   const { id: articleId } = router.query;
 
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [imageUrls, setImageUrls] = useState([]);
+  const id = typeof articleId === 'string' ? parseInt(articleId, 10) : undefined;
+
+  const [title, setTitle] = useState<string>('');
+  const [content, setContent] = useState<string>('');
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
 
   useEffect(() => {
-    if (articleId) {
-      console.log("게시글 ID 확인:", articleId);
-      getArticleById(articleId)
-        .then((article) => {
+    const fetchArticle = async () => {
+      if (id) {
+        try {
+          const article = await getArticleById(id);
           setTitle(article.title);
           setContent(article.content);
-          setImageUrls(article.image || []);  // 서버에서 이미지 URL 배열 가져오기
-          console.log("게시글 불러오기 성공:", article);
-        })
-        .catch((error) => {
+          setImageUrls(article.image ? [article.image] : []);
+        } catch (error) {
           console.error('게시글 불러오기 중 오류 발생:', error);
-        });
-    }
-  }, [articleId]);
+        }
+      }
+    };
+
+    fetchArticle();
+  }, [id]);
 
   const handleSavePost = async () => {
     if (!title || !content) {
@@ -35,15 +45,15 @@ const EditArticle = () => {
       return;
     }
 
-    try {
-      // 게시글 수정 시 이미지도 함께 전송
-      await updateArticle(articleId, { title, content, images: imageUrls });
-      alert('게시글이 수정되었습니다.');
-      console.log("게시글 수정 성공, 게시글 ID:", articleId);
-      router.replace(`/articles/${articleId}`);
-    } catch (error) {
-      console.error('게시글 수정 중 오류가 발생했습니다.', error);
-      alert('게시글 수정 중 오류가 발생했습니다.');
+    if (id !== undefined) {
+      try {
+        await updateArticle(id, { title, content, image: imageUrls[0] });
+        alert('게시글이 수정되었습니다.');
+        router.replace(`/articles/${id}`);
+      } catch (error) {
+        console.error('게시글 수정 중 오류가 발생했습니다.', error);
+        alert('게시글 수정 중 오류가 발생했습니다.');
+      }
     }
   };
 
@@ -51,17 +61,23 @@ const EditArticle = () => {
     <form className={styles.registrationForm}>
       <div className={styles.formHeader}>
         <h2>게시글 수정하기</h2>
-        <EditButton
-          articleId={articleId}
-          title={title}
-          content={content}
-          onClick={handleSavePost}
-        />
+        {id !== undefined && (
+          <EditButton
+            articleId={id}
+            title={title}
+            content={content}
+            onClick={handleSavePost}
+          />
+        )}
       </div>
 
       <div className={styles.formGroup}>
         <label htmlFor="images">게시글 이미지</label>
-        <ImageUpload setImageUrls={setImageUrls} initialImageUrls={imageUrls} />
+        <ImageUpload
+          imageUrls={imageUrls}
+          setImageUrls={setImageUrls}
+          uploadApi={uploadArticleImage}
+        />
       </div>
 
       <div className={styles.formGroup}>

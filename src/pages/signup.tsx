@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/signup.module.css";
-import { signUp } from "../api/authApi"; // 회원가입 API 함수 불러오기
+import { signUp } from "../api/authApi";
 import {
   validateEmail,
   validatePassword,
@@ -11,61 +11,61 @@ import {
 import SocialLogin from "../components/SocialLogin";
 import Modal from "../components/Modal";
 
-const SignupPage = () => {
-  const [email, setEmail] = useState("");
-  const [nickname, setNickname] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [errorMessage, setErrorMessage] = useState({
+interface ErrorMessage {
+  email: string;
+  nickname: string;
+  password: string;
+  confirmPassword: string;
+}
+
+interface TouchedFields {
+  email: boolean;
+  nickname: boolean;
+  password: boolean;
+  confirmPassword: boolean;
+}
+
+const SignupPage: React.FC = () => {
+  const [email, setEmail] = useState<string>("");
+  const [nickname, setNickname] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<ErrorMessage>({
     email: "",
     nickname: "",
     password: "",
     confirmPassword: "",
   });
-  const [touched, setTouched] = useState({
+  const [touched, setTouched] = useState<TouchedFields>({
     email: false,
     nickname: false,
     password: false,
     confirmPassword: false,
-  }); // 입력 필드가 한 번 클릭된 상태인지 확인
-  const [isValid, setIsValid] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  });
+  const [isValid, setIsValid] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
   const router = useRouter();
 
-  // 입력 필드가 포커스를 잃을 때 유효성 검사를 실행하는 함수
-  const handleBlur = (field) => {
+  const handleBlur = (field: keyof TouchedFields) => {
     let error = "";
-    if (field === "email") {
-      error = validateEmail(email);
-    } else if (field === "nickname") {
-      error = validateNickname(nickname);
-    } else if (field === "password") {
-      error = validatePassword(password);
-    } else if (field === "confirmPassword") {
-      error = validateConfirmPassword(password, confirmPassword);
-    }
+    if (field === "email") error = validateEmail(email);
+    if (field === "nickname") error = validateNickname(nickname);
+    if (field === "password") error = validatePassword(password);
+    if (field === "confirmPassword") error = validateConfirmPassword(password, confirmPassword);
 
     setErrorMessage((prev) => ({ ...prev, [field]: error }));
-    setTouched((prev) => ({ ...prev, [field]: true })); // 해당 필드가 클릭되었음을 표시
+    setTouched((prev) => ({ ...prev, [field]: true }));
   };
 
-  const validateAllFields = () => {
+  const validateAllFields = (): boolean => {
     const emailError = validateEmail(email);
     const nicknameError = validateNickname(nickname);
     const passwordError = validatePassword(password);
-    const confirmPasswordError = validateConfirmPassword(
-      password,
-      confirmPassword
-    );
+    const confirmPasswordError = validateConfirmPassword(password, confirmPassword);
 
-    if (
-      !emailError &&
-      !nicknameError &&
-      !passwordError &&
-      !confirmPasswordError
-    ) {
+    if (!emailError && !nicknameError && !passwordError && !confirmPasswordError) {
       setIsValid(true);
       return true;
     } else {
@@ -80,36 +80,28 @@ const SignupPage = () => {
     }
   };
 
-  // 모든 입력 필드가 변경될 때마다 유효성 검사 수행
   useEffect(() => {
     validateAllFields();
   }, [email, nickname, password, confirmPassword]);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    // 유효성 검사
     if (!isValid) return;
 
     try {
-      // 회원가입 API 호출
       const response = await signUp(email, nickname, password, confirmPassword);
       console.log("회원가입 성공:", response);
 
-      // 회원가입 성공 시 닉네임 저장 및 모달 표시
       if (response.accessToken) {
         localStorage.setItem("accessToken", response.accessToken);
         localStorage.setItem("nickname", nickname);
         console.log("닉네임 저장됨:", nickname);
-        window.dispatchEvent(new Event("storage")); // 닉네임 상태 갱신을 위해 storage 이벤트 트리거
+        window.dispatchEvent(new Event("storage"));
         setShowModal(true);
       }
     } catch (error) {
       console.error("회원가입 오류:", error);
-      setErrorMessage((prev) => ({
-        ...prev,
-        email: "사용 중인 이메일입니다.",
-      }));
+      setErrorMessage((prev) => ({ ...prev, email: "사용 중인 이메일입니다." }));
     }
   };
 
@@ -137,11 +129,9 @@ const SignupPage = () => {
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              onBlur={() => handleBlur("email")} // 포커스 잃을 때 유효성 검사
+              onBlur={() => handleBlur("email")}
               placeholder="이메일을 입력해주세요"
-              className={`${styles.input} ${
-                touched.email && errorMessage.email ? styles.inputError : ""
-              }`}
+              className={`${styles.input} ${touched.email && errorMessage.email ? styles.inputError : ""}`}
               required
             />
             {touched.email && errorMessage.email && (
@@ -159,13 +149,9 @@ const SignupPage = () => {
               name="nickname"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
-              onBlur={() => handleBlur("nickname")} // 포커스 잃을 때 유효성 검사
+              onBlur={() => handleBlur("nickname")}
               placeholder="닉네임을 입력해주세요"
-              className={`${styles.input} ${
-                touched.nickname && errorMessage.nickname
-                  ? styles.inputError
-                  : ""
-              }`}
+              className={`${styles.input} ${touched.nickname && errorMessage.nickname ? styles.inputError : ""}`}
               required
             />
             {touched.nickname && errorMessage.nickname && (
@@ -186,17 +172,11 @@ const SignupPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 onBlur={() => handleBlur("password")}
                 placeholder="비밀번호를 입력해주세요"
-                className={`${styles.input} ${
-                  touched.password && errorMessage.password
-                    ? styles.inputError
-                    : ""
-                }`}
+                className={`${styles.input} ${touched.password && errorMessage.password ? styles.inputError : ""}`}
                 required
               />
               <img
-                src={
-                  showPassword ? "/image/invisible.svg" : "/image/visible.svg"
-                }
+                src={showPassword ? "/image/invisible.svg" : "/image/visible.svg"}
                 alt="비밀번호 가시성 토글"
                 className={styles.visibilityIcon}
                 onClick={() => setShowPassword(!showPassword)}
@@ -220,28 +200,18 @@ const SignupPage = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 onBlur={() => handleBlur("confirmPassword")}
                 placeholder="비밀번호를 다시 입력해주세요"
-                className={`${styles.input} ${
-                  touched.confirmPassword && errorMessage.confirmPassword
-                    ? styles.inputError
-                    : ""
-                }`}
+                className={`${styles.input} ${touched.confirmPassword && errorMessage.confirmPassword ? styles.inputError : ""}`}
                 required
               />
               <img
-                src={
-                  showConfirmPassword
-                    ? "/image/invisible.svg"
-                    : "/image/visible.svg"
-                }
+                src={showConfirmPassword ? "/image/invisible.svg" : "/image/visible.svg"}
                 alt="비밀번호 확인 가시성 토글"
                 className={styles.visibilityIcon}
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               />
             </div>
             {touched.confirmPassword && errorMessage.confirmPassword && (
-              <div className={styles.errorMessage}>
-                {errorMessage.confirmPassword}
-              </div>
+              <div className={styles.errorMessage}>{errorMessage.confirmPassword}</div>
             )}
           </div>
 
@@ -249,7 +219,7 @@ const SignupPage = () => {
             type="submit"
             className={styles.signupButton}
             style={{ backgroundColor: isValid ? "#3692FF" : "#9CA3AF" }}
-            disabled={!isValid} // 유효성 통과하지 않으면 비활성화
+            disabled={!isValid}
           >
             회원가입
           </button>
@@ -261,12 +231,7 @@ const SignupPage = () => {
           이미 회원이신가요? <a href="/login">로그인</a>
         </div>
 
-        {showModal && (
-          <Modal
-            message="가입 완료되었습니다."
-            onConfirm={handleModalConfirm}
-          />
-        )}
+        {showModal && <Modal message="가입 완료되었습니다." onConfirm={handleModalConfirm} />}
       </main>
     </div>
   );
