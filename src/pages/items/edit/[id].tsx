@@ -11,19 +11,23 @@ export default function EditItems() {
   const {
     error,
     isLoading,
+    isFetching,
     data: product,
   } = useQuery({
     queryKey: ["product", id],
     queryFn: () => {
       return fetchProduct(parseInt(id as string));
     },
+    staleTime: 0,
+    refetchOnMount: true,
+    refetchOnWindowFocus: true,
   });
 
   if (error) {
     return <div>{error?.toString()}</div>;
   }
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return <div>로딩 중...</div>;
   }
 
