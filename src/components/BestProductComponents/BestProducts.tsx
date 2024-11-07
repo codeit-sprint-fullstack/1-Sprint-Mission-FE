@@ -6,14 +6,7 @@ import { ROUTES } from "@/utils/rotues";
 import { useState, useEffect } from "react";
 import { throttle } from "@/utils/throttle";
 import img_default from "@/images/img_default.png";
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  favoriteCount: number;
-  images: string[];
-}
+import { Product } from "@/types/Types";
 
 interface BestProductsProps {
   bestProducts: Product[];

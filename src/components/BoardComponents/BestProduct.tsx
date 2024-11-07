@@ -5,17 +5,7 @@ import ProductImg from "@/images/product.png";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 import { throttle } from "@/utils/throttle";
-
-interface Article {
-  id: number;
-  title: string;
-  images: string[];
-  writer: {
-    nickname: string;
-  };
-  likeCount: number;
-  createdAt: string;
-}
+import { Article } from "@/types/Types";
 
 interface BestProductProps {
   articles: {

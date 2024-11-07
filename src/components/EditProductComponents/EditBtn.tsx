@@ -5,17 +5,11 @@ import EditForm from "./EditForm";
 import { editProduct } from "@/utils/productApi";
 import { ROUTES } from "@/utils/rotues";
 import { useMutation } from "@tanstack/react-query";
+import { Product } from "@/types/Types";
 
 // EditBtnProps 타입 정의
 interface EditBtnProps {
-  item: {
-    id: number;
-    name: string;
-    description: string;
-    price: number;
-    tags: string[];
-    images: string[];
-  };
+  item: Product;
 }
 
 export default function EditBtn({ item }: EditBtnProps) {

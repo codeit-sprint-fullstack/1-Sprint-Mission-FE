@@ -1,21 +1,16 @@
 import React, { useState, useRef, ChangeEvent } from "react";
 import styles from "./ImageUpload.module.css";
 import Image from "next/image";
-
-// 이미지 객체 타입 정의
-interface UploadedImage {
-  file: File;
-  previewUrl: string;
-}
+import { CreateUploadedImage } from "@/types/Types";
 
 // Props 타입 정의
 interface ImageUploadProps {
-  onImagesChange: (images: UploadedImage[]) => void;
+  onImagesChange: (images: CreateUploadedImage[]) => void;
 }
 
 // ImageUpload 컴포넌트 정의
 const ImageUpload: React.FC<ImageUploadProps> = ({ onImagesChange }) => {
-  const [images, setImages] = useState<UploadedImage[]>([]);
+  const [images, setImages] = useState<CreateUploadedImage[]>([]);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   // 파일 변경 핸들러 정의
@@ -29,7 +24,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImagesChange }) => {
     }
 
     // 새로운 이미지 객체 생성 및 상태 업데이트
-    const newImages: UploadedImage[] = files.map((file) => ({
+    const newImages: CreateUploadedImage[] = files.map((file) => ({
       file,
       previewUrl: URL.createObjectURL(file),
     }));

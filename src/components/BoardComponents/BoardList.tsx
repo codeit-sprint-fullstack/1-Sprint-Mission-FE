@@ -4,18 +4,7 @@ import BoardListItems from "@/components/BoardComponents/BoardListItems";
 import Link from "next/link";
 import { useState, ChangeEvent, KeyboardEvent } from "react";
 import { ROUTES } from "@/utils/rotues";
-
-interface Article {
-  id: number;
-  title: string;
-  content: string;
-  images: string[];
-  writer: {
-    nickname: string;
-  };
-  createdAt: string;
-  likeCount: number;
-}
+import { Article } from "@/types/Types";
 
 interface BoardListProps {
   articles: Article[];

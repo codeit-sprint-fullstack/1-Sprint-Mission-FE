@@ -6,15 +6,10 @@ import { useMutation } from "@tanstack/react-query";
 import ImageUpload from "./ImageUpload";
 import { useState } from "react";
 import { useBoardValidation } from "@/hooks/useBoardValidation";
-
-interface FormValues {
-  title: string;
-  content: string;
-  images: string[];
-}
+import { BoardFormValues } from "@/types/Types";
 
 export default function CreateForm() {
-  const initialState: FormValues = {
+  const initialState: BoardFormValues = {
     title: "",
     content: "",
     images: [],

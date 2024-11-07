@@ -1,14 +1,7 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import styles from "./ImageUpload.module.css";
 import Image from "next/image";
-
-// UploadedImage 타입 정의
-interface UploadedImage {
-  file: File | null;
-  previewUrl: string;
-  isExisting: boolean;
-  isDeleted: boolean;
-}
+import { UploadedImage } from "@/types/Types";
 
 // ImageUploadProps 타입 정의
 interface ImageUploadProps {

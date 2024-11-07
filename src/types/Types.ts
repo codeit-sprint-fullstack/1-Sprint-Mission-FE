@@ -42,7 +42,12 @@ export interface UploadedImage {
   isExisting: boolean;
   previewUrl: string;
   file: File | null;
-  isDeleted: boolean; // 추가된 속성
+  isDeleted: boolean;
+}
+
+export interface CreateUploadedImage {
+  file: File;
+  previewUrl: string;
 }
 
 export interface CustomFormData {
@@ -100,4 +105,10 @@ export interface FormValues {
   productName: string;
   productIntro: string;
   productPrice: string;
+}
+
+export interface BoardFormValues {
+  title: string;
+  content: string;
+  images: string[];
 }

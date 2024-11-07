@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./EditForm.module.css";
 import { useProductValidation } from "@/hooks/useValidation";
 import ImageUpload from "./ImageUpload";
+import { Product, UploadedImage } from "@/types/Types";
 
 interface EditFormProps {
   onFormChange: (isValid: boolean) => void;
@@ -17,21 +18,7 @@ interface EditFormProps {
       isDeleted: boolean;
     }[];
   }) => void;
-  item: {
-    id: number;
-    name: string;
-    description: string;
-    price: number;
-    tags: string[];
-    images: string[];
-  };
-}
-
-interface UploadedImage {
-  file: File | null;
-  previewUrl: string;
-  isExisting: boolean;
-  isDeleted: boolean;
+  item: Product;
 }
 
 export default function EditForm({
