@@ -53,11 +53,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const login = async (loginValue: LoginUser) => {
-    const data = await authApi.login(loginValue);
-    if (data) {
-      //받아온 정보가 있다면 아래의 이름의 로컬스토리지로 저장
-      // localStorage.setItem("codeit-accessToken", data.accessToken); //쿠키로 전달하여 로컬스토리지 사용 안함
-      // localStorage.setItem("codeit-refreshToken", data.refreshToken); //쿠키로 전달하여 로컬스토리지 사용 안함
+    const res = await authApi.login(loginValue);
+    console.log(res.status);
+    if (res.status === 200) {
       //사용자정보 갱신
       await getMe();
     }

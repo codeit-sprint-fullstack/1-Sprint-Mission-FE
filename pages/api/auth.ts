@@ -23,12 +23,9 @@ export async function createUser(item: {
   return res.data;
 }
 
-export async function login(item: {
-  email: string;
-  password: string;
-}): Promise<User> {
+export async function login(item: { email: string; password: string }) {
   const res = await instance.post("/users/login", item);
-  return res.data;
+  return res;
 }
 
 export async function refreshToken() {

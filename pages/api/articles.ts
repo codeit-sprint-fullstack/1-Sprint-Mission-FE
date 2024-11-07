@@ -40,7 +40,7 @@ export async function getArticles(
 export async function getBestArticles(
   params: Params = {
     orderBy: "like",
-    pageSize: 3,
+    limit: 3,
   }
 ): Promise<ResponseData> {
   const res = await instance.get<ResponseData>("/articles", {

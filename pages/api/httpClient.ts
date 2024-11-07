@@ -37,18 +37,6 @@ function parseCookies(cookies: string) {
 //리퀘스트 요청전 헤더에 로컬스토리지의 저장됱 토큰을 기입한다.
 instance.interceptors.request.use(
   (config) => {
-    //서버사이드의 리퀘스트라면 토큰을 추가하지 않는다.
-    // if (typeof window !== "undefined") {
-    //   const token = localStorage.getItem("codeit-accessToken"); // 로컬스토리지에서 토큰을 가져옴
-    //   if (token) {
-    //     config.headers["Authorization"] = `Bearer ` + token; // Authorization 헤더에 토큰 추가
-    //   }
-    // }
-    // console.log("in axios request interceptor " + accessToken);
-    // console.log(
-    //   "in axios request interceptor refresh token " + (refreshToken && "true")
-    // );
-    // console.log("리퀘스트 패스 " + config.url);
     if (accessToken) {
       config.headers.cookie = "access-token=" + accessToken;
     }
@@ -77,11 +65,14 @@ instance.interceptors.response.use(
       // 여기에서 리프레시 토큰 API 호출
       try {
         const data = await api.refreshToken(); // 리프레시 토큰 함수 호출
-        const parsedCookies = parseCookies(
-          data.headers["set-cookie"].join("; ")
-        );
-        accessToken = parsedCookies["access-token"];
-        setCookies(data.headers["set-cookie"]);
+        //서버사이드에서 실행된 경우에만 쿠키를 직접 넣어준다
+        if (typeof window === "undefined") {
+          const parsedCookies = parseCookies(
+            data.headers["set-cookie"].join("; ")
+          );
+          accessToken = parsedCookies["access-token"];
+          setCookies(data.headers["set-cookie"]);
+        }
         return instance(originalRequest); // 원래 요청 다시 시도
       } catch (refreshError) {
         return Promise.reject(refreshError);
