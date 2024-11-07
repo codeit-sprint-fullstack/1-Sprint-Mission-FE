@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import styles from "./ItemChat.module.css";
 import Chat from "./Chat";
 import { fetchComments, addComment, editComment } from "@/utils/productChatApi";
@@ -11,7 +11,7 @@ import {
   useInfiniteQuery,
 } from "@tanstack/react-query";
 import { Comment } from "@/types/Types";
-
+// nextCursor?: number | null
 interface ItemChatProps {
   initialComments: { list: Comment[]; nextCursor?: number | null };
   id: number;
@@ -26,11 +26,16 @@ export default function ItemChat({ initialComments, id }: ItemChatProps) {
 
   // useInfiniteQuery 사용
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery({
+    useInfiniteQuery<
+      { list: Comment[]; nextCursor?: number | null },
+      Error,
+      any
+    >({
       queryKey: ["comments", id],
-      queryFn: ({ pageParam = null }) => fetchComments(id, pageParam),
+      queryFn: ({ pageParam = null }) =>
+        fetchComments(id, pageParam as number | null),
       getNextPageParam: (lastPage) => lastPage.nextCursor ?? null,
-      initialPageParam: initialComments.nextCursor ?? null,
+      initialPageParam: null,
       initialData: {
         pages: [initialComments], // 첫 번째 페이지로 초기 데이터 설정
         pageParams: [null], // 초기 페이지 파라미터 설정
@@ -45,6 +50,7 @@ export default function ItemChat({ initialComments, id }: ItemChatProps) {
   const loadMoreComments = useCallback(async () => {
     if (isFetchingNextPage) return; // 이미 다음 페이지를 가져오는 중이면 중복 호출 방지
     if (!hasNextPage) {
+      toast.info("댓글을 모두 불러왔습니다.");
       return; // 더 이상 가져올 페이지가 없으면 종료
     }
     try {
@@ -167,7 +173,7 @@ export default function ItemChat({ initialComments, id }: ItemChatProps) {
         </button>
       </div>
       <Chat
-        comments={data?.pages?.flatMap((page) => page.list) || []}
+        comments={data?.pages?.flatMap((page: any) => page.list) || []}
         onEdit={handleEdit}
       />
     </>
