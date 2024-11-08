@@ -1,21 +1,19 @@
 import { useState } from "react";
 import styles from "./ProductCommentForm.module.css";
-import { CommentResponse, createProductComment } from "../api/commentApi";
-
+import { CommentResponse } from "../types/commonTypes";
+import { createProductComment } from "../api/commentApi";
 
 interface ProductCommentFormProps {
   productId: number;
   addNewComment: (comment: CommentResponse) => void;
-  accessToken: string;
 }
 
-const ProductCommentForm: React.FC<ProductCommentFormProps> = ({
+const ProductCommentForm = ({
   productId,
   addNewComment,
-  accessToken,
-}) => {
-  const [content, setContent] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+}: ProductCommentFormProps) => {
+  const [content, setContent] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,7 +29,7 @@ const ProductCommentForm: React.FC<ProductCommentFormProps> = ({
       console.log("등록할 productId:", productId);
       const newComment = await createProductComment(productId, content);
       alert("댓글이 등록되었습니다.");
-      addNewComment(newComment); // 부모 패아자로부터 전달된 addNewComment 함수 호출
+      addNewComment(newComment); // 페이지로부터 전달된 addNewComment 함수 호출
       setContent(""); // 입력 필드 초기화
     } catch (error) {
       console.error("댓글 등록 실패:", error);

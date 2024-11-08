@@ -7,7 +7,7 @@ interface SpinnerProps {
   children: ReactNode;
 }
 
-const Spinner: React.FC<SpinnerProps> = ({ delay = 3000, dataLoaded, children }) => {
+const Spinner = ({ delay = 3000, dataLoaded, children }: SpinnerProps) => {
   const [showSpinner, setShowSpinner] = useState(true);
   const [isTimeElapsed, setIsTimeElapsed] = useState(false);
 

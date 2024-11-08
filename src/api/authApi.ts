@@ -5,7 +5,9 @@ const baseUrl =
     ? `${process.env.NEXT_PUBLIC_API_URL}/api`
     : `${process.env.NEXT_PUBLIC_API_URL_DEV}/api`;
 
-interface AuthResponse {
+
+// 회원가입 및 로그인 시 응답 타입
+export interface AuthResponse {
   accessToken: string;
   nickname: string;
 }

@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { createArticle, uploadArticleImage } from '../../api/articleApi';
 import { getAccessToken } from '../../api/authApi';
 import ImageUpload from '../../components/ImageUpload';
 import styles from '../../styles/create.module.css';
 import RegisterButton from '../../components/RegisterButton';
+import { ArticleData } from '../../api/articleApi';
 
 const formatDate = (date: Date) => {
   return date.toISOString().slice(0, 10).replace(/-/g, '.');
 };
 
-const CreateArticle: React.FC = () => {
+const CreateArticle = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [createdAt] = useState<string>(formatDate(new Date()));
@@ -52,17 +53,16 @@ const CreateArticle: React.FC = () => {
     }
 
     try {
-      const articleData = {
+      const articleData: ArticleData = {
         title: title.trim(),
         content: content.trim(),
-        createdAt,
         images: imageUrls,
         tags,
       };
 
       console.log("전송할 데이터:", articleData);
 
-      const result = await createArticle(articleData); // 원래 accessToken을 받았었지만 인수 개수? 오류로 인해 일단 제거된 자리
+      const result = await createArticle(articleData);
 
       if (result && result.id) {
         router.push(`/articles/${result.id}`);
@@ -93,7 +93,7 @@ const CreateArticle: React.FC = () => {
         <RegisterButton
           title={title}
           content={content}
-          addNewPost={handleSubmit} // addNewPost를 업데이트
+          addNewPost={handleSubmit}
         />
       </div>
 

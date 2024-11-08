@@ -6,7 +6,7 @@ import {
   favoriteProduct,
   unfavoriteProduct,
 } from "../../api/productApi";
-import { getProductComments, CommentResponse } from "../../api/commentApi";
+import { getProductComments } from "../../api/commentApi";
 import { getAccessToken } from "../../api/authApi";
 import Modal from "../../components/Modal";
 import ProductCommentForm from "../../components/ProductCommentForm";
@@ -15,9 +15,9 @@ import ProductEmptyComments from "../../components/ProductEmptyComments";
 import ProductBackButton from "../../components/ProductBackButton";
 import ProductKebabMenu from "../../components/ProductKebabMenu";
 import ProductEditModal from "../../components/ProductEditModal";
-import Spinner from "../../components/Spinner";
 import styles from "../../styles/itemDetail.module.css";
-import { ProductData } from "../../api/productApi";
+import { ProductData, ProductResponse } from "../../api/productApi";
+import { CommentResponse } from "../../types/commonTypes";
 
 const ProductDetailPage = () => {
   const router = useRouter();
@@ -44,7 +44,7 @@ const ProductDetailPage = () => {
     data: productData,
     error: productError,
     isLoading: isProductLoading,
-  } = useQuery<ProductData>({
+  } = useQuery<ProductResponse>({
     queryKey: ["product", itemId],
     queryFn: () => getProductById(Number(itemId)),
     enabled: !!itemId,
@@ -74,9 +74,9 @@ const ProductDetailPage = () => {
     onSuccess: () => {
       setIsLiked(!isLiked);
       if (productData) {
-        productData.likes = isLiked
-          ? productData.likes - 1
-          : productData.likes + 1;
+        const likesCount = isLiked
+          ? productData.likes.length - 1
+          : productData.likes.length + 1;
       }
     },
     onError: (error: any) => {
@@ -99,12 +99,14 @@ const ProductDetailPage = () => {
 
   if (productError) return <p>상품 정보를 불러오는 중 오류가 발생했습니다.</p>;
 
+  if (!productData) return <p>상품 정보가 없습니다.</p>;
+
   return (
     <div>
       <div className={styles.itemDetail}>
-        {productData?.image ? (
+        {productData.images.length > 0 ? (
           <img
-            src={productData.image}
+            src={productData.images[0]}
             alt={productData?.name}
             className={styles.image}
           />
@@ -117,7 +119,7 @@ const ProductDetailPage = () => {
               <span className={styles.name}>{productData?.name}</span>
               <ProductKebabMenu
                 productId={Number(itemId)}
-                productData={productData as ProductData}
+                productData={productData}
                 onEdit={() => setShowEditModal(true)}
                 onProductUpdate={(updatedProduct: ProductData) => {
                   setEditedProduct(updatedProduct);
@@ -157,7 +159,7 @@ const ProductDetailPage = () => {
               alt="Profile"
               className={styles.profileIcon}
             />
-            <span className={styles.ownerId}>{productData?.userId}번 바오</span>
+            <span className={styles.ownerId}>{productData?.user.nickname}번 바오</span>
             <span className={styles.createdAt}>
               {productData?.createdAt
                 ? new Date(productData.createdAt).toLocaleDateString()
@@ -171,7 +173,7 @@ const ProductDetailPage = () => {
               style={{ cursor: "pointer" }}
             />
             <span className={styles.favoriteCount}>
-              {productData?.likes || 0}{" "}
+              {productData?.likes.length || 0}{" "}
             </span>
           </div>
         </div>
@@ -180,7 +182,6 @@ const ProductDetailPage = () => {
       <div className={styles.commentsSection}>
         <ProductCommentForm
           productId={Number(itemId)}
-          accessToken={accessToken || ""}
           addNewComment={addNewComment}
         />
 
@@ -215,7 +216,7 @@ const ProductDetailPage = () => {
         <ProductEditModal
           isOpen={showEditModal}
           onClose={() => setShowEditModal(false)}
-          productData={{ ...productData, image: productData.image || "" }}
+          productData={{ ...productData, images: productData.images }}
           onProductUpdate={(updatedProduct) => setEditedProduct(updatedProduct)}
         />
       )}
@@ -224,4 +225,3 @@ const ProductDetailPage = () => {
 };
 
 export default ProductDetailPage;
-

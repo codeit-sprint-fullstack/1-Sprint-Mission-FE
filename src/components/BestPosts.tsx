@@ -1,27 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from './BestPosts.module.css';
-import { fetchBestArticles } from '../api/articleApi';
-
-interface User {
-  nickname: string;
-}
-
-interface BestPost {
-  id: number;
-  title: string;
-  user: User;
-  likes: number;
-  createdAt: string;
-  image?: string[];
-}
-
-interface ArticleResponse {
-  id: number;
-  title: string;
-  createdAt: string;
-  image?: string;
-}
+import { fetchBestArticles, ArticleResponse } from '../api/articleApi';
+import { User } from '../types/commonTypes';
 
 const formatDate = (dateString: string) => {
   return new Date(dateString).toISOString().slice(0, 10).replace(/-/g, '.');
@@ -36,7 +17,7 @@ interface BestBoxProps {
   image?: string[];
 }
 
-const BestBox: React.FC<BestBoxProps> = ({ id, title, user, likes, date, image }) => {
+const BestBox = ({ id, title, user, likes, date, image }: BestBoxProps) => {
   const router = useRouter();
 
   const handleClick = () => {
@@ -46,14 +27,14 @@ const BestBox: React.FC<BestBoxProps> = ({ id, title, user, likes, date, image }
   return (
     <div className={styles.bestBox} onClick={handleClick}>
       <img src="/image/best.svg" alt="Best Icon" className={styles.bestIcon} />
-      <h3 className={styles.bestTitle}>{title || '제목 없음'}</h3>
+      <h3 className={styles.bestTitle}>{title || '전설의 베스트 상품'}</h3>
       <img
         src={image && image.length > 0 ? image[0] : '/image/next_default.svg'}
         alt="Post Image"
         className={styles.bestImage}
       />
       <div className={styles.bestFooter}>
-        <span className={styles.bestAuthor}>{user?.nickname || '푸바오'}</span>
+        <span className={styles.bestAuthor}>{user.nickname || '익명 사용자'}</span>
         <div className={styles.bestLikes}>
           <img src="/image/heart.svg" alt="Heart Icon" />
           <span>{likes || '0'}</span>
@@ -64,24 +45,20 @@ const BestBox: React.FC<BestBoxProps> = ({ id, title, user, likes, date, image }
   );
 };
 
-const BestPosts: React.FC<{ bestPosts?: BestPost[] }> = ({ bestPosts }) => {
-  const [bestPostsState, setBestPosts] = useState<BestPost[]>(bestPosts || []); // articles/index 페이지에서만 필요하기 때문에 일단 옵셔널 처리
-  const [loading, setLoading] = useState<boolean>(true);
-  const [columns, setColumns] = useState<number>(3);
+interface BestPostsProps {
+  bestPosts?: ArticleResponse[];
+}
+
+const BestPosts = ({ bestPosts }: BestPostsProps) => {
+  const [bestPostsState, setBestPosts] = useState<ArticleResponse[]>(bestPosts || []);
+  const [loading, setLoading] = useState(true);
+  const [columns, setColumns] = useState(3);
 
   useEffect(() => {
     const loadBestPosts = async () => {
       try {
-        const result: ArticleResponse[] = await fetchBestArticles();
-        const formattedPosts: BestPost[] = result.map((post) => ({
-          id: post.id,
-          title: post.title,
-          user: { nickname: '푸바오' },
-          likes: 0,
-          createdAt: post.createdAt,
-          image: post.image ? [post.image] : undefined,
-        }));
-        setBestPosts(formattedPosts);
+        const result = await fetchBestArticles();
+        setBestPosts(result);
       } catch (error) {
         console.error('베스트 게시글을 가져오는데 오류가 발생했습니다. :', error);
       } finally {
@@ -134,9 +111,9 @@ const BestPosts: React.FC<{ bestPosts?: BestPost[] }> = ({ bestPosts }) => {
             id={post.id}
             title={post.title}
             user={post.user}
-            likes={post.likes}
+            likes={post.likes.length}
             date={post.createdAt}
-            image={post.image}
+            image={post.images}
           />
         ))}
       </div>

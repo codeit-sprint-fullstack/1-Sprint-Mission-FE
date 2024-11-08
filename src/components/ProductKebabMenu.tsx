@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { deleteProduct } from "../api/productApi";
 import { getAccessToken } from "../api/authApi";
 import DeleteModal from "./DeleteModal";
@@ -13,13 +13,13 @@ interface ProductKebabMenuProps {
   refreshProducts: () => Promise<boolean>;
 }
 
-const ProductKebabMenu: React.FC<ProductKebabMenuProps> = ({
+const ProductKebabMenu = ({
   productId,
   productData,
   onEdit,
   onProductUpdate,
   refreshProducts,
-}) => {
+}: ProductKebabMenuProps) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
@@ -51,6 +51,7 @@ const ProductKebabMenu: React.FC<ProductKebabMenuProps> = ({
     try {
       await deleteProduct(productId);
       alert("상품이 삭제되었습니다.");
+      onProductUpdate(productData);
       await refreshProducts();
     } catch (error) {
       console.error("상품 삭제 중 오류가 발생했습니다:", error);
@@ -91,3 +92,4 @@ const ProductKebabMenu: React.FC<ProductKebabMenuProps> = ({
 };
 
 export default ProductKebabMenu;
+

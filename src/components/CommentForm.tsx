@@ -1,5 +1,6 @@
 import React, { useState, FormEvent, ChangeEvent } from "react";
 import { createArticleComment } from "../api/commentApi";
+import { CommentResponse } from "../types/commonTypes";
 import styles from "./CommentForm.module.css";
 
 interface CommentFormProps {
@@ -7,16 +8,7 @@ interface CommentFormProps {
   addNewComment: (comment: CommentResponse) => void;
 }
 
-interface CommentResponse {
-  id: number;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-  userId: number;
-  articleId?: number;
-}
-
-const CommentForm: React.FC<CommentFormProps> = ({ articleId, addNewComment }) => {
+const CommentForm = ({ articleId, addNewComment }: CommentFormProps) => {
   const [content, setContent] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 

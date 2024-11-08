@@ -13,14 +13,14 @@ interface CommentItemProps {
   refreshComments: () => void;
 }
 
-const CommentItem: React.FC<CommentItemProps> = ({
+const CommentItem = ({
   id,
   content,
   author,
   createdAt,
   articleId,
   refreshComments
-}) => {
+}: CommentItemProps) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [editedContent, setEditedContent] = useState<string>(content);
 

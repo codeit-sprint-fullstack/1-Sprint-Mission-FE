@@ -7,13 +7,12 @@ interface PostKebabMenuProps {
   postId: number;
 }
 
-const PostKebabMenu: React.FC<PostKebabMenuProps> = ({ postId }) => {
+const PostKebabMenu = ({ postId }: PostKebabMenuProps) => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const router = useRouter();
 
   const handleKebabClick = () => {
     setShowMenu(!showMenu);
-    console.log("케밥 메뉴 클릭됨, 메뉴 상태:", showMenu ? "닫힘" : "열림");
   };
 
   const handleEditClick = () => {
@@ -53,4 +52,3 @@ const PostKebabMenu: React.FC<PostKebabMenuProps> = ({ postId }) => {
 };
 
 export default PostKebabMenu;
-

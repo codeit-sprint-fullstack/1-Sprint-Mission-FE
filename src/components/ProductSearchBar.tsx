@@ -7,11 +7,11 @@ interface ProductSearchBarProps {
   onSearchSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const ProductSearchBar: React.FC<ProductSearchBarProps> = ({
+const ProductSearchBar = ({
   productSearch,
   setProductSearch,
   onSearchSubmit,
-}) => (
+}: ProductSearchBarProps) => (
   <form onSubmit={onSearchSubmit} className={styles.searchBar}>
     <img
       src="/image/glass.svg"

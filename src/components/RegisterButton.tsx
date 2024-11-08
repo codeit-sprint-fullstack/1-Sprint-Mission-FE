@@ -1,29 +1,20 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { createArticle } from "../api/articleApi";
+import { ArticleData, ArticleResponse } from "../api/articleApi";
 import styles from "./RegisterButton.module.css";
-
-interface ArticleData {
-  title: string;
-  content: string;
-}
-
-interface ArticleResponse {
-  id: number;
-  title: string;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-}
 
 interface RegisterButtonProps {
   title: string;
   content: string;
-  createdAt?: string; // 옵셔널 속성으로 추가 => 게시글 생성 페이지에서 일단 필요함..
   addNewPost: (newPost: ArticleResponse) => void;
 }
 
-const RegisterButton: React.FC<RegisterButtonProps> = ({ title, content, createdAt, addNewPost }) => {
+const RegisterButton = ({
+  title,
+  content,
+  addNewPost,
+}: RegisterButtonProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
@@ -36,7 +27,7 @@ const RegisterButton: React.FC<RegisterButtonProps> = ({ title, content, created
     setIsSubmitting(true);
 
     try {
-      const newPost = await createArticle({ title, content, createdAt });
+      const newPost: ArticleResponse = await createArticle({ title, content, tags: [], images: [] });
       console.log("새로 등록된 게시글:", newPost);
       addNewPost(newPost);
       router.replace(`/articles/${newPost.id}`);
@@ -61,3 +52,4 @@ const RegisterButton: React.FC<RegisterButtonProps> = ({ title, content, created
 };
 
 export default RegisterButton;
+

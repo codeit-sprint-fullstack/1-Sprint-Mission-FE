@@ -4,32 +4,10 @@ import SortOptions from './SortOptions';
 import PostItem from './PostItem';
 import WriteButton from './WriteButton';
 import styles from './PostList.module.css';
-import { fetchArticles } from '../api/articleApi';
+import { fetchArticles, ArticleResponse } from '../api/articleApi';
 
-interface Post {
-  id: number;
-  title: string;
-  user?: {
-    nickname?: string;
-  };
-  createdAt: string;
-  likes: { length: number }[];
-  image?: string[];
-}
-
-interface ArticleResponse {
-  id: number;
-  title: string;
-  user?: {
-    nickname?: string;
-  };
-  createdAt: string;
-  likes?: { length: number }[];
-  image?: string[];
-}
-
-const PostList: React.FC<{ initialPosts?: Post[] }> = ({ initialPosts }) => { // articles/index 페이지에서만 필요하기 때문에 일단 옵셔널 처리
-  const [posts, setPosts] = useState<Post[]>(initialPosts || []);
+const PostList = ({ initialPosts }: { initialPosts?: ArticleResponse[] }) => {
+  const [posts, setPosts] = useState<ArticleResponse[]>(initialPosts || []);
   const [loading, setLoading] = useState<boolean>(true);
   const [keyword, setKeyword] = useState<string>('');
   const [sortOrder, setSortOrder] = useState<string>('recent');
@@ -43,12 +21,7 @@ const PostList: React.FC<{ initialPosts?: Post[] }> = ({ initialPosts }) => { //
         try {
           const result = await fetchArticles(1, 10, '', 'recent') as ArticleResponse[];
           console.log("게시글 API 응답:", result);
-          const transformedPosts: Post[] = result.map((article) => ({
-            ...article,
-            likes: article.likes || [],
-          }));
-
-          setPosts(transformedPosts);
+          setPosts(result);
         } catch (error) {
           console.error('게시글을 가져오는데 오류가 발생했습니다.:', error);
         } finally {
@@ -88,12 +61,7 @@ const PostList: React.FC<{ initialPosts?: Post[] }> = ({ initialPosts }) => { //
           filteredPosts.map((post) => (
             <PostItem
               key={post.id}
-              id={post.id}
-              title={post.title}
-              author={post.user?.nickname || '푸바오'}
-              date={post.createdAt}
-              likes={post.likes.length || 0}
-              image={post.image?.[0] || '/image/default.svg'}
+              article={post}
             />
           ))
         ) : (

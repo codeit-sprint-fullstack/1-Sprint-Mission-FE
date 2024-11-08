@@ -25,7 +25,7 @@ interface TouchedFields {
   confirmPassword: boolean;
 }
 
-const SignupPage: React.FC = () => {
+const SignupPage = () => {
   const [email, setEmail] = useState<string>("");
   const [nickname, setNickname] = useState<string>("");
   const [password, setPassword] = useState<string>("");

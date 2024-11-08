@@ -4,11 +4,11 @@ import styles from "../styles/login.module.css";
 import { signIn } from "../api/authApi";
 import SocialLogin from "../components/SocialLogin";
 
-const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>("");
+const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
   const isButtonActive = email && password;

@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import styles from "./LoginButton.module.css";
 
-const LoginButton: React.FC = () => {
+const LoginButton = () => {
   const router = useRouter();
 
   const handleClick = () => {
@@ -17,3 +17,4 @@ const LoginButton: React.FC = () => {
 };
 
 export default LoginButton;
+

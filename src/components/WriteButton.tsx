@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import styles from "./WriteButton.module.css";
 
-const WriteButton: React.FC = () => {
+const WriteButton = () => {
   const router = useRouter();
 
   const handleClick = () => {

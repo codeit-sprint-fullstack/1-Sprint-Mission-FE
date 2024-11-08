@@ -1,11 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getProductComments, createProductComment } from "../api/commentApi";
-
-interface CommentResponse {
-  id: number;
-  content: string;
-  createdAt: string;
-}
+import { CommentResponse } from "../types/commonTypes";
 
 export const useComments = (productId: number) => {
   const queryClient = useQueryClient();
@@ -32,4 +27,3 @@ export const useComments = (productId: number) => {
     createCommentMutation,
   };
 };
-

@@ -9,19 +9,18 @@ interface CommentKebabMenuProps {
   refreshComments: () => void;
 }
 
-const CommentKebabMenu: React.FC<CommentKebabMenuProps> = ({
+const CommentKebabMenu = ({
   commentId,
   articleId,
   onEdit,
   refreshComments,
-}) => {
+}: CommentKebabMenuProps) => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
   console.log("전달된 댓글 ID:", commentId);
 
   const handleKebabClick = () => {
     setShowMenu(!showMenu);
-    console.log("케밥 메뉴 버튼 클릭됨, 메뉴 상태:", showMenu ? "닫힘" : "열림");
   };
 
   // 댓글 삭제 처리
@@ -63,3 +62,4 @@ const CommentKebabMenu: React.FC<CommentKebabMenuProps> = ({
 };
 
 export default CommentKebabMenu;
+

@@ -6,7 +6,7 @@ interface DeleteModalProps {
   onCancel: () => void;
 }
 
-const DeleteModal: React.FC<DeleteModalProps> = ({ onConfirm, onCancel }) => {
+const DeleteModal = ({ onConfirm, onCancel }: DeleteModalProps) => {
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
@@ -31,5 +31,4 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ onConfirm, onCancel }) => {
 };
 
 export default DeleteModal;
-
 

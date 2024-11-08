@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import styles from './BackButton.module.css';
 
-const ProductBackButton: React.FC = () => {
+const ProductBackButton = () => {
   const router = useRouter();
 
   const handleClick = () => {
@@ -18,4 +18,3 @@ const ProductBackButton: React.FC = () => {
 };
 
 export default ProductBackButton;
-

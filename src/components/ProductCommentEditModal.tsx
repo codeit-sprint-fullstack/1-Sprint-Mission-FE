@@ -11,17 +11,17 @@ interface ProductCommentEditModalProps {
   onCommentUpdate: (newContent: string) => void;
 }
 
-const ProductCommentEditModal: React.FC<ProductCommentEditModalProps> = ({
+const ProductCommentEditModal = ({
   isOpen,
   onClose,
   commentId,
   productId,
   initialContent,
   onCommentUpdate,
-}) => {
-  const [commentData, setCommentData] = useState(initialContent);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+}: ProductCommentEditModalProps) => {
+  const [commentData, setCommentData] = useState<string>(initialContent);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     if (isOpen) {

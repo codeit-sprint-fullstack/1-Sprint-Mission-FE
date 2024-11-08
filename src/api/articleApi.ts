@@ -1,19 +1,27 @@
 import axiosInstance from "./axiosInstance";
+import { CommentResponse, LikeData, User } from "../types/commonTypes";
 
-interface ArticleData {
+// 게시글 등록 시 필요한 데이터 타입
+export interface ArticleData {
   title: string;
   content: string;
-  image?: string;
-  createdAt?: string;
+  tags: string[];
+  images?: string[];
 }
 
-interface ArticleResponse {
+// 등록한 게시글 조회 시 반환되는 응답 타입
+export interface ArticleResponse {
   id: number;
   title: string;
   content: string;
-  image?: string;
+  images: string[];
+  tags: string[];
   createdAt: string;
   updatedAt: string;
+  userId?: number;
+  likes: LikeData[];
+  comments: CommentResponse[];
+  user: User;
 }
 
 // 게시글 등록

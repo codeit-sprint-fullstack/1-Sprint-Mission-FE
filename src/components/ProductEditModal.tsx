@@ -1,18 +1,10 @@
 import React, { useState, useEffect } from "react";
 import style from "./ProductEditModal.module.css";
 import { updateProduct, uploadImage } from "../api/productApi";
-import { getAccessToken } from "../api/authApi";
 import ImageUpload from "./ImageUpload";
-import { ProductData } from "../api/productApi";
+import { ProductResponse } from "../api/productApi";
 
-interface ProductEditModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  productData: ProductData;
-  onProductUpdate: (updatedProduct: ProductData) => void;
-}
-
-// uploadImage를 url 형태로 반환하는 함수
+// uploadImage를 URL 형태로 반환하는 함수
 const uploadImageWithUrlFormat = async (
   file: File
 ): Promise<{ imageUrl: string }> => {
@@ -20,20 +12,21 @@ const uploadImageWithUrlFormat = async (
   return { imageUrl: response.imageUrl };
 };
 
-const ProductEditModal: React.FC<ProductEditModalProps> = ({
+interface ProductEditModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  productData: ProductResponse;
+  onProductUpdate: (updatedProduct: ProductResponse) => void;
+}
+
+const ProductEditModal = ({
   isOpen,
   onClose,
   productData,
   onProductUpdate,
-}) => {
-  const [product, setProduct] = useState<ProductData>({
-    ...productData,
-    image: productData.image || "",
-  });
-
-  const [imageUrls, setImageUrls] = useState<string[]>(
-    product.image ? [product.image] : []
-  );
+}: ProductEditModalProps) => {
+  const [product, setProduct] = useState<ProductResponse>(productData);
+  const [imageUrls, setImageUrls] = useState<string[]>(productData.images || []);
 
   const [tagInput, setTagInput] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -41,11 +34,8 @@ const ProductEditModal: React.FC<ProductEditModalProps> = ({
 
   useEffect(() => {
     if (isOpen && productData) {
-      setProduct({
-        ...productData,
-        image: productData.image || "",
-      });
-      setImageUrls(productData.image ? [productData.image] : []);
+      setProduct(productData);
+      setImageUrls(productData.images || []);
     }
   }, [isOpen, productData]);
 
@@ -95,7 +85,7 @@ const ProductEditModal: React.FC<ProductEditModalProps> = ({
     setImageUrls(newImageUrls);
     setProduct((prevProduct) => ({
       ...prevProduct,
-      image: newImageUrls[0],
+      image: newImageUrls,
     }));
   };
 
@@ -115,7 +105,7 @@ const ProductEditModal: React.FC<ProductEditModalProps> = ({
           <label htmlFor="image">상품 이미지</label>
           <ImageUpload
             setImageUrls={handleImageUpload}
-            imageUrls={imageUrls} // 배열로 전달
+            imageUrls={imageUrls}
             uploadApi={uploadImageWithUrlFormat}
           />
         </div>

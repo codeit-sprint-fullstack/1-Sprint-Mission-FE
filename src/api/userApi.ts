@@ -1,26 +1,24 @@
 import axiosInstance from "./axiosInstance";
+import { LikeData } from "../types/commonTypes";
+import { ProductResponse } from "./productApi";
 
-interface UserData {
+// 유저 정보 조회 시 반환되는 데이터 타입
+export interface UserData {
   id: number;
   nickname: string;
   email: string;
   image?: string;
+  createdAt: string;
+  updatedAt: string;
+  products: ProductResponse[];
+  likes: LikeData[];
 }
 
-interface UpdatePasswordData {
+// 비밀번호 변경 시 필요한 데이터 타입
+export interface UpdatePasswordData {
   currentPassword: string;
   password: string;
   passwordConfirmation: string;
-}
-
-interface ProductData {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  image?: string;
-  createdAt: string;
-  updatedAt: string;
 }
 
 // 현재 유저 정보 조회
@@ -40,27 +38,4 @@ export const updatePassword = async (passwordData: UpdatePasswordData): Promise<
   await axiosInstance.patch("/users/me/password", passwordData);
 };
 
-// 유저의 상품 목록 조회
-export const getUserProducts = async (
-  page = 1,
-  pageSize = 10,
-  keyword = ""
-): Promise<ProductData[]> => {
-  const response = await axiosInstance.get<ProductData[]>("/users/me/products", {
-    params: { page, pageSize, keyword },
-  });
-  return response.data;
-};
-
-// 유저의 좋아요 목록 조회
-export const getUserFavorites = async (
-  page = 1,
-  pageSize = 10,
-  keyword = ""
-): Promise<ProductData[]> => {
-  const response = await axiosInstance.get<ProductData[]>("/users/me/favorites", {
-    params: { page, pageSize, keyword },
-  });
-  return response.data;
-};
 

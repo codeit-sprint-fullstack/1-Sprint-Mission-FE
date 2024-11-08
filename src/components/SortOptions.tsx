@@ -9,17 +9,11 @@ interface SortOptionsProps {
   screenType: "mobile" | "pc";
 }
 
-interface MobileSortOptionsProps {
-  sortOrder: string;
-  setSortOrder: (order: string) => void;
-  setProducts: (products: any[]) => void;
-}
-
-const MobileSortOptions: React.FC<MobileSortOptionsProps> = ({
+const MobileSortOptions = ({
   sortOrder,
   setSortOrder,
   setProducts,
-}) => {
+}: Omit<SortOptionsProps, 'screenType'>) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSortClick = () => {
@@ -62,17 +56,11 @@ const MobileSortOptions: React.FC<MobileSortOptionsProps> = ({
   );
 };
 
-interface PCSortOptionsProps {
-  sortOrder: string;
-  setSortOrder: (order: string) => void;
-  setProducts: (products: any[]) => void;
-}
-
-const PCSortOptions: React.FC<PCSortOptionsProps> = ({
+const PCSortOptions = ({
   sortOrder,
   setSortOrder,
   setProducts,
-}) => {
+}: Omit<SortOptionsProps, 'screenType'>) => {
   const handleSortChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newSortOrder = e.target.value;
     setSortOrder(newSortOrder);
@@ -104,12 +92,12 @@ const PCSortOptions: React.FC<PCSortOptionsProps> = ({
   );
 };
 
-const SortOptions: React.FC<SortOptionsProps> = ({
+const SortOptions = ({
   sortOrder,
   setSortOrder,
   setProducts,
   screenType,
-}) => {
+}: SortOptionsProps) => {
   if (screenType === "mobile") {
     return (
       <MobileSortOptions
@@ -129,3 +117,4 @@ const SortOptions: React.FC<SortOptionsProps> = ({
 };
 
 export default SortOptions;
+

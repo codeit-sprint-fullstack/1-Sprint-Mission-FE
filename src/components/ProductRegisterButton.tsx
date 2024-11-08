@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import styles from "./ProductRegisterButton.module.css";
 
-const ProductRegisterButton: React.FC = () => {
+const ProductRegisterButton = () => {
   const router = useRouter();
 
   const handleRegisterClick = () => {
@@ -17,3 +17,4 @@ const ProductRegisterButton: React.FC = () => {
 };
 
 export default ProductRegisterButton;
+

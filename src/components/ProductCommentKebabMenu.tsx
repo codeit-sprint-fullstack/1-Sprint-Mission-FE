@@ -11,15 +11,15 @@ interface ProductCommentKebabMenuProps {
   onEdit: () => void;
 }
 
-const ProductCommentKebabMenu: React.FC<ProductCommentKebabMenuProps> = ({
+const ProductCommentKebabMenu = ({
   commentId,
   productId,
   initialContent,
   refreshComments,
   onEdit,
-}) => {
-  const [showMenu, setShowMenu] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+}: ProductCommentKebabMenuProps) => {
+  const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

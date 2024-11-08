@@ -12,17 +12,7 @@ import BestProducts from "../../components/BestProducts";
 import styles from "../../styles/itemList.module.css";
 import { ProductResponse } from "../../api/productApi";
 
-
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  image?: string[];
-  likes?: number;
-}
-
-const ProductListPage: React.FC = () => {
+const ProductListPage = () => {
   const router = useRouter();
   const screenType = useScreenType();
   const queryClient = useQueryClient();
@@ -42,20 +32,17 @@ const ProductListPage: React.FC = () => {
     }
   }, [screenType]);
 
-  // 상품 목록을 가져오는 Query 설정
-  const { data, isLoading, error, refetch } = useQuery({
+  const { data, isLoading, error, refetch } = useQuery<ProductResponse[]>({
     queryKey: ["products", page, pageSize, sortOrder, productSearch],
     queryFn: () =>
       getProducts(page, pageSize, sortOrder, productSearch).then((data) =>
-        data.map((item: ProductResponse) => ({
+        data.map((item) => ({
           ...item,
-          image: item.image ? [item.image] : [],
+          images: item.images || [],
         }))
       ),
     staleTime: 1000 * 60, // 1분
   });
-
-  const products: Product[] = Array.isArray(data) ? data : [];
 
   const handleMouseEnter = (id: number) => {
     queryClient.prefetchQuery({
@@ -99,16 +86,16 @@ const ProductListPage: React.FC = () => {
         </div>
 
         <div className={styles.allProductsContents}>
-          {products.map((item) => (
+          {data?.map((item) => (
             <div
               key={item.id}
               className={styles.allProducts}
               onMouseEnter={() => handleMouseEnter(item.id)}
               onClick={() => handleProductClick(item.id)}
             >
-              {item.image?.length && (
+              {item.images?.length > 0 && (
                 <img
-                  src={item.image[0]}
+                  src={item.images[0]}
                   alt={item.name}
                   className={styles.productImg}
                 />
@@ -119,7 +106,7 @@ const ProductListPage: React.FC = () => {
               </h2>
               <span className={styles.like}>
                 <img src="/image/heart.svg" alt="좋아요" />
-                {item.likes || 0}
+                {item.likes?.length || 0}
               </span>
             </div>
           ))}

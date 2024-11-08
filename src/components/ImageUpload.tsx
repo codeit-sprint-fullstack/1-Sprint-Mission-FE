@@ -7,7 +7,7 @@ interface ImageUploadProps {
   uploadApi: (file: File) => Promise<{ imageUrl: string }>;
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ imageUrls = [], setImageUrls, uploadApi }) => {
+const ImageUpload = ({ imageUrls = [], setImageUrls, uploadApi }: ImageUploadProps) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,3 +87,4 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ imageUrls = [], setImageUrls,
 };
 
 export default ImageUpload;
+

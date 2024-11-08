@@ -1,28 +1,24 @@
 import axiosInstance from "./axiosInstance";
+import { LikeData, CommentResponse, User } from "../types/commonTypes";
 
+// 상품 등록 시 필요한 데이터 타입
 export interface ProductData {
-  id: number;
   name: string;
   description: string;
   price: number;
-  image?: string;
-  likes: number;
-  tags?: string[];
-  userId?: number;
-  createdAt: string;
-  updatedAt: string;
+  tags: string[];
+  images: string[];
 }
 
+// 등록한 상품 조회 시 반환되는 응답 타입
 export interface ProductResponse extends ProductData {
   id: number;
-  name: string;
-  description: string;
-  price: number;
-  image?: string;
+  likes: LikeData[];
+  comments: CommentResponse[];
+  images: string[];
   createdAt: string;
   updatedAt: string;
-  likes: number;
-  
+  user: User;
 }
 
 // 상품 등록

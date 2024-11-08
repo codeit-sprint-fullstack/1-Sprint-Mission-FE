@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { createProduct, uploadImage } from "../../api/productApi";
 import { getAccessToken } from "../../api/authApi";
@@ -6,16 +6,7 @@ import ImageUpload from "../../components/ImageUpload";
 import styles from "../../styles/productRegistration.module.css";
 import { ProductData } from "../../api/productApi";
 
-// 새 상품 ProductData (id 제외)
-interface NewProductData {
-  name: string;
-  description: string;
-  price: number;
-  image?: string;
-  likes: number;
-}
-
-const Registration: React.FC = () => {
+const Registration = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState<number>(0);
@@ -27,7 +18,6 @@ const Registration: React.FC = () => {
 
   useEffect(() => {
     const token = getAccessToken();
-    console.log("가져온 토큰:", token);
     setAccessToken(token);
   }, []);
 
@@ -40,17 +30,17 @@ const Registration: React.FC = () => {
         return;
       }
 
-      const productData: NewProductData = {
+      const productData = {
         name: title.trim(),
         description: description.trim(),
-        price: price,
-        likes: 0,
-        image: imageUrls[0],
+        price,
+        tags,
+        images: imageUrls,
       };
 
       console.log("전송할 데이터:", productData);
 
-      const result = await createProduct(productData as ProductData);
+      const result = await createProduct(productData);
 
       if (result && result.id) {
         router.push(`/items`);
@@ -162,4 +152,3 @@ const Registration: React.FC = () => {
 };
 
 export default Registration;
-

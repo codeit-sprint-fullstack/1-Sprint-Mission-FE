@@ -8,14 +8,15 @@ import CommentForm from '../../components/CommentForm';
 import BackButton from '../../components/BackButton';
 import PostKebabMenu from '../../components/PostKebabMenu';
 import EmptyComments from '../../components/EmptyComments';
+import { CommentResponse } from '../../types/commonTypes';
 
-const PostDetail: React.FC = () => {
+const PostDetail = () => {
   const router = useRouter();
   const { id } = router.query;
   const [post, setPost] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [likes, setLikes] = useState(Math.floor(Math.random() * 10000));
-  const [comments, setComments] = useState<any[]>([]);
+  const [comments, setComments] = useState<CommentResponse[]>([]);
 
   const loadComments = async () => {
     try {
@@ -47,7 +48,7 @@ const PostDetail: React.FC = () => {
     loadComments();
   }, [id]);
 
-  const addNewComment = (newComment: any) => {
+  const addNewComment = (newComment: CommentResponse) => {
     setComments((prevComments) => [newComment, ...prevComments]);
   };
 
@@ -65,7 +66,7 @@ const PostDetail: React.FC = () => {
 
       <div className={styles.postInfo}>
         <img src="/image/mini_profile.svg" alt="Mini Profile" className={styles.profileIcon} />
-        <span className={styles.author}>{post.author || '푸바오'}</span>
+        <span className={styles.author}>{post.user.nickname || '푸바오'}</span>
         <span className={styles.date}>
           {new Date(post.createdAt).toISOString().slice(0, 10).replace(/-/g, '.')}
         </span>
@@ -100,7 +101,7 @@ const PostDetail: React.FC = () => {
                 key={comment.id}
                 id={comment.id}
                 articleId={articleId}
-                author={comment.author || '푸바오'}
+                author={comment.user?.nickname || '푸바오'}
                 content={comment.content}
                 createdAt={comment.createdAt}
                 refreshComments={loadComments}
@@ -117,4 +118,3 @@ const PostDetail: React.FC = () => {
 };
 
 export default PostDetail;
-

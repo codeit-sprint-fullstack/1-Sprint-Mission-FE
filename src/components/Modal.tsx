@@ -6,7 +6,7 @@ interface ModalProps {
   onConfirm: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ message, onConfirm }) => {
+const Modal = ({ message, onConfirm }: ModalProps) => {
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>

@@ -1,37 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProducts } from "../api/productApi";
+import { getProducts, ProductResponse } from "../api/productApi";
 import Spinner from "../components/Spinner";
 import { useRouter } from "next/router";
 import styles from "./BestProducts.module.css";
 
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  image?: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-const BestProducts: React.FC = () => {
+const BestProducts = () => {
   const router = useRouter();
 
-  const { data, isLoading, error } = useQuery<Product[], Error>({
+  const { data, isLoading, error } = useQuery<ProductResponse[], Error>({
     queryKey: ["bestProducts"],
     queryFn: async () => {
       const response = await getProducts(1, 4, "favorite");
-      return response.map((product) => ({
-        id: product.id,
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        image: product.image,
-        createdAt: product.createdAt,
-        updatedAt: product.updatedAt,
-      }));
+      return response;
     },
-    staleTime: 1000 * 60
+    staleTime: 1000 * 60,
   });
 
   const bestProducts = data || [];
@@ -54,7 +36,7 @@ const BestProducts: React.FC = () => {
               onClick={() => handleProductClick(item.id)}
             >
               <img
-                src={item.image || "/image/default.svg"}
+                src={item.images[0] || "/image/default.svg"}
                 alt={item.name}
                 className={styles.productImg}
               />

@@ -2,31 +2,12 @@ import React from "react";
 import BestPosts from "../../components/BestPosts";
 import PostList from "../../components/PostList";
 import { fetchArticles, fetchBestArticles } from "../../api/articleApi";
+import { ArticleResponse } from "../../api/articleApi";
 
-interface BestPosts {
-  id: number;
-  title: string;
-  user: { nickname: string };
-  likes: number;
-  createdAt: string;
-  image?: string[];
-}
-
-interface PostList {
-  id: number;
-  title: string;
-  user?: {
-    nickname?: string;
-  };
-  createdAt: string;
-  likes: { length: number }[];
-  image?: string[];
-}
-
-const BoardPage: React.FC<{
-  initialPosts?: PostList[];
-  bestPosts?: BestPosts[];
-}> = ({ initialPosts = [], bestPosts = [] }) => {
+const BoardPage = ({ initialPosts = [], bestPosts = [] }: {
+  initialPosts?: ArticleResponse[];
+  bestPosts?: ArticleResponse[];
+}) => {
   return (
     <div>
       <BestPosts bestPosts={bestPosts} />

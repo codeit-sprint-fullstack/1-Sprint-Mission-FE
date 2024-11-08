@@ -1,21 +1,9 @@
 import axiosInstance from "./axiosInstance";
+import { CommentResponse } from "../types/commonTypes";
 
+// 댓글 등록 시 필요한 데이터 타입
 export interface CommentData {
-  id: number;
   content: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface User {
-  nickname: string;
-}
-
-export interface CommentResponse extends CommentData {
-  userId: number;
-  articleId?: number;
-  productId?: number;
-  user?: User;
 }
 
 // 상품에 댓글 추가

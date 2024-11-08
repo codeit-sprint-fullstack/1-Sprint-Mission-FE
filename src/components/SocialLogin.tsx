@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./SocialLogin.module.css";
 
-const SocialLogin: React.FC = () => {
+const SocialLogin = () => {
   return (
     <div className={styles.socialLogin}>
       <span>간편 로그인하기</span>
@@ -18,4 +18,3 @@ const SocialLogin: React.FC = () => {
 };
 
 export default SocialLogin;
-

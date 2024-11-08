@@ -13,14 +13,14 @@ interface ProductCommentItemProps {
   productId: number;
 }
 
-const ProductCommentItem: React.FC<ProductCommentItemProps> = ({
+const ProductCommentItem = ({
   id,
   content,
   createdAt,
   author,
   refreshComments,
   productId,
-}) => {
+}: ProductCommentItemProps) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editedContent, setEditedContent] = useState(content);
 

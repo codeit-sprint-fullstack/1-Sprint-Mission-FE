@@ -5,7 +5,7 @@ interface SearchBarProps {
   setKeyword: (keyword: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ setKeyword }) => {
+const SearchBar = ({ setKeyword }: SearchBarProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
@@ -24,4 +24,3 @@ const SearchBar: React.FC<SearchBarProps> = ({ setKeyword }) => {
 };
 
 export default SearchBar;
-

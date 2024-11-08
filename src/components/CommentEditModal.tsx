@@ -11,21 +11,21 @@ interface CommentEditModalProps {
   onCommentUpdate: (updatedContent: string) => void;
 }
 
-const CommentEditModal: React.FC<CommentEditModalProps> = ({
+const CommentEditModal = ({
   isOpen,
   onClose,
   commentId,
   articleId,
   initialContent,
   onCommentUpdate,
-}) => {
+}: CommentEditModalProps) => {
   const [commentData, setCommentData] = useState<string>(initialContent || "");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
     if (isOpen) {
-      setCommentData(initialContent); // 모달이 열리면 원래 있던 댓글 내용으로 초기화
+      setCommentData(initialContent); // 모달이 열리면 원래 있던 댓글 내용으로 가져오기
     }
   }, [isOpen, initialContent]);
 

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../styles/postdetail.module.css";
 import ProductBackButton from "./ProductBackButton";
 
-const ProductEmptyComments: React.FC = () => {
+const ProductEmptyComments = () => {
   return (
     <>
       <img
@@ -11,8 +11,12 @@ const ProductEmptyComments: React.FC = () => {
         className={styles.replyIcon}
       />
       <p className={styles.noCommentsText}>아직 문의가 없어요</p>
+      <div className={styles.buttonContainer}>
+        <ProductBackButton />
+      </div>
     </>
   );
 };
 
 export default ProductEmptyComments;
+

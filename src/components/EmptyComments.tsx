@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../styles/postdetail.module.css";
 import BackButton from "./BackButton";
 
-const EmptyComments: React.FC = () => {
+const EmptyComments = () => {
   return (
     <>
       <img src="/image/reply.svg" alt="Reply Icon" className={styles.replyIcon} />
@@ -17,3 +17,4 @@ const EmptyComments: React.FC = () => {
 };
 
 export default EmptyComments;
+

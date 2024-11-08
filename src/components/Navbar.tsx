@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import styles from "./Navbar.module.css";
 import { logOut } from "../api/authApi";
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   const [logoSrc, setLogoSrc] = useState<string>("/image/logo.svg");
   const [nickname, setNickname] = useState<string>("");
   const router = useRouter();

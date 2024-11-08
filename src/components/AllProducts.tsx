@@ -5,15 +5,7 @@ import RegisterButton from './RegisterButton';
 import SortOptions from './SortOptions';
 import Pagination from './Pagination';
 import styles from '../styles/itemList.module.css';
-
-interface Product {
-  id: number;
-  _id?: number;
-  name: string;
-  price: number;
-  images?: string[];
-  likes?: number;
-}
+import { ProductResponse } from "../api/productApi";
 
 interface AllProductsProps {
   page: number;
@@ -26,7 +18,7 @@ interface AllProductsProps {
   totalPages: number;
 }
 
-const AllProducts: React.FC<AllProductsProps> = ({
+const AllProducts = ({
   page,
   setPage,
   screenType,
@@ -35,7 +27,7 @@ const AllProducts: React.FC<AllProductsProps> = ({
   sortOrder,
   onSearchSubmit,
   totalPages,
-}) => {
+}: AllProductsProps) => {
   const router = useRouter();
 
   const { products, isLoading, error } = useGetProducts(page);
@@ -90,11 +82,11 @@ const AllProducts: React.FC<AllProductsProps> = ({
       )}
 
       <div className={styles.allProductsContents}>
-        {products.map((item: Product) => (
+        {products.map((item: ProductResponse) => (
           <div
-            key={(item._id || item.id).toString()}
+            key={item.id.toString()}
             className={styles.allProducts}
-            onClick={() => handleProductClick(item._id || item.id)}
+            onClick={() => handleProductClick(item.id)}
             style={{ cursor: 'pointer' }}
           >
             <img
@@ -108,7 +100,7 @@ const AllProducts: React.FC<AllProductsProps> = ({
             </h2>
             <span className={styles.like}>
               <img src="../image/heart.svg" alt="좋아요" />
-              {item.likes || 0}
+              {item.likes?.length || 0}
             </span>
           </div>
         ))}
