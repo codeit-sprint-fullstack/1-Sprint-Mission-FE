@@ -1,21 +1,20 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 
 import { getAccessToken } from "./token-codeit";
 import { refreshToken } from "./api-codeit-auth";
 
 const axiosConfig = {
-  baseURL: process.env.NEXT_PUBLIC_CODEIT_BASE_URL,
-  // withCredentials: true, // 수업 내용에 있어서 코드잇에서 설정해둔줄
+  baseURL: process.env.NEXT_SPRINT_BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
 };
 
-export const instanceWithToken = axios.create(axiosConfig);
+export const instance: AxiosInstance = axios.create(axiosConfig);
 
-instanceWithToken.interceptors.request.use(
+instance.interceptors.request.use(
   (config) => {
-    const token = getAccessToken();
+    const token: string | null = getAccessToken();
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -28,17 +27,23 @@ instanceWithToken.interceptors.request.use(
   }
 );
 
-instanceWithToken.interceptors.response.use(
+instance.interceptors.response.use(
   (res) => {
     return res;
   },
   async (err) => {
     const originalRequest = err.config;
 
-    if (err.responese?.status === 401 && !originalRequest._retry) {
-      await refreshToken();
+    if (err.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      return instance(originalRequest);
+
+      try {
+        await refreshToken();
+
+        return instance(originalRequest);
+      } catch (err) {
+        return Promise.reject(err);
+      }
     }
 
     return Promise.reject(err);

@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { createPostComment, getPostComments } from "@/lib/api-post-comment";
+import { createPostComment, getPostCommentList } from "@/lib/api-post-comment";
 import classNames from "classnames";
 
 import PostCommentMaker from "./PostCommentMaker";
@@ -12,7 +12,7 @@ export default function PostCommentSection({ postId }) {
 
   const { data: commentList } = useQuery({
     queryKey: [`post-comments`, postId],
-    queryFn: () => getPostComments(postId),
+    queryFn: () => getPostCommentList(postId),
   });
 
   const mutation = useMutation({

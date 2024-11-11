@@ -1,7 +1,6 @@
-import { instance } from "./axios-codeit";
-import { instanceWithToken } from "./axios-codeit-token";
+import { instance } from "./axios-token";
 
-import { ORDER_BY_RECENT, ORDER_BY } from "@/src/app/constants/sort";
+import { ORDER_BY_RECENT, ORDER_BY } from "src/app/constants/sort";
 
 /** codeit POST /products
   return : {
@@ -26,12 +25,18 @@ export async function createProduct({
   price,
   description,
   name,
+}: {
+  images: string;
+  tags: string;
+  price: number;
+  description: string;
+  name: string;
 }) {
   const path = "/products";
   const body = { images, tags, price, description, name };
 
   try {
-    const res = await instanceWithToken.post(path, body);
+    const res = await instance.post(path, body);
     return res.data;
   } catch (err) {}
 }
@@ -63,6 +68,11 @@ export async function getProducts({
   pageSize = 10,
   orderBy = ORDER_BY[ORDER_BY_RECENT],
   keyword,
+}: {
+  page: number;
+  pageSize: number;
+  orderBy: string;
+  keyword: string;
 }) {
   const path = "/products";
   const params = {
@@ -96,7 +106,7 @@ export async function getProducts({
     "isFavorite": true
   }
 */
-export async function getProduct({ productId }) {
+export async function getProduct(productId: string) {
   const path = `/products/${productId}`;
 
   try {
@@ -132,6 +142,13 @@ export async function modifyProduct({
   price,
   description,
   name,
+}: {
+  productId: string;
+  images: string[];
+  tags: string[];
+  price: number;
+  description: string;
+  name: string;
 }) {
   const path = `/products/${productId}`;
   const body = {
@@ -143,17 +160,17 @@ export async function modifyProduct({
   };
 
   try {
-    const res = await instanceWithToken.patch(path, body);
+    const res = await instance.patch(path, body);
     return res.data;
   } catch (err) {}
 }
 
 /** codeit DELETE /products/{productId} */
-export async function deleteProduct(productId) {
+export async function deleteProduct(productId: string) {
   const path = `/products/${productId}`;
 
   try {
-    const res = await instanceWithToken.delete(path);
+    const res = await instance.delete(path);
     return res.data;
   } catch (err) {
     throw err;
@@ -179,11 +196,11 @@ export async function deleteProduct(productId) {
   "isFavorite": true
 }
 */
-export async function addFavoriteProduct(productId) {
+export async function addFavoriteProduct(productId: string) {
   const path = `/products/${productId}/favorite`;
 
   try {
-    const res = await instanceWithToken.post(path);
+    const res = await instance.post(path);
     return res.data;
   } catch (err) {}
 }
@@ -207,11 +224,11 @@ export async function addFavoriteProduct(productId) {
   "isFavorite": true
 }
  */
-export async function removeFavoriteProduct(productId) {
+export async function removeFavoriteProduct(productId: string) {
   const path = `/products/${productId}/favorite`;
 
   try {
-    const res = await instanceWithToken.delete(path);
+    const res = await instance.delete(path);
     return res.data;
   } catch (err) {}
 }

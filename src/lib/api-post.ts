@@ -1,16 +1,5 @@
-import axios from "axios";
-
-// 임시로 userId 고정값 사용
-const userId = "123e4567-e89b-12d3-a456-426614174001";
-
-const axiosConfig = {
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-};
-
-export const instance = axios.create(axiosConfig);
+import { instance } from "./axios-token";
+import { getAccessToken } from "./token-codeit";
 
 export async function createPost({
   name,
@@ -21,7 +10,7 @@ export async function createPost({
 }) {
   const path = "/posts";
   const data = { name, content };
-  const headers = { authorization: userId }; // 임시로 사용
+  const headers = { authorization: `Bearer ${getAccessToken()}` };
 
   try {
     const res = await instance.post(path, data, { headers });
@@ -42,7 +31,6 @@ export async function getPostList({
   orderBy?: string;
   keyword?: string;
 }) {
-  const headers = { authorization: userId }; // 임시로 사용
   const path = "/posts";
   const params = {
     ...(page && { page }),
@@ -50,6 +38,7 @@ export async function getPostList({
     ...(orderBy && { orderBy }),
     ...(keyword && { keyword }),
   };
+  const headers = { authorization: `Bearer ${getAccessToken()}` };
 
   try {
     const res = await instance.get(path, { params, headers });
@@ -60,8 +49,8 @@ export async function getPostList({
 }
 
 export async function getPost(postId: string) {
-  const headers = { authorization: userId }; // 임시로 사용
   const path = `/posts/${postId}`;
+  const headers = { authorization: `Bearer ${getAccessToken()}` };
 
   try {
     const res = await instance.get(path, { headers });
@@ -71,7 +60,7 @@ export async function getPost(postId: string) {
   }
 }
 
-export async function modifyPost({
+export async function setPost({
   postId,
   name,
   content,
@@ -82,7 +71,7 @@ export async function modifyPost({
 }) {
   const path = `/posts/${postId}`;
   const data = { name, content };
-  const headers = { authorization: userId }; // 임시로 사용
+  const headers = { authorization: `Bearer ${getAccessToken()}` };
 
   try {
     const res = await instance.patch(path, data, { headers });
@@ -94,41 +83,11 @@ export async function modifyPost({
 
 export async function deletePost(postId: string) {
   const path = `/posts/${postId}`;
-  const headers = { authorization: userId }; // 임시로 사용
+  const headers = { authorization: `Bearer ${getAccessToken()}` };
 
   try {
     const res = await instance.delete(path, { headers });
     return res.status;
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-export async function createPostComment({
-  postId,
-  content,
-}: {
-  postId: string;
-  content: string;
-}) {
-  const path = `/posts/${postId}/comment`;
-  const data = { content };
-  const headers = { authorization: userId };
-
-  try {
-    const res = await instance.post(path, data, { headers });
-    return res.data;
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-export async function getPostComment(postId: string) {
-  const path = `/posts/${postId}/comment`;
-
-  try {
-    const res = await instance.get(path);
-    return res.data;
   } catch (err) {
     console.error(err);
   }

@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   createProductComment,
-  getProductComments,
+  getProductCommentList,
   modifyComment,
   deleteComment,
 } from "@/lib/api-codeit-comment";
@@ -19,7 +19,7 @@ export default function ProductCommentSection({ productId }) {
 
   const { data, isLoading, isError } = useQuery({
     queryKey: [`product-comments`, productId],
-    queryFn: () => getProductComments({ productId }),
+    queryFn: () => getProductCommentList({ productId }),
   });
 
   const mutation = useMutation({

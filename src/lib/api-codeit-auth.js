@@ -1,4 +1,4 @@
-import { instance } from "./axios-codeit";
+import { instance } from "./axios-token";
 import { instanceWithToken } from "./axios-codeit-token";
 
 import {
@@ -81,7 +81,7 @@ export async function refreshToken() {
   const body = { refreshToken: getRefreshToken() };
 
   try {
-    const res = await instanceWithToken.post(path, body, { _retry: true });
+    const res = await instance.post(path, body, { _retry: true });
     setAccessToken(res.data.accessToken);
   } catch (err) {
     throw err;

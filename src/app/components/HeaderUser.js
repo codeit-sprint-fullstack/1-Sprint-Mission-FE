@@ -7,7 +7,7 @@ import classNames from "classnames";
 import Profile from "./Profile";
 import useAuth from "../hooks/useAuth";
 
-import { getMyInfo } from "../../lib/api-codeit-user";
+import { getMyInfo } from "../../lib/api-user";
 import { PROFILE_H40 } from "../constants/Profile";
 
 import style from "./header-user.module.css";

@@ -5,10 +5,7 @@ import Image from "next/image";
 import classNames from "classnames";
 import { FAVORITE_CLASSES } from "../constants/Favorite";
 
-import {
-  addFavoriteProduct,
-  removeFavoriteProduct,
-} from "src/lib/api-codeit-product";
+import { addFavoriteProduct, removeFavoriteProduct } from "src/lib/api-product";
 import { limitTextCount } from "src/lib/text";
 
 const SRCS = ["/icons/ic_heart_empty_small.svg", "/icons/ic_heart_full.svg"];
@@ -21,8 +18,8 @@ export default function Favorite({
 }: {
   type: number;
   myFavorite?: boolean;
-  favoriteCount: number;
-  objectId?: string;
+  favoriteCount?: number;
+  objectId: string;
 }) {
   const [isFavorite, setIsFavorite] = useState(myFavorite);
   const [favoriteCountText, setFavoriteCountText] = useState(
