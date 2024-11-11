@@ -1,0 +1,16 @@
+/* ===== footer ===== */
+.facebook-icon {
+  content: url(../../../public/icons/ic_facebook.svg);
+}
+
+.x-icon {
+  content: url(../../../public/icons/ic_twitter.svg);
+}
+
+.youtube-icon {
+  content: url(../../../public/icons/ic_youtube.svg);
+}
+
+.instagram-icon {
+  content: url(../../../public/icons/ic_instagram.svg);
+}

@@ -1,0 +1,10 @@
+.btn-home {
+  background-image: url(../../../public/buttons/btn_home.svg);
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .btn-home {
+    background-image: url(../../../public/buttons/btn_home_small.svg);
+  }
+}
