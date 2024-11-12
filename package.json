@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
-    "build": "next build",
+    "dev": "cross-env NODE_OPTIONS=development next dev",
+    "build": "next build && tsc",
     "start": "next start",
     "lint": "next lint"
   },
@@ -26,6 +26,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.53.0",
     "react-modal": "^3.16.1",
+    "react-query": "^3.39.3",
     "zustand": "^4.5.5"
   },
   "devDependencies": {
@@ -35,6 +36,7 @@
     "@types/node": "^22.9.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@types/react-modal": "^3.16.3",
     "eslint": "^8",
     "eslint-config-next": "14.2.8",
     "postcss": "^8.4.47",

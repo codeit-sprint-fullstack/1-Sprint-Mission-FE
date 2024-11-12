@@ -29,7 +29,7 @@ export async function getPostList({
   page?: number;
   pageSize?: number;
   orderBy?: string;
-  keyword?: string;
+  keyword?: string | null;
 }) {
   const path = "/posts";
   const params = {

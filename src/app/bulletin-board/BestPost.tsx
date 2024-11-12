@@ -56,6 +56,7 @@ export function BestPost({
                 type={BEST_POST}
                 myFavorite={myFavorite}
                 favoriteCount={favoriteCount}
+                objectId={postId}
               />
             </div>
             <Date dbDate={createdDate} />

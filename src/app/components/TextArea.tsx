@@ -3,15 +3,23 @@
 import { useState, useEffect } from "react";
 
 import useValidateInput from "../hooks/useValidateInput";
-import style from "./input.module.css";
+import style from "./text-area.module.css";
 
-export function Input({
+interface TextAreaProps {
+  validateFunc: Function;
+  placeholder: string;
+  getValid: Function;
+  onChange: Function;
+  value: string;
+}
+
+export default function TextArea({
   validateFunc,
   placeholder,
   getValid,
   onChange,
   value = "",
-}) {
+}: TextAreaProps) {
   const [inputClass, setInputClass] = useState(style.input);
   const customInput = useValidateInput(validateFunc);
 
@@ -31,22 +39,21 @@ export function Input({
     }
   }, [customInput.isValid, getValid]);
 
-  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (onChange) {
       onChange(e);
     }
 
-    customInput.onChange(e);
+    // 어차피 다른 라이브러리 사용해서 사용하면 useValidateInput을 사용 안할 예정
+    //customInput.onChange(e);
   };
 
   return (
-    <input
+    <textarea
       className={inputClass}
       placeholder={placeholder}
       value={customInput.value}
       onChange={handleChangeInput}
-    ></input>
+    ></textarea>
   );
 }
-
-export default Input;

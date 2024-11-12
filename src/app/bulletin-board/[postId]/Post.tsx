@@ -106,7 +106,11 @@ export function Post({
           <Date dbDate={createdDate} />
         </div>
         <Divider />
-        <Favorite type={POST_DETAIL} favoriteCount={favoriteCount} />
+        <Favorite
+          type={POST_DETAIL}
+          favoriteCount={favoriteCount}
+          objectId={postId}
+        />
       </div>
       <div className={contentClass}>{content} </div>
     </div>

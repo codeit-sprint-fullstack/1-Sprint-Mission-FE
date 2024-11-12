@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import { createPost } from "src/lib/api-post";
+import { setPost } from "src/lib/api-post";
 import Input from "src/app/components/input";
 import TextArea from "src/app/components/TextArea";
 
@@ -17,16 +17,17 @@ import {
   MAX_CONTENT_LENGHT,
   WARN_MAX_CONTENT_LENGHT,
   VALID_VALUE,
-} from "../constants/post";
+} from "src/app/constants/post";
+import { ModifyPostProps } from "src/types/post";
 
-import style from "./post-registration.module.css";
+import style from "./post-edit.module.css";
 
-export function PostRegisteration() {
-  const [nameValid, setNameValid] = useState<number | null>(null);
-  const [contentValid, setContentValid] = useState<number | null>(null);
-  const [registBtnDisable, setRegistBtnDisable] = useState<boolean>(true);
-  const [name, setName] = useState("");
-  const [content, setContent] = useState("");
+export function ModifyPost({ postId, data }: ModifyPostProps) {
+  const [newNameValid, setNewNameValid] = useState<number>(VALID_VALUE);
+  const [contentValid, setContentValid] = useState<number>(VALID_VALUE);
+  const [registBtnDisable, setRegistBtnDisable] = useState<boolean>(false);
+  const [newName, setNewName] = useState<string>(data.name);
+  const [content, setContent] = useState<string>(data.content);
   const registBtnClass = `${style["btn-regist"]}`;
   const topBarClass = `flex flex-row items-center justify-between ${style["top-bar"]}`;
   const topBarTextClass = `font-bold ${style["top-bar-text"]}`;
@@ -34,28 +35,28 @@ export function PostRegisteration() {
 
   const router = useRouter();
 
-  const handleRegistPost = () => {
-    if (nameValid !== VALID_VALUE || contentValid !== VALID_VALUE) {
+  const handleModifyPost = () => {
+    if (newNameValid !== 0 || contentValid !== 0) {
       return;
     }
 
-    setRegistBtnDisable(true);
+    setRegistBtnDisable(false);
 
-    createPost({ name, content }).then((data) => {
+    setPost({ postId, name: newName, content }).then((data) => {
       const path = `/bulletin-board/${data.id}`;
       router.push(path);
     });
   };
 
   const validateRegistValue = () => {
-    if (nameValid === VALID_VALUE && contentValid === VALID_VALUE) {
+    if (newNameValid === VALID_VALUE && contentValid === VALID_VALUE) {
       setRegistBtnDisable(false);
     } else {
       setRegistBtnDisable(true);
     }
   };
 
-  const validateName = (value: string) => {
+  const validateNewName = (value: string | null) => {
     if (!value) {
       return undefined;
     }
@@ -71,18 +72,18 @@ export function PostRegisteration() {
     }
   };
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
+  const handleNewNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewName(e.target.value);
   };
 
-  const getnameValid = (valid: number | null) => {
-    setNameValid(valid);
+  const getnewNameValid = (valid: number) => {
+    setNewNameValid(valid);
   };
 
-  const getNameWarn = () => {
-    if (nameValid === WARN_MIN_NAME_LENGTH) {
+  const getNewNameWarn = () => {
+    if (newNameValid === WARN_MIN_NAME_LENGTH) {
       return <p className="text-warn">{MIN_NAME_LENGTH}자 이상 입력해주세요</p>;
-    } else if (nameValid === WARN_MAX_NAME_LENGTH) {
+    } else if (newNameValid === WARN_MAX_NAME_LENGTH) {
       return (
         <p className="text-warn">{MAX_NAME_LENGTH}자 이하로 입력해주세요</p>
       );
@@ -91,7 +92,7 @@ export function PostRegisteration() {
     }
   };
 
-  const validateContent = (value: number | null) => {
+  const validateContent = (value: string | null) => {
     if (!value) {
       return undefined;
     }
@@ -111,7 +112,7 @@ export function PostRegisteration() {
     setContent(e.target.value);
   };
 
-  const getContentValid = (valid: number | null) => {
+  const getContentValid = (valid: number) => {
     setContentValid(valid);
   };
 
@@ -131,29 +132,30 @@ export function PostRegisteration() {
 
   useEffect(() => {
     validateRegistValue();
-  }, [nameValid, contentValid]);
+  }, [newNameValid, contentValid]);
 
   return (
     <div className={style.main}>
       <div className={style.content}>
         <div className={topBarClass}>
-          <p className={topBarTextClass}>게시글 쓰기</p>
+          <p className={topBarTextClass}>게시글 수정하기</p>
           <button
             className={registBtnClass}
-            onClick={handleRegistPost}
+            onClick={handleModifyPost}
             disabled={registBtnDisable}
           />
         </div>
-        <div className={style["name-input-set"]}>
+        <div className={style["newName-input-set"]}>
           <p className={labelClass}>*제목</p>
           <div className={style["input-frame"]}>
             <Input
-              validateFunc={validateName}
-              onChange={handleNameChange}
-              getValid={getnameValid}
+              validateFunc={validateNewName}
+              onChange={handleNewNameChange}
+              getValid={getnewNameValid}
               placeholder={"제목을 입력해주세요"}
+              value={newName}
             ></Input>
-            {getNameWarn()}
+            {getNewNameWarn()}
           </div>
         </div>
         <div className={style["content-text-area-set"]}>
@@ -164,6 +166,7 @@ export function PostRegisteration() {
               onChange={handleContentChange}
               getValid={getContentValid}
               placeholder={"내용을 입력해주세요"}
+              value={content}
             ></TextArea>
             {getContentWarn()}
           </div>
@@ -173,4 +176,4 @@ export function PostRegisteration() {
   );
 }
 
-export default PostRegisteration;
+export default ModifyPost;

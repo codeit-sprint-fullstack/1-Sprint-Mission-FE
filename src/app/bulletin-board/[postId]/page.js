@@ -1,6 +1,6 @@
 import Link from "next/link";
 import classNames from "classnames";
-import { getPost } from "@/lib/api-post";
+import { getPost } from "src/lib/api-post";
 
 import Post from "./Post";
 import PostCommentSection from "./PostCommentSection";

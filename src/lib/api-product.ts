@@ -72,7 +72,7 @@ export async function getProducts({
   page: number;
   pageSize: number;
   orderBy: string;
-  keyword: string;
+  keyword?: string | null;
 }) {
   const path = "/products";
   const params = {

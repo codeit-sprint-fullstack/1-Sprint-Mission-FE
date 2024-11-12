@@ -74,7 +74,7 @@ export default function PostCommentMaker({ registComment }) {
     }
   };
 
-  const handleChangeComment = (e) => {
+  const handleChangeComment = (e: React.ChangeEvent<HTMLInputElement>) => {
     setComment(e.target.value);
   };
 

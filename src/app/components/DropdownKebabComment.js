@@ -67,7 +67,7 @@ export function DropDownKebabComment({ ownerId, onModify, onDelete }) {
     onDelete();
   };
 
-  const handleClickOutside = (e) => {
+  const handleClickOutside = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
       setIsOpened(false);
     }

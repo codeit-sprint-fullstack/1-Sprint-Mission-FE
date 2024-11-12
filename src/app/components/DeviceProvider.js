@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext } from "react";
-import useCheckWidth from "@/src/app/hooks/useCheckWidth";
+import useCheckWidth from "src/app/hooks/useCheckWidth";
 
 export const DeviceContext = createContext();
 

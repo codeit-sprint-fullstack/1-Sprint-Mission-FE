@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, createContext, useContext } from "react";
 import { useRouter } from "next/navigation";
-import { deletePost } from "@/lib/axios";
+import { deletePost } from "src/lib/api-post";
 
 import style from "./dropdown-kebab-post.module.css";
 
@@ -66,7 +66,7 @@ export function DropDownKebabPost({ postId }) {
     });
   };
 
-  const handleClickOutside = (e) => {
+  const handleClickOutside = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
       setIsOpened(false);
     }

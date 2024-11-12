@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-import { getpostList } from "@/lib/api-post";
+import { getpostList } from "src/lib/api-post";
 import { BestPost } from "./BestPost";
 
 import { BEST_POST_PAGE_SIZE } from "../constants/post";

@@ -11,7 +11,7 @@ export default function Profile({
   onClick,
 }: {
   type: number;
-  profileImgUrl: string;
+  profileImgUrl?: string | null;
   onClick?: (...args: any[]) => void;
 }) {
   const imgFrameClass = classNames(

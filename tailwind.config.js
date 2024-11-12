@@ -48,8 +48,9 @@ module.exports = {
         // nav
         "pc-nav-item": "10.9rem",
         "mobile-nav-item": "7rem",
-        // btn-sigb-in
+        // btn-sign-in
         "btn-sign-in": "8.8rem",
+        "btn-sign-up": "8.8rem",
         // footer-icon
         "footer-icon": "2rem",
         // btn-logo
@@ -86,6 +87,8 @@ module.exports = {
         // simple-sign-in
         "simple-sign-in": "64rem",
         "mobile-simple-sign-in": "34.3rem",
+        "simple-sign-up": "64rem",
+        "mobile-simple-sign-up": "34.3rem",
       },
       height: {
         tool42: "4.2rem",
@@ -96,6 +99,7 @@ module.exports = {
         nav: "6.8rem",
         // btn-sigb-in
         "btn-sign-in": "4.2rem",
+        "btn-sign-up": "4.2rem",
         // footer
         footer: "16rem",
         // footer-icon
@@ -133,6 +137,7 @@ module.exports = {
         "btn-page": "4rem",
         // simple-sign-in
         "simple-sign-in": "7.4rem",
+        "simple-sign-up": "7.4rem",
         // post-middle-bar
         "post-middle-bar": "7.2rem",
       },
@@ -233,6 +238,12 @@ module.exports = {
           "url('/buttons/btn_sign_in_disabled_w640.svg')",
         "sign-in__btn--mobile--disabled":
           "url('/buttons/btn_sign_in_disabled_w343.svg')",
+        "sign-up__btn": "url('/buttons/btn_sign_up_w640.svg')",
+        "sign-up__btn--mobile": "url('/buttons/btn_sign_up_w343.svg')",
+        "sign-up__btn--disabled":
+          "url('/buttons/btn_sign_up_disabled_w640.svg')",
+        "sign-up__btn--mobile--disabled":
+          "url('/buttons/btn_sign_up_disabled_w343.svg')",
         "oauth-btn__google": "url('/buttons/btn_google.svg')",
         "oauth-btn__kakao": "url('/buttons/btn_kakao.svg')",
         "favorite-heart--full": "url('/icons/ic_heart_small.svg')",
