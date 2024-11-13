@@ -1,15 +1,63 @@
 "use client";
 
-import { useState, useEffect, useRef, createContext, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  createContext,
+  useContext,
+  ReactNode,
+} from "react";
 import { useRouter } from "next/navigation";
 import useAuth from "../hooks/useAuth";
 
-const dropdownContext = createContext();
+interface DropdownItemProps {
+  onClick: Function;
+  children: ReactNode;
+}
+
+interface DropdownMenuProps {
+  onModify: Function;
+  onDelete: Function;
+}
+
+interface DropdownContextType {
+  isOpened: boolean;
+  setIsOpened: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const DropdownContext = createContext<DropdownContextType | undefined>(
+  undefined
+);
+
+interface DropdownProviderProps {
+  children: ReactNode;
+}
+
+function DropdownProvider({ children }: DropdownProviderProps): JSX.Element {
+  const [isOpened, setIsOpened] = useState(false);
+
+  return (
+    <DropdownContext.Provider value={{ isOpened, setIsOpened }}>
+      {children}
+    </DropdownContext.Provider>
+  );
+}
+
+function useDropdownContext(): DropdownContextType {
+  const context = useContext(DropdownContext);
+  if (!context) {
+    throw new Error(
+      "useDropdownContext must be used within a DropdownProvider"
+    );
+  }
+  return context;
+}
 
 // 임시로 post에서 사용한 kebab button 코드 복사
 // 코드 통합 고려 필요
-export function DropdownItem({ onClick, children }) {
-  const { setIsOpened } = useContext(dropdownContext);
+export function DropdownItem({ onClick, children }: DropdownItemProps) {
+  const { setIsOpened } = useDropdownContext();
 
   const onItemClick = () => {
     setIsOpened(false);
@@ -23,8 +71,8 @@ export function DropdownItem({ onClick, children }) {
   );
 }
 
-export function DropdownMenu({ onModify, onDelete }) {
-  const { isOpened } = useContext(dropdownContext);
+export function DropdownMenu({ onModify, onDelete }: DropdownMenuProps) {
+  const { isOpened } = useDropdownContext();
 
   const handleClickModify = () => {
     onModify();
@@ -43,9 +91,14 @@ export function DropdownMenu({ onModify, onDelete }) {
   );
 }
 
-export function DropDownKebabComment({ ownerId, onModify, onDelete }) {
+export function DropDownKebabComment({
+  commentId,
+  ownerId,
+  onModify,
+  onDelete,
+}: DropdownMenuProps & { commentId: string; ownerId: string }) {
   const [isOpened, setIsOpened] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const { userId } = useAuth();
 
   // 토큰 만료시 sign-in 으로 이동을 위한 코드용
@@ -67,8 +120,11 @@ export function DropDownKebabComment({ ownerId, onModify, onDelete }) {
     onDelete();
   };
 
-  const handleClickOutside = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+  const handleClickOutside = (e: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(e.target as Node)
+    ) {
       setIsOpened(false);
     }
   };
@@ -82,7 +138,7 @@ export function DropDownKebabComment({ ownerId, onModify, onDelete }) {
   }, []);
 
   return (
-    <dropdownContext.Provider value={{ isOpened, setIsOpened, toggleDropdown }}>
+    <DropdownProvider>
       <div className="dropdown-kebab" ref={dropdownRef}>
         <button className="dropdown-kebab__toggle" onClick={toggleDropdown} />
         {isOpened && (
@@ -92,7 +148,7 @@ export function DropDownKebabComment({ ownerId, onModify, onDelete }) {
           />
         )}
       </div>
-    </dropdownContext.Provider>
+    </DropdownProvider>
   );
 }
 

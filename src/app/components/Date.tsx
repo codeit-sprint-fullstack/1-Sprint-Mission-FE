@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import classNames from "classnames";
 
-export default function Date({ dbDate }) {
+export default function Date({ dbDate }: { dbDate: string }) {
   const dateClass = classNames(
     "flex",
     "flex-row",

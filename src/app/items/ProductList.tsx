@@ -9,7 +9,7 @@ import Loading from "../components/Loading";
 import Search from "../components/Search";
 import ProductPreview from "./ProductPreview";
 import { getProducts } from "src/lib/api-product";
-import { deviceContext } from "./FleaMarketDetail";
+import { useDeviceContext } from "../components/DeviceProvider";
 import {
   Dropdown,
   DropdownToggle,
@@ -45,10 +45,16 @@ export default function ProductList({
   const [currentOrder, setCurrentOrder] = useState<number>(ORDER_BY_RECENT);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  let device = useContext(deviceContext) || PC;
+  const {
+    bestProductPageSize,
+    productPageSize,
+    bestPostPageSize,
+    postPageSize,
+  } = useDeviceContext();
+
   const maxPageNum = useMemo(() => {
-    return Math.ceil(initTotalCount / PAGE_SIZE[device]);
-  }, [initTotalCount, device]);
+    return Math.ceil(initTotalCount / productPageSize);
+  }, [initTotalCount]);
 
   const queryClient = useQueryClient();
 
@@ -125,7 +131,7 @@ export default function ProductList({
   const sortByRecent = () => {
     setParams({
       page: 1,
-      pageSize: PAGE_SIZE[device],
+      pageSize: productPageSize,
       orderBy: ORDER_BY[ORDER_BY_RECENT],
       keyword: keyword,
     });
@@ -135,7 +141,7 @@ export default function ProductList({
   const sortByFavorite = () => {
     setParams({
       page: 1,
-      pageSize: PAGE_SIZE[device],
+      pageSize: productPageSize,
       orderBy: ORDER_BY[ORDER_BY_FAVORITE],
       keyword: keyword,
     });
@@ -150,7 +156,7 @@ export default function ProductList({
   const handlePageMove = (pageNum: number) => {
     setParams({
       page: pageNum,
-      pageSize: PAGE_SIZE[device],
+      pageSize: productPageSize,
       orderBy: ORDER_BY[currentOrder],
       keyword: keyword,
     });
@@ -160,9 +166,9 @@ export default function ProductList({
   useEffect(() => {
     setParams((prevParams) => ({
       ...prevParams,
-      pageSize: PAGE_SIZE[device],
+      pageSize: productPageSize,
     }));
-  }, [device]);
+  }, []);
 
   console.log("list : ", list);
 

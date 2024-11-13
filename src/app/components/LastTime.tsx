@@ -2,7 +2,11 @@ import { DateTime } from "luxon";
 
 import classNames from "classnames";
 
-export default function LastTime({ dbDate }) {
+interface LastTimeProps {
+  dbDate: string;
+}
+
+export default function LastTime({ dbDate }: LastTimeProps) {
   const lastTimeClass = classNames(
     "flex",
     "flex-row",

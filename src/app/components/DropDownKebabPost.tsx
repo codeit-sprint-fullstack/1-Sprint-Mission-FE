@@ -1,15 +1,63 @@
 "use client";
 
-import { useState, useEffect, useRef, createContext, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  createContext,
+  useContext,
+  ReactNode,
+} from "react";
 import { useRouter } from "next/navigation";
 import { deletePost } from "src/lib/api-post";
 
 import style from "./dropdown-kebab-post.module.css";
 
-const dropdownContext = createContext();
+interface DropdownItemProps {
+  onClick: Function;
+  children: ReactNode;
+}
 
-export function DropdownItem({ onClick, children }) {
-  const { setIsOpened } = useContext(dropdownContext);
+interface DropdownMenuProps {
+  onModify: Function;
+  onDelete: Function;
+}
+
+interface DropdownContextType {
+  isOpened: boolean;
+  setIsOpened: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const DropdownContext = createContext<DropdownContextType | undefined>(
+  undefined
+);
+
+interface DropdownProviderProps {
+  children: ReactNode;
+}
+
+function DropdownProvider({ children }: DropdownProviderProps): JSX.Element {
+  const [isOpened, setIsOpened] = useState(false);
+
+  return (
+    <DropdownContext.Provider value={{ isOpened, setIsOpened }}>
+      {children}
+    </DropdownContext.Provider>
+  );
+}
+
+function useDropdownContext(): DropdownContextType {
+  const context = useContext(DropdownContext);
+  if (!context) {
+    throw new Error(
+      "useDropdownContext must be used within a DropdownProvider"
+    );
+  }
+  return context;
+}
+
+export function DropdownItem({ onClick, children }: DropdownItemProps) {
+  const { setIsOpened } = useDropdownContext();
 
   let dropdownItemClass = `flex-col font-normal items-center justify-center ${style["dropdown-kebab-post-item"]}`;
 
@@ -25,8 +73,8 @@ export function DropdownItem({ onClick, children }) {
   );
 }
 
-export function DropdownMenu({ onModify, onDelete }) {
-  const { isOpened } = useContext(dropdownContext);
+export function DropdownMenu({ onModify, onDelete }: DropdownMenuProps) {
+  const { isOpened } = useDropdownContext();
 
   let dropdownMenuClass = `${style["dropdown-kebab-post-menu"]}`;
 
@@ -47,9 +95,9 @@ export function DropdownMenu({ onModify, onDelete }) {
   );
 }
 
-export function DropDownKebabPost({ postId }) {
+export function DropDownKebabPost({ postId }: { postId: string }) {
   const [isOpened, setIsOpened] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   const toggleDropdown = () => {
@@ -66,8 +114,11 @@ export function DropDownKebabPost({ postId }) {
     });
   };
 
-  const handleClickOutside = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+  const handleClickOutside = (e: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(e.target as Node)
+    ) {
       setIsOpened(false);
     }
   };
@@ -81,7 +132,7 @@ export function DropDownKebabPost({ postId }) {
   }, []);
 
   return (
-    <dropdownContext.Provider value={{ isOpened, setIsOpened, toggleDropdown }}>
+    <DropdownProvider>
       <div className={style["dropdown-kebab-post"]} ref={dropdownRef}>
         <button
           className={style["dropdown-kebab-post-toggle"]}
@@ -94,7 +145,7 @@ export function DropDownKebabPost({ postId }) {
           />
         )}
       </div>
-    </dropdownContext.Provider>
+    </DropdownProvider>
   );
 }
 

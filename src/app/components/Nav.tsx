@@ -1,12 +1,22 @@
 "use client";
 
+import { ReactNode } from "react";
 import Link from "next/link";
 import classNames from "classnames";
 import { usePathname } from "next/navigation";
 
 import style from "./nav.module.css";
 
-export function NavItem({ linkto, children }) {
+interface NavProps {
+  children: ReactNode;
+}
+
+interface NavItemProps {
+  linkto: string;
+  children: ReactNode;
+}
+
+export function NavItem({ linkto, children }: NavItemProps) {
   const pathname = usePathname();
 
   let navTextClass = classNames("text-gray-600");
@@ -42,7 +52,7 @@ export function NavItem({ linkto, children }) {
   );
 }
 
-export function Nav({ children }) {
+export function Nav({ children }: NavProps) {
   const navClass = classNames("flex", "flex-row", "w-full", "h-nav");
   const navUlClass = classNames("flex", "flex-row");
 

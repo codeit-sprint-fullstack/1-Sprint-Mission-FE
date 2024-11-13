@@ -9,6 +9,17 @@ import LastTime from "./LastTime";
 import DropDownKebabComment from "./DropdownKebabComment";
 import { PROFILE_H32 } from "../constants/Profile";
 
+interface CommentProps {
+  content: string;
+  ownerId: string;
+  profileImgUrl: string;
+  nickname: string;
+  date: string;
+  commentId: string;
+  updateComment: Function;
+  deleteComment: Function;
+}
+
 export function Comment({
   content,
   ownerId,
@@ -18,7 +29,7 @@ export function Comment({
   commentId,
   updateComment,
   deleteComment,
-}) {
+}: CommentProps) {
   const [isModified, setIsModified] = useState(false);
   const commentClass = classNames("content", "comment");
   const topBarClass = classNames("flex", "flex-row", "justify-between");
@@ -30,7 +41,7 @@ export function Comment({
   );
   const bottomBarClass = classNames("flex", "flex-row", "mt-2.4rem");
 
-  const handleModifyComment = (newComment) => {
+  const handleModifyComment = (newComment: string) => {
     updateComment({ commentId, content: newComment });
     // 임시로 100% 성공 한다는 전제로 modifier 미출력
     // react-query로 상위 태그에서 관리하다보니, 성공/실패여부도 상위에서 다시 받아서 처리하는 방식을 해야하나?

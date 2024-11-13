@@ -12,9 +12,15 @@ import {
   VALID_VALUE,
 } from "../../constants/comment";
 
-export default function PostCommentMaker({ registComment }) {
+export default function PostCommentMaker({
+  registComment,
+}: {
+  registComment: Function;
+}) {
   const [comment, setComment] = useState("");
-  const [commentValid, setCommentValid] = useState(undefined);
+  const [commentValid, setCommentValid] = useState<number | undefined>(
+    undefined
+  );
   const [registBtnDisable, setRegistBtnDisable] = useState(true);
 
   const commentMakerClass = classNames(
@@ -55,7 +61,7 @@ export default function PostCommentMaker({ registComment }) {
     } catch (err) {}
   };
 
-  const validtateComment = (comment) => {
+  const validtateComment = (comment: string) => {
     if (!comment) {
       return undefined;
     }
@@ -78,7 +84,7 @@ export default function PostCommentMaker({ registComment }) {
     setComment(e.target.value);
   };
 
-  const getCommentValid = (valid) => {
+  const getCommentValid = (valid: number) => {
     setCommentValid(valid);
   };
 

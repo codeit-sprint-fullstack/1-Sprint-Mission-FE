@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import { GOOGLE, KAKAO, OAUTH_INFO } from "../constants/oauth";
 
-function OAuthSignIn({ oauth }) {
+function OAuthSignIn({ oauth }: { oauth: number }) {
   let btnClass = classNames("oauth-btn");
   switch (oauth) {
     case GOOGLE: {

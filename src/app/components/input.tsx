@@ -5,14 +5,22 @@ import { useState, useEffect } from "react";
 import useValidateInput from "../hooks/useValidateInput";
 import style from "./input.module.css";
 
+interface InputProps {
+  validateFunc: Function;
+  placeholder: string;
+  getValid: any;
+  onChange: Function;
+  value: string;
+}
+
 export function Input({
   validateFunc,
   placeholder,
   getValid,
   onChange,
   value = "",
-}) {
-  const [inputClass, setInputClass] = useState(style.input);
+}: InputProps) {
+  const [inputClass, setInputClass] = useState<string>(style.input);
   const customInput = useValidateInput(validateFunc);
 
   useEffect(() => {

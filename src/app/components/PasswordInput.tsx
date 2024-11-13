@@ -2,10 +2,21 @@
 
 import { useState } from "react";
 import classNames from "classnames";
+import { UseFormRegister, FieldErrors } from "react-hook-form";
 
 import { MIN_PASSWORD_LENGTH } from "../constants/sign-in";
 
-export default function PasswordInput({ label, register, errors }) {
+interface PasswordInputProps {
+  label: string;
+  register: UseFormRegister<any>;
+  errors: FieldErrors<{ password?: string }>;
+}
+
+export default function PasswordInput({
+  label,
+  register,
+  errors,
+}: PasswordInputProps) {
   const [inputType, setInputType] = useState("password");
   const [btnVisibleClass, setBtnVisibleClass] = useState("input--invisible");
 

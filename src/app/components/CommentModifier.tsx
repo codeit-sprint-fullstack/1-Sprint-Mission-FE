@@ -8,13 +8,21 @@ import LastTime from "./LastTime";
 import { PROFILE_H32 } from "../constants/Profile";
 import { MIN_COMMENT_LENGTH } from "../constants/comment";
 
+interface CommentModifierProps {
+  updateComment: Function;
+  content: string;
+  profileImgUrl: string;
+  nickname: string;
+  date: string;
+}
+
 export default function CommentModifier({
   updateComment,
   content,
   profileImgUrl,
   nickname,
   date,
-}) {
+}: CommentModifierProps) {
   const {
     register,
     handleSubmit,
@@ -50,7 +58,10 @@ export default function CommentModifier({
           })}
         />
         {errors.updatedComment && (
-          <p className="warning-text">{errors.updatedComment.message}</p>
+          <p className="warning-text">
+            {(errors.updatedComment.message as string) ||
+              "오류가 발생했습니다."}
+          </p>
         )}
       </form>
       <div className={bottomBarClass}>

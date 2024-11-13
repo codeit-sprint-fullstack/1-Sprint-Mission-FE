@@ -2,7 +2,19 @@ import classNames from "classnames";
 
 const SHOW_MAX_PAGINATION = 5;
 
-export function Pagination({ className, maxPageNum, currentPage, onClick }) {
+interface PaginationProps {
+  className: string;
+  maxPageNum: number;
+  currentPage: number;
+  onClick: Function;
+}
+
+export function Pagination({
+  className,
+  maxPageNum,
+  currentPage,
+  onClick,
+}: PaginationProps) {
   const paginationFrameClass = classNames(
     "flex",
     "flex-row",
@@ -69,7 +81,7 @@ export function Pagination({ className, maxPageNum, currentPage, onClick }) {
   const nextPageNum = tempPageNum > maxPageNum ? maxPageNum : tempPageNum;
   const rightPageButtonClick = () => onClick(nextPageNum);
 
-  function getPaginationClass(pageNum) {
+  function getPaginationClass(pageNum: number) {
     const pageClass =
       currentPage === pageNum ? btnCurrentPageClass : btnPageDefaultClass;
 

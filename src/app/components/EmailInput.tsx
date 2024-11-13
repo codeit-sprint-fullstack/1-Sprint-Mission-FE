@@ -1,10 +1,21 @@
 "use client";
 
+import { UseFormRegister, FieldErrors } from "react-hook-form";
 import classNames from "classnames";
 
-export default function EmailInput({ label, register, errors }) {
+interface EmailInputProps {
+  label: string;
+  register: UseFormRegister<any>;
+  errors: FieldErrors<{ email?: string }>;
+}
+
+export default function EmailInput({
+  label,
+  register,
+  errors,
+}: EmailInputProps) {
   let inputClass = classNames("sign-in__input", "focus:border-input--focus");
-  if (errors.password) {
+  if (errors.email) {
     inputClass = classNames(
       "sign-in__input",
       "focus:border-input--focus",

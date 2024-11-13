@@ -3,20 +3,22 @@
 import { useState } from "react";
 import classNames from "classnames";
 
-import TextArea from "./TextArea";
+import TextArea from "src/app/components/TextArea";
 import {
   MIN_COMMENT_LENGTH,
   WARN_MIN_COMMENT_LENGTH,
   MAX_COMMENT_LENGTH,
   WARN_MAX_COMMENT_LENGTH,
   VALID_VALUE,
-} from "../constants/comment";
+} from "src/app/constants/comment";
 
 import style from "./comment-maker.module.css";
 
-export function CommentMaker({ registComment }) {
+export function CommentMaker({ registComment }: { registComment: Function }) {
   const [comment, setComment] = useState("");
-  const [commentValid, setCommentValid] = useState(undefined);
+  const [commentValid, setCommentValid] = useState<number | undefined>(
+    undefined
+  );
   const [registBtnDisable, setRegistBtnDisable] = useState(true);
 
   const commentMakerClass = classNames(
@@ -62,7 +64,7 @@ export function CommentMaker({ registComment }) {
     } catch (err) {}
   };
 
-  const validtateComment = (comment) => {
+  const validtateComment = (comment: string) => {
     if (!comment) {
       return undefined;
     }
@@ -85,7 +87,7 @@ export function CommentMaker({ registComment }) {
     setComment(e.target.value);
   };
 
-  const getCommentValid = (valid) => {
+  const getCommentValid = (valid: number) => {
     setCommentValid(valid);
   };
 

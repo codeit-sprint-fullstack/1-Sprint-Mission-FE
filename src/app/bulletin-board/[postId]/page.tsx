@@ -5,7 +5,13 @@ import { getPost } from "src/lib/api-post";
 import Post from "./Post";
 import PostCommentSection from "./PostCommentSection";
 
-export default async function PostPage({ params }) {
+interface PostPageParams {
+  params: {
+    postId: string;
+  };
+}
+
+export default async function PostPage({ params }: PostPageParams) {
   const { postId } = params;
   const mainClass = classNames("content", "main");
 

@@ -1,9 +1,10 @@
 import classNames from "classnames";
 
-import { getpostList } from "src/lib/api-post";
+import { getPostList } from "src/lib/api-post";
 import { BestPost } from "./BestPost";
 
 import { BEST_POST_PAGE_SIZE } from "../constants/post";
+import { PostData } from "src/types/post";
 
 export async function BestBoard() {
   const boardClass = classNames(
@@ -39,26 +40,28 @@ export async function BestBoard() {
     "mobile:mt-1.6rem"
   );
 
-  let list = await getPostList(1, BEST_POST_PAGE_SIZE, "favorite").then(
-    (data) => {
-      const newList = data.postList.map((post, index) => {
-        return (
-          <BestPost
-            key={index}
-            postId={post.id}
-            name={post.name}
-            imgUrl={"../../../public/images/no_image.svg"}
-            nickname={post.user.nickname}
-            myFavorite={post.myFavorite}
-            favoriteCount={post.favorite}
-            createdDate={post.createdAt}
-          />
-        );
-      });
+  let list = await getPostList({
+    page: 1,
+    pageSize: BEST_POST_PAGE_SIZE,
+    orderBy: "favorite",
+  }).then((data) => {
+    const newList = data.posts.map((post: PostData, index: number) => {
+      return (
+        <BestPost
+          key={index}
+          postId={post.id}
+          name={post.name}
+          imgUrl={"../../../public/images/no_image.svg"}
+          nickname={post.ownerNickname}
+          myFavorite={post.isFavorite}
+          favoriteCount={post.favoriteCount}
+          createdDate={post.createdAt}
+        />
+      );
+    });
 
-      return newList;
-    }
-  );
+    return newList;
+  });
 
   return (
     <div className={boardClass}>

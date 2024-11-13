@@ -1,6 +1,16 @@
 import Modal from "react-modal";
 
-export default function DeleteModal({ showModal, deleteModal, onClose }) {
+interface DeleteModalProps {
+  showModal: boolean;
+  deleteModal: () => void;
+  onClose: () => void;
+}
+
+export default function DeleteModal({
+  showModal,
+  deleteModal,
+  onClose,
+}: DeleteModalProps) {
   const handleCloseModal = () => {
     onClose();
   };
