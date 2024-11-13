@@ -8,7 +8,9 @@ export function usePostSignIn() {
   return useMutation({
     mutationFn: (params) => postSignIn(params),
     onSuccess: (data) => {
-      auth({ data });
+      const user = data.user.nickname;
+      auth({ user });
+      window.location.href = '/';
     },
     onError: (error) => {
       console.error(error);

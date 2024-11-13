@@ -16,7 +16,7 @@ export default function Login() {
       <FormFooter
         content={'판다마켓이 처음이신가요?'}
         linkContent={'회원가입'}
-        path={'/signin'}
+        path={'/signup'}
       />
     </div>
   );

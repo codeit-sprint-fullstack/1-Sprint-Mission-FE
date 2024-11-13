@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  gap: 4px;
+}
+
+.before {
+  width: 16px;
+  height: 16px;
+  position: relative;
+}
+
+.next {
+  width: 16px;
+  height: 16px;
+  position: relative;
+}
+
+.before-page,
+.next-page,
+.num-page {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-cool-gray-200);
+  border-radius: 50px;
+  color: var(--color-cool-gray-500);
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.current-page {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-cool-gray-200);
+  border-radius: 50px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--color-blue-100);
+}

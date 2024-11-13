@@ -1,8 +1,8 @@
-import { articleApi } from './axios.js';
+import { renderApi } from './axios.js';
 
 export async function getArticleList(query) {
   try {
-    const response = await articleApi.get('/articles', {
+    const response = await renderApi.get('/articles', {
       params: query,
     });
     return response.data;
@@ -13,7 +13,7 @@ export async function getArticleList(query) {
 
 export async function getArticle(id) {
   try {
-    const response = await articleApi.get(`/articles/${id}`);
+    const response = await renderApi.get(`/articles/${id}`);
     return response.data;
   } catch (error) {
     console.error(error.status);
@@ -22,7 +22,7 @@ export async function getArticle(id) {
 
 export async function postArticle(params) {
   try {
-    const response = await articleApi.post('/articles', params);
+    const response = await renderApi.post('/articles', params);
     return response.data;
   } catch (error) {
     console.error(error.status);
@@ -31,7 +31,7 @@ export async function postArticle(params) {
 
 export async function deleteArticle(id) {
   try {
-    const response = await articleApi.delete(`/articles/${id}`);
+    const response = await renderApi.delete(`/articles/${id}`);
     return response;
   } catch (error) {
     console.error(error.status);
@@ -40,7 +40,7 @@ export async function deleteArticle(id) {
 
 export async function patchArticle(id, params) {
   try {
-    const response = await articleApi.patch(`/articles/${id}`, params);
+    const response = await renderApi.patch(`/articles/${id}`, params);
     return response.data;
   } catch (error) {
     console.error(error.status);
@@ -49,7 +49,7 @@ export async function patchArticle(id, params) {
 
 export async function getComment(id) {
   try {
-    const response = await articleApi.get(`/articles/${id}/comments`);
+    const response = await renderApi.get(`/articles/${id}/comments`);
     return response.data;
   } catch (error) {
     console.error(error.response ? error.response.status : error.message);
@@ -58,7 +58,7 @@ export async function getComment(id) {
 
 export async function postComment({ articleId, content }) {
   try {
-    const response = await articleApi.post(`/articles/${articleId}/comments`, {
+    const response = await renderApi.post(`/articles/${articleId}/comments`, {
       content,
     });
     return response.data;
@@ -69,7 +69,7 @@ export async function postComment({ articleId, content }) {
 
 export async function deleteComment({ articleId, commentId }) {
   try {
-    const response = await articleApi.delete(
+    const response = await renderApi.delete(
       `/articles/${articleId}/comments/${commentId}`
     );
     return response;

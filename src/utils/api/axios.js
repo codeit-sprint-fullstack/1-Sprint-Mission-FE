@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const articleApi = axios.create({
+const renderApi = axios.create({
   baseURL:
     process.env.NEXT_PUBLIC_DATABASE_URL || 'https://mini1018.onrender.com',
   headers: {
@@ -83,4 +83,4 @@ const codeitApi = axios.create({
 
 // interceptor(codeitApi);
 
-export { articleApi, codeitApi };
+export { renderApi, codeitApi };

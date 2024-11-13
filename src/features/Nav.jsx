@@ -4,9 +4,12 @@ import Link from 'next/link';
 import styles from '@features/Nav.module.css';
 import ActionButton from 'src/shared/components/Buttons/ActionButton';
 import { usePathname } from 'next/navigation';
+import { useAuthStore } from '@shared/store/auth/auth';
 
 export default function Nav() {
   const pathname = usePathname();
+
+  const { user } = useAuthStore();
 
   return (
     <nav>
@@ -37,11 +40,15 @@ export default function Nav() {
               </Link>
             </div>
           </div>
-          <ActionButton
-            content={'로그인'}
-            style={'login-button'}
-            path={'/login'}
-          />
+          {user ? (
+            <div>{user.nickname}</div>
+          ) : (
+            <ActionButton
+              content={'로그인'}
+              style={'login-button'}
+              path={'/login'}
+            />
+          )}
         </div>
       </div>
     </nav>
