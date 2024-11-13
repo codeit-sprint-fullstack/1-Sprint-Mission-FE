@@ -10,7 +10,7 @@ export interface ProductData {
   ownerImage: string;
   ownerNickname: string;
   isFavorite: boolean;
-  createdAt: Date;
+  createdAt: string;
 }
 
 export interface ProductListData {

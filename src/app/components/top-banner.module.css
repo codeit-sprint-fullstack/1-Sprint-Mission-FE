@@ -1,0 +1,24 @@
+.top-banner {
+  @apply w-full h-[54rem] flex flex-row mx-auto items-end;
+}
+
+.banner-box {
+  @apply w-[111rem] h-[34em] flex flex-row mx-auto items-center;
+}
+
+.banner-box-text-button-set {
+  @apply w-[35.7rem] h-[26rem] mr-[0.7rem];
+}
+
+.banner-box-text {
+  @apply w-[29.5rem] h-[11.2rem] mb-[3.2rem] text-[4rem] font-bold leading-[5.6rem];
+}
+
+.banner-box-button {
+  @apply w-full h-[5.6rem] bg-no-repeat bg-center bg-cover;
+  background-image: url(../../../public/buttons/btn_to_products_page_357_56.svg);
+}
+
+.banner-image-frame {
+  @apply w-[74.6rem] h-[34rem] relative;
+}

@@ -1,7 +1,7 @@
 import { format, formatDistanceToNow } from "date-fns";
 import { fromZonedTime, toZonedTime } from "date-fns-tz";
 
-export function getFormatTimeByTimeZone(dbDate: Date): string {
+export function getFormatTimeByTimeZone(dbDate: string): string {
   const utcDate = fromZonedTime(dbDate, "UTC");
   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const localDate = toZonedTime(utcDate, timeZone);
@@ -10,7 +10,7 @@ export function getFormatTimeByTimeZone(dbDate: Date): string {
   return formattedDate;
 }
 
-export function getLastTimeByTimeZone(dbDate: Date): string {
+export function getLastTimeByTimeZone(dbDate: string): string {
   const utcDate = fromZonedTime(dbDate, "UTC");
   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const localDate = toZonedTime(utcDate, timeZone);

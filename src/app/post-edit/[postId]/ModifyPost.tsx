@@ -148,26 +148,26 @@ export function ModifyPost({ postId, data }: ModifyPostProps) {
         <div className={style["newName-input-set"]}>
           <p className={labelClass}>*제목</p>
           <div className={style["input-frame"]}>
-            <Input
+            {/* <Input
               validateFunc={validateNewName}
               onChange={handleNewNameChange}
               getValid={getnewNameValid}
               placeholder={"제목을 입력해주세요"}
               value={newName}
-            ></Input>
+            ></Input> */}
             {getNewNameWarn()}
           </div>
         </div>
         <div className={style["content-text-area-set"]}>
           <p className={labelClass}>*내용</p>
           <div className={style["text-area-frame"]}>
-            <TextArea
+            {/* <TextArea
               validateFunc={validateContent}
               onChange={handleContentChange}
               getValid={getContentValid}
               placeholder={"내용을 입력해주세요"}
               value={content}
-            ></TextArea>
+            ></TextArea> */}
             {getContentWarn()}
           </div>
         </div>

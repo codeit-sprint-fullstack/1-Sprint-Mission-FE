@@ -106,7 +106,7 @@ export default function ProductCommentMaker({
     <div className={commentMakerClass}>
       <div className={commentMakerLabelClass}>문의하기</div>
       <div className={commentTextAreaFrameClass}>
-        <TextArea
+        {/* <TextArea
           onChange={handleChangeComment}
           placeholder={
             "개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
@@ -114,7 +114,7 @@ export default function ProductCommentMaker({
           validateFunc={validtateComment}
           getValid={getCommentValid}
           value={comment}
-        />
+        /> */}
       </div>
       {getCommentWarn()}
       <div className={commentBottomBarClass}>

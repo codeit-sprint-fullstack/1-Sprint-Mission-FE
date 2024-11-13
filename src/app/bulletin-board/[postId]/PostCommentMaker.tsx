@@ -106,13 +106,13 @@ export default function PostCommentMaker({
     <div className={commentMakerClass}>
       <div className={commentMakerLabelClass}>댓글달기</div>
       <div className={commentTextAreaFrameClass}>
-        <TextArea
+        {/* <TextArea
           onChange={handleChangeComment}
           placeholder={"댓글을 입력해주세요."}
           validateFunc={validtateComment}
           getValid={getCommentValid}
           value={comment}
-        />
+        /> */}
       </div>
       {getCommentWarn()}
       <div className={commentBottomBarClass}>

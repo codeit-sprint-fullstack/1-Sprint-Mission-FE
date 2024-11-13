@@ -23,7 +23,7 @@ export function BestPost({
   nickname: string;
   myFavorite: boolean;
   favoriteCount: number;
-  createdDate: Date;
+  createdDate: string;
 }) {
   const bestPostClass = `${style["best-post"]}`;
   const bestPostContentClass = `${style.content}`;

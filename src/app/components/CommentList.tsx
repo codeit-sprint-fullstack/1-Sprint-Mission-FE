@@ -5,8 +5,8 @@ import { CommentListProps } from "src/types/comment";
 
 export default function CommentList({
   data,
-  updateComment,
-  deleteComment,
+  updateComment = () => {},
+  deleteComment = () => {},
 }: CommentListProps) {
   if (data.list?.length === 0) {
     return <EmptyCommentList />;

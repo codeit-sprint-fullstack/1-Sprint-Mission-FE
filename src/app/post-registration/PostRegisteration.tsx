@@ -147,24 +147,24 @@ export function PostRegisteration() {
         <div className={style["name-input-set"]}>
           <p className={labelClass}>*제목</p>
           <div className={style["input-frame"]}>
-            <Input
+            {/* <Input
               validateFunc={validateName}
               onChange={handleNameChange}
               getValid={getnameValid}
               placeholder={"제목을 입력해주세요"}
-            ></Input>
+            ></Input> */}
             {getNameWarn()}
           </div>
         </div>
         <div className={style["content-text-area-set"]}>
           <p className={labelClass}>*내용</p>
           <div className={style["text-area-frame"]}>
-            <TextArea
+            {/* <TextArea
               validateFunc={validateContent}
               onChange={handleContentChange}
               getValid={getContentValid}
               placeholder={"내용을 입력해주세요"}
-            ></TextArea>
+            ></TextArea> */}
             {getContentWarn()}
           </div>
         </div>

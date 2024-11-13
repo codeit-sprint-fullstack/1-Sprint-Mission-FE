@@ -10,7 +10,7 @@ export interface PostData {
   ownerImage: string;
   ownerNickname: string;
   isFavorite: boolean;
-  createdAt: Date;
+  createdAt: string;
 }
 
 export interface PostListData {

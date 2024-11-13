@@ -1,16 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import useValidateInput from "../hooks/useValidateInput";
 import style from "./input.module.css";
 
 interface InputProps {
-  validateFunc: Function;
+  validateFunc: (value: string) => 0 | 402 | 430 | undefined;
   placeholder: string;
-  getValid: any;
-  onChange: Function;
-  value: string;
+  getValid: (valid: number | boolean | null) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
 }
 
 export function Input({
@@ -40,10 +40,7 @@ export function Input({
   }, [customInput.isValid, getValid]);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (onChange) {
-      onChange(e);
-    }
-
+    onChange(e);
     customInput.onChange(e);
   };
 

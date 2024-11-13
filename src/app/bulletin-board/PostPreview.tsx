@@ -17,7 +17,7 @@ interface PostPreviewProps {
   nickname: string;
   myFavorite: boolean;
   favoriteCount: number;
-  createdDate: Date;
+  createdDate: string;
 }
 
 export function PostPreview({

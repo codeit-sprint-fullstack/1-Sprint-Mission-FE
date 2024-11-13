@@ -4,7 +4,7 @@ export interface CommentData {
   ownerId: string;
   ownerNickname: string;
   ownerImage: string;
-  createdAt: Date;
+  createdAt: string;
 }
 
 export interface CommentListProps {
