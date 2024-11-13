@@ -25,8 +25,8 @@ export default function ProductCommentMaker({
 
   const commentMakerClass = classNames(
     "w-pc-content",
-    "tablet:w-tablet-content",
-    "mobile:w-mobile-content"
+    "ta:w-ta-content",
+    "mo:w-mo-content"
   );
   const commentTextAreaFrameClass = classNames(
     "w-full",

@@ -14,7 +14,7 @@ export default function MiddleBanner({
   bottomText,
 }: MiddleBannerProps) {
   const bannerBoxClass = classNames(
-    style["banner-box"],
+    style["banner__box"],
     isLeftImage ? "flex-row" : "flex-row-reverse"
   );
 
@@ -22,14 +22,14 @@ export default function MiddleBanner({
     <div className={style["middle-banner"]}>
       <div className={bannerBoxClass}>
         <div
-          className={style["banner-box-text-set"]}
+          className={style["banner__box-text-set"]}
           style={{ width: textSetWidth }}
         >
-          <p className={style["banner-box-top-text"]}>{topText}</p>
-          <p className={style["banner-box-middle-text"]}>{middleText}</p>
-          <p className={style["banner-box-bottom-text"]}>{bottomText}</p>
+          <p className={style["banner__box-top-text"]}>{topText}</p>
+          <p className={style["banner__box-middle-text"]}>{middleText}</p>
+          <p className={style["banner__box-bottom-text"]}>{bottomText}</p>
         </div>
-        <div className={style["banner-image-frame"]}>
+        <div className={style["banner__image-frame"]}>
           <Image
             src={imagePath}
             alt="탑 배너 이미지"

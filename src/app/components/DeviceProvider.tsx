@@ -10,8 +10,8 @@ import React, {
 
 import {
   PC,
-  TABLET,
-  MOBILE,
+  ta,
+  mo,
   BEST_PRODUCT_PAGE_SIZE,
   PRODUCT_PAGE_SIZE,
   BEST_POST_PAGE_SIZE,
@@ -50,11 +50,11 @@ function getPageSizes(width: number) {
   }
 
   if (TABLET_MIN_WIDTH <= width) {
-    return setPageSizes(TABLET);
+    return setPageSizes(ta);
   }
 
   if (MOBILE_MIN_WIDTH <= width) {
-    return setPageSizes(MOBILE);
+    return setPageSizes(mo);
   }
 
   return setPageSizes(PC);

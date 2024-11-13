@@ -2,7 +2,7 @@
   background: 8.6rem url(../../../public/icons/arrow_down.svg) no-repeat;
 }
 
-/* ===== Mobile-width : 375px ~ 743px ====== */
+/* ===== mo-width : 375px ~ 743px ====== */
 @media (min-width: 375px) and (max-width: 743px) {
   .main__tools-dropdown {
     grid-area: d1;

@@ -6,8 +6,8 @@ export default function Loading() {
     "fixed",
     "w-pc-content",
     "z-40",
-    "tablet:w-tablet-content",
-    "mobile:w-mobile-content"
+    "ta:w-ta-content",
+    "mo:w-mo-content"
   );
 
   return (

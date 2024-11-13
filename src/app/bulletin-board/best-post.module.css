@@ -45,7 +45,7 @@
   font-size: 1.4rem;
 }
 
-/* ===== Tablet - width : 744px ~ 1199px ===== */
+/* ===== ta - width : 744px ~ 1199px ===== */
 @media (min-width: 744px) and (max-width: 1199px) {
   .best-post {
     width: 34rem;
@@ -74,7 +74,7 @@
   }
 }
 
-/* ===== Mobile-width : 375px ~ 743px ====== */
+/* ===== mo-width : 375px ~ 743px ====== */
 @media (min-width: 375px) and (max-width: 743px) {
   .best-post {
     width: 34.3rem;

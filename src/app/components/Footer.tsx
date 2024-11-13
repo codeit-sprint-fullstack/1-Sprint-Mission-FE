@@ -21,18 +21,18 @@ export function Footer() {
     "h-2rem",
     "mt-3.2rem",
     "mx-20rem",
-    "tablet:mx-2.4rem",
-    "mobile:mt-mobile-footer",
-    "mobile:mx-1.6rem",
-    "mobile:gap-2.4rem",
-    "mobile:flex-wrap-reverse"
+    "ta:mx-2.4rem",
+    "mo:mt-mo-footer",
+    "mo:mx-1.6rem",
+    "mo:gap-2.4rem",
+    "mo:flex-wrap-reverse"
   );
   const companyClass = classNames(
     "text-lg",
     "text-gray-400",
     "leading-20",
     "font-normal",
-    "mobile:basis-full"
+    "mo:basis-full"
   );
   const linkTextsClass = classNames(
     "flex",

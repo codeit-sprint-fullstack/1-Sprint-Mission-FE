@@ -38,8 +38,8 @@ export function NavItem({ linkto, children }: NavItemProps) {
     "text-nowrap",
     "text-2lg",
     "cursor-pointer",
-    "mobile:w-mobile-nav-item",
-    "mobile:text-lg",
+    "mo:w-mo-nav-item",
+    "mo:text-lg",
     style.item
   );
 

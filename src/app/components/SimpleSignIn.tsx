@@ -52,7 +52,7 @@ export default function SimpleSignIn() {
     "bg-solitude",
     "w-simple-sign-in",
     "h-simple-sign-in",
-    "mobile:w-mobile-simple-sign-in"
+    "mo:w-mo-simple-sign-in"
   );
   const labelClass = classNames("text-lg", "font-medium", "text-gray-800");
   return (

@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import { PC, TABLET, MOBILE } from "../constants/device";
+import { PC, ta, mo } from "../constants/device";
 
 function useCheckWidth() {
   const getDeviceType = () => {
     if (typeof window !== "undefined") {
       if (375 <= window.innerWidth && window.innerWidth < 744) {
-        /* ===== Mobile-width : 375px ~ 743px ====== */
-        return MOBILE;
+        /* ===== mo-width : 375px ~ 743px ====== */
+        return mo;
       } else if (744 <= window.innerWidth && window.innerWidth < 1200) {
-        /* ===== Tablet - width : 744px ~ 1199px ===== */
-        return TABLET;
+        /* ===== ta - width : 744px ~ 1199px ===== */
+        return ta;
       } else {
         /* ===== PC - width : 1200px ~ ===== */
         return PC;

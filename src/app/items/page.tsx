@@ -19,8 +19,8 @@ export default async function FleaMarketPage() {
     "pt-4rem",
     "mx-auto",
     "w-pc-content",
-    "tablet:w-tablet-content",
-    "mobile:w-mobile-content"
+    "ta:w-ta-content",
+    "mo:w-mo-content"
   );
 
   return (

@@ -10,7 +10,7 @@ import classNames from "classnames";
 
 import EmailInput from "../components/EmailInput";
 import PasswordInput from "../components/PasswordInput";
-import useAuth from "../hooks/useAuth";
+
 import {
   MIN_NICKNAME_LENGTH,
   MAX_NICKNAME_LENGTH,
@@ -148,14 +148,12 @@ export default function SignUpSet() {
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
 
-  //const { login } = useAuth();
-
   const btnSignUpClass = classNames(
     "sign-in__btn",
     "bg-sign-up__btn",
     "disabled:bg-sign-up__btn--disabled",
-    "mobile:bg-sign-up__btn--mobile",
-    "mobile:disabled:bg-sign-up__btn--mobile--disabled"
+    "mo:bg-sign-up__btn--mo",
+    "mo:disabled:bg-sign-up__btn--mo--disabled"
   );
 
   const router = useRouter();
@@ -176,7 +174,6 @@ export default function SignUpSet() {
       passwordConfirmation: passwordConfirm,
     })
       .then((user) => {
-        // login(user);
         router.push("/");
       })
       .catch((err) => {

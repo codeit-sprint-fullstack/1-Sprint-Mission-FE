@@ -10,19 +10,19 @@ export async function BestBoard() {
   const boardClass = classNames(
     "w-pc-content",
     "h-pc-best-board",
-    "tablet:w-tablet-content",
-    "tablet:h-tablet-best-board",
-    "mobile:w-mobile-content",
-    "mobile:h-mobile-best-board"
+    "ta:w-ta-content",
+    "ta:h-ta-best-board",
+    "mo:w-mo-content",
+    "mo:h-mo-best-board"
   );
   const boardLabelClass = classNames(
     "h-2.4rem",
     "text-xl",
     "leading-32",
     "font-bold",
-    "mobile:h-2.6rem",
-    "mobile:text-2lg",
-    "mobile:leading-26"
+    "mo:h-2.6rem",
+    "mo:text-2lg",
+    "mo:leading-26"
   );
   const boardListClass = classNames(
     "flex",
@@ -32,12 +32,12 @@ export async function BestBoard() {
     "h-pc-best-board-list",
     "gap-2.4rem",
     "overflow-hidden",
-    "tablet:w-tablet-content",
-    "tablet:h-tablet-best-board-list",
+    "ta:w-ta-content",
+    "ta:h-ta-best-board-list",
     "gap-1.6rem",
-    "mobile:w-mobile-content",
-    "mobile:h-mobile-best-board-list",
-    "mobile:mt-1.6rem"
+    "mo:w-mo-content",
+    "mo:h-mo-best-board-list",
+    "mo:mt-1.6rem"
   );
 
   let list = await getPostList({

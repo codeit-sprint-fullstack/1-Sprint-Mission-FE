@@ -9,6 +9,12 @@ export interface MiddleBannerProps {
   bottomText: string;
 }
 
+export interface SignBottomTextProps {
+  message: string;
+  linkText: string;
+  linkPath: string;
+}
+
 export interface DropdownProps {
   dropdwonClass?: string;
   minimise?: string | boolean;

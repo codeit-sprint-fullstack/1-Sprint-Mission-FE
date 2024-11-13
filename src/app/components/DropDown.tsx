@@ -55,8 +55,8 @@ export function DropdownMenu({ children }: { children: ReactNode }) {
     "z-30",
     "w-dropdown",
     "top-0.8rem",
-    "mobile:top-mobile-dropdown-menu-top",
-    "mobile:left-mobile-dropdown-menu-left"
+    "mo:top-mo-dropdown-menu-top",
+    "mo:left-mo-dropdown-menu-left"
   );
 
   const arrChild = React.Children.toArray(children) as ReactElement[];
@@ -150,9 +150,9 @@ export function DropdownToggle({ children }: { children: ReactNode }) {
     "text-gray-800",
     "leading-26",
     "relative",
-    "mobile:text-transparent",
-    "mobile:border-none",
-    "mobile:w-mobile-dropdown-toggle",
+    "mo:text-transparent",
+    "mo:border-none",
+    "mo:w-mo-dropdown-toggle",
     style["dropdown-toggle"]
   );
 
@@ -169,7 +169,7 @@ export function Dropdown({ dropdwonClass, minimise, children }: DropdownProps) {
   const [isOpened, setIsOpened] = useState(false);
 
   if (minimise) {
-    dropdwonClass = classNames("mobile:w-4.2rem");
+    dropdwonClass = classNames("mo:w-4.2rem");
   }
 
   const toggleDropdown = () => {

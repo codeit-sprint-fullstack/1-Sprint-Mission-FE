@@ -24,23 +24,19 @@ export function Header() {
     "z-50",
     "pl-pc-header",
     "pr-pc-header",
-    "tablet:pl-tablet-header",
-    "tablet:pr-tablet-header",
-    "mobile:pl-mobile-header",
-    "mobile:pr-mobile-header",
+    "ta:pl-ta-header",
+    "ta:pr-ta-header",
+    "mo:pl-mo-header",
+    "mo:pr-mo-header",
     style.header
   );
-  const btnHomeFrame = classNames(
-    "mr-3.2rem",
-    "tablet:mr-2rem",
-    "mobile:mr-1.6rem"
-  );
+  const btnHomeFrame = classNames("mr-3.2rem", "ta:mr-2rem", "mo:mr-1.6rem");
   const btnHome = classNames(
     "object-cover",
     "w-pc-btn-home",
     "h-pc-btn-home",
-    "mobile:w-mobile-btn-home",
-    "mobile:h-mobile-btn-home",
+    "mo:w-mo-btn-home",
+    "mo:h-mo-btn-home",
     style["btn-home"]
   );
 

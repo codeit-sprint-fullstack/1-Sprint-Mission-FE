@@ -21,14 +21,14 @@ export default function ProductPreview({
     "justify-between",
     "w-product-preview",
     "h-product-preview",
-    "mobile:w-mobile-product-preview",
-    "mobile:h-mobile-product-preview"
+    "mo:w-mo-product-preview",
+    "mo:h-mo-product-preview"
   );
   const imageFramClass = classNames(
     "w-product-preview-image",
     "h-product-preview-image",
-    "mobile:w-mobile-product-preview-image",
-    "mobile:h-mobile-product-preview-image",
+    "mo:w-mo-product-preview-image",
+    "mo:h-mo-product-preview-image",
     "box-content",
     "rounded-1.6rem",
     "relative",

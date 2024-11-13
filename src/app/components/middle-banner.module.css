@@ -2,26 +2,26 @@
   @apply w-full h-[72rem] flex flex-row mx-auto items-center;
 }
 
-.banner-box {
+.banner__box {
   @apply w-[98.8rem] h-[44.4em] flex gap-[6.4rem] mx-auto items-center justify-center;
 }
 
-.banner-box-text-set {
+.banner__box-text-set {
   @apply h-[23.8rem] mr-[0.7rem] flex flex-col;
 }
 
-.banner-box-top-text {
+.banner__box-top-text {
   @apply w-full h-[2.6rem] mb-[1.2rem] text-[1.8rem] font-bold leading-[2.6rem] text-blue-100;
 }
 
-.banner-box-middle-text {
+.banner__box-middle-text {
   @apply w-full h-[11.2rem] mb-[2.4rem] text-[4rem] font-bold leading-[5.6rem];
 }
 
-.banner-box-bottom-text {
+.banner__box-bottom-text {
   @apply w-full h-[6.4rem] text-[2.4rem] font-medium leading-[3.2rem];
 }
 
-.banner-image-frame {
+.banner__image-frame {
   @apply w-[58.8rem] h-[44.4rem] relative;
 }

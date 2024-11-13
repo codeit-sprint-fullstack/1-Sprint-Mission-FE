@@ -22,7 +22,7 @@
   color: var(--gray800-color);
 }
 
-/* ===== Tablet - width : 744px ~ 1199px ===== */
+/* ===== ta - width : 744px ~ 1199px ===== */
 @media (min-width: 744px) and (max-width: 1199px) {
   .middle-bar-owner-data-set {
     gap: 0.8rem;
@@ -35,7 +35,7 @@
   }
 }
 
-/* ===== Mobile-width : 375px ~ 743px ====== */
+/* ===== mo-width : 375px ~ 743px ====== */
 @media (min-width: 375px) and (max-width: 743px) {
   .middle-bar-owner-data-set {
     gap: 0.2rem;

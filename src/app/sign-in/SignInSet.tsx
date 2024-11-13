@@ -31,8 +31,8 @@ export default function SignInSet() {
     "sign-in__btn",
     "bg-sign-in__btn",
     "disabled:bg-sign-in__btn--disabled",
-    "mobile:bg-sign-in__btn--mobile",
-    "mobile:disabled:bg-sign-in__btn--mobile--disabled"
+    "mo:bg-sign-in__btn--mo",
+    "mo:disabled:bg-sign-in__btn--mo--disabled"
   );
 
   const router = useRouter();

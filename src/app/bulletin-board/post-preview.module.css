@@ -35,7 +35,7 @@
   color: var(--gray600-color);
 }
 
-/* ===== Tablet - width : 744px ~ 1199px ===== */
+/* ===== ta - width : 744px ~ 1199px ===== */
 @media (min-width: 744px) and (max-width: 1199px) {
   .post-preview {
     width: 69.6rem;
@@ -50,7 +50,7 @@
   }
 }
 
-/* ===== Mobile-width : 375px ~ 743px ====== */
+/* ===== mo-width : 375px ~ 743px ====== */
 @media (min-width: 375px) and (max-width: 743px) {
   .post-preview {
     width: 34.3rem;

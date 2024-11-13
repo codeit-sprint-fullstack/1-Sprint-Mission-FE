@@ -43,8 +43,8 @@ export function Board() {
   const boardMiddleBarClass = `flex flex-row justify-between ${style["middle-bar"]}`;
   const searchFrameClass = classNames(
     "w-board-search",
-    "tablet:w-tablet-board-search",
-    "mobile:w-mobile-board-search"
+    "ta:w-ta-board-search",
+    "mo:w-mo-board-search"
   );
   const boardListClass = `flex flex-col ${style.list}`;
 

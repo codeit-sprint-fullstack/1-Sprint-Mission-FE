@@ -1,45 +1,36 @@
-import Link from "next/link";
 import classNames from "classnames";
 
 import SignInSet from "./SignInSet";
 import SimpleSignIn from "../components/SimpleSignIn";
+import { LogoLinkW396 } from "../components/LogoLink";
+import SignBottomText from "../components/SignBottomText";
 
 export default function SignInPage() {
-  // 임시로 sign up css 복사해서 사용
-  // tailwind.config로 통합 예정
-  const extraTextSetClass = classNames(
+  const mainClass = classNames(
+    "w-[64rem]",
     "flex",
-    "flex-row",
-    "items-center",
+    "flex-col",
     "justify-center",
-    "gap-0.4rem",
-    "mt-2.4rem"
-  );
-  const extraTextClass = classNames(
-    "text-1.5rem",
-    "text-gray-800",
-    "font-medium"
-  );
-  const linkTextClass = classNames(
-    "text-1.5rem",
-    "font-medium",
-    "text-dodger-blue",
-    "underline"
+    "mt-[23.1rem]",
+    "mb-[28.4rem]",
+    "mx-auto",
+    "ta:mt-[19rem]",
+    "ta:mb-[32.5rem]",
+    "mo:w-mo-content",
+    "mo:mt-[8rem]",
+    "mo:mb-[23.1rem]"
   );
 
   return (
-    <div className="sign-in__main">
-      <Link className="sign-in__btn-logo-frame" href="/">
-        <button className="sign-in__btn-logo" />
-      </Link>
+    <div className={mainClass}>
+      <LogoLinkW396 />
       <SignInSet />
       <SimpleSignIn />
-      <div className={extraTextSetClass}>
-        <p className={extraTextClass}>판다마켓이 처음이신가요?</p>
-        <Link className={linkTextClass} href="/sign-up">
-          회원가입
-        </Link>
-      </div>
+      <SignBottomText
+        message={"판다마켓이 처음이신가요?"}
+        linkText={"회원가입"}
+        linkPath={"/sign-up"}
+      />
     </div>
   );
 }

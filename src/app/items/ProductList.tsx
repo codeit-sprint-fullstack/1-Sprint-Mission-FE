@@ -74,15 +74,15 @@ export default function ProductList({
   const list = data?.products ?? initList;
   const totalCount = data?.totalCount ?? initTotalCount;
 
-  const productListClass = classNames("mt-4rem", "mobile:mt-2.4rem");
+  const productListClass = classNames("mt-4rem", "mo:mt-2.4rem");
   const productToolsClass = classNames(
     "flex",
     "flex-row",
     "h-tool42",
     "gap-1.2rem",
-    "mobile:h-8.4rem",
-    "mobile:flex-wrap",
-    "mobile:justify-between"
+    "mo:h-8.4rem",
+    "mo:flex-wrap",
+    "mo:justify-between"
   );
   const productToolsLabelClass = classNames(
     "mr-search-label",
@@ -93,39 +93,39 @@ export default function ProductList({
     "leading-32",
     "font-bold",
     "text-nowrap",
-    "tablet:mr-tablet-search-label",
-    "mobile:mr-0",
-    "mobile:order-1"
+    "ta:mr-ta-search-label",
+    "mo:mr-0",
+    "mo:order-1"
   );
   const searchFrameClass = classNames(
     "w-product-search",
     "h-tool42",
     "ml-full",
-    "tablet:w-tablet-product-search",
-    "mobile:w-mobile-product-search",
-    "mobile:order-3"
+    "ta:w-ta-product-search",
+    "mo:w-mo-product-search",
+    "mo:order-3"
   );
   const btnLinkRegistFrameClass = classNames(
     "w-btn-link-regist",
     "h-tool42",
-    "mobile:order-2"
+    "mo:order-2"
   );
   const btnLinkRegistClass = classNames(
     "w-btn-link-regist",
     "h-tool42",
     "bg-btn-link-regist"
   );
-  const dropdownClass = classNames("mobile:order-4");
+  const dropdownClass = classNames("mo:order-4");
   const productListFrame = classNames(
     "mt-2.4rem",
     "grid",
     "grid-cols-5",
     "gap-x-2.4rem",
     "gap-y-4rem",
-    "tablet:grid-cols-3",
-    "tablet:gap-y-1.6rem",
-    "mobile:grid-cols-2",
-    "mobile:gap-y-0.8rem"
+    "ta:grid-cols-3",
+    "ta:gap-y-1.6rem",
+    "mo:grid-cols-2",
+    "mo:gap-y-0.8rem"
   );
 
   const sortByRecent = () => {

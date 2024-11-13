@@ -59,8 +59,8 @@ export function Post({
   const postClass = classNames(
     "content",
     "mb-3.2rem",
-    "tablet:mb-4rem",
-    "mobile:mb-1.6rem"
+    "ta:mb-4rem",
+    "mo:mb-1.6rem"
   );
   const topBarClass = classNames(
     "content",
@@ -89,7 +89,7 @@ export function Post({
     "flex-row",
     "items-center",
     "gap-0.8rem",
-    "mobile:gap-0.2rem"
+    "mo:gap-0.2rem"
   );
   const contentClass = classNames("content", "font-normal", style.content);
 

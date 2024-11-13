@@ -2,14 +2,14 @@
   @apply w-full h-[54rem] flex flex-row mx-auto items-end;
 }
 
-.banner-box {
+.banner__box {
   @apply w-[111rem] h-[39.7rem] flex flex-row mx-auto items-center;
 }
 
-.banner-box-text {
+.banner__box-text {
   @apply w-[29.5rem] h-[17.2rem] mr-[6.9rem] text-[4rem] font-bold leading-[5.6rem];
 }
 
-.banner-image-frame {
+.banner__image-frame {
   @apply w-[74.6rem] h-[39.7rem] relative;
 }

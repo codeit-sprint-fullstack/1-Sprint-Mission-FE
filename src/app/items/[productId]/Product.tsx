@@ -60,15 +60,15 @@ function ProductTag({ tag }: { tag: string }) {
 }
 
 function ProductTagList({ tags }: { tags: string[] }) {
-  const tagInfoClass = classNames("mobile:mt-2.4rem");
+  const tagInfoClass = classNames("mo:mt-2.4rem");
   const listFrameClass = classNames(
     "mt-1.6rem",
     "flex",
     "flex-row",
     "flex-wrap",
     "gap-0.8rem",
-    "tablet:mt-0.8rem",
-    "mobile:mt-0.8rem"
+    "ta:mt-0.8rem",
+    "mo:mt-0.8rem"
   );
   const tagList = tags.map((tag, index) => {
     return <ProductTag key={`${index}-${tag}`} tag={tag} />;
@@ -92,8 +92,8 @@ function ProductInfo({ product }: { product: Omit<ProductData, "images"> }) {
     "flex",
     "flex-row",
     "items-center",
-    "tablet:mt-4rem",
-    "mobile:mt-4rem"
+    "ta:mt-4rem",
+    "mo:mt-4rem"
   );
   const bottomBarOwnerDateSetClass = classNames(
     "ml-1.6rem",
@@ -143,7 +143,7 @@ export default function Product({ product }: { product: ProductData }) {
     "flex",
     "flex-row",
     "gap-2.4rem",
-    "mobile:flex-col"
+    "mo:flex-col"
   );
 
   const { images, ...rest } = product;

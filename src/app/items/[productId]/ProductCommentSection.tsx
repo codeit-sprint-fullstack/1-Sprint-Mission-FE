@@ -67,11 +67,11 @@ export default function ProductCommentSection({
 
   const commentMakerFrameClass = classNames(
     "mt-comment-maker-frame",
-    "tablet:mt-tablet-comment-maker-frame"
+    "ta:mt-ta-comment-maker-frame"
   );
   const commentListFrameClass = classNames(
     "mt-comment-list-frame",
-    "mobile:mt-mobile-comment-list-frame"
+    "mo:mt-mo-comment-list-frame"
   );
 
   const handleRegistComment = (newComment: string) => {
