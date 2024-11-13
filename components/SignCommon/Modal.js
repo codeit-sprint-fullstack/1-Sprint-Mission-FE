@@ -5,7 +5,9 @@ export default function Modal({ message, onClick }) {
     <div className={styles.modal}>
       <div className={styles.modalContent}>
         <span className={styles.error}>{message}</span>
-        <button className={styles.button} onClick={onClick}>확인</button>
+        <button className={styles.button} onClick={onClick}>
+          확인
+        </button>
       </div>
     </div>
   );

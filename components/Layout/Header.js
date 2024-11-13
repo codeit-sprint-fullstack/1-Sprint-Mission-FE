@@ -17,15 +17,16 @@ export default function Header() {
     const fetchUser = async () => {
       try {
         const user = await getUser(); // 유저 정보 API 호출
+        return user;
       } catch (error) {
         console.error("유저 정보 가져오기 실패:", error);
+        localStorage.removeItem("accessToken");
       }
     };
     fetchUser();
   }, []);
 
   console.log(user);
-  // const { nickname, image } = user;
   const nickname = user?.nickname;
   const image = user?.image;
 

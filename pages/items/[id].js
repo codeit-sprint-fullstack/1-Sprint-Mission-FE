@@ -1,27 +1,43 @@
 import Image from "next/image";
 import Link from "next/link";
-import CommentList from "@/components/CommentComponent/CommentList";
 import PostComment from "@/components/CommentComponent/PostComment";
-import borderLine from "@/images/borderLine.png";
 import defaultItemImg from "@/images/defaultItem.png";
 import defaultUserImg from "@/images/defaultUserImg.png";
 import goBack from "@/images/ic_back.png";
 import styles from "@/styles/ItemsDetail.module.css";
 import { useRouter } from "next/router";
-import { useQuery } from "@tanstack/react-query";
-import { getProductById } from "@/lib/productApi";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { createProductByIdComments, getProductById } from "@/lib/productApi";
+import ItemCommentList from "@/components/CommentComponent/ItemCommentList";
+import ProductDropDown from "@/components/ItemDetail/ProductDropDown";
 
 export default function ItemsDetail() {
   const router = useRouter();
   const { id } = router.query; // URL에서 상품 ID 가져오기
   const productId = id;
 
+  const queryClient = useQueryClient();
+
   // useQuery를 사용하여 데이터 가져오기
-  const { data, isError, isLoading } = useQuery({
+  const { data, isError, isLoading, error } = useQuery({
     queryKey: ["product", productId],
     queryFn: () => getProductById(productId),
     enabled: !!productId, // productId가 있을 때만 쿼리 실행
   });
+
+  // 댓글 등록 mutation
+  const mutation = useMutation({
+    mutationFn: (newComment) =>
+      createProductByIdComments(productId, newComment),
+    // 댓글 등록 후 댓글 목록을 갱신
+    onSuccess: () => {
+      queryClient.invalidateQueries(["productComments", productId]);
+    },
+  });
+
+  const addComment = (content) => {
+    mutation.mutate(content); // 댓글 등록
+  };
 
   // 로딩 중일 때
   if (isLoading) {
@@ -30,7 +46,15 @@ export default function ItemsDetail() {
 
   // 에러 발생 시
   if (isError) {
-    return <div>에러가 발생했습니다.</div>;
+    // router.push 사용하여 로그인 페이지로 이동
+    if (
+      error.response?.status === 401 ||
+      error.message === "로그인이 필요합니다."
+    ) {
+      router.push("/login");
+    } else {
+      router.push("/items");
+    }
   }
 
   // 데이터가 없을 때
@@ -41,13 +65,13 @@ export default function ItemsDetail() {
   const { name, price, description, tags, images, createdAt, favoriteCount } =
     data;
 
-  console.log(data);
-  console.log(images);
+  // console.log(data);
+  // console.log(images);
   return (
     <div className={styles.container}>
       <div className={styles.itemContainer}>
         <Image
-          src={images[0]}  // images[0] defaultItemImg
+          src={images[0] || defaultItemImg} // images[0] defaultItemImg
           className={styles.itemImg}
           alt="item"
           width={486}
@@ -58,10 +82,9 @@ export default function ItemsDetail() {
             <div className={styles.header}>
               <div className={styles.titleHeader}>
                 <span className={styles.title}>{name}</span>
-                {/* DropDown 넣을 공간 */}
+                <ProductDropDown />
               </div>
               <div className={styles.price}>{price.toLocaleString()}원</div>
-              {/* line */}
             </div>
             <div className={styles.contentContainer}>
               <div className={styles.contentTitle}>상품 소개</div>
@@ -69,7 +92,9 @@ export default function ItemsDetail() {
               <div className={styles.contentTitle}>상품 태그</div>
               <div className={styles.tag}>
                 {tags.map((tag, index) => (
-                  <span key={index} className={styles.tags}>#{tag}</span>
+                  <span key={index} className={styles.tags}>
+                    #{tag}
+                  </span>
                 ))}
               </div>
             </div>
@@ -79,7 +104,9 @@ export default function ItemsDetail() {
               <Image src={defaultUserImg} alt="user" />
               <div className={styles.itemUserInfoContent}>
                 <span className={styles.user}>총명한판다</span>
-                <span className={styles.date}>{createdAt}</span>
+                <span className={styles.date}>
+                  {new Date(createdAt).toLocaleDateString()}
+                </span>
               </div>
             </div>
             <div className={styles.favoriteBorder}>
@@ -87,15 +114,15 @@ export default function ItemsDetail() {
             </div>
           </div>
         </div>
-        {/* line */}
       </div>
       <PostComment
+        addComment={addComment}
         title={"문의하기"}
         placehorder={
           "개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
         }
       />
-      {/* <CommentList /> */}
+      <ItemCommentList />
       <Link href={"/items"} className={styles.goBackLink}>
         <button className={styles.button}>
           <span className={styles.goBack}>목록으로 돌아가기</span>

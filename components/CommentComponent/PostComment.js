@@ -3,7 +3,6 @@ import styles from "./PostComment.module.css";
 import axios from "@/lib/axios";
 
 export default function PostComment({ addComment, title, placehorder }) {
-  // const articleId = detailArticle.article.id;
   const [content, setContent] = useState("");
 
   const handleChange = (e) => {
@@ -29,7 +28,7 @@ export default function PostComment({ addComment, title, placehorder }) {
         placeholder={placehorder}
         value={content}
         onChange={handleChange}
-      ></textarea>
+      />
       <button className={styles.postButton} disabled={!content.trim()}>
         등록
       </button>
