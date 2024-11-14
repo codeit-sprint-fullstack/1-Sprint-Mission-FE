@@ -49,7 +49,13 @@ export default function LoginForm() {
 
   return (
     <>
-      <Image src="/desktop_logo.png" alt="logo" className={styles.logo} />
+      <Image
+        src="/desktop_logo.png"
+        alt="logo"
+        className={styles.logo}
+        width={396}
+        height={132}
+      />
       <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.label} htmlFor="email">
           이메일
@@ -79,6 +85,8 @@ export default function LoginForm() {
             alt="toggle visibility"
             className={styles.btn_pw}
             onClick={togglePasswordVisibility}
+            width={40}
+            height={40}
           />
         </div>
         {errors.password && (

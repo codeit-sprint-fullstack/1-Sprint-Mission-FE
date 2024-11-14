@@ -42,6 +42,8 @@ export default function ChatItem({ comments, onEdit }: ChatItemProps) {
             alt="reply_empty"
             className={styles.replyImg}
             priority={true}
+            width={40}
+            height={40}
           />
           <div className={styles.nonText}>
             <p>아직 댓글이 없어요, </p>
@@ -58,6 +60,8 @@ export default function ChatItem({ comments, onEdit }: ChatItemProps) {
                 alt="kebab"
                 className={styles.kebab}
                 onClick={() => toggleDropdown(chatItem.id)}
+                width={40}
+                height={40}
               />
             </div>
             {openDropdownId === chatItem.id && (
@@ -81,6 +85,8 @@ export default function ChatItem({ comments, onEdit }: ChatItemProps) {
                 src={"/ic_profile.png"}
                 alt="profile"
                 className={styles.profileImg}
+                width={40}
+                height={40}
               />
               <div className={styles.infoText}>
                 <p className={styles.user}>총명한 판다{chatItem.id}</p>

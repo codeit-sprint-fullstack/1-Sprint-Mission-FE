@@ -68,7 +68,13 @@ export default function SigninForm() {
 
   return (
     <>
-      <Image src="/desktop_logo.png" alt="logo" className={styles.logo} />
+      <Image
+        src="/desktop_logo.png"
+        alt="logo"
+        className={styles.logo}
+        width={40}
+        height={40}
+      />
 
       <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.label} htmlFor="email">
@@ -113,6 +119,8 @@ export default function SigninForm() {
             alt="btn_hide"
             className={styles.btn_pw}
             onClick={togglePasswordVisibility}
+            width={40}
+            height={40}
           />
         </div>
         {errors.password && (
@@ -138,6 +146,8 @@ export default function SigninForm() {
             alt="btn_hide"
             className={styles.btn_pw}
             onClick={toggleConfirmPasswordVisibility}
+            width={40}
+            height={40}
           />
         </div>
         {errors.confirmPassword && (

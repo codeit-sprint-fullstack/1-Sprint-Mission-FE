@@ -92,6 +92,8 @@ export default function Chat({ comments, onEdit }: ChatProps) {
             src="/img_inquiry_empty.png"
             alt="empty"
             className={styles.emptyImg}
+            width={40}
+            height={40}
           />
           <p className={styles.emptyText}>아직 문의가 없어요</p>
         </div>
@@ -109,6 +111,8 @@ export default function Chat({ comments, onEdit }: ChatProps) {
                     className={styles.kebab}
                     onClick={() => toggleDropdown(comment.id)}
                     alt="kebab"
+                    width={40}
+                    height={40}
                   />
                 )}
               </div>
@@ -133,6 +137,8 @@ export default function Chat({ comments, onEdit }: ChatProps) {
                   src="/ic_profile.png"
                   className={styles.profile}
                   alt="profile image"
+                  width={40}
+                  height={40}
                 />
                 <div className={styles.profileInfo}>
                   <p className={styles.name}>{comment.writer?.nickname}</p>

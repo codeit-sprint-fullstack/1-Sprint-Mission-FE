@@ -61,11 +61,19 @@ export default function Header() {
       {/* 기존 <Link> 내부에 <a> 태그 제거 */}
       <Link href={ROUTES.HOME}>
         <div>
-          <Image src="/desktop_logo.png" alt="logo" className={styles.logo} />
+          <Image
+            src="/desktop_logo.png"
+            alt="logo"
+            className={styles.logo}
+            width={40}
+            height={40}
+          />
           <Image
             src="/mobile_logo.png"
             alt="logo"
             className={styles.mobileLogo}
+            width={40}
+            height={40}
           />
         </div>
       </Link>
@@ -89,6 +97,8 @@ export default function Header() {
             src="/ic_profile.png"
             alt="profile"
             className={styles.userProfile}
+            width={40}
+            height={40}
           />
           <p className={styles.userNickname}>{userInfo?.nickname}</p>
           <div className={styles.logout_btn}>

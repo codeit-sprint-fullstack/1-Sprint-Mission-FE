@@ -135,6 +135,8 @@ export default function ItemInfo({ product }: ItemInfoProps) {
               src="/ic_kebab.png"
               onClick={toggleDropdown}
               alt="kebab"
+              width={40}
+              height={40}
             />
           )}
         </div>
@@ -165,6 +167,8 @@ export default function ItemInfo({ product }: ItemInfoProps) {
             src="/ic_profile.png"
             className={styles.profile}
             alt="profile image"
+            width={40}
+            height={40}
           />
           <div>
             <p className={styles.ownerId}>{item.ownerNickname}</p>
@@ -181,6 +185,8 @@ export default function ItemInfo({ product }: ItemInfoProps) {
                     ? "/ic_active_favorite.png"
                     : "/ic_empty_favorite.png"
                 }
+                width={40}
+                height={40}
                 alt={isItemFavorite ? "active favorite" : "empty favorite"}
                 onClick={handleFavoriteToggle}
               />

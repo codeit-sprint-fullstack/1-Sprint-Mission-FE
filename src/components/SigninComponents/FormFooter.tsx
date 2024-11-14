@@ -20,9 +20,17 @@ export default function FormFooter() {
             src="/ic_google.png"
             alt="google"
             onClick={handleGoogleLogin}
+            width={40}
+            height={40}
           />
           <Link href="https://www.kakaocorp.com/page">
-            <Image className={styles.img} src="/ic_kakao.png" alt="kakao" />
+            <Image
+              className={styles.img}
+              src="/ic_kakao.png"
+              alt="kakao"
+              width={40}
+              height={40}
+            />
           </Link>
         </div>
       </div>

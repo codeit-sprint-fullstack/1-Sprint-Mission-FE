@@ -77,6 +77,8 @@ export default function BoardDetailInfo({ article }: BoardDetailInfoProps) {
           alt="kebab"
           className={styles.kebabImg}
           onClick={toggleDropdown}
+          width={40}
+          height={40}
         />
       </div>
       {isOpen && (
@@ -94,6 +96,8 @@ export default function BoardDetailInfo({ article }: BoardDetailInfoProps) {
           src="/ic_profile.png"
           alt="profile"
           className={styles.profileImg}
+          width={40}
+          height={40}
         />
         <p className={styles.user}>{article.writer.nickname}</p>
         <p className={styles.date}>
@@ -108,6 +112,8 @@ export default function BoardDetailInfo({ article }: BoardDetailInfoProps) {
                 ? "/ic_active_favorite.png"
                 : "/ic_empty_favorite.png"
             }
+            width={40}
+            height={40}
             alt={isItemFavorite ? "active favorite" : "empty favorite"}
             onClick={handleFavoriteToggle}
           />

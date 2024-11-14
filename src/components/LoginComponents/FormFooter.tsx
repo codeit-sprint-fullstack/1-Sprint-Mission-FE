@@ -20,11 +20,19 @@ export default function FormFooter() {
             className={styles.img}
             src="/ic_google.png"
             alt="google"
+            width={40}
+            height={40}
             onClick={handleGoogleLogin}
           />
           {/* 기존 <Link> 내부에 <a> 태그 제거 */}
           <Link href="https://www.kakaocorp.com/page">
-            <Image className={styles.img} src="/ic_kakao.png" alt="kakao" />
+            <Image
+              className={styles.img}
+              src="/ic_kakao.png"
+              alt="kakao"
+              width={40}
+              height={40}
+            />
           </Link>
         </div>
       </div>
