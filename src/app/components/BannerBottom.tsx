@@ -2,8 +2,8 @@ import Image from "next/image";
 import classNames from "classnames";
 
 // 임시 반응형 css 미적용
-export default function BottomBanner() {
-  const bottomBannerClass = classNames(
+export default function BannerBottom() {
+  const bannerbottomClass = classNames(
     "w-full",
     "h-[54rem]",
     "flex",
@@ -30,15 +30,15 @@ export default function BottomBanner() {
   const imageClass = classNames("w-[74.6rem]", "h-[39.7rem]", "relative");
 
   return (
-    <div className={bottomBannerClass}>
+    <div className={bannerbottomClass}>
       <div className={contentFrameClass}>
         <p className={textClass}>믿을 수 있는 판다마켓 중고 거래</p>
         <div className={imageClass}>
           <Image
             src="/images/Img_home_bottom_746_397.svg"
             alt="보톰 배너 이미지"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
           />
         </div>
       </div>

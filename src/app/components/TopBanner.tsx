@@ -3,8 +3,8 @@ import Link from "next/link";
 import classNames from "classnames";
 
 // 임시 반응형 css 미적용
-export default function TopBanner() {
-  const topBannerClass = classNames(
+export default function BannerTop() {
+  const bannerTopClass = classNames(
     "w-full",
     "h-[54rem]",
     "flex",
@@ -44,7 +44,7 @@ export default function TopBanner() {
   const imageClass = classNames("w-[74.6rem]", "h-[34rem]", "relative");
 
   return (
-    <div className={topBannerClass}>
+    <div className={bannerTopClass}>
       <div className={contentFrameClass}>
         <div className={textButtonSetClass}>
           <p className={textClass}>일상의 모든 물건을 거래해 보세요</p>
@@ -56,8 +56,8 @@ export default function TopBanner() {
           <Image
             src="/images/Img_home_top_746_340.svg"
             alt="탑 배너 이미지"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
           />
         </div>
       </div>

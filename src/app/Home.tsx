@@ -1,18 +1,18 @@
-import TopBanner from "./components/TopBanner";
-import BottomBanner from "./components/BottomBanner";
-import MiddleBanner from "./components/MiddleBanner";
+import BannerTop from "./components/TopBanner";
+import BannerBottom from "./components/BannerBottom";
+import BannerMiddle from "./components/MiddleBanner";
 
 export function Home() {
   return (
     <>
       <main className="w-full bg-onahau mt-header">
         <div className="main-frame">
-          <TopBanner />
+          <BannerTop />
         </div>
       </main>
       <main className="w-full bg-white">
         <div className="main-frame">
-          <MiddleBanner
+          <BannerMiddle
             isLeftImage={false}
             imagePath={"/images/Img_home_01_588_444.svg"}
             textSetWidth={"27.4rem"}
@@ -26,7 +26,7 @@ export function Home() {
       </main>
       <main className="w-full bg-white">
         <div className="main-frame">
-          <MiddleBanner
+          <BannerMiddle
             isLeftImage={true}
             imagePath={"/images/Img_home_02_588_444.svg"}
             textSetWidth={"31.7rem"}
@@ -38,7 +38,7 @@ export function Home() {
       </main>
       <main className="w-full bg-white">
         <div className="main-frame">
-          <MiddleBanner
+          <BannerMiddle
             isLeftImage={false}
             imagePath={"/images/Img_home_03_588_444.svg"}
             textSetWidth={"33.5rem"}
@@ -51,7 +51,7 @@ export function Home() {
       <div className="h-[13.8rem]" />
       <main className="w-full bg-onahau">
         <div className="main-frame">
-          <BottomBanner />
+          <BannerBottom />
         </div>
       </main>
     </>

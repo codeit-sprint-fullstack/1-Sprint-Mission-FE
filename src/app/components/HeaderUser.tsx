@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import classNames from "classnames";
 
@@ -10,19 +11,21 @@ import useAuth from "../hooks/useAuth";
 import { getMyInfo } from "src/lib/api-user";
 import { PROFILE_H40 } from "../constants/Profile";
 
-import style from "./header-user.module.css";
-
 function BtnLogin() {
-  const btnSignInClass = classNames(
-    "w-btn-sign-in",
-    "h-btn-sign-in",
-    "object-cover",
-    style["btn-login"]
+  const btnSignInFrameClass = classNames(
+    "w-[8.8rem]",
+    "h-[4.2rem]",
+    "relative"
   );
 
   return (
-    <Link href="/sign-in" target="_self">
-      <button className={btnSignInClass} />
+    <Link href="/sign-in" target="_self" className={btnSignInFrameClass}>
+      <Image
+        src="buttons/btn_to_sign_in_page_88_43.svg"
+        alt="로그인 버튼"
+        fill
+        style={{ objectFit: "cover" }}
+      />
     </Link>
   );
 }

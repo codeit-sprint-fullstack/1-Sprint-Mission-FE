@@ -4,8 +4,6 @@ import classNames from "classnames";
 import { Nav, NavItem } from "./Nav";
 import { HeaderUser } from "./HeaderUser";
 
-import style from "./header.module.css";
-
 export function Header() {
   const headerClass = classNames(
     "top-0",
@@ -22,22 +20,23 @@ export function Header() {
     "border-b-1",
     "border-b-alto",
     "z-50",
-    "pl-pc-header",
-    "pr-pc-header",
-    "ta:pl-ta-header",
-    "ta:pr-ta-header",
-    "mo:pl-mo-header",
-    "mo:pr-mo-header",
-    style.header
+    "px-[20rem]",
+    "ta:px-[2.4rem]",
+    "mo:px-[1.6rem]"
   );
-  const btnHomeFrame = classNames("mr-3.2rem", "ta:mr-2rem", "mo:mr-1.6rem");
+  const btnHomeFrame = classNames(
+    "mr-[3.2rem]",
+    "ta:mr-[2rem]",
+    "mo:mr-[1.6rem]"
+  );
   const btnHome = classNames(
     "object-cover",
     "w-pc-btn-home",
     "h-pc-btn-home",
     "mo:w-mo-btn-home",
     "mo:h-mo-btn-home",
-    style["btn-home"]
+    "bg-btn-header__home",
+    "mo:bg-btn-header__home--mo"
   );
 
   return (

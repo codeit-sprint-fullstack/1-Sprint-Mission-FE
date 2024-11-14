@@ -1,7 +1,7 @@
 import Image from "next/image";
 import classNames from "classnames";
 
-export interface MiddleBannerProps {
+export interface BannerMiddleProps {
   isLeftImage: boolean;
   imagePath: string;
   textSetWidth: string;
@@ -11,15 +11,15 @@ export interface MiddleBannerProps {
 }
 
 // 임시 반응형 css 미적용
-export default function MiddleBanner({
+export default function BannerMiddle({
   isLeftImage,
   imagePath,
   textSetWidth,
   topText,
   middleText,
   bottomText,
-}: MiddleBannerProps) {
-  const middleBannerClass = classNames(
+}: BannerMiddleProps) {
+  const bannerMiddleClass = classNames(
     "w-full",
     "h-[72rem]",
     "flex",
@@ -70,7 +70,7 @@ export default function MiddleBanner({
   const imageFrameClass = classNames("w-[58.8rem]", "h-[44.4rem]", "relative");
 
   return (
-    <div className={middleBannerClass}>
+    <div className={bannerMiddleClass}>
       <div className={bannerBoxClass}>
         <div className={boxTextSetClass} style={{ width: textSetWidth }}>
           <p className={boxTopTextClass}>{topText}</p>
@@ -81,8 +81,8 @@ export default function MiddleBanner({
           <Image
             src={imagePath}
             alt="탑 배너 이미지"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
           />
         </div>
       </div>

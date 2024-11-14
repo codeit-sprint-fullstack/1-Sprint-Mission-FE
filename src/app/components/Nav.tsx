@@ -5,12 +5,6 @@ import Link from "next/link";
 import classNames from "classnames";
 import { usePathname } from "next/navigation";
 
-import style from "./nav.module.css";
-
-interface NavProps {
-  children: ReactNode;
-}
-
 interface NavItemProps {
   linkto: string;
   children: ReactNode;
@@ -29,8 +23,7 @@ export function NavItem({ linkto, children }: NavItemProps) {
     "box-border",
     "flex",
     "flex-row",
-    "w-pc-nav-item",
-    "h-pc-nav-item",
+    "w-[10.9rem]",
     "leading-26",
     "items-center",
     "justify-center",
@@ -38,9 +31,10 @@ export function NavItem({ linkto, children }: NavItemProps) {
     "text-nowrap",
     "text-2lg",
     "cursor-pointer",
-    "mo:w-mo-nav-item",
+    "mo:w-[7rem]",
     "mo:text-lg",
-    style.item
+    "hover:border-b-2",
+    "hover:border-blue-100"
   );
 
   return (
@@ -52,8 +46,12 @@ export function NavItem({ linkto, children }: NavItemProps) {
   );
 }
 
+interface NavProps {
+  children: ReactNode;
+}
+
 export function Nav({ children }: NavProps) {
-  const navClass = classNames("flex", "flex-row", "w-full", "h-nav");
+  const navClass = classNames("flex", "flex-row", "flex-grow", "h-full");
   const navUlClass = classNames("flex", "flex-row");
 
   return (

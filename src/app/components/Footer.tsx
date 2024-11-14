@@ -1,6 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
 import classNames from "classnames";
-import style from "./footer.module.css";
 
 export function Footer() {
   const footerClass = classNames(
@@ -8,7 +8,7 @@ export function Footer() {
     "flex-row",
     "justify-center",
     "w-full",
-    "h-footer",
+    "h-[16rem]",
     "bg-gray-900",
     "mt-0",
     "my-auto"
@@ -19,18 +19,18 @@ export function Footer() {
     "justify-between",
     "w-full",
     "h-2rem",
-    "mt-3.2rem",
-    "mx-20rem",
-    "ta:mx-2.4rem",
-    "mo:mt-mo-footer",
-    "mo:mx-1.6rem",
-    "mo:gap-2.4rem",
+    "mt-[3.2rem]",
+    "mx-[20rem]",
+    "ta:mx-[2.4rem]",
+    "mo:mt-[7.6rem]",
+    "mo:mx-[1.6rem]",
+    "mo:gap-[2.4rem]",
     "mo:flex-wrap-reverse"
   );
   const companyClass = classNames(
     "text-lg",
     "text-gray-400",
-    "leading-20",
+    "leading-[2rem]",
     "font-normal",
     "mo:basis-full"
   );
@@ -38,10 +38,10 @@ export function Footer() {
     "flex",
     "flex-row",
     "flex-nowrap",
-    "gap-footer-link",
+    "gap-[3rem]",
     "text-lg",
     "text-gray-400",
-    "leading-20",
+    "leading-2rem",
     "font-normal"
   );
   const linkTextClass = classNames("no-underline", "text-gray-400");
@@ -49,18 +49,15 @@ export function Footer() {
     "flex",
     "flex-row",
     "flex-nowrap",
-    "gap-footer-icons"
+    "gap-[1.2rem]"
   );
-  const linkIconClass = classNames(
-    "w-footer-icon",
-    "h-footer-icon",
+  const linkIconFrameClass = classNames(
+    "w-[2rem]",
+    "h-[2rem]",
     "bg-cover",
-    "hover:opacity-75"
+    "hover:opacity-75",
+    "relative"
   );
-  const facebookIconClass = classNames(linkIconClass, style["facebook-icon"]);
-  const xIconClass = classNames(linkIconClass, style["x-icon"]);
-  const youtubeIconClass = classNames(linkIconClass, style["youtube-icon"]);
-  const instagramIconClass = classNames(linkIconClass, style["instagram-icon"]);
 
   return (
     <div className={footerClass}>
@@ -79,33 +76,53 @@ export function Footer() {
             href="https://www.facebook.com/"
             target="_blank"
             rel="noreferrer"
+            className={linkIconFrameClass}
           >
-            <span>
-              <img className={facebookIconClass} alt="페이스북 링크" />
-            </span>
+            <Image
+              src="icons/ic_facebook.svg"
+              alt="페이스북 링크"
+              fill
+              style={{ objectFit: "cover" }}
+            />
           </Link>
-          <Link href="https://x.com/" target="_blank" rel="noreferrer">
-            <span>
-              <img className={xIconClass} alt="엑스 링크" />
-            </span>
+          <Link
+            href="https://x.com/"
+            target="_blank"
+            rel="noreferrer"
+            className={linkIconFrameClass}
+          >
+            <Image
+              src="icons/ic_twitter.svg"
+              alt="엑스 링크"
+              fill
+              style={{ objectFit: "cover" }}
+            />
           </Link>
           <Link
             href="https://www.youtube.com/"
             target="_blank"
             rel="noreferrer"
+            className={linkIconFrameClass}
           >
-            <span>
-              <img className={youtubeIconClass} alt="유튜브 링크" />
-            </span>
+            <Image
+              src="icons/ic_youtube.svg"
+              alt="유튜브 링크"
+              fill
+              style={{ objectFit: "cover" }}
+            />
           </Link>
           <Link
             href="https://www.instagram.com/"
             target="_blank"
             rel="noreferrer"
+            className={linkIconFrameClass}
           >
-            <span>
-              <img className={instagramIconClass} alt="인스타그램 링크" />
-            </span>
+            <Image
+              src="icons/ic_instagram.svg"
+              alt="인스타그램 링크"
+              fill
+              style={{ objectFit: "cover" }}
+            />
           </Link>
         </div>
       </div>

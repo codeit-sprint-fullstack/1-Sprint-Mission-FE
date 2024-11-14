@@ -45,17 +45,7 @@ module.exports = {
         // header-btn-home
         "pc-btn-home": "15.3rem",
         "mo-btn-home": "8.1rem",
-        // nav
-        "pc-nav-item": "10.9rem",
-        "mo-nav-item": "7rem",
-        // btn-sign-in
-        "btn-sign-in": "8.8rem",
-        "btn-sign-up": "8.8rem",
-        // footer-icon
-        "footer-icon": "2rem",
-        // btn-logo
-        "btn-logo": "39.6rem",
-        "mo-btn-logo": "19.8rem",
+        "test-s": "8.8rem",
         // loading
         loading: "12rem",
         // dropdown
@@ -95,18 +85,6 @@ module.exports = {
         // header-btn-home
         "pc-btn-home": "5.1rem",
         "mo-btn-home": "4rem",
-        // nav
-        nav: "6.8rem",
-        // btn-sigb-in
-        "btn-sign-in": "4.2rem",
-        "btn-sign-up": "4.2rem",
-        // footer
-        footer: "16rem",
-        // footer-icon
-        "footer-icon": "2rem",
-        // btn-logo
-        "btn-logo": "13.2rem",
-        "mo-btn-logo": "6.6rem",
         // loading
         loading: "6rem",
         // dropdown
@@ -169,7 +147,6 @@ module.exports = {
         "3.5em": "3.5em",
       },
       margin: {
-        "mo-footer": "7.6rem",
         // sign-in
         "sign-in-mt": "23.1rem",
         "sign-in-mb": "23.1rem",
@@ -190,15 +167,6 @@ module.exports = {
         // serch-label
         "search-label": "46.3rem",
         "ta-search-label": "3.8rem",
-      },
-      padding: {
-        "pc-header": "20rem",
-        "ta-header": "2.4rem",
-        "mo-header": "1.6rem",
-      },
-      gap: {
-        "footer-link": "3rem",
-        "footer-icons": "1.2rem",
       },
       spacing: {
         loading: "35rem",
@@ -232,6 +200,8 @@ module.exports = {
         "mo-product-preview-image": "16.8rem",
       },
       backgroundImage: {
+        "btn-header__home": "url(/buttons/btn_home.svg)",
+        "btn-header__home--mo": "url(/buttons/btn_home_small.svg)",
         "sign-in__btn": "url('/buttons/btn_sign_in_w640.svg')",
         "sign-in__btn--mo": "url('/buttons/btn_sign_in_w343.svg')",
         "sign-in__btn--disabled":
@@ -296,26 +266,6 @@ module.exports = {
           "@screen mo": {
             width: theme("width.mo-content"),
             margin: "8rem auto 23.1rem auto",
-          },
-        },
-        ".sign-in__btn-logo-frame": {
-          width: "39.6rem",
-          height: "13.2rem",
-          margin: "0 auto",
-          "@screen mo": {
-            width: "19.8rem",
-            height: "6.6rem",
-          },
-        },
-        ".sign-in__btn-logo": {
-          width: "39.6rem",
-          height: "13.2rem",
-          backgroundImage: "url(/buttons/btn_logo.svg)",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          "@screen mo": {
-            width: "19.8rem",
-            height: "6.6rem",
           },
         },
         ".sign-in__input-set": {
