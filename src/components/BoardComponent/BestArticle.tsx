@@ -3,8 +3,9 @@ import Image from "next/image";
 import styles from "./BestArticle.module.css";
 import defaultProductImg from "@/images/defaultProductImg.png";
 import medal from "@/images/ic_medal.png";
+import { ArticleProps } from "@/types/Types";
 
-export default function BestArticle({ articles }) {
+export default function BestArticle({ articles }: ArticleProps) {
   return (
     <div className={styles.container}>
       <div className={styles.title}>베스트 게시글</div>

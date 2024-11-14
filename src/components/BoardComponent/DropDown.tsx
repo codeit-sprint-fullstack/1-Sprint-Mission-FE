@@ -5,8 +5,8 @@ import mobileDropDown from "@/images/mobileDropDown.png";
 import { useState } from "react";
 
 export default function DropDown() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectOrder, setSelectOrder] = useState("최신순");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [selectOrder, setSelectOrder] = useState<string>("최신순");
 
   const toggleDropDown = () => {
     setIsOpen(!isOpen);

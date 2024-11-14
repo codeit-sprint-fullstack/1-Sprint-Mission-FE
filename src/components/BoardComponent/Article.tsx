@@ -4,12 +4,13 @@ import ArticleList from "./ArticleList";
 import Search from "./Search";
 import DropDown from "./DropDown";
 import { useState } from "react";
+import { Article as ArticleType, ArticleProps } from "@/types/Types";
 
-export default function Article({ articles }) {
-  const [filteredArticles, setFilteredArticles] = useState(articles);
+export default function Article({ articles }:ArticleProps) {
+  const [filteredArticles, setFilteredArticles] = useState<ArticleType[]>(articles);
 
   // 검색 기능 구현(자세하게 알아놓기)
-  const handleSearch = (keyword) => {
+  const handleSearch = (keyword: string) => {
     const filtered = articles.filter((article) =>
       article.title.toLowerCase().includes(keyword.toLowerCase())
     );

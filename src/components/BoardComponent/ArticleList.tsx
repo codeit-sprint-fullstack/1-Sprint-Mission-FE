@@ -1,13 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./ArticleList.module.css";
 import defaultProductImg from "@/images/defaultProductImg.png";
 import defaultUserImg from "@/images/defaultUserImg.png";
-import Link from "next/link";
+import { ArticleProps } from "@/types/Types";
 
-export default function ArticleList({ articles }) {
-  console.log(articles);
-  console.log(articles.slice(0, 4));
-  console.log(articles.slice(4));
+export default function ArticleList({ articles }: ArticleProps) {
   return (
     <>
       <ul className={styles.articleListContainer}>

@@ -1,12 +1,13 @@
 import Image from "next/image";
 import styles from "./Search.module.css";
 import searchIcon from "@/images/ic_search.png";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { SearchProps } from "@/types/Types";
 
-export default function Search({ onSearch }) {
+export default function Search({ onSearch }: SearchProps) {
   const [keyword, setKeyword] = useState("");
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setKeyword(value);
     onSearch(value);
