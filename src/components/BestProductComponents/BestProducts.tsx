@@ -5,7 +5,6 @@ import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 import { useState, useEffect } from "react";
 import { throttle } from "@/utils/throttle";
-import img_default from "@/images/img_default.png";
 import { Product } from "@/types/Types";
 
 interface BestProductsProps {
@@ -56,7 +55,7 @@ const BestProducts: React.FC<BestProductsProps> = ({ bestProducts }) => {
                 <Link href={ROUTES.ITEMS_DETAIL(product.id)} passHref>
                   <div>
                     <Image
-                      src={product.images[0] || img_default}
+                      src={product.images[0] || "/img_default.png"}
                       alt={product.name ?? "Product Image"}
                       width={282}
                       height={282}

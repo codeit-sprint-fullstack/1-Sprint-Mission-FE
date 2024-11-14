@@ -1,7 +1,6 @@
 import React from "react";
 import { formatPrice } from "@/utils/price";
 import styles from "./ItemList.module.css";
-import img_default from "@/images/img_default.png";
 import { MobileSearchBar } from "./MobileSearchBar";
 import { DesktopSearchBar } from "./DesktopSearchBar";
 import Link from "next/link";
@@ -69,7 +68,7 @@ export default function ItemList({
                     src={
                       item.images && item.images.length > 0
                         ? item.images[0]
-                        : img_default
+                        : "/img_default.png"
                     }
                     alt={item.name}
                     width={221}

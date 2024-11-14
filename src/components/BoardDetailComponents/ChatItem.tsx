@@ -1,7 +1,4 @@
 import Image from "next/image";
-import profile from "../../images/ic_profile.png";
-import kebab from "../../images/ic_kebab.png";
-import reply_empty from "../../images/img_reply_empty.png";
 import styles from "./ChatItem.module.css";
 import { useState } from "react";
 import { useDeleteComment } from "@/hooks/useComments"; // 리액트 쿼리 훅 가져오기
@@ -41,7 +38,7 @@ export default function ChatItem({ comments, onEdit }: ChatItemProps) {
       {!comments.length ? (
         <div className={styles.nonContainer}>
           <Image
-            src={reply_empty}
+            src={"/img_reply_empty.png"}
             alt="reply_empty"
             className={styles.replyImg}
             priority={true}
@@ -57,7 +54,7 @@ export default function ChatItem({ comments, onEdit }: ChatItemProps) {
             <div className={styles.menu}>
               <p className={styles.content}>{chatItem.content}</p>
               <Image
-                src={kebab}
+                src={"/ic_kebab.png"}
                 alt="kebab"
                 className={styles.kebab}
                 onClick={() => toggleDropdown(chatItem.id)}
@@ -81,7 +78,7 @@ export default function ChatItem({ comments, onEdit }: ChatItemProps) {
             )}
             <div className={styles.info}>
               <Image
-                src={profile}
+                src={"/ic_profile.png"}
                 alt="profile"
                 className={styles.profileImg}
               />

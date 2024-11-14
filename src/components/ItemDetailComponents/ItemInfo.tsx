@@ -2,13 +2,8 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "./ItemInfo.module.css";
-import defaultImage from "@/images/img_default.png";
 import { formatPrice } from "@/utils/price";
 import { addFavorite, removeFavorite, deleteProduct } from "@/utils/productApi";
-import ic_profile from "@/images/ic_profile.png";
-import ic_active_favorite from "@/images/ic_active_favorite.png";
-import ic_empty_favorite from "@/images/ic_empty_favorite.png";
-import ic_kebab from "@/images/ic_kebab.png";
 import { useMutation } from "@tanstack/react-query";
 import Modal from "../ModalComponents/Modal";
 import Link from "next/link";
@@ -122,7 +117,7 @@ export default function ItemInfo({ product }: ItemInfoProps) {
           src={
             item.images.length > 0
               ? `${item.images[currentImageIndex]}`
-              : defaultImage
+              : "/img_default.png"
           }
           width={486}
           height={486}
@@ -137,7 +132,7 @@ export default function ItemInfo({ product }: ItemInfoProps) {
           {isAuthenticated && (
             <Image
               className={styles.kebab}
-              src={ic_kebab}
+              src="/ic_kebab.png"
               onClick={toggleDropdown}
               alt="kebab"
             />
@@ -167,7 +162,7 @@ export default function ItemInfo({ product }: ItemInfoProps) {
         </div>
         <div className={styles.userContainer}>
           <Image
-            src={ic_profile}
+            src="/ic_profile.png"
             className={styles.profile}
             alt="profile image"
           />
@@ -181,7 +176,11 @@ export default function ItemInfo({ product }: ItemInfoProps) {
             <div className={styles.favoriteInfo}>
               <Image
                 className={styles.ic_favorite}
-                src={isItemFavorite ? ic_active_favorite : ic_empty_favorite}
+                src={
+                  isItemFavorite
+                    ? "/ic_active_favorite.png"
+                    : "/ic_empty_favorite.png"
+                }
                 alt={isItemFavorite ? "active favorite" : "empty favorite"}
                 onClick={handleFavoriteToggle}
               />

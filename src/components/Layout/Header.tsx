@@ -1,6 +1,3 @@
-import Desktop_logo from "@/images/desktop_logo.png";
-import Mobile_logo from "@/images/mobile_logo.png";
-import ic_profile from "@/images/ic_profile.png";
 import styles from "./Header.module.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -64,8 +61,12 @@ export default function Header() {
       {/* 기존 <Link> 내부에 <a> 태그 제거 */}
       <Link href={ROUTES.HOME}>
         <div>
-          <Image src={Desktop_logo} alt="logo" className={styles.logo} />
-          <Image src={Mobile_logo} alt="logo" className={styles.mobileLogo} />
+          <Image src="/desktop_logo.png" alt="logo" className={styles.logo} />
+          <Image
+            src="/mobile_logo.png"
+            alt="logo"
+            className={styles.mobileLogo}
+          />
         </div>
       </Link>
 
@@ -85,7 +86,7 @@ export default function Header() {
       {isAuthenticated ? (
         <div className={styles.userInfo}>
           <Image
-            src={ic_profile}
+            src="/ic_profile.png"
             alt="profile"
             className={styles.userProfile}
           />

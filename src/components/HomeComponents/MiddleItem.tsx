@@ -1,6 +1,3 @@
-import ItemImg1 from "@/images/Home_Item1.png";
-import ItemImg2 from "@/images/Home_Item2.png";
-import ItemImg3 from "@/images/Home_Item3.png";
 import styles from "./MiddleItem.module.css";
 import Image from "next/image";
 
@@ -10,7 +7,7 @@ export default function MiddlerItem() {
       <div className={styles.MiddleItemContainer}>
         <div className={styles.Item}>
           <Image
-            src={ItemImg1}
+            src={"/Home_Item1.png"}
             width={588}
             height={444}
             alt="ItemImg1"
@@ -35,7 +32,7 @@ export default function MiddlerItem() {
 
         <div className={styles.Item}>
           <Image
-            src={ItemImg2}
+            src={"/Home_Item2.png"}
             width={588}
             height={444}
             alt="ItemImg2"
@@ -60,7 +57,7 @@ export default function MiddlerItem() {
 
         <div className={styles.Item}>
           <Image
-            src={ItemImg3}
+            src={"/Home_Item3.png"}
             width={588}
             height={444}
             alt="ItemImg3"

@@ -1,9 +1,5 @@
 import styles from "./Footer.module.css";
 import Image from "next/image";
-import facebook from "@/images/SNS/facebook.png";
-import twitter from "@/images/SNS/twitter.png";
-import youtube from "@/images/SNS/youtube.png";
-import instagram from "@/images/SNS/instagram.png";
 
 export default function Footer() {
   return (
@@ -15,10 +11,10 @@ export default function Footer() {
           <div className={styles.link}>FAQ</div>
         </div>
         <div className={styles.footerSNS}>
-          <Image className={styles.sns} src={facebook} alt="facebook" />
-          <Image className={styles.sns} src={twitter} alt="twitter" />
-          <Image className={styles.sns} src={youtube} alt="youtube" />
-          <Image className={styles.sns} src={instagram} alt="instagram" />
+          <Image className={styles.sns} src="/facebook.png" alt="facebook" />
+          <Image className={styles.sns} src="/twitter.png" alt="twitter" />
+          <Image className={styles.sns} src="/youtube.png" alt="youtube" />
+          <Image className={styles.sns} src="/instagram.png" alt="instagram" />
         </div>
       </div>
       <div className={styles.footerCopyrightM}>@codeit - 2024</div>

@@ -3,13 +3,9 @@ import { useState } from "react";
 import { deleteArticle, addLike, removeLike } from "@/utils/articleApi";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import profile from "@/images/ic_profile.png";
-import kebab from "@/images/ic_kebab.png";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 import { useMutation } from "@tanstack/react-query";
-import ic_active_favorite from "@/images/ic_active_favorite.png";
-import ic_empty_favorite from "@/images/ic_empty_favorite.png";
 import { Article } from "@/types/Types";
 
 interface BoardDetailInfoProps {
@@ -77,7 +73,7 @@ export default function BoardDetailInfo({ article }: BoardDetailInfoProps) {
       <div className={styles.titleContainer}>
         <p className={styles.title}>{article.title}</p>
         <Image
-          src={kebab}
+          src="/ic_kebab.png"
           alt="kebab"
           className={styles.kebabImg}
           onClick={toggleDropdown}
@@ -94,7 +90,11 @@ export default function BoardDetailInfo({ article }: BoardDetailInfoProps) {
         </div>
       )}
       <div className={styles.userInfoContainer}>
-        <Image src={profile} alt="profile" className={styles.profileImg} />
+        <Image
+          src="/ic_profile.png"
+          alt="profile"
+          className={styles.profileImg}
+        />
         <p className={styles.user}>{article.writer.nickname}</p>
         <p className={styles.date}>
           {new Date(article.createdAt).toLocaleDateString()}
@@ -103,7 +103,11 @@ export default function BoardDetailInfo({ article }: BoardDetailInfoProps) {
         <div className={styles.favoriteInfo}>
           <Image
             className={styles.ic_favorite}
-            src={isItemFavorite ? ic_active_favorite : ic_empty_favorite}
+            src={
+              isItemFavorite
+                ? "/ic_active_favorite.png"
+                : "/ic_empty_favorite.png"
+            }
             alt={isItemFavorite ? "active favorite" : "empty favorite"}
             onClick={handleFavoriteToggle}
           />
