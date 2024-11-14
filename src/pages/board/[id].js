@@ -82,7 +82,7 @@ export default function BoardDetail(article) {
       <PostComment
         addComment={addComment}
         title={"댓글달기"}
-        placehorder={"댓글을 입력해주세요."}
+        placeholder={"댓글을 입력해주세요."}
       />
       {/* 댓글 목록 컴포넌트 넣을 공간 */}
       <CommentList commentList={commentList} setCommentList={setCommentList} />

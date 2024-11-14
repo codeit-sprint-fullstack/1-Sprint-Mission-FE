@@ -1,3 +1,4 @@
+// BoardComponent | BoardDetail
 export interface Article {
   id: number;
   title: string;
@@ -10,4 +11,82 @@ export interface ArticleProps {
 
 export interface SearchProps {
   onSearch: (keyword: string) => void;
+}
+
+export interface ArticleDropDownProps {
+  articleId: number;
+}
+
+// BoardDetail(CommentDropDown) | CommentComponent
+export interface CommentWriter {
+  id: number;
+  nickname: string;
+  image: string | null;
+}
+
+export interface Comment {
+  id: number;
+  content: string;
+  createdAt: string;
+  writer: CommentWriter;
+}
+
+export interface CommentDropDownProps {
+  onDelete: () => Promise<void>;
+}
+
+export interface CommentListProps {
+  commentList: Comment[];
+  setCommentList: React.Dispatch<React.SetStateAction<Comment[]>>;
+}
+
+export interface PostCommentProps {
+  addComment: (comment: string) => Promise<void>;
+  title: string;
+  placeholder: string;
+}
+
+export interface ProductCommentsResponse {
+  list: Comment[];
+}
+
+// authContext
+export interface User {
+  id: number;
+  nickname: string;
+  image: string;
+  createdAt: string;
+  updateAt: string;
+}
+
+export interface AuthContextType {
+  user: User | null;
+  login: (userData: User) => void;
+  logout: () => void;
+}
+
+// useFormValidation
+export interface FormValues {
+  [key: string]: string;
+}
+
+export interface FormErrors {
+  [key: string]: string;
+}
+
+export type ValidateFunction = (
+  fileName: string,
+  value: string,
+  values: FormValues
+) => string;
+
+export interface UseFormValidationReturn {
+  initialState: FormValues;
+  values: FormValues;
+  setValues: React.Dispatch<React.SetStateAction<FormValues>>;
+  errors: FormErrors;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (
+    onSubmit: () => void
+  ) => (e: React.FormEvent<HTMLFormElement>) => void;
 }

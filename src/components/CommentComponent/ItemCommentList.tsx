@@ -9,16 +9,21 @@ import ProductCommentDropDown from "../ItemDetail/ProductCommentDropDown";
 import ProductPatchComment from "../ItemDetail/ProductPatchComment";
 import { useState } from "react";
 import { useAuth } from "@/context/authContext";
+import {
+  AuthContextType,
+  Comment,
+  ProductCommentsResponse,
+} from "@/types/Types";
 
 export default function ItemCommentList() {
-  const [editCommentId, setEditCommentId] = useState(null); // 수정 모드 상태 관리
-  const { user } = useAuth(); // user 정보 가져오기
+  const [editCommentId, setEditCommentId] = useState<number | null>(null); // 수정 모드 상태 관리
+  const { user } = useAuth() as AuthContextType; // user 정보 가져오기
   const router = useRouter();
   const { id } = router.query; // URL에서 상품 ID 가져오기
   const productId = id;
 
   // useQuery를 사용하여 데이터 가져오기
-  const { data, isError, isLoading } = useQuery({
+  const { data, isError, isLoading } = useQuery<ProductCommentsResponse>({
     queryKey: ["productComments", productId],
     queryFn: () => getProductByIdComments(productId),
     enabled: !!productId, // productId가 있을 때만 쿼리 실행
@@ -41,15 +46,13 @@ export default function ItemCommentList() {
   }
 
   const prodcutCommentsList = data.list;
-  const commentsWriter = prodcutCommentsList.writer;
-  console.log(prodcutCommentsList);
 
   return (
     <ul className={styles.commentListContainer}>
-      {prodcutCommentsList.map((comment) => (
+      {prodcutCommentsList.map((comment: Comment) => (
         <li key={comment.id}>
           <div className={styles.commentList}>
-            {editCommentId === comment.id && user.id === comment.writer.id ? (
+            {editCommentId === comment.id && user?.id === comment.writer.id ? (
               <ProductPatchComment
                 comment={comment}
                 setEditCommentId={setEditCommentId}

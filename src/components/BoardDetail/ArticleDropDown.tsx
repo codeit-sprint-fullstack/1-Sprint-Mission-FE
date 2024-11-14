@@ -4,17 +4,18 @@ import styles from "./KebabDropDown.module.css";
 import kebab from "@/images/ic_kebab.png";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { ArticleDropDownProps } from "@/types/Types";
 
-export default function ArticleDropDown({ articleId }) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function ArticleDropDown({ articleId }: ArticleDropDownProps) {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const router = useRouter();
 
-  const toggleDropDown = () => {
+  const toggleDropDown = ():void => {
     setIsOpen(!isOpen);
   };
 
   // 게시글 삭제
-  const handleDelete = async () => {
+  const handleDelete = async (): Promise<void> => {
     try {
       const res = await axios.delete(`/articles/${articleId}`);
 

@@ -2,15 +2,16 @@ import Image from "next/image";
 import styles from "./KebabDropDown.module.css";
 import kebab from "@/images/ic_kebab.png";
 import { useState } from "react";
+import { CommentDropDownProps } from "@/types/Types";
 
-export default function CommentDropDown({ onDelete }) {
+export default function CommentDropDown({ onDelete }: CommentDropDownProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropDown = () => {
+  const toggleDropDown = (): void => {
     setIsOpen(!isOpen);
   };
 
-  const handleDelete = () => {
+  const handleDelete = (): void => {
     onDelete();
   };
 

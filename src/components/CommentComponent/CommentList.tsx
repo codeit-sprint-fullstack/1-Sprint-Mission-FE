@@ -4,13 +4,10 @@ import axios from "@/lib/axios";
 import defaultUserImg from "@/images/defaultUserImg.png";
 import NoComment from "./NoComment";
 import CommentDropDown from "../BoardDetail/CommentDropDown";
+import { Comment, CommentListProps } from "@/types/Types";
 
-export default function CommentList({ commentList, setCommentList }) {
-  console.log(commentList);
-  console.log(commentList.length);
-
-  console.log(setCommentList);
-  const handleDelete = async (commentId) => {
+export default function CommentList({ commentList, setCommentList }: CommentListProps) {
+  const handleDelete = async (commentId: number): Promise<void> => {
     try {
       await axios.delete(`/comments/${commentId}`);
 
@@ -26,7 +23,7 @@ export default function CommentList({ commentList, setCommentList }) {
     <>
       <ul className={styles.commentListContainer}>
         {commentList.length > 0 ? (
-          commentList.map((comment) => (
+          commentList.map((comment: Comment) => (
             <li key={comment.id}>
               <div className={styles.commentList}>
                 <div className={styles.commentListHeader}>

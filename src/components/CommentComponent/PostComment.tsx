@@ -1,16 +1,21 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import styles from "./PostComment.module.css";
 import axios from "@/lib/axios";
+import { PostCommentProps } from "@/types/Types";
 
-export default function PostComment({ addComment, title, placehorder }) {
-  const [content, setContent] = useState("");
+export default function PostComment({
+  addComment,
+  title,
+  placeholder,
+}: PostCommentProps) {
+  const [content, setContent] = useState<string>("");
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     setContent(value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     // 공백만 있는 경우 막아준다.
     if (!content.trim()) {
@@ -25,11 +30,15 @@ export default function PostComment({ addComment, title, placehorder }) {
       <div className={styles.inputHeader}>{title}</div>
       <textarea
         className={styles.inputComment}
-        placeholder={placehorder}
+        placeholder={placeholder}
         value={content}
         onChange={handleChange}
       />
-      <button className={styles.postButton} disabled={!content.trim()}>
+      <button
+        className={styles.postButton}
+        disabled={!content.trim()}
+        type="submit"
+      >
         등록
       </button>
     </form>

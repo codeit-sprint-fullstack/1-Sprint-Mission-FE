@@ -1,17 +1,28 @@
 import { getUser } from "@/lib/authApi";
+import { AuthContextType, User } from "@/types/Types";
 import { useRouter } from "next/router";
-import { createContext, useContext, useState, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 
 // Context 생성
-const AuthContext = createContext(null);
+const AuthContext = createContext<AuthContextType | null>(null);
 
 // Context를 사용하는 커스텀 훅
 export const useAuth = () => useContext(AuthContext);
 
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
 // Provider 컴포넌트 생성
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }: AuthProviderProps) => {
   const router = useRouter();
-  const [user, setUser] = useState(null); // 유저 정보 상태
+  const [user, setUser] = useState<User | null>(null); // 유저 정보 상태
 
   // 페이지가 처음 렌더링될 때 유저 정보를 가져옴
   useEffect(() => {
@@ -29,7 +40,7 @@ export const AuthProvider = ({ children }) => {
     fetchUser();
   }, []);
   // 유저 정보 상태와 유틸리티 함수들을 Context로 제공
-  const login = (userData) => {
+  const login = (userData: User) => {
     setUser(userData);
   };
 
@@ -44,9 +55,11 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  const value: AuthContextType = {
+    user,
+    login,
+    logout,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
