@@ -73,7 +73,8 @@ const useFormValidation = (
           : "내용은 10자리 이상 100자리 이내 입니다.";
 
       case "price":
-        if (typeof value !== "number" || value <= 0) {
+        console.log(typeof value);
+        if ((value as unknown as number) <= 0) {
           return "판매 가격은 1원 이상입니다.";
         }
         return "";
@@ -131,18 +132,19 @@ const useFormValidation = (
     callback(values);
   };
 
-  const handleChips = (e) => {
+  const handleChips = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (errors.tags) return;
     if (e.key === "Enter") {
+      const target = e.target as HTMLInputElement;
       e.preventDefault();
-      if (e.target.value.trim() !== "") {
-        setChips((prev) => [...prev, e.target.value]);
+      if (target.value.trim() !== "") {
+        setChips((prev) => [...prev, target.value]);
         values.tags = "";
       }
     }
   };
 
-  const handleRemoveChip = (index) => {
+  const handleRemoveChip = (index: number) => {
     setChips((prev) => prev.filter((_, id) => id !== index));
   };
 

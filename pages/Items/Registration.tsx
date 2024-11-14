@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
-import useFormValidation from "@/hooks/useFormValidation.js";
+import useFormValidation from "@/hooks/useFormValidation";
 import * as api from "@/pages/api/products";
 import { productModel } from "@/models/productModel";
 import styles from "@/styles/registration.module.css";

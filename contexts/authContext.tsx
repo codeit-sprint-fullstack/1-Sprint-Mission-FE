@@ -54,7 +54,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = async (loginValue: LoginUser) => {
     const res = await authApi.login(loginValue);
-    console.log(res.status);
     if (res.status === 200) {
       //사용자정보 갱신
       await getMe();
