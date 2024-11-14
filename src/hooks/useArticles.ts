@@ -1,20 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { fetchArticles } from "@/utils/articleApi";
-
-interface Writer {
-  nickname: string;
-}
-
-interface Article {
-  id: number;
-  title: string;
-  content: string;
-  images: string[];
-  likeCount: number;
-  createdAt: string;
-  updatedAt: string;
-  writer: Writer;
-}
+import { Article } from "@/types/Types";
 
 interface FetchArticlesResponse {
   list: Article[];
