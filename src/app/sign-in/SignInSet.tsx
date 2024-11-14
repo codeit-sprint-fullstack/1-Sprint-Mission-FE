@@ -8,8 +8,8 @@ import Modal from "react-modal";
 import classNames from "classnames";
 
 import { signIn } from "src/lib/api-auth";
-import EmailInput from "../components/EmailInput";
-import PasswordInput from "../components/PasswordInput";
+import InputEmail from "../components/InputEmail";
+import InputPassword from "../components/InputPassword";
 import useAuth from "../hooks/useAuth";
 
 import { ErrorResponse } from "src/types/axios";
@@ -61,7 +61,7 @@ export default function SignInSet() {
             "에러가 발생하였습니다(AxiosError)"
         );
       } else {
-        setModalMessage("에러가 발생하였습니다(not AxiosError)");
+        setModalMessage((err as { message: string }).message);
       }
 
       setShowModal(true);
@@ -85,8 +85,8 @@ export default function SignInSet() {
 
   return (
     <form onSubmit={handleSubmit(handleSignInBtnClick)}>
-      <EmailInput label="email" register={register} errors={errors} />
-      <PasswordInput label="password" register={register} errors={errors} />
+      <InputEmail register={register} errors={errors} />
+      <InputPassword register={register} errors={errors} />
       <button className={btnSignInClass} disabled={!isValid} />
       <Modal
         className="simple-modal"

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import classNames from "classnames";
 
+// 임시 반응형 css 미적용
 export default function BottomBanner() {
   const bottomBannerClass = classNames(
     "w-full",
