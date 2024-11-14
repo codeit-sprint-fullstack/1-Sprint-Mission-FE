@@ -1,9 +1,14 @@
 "use client";
 
 import classNames from "classnames";
+import { UseFormRegister, FieldErrors } from "react-hook-form";
 
-import { InputNicknameProps } from "src/types/components";
 import { userSchema } from "../constants/schema";
+
+export interface InputNicknameProps {
+  register: UseFormRegister<{ [key: string]: string }>;
+  errors: FieldErrors<{ nickname?: string }>;
+}
 
 export default function InputNickname({
   register,

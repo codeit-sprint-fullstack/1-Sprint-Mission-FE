@@ -10,7 +10,11 @@ import React, {
 } from "react";
 import classNames from "classnames";
 
-import { DropdownProps } from "../../types/components";
+interface DropdownProps {
+  dropdwonClass?: string;
+  minimise?: string | boolean;
+  children: ReactNode;
+}
 
 import style from "./dropdown.module.css";
 

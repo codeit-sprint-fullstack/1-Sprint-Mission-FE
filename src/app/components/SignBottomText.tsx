@@ -1,7 +1,11 @@
 import Link from "next/link";
 import classNames from "classnames";
 
-import { SignBottomTextProps } from "src/types/components";
+interface SignBottomTextProps {
+  message: string;
+  linkText: string;
+  linkPath: string;
+}
 
 export default function SignBottomText({
   message,

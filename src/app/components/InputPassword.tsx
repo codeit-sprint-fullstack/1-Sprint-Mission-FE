@@ -1,10 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { UseFormRegister, FieldErrors } from "react-hook-form";
 import classNames from "classnames";
 
-import { InputPasswordProps } from "src/types/components";
 import { userSchema } from "../constants/schema";
+
+export interface InputPasswordProps {
+  register: UseFormRegister<{ [key: string]: string }>;
+  errors: FieldErrors<{ password?: string }>;
+}
 
 export default function InputPassword({
   register,

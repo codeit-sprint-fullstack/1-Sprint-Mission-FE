@@ -1,7 +1,14 @@
 import Image from "next/image";
 import classNames from "classnames";
 
-import { MiddleBannerProps } from "src/types/components";
+export interface MiddleBannerProps {
+  isLeftImage: boolean;
+  imagePath: string;
+  textSetWidth: string;
+  topText: string;
+  middleText: string;
+  bottomText: string;
+}
 
 // 임시 반응형 css 미적용
 export default function MiddleBanner({
