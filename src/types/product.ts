@@ -13,27 +13,12 @@ export interface ProductData {
   createdAt: string;
 }
 
-export interface ProductListData {
-  totalCount: number;
-  products: ProductData[];
-}
-
-export interface ProductListProps {
-  initList: ProductData[];
-  initTotalCount: number;
-}
-
 export interface BestProductPreviewProps {
   img: string;
   imgClass: string;
   name: string;
   price: number;
   favorite?: boolean;
-}
-
-export interface FleaMarketDetailProps {
-  initList: ProductData[];
-  initTotalCount: number;
 }
 
 export interface ProductPreviewProps {

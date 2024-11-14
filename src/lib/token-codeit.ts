@@ -1,20 +1,32 @@
-export function setAccessToken(accessToken: string) {
-  localStorage.setItem("codeit-accessToken", accessToken);
+export function getAccessToken(): string | null {
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("codeit-accessToken");
+  }
+  return null;
 }
 
-export function getAccessToken(): string | null {
-  return localStorage.getItem("codeit-accessToken");
+export function setAccessToken(accessToken: string) {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("codeit-accessToken", accessToken);
+  }
 }
 
 export function deleteAccessToken(): void {
-  localStorage.removeItem("codeit-accessToken");
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("codeit-accessToken");
+  }
 }
 
 // temp
 export function setRefreshToken(refreshToken: string) {
-  localStorage.setItem("codeit-refresh-token", refreshToken);
+  if (typeof window !== "undefined") {
+    localStorage.setItem("codeit-refresh-token", refreshToken);
+  }
 }
 
 export function getRefreshToken(): string | null {
-  return localStorage.getItem("codeit-refresh-token");
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("codeit-refresh-token");
+  }
+  return null;
 }

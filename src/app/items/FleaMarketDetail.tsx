@@ -2,15 +2,25 @@
 
 import ProductList from "./ProductList";
 
-import { FleaMarketDetailProps } from "src/types/product";
+import { ProductData } from "src/types/product";
+
+export interface FleaMarketDetailProps {
+  bestProductList: ProductData[];
+  productList: ProductData[];
+  productTotalCount: number;
+}
 
 export default function FleaMarketDetail({
-  initList,
-  initTotalCount,
+  bestProductList,
+  productList,
+  productTotalCount,
 }: FleaMarketDetailProps) {
   return (
     <>
-      <ProductList initList={initList} initTotalCount={initTotalCount} />
+      <ProductList
+        productList={productList}
+        productTotalCount={productTotalCount}
+      />
     </>
   );
 }

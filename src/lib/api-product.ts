@@ -85,7 +85,9 @@ export async function getProducts({
   try {
     const res = await instance.get(path, { params });
     return res.data;
-  } catch (err) {}
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 /** codeit GET /products/{productId} 

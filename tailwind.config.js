@@ -42,10 +42,6 @@ module.exports = {
         "pc-content": "120rem",
         "ta-content": "69.6rem",
         "mo-content": "34.3rem",
-        // header-btn-home
-        "pc-btn-home": "15.3rem",
-        "mo-btn-home": "8.1rem",
-        "test-s": "8.8rem",
         // loading
         loading: "12rem",
         // dropdown
@@ -66,12 +62,6 @@ module.exports = {
         "board-search": "105.4rem",
         "ta-board-search": "56rem",
         "mo-board-search": "28.2rem",
-        // product-search
-        "product-search": "32.5rem",
-        "ta-product-search": "24.2rem",
-        "mo-product-search": "28.8rem",
-        // btn-link-regist
-        "btn-link-regist": "13.3rem",
         // btn-page
         "btn-page": "4rem",
         // simple-sign-in
@@ -81,10 +71,6 @@ module.exports = {
         "mo-simple-sign-up": "34.3rem",
       },
       height: {
-        tool42: "4.2rem",
-        // header-btn-home
-        "pc-btn-home": "5.1rem",
-        "mo-btn-home": "4rem",
         // loading
         loading: "6rem",
         // dropdown
@@ -164,9 +150,6 @@ module.exports = {
         "comment-text-area-frame": "0.9rem",
         // pagination
         "pagination-mt": "4.3rem",
-        // serch-label
-        "search-label": "46.3rem",
-        "ta-search-label": "3.8rem",
       },
       spacing: {
         loading: "35rem",

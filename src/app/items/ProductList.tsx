@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useContext, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import classNames from "classnames";
@@ -26,40 +26,46 @@ import {
 } from "../constants/sort";
 import { PAGE_SIZE } from "../constants/product";
 import { PC } from "../constants/device";
-import { ProductListProps } from "src/types/product";
 import { SearchParamState } from "src/types/param";
-import { ProductData, ProductListData } from "src/types/product";
+import { ProductData } from "src/types/product";
+
+interface ProductListData {
+  totalCount: number;
+  products: ProductData[];
+}
+
+interface ProductListProps {
+  productList: ProductData[];
+  productTotalCount: number;
+}
 
 export default function ProductList({
-  initList,
-  initTotalCount,
+  productList,
+  productTotalCount,
 }: ProductListProps) {
-  const [keyword, setKeyword] = useState<string>("");
+  const [keyword, setKeyword] = useState<string | null>(null);
   const [params, setParams] = useState<SearchParamState>({
     page: 1,
     pageSize: PAGE_SIZE[PC],
     orderBy: ORDER_BY[ORDER_BY_RECENT],
     keyword: null,
   });
-
   const [currentOrder, setCurrentOrder] = useState<number>(ORDER_BY_RECENT);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const {
-    bestProductPageSize,
-    productPageSize,
-    bestPostPageSize,
-    postPageSize,
-  } = useDeviceContext();
+  const { productPageSize } = useDeviceContext();
 
-  const maxPageNum = useMemo(() => {
-    return Math.ceil(initTotalCount / productPageSize);
-  }, [initTotalCount]);
+  console.log(
+    "productTotalCount / productPageSize : ",
+    productTotalCount,
+    " / ",
+    productPageSize
+  );
 
   const queryClient = useQueryClient();
 
   const {
-    data = { products: initList, totalCount: initTotalCount },
+    data = { products: productList, totalCount: productTotalCount },
     isLoading,
     error,
   } = useQuery<ProductListData, Error>({
@@ -68,64 +74,67 @@ export default function ProductList({
     placeholderData: () => {
       return queryClient.getQueryData(["products", params]);
     },
-    staleTime: 5000,
+    staleTime: 5000, // 임시 5초 설정. 추후 상수로 관리 예정
   });
 
-  const list = data?.products ?? initList;
-  const totalCount = data?.totalCount ?? initTotalCount;
+  const list = data?.products ?? productList;
+
+  const maxPageNum = useMemo(() => {
+    return Math.ceil((data?.totalCount ?? productTotalCount) / productPageSize);
+  }, [data?.totalCount, productTotalCount, productPageSize]);
 
   const productListClass = classNames("mt-4rem", "mo:mt-2.4rem");
   const productToolsClass = classNames(
     "flex",
     "flex-row",
-    "h-tool42",
-    "gap-1.2rem",
-    "mo:h-8.4rem",
+    "h-[4.2rem]",
+    "gap-[1.2rem]",
+    "mo:h-[8.4rem]",
     "mo:flex-wrap",
     "mo:justify-between"
   );
   const productToolsLabelClass = classNames(
-    "mr-search-label",
-    "h-tool42",
+    "mr-[46.3rem]",
+    "h-full",
     "text-left",
     "place-content-center",
     "text-xl",
     "leading-32",
     "font-bold",
     "text-nowrap",
-    "ta:mr-ta-search-label",
+    "ta:mr-[3.8rem]",
     "mo:mr-0",
     "mo:order-1"
   );
   const searchFrameClass = classNames(
-    "w-product-search",
-    "h-tool42",
+    "w-[32.5rem]",
+    "h-full",
     "ml-full",
-    "ta:w-ta-product-search",
-    "mo:w-mo-product-search",
+    "ta:w-[24.2rem]",
+    "mo:w-[28.8rem]",
     "mo:order-3"
   );
   const btnLinkRegistFrameClass = classNames(
-    "w-btn-link-regist",
-    "h-tool42",
+    "w-[13.3rem]",
+    "h-[4.2rem]",
     "mo:order-2"
   );
   const btnLinkRegistClass = classNames(
-    "w-btn-link-regist",
-    "h-tool42",
+    "w-[13.3rem]",
+    "h-full",
     "bg-btn-link-regist"
   );
   const dropdownClass = classNames("mo:order-4");
   const productListFrame = classNames(
-    "mt-2.4rem",
+    "mt-[2.4rem]",
     "grid",
     "grid-cols-5",
-    "gap-x-2.4rem",
-    "gap-y-4rem",
+    "gap-x-[2.4rem]",
+    "gap-y-[4rem]",
     "ta:grid-cols-3",
-    "ta:gap-y-1.6rem",
+    "ta:gap-y-[1.6rem]",
     "mo:grid-cols-2",
-    "mo:gap-y-0.8rem"
+    "mo:gap-y-[0.8rem]"
   );
 
   const sortByRecent = () => {
@@ -136,6 +145,7 @@ export default function ProductList({
       keyword: keyword,
     });
     setCurrentOrder(ORDER_BY_RECENT);
+    setCurrentPage(1);
   };
 
   const sortByFavorite = () => {
@@ -146,6 +156,7 @@ export default function ProductList({
       keyword: keyword,
     });
     setCurrentOrder(ORDER_BY_FAVORITE);
+    setCurrentPage(1);
   };
 
   const handleSubmit = (searchText: string) => {
@@ -171,6 +182,7 @@ export default function ProductList({
   }, []);
 
   console.log("list : ", list);
+  console.log("p = maxPageNum : ", maxPageNum);
 
   if (isLoading)
     return (
@@ -221,7 +233,6 @@ export default function ProductList({
       </div>
       <div>
         <Pagination
-          className="main__products-pagination"
           maxPageNum={maxPageNum}
           currentPage={currentPage}
           onClick={handlePageMove}

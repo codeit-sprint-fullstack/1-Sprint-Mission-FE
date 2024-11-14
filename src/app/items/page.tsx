@@ -2,21 +2,38 @@ import FleaMarketDetail from "./FleaMarketDetail";
 import { getProducts } from "src/lib/api-product";
 import classNames from "classnames";
 
-import { ORDER_BY_RECENT, ORDER_BY } from "../constants/sort";
+import {
+  BEST_PRODUCT_PAGE_SIZE,
+  PRODUCT_PAGE_SIZE,
+  PC,
+} from "../constants/device";
+import {
+  ORDER_BY_RECENT,
+  ORDER_BY_FAVORITE,
+  ORDER_BY,
+} from "../constants/sort";
 
 export default async function FleaMarketPage() {
-  const data = await getProducts({
+  const productListData = await getProducts({
     page: 1,
-    pageSize: 10,
+    pageSize: PRODUCT_PAGE_SIZE[PC],
     orderBy: ORDER_BY[ORDER_BY_RECENT],
   });
 
-  const list = data?.list || [];
-  const totalCount = data?.totalCount || 0;
+  const productList = productListData?.products || [];
+  const productTotalCount = productListData?.totalCount || 0;
+
+  const bestProductListData = await getProducts({
+    page: 1,
+    pageSize: BEST_PRODUCT_PAGE_SIZE[PC],
+    orderBy: ORDER_BY[ORDER_BY_FAVORITE],
+  });
+
+  const bestProductList = bestProductListData?.list || [];
 
   const mainClass = classNames(
     "mt-header",
-    "pt-4rem",
+    "pt-[4rem]",
     "mx-auto",
     "w-pc-content",
     "ta:w-ta-content",
@@ -25,7 +42,11 @@ export default async function FleaMarketPage() {
 
   return (
     <div className={mainClass}>
-      <FleaMarketDetail initList={list} initTotalCount={totalCount} />
+      <FleaMarketDetail
+        bestProductList={bestProductList}
+        productList={productList}
+        productTotalCount={productTotalCount}
+      />
     </div>
   );
 }

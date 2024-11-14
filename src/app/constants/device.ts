@@ -1,6 +1,6 @@
 export const PC: number = 0;
-export const ta: number = 1;
-export const mo: number = 2;
+export const TABLET: number = 1;
+export const MOBILE: number = 2;
 
 /** products items count */
 export const PRODUCT_PAGE_SIZE: number[] = [10, 6, 4];

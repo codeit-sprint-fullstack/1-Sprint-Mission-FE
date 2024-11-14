@@ -3,14 +3,12 @@ import classNames from "classnames";
 const SHOW_MAX_PAGINATION = 5;
 
 interface PaginationProps {
-  className: string;
   maxPageNum: number;
   currentPage: number;
   onClick: Function;
 }
 
 export function Pagination({
-  className,
   maxPageNum,
   currentPage,
   onClick,
@@ -59,11 +57,11 @@ export function Pagination({
     let tempShowedFirstPage = currentPage - Math.floor(maxButtonNumber / 2);
     const tempShowedLastPage = currentPage + Math.floor(maxButtonNumber / 2);
 
-    tempShowedFirstPage = tempShowedFirstPage > 0 ? tempShowedFirstPage : 1;
     tempShowedFirstPage =
       tempShowedLastPage > maxPageNum
         ? maxPageNum - maxButtonNumber + 1
         : tempShowedFirstPage;
+    tempShowedFirstPage = tempShowedFirstPage > 0 ? tempShowedFirstPage : 1;
     return tempShowedFirstPage;
   };
 
@@ -72,6 +70,9 @@ export function Pagination({
   for (let i = 0; i < maxButtonNumber; i++) {
     showPageArray.push(page + i);
   }
+  console.log("page : ", page);
+  console.log("maxButtonNumber : ", maxButtonNumber);
+  console.log("showPageArray : ", showPageArray);
 
   let tempPageNum = currentPage - 1;
   const prePageNum = tempPageNum > 0 ? tempPageNum : 1;

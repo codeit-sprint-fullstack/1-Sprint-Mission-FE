@@ -31,10 +31,10 @@ export function Header() {
   );
   const btnHome = classNames(
     "object-cover",
-    "w-pc-btn-home",
-    "h-pc-btn-home",
-    "mo:w-mo-btn-home",
-    "mo:h-mo-btn-home",
+    "w-[15.3rem]",
+    "h-pc-[5.1rem]",
+    "mo:w-[8.1rem]",
+    "mo:h-[4rem]",
     "bg-btn-header__home",
     "mo:bg-btn-header__home--mo"
   );
