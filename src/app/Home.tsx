@@ -1,6 +1,6 @@
-import BannerTop from "./components/TopBanner";
+import BannerTop from "./components/BannerTop";
 import BannerBottom from "./components/BannerBottom";
-import BannerMiddle from "./components/MiddleBanner";
+import BannerMiddle from "./components/BannerMiddle";
 
 export function Home() {
   return (

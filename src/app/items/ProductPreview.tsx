@@ -14,23 +14,22 @@ export default function ProductPreview({
   favoriteCount,
 }: ProductPreviewProps) {
   const linkTo = `/items/${productId}`;
-  console.log("linkTo : ", linkTo);
   const productPreviewClass = classNames(
     "flex",
     "flex-col",
     "justify-between",
-    "w-product-preview",
-    "h-product-preview",
-    "mo:w-mo-product-preview",
-    "mo:h-mo-product-preview"
+    "w-[22.1rem]",
+    "h-[31.7rem]",
+    "mo:w-[16.8rem]",
+    "mo:h-[26.4rem]"
   );
   const imageFramClass = classNames(
-    "w-product-preview-image",
-    "h-product-preview-image",
-    "mo:w-mo-product-preview-image",
-    "mo:h-mo-product-preview-image",
+    "w-[22.1rem]",
+    "h-[22.1rem]",
+    "mo:w-[16.8rem]",
+    "mo:h-[16.8rem]",
     "box-content",
-    "rounded-1.6rem",
+    "rounded-[1.6rem]",
     "relative",
     "overflow-hidden"
   );
@@ -39,11 +38,11 @@ export default function ProductPreview({
     "flex-col",
     "justify-between",
     "w-full",
-    "h-product-preview-info"
+    "h-[8rem]"
   );
   const productNameClass = classNames(
     "text-md",
-    "leading-24",
+    "leading-[2.4rem]",
     "font-medium",
     "overflow-hidden",
     "text-nowrap",
@@ -51,7 +50,7 @@ export default function ProductPreview({
   );
   const productPriceClass = classNames(
     "text-lg",
-    "leading-26",
+    "leading-[2.6rem]",
     "font-bold",
     "overflow-hidden",
     "text-nowrap",

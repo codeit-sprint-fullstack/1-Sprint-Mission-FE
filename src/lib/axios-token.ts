@@ -8,6 +8,7 @@ const axiosConfig = {
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: false,
 };
 
 export const instance: AxiosInstance = axios.create(axiosConfig);

@@ -55,9 +55,6 @@ module.exports = {
         "pc-best-product-preview": "28.2rem",
         "ta-best-product-preview": "34.3rem",
         "mo-best-product-preview": "34.3rem",
-        // product-preview
-        "product-preview": "22.1rem",
-        "mo-product-preview": "16.8rem",
         // board-search
         "board-search": "105.4rem",
         "ta-board-search": "56rem",
@@ -92,11 +89,6 @@ module.exports = {
         "pc-best-product-preview": "37.8rem",
         "ta-best-product-preview": "43.4rem",
         "mo-best-product-preview": "43.4rem",
-        // product-preview
-        "product-preview": "31.7rem",
-        "mo-product-preview": "26.4rem",
-        // product-preview-info
-        "product-preview-info": "8rem",
         // btn-page
         "btn-page": "4rem",
         // simple-sign-in
@@ -178,13 +170,10 @@ module.exports = {
         "pc-best-product-preview-image": "28.2rem",
         "ta-best-product-preview-image": "34.3rem",
         "mobibest-product-preview-image": "34.3rem",
-        // product-preview-image
-        "product-preview-image": "22.1rem",
-        "mo-product-preview-image": "16.8rem",
       },
       backgroundImage: {
-        "btn-header__home": "url(/buttons/btn_home.svg)",
-        "btn-header__home--mo": "url(/buttons/btn_home_small.svg)",
+        "btn-header__home": "url('/buttons/btn_home.svg')",
+        "btn-header__home--mo": "url('/buttons/btn_home_small.svg')",
         "sign-in__btn": "url('/buttons/btn_sign_in_w640.svg')",
         "sign-in__btn--mo": "url('/buttons/btn_sign_in_w343.svg')",
         "sign-in__btn--disabled":

@@ -51,21 +51,21 @@ export default function SignInSet() {
         login(user);
         router.push("/");
       } else {
-        console.error("load user data failed: No user data returned.");
+        console.error("응답(정보)이 없습니다");
       }
     } catch (err) {
-      if ((err as AxiosError).response) {
-        const axiosError = err as AxiosError<ErrorResponse>;
-        setModalMessage(
-          axiosError.response?.data.message ||
-            "에러가 발생하였습니다(AxiosError)"
-        );
-      } else {
-        setModalMessage((err as { message: string }).message);
+      let errorMessage = "에러가 발생하였습니다";
+
+      if (err instanceof AxiosError && err.response?.data) {
+        errorMessage =
+          err.response.data.message || "에러가 발생하였습니다(AxiosError)";
+      } else if (err instanceof Error) {
+        errorMessage = err.message;
       }
 
+      setModalMessage(errorMessage);
       setShowModal(true);
-      console.error("Sign-in error:", err);
+
       setError("email", {
         type: "manual",
         message: "이메일을 확인해 주세요.",
@@ -76,6 +76,12 @@ export default function SignInSet() {
       });
     }
   };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      Modal.setAppElement(document.body);
+    }
+  }, []);
 
   useEffect(() => {
     if (isSignedIn) {

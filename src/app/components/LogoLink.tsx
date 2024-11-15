@@ -20,8 +20,9 @@ export function LogoLinkW396() {
       <Image
         src="/buttons/btn_logo.svg"
         alt="로고 링크"
-        layout="fill"
-        objectFit="cover"
+        fill
+        style={{ objectFit: "cover" }}
+        priority={false}
       />
     </Link>
   );

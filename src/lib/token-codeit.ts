@@ -1,32 +1,34 @@
-export function getAccessToken(): string | null {
-  if (typeof window !== "undefined") {
-    return localStorage.getItem("codeit-accessToken");
-  }
-  return null;
-}
+import { setCookie, getCookie, deleteCookie } from "cookies-next";
+
+import {
+  EXPIRE_TIME_ACCESS_TOKEN,
+  EXPIRE_TIME_REFRESH_TOKEN,
+} from "src/app/constants/token";
 
 export function setAccessToken(accessToken: string) {
-  if (typeof window !== "undefined") {
-    localStorage.setItem("codeit-accessToken", accessToken);
-  }
+  setCookie("codeit-accessToken", accessToken, {
+    path: "/",
+    sameSite: "lax",
+    maxAge: EXPIRE_TIME_ACCESS_TOKEN,
+  });
+}
+
+export function getAccessToken(): string | null {
+  return getCookie("codeit-accessToken") as string | null;
 }
 
 export function deleteAccessToken(): void {
-  if (typeof window !== "undefined") {
-    localStorage.removeItem("codeit-accessToken");
-  }
+  deleteCookie("codeit-accessToken", { path: "/" });
 }
 
-// temp
 export function setRefreshToken(refreshToken: string) {
-  if (typeof window !== "undefined") {
-    localStorage.setItem("codeit-refresh-token", refreshToken);
-  }
+  setCookie("codeit-refresh-token", refreshToken, {
+    path: "/",
+    sameSite: "lax",
+    maxAge: EXPIRE_TIME_REFRESH_TOKEN,
+  });
 }
 
 export function getRefreshToken(): string | null {
-  if (typeof window !== "undefined") {
-    return localStorage.getItem("codeit-refresh-token");
-  }
-  return null;
+  return getCookie("codeit-refresh-token") as string | null;
 }

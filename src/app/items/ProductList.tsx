@@ -55,13 +55,6 @@ export default function ProductList({
 
   const { productPageSize } = useDeviceContext();
 
-  console.log(
-    "productTotalCount / productPageSize : ",
-    productTotalCount,
-    " / ",
-    productPageSize
-  );
-
   const queryClient = useQueryClient();
 
   const {
@@ -83,7 +76,7 @@ export default function ProductList({
     return Math.ceil((data?.totalCount ?? productTotalCount) / productPageSize);
   }, [data?.totalCount, productTotalCount, productPageSize]);
 
-  const productListClass = classNames("mt-4rem", "mo:mt-2.4rem");
+  const productListClass = classNames("mt-[4rem]", "mo:mt-[2.4rem]");
   const productToolsClass = classNames(
     "flex",
     "flex-row",
@@ -99,7 +92,7 @@ export default function ProductList({
     "text-left",
     "place-content-center",
     "text-xl",
-    "leading-32",
+    "leading-[3.2rem]",
     "font-bold",
     "text-nowrap",
     "ta:mr-[3.8rem]",
@@ -135,6 +128,11 @@ export default function ProductList({
     "ta:gap-y-[1.6rem]",
     "mo:grid-cols-2",
     "mo:gap-y-[0.8rem]"
+  );
+  const paginationBarClass = classNames(
+    "mb-[14rem]",
+    "ta:mb-[16.5rem]",
+    "mo:mb-[13.5rem]"
   );
 
   const sortByRecent = () => {
@@ -180,9 +178,6 @@ export default function ProductList({
       pageSize: productPageSize,
     }));
   }, []);
-
-  console.log("list : ", list);
-  console.log("p = maxPageNum : ", maxPageNum);
 
   if (isLoading)
     return (
@@ -231,7 +226,7 @@ export default function ProductList({
           />
         ))}
       </div>
-      <div>
+      <div className={paginationBarClass}>
         <Pagination
           maxPageNum={maxPageNum}
           currentPage={currentPage}
