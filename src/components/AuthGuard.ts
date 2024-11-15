@@ -25,7 +25,7 @@ const AuthGuard = ({ children }: AuthGuardProps) => {
     }
   }, [token, router]);
 
-  return { children };
+  return children;
 };
 
 export default AuthGuard;
