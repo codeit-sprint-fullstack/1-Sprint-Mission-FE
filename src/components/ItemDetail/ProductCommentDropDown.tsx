@@ -5,13 +5,14 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteProductByIdComment } from "@/lib/productApi";
+import { ProductCommentDropDownProps } from "@/types/Types";
 
 export default function ProductCommentDropDown({
   writerId,
   commentId,
   setEditCommentId,
-}) {
-  const [isOpen, setIsOpen] = useState(false);
+}: ProductCommentDropDownProps) {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const router = useRouter();
   const { id } = router.query;
   const productId = id;
@@ -27,7 +28,10 @@ export default function ProductCommentDropDown({
     mutationFn: () => deleteProductByIdComment(commentId),
     onSuccess: () => {
       console.log("댓글이 성공적으로 삭제되었습니다.");
-      queryClient.invalidateQueries(["productComments", productId]); // 댓글 목록 쿼리 무효화 및 재요청
+      queryClient.invalidateQueries({
+        // queryKey를 넣어주지 않으면 에러 발생
+        queryKey: ["productComments", productId],
+      }); // 댓글 목록 쿼리 무효화 및 재요청
     },
     onError: (error) => {
       console.log("댓글 삭제 중 오류 발생: ", error);

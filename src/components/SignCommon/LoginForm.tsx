@@ -4,12 +4,22 @@ import eyeClose from "@/images/eye-close.png";
 import eyeShow from "@/images/eye-show.png";
 import useFormValidation from "@/hook/useFormValidation";
 import { useState } from "react";
-import { postSignUp } from "@/lib/authApi";
 import Modal from "./Modal";
 import { useRouter } from "next/router";
+import { postLogIn } from "@/lib/authApi";
+import { useAuth } from "@/context/authContext";
+import {
+  AuthContextType,
+  LoginFormValues,
+  LoginResponse,
+  ValidateFunction,
+} from "@/types/Types";
 
 // 유효성 검사 함수
-const validate = (name, value, values) => {
+const validate: ValidateFunction<LoginFormValues> = (
+  name: keyof LoginFormValues,
+  value: string
+) => {
   let error = "";
 
   switch (name) {
@@ -22,20 +32,11 @@ const validate = (name, value, values) => {
         error = "잘못된 이메일 형식입니다.";
       }
       break;
-    case "nickname":
-      if (!value) {
-        error = "닉네임을 입력해주세요.";
-      }
-      break;
     case "password":
       if (value.length < 8) {
         error = "비밀번호를 8자 이상 입력해주세요.";
       }
       break;
-    case "passwordConfirmation":
-      if (values.password !== value) {
-        error = "비밀번호가 일치하지 않습니다.";
-      }
     default:
       break;
   }
@@ -43,61 +44,65 @@ const validate = (name, value, values) => {
   return error;
 };
 
-export default function SignUpForm() {
+export default function LoginForm() {
   const router = useRouter();
+  const { login } = useAuth() as AuthContextType; // 전역 상태의 login 함수 사용
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isConfirmVisible, setIsConfirmVisible] = useState(false);
   const [serverError, setServerError] = useState(""); // 서버 에러 메시지 상태 관리
-  const [authSuccess, setAuthSuccess] = useState(""); // 회원 가입 성공 상태 관리
 
   const togglePasswordVisiblity = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
 
-  const toggleConfirmVisiblity = () => {
-    setIsConfirmVisible(!isConfirmVisible);
+  const initialValues: LoginFormValues = {
+    email: "",
+    password: "",
   };
 
   // useFormValidation 훅 사용
   const {
     values,
-    errors,
     setValues,
     initialState,
+    errors,
     handleChange,
     handleSubmit,
-  } = useFormValidation(
-    { email: "", nickname: "", password: "", passwordConfirmation: "" }, // 초기값
+  } = useFormValidation<LoginFormValues>(
+    initialValues, // 초기값
     validate // 유효성 검사 함수
   );
 
-  // 회원가입 버튼 활성화를 위한 유효성 검사
-  const isValid = ["email", "nickname", "password", "passwordConfirmation"].every(
-    (name) => values[name] && !errors[name]
-  );
+  // 로그인 버튼 활성화를 위한 유효성
+  const isValid =
+    !!values.email && !!values.password && !errors.email && !errors.password;
 
   // 폼 제출 시 실행될 함수
   const onSubmit = async () => {
-    const { email, nickname, password, passwordConfirmation } = values;
+    const { email, password } = values;
 
     try {
-      console.log("회원가입 요청 중...");
-      const res = await postSignUp({
+      console.log("로그인 진행 중...");
+      const res = (await postLogIn({
         email,
-        nickname,
         password,
-        passwordConfirmation,
-      });
+      })) as LoginResponse;
       console.log("서버 응답:", res); // 서버 응답 로그
 
-      // 서버에서 성공 상태 코드 201로 회원가입 등록됐는지 확인
-      if (res.status === 201) {
-        console.log("회원가입 성공");
-        setAuthSuccess("가입이 완료되었습니다.");
+      // 서버에서 성공 상태 코드 200로 로그인이 성공됐는지 확인
+      if (res.status === 200) {
+        setValues(initialState);
+
+        const { accessToken, user } = res.data; // 서버 응답에서 accessToken 추출
+        localStorage.setItem("accessToken", accessToken); // 로컬 스토리지에 저장
+
+        login(user); // 유저 정보를 전역 상태로 업데이트
+        console.log("로그인 성공");
+        console.log(accessToken);
+        router.push("/items");
       }
-    } catch (error) {
+    } catch (error: any) {
       // error 자체를 출력하여 구조를 확인
-      console.log("회원가입 오류:", error);
+      console.log("로그인 오류:", error);
 
       // 서버 응답이 있는 경우
       if (error.response) {
@@ -115,12 +120,6 @@ export default function SignUpForm() {
     setServerError("");
     // values 초기화
     setValues(initialState);
-  };
-
-  const handleSuccessModal = () => {
-    setAuthSuccess("");
-    setValues(initialState);
-    router.push("/items");
   };
 
   return (
@@ -141,23 +140,6 @@ export default function SignUpForm() {
           />
           {errors.email && (
             <small className={styles.error}>{errors.email}</small>
-          )}
-        </div>
-        <div className={styles.inputForm}>
-          <label htmlFor="nickname" className={styles.label}>
-            닉네임
-          </label>
-          <input
-            className={
-              errors.nickname ? styles.otherInputError : styles.otherInput
-            }
-            name="nickname"
-            placeholder="닉네임을 입력해주세요"
-            value={values.nickname}
-            onChange={handleChange}
-          />
-          {errors.nickname && (
-            <small className={styles.error}>{errors.nickname}</small>
           )}
         </div>
         <div className={styles.inputForm}>
@@ -186,47 +168,13 @@ export default function SignUpForm() {
             <small className={styles.error}>{errors.password}</small>
           )}
         </div>
-        <div className={styles.inputForm}>
-          <label htmlFor="passwordConfirmation" className={styles.label}>
-            비밀번호 확인
-          </label>
-          <div className={styles.pwContainer}>
-            <input
-              className={
-                errors.passwordConfirmation ? styles.pwInputError : styles.pwInput
-              }
-              name="passwordConfirmation"
-              type={isConfirmVisible ? "text" : "password"}
-              placeholder="비밀번호를 다시 한 번 입력해주세요"
-              value={values.passwordConfirmation}
-              onChange={handleChange}
-            />
-            {values.passwordConfirmation && (
-              <Image
-                src={isConfirmVisible ? eyeShow : eyeClose}
-                alt="btn-eye"
-                className={styles.eye}
-                onClick={toggleConfirmVisiblity}
-              />
-            )}
-          </div>
-          {errors.passwordConfirmation && (
-            <small className={styles.error}>{errors.passwordConfirmation}</small>
-          )}
-        </div>
         <button className={styles.button} type="submit" disabled={!isValid}>
-          회원가입
+          로그인
         </button>
       </form>
-      {serverError ? (
+      {/* dialog 모달 따로 컴포넌트로 제작 아래를 이용 */}
+      {serverError && (
         <Modal message={serverError} onClick={handleErrorModal} />
-      ) : (
-        ""
-      )}
-      {authSuccess ? (
-        <Modal message={authSuccess} onClick={handleSuccessModal} />
-      ) : (
-        ""
       )}
     </>
   );

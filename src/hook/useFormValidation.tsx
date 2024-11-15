@@ -1,11 +1,11 @@
 import { FormErrors, FormValues, ValidateFunction } from "@/types/Types";
 import { useState } from "react";
 
-export default function useFormValidation(
-  initialState: FormValues,
-  validate: ValidateFunction
+export default function useFormValidation<T extends FormValues>(
+  initialState: T, // FormValues의 서브타입으로 받도록 설정
+  validate: ValidateFunction<T> // 제네릭 ValidateFunction 사용
 ) {
-  const [values, setValues] = useState<FormValues>(initialState); // 입력 필드의 값 관리
+  const [values, setValues] = useState<T>(initialState); // 입력 필드의 값 관리
   const [errors, setErrors] = useState<FormErrors>({}); // 유효성 검사 에러 메시지 관리
 
   // 입력 필드 값 변경 처리 함수

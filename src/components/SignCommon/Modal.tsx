@@ -1,6 +1,7 @@
+import { ModalProps } from "@/types/Types";
 import styles from "./Modal.module.css";
 
-export default function Modal({ message, onClick }) {
+export default function Modal({ message, onClick }: ModalProps) {
   return (
     <div className={styles.modal}>
       <div className={styles.modalContent}>

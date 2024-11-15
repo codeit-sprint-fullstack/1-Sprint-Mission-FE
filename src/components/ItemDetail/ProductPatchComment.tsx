@@ -4,24 +4,33 @@ import defaultUserImg from "@/images/defaultUserImg.png";
 import styles from "./ProductPatchComment.module.css";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchProductByIdComment } from "@/lib/productApi";
+import { ProductPatchCommentProps } from "@/types/Types";
 
-export default function ProductPatchComment({ comment, setEditCommentId }) {
+export default function ProductPatchComment({
+  comment,
+  setEditCommentId,
+}: ProductPatchCommentProps) {
   const [editContent, setEditContent] = useState(comment.content);
   const commentId = comment.id;
 
   const queryClient = useQueryClient(); // 캐시를 관리하기 위한 QueryClient
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     setEditContent(value);
   };
 
   // 댓글 수정 useMutation
   const patchCommentMutation = useMutation({
-    mutationFn: (newComment) => patchProductByIdComment(commentId, newComment),
+    mutationFn: (newComment: string) =>
+      patchProductByIdComment(commentId, newComment),
     onSuccess: () => {
       console.log("댓글이 성공적으로 수정되었습니다.");
-      queryClient.invalidateQueries(["productComments", comment.productId]);
+      queryClient.invalidateQueries({
+        // 이 부분을 확인해야 돼
+        // queryKey: ["productComments", comment.productId],
+        queryKey: ["productComments"],
+      });
       setEditCommentId(null); // 수정 모드 종료
     },
     onError: (error) => {
@@ -29,7 +38,7 @@ export default function ProductPatchComment({ comment, setEditCommentId }) {
     },
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // 공백만 있는 경우 막아준다.
     if (!editContent.trim()) {
@@ -53,15 +62,16 @@ export default function ProductPatchComment({ comment, setEditCommentId }) {
       <div className={styles.footer}>
         <div className={styles.user}>
           <Image
-            // comment.writer.image ||
-            src={defaultUserImg}
+            src={comment.writer.image || defaultUserImg}
             alt="user"
             width={32}
             height={32}
           />
           <div className={styles.userInfo}>
-            <span className={styles.nickname}>nickname</span>
-            <span className={styles.createdAt}>createdAt</span>
+            <span className={styles.nickname}>{comment.writer.nickname}</span>
+            <span className={styles.createdAt}>
+              {new Date(comment.createdAt).toLocaleDateString()}
+            </span>
           </div>
         </div>
         <div className={styles.buttons}>

@@ -7,14 +7,15 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { getUser } from "@/lib/authApi";
 import { useAuth } from "@/context/authContext";
+import { AuthContextType, User } from "@/types/Types";
 
 export default function Header() {
   const router = useRouter();
-  const { user, logout } = useAuth(); // 유저 정보 및 로그아웃 함수 가져오기
+  const { user, logout } = useAuth() as AuthContextType; // 유저 정보 및 로그아웃 함수 가져오기
 
   useEffect(() => {
     // 유저 정보 가져오기
-    const fetchUser = async () => {
+    const fetchUser = async (): Promise<User | undefined> => {
       try {
         const user = await getUser(); // 유저 정보 API 호출
         return user;
@@ -26,7 +27,6 @@ export default function Header() {
     fetchUser();
   }, []);
 
-  console.log(user);
   const nickname = user?.nickname;
   const image = user?.image;
 

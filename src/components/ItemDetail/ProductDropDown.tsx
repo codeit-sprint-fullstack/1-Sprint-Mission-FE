@@ -33,6 +33,7 @@ export default function ProductDropDown() {
     mutationFn: () => deleteProductById(productId),
     onSuccess: () => {
       console.log("상품이 성공적으로 삭제되었습니다.");
+      router.push("/products");
     },
     onError: (error) => {
       console.error("상품 삭제 중 오류 발생:", error);

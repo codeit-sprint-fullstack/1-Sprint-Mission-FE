@@ -74,10 +74,10 @@ export interface FormErrors {
   [key: string]: string;
 }
 
-export type ValidateFunction = (
-  fileName: string,
+export type ValidateFunction<T extends FormValues> = (
+  fileName: keyof T,
   value: string,
-  values: FormValues
+  values: T
 ) => string;
 
 export interface UseFormValidationReturn {
@@ -89,4 +89,52 @@ export interface UseFormValidationReturn {
   handleSubmit: (
     onSubmit: () => void
   ) => (e: React.FormEvent<HTMLFormElement>) => void;
+}
+
+// ItemDetail
+export interface ProductCommentDropDownProps {
+  writerId: number;
+  commentId: number;
+  setEditCommentId: (id: number | null) => void;
+}
+
+export interface ProductDeleteModalProps {
+  isDeleteModalClose: () => void;
+  handleDelete: () => void;
+}
+
+export interface ProductPatchCommentProps {
+  comment: Comment;
+  setEditCommentId: (id: number | null) => void;
+}
+
+// SignCommon
+export interface LoginFormValues extends FormValues {
+  email: string;
+  password: string;
+}
+
+export interface SignUpFormValues extends LoginFormValues {
+  nickname: string;
+  passwordConfirmation: string;
+}
+
+export interface ModalProps {
+  message: string;
+  onClick: () => void;
+}
+
+export interface LoginResponse {
+  status: number;
+  data: {
+    accessToken: string;
+    user: User;
+  };
+}
+
+export interface SignUpResponse {
+  status: number;
+  data: {
+    message: string;
+  };
 }
