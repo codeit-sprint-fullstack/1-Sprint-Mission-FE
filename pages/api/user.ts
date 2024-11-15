@@ -1,4 +1,4 @@
-import instance from "./httpClient.js";
+import instance from "./httpClient";
 
 interface User {
   id: string;
