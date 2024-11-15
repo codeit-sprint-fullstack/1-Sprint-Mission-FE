@@ -13,7 +13,7 @@ import {
   ORDER_BY,
 } from "../constants/sort";
 
-export default async function FleaMarketPage() {
+export default async function ProductsPage() {
   const productListData = await getProducts({
     page: 1,
     pageSize: PRODUCT_PAGE_SIZE[PC],

@@ -1,5 +1,4 @@
-import { instance } from "./axios-token";
-import { getAccessToken } from "./token-codeit";
+import { createAxiosInstance } from "./axios-token";
 
 export async function createPost({
   name,
@@ -10,10 +9,10 @@ export async function createPost({
 }) {
   const path = "/posts";
   const data = { name, content };
-  const headers = { authorization: `Bearer ${getAccessToken()}` };
+  const instance = createAxiosInstance();
 
   try {
-    const res = await instance.post(path, data, { headers });
+    const res = await instance.post(path, data);
     return res.data;
   } catch (err) {
     console.error(err);
@@ -38,10 +37,10 @@ export async function getPostList({
     ...(orderBy && { orderBy }),
     ...(keyword && { keyword }),
   };
-  const headers = { authorization: `Bearer ${getAccessToken()}` };
+  const instance = createAxiosInstance();
 
   try {
-    const res = await instance.get(path, { params, headers });
+    const res = await instance.get(path, { params });
     return res.data;
   } catch (err) {
     console.error(err);
@@ -50,10 +49,10 @@ export async function getPostList({
 
 export async function getPost(postId: string) {
   const path = `/posts/${postId}`;
-  const headers = { authorization: `Bearer ${getAccessToken()}` };
+  const instance = createAxiosInstance();
 
   try {
-    const res = await instance.get(path, { headers });
+    const res = await instance.get(path);
     return res.data;
   } catch (err) {
     console.error(err);
@@ -71,10 +70,10 @@ export async function setPost({
 }) {
   const path = `/posts/${postId}`;
   const data = { name, content };
-  const headers = { authorization: `Bearer ${getAccessToken()}` };
+  const instance = createAxiosInstance();
 
   try {
-    const res = await instance.patch(path, data, { headers });
+    const res = await instance.patch(path, data);
     return res.data;
   } catch (err) {
     console.error(err);
@@ -83,10 +82,10 @@ export async function setPost({
 
 export async function deletePost(postId: string) {
   const path = `/posts/${postId}`;
-  const headers = { authorization: `Bearer ${getAccessToken()}` };
+  const instance = createAxiosInstance();
 
   try {
-    const res = await instance.delete(path, { headers });
+    const res = await instance.delete(path);
     return res.status;
   } catch (err) {
     console.error(err);

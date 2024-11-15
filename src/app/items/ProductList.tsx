@@ -43,12 +43,12 @@ export default function ProductList({
   productList,
   productTotalCount,
 }: ProductListProps) {
-  const [keyword, setKeyword] = useState<string | null>(null);
+  const [keyword, setKeyword] = useState<string | undefined>(undefined);
   const [params, setParams] = useState<SearchParamState>({
     page: 1,
     pageSize: PAGE_SIZE[PC],
     orderBy: ORDER_BY[ORDER_BY_RECENT],
-    keyword: null,
+    keyword: undefined,
   });
   const [currentOrder, setCurrentOrder] = useState<number>(ORDER_BY_RECENT);
   const [currentPage, setCurrentPage] = useState<number>(1);

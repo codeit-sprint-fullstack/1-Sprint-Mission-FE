@@ -1,9 +1,10 @@
-import { instance } from "./axios-token";
+import { createAxiosInstance } from "./axios-token";
 import { getAccessToken } from "./token-codeit";
 
 export async function getMyInfo(userId: string) {
   const path = `/user/${userId}`;
   const headers = { authorization: `Bearer ${getAccessToken()}` };
+  const instance = createAxiosInstance();
 
   try {
     const res = await instance.get(path, { headers });
@@ -31,6 +32,7 @@ export async function setMyInfo({
     password,
   };
   const headers = { authorization: `Bearer ${getAccessToken()}` };
+  const instance = createAxiosInstance();
 
   try {
     const res = await instance.patch(path, data, { headers });

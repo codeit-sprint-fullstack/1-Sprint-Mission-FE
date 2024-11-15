@@ -44,9 +44,10 @@ export default function SignInSet() {
   };
 
   const handleSignInBtnClick = async () => {
+    console.log("handleSignInBtnClick");
     try {
       const user = await signIn({ email, password });
-
+      console.log(user);
       if (user) {
         login(user);
         router.push("/");

@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 
-import { instance } from "./axios-token";
+import { createAxiosInstance } from "./axios-token";
 
 import {
   getRefreshToken,
@@ -8,19 +8,8 @@ import {
   setRefreshToken,
 } from "./token-codeit";
 
-/** codeit POST /auth/signUp 
-  return user : {
-    "accessToken": "accessToken",
-    "refreshToken": "refreshToken",
-    "user": {
-      "id": 123,
-      "email": "example@email.com",
-      "image": null,
-      "nickname": "example",
-      "createdAt": "2024-07-29T05:54:31.141Z"
-    }
-  }
-*/
+/** codeit POST /auth/signUp
+ */
 export async function signUp({
   email,
   nickname,
@@ -41,6 +30,7 @@ export async function signUp({
     passwordConfirmation,
     name: "임시이름",
   };
+  const instance = createAxiosInstance();
 
   try {
     const res = await instance.post(path, body);
@@ -53,19 +43,7 @@ export async function signUp({
   }
 }
 
-/** codeit POST /auth/signIn 
-  return user : {
-    "accessToken": "accessToken",
-    "refreshToken": "refresh",
-    "user": {
-      "id": 123,
-      "email": "example@email.com",
-      "image": null,
-      "nickname": "example",
-      "updatedAt": "2024-07-29T05:54:31.143Z",
-      "createdAt": "2024-07-29T05:54:31.143Z"
-    }
-  }
+/** codeit POST /auth/signIn
  */
 export async function signIn({
   email,
@@ -76,27 +54,28 @@ export async function signIn({
 }) {
   const path = "/auth/sign-in";
   const body = { email, password };
+  const instance = createAxiosInstance();
 
   try {
     const res = await instance.post(path, body);
 
     setAccessToken(res.data?.accessToken);
+    console.log("export async function signIn :", res.data?.accessToken);
     setRefreshToken(res.data?.refreshToken);
 
     return res.data;
   } catch (err) {
+    console.error(err);
     throw err;
   }
 }
 
 /** codeit POST /auth/refresh-token
-  return accessToken : {
-    "accessToken": "string"
-  }
  */
 export async function refreshToken(): Promise<void> {
   const path = "/auth/refresh-token";
   const body = { refreshToken: getRefreshToken() };
+  const instance = createAxiosInstance();
 
   try {
     const res = await instance.post(path, body, {

@@ -1,52 +1,71 @@
 import axios, { AxiosInstance } from "axios";
 
-import { getAccessToken } from "./token-codeit";
-import { refreshToken } from "./api-auth";
+import {
+  setAccessToken,
+  getAccessToken,
+  getRefreshToken,
+} from "./token-codeit";
 
-const axiosConfig = {
-  baseURL: process.env.NEXT_PUBLIC_SPRINT_BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-  withCredentials: false,
-};
+const baseURL = process.env.NEXT_PUBLIC_SPRINT_BASE_URL || "";
 
-export const instance: AxiosInstance = axios.create(axiosConfig);
+// Axios 인스턴스 생성
+export const createAxiosInstance = (req?: any): AxiosInstance => {
+  const instance = axios.create({
+    baseURL,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
-instance.interceptors.request.use(
-  (config) => {
-    const token: string | null = getAccessToken();
-
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-
-    return config;
-  },
-  (err) => {
-    return Promise.reject(err);
-  }
-);
-
-instance.interceptors.response.use(
-  (res) => {
-    return res;
-  },
-  async (err) => {
-    const originalRequest = err.config;
-
-    if (err.response?.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-
-      try {
-        await refreshToken();
-
-        return instance(originalRequest);
-      } catch (err) {
-        return Promise.reject(err);
+  // 요청 인터셉터
+  instance.interceptors.request.use(
+    (config) => {
+      const token = getAccessToken(req); // SSR에서는 req로 읽음
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
       }
-    }
+      return config;
+    },
+    (error) => Promise.reject(error)
+  );
 
-    return Promise.reject(err);
-  }
-);
+  // 응답 인터셉터
+  instance.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+      const originalRequest = error.config;
+
+      if (error.response?.status === 401 && !originalRequest._retry) {
+        originalRequest._retry = true;
+
+        const refreshToken = getRefreshToken(req);
+        if (!refreshToken) {
+          throw new Error("No refresh token available");
+        }
+
+        try {
+          const refreshResponse = await axios.post(
+            `${baseURL}/auth/refresh`,
+            {},
+            {
+              headers: { Authorization: `Bearer ${refreshToken}` },
+            }
+          );
+
+          const newAccessToken = refreshResponse.data.accessToken;
+          setAccessToken(newAccessToken);
+
+          originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+          return instance(originalRequest);
+        } catch (refreshError) {
+          console.error("Refresh token failed:", refreshError);
+          throw refreshError;
+        }
+      }
+
+      return Promise.reject(error);
+    }
+  );
+
+  return instance;
+};
