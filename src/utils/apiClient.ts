@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "https://thrift-shop.onrender.com";
+const baseUrl = "http://3.35.133.210:3001";
 const apiClient = axios.create({
   baseURL: baseUrl,
   headers: {
