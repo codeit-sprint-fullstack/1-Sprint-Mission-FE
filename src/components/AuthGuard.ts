@@ -1,10 +1,15 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
-const AuthGuard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+interface AuthGuardProps {
+  children: React.ReactNode;
+}
+
+const AuthGuard = ({ children }: AuthGuardProps) => {
   const router = useRouter();
   const token =
     typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+
   useEffect(() => {
     if (
       token &&
@@ -20,7 +25,7 @@ const AuthGuard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     }
   }, [token, router]);
 
-  return children;
+  return { children };
 };
 
 export default AuthGuard;
