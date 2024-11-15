@@ -12,7 +12,6 @@ import ic_kebab from "@/public/images/ic_kebab.png";
 import ic_profile from "@/public/images/ic_profile.png";
 import ic_heart from "@/public/images/ic_heart.png";
 import ic_heart_liked from "@/public/images/ic_heart_liked.png";
-import img_reply_empty from "../..Img_reply_empty.png";
 import ic_back from "@/public/images/ic_back.png";
 import styles from "@/styles/detailArticle.module.css";
 import Comment from "@/components/Comment";
@@ -370,13 +369,13 @@ function DetailArticle({ article, comments, id }: Props) {
             {/* 게시글의 등록된 댓글이 없다면 아래의 내용을 렌더링한다. */}
             {commentsData.pages[0].list.length <= 0 && (
               <>
-                <Image
+                {/* <Image
                   src={img_reply_empty}
                   width={140}
                   height={140}
                   alt="댓글이없습니다"
                   priority
-                />
+                /> */}
                 <p>
                   아직 댓글이 없어요, <br />
                   지금 댓글을 달아보세요!
