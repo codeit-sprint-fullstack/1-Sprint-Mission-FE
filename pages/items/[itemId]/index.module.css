@@ -1,0 +1,285 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.editButton,
+.deleteButton {
+  width: 75px;
+  padding: 8px 8px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.editButton {
+  background-color: #4caf50;
+  color: white;
+}
+
+.deleteButton {
+  background-color: #f44336;
+  color: white;
+}
+
+.content {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.imageContainer {
+  flex: 1;
+  position: relative;
+  height: 486px;
+  max-width: 486px;
+}
+
+.productInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.productHeadHug {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.productTitleKebabHug {
+  display: flex;
+  justify-content: space-between;
+}
+
+.productName {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  color: var(--gray-800);
+}
+
+.productPrice {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 47px;
+  color: var(--gray-800);
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+}
+
+.productTextHug {
+  display: flex;
+  flex-direction: column;
+  gap: 62px;
+  width: 56%;
+}
+
+.descriptionHug {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.productDescription {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--gray-600);
+}
+
+.productTags {
+  background-color: var(--gray-100);
+  padding: 6px 16px;
+  border-radius: 26px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.sectionHeadText {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  color: var(--gray-600);
+}
+
+.tagList {
+  display: flex;
+  gap: 8px;
+}
+
+.tagHug {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.metadata {
+  display: flex;
+  justify-content: space-between;
+  color: #666;
+  align-items: center;
+}
+
+.editInput {
+  width: 100%;
+  padding: 16px 24px 16px 24px;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  resize: none;
+  background-color: var(--gray-100);
+  color: var(--gray-400);
+}
+
+.seller {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--gray-600);
+}
+
+.date {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--gray-400);
+}
+
+.productInfoMetaHug {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 56%;
+}
+
+.favoriteButtonWrapper {
+  height: 40px;
+  padding-left: 24px;
+  border-left: 1px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+}
+
+.favoriteButton {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nameDateHug {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profileMetaHug {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.returnButton {
+  display: flex;
+  border-radius: 40px;
+  background-color: var(--blue-100);
+  color: var(--gray-100);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+  width: 240px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  margin-top: 64px;
+  margin-bottom: 64px;
+}
+
+.returnButtonHug {
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 1199px) {
+  .imageContainer {
+    height: 340px;
+    max-width: 340px;
+  }
+
+  .productInfoMetaHug {
+    gap: 40px;
+  }
+
+  .productInfo {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 743px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .productInfoMetaHug {
+    width: 95%;
+  }
+
+  .imageContainer {
+    flex: 1;
+    position: relative;
+    height: 486px;
+    max-width: 486px;
+  }
+}

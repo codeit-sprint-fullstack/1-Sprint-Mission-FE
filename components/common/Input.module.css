@@ -1,0 +1,126 @@
+.input {
+  padding: 0.5rem 0.75rem;
+  background-repeat: no-repeat;
+  background-color: var(--gray-100);
+  background-image: url("../../public/images/ic_search.svg");
+  background-position: 16px center;
+  text-indent: 34px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+.input:disabled {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+.select {
+  appearance: none;
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+.selectWrapper {
+  position: relative;
+  width: 130px;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  background-color: var(--white);
+}
+
+.selectHeader {
+  display: flex;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+  color: #1f2937;
+}
+
+.selectHeader img {
+  transition: transform 0.3s ease;
+}
+
+.selectHeader.open img {
+  transform: rotate(180deg);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.optionList {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  background-color: var(--white);
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 2;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.optionList.closing {
+  animation: fadeOut 0.3s ease-in;
+}
+
+.optionItem {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--gray-200);
+  transition: background-color 0.2s ease;
+}
+
+.optionItem:last-child {
+  border-bottom: none;
+  border-radius: 0 0 12px 12px;
+}
+
+.optionItem:hover {
+  background-color: #f0f0f0;
+}
+
+.optionItem.selected {
+  background-color: var(--gray-200);
+  font-weight: bold;
+}
+
+.hiddenSelect {
+  display: none;
+}

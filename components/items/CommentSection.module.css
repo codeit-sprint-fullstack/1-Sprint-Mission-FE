@@ -1,0 +1,185 @@
+.commentSection {
+  margin-top: 40px;
+}
+
+.commentSection h2 {
+  font-weight: 600;
+  color: var(--gray-900);
+  font-size: 16px;
+  line-height: 26px;
+  margin-bottom: 9px;
+}
+
+.commentContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.commentText {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--gray-800);
+}
+
+.commentForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.commentProfile {
+  width: 32px;
+  height: 32px;
+}
+
+.commentAuthor {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--gray-600);
+}
+
+.commentDate {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--gray-400);
+}
+
+.commentInput {
+  width: 100%;
+  height: 100px;
+  padding: 16px 24px 16px 24px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  resize: none;
+  background-color: var(--gray-100);
+  color: var(--gray-400);
+}
+
+.commentList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.commentItem {
+  background-color: #fcfcfc;
+  border-bottom: 1px solid var(--gray-200);
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.commentProfileTextHug {
+  display: flex;
+  gap: 8px;
+}
+
+.commentMeta {
+  display: flex;
+  flex-direction: column;
+}
+
+.editButtons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.button {
+  padding: 12px 23px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: var(--gray-400);
+  color: var(--gray-100);
+  align-self: flex-end;
+  transition: background-color 0.3s;
+}
+
+.error {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--error-red);
+  margin-bottom: 16px;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.addButton {
+  background-color: #4caf50;
+  color: white;
+}
+
+.editButton {
+  background-color: #2196f3;
+  color: white;
+}
+
+.deleteButton {
+  background-color: #f44336;
+  color: white;
+}
+
+.cancelButton {
+  background-color: #9e9e9e;
+  color: white;
+}
+
+.loading,
+.error {
+  text-align: center;
+  font-size: 16px;
+  margin-top: 15px;
+  color: #666;
+}
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 32px;
+}
+
+.spinner {
+  border: 4px solid rgba(114, 114, 114, 0.1);
+  border-left-color: var(--blue-100);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+.noComments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.noCommentsText {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--gray-400);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

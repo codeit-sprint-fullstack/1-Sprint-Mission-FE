@@ -1,0 +1,97 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  max-width: 540px;
+}
+
+.modalContentHug {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 32px;
+  max-width: 250px;
+}
+
+.modalImage {
+  width: 24px;
+  height: 24px;
+}
+
+.modalBody {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  color: var(--gray-800);
+}
+
+.modalActions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.confirmButton,
+.cancelButton {
+  padding: 12px 23px;
+  border: 1px solid var(--error-red);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirmButton {
+  background-color: var(--error-red);
+  color: white;
+}
+
+.cancelButton {
+  background-color: var(--white);
+  color: var(--error-red);
+}
+
+.auth {
+  background-color: var(--white);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 540px;
+  height: 250px;
+}
+
+.auth p {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+  color: var(--gray-800);
+}
+
+.auth button {
+  background-color: var(--blue-100);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 23px;
+  width: 165px;
+  height: 48px;
+}

@@ -1,0 +1,65 @@
+.kebabMenuWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.kebabIcon {
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.optionList {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  min-width: 120px;
+  z-index: 10;
+  animation: fadeIn 0.2s ease-out;
+  overflow: hidden;
+}
+
+.optionList.closing {
+  animation: fadeOut 0.2s ease-in;
+}
+
+.optionItem {
+  padding: 16px 0px 12px 0px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-align: center;
+  color: var(--gray-500);
+  font-size: 16px;
+  font-weight: 400;
+  height: 46px;
+}
+
+.optionItem:hover {
+  background-color: #f0f0f0;
+}
