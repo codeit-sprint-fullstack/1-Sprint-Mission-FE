@@ -79,7 +79,7 @@ export function Footer() {
             className={linkIconFrameClass}
           >
             <Image
-              src="icons/ic_facebook.svg"
+              src="/icons/ic_facebook.svg"
               alt="페이스북 링크"
               fill
               style={{ objectFit: "cover" }}
@@ -92,7 +92,7 @@ export function Footer() {
             className={linkIconFrameClass}
           >
             <Image
-              src="icons/ic_twitter.svg"
+              src="/icons/ic_twitter.svg"
               alt="엑스 링크"
               fill
               style={{ objectFit: "cover" }}
@@ -105,7 +105,7 @@ export function Footer() {
             className={linkIconFrameClass}
           >
             <Image
-              src="icons/ic_youtube.svg"
+              src="/icons/ic_youtube.svg"
               alt="유튜브 링크"
               fill
               style={{ objectFit: "cover" }}
@@ -118,7 +118,7 @@ export function Footer() {
             className={linkIconFrameClass}
           >
             <Image
-              src="icons/ic_instagram.svg"
+              src="/icons/ic_instagram.svg"
               alt="인스타그램 링크"
               fill
               style={{ objectFit: "cover" }}

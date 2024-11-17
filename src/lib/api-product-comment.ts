@@ -1,4 +1,9 @@
+import axios from "axios";
+
+import { getAccessToken } from "./token-codeit";
 import { instance } from "./axios-token";
+
+const baseURL = process.env.NEXT_PUBLIC_SPRINT_BASE_URL || "";
 
 export async function createProductComment({
   productId,
@@ -7,11 +12,21 @@ export async function createProductComment({
   productId: string;
   content: string;
 }) {
-  const path = `/product-comments`;
+  const instance = axios.create({
+    baseURL,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const token = await getAccessToken();
+
   const data = { productId, content };
 
   try {
-    const res = await instance.post(path, data);
+    const res = await instance.post("/product-comments", data, {
+      headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+    });
     return res.data;
   } catch (err) {
     console.error(err);
@@ -29,7 +44,15 @@ export async function getProductCommentList({
   pageSize?: number;
   orderBy?: string;
 }) {
-  const path = `/product/${productId}/comments`;
+  const instance = axios.create({
+    baseURL,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const token = await getAccessToken();
+
   const params = {
     ...(page && { page }),
     ...(pageSize && { pageSize }),
@@ -37,9 +60,16 @@ export async function getProductCommentList({
   };
 
   try {
-    const res = await instance.get(path, { params });
-    return res.data;
+    const res = await instance.get(`/product-comments/${productId}`, {
+      params,
+      headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+    });
+    return res.data || { totalCount: 0, comments: [] };
   } catch (err) {
+    if (axios.isAxiosError(err) && err.response?.status === 404) {
+      return { totalCount: 0, comments: [] };
+    }
+
     alert(err);
   }
 }

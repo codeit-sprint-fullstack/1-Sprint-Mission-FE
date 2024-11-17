@@ -26,14 +26,8 @@ export default function PostCommentSection({ postId }: { postId: string }) {
     },
   });
 
-  const commentMakerFrameClass = classNames(
-    "mt-comment-maker-frame",
-    "ta:mt-ta-comment-maker-frame"
-  );
-  const commentListFrameClass = classNames(
-    "mt-comment-list-frame",
-    "mo:mt-mo-comment-list-frame"
-  );
+  const commentMakerFrameClass = classNames("mt-[3.2rem]", "ta:mt-[4rem]");
+  const commentListFrameClass = classNames("mt-[4rem]", "mo:mt-[2.4rem]");
 
   const handleRegistComment = (newComment: string) => {
     mutation.mutate({ postId, content: newComment });
@@ -45,7 +39,7 @@ export default function PostCommentSection({ postId }: { postId: string }) {
         <PostCommentMaker registComment={handleRegistComment} />
       </div>
       <div className={commentListFrameClass}>
-        <CommentList data={{ list: commentList }} />
+        <CommentList list={commentList} />
       </div>
     </>
   );

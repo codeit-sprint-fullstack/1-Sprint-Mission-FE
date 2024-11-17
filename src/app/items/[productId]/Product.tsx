@@ -142,7 +142,7 @@ export default function Product({ product }: { product: ProductData }) {
     "w-full",
     "flex",
     "flex-row",
-    "gap-2.4rem",
+    "gap-[2.4rem]",
     "mo:flex-col"
   );
 

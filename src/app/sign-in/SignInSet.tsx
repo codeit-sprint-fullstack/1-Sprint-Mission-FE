@@ -12,8 +12,6 @@ import InputEmail from "../components/InputEmail";
 import InputPassword from "../components/InputPassword";
 import useAuth from "../hooks/useAuth";
 
-import { ErrorResponse } from "src/types/axios";
-
 export default function SignInSet() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalMessage, setModalMessage] = useState<string>("");
@@ -44,10 +42,9 @@ export default function SignInSet() {
   };
 
   const handleSignInBtnClick = async () => {
-    console.log("handleSignInBtnClick");
     try {
       const user = await signIn({ email, password });
-      console.log(user);
+
       if (user) {
         login(user);
         router.push("/");

@@ -29,7 +29,7 @@ export async function getPostCommentList({
   pageSize?: number;
   orderBy?: string;
 }) {
-  const path = `/post/${postId}/comments`;
+  const path = `/post-comments/${postId}`;
   const params = {
     ...(page && { page }),
     ...(pageSize && { pageSize }),
@@ -38,7 +38,7 @@ export async function getPostCommentList({
 
   try {
     const res = await instance.get(path, { params });
-    return res.data;
+    return res.data || { totalCount: 0, comments: [] };
   } catch (err) {
     alert(err);
   }

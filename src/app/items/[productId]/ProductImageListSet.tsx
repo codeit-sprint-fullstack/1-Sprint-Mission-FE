@@ -56,12 +56,21 @@ export default function ProductImageListSet({ images }: { images: string[] }) {
   return (
     <div className={productImageListSetClass}>
       <div className={productImageClass}>
-        <Image
-          src={validImgs[0]}
-          fill
-          style={{ objectFit: "cover" }}
-          alt="상품 이미지"
-        />
+        {validImgs.length > 0 && validImgs[0] ? (
+          <Image
+            src={validImgs[0]}
+            fill
+            style={{ objectFit: "cover" }}
+            alt="상품 이미지"
+          />
+        ) : (
+          <Image
+            src="/images/no_image.svg"
+            fill
+            style={{ objectFit: "cover" }}
+            alt="기본 이미지"
+          />
+        )}
       </div>
       <div className={productImageListClass}>
         이미지 리스트 선택창(개발 예정)

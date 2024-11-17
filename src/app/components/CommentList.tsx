@@ -1,18 +1,31 @@
 import Comment from "./Comment";
 import EmptyCommentList from "./EmptyCommentList";
 
-import { CommentListProps } from "src/types/comment";
+import { CommentData } from "src/types/comment";
+
+export interface CommentListProps {
+  list: CommentData[];
+
+  updateComment?: ({
+    commentId,
+    content,
+  }: {
+    commentId: string;
+    content: string;
+  }) => void;
+  deleteComment?: (commentId: string) => void;
+}
 
 export default function CommentList({
-  data,
+  list,
   updateComment = () => {},
   deleteComment = () => {},
 }: CommentListProps) {
-  if (data.list?.length === 0) {
+  if (list?.length === 0) {
     return <EmptyCommentList />;
   }
 
-  const commentList = data.list.map((comment, index) => {
+  const commentList = list.map((comment, index) => {
     return (
       <Comment
         key={`${comment.id}-${index}`}

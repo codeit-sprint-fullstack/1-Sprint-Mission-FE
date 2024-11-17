@@ -21,7 +21,7 @@ function BtnLogin() {
   return (
     <Link href="/sign-in" target="_self" className={btnSignInFrameClass}>
       <Image
-        src="buttons/btn_to_sign_in_page_88_43.svg"
+        src="/buttons/btn_to_sign_in_page_88_43.svg"
         alt="로그인 버튼"
         fill
         style={{ objectFit: "cover" }}

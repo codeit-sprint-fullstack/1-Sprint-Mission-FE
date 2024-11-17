@@ -1,27 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import Modal from "react-modal";
 import classNames from "classnames";
 
-import TextArea from "src/app/components/TextArea";
-import {
-  MIN_COMMENT_LENGTH,
-  WARN_MIN_COMMENT_LENGTH,
-  MAX_COMMENT_LENGTH,
-  WARN_MAX_COMMENT_LENGTH,
-  VALID_VALUE,
-} from "src/app/constants/comment";
+import { createProductComment } from "src/lib/api-product-comment";
+import TextAreaComment from "src/app/components/TextareaComment";
+
+interface ProductCommentMakerProps {
+  productId: string;
+}
 
 export default function ProductCommentMaker({
-  registComment,
-}: {
-  registComment: Function;
-}) {
-  const [comment, setComment] = useState<string>("");
-  const [commentValid, setCommentValid] = useState<number | undefined>(
-    undefined
-  );
-  const [registBtnDisable, setRegistBtnDisable] = useState<boolean>(true);
+  productId,
+}: ProductCommentMakerProps) {
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalMessage, setModalMessage] = useState<string>("");
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isValid },
+  } = useForm({ mode: "onChange" });
 
   const commentMakerClass = classNames(
     "w-pc-content",
@@ -30,8 +32,8 @@ export default function ProductCommentMaker({
   );
   const commentTextAreaFrameClass = classNames(
     "w-full",
-    "h-comment-text-area-frame",
-    "mt-comment-text-area-frame"
+    "h-[10.4rem]",
+    "mt-[0.9rem]"
   );
   const commentMakerLabelClass = classNames(
     "font-semibold",
@@ -43,87 +45,80 @@ export default function ProductCommentMaker({
     "flex-row",
     "justify-end",
     "w-full",
-    "h-4.2rem",
-    "mt-1.6rem"
+    "h-[4.2rem]",
+    "mt-[1.6rem]"
   );
 
-  const handleRegistComment = () => {
-    if (commentValid !== VALID_VALUE) {
-      return;
-    }
+  const comment = watch("comment");
 
-    setRegistBtnDisable(true);
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
+  const handleRegistBtnClick = async () => {
     try {
-      registComment(comment);
-      setComment("");
-      setCommentValid(undefined);
-    } catch (err) {}
-  };
+      const newComment = await createProductComment({
+        productId,
+        content: comment,
+      });
 
-  const validtateComment = (comment: string) => {
-    if (!comment) {
-      return undefined;
-    }
+      if (newComment) {
+        // comment section에 전달? or comment section data 갱신
+      } else {
+        console.error("응답(정보)이 없습니다");
+      }
+    } catch (err) {
+      let errorMessage = "에러가 발생하였습니다";
 
-    const castedComment = comment.toString();
+      if (axios.isAxiosError(err) && err.response?.data) {
+        errorMessage =
+          err.response.data.message || "에러가 발생하였습니다(AxiosError)";
+      } else if (err instanceof Error) {
+        errorMessage = err.message;
+      }
 
-    if (castedComment.length < MIN_COMMENT_LENGTH) {
-      setRegistBtnDisable(true);
-      return WARN_MIN_COMMENT_LENGTH;
-    } else if (MAX_COMMENT_LENGTH < castedComment.length) {
-      setRegistBtnDisable(true);
-      return WARN_MAX_COMMENT_LENGTH;
-    } else {
-      setRegistBtnDisable(false);
-      return VALID_VALUE;
-    }
-  };
-
-  const handleChangeComment = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setComment(e.target.value);
-  };
-
-  const getCommentValid = (valid: number) => {
-    setCommentValid(valid);
-  };
-
-  const getCommentWarn = () => {
-    if (commentValid === WARN_MIN_COMMENT_LENGTH) {
-      return (
-        <p className="text-warn">{MIN_COMMENT_LENGTH}자 이상 입력해주세요</p>
-      );
-    } else if (commentValid === WARN_MAX_COMMENT_LENGTH) {
-      return (
-        <p className="text-warn">{MAX_COMMENT_LENGTH}자 이하로 입력해주세요</p>
-      );
-    } else {
-      return undefined;
+      setModalMessage(errorMessage);
+      setShowModal(true);
     }
   };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      Modal.setAppElement(document.body);
+    }
+  }, []);
 
   return (
     <div className={commentMakerClass}>
       <div className={commentMakerLabelClass}>문의하기</div>
-      <div className={commentTextAreaFrameClass}>
-        {/* <TextArea
-          onChange={handleChangeComment}
-          placeholder={
-            "개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
-          }
-          validateFunc={validtateComment}
-          getValid={getCommentValid}
-          value={comment}
-        /> */}
-      </div>
-      {getCommentWarn()}
-      <div className={commentBottomBarClass}>
-        <button
-          className={"btn-comment-regist"}
-          onClick={handleRegistComment}
-          disabled={registBtnDisable}
-        />
-      </div>
+      <form onSubmit={handleSubmit(handleRegistBtnClick)}>
+        <div className={commentTextAreaFrameClass}>
+          <TextAreaComment
+            register={register}
+            errors={errors}
+            placeholder={
+              "개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
+            }
+            isProduct={true}
+          />
+        </div>
+        <div className={commentBottomBarClass}>
+          <button
+            className="btn-comment-regist"
+            onClick={handleRegistBtnClick}
+            disabled={!isValid}
+          />
+        </div>
+        <Modal
+          className="simple-modal"
+          isOpen={showModal}
+          onRequestClose={handleCloseModal}
+          contentLabel="product-comment-modal"
+        >
+          <p className="text-simple-modal">{modalMessage}</p>
+          <button className="btn-simple-modal" onClick={handleCloseModal} />
+        </Modal>
+      </form>
     </div>
   );
 }

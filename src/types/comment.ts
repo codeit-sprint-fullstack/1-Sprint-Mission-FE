@@ -6,17 +6,3 @@ export interface CommentData {
   ownerImage: string;
   createdAt: string;
 }
-
-export interface CommentListProps {
-  data: {
-    list: CommentData[];
-  };
-  updateComment?: ({
-    commentId,
-    content,
-  }: {
-    commentId: string;
-    content: string;
-  }) => void;
-  deleteComment?: (commentId: string) => void;
-}

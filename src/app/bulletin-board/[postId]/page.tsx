@@ -15,7 +15,7 @@ export default async function PostPage({ params }: PostPageParams) {
   const { postId } = params;
   const mainClass = classNames("content", "main");
 
-  // const btnFrameClass = classNames("content", "btn-to-list-frame");
+  // const btnFrameClass = classNames("content", "flex", "h-[4.8rem]", "mt-[6.4rem]", "mb-[32.5rem]");
   // const linkClass = classNames("my-0", "mx-auto");
 
   // const postData = await getPost(postId);

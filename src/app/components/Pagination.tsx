@@ -1,3 +1,4 @@
+import Image from "next/image";
 import classNames from "classnames";
 
 const SHOW_MAX_PAGINATION = 5;
@@ -16,7 +17,7 @@ export function Pagination({
   const paginationFrameClass = classNames(
     "flex",
     "flex-row",
-    "mt-pagination-mt",
+    "mt-[4.3rem]",
     "h-4rem",
     "items-center",
     "justify-center",
@@ -89,10 +90,16 @@ export function Pagination({
     return pageClass;
   }
 
+  // 임시로 Image에 width/height px 단위로 박아 넣음. 수정 예정
   return (
     <div className={paginationFrameClass}>
       <button className={btnMovePageClass} onClick={leftPageButtonClick}>
-        <img src={"/icons/arrow_left_gray600.svg"} alt="previous page" />
+        <Image
+          src={"/icons/arrow_left_gray600.svg"}
+          alt="previous page"
+          width={16}
+          height={16}
+        />
       </button>
       {showPageArray.map((item) => {
         return (
@@ -106,7 +113,12 @@ export function Pagination({
         );
       })}
       <button className={btnMovePageClass} onClick={rightPageButtonClick}>
-        <img src={"/icons/arrow_right_gray600.svg"} alt="next page" />
+        <Image
+          src={"/icons/arrow_right_gray600.svg"}
+          alt="next page"
+          width={16}
+          height={16}
+        />
       </button>
     </div>
   );

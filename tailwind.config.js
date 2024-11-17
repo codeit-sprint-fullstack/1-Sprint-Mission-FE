@@ -83,8 +83,6 @@ module.exports = {
         "pc-best-post": "16.9rem",
         "ta-best-post": "19.8rem",
         "mo-best-post": "19.8rem",
-        // comment-text-area-frame
-        "comment-text-area-frame": "10.4rem",
         // best-product-preview
         "pc-best-product-preview": "37.8rem",
         "ta-best-product-preview": "43.4rem",
@@ -124,25 +122,7 @@ module.exports = {
       borderRadius: {
         "3.5em": "3.5em",
       },
-      margin: {
-        // sign-in
-        "sign-in-mt": "23.1rem",
-        "sign-in-mb": "23.1rem",
-        "ta-sign-in-mt": "19rem",
-        "ta-sign-in-mb": "32.5rem",
-        "mo-sign-in-mt": "8rem",
-        "mo-sign-in-mb": "23.1rem",
-        // comment-maker-frame
-        "comment-maker-frame": "3.2rem",
-        "ta-comment-maker-frame": "4rem",
-        // comment-list-frame
-        "comment-list-frame": "4rem",
-        "mo-comment-list-frame": "2.4rem",
-        // comment-text-area-frame
-        "comment-text-area-frame": "0.9rem",
-        // pagination
-        "pagination-mt": "4.3rem",
-      },
+      margin: {},
       spacing: {
         loading: "35rem",
         "20rem": "20rem",
@@ -425,12 +405,6 @@ module.exports = {
           lineHeight: "2.6rem",
           textWrap: "nowrap",
           color: theme("colors.gray.800"),
-        },
-        ".btn-to-list-frame": {
-          display: "flex",
-          height: "4.8rem",
-          marginTop: "6.4rem",
-          marginBottom: "32.5rem",
         },
         ".btn-to-list": {
           width: "24rem",

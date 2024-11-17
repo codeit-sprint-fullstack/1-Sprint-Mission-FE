@@ -35,7 +35,7 @@ export default function Profile({
 
   // 임시로 고정 프로필 이미지 설정
   if (!profileImgUrl) {
-    profileImgUrl = "./icons/ic_profile40.svg";
+    profileImgUrl = "/icons/ic_profile40.svg";
   }
 
   return (

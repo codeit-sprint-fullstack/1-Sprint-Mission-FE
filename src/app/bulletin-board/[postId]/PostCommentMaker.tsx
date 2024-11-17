@@ -30,8 +30,8 @@ export default function PostCommentMaker({
   );
   const commentTextAreaFrameClass = classNames(
     "w-full",
-    "h-comment-text-area-frame",
-    "mt-comment-text-area-frame"
+    "h-[10.4rem]",
+    "mt-[0.9rem]"
   );
   const commentMakerLabelClass = classNames(
     "font-semibold",

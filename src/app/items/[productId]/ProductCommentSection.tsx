@@ -1,8 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import classNames from "classnames";
 
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  UseQueryOptions,
+} from "@tanstack/react-query";
 import {
   createProductComment,
   getProductCommentList,
@@ -14,32 +20,39 @@ import ProductCommentMaker from "./ProductCommentMaker";
 import CommentList from "src/app/components/CommentList";
 import Loading from "src/app/components/Loading";
 
+import { CommentData } from "src/types/comment";
+import { orderBy } from "lodash";
+
+interface ProductCommentSectionProps {
+  productId: string;
+  commentList: CommentData[];
+}
+
 export default function ProductCommentSection({
   productId,
-}: {
-  productId: string;
-}) {
+  commentList,
+}: ProductCommentSectionProps) {
+  // 임시 설정값
+  const [params, setParams] = useState({
+    page: 1,
+    pageSize: 100,
+    orderBy: "recent",
+  });
+
   const queryClient = useQueryClient();
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: [`product-comments`, productId],
-    queryFn: () => getProductCommentList({ productId }),
+    queryFn: () => getProductCommentList({ productId, ...params }),
+    placeholderData: { totalCount: 0, comments: [] },
+    staleTime: 5000,
   });
 
-  const mutation = useMutation({
-    mutationFn: ({
-      productId,
-      content,
-    }: {
-      productId: string;
-      content: string;
-    }) => createProductComment({ productId, content }),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: [`product-comments`, productId],
-      });
-    },
-  });
+  if (isError) {
+    console.error("Query Error:", error);
+  }
+
+  const list = data?.comments ?? commentList ?? [];
 
   const updateMutation = useMutation({
     mutationFn: ({
@@ -65,18 +78,8 @@ export default function ProductCommentSection({
     },
   });
 
-  const commentMakerFrameClass = classNames(
-    "mt-comment-maker-frame",
-    "ta:mt-ta-comment-maker-frame"
-  );
-  const commentListFrameClass = classNames(
-    "mt-comment-list-frame",
-    "mo:mt-mo-comment-list-frame"
-  );
-
-  const handleRegistComment = (newComment: string) => {
-    mutation.mutate({ productId, content: newComment });
-  };
+  const commentMakerFrameClass = classNames("mt-[3.2rem]", "ta:mt-[4rem]");
+  const commentListFrameClass = classNames("mt-[4rem]]", "mo:mt-[2.4rem]");
 
   const handleUpdateComment = ({
     commentId,
@@ -107,11 +110,11 @@ export default function ProductCommentSection({
   return (
     <>
       <div className={commentMakerFrameClass}>
-        <ProductCommentMaker registComment={handleRegistComment} />
+        <ProductCommentMaker productId={productId} />
       </div>
       <div className={commentListFrameClass}>
         <CommentList
-          data={data}
+          list={list}
           updateComment={handleUpdateComment}
           deleteComment={handleDeleteComment}
         />
