@@ -34,8 +34,6 @@ export async function signUp({
   try {
     const res = await instance.post(path, body);
 
-    console.log("signUp res : ", res);
-
     return res.data;
   } catch (err) {
     throw err;
@@ -58,7 +56,6 @@ export async function signIn({
     const res = await instance.post(path, body);
 
     setAccessToken(res.data?.accessToken);
-    console.log("export async function signIn :", res.data?.accessToken);
     setRefreshToken(res.data?.refreshToken);
 
     return res.data;

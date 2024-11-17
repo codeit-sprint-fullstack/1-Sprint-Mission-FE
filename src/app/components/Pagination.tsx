@@ -71,9 +71,6 @@ export function Pagination({
   for (let i = 0; i < maxButtonNumber; i++) {
     showPageArray.push(page + i);
   }
-  console.log("page : ", page);
-  console.log("maxButtonNumber : ", maxButtonNumber);
-  console.log("showPageArray : ", showPageArray);
 
   let tempPageNum = currentPage - 1;
   const prePageNum = tempPageNum > 0 ? tempPageNum : 1;

@@ -25,12 +25,10 @@ import { orderBy } from "lodash";
 
 interface ProductCommentSectionProps {
   productId: string;
-  commentList: CommentData[];
 }
 
 export default function ProductCommentSection({
   productId,
-  commentList,
 }: ProductCommentSectionProps) {
   // 임시 설정값
   const [params, setParams] = useState({
@@ -38,14 +36,14 @@ export default function ProductCommentSection({
     pageSize: 100,
     orderBy: "recent",
   });
-
-  console.log("test : ", commentList);
-
   const queryClient = useQueryClient();
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: [`product-comments`, productId],
-    queryFn: () => getProductCommentList({ productId, ...params }),
+    queryKey: [`product-comments`, productId, JSON.stringify(params)],
+    queryFn: async () => {
+      const result = await getProductCommentList({ productId, ...params });
+      return result;
+    },
     placeholderData: { totalCount: 0, comments: [] },
     staleTime: 5000,
   });
@@ -54,9 +52,7 @@ export default function ProductCommentSection({
     console.error("Query Error:", error);
   }
 
-  const list = data?.comments ?? commentList ?? [];
-  console.log("data : ", data);
-  console.log("list : ", list);
+  const list = data?.comments ?? [];
 
   const updateMutation = useMutation({
     mutationFn: ({
@@ -68,7 +64,7 @@ export default function ProductCommentSection({
     }) => modifyComment({ commentId, content }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [`product-comments`, productId],
+        queryKey: [`product-comments`, productId, JSON.stringify(params)],
       });
     },
   });
@@ -77,7 +73,17 @@ export default function ProductCommentSection({
     mutationFn: (commentId: string) => deleteComment(commentId),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [`product-comments`, productId],
+        queryKey: [`product-comments`, productId, JSON.stringify(params)],
+      });
+    },
+  });
+
+  const addCommentMutation = useMutation({
+    mutationFn: (content: string) =>
+      createProductComment({ productId, content }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [`product-comments`, productId, JSON.stringify(params)],
       });
     },
   });
@@ -114,7 +120,7 @@ export default function ProductCommentSection({
   return (
     <>
       <div className={commentMakerFrameClass}>
-        <ProductCommentMaker productId={productId} />
+        <ProductCommentMaker addComment={addCommentMutation.mutate} />
       </div>
       <div className={commentListFrameClass}>
         <CommentList

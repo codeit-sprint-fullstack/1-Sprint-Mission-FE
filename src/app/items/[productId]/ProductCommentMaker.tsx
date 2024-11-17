@@ -6,15 +6,14 @@ import { useForm } from "react-hook-form";
 import Modal from "react-modal";
 import classNames from "classnames";
 
-import { createProductComment } from "src/lib/api-product-comment";
 import TextAreaComment from "src/app/components/TextareaComment";
 
 interface ProductCommentMakerProps {
-  productId: string;
+  addComment: (content: string) => void;
 }
 
 export default function ProductCommentMaker({
-  productId,
+  addComment,
 }: ProductCommentMakerProps) {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalMessage, setModalMessage] = useState<string>("");
@@ -22,6 +21,7 @@ export default function ProductCommentMaker({
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
 
@@ -49,24 +49,14 @@ export default function ProductCommentMaker({
     "mt-[1.6rem]"
   );
 
-  const comment = watch("comment");
-
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
   const handleRegistBtnClick = async () => {
     try {
-      const newComment = await createProductComment({
-        productId,
-        content: comment,
-      });
-
-      if (newComment) {
-        // comment section에 전달? or comment section data 갱신
-      } else {
-        console.error("응답(정보)이 없습니다");
-      }
+      addComment(watch("comment"));
+      reset();
     } catch (err) {
       let errorMessage = "에러가 발생하였습니다";
 
@@ -105,7 +95,7 @@ export default function ProductCommentMaker({
         <div className={commentBottomBarClass}>
           <button
             className="btn-comment-regist"
-            onClick={handleRegistBtnClick}
+            type="submit"
             disabled={!isValid}
           />
         </div>

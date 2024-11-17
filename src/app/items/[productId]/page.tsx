@@ -32,10 +32,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     <AuthRoute>
       <div className="content main">
         <Product product={product} />
-        <ProductCommentSection
-          productId={productId}
-          commentList={product.comments}
-        />
+        <ProductCommentSection productId={productId} />
         <div className={btnFrameClass}>
           <Link href="/items" className={linkClass}>
             <div className={linkImageFrameClass}>
