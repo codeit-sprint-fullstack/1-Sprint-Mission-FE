@@ -39,6 +39,8 @@ export default function ProductCommentSection({
     orderBy: "recent",
   });
 
+  console.log("test : ", commentList);
+
   const queryClient = useQueryClient();
 
   const { data, isLoading, isError, error } = useQuery({
@@ -53,6 +55,8 @@ export default function ProductCommentSection({
   }
 
   const list = data?.comments ?? commentList ?? [];
+  console.log("data : ", data);
+  console.log("list : ", list);
 
   const updateMutation = useMutation({
     mutationFn: ({

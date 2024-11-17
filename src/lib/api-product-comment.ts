@@ -60,7 +60,7 @@ export async function getProductCommentList({
   };
 
   try {
-    const res = await instance.get(`/product-comments/${productId}`, {
+    const res = await instance.get(`/product/${productId}/comments`, {
       params,
       headers: token ? { Authorization: `Bearer ${token}` } : undefined,
     });

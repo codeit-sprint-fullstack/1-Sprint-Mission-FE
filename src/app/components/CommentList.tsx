@@ -21,6 +21,8 @@ export default function CommentList({
   updateComment = () => {},
   deleteComment = () => {},
 }: CommentListProps) {
+  console.log(" export default function CommentList list :", list);
+
   if (list?.length === 0) {
     return <EmptyCommentList />;
   }
