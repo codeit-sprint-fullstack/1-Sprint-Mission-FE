@@ -1,0 +1,137 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model User {
+    id        String   @id @default(cuid())
+    name      String?
+    email     String   @unique
+    password  String
+    image     String?
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    products Product[]
+    posts    Post[]
+    comments Comment[]
+    likes    Like[]
+
+    sentMessages     Message[] @relation("SentMessages")
+    receivedMessages Message[] @relation("ReceivedMessages")
+
+    @@index([email])
+    @@map("users")
+}
+
+model Product {
+    id          String   @id @default(cuid())
+    title       String   @db.VarChar(100)
+    description String   @db.Text
+    price       Int
+    images      String[] @db.Text
+    status      Status   @default(AVAILABLE)
+    views       Int      @default(0)
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    tags        String[] @default([])
+
+    seller   User   @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+    sellerId String
+
+    comments Comment[]
+    likes    Like[]
+
+    @@index([sellerId])
+    @@index([status])
+    @@index([createdAt])
+    @@map("products")
+}
+
+model Post {
+    id        String   @id @default(cuid())
+    title     String   @db.VarChar(100)
+    content   String   @db.Text
+    images    String[] @db.Text
+    views     Int      @default(0)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    authorId String
+
+    comments Comment[]
+    likes    Like[]
+
+    @@index([authorId])
+    @@index([createdAt])
+    @@map("posts")
+}
+
+model Like {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId String
+
+    product   Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
+    productId String?
+
+    post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
+    postId String?
+
+    @@unique([userId, productId])
+    @@unique([userId, postId])
+    @@index([userId])
+    @@index([productId])
+    @@index([postId])
+    @@map("likes")
+}
+
+model Comment {
+    id        String   @id @default(cuid())
+    content   String   @db.Text
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    authorId String
+
+    product   Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
+    productId String?
+
+    post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
+    postId String?
+
+    @@index([authorId])
+    @@index([productId])
+    @@index([postId])
+    @@map("comments")
+}
+
+model Message {
+    id        String   @id @default(cuid())
+    content   String   @db.Text
+    createdAt DateTime @default(now())
+    read      Boolean  @default(false)
+
+    sender      User   @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)
+    senderId    String
+    recipient   User   @relation("ReceivedMessages", fields: [recipientId], references: [id], onDelete: Cascade)
+    recipientId String
+
+    @@index([senderId])
+    @@index([recipientId])
+    @@index([createdAt])
+    @@map("messages")
+}
+
+enum Status {
+    AVAILABLE
+    SOLD
+}
