@@ -1,4 +1,4 @@
-import { createAxiosInstance } from "./axios-token";
+import { instance } from "./axios-token";
 
 export async function createPost({
   name,
@@ -9,7 +9,6 @@ export async function createPost({
 }) {
   const path = "/posts";
   const data = { name, content };
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.post(path, data);
@@ -37,7 +36,6 @@ export async function getPostList({
     ...(orderBy && { orderBy }),
     ...(keyword && { keyword }),
   };
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.get(path, { params });
@@ -49,7 +47,6 @@ export async function getPostList({
 
 export async function getPost(postId: string) {
   const path = `/posts/${postId}`;
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.get(path);
@@ -70,7 +67,6 @@ export async function setPost({
 }) {
   const path = `/posts/${postId}`;
   const data = { name, content };
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.patch(path, data);
@@ -82,7 +78,6 @@ export async function setPost({
 
 export async function deletePost(postId: string) {
   const path = `/posts/${postId}`;
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.delete(path);

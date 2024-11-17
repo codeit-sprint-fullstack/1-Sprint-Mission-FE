@@ -3,7 +3,14 @@ import classNames from "classnames";
 import ProductPreviewImage from "./ProductPreviwImage";
 import ProductPreviewFavorite from "./ProductPreviewFavorite";
 
-import { ProductPreviewProps } from "src/types/product";
+export interface ProductPreviewProps {
+  productId: string;
+  img: string;
+  name: string;
+  price: number;
+  isFavorite?: boolean;
+  favoriteCount: number;
+}
 
 export default function ProductPreview({
   productId,
@@ -44,17 +51,13 @@ export default function ProductPreview({
     "text-md",
     "leading-[2.4rem]",
     "font-medium",
-    "overflow-hidden",
-    "text-nowrap",
-    "text-ellipsis"
+    "truncate"
   );
   const productPriceClass = classNames(
     "text-lg",
     "leading-[2.6rem]",
     "font-bold",
-    "overflow-hidden",
-    "text-nowrap",
-    "text-ellipsis"
+    "truncate"
   );
 
   const priceText = price.toLocaleString("en-US") + "원";

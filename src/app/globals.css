@@ -74,22 +74,6 @@ body {
     text-wrap: balance;
   }
 }
-/* 
-.Bold {
-  font-weight: 700;
-}
-
-.Semibold {
-  font-weight: 600;
-}
-
-.Medium {
-  font-weight: 500;
-}
-
-.Regular {
-  font-weight: 400;
-} */
 
 .Text-3xl {
   font-family: "Pretendard";
@@ -137,7 +121,8 @@ body {
   font-family: "Pretendard";
   font-size: 1.4rem;
   /* line-height: 24px; */
-  line-height: 1.71428em;
+  /* line-height: 1.71428em; */
+  line-height: 2.4rem;
 }
 
 .Text-sm {
@@ -159,43 +144,6 @@ body {
   font-size: 1.2rem;
   /* line-height: 18px; */
   line-height: 1.5em;
-}
-
-/* custom css for design */
-.text-overflow-ellipsis {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-/* 
-.flex-row {
-  display: flex;
-  flex-direction: row;
-}
-
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
-.justify-center {
-  justify-content: center;
-} */
-/* 
-.grid {
-  display: grid;
-} */
-
-.margin-left4 {
-  margin-left: 0.4rem;
-}
-
-.margin-top43 {
-  margin-top: 4rem;
 }
 
 .text-warn {

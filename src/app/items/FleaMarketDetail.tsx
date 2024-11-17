@@ -1,5 +1,6 @@
 "use client";
 
+import BestProductList from "./BestProductList";
 import ProductList from "./ProductList";
 
 import { ProductData } from "src/types/product";
@@ -17,6 +18,7 @@ export default function FleaMarketDetail({
 }: FleaMarketDetailProps) {
   return (
     <>
+      <BestProductList bestProductList={bestProductList} />
       <ProductList
         productList={productList}
         productTotalCount={productTotalCount}

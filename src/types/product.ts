@@ -13,23 +13,6 @@ export interface ProductData {
   createdAt: string;
 }
 
-export interface BestProductPreviewProps {
-  img: string;
-  imgClass: string;
-  name: string;
-  price: number;
-  favorite?: boolean;
-}
-
-export interface ProductPreviewProps {
-  productId: string;
-  img: string;
-  name: string;
-  price: number;
-  isFavorite?: boolean;
-  favoriteCount: number;
-}
-
 export interface ProductPreviewFavoriteProps {
   productId: string;
   isFavorite: boolean;

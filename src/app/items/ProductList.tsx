@@ -82,7 +82,7 @@ export default function ProductList({
     "flex-row",
     "h-[4.2rem]",
     "gap-[1.2rem]",
-    "mo:h-[8.4rem]",
+    "mo:h-[9.2rem]",
     "mo:flex-wrap",
     "mo:justify-between"
   );

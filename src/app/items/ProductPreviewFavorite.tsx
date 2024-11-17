@@ -2,6 +2,7 @@ import classNames from "classnames";
 
 import { ProductPreviewFavoriteProps } from "src/types/product";
 
+// 삭제 예정. preview 상태에서 좋아요 추가 안되게 기능 변경 예정
 export default function ProductPreviewFavorite({
   productId,
   isFavorite,

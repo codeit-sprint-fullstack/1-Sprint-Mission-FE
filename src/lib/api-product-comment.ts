@@ -1,4 +1,4 @@
-import { createAxiosInstance } from "./axios-token";
+import { instance } from "./axios-token";
 
 export async function createProductComment({
   productId,
@@ -9,7 +9,6 @@ export async function createProductComment({
 }) {
   const path = `/product-comments`;
   const data = { productId, content };
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.post(path, data);
@@ -36,7 +35,6 @@ export async function getProductCommentList({
     ...(pageSize && { pageSize }),
     ...(orderBy && { orderBy }),
   };
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.get(path, { params });
@@ -48,7 +46,6 @@ export async function getProductCommentList({
 
 export async function getProductComment(productId: string) {
   const path = `/product-comments/${productId}`;
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.get(path);
@@ -67,7 +64,6 @@ export async function modifyComment({
 }) {
   const path = `/product-comments/${commentId}`;
   const data = { content };
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.patch(path, data);
@@ -79,7 +75,6 @@ export async function modifyComment({
 
 export async function deleteComment(commentId: string) {
   const path = `/product-comments/${commentId}`;
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.delete(path);

@@ -1,4 +1,4 @@
-import { createAxiosInstance } from "./axios-token";
+import { instance } from "./axios-token";
 
 export async function createPostComment({
   postId,
@@ -9,7 +9,6 @@ export async function createPostComment({
 }) {
   const path = `/post-comments`;
   const data = { postId, content };
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.post(path, data);
@@ -36,7 +35,6 @@ export async function getPostCommentList({
     ...(pageSize && { pageSize }),
     ...(orderBy && { orderBy }),
   };
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.get(path, { params });
@@ -48,7 +46,6 @@ export async function getPostCommentList({
 
 export async function getPostComment(postId: string) {
   const path = `/post-comments/${postId}`;
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.get(path);
@@ -67,7 +64,6 @@ export async function setPostComment({
 }) {
   const path = `/post-comments/${postId}`;
   const data = { content };
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.patch(path, data);
@@ -79,7 +75,6 @@ export async function setPostComment({
 
 export async function deletePostComment(postId: string) {
   const path = `/post-comments/${postId}`;
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.delete(path);

@@ -29,7 +29,7 @@ export default async function ProductsPage() {
     orderBy: ORDER_BY[ORDER_BY_FAVORITE],
   });
 
-  const bestProductList = bestProductListData?.list || [];
+  const bestProductList = bestProductListData?.products || [];
 
   const mainClass = classNames(
     "mt-header",

@@ -1,26 +1,13 @@
-import { createAxiosInstance } from "./axios-token";
+import { instance } from "./axios-token";
 // import { cookies } from "next/headers";
 import { parse } from "cookie";
 import axios from "axios";
+import { getAccessToken } from "./token-codeit";
 
 import { ORDER_BY_RECENT, ORDER_BY } from "src/app/constants/sort";
 
-/** codeit POST /products
-  return : {
-    "createdAt": "2024-09-23T04:51:52.533Z",
-    "favoriteCount": 0,
-    "ownerId": 1,
-    "images": [
-      "https://example.com/..."
-    ],
-    "tags": [
-      "전자제품"
-    ],
-    "price": 0,
-    "description": "string",
-    "name": "상품 이름",
-    "id": 1
-  }
+/**
+ * codeit POST /products
  */
 export async function createProduct({
   images,
@@ -37,7 +24,6 @@ export async function createProduct({
 }) {
   const path = "/products";
   const body = { images, tags, price, description, name };
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.post(path, body);
@@ -46,36 +32,24 @@ export async function createProduct({
   } catch (err) {}
 }
 
-/** codeit GET /products
+/**
+ * codeit GET /products
  */
-async function getAccessToken(): Promise<string | null> {
-  if (typeof window === "undefined") {
-    // SSR: Use next/headers
-    const { cookies } = await import("next/headers"); // Dynamically import to avoid client-side issues
-    const cookieStore = await cookies();
-    return cookieStore.get("codeit-access-token")?.value || null;
-  } else {
-    // CSR: Use document.cookie
-    const cookies = parse(document.cookie);
-    return cookies["codeit-access-token"] || null;
-  }
-}
 
-// Main API function
 const baseURL = process.env.NEXT_PUBLIC_SPRINT_BASE_URL || "";
 
 interface GetProductsParams {
   page?: number;
   pageSize?: number;
   orderBy?: string;
-  keyword?: string;
+  keyword?: string | null;
 }
 
 export async function getProducts({
   page = 1,
   pageSize = 10,
-  orderBy,
-  keyword,
+  orderBy = ORDER_BY[ORDER_BY_RECENT],
+  keyword = null,
 }: GetProductsParams) {
   const instance = axios.create({
     baseURL,
@@ -84,7 +58,7 @@ export async function getProducts({
     },
   });
 
-  const token = await getAccessToken(); // Get token based on environment
+  const token = await getAccessToken();
 
   try {
     const res = await instance.get("/products", {
@@ -99,7 +73,8 @@ export async function getProducts({
   }
 }
 
-/** codeit GET /products/{productId}
+/**
+ * codeit GET /products/{productId}
  */
 export async function getProduct({ productId }: { productId: string }) {
   const instance = axios.create({
@@ -109,7 +84,7 @@ export async function getProduct({ productId }: { productId: string }) {
     },
   });
 
-  const token = await getAccessToken(); // Get token based on environment
+  const token = await getAccessToken();
 
   try {
     const res = await instance.get(`/products/${productId}`, {
@@ -123,7 +98,8 @@ export async function getProduct({ productId }: { productId: string }) {
   }
 }
 
-/** codeit PATCH /products/{productId}
+/**
+ * codeit PATCH /products/{productId}
  */
 export async function modifyProduct({
   productId,
@@ -149,7 +125,6 @@ export async function modifyProduct({
       ...(description && { description }),
       ...(name && { name }),
     };
-    const instance = createAxiosInstance();
     const res = await instance.patch(path, body);
 
     return res.data;
@@ -160,7 +135,6 @@ export async function modifyProduct({
 export async function deleteProduct(productId: string) {
   try {
     const path = `/products/${productId}`;
-    const instance = createAxiosInstance();
     const res = await instance.delete(path);
 
     return res.data;
@@ -174,7 +148,6 @@ export async function deleteProduct(productId: string) {
 export async function addFavoriteProduct(productId: string) {
   try {
     const path = `/products/${productId}/favorite`;
-    const instance = createAxiosInstance();
     const res = await instance.post(path);
 
     return res.data;
@@ -186,7 +159,6 @@ export async function addFavoriteProduct(productId: string) {
 export async function removeFavoriteProduct(productId: string) {
   try {
     const path = `/products/${productId}/favorite`;
-    const instance = createAxiosInstance();
     const res = await instance.delete(path);
 
     return res.data;

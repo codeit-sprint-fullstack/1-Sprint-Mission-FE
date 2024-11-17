@@ -1,66 +1,126 @@
 import { parse, serialize } from "cookie";
 
-const ACCESS_TOKEN_KEY = "access-token";
-const REFRESH_TOKEN_KEY = "refresh-token";
+import {
+  ACCESS_TOKEN_MAX_AGE,
+  REFRESH_TOKEN_MAX_AGE,
+  ACCESS_TOKEN_COOKIE_KEY,
+  REFRESH_TOKEN_COOKIE_KEY,
+} from "src/app/constants/token";
 
-export function getCookie(name: string, req?: any): string | null {
-  if (typeof window !== "undefined") {
-    const cookies = parse(document.cookie);
-    return cookies[name] || null;
-  }
-
-  if (req?.headers?.cookie) {
-    const cookies = parse(req.headers.cookie);
-    return cookies[name] || null;
-  }
-
-  return null;
-}
-
-export function setCookie(
-  name: string,
-  value: string,
-  options: { maxAge?: number; path?: string; httpOnly?: boolean } = {}
-): void {
-  const cookie = serialize(name, value, {
-    path: "/",
-    maxAge: options.maxAge || 3600,
-    httpOnly: options.httpOnly || false,
-    secure: process.env.NODE_ENV === "production",
-    ...options,
-  });
-
-  if (typeof window !== "undefined") {
-    document.cookie = cookie;
+export async function getAccessToken(): Promise<string | null> {
+  if (typeof window === "undefined") {
+    const { cookies } = await import("next/headers");
+    const cookieStore = await cookies();
+    return cookieStore.get(ACCESS_TOKEN_COOKIE_KEY)?.value || null;
   } else {
-    throw new Error("setCookie can only be used on the client side.");
+    const cookies = parse(document.cookie);
+    return cookies[ACCESS_TOKEN_COOKIE_KEY] || null;
   }
 }
 
-export function deleteCookie(name: string): void {
-  setCookie(name, "", { maxAge: -1 });
+export async function setAccessToken(value: string): Promise<void> {
+  if (typeof window === "undefined") {
+    const { headers } = await import("next/headers");
+    const response = await headers();
+    response.set(
+      "Set-Cookie",
+      serialize(ACCESS_TOKEN_COOKIE_KEY, value, {
+        path: "/",
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: ACCESS_TOKEN_MAX_AGE,
+      })
+    );
+  } else {
+    document.cookie = serialize(ACCESS_TOKEN_COOKIE_KEY, value, {
+      path: "/",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: ACCESS_TOKEN_MAX_AGE,
+    });
+  }
 }
 
-export function getAccessToken(req?: any): string | null {
-  return getCookie(ACCESS_TOKEN_KEY, req);
+export async function deleteAccessToken(): Promise<void> {
+  if (typeof window === "undefined") {
+    const { headers } = await import("next/headers");
+    const response = await headers();
+    response.set(
+      "Set-Cookie",
+      serialize(ACCESS_TOKEN_COOKIE_KEY, "", {
+        path: "/",
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: -1,
+      })
+    );
+  } else {
+    document.cookie = serialize(ACCESS_TOKEN_COOKIE_KEY, "", {
+      path: "/",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: -1,
+    });
+  }
 }
 
-export function setAccessToken(value: string): void {
-  setCookie(ACCESS_TOKEN_KEY, value, { maxAge: 3600 });
+export async function getRefreshToken(): Promise<string | null> {
+  if (typeof window === "undefined") {
+    const { cookies } = await import("next/headers");
+    const cookieStore = await cookies();
+    return cookieStore.get(REFRESH_TOKEN_COOKIE_KEY)?.value || null;
+  } else {
+    const cookies = parse(document.cookie);
+    return cookies[REFRESH_TOKEN_COOKIE_KEY] || null;
+  }
 }
 
-export function deleteAccessToken(): void {
-  deleteCookie(ACCESS_TOKEN_KEY);
+export async function setRefreshToken(value: string): Promise<void> {
+  if (typeof window === "undefined") {
+    const { headers } = await import("next/headers");
+    const response = await headers();
+    response.set(
+      "Set-Cookie",
+      serialize(REFRESH_TOKEN_COOKIE_KEY, value, {
+        path: "/",
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: REFRESH_TOKEN_MAX_AGE,
+      })
+    );
+  } else {
+    document.cookie = serialize(REFRESH_TOKEN_COOKIE_KEY, value, {
+      path: "/",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: REFRESH_TOKEN_MAX_AGE,
+    });
+  }
 }
 
-export function getRefreshToken(req?: any): string | null {
-  return getCookie(REFRESH_TOKEN_KEY, req);
-}
-
-export function setRefreshToken(value: string): void {
-  setCookie(REFRESH_TOKEN_KEY, value, { maxAge: 3600 });
-}
-
-export function deleteRefreshToken(): void {
-  deleteCookie(REFRESH_TOKEN_KEY);
+export async function deleteRefreshToken(): Promise<void> {
+  if (typeof window === "undefined") {
+    const { headers } = await import("next/headers");
+    const response = await headers();
+    response.set(
+      "Set-Cookie",
+      serialize(REFRESH_TOKEN_COOKIE_KEY, "", {
+        path: "/",
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: -1,
+      })
+    );
+  } else {
+    document.cookie = serialize(REFRESH_TOKEN_COOKIE_KEY, "", {
+      path: "/",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: -1,
+    });
+  }
 }

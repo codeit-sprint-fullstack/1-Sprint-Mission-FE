@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 
-import { createAxiosInstance } from "./axios-token";
+import { instance } from "./axios-token";
 
 import {
   getRefreshToken,
@@ -30,7 +30,6 @@ export async function signUp({
     passwordConfirmation,
     name: "임시이름",
   };
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.post(path, body);
@@ -54,7 +53,6 @@ export async function signIn({
 }) {
   const path = "/auth/sign-in";
   const body = { email, password };
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.post(path, body);
@@ -75,7 +73,6 @@ export async function signIn({
 export async function refreshToken(): Promise<void> {
   const path = "/auth/refresh-token";
   const body = { refreshToken: getRefreshToken() };
-  const instance = createAxiosInstance();
 
   try {
     const res = await instance.post(path, body, {
