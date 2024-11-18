@@ -138,3 +138,64 @@ export interface SignUpResponse {
     message: string;
   };
 }
+
+// lib - Api
+export interface ApiResponse<T> {
+  status: number;
+  data: T;
+}
+
+export interface SignUpRequest {
+  email: string;
+  password: string;
+  nickname: string;
+  passwordConfirmation: string;
+}
+
+export interface SignInRequest {
+  email: string;
+  password: string;
+}
+
+export interface Product {
+  id: number;
+  title: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  writer: User;
+}
+
+export interface CreateCommentRequest {
+  content: string;
+}
+
+export interface UpdateCommentRequest {
+  content: string;
+}
+
+// pages
+export interface BoardDetailProps {
+  article: Article & {
+    content: string;
+    comment?: Comment[];
+  };
+}
+
+export interface ItemDetailData extends Product {
+  name: string;
+  price: number;
+  description: string;
+  tags: string[];
+  images: string[];
+  favoriteCount: number;
+}
+
+export interface FormData {
+  title: string;
+  content: string;
+}
+
+export interface PostResponse {
+  id: number;
+}

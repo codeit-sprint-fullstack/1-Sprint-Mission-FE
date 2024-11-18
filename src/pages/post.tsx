@@ -1,31 +1,37 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import styles from "@/styles/PostAndEdit.module.css";
 import axios from "@/lib/axios";
 import { useRouter } from "next/router";
+import { FormData, PostResponse } from "@/types/Types";
 
 export default function Post() {
-  const [formData, setFormData] = useState({ title: "", content: "" });
+  const [formData, setFormData] = useState<FormData>({
+    title: "",
+    content: "",
+  });
   const router = useRouter();
 
   const isValid = !formData.title || !formData.content;
   console.log(isValid);
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await axios.patch("/articles", {
+      const res = await axios.post<PostResponse>("/articles", {
         title: formData.title,
         content: formData.content,
       });
 
       // 게시글이 성공적으로 생성되면 해당 게시글의 ID 상세 페이지로 이동
       const newArticleId = res.data.id; // 서버에서 반환된 새 게시글 ID
-      router.push(`/board/${newArticleId}`);  // 생성된 게시글의 상세 페이지로 이동
+      router.push(`/board/${newArticleId}`); // 생성된 게시글의 상세 페이지로 이동
     } catch (error) {
       console.error("Error", error);
     }
@@ -34,9 +40,9 @@ export default function Post() {
   return (
     <form className={styles.post} onSubmit={handleSubmit}>
       <div className={styles.titleContainer}>
-        <div className={styles.postHeader}>게시글 수정</div>
+        <div className={styles.postHeader}>게시글 쓰기</div>
         <button className={styles.postButton} type="submit" disabled={isValid}>
-          수정
+          등록
         </button>
       </div>
       <div className={styles.inputContainer}>

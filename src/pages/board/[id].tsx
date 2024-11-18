@@ -9,9 +9,13 @@ import ArticleDropDown from "@/components/BoardDetail/ArticleDropDown";
 import { useState } from "react";
 import CommentList from "@/components/CommentComponent/CommentList";
 import PostComment from "@/components/CommentComponent/PostComment";
+import { GetServerSideProps } from "next";
+import { BoardDetailProps } from "@/types/Types";
 
-export async function getServerSideProps(context) {
-  const articleId = context.params["id"];
+export const getServerSideProps: GetServerSideProps<BoardDetailProps> = async (
+  context
+) => {
+  const articleId = context.params?.id as string;
   let article;
   try {
     const res = await axios.get(`/articles/${articleId}`);
@@ -28,7 +32,7 @@ export async function getServerSideProps(context) {
       article,
     },
   };
-}
+};
 /** @TODO article없으면 로딩일때 돌아가는 Spinner같은 로딩창 구현 */
 // if (!article)
 //   return (
@@ -37,13 +41,14 @@ export async function getServerSideProps(context) {
 //     </div>
 //   );
 
-export default function BoardDetail(article) {
-  const detailArticle = article.article;
+export default function BoardDetail({
+  article: detailArticle,
+}: BoardDetailProps) {
   // 댓글 목록을 상태로 관리
   const [commentList, setCommentList] = useState(detailArticle.comment || []);
   console.log(commentList);
 
-  const addComment = async (newComment) => {
+  const addComment = async (newComment: string) => {
     try {
       const res = await axios.post(`/articles/${detailArticle.id}/comments`, {
         content: newComment,

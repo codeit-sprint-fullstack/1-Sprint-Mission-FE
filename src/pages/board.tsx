@@ -1,12 +1,12 @@
-
 import Article from "@/components/BoardComponent/Article";
 import BestArticle from "@/components/BoardComponent/BestArticle";
 import styles from "@/styles/Board.module.css";
 import axios from "@/lib/axios";
 import { useEffect } from "react";
+import { Article as ArticleType, ArticleProps } from "@/types/Types";
 
 export async function getStaticProps() {
-  const res = await axios.get("/articles");
+  const res = await axios.get<{ list: ArticleType[] }>("/articles");
   const articles = res.data.list;
 
   return {
@@ -16,7 +16,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Board({ articles }) {
+export default function Board({ articles }: ArticleProps) {
   // 클라이언트 측에서 데이터 확인
   useEffect(() => {
     console.log(articles);

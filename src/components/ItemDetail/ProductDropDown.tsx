@@ -12,7 +12,7 @@ export default function ProductDropDown() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const { id } = router.query; // URL에서 상품 ID 가져오기
-  const productId = id;
+  const productId = typeof id === 'string' ? parseInt(id, 10) : undefined;
 
   const queryClient = useQueryClient(); // 캐시를 관리하기 위한 QueryClient
 
@@ -30,7 +30,7 @@ export default function ProductDropDown() {
 
   // 상품 삭제 mutation
   const deleteMutation = useMutation({
-    mutationFn: () => deleteProductById(productId),
+    mutationFn: () => deleteProductById(productId as number),
     onSuccess: () => {
       console.log("상품이 성공적으로 삭제되었습니다.");
       router.push("/products");

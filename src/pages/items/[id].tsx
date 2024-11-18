@@ -6,36 +6,50 @@ import defaultUserImg from "@/images/defaultUserImg.png";
 import goBack from "@/images/ic_back.png";
 import styles from "@/styles/ItemsDetail.module.css";
 import { useRouter } from "next/router";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+  UseQueryResult,
+} from "@tanstack/react-query";
 import { createProductByIdComments, getProductById } from "@/lib/productApi";
 import ItemCommentList from "@/components/CommentComponent/ItemCommentList";
 import ProductDropDown from "@/components/ItemDetail/ProductDropDown";
+import { ItemDetailData } from "@/types/Types";
+import { AxiosError } from "axios";
 
 export default function ItemsDetail() {
   const router = useRouter();
   const { id } = router.query; // URL에서 상품 ID 가져오기
-  const productId = id;
+  const productId = typeof id === "string" ? parseInt(id, 10) : undefined;
 
   const queryClient = useQueryClient();
 
   // useQuery를 사용하여 데이터 가져오기
-  const { data, isError, isLoading, error } = useQuery({
+  const {
+    data,
+    isError,
+    isLoading,
+    error,
+  }: UseQueryResult<ItemDetailData, AxiosError> = useQuery({
     queryKey: ["product", productId],
-    queryFn: () => getProductById(productId),
+    queryFn: () => getProductById(productId as number),
     enabled: !!productId, // productId가 있을 때만 쿼리 실행
   });
 
   // 댓글 등록 mutation
   const mutation = useMutation({
-    mutationFn: (newComment) =>
-      createProductByIdComments(productId, newComment),
+    mutationFn: (newComment: string) =>
+      createProductByIdComments(productId as number, newComment),
     // 댓글 등록 후 댓글 목록을 갱신
     onSuccess: () => {
-      queryClient.invalidateQueries(["productComments", productId]);
+      queryClient.invalidateQueries({
+        queryKey: ["productComments", productId],
+      });
     },
   });
 
-  const addComment = (content) => {
+  const addComment = async (content: string) => {
     mutation.mutate(content); // 댓글 등록
   };
 

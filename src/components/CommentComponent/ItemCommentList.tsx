@@ -2,7 +2,7 @@ import Image from "next/image";
 import NoComment from "./NoComment";
 import defaultUserImg from "@/images/defaultUserImg.png";
 import styles from "./CommentList.module.css";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { getProductByIdComments } from "@/lib/productApi";
 import { useRouter } from "next/router";
 import ProductCommentDropDown from "../ItemDetail/ProductCommentDropDown";
@@ -14,21 +14,25 @@ import {
   Comment,
   ProductCommentsResponse,
 } from "@/types/Types";
+import { AxiosError } from "axios";
 
 export default function ItemCommentList() {
   const [editCommentId, setEditCommentId] = useState<number | null>(null); // 수정 모드 상태 관리
   const { user } = useAuth() as AuthContextType; // user 정보 가져오기
   const router = useRouter();
   const { id } = router.query; // URL에서 상품 ID 가져오기
-  const productId = id;
+  const productId = typeof id === "string" ? parseInt(id, 10) : undefined;
 
   // useQuery를 사용하여 데이터 가져오기
-  const { data, isError, isLoading } = useQuery<ProductCommentsResponse>({
+  const {
+    data,
+    isError,
+    isLoading,
+  }: UseQueryResult<ProductCommentsResponse, AxiosError> = useQuery({
     queryKey: ["productComments", productId],
-    queryFn: () => getProductByIdComments(productId),
+    queryFn: () => getProductByIdComments(productId as number),
     enabled: !!productId, // productId가 있을 때만 쿼리 실행
   });
-  console.log(data);
 
   // 로딩 중일 때
   if (isLoading) {
@@ -41,7 +45,7 @@ export default function ItemCommentList() {
   }
 
   // 데이터가 없을 때
-  if (!data || data.list.length === 0) {
+  if (!data) {
     return <NoComment />; // NoComment 컴포넌트를 렌더링
   }
 

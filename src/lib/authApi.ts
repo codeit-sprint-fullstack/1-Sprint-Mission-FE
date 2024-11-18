@@ -1,7 +1,14 @@
+import {
+  LoginResponse,
+  SignInRequest,
+  SignUpRequest,
+  SignUpResponse,
+  User,
+} from "@/types/Types";
 import axios from "./axios";
 
 // 회원가입 요청
-export async function postSignUp(data) {
+export async function postSignUp(data: SignUpRequest): Promise<SignUpResponse> {
   try {
     const res = await axios.post("/auth/signUp", data);
     return res;
@@ -12,7 +19,7 @@ export async function postSignUp(data) {
 }
 
 // 로그인 요청
-export async function postLogIn(data) {
+export async function postLogIn(data: SignInRequest): Promise<LoginResponse> {
   try {
     const res = await axios.post("/auth/signin", data);
     return res;
@@ -25,7 +32,7 @@ export async function postLogIn(data) {
 }
 
 // token으로 user 정보 가져오기
-export async function getUser() {
+export async function getUser(): Promise<User> {
   const token = localStorage.getItem("accessToken"); // 로컬 스토리지에서 accessToken 가져오기
 
   if (!token) {
