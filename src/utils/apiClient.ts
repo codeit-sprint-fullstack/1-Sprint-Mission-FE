@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://yeongeun.click/";
+const baseUrl = "https://yeongeun.click/";
 const apiClient = axios.create({
   baseURL: baseUrl,
   headers: {
