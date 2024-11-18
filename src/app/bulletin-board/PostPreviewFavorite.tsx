@@ -18,9 +18,9 @@ export default function PostPreviewFavorite({
   );
   const heartImgFrameClass = classNames("w-[2.4rem]", "h-[2.4rem]", "relative");
 
-  let heartImg = "/icons/ic_heart_empty.svg";
+  let heartImg = "/icons/ic_heart_empty_24_24.svg";
   if (isFavorite) {
-    heartImg = "/icons/ic_heart_full.svg";
+    heartImg = "/icons/ic_heart_full_24_24.svg";
   }
 
   const countClass = classNames(

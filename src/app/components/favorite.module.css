@@ -3,11 +3,11 @@
 }
 
 .heart-empty {
-  content: url(../../../public/icons/ic_heart_empty_small.svg);
+  content: url(../../../public/icons/ic_heart_empty_16_16.svg);
 }
 
 .heart-full {
-  content: url(../../../public/icons/ic_heart_full.svg);
+  content: url(../../../public/icons/ic_heart_full_24_24.svg);
 }
 
 .best-post-favorite-img {

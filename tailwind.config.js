@@ -51,14 +51,6 @@ module.exports = {
         "pc-best-post": "38.4rem",
         "ta-best-post": "34rem",
         "mo-best-post": "34.3rem",
-        // best-product-preview
-        "pc-best-product-preview": "28.2rem",
-        "ta-best-product-preview": "34.3rem",
-        "mo-best-product-preview": "34.3rem",
-        // board-search
-        "board-search": "105.4rem",
-        "ta-board-search": "56rem",
-        "mo-board-search": "28.2rem",
         // btn-page
         "btn-page": "4rem",
         // simple-sign-in
@@ -83,10 +75,6 @@ module.exports = {
         "pc-best-post": "16.9rem",
         "ta-best-post": "19.8rem",
         "mo-best-post": "19.8rem",
-        // best-product-preview
-        "pc-best-product-preview": "37.8rem",
-        "ta-best-product-preview": "43.4rem",
-        "mo-best-product-preview": "43.4rem",
         // btn-page
         "btn-page": "4rem",
         // simple-sign-in
@@ -146,14 +134,12 @@ module.exports = {
         "0.1rem": "0.1rem",
         "mo-dropdown-menu-top": "-2.4rem",
         "mo-dropdown-menu-left": "-8.8rem",
-        // best-product-preview-image
-        "pc-best-product-preview-image": "28.2rem",
-        "ta-best-product-preview-image": "34.3rem",
-        "mobibest-product-preview-image": "34.3rem",
       },
       backgroundImage: {
         "btn-header__home": "url('/buttons/btn_home.svg')",
         "btn-header__home--mo": "url('/buttons/btn_home_small.svg')",
+        "btn-post-list__to-create-page":
+          "url('/buttons/btn_write_post_88_42.svg')",
         "sign-in__btn": "url('/buttons/btn_sign_in_w640.svg')",
         "sign-in__btn--mo": "url('/buttons/btn_sign_in_w343.svg')",
         "sign-in__btn--disabled":
@@ -169,7 +155,7 @@ module.exports = {
         "oauth-btn__google": "url('/buttons/btn_google.svg')",
         "oauth-btn__kakao": "url('/buttons/btn_kakao.svg')",
         "favorite-heart--full": "url('/icons/ic_heart_small.svg')",
-        "favorite-heart--empty": "url('/icons/ic_heart_empty_small.svg')",
+        "favorite-heart--empty": "url('/icons/ic_heart_empty_16_16.svg')",
         "btn-link-regist": "url('/buttons/btn_regist_product.svg')",
       },
       borderColor: {

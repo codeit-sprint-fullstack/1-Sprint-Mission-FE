@@ -27,8 +27,6 @@ import { PAGE_SIZE } from "../constants/post";
 import { SearchParamState } from "src/types/param";
 import { PostListData } from "src/types/post";
 
-import style from "./board.module.css";
-
 const BOARD_INFINITY_SCROLL_Y = 100;
 
 interface GetPostListParams {
@@ -44,18 +42,58 @@ export default function PostList() {
     ORDER_TEXT[ORDER_BY_RECENT]
   );
 
-  const boardClass = `${style.board}`;
-  const boardTopBarClass = `flex flex-row items-center justify-between ${style["top-bar"]}`;
-  const boardTopBarLabelClass = `font-bold ${style["top-bar-name"]}`;
-  const boardTopBarBtnWritePostClass = `${style["top-bar-btn-write-post"]}`;
-
-  const boardMiddleBarClass = `flex flex-row justify-between ${style["middle-bar"]}`;
-  const searchFrameClass = classNames(
-    "w-board-search",
-    "ta:w-ta-board-search",
-    "mo:w-mo-board-search"
+  const boardClass = classNames(
+    "w-full",
+    "mt-[4rem]",
+    "mb-[29.3rem]",
+    "ta:mt-[2.4rem]",
+    "ta:mb-[1.9rem]",
+    "mo:mt-[2.4rem]",
+    "mo:mb-[9.1rem]"
   );
-  const boardListClass = `flex flex-col ${style.list}`;
+  const boardTopBarClass = classNames(
+    "flex",
+    "flex-row",
+    "items-center",
+    "justify-between",
+    "w-full",
+    "h-[4.2rem]"
+  );
+  const boardTopBarLabelClass = classNames(
+    "font-bold",
+    "text-[2rem]",
+    "leading-[3.2rem]",
+    "text-gray-800"
+  );
+  const boardTopBarBtnWritePostClass = classNames(
+    "w-[8.8rem]",
+    "h-[4.2rem]",
+    "bg-btn-post-list__to-create-page"
+  );
+  const boardMiddleBarClass = classNames(
+    "flex",
+    "flex-row",
+    "justify-between",
+    "w-full",
+    "h-[4.2rem]",
+    "mt-[2.4rem]",
+    "ta:mt-[4.8rem]",
+    "mo:mt-[1.6rem]"
+  );
+  const searchFrameClass = classNames(
+    "w-[105.4rem]",
+    "ta:w-[56rem]",
+    "mo:w-[28.2rem]"
+  );
+  const boardListClass = classNames(
+    "flex",
+    "flex-col",
+    "gap-[2.4rem]",
+    "w-full",
+    "mt-[2.4rem]",
+    "ta:mt-[4rem]",
+    "mo:mt-[1.6rem]"
+  );
 
   const handleSortByRecent = () => {
     setRecentOrder(ORDER_BY[ORDER_BY_RECENT]);
@@ -83,8 +121,6 @@ export default function PostList() {
       },
       initialPageParam: 1,
     });
-
-  console.log("data : ", data);
 
   const tempList = (
     <div className={boardListClass}>

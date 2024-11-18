@@ -8,7 +8,10 @@ import { FAVORITE_CLASSES } from "../constants/Favorite";
 import { addFavoriteProduct, removeFavoriteProduct } from "src/lib/api-product";
 import { limitTextCount } from "src/lib/text";
 
-const SRCS = ["/icons/ic_heart_empty_small.svg", "/icons/ic_heart_full.svg"];
+const SRCS = [
+  "/icons/ic_heart_empty_16_16.svg",
+  "/icons/ic_heart_full_24_24.svg",
+];
 
 export default function Favorite({
   type,
