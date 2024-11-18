@@ -1,14 +1,14 @@
 import classNames from "classnames";
 
 import BestBoard from "./BestBoard";
-import Board from "./Board";
+import PostList from "./PostList";
 
 export function BulletinBoard() {
   const mainClass = classNames("content", "main");
   return (
     <div className={mainClass}>
       {/* <BestBoard /> */}
-      {/* <Board /> */}
+      <PostList />
     </div>
   );
 }

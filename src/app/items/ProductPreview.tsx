@@ -1,5 +1,6 @@
 import Link from "next/link";
 import classNames from "classnames";
+
 import ProductPreviewImage from "./ProductPreviwImage";
 import ProductPreviewFavorite from "./ProductPreviewFavorite";
 
@@ -30,7 +31,7 @@ export default function ProductPreview({
     "mo:w-[16.8rem]",
     "mo:h-[26.4rem]"
   );
-  const imageFramClass = classNames(
+  const imageFrameClass = classNames(
     "w-[22.1rem]",
     "h-[22.1rem]",
     "mo:w-[16.8rem]",
@@ -65,14 +66,13 @@ export default function ProductPreview({
   return (
     <Link href={linkTo}>
       <div className={productPreviewClass}>
-        <div className={imageFramClass}>
+        <div className={imageFrameClass}>
           <ProductPreviewImage imgUrl={img} />
         </div>
         <div className={productInfoClass}>
           <div className={productNameClass}>{name}</div>
           <div className={productPriceClass}>{priceText}</div>
           <ProductPreviewFavorite
-            productId={productId}
             isFavorite={isFavorite}
             favriteCount={favoriteCount}
           />

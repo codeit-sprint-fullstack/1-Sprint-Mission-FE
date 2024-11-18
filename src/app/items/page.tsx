@@ -1,6 +1,7 @@
+import classNames from "classnames";
+
 import FleaMarketDetail from "./FleaMarketDetail";
 import { getProducts } from "src/lib/api-product";
-import classNames from "classnames";
 
 import {
   BEST_PRODUCT_PAGE_SIZE,

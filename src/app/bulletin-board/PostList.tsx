@@ -24,13 +24,22 @@ import {
   ORDER_TEXT,
 } from "../constants/sort";
 import { PAGE_SIZE } from "../constants/post";
+import { SearchParamState } from "src/types/param";
 import { PostListData } from "src/types/post";
 
 import style from "./board.module.css";
 
 const BOARD_INFINITY_SCROLL_Y = 100;
 
-export function Board() {
+interface GetPostListParams {
+  page: number;
+  pageSize: number;
+  orderBy: string;
+  keyword?: string;
+}
+
+export default function PostList() {
+  const [keyword, setKeyword] = useState<string | undefined>(undefined);
   const [recentOrder, setRecentOrder] = useState<string>(
     ORDER_TEXT[ORDER_BY_RECENT]
   );
@@ -56,41 +65,39 @@ export function Board() {
     setRecentOrder(ORDER_BY[ORDER_BY_FAVORITE]);
   };
 
-  let page = 1;
-
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ["free-post", { PAGE_SIZE, recentOrder }],
+      queryKey: ["free-post", { PAGE_SIZE, order: recentOrder, keyword }],
       queryFn: ({ pageParam = 1 }) =>
         getPostList({
           page: pageParam,
           pageSize: PAGE_SIZE,
-          orderBy: recentOrder,
+          orderBy: ORDER_BY[ORDER_BY_RECENT],
+          keyword,
         }),
       getNextPageParam: (lastPage: PostListData, allPages: PostListData[]) => {
         const totalFetchedPosts = allPages.flatMap((page) => page.posts).length;
         const totalCount = lastPage.totalCount;
 
-        if (totalFetchedPosts < totalCount) {
-          return allPages.length + 1;
-        } else {
-          return undefined;
-        }
+        return totalFetchedPosts < totalCount ? allPages.length + 1 : undefined;
       },
       initialPageParam: 1,
     });
+
+  console.log("data : ", data);
 
   const tempList = (
     <div className={boardListClass}>
       {data?.pages.map((page, pageIndex) =>
         page.posts.map((post, index) => (
           <PostPreview
-            key={`${pageIndex}-${index}`}
+            key={`${post.id}`}
             postId={post.id}
             name={post.name}
-            profileImgUrl={post.ownerImage}
-            nickname={post.ownerNickname}
-            myFavorite={post.isFavorite}
+            img={post.images[0]}
+            ownerImg={post.ownerImage}
+            ownerNickname={post.ownerNickname}
+            isFavorite={post.isFavorite}
             favoriteCount={post.favoriteCount}
             createdDate={post.createdAt}
           />
@@ -101,23 +108,26 @@ export function Board() {
   );
 
   useEffect(() => {
-    const handleScroll = throttle(() => {
+    const throttledHandleScroll = throttle(() => {
       const scrollPosition = Math.ceil(
         window.innerHeight + document.documentElement.scrollTop
       );
       const documentHeight = document.documentElement.offsetHeight;
       const threshold = BOARD_INFINITY_SCROLL_Y;
 
-      const isBottom = scrollPosition >= documentHeight - threshold;
-
-      if (isBottom && hasNextPage && !isFetchingNextPage) {
+      if (
+        scrollPosition >= documentHeight - threshold &&
+        hasNextPage &&
+        !isFetchingNextPage
+      ) {
         fetchNextPage();
       }
     }, 200);
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", throttledHandleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", throttledHandleScroll);
+      throttledHandleScroll.cancel();
     };
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
@@ -149,5 +159,3 @@ export function Board() {
     </div>
   );
 }
-
-export default Board;

@@ -3,14 +3,12 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-interface ProductPreviewImageProps {
+interface PostUserProfileProps {
   imgUrl: string;
 }
 
-export default function ProductPreviewImage({
-  imgUrl,
-}: ProductPreviewImageProps) {
-  const [validImg, setValidImg] = useState("/images/no_image.svg");
+export default function PostUserProfile({ imgUrl }: PostUserProfileProps) {
+  const [validImg, setValidImg] = useState("/icons/ic_profile40.svg");
 
   useEffect(() => {
     const image = new window.Image();
@@ -19,7 +17,7 @@ export default function ProductPreviewImage({
       setValidImg(imgUrl);
     };
     const handleImgError = () => {
-      setValidImg("/images/no_image.svg");
+      setValidImg("/icons/ic_profile40.svg");
     };
 
     image.src = imgUrl;
@@ -32,5 +30,5 @@ export default function ProductPreviewImage({
     };
   }, [imgUrl]);
 
-  return <Image src={validImg} alt="상품 사진" fill />;
+  return <Image src={validImg} alt="작성자 프로필 이미지" fill />;
 }

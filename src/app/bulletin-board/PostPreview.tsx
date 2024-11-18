@@ -1,64 +1,115 @@
+import Image from "next/image";
 import Link from "next/link";
+import classNames from "classnames";
 
-import Favorite from "../components/Favorite";
-import { ProductImg } from "../components/ProductImg";
+import PostPreviewImage from "./PostPreviewImage";
+import PostPreviewFavorite from "./PostPreviewFavorite";
 import Date from "../components/Date";
-import { POST_PREVIEW } from "../constants/Favorite";
-import Profile from "../components/Profile";
-import { PROFILE_H24 } from "../constants/Profile";
-
-import style from "./post-preview.module.css";
+import PostUserProfile from "../components/PostUserProfile";
 
 interface PostPreviewProps {
   postId: string;
   name: string;
-  imgUrl?: string;
-  profileImgUrl: string;
-  nickname: string;
-  myFavorite: boolean;
+  img: string;
+  ownerImg: string;
+  ownerNickname: string;
+  isFavorite: boolean;
   favoriteCount: number;
   createdDate: string;
 }
 
 export function PostPreview({
   postId,
-  name = "게시글 제목",
-  imgUrl,
-  profileImgUrl,
-  nickname = "작성자",
-  myFavorite = false,
-  favoriteCount = 0,
+  name,
+  img,
+  ownerImg,
+  ownerNickname,
+  isFavorite,
+  favoriteCount,
   createdDate,
 }: PostPreviewProps) {
-  const postPreviewClass = `${style["post-preview"]}`;
-  const postPreviewTopBarClass = `flex flex-row justify-between ${style["top-bar"]}`;
-  const postPreviewNameClass = `font-semibold ${style.name}`;
-  const postPreviewBottomBarClass = `flex flex-row justify-between ${style["bottom-bar"]}`;
-  const postPreviewBottomBarNicknameDateClass = `flex flex-row items-center ${style["bottom-bar-nickname-date"]}`;
-  const postPreviewBottomNicknameClass = `font-normal ${style["nickname-name"]}`;
-
-  console.log("PostPreview postId : ", postId);
   const link = `/bulletin-board/${postId}`;
+
+  const postPreviewClass = classNames(
+    "w-full",
+    "h-[13.8rem]",
+    "box-border",
+    "bg-alabaster",
+    "border-b",
+    "border-gray-200"
+  );
+  const postPreviewTopBarClass = classNames(
+    "flex",
+    "flex-row",
+    "justify-between",
+    "w-full",
+    "h-[7.2rem]",
+    "mo:h-[13.6rem]",
+    "gap-[0.8rem]"
+  );
+  const postPreviewNameClass = classNames(
+    "font-semibold",
+    "text-[2rem]",
+    "leading-[1.6rem]",
+    "text-gray-800"
+  );
+  const imageFrameClass = classNames(
+    "w-[7.2rem]",
+    "h-[7.2rem]",
+    "relative",
+    "border-gray-200",
+    "rounded-[0.8rem]"
+  );
+  const postPreviewBottomBarClass = classNames(
+    "flex",
+    "flex-row",
+    "justify-between",
+    "w-full",
+    "h-[2.6rem]",
+    "mo:h-[2.4rem]",
+    "mt-[1.6rem]",
+    "mb-[2.4rem]"
+  );
+  const postPreviewBottomBarNicknameDateClass = classNames(
+    "flex",
+    "flex-row",
+    "items-center",
+    "gap-[0.8rem]"
+  );
+  const profileFrameeClass = classNames(
+    "w-[2.4rem]",
+    "h-[2.4rem]",
+    "relative",
+    "rounded-full"
+  );
+  const postPreviewBottomNicknameClass = classNames(
+    "font-normal",
+    "text-[1.4rem]",
+    "leading-[2.4rem]"
+  );
 
   return (
     <Link href={link}>
       <div className={postPreviewClass}>
         <div className={postPreviewTopBarClass}>
           <div className={postPreviewNameClass}>{name}</div>
-          <ProductImg />
+          <div className={imageFrameClass}>
+            <PostPreviewImage imgUrl={img} />
+          </div>
         </div>
         <div className={postPreviewBottomBarClass}>
           <div className={postPreviewBottomBarNicknameDateClass}>
-            <Profile type={PROFILE_H24} profileImgUrl={profileImgUrl} />
-            <div className={postPreviewBottomNicknameClass}>{nickname}</div>
-
+            <div className={profileFrameeClass}>
+              <PostUserProfile imgUrl={ownerImg} />
+            </div>
+            <div className={postPreviewBottomNicknameClass}>
+              {ownerNickname}
+            </div>
             <Date dbDate={createdDate} />
           </div>
-          <Favorite
-            type={POST_PREVIEW}
-            myFavorite={myFavorite}
-            favoriteCount={favoriteCount}
-            objectId={postId}
+          <PostPreviewFavorite
+            isFavorite={isFavorite}
+            favriteCount={favoriteCount}
           />
         </div>
       </div>

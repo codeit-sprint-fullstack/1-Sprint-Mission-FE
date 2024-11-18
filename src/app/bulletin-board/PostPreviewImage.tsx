@@ -3,13 +3,12 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-interface ProductPreviewImageProps {
+interface PostPreviewImageProps {
   imgUrl: string;
 }
 
-export default function ProductPreviewImage({
-  imgUrl,
-}: ProductPreviewImageProps) {
+// default 이미지 별도 설정을 위해 나눔
+export default function PostPreviewImage({ imgUrl }: PostPreviewImageProps) {
   const [validImg, setValidImg] = useState("/images/no_image.svg");
 
   useEffect(() => {
