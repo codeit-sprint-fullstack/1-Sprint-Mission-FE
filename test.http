@@ -9,12 +9,12 @@ Content-Type: application/json
   "passwordConfirmation" : "12341234"
 }
 ### 로그인 시도
-POST https://panda-market-api.vercel.app/auth/signIn
+POST https://ms10-5yps.onrender.com/auth/signin
 Content-Type: application/json
 
 {
-  "email" : "aaaa@naver.com",
-  "password" : "aaaaaaaa"
+  "email" : "test@test.com",
+  "password" : "12341234"
 }
 ### 조회
 GET https://panda-market-api.vercel.app/products
@@ -25,6 +25,11 @@ Content-Type: application/json
   "pageSize" : 4,
   "orderBy" : "favoriteCount"
 }
+### 상품 조회
+GET https://ms10-5yps.onrender.com/articles/11
+
+### 댓글 조회
+GET https://
 
 ### 유저 조회
 GET https://panda-market-api.vercel.app/users/me
