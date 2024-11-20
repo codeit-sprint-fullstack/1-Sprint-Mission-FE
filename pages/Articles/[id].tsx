@@ -12,7 +12,7 @@ import ic_kebab from "@/public/images/ic_kebab.png";
 import ic_profile from "@/public/images/ic_profile.png";
 import ic_heart from "@/public/images/ic_heart.png";
 import ic_heart_liked from "@/public/images/ic_heart_liked.png";
-import img_reply_empty from "@/public/images/img_reply_empty.png";
+import img_reply_empty from "@/public/images/Img_reply_empty.png";
 import Img_inquiry_empty from "@/public/images/Img_inquiry_empty.png";
 import ic_back from "@/public/images/ic_back.png";
 import styles from "@/styles/detailArticle.module.css";
@@ -372,7 +372,7 @@ function DetailArticle({ article, comments, id }: Props) {
             {commentsData.pages[0].list.length <= 0 && (
               <>
                 <Image
-                  src={Img_inquiry_empty}
+                  src={img_reply_empty}
                   width={140}
                   height={140}
                   alt="댓글이없습니다"
