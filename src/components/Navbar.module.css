@@ -50,10 +50,15 @@
   color: #4b5563;
 }
 
-.boardLink {
+.articlesLink {
   margin-right: 25px;
 }
 
+.marketLink {
+  margin-right: 25px;
+}
+
+.articlesLink.active,
 .marketLink.active {
   color: #3692ff;
 }
@@ -151,4 +156,3 @@
   color: #f3f4f6;
   cursor: pointer;
 }
-
