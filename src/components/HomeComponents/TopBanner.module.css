@@ -1,0 +1,111 @@
+.topBannerContainer {
+  width: 100%;
+  height: 540px;
+  background-color: #cfe5ff;
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: 1fr 1110px 1fr;
+}
+.topBannerItem {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 540px;
+}
+.topBannerFontContainer {
+  margin-right: 7px;
+  height: 100%;
+  .topBannerFont {
+    color: #374151;
+    font-size: 40px;
+    font-weight: 700;
+    padding-top: 240px;
+  }
+  .topBannerBtn {
+    height: 56px;
+    border-radius: 40px;
+    padding: 15px 124px;
+    background-color: #3692ff;
+    font-weight: 600;
+    font-size: 20px;
+    color: #f9fafb;
+    text-align: center;
+    margin-top: 32px;
+  }
+}
+
+.topBannerImgContainer {
+  padding-top: 200px;
+}
+
+@media (max-width: 1199px) {
+  .topBannerContainer {
+    grid-template-columns: 1fr 696px 1fr;
+    height: 771px;
+  }
+  .topBannerItem {
+    height: 771px;
+    flex-direction: column;
+  }
+  .topBannerFontContainer {
+    margin-right: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .topBannerFont {
+      padding-top: 84px;
+      .fontNewLine {
+        display: none;
+      }
+    }
+    .topBannerBtn {
+      width: 357px;
+    }
+  }
+  .topBannerImgContainer {
+    padding-top: 210px;
+    .topBannerImg {
+      width: 744px;
+      height: 340px;
+    }
+  }
+}
+
+@media (max-width: 743px) {
+  .topBannerContainer {
+    grid-template-columns: 1fr;
+    height: 540px;
+  }
+  .topBannerItem {
+    grid-column: 1;
+    height: 540px;
+    flex-direction: column;
+  }
+  .topBannerFontContainer {
+    height: 136px;
+    .topBannerFont {
+      font-size: 32px;
+      text-align: center;
+      .fontNewLine {
+        display: block;
+      }
+    }
+    .topBannerBtn {
+      padding: 12px 71px;
+      width: 240px;
+      text-align: center;
+      margin-top: 18px;
+    }
+  }
+  .topBannerImgContainer {
+    padding-top: 200px;
+    overflow: hidden;
+    .topBannerImg {
+      width: 448px;
+      height: 204px;
+      object-fit: cover;
+    }
+  }
+}

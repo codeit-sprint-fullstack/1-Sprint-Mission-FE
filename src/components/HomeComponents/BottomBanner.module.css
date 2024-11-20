@@ -1,0 +1,89 @@
+.bottomBannerContainer {
+  width: 100%;
+  height: 540px;
+  background-color: #cfe5ff;
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: 1fr 1110px 1fr;
+}
+.bottomBannerItem {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 540px;
+}
+.bottomBannerFontContainer {
+  margin-right: 7px;
+  height: 100%;
+  .bottomBannerFont {
+    color: #374151;
+    font-size: 40px;
+    font-weight: 700;
+    margin-top: 240px;
+  }
+}
+
+.bottomBannerImgContainer {
+  padding-top: 145px;
+}
+
+@media (max-width: 1199px) {
+  .bottomBannerContainer {
+    grid-template-columns: 1fr 696px 1fr;
+    height: 927px;
+  }
+  .bottomBannerItem {
+    height: 771px;
+    flex-direction: column;
+    margin-top: 56px;
+  }
+  .bottomBannerFontContainer {
+    margin-right: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .bottomBannerFont {
+      margin-top: 257px;
+      text-align: center;
+    }
+  }
+  .bottomBannerImgContainer {
+    padding-top: 217px;
+    .bottomBannerImg {
+      width: 744px;
+      height: 397px;
+    }
+  }
+}
+
+@media (max-width: 743px) {
+  .bottomBannerContainer {
+    grid-template-columns: 1fr;
+    height: 540px;
+    margin-top: 83px;
+  }
+  .bottomBannerItem {
+    grid-column: 1;
+    height: 540px;
+    flex-direction: column;
+  }
+  .bottomBannerFontContainer {
+    height: 112px;
+    .bottomBannerFont {
+      font-size: 32px;
+      text-align: center;
+      margin-top: 0px;
+    }
+  }
+  .bottomBannerImgContainer {
+    padding-top: 131px;
+    overflow: hidden;
+    .bottomBannerImg {
+      width: 448px;
+      height: 204px;
+      object-fit: cover;
+    }
+  }
+}
