@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/shared/component/button/button";
+import { Button } from "@/shared/component/button/Button";
 import Input from "@/shared/component/Input/Input";
 import { useState } from "react";
 
@@ -43,18 +43,9 @@ export default function SignupForm() {
           placeholder="비밀번호를 다시 한 번 입력해주세요"
         />
       </div>
-      <Button
-        buttonText="로그인"
-        styles={{
-          width: "640px",
-          height: "56px",
-          rounded: "40px",
-          background: "#3692ff",
-          color: "white",
-          text: "20px",
-          font: "semibold",
-        }}
-      />
+      <Button variant="primary" size="lg" fullWidth>
+        로그인
+      </Button>
     </div>
   );
 }

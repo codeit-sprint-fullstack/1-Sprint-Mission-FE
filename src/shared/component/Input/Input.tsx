@@ -17,7 +17,7 @@ export default function Input({
   ...props
 }: InputProps) {
   const inputClassName = classNames(
-    "w-[640px] h-[56px] px-[24px] py-[16px] rounded-[12px] bg-[var(--cool-gray-100)]"
+    "w-[640px] h-[56px] px-[24px] py-[16px] rounded-[12px] bg-cool-gray-100"
   );
 
   const input: { [key in InputProps["option"]]: JSX.Element } = {
