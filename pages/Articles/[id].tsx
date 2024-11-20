@@ -13,6 +13,7 @@ import ic_profile from "@/public/images/ic_profile.png";
 import ic_heart from "@/public/images/ic_heart.png";
 import ic_heart_liked from "@/public/images/ic_heart_liked.png";
 import img_reply_empty from "@/public/images/img_reply_empty.png";
+import Img_inquiry_empty from "@/public/images/Img_inquiry_empty.png";
 import ic_back from "@/public/images/ic_back.png";
 import styles from "@/styles/detailArticle.module.css";
 import Comment from "@/components/Comment";
@@ -371,7 +372,7 @@ function DetailArticle({ article, comments, id }: Props) {
             {commentsData.pages[0].list.length <= 0 && (
               <>
                 <Image
-                  src={img_reply_empty}
+                  src={Img_inquiry_empty}
                   width={140}
                   height={140}
                   alt="댓글이없습니다"
