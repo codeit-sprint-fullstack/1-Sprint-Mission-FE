@@ -1,0 +1,58 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 298px;
+  height: 202px;
+  border-radius: 12px;
+  padding: 24px;
+  gap: 24px;
+  background-color: #ffffff;
+}
+
+.comment {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.button {
+  display: flex;
+  gap: 8px;
+}
+
+.cancel {
+  width: 88px;
+  height: 48px;
+  border-radius: 8px;
+  padding: 12px 23px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid #f74747;
+  background-color: #f9fafb;
+  color: #f74747;
+}
+
+.confirm {
+  width: 88px;
+  height: 48px;
+  border-radius: 8px;
+  padding: 12px 23px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #f74747;
+  color: #f3f4f6;
+}
