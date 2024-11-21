@@ -3,7 +3,8 @@
 import { useState } from "react";
 import classNames from "classnames";
 
-import TextArea from "../../components/TextArea";
+import TextArea from "src/app/components/TextArea";
+
 import {
   MIN_COMMENT_LENGTH,
   WARN_MIN_COMMENT_LENGTH,

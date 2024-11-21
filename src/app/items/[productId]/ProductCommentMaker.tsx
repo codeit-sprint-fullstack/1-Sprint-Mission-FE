@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import Modal from "react-modal";
 import classNames from "classnames";
 
-import TextAreaComment from "src/app/components/TextareaComment";
+import TextAreaComment from "src/app/components/TextAreaComment";
 
 interface ProductCommentMakerProps {
   addComment: (content: string) => void;
