@@ -68,7 +68,6 @@ export default function BestProductPreview({
           <div className={productNameClass}>{name}</div>
           <div className={productPriceClass}>{priceText}</div>
           <ProductPreviewFavorite
-            productId={productId}
             isFavorite={isFavorite}
             favriteCount={favoriteCount}
           />
