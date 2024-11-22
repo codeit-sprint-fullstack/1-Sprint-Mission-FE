@@ -12,12 +12,12 @@ interface Product {
   images: string[];
 }
 
-interface Props {
+interface productProps {
   itemValues: Product;
   favorite: boolean;
 }
 
-function Product({ itemValues, favorite }: Props) {
+function Product({ itemValues, favorite }: productProps) {
   const { name, price, favoriteCount, id, images } = itemValues;
   const numFormat = price.toLocaleString();
 

@@ -17,14 +17,14 @@ interface Comment extends Entity {
   user: User;
 }
 
-interface Props {
+interface commentProps {
   item: Comment;
   openAlert: () => void;
   setAlertMessage: (content: string) => void;
   user: User;
 }
 
-function Comment({ item, openAlert, setAlertMessage, user }: Props) {
+function Comment({ item, openAlert, setAlertMessage, user }: commentProps) {
   const { content, userId, user: writer, createAt, updateAt, id } = item;
   const router = useRouter();
   //날짜 포멧

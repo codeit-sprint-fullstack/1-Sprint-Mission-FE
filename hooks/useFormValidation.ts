@@ -73,7 +73,6 @@ const useFormValidation = (
           : "내용은 10자리 이상 100자리 이내 입니다.";
 
       case "price":
-        console.log(typeof value);
         if ((value as unknown as number) <= 0) {
           return "판매 가격은 1원 이상입니다.";
         }

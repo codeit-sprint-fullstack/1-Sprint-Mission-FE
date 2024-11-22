@@ -9,13 +9,13 @@ interface Params {
   [key: string]: string;
 }
 
-interface Props {
+interface searchBarProps {
   onChange: ({}: Params) => void;
   orderBy: string;
   isMobile: boolean;
 }
 
-function SearchBar({ onChange, orderBy, isMobile = false }: Props) {
+function SearchBar({ onChange, orderBy, isMobile = false }: searchBarProps) {
   const [keyword, setKeyword] = useState<string>("");
 
   const handleChangeOrder = (e: React.MouseEvent) => {
