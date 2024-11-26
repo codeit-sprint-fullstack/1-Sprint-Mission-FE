@@ -2,13 +2,13 @@ const { wrap } = require("lodash");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./app/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: ["./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       screens: {
         pc: { min: "1200px" },
-        tablet: { min: "744px", max: "1199px" },
-        mobile: { min: "375px", max: "743px" },
+        ta: { min: "744px", max: "1199px" },
+        mo: { min: "375px", max: "743px" },
       },
       colors: {
         gray: {
@@ -40,99 +40,46 @@ module.exports = {
       },
       width: {
         "pc-content": "120rem",
-        "tablet-content": "69.6rem",
-        "mobile-content": "34.3rem",
-        // header-btn-home
-        "pc-btn-home": "15.3rem",
-        "mobile-btn-home": "8.1rem",
-        // nav
-        "pc-nav-item": "10.9rem",
-        "mobile-nav-item": "7rem",
-        // btn-sigb-in
-        "btn-sign-in": "8.8rem",
-        // footer-icon
-        "footer-icon": "2rem",
-        // btn-logo
-        "btn-logo": "39.6rem",
-        "mobile-btn-logo": "19.8rem",
+        "ta-content": "69.6rem",
+        "mo-content": "34.3rem",
         // loading
         loading: "12rem",
         // dropdown
         dropdown: "13rem",
-        "mobile-dropdown-toggle": "4.2rem",
+        "mo-dropdown-toggle": "4.2rem",
         // best-post
         "pc-best-post": "38.4rem",
-        "tablet-best-post": "34rem",
-        "mobile-best-post": "34.3rem",
-        // best-product-preview
-        "pc-best-product-preview": "28.2rem",
-        "tablet-best-product-preview": "34.3rem",
-        "mobile-best-product-preview": "34.3rem",
-        // product-preview
-        "product-preview": "22.1rem",
-        "mobile-product-preview": "16.8rem",
-        // board-search
-        "board-search": "105.4rem",
-        "tablet-board-search": "56rem",
-        "mobile-board-search": "28.2rem",
-        // product-search
-        "product-search": "32.5rem",
-        "tablet-product-search": "24.2rem",
-        "mobile-product-search": "28.8rem",
-        // btn-link-regist
-        "btn-link-regist": "13.3rem",
+        "ta-best-post": "34rem",
+        "mo-best-post": "34.3rem",
         // btn-page
         "btn-page": "4rem",
         // simple-sign-in
         "simple-sign-in": "64rem",
-        "mobile-simple-sign-in": "34.3rem",
+        "mo-simple-sign-in": "34.3rem",
+        "simple-sign-up": "64rem",
+        "mo-simple-sign-up": "34.3rem",
       },
       height: {
-        tool42: "4.2rem",
-        // header-btn-home
-        "pc-btn-home": "5.1rem",
-        "mobile-btn-home": "4rem",
-        // nav
-        nav: "6.8rem",
-        // btn-sigb-in
-        "btn-sign-in": "4.2rem",
-        // footer
-        footer: "16rem",
-        // footer-icon
-        "footer-icon": "2rem",
-        // btn-logo
-        "btn-logo": "13.2rem",
-        "mobile-btn-logo": "6.6rem",
         // loading
         loading: "6rem",
         // dropdown
         dropdown: "4.2rem",
         // best-board
         "pc-best-board": "21.7rem",
-        "tablet-best-board": "24.6rem",
-        "mobile-best-board": "24rem",
+        "ta-best-board": "24.6rem",
+        "mo-best-board": "24rem",
         "pc-best-board-list": "16.9rem",
-        "tablet-best-board-list": "19.8rem",
-        "mobile-best-board-list": "19.8rem",
+        "ta-best-board-list": "19.8rem",
+        "mo-best-board-list": "19.8rem",
         // best-post
         "pc-best-post": "16.9rem",
-        "tablet-best-post": "19.8rem",
-        "mobile-best-post": "19.8rem",
-        // comment-text-area-frame
-        "comment-text-area-frame": "10.4rem",
-        // best-product-preview
-        "pc-best-product-preview": "37.8rem",
-        "tablet-best-product-preview": "43.4rem",
-        "mobile-best-product-preview": "43.4rem",
-        // product-preview
-        "product-preview": "31.7rem",
-        "mobile-product-preview": "26.4rem",
-        // product-preview-info
-        "product-preview-info": "8rem",
+        "ta-best-post": "19.8rem",
+        "mo-best-post": "19.8rem",
         // btn-page
         "btn-page": "4rem",
         // simple-sign-in
         "simple-sign-in": "7.4rem",
+        "simple-sign-up": "7.4rem",
         // post-middle-bar
         "post-middle-bar": "7.2rem",
       },
@@ -163,38 +110,7 @@ module.exports = {
       borderRadius: {
         "3.5em": "3.5em",
       },
-      margin: {
-        "mobile-footer": "7.6rem",
-        // sign-in
-        "sign-in-mt": "23.1rem",
-        "sign-in-mb": "23.1rem",
-        "tablet-sign-in-mt": "19rem",
-        "tablet-sign-in-mb": "32.5rem",
-        "mobile-sign-in-mt": "8rem",
-        "mobile-sign-in-mb": "23.1rem",
-        // comment-maker-frame
-        "comment-maker-frame": "3.2rem",
-        "tablet-comment-maker-frame": "4rem",
-        // comment-list-frame
-        "comment-list-frame": "4rem",
-        "mobile-comment-list-frame": "2.4rem",
-        // comment-text-area-frame
-        "comment-text-area-frame": "0.9rem",
-        // pagination
-        "pagination-mt": "4.3rem",
-        // serch-label
-        "search-label": "46.3rem",
-        "tablet-search-label": "3.8rem",
-      },
-      padding: {
-        "pc-header": "20rem",
-        "tablet-header": "2.4rem",
-        "mobile-header": "1.6rem",
-      },
-      gap: {
-        "footer-link": "3rem",
-        "footer-icons": "1.2rem",
-      },
+      margin: {},
       spacing: {
         loading: "35rem",
         "20rem": "20rem",
@@ -216,27 +132,30 @@ module.exports = {
         "0.4rem": "0.4rem",
         "0.2rem": "0.2rem",
         "0.1rem": "0.1rem",
-        "mobile-dropdown-menu-top": "-2.4rem",
-        "mobile-dropdown-menu-left": "-8.8rem",
-        // best-product-preview-image
-        "pc-best-product-preview-image": "28.2rem",
-        "tablet-best-product-preview-image": "34.3rem",
-        "mobibest-product-preview-image": "34.3rem",
-        // product-preview-image
-        "product-preview-image": "22.1rem",
-        "mobile-product-preview-image": "16.8rem",
+        "mo-dropdown-menu-top": "-2.4rem",
+        "mo-dropdown-menu-left": "-8.8rem",
       },
       backgroundImage: {
+        "btn-header__home": "url('/buttons/btn_home.svg')",
+        "btn-header__home--mo": "url('/buttons/btn_home_small.svg')",
+        "btn-post-list__to-create-page":
+          "url('/buttons/btn_write_post_88_42.svg')",
         "sign-in__btn": "url('/buttons/btn_sign_in_w640.svg')",
-        "sign-in__btn--mobile": "url('/buttons/btn_sign_in_w343.svg')",
+        "sign-in__btn--mo": "url('/buttons/btn_sign_in_w343.svg')",
         "sign-in__btn--disabled":
           "url('/buttons/btn_sign_in_disabled_w640.svg')",
-        "sign-in__btn--mobile--disabled":
+        "sign-in__btn--mo--disabled":
           "url('/buttons/btn_sign_in_disabled_w343.svg')",
+        "sign-up__btn": "url('/buttons/btn_sign_up_w640.svg')",
+        "sign-up__btn--mo": "url('/buttons/btn_sign_up_w343.svg')",
+        "sign-up__btn--disabled":
+          "url('/buttons/btn_sign_up_disabled_w640.svg')",
+        "sign-up__btn--mo--disabled":
+          "url('/buttons/btn_sign_up_disabled_w343.svg')",
         "oauth-btn__google": "url('/buttons/btn_google.svg')",
         "oauth-btn__kakao": "url('/buttons/btn_kakao.svg')",
         "favorite-heart--full": "url('/icons/ic_heart_small.svg')",
-        "favorite-heart--empty": "url('/icons/ic_heart_empty_small.svg')",
+        "favorite-heart--empty": "url('/icons/ic_heart_empty_16_16.svg')",
         "btn-link-regist": "url('/buttons/btn_regist_product.svg')",
       },
       borderColor: {
@@ -258,20 +177,20 @@ module.exports = {
           marginLeft: "auto",
           marginRight: "auto",
           paddingTop: "3.2rem",
-          "@screen tablet": {
+          "@screen ta": {
             paddingTop: "2.4rem",
           },
-          "@screen mobile": {
+          "@screen mo": {
             paddingTop: "2.4rem",
           },
         },
         ".content": {
           width: theme("width.pc-content"),
-          "@screen tablet": {
-            width: theme("width.tablet-content"),
+          "@screen ta": {
+            width: theme("width.ta-content"),
           },
-          "@screen mobile": {
-            width: theme("width.mobile-content"),
+          "@screen mo": {
+            width: theme("width.mo-content"),
           },
         },
         ".sign-in__main": {
@@ -279,32 +198,12 @@ module.exports = {
           flexDirection: "column",
           width: "64rem",
           margin: "23.1rem auto 23.1rem auto",
-          "@screen tablet": {
+          "@screen ta": {
             margin: "19rem auto 32.5rem auto",
           },
-          "@screen mobile": {
-            width: theme("width.mobile-content"),
+          "@screen mo": {
+            width: theme("width.mo-content"),
             margin: "8rem auto 23.1rem auto",
-          },
-        },
-        ".sign-in__btn-logo-frame": {
-          width: "39.6rem",
-          height: "13.2rem",
-          margin: "0 auto",
-          "@screen mobile": {
-            width: "19.8rem",
-            height: "6.6rem",
-          },
-        },
-        ".sign-in__btn-logo": {
-          width: "39.6rem",
-          height: "13.2rem",
-          backgroundImage: "url(/buttons/btn_logo.svg)",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          "@screen mobile": {
-            width: "19.8rem",
-            height: "6.6rem",
           },
         },
         ".sign-in__input-set": {
@@ -319,7 +218,7 @@ module.exports = {
           fontSize: "1.8rem",
           fontWeight: "700",
           color: theme("colors.gray.800"),
-          "@screen mobile": {
+          "@screen mo": {
             fontSize: "1.4rem",
             marginBottom: "0.8rem",
           },
@@ -369,8 +268,8 @@ module.exports = {
         ".sign-in__btn": {
           width: "64rem",
           height: "5.6rem",
-          "@screen mobile": {
-            width: theme("width.mobile-content"),
+          "@screen mo": {
+            width: theme("width.mo-content"),
           },
         },
         ".invalid-border": {
@@ -387,11 +286,11 @@ module.exports = {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          "@screen tablet": {
+          "@screen ta": {
             width: "34rem",
             height: "56.4rem",
           },
-          "@screen mobile": {
+          "@screen mo": {
             width: "34.4rem",
             height: "56rem",
           },
@@ -402,11 +301,11 @@ module.exports = {
           position: "relative",
           borderRadius: "1.6rem",
           overflow: "hidden",
-          "@screen tablet": {
+          "@screen ta": {
             width: "34rem",
             height: "34rem",
           },
-          "@screen mobile": {
+          "@screen mo": {
             width: "34.4rem",
             height: "34.4rem",
           },
@@ -414,11 +313,11 @@ module.exports = {
         ".product-image-list": {
           width: "48.6rem",
           height: "20rem",
-          "@screen tablet": {
+          "@screen ta": {
             width: "34rem",
             height: "20rem",
           },
-          "@screen mobile": {
+          "@screen mo": {
             width: "34.4rem",
             height: "20rem",
           },
@@ -428,10 +327,10 @@ module.exports = {
           fontWeight: "600",
           lineHeight: "3.2rem",
           color: theme("colors.gray.800"),
-          "@screen tablet": {
+          "@screen ta": {
             fontSize: "2rem",
           },
-          "@screen mobile": {
+          "@screen mo": {
             fontSize: "1.6rem",
             lineHeight: "2.6rem",
           },
@@ -442,12 +341,12 @@ module.exports = {
           fontWeight: "600",
           lineHeight: "5.2rem",
           color: theme("colors.gray.800"),
-          "@screen tablet": {
+          "@screen ta": {
             marginTop: "0.8rem",
             fontSize: "3.2rem",
             lineHeight: "4.2rem",
           },
-          "@screen mobile": {
+          "@screen mo": {
             marginTop: "0.8rem",
             fontSize: "2.4rem",
             lineHeight: "3.2rem",
@@ -458,11 +357,11 @@ module.exports = {
           fontWeight: "600",
           lineHeight: "2.6rem",
           color: theme("colors.gray.600"),
-          "@screen tablet": {
+          "@screen ta": {
             fontSize: "1.4rem",
             lineHeight: "2.4rem",
           },
-          "@screen mobile": {
+          "@screen mo": {
             fontSize: "1.4rem",
             lineHeight: "2.4rem",
           },
@@ -474,10 +373,10 @@ module.exports = {
           fontWeight: "400",
           lineHeight: "2.6rem",
           color: theme("colors.gray.600"),
-          "@screen tablet": {
+          "@screen ta": {
             marginTop: "0.8rem",
           },
-          "@screen mobile": {
+          "@screen mo": {
             marginTop: "0.8rem",
           },
         },
@@ -492,12 +391,6 @@ module.exports = {
           lineHeight: "2.6rem",
           textWrap: "nowrap",
           color: theme("colors.gray.800"),
-        },
-        ".btn-to-list-frame": {
-          display: "flex",
-          height: "4.8rem",
-          marginTop: "6.4rem",
-          marginBottom: "32.5rem",
         },
         ".btn-to-list": {
           width: "24rem",
@@ -526,7 +419,7 @@ module.exports = {
           height: "25rem",
           backgroundColor: "white",
           borderRadius: "0.8em",
-          "@screen mobile": {
+          "@screen mo": {
             width: "32.7rem",
             height: "22rem",
             gap: "4.2rem",
@@ -542,7 +435,7 @@ module.exports = {
           width: "16.5rem",
           height: "4.8rem",
           backgroundImage: "url(/buttons/btn_confirm_w165.svg)",
-          "@screen mobile": {
+          "@screen mo": {
             width: "12rem",
             backgroundImage: "url(/buttons/btn_confirm_w120.svg)",
           },
@@ -550,11 +443,11 @@ module.exports = {
         ".empty-comment-list": {
           width: theme("width.pc-content"),
           height: "20.8rem",
-          "@screen tablet": {
-            width: theme("width.tablet-content"),
+          "@screen ta": {
+            width: theme("width.ta-content"),
           },
-          "@screen mobile": {
-            width: theme("width.mobile-content"),
+          "@screen mo": {
+            width: theme("width.mo-content"),
           },
         },
         ".empty-comment-list_mark-text-set": {
@@ -584,12 +477,12 @@ module.exports = {
           gap: "2.4rem",
           display: "flex",
           flexDirection: "column",
-          "@screen tablet": {
-            width: theme("width.tablet-content"),
+          "@screen ta": {
+            width: theme("width.ta-content"),
             gap: "2.4rem",
           },
-          "@screen mobile": {
-            width: theme("width.mobile-content"),
+          "@screen mo": {
+            width: theme("width.mo-content"),
             gap: " 1.6rem",
           },
         },
@@ -598,7 +491,7 @@ module.exports = {
           backgroundColor: theme("colors.alabaster"),
           borderBottom: "0.1rem solid",
           borderColor: theme("colors.gray.200"),
-          "@screen mobile": {
+          "@screen mo": {
             height: "9.6rem",
           },
         },

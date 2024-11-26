@@ -1,0 +1,14 @@
+.dropdown-toggle {
+  background: 8.6rem url(../../../public/icons/arrow_down.svg) no-repeat;
+}
+
+/* ===== mo-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .main__tools-dropdown {
+    grid-area: d1;
+  }
+
+  .dropdown-toggle {
+    background: url(../../../public/buttons/btn_sort_small.svg) no-repeat;
+  }
+}
