@@ -81,7 +81,6 @@ export default function Board({
     setSortOrder,
   } = useArticles(initialArticles, totalArticles, pageSize, router);
 
-  console.log(articles);
   const handleKeywordSearch = (newKeyword: string) => {
     setKeyword(newKeyword);
   };
