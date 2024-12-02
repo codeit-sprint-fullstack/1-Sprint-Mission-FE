@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosError } from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://baomarket.onrender.com/api",
+  baseURL: process.env.NEXT_PUBLIC_API_URL + "/api",
   headers: {
     "Content-Type": "application/json",
   },

@@ -1,5 +1,6 @@
 import axiosInstance from "./axiosInstance";
 import { LikeData, CommentResponse, User } from "../types/commonTypes";
+import { uploadImage } from './imageApi';
 
 // 상품 등록 시 필요한 데이터 타입
 export interface ProductData {
@@ -121,25 +122,7 @@ export const unfavoriteProduct = async (productId: number): Promise<ProductRespo
 };
 
 // 이미지 업로드
-export const uploadImage = async (imageFile: File): Promise<{ imageUrl: string }> => {
-  try {
-    const formData = new FormData();
-    formData.append("image", imageFile);
-
-    const response = await axiosInstance.post<{ imageUrl: string }>("/images/upload", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-
-    console.log("이미지 업로드 성공:", response.data);
-    return response.data;
-  } catch (error: any) {
-    console.error(
-      "이미지 업로드 중 오류 발생:",
-      error.response ? error.response.data : error.message
-    );
-    throw error;
-  }
+export const uploadProductImage = async (imageFile: File): Promise<{ imageUrl: string }> => {
+  return uploadImage(imageFile);
 };
 

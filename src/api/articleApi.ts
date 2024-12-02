@@ -1,5 +1,6 @@
 import axiosInstance from "./axiosInstance";
 import { CommentResponse, LikeData, User } from "../types/commonTypes";
+import { uploadImage } from './imageApi';
 
 // 게시글 등록 시 필요한 데이터 타입
 export interface ArticleData {
@@ -156,25 +157,6 @@ export const unfavoriteArticle = async (articleId: number): Promise<ArticleRespo
 
 // 이미지 업로드
 export const uploadArticleImage = async (imageFile: File): Promise<{ imageUrl: string }> => {
-  console.log("이미지 파일 업로드 요청:", imageFile);
-  try {
-    const formData = new FormData();
-    formData.append("image", imageFile);
-
-    const response = await axiosInstance.post<{ imageUrl: string }>("/images/upload", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-
-    console.log("이미지 업로드 성공:", response.data);
-    return response.data;
-  } catch (error: any) {
-    console.error(
-      "이미지 업로드 중 오류 발생:",
-      error.response ? error.response.data : error.message
-    );
-    throw error;
-  }
+  return uploadImage(imageFile);
 };
 
