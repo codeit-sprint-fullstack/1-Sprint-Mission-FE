@@ -8,10 +8,13 @@ import {
   KeyboardEvent,
   FormEvent,
 } from 'react';
-import { postProduct } from '../api/products';
+import { postProduct, uploadImageToS3 } from '../api/products';
 import { AxiosResponse } from 'axios';
 import { ErrorResponse, Product } from '../../pages/api/types/productTypes';
-
+interface SelectedImage {
+  id: string;
+  url: string;
+}
 function isAxiosResponse<T>(response: any): response is AxiosResponse<T> {
   return response && 'status' in response && 'data' in response;
 }
@@ -59,12 +62,22 @@ export default function CreateItem() {
     return Math.random().toString(36).substring(2, 9);
   };
 
-  const handleImageChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  const handleImageChange = async (
+    event: ChangeEvent<HTMLInputElement>
+  ): Promise<void> => {
     const files = Array.from(event.target.files || []);
 
     if (selectedImages.length + files.length > 3) {
       alert('이미지는 최대 3개까지 등록할 수 있습니다.');
       return;
+    }
+    const formData = new FormData();
+    files.forEach((file) => {
+      formData.append('image', file);
+    });
+
+    for (const file of files) {
+      const image = await uploadImageToS3(file);
     }
 
     const newImagesPromises = files.map((file) => {

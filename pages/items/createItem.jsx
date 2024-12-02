@@ -35,11 +35,18 @@ function CreateItem() {
     const generateUUID = () => {
         return Math.random().toString(36).substring(2, 9);
     };
-    const handleImageChange = (event) => {
+    const handleImageChange = (event) => __awaiter(this, void 0, void 0, function* () {
         const files = Array.from(event.target.files || []);
         if (selectedImages.length + files.length > 3) {
             alert('이미지는 최대 3개까지 등록할 수 있습니다.');
             return;
+        }
+        const formData = new FormData();
+        files.forEach((file) => {
+            formData.append('image', file);
+        });
+        for (const file of files) {
+            const image = yield (0, products_1.uploadImageToS3)(file);
         }
         const newImagesPromises = files.map((file) => {
             return new Promise((resolve) => {
@@ -56,7 +63,7 @@ function CreateItem() {
                 return updatedImages;
             });
         });
-    };
+    });
     const handleRemoveImage = (id) => {
         setSelectedImages((prevImages) => prevImages.filter((image) => image.id !== id));
     };

@@ -19,6 +19,7 @@ exports.patchProduct = patchProduct;
 exports.deleteProduct = deleteProduct;
 exports.deletefavorite = deletefavorite;
 exports.postfavorite = postfavorite;
+exports.uploadImageToS3 = uploadImageToS3;
 const axios_1 = __importDefault(require("axios"));
 const api = axios_1.default.create({
     baseURL: 'https://ms10-5yps.onrender.com',
@@ -139,6 +140,25 @@ function postfavorite(productId) {
             return (((_a = error.response) === null || _a === void 0 ? void 0 : _a.data) || {
                 response: undefined,
             });
+        }
+    });
+}
+function uploadImageToS3(file) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const formData = new FormData();
+        formData.append('image', file);
+        try {
+            const response = yield api.post('products/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            console.log('이미지 업로드 성공:', response.data.imageUrl);
+            return response.data.imageUrl;
+        }
+        catch (error) {
+            console.error('이미지 업로드 실패:', error);
+            return null;
         }
     });
 }

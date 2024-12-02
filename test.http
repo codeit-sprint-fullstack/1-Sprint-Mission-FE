@@ -13,7 +13,7 @@ POST https://ms10-5yps.onrender.com/auth/signin
 Content-Type: application/json
 
 {
-  "email" : "test@test.com",
+  "email" : "4321a3221da@naver.com",
   "password" : "12341234"
 }
 ### 조회

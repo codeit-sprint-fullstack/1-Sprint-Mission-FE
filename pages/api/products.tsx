@@ -147,3 +147,26 @@ export async function postfavorite(
     );
   }
 }
+
+export async function uploadImageToS3(file: File): Promise<string | null> {
+  const formData = new FormData();
+  formData.append('image', file);
+
+  try {
+    const response: AxiosResponse<{ imageUrl: string }> = await api.post(
+      'products/upload',
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
+
+    console.log('이미지 업로드 성공:', response.data.imageUrl);
+    return response.data.imageUrl;
+  } catch (error) {
+    console.error('이미지 업로드 실패:', error);
+    return null;
+  }
+}
