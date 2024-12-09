@@ -1,7 +1,5 @@
 import styles from "./BoardListItems.module.css";
 import Image from "next/image";
-import productImg from "@/images/product.png";
-import profile from "@/images/ic_profile.png";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 import { Article } from "@/types/Types";
@@ -22,7 +20,9 @@ export default function BoardListItems({ articles }: BoardListItemsProps) {
                 <div className={styles.productImgContainer}>
                   <Image
                     src={
-                      article.images.length > 0 ? article.images[0] : productImg
+                      article.images.length > 0
+                        ? article.images[0]
+                        : "/product.png"
                     }
                     alt="product"
                     className={styles.productImg}
@@ -34,7 +34,7 @@ export default function BoardListItems({ articles }: BoardListItemsProps) {
               <div className={styles.info}>
                 <div className={styles.infoContainer}>
                   <Image
-                    src={profile}
+                    src="/ic_profile.png"
                     alt="profile"
                     className={styles.profileImg}
                     width={24}

@@ -30,12 +30,10 @@ export interface Article {
   createdAt: string;
   updatedAt: string;
   writer: {
-    id: number;
     nickname: string;
-    email: string;
-    image: string;
+    id: number;
   };
-  isLiked: boolean;
+  isLiked?: boolean;
 }
 
 export interface UploadedImage {

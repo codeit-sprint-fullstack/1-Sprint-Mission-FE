@@ -18,7 +18,7 @@
   cursor: pointer;
   margin-bottom: 30px;
   margin-top: 20px;
-  background-image: url("../../images/ic_back.png");
+  background-image: url("/ic_back.png");
   background-repeat: no-repeat;
   background-position: 177px;
 }

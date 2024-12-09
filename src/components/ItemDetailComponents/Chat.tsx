@@ -1,13 +1,10 @@
 import { useState, useMemo } from "react";
 import styles from "./Chat.module.css";
 import Image from "next/image";
-import profile from "../../images/ic_profile.png";
-import kebab from "@/images/ic_kebab.png";
 import { timeAgo } from "@/utils/timeAgo";
 import { deleteComment } from "@/utils/productChatApi";
 import { getUserProfile } from "@/utils/authApi";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import inquiry_empty from "../../images/img_inquiry_empty.png";
 import { Comment } from "@/types/Types";
 import { UserProfile } from "@/types/Types";
 
@@ -91,7 +88,13 @@ export default function Chat({ comments, onEdit }: ChatProps) {
     <div className={styles.container}>
       {comments.length === 0 ? (
         <div className={styles.emptyContainer}>
-          <Image src={inquiry_empty} alt="empty" className={styles.emptyImg} />
+          <Image
+            src="/img_inquiry_empty.png"
+            alt="empty"
+            className={styles.emptyImg}
+            width={40}
+            height={40}
+          />
           <p className={styles.emptyText}>아직 문의가 없어요</p>
         </div>
       ) : (
@@ -104,10 +107,12 @@ export default function Chat({ comments, onEdit }: ChatProps) {
                 <p className={styles.content}>{comment.content}</p>
                 {isAuthenticated && (
                   <Image
-                    src={kebab}
+                    src="/ic_kebab.png"
                     className={styles.kebab}
                     onClick={() => toggleDropdown(comment.id)}
                     alt="kebab"
+                    width={40}
+                    height={40}
                   />
                 )}
               </div>
@@ -129,9 +134,11 @@ export default function Chat({ comments, onEdit }: ChatProps) {
               )}
               <div className={styles.profileContainer}>
                 <Image
-                  src={profile}
+                  src="/ic_profile.png"
                   className={styles.profile}
                   alt="profile image"
+                  width={40}
+                  height={40}
                 />
                 <div className={styles.profileInfo}>
                   <p className={styles.name}>{comment.writer?.nickname}</p>

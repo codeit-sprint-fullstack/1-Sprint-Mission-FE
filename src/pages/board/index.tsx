@@ -9,19 +9,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { fetchBestArticles, fetchArticles } from "@/utils/articleApi";
 import "react-toastify/dist/ReactToastify.css";
 import { GetServerSideProps } from "next";
-
-interface Article {
-  id: number;
-  title: string;
-  content: string;
-  images: string[];
-  likeCount: number;
-  createdAt: string;
-  updatedAt: string;
-  writer: {
-    nickname: string;
-  };
-}
+import { Article } from "@/types/Types";
 
 interface BoardProps {
   initialArticles: Article[];
@@ -47,9 +35,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     });
     const bestArticles = await fetchBestArticles(3);
 
+    const updatedArticles = articles.list.map((article: any) => ({
+      ...article,
+      writer: {
+        id: article.writer?.id ?? 0, // 기본값 제공
+        nickname: article.writer?.nickname ?? "",
+      },
+    }));
+
     return {
       props: {
-        initialArticles: articles.list || [],
+        initialArticles: updatedArticles,
         totalArticles: articles.totalCount || 0,
         bestArticles,
         pageSize: Number(pageSize),

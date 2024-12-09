@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "./BestProduct.module.css";
 import Image from "next/image";
-import ProductImg from "@/images/product.png";
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 import { throttle } from "@/utils/throttle";
@@ -61,7 +60,7 @@ export default function BestProduct({ articles }: BestProductProps) {
                       src={
                         article.images.length > 0
                           ? article.images[0]
-                          : ProductImg
+                          : "/product.png"
                       }
                       alt="product"
                       className={styles.productImg}

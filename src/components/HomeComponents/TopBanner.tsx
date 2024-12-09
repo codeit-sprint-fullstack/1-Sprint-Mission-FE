@@ -1,6 +1,5 @@
 import Image from "next/image";
 import style from "./TopBanner.module.css";
-import TopBannerImg from "@/images/Img_home_top.png";
 import { ROUTES } from "@/utils/rotues";
 import { useRouter } from "next/router";
 
@@ -23,7 +22,7 @@ export default function TopBanner() {
         </div>
         <div className={style.topBannerImgContainer}>
           <Image
-            src={TopBannerImg}
+            src={"/Img_home_top.png"}
             width={746}
             height={340}
             alt="Top Banner Image"

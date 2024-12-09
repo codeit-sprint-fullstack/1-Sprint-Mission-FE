@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { ROUTES } from "@/utils/rotues";
 import Image from "next/image";
-import ic_google from "@/images/ic_google.png";
-import ic_kakao from "@/images/ic_kakao.png";
 import styles from "./FormFooter.module.css";
 import { signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
@@ -19,12 +17,20 @@ export default function FormFooter() {
         <div className={styles.easyLoginImg}>
           <Image
             className={styles.img}
-            src={ic_google}
+            src="/ic_google.png"
             alt="google"
             onClick={handleGoogleLogin}
+            width={40}
+            height={40}
           />
           <Link href="https://www.kakaocorp.com/page">
-            <Image className={styles.img} src={ic_kakao} alt="kakao" />
+            <Image
+              className={styles.img}
+              src="/ic_kakao.png"
+              alt="kakao"
+              width={40}
+              height={40}
+            />
           </Link>
         </div>
       </div>

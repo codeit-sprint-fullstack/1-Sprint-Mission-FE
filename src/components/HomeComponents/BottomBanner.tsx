@@ -1,6 +1,5 @@
 import Image from "next/image";
 import style from "./BottomBanner.module.css";
-import BottomBannerImg from "@/images/Img_home_bottom.png";
 
 export default function BottomBanner() {
   return (
@@ -14,7 +13,7 @@ export default function BottomBanner() {
         </div>
         <div className={style.bottomBannerImgContainer}>
           <Image
-            src={BottomBannerImg}
+            src="/Img_home_bottom.png"
             width={746}
             height={340}
             alt="Bottom Banner Image"

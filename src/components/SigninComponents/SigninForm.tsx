@@ -4,9 +4,6 @@ import Image from "next/image";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import styles from "./SigninForm.module.css";
-import logoImg from "@/images/desktop_logo.png";
-import btn_visibility from "@/images/btn_visibility.png";
-import btn_hide from "@/images/btn_hide.png";
 import { ROUTES } from "@/utils/rotues";
 import Modal from "../ModalComponents/Modal";
 import { signup } from "@/utils/authApi";
@@ -71,7 +68,13 @@ export default function SigninForm() {
 
   return (
     <>
-      <Image src={logoImg} alt="logo" className={styles.logo} />
+      <Image
+        src="/desktop_logo.png"
+        alt="logo"
+        className={styles.logo}
+        width={40}
+        height={40}
+      />
 
       <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.label} htmlFor="email">
@@ -112,10 +115,12 @@ export default function SigninForm() {
             {...register("password", validationRules.password)}
           />
           <Image
-            src={isVisible ? btn_visibility : btn_hide}
+            src={isVisible ? "/btn_visibility.png" : "/btn_hide.png"}
             alt="btn_hide"
             className={styles.btn_pw}
             onClick={togglePasswordVisibility}
+            width={40}
+            height={40}
           />
         </div>
         {errors.password && (
@@ -137,10 +142,12 @@ export default function SigninForm() {
             )}
           />
           <Image
-            src={isConfirmVisible ? btn_visibility : btn_hide}
+            src={isConfirmVisible ? "/btn_visibility.png" : "/btn_hide.png"}
             alt="btn_hide"
             className={styles.btn_pw}
             onClick={toggleConfirmPasswordVisibility}
+            width={40}
+            height={40}
           />
         </div>
         {errors.confirmPassword && (
